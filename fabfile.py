@@ -142,6 +142,7 @@ def deploy():
                               package_dirs=['zamboni', 'venv'])
 
     execute(restart_workers)
+    helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
     execute(update_celery)
     execute(install_cron, rpmbuild.install_to)
     managecmd('cron cleanup_validation_results')
