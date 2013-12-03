@@ -24,7 +24,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, AllowReviewerReadOnly, AnyOf
-from mkt.api.base import CORSMixin, get_url, SlugOrIdMixin
+from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin, get_url
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             TranslationSerializerField)
@@ -392,7 +392,8 @@ class PublicAppReadOnly(permissions.BasePermission):
         return object.is_public() and request.method in permissions.SAFE_METHODS
 
 
-class AppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
+class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                 viewsets.ModelViewSet):
     serializer_class = AppSerializer
     slug_field = 'app_slug'
     cors_allowed_methods = ('get', 'put', 'post', 'delete')
@@ -512,7 +513,8 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, viewsets.GenericViewSet):
+class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                           viewsets.GenericViewSet):
     queryset = Webapp.objects.all()
     cors_allowed_methods = ('get',)
     permission_classes = [AnyOf(AllowAppOwner, PublicAppReadOnly)]
