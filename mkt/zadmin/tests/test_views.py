@@ -17,76 +17,66 @@ class TestGenerateError(amo.tests.TestCase):
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        heka = settings.HEKA
-        HEKA_CONF = {
+        metlog = settings.METLOG
+        METLOG_CONF = {
             'logger': 'zamboni',
-            'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin',
+            'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin',
                                 {'override': True})},
-            'stream': {'class': 'heka.streams.DebugCaptureStream'},
-            'encoder': 'heka.encoders.NullEncoder',
+            'sender': {'class': 'metlog.senders.DebugCaptureSender'},
         }
-        from heka.config import client_from_dict_config
-        self.heka = client_from_dict_config(HEKA_CONF, heka)
-        self.heka.stream.msgs.clear()
+        from metlog.config import client_from_dict_config
+        self.metlog = client_from_dict_config(METLOG_CONF, metlog)
+        self.metlog.sender.msgs.clear()
 
-    def test_heka_statsd(self):
+    def test_metlog_statsd(self):
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
-                         {'error': 'heka_statsd'})
+                         {'error': 'metlog_statsd'})
 
-        eq_(len(self.heka.stream.msgs), 1)
-        msg = self.heka.stream.msgs[0]
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
 
-        eq_(msg.severity, 6)
-        eq_(msg.logger, 'zamboni')
-        eq_(msg.payload, '1')
-        eq_(msg.type, 'counter')
+        eq_(msg['severity'], 6)
+        eq_(msg['logger'], 'zamboni')
+        eq_(msg['payload'], '1')
+        eq_(msg['type'], 'counter')
+        eq_(msg['fields']['rate'], 1.0)
+        eq_(msg['fields']['name'], 'z.zadmin')
 
-        rate = [f for f in msg.fields if f.name == 'rate'][0]
-        name = [f for f in msg.fields if f.name == 'name'][0]
-
-        eq_(rate.value_double, [1.0])
-        eq_(name.value_string, ['z.zadmin'])
-
-    def test_heka_json(self):
+    def test_metlog_json(self):
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
-                         {'error': 'heka_json'})
+                         {'error': 'metlog_json'})
 
-        eq_(len(self.heka.stream.msgs), 1)
-        msg = self.heka.stream.msgs[0]
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
 
-        eq_(msg.type, 'heka_json')
-        eq_(msg.logger, 'zamboni')
+        eq_(msg['type'], 'metlog_json')
+        eq_(msg['logger'], 'zamboni')
+        eq_(msg['fields']['foo'], 'bar')
+        eq_(msg['fields']['secret'], 42)
 
-        foo = [f for f in msg.fields if f.name == 'foo'][0]
-        secret = [f for f in msg.fields if f.name == 'secret'][0]
-
-        eq_(foo.value_string, ['bar'])
-        eq_(secret.value_integer, [42])
-
-    def test_heka_cef(self):
+    def test_metlog_cef(self):
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
-                         {'error': 'heka_cef'})
+                         {'error': 'metlog_cef'})
 
-        eq_(len(self.heka.stream.msgs), 1)
+        eq_(len(self.metlog.sender.msgs), 1)
+        msg = json.loads(self.metlog.sender.msgs[0])
 
-        msg = self.heka.stream.msgs[0]
+        eq_(msg['type'], 'cef')
+        eq_(msg['logger'], 'zamboni')
 
-        eq_(msg.type, 'cef')
-        eq_(msg.logger, 'zamboni')
-
-    def test_heka_sentry(self):
+    def test_metlog_sentry(self):
         self.url = reverse('zadmin.generate-error')
         self.client.post(self.url,
-                         {'error': 'heka_sentry'})
+                         {'error': 'metlog_sentry'})
 
-        msgs = self.heka.stream.msgs
+        msgs = [json.loads(m) for m in self.metlog.sender.msgs]
         eq_(len(msgs), 1)
         msg = msgs[0]
 
-        eq_(msg.type, 'sentry')
+        eq_(msg['type'], 'sentry')
 
 
 class TestAddonAdmin(amo.tests.TestCase):
