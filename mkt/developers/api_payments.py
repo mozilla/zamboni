@@ -98,8 +98,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
         self.object = self.get_object()
         form = BangoPaymentAccountForm(request.DATA, account=True)
         if form.is_valid():
-            self.object.get_provider().account_update(self.object,
-                                                      form.cleaned_data)
+            self.object.get_provider().account_update(self.object, form.cleaned_data)
             return Response(status=status.HTTP_204_NO_CONTENT)
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -209,10 +208,10 @@ class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
     addon = HyperlinkedRelatedField(view_name='app-detail')
     payment_account = HyperlinkedRelatedField(
         view_name='payment-account-detail')
-
     class Meta:
         model = AddonPaymentAccount
-        fields = ('addon', 'payment_account', 'created', 'modified', 'url')
+        fields = ('addon', 'payment_account', 'provider',
+                  'created', 'modified', 'url')
         view_name = 'app-payment-account-detail'
 
     def validate(self, attrs):
@@ -243,8 +242,8 @@ class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
     def post_save(self, obj, created=False):
         """Ensure that the setup_bango method is called after creation."""
         if created:
-            provider = get_provider()
-            uri = provider.product_create(obj.payment_account, obj.addon)
+            uri = obj.__class__.setup_bango(obj.provider, obj.addon,
+                                            obj.payment_account)
             obj.product_uri = uri
             obj.save()
 
