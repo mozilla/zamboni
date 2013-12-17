@@ -123,27 +123,27 @@ CARRIER_URLS = splitstrip(private_mkt.CARRIER_URLS)
 # registration so that exceptions are passed through to sentry
 #RAVEN_CONFIG = {'dsn': SENTRY_DSN, 'register_signals': True}
 
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {
+METLOG_CONF = {
+    'plugins': {'cef': ('metlog_cef.cef_plugin:config_plugin', {
                         'syslog_facility': 'LOCAL4',
                         # CEF_PRODUCT is defined in settings_base
                         'syslog_ident': CEF_PRODUCT,
                         'syslog_priority': 'INFO'
                         }),
                 'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
+                    'metlog_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
+    'sender': {
+        'class': 'metlog.senders.UdpSender',
+        'host': splitstrip(private.METLOG_CONF_SENDER_HOST),
+        'port': private.METLOG_CONF_SENDER_PORT,
     },
     'logger': 'addons-marketplace-prod',
 }
-HEKA = client_from_dict_config(HEKA_CONF)
-USE_HEKA_FOR_CEF = True
+METLOG = client_from_dict_config(METLOG_CONF)
+USE_METLOG_FOR_CEF = True
 
-SENTRY_CLIENT = 'djangoraven.heka.HekaDjangoClient'
+SENTRY_CLIENT = 'djangoraven.metlog.MetlogDjangoClient'
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 

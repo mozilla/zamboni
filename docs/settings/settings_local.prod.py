@@ -45,24 +45,24 @@ LOG_LEVEL = logging.WARNING
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 
 
-# Sample heka configuration. Uncommented, this would override what is in
+# Sample metlog configuration. Uncommented, this would override what is in
 # lib/settings_base.py.
 
-# HEKA_CONF = {
+# METLOG_CONF = {
 #     'logger': 'zamboni',
-#     'stream': {
-#         'class': 'heka.streams.UdpStream',
+#     'sender': {
+#         'class': 'metlog.senders.UdpSender',
 #         'host': ['10.0.1.5', '10.0.1.10']
 #         'port': 5566
 #     },
 #     'plugins': {
-#         'raven': ('heka_raven.raven_plugin.config_plugin',
-#                  {'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
+#         'raven': ('metlog_raven.raven_plugin.config_plugin',
+#                   {'sentry_project_id': 1}),
 #     },
 # }
 #
-# from heka.config import client_from_dict_config
-# HEKA = client_from_dict_config(HEKA_CONF)
+# from metlog.config import client_from_dict_config
+# METLOG = client_from_dict_config(METLOG_CONF)
 
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
