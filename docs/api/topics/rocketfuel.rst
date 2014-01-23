@@ -20,6 +20,9 @@ under active development.
 Collections
 ===========
 
+.. deprecated:: 2
+    The collection endpoints were moved to the :ref:`feed <feed-collections>`.
+
 A collection is a group of applications
 
 
