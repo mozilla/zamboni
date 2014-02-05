@@ -43,7 +43,7 @@
           {% endif %}
         </p>
       {% endif %}
-      <footer class="listing-footer button-wrapper">
+      <div class="listing-footer footer button-wrapper">
         {%- if payments -%}
           <a href="{{ addon.get_dev_url('payments') }}" class="button prominent">
             {{- _('Set Up Payments') }}</a>
@@ -55,7 +55,7 @@
           <a href="{{ url('submit.app') }}" class="button prominent">
             {{- _('Submit Another App') }}</a>
         {%- endif -%}
-      </footer>
+      </div>
     </div>
   </section>
 {% endblock %}

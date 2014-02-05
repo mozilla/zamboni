@@ -79,7 +79,7 @@
         {% endif %}
       </p>
 
-      <footer class="listing-footer">
+      <div class="listing-footer footer">
         {% set continue_url = addon.get_dev_url('versions') %}
         {% if next_step %}
           {% set continue_url = next_step['url'] %}
@@ -97,7 +97,7 @@
           </span>
         {% endif %}
         <a href="{{ continue_url }}" class="button prominent">{{- _('Continue') }}</a>
-      </footer>
+      </div>
 
     </div>
   </section>
