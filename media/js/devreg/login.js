@@ -23,7 +23,7 @@ define('login', ['notification'], function(notification) {
         $this.addClass('loading-submit');
         z.doc.on('logincancel', function() {
             $this.removeClass('loading-submit').blur();
-        })
+        });
         startLogin();
         e.preventDefault();
     });
@@ -56,6 +56,8 @@ define('login', ['notification'], function(notification) {
         if (navigator.id) {
             navigator.id.logout();
         }
+        clearToken();
+
     });
     function gotVerifiedEmail(assertion) {
         if (assertion) {
@@ -65,7 +67,7 @@ define('login', ['notification'], function(notification) {
             // See Fireplace for mobile logic.
             data.is_mobile = 0;
 
-            $.post(z.body.data('login-url'), data)
+            $.post(z.body.data('login-url'), data, 'json')
              .success(finishLogin)
              .error(function(jqXHR, textStatus, error) {
                 var err = jqXHR.responseText;
@@ -84,7 +86,9 @@ define('login', ['notification'], function(notification) {
         }
     }
 
-    function finishLogin() {
+    function finishLogin(data) {
+        setToken(data);
+
         var to = z.getVars().to;
         if (to && to[0] == '/') {
             // Browsers may helpfully add "http:" to URIs that begin with double
@@ -119,6 +123,24 @@ define('login', ['notification'], function(notification) {
             },
             onlogout: function() {}
         });
+    }
+
+    function _prefix(storageKey) {
+        return (localStorage.getItem('latestStorageVersion') || '0') + '::' + storageKey;
+    }
+
+    function setToken(data) {
+        localStorage.setItem(_prefix('user'), data.token);
+        localStorage.setItem(_prefix('settings'), JSON.stringify(data.settings));
+        localStorage.setItem(_prefix('permissions'), JSON.stringify(data.permissions));
+        localStorage.setItem(_prefix('user_apps'), JSON.stringify(data.apps));
+    }
+
+    function clearToken() {
+        localStorage.removeItem(_prefix('user'));
+        localStorage.removeItem(_prefix('settings'));
+        localStorage.removeItem(_prefix('permissions'));
+        localStorage.removeItem(_prefix('user_apps'));
     }
 
     // Load `include.js` from persona.org, and drop login hotness like it's hot.

@@ -336,6 +336,7 @@ class TestLoginHandler(TestCase):
     def setUp(self):
         super(TestLoginHandler, self).setUp()
         self.url = reverse('account-login')
+        self.logout_url = reverse('account-logout')
 
     def post(self, data):
         return self.client.post(self.url, json.dumps(data),
@@ -428,6 +429,16 @@ class TestLoginHandler(TestCase):
         eq_(res.status_code, 400)
         assert 'assertion' in data
         assert not 'apps' in data
+
+    def test_logout(self):
+        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile.create_django_user(
+            backend='django_browserid.auth.BrowserIDBackend')
+        data = self._test_login()
+
+        r = self.client.delete(self.logout_url, {'_user': data['token']},
+                               content_type='application/json')
+        eq_(r.status_code, 204)
 
 
 class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
