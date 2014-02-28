@@ -723,7 +723,6 @@ class TestDetails(TestSubmit):
 
         self.webapp = self.get_webapp()
         self.make_premium(self.webapp)
-
         data = self.get_dict()
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
@@ -922,7 +921,7 @@ class TestDetails(TestSubmit):
         self._step()
         r = self.client.post(self.url, self.get_dict(support_email='xxx'))
         self.assertFormError(r, 'form_basic', 'support_email',
-                             'Enter a valid e-mail address.')
+                             'Enter a valid email address.')
 
     def test_categories_required(self):
         self._step()

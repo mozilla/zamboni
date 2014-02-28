@@ -67,7 +67,7 @@ def reverse_version(version):
     The try/except AttributeError allows this to be used where the input is
     ambiguous, and could be either an already-reversed URL or a Version object.
     """
-    if version:
+    if version and settings.MARKETPLACE:
         try:
             return reverse('version-detail', kwargs={'pk': version.pk})
         except AttributeError:
@@ -886,7 +886,7 @@ class Webapp(Addon):
 
         data = json.dumps(data, cls=JSONEncoder)
 
-        cache.set(key, data, 0)
+        cache.set(key, data, None)
 
         return data
 

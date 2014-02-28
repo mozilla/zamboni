@@ -81,10 +81,10 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
         self.webapp = Webapp.objects.get(pk=337141)
 
     def _germany_listed(self):
-        return not self.webapp.geodata.region_de_iarc_exclude
+        return not self.webapp.geodata.reload().region_de_iarc_exclude
 
     def _brazil_listed(self):
-        return not self.webapp.geodata.region_br_iarc_exclude
+        return not self.webapp.geodata.reload().region_br_iarc_exclude
 
     def test_exclude_unrated(self):
         amo.tests.make_game(self.webapp, rated=False)

@@ -5,7 +5,6 @@ from time import gmtime, time
 from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
 
-from django.core.management import setup_environ
 
 import jwt
 from browserid.errors import ExpiredSignatureError
@@ -16,7 +15,6 @@ from receipts import certs
 
 
 from services.utils import settings
-setup_environ(settings)
 
 from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
                    CONTRIB_PURCHASE, CONTRIB_REFUND,

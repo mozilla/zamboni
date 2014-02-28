@@ -453,7 +453,7 @@ class ReviewerScore(amo.models.ModelBase):
         if val is None:
             val = 0
 
-        cache.set(key, val, 0)
+        cache.set(key, val, None)
         return val
 
     @classmethod
@@ -469,7 +469,7 @@ class ReviewerScore(amo.models.ModelBase):
             val.filter(addon__type=addon_type)
 
         val = list(val[:limit])
-        cache.set(key, val, 0)
+        cache.set(key, val, None)
         return val
 
     @classmethod
@@ -492,7 +492,7 @@ class ReviewerScore(amo.models.ModelBase):
         """
         with amo.models.skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id]))
-        cache.set(key, val, 0)
+        cache.set(key, val, None)
         return val
 
     @classmethod
@@ -605,7 +605,7 @@ class ReviewerScore(amo.models.ModelBase):
             'leader_near': leader_near,
             'user_rank': user_rank,
         }
-        cache.set(key, val, 0)
+        cache.set(key, val, None)
         return val
 
     @classmethod
