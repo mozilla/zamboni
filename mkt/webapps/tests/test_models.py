@@ -715,7 +715,7 @@ class TestWebappContentRatings(amo.tests.TestCase):
         })
         ok_(not Geodata.objects.get(addon=app).region_de_usk_exclude)
 
-    def test_set_content_ratings_iarc_unexclude(self):
+    def test_set_content_ratings_iarc_games_unexclude(self):
         app = app_factory()
         app._geodata.update(region_br_iarc_exclude=True,
                             region_de_iarc_exclude=True)
@@ -727,6 +727,17 @@ class TestWebappContentRatings(amo.tests.TestCase):
         geodata = Geodata.objects.get(addon=app)
         ok_(not geodata.region_br_iarc_exclude)
         ok_(not geodata.region_de_iarc_exclude)
+
+    def test_set_content_ratings_purge_unexclude(self):
+        app = app_factory()
+        app.update(status=amo.STATUS_DISABLED, iarc_purged=True)
+
+        app.set_content_ratings({
+            mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
+        })
+
+        ok_(not app.reload().iarc_purged)
+        eq_(app.status, amo.STATUS_PUBLIC)
 
     def test_set_descriptors(self):
         app = app_factory()
@@ -751,7 +762,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
         app.set_descriptors([
             'has_esrb_blood', 'has_classind_drugs'
         ])
-        eq_(RatingDescriptors.objects.count(), 1)
         descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_esrb_blood
         assert descriptors.has_classind_drugs

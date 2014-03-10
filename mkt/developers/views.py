@@ -214,6 +214,12 @@ def status(request, addon_id, addon, webapp=False):
 
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
+            if waffle.switch_is_active('iarc') and not addon.is_rated():
+                # Cannot resubmit without content ratings.
+                return http.HttpResponseForbidden(
+                    'This app must obtain content ratings before being '
+                    'resubmitted.')
+
             form.save()
             create_comm_note(addon, addon.latest_version,
                              request.amo_user, form.data['notes'],

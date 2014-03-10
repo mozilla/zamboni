@@ -50,10 +50,18 @@
             </p>
           {% elif addon.status == amo.STATUS_DISABLED %}
             {{ status(_('This app has been <b>disabled by Mozilla</b>.')) }}
-            {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
-              Your app was disabled by a site administrator. If you have any
-              questions, please email {{ email }}.
-            {% endtrans %}
+            {% if addon.iarc_purged %}
+              {% trans ratings_url=addon.get_dev_url('ratings') %}
+                Your app was disabled because it is missing content ratings. It will
+                automatically be re-enabled after
+                <a href="{{ ratings_url }}">obtaining content ratings</a>.
+              {% endtrans %}
+            {% else %}
+              {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
+                Your app was disabled by a site administrator. If you have any
+                questions, please email {{ email }}.
+              {% endtrans %}
+            {% endif %}
           {% elif addon.status == amo.STATUS_BLOCKED %}
             {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
@@ -99,12 +107,17 @@
                   {% endif %}
                 </p>
               {% endif %}
-              {% if not addon.is_packaged %}
+              {% if not addon.is_packaged and addon.is_rated() or not waffle.switch('iarc') %}
                 <form method="post">
                   {{ csrf() }}
                   {{ form_field(form.notes, opt=True) }}
                   <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
                 </form>
+              {% elif waffle.switch('iarc') and not addon.is_rated() %}
+                {% trans ratings_url=addon.get_dev_url('ratings') %}
+                  You must <a href="{{ ratings_url }}">obtain content ratings</a>
+                  before resubmitting your app.
+                {% endtrans %}
               {% endif %}
           {% endif %}
         </div>

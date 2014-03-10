@@ -380,6 +380,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     enable_new_regions = models.BooleanField(default=False, db_index=True)
 
+    # Annotates disabled apps from the Great IARC purge for auto-reapprove.
+    # Note: for currently PUBLIC apps only.
+    iarc_purged = models.BooleanField(default=False)
+
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
 
