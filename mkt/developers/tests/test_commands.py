@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.models import AddonPremium
+from addons.models import AddonPremium, Category
 
 import mkt
 from mkt.developers.management.commands import (cleanup_addon_premium,
-                                                exclude_games, migrate_geodata)
+                                                exclude_games, migrate_geodata,
+                                                remove_old_aers)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -132,3 +133,29 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
         exclude_games.Command().handle()
         assert self._brazil_listed()
         assert not self._germany_listed()
+
+
+class TestRemoveOldAERs(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.geo = self.webapp.geodata
+        self.webapp.addoncategory_set.create(
+            category=Category.objects.create(slug='games',
+                                             type=amo.ADDON_WEBAPP))
+
+    def test_delete(self):
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.DE.id)
+
+        remove_old_aers.Command().handle()
+        eq_(self.webapp.addonexcludedregion.count(), 0)
+
+    def test_user_excluded_no_delete(self):
+        self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.DE.id)
+        self.webapp.addonexcludedregion.create(region=mkt.regions.MX.id)
+
+        remove_old_aers.Command().handle()
+        eq_(self.webapp.addonexcludedregion.count(), 3)
