@@ -14,6 +14,7 @@ from constants.payments import CONTRIB_NO_CHARGE
 from devhub.models import AppLog
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
+from mkt.receipts.tests.test_verify import sample
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -135,9 +136,8 @@ class TestReceipt(RestOAuth):
 
     def test_pending_free_for_anonymous(self):
         self.addon.update(status=amo.STATUS_PENDING)
-        r = self.anon.post(self.url)
+        self.anon.post(self.url)
         eq_(self.post(anon=True).status_code, 403)
-
 
     def test_pending_paid_for_developer(self):
         AddonUser.objects.create(addon=self.addon, user=self.profile)
@@ -203,14 +203,38 @@ class TestReceipt(RestOAuth):
 
 
 class TestReissue(amo.tests.TestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        self.addon = Addon.objects.get(pk=337141)
         self.url = reverse('receipt.reissue')
+        self.data = json.dumps({'app': self.addon.pk})
+
+        verify = mock.patch('mkt.receipts.api.Verify.check_full')
+        self.verify = verify.start()
+        self.addCleanup(verify.stop)
 
     def test_get(self):
         eq_(self.client.get(self.url).status_code, 405)
 
-    def test_reissue(self):
+    def test_invalid(self):
+        self.verify.return_value = {'status': 'invalid'}
         res = self.client.post(self.url, data={})
+        eq_(res.status_code, 400)
+
+    def test_valid(self):
+        self.verify.return_value = {'status': 'valid'}
+        res = self.client.post(self.url, data={})
+        eq_(res.status_code, 400)
+        data = json.loads(res.content)
+        ok_(not data['receipt'])
+        ok_(data['status'], 'valid')
+
+    def test_expired(self):
+        self.verify.return_value = {'status': 'expired'}
+        res = self.client.post(self.url, data=sample,
+                               content_type='text/plain')
         eq_(res.status_code, 200)
-        eq_(json.loads(res.content)['status'], 'not-implemented')
+        data = json.loads(res.content)
+        ok_(data['receipt'])
+        eq_(data['status'], 'expired')

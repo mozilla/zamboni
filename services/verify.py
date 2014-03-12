@@ -229,7 +229,7 @@ class Verify:
     def invalid(self, reason=''):
         receipt_cef.log(self.environ, self.addon_id, 'verify',
                         'Invalid receipt')
-        return json.dumps({'status': 'invalid', 'reason': reason})
+        return {'status': 'invalid', 'reason': reason}
 
     def ok_or_expired(self):
         # This receipt is ok now let's check it's expiry.
@@ -250,12 +250,12 @@ class Verify:
         return self.ok()
 
     def ok(self):
-        return json.dumps({'status': 'ok'})
+        return {'status': 'ok'}
 
     def refund(self):
         receipt_cef.log(self.environ, self.addon_id, 'verify',
                         'Refunded receipt')
-        return json.dumps({'status': 'refunded'})
+        return {'status': 'refunded'}
 
     def expired(self):
         receipt_cef.log(self.environ, self.addon_id, 'verify',
@@ -266,9 +266,9 @@ class Verify:
             # Log that we are signing a new receipt as well.
             receipt_cef.log(self.environ, self.addon_id, 'sign',
                             'Expired signing request')
-            return json.dumps({'status': 'expired',
-                               'receipt': sign(self.decoded)})
-        return json.dumps({'status': 'expired'})
+            return {'status': 'expired',
+                    'receipt': sign(self.decoded)}
+        return {'status': 'expired'}
 
 
 def get_headers(length):
@@ -327,7 +327,7 @@ def receipt_check(environ):
         data = environ['wsgi.input'].read()
         try:
             verify = Verify(data, environ)
-            return 200, verify.check_full()
+            return 200, json.dumps(verify.check_full())
         except:
             log_exception('<none>')
             return 500, ''

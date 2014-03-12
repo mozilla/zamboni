@@ -14,10 +14,10 @@ from mkt.api.base import cors_api_view
 from mkt.constants import apps
 from mkt.installs.utils import install_type, record
 from mkt.receipts.forms import ReceiptForm, TestInstall
-from mkt.receipts.utils import create_receipt, create_test_receipt, get_uuid
-
+from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
+                                reissue_receipt)
 from mkt.webapps.models import Installed
-
+from services.verify import Verify
 
 log = commonware.log.getLogger('z.receipt')
 
@@ -96,7 +96,22 @@ def test_receipt(request):
 @cors_api_view(['POST'])
 @permission_classes((AllowAny,))
 def reissue(request):
-    # This is just a place holder for reissue that will hopefully return
-    # a valid response, once reissue works. For the moment it doesn't. When
-    # bug 757226 lands. For the moment just return a 200 and some text.
-    return Response({'status': 'not-implemented', 'receipt': ''})
+    """
+    Reissues an existing receipt, provided from the client. Will only do
+    so if the receipt is a full receipt and expired.
+    """
+    raw = request.read()
+    verify = Verify(raw, request.META)
+    output = verify.check_full()
+
+    # We will only re-sign expired receipts.
+    if output['status'] != 'expired':
+        log.info('Receipt not expired returned: {0}'.format(output))
+        receipt_cef.log(request._request, None, 'sign',
+                        'Receipt reissue failed')
+        output['receipt'] = ''
+        return Response(output, status=400)
+
+    receipt_cef.log(request._request, None, 'sign', 'Receipt reissue signing')
+    return Response({'reason': '', 'receipt': reissue_receipt(raw),
+                     'status': 'expired'})
