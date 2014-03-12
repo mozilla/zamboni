@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-11 21:18+0000\n"
+"PO-Revision-Date: 2014-03-12 14:01+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1394572680.0\n"
+"X-POOTLE-MTIME: 1394632918.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:188
@@ -15539,11 +15539,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Encaminhamos devido aos altos relatos de abuso"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Encaminhamos devido aos altos pedidos de reembolso"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -15718,6 +15718,8 @@ msgstr ""
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
+"O aplicativo requer que a plataforma possa decodificar e reproduzir arquivos "
+"MP3."
 
 #: mkt/constants/features.py:167
 msgid "Audio"
@@ -15725,7 +15727,7 @@ msgstr "Áudio"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "O aplicativo requer que a plataforma suporte a API HTML5 de áudio."
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
