@@ -11,7 +11,7 @@ class InAppProduct(ModelBase):
     webapp = models.ForeignKey('webapps.WebApp')
     price = models.ForeignKey('market.Price')
     name = TranslatedField(require_locale=False)
-    logo_url = models.URLField(max_length=1024)
+    logo_url = models.URLField(max_length=1024, null=True, blank=True)
 
     class Meta:
         db_table = 'inapp_products'

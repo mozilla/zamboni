@@ -44,6 +44,20 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
         product_data.update(self.valid_in_app_product_data)
         return InAppProduct.objects.create(**product_data)
 
+    def get(self, url):
+        return self.client.get(url)
+
+    def post(self, url, data):
+        return self.client.post(url, json.dumps(data),
+                                content_type='application/json')
+
+    def put(self, url, data):
+        return self.client.put(url, json.dumps(data),
+                               content_type='application/json')
+
+    def delete(self, url):
+        return self.client.delete(url)
+
 
 class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
     fixtures = fixture('webapp_337141', 'prices')
@@ -54,18 +68,15 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
         self.client = self.setup_client(user)
 
     def test_create(self):
-        response = self.client.post(self.list_url(),
-                                    json.dumps(self.valid_in_app_product_data),
-                                    content_type='application/json')
+        response = self.post(self.list_url(), self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_201_CREATED)
         eq_(response.json['name'], 'Purple Gems')
 
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
-        response = self.client.put(self.detail_url(product.id),
-                                   json.dumps(self.valid_in_app_product_data),
-                                   content_type='application/json')
+        response = self.put(self.detail_url(product.id),
+                            self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(response.json['name'], 'Orange Gems')
         eq_(response.json['name'], product.reload().name)
@@ -73,20 +84,20 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
     def test_list(self):
         product1 = self.create_product()
         product2 = self.create_product()
-        response = self.client.get(self.list_url())
+        response = self.get(self.list_url())
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(sorted([p['id'] for p in response.json['objects']]),
             [product1.id, product2.id])
 
     def test_detail(self):
         product = self.create_product()
-        response = self.client.get(self.detail_url(product.id))
+        response = self.get(self.detail_url(product.id))
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(response.json['id'], product.id)
 
     def test_delete(self):
         product = self.create_product()
-        delete_response = self.client.delete(self.detail_url(product.id))
+        delete_response = self.delete(self.detail_url(product.id))
         eq_(delete_response.status_code, status.HTTP_403_FORBIDDEN)
 
 
@@ -99,30 +110,28 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
         self.client = self.setup_client(user)
 
     def test_create(self):
-        response = self.client.post(self.list_url(),
-                                    json.dumps(self.valid_in_app_product_data),
-                                    content_type='application/json')
+        response = self.post(self.list_url(),
+                             self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
-        response = self.client.put(self.detail_url(product.id),
-                                   json.dumps(self.valid_in_app_product_data),
-                                   content_type='application/json')
+        response = self.put(self.detail_url(product.id),
+                            self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_list(self):
         self.create_product()
-        response = self.client.get(self.list_url())
+        response = self.get(self.list_url())
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_detail(self):
         product = self.create_product()
-        response = self.client.get(self.detail_url(product.id))
+        response = self.get(self.detail_url(product.id))
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete(self):
         product = self.create_product()
-        response = self.client.delete(self.detail_url(product.id))
+        response = self.delete(self.detail_url(product.id))
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
