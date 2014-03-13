@@ -87,6 +87,7 @@ MIDDLEWARE_CLASSES.remove('mobility.middleware.DetectMobileMiddleware')
 MIDDLEWARE_CLASSES.remove('mobility.middleware.XMobileMiddleware')
 MIDDLEWARE_CLASSES.remove('amo.middleware.LocaleAndAppURLMiddleware')
 MIDDLEWARE_CLASSES = [
+    'mkt.api.middleware.GZipMiddleware',
     'mkt.site.middleware.CacheHeadersMiddleware'
 ] + MIDDLEWARE_CLASSES
 MIDDLEWARE_CLASSES.append('mkt.site.middleware.RequestCookiesMiddleware')
@@ -112,7 +113,7 @@ MIDDLEWARE_CLASSES += [
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
     'mkt.api.middleware.APITransactionMiddleware',
-    'mkt.api.middleware.APIFilterMiddleware'
+    'mkt.api.middleware.APIFilterMiddleware',
 ]
 
 TEMPLATE_DIRS += (path('mkt/templates'), path('mkt/zadmin/templates'))

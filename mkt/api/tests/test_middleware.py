@@ -13,7 +13,7 @@ from test_utils import RequestFactory
 import amo.tests
 from mkt.api.middleware import (APIFilterMiddleware, APIPinningMiddleware,
                                 APITransactionMiddleware, APIVersionMiddleware,
-                                CORSMiddleware)
+                                CORSMiddleware, GZipMiddleware)
 import mkt.regions
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
@@ -283,3 +283,26 @@ class TestFilterMiddleware(amo.tests.TestCase):
 
     def test_500(self):
         self._header(response_cls=HttpResponseServerError)
+
+
+class TestGzipMiddleware(amo.tests.TestCase):
+    @mock.patch('django.middleware.gzip.GZipMiddleware.process_response')
+    def test_enabled_for_api(self, django_gzip_middleware):
+        request = mock.Mock()
+        request.API = True
+        GZipMiddleware().process_response(request, mock.Mock())
+        ok_(django_gzip_middleware.called)
+
+    @mock.patch('django.middleware.gzip.GZipMiddleware.process_response')
+    def test_disabled_for_the_rest(self, django_gzip_middleware):
+        request = mock.Mock()
+        request.API = False
+        GZipMiddleware().process_response(request, mock.Mock())
+        ok_(not django_gzip_middleware.called)
+
+    def test_settings(self):
+        # Gzip middleware should be at the top of the list, so that it runs
+        # last in the process_response phase, in case the body has been
+        # modified by another middleware.
+        eq_(settings.MIDDLEWARE_CLASSES[0],
+            'mkt.api.middleware.GZipMiddleware')
