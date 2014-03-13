@@ -7,6 +7,7 @@ from urllib import urlencode
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
+from django.middleware.gzip import GZipMiddleware as BaseGZipMiddleware
 from django.middleware.transaction import TransactionMiddleware
 from django.utils.cache import patch_vary_headers
 
@@ -338,3 +339,20 @@ class TimingMiddleware(GraphiteRequestTimingMiddleware):
             statsd.timing('{pre}.{module}.{name}.{method}'.format(**data), ms)
             statsd.timing('{pre}.{module}.{method}'.format(**data), ms)
             statsd.timing('{pre}.{method}'.format(**data), ms)
+
+
+class GZipMiddleware(BaseGZipMiddleware):
+    """
+    Wrapper around GZipMiddleware, which only enables gzip for API responses.
+    It specifically avoids enabling it for non-API responses because that might
+    leak security tokens through the BREACH attack.
+
+    https://www.djangoproject.com/weblog/2013/aug/06/breach-and-django/
+    http://breachattack.com/
+    https://bugzilla.mozilla.org/show_bug.cgi?id=960752
+    """
+    def process_response(self, request, response):
+        if not getattr(request, 'API', False):
+            return response
+
+        return super(GZipMiddleware, self).process_response(request, response)
