@@ -49,11 +49,11 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         'get': AllowAny,
         'post': IsAuthenticated,
         'put': AnyOf(AllowOwner,
-                     GroupPermission('Addons', 'Edit')),
+                     GroupPermission('Apps', 'Edit')),
         'delete': AnyOf(AllowOwner,
                         AllowRelatedAppOwner,
                         GroupPermission('Users', 'Edit'),
-                        GroupPermission('Addons', 'Edit')),
+                        GroupPermission('Apps', 'Edit')),
     })]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

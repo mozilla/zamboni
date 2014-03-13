@@ -276,7 +276,7 @@ def _review(request, addon, version):
 
     queue_type = form.helper.review_type
     redirect_url = reverse('reviewers.apps.queue_%s' % queue_type)
-    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_admin = acl.action_allowed(request, 'Apps', 'Edit')
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
 

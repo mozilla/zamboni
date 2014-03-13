@@ -98,7 +98,7 @@ class AppReviewerTest(amo.tests.TestCase):
     def login_as_senior_reviewer(self):
         self.client.logout()
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit,Apps:ReviewEscalated,'
+        self.grant_permission(user, 'Apps:Edit,Apps:ReviewEscalated,'
                                     'Apps:ReviewPrivileged')
         self.login_as_editor()
 

@@ -366,7 +366,7 @@ class ReviewApp(ReviewBase):
         Changes status to Disabled.
         Creates Disabled note/email.
         """
-        if not acl.action_allowed(self.request, 'Addons', 'Edit'):
+        if not acl.action_allowed(self.request, 'Apps', 'Edit'):
             return
 
         # Disable disables all files, not just those in this version.
@@ -512,7 +512,7 @@ class ReviewHelper(object):
                 actions['reject'] = reject
 
         # Disable.
-        if (acl.action_allowed(self.handler.request, 'Addons', 'Edit') and (
+        if (acl.action_allowed(self.handler.request, 'Apps', 'Edit') and (
                 self.addon.status != amo.STATUS_DISABLED or
                 amo.STATUS_DISABLED not in file_status)):
             actions['disable'] = disable
