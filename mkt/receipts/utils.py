@@ -7,11 +7,12 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import jwt
 from nose.tools import nottest
+from receipts.receipts import Receipt
 
 from access import acl
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from lib.crypto.receipt import sign
+from lib.crypto import receipt
 
 
 def get_uuid(app, user):
@@ -26,6 +27,19 @@ def get_uuid(app, user):
         return app.addonpurchase_set.get(user=user).uuid
     except ObjectDoesNotExist:
         return 'none'
+
+
+def sign(data):
+    """
+    Returns a signed receipt. If the seperate signing server is present then
+    it will use that. Otherwise just uses JWT.
+
+    :params receipt: the receipt to be signed.
+    """
+    if settings.SIGNING_SERVER_ACTIVE:
+        return receipt.sign(data)
+    else:
+        return jwt.encode(data, get_key(), u'RS512')
 
 
 def create_receipt(webapp, user, uuid, flavour=None):
@@ -73,13 +87,26 @@ def create_receipt(webapp, user, uuid, flavour=None):
                    user={'type': 'directed-identifier',
                          'value': uuid},
                    verify=verify)
+    return sign(receipt)
 
-    if settings.SIGNING_SERVER_ACTIVE:
-        # The shiny new code.
-        return sign(receipt)
-    else:
-        # Our old bad code.
-        return jwt.encode(receipt, get_key(), u'RS512')
+
+def reissue_receipt(receipt):
+    """
+    Reissues and existing receipt by updating the timestamps and resigning
+    the receipt. This requires a well formatted receipt, but does not verify
+    the receipt contents.
+
+    :params receipt: an existing receipt
+    """
+    time_ = calendar.timegm(time.gmtime())
+    receipt_obj = Receipt(receipt)
+    data = receipt_obj.receipt_decoded()
+    data.update({
+        'exp': time_ + settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS,
+        'iat': time_,
+        'nbf': time_,
+    })
+    return sign(data)
 
 
 @nottest
@@ -106,10 +133,7 @@ def create_test_receipt(root, status):
                                      kwargs={'status': status}))
 
     }
-    if settings.SIGNING_SERVER_ACTIVE:
-        return sign(receipt)
-    else:
-        return jwt.encode(receipt, get_key(), u'RS512')
+    return sign(receipt)
 
 
 def get_key():

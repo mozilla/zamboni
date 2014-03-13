@@ -517,8 +517,8 @@ Reviewers
 
 Reviewers should not use this API.
 
-Test Receipts
-=============
+Receipt Testing
+===============
 
 Returns test receipts for use during testing or development. The returned
 receipt will have type `test-receipt`. Only works for hosted apps.
@@ -546,22 +546,51 @@ receipt will have type `test-receipt`. Only works for hosted apps.
 Receipt reissue
 ===============
 
-This is currently not implemented `awaiting bug <https://bugzilla.mozilla.org/show_bug.cgi?id=757226>`_. It will
-be used for `replacing receipts <https://wiki.mozilla.org/Apps/WebApplicationReceiptRefresh>`_.
+Takes an expired receipt and returns a reissued receipt with updated expiry
+times.
 
 .. http:post:: /api/v1/receipts/reissue/
 
+    **Request**
+
+    :param: the body of the request must contain the receipt, in the same way
+        that the `receipt verification`_ endpoint does.
+
     **Response**:
+
+    For a good response:
 
     .. code-block:: json
 
-        {"receipt": "", "status": "not-implemented"}
+        {
+            "reason": "",
+            "receipt": "eyJhbGciOiAiUlM1MT...[truncated]",
+            "status": "expired"
+        }
 
+    For a failed response:
+
+    .. code-block:: json
+
+        {
+            "reason": "NO_PURCHASE"
+            "receipt": "",
+            "status": "invalid"
+        }
+
+    :param reason: only present if the request failed, contains the reason
+        for failure, see `receipt verification`_ docs.
+    :type reason: string
     :param receipt: the receipt, currently blank.
     :type receipt: string
-    :param status: one of ``not-implemented``.
+    :param status: one of ``ok``, ``expired``, ``invalid``, ``pending``,
+        ``refunded``
     :type status: string
+
     :status 200: successfully completed.
+    :status 400: the receipt was not valid or not in an expired state, examine
+        the response to see the cause. The messages and the causes are the
+        same as for `receipt verification`_.
 
 .. _price-tiers:
 
@@ -818,3 +847,4 @@ Transaction failure
 .. _In-app Payments: https://developer.mozilla.org/en-US/docs/Apps/Publishing/In-app_payments
 .. _navigator.mozPay: https://wiki.mozilla.org/WebAPI/WebPayment
 .. _Reference Implementation: http://zippypayments.readthedocs.org/en/latest/
+.. _receipt verification: https://wiki.mozilla.org/Apps/WebApplicationReceipt#Interaction_with_the_verify_URL
