@@ -24,6 +24,7 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
+import lib.iarc
 from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
@@ -499,3 +500,35 @@ def save_test_plan(f, filename, addon):
     with open(dst, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+
+@task
+def refresh_iarc_ratings(ids, **kw):
+    """
+    Refresh old or corrupt IARC ratings by re-fetching the certificate.
+    """
+    client = lib.iarc.client.get_iarc_client('services')
+
+    for app in Webapp.objects.filter(id__in=ids):
+        iarc = app.iarc_info
+        iarc_id = iarc.submission_id
+        iarc_code = iarc.security_code
+
+        # Generate XML.
+        xml = lib.iarc.utils.render_xml(
+            'get_app_info.xml',
+            {'submission_id': iarc_id, 'security_code': iarc_code})
+
+        # Process that shizzle.
+        resp = client.Get_App_Info(XMLString=xml)
+
+        # Handle response.
+        data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
+
+        if data.get('rows'):
+            row = data['rows'][0]
+
+            # We found a rating, so store the id and code for future use.
+            app.set_descriptors(row.get('descriptors', []))
+            app.set_interactives(row.get('interactives', []))
+            app.set_content_ratings(row.get('ratings', {}))
