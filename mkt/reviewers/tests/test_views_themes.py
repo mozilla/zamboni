@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 import mock
+from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -23,12 +24,15 @@ import mkt.constants.reviewers as rvw
 from mkt.reviewers.views_themes import _get_themes, home, themes_search
 from mkt.site.fixtures import fixture
 
+
 class ThemeReviewTestMixin(object):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
                        'user_persona_reviewer', 'user_999',
                        'user_senior_persona_reviewer')
 
     def setUp(self):
+        raise SkipTest
+        self.create_switch('mkt-themes')
         self.reviewer_count = 0
         self.status = amo.STATUS_PENDING
         self.flagged = False
@@ -585,11 +589,14 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         assert (copy_mock2.call_args_list[0][0][1]
                 .endswith('preview_large.jpg'))
 
+
 class TestDeletedThemeLookup(amo.tests.TestCase):
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
                        'user_persona_reviewer', 'user_senior_persona_reviewer')
 
     def setUp(self):
+        raise SkipTest
+        self.create_switch('mkt-themes')
         self.deleted = addon_factory(type=amo.ADDON_PERSONA)
         self.deleted.update(status=amo.STATUS_DELETED, slug='deleted app '
                             + str(self.deleted.pk))
@@ -611,6 +618,8 @@ class TestThemeSearch(amo.tests.ESTestCase):
     fixtures = fixture('user_senior_persona_reviewer')
 
     def setUp(self):
+        raise SkipTest
+        self.create_switch('mkt-themes')
         self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
                                    status=amo.STATUS_PENDING)
 
@@ -641,6 +650,8 @@ class TestDashboard(amo.tests.TestCase):
     fixtures = fixture('user_senior_persona_reviewer')
 
     def setUp(self):
+        raise SkipTest
+        self.create_switch('mkt-themes')
         self.request = amo.tests.req_factory_factory(
             reverse('reviewers.themes.home'), user=UserProfile.objects.get())
 

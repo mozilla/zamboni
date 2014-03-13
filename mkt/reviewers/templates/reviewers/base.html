@@ -15,7 +15,7 @@
 </h1>
 
 {% block pillnav %}
-  {% if action_allowed('Apps', 'Review') and action_allowed('Personas', 'Review') %}
+  {% if waffle.switch('mkt-themes') and action_allowed('Apps', 'Review') and action_allowed('Personas', 'Review') %}
     <nav class="pill-nav">
       {# Duplicate if statement because eventually there will be three tabs.
          For now, either a reviewer has access to two queues or one. Don't need to show
