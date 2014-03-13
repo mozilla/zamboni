@@ -9,7 +9,6 @@ import happyforms
 from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.utils import rc
 from tower import ugettext as _
-import waffle
 
 import amo
 from access import acl
