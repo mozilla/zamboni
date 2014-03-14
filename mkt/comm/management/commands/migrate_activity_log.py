@@ -6,7 +6,7 @@ import amo
 from amo.utils import chunked
 from devhub.models import ActivityLog, AppLog
 
-from mkt.comm.tasks import migrate_activity_log
+from mkt.comm.tasks import _migrate_activity_log
 
 
 log = commonware.log.getLogger('comm')
@@ -17,10 +17,11 @@ class Command(BaseCommand):
             'Meant for one time run only.')
 
     def handle(self, *args, **options):
-        activity_ids = AppLog.objects.values_list('activity_log', flat=True)
-        logs = (ActivityLog.objects.filter(
-            pk__in=list(activity_ids), action__in=amo.LOG_REVIEW_QUEUE)
-            .order_by('created'))
+        applog_ids = AppLog.objects.values_list('activity_log', flat=True)
 
-        for log_chunk in chunked(logs, 100):
-            migrate_activity_log.delay(log_chunk)
+        ids = (ActivityLog.objects.filter(
+            pk__in=list(applog_ids), action__in=amo.LOG_REVIEW_QUEUE)
+            .order_by('created').values_list('id', flat=True))
+
+        for log_chunk in chunked(ids, 100):
+            _migrate_activity_log.delay(ids)

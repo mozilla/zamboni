@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import MultiValueDictKeyError
 
 from tower import ugettext as _, ungettext as ngettext
+from waffle.decorators import waffle_switch
 
 import amo
 from access import acl
@@ -29,6 +30,7 @@ from . import forms
 from .views import context, _get_search_form, queue_counts, QUEUE_PER_PAGE
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def home(request):
     data = context(
@@ -40,6 +42,7 @@ def home(request):
     return render(request, 'reviewers/themes/home.html', data)
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_list(request, flagged=False, rereview=False):
     """Themes queue in list format."""
@@ -162,6 +165,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
     return [lock.theme for lock in locks]
 
 
+@waffle_switch('mkt-themes')
 @json_view
 @reviewer_required('persona')
 def themes_search(request):
@@ -205,6 +209,7 @@ def themes_search(request):
         return {'objects': themes, 'meta': {'total_count': len(themes)}}
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_queue(request):
     # By default, redirect back to the queue after a commit.
@@ -214,6 +219,7 @@ def themes_queue(request):
     return _themes_queue(request)
 
 
+@waffle_switch('mkt-themes')
 @admin_required(theme_reviewers=True)
 def themes_queue_flagged(request):
     # By default, redirect back to the queue after a commit.
@@ -223,6 +229,7 @@ def themes_queue_flagged(request):
     return _themes_queue(request, flagged=True)
 
 
+@waffle_switch('mkt-themes')
 @admin_required(theme_reviewers=True)
 def themes_queue_rereview(request):
     # By default, redirect back to the queue after a commit.
@@ -271,6 +278,7 @@ def _get_rereview_themes(reviewer):
     return num, themes, locks
 
 
+@waffle_switch('mkt-themes')
 @post_required
 @reviewer_required('persona')
 def themes_commit(request):
@@ -307,6 +315,7 @@ def themes_commit(request):
         return redirect(reverse('reviewers.themes.queue_themes'))
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user.get_profile()).delete()
@@ -319,6 +328,7 @@ def release_locks(request):
     return redirect(reverse('reviewers.themes.list'))
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_single(request, slug):
     """
@@ -391,6 +401,7 @@ def themes_single(request, slug):
                            else 'rereview' if rereview else 'pending')}))
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_logs(request):
     data = request.GET.copy()
@@ -423,6 +434,7 @@ def themes_logs(request):
     return render(request, 'reviewers/themes/logs.html', data)
 
 
+@waffle_switch('mkt-themes')
 @admin_required(theme_reviewers=True)
 def deleted_themes(request):
     data = request.GET.copy()
@@ -452,6 +464,7 @@ def deleted_themes(request):
                    'tab': 'deleted'})
 
 
+@waffle_switch('mkt-themes')
 @reviewer_required('persona')
 def themes_history(request, username):
     if not username:

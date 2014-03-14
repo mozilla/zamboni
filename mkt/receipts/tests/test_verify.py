@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 import calendar
-import json
 import time
 from urllib import urlencode
 
@@ -20,7 +19,6 @@ from addons.models import Addon
 from services import utils, verify
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed
 from market.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
@@ -79,7 +77,7 @@ class TestVerify(amo.tests.TestCase):
         v = verify.Verify(receipt, RequestFactory().get('/verifyme/').META)
         v.cursor = connection.cursor()
         name = 'check_full' if check_purchase else 'check_without_purchase'
-        return json.loads(getattr(v, name)())
+        return getattr(v, name)()
 
     @mock.patch.object(verify, 'decode_receipt')
     def get(self, receipt, decode_receipt, check_purchase=True):

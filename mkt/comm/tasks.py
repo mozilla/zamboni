@@ -2,6 +2,7 @@ import logging
 from celeryutils import task
 
 from amo.decorators import write
+from devhub.models import ActivityLog
 
 from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
                              CommunicationThread)
@@ -34,9 +35,10 @@ def mark_thread_read(thread, user, **kwargs):
 
 @task
 @write
-def migrate_activity_log(logs, **kwargs):
+def _migrate_activity_log(ids, **kwargs):
     """For migrate_activity_log.py script."""
-    for log in logs:
+    for log in ActivityLog.objects.filter(pk__in=ids):
+
         action = cmb.ACTION_MAP(log.action)
 
         # Create thread.
