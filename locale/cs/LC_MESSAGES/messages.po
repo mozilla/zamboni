@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-01-31 09:29+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2014-03-14 08:25+0000\n"
+"Last-Translator: Martin819 <polreichmartin@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1391160553.0\n"
+"X-POOTLE-MTIME: 1394785505.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -15836,7 +15836,7 @@ msgstr "Částečná nahota"
 
 #: mkt/constants/ratingdescriptors.py:56
 msgid "Real Gambling"
-msgstr ""
+msgstr "Skutečné sázení"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Scary Themes"
@@ -15909,7 +15909,7 @@ msgstr "Sdílení dat o umístění"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:102
 msgid "Explicit Language"
-msgstr ""
+msgstr "Sprosté výrazy"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Frightening Content"
@@ -16013,7 +16013,7 @@ msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "Zbytek světa"
 
 #: mkt/constants/regions.py:111
 msgid "Venezuela"
