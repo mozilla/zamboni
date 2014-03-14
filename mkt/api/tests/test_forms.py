@@ -1,12 +1,14 @@
 import base64
 
+from django.core.exceptions import ValidationError
+
 import mock
 from nose.tools import eq_, ok_
 
-from addons.models import Addon
 import amo
 import amo.tests
-from mkt.api.forms import PreviewJSONForm, SluggableModelChoiceField
+from mkt.api.forms import (PreviewJSONForm, SchemeURLValidator,
+                           SluggableModelChoiceField)
 
 
 class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -71,3 +73,24 @@ class TestSluggableChoiceField(amo.tests.TestCase):
     def test_else(self):
         self.fld.to_python(value=None)
         ok_(self.fld.to_field_name is None)
+
+
+class TestSchemeURLValidator(amo.tests.TestCase):
+    ftp_url = 'ftp://my-domain.com'
+    not_a_url = 'not-a-url'
+
+    def test_url_validator_invalid_url(self):
+        with self.assertRaises(ValidationError):
+            SchemeURLValidator()(self.not_a_url)
+
+    def test_url_validator_no_schemes(self):
+        # Verify we do not see an exception as the URL is valid.
+        SchemeURLValidator()(self.ftp_url)
+
+    def test_url_validator_valid_scheme(self):
+        # Verify that the URL is still valid when we allow its scheme.
+        SchemeURLValidator(schemes=['ftp', 'http'])(self.ftp_url)
+
+    def test_url_validator_invalid_scheme(self):
+        with self.assertRaises(ValidationError):
+            SchemeURLValidator(schemes=['ftps', 'https'])(self.ftp_url)

@@ -2,6 +2,8 @@ import base64
 import StringIO
 
 from django import forms
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 
 import happyforms
 from tower import ugettext_lazy as _lazy
@@ -136,3 +138,16 @@ class CustomNullBooleanSelect(forms.Select):
         if data is not None:
             data = bool(data)
         return initial != data
+
+
+class SchemeURLValidator(URLValidator):
+    def __init__(self, *args, **kwargs):
+        self.schemes = kwargs.pop('schemes', ['http', 'https', 'ftp', 'ftps'])
+        super(URLValidator, self).__init__(*args, **kwargs)
+
+    def __call__(self, value):
+        super(URLValidator, self).__call__(value)
+        supports_scheme = lambda scheme: value.startswith(scheme + '://')
+        if not any(supports_scheme(scheme) for scheme in self.schemes):
+            raise ValidationError('Scheme should be one of {0}.'.format(
+                                  ', '.join(self.schemes)))
