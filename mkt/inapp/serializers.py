@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from mkt.api.forms import SchemeURLValidator as URLValidator
 from mkt.inapp.models import InAppProduct
 
 
@@ -9,6 +10,9 @@ class InAppProductSerializer(serializers.ModelSerializer):
                                        source='webapp')
     price_id = serializers.PrimaryKeyRelatedField(source='price')
     name = serializers.CharField()
+    logo_url = serializers.CharField(
+            validators=[URLValidator(schemes=['http', 'https'])],
+            required=False)
 
     class Meta:
         model = InAppProduct
