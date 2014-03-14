@@ -36,7 +36,7 @@ from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path, to_language, urlparams
-from constants.applications import DEVICE_TYPES
+from constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from market.models import AddonPremium
@@ -1547,6 +1547,8 @@ class WebappIndexer(MappingType, Indexable):
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     # Name for sorting.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    # Name for suggestions.
+                    'name_suggest' : {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
@@ -1782,6 +1784,23 @@ class WebappIndexer(MappingType, Indexable):
         # Bump the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC:
             d['_boost'] = max(d['_boost'], 1) * 4
+
+        # If the app is compatible with Firefox OS, push suggestion data in the
+        # index - This will be used by RocketbarView API, which is specific to
+        # Firefox OS.
+        if DEVICE_GAIA.id in d['device'] and obj.is_public():
+            d['name_suggest'] = {
+                'input': d['name'],
+                'output': unicode(obj.id),  # We only care about the payload.
+                'weight' : d['_boost'],
+                'payload': {
+                    'id': d['id'],
+                    'modified': d['modified'],
+                    'slug': d['app_slug'],
+                    'manifest_url': d['manifest_url'],
+                    'name_translations': d['name_translations']
+                }
+            }
 
         # Indices for each language. languages is a list of locales we want to
         # index with analyzer if the string's locale matches.

@@ -1007,12 +1007,16 @@ class TestRocketbarApi(ESTestCase):
         self.refresh('webapp')
         self.client = RestOAuthClient(None)
         self.app1 = Webapp.objects.get(pk=337141)
+        self.app1.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         self.app1.save()
-        self.app2 = app_factory(name=u'Second âpp',
+
+        self.app2 = app_factory(name=u'Something Second Something Something',
                                 description=u'Second dèsc' * 25,
                                 icon_type='image/png',
                                 created=self.days_ago(3),
-                                manifest_url='http://testrocketbar.example.com')
+                                manifest_url='http://rocket.example.com')
+        self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.app2.save()
         self.refresh('webapp')
 
     def tearDown(self):
@@ -1021,14 +1025,60 @@ class TestRocketbarApi(ESTestCase):
         self.app1.delete()
         self.app2.delete()
 
-    def test_suggestions_filtered(self):
-        response = self.client.get(self.url, data={'q': 'Second',
-                                                   'lang': 'en-US'})
+    def test_no_results(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'whatever',
+                                                       'lang': 'en-US'})
         parsed = json.loads(response.content)
-        eq_(parsed, [{'manifest_url': self.app2.get_manifest_url(),
-                      'icon': self.app2.get_icon_url(64),
-                      'name': unicode(self.app2.name),
-                      'slug': self.app2.app_slug}])
+        eq_(parsed, [])
+
+    def test_suggestions(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'Something Second',
+                                                       'lang': 'en-US'})
+        parsed = json.loads(response.content)
+        eq_(len(parsed), 1)
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
+
+    def test_suggestions_multiple_results(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'Something',
+                                                       'lang': 'en-US'})
+        parsed = json.loads(response.content)
+        eq_(len(parsed), 2)
+        eq_(parsed[0], {'manifest_url': self.app1.get_manifest_url(),
+                        'icon': self.app1.get_icon_url(64),
+                        'name': unicode(self.app1.name),
+                      'slug': self.app1.app_slug})
+        eq_(parsed[1], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
+
+    def test_suggestion_non_gaia_apps(self):
+        AddonDeviceType.objects.all().delete()
+        self.app1.save()
+        self.app2.save()
+        self.refresh('webapp')
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'something'})
+        parsed = json.loads(response.content)
+        eq_(parsed, [])
+
+    def test_suggestions_limit(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'something',
+                                                       'lang': 'en-US',
+                                                       'limit': 1})
+        parsed = json.loads(response.content)
+        eq_(len(parsed), 1)
+        eq_(parsed[0], {'manifest_url': self.app1.get_manifest_url(),
+                        'icon': self.app1.get_icon_url(64),
+                        'name': unicode(self.app1.name),
+                        'slug': self.app1.app_slug})
 
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):

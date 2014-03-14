@@ -24,7 +24,8 @@ from mkt.search.views import _filter_search
 from mkt.search.forms import ApiSearchForm
 from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                     SuggestionsESAppSerializer)
-from mkt.webapps.models import Webapp
+from mkt.search.utils import S
+from mkt.webapps.models import Webapp, WebappIndexer
 
 
 class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
@@ -161,8 +162,20 @@ class RocketbarView(SearchView):
     serializer_class = RocketbarESAppSerializer
 
     def get(self, request, *args, **kwargs):
-        results, query = self.search(request)
-        # This results a list. Usually this is a bad idea, but we don't return
-        # any user-specific data, it's fully anonymous, so we're fine.
-        return HttpResponse(json.dumps(results.data['objects']),
+        limit = request.GET.get('limit', 5)
+        es_query = {
+            'apps': {
+                'completion': {'field': 'name_suggest', 'size': limit},
+                'text': request.GET.get('q', '').strip()
+            }
+        }
+
+        results = S(WebappIndexer).get_es().send_request(
+            'GET', [WebappIndexer.get_index(), '_suggest'], body=es_query)
+
+        serializer = self.get_serializer(results['apps'][0]['options'])
+        # This returns a JSON list. Usually this is a bad idea for security
+        # reasons, but we don't include any user-specific data, it's fully
+        # anonymous, so we're fine.
+        return HttpResponse(json.dumps(serializer.data),
                             content_type='application/x-rocketbar+json')
