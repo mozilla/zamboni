@@ -35,7 +35,7 @@ def mark_thread_read(thread, user, **kwargs):
 
 @task
 @write
-def migrate_activity_log(ids, **kwargs):
+def _migrate_activity_log(ids, **kwargs):
     """For migrate_activity_log.py script."""
     for log in ActivityLog.objects.filter(pk__in=ids):
 

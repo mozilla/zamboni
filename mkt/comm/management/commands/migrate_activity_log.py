@@ -6,7 +6,7 @@ import amo
 from amo.utils import chunked
 from devhub.models import ActivityLog, AppLog
 
-from mkt.comm.tasks import migrate_activity_log
+from mkt.comm.tasks import _migrate_activity_log
 
 
 log = commonware.log.getLogger('comm')
@@ -24,4 +24,4 @@ class Command(BaseCommand):
             .order_by('created').values_list('id', flat=True))
 
         for log_chunk in chunked(ids, 100):
-            migrate_activity_log.delay(ids)
+            _migrate_activity_log.delay(ids)
