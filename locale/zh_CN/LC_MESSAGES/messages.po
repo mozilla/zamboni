@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-04 03:13+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-03-15 01:59+0000\n"
+"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393902785.0\n"
+"X-POOTLE-MTIME: 1394848796.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -15596,11 +15596,11 @@ msgstr "委内瑞拉"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:56
 msgid "Hosted"
-msgstr "主机"
+msgstr "已托管应用"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:35 mkt/submit/templates/submit/manifest.html:90
 msgid "Packaged"
-msgstr "已打包"
+msgstr "已打包应用"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
