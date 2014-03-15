@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2013-09-15 17:59+0000\n"
+"PO-Revision-Date: 2014-03-15 17:15+0000\n"
 "Last-Translator: Vlado <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -14,9 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1379267947.0\n"
+"X-POOTLE-MTIME: 1394903700.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -229,7 +229,7 @@ msgstr "Zobraziť zásady ochrany súkromia"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Zobraziť licenčnú zmluvu s koncovým používateľom"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1329,7 +1329,7 @@ msgstr ""
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Zobraziť všetky recenzie používateľov"
-msgstr[1] "Zobraziť všetky %(cnt)s recenzie používateľov"
+msgstr[1] "Zobraziť všetky (%(cnt)s) recenzie používateľov"
 msgstr[2] "Zobraziť všetkých %(cnt)s recenzií používateľov"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:48
