@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-17 19:59+0200\n"
+"PO-Revision-Date: 2014-03-17 21:04+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -8817,7 +8817,7 @@ msgstr "Krijimi i një Figure Fundfaqeje për Temën"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
-msgstr ""
+msgstr "Figura e pjesës së poshtme shfaqet si sfond në fund të dritares së shfletuesit, pas shtyllave të shtesës dhe të gjetjes. Do të ngulitet te cepi i poshtëm majtas në dritaren e shfletuesit."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
@@ -8833,7 +8833,7 @@ msgstr "Firefox-i mund të shfaqë më tepër nga pjesa e sipërme e figurës, n
 
 #: apps/devhub/templates/devhub/docs/themes.html:164
 msgid "The left-hand side of the image should have the most importan information&mdash;as a user increases the width of the browser window, the browser reveals more of the right-hand side of the image."
-msgstr ""
+msgstr "Pjesa majtas e figurës duhet të ketë të dhënat më të rëndësishme&mdash;teksa përdoruesi e rrit gjerësinë e dritares së shfletuesit, shfletuesi shfaq më tepër nga pjesa e djathtë e figurës."
 
 #: apps/devhub/templates/devhub/docs/themes.html:171
 msgid "Submitting your Theme Images"
@@ -8841,47 +8841,47 @@ msgstr "Si të parashtrohen Figurat e Temës suaj"
 
 #: apps/devhub/templates/devhub/docs/themes.html:173
 msgid "To get started submitting your images, go to the Theme Submission page:"
-msgstr ""
+msgstr "Që t'ia filloni me parashtrimin e figurave tuaja, shkoni te faqja e Parashtrimit të Temave:"
 
 #: apps/devhub/templates/devhub/docs/themes.html:179
 msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
-msgstr ""
+msgstr "<b>I vini emër temës suaj</b> &mdash; zgjidhni për temën tuaj një emër unik. Nuk lejohen përsëritje emrash, ndaj mund t'ju duhet të provoni një dorë herësh derisa të gjeni një emër unik."
 
 #: apps/devhub/templates/devhub/docs/themes.html:186
 msgid "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category and/or tags are unrelated to your theme."
-msgstr ""
+msgstr "<b>Zgjidhni një kategori dhe etiketa</b> &mdash; përzgjidhni një kategori dhe jepni disa etiketa që përputhen më mirë me temën tuaj. Mbani parasysh që një shqyrtues mund ta hedhë poshtë temën tuaj, nëse duket sheshit që kategoria dhe/ose etiketat e përdorura nuk kanë lidhjen me temën tuaj."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid "<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr ""
+msgstr "<b>Përshkruani temën tuaj</b> &mdash; shkruani një përshkrim të shkurtër të temës suaj. Mbani parasysh që një shqyrtues mund ta hedhë poshtë temën tuaj, nëse përshkrimi nuk është një parfaqësim i përpiktë i temës suaj."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
-msgstr ""
+msgstr "<b>Përzgjidhni për temën tuaj një licencë</b> &mdash; ndani mendjen mbi një licencë të drejtash kopjimi për veprën tuaj. <a href=\"%(cc_url)s\">Lexoni më tepër rreth llojeve të licencave Creative Common.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
-msgstr ""
+msgstr "<b>E rëndësishme:</b> Ju lutemi, sigurohuni që keni të drejta të përdorni figurën e temës suaj!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:216
 msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
-msgstr ""
+msgstr "<b>Ngarkoni figurat tuaja</b> &mdash; sigurohuni që janë nën 300 KB dhe në formatin JPG ose PNG!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr ""
+msgstr "<b>Përzgjidhni ngjyra teksti dhe skede</b> &mdash; mund të zgjidhni atë ngjyrë skede (\"sfondi\") dhe ngjyrë të përparme teksti që përputhet më mirë me figurën tuaj të kryes."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
-msgstr ""
+msgstr "<b>Parashiheni temën</b> &mdash; jeni gati ta parashihni temën tuaj! Thjesht kalojeni kursorin përsipër figurës sipër butonit Parashtroni Temën, dhe shihni në çast se si duket."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
 msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
-msgstr ""
+msgstr "<b>Parashtrojeni temën tuaj</b> &mdash; nëse gjithçka duket në rregull, klikoni mbi butonin Parashtroni Temën dhe mbaruat! Te faqja juaj e profilit mund të shihni krejt temat që keni nxjerrë nga duart."
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr ""
+msgstr "<b>Ndihmëz:</b> që të siguroheni se tema juaj miratohet për te galeria, sigurohuni që ajo përputhet me udhëzimet mbi lëndën dhe kushtet e shërbimit!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
@@ -8904,7 +8904,7 @@ msgstr "Krijoni një Profil Zhvilluesi"
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:29
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:12
 msgid "Your developer profile will tell users about you, why you made this app, and what's next for the app. This profile can be useful for any developer interested in connecting with users."
-msgstr ""
+msgstr "Profili juaj si zhvillues do t'u tregojë përdoruesve rreth jush, pse e krijuat këtë zbatim, dhe ç'do të ketë më tej për të. Ky profil mund të jetë i dobishëm për cilindo përdorues të interesuar të lidhet me përdoruesit."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:33
 msgid "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any developer interested in connecting with users."
@@ -9070,7 +9070,7 @@ msgstr "Kontribute Vullnetare"
 
 #: apps/devhub/templates/devhub/payments/payments.html:38
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr ""
+msgstr "Shtesat e regjistruara te programi ynë i kontributeve mund të kërkojnë nga përdoruesit përkrahje financiare vullnetare>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
@@ -9086,7 +9086,7 @@ msgstr "Merrni kontribute te llogaria juaj PayPal ose dërgojini te një organiz
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "Kontributet mund të kihen vetëm për shtesa me <a href=\"%(url)s\">profil të plotë zhvilluesi</a>."
 
 #: apps/devhub/templates/devhub/payments/payments.html:52
 msgid "Contributions are only available for fully reviewed add-ons."
@@ -9176,7 +9176,7 @@ msgstr "Hapi 4. Ripohojeni"
 
 #: apps/devhub/templates/devhub/payments/second-confirm.html:23
 msgid "Please review your Marketplace enrollment details below. Once you enroll in Marketplace, your add-on must be reviewed for compliance with Marketplace policies before it will be available for sale."
-msgstr ""
+msgstr "Ju lutemi, shqyrtoni hollësitë e regjistrimit te Marketplace-i më poshtë. Pasi ta regjistroni te Marketplace-i, shtesa juaj duhet të shqyrtohet për përputhje me rregullat e Marketplace-it, përpara se të jetë gati për shitje."
 
 #: apps/devhub/templates/devhub/payments/second-confirm.html:32
 msgid "Price %(price)s"
@@ -9265,7 +9265,7 @@ msgstr "ose <a id=\"setup-cancel\" href=\"#\">Anulojeni</a>"
 
 #: apps/devhub/templates/devhub/payments/includes/paypal.html:13
 msgid "The email address used by end users to contact you with support issues and refund requests."
-msgstr ""
+msgstr "Adresa email e përdorur nga përdoruesit e rëndomtë për t'u lidhur me ju për çështje asistence dhe kërkesa rimbursimi."
 
 #: apps/devhub/templates/devhub/payments/includes/tier.html:5
 msgid "Select a price tier below. Price tiers are based on US Dollars and are fixed for all supported countries. For more information <a href=\"%(doc_url)s\">view our pricing matrix</a>."
@@ -11049,7 +11049,7 @@ msgstr "U moderuan krejt shqyrtimet. Punë e paqme!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr "Shënime Versioni / për Fedora-n"
+msgstr "Shënime Versioni / Shënime për Shqyrtuesin"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
@@ -11178,7 +11178,7 @@ msgstr "Datë"
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
-msgstr "Përpunues"
+msgstr "Redaktor"
 
 #: apps/editors/templates/editors/reviewlog.html:56
 msgid "Add-on has been deleted."
@@ -12113,7 +12113,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:89
 msgid "Popular code editors include:"
-msgstr "Te redaktorët popullorë të kodit përfshihen:"
+msgstr "Te përpunuesit popullorë të kodit përfshihen:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:92
@@ -13121,7 +13121,7 @@ msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
 
 #: apps/reviews/views.py:154
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim nga botuesi."
+msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim redaktorial."
 
 # %s is the name of the add-on
 #: apps/reviews/templates/reviews/add.html:4
@@ -17784,7 +17784,7 @@ msgstr "Të dhëna rreth ndryshimesh në këtë hedhje në qarkullim, veçori t�
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "Në daçi, jepni çfarëdo të dhëne që mund të jetë e dobishme për Redaktorin që merr në shqyrtim këtë zbatim, të tilla si të dhëna llogarie prove."
+msgstr "Në daçi, jepni çfarëdo të dhëne që mund të jetë e dobishme për Shqyrtuesin që merr në shqyrtim këtë zbatim, të tilla si të dhëna llogarie prove."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:52
 #: mkt/developers/templates/developers/apps/edit/technical.html:48
@@ -19596,7 +19596,7 @@ msgstr "Krahasim Kartelash :: Mjete Shqyrtuesi"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr "Parës Kartelash :: Krahasim Kartelash"
+msgstr "Parës Kartelash :: Mjete Shqyrtuesi"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
