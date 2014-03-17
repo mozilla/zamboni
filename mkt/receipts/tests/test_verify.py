@@ -55,8 +55,6 @@ sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
 # even though they are the same file.
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_URL', 'http://foo.com')
 class TestVerify(amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
@@ -341,8 +339,6 @@ class TestBase(amo.tests.TestCase):
         return v
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestType(TestBase):
 
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
@@ -360,8 +356,6 @@ class TestType(TestBase):
             self.create(sample).check_type('blargh')
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 class TestURL(TestBase):
