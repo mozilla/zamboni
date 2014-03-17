@@ -1,10 +1,11 @@
+from datetime import datetime
+
 from rest_framework import serializers
 
 import amo
 from addons.models import Category, Preview
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import find_language
 from constants.applications import DEVICE_TYPES
 from versions.models import Version
 
@@ -81,14 +82,6 @@ class ESAppSerializer(AppSerializer):
         return [self.to_native(item) for item in obj.object_list]
 
     def to_native(self, obj):
-        request = self.context['request']
-
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            # We want to know if the user specifically requested a language,
-            # in order to return only the relevant translations when that
-            # happens.
-            self.requested_language = find_language(request.GET['lang'].lower())
-
         app = self.create_fake_app(obj._source)
         return super(ESAppSerializer, self).to_native(app)
 
@@ -206,6 +199,24 @@ class SuggestionsESAppSerializer(ESAppSerializer):
         return app.get_icon_url(64)
 
 
-class RocketbarESAppSerializer(SuggestionsESAppSerializer):
-    class Meta(ESAppSerializer.Meta):
-        fields = ['name', 'icon', 'slug', 'manifest_url']
+class RocketbarESAppSerializer(serializers.Serializer):
+    name = ESTranslationSerializerField()
+
+    @property
+    def data(self):
+        if self._data is None:
+            self._data = [self.to_native(o['payload']) for o in self.object]
+        return self._data
+
+    def to_native(self, obj):
+        # fake_app is a fake instance because we need to access a couple
+        # properties and methods on Webapp. It should never hit the database.
+        fake_app = Webapp(id=obj['id'], icon_type='image/png',
+            modified=datetime.strptime(obj['modified'], '%Y-%m-%dT%H:%M:%S'))
+        ESTranslationSerializerField.attach_translations(fake_app, obj, 'name')
+        return {
+            'name': self.fields['name'].field_to_native(fake_app, 'name'),
+            'icon' : fake_app.get_icon_url(64),
+            'slug': obj['slug'],
+            'manifest_url': obj['manifest_url'],
+        }

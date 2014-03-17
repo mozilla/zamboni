@@ -8,7 +8,6 @@ from django.conf import settings
 
 import mock
 from nose.tools import eq_, ok_
-from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 from addons.models import AddonUser
@@ -29,8 +28,6 @@ from zadmin.models import DownloadSource
 from .test_models import TEST_LEEWAY
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestInstall(amo.tests.TestCase):
     fixtures = fixture('user_999', 'user_editor', 'user_editor_group',
                        'group_editor')
@@ -170,8 +167,6 @@ class TestInstall(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(self.user.installed_set.count(), 1)
 
-    @mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                       amo.tests.AMOPaths.sample_key())
     @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_receipt(self, cef):
         res = self.client.post(self.url)
@@ -384,10 +379,7 @@ class RawRequestFactory(RequestFactory):
         return data
 
 
-# Ooof.
 @mock.patch.object(verify_settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
 @mock.patch.object(settings, 'SITE_URL', 'https://foo.com')
 @mock.patch.object(verify_settings, 'DOMAIN', 'foo.com')
