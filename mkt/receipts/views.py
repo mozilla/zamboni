@@ -1,3 +1,5 @@
+import json
+
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
@@ -235,4 +237,4 @@ def devhub_details(request):
 def devhub_verify(request, status):
     receipt = request.read()
     verify = Verify(receipt, request.META)
-    return response(verify.check_without_db(status))
+    return response(json.dumps(verify.check_without_db(status)))

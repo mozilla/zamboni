@@ -22,8 +22,6 @@ from users.models import UserProfile
 TEST_LEEWAY = 100
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestReceipt(amo.tests.TestCase):
     fixtures = ['base/users.json']
 

@@ -1,6 +1,5 @@
 import json
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 
 import mock
@@ -19,8 +18,6 @@ from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestAPI(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -86,8 +83,6 @@ class TestAPI(RestOAuth):
         eq_(logs[0].activity_log.action, amo.LOG.INSTALL_ADDON.id)
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestDevhubAPI(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -113,8 +108,6 @@ class TestDevhubAPI(RestOAuth):
         cef.assert_called_with(mock.ANY, None, 'sign', 'Test receipt signing')
 
 
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
 class TestReceipt(RestOAuth):
     fixtures = fixture('user_2519', 'webapp_337141')
 

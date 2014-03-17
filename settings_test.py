@@ -1,6 +1,8 @@
 import atexit
+import os
 import tempfile
 
+from lib.settings_base import ROOT
 from django.utils.functional import lazy
 
 
@@ -150,3 +152,6 @@ PAYMENT_PROVIDERS = ['bango']
 PRE_GENERATE_APKS = False
 # This is a precaution in case something isn't mocked right.
 PRE_GENERATE_APK_URL = 'http://you-should-never-load-this.com/'
+
+# A sample key for signing receipts.
+WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
