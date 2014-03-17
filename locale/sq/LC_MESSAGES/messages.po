@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-14 02:35+0300\n"
+"PO-Revision-Date: 2014-03-17 19:43+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -318,9 +318,7 @@ msgstr "Ekstra"
 
 #: apps/addons/templates/addons/collections_teaser.html:22
 msgid "<strong>Over 5000 free extras</strong> that let you customize and extend Firefox to meet your needs."
-msgstr ""
-"<strong>Mbi 5000 ekstra falas</strong>, që ju lejojnë të përshtatni dhe "
-"zgjeroni Firefox-in për t'ua përshtatur nevojave tuaja."
+msgstr "<strong>Mbi 5000 ekstra falas</strong>, që ju lejojnë të përshtatni dhe zgjeroni Firefox-in për t'ua përshtatur nevojave tuaja."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1164,10 +1162,7 @@ msgstr "Kjo Persona lyp %(app)s %(new_version)s. Jeni duke përdorur %(app)s {ol
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr ""
-"<strong>Kujdes:</strong> Kjo shtesë nuk është marrë në shqyrtim nga "
-"Mozilla. Bëni kujdes kur instaloni software palësh të treta, të cilat mund "
-"të dëmtojnë kompjuterin tuaj."
+msgstr "<strong>Kujdes:</strong> Kjo shtesë nuk është marrë në shqyrtim nga Mozilla. Bëni kujdes kur instaloni software palësh të treta, të cilat mund të dëmtojnë kompjuterin tuaj."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1377,24 +1372,15 @@ msgstr "<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju kërkon të n
 
 #: apps/addons/templates/addons/impala/contribution.html:60
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen "
-"tuaj ta tregoni duke bërë një dhurim te <a href=\"%(charity_url)s\""
-">%(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen tuaj ta tregoni duke bërë një dhurim te <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:65
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen "
-"tuaj ta tregoni duke bërë një dhurim te <a href=\"%(charity_url)s\""
-">%(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen tuaj ta tregoni duke bërë një dhurim te <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:72
 msgid "The <a href=\"%(meet_url)s\">developer of this app</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen "
-"tuaj ta tregoni duke dhënë një kontribut të vogël te <a href=\"%(charity_url)"
-"s\">%(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Zhvilluesi i kësaj shtese</a> ju fton që përkrahjen tuaj ta tregoni duke dhënë një kontribut të vogël te <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:77
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -2525,10 +2511,7 @@ msgstr "<h1>Na ndjeni, por nuk e gjejmë dot çfarë po kërkonit.</h1> <p> Faqj
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
-"<h1>Hmm... na ndodhi një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> "
-"Mund të provoni rifreskimin e faqes, ose kthehuni mbrapsht te <a href=\""
-"%(home)s\">faqja hyrëse e Shtesave</a>. </p>"
+msgstr "<h1>Hmm... na ndodhi një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose kthehuni mbrapsht te <a href=\"%(home)s\">faqja hyrëse e Shtesave</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -2982,9 +2965,7 @@ msgstr "Koleksioni u krijua!"
 
 #: apps/bandwagon/views.py:296
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
-"Koleksioni juaj i ri tregohet më poshtë. Nëse doni, mund të <a href=\"%(url)"
-"s\">përpunoni rregullimet e tjera</a>."
+msgstr "Koleksioni juaj i ri tregohet më poshtë. Nëse doni, mund të <a href=\"%(url)s\">përpunoni rregullimet e tjera</a>."
 
 #: apps/bandwagon/views.py:300
 msgid "Collection updated!"
@@ -3013,10 +2994,7 @@ msgstr "Krijoje"
 #: apps/bandwagon/templates/bandwagon/add.html:24
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
-"Siç edhe shënohet te <a href=\"%(legal)s\">Shënimet tona Ligjore</a>, "
-"marrëveshjet për koleksione individuale u binden një licence Creative "
-"Commons Attribution Share-Alike License"
+msgstr "Siç edhe shënohet te <a href=\"%(legal)s\">Shënimet tona Ligjore</a>, marrëveshjet për koleksione individuale u binden një licence Creative Commons Attribution Share-Alike License"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:38
@@ -3523,11 +3501,7 @@ msgstr "Shtesa në Koleksionin Tuaj"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
-msgstr ""
-"Për përfshirjen e një shtese në këtë koleksion, jepni emrin e saj te kutiza "
-"më poshtë dhe shtypni Enter. Mundeni gjithashtu të përdorni lidhjen <strong>"
-"Shtojeni në Koleksion</strong>, diku në sajt, për ta përfshirë shtesën më "
-"vonë."
+msgstr "Për përfshirjen e një shtese në këtë koleksion, jepni emrin e saj te kutiza më poshtë dhe shtypni Enter. Mundeni gjithashtu të përdorni lidhjen <strong>Shtojeni në Koleksion</strong>, diku në sajt, për ta përfshirë shtesën më vonë."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: apps/constants/base.py:430
@@ -4872,9 +4846,7 @@ msgstr "Kjo shtesë ka një Marrëveshje Licence Përdoruesi të Thjeshtë"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
-"Ju lutemi, përcaktoni Marrëveshje Licence Përdoruesi të Thjeshtë të shtesës "
-"suaj:"
+msgstr "Ju lutemi, përcaktoni Marrëveshje Licence Përdoruesi të Thjeshtë të shtesës suaj:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -5020,10 +4992,7 @@ msgstr "Jepni numrin tuaj fillestar për versionin. Në varësi të numrit të h
 
 #: apps/devhub/forms.py:768
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
-msgstr ""
-"Secila shtesë ka nevojë për një ID të vetme në formën e një UUID-je ose të "
-"një adrese email, fjala vjen emër-shtese@developer.com. Adresa email mund "
-"edhe të mos jetë e vlefshme."
+msgstr "Secila shtesë ka nevojë për një ID të vetme në formën e një UUID-je ose të një adrese email, fjala vjen emër-shtese@developer.com. Adresa email mund edhe të mos jetë e vlefshme."
 
 #: apps/devhub/forms.py:773
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
@@ -5917,11 +5886,7 @@ msgstr "Pajtohuni te kjo prurje"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:7
 msgid "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of this add-on."
-msgstr ""
-"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, "
-"hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e "
-"përditësimit të të dhënave të përputhshmërisë së shtesës suaj, ose të "
-"ngarkimit të një versioni më të ri të kësaj shtese."
+msgstr "Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhshmërisë së shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -6063,9 +6028,7 @@ msgstr "Administroni Profil Zhvilluesi"
 
 #: apps/devhub/templates/devhub/addons/profile.html:16
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
-"<a href=\"%(url)s\">Profili juaj si zhvillues</a> në këtë çast është "
-"<strong>publik</strong> dhe <strong>i domosdoshëm</strong> për kontribute."
+msgstr "<a href=\"%(url)s\">Profili juaj si zhvillues</a> në këtë çast është <strong>publik</strong> dhe <strong>i domosdoshëm</strong> për kontribute."
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
@@ -6073,9 +6036,7 @@ msgstr "Hiqi të Dy"
 
 #: apps/devhub/templates/devhub/addons/profile.html:27
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
-"<a href=\"%(url)s\">Profili juaj si zhvillues</a> në këtë çast është "
-"<strong>publik</strong>."
+msgstr "<a href=\"%(url)s\">Profili juaj si zhvillues</a> në këtë çast është <strong>publik</strong>."
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 #: mkt/developers/templates/developers/apps/profile.html:20
@@ -6336,10 +6297,7 @@ msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:138
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
-"UUID-ja e shtesës suaj caktohet te <em>install manifest</em>-i përkatës dhe "
-"e identifikon atë në mënyrë unike. UUID-në nuk mund ta ndryshoni më dot pasi "
-"shtesa të jetë parashtruar."
+msgstr "UUID-ja e shtesës suaj caktohet te <em>install manifest</em>-i përkatës dhe e identifikon atë në mënyrë unike. UUID-në nuk mund ta ndryshoni më dot pasi shtesa të jetë parashtruar."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -6684,8 +6642,7 @@ msgstr "Faqja e hollësive do të jetë:"
 #: apps/devhub/templates/devhub/personas/edit.html:89
 #: apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
-"Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija ndarëse."
+msgstr "Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija ndarëse."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
@@ -6754,9 +6711,7 @@ msgstr "Shihni dhe pajtohuni te <a href=\"{0}\">prurja mbi veprimtarinë</a> te 
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:50
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr ""
-"Shihni <a href=\"{0}\">kohë pritjeje</a> përafërsisht në radhën e "
-"shqyrtimeve."
+msgstr "Shihni <a href=\"{0}\">kohë pritjeje</a> përafërsisht në radhën e shqyrtimeve."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:57
 msgid "Get Ahead in the Review Queue!"
@@ -7086,7 +7041,7 @@ msgstr "Hyni te Biblioteka Si-të"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:81
 msgid "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
-msgstr ""
+msgstr "Nëse e keni të qartë se çfarë ju duhet, thjesht <a href=\"/en-US/developers/search\">kërkoni për të!</a> Kërkimi ynë do të rrëmojë në burimet më të mira mbi shtesat për të gjetur ndërfaqen që ju mungon ose për problemin që keni. Nëse nga kërkimi nuk del gjë, mos ngurroni të <a href=\"https://forums.addons.mozilla.org\">kërkoni ndihmë</a> në forumet tona."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
@@ -7159,9 +7114,7 @@ msgstr "Respektimi i Emërhapësira Globale JavaScript"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
 msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr ""
-"Në këtë postim blogu, Mark Ziesemer shpjegon si të parandalohet ndotja e "
-"emërhapësirave globale përmes mbështjelljes së ndryshoreve të zgjerimit tuaj."
+msgstr "Në këtë postim blogu, Mark Ziesemer shpjegon si të parandalohet ndotja e emërhapësirave globale përmes mbështjelljes së ndryshoreve të zgjerimit tuaj."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
@@ -7204,10 +7157,7 @@ msgstr "Vlerësim Kodi me Privilegje të Kufizuara"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
 msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr ""
-"Ky artikull përshkruan përdorimin e Components.utils.evalInSandbox-it, që "
-"është një rrugë për vlerësim kodi \"fjala vjen kod të largët\" pa privilegje "
-"<em>chrome</em>."
+msgstr "Ky artikull përshkruan përdorimin e Components.utils.evalInSandbox-it, që është një rrugë për vlerësim kodi \"fjala vjen kod të largët\" pa privilegje <em>chrome</em>."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
 msgid "Creating Sandboxed HTTP Connections"
@@ -7215,9 +7165,7 @@ msgstr "Krijim Lidhjesh HTTP Bankëprove"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr ""
-"Ky artikull shpjegon si të krijohen lidhje HTTP bankëprove që nuk prekin "
-"cookie-et e përdoruesve."
+msgstr "Ky artikull shpjegon si të krijohen lidhje HTTP bankëprove që nuk prekin cookie-et e përdoruesve."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -7245,9 +7193,7 @@ msgstr "Përkthimi i Përshkrimeve të Zgjerimit"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
 msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr ""
-"Mësoni si të përktheni emrat dhe përshkrimet te <em>install manifests</em> "
-"zgjerimesh."
+msgstr "Mësoni si të përktheni emrat dhe përshkrimet te <em>install manifests</em> zgjerimesh."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
 msgid "Localization and Plurals"
@@ -7718,7 +7664,7 @@ msgstr "Asistencë Shtese"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
 msgid "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support channels listed on the add-on's listing page."
-msgstr ""
+msgstr "Nëse keni ndonjë pyetje asistence lidhur me një shtesë të veçantë, fjala vjen, \"si ta përdor këtë shtesë?\" ose \"pse nuk punon si duhet kjo?\", ju lutemi, lidhuni me autorin e shtesës, përmes kanaleve për asistencë të radhitur te faqja e shtesës."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -7730,7 +7676,7 @@ msgstr "amo-editors at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
-msgstr ""
+msgstr "Nëse keni ndonjë pyetje lidhur me shqyrtim Redaktori të një shtese, ose dëshironi të njoftoni cenim rregullash, ju lutemi, dërgoni email te %(mail_editors)s. <strong>Thuajse të gjitha njoftimet mbi shtesa hyjnë në këtë kategori.</strong> Ju lutemi, mos harroni të përfshini një lidhje për te shtesa në fjalë dhe një përshkrim të hollësishëm të pyetjes ose komentit tuaj."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -7742,7 +7688,7 @@ msgstr "marketplace-staff te mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
-msgstr ""
+msgstr "Nëse keni zbuluar një cenim sigurie te një shtesë, edhe pse nuk është e strehuar këtu, Mozilla është shumë e intresuar për zbulimin tuaj dhe do të punojë me zhvilluesin e shtesës për ndreqjen e problemit sa më shpjet të jetë e mundur. Probleme sigurie shtesash mund të njoftohen <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">në mënyrë konfidenciale</a> te <a href=\"%(link_bugzilla)s\">Bugzilla</a> ose duke dërguar email te %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -7750,7 +7696,7 @@ msgstr "Funksionim & Zhvillim Sajti Web"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including the location of the problem and how you encountered it."
-msgstr ""
+msgstr "Nëse gjetët një problem me sajtin, do të donim ta ndreqnim. Ju lutemi, <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">depozitoni një njoftim të mete</a> te Bugzilla, përfshi vendin e problemit dhe se si e ndeshët."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -7764,11 +7710,11 @@ msgstr "Parashtrimi i Versioneve të Reja të Shtesës Suaj"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid "Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but please remember that versions must be reviewed by an editor."
-msgstr ""
+msgstr "Zhvilluesit i nxisim të parashtrojnë për shtesat e tyre përditësime për ndreqje të metash, shtim veçorish, dhe çfarëdo tjetër që përmirëson produktin e tyre. Versionet e reja të një shtese duhet të kenë <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">numër më të madh versioni</a> dhe mund të parashtrohen përmes Mjeteve të Zhvilluesve që ofrojmë. Për numrin e versionit që mund të parashtrohet nuk ka kufi, por, ju lutemi, mbani mend që versionet duhet të merren në shqyrtim nga një redaktor."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr ""
+msgstr "Versionet e rinj do të shtohen te një radhë në pritje shqyrtimi, dhe çfarëdo versioni shtesë i parashtruar përpara se shqyrtimi të jetë plotësuar, do ta kalojë versionin paraardhës në fund të radhës."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
@@ -7780,15 +7726,15 @@ msgstr "Kanalet beta janë vetëm për shtesa të shqyrtuara plotësisht."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
-msgstr ""
+msgstr "Për krijimin e një kanali beta, ngarkoni një kartelë me një varg unik versioni që përmban cilindo nga vargjet vijues: <code>a,b,alpha,beta,pre,rc</code>, me një numër, në daçi, në fund. Ky tekst duhet të gjendet në fund të vargut të versionit. Nëse merrni vesh nga formatet regex, ja se ç'presim nga një numër versioni: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid "Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest beta updates."
-msgstr ""
+msgstr "Pasi një kartelë që përputhet me këtë kriter, ngarkohet te AMO, do t'i vihet vetvetiu shenjë si një version beta. Përdoruesve të shtesave me këto numra unikë versionesh do t'u shërbehen përditësimet më të reja beta."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid "While we call these \"Beta versions\", you can use this channel for nightlies, or alphas, or prerelease versions as you wish. Please note that there is only one channel for this purpose and all of your users on this channel will receive the latest add-ons submitted. For instance, if you upload <code>1.0beta1</code> to the release channel and then upload <code>1.1alpha1</code>, all users of <code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update regardless of any kind of alphabetical sorting."
-msgstr ""
+msgstr "Pavarësisht se i quajmë \"Versione beta\", mund ta përdorni këtë kanal për montime të përnatshme, ose alfa, ose versione paraqarkullim, për kë të doni. Ju lutemi, mbani parasysh që ka vetëm një kanal për këtë qëllim dhe krejt përdoruesit tuaj në këtë kanal do të marrin shtesat e parashtruara së fundi. Për shembull, nëse ngarkoni <code>1.0beta1</code> te kanali i hedhjeve në qarkullim dhe mandej ngarkoni <code>1.1alpha1</code>, krejt përdoruesve të <code>1.0beta1</code> do t'u ofrohet një përmirësim te <code>1.1alpha1</code>. Si bazë për përditësimet merren data parashtrimesh dhe jo numra versionesh, ndaj përdoruesit  do të marrin gjithmonë përditësime më të reja nga kanali, pavarësisht nga çfarëdo lloj renditjeje alfabetike."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -7796,7 +7742,7 @@ msgstr "Përditësime të Domosdoshme"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid "Certain situations may arise in which Mozilla requests that an add-on developer update their add-on within a given time period to address a major security issue or policy violation. We work with developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-reviewed status, disabled, or permanently removed from the site."
-msgstr ""
+msgstr "Mund të ketë raste kur Mozilla i kërkon një zhvilluesi shtesash të përditësojë shtesën e tij brenda një periudhe të dhënë kohore, për të trajtuar një problem të rëndë sigurie apo cenimi rregullash. Përpiqemi të bashkërendohemi sa mundet me zhvilluesit, por nëse problemi është i një natyre goxha serioze, shtesat që nuk hedhin dot në qarkullim një përditësim me ndreqjen e dhënë mund të ulen në gradë, nga gjendja \"plotësisht e shqyrtuar\" në e çaktivizuar\" ose dhe të hiqen përgjithmonë prej sajtit."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -7804,23 +7750,23 @@ msgstr "Shpërngulje e Pronësisë"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
-msgstr ""
+msgstr "Për shtesat mund të ketë disa përdorues me leje për përditësim dhe administrim të paraqitjes së tyre. Përmes Mjetesh Zhvilluesish autorët ekzistues të një shtese mund ta transferojnë pronësinë dhe të shtojnë të tjerë zhvillues te paraqitja e një shtese. Për transferimin e pronësisë nuk lypset ndonjë ndërveprim me përfaqësues të Mozilla-s."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
-msgstr ""
+msgstr "Mozilla mund të ndihmojë me akordim lejesh shtesë mbi paraqitjen e një shtese, nëse <a href=\"%(link_contact)s\">kontaktohet</a> nga pronari i atëkohshëm i shtesës."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback to developers, allowing them to continuously improve their add-on to meet user needs."
-msgstr ""
+msgstr "Mozilla i nxit përdoruesit e vet të japin përshtypjet lidhur me punimin e shtesave. Kjo u lejon përdoruesve të tjerë të përcaktojnë nëse një shtesë është e qëndrueshme dhe e dobishme. Gjithashtu kjo u jep zhvilluesve të dhëna të dobishme, që u lejojnë atyre të përmirësojnë vazhdimisht shtesat e tyre në përputhje me nevojat e përdoruesve."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed unless they provide false information."
-msgstr ""
+msgstr "Shqyrtimet duhet të ndjekin <a href=\"%(link_guidelines)s\">udhëzimet mbi shqyrtime</a>. Shqyrtimet që nuk pajtohen me këto udhëzime mund të kalohen për moderim, por shqyrtimet negative nuk do të hiqen, veç në dhënshin informacion të rremë."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's review section."
-msgstr ""
+msgstr "Mjaft zhvillues ofrojnë një mekanizëm asistence, fjala vjen një forum, një grup diskutimesh, ose një adresë email. Këshillohet që pyetjet për asistencë të postohen përmes këtyre kanaleve, në vend se te ndarja për shqyrtime të shtesës."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -7828,15 +7774,15 @@ msgstr "Grindje rreth Kodit"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:90
 msgid "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains copyright of their work unless otherwise noted in the add-on's license."
-msgstr ""
+msgstr "Mjaft shtesa lejojnë që kodi i tyre burim të shihet haptazi. Kjo nuk nënkupton që kodi burim është me burim të hapët ose se jepet për përdorim në një shtesë tjetër. Të drejtat e kopjimit mbi veprën e vet i zotëron autori origjinal i një shtese, veç në u shënoftë ndryshe te licenca e shtesës."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
-msgstr ""
+msgstr "Në rast se njoftohemi për një shkelje të drejtash kopjimi ose licence, do të ndërmarrim hapa për të shqyrtuar gjendjen dhe përcaktuar nëse ka ndodhur cenim faktik. Nëse përcaktojmë se ka patur cenim, do ta heqim shtesën fajtore dhe do të lidhemi me autorin. Parashtrimeve të reja shtesash (përfshi përditësime) që përmbajnë kod me shkelje do t'u mohohet miratimi për t'i kaluar publike."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
-msgstr ""
+msgstr "Nëse nuk jeni i sigurt mbi gjendjen e të drejtave të kopjimit të kodit burim të një shtese, duhet të lidheni me autorin origjinal dhe të merrni leje shprehimisht, përpara se të përdorni kodin burim."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:306
@@ -7846,15 +7792,15 @@ msgstr "Përditësuar së fundmi: 13 Janar, 2011"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:13
 msgid "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the power of Firefox customization and are useful to a wide audience."
-msgstr ""
+msgstr "Shtesat e zgjedhura janë zgjerime dhe tema të cilësisë së lartë, të nxjerra në pah te <a href=\"%(link_gallery)s\">AMO</a>, te Përgjegjësi i Shtesave te Firefox-i, dhe në të tjerë sajte web të Mozilla-s. Këto shtesa shpalosin forcën e personalizimeve të Firefox-it dhe janë të dobishme për një numër të madh përdoruesish."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr ""
+msgstr "Shtesat e zgjedhura përcaktohen nga Trupa Këshillimore e Shtesave të Zgjedhura, një grup i vogël zhvilluesish shtesash dhe dashamirësh nga bashkësia Mozilla. vullnetarë në shqyrtimin dhe votimin e shtesave kanditate."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
-msgstr ""
+msgstr "<a href=\"%(link_featured)s\">Zgjerimet e zgjedhura</a> përzgjidhen çdo muaj, dhe <a href=\"%(link_themes)s\">temat e plota të zgjedhura</a> çdo katërmujor."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -7862,11 +7808,11 @@ msgstr "Kritere për Shtesa të Zgjedhura"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
-msgstr ""
+msgstr "Përpara se të kandidoni një shtesë për zgjedhje, ju lutemi, sigurohuni që pajtohet me kriteret vijuese:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr ""
+msgstr "Shtesa duhet të ketë te AMO një paraqitje të plotë dhe informuese. Kjo do të thotë:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
@@ -7890,7 +7836,7 @@ msgstr "foto të përditësuara nga shtesa në punë e sipër"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
-msgstr ""
+msgstr "duhet të jetë plotësisht e miratuar nga redaktorët e AMO-s (jo paraprakisht)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
@@ -7926,15 +7872,15 @@ msgstr "një shpjegim se përse shtesa juaj është tërheqëse për një madë 
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr ""
+msgstr "në pastë, të ofrohen lidhje për te shqyrtime ose artikuj të jashtëm që e përmendin shtesën"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, a video overview/demo/tutorial of the add-on not more than 5 minutes long"
-msgstr ""
+msgstr "në pastë, një përmbledhje/demo/përkujdesore video të shtesës, jo më të gjatë se 5 minuta"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid "Extension nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations), and you will receive an email regarding the decision and any suggestions for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
-msgstr ""
+msgstr "Zgjerimet kandidate shqyrtohen nga Trupa Këshillimore çdo muaj (një herë në 3 muaj për tema të plota kandidate), dhe do të merrni një email lidhur me vendimin dhe çfarëdo këshille për përmirësim. Në arsyet e rëndomta për hedhje poshtë përfshihen mungesa e tërheqjes për një masë të madhe përdoruesish, funksionim nën optimalen, probleme cilësie ose sigurie, papërputhshmëri, dhe ngjashmëri me një tjetër shtesë të zgjedhur. Shtesat e papranuara nuk mund të rikandidohen brenda 3 muajsh."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -7942,19 +7888,19 @@ msgstr "Shtesa të Zgjedhura"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
-msgstr ""
+msgstr "Mozilla dhe Trupa Këshillimore e Shtesave të Zgjedhura peshon dhe qarkullon rregullisht shtesat e zgjedhura. Disa nga arsyet më të rëndomta që një shtesë të hiqet nga lista e të zgjedhurave janë:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a good indicator the add-on may not be very useful to our users."
-msgstr ""
+msgstr "Mungesë rritjeje &mdash; Shtesat që paraqiten si të zgjedhura, zakonisht njohin një shtim thelbësor si të shkarkimeve, ashtu edhe të përdoruesve aktivë. Nëse një shtesë nuk shfaq rritje thelbësore në çfarëdo drejtimi, ky është tregues i mirë që shtesa mund të mos jetë dhe aq e dobishme për përdoruesit tanë."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
-msgstr ""
+msgstr "Shqyrtime negative &mdash; Shtesat e zgjedhura do të duhej të kishin funksionin të shkëlqyer dhe shumë pak të meta, ndaj shtesat me shumë shqyrtime negative do të duheshin rishqyrtuar."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of Firefox four weeks before its expected release will lose their featured status."
-msgstr ""
+msgstr "Papërputhshëmria me versione të ardhshme të Firefox-it &mdash; Shtesat e zgjedhura pritet të jenë të përputhshme me versionet beta dhe ato të qëndrueshme të Firefox-it. Shtesat ende të papërputhshme me një version Beta të Firefox-it katër javë përpara hedhjes së pritshme në qarkullim do ta humbin gjendjen si të zgjedhura."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -7962,35 +7908,35 @@ msgstr "Bëhuni pjesë e Bordit Këshillimor për Shtesat e Zgjedhura"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
-msgstr ""
+msgstr "Çdo gjashtë muaj zgjidhet një Trupë e re Këshillimore, bazuar mbi kandidatura prej bashkësisë së shtesa. Anëtarët duhet:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
-msgstr ""
+msgstr "të jenë anëtarë aktivë të bashkësisë së shtesave, qofshin zhvillues, predikues apo dashamirës"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
-msgstr ""
+msgstr "t'i përkushtohen provës së krejt kandidaturave të parashtruara, duke dhënë përshtypjet e tyre, dhe të japin votën e tyre çdo muaj"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)"
-msgstr ""
+msgstr "të marrin pjesë në një konferencë të përmuajshme në linjë, për të votuar dhe përzgjedhur shtesat e zgjedhura të muajit të ardhshëm (zgjedhja e temave të plota do të diskutohet çdo tre konferenca)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:111
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
-msgstr ""
+msgstr "të mos marrin pjesë në votimin e një shtese me të cilën i lidh biznesi apo vetja, si dhe në votim për konkurrentë të drejtpërdrejt të çfarëdo shtese të tillë"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:115
 msgid "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to feature."
-msgstr ""
+msgstr "Anëtarët e ekipit të Shtesave Mozilla mund të vendosin veto mbi çfarëdo përzgjedhje shtese, kur vjen puna për sigurinë, privatësinë, përputhshmërinë, ose për çfarëdo arsye tjetër, por në përgjithësi i takon Trupës të përzgjedhë shtesa për te të zgjedhurat."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:121
 msgid "This featured policy only applies to the addons.mozilla.org global list of featured add-ons. Add-ons featured in other locations are often pulled from this list, but Mozilla may feature any add-on in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global features may not appear in that locale."
-msgstr ""
+msgstr "Ky rregull vlen vetëm për listën e shtesave të zgjedhura te addons.mozilla.org. Shtesat e zgjedhura në vende të tjera shpesh hiqen prej kësaj liste, por Mozilla mund të kalojë te të zgjedhurat çfarëdo shtese prej vendi tjetër, pa pëlqimin e Trupës. Për më tepër, të zgjedhurat e një vendoreje anashkalojnë parazgjedhjet globale, pra nëse një vendore ka vendosur të përzgjedhë të vetat, disa ose krejt të zgjedhurat globale mund të mos shfaqen te ajo vendore."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:127
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr ""
+msgstr "Ndiqni <a href=\"%(link_blog)s\">Blogun e Shtesave</a> ose <a href=\"%(link_twitter)s\">@mozamo</a> në Twitter që të dini se kur hapet periudha pasuese për aplikime."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:132
 msgid "Last updated: January 31, 2013"
@@ -8006,31 +7952,31 @@ msgstr "Procesi i Shqyrtimit"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are free to choose the best fit for their add-on."
-msgstr ""
+msgstr "Që të sigurohet se krejt shtesat e strehuara në galerinë tonë janë të parrezikshme kur instalohen nga përdoruesit, Mozilla do të fillojë të kërkojë që krejt shtesat e strehuara t'i nënshtrohen shqyrtimit. ofrojmë dy lloje shqyrtimesh dhe zhvilluesit janë të lirë të zgjedhin atë më të përshtatshmen për shtesën e tyre."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are available to these add-ons."
-msgstr ""
+msgstr "<strong><a href=\"#full\">Shqyrtim i Plotë</a></strong> &mdash; shqyrtim shterues i kodit dhe i funksionimit të shtesës, i nevojshëm për shtesa që pretendojnë të jenë të gatshme për shpërndarje te përdoruesit. Për këto shtesa janë të përdorshme krejt veçoritë e sajtit."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy compliance, but the reviewed add-ons have install button cautions and some feature limitations."
-msgstr ""
+msgstr "<strong><a href=\"#preliminary\">Shqyrtim Paraprak</a></strong> &mdash; një shqyrtim më i shpejtë, i menduar për shtesa eksperimentale. Shqyrtimet paraprake nuk kontrollojnë funksionimin apo përputhjen e plotë me rregullat, por për shtesat e shqyrtuara ka kufizime lidhur me butonin e instalimit dhe ca veçori."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid "Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will receive an email with any updates throughout the review process."
-msgstr ""
+msgstr "Më poshtë ka përshkrime të hollësishme për secilën mundësi. Pasi të përzgjidhet një proces shqyrtimi gjatë parashtrimit, shtesa do të vendoset në radhë. Shtesat shqyrtohen nga <a href=\"https://wiki.mozilla.org/AMO:Editors\">Redaktorët e AMO-s</a>, një grup zhvilluesish të talentuar vullnetarë në ndihmë të projektit Mozilla përmes shqyrtimit të shtesave, për t'u siguruar përdoruesve punim të qëndrueshëm dhe të parrezikshëm. Gjatë procesit të shqyrtimit zhvilluesit do të marrin email me çfarëdo përditësimi gjatë procesit."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with friends, inviting them to try it out, even when not yet reviewed."
-msgstr ""
+msgstr "Ndërkohë që pritet për një shqyrtim, shtesa nuk do të shfaqet gjëkundi publikisht në galeri, por lidhjet e drejtpërdrejta për te faqja me hollësitë e shtesës do të funksionojnë. Kjo i lejon autorit ta përdotë lidhjen në blogje ose ta ndajë atë me miqtë, për t'i ftuar ta provojnë, edhe pse nuk është shqyrtuar ende."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working out the kinks while in preliminary review and accumulating user feedback first."
-msgstr ""
+msgstr "Shqyrtimet e plota janë të përshtatshme për shtesa që janë vënë mirë në provë, janë të qëndrueshme dhe të shpejta, janë tërheqëse për një masë të madhe të përdoruesve tanë. Nëse nuk jeni i bindur se shtesa juaj i plotëson këto kushte, ju lutemi, shihni së pari të merreni me gjërat e nevojshme, ndërkohë që shtesa është nën shqyrtim paraprak, dhe të grumbullimit të përshtypjeve nga përdoruesit."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr ""
+msgstr "Synimi ynë është kryerja e shqyrtimeve të plota brenda 10 ditësh, por shumica e shtesave shqyrtohen në shumë më pak kohë se aq."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -8042,31 +7988,31 @@ msgstr "Kur të kryejnë një shqyrtim të plotë, redaktorët do të:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
-msgstr ""
+msgstr "instalojeni shtesën, duke u siguruar se funksionon siç përshkruhet dhe se nuk ka defekte të rënda"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
-msgstr ""
+msgstr "kryeni një shqyrtim të kodit burim, duke nuhatur praktikat më të mira për performancën dhe sigurinë"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr ""
+msgstr "sigurohuni që rregullat e privatësisë së shtesës janë në një vijë me funksionet e saj"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr ""
+msgstr "shihni për përputhshmëri me krejt rregullat e Mozilla-s, përshkruar me hollësi në këto dokumente"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
+msgstr "Disa nga problemet më të rëndomta që shohim kur kryejmë këto shqyrtime janë:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose variables</a>"
-msgstr ""
+msgstr "<strong>JavaScript namespace pollution</strong> &mdash; cenimi më i rëndomtë. Sigurohuni se <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">i keni mbështjellë ndryshoret tuaja të hapërdara</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr ""
+msgstr "proper preference naming - krejt emrat e parapëlqimeve duhet të fillojnë me \"extensions.\", pasuar nga emri i shtesës ose ndonjë identifikues tjetër unik"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
@@ -8110,15 +8056,15 @@ msgstr "përkeqësim i nisjes së zbatimit ose kohës së ngarkimit të faqes"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain conditions outlined below."
-msgstr ""
+msgstr "Për të dhëna se si të shmangen këto probleme, ju lutemi, shihni te <a href=\"%(link_howto)s\">Biblioteka jonë Si-Të</a>. Disa nga këto praktika, të tilla si përdorim kodi dyor ose të errësuar, lejohen sipas disa kushteve të skicuara më poshtë."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href=\"%(link_validation)s\">Validation Help</a> document."
-msgstr ""
+msgstr "Mjaft nga kufizimet më sipër testohen vetvetiu nga një skanues zgjerimesh, i cili shtesave të dyshimta do t'u vërë shenjë për shqyrtim redaktori. Më shumë rreth këtij skaneri mund të lexoni te dokumenti <a href=\"%(link_validation)s\">Ndihmë mbi Vleftësimet</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
-msgstr ""
+msgstr "Nëse shtesa është vetëm për një sajt, këshillohet të ofroni një llogari testimi, për përdorim gjatë procesit të shqyrtimit. Veç kësaj, përfshirja e udhëzimeve të hollësishme mbi testimin do t'i lejonte një redaktori të kuptonte se si funksionon shtesa dhe ta përshpejtonte procesin e testimit. Këto të dhëna mund të vendosen te fusha Shënime për Shqyrtuesin, kur një version përpunohet te Qendra e Zhvilluesit."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -8127,19 +8073,19 @@ msgstr "Pas Shqyrtimit"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:136
 msgid "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary contributions and beta channels will be available."
-msgstr ""
+msgstr "Pasi një shtese t'i jetë akorduar shqyrtim i plotë, do të jetë menjëherë e gatshme te galeria, e shfaqur te përfundime kërkimi apo shfletimi, me një buton instalimi pa probleme. Krejt anët e sajtit, përfshi kontribut vullnetar dhe kanale beta, do të jenë të përdorshme për të."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr ""
+msgstr "Versionet pasuese të shtesës do të vendosen automatikisht në radhën e shqyrtimeve të plota. Deri sa pa u plotësuar shqyrtimi, versioni i ri do të shfaqet vetëm te faqja Historik Versionesh të shtesës. Pasi të jetë shqyrtuar, versioni do të përditësohet në krejt sajtin dhe do të jepet përmes shërbimit të përditësimeve të vetvetishme."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
-msgstr ""
+msgstr "Nëse një version nuk i plotëson kriteret për shqyrtim të plotë, mundet ose t'i akordohet shqyrtim paraprak, ose të çaktivizohet, kur ka çështje sigurie. Autori do të marrë një email që shpjegon veprimin e kryer dhe se si të ndreqet. Në shumicën e rasteve, zhvilluesi thjesht mund të ndreqë problemin dhe ta riparashtrojë për shqyrtim të plotë."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete these reviews in under 3 days."
-msgstr ""
+msgstr "Shqyrtimet paraprake janë të përshtatshme për shtesa eksperimentale dhe ofrojnë një rrugë për të pasur testim dhe përshtypje nga përdoruesit, pa kaluar procesin më të gjatë, më të plotë të shqyrtimit. Synimi ynë është plotësimi i këtyre shqyrtimeve brenda 3 ditësh."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -8147,19 +8093,19 @@ msgstr "Metoda Provash"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:162
 msgid "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
-msgstr ""
+msgstr "Kur kryejnë një shqyrtim paraprak, redaktorët do të shqyrtojnë kodin burim lidhur me çështje sigurie dhe cenime të rënda të rregullave, por në shumicën e rasteve nuk do ta instalojnë shtesën për të provuar funksionet e saj. Shqyrtimi paraprak do të akordohet, veç në u zbulofshin cenime sigurie ose dhunime të rënda të rregullave."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid "Once preliminary review is granted, the add-on will be immediately available in the gallery, showing in browse and search results but ranked lower than fully-reviewed add-ons. Install buttons will have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary contributions and beta channel features."
-msgstr ""
+msgstr "Pasi të akordohet shqyrtim paraprak, shtesa do të jetë menjëherë e passhme prej galerisë, do të jetë e shfaqur në përfundime kërkimesh dhe shfletimi, por me klasifikim më të ulët se sa shtesat me shqyrtim të plotë. Butonat e instalimit për të do të kenë viza sinjalizuese dhe një shënim që shtesa është eksperimentale dhe ende e pashqyrtuar plotësisht nga Mozilla, edhe pse nuk lypset \"click-through\". Për më tepër, këto shtesa nuk mund të përdorin kontribute vullnetare dhe funksione kanali betash."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr ""
+msgstr "Pasi shqyrtimi paraprak të jetë akorduar, Mozilla mund ta shfuqizojë shqyrtimin, nëse njoftohet nga përdoruesit për probleme të tjera serioze."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:183
 msgid "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr ""
+msgstr "Versionet pasuese të shtesës do të vendosen automatikish në radhën e shqyrtimeve paraprake. Deri sa pa u plotësuar shqyrtimi, versioni i ri do të shfaqet vetëm te faqja Historik Versionesh të shtesës. Pasi të jetë shqyrtuar, versioni do të përditësohet në krejt sajtin dhe do të jepet përmes shërbimit të përditësimeve të vetvetishme."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
@@ -8175,31 +8121,31 @@ msgstr "Shtesat vijuese nuk lejohen, në çfarëdo forme qofshin:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr ""
+msgstr "Shtesa që trupëzojnë <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> ose <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a> të njohur"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory assistants, child pornography finders, etc."
-msgstr ""
+msgstr "Shtesa të paligjshme dhe kriminale, të tilla si prodhues <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">mashtrimesh me klikim</a>, shkarkime <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> dhe asistentë drejtorish, zbulues pornografie të miturish, etj."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr ""
+msgstr "Shtesa qëllimi kryesor i të cilave është lehtësimi i hyrjes në material pornografik, ose që në përshkrimin e tyre përfshijnë referenca materiali të tillë"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
-msgstr ""
+msgstr "Shtesa të cilat gjatë instalimit, vetëinstalojnë ose vënë në punë instalues software-i jo Firefox"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr ""
+msgstr "Shtesa që ofrojnë mekanizëm të tyren përditësimi për kodin apo motorët e kërkimit"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
-msgstr ""
+msgstr "Shtesa që bëjnë ndryshime te lëndë web sipas rrugësh që nuk janë të kuptueshme ose të vështira për t'u gjurmuar nga përdoruesit e tyre"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr ""
+msgstr "Shtesa që fusin hundët ose spiunojnë trafik rrjeti të përdoruesve të tjerë"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -8211,19 +8157,19 @@ msgstr "Ndryshim Parazgjedhjesh dhe Veçori të Papritura"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
-msgstr ""
+msgstr "Çuditë mund të jenë të përshtatshme në shumë raste, por nuk janë të mirëpritura kur bëhet fjalë për sigurinë, privatësinë dhe kontrollin e përdoruesit. Është tejet e rëndësishme të jemi sa më transparentë që mundet, parashtrohet një shtesë për shtrehim në këtë sajt. Një përdorues i Mozilla-s do të duhej të dallonte me lehtësi se cili është funksioni i një shtese dhe jo t'i vihen përpara gjëra të papritura pas instalimit."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid "<p> Whenever an add-on includes any unexpected* feature that </p> <ul> <li>compromises user privacy or security (like sending data to third parties),</li> <li>changes default settings like the homepage or search engine, or</li> <li>changes settings or features in other add-ons or deactivates them altogether</li> </ul> <p>the features must adhere to the following requirements:</p> <ul> <li>The add-on description must clearly state what changes the add-on makes.</li> <li>All changes must be opt-in, meaning the user must take non-default action to enact the change.</li> <li>The opt-in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected features are those that are unrelated to the add-on's primary function.</p>"
-msgstr ""
+msgstr "<p> Kurdo që një shtesë fut në lojë çfarëdo veçorie të papritur*  që </p> <ul> <li>komprometon privatësinë ose sigurinë e përdoruesit (fjala vjen, u dërgon të dhëna palëve të treta),</li> <li>ndryshon rregullimet parazgjedhje, të tilla si faqja hyrëse ose motorët e kërkimeve, ose</li> <li>ndryshon rregullime ose veçori te shtesa të tjera ose i çaktivizon ato krejtësisht</li> </ul> <p>veçoritë duhet të plotësojnë domosdoshmëritë vijuese:</p> <ul> <li>Përshkrimi i shtesës duhet të pohojë sheshit çfarë ndryshimesh bën shtesa.</li> <li>Krejt ndryshimet duhet të jenë nën zgjedhjen e përdoruesit, që do të thotë se përdoruesi duhet të kryejë një veprim jo parazgjedhje për aktivizimin e ndryshimit.</li> <li>Dialogu i zgjedhjes duhet të deklarojë haptazi emrin e shtesës që po kërkon ndryshimin.</li> <li>Çinstalimi i shtesës duhet të rikthejë rregullimet e mëparshme të përdoruesit, nëse qenë ndryshuar.</li> </ul> <p>*Veçori të papritura janë ato që nuk lidhen me funksionin parësor të shtesës.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr ""
+msgstr "Këto veçori nuk mund të futen për herë të parë në një përditësim shtese të shqyrtuar plotësisht; Procesi i ndryshimeve me zgjedhje duhet të jetë pjesë e shqyrtimit fillestar."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr ""
+msgstr "Këto janë domosdoshmëritë minimum dhe jo ndonjë garanci që shtesa do të  miratohet. Kjo ndarje ka vlerë për krejt shtesat e strehuara në këtë sajt, përfshi shtesa të shqyrtara paraprakisht."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
@@ -8231,7 +8177,7 @@ msgstr "Mënyra Shfletim Privat"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
-msgstr ""
+msgstr "Shtesat që depozitojnë, ose trajtojnë të dhëna shfletimi duhet të mbulojnë <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Mënyrën e Shfletimit Privat</a>. Gjatë një sesioni Shfletimi Privat, nuk mund të shkruhen në disk të dhëna shfletimi, dhe krej këto të dhëna duhet të pastrohen pasi dilet nga Firefox-i ose pasi përfundon sesioni i Shfletimit Privat."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -8239,15 +8185,15 @@ msgstr "Përbërës Dyorë & Kod i Errët"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:289
 msgid "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. These add-ons are ineligible for preliminary review and must choose the full review process."
-msgstr ""
+msgstr "Shtesat mund të përmbajnë kod dyor, të errësuar, ose kod me burim të minimizuar, por Mozilla duhet të lejohet të shqyrtojë një kopje të kodit burim nën formë të lexueshme nga syri njerëzor, për çdo version shtese parashtruar për shqyrtim. Këto shtesa janë të përjashtuara nga shqyrtimi paraprak dhe duhet të zgjedhin procesin e shqyrtimit të plotë."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
-msgstr ""
+msgstr "Nëse një shtesë përmban kod burim dyor ose të errësuar, autori do të marrë një mesazh kur të jetë shqyrtuar shtesa, që tregon se cili duhet kontaktuar te Mozilla për të bashkërenduar shqyrtimin e kodit burim. Ky kod duhet të shqyrtohet nga një përgjegjës dhe nuk do të ndahet në asnjë mënyrë me të tjerë apo rishpërndahet. kodi do të përdoret vetëm për qëllimin e shqyrtimit të shtesës."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:301
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
-msgstr ""
+msgstr "Nëse shtesa juaj përmban kod burim dyor ose të errësuar, që nuk është pronë e juaja pse për të cilin nuk gjendet dot kodi burim, mund të  <a href=\"%(link_contact)s\">lidheni me ne</a> për të dhëna se si të ecet më tej."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
@@ -8255,19 +8201,19 @@ msgstr "Kritere për Parashtrim"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:13
 msgid "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public and unrestricted:"
-msgstr ""
+msgstr "Shtesat e strehuara te Shtesat Mozilla duhet të jenë të një cilësie të lartë dhe t'u japin përdoruesve punim në web të përmirësuar. Kur vendosim nëse një shtesë është e përshtatshme për të qenë publike dhe pa kufizime, shohim për sa vijon:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid "<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
-msgstr ""
+msgstr "<strong>A jeni reagues?</strong> Ne presim që një autor i cili po promovon shtesën e tij te përdoruesit e shumtë të zbatimit tonë të jetë reagues ndaj njoftimeve për probleme, të mirëmbajnë të dhënat e tyre për kontakte, dhe të përditësojnë shtesën e tyre pa vonesa, për ta mbajtur në një vijë me hedhjet në qarkullim të Firefox-it dhe me ndryshimet në rregullat tona. Kjo nuk do të thotë që duhet t'i përgjigjeni çdo pyetje që dikush boton në diskutime, ose se lypset të ndreqni çdo të metë, ama presim që t'u përgjigjeni problemeve në një mënyrë që përshtatet me rëndësinë e çështjes në fjalë."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
 msgid "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
-msgstr ""
+msgstr "<strong>A përshkruhet qartë dhe saktë shtesa?</strong> Për ne ka rëndësi të dorës së parë që përdoruesit të marrin atë çka presin, kur provojnë një shtesë të re. Emri i shtesës suaj duhet të jetë i qartë dhe i përpiktë, dhe duhet t'i rrini larg përdorimit të shenjave speciale apo numrave me qëllim që të përfitoni vende më sipër në klasifikim apo për qëllime zbukuruese. Përshkrimi juaj duhet të japë hollësitë rreth çka kryen shtesa, si do të duhej të përfitonte prej saj përdoruesi, dhe çka do të duhej të priste prej saj kur përdoruesi e instalon. Lidhjet për te dokumentim i jashtëm lidhur me udhëzime të hollësishme nuk janë problem, por vetë përshkrimi duhet të mbulonte bazat dhe ta lërë përdoruesin të bindur se e kupton se ç'do të marrë. Gjithashtu, është e rëndësishme që t'i mirëmbani si duhet shënimet e versioneve, teksa përmirësoni dhe ndryshoni shtesën tuaj. Përdoruesit do të duhej të jenë në gjendje të shohin çka të re në një shtesë që mund ta kenë provuar më parë, dhe duhet t'u lihet të jenë të ndërgjegjshëm mbi ndryshimet që mund të prekin përdorimin e tanishëm të saj, kur ta përditësojnë."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid "<strong>Are all privacy and security concerns clearly spelled out?</strong> This is an aspect of a clear and accurate description, but such an important one that we feel it deserves specific mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to users what risks they might encounter, and what they can do to protect themselves."
-msgstr ""
+msgstr "<strong>A janë të zbuluara qartë krejt çështjet e privatësisë dhe sigurisë?</strong> Kjo lidhet me përshkrimin e saktë dhe të përpiktë, por ka kaq rëndësi sa na duket se duhet përmendur posaçërisht. Mjaft shtesa të dobishme dhe të mirëhartuara manipulojnë ndonjë të dhënë të përodoruesit, ose mund të përbëjnë rreziqe sigurie, po u keqpërdorën; ato i mirëpresim në sajt, por duhet t'ua bëjnë shumë të qartë përdoruesve se ç'rreziqe mund të hasin, dhe se çfarë mund të bëjnë për të mbrojtur veten."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
 msgid "<strong>Has the add-on been well-tested, and is it free of obvious or serious defects?</strong> One important thing that we look for when considering an add-on is whether its user reviews indicate that it has received thorough testing, and that it doesn't have serious problems or negative impacts on the browser. If reviewers report problems such as major performance issues, crashes, frequent problems using the functions of the add-on, or spamming of messages to the error console, you should take those reports to heart, and re-submit your add-on after you've addressed them as best you can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
@@ -8307,11 +8253,11 @@ msgstr "Licencim"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:86
 msgid "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your intellectual property."
-msgstr ""
+msgstr "Përzgjedhja e një licence të përshtatshme për shtesën tuaj është hap shumë i rëndësishëm në procesin e parashtrimit. Licenca përcakton të drejtat që akordoni mbi kodin burim të shtesës suaj dhe është e rëndësishme në mbrojtjen e të drejtave tuaja të kopjimit."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
-msgstr ""
+msgstr "Gjatë procesit të parashtrimit të shtesës, do t'ju shfaqet një listë licencash të njohura, prej nga mund të zgjidhni, si dhe do të keni mundësi të përcaktoni një licencë krejt tuajën. Më e mira është të këshilloheni me një njeri të ligjeve rreth se cila licencë është më e mira për ju. Zgjedhja e licencës së duhur për kodin tuaj burim do të parandalojë ngatërresa dhe përplasje rreth kodit në të ardhmen."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12
 #: apps/devhub/templates/devhub/docs/policies.html:52
@@ -8395,7 +8341,7 @@ msgstr "Referencë XUL-i"
 #: apps/devhub/templates/devhub/docs/reference.html:41
 #: apps/devhub/templates/devhub/docs/reference.html:56
 msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
-msgstr ""
+msgstr "përmes <a class=\"refsource\" href=\"http://developer.mozilla.org\">Qendrës së Zhvilluesve Mozilla</a></span>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
@@ -8419,9 +8365,7 @@ msgstr "Përmbledhje e JavaScript-it"
 
 #: apps/devhub/templates/devhub/docs/reference.html:80
 msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
-msgstr ""
-"JavaScript është një gjuhë ndërplatformëshe skriptimesh, e vogël, e peshës "
-"së lehtë, <em>object-oriented</em>."
+msgstr "JavaScript është një gjuhë ndërplatformëshe skriptimesh, e vogël, e peshës së lehtë, <em>object-oriented</em>."
 
 #: apps/devhub/templates/devhub/docs/reference.html:88
 msgid "Gecko JavaScript Language Reference"
@@ -8465,7 +8409,7 @@ msgstr "Faqja Hyrëse e W3C CSS-së"
 
 #: apps/devhub/templates/devhub/docs/reference.html:159
 msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-msgstr ""
+msgstr "përmes <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:163
 msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
@@ -8505,10 +8449,7 @@ msgstr "Përmbledhje mbi XPCOM-in"
 
 #: apps/devhub/templates/devhub/docs/reference.html:231
 msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr ""
-"XPCOM është një model përbërësish objekt ndërplatformësh, me lidhma për "
-"shumë gjuhë, që u lejon përbërësve XPCOM të përdoren dhe të sendërtohen në "
-"JavaScript, Java dhe Python, përtej C++."
+msgstr "XPCOM është një model përbërësish objekt ndërplatformësh, me lidhma për shumë gjuhë, që u lejon përbërësve XPCOM të përdoren dhe të sendërtohen në JavaScript, Java dhe Python, përtej C++."
 
 #: apps/devhub/templates/devhub/docs/reference.html:238
 msgid "XPCOM Reference"
@@ -8568,7 +8509,7 @@ msgstr "DOM"
 
 #: apps/devhub/templates/devhub/docs/reference.html:313
 msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
-msgstr ""
+msgstr "Mësoni se si t'i përdorni këto API dhe të tjera, te <a href=\"%(link_howto)s\">Biblioteka jonë Si-Të</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:3
 #: apps/devhub/templates/devhub/docs/themes.html:18
@@ -8595,7 +8536,7 @@ msgstr "Çfarë janë Temat Sfond?"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17
 #: apps/devhub/templates/devhub/docs/themes-faq.html:59
 msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr ""
+msgstr "Me çfarë lloj kompjuterësh dhe sistemesh operative funksionojnë Temat e Sfondit?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18
 #: apps/devhub/templates/devhub/docs/themes-faq.html:68
@@ -8668,7 +8609,7 @@ msgstr "Pas krijimit të një Teme Sfond, a mund ta përpunoj dizajnin?"
 #: apps/devhub/templates/devhub/docs/themes-faq.html:41
 #: apps/devhub/templates/devhub/docs/themes-faq.html:266
 msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr ""
+msgstr "Cila është madhësia maksimum e lejuar për kartela Teme Sfondi?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 msgid "What are Background Themes?"
@@ -8676,19 +8617,19 @@ msgstr "Çfarë janë Temat Sfond?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:49
 msgid "Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
-msgstr ""
+msgstr "Temat e sfondit janë lëkurçe të lehta për instalim, të lehta dhe për përdorim, që ndryshojnë pamjen e shfletuesit web Firefox. Ka me qindra mijëra tema të skicuara nga bashkësia prej nga mund të zgjidhni, me plot të tjera që shtohen përditë. <a href=\"%(browse_url)s\">Fillojani duke kërkuar këtu për modele që i shkojnë për shtat stilit tuaj.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:61
 msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
-msgstr ""
+msgstr "Temat Sfond funksionojnë me çfarëdo lloj kompjuteri që ka Firefox të instaluar. Këtu përfshihen paltformat Mac, Linux, Windows, dhe Android."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
-msgstr ""
+msgstr "Temat e Plota shndërrojnë pamjen e shfletuesit tuaj përmes stilesh për korniza dritaresh, shtyllë adresash, butona dhe menu."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr ""
+msgstr "Temat Sfond ndryshojnë thjesht pjesën e titullit dhe atë të poshtme të shfletuesit tuaj. Mund ta parashihni në çast një model dhe ta instaloni me një klikim, pa patur nevojë për rinisje."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid "In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can \"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
@@ -8700,7 +8641,7 @@ msgstr "Po. Temat mund të shkarkohen lirisht dhe përdoren lirisht."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:117
 msgid "There are two easy ways to change your theme. You can either:"
-msgstr ""
+msgstr "Ka dy rrugë të lehta për të ndryshuar temat tuaja. Mundeni:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:123
 msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
@@ -8708,14 +8649,11 @@ msgstr "Vizitoni <a href=\"%(gallery_url)s\">galerinë</a>, zgjidhni temën që 
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid "Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
+msgstr "Pasi një temë të jetë instaluar, ruhet te Përgjegjësi i Shtesave, prej nga ku mund t'i aktivizoni apo çaktivizoni sipas qejfit. Thjesht shkoni te menuja <code>Mjete</code> &gt; <code>Shtesa</code> dhe klikoni mbi skedën <code>Dukje</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
-msgstr ""
-"Po. Nëse keni të instaluar një Temë të Plotë joparazgjedhje, Firefox-i do të "
-"kalojë vetvetiu te një temë parazgjedhje, që t'ju lejojë të përdorni Temat "
-"Sfond që keni zgjedhur."
+msgstr "Po. Nëse keni të instaluar një Temë të Plotë joparazgjedhje, Firefox-i do të kalojë vetvetiu te një temë parazgjedhje, që t'ju lejojë të përdorni Temat Sfond që keni zgjedhur."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:152
 msgid "To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, click the <code>Disable</code> button."
@@ -8743,10 +8681,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
-msgstr ""
-"Ose zotëroni krejt elementët e skemës suaj, OSE jeni i autorizuar, nga i "
-"zoti ose ligji, për në mbarë botën, t'i riprodhoni dhe shpërndani ato (dhe "
-"të lejoni të tjerët të bëjnë të njëjtën gjë)."
+msgstr "Ose zotëroni krejt elementët e skemës suaj, OSE jeni i autorizuar, nga i zoti ose ligji, për në mbarë botën, t'i riprodhoni dhe shpërndani ato (dhe të lejoni të tjerët të bëjnë të njëjtën gjë)."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
@@ -8754,10 +8689,7 @@ msgstr "Skema juaj nuk përmban lëndë seksuale eksplicite ose fyese."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:208
 msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
-msgstr ""
-"Skema juaj nuk përfshin elemente të identifikueshëm të ndonjë personi që nuk "
-"është figurë e mirënjohur, hiq veten tuaj ose individë që ju kanë dhënë leje "
-"ta bëni këtë."
+msgstr "Skema juaj nuk përfshin elemente të identifikueshëm të ndonjë personi që nuk është figurë e mirënjohur, hiq veten tuaj ose individë që ju kanë dhënë leje ta bëni këtë."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:215
 msgid "Your design does not depict violence or Nazi imagery, nor is it discriminatory or hateful."
@@ -8777,7 +8709,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
-msgstr ""
+msgstr "<a href=\"%(tutorial_url)s\">Mësoni më tepër se si të krijoni modele temash tërheqëse.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
@@ -8813,10 +8745,7 @@ msgstr "Parashtroni temën tuaj"
 
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr ""
-"Temat përbëhen nga dy kartela figurash grafike &mdash; një figurë \"krye\" "
-"dhe një figurë \"fundfaqe\" &mdash; të cila veshin sfondin UI parazgjedhje "
-"të Firefox-it."
+msgstr "Temat përbëhen nga dy kartela figurash grafike &mdash; një figurë \"krye\" dhe një figurë \"fundfaqe\" &mdash; të cila veshin sfondin UI parazgjedhje të Firefox-it."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
@@ -9341,10 +9270,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/includes/tier.html:5
 msgid "Select a price tier below. Price tiers are based on US Dollars and are fixed for all supported countries. For more information <a href=\"%(doc_url)s\">view our pricing matrix</a>."
-msgstr ""
-"Përzgjidhni më poshtë një <em>price tier</em>. Këto çmime bazohen te dollari "
-"amerikan dhe janë të fiksuara për të gjitha vendet që mbulohen. Për më tepër "
-"të dhëna <a href=\"%(doc_url)s\">shihni matricën tonë të çmimeve</a>."
+msgstr "Përzgjidhni më poshtë një <em>price tier</em>. Këto çmime bazohen te dollari amerikan dhe janë të fiksuara për të gjitha vendet që mbulohen. Për më tepër të dhëna <a href=\"%(doc_url)s\">shihni matricën tonë të çmimeve</a>."
 
 #: apps/devhub/templates/devhub/payments/includes/upsell.html:11
 msgid "Add-on upsell"
@@ -9595,8 +9521,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr ""
-"Merrni pjesë në bashkëbisedim te <a href=\"%(forums_url)s\">forumet</a> tanë."
+msgstr "Merrni pjesë në bashkëbisedim te <a href=\"%(forums_url)s\">forumet</a> tanë."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -10254,9 +10179,7 @@ msgstr "Këtë sezon festash bëni shpenzime të mençura"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
-msgstr ""
-"Gjeni shtesa të shkëlqyera që t'ju ndihmojnë me krejt nevojat e shpenzimeve "
-"për festat."
+msgstr "Gjeni shtesa të shkëlqyera që t'ju ndihmojnë me krejt nevojat e shpenzimeve për festat."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
@@ -11160,9 +11083,7 @@ msgstr "Historik Shtese"
 
 #: apps/editors/templates/editors/review.html:52
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
-"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
+msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:61
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:20
@@ -11193,9 +11114,7 @@ msgstr "Ky version nuk është shqyrtuar."
 #: apps/editors/templates/editors/review.html:155
 #: mkt/reviewers/templates/reviewers/review.html:115
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-"Mundeni prapë ta parashtroni këtë formular, megjithatë, këtë bëjeni, nëse e "
-"dini që nuk do të ketë përplasje."
+msgstr "Mundeni prapë ta parashtroni këtë formular, megjithatë, këtë bëjeni, nëse e dini që nuk do të ketë përplasje."
 
 #: apps/editors/templates/editors/review.html:162
 #: mkt/reviewers/templates/reviewers/review.html:122
@@ -12729,16 +12648,7 @@ msgstr "%(app_name)s thotë se një shtesë nuk është e përputhshme. A ka mun
 
 #: apps/pages/templates/pages/faq.html:145
 msgid "If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-"Nëse një shtesë nuk është e përputhshme me versionin tuaj të %(app_name)s-"
-"it, zakonisht ndodh ose sepse versioni juaj i %(app_name)s-it është "
-"vjetruar, ose autori i shtesës nuk e ka përditësuar ende shtesën, që kjo të "
-"jetë e përputhshme me versionin e ri që po përdorni. Mozilla nuk këshillon "
-"të provoni të anashkaloni këto kontrolle përputhshmërie, ngaqë kjo mund ta "
-"shpjerë shfletuesin në paqëndrueshmëri, ose në disa raste edhe në humbje të "
-"dhënash. Për përdoruesit që po provojnë versione alfa ose beta të Firefox-"
-"it, ofrojmë <a href=\"%(acr_url)s\">Raportues Përputhshmërie Shtesash</a>, "
-"për t'i ndihmuar zhvilluesit e shtesave në përditësimin e përputhshmërisë."
+msgstr "Nëse një shtesë nuk është e përputhshme me versionin tuaj të %(app_name)s-it, zakonisht ndodh ose sepse versioni juaj i %(app_name)s-it është vjetruar, ose autori i shtesës nuk e ka përditësuar ende shtesën, që kjo të jetë e përputhshme me versionin e ri që po përdorni. Mozilla nuk këshillon të provoni të anashkaloni këto kontrolle përputhshmërie, ngaqë kjo mund ta shpjerë shfletuesin në paqëndrueshmëri, ose në disa raste edhe në humbje të dhënash. Për përdoruesit që po provojnë versione alfa ose beta të Firefox-it, ofrojmë <a href=\"%(acr_url)s\">Raportues Përputhshmërie Shtesash</a>, për t'i ndihmuar zhvilluesit e shtesave në përditësimin e përputhshmërisë."
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
@@ -12766,11 +12676,7 @@ msgstr "Po nëse nuk e gjej dot shtesën që po kërkoj?"
 
 #: apps/pages/templates/pages/faq.html:182
 msgid "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in our <a href=\"%(forum_url)s\">Add-on Ideas</a> forum."
-msgstr ""
-"Me mijëra shtesa të passhme, për gjithkënd ka diçka. Por nëse po kërkoni për "
-"një shtesë të veçantë dhe nuk e gjeni, mund të provoni ta kërkoni te sajte "
-"të tjera ose të postoni një kërkesë te forumi ynë <a href=\"%(forum_url)s\">"
-"Ide Shtesash</a>."
+msgstr "Me mijëra shtesa të passhme, për gjithkënd ka diçka. Por nëse po kërkoni për një shtesë të veçantë dhe nuk e gjeni, mund të provoni ta kërkoni te sajte të tjera ose të postoni një kërkesë te forumi ynë <a href=\"%(forum_url)s\">Ide Shtesash</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -12870,11 +12776,7 @@ msgstr "Ç'është koleksioni Të Parapëlqyerat e Mia?"
 
 #: apps/pages/templates/pages/faq.html:274
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Shtesat e parapëlqyera janë shtesa që i keni faqeruajtur për t'u kthyer "
-"kollaj në to më vonë. Një shtesë mund ta shtoni te koleksioni i të "
-"parapëlqyerave tuaja duke klikuar mbi \"Shtoje te të parapëlqyerat\", te "
-"faqja e hollësive të saj."
+msgstr "Shtesat e parapëlqyera janë shtesa që i keni faqeruajtur për t'u kthyer kollaj në to më vonë. Një shtesë mund ta shtoni te koleksioni i të parapëlqyerave tuaja duke klikuar mbi \"Shtoje te të parapëlqyerat\", te faqja e hollësive të saj."
 
 #: apps/pages/templates/pages/faq.html:279
 msgid "Personalized recommendations"
@@ -12886,11 +12788,7 @@ msgstr "Si personalizohen këshillimet?"
 
 #: apps/pages/templates/pages/faq.html:283
 msgid "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the \"Recommended for You\" box."
-msgstr ""
-"Firefox-i jua këshillon shtesat bazuar në shtesat që keni tashmë të "
-"instaluara. Nëse keni e pakta 3 shtesa të instaluara, thjesht vizitoni zonën "
-"Merrni Shtesa te Përgjegjësi i Shtesave që të shihni ndarjen \"Të "
-"këshilluara për Ju\"."
+msgstr "Firefox-i jua këshillon shtesat bazuar në shtesat që keni tashmë të instaluara. Nëse keni e pakta 3 shtesa të instaluara, thjesht vizitoni zonën Merrni Shtesa te Përgjegjësi i Shtesave që të shihni ndarjen \"Të këshilluara për Ju\"."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -12906,9 +12804,7 @@ msgstr "Si mund të përzgjedh mosinteresimin për këto këshillime?"
 
 #: apps/pages/templates/pages/faq.html:297
 msgid "Please see <a href=\"%(support_url)s\">this support article</a> for instructions on how to opt out."
-msgstr ""
-"Për udhëzime se si të liheni jashtë, ju lutemi, shihni <a href=\""
-"%(support_url)s\">këtë artikull asistence</a>."
+msgstr "Për udhëzime se si të liheni jashtë, ju lutemi, shihni <a href=\"%(support_url)s\">këtë artikull asistence</a>."
 
 #: apps/pages/templates/pages/faq.html:303
 #: templates/menu_links.html:13
@@ -12922,11 +12818,7 @@ msgstr "Ç'janë shtesat për celular?"
 
 #: apps/pages/templates/pages/faq.html:307
 msgid "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Shtesat për celular funksionojnë me <a href=\"%(mobile_url)s\">Firefox-in "
-"për Celular</a> dhe shtojnë ose ndryshojnë punimin, ashtu si edhe shtesat "
-"për versionin desktop. Shtesa që punojnë me Firefox-in për Celular mund të "
-"gjeni te <a href=\"%(gallery_url)s\">galeria</a> jonë."
+msgstr "Shtesat për celular funksionojnë me <a href=\"%(mobile_url)s\">Firefox-in për Celular</a> dhe shtojnë ose ndryshojnë punimin, ashtu si edhe shtesat për versionin desktop. Shtesa që punojnë me Firefox-in për Celular mund të gjeni te <a href=\"%(gallery_url)s\">galeria</a> jonë."
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
@@ -12942,10 +12834,7 @@ msgstr "Keni ende pyetje?"
 
 #: apps/pages/templates/pages/faq.html:324
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Për asistencë të përgjithshme për Firefox-in, vizitoni <a href=\"%(sumo_url)"
-"s\">sajtin tonë web të asistencës</a>. Për pyetje të përgjithshme mbi "
-"shtesat dhe sajtin web, vizitoni <a href=\"%(forum_url)s\">forumin</a> tonë."
+msgstr "Për asistencë të përgjithshme për Firefox-in, vizitoni <a href=\"%(sumo_url)s\">sajtin tonë web të asistencës</a>. Për pyetje të përgjithshme mbi shtesat dhe sajtin web, vizitoni <a href=\"%(forum_url)s\">forumin</a> tonë."
 
 #: apps/pages/templates/pages/review_guide.html:36
 #: apps/pages/templates/pages/review_guide.html:57
@@ -13279,12 +13168,8 @@ msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës ({0})
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-"Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të "
-"kësaj shtese."
-msgstr[1] ""
-"Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të "
-"mëparshme</a> të kësaj shtesë."
+msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
+msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -13530,8 +13415,7 @@ msgstr "Kërkim Jo i Mundshëm"
 #: apps/search/templates/search/down.html:6
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-"Kërkimi është përkohësisht i pamundur. Ju lutemi, riprovoni pas pak minutash."
+msgstr "Kërkimi është përkohësisht i pamundur. Ju lutemi, riprovoni pas pak minutash."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
@@ -14039,12 +13923,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Çfarë janë përdoruesit e ditës?</h2> <p> Shtesat e shkarkuara prej këtij "
-"sajti kontrollojnë për përditësime një herë në ditë. Numri gjithsej i "
-"sinjaleve prej këtyre përditësimeve njihet si Përdorues Ditorë Aktivë. "
-"Përdoruesit e ditës mund të ndahen sipas versionit të shtesës, sistemit "
-"operativ, gjendjes së shtesës, zbatimeve, dhe vendores. </p>"
+msgstr "<h2>Çfarë janë përdoruesit e ditës?</h2> <p> Shtesat e shkarkuara prej këtij sajti kontrollojnë për përditësime një herë në ditë. Numri gjithsej i sinjaleve prej këtyre përditësimeve njihet si Përdorues Ditorë Aktivë. Përdoruesit e ditës mund të ndahen sipas versionit të shtesës, sistemit operativ, gjendjes së shtesës, zbatimeve, dhe vendores. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -14082,9 +13961,7 @@ msgstr "Vendoret e Reja"
 
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
-"Keni ndryshime të paruajtura te vendorja <b>{0}</b>. Do të donit të ruanit "
-"ndryshimet tuaja përpara ndërrimit të vendores?"
+msgstr "Keni ndryshime të paruajtura te vendorja <b>{0}</b>. Do të donit të ruanit ndryshimet tuaja përpara ndërrimit të vendores?"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -14092,9 +13969,7 @@ msgstr "Hidhi Tej Ndryshimet"
 
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
-"Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo nuk mund "
-"të zhbëhet."
+msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo nuk mund të zhbëhet."
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -14370,9 +14245,7 @@ msgstr "Adresë email ose fjalëkalim i gabuar!"
 
 #: apps/users/views.py:498
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr ""
-"Te adresa juaj {0} është dërguar me email një lidhje për aktivizimin e "
-"llogarisë suaj të përdoruesit. Duhet ta klikoni, përpara se të mund të hyni."
+msgstr "Te adresa juaj {0} është dërguar me email një lidhje për aktivizimin e llogarisë suaj të përdoruesit. Duhet ta klikoni, përpara se të mund të hyni."
 
 #: apps/users/views.py:503
 msgid "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation message</a> to your email address mentioned above."
@@ -14989,9 +14862,7 @@ msgstr "Data e Blerjes"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
-"Përzgjidhni një zgjedhje të vlefshme. %(value)s nuk është një nga zgjedhjet "
-"e vlefshme."
+msgstr "Përzgjidhni një zgjedhje të vlefshme. %(value)s nuk është një nga zgjedhjet e vlefshme."
 
 #: mkt/api/serializers.py:57
 #: mkt/site/forms.py:50
@@ -16189,9 +16060,7 @@ msgstr "Të dhëna Rrjeti"
 
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr ""
-"Zbatimi lyp aftësinë për marrje informacioni rreth lidhjes në rrjet (API-n "
-"`navigator.mozConnection`)."
+msgstr "Zbatimi lyp aftësinë për marrje informacioni rreth lidhjes në rrjet (API-n `navigator.mozConnection`)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
@@ -16263,10 +16132,7 @@ msgstr "Ekrane Sa të Telefonave të Mençur (qHD)"
 
 #: mkt/constants/features.py:152
 msgid "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or high-DPI phones)."
-msgstr ""
-"Zbatimi lyp që platforma të ketë ekran telefonash të mençur (të ketë qartësi "
-"qHD). Kjo mundësi tregon që zbatimi do të jetë i papërdorshëm në ekrane më "
-"të mëdhenj (p.sh., tablete, desktop, telefona të mëdhenj ose high-DPI)."
+msgstr "Zbatimi lyp që platforma të ketë ekran telefonash të mençur (të ketë qartësi qHD). Kjo mundësi tregon që zbatimi do të jetë i papërdorshëm në ekrane më të mëdhenj (p.sh., tablete, desktop, telefona të mëdhenj ose high-DPI)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -16286,19 +16152,15 @@ msgstr "Audio Web"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr ""
-"Zbatimi lyp që platforma të mbulojë API-n Web Audio (`window.AudioContext`)."
+msgstr "Zbatimi lyp që platforma të mbulojë API-n Web Audio (`window.AudioContext`)."
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
-"Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video H.264."
+msgstr "Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video H.264."
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr ""
-"Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video WebM "
-"(VP8)."
+msgstr "Zbatimi lyp që platforma të mund të çkodojë dhe luajë kartela video WebM (VP8)."
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
@@ -16306,9 +16168,7 @@ msgstr "Tërë Ekrani"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
-msgstr ""
-"Zbatimi lyp API-n Full Screen (`requestFullScreen` ose "
-"`mozRequestFullScreen`)."
+msgstr "Zbatimi lyp API-n Full Screen (`requestFullScreen` ose `mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
@@ -16316,9 +16176,7 @@ msgstr ""
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
-"Zbatimi lyp që platforma të mbulojë API-n për gamepad-e "
-"(`navigator.getGamepads`)."
+msgstr "Zbatimi lyp që platforma të mbulojë API-n për gamepad-e (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
@@ -16326,10 +16184,7 @@ msgstr "Administrim Kuotash"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë rritje të qëndrueshme kufiri depozitimi "
-"mbi kufijtë e lejuar normalisht për një zbatim (`window.StorageInfo` ose "
-"`window.persistentStorage`)."
+msgstr "Zbatimi lyp që platforma të lejojë rritje të qëndrueshme kufiri depozitimi mbi kufijtë e lejuar normalisht për një zbatim (`window.StorageInfo` ose `window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
@@ -16337,9 +16192,7 @@ msgstr "Kamera"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë hyrje në video prej një kamera pajisjeje "
-"përmes një objekti LocalMediaStream."
+msgstr "Zbatimi lyp që platforma të lejojë hyrje në video prej një kamera pajisjeje përmes një objekti LocalMediaStream."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
@@ -16347,9 +16200,7 @@ msgstr "Mikrofon"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë hyrje në audio prej një mikrofoni "
-"pajisjeje."
+msgstr "Zbatimi lyp që platforma të lejojë hyrje në audio prej një mikrofoni pajisjeje."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -16373,9 +16224,7 @@ msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë hyrje shkëmbim të dhënash peer-to-peer "
-"tjetër nga audio dhe video."
+msgstr "Zbatimi lyp që platforma të lejojë hyrje shkëmbim të dhënash peer-to-peer tjetër nga audio dhe video."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -16383,8 +16232,7 @@ msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë komunikim të dhënash streaming mes palësh."
+msgstr "Zbatimi lyp që platforma të lejojë komunikim të dhënash streaming mes palësh."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -16408,15 +16256,11 @@ msgstr ""
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr ""
-"Zbatimi lyp që platforma të japë të dhëna të mëtejshme dhe kontroll mbi "
-"kursorin."
+msgstr "Zbatimi lyp që platforma të japë të dhëna të mëtejshme dhe kontroll mbi kursorin."
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë shfaqje për përdoruesin të njoftimeve për "
-"telefon dhe desktop."
+msgstr "Zbatimi lyp që platforma të lejojë shfaqje për përdoruesin të njoftimeve për telefon dhe desktop."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
@@ -16424,9 +16268,7 @@ msgstr "Alarme"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr ""
-"Zbatimi lyp që platforma të ofrojë hyrje te rregullimet për alarme të "
-"pajisjes që të planifikohen njoftime dhe veprime për një kohë të dhënë."
+msgstr "Zbatimi lyp që platforma të ofrojë hyrje te rregullimet për alarme të pajisjes që të planifikohen njoftime dhe veprime për një kohë të dhënë."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
@@ -16434,9 +16276,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr ""
-"Zbatimi lyp që platforma të lejojë hyrje dërgimin e kërkesave asinkrone HTTP "
-"pa kufizime nga rregullat e së njëjtës origjinë."
+msgstr "Zbatimi lyp që platforma të lejojë hyrje dërgimin e kërkesave asinkrone HTTP pa kufizime nga rregullat e së njëjtës origjinë."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
@@ -17667,17 +17507,12 @@ msgstr "Parashtroni URL-në e manifestit tuaj"
 #: mkt/developers/templates/developers/validate_addon.html:35
 #: mkt/submit/templates/submit/manifest.html:74
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
-msgstr ""
-"<strong>Mos harroni një protokoll!</strong> Provoni të shtoni ose <a href=\"#"
-"\">%(http)s</a>, ose <a href=\"#\">%(https)s</a>."
+msgstr "<strong>Mos harroni një protokoll!</strong> Provoni të shtoni ose <a href=\"#\">%(http)s</a>, ose <a href=\"#\">%(https)s</a>."
 
 #: mkt/developers/templates/developers/validate_addon.html:43
 #: mkt/submit/templates/submit/manifest.html:82
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
-msgstr ""
-"URL-të e manifesteve duhet të fillojnë me një protokoll (për shembull, "
-"<code>http://</code> ose <code>https://</code>) dhe përgjithësisht të "
-"përdorin zgjatimin <code>.webapp</code>."
+msgstr "URL-të e manifesteve duhet të fillojnë me një protokoll (për shembull, <code>http://</code> ose <code>https://</code>) dhe përgjithësisht të përdorin zgjatimin <code>.webapp</code>."
 
 #: mkt/developers/templates/developers/validate_addon.html:61
 #: mkt/submit/templates/submit/manifest.html:124
@@ -18053,11 +17888,7 @@ msgstr "Rifresko"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
-msgstr ""
-"URL-të e manifesteve nuk mund të ndryshohen pasi zbatimi juaj të jetë "
-"parashtruar. Ju lutemi, dërgoni një email te <a href=\"mailto:%(email)s\""
-">%(email)s</a>, nëse ka arsye që t'ju duhet të modifikoni URL-në e "
-"manifestit tuaj."
+msgstr "URL-të e manifesteve nuk mund të ndryshohen pasi zbatimi juaj të jetë parashtruar. Ju lutemi, dërgoni një email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka arsye që t'ju duhet të modifikoni URL-në e manifestit tuaj."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
@@ -18364,9 +18195,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
-"Procesi IARC për klasifikim lënde u plotësua, do të ridrejtoheni te <a href="
-"\"%(ratings_url)s\">faqja e klasifikimit të lëndës</a> të zbatimit tuaj."
+msgstr "Procesi IARC për klasifikim lënde u plotësua, do të ridrejtoheni te <a href=\"%(ratings_url)s\">faqja e klasifikimit të lëndës</a> të zbatimit tuaj."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
@@ -19582,12 +19411,7 @@ msgstr "Kartela UI-je"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:59
 msgid "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
-msgstr ""
-"Podcasts është një <a href=\"%(packaged_apps_link)s\">zbatim i paketuar</a>, "
-"ndaj lyp një hap montimi që të instalohet në Firefox OS. "
-"<code>Makefile</code>-i përmban një proces me disa hapa që do të krijojë një "
-"dosje <code>www-built</code> e përdorur për të instaluar zbatimin në një "
-"telefon ose te <a href=\"%(simulator_link)s\">Simuluesi i Firefox OS-it</a>."
+msgstr "Podcasts është një <a href=\"%(packaged_apps_link)s\">zbatim i paketuar</a>, ndaj lyp një hap montimi që të instalohet në Firefox OS. <code>Makefile</code>-i përmban një proces me disa hapa që do të krijojë një dosje <code>www-built</code> e përdorur për të instaluar zbatimin në një telefon ose te <a href=\"%(simulator_link)s\">Simuluesi i Firefox OS-it</a>."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
@@ -19701,8 +19525,7 @@ msgstr "Për shkarkimin e kartelave te shfletuesi."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
-"E përdorur për përpunim të shpejtë dhe të efektshëm të të dhënave të figurës."
+msgstr "E përdorur për përpunim të shpejtë dhe të efektshëm të të dhënave të figurës."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
@@ -20319,8 +20142,7 @@ msgstr "Kjo do ta hedhë tej zbatimin dhe do ta heqë prej radhës së shqyrtime
 
 #: mkt/reviewers/utils.py:437
 msgid "This will send the author(s) an email requesting more information."
-msgstr ""
-"Kështu do t'i dërgohet autorit një email ku i kërkohen më tepër të dhëna."
+msgstr "Kështu do t'i dërgohet autorit një email ku i kërkohen më tepër të dhëna."
 
 #: mkt/reviewers/utils.py:441
 msgid "Escalate"
@@ -20597,9 +20419,7 @@ msgstr "%(stars)s nga %(user)s më %(date)s (%(locale)s)"
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
-"Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
-"class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -20981,10 +20801,7 @@ msgstr "Pagesa Zbatimesh"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
-msgstr ""
-"Që të shisni zbatimin tuaj te Marketplace-i, së pari lypset t'i caktoni një "
-"<em>price tier</em> më poshtë. Këto çmime bazohen te dollari amerikan dhe "
-"janë të fiksuar për krejt monedhat e mbuluara."
+msgstr "Që të shisni zbatimin tuaj te Marketplace-i, së pari lypset t'i caktoni një <em>price tier</em> më poshtë. Këto çmime bazohen te dollari amerikan dhe janë të fiksuar për krejt monedhat e mbuluara."
 
 #: mkt/submit/templates/submit/payments-upsell.html:24
 msgid "Learn more about price tiers"
@@ -21033,10 +20850,7 @@ msgstr "Dilni"
 
 #: mkt/templates/mkt/footer.html:5
 msgid "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later version."
-msgstr ""
-"Hiq atje ku <a href=\"%(legal_url)s\">shënohet</a> ndryshe, lënda e këtij "
-"sajti qarkullon sipas licencës <a href=\"%(cc_url)s\">Creative Commons "
-"Attribution Share-Alike License v3.0</a> ose cilitdo version të mëvonshëm."
+msgstr "Hiq atje ku <a href=\"%(legal_url)s\">shënohet</a> ndryshe, lënda e këtij sajti qarkullon sipas licencës <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> ose cilitdo version të mëvonshëm."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
@@ -21332,3 +21146,4 @@ msgstr "Vizitoni Mozilla-n"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
+
