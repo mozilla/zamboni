@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2013-11-19 13:00+0000\n"
-"Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
+"PO-Revision-Date: 2014-03-17 21:11+0000\n"
+"Last-Translator: Woosung <befehlen@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384866004.0\n"
+"X-POOTLE-MTIME: 1395090675.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -1283,7 +1283,7 @@ msgstr "고유 주소"
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:34
 msgid "translate"
-msgstr ""
+msgstr "번역"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -2037,11 +2037,11 @@ msgstr "사용자 {0.name} {0.id} 이(가) 검색 도구를 통해 삭제됐습�
 
 #: apps/amo/log.py:643
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "{addon}의 등급이 성인 등급으로 변경 되었습니다."
 
 #: apps/amo/log.py:649
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon}의 등급이 변경 되었습니다."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3573,11 +3573,11 @@ msgstr "차단됨"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "공개"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "승인되었지만 아직 공개되지 않음"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
@@ -4477,7 +4477,7 @@ msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
 #: apps/devhub/views.py:1352
 msgid "Version %s disabled."
-msgstr ""
+msgstr "%s 버전은 사용이 불가능합니다."
 
 #: apps/devhub/views.py:1355
 msgid "Version %s deleted."
@@ -8810,7 +8810,7 @@ msgstr "이 파일을 쓸 플랫폼을 선택하세요"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "어떤 리뷰 형식을 지정하시겠습니까?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9069,7 +9069,7 @@ msgstr "삭제하면 이 버전은 다시는 복구할 수 없습니다:"
 
 #: apps/devhub/templates/devhub/versions/list.html:264
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>중요:</strong> 한번 버전을 삭제하면 같은 이름으로 새로운 버전을 업로드할 수 없습니다."
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
@@ -9085,7 +9085,7 @@ msgstr "버전 삭제"
 
 #: apps/devhub/templates/devhub/versions/list.html:279
 msgid "Disable Version"
-msgstr ""
+msgstr "삭제된 버전"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Add a new Version"
@@ -9528,7 +9528,7 @@ msgstr "%s 파일이 심사 대기열에 없습니다."
 #. L10n: Descript of what can be searched for.
 #: apps/editors/forms.py:337 mkt/reviewers/forms.py:115
 msgid "theme name"
-msgstr ""
+msgstr "테마 이름"
 
 #: apps/editors/forms.py:363 mkt/reviewers/forms.py:141
 msgid "Someone else is reviewing this theme."
@@ -9578,7 +9578,7 @@ msgstr "고속 심사"
 
 #: apps/editors/helpers.py:119 mkt/reviewers/helpers.py:45
 msgid "Pending Themes"
-msgstr ""
+msgstr "심사중인 테마"
 
 #: apps/editors/helpers.py:120 apps/editors/templates/editors/themes/queue.html:4 mkt/reviewers/helpers.py:46 mkt/reviewers/templates/reviewers/themes/queue.html:4
 msgid "Flagged Themes"
@@ -9785,7 +9785,7 @@ msgstr "편집자 코멘트 있음"
 
 #: apps/editors/tasks.py:70 mkt/reviewers/tasks.py:27
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "중복 제출"
 
 #: apps/editors/tasks.py:82 mkt/reviewers/tasks.py:39
 msgid "Thanks for submitting your Theme"
@@ -9858,7 +9858,7 @@ msgstr "상급 심사 필요"
 #: apps/editors/views_themes.py:325 mkt/reviewers/views_themes.py:299
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "{0} 테마 리뷰가 성공적으로 등록되었습니다 (+{1} 포인트, 총 {2})."
 
 #: apps/editors/views_themes.py:340 mkt/reviewers/views_themes.py:314
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -10072,7 +10072,7 @@ msgstr "이번달"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "올해"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10316,7 +10316,7 @@ msgstr "심사자"
 
 #: apps/editors/templates/editors/themes/deleted.html:4 mkt/reviewers/templates/reviewers/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "삭제된 테마"
 
 #: apps/editors/templates/editors/themes/deleted.html:17 mkt/reviewers/templates/reviewers/themes/deleted.html:17
 msgid "Date Deleted"
@@ -10324,7 +10324,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/deleted.html:39 mkt/reviewers/templates/reviewers/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "해당 기간에 삭제된 테마가 없습니다."
 
 #: apps/editors/templates/editors/themes/history.html:3 mkt/reviewers/templates/reviewers/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -10345,7 +10345,7 @@ msgstr "심사중인 테마가 없습니다."
 #: apps/editors/templates/editors/themes/home.html:19 mkt/reviewers/templates/reviewers/themes/home.html:17
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "{num}개의 심사중인 테마 리뷰"
 
 #: apps/editors/templates/editors/themes/home.html:27 mkt/reviewers/templates/reviewers/themes/home.html:25
 msgid "{num} Flagged Review"
@@ -10355,7 +10355,7 @@ msgstr[0] ""
 #: apps/editors/templates/editors/themes/home.html:34 mkt/reviewers/templates/reviewers/themes/home.html:32
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num}개의 업데이트"
 
 #: apps/editors/templates/editors/themes/home.html:49 mkt/reviewers/templates/reviewers/themes/home.html:47
 msgid "{num} unreviewed theme submission this week."
@@ -10458,7 +10458,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:95 mkt/reviewers/templates/reviewers/themes/themes.html:96
 msgid "Approve Theme"
-msgstr ""
+msgstr "테마 승인"
 
 #: apps/editors/templates/editors/themes/themes.html:102 mkt/reviewers/templates/reviewers/themes/themes.html:103
 msgid "Field required"
@@ -10812,7 +10812,7 @@ msgstr "Firefox 마켓플레이스에서 부가 기능을 이용할 수 없습�
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla 부가 기능 소개"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
@@ -10822,7 +10822,7 @@ msgstr ""
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
+msgstr "부가 기능 개발자 소개"
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10833,6 +10833,9 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"개인적인 취미생활부터 큰 기업 활동에 이르기까지 우리 커뮤니티의 수천명의 개발자들이 여기 목록에 있는 부가기능들을 만들어오고 있습니다. "
+"편집팀에서 모든 공개된 목록의 부가기능들이 배포되기 전에 검토를 하고 있습니다. 시험중이라고 표시된 부가기능들은 아직 검토가 되지 않은 "
+"상태이기 때문에 설치에 주의하시기 바랍니다."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -10856,7 +10859,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "멋진데요! 어떻게 하면 저도 참여할 수 있을까요?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
