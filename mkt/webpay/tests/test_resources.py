@@ -134,7 +134,8 @@ class TestStatus(RestOAuth):
 class TestPrices(RestOAuth):
 
     def make_currency(self, amount, tier, currency, region):
-        return PriceCurrency.objects.create(price=Decimal(amount), tier=tier,
+        return PriceCurrency.objects.create(
+            price=Decimal(amount), tier=tier,
             currency=currency, provider=PROVIDER_BANGO, region=region.id)
 
     def setUp(self):
@@ -345,7 +346,8 @@ class TestProductIconResource(RestOAuth):
         data = json.loads(res.content)
         eq_(len(data['objects']), 2)
 
-        res = self.anon.get(self.list_url,
+        res = self.anon.get(
+            self.list_url,
             data={'ext_url': 'http://someappnoreally.com/icons/icon_256.png'})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
