@@ -163,6 +163,8 @@ This runs a command like this::
 
 .. _pip: http://www.pip-installer.org/en/latest/
 
+**Did the install fail? Here are some ways to solve known issues:**
+
 If you are on a linux box and get a compilation error while installing M2Crypto
 like the following::
 
@@ -193,6 +195,24 @@ It may be because of a `few reasons`_:
 * revert your changes to ``requirements/compiled.txt``::
 
     git checkout requirements/compiled.txt
+
+
+As of OS X Mavericks, you might see this error when pip builds Pillow::
+
+    clang: error: unknown argument: '-mno-fused-madd' [-Wunused-command-line-argument-hard-error-in-future]
+
+    clang: note: this will be a hard error (cannot be downgraded to a warning) in the future
+
+    error: command 'cc' failed with exit status 1
+
+You can solve this by setting these environment variables in your shell
+before running ``pip install ...``::
+
+    export CFLAGS=-Qunused-arguments
+    export CPPFLAGS=-Qunused-arguments
+    pip install ...
+
+More info: http://stackoverflow.com/questions/22334776/installing-pillow-pil-on-mavericks/22365032
 
 
 .. _example-settings:
