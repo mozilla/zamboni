@@ -11,9 +11,9 @@ SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
 SITE_URL = 'https://marketplace-altdev.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://marketplace-dev-shared-data.s3.amazonaws.com/'
-MEDIA_STATIC_URL = 'https://marketplace-altdev-cdn.allizom.org/'
-LOCAL_MIRROR_URL = '%sfiles' % STATIC_URL
+STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-altdev-cdn.allizom.org/')
+
+LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
@@ -22,37 +22,50 @@ CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 CSP_FONT_SRC = CSP_FONT_SRC + (CSP_STATIC_URL,)
 
-STATIC_URL_PREFIX = 'shared_storage/'
-
-ADDON_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL + STATIC_URL_PREFIX +
-        'uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL + STATIC_URL_PREFIX +
-        'uploads/previews/full/%s/%d.%s?modified=%d')
+ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (
+    STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
+ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+PREVIEW_THUMBNAIL_URL = (STATIC_URL +
+        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (STATIC_URL +
+        'img/uploads/previews/full/%s/%d.%s?modified=%d')
 # paths for uploaded extensions
 FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
-USERPICS_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'uploads/collection_icons/%s/%s.png?m=%s'
+USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
+COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 
-MEDIA_URL = MEDIA_STATIC_URL + 'media/'
+MEDIA_URL = STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
 ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
 
-PRODUCT_ICON_URL = STATIC_URL + STATIC_URL_PREFIX + 'shared_storage/product-icons'
+PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
 
 CACHE_PREFIX = 'altdev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_marketplacealtdev"
-SYSLOG_TAG2 = "http_app_addons_marketplacealtdev_timer"
-SYSLOG_CSP = "http_app_addons_marketplacealtdev_csp"
+SYSLOG_TAG = "http_app_addons_marketplacedev"
+SYSLOG_TAG2 = "http_app_addons_marketplacedev_timer"
+SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
 
-STATSD_PREFIX = 'marketplace-altdev'
+STATSD_PREFIX = 'marketplace-dev'
+
+# Redis
+REDIS_BACKEND = getattr(private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)
+REDIS_BACKENDS_CACHE_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_CACHE_SLAVE', private.REDIS_BACKENDS_CACHE_SLAVE)
+REDIS_BACKENDS_MASTER = getattr(private_mkt, 'REDIS_BACKENDS_MASTER', private.REDIS_BACKENDS_MASTER)
+REDIS_BACKENDS_SLAVE = getattr(private_mkt, 'REDIS_BACKENDS_SLAVE', private.REDIS_BACKENDS_SLAVE)
+
+REDIS_BACKENDS = {
+    'cache': REDIS_BACKEND,
+    'cache_slave': REDIS_BACKENDS_CACHE_SLAVE,
+    'master': REDIS_BACKENDS_MASTER,
+    'slave': REDIS_BACKENDS_SLAVE,
+}
 
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL
@@ -143,9 +156,7 @@ HEKA_CONF = {
                         'syslog_ident': CEF_PRODUCT,
                         'syslog_priority': 'INFO'
                         }),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
-        },
+                },
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
@@ -189,6 +200,9 @@ ENABLE_API_ERROR_SERVICE = True
 # Until Bango can properly do refunds.
 BANGO_FAKE_REFUNDS = True
 
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/marketplace-altdev.allizom.org.ini'
+
 ES_USE_PLUGINS = True
 
 # Cache timeout on the /search/featured API.
@@ -211,3 +225,8 @@ IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServi
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
 IARC_ALLOW_CERT_REUSE = True
+
+# We'll use zippy, the reference implementation on -dev.
+PAYMENT_PROVIDERS = ['reference']
+
+PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'
