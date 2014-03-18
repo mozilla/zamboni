@@ -72,10 +72,6 @@ class CarrierSerializer(serializers.Serializer):
 class RegionSerializer(CarrierSerializer):
     default_currency = serializers.CharField()
     default_language = serializers.CharField()
-    ratingsbody = serializers.CharField()
-
-    def transform_ratingsbody(self, obj, value):
-        return getattr(obj.ratingsbody, 'name', None)
 
 
 class URLSerializerMixin(serializers.ModelSerializer):
