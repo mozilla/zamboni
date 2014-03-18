@@ -41,7 +41,7 @@ def get_supported_locales(manifest):
 
 def dehydrate_content_rating(rating):
     """
-    {body.id, rating.id} to translated {rating labels, names, descriptions}.
+    {body.id, rating.id} to translated rating.label.
     """
     try:
         body = mkt.ratingsbodies.dehydrate_ratings_body(
@@ -53,13 +53,7 @@ def dehydrate_content_rating(rating):
     rating = mkt.ratingsbodies.dehydrate_rating(
         body.ratings[int(rating['rating'])])
 
-    return {
-        'body': unicode(body.name),
-        'body_label': body.label,
-        'rating': rating.name,
-        'rating_label': rating.label,
-        'description': rating.description
-    }
+    return rating.label
 
 
 def dehydrate_content_ratings(content_ratings):
@@ -70,12 +64,11 @@ def dehydrate_content_ratings(content_ratings):
     return content_ratings
 
 
-def dehydrate_descriptors(keys):
+def dehydrate_descriptors(keys, body=None):
     """
     List of keys to lists of objects (desc label, desc name) by body.
 
-    ['ESRB_BLOOD, ...] to
-    {'esrb': [{'label': 'blood', 'name': 'Blood'}], ...}.
+    ['ESRB_BLOOD, ...] to {'esrb': ['blood'], ...}.
     """
     results = defaultdict(list)
     for key in keys:
@@ -83,10 +76,7 @@ def dehydrate_descriptors(keys):
         if obj:
             # Slugify and remove body prefix.
             body, label = key.lower().replace('_', '-').split('-', 1)
-            results[body].append({
-                'label': label,
-                'name': unicode(obj['name']),
-            })
+            results[body].append(label)
     return dict(results)
 
 
@@ -94,57 +84,11 @@ def dehydrate_interactives(keys):
     """
     List of keys to list of objects (label, name).
 
-    ['SOCIAL_NETWORKING', ...] to
-    [{'label': 'social-networking', 'name': 'Facebocks'}, ...].
+    ['SOCIAL_NETWORKING', ...] to ['social-networking', ...].
     """
     results = []
     for key in keys:
         obj = mkt.ratinginteractives.RATING_INTERACTIVES.get(key)
         if obj:
-            results.append({
-                'label': key.lower().replace('_', '-'),
-                'name': unicode(obj['name']),
-            })
+            results.append(key.lower().replace('_', '-'))
     return results
-
-
-def _filter_iarc_obj_by_region(obj, region=None, lookup_body=False):
-    """
-    Given an object keyed by ratings bodies, filter out ratings bodies that
-    aren't used by the passed in region slug.
-
-    (e.g. _filter_iarc({'esrb': ESRB_RATING, 'classind': CLASSIND_RATING},
-                       region='br', lookup_body=True)
-          returns just {'esrb': ESRB_RATING}.
-
-    region -- region slug to filter by.
-    lookup_body -- whether we want to fetch the ratings body slug associated w/
-                   the region.
-    """
-    regions_to_ratings = mkt.regions.REGION_TO_RATINGS_BODY()
-    generic = mkt.regions.GENERIC_RATING_REGION_SLUG  # 'generic'.
-
-    if obj and region and region in regions_to_ratings:
-        if lookup_body:  # Or filter by rating body slug.
-            body_slug = regions_to_ratings.get(region, generic)
-            if body_slug in obj:
-                return {body_slug: obj[body_slug]}
-            return obj
-        return {region: obj.get(region, generic)}
-
-    return obj
-
-
-def filter_content_ratings_by_region(content_ratings, region=None):
-    """
-    Given a region, remove irrelevant stuff from the content_ratings obj.
-    e.g. if given 'us' region, only filter for ESRB stuff. Slims down response.
-    """
-    if region:
-        content_ratings['ratings'] = _filter_iarc_obj_by_region(
-            content_ratings['ratings'], region=region, lookup_body=True)
-        content_ratings['descriptors'] = _filter_iarc_obj_by_region(
-            content_ratings['descriptors'], region=region, lookup_body=True)
-        content_ratings['regions'] = _filter_iarc_obj_by_region(
-            content_ratings['regions'], region=region)
-    return content_ratings

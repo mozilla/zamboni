@@ -57,29 +57,10 @@ App
                 "games"
             ],
             "content_ratings": {
-                "ratings": {
-                    "esrb": {"body": "ESRB", "body_label": "esrb", "rating": "Teen", "rating_label": "13", "description": "Not recommended for users younger than 13."},
-                    "classind": {"body": "CLASSIND", "body_label": "classind", "rating": "For ages 14+", "rating_label": "14", "description": "Not recommended for users younger than 14."},
-                    "pegi": {"body": "PEGI", "body_label": "pegi", "rating": "For ages 12+", "rating_label": "12", "description": "Not recommended for users younger than 12."},
-                    "usk": {"body": "USK", "body_label": "usk", "rating": "For ages 16+", "rating_label": "16", "description": "Not recommended for users younger than 16."},
-                    "generic": {"body": "Generic", "body_label": "generic", "rating": "For ages 13+", "rating_label": "13", "description": "Not recommended for users younger than 13."}
-                },
-                "descriptors": {
-                    "esrb": [{"label": "esrb-scary", "name": "Scary Themes"}],
-                    "generic": [{"label": "generic-scary", "name": "Fear"}]
-                },
-                "interactive_elements": [
-                    {"label": "users-interact", "name": "Users Interact"},
-                    {"label": "shares-location", "name": "Shares Location"},
-                ]
-                "regions": {
-                    "us": "esrb",
-                    "mx": "esrb",
-                    "br": "classind",
-                    "es": "pegi",
-                    "it": "pegi",
-                    "de": "usk"
-                }
+                "body": "esrb",
+                "rating": "13",
+                "descriptors": ["scary"],
+                "interactives": ["users-interact', "shares-location"]
             },
             "created": "2013-09-17T13:19:16",
             "current_version": "1.1",
@@ -183,19 +164,18 @@ App
         ``interactive_elements``. If a region is detected, only a subset
         of data will be returned.
     :type content_ratings: object
-    :param content_ratings.ratings: Content ratings associated with the app.
-    :type content_ratings.ratings: object
+    :param content_ratings.body: The rating body that assigned the content
+        rating. It is based off of the region of the request. It can be
+        'classind', 'esrb', 'generic', 'pegi', or 'usk.
+    :type content_ratings.body: string
+    :param content_ratings.rating: The content rating (usually an age).
+    :type content_ratings.ratings: string
     :param content_ratings.descriptors: IARC content descriptors, flags about
         the app that might affect its suitability for younger-aged users.
-    :type content_ratings.descriptors: object
-    :param content_ratings.interactive_elements: IARC interactive elements,
+    :type content_ratings.descriptors: array
+    :param content_ratings.interactives: IARC interactive elements,
         aspects about the app relating to whether the app shares info or
         interacts with external elements.
-    :type content_ratings.interactive_elements: array
-    :param content_ratings.regions: The mapping of region slugs to their
-        respective and assigned IARC ratings bodies. Regions that do not fall
-        under any of the listed regions uses the "generic" content rating in
-        content_ratings.ratings.
     :type content_ratings.interactive_elements: array
     :param created: The date the app was added to the Marketplace, in ISO 8601
         format.

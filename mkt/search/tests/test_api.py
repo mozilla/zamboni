@@ -195,9 +195,10 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(obj['absolute_url'],
                 absolutify(self.webapp.get_absolute_url()))
             eq_(obj['app_type'], self.webapp.app_type)
-            eq_(content_ratings['descriptors'], {})
-            eq_(content_ratings['interactive_elements'], [])
-            eq_(content_ratings['ratings'], None)
+            eq_(content_ratings['body'], 'generic')
+            eq_(content_ratings['rating'], None)
+            eq_(content_ratings['descriptors'], [])
+            eq_(content_ratings['interactives'], [])
             eq_(obj['current_version'], u'1.0')
             eq_(obj['description'],
                 {'en-US': self.webapp.description.localized_string})
@@ -657,12 +658,12 @@ class TestApi(RestOAuth, ESTestCase):
 
     def test_content_ratings_reindex(self):
         self.webapp.set_content_ratings({
-            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_T
+            mkt.ratingsbodies.GENERIC: mkt.ratingsbodies.GENERIC_18
         })
         self.refresh('webapp')
         res = self.client.get(self.url)
         obj = res.json['objects'][0]
-        ok_(obj['content_ratings']['ratings'])
+        ok_(obj['content_ratings']['rating'])
 
     def test_usk_refused_exclude(self):
         geodata = self.webapp._geodata

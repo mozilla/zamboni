@@ -695,53 +695,6 @@ class TestAppDetail(RestOAuth):
         eq_(data['banner_message'], unicode(geodata.banner_message))
         eq_(data['banner_regions'], [mkt.regions.AR.slug, mkt.regions.BR.slug])
 
-    def test_get_content_ratings(self):
-        rating = ratingsbodies.CLASSIND_12
-        self.app.content_ratings.create(ratings_body=ratingsbodies.CLASSIND.id,
-                                        rating=rating.id)
-        self.app.save()
-
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        cr = data.get('content_ratings')['ratings']
-
-        eq_(cr['classind']['body'], 'CLASSIND')
-        ok_(cr['classind']['rating'])
-        ok_(cr['classind']['description'])
-
-    def test_get_content_descriptors(self):
-        self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-
-        eq_(data['content_ratings']['descriptors'],
-            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
-             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
-
-    def test_get_interactive_elements(self):
-        self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-
-        eq_(data['content_ratings']['interactive_elements'],
-            [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
-
-    def test_get_content_descriptors_region(self):
-        self.app.set_descriptors(['has_usk_violence', 'has_esrb_violence'])
-
-        res = self.client.get(self.get_url, data={'region': 'de'})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-
-        eq_(data['content_ratings']['descriptors'],
-            {'usk': [{'label': 'violence', 'name': 'Violence'}]})
-
 
 class TestCategoryHandler(RestOAuth):
 

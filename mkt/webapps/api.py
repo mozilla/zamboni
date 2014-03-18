@@ -36,7 +36,6 @@ from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.webapps.models import AppFeatures, get_excluded_in, Webapp
-from mkt.webapps.utils import filter_content_ratings_by_region
 
 
 log = commonware.log.getLogger('z.api')
@@ -163,12 +162,14 @@ class AppSerializer(serializers.ModelSerializer):
         return REGION.slug if REGION else None
 
     def get_content_ratings(self, app):
-        return filter_content_ratings_by_region({
-            'ratings': app.get_content_ratings_by_body() or None,
-            'descriptors': app.get_descriptors() or None,
-            'interactive_elements': app.get_interactives() or None,
-            'regions': mkt.regions.REGION_TO_RATINGS_BODY()
-        }, region=self._get_region_slug())
+        body = mkt.regions.REGION_TO_RATINGS_BODY().get(
+            self._get_region_slug(), 'generic')
+        return {
+            'body': body,
+            'rating': app.get_content_ratings_by_body().get(body, None),
+            'descriptors': app.get_descriptors().get(body, []),
+            'interactives': app.get_interactives(),
+        }
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
