@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2013-12-01 19:09+0100\n"
-"Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
+"PO-Revision-Date: 2014-03-17 23:54+0000\n"
+"Last-Translator: Jean-Bernard <goofyfr@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1395100495.0\n"
 
 #: apps/addons/buttons.py:188
 msgid "Download Now"
@@ -226,7 +227,7 @@ msgstr "Afficher la politique de confidentialité"
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:128 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Afficher les conditions générales d'utilisation"
 
 #: apps/addons/templates/addons/button.html:94 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -271,8 +272,8 @@ msgstr "Extras"
 #: apps/addons/templates/addons/collections_teaser.html:22
 msgid "<strong>Over 5000 free extras</strong> that let you customize and extend Firefox to meet your needs."
 msgstr ""
-"<strong>Comment installer dans Thunderbird</strong> <ol> <li>Télécharger et enregistrer le fichier sur votre disque dur.</li> <li>Dans Mozilla Thunderbird, allez chercher Modules complémentaires "
-"dans le menu Outils.</li> <li>Cliquez sur le bouton Installer, et indiquez/sélectionnez le fichier que vous avez téléchargé, puis valider par « OK ».</li> </ol>"
+"<strong>Plus de 5000 extras gratuits</strong> qui vous permettent de "
+"personnaliser et améliorer Firefox pour répondre à vos besoins."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -846,7 +847,7 @@ msgstr "Éditer"
 #. For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr "%Y-%d-%m"
+msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -1841,7 +1842,7 @@ msgstr "Auteurs notifiés par courriel à propos de la compatibilité de {versio
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Courriel envoyé à l'auteur concernant la compatibilité du module."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -2391,7 +2392,7 @@ msgstr "URL :"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Décrivez votre collection (liens non autorisés)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2403,7 +2404,7 @@ msgstr "Icône"
 
 #: apps/bandwagon/forms.py:152 apps/users/forms.py:340
 msgid "No links are allowed."
-msgstr ""
+msgstr "Liens non autorisés."
 
 #: apps/bandwagon/forms.py:164
 msgid "This url is already in use by another collection"
@@ -3182,7 +3183,9 @@ msgstr "Découvrez encore plus de fournisseurs de moteurs de recherche sur <a hr
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
-"<a href=\"https://developer.mozilla.org/fr/Cr%C3%A9ation_de_plugins_OpenSearch_pour_Firefox\">Faites les votre</a> sur le <a href=\"https://developer.mozilla.org/\">Centre Mozilla Developpeurs</a>"
+"<a href=\"https://developer.mozilla.org/fr/Création_de_plugins_OpenSearch_pou"
+"r_Firefox\">Faites les votre</a> sur le <a "
+"href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:197
 msgid "Complete Themes"
@@ -3622,15 +3625,15 @@ msgstr "Bloqué"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "Publié"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "Approuvé mais non publié"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "Obsolète"
 
 #: apps/constants/base.py:144
 msgid "Full"
@@ -4080,11 +4083,12 @@ msgstr "Un texte de licence est nécessaire lorsque vous choisissez « Autre ».
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Ce module comporte des conditions générales d'utilisation"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
+"Veuillez préciser les conditions générales d'utilisation de votre module :"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -4176,7 +4180,7 @@ msgstr "Revue préliminaire"
 
 #: apps/devhub/forms.py:542
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Veuillez choisir un type de proposition de revue"
 
 #: apps/devhub/forms.py:557 mkt/submit/forms.py:204
 msgid "Version %s already exists"
@@ -4522,7 +4526,7 @@ msgstr "Une erreur est survenue pendant l'envoi de votre aperçu."
 
 #: apps/devhub/views.py:1352
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Version %s désactivée."
 
 #: apps/devhub/views.py:1355
 msgid "Version %s deleted."
@@ -4552,12 +4556,18 @@ msgstr "SDK Modules"
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
 msgstr ""
+"<strong>SDK Modules&nbsp;:</strong> créez des modules facilement et "
+"rapidement"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"Le SDK Modules fournit un ensemble d'APIs complètes permettant aux "
+"développeurs de créer des modules complémentaires pour Firefox en utilisant "
+"HTML, CSS et JavaScript. Une fois votre module fini, tout est fait pour le "
+"partager avec plus de 400 millions d'utilisateurs de Firefox."
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4687,6 +4697,12 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Les modules complémentaires permettent aux millions d'utilisateurs de "
+"Firefox d'améliorer et de personnaliser leur façon de naviguer. Si vous êtes "
+"un développeur Web utilisant HTML, JavaScript et CSS, vous avez déjà toutes "
+"les cartes en main pour construire des modules avec le SDK Modules. De "
+"plus, par défaut, les modules bâtis grâce au SDK fonctionnent sans "
+"redémarrage nécesaire."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -6092,6 +6108,12 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Si votre module nécessite plus de fonctionnalités que la barre latérale vide "
+"offerte par le Packager, il y a diverses méthodes pour ajouter la "
+"fonctionnalité que vous voulez. La méthode la plus utilisée consiste à "
+"étudier les autres extensions qui ont cette fonctionnalité. Soyez "
+"respectueux des licences utilisées et ne copiez pas le code source de "
+"l'extension si sa licence ne le permet pas."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6116,8 +6138,12 @@ msgid ""
 "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
 "problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
-"Si vous savez déjà ce que vous voulez, <a href=\"/fr/developers/search\">cherchez-le!</a> Notre recherche trouvera les meilleurs ressources pour les modules pour vous aider à corriger ce problème "
-"courant que vous avez ou cette interface qui vous manque. Si la recherche ne vous aide pas, n'hésitez pas à <a href=\"https://forums.addons.mozilla.org\">demander de l'aide</a> dans nos forums."
+"Si vous savez déjà ce que vous voulez, <a href=\"/fr/developers/search"
+"\">cherchez-le&nbsp;!</a> Notre recherche trouvera les meilleurs ressources "
+"pour les modules pour vous aider à corriger ce problème courant que vous "
+"avez ou cette interface qui vous manque. Si la recherche ne vous aide pas, "
+"n'hésitez pas à <a href=\"https://forums.addons.mozilla.org\">demander de "
+"l'aide</a> dans nos forums."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
@@ -8957,7 +8983,7 @@ msgstr "Sélectionnez la plateforme cible pour ce fichier"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "À quel type de revue souhaiteriez-vous candidater ?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9225,10 +9251,15 @@ msgstr "Supprimer cette version va effacer définitivement :"
 #: apps/devhub/templates/devhub/versions/list.html:264
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
+"<strong>Important&nbsp;:</strong> Une fois qu'une version a été supprimée, "
+"il est impossible de mettre en ligne une nouvelle version avec le même "
+"numéro de version."
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr ""
+"Supprimer une version qui a déjà été vérifiée peut également engendrer un "
+"délai significatif avant la revue de votre prochaine mise à jour."
 
 #: apps/devhub/templates/devhub/versions/list.html:272 mkt/developers/templates/developers/apps/status.html:355
 msgid "Are you sure you wish to delete this version?"
@@ -9240,7 +9271,7 @@ msgstr "Supprimer la version"
 
 #: apps/devhub/templates/devhub/versions/list.html:279
 msgid "Disable Version"
-msgstr ""
+msgstr "Désactiver la version"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Add a new Version"
@@ -10228,7 +10259,7 @@ msgstr "Ce mois"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Cette année"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10593,7 +10624,7 @@ msgstr "Il n'y a actuellement aucun élément de ce type à vérifier."
 
 #: apps/editors/templates/editors/themes/queue_list.html:92 mkt/reviewers/templates/reviewers/queue.html:95 mkt/reviewers/templates/reviewers/themes/queue_list.html:88
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Guide du reviewer"
 
 #: apps/editors/templates/editors/themes/single.html:8 mkt/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -11039,7 +11070,7 @@ msgstr "Si vous êtes intéressés mais que vous n'êtes pas trop technique, vou
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Partagez avec vos amis&nbsp;! Dites-leur quels modules vous utilisez."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -13518,7 +13549,7 @@ msgstr "autres"
 
 #: apps/users/models.py:64
 msgid "algorithm"
-msgstr ""
+msgstr "algorithme"
 
 #: apps/users/models.py:65
 msgid "salt"
@@ -13526,7 +13557,7 @@ msgstr ""
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "Hachage"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -14251,7 +14282,7 @@ msgstr "Historique de version de {0}"
 #: apps/versions/templates/versions/version_list.html:24
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] "Version affichée : {0}"
+msgstr[0] "<b>{0}</b> version"
 msgstr[1] "<b>{0}</b> versions"
 
 #: apps/versions/templates/versions/version_list.html:30 apps/versions/templates/versions/mobile/version_list.html:14
@@ -16748,7 +16779,7 @@ msgstr "Vous devez vous connecter pour continuer."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:139
 msgid "Sign in / Sign up"
-msgstr "Connexion"
+msgstr "Connexion / Inscription"
 
 #: mkt/developers/templates/developers/nav.html:32 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
@@ -18178,8 +18209,10 @@ msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
 msgstr ""
-"Le Marketplace Firefox permet aux utilisateurs de trouver, essayer et acheter des applications et contenus qui leur plaise. Cela veut dire des applications qui soient excitantes, utiles, de bonne "
-"qualité, adaptées aux marchés locaux parmi toutes les catégories que les utilisateurs utilisent."
+"Le Marketplace Firefox permet aux utilisateurs de trouver, essayer et "
+"acheter des applications et contenus qui leur plaisent. Cela veut dire des "
+"applications qui soient excitantes, utiles, de bonne qualité, adaptées aux "
+"marchés locaux parmi toutes les catégories que les utilisateurs utilisent."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
@@ -18850,8 +18883,13 @@ msgid "Selecting an image"
 msgstr "Sélection d'une image"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
+#, fuzzy
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr "rtcamera est une application amusante pour faire du traitement d'images en temps réel, en utilisant des technologies Web"
+msgstr ""
+"rtcamera est une application amusante pour faire du traitement d'images en "
+"temps réel, en utilisant des technologies Web. <a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\"> Consultez la procédure de "
+"développement complète </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
