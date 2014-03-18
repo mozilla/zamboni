@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-15 18:20+0000\n"
+"PO-Revision-Date: 2014-03-18 18:07+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1394907617.0\n"
+"X-POOTLE-MTIME: 1395166070.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:188
@@ -14280,7 +14280,7 @@ msgstr "Você só precisa se registrar se:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Você deseja enviar revisões sobre complementos"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
@@ -17194,6 +17194,8 @@ msgstr "Esse aplicativo é <b>público</b>."
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"Sua última versão está <b>pendente de revisão</b> por um revisor do Firefox "
+"Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -17321,6 +17323,8 @@ msgstr "Envie uma versão nova desse aplicativo empacotado. Novas versões devem
 #: mkt/developers/templates/developers/apps/status.html:269
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Lembre-se de atualizar a <a href=\"%(ratings_url)s\">classificações de "
+"conteúdo</a> se uma grande parte do conteúdo do aplicativo mudou."
 
 #: mkt/developers/templates/developers/apps/status.html:294
 msgid "Blocklist App"
@@ -17737,19 +17741,19 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Pré-carregado"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Aplicativo pré-carregado"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr ""
+msgstr "Baixar o plano de teste"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Teste terminado?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
@@ -17764,7 +17768,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Termos e Condições para aplicativos pré-carregados"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
@@ -17785,10 +17789,16 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Ao usar a ferramenta certificado classificações IARC, você concorda em "
+"cumprir a sua <a href=\"%(privacy_url)s\">Política de Privacidade</a> e <a "
+"href=\"%(tos_url)s\">Termos do acordo do serviço</a>"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
+"Completado o processo de classificação de conteúdos IARC, você será "
+"redirecionado para o seu aplicativo de <a href=\"%(ratings_url)s\">página de "
+"classificações de conteúdo</a>"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
@@ -17807,14 +17817,19 @@ msgstr "Seu Aplicativo já foi classificado?"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Se você já tiver obtido o seu aplicativo avaliado através da Ferramenta "
+"Classificação IARC global acima e já tem um código de segurança IARC, pode "
+"introduzi-lo manualmente aqui."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "ID de envio"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"O ID de envio pode ser encontrado no certificado enviado a você. É um valor "
+"numérico como &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -17823,10 +17838,12 @@ msgstr "Código de Segurança"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"O código de segurança pode ser encontrada no certificado enviado a você. É "
+"uma mistura de letras e números, como &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 msgid "Rating System"
-msgstr ""
+msgstr "Sistema de Avaliação"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25 mkt/developers/templates/developers/payments/premium.html:210
 msgid "Region"
@@ -17834,7 +17851,7 @@ msgstr "Região"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Rating Category"
-msgstr ""
+msgstr "Categoria de avaliação"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
 msgid "Descriptors"
@@ -17863,8 +17880,8 @@ msgstr "Categorias:"
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Estimado o tempo de espera:</b> %(num)s dia de trabalho"
+msgstr[1] "<b>Estimado o tempo de espera:</b> %(num)s dias de trabalho"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
@@ -17880,7 +17897,7 @@ msgstr "Esconder todos"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Teste de instalação do aplicativo"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
@@ -17926,7 +17943,7 @@ msgstr "A alteração para Gratuito exige que seu aplicativo seja analisado nova
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "O modo pago requer que seu aplicativo suporte:"
 
 #: mkt/developers/templates/developers/payments/premium.html:83 mkt/developers/templates/developers/payments/premium.html:85 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
@@ -17956,6 +17973,7 @@ msgstr "Seu aplicativo não está terminado. Selecione uma conta para pagamento 
 #: mkt/developers/templates/developers/payments/premium.html:136
 msgid "Add, manage or view transactions for your payment account"
 msgstr ""
+"Adicionar, gerenciar ou visualizar as transações da sua conta de pagamento"
 
 #: mkt/developers/templates/developers/payments/premium.html:151
 msgid "Prices and Countries"
@@ -17984,6 +18002,8 @@ msgstr "Regiões disponíveis"
 #: mkt/developers/templates/developers/payments/premium.html:198
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Confira a <a href=\"%(status_url)s\" target=\"_blank\">página de status</a> para "
+"ver quais os países que estão habilitados para a venda."
 
 #: mkt/developers/templates/developers/payments/premium.html:205
 msgid "Your app will be available in the following selected regions:"
@@ -18010,6 +18030,10 @@ msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
+"Seu aplicativo estará disponível nas seguintes regiões selecionadas, uma vez "
+"disponíveis os pagamentos com base no seu ponto de preço escolhido. Para "
+"excluir seu aplicativo de aparecer em uma região, você pode desmarcar essa "
+"região antes de salvar."
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "Regions and Listings"
@@ -18191,7 +18215,7 @@ msgstr "Aplicativos de exemplo"
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:189
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Distribuindo o seu Aplicativo"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:194
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23
@@ -18273,12 +18297,21 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Comprar da loja dos EUA</a> <a "
+"href=\"%(uk_ebay_url)s\" class=\"button\">Comprar da loja do Reino Unido</a> <a "
+"href=\"%(hk_ebay_url)s\" class=\"button\">Comprar da loja de Hong Kong</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"Depois de muito trabalho duro ao lado da ZTE estamos orgulhosos de anunciar "
+"o lançamento do celular ZTE OPEN com o Firefox OS, um poderoso dispositivo "
+"destinado a desenvolvedores e entusiasta do mundo inteiro. Estes "
+"dispositivos estão disponíveis através da ZTE EUA, Reino Unido, Hong Kong e "
+"lojas eBay, ao preço de $ 79,99 / £ 59,99, e será desbloqueado e aberto para "
+"teste e experimentação. <a href=\"%(zte_url)s\"> Leia mais detalhes.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
@@ -18309,6 +18342,11 @@ msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>Se você acabou de receber um Geeksphone Keon ou Peak, é provável que "
+"esteja executando a versão desatualizada do Firefox OS. Antes de fazer "
+"qualquer outra coisa com ele, você deve flash-lo para uma versão atualizada "
+"do Firefox OS, conforme descrito em nosso<a href=\"%"
+"(geeksphone_update_url)s\"> guia para flashear seu Geeksphone</a>.</strong>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -18363,10 +18401,14 @@ msgstr "Desenvolva aplicativos web em HTML5 para uma loja aberta."
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
+"Saiba como criar aplicativos que oferecam uma experiência ao usuário "
+"otimizada para o Firefox OS."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
 msgstr ""
+"Todas as ferramentas, documentos e referências que você precisa para "
+"desenvolvimento e testar o seu aplicativo"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
