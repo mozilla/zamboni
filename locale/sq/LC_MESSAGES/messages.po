@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-26 09:03-0700\n"
-"PO-Revision-Date: 2014-03-17 23:34+0200\n"
+"PO-Revision-Date: 2014-03-19 00:37+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -11863,7 +11863,7 @@ msgstr "Për çfarë është ky sajt web?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
+msgstr "addons.mozilla.org, e njohur rëndom si \"AMO\", është sajti zyrtar i Mozilla-s për shtesa ndaj software-i Mozilla, të tillë si Firefox-i, Thunderbird-i, dhe SeaMonkey. Shtesat ju lejojnë të shtoni veçori të reja dhe të ndryshoni mënyrën me të cilën funksionon shfletuesi ose zbatimi juaj. Hidhni një sy përreth dhe eksploroni mijëra mënyra për të personalizuar rrugën sipas të cilës bëni gjëra në linjë."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -11871,7 +11871,7 @@ msgstr "Kush i krijon këto shtesa?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
+msgstr "Shtesat e radhitura këtu janë krijuar nga mijëra zhvillues prej bashkësisë sonë, që shtrihet nga hobistë individualë deri te korporata të mëdha. Krejt shtesat e paraqitura publikisht shqyrtohen nga një ekip redaktorësh, përpara se të hidhen në qarkullim. Shtesat e shënuara si Eksperimentale nuk janë shqyrtuar dhe do të duhej t'i instalonit duke bërë kujdes."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -11879,19 +11879,19 @@ msgstr "Si të mbeten në dijeni se ç'ndodh te AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Ka disa rrugë për të mësuar lajmet e fundit nga bota e shtesave:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Blogu ynë i Shtesave</a> përditësohet rregullisht me të dhëna si për simpatizantët e shtesave, ashtu edhe për zhvilluesit e tyre."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Shpesh postojnë, lajme, ndihmëza, dhe trike te llogaria jonë Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Forumet</a> janë vend i mirë për të ndërvepruar me bashkësinë e shtesave dhe për të diskutuar ndryshimet e ardhshme te AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -11899,7 +11899,7 @@ msgstr "Duket shumë e fortë! Si mund të marr pjesë?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Ka plot rrugë për t'u përfshirë. Në qoftë se jeni i anës teknike:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
