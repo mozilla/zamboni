@@ -16,7 +16,6 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.parsers import FormParser, JSONParser
 from rest_framework.permissions import BasePermission
-from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
@@ -67,7 +66,6 @@ class AttachmentSerializer(ModelSerializer):
 class NoteSerializer(ModelSerializer):
     body = CharField()
     author_meta = AuthorSerializer(source='author', read_only=True)
-    reply_to = PrimaryKeyRelatedField(required=False)
     is_read = SerializerMethodField('is_read_by_user')
     attachments = AttachmentSerializer(source='attachments', read_only=True)
 
@@ -78,7 +76,7 @@ class NoteSerializer(ModelSerializer):
     class Meta:
         model = CommunicationNote
         fields = ('id', 'created', 'attachments', 'author', 'author_meta',
-                  'body', 'is_read', 'note_type', 'reply_to', 'thread')
+                  'body', 'is_read', 'note_type', 'thread')
 
 
 class AddonSerializer(ModelSerializer):
@@ -365,15 +363,10 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
             thread.addon, thread.version, self.request.amo_user,
             form.cleaned_data['body'],
             note_type=form.cleaned_data['note_type'])
-        self.attach_as_reply(note)
 
         return Response(
             NoteSerializer(note, context={'request': request}).data,
             status=status.HTTP_201_CREATED)
-
-    def attach_as_reply(self, note):
-        # Overridden in ReplyViewSet.
-        pass
 
     def mark_as_read(self, profile):
         CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
@@ -443,30 +436,9 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
             NoteSerializer(note, context={'request': request}).data,
             status=status.HTTP_201_CREATED)
 
-    def attach_as_reply(self, note):
-        # Overridden in ReplyViewSet.
-        pass
-
     def mark_as_read(self, profile):
         CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
             user=profile)
-
-
-class ReplyViewSet(NoteViewSet):
-    """A note, but a reply to another note."""
-    cors_allowed_methods = ['get', 'post']
-
-    def initialize_request(self, request, *args, **kwargs):
-        self.parent_note = get_object_or_404(CommunicationNote,
-                                             id=kwargs['note_id'])
-        return super(ReplyViewSet, self).initialize_request(request, *args,
-                                                            **kwargs)
-
-    def get_queryset(self):
-        return self.parent_note.replies.all()
-
-    def attach_as_reply(self, obj):
-        obj.update(reply_to=self.parent_note)
 
 
 @api_view(['POST'])
