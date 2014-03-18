@@ -52,3 +52,12 @@
         }
     }
 }
+
+/* Hide upload form on devices with no filesystem (Unagi, some other mobile) */
+.filesystem-only {
+  display: none;
+}
+/* Show upload form if there is a filesystem, depends on JS feature detection */
+.filesystem .filesystem-only {
+  display: block;
+}
