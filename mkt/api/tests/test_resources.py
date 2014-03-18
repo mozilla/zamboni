@@ -87,10 +87,6 @@ class TestRegion(RestOAuth):
             eq_(row['id'], region.id)
             eq_(row['default_currency'], region.default_currency)
             eq_(row['default_language'], region.default_language)
-            if region.ratingsbody:
-                eq_(row['ratingsbody'], region.ratingsbody.name)
-            else:
-                eq_(row['ratingsbody'], None)
         eq_(len(data['objects']), len(mkt.regions.REGIONS_DICT))
         eq_(data['meta']['total_count'], len(mkt.regions.REGIONS_DICT))
 
@@ -118,7 +114,6 @@ class TestRegion(RestOAuth):
         eq_(data['id'], region.id)
         eq_(data['default_currency'], region.default_currency)
         eq_(data['default_language'], region.default_language)
-        eq_(data['ratingsbody'], getattr(region.ratingsbody, 'name', None))
 
     def get_region(self, slug):
         return self.anon.get(reverse('regions-detail', kwargs={'pk': slug}))
