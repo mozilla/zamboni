@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
+import waffle
 from rest_framework import status
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.decorators import (api_view, authentication_classes,
@@ -312,6 +313,9 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         return res
 
     def create(self, request, *args, **kwargs):
+        if not waffle.switch_is_active('comm-dashboard'):
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
         form = forms.CreateCommThreadForm(request.DATA)
         if not form.is_valid():
             return Response(
@@ -346,6 +350,9 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
             self.request.amo_user, self.comm_thread)
 
     def create(self, request, *args, **kwargs):
+        if not waffle.switch_is_active('comm-dashboard'):
+            return Response(status=status.HTTP_403_FORBIDDEN)
+
         thread = get_object_or_404(CommunicationThread, id=kwargs['thread_id'])
 
         # Validate note.
