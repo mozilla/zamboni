@@ -132,6 +132,10 @@ class OAuthClient(Client):
         response = self.request(**kw)
         return response
 
+    def options(self, url):
+        url, headers, body = self.sign('OPTIONS', self.get_absolute_url(url))
+        return wrap(super(OAuthClient, self).options(url, **self.kw(headers)))
+
 
 class BaseOAuth(BaseAPI):
     fixtures = fixture('user_2519', 'group_admin', 'group_editor',

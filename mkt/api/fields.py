@@ -318,6 +318,17 @@ class SlugChoiceField(serializers.ChoiceField):
         kwargs['choices'] = slugs_choices + ids_choices
         return super(SlugChoiceField, self).__init__(*args, **kwargs)
 
+    def metadata(self):
+        """Return metadata about the choices. It's customized to return the
+        name of each choice, because in that class, choices values are objects,
+        not strings directly. This makes it possible to serialize the metadata
+        without errors, which is necessary to answer OPTIONS (bug 984899)"""
+        data = super(SlugChoiceField, self).metadata()
+        data['choices'] = [{'value': v,
+                            'display_name': unicode(getattr(n, 'name', n))}
+                            for v, n in self.choices]
+        return data
+
     def to_native(self, value):
         if value:
             choice = self.ids_choices_dict.get(value, None)

@@ -153,7 +153,7 @@ class BaseCollectionViewSetTest(RestOAuth):
 
 class TestCollectionViewSetListing(BaseCollectionViewSetTest):
     """
-    Tests the handling of GET requests to the list endpoint of
+    Tests the handling of GET/OPTIONS requests to the list endpoint of
     CollectionViewSet.
     """
     def listing(self, client):
@@ -182,6 +182,11 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
     def test_listing_has_perms(self):
         self.make_publisher()
         self.listing(self.client)
+
+    def test_options_has_perms(self):
+        self.make_publisher()
+        res = self.client.options(self.list_url)
+        eq_(res.status_code, 200)
 
     def test_listing_curator(self):
         self.make_curator()
