@@ -5,10 +5,12 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from lib.settings_base import (CACHE_PREFIX, ES_INDEXES,
+                               KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private
+
 
 ENGAGE_ROBOTS = False
 
@@ -63,7 +65,6 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 NETAPP_STORAGE = private.NETAPP_STORAGE_ROOT + '/shared_storage'
 MIRROR_STAGE_PATH = private.NETAPP_STORAGE_ROOT + '/public-staging'
 GUARDED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/guarded-addons'
@@ -84,11 +85,11 @@ LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.addons': {'level': logging.DEBUG},
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -121,7 +122,7 @@ csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = private.RESPONSYS_ID
 
-CRONJOB_LOCK_PREFIX = 'marketplace-altdev'
+CRONJOB_LOCK_PREFIX = 'addons-altdev'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
@@ -170,7 +171,7 @@ NEW_FEATURES = True
 
 PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
 
-REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
+REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
@@ -188,7 +189,7 @@ GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
 
 MONOLITH_SERVER = 'https://monolith-dev.allizom.org'
 
-GEOIP_URL = 'http://geo-dev.marketplace.allizom.org'
+GEOIP_URL = 'https://geo-dev-marketplace.allizom.org'
 
 AWS_ACCESS_KEY_ID = private.AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY = private.AWS_SECRET_ACCESS_KEY
@@ -197,5 +198,10 @@ AWS_STORAGE_BUCKET_NAME = private.AWS_STORAGE_BUCKET_NAME
 RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
+
+NEWRELIC_WHITELIST = ['dev1.addons.phx1.mozilla.com',
+                      'dev2.addons.phx1.mozilla.com']
+
+NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
 
 AES_KEYS = private.AES_KEYS

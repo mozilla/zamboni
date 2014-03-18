@@ -8690,8 +8690,8 @@ msgid "Yes, as long as they share alike"
 msgstr "Yes, as long as they share alike"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."

@@ -85,8 +85,6 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 HEKA_CONF = {
     'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {}),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': private_addons.SENTRY_DSN}),
         },
     'stream': {
         'class': 'heka.streams.UdpStream',
@@ -102,3 +100,6 @@ USE_HEKA_FOR_CEF = True
 USE_HEKA_FOR_TASTYPIE = False
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
+
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/addons-altdev.allizom.org.ini'
