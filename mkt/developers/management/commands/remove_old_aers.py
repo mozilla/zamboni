@@ -3,6 +3,7 @@ import logging
 from django.core.management.base import BaseCommand
 
 import amo
+from amo.decorators import write
 
 from mkt import regions
 
@@ -13,6 +14,7 @@ log = logging.getLogger('z.task')
 class Command(BaseCommand):
     help = ('Remove game-related AERs for Brazil + Germany.')
 
+    @write
     def handle(self, *args, **options):
         # Avoid import error.
         from mkt.webapps.models import Webapp
