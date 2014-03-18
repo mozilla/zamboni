@@ -503,6 +503,7 @@ def save_test_plan(f, filename, addon):
 
 
 @task
+@write
 def refresh_iarc_ratings(ids, **kw):
     """
     Refresh old or corrupt IARC ratings by re-fetching the certificate.
