@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework import serializers
@@ -226,6 +227,9 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         self.collection = Collection.objects.create(**self.collection_data)
         self.serializer = CollectionSerializer(self.collection,
                                                context=minimal_context)
+
+    def test_metadata_is_serialized_to_json(self):
+        ok_(json.dumps(self.serializer.metadata()))
 
     def test_to_native(self, apps=None):
         if apps:
