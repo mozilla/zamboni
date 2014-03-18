@@ -18,8 +18,9 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
+from lib.cef_loggers import app_pay_cef
 from market.models import Price
-from stats.models import Contribution
+from stats.models import ClientData, Contribution
 
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -27,7 +28,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
 from mkt.webpay.forms import FailureForm, PrepareForm
 from mkt.webpay.models import ProductIcon
@@ -58,11 +58,23 @@ class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
             return Response('Payments are limited and flag not enabled',
                             status=status.HTTP_403_FORBIDDEN)
 
-        try:
-            data = _prepare_pay(request._request, app)
-        except AlreadyPurchased:
+        if app.is_premium() and app.has_purchased(request._request.amo_user):
+            log.info('Already purchased: %d' % app.pk)
             return Response({'reason': u'Already purchased app.'},
                             status=status.HTTP_409_CONFLICT)
+
+        app_pay_cef.log(request._request, 'Preparing JWT', 'preparing_jwt',
+                        'Preparing JWT for: %s' % (app.pk), severity=3)
+
+        user = request._request.amo_user
+        region = request._request.REGION
+        source = request._request.REQUEST.get('src', '')
+        lang = request._request.LANG
+        client_data = ClientData.get_or_create(request._request)
+
+        data = _prepare_pay(app, user=user, region=region,
+                            source=source, lang=lang,
+                            client_data=client_data)
 
         return Response(data, status=status.HTTP_201_CREATED)
 
@@ -143,8 +155,8 @@ class FailureNotificationView(MarketplaceView, GenericAPIView):
 class ProductIconViewSet(CORSMixin, MarketplaceView, ListModelMixin,
                          RetrieveModelMixin, GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
-                               RestSharedSecretAuthentication,
-                               RestAnonymousAuthentication]
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('ProductIcon', 'Create'))]
     queryset = ProductIcon.objects.all()
@@ -155,10 +167,10 @@ class ProductIconViewSet(CORSMixin, MarketplaceView, ListModelMixin,
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.DATA)
         if serializer.is_valid():
-            log.info('Resizing product icon %s @ %s to %s for webpay' %
-                  (serializer.data['ext_url'],
-                   serializer.data['ext_size'],
-                   serializer.data['size']))
+            log.info('Resizing product icon %s @ %s to %s for webpay' % (
+                serializer.data['ext_url'],
+                serializer.data['ext_size'],
+                serializer.data['size']))
             tasks.fetch_product_icon.delay(serializer.data['ext_url'],
                                            serializer.data['ext_size'],
                                            serializer.data['size'])
