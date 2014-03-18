@@ -29,7 +29,7 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
                   'pullquote_attribution', 'pullquote_rating', 'pullquote_text',
                   'url')
         model = FeedApp
-        url_basename = 'feedapp'
+        url_basename = 'feedapps'
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
@@ -50,7 +50,7 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                   'region', 'url')
         item_types = ('collection',)
         model = FeedItem
-        url_basename = 'feeditem'
+        url_basename = 'feeditems'
 
     def validate(self, attrs):
         """
