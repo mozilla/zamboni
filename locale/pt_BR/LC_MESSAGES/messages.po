@@ -20213,7 +20213,7 @@ msgstr "<span>Configurar a <a href=\"%(rating_url)s\">classificação do conteú
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr "<span>Configurar <a href=\"%(rating_url)s\">pagamentos</a></span>"
+msgstr "<span>Configurar <a href=\"%(pay_url)s\">pagamentos</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Wait for Review"
