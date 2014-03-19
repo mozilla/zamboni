@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: 2014-01-08 21:11+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -547,8 +547,8 @@ msgstr "Si è verificato un errore durante il processo di approvazione dell'app:
 msgid "Error rejecting app: {app}"
 msgstr "Si è verificato un errore durante il processo di rifiuto dell'app: {app}"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr ""
 

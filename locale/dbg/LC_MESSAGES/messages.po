@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.9.0\n"
 
-#: apps/addons/buttons.py:188
+#: apps/addons/buttons.py:189
 msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
-#: apps/addons/buttons.py:190
+#: apps/addons/buttons.py:191
 #: mkt/developers/templates/developers/apps/status.html:237
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124
@@ -30,30 +30,30 @@ msgid "Download"
 msgstr "Ḓǿẇƞŀǿȧḓ"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: apps/addons/buttons.py:194
+#: apps/addons/buttons.py:195
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&nbsp;&rarr;"
 
-#: apps/addons/buttons.py:199
+#: apps/addons/buttons.py:200
 msgid "Install App"
 msgstr "Īƞşŧȧŀŀ Ȧƥƥ"
 
-#: apps/addons/buttons.py:213
+#: apps/addons/buttons.py:214
 msgctxt "install_button"
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
 
-#: apps/addons/buttons.py:218
+#: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 
-#: apps/addons/buttons.py:225
+#: apps/addons/buttons.py:226
 msgctxt "install_button"
 msgid "Experimental"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
 
-#: apps/addons/buttons.py:232
+#: apps/addons/buttons.py:233
 msgid "Add to {0}"
 msgstr "Ȧḓḓ ŧǿ {0}"
 
@@ -62,14 +62,14 @@ msgid "This name is already in use. Please choose another."
 msgstr "Ŧħīş ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ. Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
 #: apps/addons/forms.py:62
-#: mkt/developers/forms.py:555
-#: mkt/submit/forms.py:403
+#: mkt/developers/forms.py:561
+#: mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
 msgstr "Ŧħīş şŀŭɠ īş ȧŀřḗȧḓẏ īƞ ŭşḗ. Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
 #: apps/addons/forms.py:65
-#: mkt/developers/forms.py:558
-#: mkt/submit/forms.py:407
+#: mkt/developers/forms.py:564
+#: mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ŧħḗ şŀŭɠ ƈȧƞƞǿŧ ƀḗ \"%s\". Ƥŀḗȧşḗ ƈħǿǿşḗ ȧƞǿŧħḗř."
 
@@ -123,7 +123,7 @@ msgstr ""
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:256
-#: mkt/developers/forms.py:859
+#: mkt/developers/forms.py:865
 #: mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
@@ -167,7 +167,7 @@ msgid "Not Reviewed"
 msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 
 #: apps/addons/helpers.py:34
-#: apps/addons/views.py:329
+#: apps/addons/views.py:328
 #: apps/addons/templates/addons/impala/details.html:117
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38
@@ -175,11 +175,11 @@ msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 #: apps/amo/templates/amo/side_nav.html:17
 #: apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53
-#: apps/bandwagon/views.py:86
-#: apps/browse/views.py:54
-#: apps/browse/views.py:68
-#: apps/browse/views.py:231
-#: apps/browse/views.py:448
+#: apps/bandwagon/views.py:85
+#: apps/browse/views.py:53
+#: apps/browse/views.py:67
+#: apps/browse/views.py:229
+#: apps/browse/views.py:446
 #: apps/browse/templates/browse/impala/category_landing.html:24
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
@@ -193,36 +193,36 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:2102
+#: apps/addons/models.py:2101
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: apps/addons/views.py:330
+#: apps/addons/views.py:329
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Ƥǿƥŭŀȧř"
 
-#: apps/addons/views.py:331
-#: apps/browse/views.py:234
-#: apps/browse/views.py:292
-#: apps/browse/views.py:473
+#: apps/addons/views.py:330
+#: apps/browse/views.py:232
+#: apps/browse/views.py:290
+#: apps/browse/views.py:471
 msgid "Recently Added"
 msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
-#: apps/addons/views.py:332
-#: apps/bandwagon/views.py:90
-#: apps/browse/views.py:60
-#: apps/browse/views.py:71
-#: apps/search/forms.py:17
-#: apps/search/forms.py:95
+#: apps/addons/views.py:331
+#: apps/bandwagon/views.py:89
+#: apps/browse/views.py:59
+#: apps/browse/views.py:70
+#: apps/search/forms.py:18
+#: apps/search/forms.py:96
 msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
-#: apps/addons/views.py:515
+#: apps/addons/views.py:514
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
-#: apps/addons/views.py:603
+#: apps/addons/views.py:602
 msgid "Abuse reported."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 
@@ -453,7 +453,7 @@ msgstr "Ƈǿƞŧřīƀŭŧḗ"
 #: mkt/developers/templates/developers/apps/status.html:335
 #: mkt/developers/templates/developers/apps/status.html:359
 #: mkt/developers/templates/developers/apps/version_edit.html:81
-#: mkt/developers/templates/developers/apps/edit/admin.html:167
+#: mkt/developers/templates/developers/apps/edit/admin.html:185
 #: mkt/developers/templates/developers/apps/edit/basic.html:170
 #: mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68
@@ -608,11 +608,11 @@ msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 #: apps/addons/templates/addons/persona_detail_table.html:3
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
-#: apps/browse/views.py:450
-#: apps/devhub/views.py:73
-#: mkt/developers/views.py:78
-#: mkt/reviewers/templates/reviewers/includes/details.html:75
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:95
+#: apps/browse/views.py:448
+#: apps/devhub/views.py:72
+#: mkt/developers/views.py:77
+#: mkt/reviewers/templates/reviewers/includes/details.html:74
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
 msgstr "Ŭƥḓȧŧḗḓ"
 
@@ -621,8 +621,8 @@ msgstr "Ŭƥḓȧŧḗḓ"
 #: apps/devhub/templates/devhub/addons/edit/support.html:42
 #: apps/discovery/templates/discovery/addons/detail.html:83
 #: mkt/developers/templates/developers/apps/edit/support.html:39
-#: mkt/reviewers/templates/reviewers/includes/details.html:81
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
+#: mkt/reviewers/templates/reviewers/includes/details.html:80
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
 msgstr "Ẇḗƀşīŧḗ"
 
@@ -631,8 +631,8 @@ msgstr "Ẇḗƀşīŧḗ"
 #: apps/addons/templates/addons/mobile/details.html:81
 #: apps/search/templates/search/results.html:72
 #: apps/versions/templates/versions/version.html:21
-#: mkt/reviewers/templates/reviewers/includes/details.html:90
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:110
+#: mkt/reviewers/templates/reviewers/includes/details.html:89
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Works with"
 msgstr "Ẇǿřķş ẇīŧħ"
 
@@ -660,8 +660,8 @@ msgstr "Ḓǿẇƞŀǿȧḓş"
 #: apps/addons/templates/addons/details_box.html:99
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
 #: apps/devhub/templates/devhub/personas/edit.html:60
-#: mkt/reviewers/templates/reviewers/includes/details.html:101
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:121
+#: mkt/reviewers/templates/reviewers/includes/details.html:100
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
 msgstr "Ṽīḗẇ Şŧȧŧīşŧīƈş"
 
@@ -673,8 +673,8 @@ msgstr "Ȧṽḗřȧɠḗ Ḓȧīŀẏ Ŭşḗřş"
 #: mkt/lookup/templates/lookup/app_summary.html:67
 #: mkt/reviewers/templates/reviewers/abuse.html:5
 #: mkt/reviewers/templates/reviewers/queue.html:36
-#: mkt/reviewers/templates/reviewers/includes/details.html:108
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
+#: mkt/reviewers/templates/reviewers/includes/details.html:107
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
 msgid "Abuse Reports"
 msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 
@@ -686,8 +686,8 @@ msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
 #: apps/addons/templates/addons/impala/details.html:310
 #: apps/devhub/templates/devhub/includes/policy_form.html:19
 #: mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:144
+#: mkt/reviewers/templates/reviewers/includes/details.html:123
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145
 #: mkt/templates/mkt/footer.html:15
 #: templates/mobile/base_addons.html:84
 #: templates/mobile/base_apps.html:71
@@ -696,8 +696,8 @@ msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
 #: apps/addons/templates/addons/details_box.html:119
 #: apps/discovery/templates/discovery/addons/detail.html:30
-#: mkt/reviewers/templates/reviewers/includes/details.html:127
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
+#: mkt/reviewers/templates/reviewers/includes/details.html:126
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:148
 msgid "View Privacy Policy"
 msgstr "Ṽīḗẇ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
@@ -760,7 +760,7 @@ msgid "Version {0}:"
 msgstr "Ṽḗřşīǿƞ {0}:"
 
 #: apps/addons/templates/addons/details_box.html:229
-#: mkt/reviewers/templates/reviewers/includes/details.html:175
+#: mkt/reviewers/templates/reviewers/includes/details.html:174
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Ƞǿŧħīƞɠ ŧǿ şḗḗ ħḗřḗ! Ŧħḗ ḓḗṽḗŀǿƥḗř ḓīḓ ƞǿŧ īƞƈŀŭḓḗ ȧƞẏ ḓḗŧȧīŀş."
 
@@ -827,7 +827,7 @@ msgstr "Ɓȧƈķ ŧǿ {0}…"
 
 #: apps/addons/templates/addons/home.html:3
 #: apps/addons/templates/addons/mobile/home.html:3
-#: apps/amo/helpers.py:254
+#: apps/amo/helpers.py:257
 msgid "Add-ons for {0}"
 msgstr "Ȧḓḓ-ǿƞş ƒǿř {0}"
 
@@ -847,9 +847,9 @@ msgstr "Ƥǿƥŭŀȧř Ḗẋŧḗƞşīǿƞş"
 #: apps/amo/templates/amo/side_nav.html:18
 #: apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25
-#: apps/browse/views.py:232
-#: apps/browse/views.py:293
-#: apps/browse/views.py:472
+#: apps/browse/views.py:230
+#: apps/browse/views.py:291
+#: apps/browse/views.py:470
 msgid "Most Popular"
 msgstr "Ḿǿşŧ Ƥǿƥŭŀȧř"
 
@@ -908,8 +908,8 @@ msgstr "Ŭƥḓȧŧḗḓ {0}"
 #: apps/addons/templates/addons/listing/macros.html:39
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
-#: mkt/reviewers/views.py:308
-#: mkt/reviewers/views.py:329
+#: mkt/reviewers/views.py:307
+#: mkt/reviewers/views.py:328
 #: mkt/submit/forms.py:34
 #: mkt/submit/forms.py:44
 msgid "Added {0}"
@@ -930,7 +930,7 @@ msgstr[1] "%(num)s ŭşḗřş"
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
 #: apps/addons/templates/addons/impala/details.html:63
-#: mkt/detail/helpers.py:22
+#: mkt/detail/helpers.py:23
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} ẇḗḗķŀẏ ḓǿẇƞŀǿȧḓ"
@@ -1070,8 +1070,8 @@ msgstr "Şḗḗ ȧŀŀ Ŧħḗḿḗş ƀẏ ŧħīş Ȧřŧīşŧ"
 #: apps/editors/templates/editors/themes/themes.html:34
 #: apps/localizers/templates/localizers/sidebar.html:24
 #: mkt/developers/templates/developers/apps/edit/basic.html:148
-#: mkt/reviewers/templates/reviewers/includes/details.html:137
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:157
+#: mkt/reviewers/templates/reviewers/includes/details.html:136
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:158
 #: mkt/reviewers/templates/reviewers/themes/themes.html:35
 #: templates/categories.html:7
 msgid "Categories"
@@ -1162,7 +1162,7 @@ msgstr "Ȧḓḓ"
 #: mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16
 #: mkt/ratings/templates/ratings/rating.html:43
 #: mkt/submit/templates/submit/details.html:83
 #: templates/qunit/qunit.html:755
@@ -1387,7 +1387,7 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: mkt/developers/templates/developers/apps/status.html:335
 #: mkt/developers/templates/developers/apps/status.html:359
 #: mkt/developers/templates/developers/apps/version_edit.html:82
-#: mkt/developers/templates/developers/apps/edit/admin.html:169
+#: mkt/developers/templates/developers/apps/edit/admin.html:187
 #: mkt/developers/templates/developers/apps/edit/basic.html:172
 #: mkt/developers/templates/developers/apps/edit/details.html:81
 #: mkt/developers/templates/developers/apps/edit/support.html:70
@@ -1672,7 +1672,7 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 
 #: apps/addons/templates/addons/impala/details.html:209
 #: apps/addons/templates/addons/impala/details.html:214
-#: apps/amo/helpers.py:410
+#: apps/amo/helpers.py:413
 #: apps/devhub/forms.py:139
 #: apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40
@@ -1773,7 +1773,7 @@ msgstr[0] "Ȧƀǿŭŧ ŧħḗ Ḓḗṽḗŀǿƥḗř"
 msgstr[1] "Ȧƀǿŭŧ ŧħḗ Ḓḗṽḗŀǿƥḗřş"
 
 #: apps/addons/templates/addons/impala/developers.html:96
-#: apps/users/templates/users/edit.html:112
+#: apps/users/templates/users/edit.html:116
 #: apps/users/templates/users/profile.html:29
 msgid "No Photo"
 msgstr "Ƞǿ Ƥħǿŧǿ"
@@ -1927,20 +1927,20 @@ msgid "Users"
 msgstr "Ŭşḗřş"
 
 #: apps/addons/templates/addons/mobile/details.html:94
-#: apps/browse/views.py:59
-#: apps/browse/views.py:70
-#: apps/devhub/views.py:82
-#: apps/search/forms.py:93
-#: apps/search/forms.py:101
-#: mkt/reviewers/templates/reviewers/includes/details.html:104
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:124
+#: apps/browse/views.py:58
+#: apps/browse/views.py:69
+#: apps/devhub/views.py:81
+#: apps/search/forms.py:94
+#: apps/search/forms.py:102
+#: mkt/reviewers/templates/reviewers/includes/details.html:103
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 #: mkt/search/forms.py:16
 msgid "Weekly Downloads"
 msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
 #: apps/addons/templates/addons/mobile/details.html:101
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:958
 #: apps/devhub/templates/devhub/versions/list.html:167
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
@@ -2002,7 +2002,7 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
 
 #: apps/addons/templates/addons/mobile/home.html:19
-#: apps/amo/helpers.py:256
+#: apps/amo/helpers.py:259
 #: apps/bandwagon/templates/bandwagon/edit.html:34
 #: apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21
@@ -2023,7 +2023,6 @@ msgid "Easy ways to personalize."
 msgstr "Ḗȧşẏ ẇȧẏş ŧǿ ƥḗřşǿƞȧŀīzḗ."
 
 #: apps/addons/templates/addons/mobile/home.html:22
-#: apps/devhub/templates/devhub/addons/submit/done.html:61
 #: apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22
 #: apps/discovery/templates/discovery/modules/monthly.html:22
@@ -2055,7 +2054,7 @@ msgstr "Ḿǿřḗ Ȧḓḓ-ǿƞş"
 #: apps/addons/templates/addons/mobile/home.html:70
 #: apps/amo/templates/amo/side_nav.html:13
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:64
-#: apps/search/forms.py:15
+#: apps/search/forms.py:16
 msgid "Highest Rated"
 msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
 
@@ -2063,13 +2062,13 @@ msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
 #: apps/amo/templates/amo/side_nav.html:5
 #: apps/amo/templates/amo/site_nav.html:27
 #: apps/amo/templates/amo/site_nav.html:55
-#: apps/bandwagon/views.py:88
-#: apps/browse/views.py:57
-#: apps/browse/views.py:67
+#: apps/bandwagon/views.py:87
+#: apps/browse/views.py:56
+#: apps/browse/views.py:66
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
-#: apps/search/forms.py:16
-#: apps/search/forms.py:90
-#: apps/search/forms.py:106
+#: apps/search/forms.py:17
+#: apps/search/forms.py:91
+#: apps/search/forms.py:107
 #: mkt/search/forms.py:19
 msgid "Newest"
 msgstr "Ƞḗẇḗşŧ"
@@ -2179,7 +2178,7 @@ msgstr "Ŧħīş ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ,
 msgid "Enter at least one value."
 msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 
-#: apps/amo/helpers.py:181
+#: apps/amo/helpers.py:184
 #: apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
@@ -2201,14 +2200,14 @@ msgstr "Ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ṽȧŀŭḗ."
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/amo/helpers.py:190
+#: apps/amo/helpers.py:193
 #: apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
 
-#: apps/amo/helpers.py:278
-#: apps/amo/helpers.py:280
+#: apps/amo/helpers.py:281
+#: apps/amo/helpers.py:283
 #: mkt/developers/helpers.py:46
 #: mkt/developers/templates/developers/login.html:3
 #: mkt/developers/templates/developers/skeleton_impala.html:12
@@ -2221,12 +2220,12 @@ msgstr "Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
 msgid "Firefox Marketplace"
 msgstr "Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: apps/amo/helpers.py:321
+#: apps/amo/helpers.py:324
 msgid "Apps Marketplace"
 msgstr "Ȧƥƥş Ḿȧřķḗŧƥŀȧƈḗ"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:440
+#: apps/amo/helpers.py:443
 msgid "{0} ago"
 msgstr "{0} ȧɠǿ"
 
@@ -2383,7 +2382,7 @@ msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
 #: apps/editors/helpers.py:475
 #: apps/editors/templates/editors/themes/history_table.html:11
 #: mkt/constants/comm.py:34
-#: mkt/reviewers/utils.py:446
+#: mkt/reviewers/utils.py:447
 #: mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
@@ -2627,81 +2626,89 @@ msgstr "{ȧḓḓǿƞ} řḗşŭƀḿīŧŧḗḓ ƒǿř řḗṽīḗẇ."
 msgid "App Resubmission"
 msgstr "Ȧƥƥ Řḗşŭƀḿīşşīǿƞ"
 
-#: apps/amo/log.py:543
+#: apps/amo/log.py:533
+msgid "{addon} auto-escalated because its a VIP app."
+msgstr "{ȧḓḓǿƞ} ȧŭŧǿ-ḗşƈȧŀȧŧḗḓ ƀḗƈȧŭşḗ īŧş ȧ ṼĪƤ ȧƥƥ."
+
+#: apps/amo/log.py:534
+msgid "VIP auto-escalation"
+msgstr "ṼĪƤ ȧŭŧǿ-ḗşƈȧŀȧŧīǿƞ"
+
+#: apps/amo/log.py:551
 msgid "Created: {0}."
 msgstr "Ƈřḗȧŧḗḓ: {0}."
 
-#: apps/amo/log.py:549
+#: apps/amo/log.py:557
 msgid "Edited field: {2} set to: {0}."
 msgstr "Ḗḓīŧḗḓ ƒīḗŀḓ: {2} şḗŧ ŧǿ: {0}."
 
-#: apps/amo/log.py:555
+#: apps/amo/log.py:563
 msgid "Deleted: {1}."
 msgstr "Ḓḗŀḗŧḗḓ: {1}."
 
-#: apps/amo/log.py:561
+#: apps/amo/log.py:569
 msgid "User {user} edited, reason: {1}"
 msgstr "Ŭşḗř {ŭşḗř} ḗḓīŧḗḓ, řḗȧşǿƞ: {1}"
 
-#: apps/amo/log.py:567
+#: apps/amo/log.py:575
 msgid "User {user} anonymized."
 msgstr "Ŭşḗř {ŭşḗř} ȧƞǿƞẏḿīzḗḓ."
 
-#: apps/amo/log.py:573
+#: apps/amo/log.py:581
 msgid "User {user} restricted."
 msgstr "Ŭşḗř {ŭşḗř} řḗşŧřīƈŧḗḓ."
 
-#: apps/amo/log.py:579
+#: apps/amo/log.py:587
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Ȧḓḿīƞ {0} ṽīḗẇḗḓ ȧƈŧīṽīŧẏ ŀǿɠ ƒǿř {ŭşḗř}."
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:594
 msgid "{review} for {addon} updated."
 msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ŭƥḓȧŧḗḓ."
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:600
 msgid "{addon} reviewed."
 msgstr "{ȧḓḓǿƞ} řḗṽīḗẇḗḓ."
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:606
 msgid "User {0.name} added to {group}."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ɠřǿŭƥ}."
 
-#: apps/amo/log.py:606
+#: apps/amo/log.py:614
 msgid "User {0.name} removed from {group}."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} řḗḿǿṽḗḓ ƒřǿḿ {ɠřǿŭƥ}."
 
-#: apps/amo/log.py:613
+#: apps/amo/log.py:621
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{ȧḓḓǿƞ} ḿīƞīḿŭḿ řḗɋŭīřḗḿḗƞŧş ḿȧƞŭȧŀŀẏ ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř."
 
-#: apps/amo/log.py:614
+#: apps/amo/log.py:622
 msgid "Requirements Changed by Reviewer"
 msgstr "Řḗɋŭīřḗḿḗƞŧş Ƈħȧƞɠḗḓ ƀẏ Řḗṽīḗẇḗř"
 
-#: apps/amo/log.py:621
+#: apps/amo/log.py:629
 msgid "{addon} minimum requirements manually changed."
 msgstr "{ȧḓḓǿƞ} ḿīƞīḿŭḿ řḗɋŭīřḗḿḗƞŧş ḿȧƞŭȧŀŀẏ ƈħȧƞɠḗḓ."
 
-#: apps/amo/log.py:622
+#: apps/amo/log.py:630
 msgid "Requirements Changed"
 msgstr "Řḗɋŭīřḗḿḗƞŧş Ƈħȧƞɠḗḓ"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:630
+#: apps/amo/log.py:638
 msgid "{version} status changed to {0}."
 msgstr "{ṽḗřşīǿƞ} şŧȧŧŭş ƈħȧƞɠḗḓ ŧǿ {0}."
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:637
+#: apps/amo/log.py:645
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "Ŭşḗř {0.ƞȧḿḗ} {0.īḓ} ḓḗŀḗŧḗḓ ṽīȧ ŀǿǿķŭƥ ŧǿǿŀ."
 
-#: apps/amo/log.py:643
+#: apps/amo/log.py:651
 msgid "{addon} content rating changed to Adult."
 msgstr "{ȧḓḓǿƞ} ƈǿƞŧḗƞŧ řȧŧīƞɠ ƈħȧƞɠḗḓ ŧǿ Ȧḓŭŀŧ."
 
-#: apps/amo/log.py:649
+#: apps/amo/log.py:657
 msgid "{addon} content rating changed."
 msgstr "{ȧḓḓǿƞ} ƈǿƞŧḗƞŧ řȧŧīƞɠ ƈħȧƞɠḗḓ."
 
@@ -2878,12 +2885,12 @@ msgstr ""
 #: apps/amo/templates/amo/side_nav.html:19
 #: apps/amo/templates/amo/site_nav.html:4
 #: apps/amo/templates/amo/site_nav.html:26
-#: apps/browse/views.py:56
-#: apps/browse/views.py:66
-#: apps/browse/views.py:233
-#: apps/browse/views.py:294
-#: apps/search/forms.py:89
-#: apps/search/forms.py:102
+#: apps/browse/views.py:55
+#: apps/browse/views.py:65
+#: apps/browse/views.py:231
+#: apps/browse/views.py:292
+#: apps/search/forms.py:90
+#: apps/search/forms.py:103
 #: mkt/search/forms.py:17
 msgid "Top Rated"
 msgstr "Ŧǿƥ Řȧŧḗḓ"
@@ -2910,7 +2917,7 @@ msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Ẇȧƞŧ ḿǿřḗ ƈŭşŧǿḿīzȧŧīǿƞ? Ŧřẏ <b>Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54
-#: apps/bandwagon/views.py:87
+#: apps/bandwagon/views.py:86
 msgid "Most Followers"
 msgstr "Ḿǿşŧ Ƒǿŀŀǿẇḗřş"
 
@@ -2930,7 +2937,7 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ḿ Ƒǿŀŀǿẇīƞɠ"
 #: apps/amo/templates/amo/site_nav.html:71
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:479
+#: apps/users/models.py:480
 msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Ȧḓḓ-ǿƞş"
 
@@ -3014,15 +3021,15 @@ msgid "Another Body"
 msgstr "Ȧƞǿŧħḗř Ɓǿḓẏ"
 
 #. L10n: {0} is comma separated data errors.
-#: apps/api/handlers.py:62
+#: apps/api/handlers.py:61
 msgid "Invalid data provided: {0}"
 msgstr "Īƞṽȧŀīḓ ḓȧŧȧ ƥřǿṽīḓḗḓ: {0}"
 
-#: apps/api/handlers.py:70
+#: apps/api/handlers.py:69
 msgid "Add-on did not validate: %s"
 msgstr "Ȧḓḓ-ǿƞ ḓīḓ ƞǿŧ ṽȧŀīḓȧŧḗ: %s"
 
-#: apps/api/views.py:246
+#: apps/api/views.py:247
 msgid "Not implemented yet."
 msgstr "Ƞǿŧ īḿƥŀḗḿḗƞŧḗḓ ẏḗŧ."
 
@@ -3183,7 +3190,7 @@ msgid "Icon"
 msgstr "Īƈǿƞ"
 
 #: apps/bandwagon/forms.py:152
-#: apps/users/forms.py:340
+#: apps/users/forms.py:336
 msgid "No links are allowed."
 msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
 
@@ -3192,14 +3199,14 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:174
-#: apps/devhub/views.py:1223
-#: mkt/developers/utils.py:61
+#: apps/devhub/views.py:1207
+#: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1241
-#: apps/users/forms.py:331
+#: apps/devhub/views.py:1225
+#: apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
 
@@ -3241,24 +3248,24 @@ msgstr "Ƒȧṽǿřīŧḗ"
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 
-#: apps/bandwagon/views.py:89
+#: apps/bandwagon/views.py:88
 #: apps/bandwagon/views.py:174
-#: apps/browse/views.py:58
-#: apps/browse/views.py:69
-#: apps/browse/views.py:449
-#: apps/devhub/views.py:72
-#: apps/devhub/views.py:80
+#: apps/browse/views.py:57
+#: apps/browse/views.py:68
+#: apps/browse/views.py:447
+#: apps/devhub/views.py:71
+#: apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
 #: apps/editors/templates/editors/themes/queue_list.html:48
-#: apps/search/forms.py:18
-#: apps/search/forms.py:92
-#: apps/search/forms.py:105
+#: apps/search/forms.py:19
+#: apps/search/forms.py:93
+#: apps/search/forms.py:106
 #: apps/users/templates/users/vcard.html:5
 #: mkt/account/utils.py:18
 #: mkt/developers/forms_payments.py:562
-#: mkt/developers/views.py:77
-#: mkt/developers/views.py:85
+#: mkt/developers/views.py:76
+#: mkt/developers/views.py:84
 #: mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/reviewers/templates/reviewers/leaderboard.html:24
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:44
@@ -3267,7 +3274,7 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 msgid "Name"
 msgstr "Ƞȧḿḗ"
 
-#: apps/bandwagon/views.py:91
+#: apps/bandwagon/views.py:90
 msgid "Recently Popular"
 msgstr "Řḗƈḗƞŧŀẏ Ƥǿƥŭŀȧř"
 
@@ -3301,7 +3308,7 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞ ŭƥḓȧŧḗḓ!"
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Ṽīḗẇ ẏǿŭř ƈǿŀŀḗƈŧīǿƞ</a> ŧǿ şḗḗ ŧħḗ ƈħȧƞɠḗş."
 
-#: apps/bandwagon/views.py:555
+#: apps/bandwagon/views.py:554
 msgid "Icon Deleted"
 msgstr "Īƈǿƞ Ḓḗŀḗŧḗḓ"
 
@@ -3630,7 +3637,7 @@ msgstr "Ḗḓīŧ {0}"
 #: apps/editors/templates/editors/themes/themes.html:60
 #: mkt/developers/templates/developers/apps/edit/basic.html:103
 #: mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23
-#: mkt/reviewers/templates/reviewers/includes/details.html:156
+#: mkt/reviewers/templates/reviewers/includes/details.html:155
 #: mkt/reviewers/templates/reviewers/themes/themes.html:61
 msgid "Description"
 msgstr "Ḓḗşƈřīƥŧīǿƞ"
@@ -3660,7 +3667,7 @@ msgstr "Ƈǿƞŧřīƀŭŧǿřş & Ḿǿřḗ"
 #: apps/translations/templates/translations/trans-menu.html:48
 #: mkt/developers/templates/developers/apps/owner.html:52
 #: mkt/developers/templates/developers/apps/version_edit.html:81
-#: mkt/developers/templates/developers/apps/edit/admin.html:167
+#: mkt/developers/templates/developers/apps/edit/admin.html:185
 #: mkt/developers/templates/developers/apps/edit/basic.html:170
 #: mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68
@@ -4030,48 +4037,48 @@ msgstr "Şḗȧřƈħ ŧǿǿŀş ȧƞḓ şḗȧřƈħ-řḗŀȧŧḗḓ ḗẋ�
 msgid "Search tools"
 msgstr "Şḗȧřƈħ ŧǿǿŀş"
 
-#: apps/browse/views.py:55
-#: apps/browse/views.py:65
-#: apps/search/forms.py:88
+#: apps/browse/views.py:54
+#: apps/browse/views.py:64
+#: apps/search/forms.py:89
 msgid "Most Users"
 msgstr "Ḿǿşŧ Ŭşḗřş"
 
-#: apps/browse/views.py:61
-#: apps/browse/views.py:72
-#: apps/browse/views.py:291
+#: apps/browse/views.py:60
+#: apps/browse/views.py:71
+#: apps/browse/views.py:289
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
 #: apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:96
+#: apps/search/forms.py:97
 msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
-#: apps/browse/views.py:451
-#: apps/devhub/views.py:74
-#: apps/devhub/views.py:81
-#: mkt/developers/views.py:79
-#: mkt/developers/views.py:86
+#: apps/browse/views.py:449
+#: apps/devhub/views.py:73
+#: apps/devhub/views.py:80
+#: mkt/developers/views.py:78
+#: mkt/developers/views.py:85
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
 
-#: apps/browse/views.py:452
-#: apps/devhub/views.py:75
+#: apps/browse/views.py:450
+#: apps/devhub/views.py:74
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
-#: mkt/developers/views.py:80
+#: mkt/developers/views.py:79
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
-#: apps/browse/views.py:453
-#: apps/devhub/views.py:76
-#: apps/devhub/views.py:83
+#: apps/browse/views.py:451
+#: apps/devhub/views.py:75
+#: apps/devhub/views.py:82
 #: apps/discovery/templates/discovery/addons/detail.html:69
 #: apps/reviews/templates/reviews/add.html:85
 #: apps/reviews/templates/reviews/edit_review.html:9
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
-#: mkt/developers/views.py:81
-#: mkt/reviewers/templates/reviewers/includes/details.html:94
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
+#: mkt/developers/views.py:80
+#: mkt/reviewers/templates/reviewers/includes/details.html:93
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Rating"
 msgstr "Řȧŧīƞɠ"
 
@@ -4365,6 +4372,9 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr "Ẏǿŭř ƀřǿẇşḗř, ẏǿŭř şŧẏŀḗ! Ḓřḗşş īŧ ŭƥ ẇīŧħ ȧ ḓḗşīɠƞ ǿƒ ẏǿŭř ǿẇƞ!"
 
 #: apps/browse/templates/browse/personas/base.html:51
+#: apps/devhub/templates/devhub/index.html:95
+#: apps/devhub/templates/devhub/addons/submit/done.html:70
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:54
 #: apps/devhub/templates/devhub/versions/list.html:100
 #: mkt/developers/templates/developers/apps/status.html:71
 msgid "Learn more"
@@ -4436,7 +4446,7 @@ msgstr "&laquo; Ȧŀŀ Ŧħḗḿḗş"
 
 #: apps/compat/forms.py:17
 #: apps/perf/templates/perf/index.html:43
-#: mkt/developers/views_payments.py:171
+#: mkt/developers/views_payments.py:168
 #: mkt/search/forms.py:27
 msgid "All"
 msgstr "Ȧŀŀ"
@@ -4454,7 +4464,7 @@ msgstr "Ɓīƞȧřẏ"
 msgid "Non-binary"
 msgstr "Ƞǿƞ-ƀīƞȧřẏ"
 
-#: apps/compat/views.py:88
+#: apps/compat/views.py:84
 #: apps/constants/base.py:418
 #: apps/constants/payments.py:52
 #: apps/devhub/forms.py:160
@@ -4484,7 +4494,7 @@ msgstr "Ȧŀŀ ȧƈŧīṽḗ ȧḓḓ-ǿƞş"
 #: apps/compat/templates/compat/index.html:23
 #: apps/constants/base.py:190
 #: apps/constants/base.py:431
-#: mkt/developers/forms.py:946
+#: mkt/developers/forms.py:952
 #: mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26
 #: mkt/operators/templates/operators/preloads.html:14
@@ -4575,7 +4585,7 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:955
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:60
@@ -4641,7 +4651,7 @@ msgid "Mozilla"
 msgstr "Ḿǿzīŀŀȧ"
 
 #: apps/constants/applications.py:149
-#: mkt/api/forms.py:102
+#: mkt/api/forms.py:104
 #: mkt/reviewers/forms.py:257
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
@@ -4694,7 +4704,7 @@ msgid "Firefox OS"
 msgstr "Ƒīřḗƒǿẋ ǾŞ"
 
 #: apps/constants/base.py:26
-#: mkt/lookup/views.py:161
+#: mkt/lookup/views.py:155
 msgid "Incomplete"
 msgstr "Īƞƈǿḿƥŀḗŧḗ"
 
@@ -5053,7 +5063,7 @@ msgstr "Ḓŭƥŀīƈȧŧḗ"
 #: apps/editors/templates/editors/themes/queue.html:71
 #: apps/editors/templates/editors/themes/themes.html:92
 #: mkt/constants/reviewers.py:24
-#: mkt/reviewers/utils.py:429
+#: mkt/reviewers/utils.py:430
 #: mkt/reviewers/templates/reviewers/queue_region.html:43
 #: mkt/reviewers/templates/reviewers/themes/queue.html:71
 #: mkt/reviewers/templates/reviewers/themes/themes.html:93
@@ -5254,10 +5264,10 @@ msgstr "Ƥȧşşẇǿřḓ īƞƈǿřřḗƈŧ."
 
 #: apps/devhub/forms.py:129
 #: apps/devhub/templates/devhub/versions/edit.html:94
-#: apps/users/templates/users/edit.html:126
+#: apps/users/templates/users/edit.html:130
 #: mkt/constants/submit.py:7
-#: mkt/reviewers/templates/reviewers/includes/details.html:5
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
+#: mkt/reviewers/templates/reviewers/includes/details.html:4
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:38
 #: mkt/webapps/models.py:519
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
@@ -5343,7 +5353,7 @@ msgid "Could not validate PayPal id."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ṽȧŀīḓȧŧḗ ƤȧẏƤȧŀ īḓ."
 
 #: apps/devhub/forms.py:429
-#: apps/devhub/forms.py:879
+#: apps/devhub/forms.py:881
 msgid "Invalid version range."
 msgstr "Īƞṽȧŀīḓ ṽḗřşīǿƞ řȧƞɠḗ."
 
@@ -5360,8 +5370,8 @@ msgstr ""
 #: apps/devhub/forms.py:473
 #: apps/devhub/forms.py:488
 #: apps/devhub/forms.py:501
-#: mkt/submit/forms.py:170
-#: mkt/submit/forms.py:236
+#: mkt/submit/forms.py:173
+#: mkt/submit/forms.py:239
 msgid "There was an error with your upload. Please try again."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
@@ -5390,7 +5400,7 @@ msgid "Please choose a review nomination type"
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
 
 #: apps/devhub/forms.py:557
-#: mkt/submit/forms.py:204
+#: mkt/submit/forms.py:207
 msgid "Version %s already exists"
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş"
 
@@ -5422,7 +5432,7 @@ msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:759
 msgid ""
 "Give your add-on a name. The most successful add-ons give some indication of "
 "their function in their name."
@@ -5430,7 +5440,7 @@ msgstr ""
 "Ɠīṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧ ƞȧḿḗ. Ŧħḗ ḿǿşŧ şŭƈƈḗşşƒŭŀ ȧḓḓ-ǿƞş ɠīṽḗ şǿḿḗ īƞḓīƈȧŧīǿƞ ǿƒ "
 "ŧħḗīř ƒŭƞƈŧīǿƞ īƞ ŧħḗīř ƞȧḿḗ."
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:763
 msgid ""
 "Briefly describe your add-on in one sentence. This appears in the Add-ons "
 "Manager."
@@ -5438,7 +5448,7 @@ msgstr ""
 "Ɓřīḗƒŀẏ ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ īƞ ǿƞḗ şḗƞŧḗƞƈḗ. Ŧħīş ȧƥƥḗȧřş īƞ ŧħḗ Ȧḓḓ-ǿƞş "
 "Ḿȧƞȧɠḗř."
 
-#: apps/devhub/forms.py:764
+#: apps/devhub/forms.py:766
 msgid ""
 "Enter your initial version number. Depending on the number of releases and "
 "your preferences, this is usually 0.1 or 1.0"
@@ -5446,7 +5456,7 @@ msgstr ""
 "Ḗƞŧḗř ẏǿŭř īƞīŧīȧŀ ṽḗřşīǿƞ ƞŭḿƀḗř. Ḓḗƥḗƞḓīƞɠ ǿƞ ŧħḗ ƞŭḿƀḗř ǿƒ řḗŀḗȧşḗş ȧƞḓ "
 "ẏǿŭř ƥřḗƒḗřḗƞƈḗş, ŧħīş īş ŭşŭȧŀŀẏ 0.1 ǿř 1.0"
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:770
 msgid ""
 "Each add-on requires a unique ID in the form of a UUID or an email address, "
 "such as addon-name@developer.com. The email address does not have to be "
@@ -5456,7 +5466,7 @@ msgstr ""
 "şŭƈħ ȧş addon-name@developer.com. Ŧħḗ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ħȧṽḗ ŧǿ ƀḗ "
 "ṽȧŀīḓ."
 
-#: apps/devhub/forms.py:773
+#: apps/devhub/forms.py:775
 msgid ""
 "The package name of your add-on used within the browser. This should be a "
 "short form of its name (for example, Test Extension might be "
@@ -5466,7 +5476,7 @@ msgstr ""
 "şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ "
 "ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:780
 msgid ""
 "Enter the name of the person or entity to be listed as the author of this "
 "add-on."
@@ -5474,118 +5484,118 @@ msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ƥḗřşǿƞ ǿř ḗƞŧīŧẏ ŧǿ ƀḗ ŀīşŧḗḓ ȧş ŧħḗ ȧŭŧħǿř ǿƒ ŧħīş "
 "ȧḓḓ-ǿƞ."
 
-#: apps/devhub/forms.py:781
+#: apps/devhub/forms.py:783
 msgid ""
 "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗş ǿƒ ȧƞẏ ǿŧħḗř ƈǿƞŧřīƀŭŧǿřş ŧǿ ŧħīş ḗẋŧḗƞşīǿƞ, ǿƞḗ ƥḗř ŀīƞḗ."
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:792
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Ȧḓḓ-ǿƞ ƞȧḿḗş şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ Ḿǿzīŀŀȧ ŧřȧḓḗḿȧřķş."
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:799
 msgid ""
 "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ƥȧƈķȧɠḗ ƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ǿř ŭƞḓḗřşƈǿřḗş."
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:803
 msgid "This package name is already in use."
 msgstr "Ŧħīş ƥȧƈķȧɠḗ ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:806
 msgid "The package name cannot be: %s."
 msgstr "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ: %s."
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:817
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Ŧħḗ ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ ȧ ŬŬĪḒ şŧřīƞɠ ǿř ȧƞ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/devhub/forms.py:821
+#: apps/devhub/forms.py:823
 msgid "The version string is invalid."
 msgstr "Ŧħḗ ṽḗřşīǿƞ şŧřīƞɠ īş īƞṽȧŀīḓ."
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:831
 msgid "Minimum"
 msgstr "Ḿīƞīḿŭḿ"
 
-#: apps/devhub/forms.py:832
+#: apps/devhub/forms.py:834
 msgid "Maximum"
 msgstr "Ḿȧẋīḿŭḿ"
 
-#: apps/devhub/forms.py:883
+#: apps/devhub/forms.py:885
 msgid "Min version must be less than Max version."
 msgstr "Ḿīƞ ṽḗřşīǿƞ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ Ḿȧẋ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:909
+#: apps/devhub/forms.py:911
 msgid "{0} is a required target application."
 msgstr "{0} īş ȧ řḗɋŭīřḗḓ ŧȧřɠḗŧ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:921
+#: apps/devhub/forms.py:923
 msgid "About dialog"
 msgstr "Ȧƀǿŭŧ ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:924
 msgid "Creates a standard About dialog for your extension"
 msgstr "Ƈřḗȧŧḗş ȧ şŧȧƞḓȧřḓ Ȧƀǿŭŧ ḓīȧŀǿɠ ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:928
 msgid "Preferences dialog"
 msgstr "Ƥřḗƒḗřḗƞƈḗş ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:929
 msgid "Creates an example Preferences window"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ Ƥřḗƒḗřḗƞƈḗş ẇīƞḓǿẇ"
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:932
 msgid "Toolbar"
 msgstr "Ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:933
 msgid "Creates an example toolbar for your extension"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ŧǿǿŀƀȧř ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:936
 msgid "Toolbar button"
 msgstr "Ŧǿǿŀƀȧř ƀŭŧŧǿƞ"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:937
 msgid "Creates an example button on the browser toolbar"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ƀŭŧŧǿƞ ǿƞ ŧħḗ ƀřǿẇşḗř ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:941
 msgid "Main menu command"
 msgstr "Ḿȧīƞ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:942
 msgid "Creates an item on the Tools menu"
 msgstr "Ƈřḗȧŧḗş ȧƞ īŧḗḿ ǿƞ ŧħḗ Ŧǿǿŀş ḿḗƞŭ"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:945
 msgid "Context menu command"
 msgstr "Ƈǿƞŧḗẋŧ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:946
 msgid "Creates a context menu item for images"
 msgstr "Ƈřḗȧŧḗş ȧ ƈǿƞŧḗẋŧ ḿḗƞŭ īŧḗḿ ƒǿř īḿȧɠḗş"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:949
 msgid "Sidebar support"
 msgstr "Şīḓḗƀȧř şŭƥƥǿřŧ"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:950
 msgid "Creates an example sidebar panel"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ şīḓḗƀȧř ƥȧƞḗŀ"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:959
 #: apps/editors/forms.py:106
 #: apps/zadmin/forms.py:64
 #: apps/zadmin/forms.py:67
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: apps/devhub/forms.py:1024
+#: apps/devhub/forms.py:1026
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
@@ -5661,114 +5671,114 @@ msgstr ""
 "\"%s\"."
 
 #: apps/devhub/tasks.py:417
-#: mkt/developers/tasks.py:363
+#: mkt/developers/tasks.py:364
 msgid "Your manifest must be less than %s bytes."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ %s ƀẏŧḗş."
 
-#: apps/devhub/views.py:187
+#: apps/devhub/views.py:185
 msgid "All My Add-ons"
 msgstr "Ȧŀŀ Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/views.py:214
+#: apps/devhub/views.py:212
 msgid "All Activity"
 msgstr "Ȧŀŀ Ȧƈŧīṽīŧẏ"
 
-#: apps/devhub/views.py:215
+#: apps/devhub/views.py:213
 msgid "Add-on Updates"
 msgstr "Ȧḓḓ-ǿƞ Ŭƥḓȧŧḗş"
 
-#: apps/devhub/views.py:216
+#: apps/devhub/views.py:214
 msgid "Add-on Status"
 msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş"
 
-#: apps/devhub/views.py:217
+#: apps/devhub/views.py:215
 msgid "User Collections"
 msgstr "Ŭşḗř Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/devhub/views.py:218
+#: apps/devhub/views.py:216
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "Ŭşḗř Řḗṽīḗẇş"
 
-#: apps/devhub/views.py:334
-#: apps/devhub/views.py:338
-#: apps/devhub/views.py:457
-#: apps/devhub/views.py:480
-#: apps/devhub/views.py:508
-#: apps/devhub/views.py:631
-#: apps/devhub/views.py:1313
-#: mkt/developers/views.py:555
-#: mkt/developers/views_payments.py:100
-#: mkt/developers/views_payments.py:348
-#: mkt/reviewers/views.py:715
+#: apps/devhub/views.py:332
+#: apps/devhub/views.py:336
+#: apps/devhub/views.py:452
+#: apps/devhub/views.py:475
+#: apps/devhub/views.py:503
+#: apps/devhub/views.py:623
+#: apps/devhub/views.py:1297
+#: mkt/developers/views.py:552
+#: mkt/developers/views_payments.py:99
+#: mkt/developers/views_payments.py:344
+#: mkt/reviewers/views.py:709
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: apps/devhub/views.py:341
-#: apps/devhub/views.py:1721
+#: apps/devhub/views.py:339
+#: apps/devhub/views.py:1703
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:354
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ȧḓḓ-ǿƞ ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧḓḓ-ǿƞ īƞşŧḗȧḓ."
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Theme deleted."
 msgstr "Ŧħḗḿḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Add-on deleted."
 msgstr "Ȧḓḓ-ǿƞ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:374
+#: apps/devhub/views.py:369
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:378
+#: apps/devhub/views.py:373
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:514
+#: apps/devhub/views.py:509
 msgid "There were errors in your submission."
 msgstr "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ẏǿŭř şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:545
+#: apps/devhub/views.py:540
 msgid "Refund already processed."
 msgstr "Řḗƒŭƞḓ ȧŀřḗȧḓẏ ƥřǿƈḗşşḗḓ."
 
-#: apps/devhub/views.py:553
+#: apps/devhub/views.py:548
 msgid "Refund failed. error: %s"
 msgstr "Řḗƒŭƞḓ ƒȧīŀḗḓ. ḗřřǿř: %s"
 
-#: apps/devhub/views.py:563
+#: apps/devhub/views.py:558
 msgid "Refund was previously issued; no action taken."
 msgstr "Řḗƒŭƞḓ ẇȧş ƥřḗṽīǿŭşŀẏ īşşŭḗḓ; ƞǿ ȧƈŧīǿƞ ŧȧķḗƞ."
 
-#: apps/devhub/views.py:571
+#: apps/devhub/views.py:566
 msgid "Refund issued."
 msgstr "Řḗƒŭƞḓ īşşŭḗḓ."
 
-#: apps/devhub/views.py:579
+#: apps/devhub/views.py:574
 msgid "Refund declined."
 msgstr "Řḗƒŭƞḓ ḓḗƈŀīƞḗḓ."
 
-#: apps/devhub/views.py:651
+#: apps/devhub/views.py:642
 msgid "Validate Add-on"
 msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:660
+#: apps/devhub/views.py:651
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:780
-#: mkt/developers/views.py:637
+#: apps/devhub/views.py:770
+#: mkt/developers/views.py:634
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:874
+#: apps/devhub/views.py:864
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
 "After addressing the visible messages, you'll be able to see the others."
@@ -5776,45 +5786,45 @@ msgstr ""
 "Ṽȧŀīḓȧŧīǿƞ ɠḗƞḗřȧŧḗḓ ŧǿǿ ḿȧƞẏ ḗřřǿřş/warnings şǿ %s ḿḗşşȧɠḗş ẇḗřḗ ŧřŭƞƈȧŧḗḓ. "
 "Ȧƒŧḗř ȧḓḓřḗşşīƞɠ ŧħḗ ṽīşīƀŀḗ ḿḗşşȧɠḗş, ẏǿŭ'ŀŀ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħḗ ǿŧħḗřş."
 
-#: apps/devhub/views.py:1225
-#: apps/users/forms.py:326
-#: mkt/developers/utils.py:63
+#: apps/devhub/views.py:1209
+#: apps/users/forms.py:322
+#: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1229
-#: mkt/developers/utils.py:68
+#: apps/devhub/views.py:1213
+#: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1231
-#: mkt/developers/utils.py:70
+#: apps/devhub/views.py:1215
+#: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1244
+#: apps/devhub/views.py:1228
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1254
+#: apps/devhub/views.py:1238
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1258
-#: mkt/developers/views.py:938
+#: apps/devhub/views.py:1242
+#: mkt/developers/views.py:933
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1352
+#: apps/devhub/views.py:1336
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1355
+#: apps/devhub/views.py:1339
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1365
+#: apps/devhub/views.py:1349
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5822,11 +5832,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1768
+#: apps/devhub/views.py:1749
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1769
+#: apps/devhub/views.py:1750
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -6024,27 +6034,23 @@ msgstr "Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ"
 msgid "View all add-ons ►"
 msgstr "Ṽīḗẇ ȧŀŀ ȧḓḓ-ǿƞş ►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "ȦḾǾ Řḗṽīḗẇḗřş"
+#: apps/devhub/templates/devhub/index.html:93
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:52
+msgid "Create Add-ons for Australis"
+msgstr "Ƈřḗȧŧḗ Ȧḓḓ-ǿƞş ƒǿř Ȧŭşŧřȧŀīş"
 
-#: apps/devhub/templates/devhub/index.html:85
-msgid ""
-"Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
-"faster."
-msgstr ""
-"Ɠḗŧ ȧħḗȧḓ! Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ "
-"ƒȧşŧḗř."
+#: apps/devhub/templates/devhub/index.html:94
+#: apps/devhub/templates/devhub/addons/submit/done.html:69
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:53
+#: apps/discovery/templates/discovery/modules/australis-contest.html:8
+msgid "Win a Firefox OS phone and Mozilla gear!"
+msgstr "Ẇīƞ ȧ Ƒīřḗƒǿẋ ǾŞ ƥħǿƞḗ ȧƞḓ Ḿǿzīŀŀȧ ɠḗȧř!"
 
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř"
-
-#: apps/devhub/templates/devhub/index.html:96
+#: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
 msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḿȧḓḗ Ḗȧşẏ"
 
-#: apps/devhub/templates/devhub/index.html:98
+#: apps/devhub/templates/devhub/index.html:105
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing "
 "experience. If you're a Web developer and know HTML, JavaScript and CSS, you "
@@ -6056,15 +6062,15 @@ msgstr ""
 "ȧŀřḗȧḓẏ ħȧṽḗ ẇħȧŧ īŧ ŧȧķḗş ŧǿ ḿȧķḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ẇīŧħ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ. "
 "Ẇħȧŧ'ş ḿǿřḗ, ȧḓḓ-ǿƞş ƀŭīŀŧ ẇīŧħ ŧħḗ ŞḒĶ ȧřḗ řḗşŧȧřŧŀḗşş ƀẏ ḓḗƒȧŭŀŧ."
 
-#: apps/devhub/templates/devhub/index.html:106
+#: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
 msgstr "Şŧȧřŧ Ḿȧķīƞɠ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/templates/devhub/index.html:113
+#: apps/devhub/templates/devhub/index.html:120
 msgid "Learn &amp; Explore"
 msgstr "Ŀḗȧřƞ &amp; Ḗẋƥŀǿřḗ"
 
-#: apps/devhub/templates/devhub/index.html:119
+#: apps/devhub/templates/devhub/index.html:126
 #: apps/devhub/templates/devhub/nav.html:72
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6
@@ -6078,7 +6084,7 @@ msgstr "Ŀḗȧřƞ &amp; Ḗẋƥŀǿřḗ"
 msgid "How-to Library"
 msgstr "Ħǿẇ-ŧǿ Ŀīƀřȧřẏ"
 
-#: apps/devhub/templates/devhub/index.html:121
+#: apps/devhub/templates/devhub/index.html:128
 #: apps/devhub/templates/devhub/docs/how-to.html:64
 msgid ""
 "Get add-on development guidance in a top-notch collection of tutorials, "
@@ -6087,11 +6093,11 @@ msgstr ""
 "Ɠḗŧ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ɠŭīḓȧƞƈḗ īƞ ȧ ŧǿƥ-ƞǿŧƈħ ƈǿŀŀḗƈŧīǿƞ ǿƒ ŧŭŧǿřīȧŀş, "
 "ȧřŧīƈŀḗş, ȧƞḓ ḿǿřḗ."
 
-#: apps/devhub/templates/devhub/index.html:132
+#: apps/devhub/templates/devhub/index.html:139
 msgid "API & Language Reference"
 msgstr "ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗ"
 
-#: apps/devhub/templates/devhub/index.html:134
+#: apps/devhub/templates/devhub/index.html:141
 #: apps/devhub/templates/devhub/docs/reference.html:14
 msgid ""
 "The official documentation on APIs and languages. What you need, when you "
@@ -6100,7 +6106,7 @@ msgstr ""
 "Ŧħḗ ǿƒƒīƈīȧŀ ḓǿƈŭḿḗƞŧȧŧīǿƞ ǿƞ ȦƤĪş ȧƞḓ ŀȧƞɠŭȧɠḗş. Ẇħȧŧ ẏǿŭ ƞḗḗḓ, ẇħḗƞ ẏǿŭ "
 "ƞḗḗḓ īŧ, ŧǿ ƈřḗȧŧḗ ẏǿŭř ḿȧşŧḗřƥīḗƈḗ."
 
-#: apps/devhub/templates/devhub/index.html:145
+#: apps/devhub/templates/devhub/index.html:152
 #: apps/devhub/templates/devhub/nav.html:70
 #: apps/devhub/templates/devhub/docs/case-studies.html:3
 #: apps/devhub/templates/devhub/docs/case-studies.html:8
@@ -6109,7 +6115,7 @@ msgstr ""
 msgid "Case Studies"
 msgstr "Ƈȧşḗ Şŧŭḓīḗş"
 
-#: apps/devhub/templates/devhub/index.html:147
+#: apps/devhub/templates/devhub/index.html:154
 #: apps/devhub/templates/devhub/docs/case-studies.html:35
 msgid ""
 "Start-to-finish success stories. See how add-on developers made magic with "
@@ -6118,15 +6124,15 @@ msgstr ""
 "Şŧȧřŧ-ŧǿ-ƒīƞīşħ şŭƈƈḗşş şŧǿřīḗş. Şḗḗ ħǿẇ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş ḿȧḓḗ ḿȧɠīƈ ẇīŧħ "
 "Ḿǿzīŀŀȧ."
 
-#: apps/devhub/templates/devhub/index.html:159
+#: apps/devhub/templates/devhub/index.html:166
 msgid "Create &amp; Connect"
 msgstr "Ƈřḗȧŧḗ &amp; Ƈǿƞƞḗƈŧ"
 
-#: apps/devhub/templates/devhub/index.html:165
+#: apps/devhub/templates/devhub/index.html:172
 msgid "Developer Forums"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƒǿřŭḿş"
 
-#: apps/devhub/templates/devhub/index.html:167
+#: apps/devhub/templates/devhub/index.html:174
 msgid ""
 "Discuss development, brainstorm ideas, and make connections in the world of "
 "add-ons."
@@ -6134,14 +6140,14 @@ msgstr ""
 "Ḓīşƈŭşş ḓḗṽḗŀǿƥḿḗƞŧ, ƀřȧīƞşŧǿřḿ īḓḗȧş, ȧƞḓ ḿȧķḗ ƈǿƞƞḗƈŧīǿƞş īƞ ŧħḗ ẇǿřŀḓ ǿƒ "
 "ȧḓḓ-ǿƞş."
 
-#: apps/devhub/templates/devhub/index.html:178
+#: apps/devhub/templates/devhub/index.html:185
 #: apps/devhub/templates/devhub/nav.html:83
 #: apps/devhub/templates/devhub/package_addon.html:4
 #: apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"
 msgstr "Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř"
 
-#: apps/devhub/templates/devhub/index.html:180
+#: apps/devhub/templates/devhub/index.html:187
 msgid ""
 "Auto-generate add-on packaging by entering basic info and picking UI parts. "
 "Get working without setup."
@@ -6149,12 +6155,12 @@ msgstr ""
 "Ȧŭŧǿ-ɠḗƞḗřȧŧḗ ȧḓḓ-ǿƞ ƥȧƈķȧɠīƞɠ ƀẏ ḗƞŧḗřīƞɠ ƀȧşīƈ īƞƒǿ ȧƞḓ ƥīƈķīƞɠ ŬĪ ƥȧřŧş. "
 "Ɠḗŧ ẇǿřķīƞɠ ẇīŧħǿŭŧ şḗŧŭƥ."
 
-#: apps/devhub/templates/devhub/index.html:191
+#: apps/devhub/templates/devhub/index.html:198
 #: apps/devhub/templates/devhub/nav.html:85
 msgid "Add-on Validator"
 msgstr "Ȧḓḓ-ǿƞ Ṽȧŀīḓȧŧǿř"
 
-#: apps/devhub/templates/devhub/index.html:193
+#: apps/devhub/templates/devhub/index.html:200
 msgid ""
 "Check your add-on for common problems and errors. Open to anyone, not just "
 "add-ons hosted here."
@@ -6736,7 +6742,7 @@ msgid "View Listing"
 msgstr "Ṽīḗẇ Ŀīşŧīƞɠ"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:56
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
 msgstr "Şŭḿḿȧřẏ"
@@ -6770,7 +6776,7 @@ msgstr ""
 "īş ȧ řḗȧşǿƞ ẏǿŭ ƞḗḗḓ ŧǿ ḿǿḓīƒẏ ẏǿŭř ƈȧŧḗɠǿřīḗş."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160
-#: mkt/developers/templates/developers/apps/edit/admin.html:133
+#: mkt/developers/templates/developers/apps/edit/admin.html:151
 msgid "Tags"
 msgstr "Ŧȧɠş"
 
@@ -6785,7 +6791,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171
 #: apps/devhub/templates/devhub/personas/edit.html:97
 #: apps/devhub/templates/devhub/personas/submit.html:46
-#: mkt/developers/templates/developers/apps/edit/admin.html:145
+#: mkt/developers/templates/developers/apps/edit/admin.html:163
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Ƈǿḿḿȧ-şḗƥȧřȧŧḗḓ, ḿīƞīḿŭḿ ǿƒ {0} ƈħȧřȧƈŧḗř."
@@ -6794,12 +6800,12 @@ msgstr[1] "Ƈǿḿḿȧ-şḗƥȧřȧŧḗḓ, ḿīƞīḿŭḿ ǿƒ {0} ƈħȧ
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174
 #: apps/devhub/templates/devhub/personas/edit.html:100
 #: apps/devhub/templates/devhub/personas/submit.html:49
-#: mkt/developers/templates/developers/apps/edit/admin.html:148
+#: mkt/developers/templates/developers/apps/edit/admin.html:166
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "Ḗẋȧḿƥŀḗ: ḓȧřķ, ƈīƞḗḿȧ, ƞǿīř. Ŀīḿīŧ 20."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:178
-#: mkt/developers/templates/developers/apps/edit/admin.html:152
+#: mkt/developers/templates/developers/apps/edit/admin.html:170
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Řḗşḗřṽḗḓ ŧȧɠ:"
@@ -6825,8 +6831,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/details.html:65
 #: apps/translations/templates/translations/trans-menu.html:13
 #: mkt/developers/templates/developers/apps/edit/details.html:17
-#: mkt/reviewers/templates/reviewers/includes/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:77
+#: mkt/reviewers/templates/reviewers/includes/details.html:54
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Default Locale"
 msgstr "Ḓḗƒȧŭŀŧ Ŀǿƈȧŀḗ"
 
@@ -6839,8 +6845,8 @@ msgstr ""
 "ǿṽḗřřīḓḗ īŧ ẇīŧħ ȧ ŀǿƈȧŀḗ-şƥḗƈīƒīƈ ŧřȧƞşŀȧŧīǿƞ."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:82
-#: apps/users/forms.py:197
-#: apps/users/templates/users/edit.html:104
+#: apps/users/forms.py:196
+#: apps/users/templates/users/edit.html:108
 #: apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 #: mkt/developers/templates/developers/apps/edit/details.html:35
@@ -6858,7 +6864,7 @@ msgstr ""
 "ƀḗ ȧḓḓḗḓ."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
-#: mkt/reviewers/templates/reviewers/includes/details.html:161
+#: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
 msgstr "Īḿȧɠḗş"
 
@@ -7326,6 +7332,11 @@ msgstr ""
 "Ŧħīş ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ḓḗŀḗŧḗḓ ȧŭŧǿḿȧŧīƈȧŀŀẏ ȧƒŧḗř ȧ ƒḗẇ ḓȧẏş īƒ ŧħḗ şŭƀḿīşşīǿƞ "
 "ƥřǿƈḗşş īş ƞǿŧ ƈǿḿƥŀḗŧḗḓ."
 
+#. {1} is a version number.
+#: apps/devhub/templates/devhub/addons/listing/items.html:24
+msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
+msgstr "<strong>Ŀȧŧḗşŧ ṽḗřşīǿƞ:</strong> <a href=\"{0}\">{1}</a>"
+
 #: apps/devhub/templates/devhub/addons/listing/items.html:41
 #: mkt/constants/comm.py:31
 #: mkt/developers/templates/developers/apps/status.html:228
@@ -7484,13 +7495,9 @@ msgstr ""
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Ṽīḗẇ ȧƥƥřǿẋīḿȧŧḗ řḗṽīḗẇ ɋŭḗŭḗ <a href=\"{0}\">ẇȧīŧ ŧīḿḗş</a>."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:57
-msgid "Get Ahead in the Review Queue!"
-msgstr "Ɠḗŧ Ȧħḗȧḓ īƞ ŧħḗ Řḗṽīḗẇ Ɋŭḗŭḗ!"
-
-#: apps/devhub/templates/devhub/addons/submit/done.html:59
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ ƒȧşŧḗř."
+#: apps/devhub/templates/devhub/addons/submit/done.html:67
+msgid "Submit your add-on for the Add-ons for Australis contest"
+msgstr "Şŭƀḿīŧ ẏǿŭř ȧḓḓ-ǿƞ ƒǿř ŧħḗ Ȧḓḓ-ǿƞş ƒǿř Ȧŭşŧřȧŀīş ƈǿƞŧḗşŧ"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -11537,7 +11544,7 @@ msgid "Manage Refunds"
 msgstr "Ḿȧƞȧɠḗ Řḗƒŭƞḓş"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:12
-#: mkt/developers/forms.py:951
+#: mkt/developers/forms.py:957
 #: mkt/developers/templates/developers/transactions.html:44
 #: mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
@@ -11547,8 +11554,8 @@ msgstr "Ŧřȧƞşȧƈŧīǿƞ ĪḒ"
 #: mkt/account/utils.py:17
 #: mkt/developers/templates/developers/payments/premium.html:158
 #: mkt/purchase/templates/purchase/receipt.html:39
-#: mkt/reviewers/templates/reviewers/includes/details.html:57
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:79
+#: mkt/reviewers/templates/reviewers/includes/details.html:56
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:9
 #: mkt/search/forms.py:18
 msgid "Price"
@@ -11796,10 +11803,10 @@ msgstr "Ƈȧƞ ǿŧħḗřş şħȧřḗ ẏǿŭř Ŧħḗḿḗ, ȧş ŀǿƞɠ 
 #: apps/devhub/templates/devhub/personas/submit.html:77
 #: apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
-#: mkt/api/forms.py:103
+#: mkt/api/forms.py:105
 #: mkt/developers/forms_payments.py:52
 #: mkt/reviewers/forms.py:258
-#: mkt/submit/forms.py:374
+#: mkt/submit/forms.py:377
 msgid "Yes"
 msgstr "Ẏḗş"
 
@@ -11820,11 +11827,11 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit.html:86
 #: apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
-#: mkt/api/forms.py:104
+#: mkt/api/forms.py:106
 #: mkt/developers/forms_payments.py:52
 #: mkt/lookup/templates/lookup/user_summary.html:71
 #: mkt/reviewers/forms.py:259
-#: mkt/submit/forms.py:375
+#: mkt/submit/forms.py:378
 msgid "No"
 msgstr "Ƞǿ"
 
@@ -12128,7 +12135,7 @@ msgstr "Ŭƥŀǿȧḓ Ȧƞǿŧħḗř Ƒīŀḗ"
 #: apps/editors/templates/editors/review.html:99
 #: mkt/developers/templates/developers/apps/version_edit.html:24
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:46
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:61
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:62
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
@@ -12150,7 +12157,7 @@ msgstr "Ȧƥƥřǿṽȧŀ Şŧȧŧŭş"
 #: apps/editors/templates/editors/review.html:109
 #: mkt/developers/templates/developers/apps/version_edit.html:39
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:56
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:71
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:72
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
@@ -12370,7 +12377,7 @@ msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 #: mkt/lookup/templates/lookup/app_summary.html:121
 #: mkt/reviewers/forms.py:239
 #: mkt/reviewers/templates/reviewers/review.html:29
-#: mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/reviewers/templates/reviewers/includes/details.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 #: mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:46
@@ -12763,29 +12770,13 @@ msgstr "Ŀȧşŧ Ŭƥḓȧŧḗḓ"
 msgid "Cancel Installation"
 msgstr "Ƈȧƞƈḗŀ Īƞşŧȧŀŀȧŧīǿƞ"
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
-msgid "Amp Your Firefox Contest"
-msgstr "Ȧḿƥ Ẏǿŭř Ƒīřḗƒǿẋ Ƈǿƞŧḗşŧ"
+#: apps/discovery/templates/discovery/modules/australis-contest.html:4
+msgid "Create add-ons for Firefox's new look"
+msgstr "Ƈřḗȧŧḗ ȧḓḓ-ǿƞş ƒǿř Ƒīřḗƒǿẋ'ş ƞḗẇ ŀǿǿķ"
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
-msgid "Best Overall Add-on"
-msgstr "Ɓḗşŧ Ǿṽḗřȧŀŀ Ȧḓḓ-ǿƞ"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
-msgid "Thumbnail Zoom Plus"
-msgstr "Ŧħŭḿƀƞȧīŀ Ẑǿǿḿ Ƥŀŭş"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
-msgid ""
-"Shows a full-size image popup when<br> you hover over a thumbnail or image "
-"link."
-msgstr ""
-"Şħǿẇş ȧ ƒŭŀŀ-şīzḗ īḿȧɠḗ ƥǿƥŭƥ ẇħḗƞ<br> ẏǿŭ ħǿṽḗř ǿṽḗř ȧ ŧħŭḿƀƞȧīŀ ǿř īḿȧɠḗ "
-"ŀīƞķ."
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
-msgid "Get it now!"
-msgstr "Ɠḗŧ īŧ ƞǿẇ!"
+#: apps/discovery/templates/discovery/modules/australis-contest.html:9
+msgid "Contest details"
+msgstr "Ƈǿƞŧḗşŧ ḓḗŧȧīŀş"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -12864,8 +12855,8 @@ msgstr "Ṽīḗẇ ḗƞŧřīḗş ƀḗŧẇḗḗƞ"
 
 #: apps/editors/forms.py:42
 #: apps/editors/forms.py:60
-#: mkt/developers/tasks.py:441
-#: mkt/developers/tasks.py:447
+#: mkt/developers/tasks.py:442
+#: mkt/developers/tasks.py:448
 msgid "and"
 msgstr "ȧƞḓ"
 
@@ -13091,8 +13082,8 @@ msgstr "Ȧḓḓǿƞ"
 #: mkt/developers/templates/developers/transactions.html:43
 #: mkt/lookup/templates/lookup/app_summary.html:43
 #: mkt/lookup/templates/lookup/transaction_summary.html:21
-#: mkt/reviewers/templates/reviewers/includes/details.html:9
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
+#: mkt/reviewers/templates/reviewers/includes/details.html:8
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:40
 msgid "Type"
 msgstr "Ŧẏƥḗ"
 
@@ -13108,8 +13099,8 @@ msgstr "Ẇȧīŧīƞɠ Ŧīḿḗ"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:65
 #: mkt/reviewers/templates/reviewers/queue.html:30
 #: mkt/reviewers/templates/reviewers/queue_region.html:25
-#: mkt/reviewers/templates/reviewers/includes/details.html:145
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:165
+#: mkt/reviewers/templates/reviewers/includes/details.html:144
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:166
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "Ƒŀȧɠş"
@@ -13160,12 +13151,12 @@ msgstr[0] "{0} ḓȧẏ"
 msgstr[1] "{0} ḓȧẏş"
 
 #: apps/editors/helpers.py:458
-#: mkt/reviewers/utils.py:424
+#: mkt/reviewers/utils.py:425
 msgid "Push to public"
 msgstr "Ƥŭşħ ŧǿ ƥŭƀŀīƈ"
 
 #: apps/editors/helpers.py:469
-#: mkt/reviewers/utils.py:435
+#: mkt/reviewers/utils.py:436
 msgid "Request more information"
 msgstr "Řḗɋŭḗşŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
@@ -13340,70 +13331,70 @@ msgstr "Ŧħḗḿḗ şŭƀḿīşşīǿƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽī�
 msgid "A question about your Theme submission"
 msgstr "Ȧ ɋŭḗşŧīǿƞ ȧƀǿŭŧ ẏǿŭř Ŧħḗḿḗ şŭƀḿīşşīǿƞ"
 
-#: apps/editors/views.py:125
+#: apps/editors/views.py:124
 msgid "New Add-ons (Under 5 days)"
 msgstr "Ƞḗẇ Ȧḓḓ-ǿƞş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: apps/editors/views.py:126
-#: mkt/reviewers/views.py:85
+#: apps/editors/views.py:125
+#: mkt/reviewers/views.py:84
 msgid "Passable (5 to 10 days)"
 msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 
-#: apps/editors/views.py:127
-#: mkt/reviewers/views.py:86
+#: apps/editors/views.py:126
+#: mkt/reviewers/views.py:85
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: apps/editors/views.py:461
+#: apps/editors/views.py:460
 msgid "An unknown error occurred"
 msgstr "Ȧƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
 
-#: apps/editors/views.py:497
-#: mkt/reviewers/views.py:250
+#: apps/editors/views.py:496
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/editors/views.py:529
-#: mkt/reviewers/views.py:357
+#: apps/editors/views.py:528
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:708
 msgid "was approved"
 msgstr "ẇȧş ȧƥƥřǿṽḗḓ"
 
-#: apps/editors/views.py:710
+#: apps/editors/views.py:709
 msgid "given preliminary review"
 msgstr "ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:711
-#: mkt/webapps/models.py:2277
+#: apps/editors/views.py:710
+#: mkt/webapps/models.py:2296
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:711
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ḗşƈȧŀȧŧḗḓ"
 
-#: apps/editors/views.py:714
+#: apps/editors/views.py:713
 msgid "needs more information"
 msgstr "ƞḗḗḓş ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/editors/views.py:715
+#: apps/editors/views.py:714
 msgid "needs super review"
 msgstr "ƞḗḗḓş şŭƥḗř řḗṽīḗẇ"
 
-#: apps/editors/views_themes.py:325
-#: mkt/reviewers/views_themes.py:299
+#: apps/editors/views_themes.py:328
+#: mkt/reviewers/views_themes.py:308
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} ŧħḗḿḗ řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 msgstr[1] "{0} ŧħḗḿḗ řḗṽīḗẇş şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
-#: apps/editors/views_themes.py:340
-#: mkt/reviewers/views_themes.py:314
+#: apps/editors/views_themes.py:343
+#: mkt/reviewers/views_themes.py:324
 msgid ""
 "Your theme locks have successfully been released. Other reviewers may now "
 "review those released themes. You may have to refresh the page to see the "
@@ -14438,11 +14429,11 @@ msgstr "Ƞǿ ƒīŀḗş īƞ ŧħḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
 msgid "Fetching file."
 msgstr "Ƒḗŧƈħīƞɠ ƒīŀḗ."
 
-#: apps/localizers/views.py:39
+#: apps/localizers/views.py:38
 msgid "An error occurred saving this message."
 msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ şȧṽīƞɠ ŧħīş ḿḗşşȧɠḗ."
 
-#: apps/localizers/views.py:42
+#: apps/localizers/views.py:41
 msgid "Access Denied"
 msgstr "Ȧƈƈḗşş Ḓḗƞīḗḓ"
 
@@ -14566,7 +14557,7 @@ msgid "Locale name"
 msgstr "Ŀǿƈȧŀḗ ƞȧḿḗ"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:79
+#: apps/market/models.py:80
 msgid "Tier %s"
 msgstr "Ŧīḗř %s"
 
@@ -16875,7 +16866,7 @@ msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
-#: apps/reviews/views.py:154
+#: apps/reviews/views.py:153
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř ḗḓīŧǿř ȧƥƥřǿṽȧŀ."
 
@@ -17089,40 +17080,40 @@ msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Şḗḗ Ȧŀŀ Řḗṽīḗẇş"
 msgstr[1] "Şḗḗ Ȧŀŀ %(cnt)s Řḗṽīḗẇş"
 
-#: apps/search/forms.py:12
+#: apps/search/forms.py:13
 msgid "Most popular this week"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ẇḗḗķ"
 
-#: apps/search/forms.py:13
+#: apps/search/forms.py:14
 msgid "Most popular this month"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ḿǿƞŧħ"
 
-#: apps/search/forms.py:14
+#: apps/search/forms.py:15
 msgid "Most popular all time"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ȧŀŀ ŧīḿḗ"
 
-#: apps/search/forms.py:24
+#: apps/search/forms.py:25
 msgid "search for add-ons"
 msgstr "şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş"
 
-#: apps/search/forms.py:25
+#: apps/search/forms.py:26
 msgid "search for collections"
 msgstr "şḗȧřƈħ ƒǿř ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/search/forms.py:26
+#: apps/search/forms.py:27
 msgid "search for themes"
 msgstr "şḗȧřƈħ ƒǿř ŧħḗḿḗş"
 
-#: apps/search/forms.py:27
+#: apps/search/forms.py:28
 msgid "search for apps"
 msgstr "şḗȧřƈħ ƒǿř ȧƥƥş"
 
-#: apps/search/forms.py:52
+#: apps/search/forms.py:53
 msgid "Sort By"
 msgstr "Şǿřŧ Ɓẏ"
 
-#: apps/search/forms.py:87
-#: apps/search/forms.py:100
+#: apps/search/forms.py:88
+#: apps/search/forms.py:101
 #: mkt/search/forms.py:14
 msgid "Relevance"
 msgstr "Řḗŀḗṽȧƞƈḗ"
@@ -17424,8 +17415,8 @@ msgid "Subscribers"
 msgstr "Şŭƀşƈřīƀḗřş"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
-#: mkt/reviewers/templates/reviewers/includes/details.html:65
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:87
+#: mkt/reviewers/templates/reviewers/includes/details.html:64
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Ratings"
 msgstr "Řȧŧīƞɠş"
 
@@ -17467,12 +17458,12 @@ msgid "Custom Date Range"
 msgstr "Ƈŭşŧǿḿ Ḓȧŧḗ Řȧƞɠḗ"
 
 #: apps/stats/templates/stats/popup.html:12
-#: mkt/developers/forms.py:957
+#: mkt/developers/forms.py:963
 msgid "From"
 msgstr "Ƒřǿḿ"
 
 #: apps/stats/templates/stats/popup.html:19
-#: mkt/developers/forms.py:960
+#: mkt/developers/forms.py:966
 msgid "To"
 msgstr "Ŧǿ"
 
@@ -17813,19 +17804,19 @@ msgstr ""
 msgid "Delete Locale"
 msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:30
 msgid "Must be %s characters or more."
 msgstr "Ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ḿǿřḗ."
 
-#: apps/users/forms.py:48
+#: apps/users/forms.py:47
 msgid "Letters and numbers required."
 msgstr "Ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş řḗɋŭīřḗḓ."
 
-#: apps/users/forms.py:51
+#: apps/users/forms.py:50
 msgid "That password is not allowed."
 msgstr "Ŧħȧŧ ƥȧşşẇǿřḓ īş ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/users/forms.py:79
+#: apps/users/forms.py:78
 msgid ""
 "An email has been sent to the requested account with further information. If "
 "you do not receive an email then please confirm you have entered the same "
@@ -17835,17 +17826,17 @@ msgstr ""
 "ẏǿŭ ḓǿ ƞǿŧ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ŧħḗƞ ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭ ħȧṽḗ ḗƞŧḗřḗḓ ŧħḗ şȧḿḗ "
 "ḗḿȧīŀ ȧḓḓřḗşş ŭşḗḓ ḓŭřīƞɠ ȧƈƈǿŭƞŧ řḗɠīşŧřȧŧīǿƞ."
 
-#: apps/users/forms.py:107
+#: apps/users/forms.py:106
 #: apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Ƞḗẇ ƥȧşşẇǿřḓ"
 
-#: apps/users/forms.py:146
-#: apps/users/forms.py:311
+#: apps/users/forms.py:145
+#: apps/users/forms.py:307
 msgid "Wrong password entered!"
 msgstr "Ẇřǿƞɠ ƥȧşşẇǿřḓ ḗƞŧḗřḗḓ!"
 
-#: apps/users/forms.py:163
+#: apps/users/forms.py:162
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -17853,33 +17844,33 @@ msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ŭşḗřƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř "
 "ħẏƥħḗƞş."
 
-#: apps/users/forms.py:166
+#: apps/users/forms.py:165
 msgid "This username cannot be used."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/users/forms.py:172
+#: apps/users/forms.py:171
 msgid "This username is already in use."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/users/forms.py:183
-#: apps/users/templates/users/edit.html:89
+#: apps/users/forms.py:182
+#: apps/users/templates/users/edit.html:93
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
 msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
 
-#: apps/users/forms.py:185
-#: apps/users/templates/users/edit.html:94
+#: apps/users/forms.py:184
+#: apps/users/templates/users/edit.html:98
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Ŀǿƈȧŧīǿƞ"
 
-#: apps/users/forms.py:187
-#: apps/users/templates/users/edit.html:99
+#: apps/users/forms.py:186
+#: apps/users/templates/users/edit.html:103
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ǿƈƈŭƥȧŧīǿƞ"
 
-#: apps/users/forms.py:211
+#: apps/users/forms.py:210
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -17887,7 +17878,7 @@ msgstr ""
 "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ "
 "http://example.com/my_page."
 
-#: apps/users/forms.py:219
+#: apps/users/forms.py:218
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -17895,16 +17886,16 @@ msgstr ""
 "Ƥŀḗȧşḗ ŭşḗ ȧƞ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ȧ ḓīƒƒḗřḗƞŧ ƥřǿṽīḓḗř ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř "
 "řḗɠīşŧřȧŧīǿƞ."
 
-#: apps/users/forms.py:235
+#: apps/users/forms.py:234
 msgid "The passwords did not match."
 msgstr "Ŧħḗ ƥȧşşẇǿřḓş ḓīḓ ƞǿŧ ḿȧŧƈħ."
 
-#: apps/users/forms.py:257
-#: apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:253
+#: apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
-#: apps/users/forms.py:396
+#: apps/users/forms.py:392
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -17917,31 +17908,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr "ǿŧħḗřş"
 
-#: apps/users/models.py:64
+#: apps/users/models.py:65
 msgid "algorithm"
 msgstr "ȧŀɠǿřīŧħḿ"
 
-#: apps/users/models.py:65
+#: apps/users/models.py:66
 msgid "salt"
 msgstr "şȧŀŧ"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:67
 msgid "hash"
 msgstr "ħȧşħ"
 
-#: apps/users/models.py:124
+#: apps/users/models.py:125
 msgid "No user with that email."
 msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
 
-#: apps/users/models.py:339
+#: apps/users/models.py:340
 msgid "Your account has been restricted"
 msgstr "Ẏǿŭř ȧƈƈǿŭƞŧ ħȧş ƀḗḗƞ řḗşŧřīƈŧḗḓ"
 
-#: apps/users/models.py:416
+#: apps/users/models.py:417
 msgid "Please confirm your email address"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: apps/users/models.py:474
+#: apps/users/models.py:475
 msgid "My Mobile Add-ons"
 msgstr "Ḿẏ Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
 
@@ -18019,15 +18010,15 @@ msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ƞḗ�
 msgid "User Notifications"
 msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: apps/users/views.py:96
+#: apps/users/views.py:95
 msgid "An email address is required."
 msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: apps/users/views.py:103
+#: apps/users/views.py:102
 msgid "A user with that email address does not exist."
 msgstr "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
-#: apps/users/views.py:104
+#: apps/users/views.py:103
 msgid ""
 "A user with that email address does not exist, or the user has not yet "
 "accepted the developer agreement."
@@ -18035,16 +18026,16 @@ msgstr ""
 "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ, ǿř ŧħḗ ŭşḗř ħȧş ƞǿŧ ẏḗŧ "
 "ȧƈƈḗƥŧḗḓ ŧħḗ ḓḗṽḗŀǿƥḗř ȧɠřḗḗḿḗƞŧ."
 
-#: apps/users/views.py:122
+#: apps/users/views.py:121
 msgid "Invalid confirmation code!"
 msgstr "Īƞṽȧŀīḓ ƈǿƞƒīřḿȧŧīǿƞ ƈǿḓḗ!"
 
-#: apps/users/views.py:127
+#: apps/users/views.py:126
 msgid "Successfully verified!"
 msgstr "Şŭƈƈḗşşƒŭŀŀẏ ṽḗřīƒīḗḓ!"
 
-#: apps/users/views.py:143
-#: apps/users/views.py:689
+#: apps/users/views.py:142
+#: apps/users/views.py:687
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -18054,29 +18045,29 @@ msgstr ""
 "ẏǿŭ ƈȧƞ ŀǿɠ īƞ, ẏǿŭ ħȧṽḗ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ȧƈƈǿŭƞŧ ƀẏ ƈŀīƈķīƞɠ ǿƞ ŧħḗ ŀīƞķ "
 "ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
 
-#: apps/users/views.py:147
-#: apps/users/views.py:693
+#: apps/users/views.py:146
+#: apps/users/views.py:691
 msgid "Confirmation Email Sent"
 msgstr "Ƈǿƞƒīřḿȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:158
+#: apps/users/views.py:157
 msgid "Profile Deleted"
 msgstr "Ƥřǿƒīŀḗ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:179
+#: apps/users/views.py:178
 msgid "Photo Deleted"
 msgstr "Ƥħǿŧǿ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:198
-#: apps/users/views.py:258
+#: apps/users/views.py:197
+#: apps/users/views.py:257
 msgid "Profile Updated"
 msgstr "Ƥřǿƒīŀḗ Ŭƥḓȧŧḗḓ"
 
-#: apps/users/views.py:213
+#: apps/users/views.py:212
 msgid "Email Confirmation Sent"
 msgstr "Ḗḿȧīŀ Ƈǿƞƒīřḿȧŧīǿƞ Şḗƞŧ"
 
-#: apps/users/views.py:214
+#: apps/users/views.py:213
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email. "
@@ -18086,43 +18077,43 @@ msgstr ""
 "ƈħȧƞɠḗ ŧǿ ŧȧķḗ ḗƒƒḗƈŧ, ẏǿŭ ƞḗḗḓ ŧǿ ƈŀīƈķ ǿƞ ŧħḗ ŀīƞķ ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ. "
 "Ŭƞŧīŀ ŧħḗƞ, ẏǿŭ ƈȧƞ ķḗḗƥ ŀǿɠɠīƞɠ īƞ ẇīŧħ ẏǿŭř ƈŭřřḗƞŧ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/users/views.py:226
+#: apps/users/views.py:225
 msgid "Please confirm your email address change at %s"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ƈħȧƞɠḗ ȧŧ %s"
 
-#: apps/users/views.py:238
+#: apps/users/views.py:237
 #: mkt/site/messages.py:17
 msgid "Errors Found"
 msgstr "Ḗřřǿřş Ƒǿŭƞḓ"
 
-#: apps/users/views.py:239
+#: apps/users/views.py:238
 #: mkt/site/messages.py:18
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ŧħḗ ƈħȧƞɠḗş ẏǿŭ ḿȧḓḗ. Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:287
+#: apps/users/views.py:285
 msgid "Your email address was changed successfully"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ẇȧş ƈħȧƞɠḗḓ şŭƈƈḗşşƒŭŀŀẏ"
 
-#: apps/users/views.py:288
+#: apps/users/views.py:286
 msgid "From now on, please use {0} to log in."
 msgstr "Ƒřǿḿ ƞǿẇ ǿƞ, ƥŀḗȧşḗ ŭşḗ {0} ŧǿ ŀǿɠ īƞ."
 
-#: apps/users/views.py:337
+#: apps/users/views.py:335
 msgid "Persona authentication failure."
 msgstr "Ƥḗřşǿƞȧ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 
-#: apps/users/views.py:362
+#: apps/users/views.py:360
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:486
+#: apps/users/views.py:484
 msgid "Wrong email address or password!"
 msgstr "Ẇřǿƞɠ ḗḿȧīŀ ȧḓḓřḗşş ǿř ƥȧşşẇǿřḓ!"
 
-#: apps/users/views.py:498
+#: apps/users/views.py:496
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -18130,7 +18121,7 @@ msgstr ""
 "Ȧ ŀīƞķ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şḗƞŧ ƀẏ ḗḿȧīŀ ŧǿ ẏǿŭř ȧḓḓřḗşş {0}. "
 "Ẏǿŭ ħȧṽḗ ŧǿ ƈŀīƈķ īŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŀǿɠ īƞ."
 
-#: apps/users/views.py:503
+#: apps/users/views.py:501
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a "
@@ -18142,35 +18133,35 @@ msgstr ""
 "href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş "
 "ḿḗƞŧīǿƞḗḓ ȧƀǿṽḗ."
 
-#: apps/users/views.py:508
+#: apps/users/views.py:506
 msgid "Activation Email Sent"
 msgstr "Ȧƈŧīṽȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:509
+#: apps/users/views.py:507
 msgid "Having Trouble?"
 msgstr "Ħȧṽīƞɠ Ŧřǿŭƀŀḗ?"
 
-#: apps/users/views.py:663
+#: apps/users/views.py:661
 msgid "You are already logged in to an account."
 msgstr "Ẏǿŭ ȧřḗ ȧŀřḗȧḓẏ ŀǿɠɠḗḓ īƞ ŧǿ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:685
+#: apps/users/views.py:683
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş! Ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ƈřḗȧŧḗḓ."
 
-#: apps/users/views.py:709
+#: apps/users/views.py:707
 msgid "You already have an account."
 msgstr "Ẏǿŭ ȧŀřḗȧḓẏ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:719
+#: apps/users/views.py:717
 msgid "There are errors in this form"
 msgstr "Ŧħḗřḗ ȧřḗ ḗřřǿřş īƞ ŧħīş ƒǿřḿ"
 
-#: apps/users/views.py:720
+#: apps/users/views.py:718
 msgid "Please correct them and resubmit."
 msgstr "Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:735
+#: apps/users/views.py:733
 msgid "User reported."
 msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
@@ -18220,7 +18211,7 @@ msgid "Confirm account deletion"
 msgstr "Ƈǿƞƒīřḿ ȧƈƈǿŭƞŧ ḓḗŀḗŧīǿƞ"
 
 #: apps/users/templates/users/delete.html:49
-#: apps/users/templates/users/edit.html:52
+#: apps/users/templates/users/edit.html:56
 #: apps/users/templates/users/login_form.html:36
 #: apps/users/templates/users/register.html:75
 #: apps/users/templates/users/mobile/login.html:52
@@ -18244,39 +18235,39 @@ msgstr "Ḓḗŀḗŧḗ Ŭşḗř Ƥħǿŧǿ"
 msgid "Delete my user picture now"
 msgstr "Ḓḗŀḗŧḗ ḿẏ ŭşḗř ƥīƈŧŭřḗ ƞǿẇ"
 
-#: apps/users/templates/users/edit.html:20
+#: apps/users/templates/users/edit.html:24
 #: apps/users/templates/users/includes/navigation.html:12
 #: templates/user_login.html:22
 msgid "My Account"
 msgstr "Ḿẏ Ȧƈƈǿŭƞŧ"
 
-#: apps/users/templates/users/edit.html:22
+#: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr "Ḿȧƞȧɠḗ ƀȧşīƈ ȧƈƈǿŭƞŧ īƞƒǿřḿȧŧīǿƞ, şŭƈħ ȧş ŭşḗřƞȧḿḗ ȧƞḓ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/users/templates/users/edit.html:28
+#: apps/users/templates/users/edit.html:32
 #: apps/users/templates/users/register.html:48
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Username"
 msgstr "Ŭşḗřƞȧḿḗ"
 
-#: apps/users/templates/users/edit.html:33
+#: apps/users/templates/users/edit.html:37
 #: apps/users/templates/users/pwreset_request.html:21
 #: apps/users/templates/users/register.html:63
 msgid "Email Address"
 msgstr "Ḗḿȧīŀ Ȧḓḓřḗşş"
 
-#: apps/users/templates/users/edit.html:40
+#: apps/users/templates/users/edit.html:44
 #: apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
 msgstr "Ħīḓḗ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ǿŧħḗř ŭşḗřş"
 
-#: apps/users/templates/users/edit.html:46
+#: apps/users/templates/users/edit.html:50
 #: mkt/site/context_processors.py:32
 msgid "Change Password"
 msgstr "Ƈħȧƞɠḗ Ƥȧşşẇǿřḓ"
 
-#: apps/users/templates/users/edit.html:54
+#: apps/users/templates/users/edit.html:58
 msgid ""
 "Change your password. If you forgot your password, you can <a href=\"%"
 "(reset_url)s\">use the reset form</a>."
@@ -18284,23 +18275,23 @@ msgstr ""
 "Ƈħȧƞɠḗ ẏǿŭř ƥȧşşẇǿřḓ. Īƒ ẏǿŭ ƒǿřɠǿŧ ẏǿŭř ƥȧşşẇǿřḓ, ẏǿŭ ƈȧƞ <a href=\"%"
 "(reset_url)s\">ŭşḗ ŧħḗ řḗşḗŧ ƒǿřḿ</a>."
 
-#: apps/users/templates/users/edit.html:60
+#: apps/users/templates/users/edit.html:64
 msgid "Old Password"
 msgstr "Ǿŀḓ Ƥȧşşẇǿřḓ"
 
-#: apps/users/templates/users/edit.html:68
+#: apps/users/templates/users/edit.html:72
 msgid "New Password"
 msgstr "Ƞḗẇ Ƥȧşşẇǿřḓ"
 
-#: apps/users/templates/users/edit.html:73
+#: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
 msgstr "Ƈǿƞƒīřḿ Ƥȧşşẇǿřḓ"
 
-#: apps/users/templates/users/edit.html:80
+#: apps/users/templates/users/edit.html:84
 msgid "Profile"
 msgstr "Ƥřǿƒīŀḗ"
 
-#: apps/users/templates/users/edit.html:82
+#: apps/users/templates/users/edit.html:86
 msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
@@ -18308,19 +18299,19 @@ msgstr ""
 "Ɠīṽḗ ŭş ȧ ƀīŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẏǿŭřşḗŀƒ. Ȧŀŀ ŧħḗşḗ ƒīḗŀḓş ȧřḗ "
 "ǿƥŧīǿƞȧŀ, ƀŭŧ ŧħḗẏ'ŀŀ ħḗŀƥ ǿŧħḗř ŭşḗřş ɠḗŧ ŧǿ ķƞǿẇ ẏǿŭ ƀḗŧŧḗř."
 
-#: apps/users/templates/users/edit.html:106
+#: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
 msgstr "Ŧħīş ŬŘĿ ẇīŀŀ ǿƞŀẏ ƀḗ ṽīşīƀŀḗ īƒ ẏǿŭ ȧřḗ ȧ ḓḗṽḗŀǿƥḗř."
 
-#: apps/users/templates/users/edit.html:115
+#: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
 msgstr "Ƈħǿǿşḗ Ƥħǿŧǿ&hellip;"
 
-#: apps/users/templates/users/edit.html:119
+#: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
 msgstr "Ḓḗŀḗŧḗ ƈŭřřḗƞŧ ƥħǿŧǿ"
 
-#: apps/users/templates/users/edit.html:128
+#: apps/users/templates/users/edit.html:132
 msgid ""
 "Introduce yourself to the community, if you like! This text will appear "
 "publicly on your user info page."
@@ -18328,32 +18319,32 @@ msgstr ""
 "Īƞŧřǿḓŭƈḗ ẏǿŭřşḗŀƒ ŧǿ ŧħḗ ƈǿḿḿŭƞīŧẏ, īƒ ẏǿŭ ŀīķḗ! Ŧħīş ŧḗẋŧ ẇīŀŀ ȧƥƥḗȧř "
 "ƥŭƀŀīƈŀẏ ǿƞ ẏǿŭř ŭşḗř īƞƒǿ ƥȧɠḗ."
 
-#: apps/users/templates/users/edit.html:136
+#: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Ȧŀŀǿẇḗḓ ĦŦḾĿ: {0}. Ŀīƞķş ȧřḗ ƒǿřƀīḓḓḗƞ."
 
-#: apps/users/templates/users/edit.html:143
+#: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
 msgstr "Ḿīşƈḗŀŀȧƞḗǿŭş"
 
-#: apps/users/templates/users/edit.html:145
+#: apps/users/templates/users/edit.html:150
 msgid "Decide what collections should be shown in your profile."
 msgstr "Ḓḗƈīḓḗ ẇħȧŧ ƈǿŀŀḗƈŧīǿƞş şħǿŭŀḓ ƀḗ şħǿẇƞ īƞ ẏǿŭř ƥřǿƒīŀḗ."
 
-#: apps/users/templates/users/edit.html:153
+#: apps/users/templates/users/edit.html:158
 msgid "Display the collections I have created"
 msgstr "Ḓīşƥŀȧẏ ŧħḗ ƈǿŀŀḗƈŧīǿƞş Ī ħȧṽḗ ƈřḗȧŧḗḓ"
 
-#: apps/users/templates/users/edit.html:160
+#: apps/users/templates/users/edit.html:165
 msgid "Display collections I'm following"
 msgstr "Ḓīşƥŀȧẏ ƈǿŀŀḗƈŧīǿƞş Ī'ḿ ƒǿŀŀǿẇīƞɠ"
 
-#: apps/users/templates/users/edit.html:168
+#: apps/users/templates/users/edit.html:173
 #: mkt/constants/features.py:273
 msgid "Notifications"
 msgstr "Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: apps/users/templates/users/edit.html:170
+#: apps/users/templates/users/edit.html:175
 msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
@@ -18361,7 +18352,7 @@ msgstr ""
 "Ƒřǿḿ ŧīḿḗ ŧǿ ŧīḿḗ, Ḿǿzīŀŀȧ ḿȧẏ şḗƞḓ ẏǿŭ ḗḿȧīŀ ȧƀǿŭŧ ŭƥƈǿḿīƞɠ řḗŀḗȧşḗş ȧƞḓ "
 "ȧḓḓ-ǿƞ ḗṽḗƞŧş. Ƥŀḗȧşḗ şḗŀḗƈŧ ŧħḗ ŧǿƥīƈş ẏǿŭ ȧřḗ īƞŧḗřḗşŧḗḓ īƞ."
 
-#: apps/users/templates/users/edit.html:180
+#: apps/users/templates/users/edit.html:185
 msgid ""
 "Mozilla reserves the right to contact you individually about specific "
 "concerns with your hosted add-ons."
@@ -18369,15 +18360,15 @@ msgstr ""
 "Ḿǿzīŀŀȧ řḗşḗřṽḗş ŧħḗ řīɠħŧ ŧǿ ƈǿƞŧȧƈŧ ẏǿŭ īƞḓīṽīḓŭȧŀŀẏ ȧƀǿŭŧ şƥḗƈīƒīƈ "
 "ƈǿƞƈḗřƞş ẇīŧħ ẏǿŭř ħǿşŧḗḓ ȧḓḓ-ǿƞş."
 
-#: apps/users/templates/users/edit.html:190
+#: apps/users/templates/users/edit.html:195
 msgid "Admin"
 msgstr "Ȧḓḿīƞ"
 
-#: apps/users/templates/users/edit.html:222
+#: apps/users/templates/users/edit.html:227
 msgid "Delete Account"
 msgstr "Ḓḗŀḗŧḗ Ȧƈƈǿŭƞŧ"
 
-#: apps/users/templates/users/edit.html:224
+#: apps/users/templates/users/edit.html:229
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:26
 msgid "Update Account"
@@ -18867,7 +18858,7 @@ msgstr "Ħḗẋȧḓḗƈīḿȧŀ ƈǿŀǿř"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ, ḗ.ɠ. #ƑƑ0035."
 
-#: mkt/collections/serializers.py:221
+#: mkt/collections/serializers.py:241
 msgid ""
 "You can not have more than one Featured Apps/Operator Shelf collection for "
 "the same category/carrier/region combination."
@@ -18892,7 +18883,7 @@ msgid "Attachment:"
 msgstr "Ȧŧŧȧƈħḿḗƞŧ:"
 
 #: mkt/comm/forms.py:45
-#: mkt/submit/forms.py:344
+#: mkt/submit/forms.py:347
 msgid "Description:"
 msgstr "Ḓḗşƈřīƥŧīǿƞ:"
 
@@ -20894,39 +20885,39 @@ msgid ""
 msgstr ""
 "Ȧƞ ȧƥƥ ȧŀřḗȧḓẏ ḗẋīşŧş ǿƞ ŧħīş ḓǿḿȧīƞ; ǿƞŀẏ ǿƞḗ ȧƥƥ ƥḗř ḓǿḿȧīƞ īş ȧŀŀǿẇḗḓ."
 
-#: mkt/developers/forms.py:329
+#: mkt/developers/forms.py:332
 msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
-#: mkt/developers/forms.py:399
+#: mkt/developers/forms.py:405
 #: mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
-#: mkt/developers/forms.py:440
+#: mkt/developers/forms.py:446
 msgid ""
 "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 "Ƥȧƈķȧɠḗḓ ȧƥƥ ŧǿǿ ŀȧřɠḗ ƒǿř şŭƀḿīşşīǿƞ. Ƥȧƈķȧɠḗş ḿŭşŧ ƀḗ şḿȧŀŀḗř ŧħȧƞ %s."
 
-#: mkt/developers/forms.py:455
+#: mkt/developers/forms.py:461
 msgid "Error extracting manifest from zip file."
 msgstr "Ḗřřǿř ḗẋŧřȧƈŧīƞɠ ḿȧƞīƒḗşŧ ƒřǿḿ zīƥ ƒīŀḗ."
 
-#: mkt/developers/forms.py:514
+#: mkt/developers/forms.py:520
 msgid "Provide a detailed description of your app"
 msgstr "Ƥřǿṽīḓḗ ȧ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř ȧƥƥ"
 
-#: mkt/developers/forms.py:515
-#: mkt/submit/forms.py:345
+#: mkt/developers/forms.py:521
+#: mkt/submit/forms.py:348
 msgid "This description will appear on the details page."
 msgstr "Ŧħīş ḓḗşƈřīƥŧīǿƞ ẇīŀŀ ȧƥƥḗȧř ǿƞ ŧħḗ ḓḗŧȧīŀş ƥȧɠḗ."
 
-#: mkt/developers/forms.py:587
+#: mkt/developers/forms.py:593
 msgid "Please specify your app's Privacy Policy"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧƥƥ'ş Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
-#: mkt/developers/forms.py:608
+#: mkt/developers/forms.py:614
 msgid ""
 "Before changing your default locale you must have a name and description in "
 "that locale. You are missing %s."
@@ -20934,62 +20925,62 @@ msgstr ""
 "Ɓḗƒǿřḗ ƈħȧƞɠīƞɠ ẏǿŭř ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ ƞȧḿḗ ȧƞḓ ḓḗşƈřīƥŧīǿƞ īƞ "
 "ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
-#: mkt/developers/forms.py:663
+#: mkt/developers/forms.py:669
 msgid "Your comments"
 msgstr "Ẏǿŭř ƈǿḿḿḗƞŧş"
 
-#: mkt/developers/forms.py:686
+#: mkt/developers/forms.py:692
 msgid "Choose the regions your app will be listed in:"
 msgstr "Ƈħǿǿşḗ ŧħḗ řḗɠīǿƞş ẏǿŭř ȧƥƥ ẇīŀŀ ƀḗ ŀīşŧḗḓ īƞ:"
 
-#: mkt/developers/forms.py:690
-#: mkt/developers/forms.py:776
+#: mkt/developers/forms.py:696
+#: mkt/developers/forms.py:782
 msgid "You must select at least one region."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŀḗƈŧ ȧŧ ŀḗȧşŧ ǿƞḗ řḗɠīǿƞ."
 
-#: mkt/developers/forms.py:695
+#: mkt/developers/forms.py:701
 msgid "Enable new regions"
 msgstr "Ḗƞȧƀŀḗ ƞḗẇ řḗɠīǿƞş"
 
-#: mkt/developers/forms.py:697
+#: mkt/developers/forms.py:703
 msgid "Make my app available in most regions"
 msgstr "Ḿȧķḗ ḿẏ ȧƥƥ ȧṽȧīŀȧƀŀḗ īƞ ḿǿşŧ řḗɠīǿƞş"
 
-#: mkt/developers/forms.py:698
+#: mkt/developers/forms.py:704
 msgid "Choose where my app is made available"
 msgstr "Ƈħǿǿşḗ ẇħḗřḗ ḿẏ ȧƥƥ īş ḿȧḓḗ ȧṽȧīŀȧƀŀḗ"
 
-#: mkt/developers/forms.py:885
+#: mkt/developers/forms.py:891
 msgid "Agree"
 msgstr "Ȧɠřḗḗ"
 
-#: mkt/developers/forms.py:902
+#: mkt/developers/forms.py:908
 msgid "Please enter a valid email address."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ ṽȧŀīḓ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: mkt/developers/forms.py:905
+#: mkt/developers/forms.py:911
 msgid "Your email address"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: mkt/developers/forms.py:908
+#: mkt/developers/forms.py:914
 msgid "Text"
 msgstr "Ŧḗẋŧ"
 
-#: mkt/developers/forms.py:912
+#: mkt/developers/forms.py:918
 msgid "You must agree to the Privacy Policy."
 msgstr "Ẏǿŭ ḿŭşŧ ȧɠřḗḗ ŧǿ ŧħḗ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ."
 
-#: mkt/developers/forms.py:913
+#: mkt/developers/forms.py:919
 #: mkt/developers/forms_payments.py:404
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Ƈǿŭƞŧřẏ"
 
-#: mkt/developers/forms.py:948
+#: mkt/developers/forms.py:954
 msgid "Transaction Type"
 msgstr "Ŧřȧƞşȧƈŧīǿƞ Ŧẏƥḗ"
 
-#: mkt/developers/forms.py:1002
+#: mkt/developers/forms.py:1008
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS "
 "device. I agree to the terms and conditions outlined above. I understand "
@@ -20999,23 +20990,23 @@ msgstr ""
 "ḓḗṽīƈḗ. Ī ȧɠřḗḗ ŧǿ ŧħḗ ŧḗřḿş ȧƞḓ ƈǿƞḓīŧīǿƞş ǿŭŧŀīƞḗḓ ȧƀǿṽḗ. Ī ŭƞḓḗřşŧȧƞḓ "
 "ŧħȧŧ ŧħīş ḓǿƈŭḿḗƞŧ īş ƞǿŧ ȧ ƈǿḿḿīŧḿḗƞŧ ŧǿ ƥřḗ-ŀǿȧḓ ḿẏ ȧƥƥ."
 
-#: mkt/developers/forms.py:1009
+#: mkt/developers/forms.py:1015
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Ŭƥŀǿȧḓ Ẏǿŭř Ŧḗşŧ Ƥŀȧƞ (.ƥḓƒ, .ẋŀş ŭƞḓḗř 2.5ḾƁ)"
 
-#: mkt/developers/forms.py:1018
+#: mkt/developers/forms.py:1024
 msgid "Test plan required."
 msgstr "Ŧḗşŧ ƥŀȧƞ řḗɋŭīřḗḓ."
 
-#: mkt/developers/forms.py:1025
+#: mkt/developers/forms.py:1031
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "Ƒīŀḗ ŧǿǿ ŀȧřɠḗ. Ķḗḗƥ şīzḗ ŭƞḓḗř %s. Ƈŭřřḗƞŧ şīzḗ %s."
 
-#: mkt/developers/forms.py:1031
+#: mkt/developers/forms.py:1037
 msgid "Invalid file type. Only %s files are supported."
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ŧẏƥḗ. Ǿƞŀẏ %s ƒīŀḗş ȧřḗ şŭƥƥǿřŧḗḓ."
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1055
 msgid ""
 "This IARC certificate is already being used for another app. Please create a "
 "new IARC Ratings Certificate."
@@ -21023,17 +21014,17 @@ msgstr ""
 "Ŧħīş ĪȦŘƇ ƈḗřŧīƒīƈȧŧḗ īş ȧŀřḗȧḓẏ ƀḗīƞɠ ŭşḗḓ ƒǿř ȧƞǿŧħḗř ȧƥƥ. Ƥŀḗȧşḗ ƈřḗȧŧḗ ȧ "
 "ƞḗẇ ĪȦŘƇ Řȧŧīƞɠş Ƈḗřŧīƒīƈȧŧḗ."
 
-#: mkt/developers/forms.py:1062
+#: mkt/developers/forms.py:1068
 msgid "Please enter a valid submission ID."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ ṽȧŀīḓ şŭƀḿīşşīǿƞ ĪḒ."
 
-#: mkt/developers/forms.py:1086
-#: mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1092
+#: mkt/developers/forms.py:1103
 msgid "Invalid submission ID or security code."
 msgstr "Īƞṽȧŀīḓ şŭƀḿīşşīǿƞ ĪḒ ǿř şḗƈŭřīŧẏ ƈǿḓḗ."
 
 #: mkt/developers/forms_payments.py:55
-#: mkt/submit/forms.py:269
+#: mkt/submit/forms.py:272
 msgid "App Price"
 msgstr "Ȧƥƥ Ƥřīƈḗ"
 
@@ -21210,11 +21201,11 @@ msgstr "Şħȧřḗḓ Ȧƈƈǿŭƞŧ: {0}"
 msgid "Reference Implementation"
 msgstr "Řḗƒḗřḗƞƈḗ Īḿƥŀḗḿḗƞŧȧŧīǿƞ"
 
-#: mkt/developers/tasks.py:348
+#: mkt/developers/tasks.py:349
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Ƞǿ ḿȧƞīƒḗşŧ ẇȧş ƒǿŭƞḓ ȧŧ ŧħȧŧ ŬŘĿ. Ƈħḗƈķ ŧħḗ ȧḓḓřḗşş ȧƞḓ ŧřẏ ȧɠȧīƞ."
 
-#: mkt/developers/tasks.py:354
+#: mkt/developers/tasks.py:355
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x"
 "-web-app-manifest+json\". See %s for more information."
@@ -21222,11 +21213,11 @@ msgstr ""
 "Ḿȧƞīƒḗşŧş ḿŭşŧ ƀḗ şḗřṽḗḓ ẇīŧħ ŧħḗ ĦŦŦƤ ħḗȧḓḗř \"Ƈǿƞŧḗƞŧ-Ŧẏƥḗ: ȧƥƥŀīƈȧŧīǿƞ/x"
 "-web-app-manifest+json\". Şḗḗ %s ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
-#: mkt/developers/tasks.py:371
+#: mkt/developers/tasks.py:372
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Ẏǿŭř ḿȧƞīƒḗşŧ ƒīŀḗ ẇȧş ƞǿŧ ḗƞƈǿḓḗḓ ȧş ṽȧŀīḓ ŬŦƑ-8."
 
-#: mkt/developers/tasks.py:382
+#: mkt/developers/tasks.py:383
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
@@ -21234,65 +21225,65 @@ msgstr ""
 "Ŧħḗ ḿȧƞīƒḗşŧ'ş ḗƞƈǿḓīƞɠ ḓǿḗş ƞǿŧ ḿȧŧƈħ ŧħḗ ƈħȧřşḗŧ ƥřǿṽīḓḗḓ īƞ ŧħḗ ĦŦŦƤ "
 "Ƈǿƞŧḗƞŧ-Ŧẏƥḗ."
 
-#: mkt/developers/tasks.py:461
+#: mkt/developers/tasks.py:462
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{řḗɠīǿƞ} řḗɠīǿƞ ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: mkt/developers/tasks.py:465
+#: mkt/developers/tasks.py:466
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Ƞḗẇ řḗɠīǿƞş ȧḓḓḗḓ ŧǿ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: mkt/developers/utils.py:48
+#: mkt/developers/utils.py:60
 msgid "Video support not enabled."
 msgstr "Ṽīḓḗǿ şŭƥƥǿřŧ ƞǿŧ ḗƞȧƀŀḗḓ."
 
-#: mkt/developers/utils.py:79
+#: mkt/developers/utils.py:91
 msgid "Please use files smaller than %s."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ƒīŀḗş şḿȧŀŀḗř ŧħȧƞ %s."
 
-#: mkt/developers/utils.py:89
+#: mkt/developers/utils.py:101
 msgid "Icon could not be opened."
 msgstr "Īƈǿƞ ƈǿŭŀḓ ƞǿŧ ƀḗ ǿƥḗƞḗḓ."
 
-#: mkt/developers/utils.py:91
+#: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
 msgstr "Ƥřḗṽīḗẇ ƈǿŭŀḓ ƞǿŧ ƀḗ ǿƥḗƞḗḓ."
 
-#: mkt/developers/utils.py:98
+#: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ 128ƥẋ ƀẏ 128ƥẋ."
 
-#: mkt/developers/utils.py:101
+#: mkt/developers/utils.py:113
 msgid "Icons must be square."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ şɋŭȧřḗ."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
-#: mkt/developers/utils.py:111
+#: mkt/developers/utils.py:123
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Ȧƥƥ ƥřḗṽīḗẇş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0}ƥẋ ƀẏ {1}ƥẋ ǿř {1}ƥẋ ƀẏ {0}ƥẋ."
 
-#: mkt/developers/views.py:153
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Ƥȧīḓ ȧƥƥş ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧƥƥ īƞşŧḗȧḓ."
 
-#: mkt/developers/views.py:163
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "Ȧƥƥ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:168
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧƥƥ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:223
+#: mkt/developers/views.py:224
 msgid "App successfully resubmitted."
 msgstr "Ȧƥƥ şŭƈƈḗşşƒŭŀŀẏ řḗşŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:254
+#: mkt/developers/views.py:255
 msgid "New version successfully added."
 msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 
-#: mkt/developers/views.py:298
+#: mkt/developers/views.py:303
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
@@ -21300,84 +21291,84 @@ msgstr ""
 "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş, ẏǿŭř ȧƥƥ şŭƀḿīşşīǿƞ īş ƞǿẇ ƈǿḿƥŀḗŧḗ ȧƞḓ ẇīŀŀ ƀḗ řḗṽīḗẇḗḓ "
 "şħǿřŧŀẏ!"
 
-#: mkt/developers/views.py:300
+#: mkt/developers/views.py:305
 msgid "Content ratings successfully saved."
 msgstr "Ƈǿƞŧḗƞŧ řȧŧīƞɠş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:424
+#: mkt/developers/views.py:423
 msgid "Application for preload successfully submitted."
 msgstr "Ȧƥƥŀīƈȧŧīǿƞ ƒǿř ƥřḗŀǿȧḓ şŭƈƈḗşşƒŭŀŀẏ şŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:427
+#: mkt/developers/views.py:426
 msgid "There was an error with the form."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ ƒǿřḿ."
 
-#: mkt/developers/views.py:460
+#: mkt/developers/views.py:457
 msgid "Version successfully edited."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḗḓīŧḗḓ."
 
-#: mkt/developers/views.py:501
+#: mkt/developers/views.py:498
 msgid "Version successfully made public."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḿȧḓḗ ƥŭƀŀīƈ."
 
-#: mkt/developers/views.py:516
+#: mkt/developers/views.py:513
 msgid "Version \"{0}\" deleted."
 msgstr "Ṽḗřşīǿƞ \"{0}\" ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:989
+#: mkt/developers/views.py:984
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:1001
+#: mkt/developers/views.py:996
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:1009
+#: mkt/developers/views.py:1004
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1016
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1039
+#: mkt/developers/views.py:1034
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1041
+#: mkt/developers/views.py:1036
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
-#: mkt/developers/views_payments.py:76
-#: mkt/developers/views_payments.py:93
+#: mkt/developers/views_payments.py:75
+#: mkt/developers/views_payments.py:92
 msgid "We encountered a problem connecting to the payment server."
 msgstr "Ẇḗ ḗƞƈǿŭƞŧḗřḗḓ ȧ ƥřǿƀŀḗḿ ƈǿƞƞḗƈŧīƞɠ ŧǿ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: mkt/developers/views_payments.py:172
+#: mkt/developers/views_payments.py:169
 msgid "Credit card"
 msgstr "Ƈřḗḓīŧ ƈȧřḓ"
 
-#: mkt/developers/views_payments.py:173
+#: mkt/developers/views_payments.py:170
 msgid "Carrier"
 msgstr "Ƈȧřřīḗř"
 
-#: mkt/developers/views_payments.py:295
+#: mkt/developers/views_payments.py:291
 msgid "A server error occurred when retrieving the application key."
 msgstr "Ȧ şḗřṽḗř ḗřřǿř ǿƈƈŭřřḗḓ ẇħḗƞ řḗŧřīḗṽīƞɠ ŧħḗ ȧƥƥŀīƈȧŧīǿƞ ķḗẏ."
 
-#: mkt/developers/views_payments.py:302
+#: mkt/developers/views_payments.py:298
 msgid "Secret was reset successfully."
 msgstr "Şḗƈřḗŧ ẇȧş řḗşḗŧ şŭƈƈḗşşƒŭŀŀẏ."
 
-#: mkt/developers/views_payments.py:306
+#: mkt/developers/views_payments.py:302
 msgid "Key and secret were created successfully."
 msgstr "Ķḗẏ ȧƞḓ şḗƈřḗŧ ẇḗřḗ ƈřḗȧŧḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
-#: mkt/developers/views_payments.py:330
+#: mkt/developers/views_payments.py:326
 msgid "Your app is not configured for in-app payments."
 msgstr "Ẏǿŭř ȧƥƥ īş ƞǿŧ ƈǿƞƒīɠŭřḗḓ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş."
 
-#: mkt/developers/views_payments.py:336
+#: mkt/developers/views_payments.py:332
 msgid "No payment account for this app."
 msgstr "Ƞǿ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒǿř ŧħīş ȧƥƥ."
 
@@ -21757,8 +21748,8 @@ msgstr "Şŭƀḿīŧ Ȧƞ Ȧƥƥ"
 #: mkt/developers/templates/developers/apps/owner.html:20
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:30
-#: mkt/reviewers/templates/reviewers/includes/details.html:130
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:150
+#: mkt/reviewers/templates/reviewers/includes/details.html:129
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
 msgid "Team Members"
 msgstr "Ŧḗȧḿ Ḿḗḿƀḗřş"
 
@@ -22127,24 +22118,40 @@ msgid "Enter email addresses, separated by commas"
 msgstr "Ḗƞŧḗř ḗḿȧīŀ ȧḓḓřḗşşḗş, şḗƥȧřȧŧḗḓ ƀẏ ƈǿḿḿȧş"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
+msgid "Mozilla VIP App"
+msgstr "Ḿǿzīŀŀȧ ṼĪƤ Ȧƥƥ"
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:92
+msgid ""
+"Is this a very important app that should always be handled by Mozilla Staff "
+"or Senior App Reviewers?"
+msgstr ""
+"Īş ŧħīş ȧ ṽḗřẏ īḿƥǿřŧȧƞŧ ȧƥƥ ŧħȧŧ şħǿŭŀḓ ȧŀẇȧẏş ƀḗ ħȧƞḓŀḗḓ ƀẏ Ḿǿzīŀŀȧ Şŧȧƒƒ "
+"ǿř Şḗƞīǿř Ȧƥƥ Řḗṽīḗẇḗřş?"
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:93
+msgid "Use sparingly"
+msgstr "Ŭşḗ şƥȧřīƞɠŀẏ"
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
 msgstr "Ɓȧƞƞḗř ḿḗşşȧɠḗ"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid ""
 "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
 "Ḗẋƈŀŭşīṽḗ ḿḗşşȧɠḗ şħǿẇƞ ǿƞ ŧħḗ ŀīşŧīƞɠ ƥȧɠḗ, ǿƞŀẏ īƞ ŧħḗ şḗŀḗƈŧḗḓ řḗɠīǿƞş."
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:110
+#: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Regions to show banner in"
 msgstr "Řḗɠīǿƞş ŧǿ şħǿẇ ƀȧƞƞḗř īƞ"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:112
+#: mkt/developers/templates/developers/apps/edit/admin.html:130
 msgid "Regions that the banner message will be shown in."
 msgstr "Řḗɠīǿƞş ŧħȧŧ ŧħḗ ƀȧƞƞḗř ḿḗşşȧɠḗ ẇīŀŀ ƀḗ şħǿẇƞ īƞ."
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:135
+#: mkt/developers/templates/developers/apps/edit/admin.html:153
 msgid ""
 "Tags help users find your app and should be short descriptors such as tabs, "
 "toolbar, or twitter. You may have a maximum of {0} tags."
@@ -22158,8 +22165,8 @@ msgid "This field can only be edited by updating it in the manifest."
 msgstr "Ŧħīş ƒīḗŀḓ ƈȧƞ ǿƞŀẏ ƀḗ ḗḓīŧḗḓ ƀẏ ŭƥḓȧŧīƞɠ īŧ īƞ ŧħḗ ḿȧƞīƒḗşŧ."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34
-#: mkt/reviewers/templates/reviewers/includes/details.html:87
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
+#: mkt/reviewers/templates/reviewers/includes/details.html:86
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:108
 msgid "Developer Name"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƞȧḿḗ"
 
@@ -22190,8 +22197,8 @@ msgid "View API documentation"
 msgstr "Ṽīḗẇ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76
-#: mkt/reviewers/templates/reviewers/includes/details.html:26
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
+#: mkt/reviewers/templates/reviewers/includes/details.html:25
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:102
 msgid "Manifest URL"
 msgstr "Ḿȧƞīƒḗşŧ ŬŘĿ"
@@ -22472,9 +22479,9 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:21
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:13
 #: mkt/webapps/models.py:526
 msgid "Content Ratings"
@@ -22662,24 +22669,24 @@ msgstr ""
 "Ŧħḗ şḗƈŭřīŧẏ ƈǿḓḗ ƈȧƞ ƀḗ ƒǿŭƞḓ ǿƞ ŧħḗ ƈḗřŧīƒīƈȧŧḗ şḗƞŧ ŧǿ ẏǿŭ. Īŧ īş ȧ ḿīẋ "
 "ǿƒ ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş ŀīķḗ &quot;ȦƁ12ƇḒ3&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
 msgstr "Řȧŧīƞɠ Şẏşŧḗḿ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 #: mkt/developers/templates/developers/payments/premium.html:210
 msgid "Region"
 msgstr "Řḗɠīǿƞ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
 msgstr "Řȧŧīƞɠ Ƈȧŧḗɠǿřẏ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
 msgstr "Ḓḗşƈřīƥŧǿřş"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:62
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:61
 msgid "Interactive Elements"
 msgstr "Īƞŧḗřȧƈŧīṽḗ Ḗŀḗḿḗƞŧş"
 
@@ -23056,17 +23063,17 @@ msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ƞǿŧīƒīƈȧ�
 msgid "Select All"
 msgstr "Şḗŀḗƈŧ Ȧŀŀ"
 
-#: mkt/ecosystem/views.py:55
+#: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
 msgstr "Ŧħȧƞķ ẏǿŭ ƒǿř şŭƀşƈřīƀīƞɠ!"
 
-#: mkt/ecosystem/views.py:61
+#: mkt/ecosystem/views.py:60
 msgid ""
 "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
 "Ẇḗ ȧƥǿŀǿɠīzḗ, ƀŭŧ ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ īƞ ǿŭř şẏşŧḗḿ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: mkt/ecosystem/views.py:230
+#: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
 msgstr "Ɠȧīȧ Ɓŭīŀḓīƞɠ Ɓŀǿƈķş"
 
@@ -24533,27 +24540,27 @@ msgstr "Ḗƞŧḗř řḗƒŭƞḓ ḓḗŧȧīŀş ŧǿ řḗƒŭƞḓ ŧřȧ�
 msgid "Reason for Deletion"
 msgstr "Řḗȧşǿƞ ƒǿř Ḓḗŀḗŧīǿƞ"
 
-#: mkt/lookup/views.py:151
+#: mkt/lookup/views.py:145
 msgid "Currently unable to retrieve refund status."
 msgstr "Ƈŭřřḗƞŧŀẏ ŭƞȧƀŀḗ ŧǿ řḗŧřīḗṽḗ řḗƒŭƞḓ şŧȧŧŭş."
 
-#: mkt/lookup/views.py:178
+#: mkt/lookup/views.py:172
 msgid "A refund has already been processed."
 msgstr "Ȧ řḗƒŭƞḓ ħȧş ȧŀřḗȧḓẏ ƀḗḗƞ ƥřǿƈḗşşḗḓ."
 
-#: mkt/lookup/views.py:202
+#: mkt/lookup/views.py:195
 msgid "You cannot make a refund request for this transaction."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ḿȧķḗ ȧ řḗƒŭƞḓ řḗɋŭḗşŧ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ."
 
-#: mkt/lookup/views.py:224
+#: mkt/lookup/views.py:217
 msgid "Refund for this transaction now pending."
 msgstr "Řḗƒŭƞḓ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ ƞǿẇ ƥḗƞḓīƞɠ."
 
-#: mkt/lookup/views.py:233
+#: mkt/lookup/views.py:226
 msgid "Refund for this transaction successfully approved."
 msgstr "Řḗƒŭƞḓ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧƥƥřǿṽḗḓ."
 
-#: mkt/lookup/views.py:238
+#: mkt/lookup/views.py:231
 msgid "Refund request for this transaction failed."
 msgstr "Řḗƒŭƞḓ řḗɋŭḗşŧ ƒǿř ŧħīş ŧřȧƞşȧƈŧīǿƞ ƒȧīŀḗḓ."
 
@@ -24574,26 +24581,26 @@ msgid "Manifest"
 msgstr "Ḿȧƞīƒḗşŧ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40
-#: mkt/reviewers/templates/reviewers/includes/details.html:35
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
+#: mkt/reviewers/templates/reviewers/includes/details.html:34
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:56
 msgid "View"
 msgstr "Ṽīḗẇ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48
-#: mkt/reviewers/templates/reviewers/includes/details.html:13
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
+#: mkt/reviewers/templates/reviewers/includes/details.html:12
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 msgid "Privileged Packaged app"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ƥȧƈķȧɠḗḓ ȧƥƥ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50
-#: mkt/reviewers/templates/reviewers/includes/details.html:15
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
+#: mkt/reviewers/templates/reviewers/includes/details.html:14
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:46
 msgid "Packaged app"
 msgstr "Ƥȧƈķȧɠḗḓ ȧƥƥ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:53
-#: mkt/reviewers/templates/reviewers/includes/details.html:18
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
+#: mkt/reviewers/templates/reviewers/includes/details.html:17
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:49
 msgid "Hosted app"
 msgstr "Ħǿşŧḗḓ ȧƥƥ"
 
@@ -24863,11 +24870,6 @@ msgstr "Ƞǿ ƥřḗŀǿȧḓ ƈȧƞḓīḓȧŧḗş ƒǿŭƞḓ"
 msgid "Receipt for {0}"
 msgstr "Řḗƈḗīƥŧ ƒǿř {0}"
 
-#. L10n: {0} is the addon name.
-#: mkt/purchase/webpay.py:43
-msgid "Firefox Marketplace purchase of {0}"
-msgstr "Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ ƥŭřƈħȧşḗ ǿƒ {0}"
-
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
 msgstr "Řḗƈḗīƥŧ"
@@ -24936,8 +24938,8 @@ msgstr "Īƞṽȧŀīḓ ŧḗşŧ řḗƈḗīƥŧ"
 msgid "Refunded test receipt"
 msgstr "Řḗƒŭƞḓḗḓ ŧḗşŧ řḗƈḗīƥŧ"
 
-#: mkt/receipts/views.py:98
-#: mkt/receipts/views.py:188
+#: mkt/receipts/views.py:99
+#: mkt/receipts/views.py:190
 msgid "There was a problem installing the app."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ īƞşŧȧŀŀīƞɠ ŧħḗ ȧƥƥ."
 
@@ -25069,35 +25071,35 @@ msgstr "Ƈħīƞȧ ({0})"
 msgid "Device ({0})"
 msgstr "Ḓḗṽīƈḗ ({0})"
 
-#: mkt/reviewers/utils.py:425
+#: mkt/reviewers/utils.py:426
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ ŧħḗ şȧƞḓƀǿẋḗḓ ȧƥƥ şǿ īŧ ȧƥƥḗȧřş ǿƞ ŧħḗ ƥŭƀŀīƈ şīḓḗ."
 
-#: mkt/reviewers/utils.py:431
+#: mkt/reviewers/utils.py:432
 msgid "This will reject the app and remove it from the review queue."
 msgstr "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħḗ ȧƥƥ ȧƞḓ řḗḿǿṽḗ īŧ ƒřǿḿ ŧħḗ řḗṽīḗẇ ɋŭḗŭḗ."
 
-#: mkt/reviewers/utils.py:437
+#: mkt/reviewers/utils.py:438
 msgid "This will send the author(s) an email requesting more information."
 msgstr "Ŧħīş ẇīŀŀ şḗƞḓ ŧħḗ ȧŭŧħǿř(ş) ȧƞ ḗḿȧīŀ řḗɋŭḗşŧīƞɠ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
-#: mkt/reviewers/utils.py:441
+#: mkt/reviewers/utils.py:442
 msgid "Escalate"
 msgstr "Ḗşƈȧŀȧŧḗ"
 
-#: mkt/reviewers/utils.py:443
+#: mkt/reviewers/utils.py:444
 msgid "Flag this app for an admin to review."
 msgstr "Ƒŀȧɠ ŧħīş ȧƥƥ ƒǿř ȧƞ ȧḓḿīƞ ŧǿ řḗṽīḗẇ."
 
-#: mkt/reviewers/utils.py:448
+#: mkt/reviewers/utils.py:449
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "Ḿȧķḗ ȧ ƈǿḿḿḗƞŧ ǿƞ ŧħīş ȧƥƥ. Ŧħḗ ȧŭŧħǿř ẇǿƞ'ŧ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħīş."
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:453
 msgid "Clear Escalation"
 msgstr "Ƈŀḗȧř Ḗşƈȧŀȧŧīǿƞ"
 
-#: mkt/reviewers/utils.py:454
+#: mkt/reviewers/utils.py:455
 msgid ""
 "Clear this app from the escalation queue. The author will get no email or "
 "see comments here."
@@ -25105,11 +25107,11 @@ msgstr ""
 "Ƈŀḗȧř ŧħīş ȧƥƥ ƒřǿḿ ŧħḗ ḗşƈȧŀȧŧīǿƞ ɋŭḗŭḗ. Ŧħḗ ȧŭŧħǿř ẇīŀŀ ɠḗŧ ƞǿ ḗḿȧīŀ ǿř "
 "şḗḗ ƈǿḿḿḗƞŧş ħḗřḗ."
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
 msgstr "Ƈŀḗȧř Řḗ-řḗṽīḗẇ"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:462
 msgid ""
 "Clear this app from the re-review queue. The author will get no email or see "
 "comments here."
@@ -25117,41 +25119,41 @@ msgstr ""
 "Ƈŀḗȧř ŧħīş ȧƥƥ ƒřǿḿ ŧħḗ řḗ-řḗṽīḗẇ ɋŭḗŭḗ. Ŧħḗ ȧŭŧħǿř ẇīŀŀ ɠḗŧ ƞǿ ḗḿȧīŀ ǿř şḗḗ "
 "ƈǿḿḿḗƞŧş ħḗřḗ."
 
-#: mkt/reviewers/utils.py:466
+#: mkt/reviewers/utils.py:467
 msgid "Disable app"
 msgstr "Ḓīşȧƀŀḗ ȧƥƥ"
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:469
 msgid ""
 "Disable the app, removing it from public results. Sends comments to author."
 msgstr ""
 "Ḓīşȧƀŀḗ ŧħḗ ȧƥƥ, řḗḿǿṽīƞɠ īŧ ƒřǿḿ ƥŭƀŀīƈ řḗşŭŀŧş. Şḗƞḓş ƈǿḿḿḗƞŧş ŧǿ ȧŭŧħǿř."
 
-#: mkt/reviewers/views.py:84
+#: mkt/reviewers/views.py:83
 msgid "New Apps (Under 5 days)"
 msgstr "Ƞḗẇ Ȧƥƥş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Ǿƞŀẏ şḗƞīǿř řḗṽīḗẇḗřş ƈȧƞ řḗṽīḗẇ ƀŀǿƈķŀīşŧḗḓ ȧƥƥş."
 
-#: mkt/reviewers/views.py:306
+#: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Ḓḗṽīƈḗ(ş) ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:310
-#: mkt/reviewers/views.py:330
+#: mkt/reviewers/views.py:309
+#: mkt/reviewers/views.py:329
 #: mkt/submit/forms.py:36
 #: mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "Řḗḿǿṽḗḓ {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:332
+#: mkt/reviewers/views.py:331
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Řḗɋŭīřḗḿḗƞŧş ƈħȧƞɠḗḓ ƀẏ řḗṽīḗẇḗř: {0}"
 
-#: mkt/reviewers/views.py:355
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
@@ -25247,12 +25249,12 @@ msgid "{region} Review Queue"
 msgstr "{řḗɠīǿƞ} Řḗṽīḗẇ Ɋŭḗŭḗ"
 
 #: mkt/reviewers/templates/reviewers/review.html:31
-#: mkt/reviewers/templates/reviewers/includes/details.html:23
+#: mkt/reviewers/templates/reviewers/includes/details.html:22
 msgid "In re-review queue"
 msgstr "Īƞ řḗ-řḗṽīḗẇ ɋŭḗŭḗ"
 
 #: mkt/reviewers/templates/reviewers/review.html:34
-#: mkt/reviewers/templates/reviewers/includes/details.html:24
+#: mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In escalation queue"
 msgstr "Īƞ ḗşƈȧŀȧŧīǿƞ ɋŭḗŭḗ"
 
@@ -25299,45 +25301,45 @@ msgstr "Ȧŧŧȧƈħḿḗƞŧş"
 msgid "This version has not been reviewed"
 msgstr "Ŧħīş ṽḗřşīǿƞ ħȧş ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:6
 msgid "ID"
 msgstr "ĪḒ"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:38
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:60
+#: mkt/reviewers/templates/reviewers/includes/details.html:37
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
 msgstr "Ȧƥƥ ḓǿḿȧīƞ"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:43
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:65
+#: mkt/reviewers/templates/reviewers/includes/details.html:42
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:64
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 msgstr "<strong>ĪḒȠ ḓǿḿȧīƞ!</strong> ƥŭƞẏƈǿḓḗ ṽḗřşīǿƞ: %(punycode_app_domain)s"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:50
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
+#: mkt/reviewers/templates/reviewers/includes/details.html:49
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:71
 msgid "Signed Zip"
 msgstr "Şīɠƞḗḓ Ẑīƥ"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:72
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
+#: mkt/reviewers/templates/reviewers/includes/details.html:71
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:93
 msgid "This app has not yet been rated"
 msgstr "Ŧħīş ȧƥƥ ħȧş ƞǿŧ ẏḗŧ ƀḗḗƞ řȧŧḗḓ"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:97
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
+#: mkt/reviewers/templates/reviewers/includes/details.html:96
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Total Downloads"
 msgstr "Ŧǿŧȧŀ Ḓǿẇƞŀǿȧḓş"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:115
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
+#: mkt/reviewers/templates/reviewers/includes/details.html:114
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
 msgstr "Ḓḗṽīƈḗ Ŧẏƥḗş"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:148
+#: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
 msgstr "Řḗɋŭīřḗḿḗƞŧş"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:172
+#: mkt/reviewers/templates/reviewers/includes/details.html:171
 msgid "More about this app"
 msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧƥƥ"
 
@@ -25353,9 +25355,9 @@ msgstr "Ƥřḗḿīŭḿ ẇīŧħ Īƞ-Ȧƥƥ"
 msgid "Free with In-App"
 msgstr "Ƒřḗḗ ẇīŧħ Īƞ-Ȧƥƥ"
 
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:170
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:171
 msgid "more..."
 msgstr "ḿǿřḗ..."
 
@@ -25371,6 +25373,14 @@ msgid ""
 msgstr ""
 "Ṽḗřşīǿƞ %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
 "class=\"light\">&middot; %(version_status)s</span>"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
+msgid "Next Page"
+msgstr "Ƞḗẋŧ Ƥȧɠḗ"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
+msgid "Previous Page"
+msgstr "Ƥřḗṽīǿŭş Ƥȧɠḗ"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -25557,20 +25567,20 @@ msgstr "Ƥȧƈķȧɠḗḓ ȧƥƥş ȧřḗ ƞǿŧ ẏḗŧ şŭƥƥǿřŧḗḓ
 msgid "Agree and Continue"
 msgstr "Ȧɠřḗḗ ȧƞḓ Ƈǿƞŧīƞŭḗ"
 
-#: mkt/submit/forms.py:274
+#: mkt/submit/forms.py:277
 msgid "When should your app be made available for sale?"
 msgstr "Ẇħḗƞ şħǿŭŀḓ ẏǿŭř ȧƥƥ ƀḗ ḿȧḓḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:281
+#: mkt/submit/forms.py:284
 msgid "App to upgrade from"
 msgstr "Ȧƥƥ ŧǿ ŭƥɠřȧḓḗ ƒřǿḿ"
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
 msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ:"
 
-#: mkt/submit/forms.py:349
+#: mkt/submit/forms.py:352
 msgid ""
 "A privacy policy that explains what data is transmitted from a user's "
 "computer and how it is used is required."
@@ -25578,27 +25588,27 @@ msgstr ""
 "Ȧ ƥřīṽȧƈẏ ƥǿŀīƈẏ ŧħȧŧ ḗẋƥŀȧīƞş ẇħȧŧ ḓȧŧȧ īş ŧřȧƞşḿīŧŧḗḓ ƒřǿḿ ȧ ŭşḗř'ş "
 "ƈǿḿƥŭŧḗř ȧƞḓ ħǿẇ īŧ īş ŭşḗḓ īş řḗɋŭīřḗḓ."
 
-#: mkt/submit/forms.py:353
+#: mkt/submit/forms.py:356
 msgid "Homepage:"
 msgstr "Ħǿḿḗƥȧɠḗ:"
 
-#: mkt/submit/forms.py:354
+#: mkt/submit/forms.py:357
 msgid "If your app has another homepage, enter its address here."
 msgstr "Īƒ ẏǿŭř ȧƥƥ ħȧş ȧƞǿŧħḗř ħǿḿḗƥȧɠḗ, ḗƞŧḗř īŧş ȧḓḓřḗşş ħḗřḗ."
 
-#: mkt/submit/forms.py:358
+#: mkt/submit/forms.py:361
 msgid "Support Website:"
 msgstr "Şŭƥƥǿřŧ Ẇḗƀşīŧḗ:"
 
-#: mkt/submit/forms.py:359
+#: mkt/submit/forms.py:362
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Īƒ ẏǿŭř ȧƥƥ ħȧş ȧ şŭƥƥǿřŧ ẇḗƀşīŧḗ ǿř ƒǿřŭḿ, ḗƞŧḗř īŧş ȧḓḓřḗşş ħḗřḗ."
 
-#: mkt/submit/forms.py:363
+#: mkt/submit/forms.py:366
 msgid "Support Email:"
 msgstr "Şŭƥƥǿřŧ Ḗḿȧīŀ:"
 
-#: mkt/submit/forms.py:364
+#: mkt/submit/forms.py:367
 msgid ""
 "This email address will be listed publicly on the Marketplace and used by "
 "end users to contact you with support issues. This email address will be "
@@ -25608,15 +25618,15 @@ msgstr ""
 "ḗƞḓ ŭşḗřş ŧǿ ƈǿƞŧȧƈŧ ẏǿŭ ẇīŧħ şŭƥƥǿřŧ īşşŭḗş. Ŧħīş ḗḿȧīŀ ȧḓḓřḗşş ẇīŀŀ ƀḗ "
 "ŀīşŧḗḓ ƥŭƀŀīƈŀẏ ǿƞ ẏǿŭř ȧƥƥ ḓḗŧȧīŀş ƥȧɠḗ."
 
-#: mkt/submit/forms.py:371
+#: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
 msgstr "Ḓǿḗş ẏǿŭř ȧƥƥ řḗɋŭīřḗ Ƒŀȧşħ şŭƥƥǿřŧ?"
 
-#: mkt/submit/forms.py:379
+#: mkt/submit/forms.py:382
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "Ƥŭƀŀīşħ ḿẏ ȧƥƥ īƞ ŧħḗ Ƒīřḗƒǿẋ Ḿȧřķḗŧƥŀȧƈḗ ȧş şǿǿƞ ȧş īŧ'ş řḗṽīḗẇḗḓ."
 
-#: mkt/submit/forms.py:381
+#: mkt/submit/forms.py:384
 msgid ""
 "If selected your app will be published immediately following its approval by "
 "reviewers. If you don't select this option you will be notified via email "
@@ -25970,20 +25980,20 @@ msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2275
+#: mkt/webapps/models.py:2294
 msgid "awaiting approval"
 msgstr "ȧẇȧīŧīƞɠ ȧƥƥřǿṽȧŀ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2279
+#: mkt/webapps/models.py:2298
 msgid "requires additional review"
 msgstr "řḗɋŭīřḗş ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ"
 
-#: mkt/webapps/models.py:2330
+#: mkt/webapps/models.py:2349
 msgid "{region} approval status"
 msgstr "{řḗɠīǿƞ} ȧƥƥřǿṽȧŀ şŧȧŧŭş"
 
-#: mkt/webapps/models.py:2335
+#: mkt/webapps/models.py:2354
 msgid "{region} nomination date"
 msgstr "{řḗɠīǿƞ} ƞǿḿīƞȧŧīǿƞ ḓȧŧḗ"
 

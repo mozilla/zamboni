@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: 2014-02-27 01:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1393464622.0\n"
 
-#: apps/addons/buttons.py:188
+#: apps/addons/buttons.py:189
 msgid "Download Now"
 msgstr "立即下載"
 
-#: apps/addons/buttons.py:190 mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
+#: apps/addons/buttons.py:191 mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
@@ -27,30 +27,30 @@ msgid "Download"
 msgstr "下載"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: apps/addons/buttons.py:194
+#: apps/addons/buttons.py:195
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "繼續下載&nbsp;&rarr;"
 
-#: apps/addons/buttons.py:199
+#: apps/addons/buttons.py:200
 msgid "Install App"
 msgstr "安裝應用程式"
 
-#: apps/addons/buttons.py:213
+#: apps/addons/buttons.py:214
 msgctxt "install_button"
 msgid "Featured"
 msgstr "精選"
 
-#: apps/addons/buttons.py:218
+#: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "尚未審查"
 
-#: apps/addons/buttons.py:225
+#: apps/addons/buttons.py:226
 msgctxt "install_button"
 msgid "Experimental"
 msgstr "實驗版"
 
-#: apps/addons/buttons.py:232
+#: apps/addons/buttons.py:233
 msgid "Add to {0}"
 msgstr "新增至 {0}"
 
@@ -58,11 +58,11 @@ msgstr "新增至 {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "名稱已經有人使用。請嘗試其他名稱。"
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:555 mkt/submit/forms.py:403
+#: apps/addons/forms.py:62 mkt/developers/forms.py:561 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:558 mkt/submit/forms.py:407
+#: apps/addons/forms.py:65 mkt/developers/forms.py:564 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
@@ -101,7 +101,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "您的附加元件目前為此應用程式的精選物件，無法更改類別。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:859 mkt/webapps/api.py:260
+#: apps/addons/forms.py:256 mkt/developers/forms.py:865 mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
@@ -134,9 +134,9 @@ msgstr "輸入一個新的作者電子郵件地址"
 msgid "Not Reviewed"
 msgstr "尚未審查"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:328 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
+#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:85 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:229 apps/browse/views.py:446
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "精選"
@@ -150,28 +150,28 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "在附加元件管理員中詢問使用者(包含 Firefox 4 或更新的版本)"
 
 # Column name in a table.
-#: apps/addons/models.py:2102
+#: apps/addons/models.py:2101
 msgid "Listed"
 msgstr "顯示"
 
-#: apps/addons/views.py:330 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:329 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "熱門"
 
-#: apps/addons/views.py:331 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
+#: apps/addons/views.py:330 apps/browse/views.py:232 apps/browse/views.py:290 apps/browse/views.py:471
 msgid "Recently Added"
 msgstr "最近新增"
 
-#: apps/addons/views.py:332 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
+#: apps/addons/views.py:331 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
 msgid "Recently Updated"
 msgstr "最近更新"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:515
+#: apps/addons/views.py:514
 msgid "Contribution for {0}"
 msgstr "贊助 {0}"
 
-#: apps/addons/views.py:603
+#: apps/addons/views.py:602
 msgid "Abuse reported."
 msgstr "已回報濫用。"
 
@@ -318,7 +318,7 @@ msgstr "捐款"
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:281
 #: apps/devhub/templates/devhub/versions/list.html:324 apps/devhub/templates/devhub/versions/list.html:357 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:335
-#: mkt/developers/templates/developers/apps/status.html:359 mkt/developers/templates/developers/apps/version_edit.html:81 mkt/developers/templates/developers/apps/edit/admin.html:167
+#: mkt/developers/templates/developers/apps/status.html:359 mkt/developers/templates/developers/apps/version_edit.html:81 mkt/developers/templates/developers/apps/edit/admin.html:185
 #: mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:68
 #: mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
@@ -429,20 +429,20 @@ msgid "Add-on Information for {0}"
 msgstr "{0} 的附加元件資訊"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:73 mkt/developers/views.py:78
-#: mkt/reviewers/templates/reviewers/includes/details.html:75 mkt/reviewers/templates/reviewers/includes/mobile_details.html:95
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:448 apps/devhub/views.py:72 mkt/developers/views.py:77
+#: mkt/reviewers/templates/reviewers/includes/details.html:74 mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
 msgstr "更新日期"
 
 #: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
-#: apps/discovery/templates/discovery/addons/detail.html:83 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:81
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
+#: apps/discovery/templates/discovery/addons/detail.html:83 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:80
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
 msgstr "網站"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51 apps/addons/templates/addons/mobile/details.html:81 apps/search/templates/search/results.html:72 apps/versions/templates/versions/version.html:21
-#: mkt/reviewers/templates/reviewers/includes/details.html:90 mkt/reviewers/templates/reviewers/includes/mobile_details.html:110
+#: mkt/reviewers/templates/reviewers/includes/details.html:89 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Works with"
 msgstr "相容於"
 
@@ -465,7 +465,7 @@ msgid "Downloads"
 msgstr "下載次數"
 
 #: apps/addons/templates/addons/details_box.html:87 apps/addons/templates/addons/details_box.html:99 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
-#: apps/devhub/templates/devhub/personas/edit.html:60 mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:121
+#: apps/devhub/templates/devhub/personas/edit.html:60 mkt/reviewers/templates/reviewers/includes/details.html:100 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
 msgstr "檢視統計資訊"
 
@@ -474,20 +474,20 @@ msgid "Average Daily Users"
 msgstr "平均每日使用者數"
 
 #: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:67 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:36
-#: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
+#: mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
 msgid "Abuse Reports"
 msgstr "濫用回報"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:310 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
+#: mkt/reviewers/templates/reviewers/includes/details.html:123 mkt/reviewers/templates/reviewers/includes/mobile_details.html:145 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
 #: templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
 
-#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:127
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
+#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:126
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:148
 msgid "View Privacy Policy"
 msgstr "檢視隱私權保護政策"
 
@@ -526,15 +526,13 @@ msgstr "安裝開發版本"
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>注意:</strong> Mozilla 不會審查此附加元件的開發版本。在您安裝開發版本後，您會持續由該開發者收到開發版本的更新版。如果"
-"您不想要再收到此更新，請進入上方的連結重新安裝預設的正式版本。"
+msgstr "<strong>注意:</strong> Mozilla 不會審查此附加元件的開發版本。在您安裝開發版本後，您會持續由該開發者收到開發版本的更新版。如果您不想要再收到此更新，請進入上方的連結重新安裝預設的正式版本。"
 
 #: apps/addons/templates/addons/details_box.html:215 apps/addons/templates/addons/impala/details.html:286
 msgid "Version {0}:"
 msgstr "版本 {0}:"
 
-#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:175
+#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:174
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "這裡什麼都沒有! 開發者並未寫下任何詳細資訊。"
 
@@ -581,7 +579,7 @@ msgid "Back to {0}…"
 msgstr "回到 {0}..."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox, Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:257
 msgid "Add-ons for {0}"
 msgstr "{0} 附加元件"
 
@@ -594,7 +592,7 @@ msgid "Popular Extensions"
 msgstr "熱門擴充套件"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/side_nav.html:18
-#: apps/amo/templates/amo/site_nav.html:3 apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:293 apps/browse/views.py:472
+#: apps/amo/templates/amo/site_nav.html:3 apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:230 apps/browse/views.py:291 apps/browse/views.py:470
 msgid "Most Popular"
 msgstr "最熱門"
 
@@ -635,7 +633,7 @@ msgstr "{0} 更新"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:44 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:308 mkt/reviewers/views.py:329 mkt/submit/forms.py:34 mkt/submit/forms.py:44
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:307 mkt/reviewers/views.py:328 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "{0} 新增"
 
@@ -650,7 +648,7 @@ msgid_plural "%(num)s users"
 msgstr[0] "%(num)s 個使用者"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:22
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:23
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "每週下載 {0} 次"
@@ -756,7 +754,7 @@ msgstr "查看本作者所有佈景主題"
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 mkt/developers/templates/developers/apps/edit/basic.html:148
-#: mkt/reviewers/templates/reviewers/includes/details.html:137 mkt/reviewers/templates/reviewers/includes/mobile_details.html:157 mkt/reviewers/templates/reviewers/themes/themes.html:35
+#: mkt/reviewers/templates/reviewers/includes/details.html:136 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/reviewers/templates/reviewers/themes/themes.html:35
 #: templates/categories.html:7
 msgid "Categories"
 msgstr "類別"
@@ -810,7 +808,7 @@ msgstr "新增"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250
 #: mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10 mkt/developers/templates/developers/apps/edit/details.html:8
 #: mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7 mkt/developers/templates/developers/apps/edit/technical.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/ratings/templates/ratings/rating.html:43
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/ratings/templates/ratings/rating.html:43
 #: mkt/submit/templates/submit/details.html:83 templates/qunit/qunit.html:755
 msgid "Edit"
 msgstr "編輯"
@@ -954,7 +952,7 @@ msgstr "回報"
 #: apps/devhub/templates/devhub/versions/list.html:281 apps/devhub/templates/devhub/versions/list.html:324 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:103 mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:359
-#: mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/developers/templates/developers/apps/edit/basic.html:172
+#: mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:187 mkt/developers/templates/developers/apps/edit/basic.html:172
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:70 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
@@ -1155,7 +1153,7 @@ msgstr "資訊"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "使用 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 授權發行"
 
-#: apps/addons/templates/addons/impala/details.html:209 apps/addons/templates/addons/impala/details.html:214 apps/amo/helpers.py:410 apps/devhub/forms.py:139 apps/devhub/forms.py:169
+#: apps/addons/templates/addons/impala/details.html:209 apps/addons/templates/addons/impala/details.html:214 apps/amo/helpers.py:413 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "自訂授權"
@@ -1231,7 +1229,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "關於開發者"
 
-#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:112 apps/users/templates/users/profile.html:29
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:116 apps/users/templates/users/profile.html:29
 msgid "No Photo"
 msgstr "無照片"
 
@@ -1365,12 +1363,12 @@ msgstr "了解更多"
 msgid "Users"
 msgstr "使用者數"
 
-#: apps/addons/templates/addons/mobile/details.html:94 apps/browse/views.py:59 apps/browse/views.py:70 apps/devhub/views.py:82 apps/search/forms.py:93 apps/search/forms.py:101
-#: mkt/reviewers/templates/reviewers/includes/details.html:104 mkt/reviewers/templates/reviewers/includes/mobile_details.html:124 mkt/search/forms.py:16
+#: apps/addons/templates/addons/mobile/details.html:94 apps/browse/views.py:58 apps/browse/views.py:69 apps/devhub/views.py:81 apps/search/forms.py:94 apps/search/forms.py:102
+#: mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125 mkt/search/forms.py:16
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
-#: apps/addons/templates/addons/mobile/details.html:101 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:956 apps/devhub/templates/devhub/versions/list.html:167
+#: apps/addons/templates/addons/mobile/details.html:101 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:958 apps/devhub/templates/devhub/versions/list.html:167
 msgid "Version"
 msgstr "版本"
 
@@ -1420,7 +1418,7 @@ msgstr "您需要 Firefox 瀏覽器才能安裝附加元件。<a href=\"http://m
 msgid "Return to the {0} Add-ons homepage"
 msgstr "回到 {0} 附加元件首頁"
 
-#: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:259 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26
 #: templates/menu_links.html:4 templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19
 #: templates/mobile/base_addons.html:47
@@ -1431,8 +1429,8 @@ msgstr "附加元件"
 msgid "Easy ways to personalize."
 msgstr "個人化非常簡單。"
 
-#: apps/addons/templates/addons/mobile/home.html:22 apps/devhub/templates/devhub/addons/submit/done.html:61 apps/discovery/templates/discovery/pane.html:35
-#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/addons/templates/addons/mobile/home.html:22 apps/discovery/templates/discovery/pane.html:35 apps/discovery/templates/discovery/addons/detail.html:22
+#: apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "更多資訊"
 
@@ -1454,12 +1452,12 @@ msgstr "瀏覽所有的熱門附加元件"
 msgid "More Add-ons"
 msgstr "更多附加元件"
 
-#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:13 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
+#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:13 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:16
 msgid "Highest Rated"
 msgstr "評分最高"
 
-#: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:88
-#: apps/browse/views.py:57 apps/browse/views.py:67 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:90 apps/search/forms.py:106
+#: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
 #: mkt/search/forms.py:19
 msgid "Newest"
 msgstr "最新的"
@@ -1534,7 +1532,7 @@ msgstr "這必須是個正確的十六進位顏色代碼，像是 #000000。"
 msgid "Enter at least one value."
 msgstr "請至少輸入一個數值。"
 
-#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:184 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1544,22 +1542,22 @@ msgstr "請至少輸入一個數值。"
 msgid "Collections"
 msgstr "收藏集"
 
-#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:193 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "字典及語言套件"
 
-#: apps/amo/helpers.py:278 apps/amo/helpers.py:280 mkt/developers/helpers.py:46 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
+#: apps/amo/helpers.py:281 apps/amo/helpers.py:283 mkt/developers/helpers.py:46 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
 
-#: apps/amo/helpers.py:321
+#: apps/amo/helpers.py:324
 msgid "Apps Marketplace"
 msgstr "應用程式 Marketplace"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:440
+#: apps/amo/helpers.py:443
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -1710,7 +1708,7 @@ msgid "Comment on {addon} {version}."
 msgstr "在 {addon} {version} 上的意見。"
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:475
-#: apps/editors/templates/editors/themes/history_table.html:11 mkt/constants/comm.py:34 mkt/reviewers/utils.py:446 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: apps/editors/templates/editors/themes/history_table.html:11 mkt/constants/comm.py:34 mkt/reviewers/utils.py:447 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "意見"
 
@@ -1950,81 +1948,89 @@ msgstr "{addon} 已經重新提交審核。"
 msgid "App Resubmission"
 msgstr "重新提交 App"
 
-#: apps/amo/log.py:543
+#: apps/amo/log.py:533
+msgid "{addon} auto-escalated because its a VIP app."
+msgstr ""
+
+#: apps/amo/log.py:534
+msgid "VIP auto-escalation"
+msgstr ""
+
+#: apps/amo/log.py:551
 msgid "Created: {0}."
 msgstr "已建立： {0}。"
 
-#: apps/amo/log.py:549
+#: apps/amo/log.py:557
 msgid "Edited field: {2} set to: {0}."
 msgstr "已編輯欄位：設定 {2} 到 {0}。"
 
-#: apps/amo/log.py:555
+#: apps/amo/log.py:563
 msgid "Deleted: {1}."
 msgstr "已刪除： {1}。"
 
-#: apps/amo/log.py:561
+#: apps/amo/log.py:569
 msgid "User {user} edited, reason: {1}"
 msgstr "使用者 {user} 已編輯，原因： {1}"
 
-#: apps/amo/log.py:567
+#: apps/amo/log.py:575
 msgid "User {user} anonymized."
 msgstr "使用者 {user} 已匿名。"
 
-#: apps/amo/log.py:573
+#: apps/amo/log.py:581
 msgid "User {user} restricted."
 msgstr "使用者 {user} 已禁止。"
 
-#: apps/amo/log.py:579
+#: apps/amo/log.py:587
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理員 {0} 觀看了 {user} 的活動紀錄。"
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:594
 msgid "{review} for {addon} updated."
 msgstr "{addon} 的 {review} 已更新。"
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:600
 msgid "{addon} reviewed."
 msgstr "{addon} 已審核。"
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:606
 msgid "User {0.name} added to {group}."
 msgstr "使用者 {0.name} 已新增至 {group}。"
 
-#: apps/amo/log.py:606
+#: apps/amo/log.py:614
 msgid "User {0.name} removed from {group}."
 msgstr "使用者 {0.name} 從 {group} 移除。"
 
-#: apps/amo/log.py:613
+#: apps/amo/log.py:621
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} 的最低需求已被審核者手動更改。"
 
-#: apps/amo/log.py:614
+#: apps/amo/log.py:622
 msgid "Requirements Changed by Reviewer"
 msgstr "需求已被審核者更改。"
 
-#: apps/amo/log.py:621
+#: apps/amo/log.py:629
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} 的最低需求已被手動更改。"
 
-#: apps/amo/log.py:622
+#: apps/amo/log.py:630
 msgid "Requirements Changed"
 msgstr "需求已更改"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:630
+#: apps/amo/log.py:638
 msgid "{version} status changed to {0}."
 msgstr "{version} 狀態已變更為 {0}。"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:637
+#: apps/amo/log.py:645
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "使用者 {0.name} {0.id} 已透過搜尋工具刪除。"
 
-#: apps/amo/log.py:643
+#: apps/amo/log.py:651
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} 內容評分已更改為成人內容。"
 
-#: apps/amo/log.py:649
+#: apps/amo/log.py:657
 msgid "{addon} content rating changed."
 msgstr "{addon} 內容分級已改變。"
 
@@ -2126,8 +2132,8 @@ msgstr ""
 "<p>請輸入下面的<strong>兩個單字</strong>，並以<strong>以空格分隔</strong>。 </p> <p>如果這很難閱讀，你也可以<a href=\"#\" id=\"recaptcha_different\">試試其他不一樣的字詞</a>或是<a href=\"#\" id="
 "\"recaptcha_audio\">試試不同類型的挑戰</a>。</p>"
 
-#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
-#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
+#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:292 apps/search/forms.py:90 apps/search/forms.py:103 mkt/search/forms.py:17
 msgid "Top Rated"
 msgstr "評分最高"
 
@@ -2145,7 +2151,7 @@ msgstr "擴充套件"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "想要進一步自訂嗎?試試<b>完整佈景主題</b>"
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
+#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:86
 msgid "Most Followers"
 msgstr "最多訂閱者"
 
@@ -2159,7 +2165,7 @@ msgid "Collections I'm Following"
 msgstr "我訂閱的收藏集"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:479
+#: apps/users/models.py:480
 msgid "My Favorite Add-ons"
 msgstr "我最愛的附加元件"
 
@@ -2219,15 +2225,15 @@ msgid "Another Body"
 msgstr "另一個本文"
 
 #. L10n: {0} is comma separated data errors.
-#: apps/api/handlers.py:62
+#: apps/api/handlers.py:61
 msgid "Invalid data provided: {0}"
 msgstr "無效的資料內容：{0}"
 
-#: apps/api/handlers.py:70
+#: apps/api/handlers.py:69
 msgid "Add-on did not validate: %s"
 msgstr "附加元件尚未驗證：%s"
 
-#: apps/api/views.py:246
+#: apps/api/views.py:247
 msgid "Not implemented yet."
 msgstr "尚未實作。"
 
@@ -2352,7 +2358,7 @@ msgstr "隱私權政策："
 msgid "Icon"
 msgstr "圖示"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:340
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:336
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
 
@@ -2360,11 +2366,11 @@ msgstr "不允許加入鏈結。"
 msgid "This url is already in use by another collection"
 msgstr "這個網址已被其他的收藏集使用"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1223 mkt/developers/utils.py:61
+#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1207 mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1241 apps/users/forms.py:331
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1225 apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -2404,15 +2410,15 @@ msgstr "最愛"
 msgid "Remove from favorites"
 msgstr "從最愛中移除"
 
-#: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:72 apps/devhub/views.py:80
-#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
-#: apps/search/forms.py:92 apps/search/forms.py:105 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:77
-#: mkt/developers/views.py:85 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
+#: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:447 apps/devhub/views.py:71 apps/devhub/views.py:79
+#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
+#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:76
+#: mkt/developers/views.py:84 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "名稱"
 
-#: apps/bandwagon/views.py:91
+#: apps/bandwagon/views.py:90
 msgid "Recently Popular"
 msgstr "最近熱門的"
 
@@ -2440,7 +2446,7 @@ msgstr "已更新收藏集！"
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">檢視您的收藏集</a> 以檢視更新。"
 
-#: apps/bandwagon/views.py:555
+#: apps/bandwagon/views.py:554
 msgid "Icon Deleted"
 msgstr "已刪除圖示"
 
@@ -2692,7 +2698,7 @@ msgstr "編輯 {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:27
 #: apps/editors/templates/editors/themes/themes.html:60 mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23
-#: mkt/reviewers/templates/reviewers/includes/details.html:156 mkt/reviewers/templates/reviewers/themes/themes.html:61
+#: mkt/reviewers/templates/reviewers/includes/details.html:155 mkt/reviewers/templates/reviewers/themes/themes.html:61
 msgid "Description"
 msgstr "敘述"
 
@@ -2707,7 +2713,7 @@ msgstr "貢獻者 & 更多"
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:52 mkt/developers/templates/developers/apps/version_edit.html:81
-#: mkt/developers/templates/developers/apps/edit/admin.html:167 mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/admin.html:185 mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:70 mkt/developers/templates/developers/payments/premium.html:99
 #: mkt/developers/templates/developers/payments/premium.html:144 mkt/developers/templates/developers/payments/premium.html:242 mkt/developers/templates/developers/payments/premium.html:256
@@ -2987,27 +2993,27 @@ msgstr "搜尋工具與搜尋相關的擴充套件"
 msgid "Search tools"
 msgstr "搜尋工具"
 
-#: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:88
+#: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:89
 msgid "Most Users"
 msgstr "最多使用者"
 
-#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:291 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:96
+#: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:289 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
+#: apps/search/forms.py:97
 msgid "Up & Coming"
 msgstr "嶄露頭角"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:74 apps/devhub/views.py:81 mkt/developers/views.py:79 mkt/developers/views.py:86
+#: apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:80 mkt/developers/views.py:78 mkt/developers/views.py:85
 msgid "Created"
 msgstr "建立日期"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:75 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:80
+#: apps/browse/views.py:450 apps/devhub/views.py:74 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:79
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
 msgstr "下載次數"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
-#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:81 mkt/reviewers/templates/reviewers/includes/details.html:94
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
+#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
+#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:80 mkt/reviewers/templates/reviewers/includes/details.html:93
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Rating"
 msgstr "評分"
 
@@ -3251,7 +3257,8 @@ msgstr "建立您自己的佈景主題"
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr "您的瀏覽器，您的風格! 使用您自己的設計裝扮!"
 
-#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:100 mkt/developers/templates/developers/apps/status.html:71
+#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/index.html:95 apps/devhub/templates/devhub/addons/submit/done.html:70
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:54 apps/devhub/templates/devhub/versions/list.html:100 mkt/developers/templates/developers/apps/status.html:71
 msgid "Learn more"
 msgstr "詳細資訊"
 
@@ -3304,7 +3311,7 @@ msgstr "更多佈景主題"
 msgid "&laquo; All Themes"
 msgstr "&laquo; 全部佈景主題"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:171 mkt/search/forms.py:27
+#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:168 mkt/search/forms.py:27
 msgid "All"
 msgstr "全部"
 
@@ -3320,7 +3327,7 @@ msgstr "二進位"
 msgid "Non-binary"
 msgstr "非二進位"
 
-#: apps/compat/views.py:88 apps/constants/base.py:418 apps/constants/payments.py:52 apps/devhub/forms.py:160
+#: apps/compat/views.py:84 apps/constants/base.py:418 apps/constants/payments.py:52 apps/devhub/forms.py:160
 msgid "Other"
 msgstr "其它"
 
@@ -3344,7 +3351,7 @@ msgstr "所有前 95% 的附加元件"
 msgid "All active add-ons"
 msgstr "所有有效的附加元件"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:946 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:952 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
@@ -3415,7 +3422,7 @@ msgstr "依應用程式過濾"
 msgid "Report Type"
 msgstr "報告類型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:953 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:60
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:955 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:60
 msgid "Application"
 msgstr "應用程式"
 
@@ -3472,7 +3479,7 @@ msgstr "Firefox Android 版"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: apps/constants/applications.py:149 mkt/api/forms.py:102 mkt/reviewers/forms.py:257
+#: apps/constants/applications.py:149 mkt/api/forms.py:104 mkt/reviewers/forms.py:257
 msgid "Unknown"
 msgstr "未知"
 
@@ -3497,7 +3504,7 @@ msgstr "Firefox Tablet"
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: apps/constants/base.py:26 mkt/lookup/views.py:161
+#: apps/constants/base.py:26 mkt/lookup/views.py:155
 msgid "Incomplete"
 msgstr "尚未完成"
 
@@ -3814,7 +3821,7 @@ msgid "Duplicate"
 msgstr "重製"
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:466 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92 mkt/constants/reviewers.py:24
-#: mkt/reviewers/utils.py:429 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
+#: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "退回"
 
@@ -3999,8 +4006,8 @@ msgstr "每位作者只可被列出一次。"
 msgid "Password incorrect."
 msgstr "密碼不正確。"
 
-#: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:126 mkt/constants/submit.py:7
-#: mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:519
+#: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:130 mkt/constants/submit.py:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:4 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:519
 msgid "Details"
 msgstr "詳細資訊"
 
@@ -4080,7 +4087,7 @@ msgstr "必須填寫 PayPal 帳號才能接受捐款。"
 msgid "Could not validate PayPal id."
 msgstr "無法驗證 PayPal 帳號。"
 
-#: apps/devhub/forms.py:429 apps/devhub/forms.py:879
+#: apps/devhub/forms.py:429 apps/devhub/forms.py:881
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
 
@@ -4092,7 +4099,7 @@ msgstr "至少需要一個相容的應用程式。"
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "這個領域已經有一個 app 存在。每個領域只能有一個 app 存在。"
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:170 mkt/submit/forms.py:236
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:173 mkt/submit/forms.py:239
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上傳過程發生錯誤，請再試一次。"
 
@@ -4116,7 +4123,7 @@ msgstr "初步審核"
 msgid "Please choose a review nomination type"
 msgstr "請選擇送交審核的類型"
 
-#: apps/devhub/forms.py:557 mkt/submit/forms.py:204
+#: apps/devhub/forms.py:557 mkt/submit/forms.py:207
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
@@ -4144,135 +4151,135 @@ msgstr "只能選擇一個平台。"
 msgid "A review type must be selected."
 msgstr "您必須選擇一項審核方式。"
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:759
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "為您的附加元件命名。最成功的附加元件在名稱中多多少少指出它們提供的功能。"
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:763
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "以一句話簡單敘述您的附加元件。這句話會顯示於附加元件管理員的頁面。"
 
-#: apps/devhub/forms.py:764
+#: apps/devhub/forms.py:766
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "輸入您的初版號碼。依據發行次數與個人偏好，通常是 0.1 或 1.0"
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:770
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "每一個附加元件需要一個獨一無二的 ID，以 UUID 或電子郵件的形式來表示，例如 addon-name@developer.com。該電子郵件不須為真實的。"
 
-#: apps/devhub/forms.py:773
+#: apps/devhub/forms.py:775
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "在瀏覽器使用的附加元件封裝名稱。該封裝名稱應為附加元件名稱的簡寫(例如，附加元件名稱為 Test Extension，封存名稱為 test_extension)。"
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:780
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "請輸入這個附加元件的作者名稱或組織名稱。"
 
-#: apps/devhub/forms.py:781
+#: apps/devhub/forms.py:783
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "輸入此擴充套件的其餘貢獻者姓名，每一行只列出一個姓名。"
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:792
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "附加元件不應該含有 Mozilla 商標。"
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:799
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "輸入一個有效的封裝名稱包含英文、數字或底線。"
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:803
 msgid "This package name is already in use."
 msgstr "這個封裝的名稱已經有人使用了。"
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:806
 msgid "The package name cannot be: %s."
 msgstr "這個封裝名稱不能是: %s。"
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:817
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "附加元件 ID 必須是個 UUID 字串或 email 地址。"
 
-#: apps/devhub/forms.py:821
+#: apps/devhub/forms.py:823
 msgid "The version string is invalid."
 msgstr "版本字串不正確。"
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:831
 msgid "Minimum"
 msgstr "最小"
 
-#: apps/devhub/forms.py:832
+#: apps/devhub/forms.py:834
 msgid "Maximum"
 msgstr "最大"
 
-#: apps/devhub/forms.py:883
+#: apps/devhub/forms.py:885
 msgid "Min version must be less than Max version."
 msgstr "最小版本必須小於最大版本。"
 
-#: apps/devhub/forms.py:909
+#: apps/devhub/forms.py:911
 msgid "{0} is a required target application."
 msgstr "{0} 需要一個目標應用程式。"
 
-#: apps/devhub/forms.py:921
+#: apps/devhub/forms.py:923
 msgid "About dialog"
 msgstr "關於對話框"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:924
 msgid "Creates a standard About dialog for your extension"
 msgstr "替您的擴充套件建立一個標準的關於對話框"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:928
 msgid "Preferences dialog"
 msgstr "偏好設定對話框"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:929
 msgid "Creates an example Preferences window"
 msgstr "建立一個樣本偏好設定視窗"
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:932
 msgid "Toolbar"
 msgstr "工具列"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:933
 msgid "Creates an example toolbar for your extension"
 msgstr "在您的擴充套件裡新增一個樣本工具列"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:936
 msgid "Toolbar button"
 msgstr "工具列按鈕"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:937
 msgid "Creates an example button on the browser toolbar"
 msgstr "在瀏覽器裡的工具列建立一個樣本按紐"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:941
 msgid "Main menu command"
 msgstr "主選單命令"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:942
 msgid "Creates an item on the Tools menu"
 msgstr "在工具選單上建立一個物件"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:945
 msgid "Context menu command"
 msgstr "內容功能表命令"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:946
 msgid "Creates a context menu item for images"
 msgstr "建立一個圖片的右鍵清單項目"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:949
 msgid "Sidebar support"
 msgstr "側邊欄支援"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:950
 msgid "Creates an example sidebar panel"
 msgstr "建立一個樣本側邊攔"
 
-#: apps/devhub/forms.py:957 apps/editors/forms.py:106 apps/zadmin/forms.py:64 apps/zadmin/forms.py:67
+#: apps/devhub/forms.py:959 apps/editors/forms.py:106 apps/zadmin/forms.py:64 apps/zadmin/forms.py:67
 msgid "Select an application first"
 msgstr "先選擇一個應用程式"
 
-#: apps/devhub/forms.py:1024
+#: apps/devhub/forms.py:1026
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必要的附加元件不能超過三個。"
 
@@ -4334,145 +4341,145 @@ msgstr "您的安裝資訊必須包含 HTTP 檔頭「Content-Type: %s」。"
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
 msgstr "您的安裝資訊必須包含 HTTP 檔頭「Content-Type: %s」。我們收到「%s」。"
 
-#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:363
+#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:364
 msgid "Your manifest must be less than %s bytes."
 msgstr "您的安裝資訊必須小於 %s 位元組。"
 
-#: apps/devhub/views.py:187
+#: apps/devhub/views.py:185
 msgid "All My Add-ons"
 msgstr "我所有的附加元件"
 
-#: apps/devhub/views.py:214
+#: apps/devhub/views.py:212
 msgid "All Activity"
 msgstr "所有活動"
 
-#: apps/devhub/views.py:215
+#: apps/devhub/views.py:213
 msgid "Add-on Updates"
 msgstr "附加元件更新"
 
-#: apps/devhub/views.py:216
+#: apps/devhub/views.py:214
 msgid "Add-on Status"
 msgstr "附加元件狀態"
 
-#: apps/devhub/views.py:217
+#: apps/devhub/views.py:215
 msgid "User Collections"
 msgstr "使用者收藏集"
 
-#: apps/devhub/views.py:218 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+#: apps/devhub/views.py:216 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "使用者意見"
 
-#: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:508 apps/devhub/views.py:631 apps/devhub/views.py:1313
-#: mkt/developers/views.py:555 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:348 mkt/reviewers/views.py:715
+#: apps/devhub/views.py:332 apps/devhub/views.py:336 apps/devhub/views.py:452 apps/devhub/views.py:475 apps/devhub/views.py:503 apps/devhub/views.py:623 apps/devhub/views.py:1297
+#: mkt/developers/views.py:552 mkt/developers/views_payments.py:99 mkt/developers/views_payments.py:344 mkt/reviewers/views.py:709
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:341 apps/devhub/views.py:1721
+#: apps/devhub/views.py:339 apps/devhub/views.py:1703
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:354
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "無法刪除此附加元件，請停用。"
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Theme deleted."
 msgstr "已刪除佈景主題。"
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Add-on deleted."
 msgstr "已刪除附加元件。"
 
-#: apps/devhub/views.py:374
+#: apps/devhub/views.py:369
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "密碼錯誤。佈景主題無法刪除。"
 
-#: apps/devhub/views.py:378
+#: apps/devhub/views.py:373
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "密碼錯誤。附加元件無法刪除。"
 
-#: apps/devhub/views.py:514
+#: apps/devhub/views.py:509
 msgid "There were errors in your submission."
 msgstr "您的提交發生錯誤。"
 
-#: apps/devhub/views.py:545
+#: apps/devhub/views.py:540
 msgid "Refund already processed."
 msgstr "已處理退費。"
 
-#: apps/devhub/views.py:553
+#: apps/devhub/views.py:548
 msgid "Refund failed. error: %s"
 msgstr "退費失敗，錯誤: %s"
 
-#: apps/devhub/views.py:563
+#: apps/devhub/views.py:558
 msgid "Refund was previously issued; no action taken."
 msgstr "已退費過；未進行任何動作。"
 
-#: apps/devhub/views.py:571
+#: apps/devhub/views.py:566
 msgid "Refund issued."
 msgstr "已發放退費。"
 
-#: apps/devhub/views.py:579
+#: apps/devhub/views.py:574
 msgid "Refund declined."
 msgstr "已拒絕退費。"
 
-#: apps/devhub/views.py:651
+#: apps/devhub/views.py:642
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
 
-#: apps/devhub/views.py:660
+#: apps/devhub/views.py:651
 msgid "Check Add-on Compatibility"
 msgstr "檢查附加元件的相容性"
 
-#: apps/devhub/views.py:780 mkt/developers/views.py:637
+#: apps/devhub/views.py:770 mkt/developers/views.py:634
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: apps/devhub/views.py:874
+#: apps/devhub/views.py:864
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
 
-#: apps/devhub/views.py:1225 apps/users/forms.py:326 mkt/developers/utils.py:63
+#: apps/devhub/views.py:1209 apps/users/forms.py:322 mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: apps/devhub/views.py:1229 mkt/developers/utils.py:68
+#: apps/devhub/views.py:1213 mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: apps/devhub/views.py:1231 mkt/developers/utils.py:70
+#: apps/devhub/views.py:1215 mkt/developers/utils.py:82
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: apps/devhub/views.py:1244
+#: apps/devhub/views.py:1228
 msgid "Images cannot be larger than %dKB."
 msgstr "圖片大小不能超過 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1254
+#: apps/devhub/views.py:1238
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "圖檔的寬必須剛好為 {0} 像素並且高 {1} 像素。"
 
-#: apps/devhub/views.py:1258 mkt/developers/views.py:938
+#: apps/devhub/views.py:1242 mkt/developers/views.py:933
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: apps/devhub/views.py:1352
+#: apps/devhub/views.py:1336
 msgid "Version %s disabled."
 msgstr "已停用 %s 版本。"
 
-#: apps/devhub/views.py:1355
+#: apps/devhub/views.py:1339
 msgid "Version %s deleted."
 msgstr "已刪除版本 %s。"
 
-#: apps/devhub/views.py:1365
+#: apps/devhub/views.py:1349
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1768
+#: apps/devhub/views.py:1749
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1769
+#: apps/devhub/views.py:1750
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
@@ -4493,9 +4500,7 @@ msgstr "<strong>Add-on SDK:</strong> 快速簡單地建立附加元件"
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
-msgstr ""
-"Add-on SDK 提供強大的 API，讓開發者可以使用 HTML、CSS 與 JavaScript "
-"建立附加元件。當您的附加元件完成後，我們可以讓您很簡單就能與全球的四億 Firefox 使用者分享。"
+msgstr "Add-on SDK 提供強大的 API，讓開發者可以使用 HTML、CSS 與 JavaScript 建立附加元件。當您的附加元件完成後，我們可以讓您很簡單就能與全球的四億 Firefox 使用者分享。"
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4604,91 +4609,88 @@ msgstr "上傳新版本"
 msgid "View all add-ons ►"
 msgstr "瀏覽所有附加元件►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "AMO 審核者"
+#: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
+msgid "Create Add-ons for Australis"
+msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:85
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "向前行！今天就成為 AMO 審核者，加快您的附加元件審核速度。"
+#: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
+#: apps/discovery/templates/discovery/modules/australis-contest.html:8
+msgid "Win a Firefox OS phone and Mozilla gear!"
+msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "成為 AMO 審核者"
-
-#: apps/devhub/templates/devhub/index.html:96
+#: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
 msgstr "製作 Firefox 附加元件變得簡單了"
 
-#: apps/devhub/templates/devhub/index.html:98
+#: apps/devhub/templates/devhub/index.html:105
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
-"附加元件可以讓數以百萬計的 Firefox 使用者增強與自訂瀏覽體驗。若您是一位熟悉 HTML、JavaScript 與 CSS "
-"的網頁開發者，您已經擁有使用 Add-on SDK 開發附加元件的能力。更厲害的是，使用 SDK 開發出的附加元件在安裝移除時不必重開瀏覽器。"
+"附加元件可以讓數以百萬計的 Firefox 使用者增強與自訂瀏覽體驗。若您是一位熟悉 HTML、JavaScript 與 CSS 的網頁開發者，您已經擁有使用 Add-on SDK 開發附加元件的能力。更厲害的是，使用 SDK 開發出的附加元件"
+"在安裝移除時不必重開瀏覽器。"
 
-#: apps/devhub/templates/devhub/index.html:106
+#: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
 msgstr "開始製作附加元件"
 
-#: apps/devhub/templates/devhub/index.html:113
+#: apps/devhub/templates/devhub/index.html:120
 msgid "Learn &amp; Explore"
 msgstr "學習&amp;探索"
 
-#: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:72 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
+#: apps/devhub/templates/devhub/index.html:126 apps/devhub/templates/devhub/nav.html:72 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6 apps/devhub/templates/devhub/docs/how-to.html:3 apps/devhub/templates/devhub/docs/how-to.html:9
 #: apps/devhub/templates/devhub/docs/how-to.html:61 apps/devhub/templates/devhub/docs/how-to.html:62
 msgid "How-to Library"
 msgstr "教學文庫"
 
-#: apps/devhub/templates/devhub/index.html:121 apps/devhub/templates/devhub/docs/how-to.html:64
+#: apps/devhub/templates/devhub/index.html:128 apps/devhub/templates/devhub/docs/how-to.html:64
 msgid "Get add-on development guidance in a top-notch collection of tutorials, articles, and more."
 msgstr "一流的精選教學文件當中可以找到更多的附加元件指南。"
 
-#: apps/devhub/templates/devhub/index.html:132
+#: apps/devhub/templates/devhub/index.html:139
 msgid "API & Language Reference"
 msgstr "API & Language 參考資料"
 
-#: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
+#: apps/devhub/templates/devhub/index.html:141 apps/devhub/templates/devhub/docs/reference.html:14
 msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
 msgstr "API 與 Language 的官方文件，創造鉅作時您最佳的幫手。"
 
-#: apps/devhub/templates/devhub/index.html:145 apps/devhub/templates/devhub/nav.html:70 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
+#: apps/devhub/templates/devhub/index.html:152 apps/devhub/templates/devhub/nav.html:70 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
 #: apps/devhub/templates/devhub/docs/case-studies.html:31 apps/devhub/templates/devhub/docs/case-studies.html:32
 msgid "Case Studies"
 msgstr "個案研究"
 
-#: apps/devhub/templates/devhub/index.html:147 apps/devhub/templates/devhub/docs/case-studies.html:35
+#: apps/devhub/templates/devhub/index.html:154 apps/devhub/templates/devhub/docs/case-studies.html:35
 msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
 msgstr "從零到一的成功故事，看附加元件開發者如何和 Mozilla 一起施展魔法。"
 
-#: apps/devhub/templates/devhub/index.html:159
+#: apps/devhub/templates/devhub/index.html:166
 msgid "Create &amp; Connect"
 msgstr "新建 &amp; 連結"
 
-#: apps/devhub/templates/devhub/index.html:165
+#: apps/devhub/templates/devhub/index.html:172
 msgid "Developer Forums"
 msgstr "開發者討論區"
 
-#: apps/devhub/templates/devhub/index.html:167
+#: apps/devhub/templates/devhub/index.html:174
 msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
 msgstr "討論關於開發附加元件。激發點子，以及與全世界的附加元件連結。"
 
-#: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:83 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
+#: apps/devhub/templates/devhub/index.html:185 apps/devhub/templates/devhub/nav.html:83 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"
 msgstr "附加元件封裝工具"
 
-#: apps/devhub/templates/devhub/index.html:180
+#: apps/devhub/templates/devhub/index.html:187
 msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
 msgstr "透過鍵入基本資料並選擇 UI 零件，自動生成附加元件。無痛快速上手。"
 
-#: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:85
+#: apps/devhub/templates/devhub/index.html:198 apps/devhub/templates/devhub/nav.html:85
 msgid "Add-on Validator"
 msgstr "附加元件驗證器"
 
-#: apps/devhub/templates/devhub/index.html:193
+#: apps/devhub/templates/devhub/index.html:200
 msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
 msgstr "為您的附加元件檢查常見問題與錯誤。不只寄放附加元件，更開放給每一個人。"
 
@@ -5093,7 +5095,7 @@ msgstr "為您的附加元件選擇一個簡短、獨一無二的固定網址。
 msgid "View Listing"
 msgstr "檢視附加元件頁面"
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:56 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15 mkt/lookup/templates/lookup/helpers/app_header.html:21
+#: apps/devhub/templates/devhub/addons/edit/basic.html:56 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
 msgstr "摘要"
 
@@ -5110,7 +5112,7 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "當您的附加元件成為該應用程式的精選時，您無法更變它的隸屬類別。如有特殊理由需要更動類別，請 email 到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:133
+#: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:151
 msgid "Tags"
 msgstr "標籤"
 
@@ -5119,17 +5121,17 @@ msgid "Tags help users find your add-on and should be short descriptors such as 
 msgstr "標籤能幫助使用者找到您的附加元件，標籤必須是一句簡短的描述，像是 tabs、toolbar、twitter。您最多可以有 {0} 個標籤。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
-#: mkt/developers/templates/developers/apps/edit/admin.html:145
+#: mkt/developers/templates/developers/apps/edit/admin.html:163
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "逗號區隔，至少 {0} 個字元。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
-#: mkt/developers/templates/developers/apps/edit/admin.html:148
+#: mkt/developers/templates/developers/apps/edit/admin.html:166
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "例子: Dark, cinema, noir. Limit 20。"
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:178 mkt/developers/templates/developers/apps/edit/admin.html:152
+#: apps/devhub/templates/devhub/addons/edit/basic.html:178 mkt/developers/templates/developers/apps/edit/admin.html:170
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "保留字："
@@ -5147,7 +5149,7 @@ msgid "A longer explanation of features, functionality, and other relevant infor
 msgstr "較完整的功能特色描述或其他相關資訊。這個欄位僅顯示於附加元件詳細資訊頁面。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/devhub/templates/devhub/addons/edit/details.html:65 apps/translations/templates/translations/trans-menu.html:13
-#: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:77
+#: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:54 mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Default Locale"
 msgstr "預設地區"
 
@@ -5155,7 +5157,7 @@ msgstr "預設地區"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "除非您輸入其他語系版本的翻譯，否則關於您的附加元件的資訊會使用這個語系顯示。"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:82 apps/users/forms.py:197 apps/users/templates/users/edit.html:104 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:82 apps/users/forms.py:196 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22 mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
 msgstr "首頁"
@@ -5164,7 +5166,7 @@ msgstr "首頁"
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
 msgstr "如果您的附加元件有額外的網站，請在這裡輸入網址。如果您的網站擁有多國語系版本，可以在這裡新增多國語系網址。"
 
-#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:161
+#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
 msgstr "圖片"
 
@@ -5530,6 +5532,11 @@ msgstr "刪除此佈景主題"
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr "此附加元件將在送出審核過程未完成後的幾天內被自動刪除。"
 
+#. {1} is a version number.
+#: apps/devhub/templates/devhub/addons/listing/items.html:24
+msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
+msgstr ""
+
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -5651,13 +5658,9 @@ msgstr "瀏覽並訂閱您的附加元件<a href=\"{0}\">動態資訊</a>持續�
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "檢視等待審核區<a href=\"{0}\">等候時間</a>。"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:57
-msgid "Get Ahead in the Review Queue!"
-msgstr "讓排隊速度變快！"
-
-#: apps/devhub/templates/devhub/addons/submit/done.html:59
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "今天就成為 AMO 審核者，加快您的附加元件審核速度。"
+#: apps/devhub/templates/devhub/addons/submit/done.html:67
+msgid "Submit your add-on for the Add-ons for Australis contest"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5983,8 +5986,8 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
-"若您的附加元件需要比 Packager 給您的空白側邊欄之外的功能，還有不同方式可以找到您想要的功能。最常見的方法就是直接拆開別人的擴充套件看看人家是怎"
-"麼做的。但請記得若別人的套件不允許您直接複製其原始碼，您就不該這麼做。"
+"若您的附加元件需要比 Packager 給您的空白側邊欄之外的功能，還有不同方式可以找到您想要的功能。最常見的方法就是直接拆開別人的擴充套件看看人家是怎麼做的。但請記得若別人的套件不允許您直接複製其原始碼，您"
+"就不該這麼做。"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -8262,12 +8265,12 @@ msgstr "或是<a href=\"%(cancel)s\">取消</a>"
 msgid "Manage Refunds"
 msgstr "管理退費"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:951 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:957 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "交易 ID"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:158 mkt/purchase/templates/purchase/receipt.html:39
-#: mkt/reviewers/templates/reviewers/includes/details.html:57 mkt/reviewers/templates/reviewers/includes/mobile_details.html:79 mkt/reviewers/templates/reviewers/includes/search_results.html:9
+#: mkt/reviewers/templates/reviewers/includes/details.html:56 mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9
 #: mkt/search/forms.py:18
 msgid "Price"
 msgstr "價格"
@@ -8459,8 +8462,8 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "他人是否可以在姓名標示的情況下分享您的佈景主題?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:103
-#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:374
+#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:105
+#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:377
 msgid "Yes"
 msgstr "可以"
 
@@ -8470,8 +8473,8 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:104
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:375
+#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:106
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:378
 msgid "No"
 msgstr "不行"
 
@@ -8703,7 +8706,7 @@ msgid "Upload Another File"
 msgstr "上傳其他檔案"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:99 mkt/developers/templates/developers/apps/version_edit.html:24
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:46 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:61
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:46 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:62
 msgid "Version Notes"
 msgstr "版本紀錄"
 
@@ -8718,7 +8721,7 @@ msgid "Approval Status"
 msgstr "審核狀態"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:109 mkt/developers/templates/developers/apps/version_edit.html:39
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:56 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:71
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:56 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:72
 msgid "Notes for Reviewers"
 msgstr "審核者意見"
 
@@ -8878,7 +8881,7 @@ msgstr "版本歷史"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:217 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/lookup/templates/lookup/app_summary.html:65 mkt/lookup/templates/lookup/app_summary.html:121 mkt/reviewers/forms.py:239 mkt/reviewers/templates/reviewers/review.html:29
-#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:46
 msgid "Status"
 msgstr "狀態"
@@ -9205,25 +9208,13 @@ msgstr "最近更新於"
 msgid "Cancel Installation"
 msgstr "取消安裝"
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
-msgid "Amp Your Firefox Contest"
-msgstr "Amp Your Firefox 比賽"
+#: apps/discovery/templates/discovery/modules/australis-contest.html:4
+msgid "Create add-ons for Firefox's new look"
+msgstr ""
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
-msgid "Best Overall Add-on"
-msgstr "有史以來最好的附加元件"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
-msgid "Thumbnail Zoom Plus"
-msgstr "放大縮圖"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
-msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
-msgstr "當您滑鼠滑過縮圖或圖片連結，<br>會跳出完整的圖片。"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
-msgid "Get it now!"
-msgstr "馬上取得這個！"
+#: apps/discovery/templates/discovery/modules/australis-contest.html:9
+msgid "Contest details"
+msgstr ""
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -9285,7 +9276,7 @@ msgstr "已刪除的審核"
 msgid "View entries between"
 msgstr "瀏覽內容從"
 
-#: apps/editors/forms.py:42 apps/editors/forms.py:60 mkt/developers/tasks.py:441 mkt/developers/tasks.py:447
+#: apps/editors/forms.py:42 apps/editors/forms.py:60 mkt/developers/tasks.py:442 mkt/developers/tasks.py:448
 msgid "and"
 msgstr "至"
 
@@ -9487,7 +9478,7 @@ msgid "Addon"
 msgstr "附加元件"
 
 #: apps/editors/helpers.py:196 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43
-#: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:9 mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
+#: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:8 mkt/reviewers/templates/reviewers/includes/mobile_details.html:40
 msgid "Type"
 msgstr "類型"
 
@@ -9496,8 +9487,8 @@ msgid "Waiting Time"
 msgstr "等待時間"
 
 #: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:145
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:165 mkt/reviewers/templates/reviewers/includes/search_results.html:7
+#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:144
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:166 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "標記"
 
@@ -9543,11 +9534,11 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#: apps/editors/helpers.py:458 mkt/reviewers/utils.py:424
+#: apps/editors/helpers.py:458 mkt/reviewers/utils.py:425
 msgid "Push to public"
 msgstr "發佈為公開"
 
-#: apps/editors/helpers.py:469 mkt/reviewers/utils.py:435
+#: apps/editors/helpers.py:469 mkt/reviewers/utils.py:436
 msgid "Request more information"
 msgstr "要求更多資訊"
 
@@ -9672,66 +9663,66 @@ msgstr "佈景主題提交被標記以供審核"
 msgid "A question about your Theme submission"
 msgstr "關於您送出佈景主題的問題"
 
-#: apps/editors/views.py:125
+#: apps/editors/views.py:124
 msgid "New Add-ons (Under 5 days)"
 msgstr "新的附加元件 (五天內)"
 
-#: apps/editors/views.py:126 mkt/reviewers/views.py:85
+#: apps/editors/views.py:125 mkt/reviewers/views.py:84
 msgid "Passable (5 to 10 days)"
 msgstr "可通過 (五至十天)"
 
-#: apps/editors/views.py:127 mkt/reviewers/views.py:86
+#: apps/editors/views.py:126 mkt/reviewers/views.py:85
 msgid "Overdue (Over 10 days)"
 msgstr "逾期 (超過十天)"
 
-#: apps/editors/views.py:461
+#: apps/editors/views.py:460
 msgid "An unknown error occurred"
 msgstr "發生了未知的錯誤"
 
-#: apps/editors/views.py:497 mkt/reviewers/views.py:250
+#: apps/editors/views.py:496 mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "不允許自我審核。"
 
-#: apps/editors/views.py:529 mkt/reviewers/views.py:357
+#: apps/editors/views.py:528 mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "審核流程已順利開始。"
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:708
 msgid "was approved"
 msgstr "已經審核通過"
 
 # 80%
 # 100%
-#: apps/editors/views.py:710
+#: apps/editors/views.py:709
 msgid "given preliminary review"
 msgstr "給予初步審核"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:711 mkt/webapps/models.py:2277
+#: apps/editors/views.py:710 mkt/webapps/models.py:2296
 msgid "rejected"
 msgstr "已退回"
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:711
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "已提升審核層級"
 
 # 79%
 # 100%
-#: apps/editors/views.py:714
+#: apps/editors/views.py:713
 msgid "needs more information"
 msgstr "需要更多資訊"
 
-#: apps/editors/views.py:715
+#: apps/editors/views.py:714
 msgid "needs super review"
 msgstr "需要超級審核"
 
-#: apps/editors/views_themes.py:325 mkt/reviewers/views_themes.py:299
+#: apps/editors/views_themes.py:328 mkt/reviewers/views_themes.py:308
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。"
 
-#: apps/editors/views_themes.py:340 mkt/reviewers/views_themes.py:314
+#: apps/editors/views_themes.py:343 mkt/reviewers/views_themes.py:324
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "您的佈景主題鎖已經發佈成功。現在其他審查者已可以看到您的佈景主題。您可以重新整理頁面，觀看更新後的內容。"
 
@@ -10543,11 +10534,11 @@ msgstr "上傳的檔案當中沒有檔案。"
 msgid "Fetching file."
 msgstr "正在取得檔案。"
 
-#: apps/localizers/views.py:39
+#: apps/localizers/views.py:38
 msgid "An error occurred saving this message."
 msgstr "在儲存這個訊息時發生錯誤。"
 
-#: apps/localizers/views.py:42
+#: apps/localizers/views.py:41
 msgid "Access Denied"
 msgstr "存取被拒"
 
@@ -10658,7 +10649,7 @@ msgid "Locale name"
 msgstr "語系名稱"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:79
+#: apps/market/models.py:80
 msgid "Tier %s"
 msgstr "階層 %s"
 
@@ -12168,7 +12159,7 @@ msgstr "刪除評論"
 msgid "Other (please specify)"
 msgstr "其他（請詳述）"
 
-#: apps/reviews/views.py:154
+#: apps/reviews/views.py:153
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "謝謝您，此意見已經標記為需要審核。"
 
@@ -12338,39 +12329,39 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "檢視所有評論"
 
-#: apps/search/forms.py:12
+#: apps/search/forms.py:13
 msgid "Most popular this week"
 msgstr "本週最熱門"
 
-#: apps/search/forms.py:13
+#: apps/search/forms.py:14
 msgid "Most popular this month"
 msgstr "本月最熱門"
 
-#: apps/search/forms.py:14
+#: apps/search/forms.py:15
 msgid "Most popular all time"
 msgstr "所有時間最熱門"
 
-#: apps/search/forms.py:24
+#: apps/search/forms.py:25
 msgid "search for add-ons"
 msgstr "搜尋附加元件"
 
-#: apps/search/forms.py:25
+#: apps/search/forms.py:26
 msgid "search for collections"
 msgstr "搜尋收藏集"
 
-#: apps/search/forms.py:26
+#: apps/search/forms.py:27
 msgid "search for themes"
 msgstr "搜尋主題"
 
-#: apps/search/forms.py:27
+#: apps/search/forms.py:28
 msgid "search for apps"
 msgstr "搜尋應用程式"
 
-#: apps/search/forms.py:52
+#: apps/search/forms.py:53
 msgid "Sort By"
 msgstr "排序方式"
 
-#: apps/search/forms.py:87 apps/search/forms.py:100 mkt/search/forms.py:14
+#: apps/search/forms.py:88 apps/search/forms.py:101 mkt/search/forms.py:14
 msgid "Relevance"
 msgstr "相關性"
 
@@ -12666,7 +12657,7 @@ msgstr "依附加元件狀態"
 msgid "Subscribers"
 msgstr "訂閱者"
 
-#: apps/stats/templates/stats/collection_report_menu.html:12 mkt/reviewers/templates/reviewers/includes/details.html:65 mkt/reviewers/templates/reviewers/includes/mobile_details.html:87
+#: apps/stats/templates/stats/collection_report_menu.html:12 mkt/reviewers/templates/reviewers/includes/details.html:64 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Ratings"
 msgstr "分等"
 
@@ -12706,11 +12697,11 @@ msgstr "新註冊的使用者"
 msgid "Custom Date Range"
 msgstr "自定日期範圍"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:957
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:963
 msgid "From"
 msgstr "從"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:960
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:966
 msgid "To"
 msgstr "至"
 
@@ -13007,72 +12998,72 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:30
 msgid "Must be %s characters or more."
 msgstr "至少需要 %s 個字元以上。"
 
-#: apps/users/forms.py:48
+#: apps/users/forms.py:47
 msgid "Letters and numbers required."
 msgstr "密碼應含有英文字母與數字。"
 
-#: apps/users/forms.py:51
+#: apps/users/forms.py:50
 msgid "That password is not allowed."
 msgstr "您不能使用這組密碼。"
 
-#: apps/users/forms.py:79
+#: apps/users/forms.py:78
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr "更多資訊已經透過電子郵件寄發到做出要求的帳號。若您沒有收到 email 的話請確定您正確輸入了註冊帳號時的 email 地址。"
 
-#: apps/users/forms.py:107 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:106 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "新密碼"
 
-#: apps/users/forms.py:146 apps/users/forms.py:311
+#: apps/users/forms.py:145 apps/users/forms.py:307
 msgid "Wrong password entered!"
 msgstr "輸入的密碼錯誤！"
 
-#: apps/users/forms.py:163
+#: apps/users/forms.py:162
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
 
-#: apps/users/forms.py:166
+#: apps/users/forms.py:165
 msgid "This username cannot be used."
 msgstr "無法使用此使用者名稱。"
 
-#: apps/users/forms.py:172
+#: apps/users/forms.py:171
 msgid "This username is already in use."
 msgstr "這個使用者名稱已經有人使用。"
 
-#: apps/users/forms.py:183 apps/users/templates/users/edit.html:89 mkt/lookup/templates/lookup/user_summary.html:15
+#: apps/users/forms.py:182 apps/users/templates/users/edit.html:93 mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
 msgstr "顯示名稱"
 
-#: apps/users/forms.py:185 apps/users/templates/users/edit.html:94 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:184 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "地點"
 
-#: apps/users/forms.py:187 apps/users/templates/users/edit.html:99 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:186 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "職業"
 
-#: apps/users/forms.py:211
+#: apps/users/forms.py:210
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page。"
 
-#: apps/users/forms.py:219
+#: apps/users/forms.py:218
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "請使用一個來自不同提供者的電子郵件地址完成你的註冊。"
 
-#: apps/users/forms.py:235
+#: apps/users/forms.py:234
 msgid "The passwords did not match."
 msgstr "密碼不符。"
 
-#: apps/users/forms.py:257 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:253 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "個人檔案照片"
 
-#: apps/users/forms.py:396
+#: apps/users/forms.py:392
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他欄位。"
 
@@ -13081,31 +13072,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr "其他"
 
-#: apps/users/models.py:64
+#: apps/users/models.py:65
 msgid "algorithm"
 msgstr "演算法"
 
-#: apps/users/models.py:65
+#: apps/users/models.py:66
 msgid "salt"
 msgstr "salt"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:67
 msgid "hash"
 msgstr "hash"
 
-#: apps/users/models.py:124
+#: apps/users/models.py:125
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
-#: apps/users/models.py:339
+#: apps/users/models.py:340
 msgid "Your account has been restricted"
 msgstr "您的帳號已被限制"
 
-#: apps/users/models.py:416
+#: apps/users/models.py:417
 msgid "Please confirm your email address"
 msgstr "請確認您的電子郵件"
 
-#: apps/users/models.py:474
+#: apps/users/models.py:475
 msgid "My Mobile Add-ons"
 msgstr "我的 Mobile 附加元件"
 
@@ -13181,128 +13172,128 @@ msgstr "Moizlla 想要傳給我關於 Marketplace 的新分類"
 msgid "User Notifications"
 msgstr "使用者通知"
 
-#: apps/users/views.py:96
+#: apps/users/views.py:95
 msgid "An email address is required."
 msgstr "需要輸入電子郵件地址。"
 
-#: apps/users/views.py:103
+#: apps/users/views.py:102
 msgid "A user with that email address does not exist."
 msgstr "使用該電子郵件地址的使用者不存在。"
 
-#: apps/users/views.py:104
+#: apps/users/views.py:103
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "使用該電子郵件地址的使用者不存在，或是使用者尚未接受開發者條款。"
 
-#: apps/users/views.py:122
+#: apps/users/views.py:121
 msgid "Invalid confirmation code!"
 msgstr "確認碼無效！"
 
-#: apps/users/views.py:127
+#: apps/users/views.py:126
 msgid "Successfully verified!"
 msgstr "驗證成功！"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:689
+#: apps/users/views.py:142 apps/users/views.py:687
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "我們已經寄出一封信到您的 Email 位址 {0} 以確認帳號。在您登入前必須按下該鏈結啟用您的帳號。"
 
-#: apps/users/views.py:147 apps/users/views.py:693
+#: apps/users/views.py:146 apps/users/views.py:691
 msgid "Confirmation Email Sent"
 msgstr "確認信已寄出"
 
-#: apps/users/views.py:158
+#: apps/users/views.py:157
 msgid "Profile Deleted"
 msgstr "刪除個人檔案"
 
-#: apps/users/views.py:179
+#: apps/users/views.py:178
 msgid "Photo Deleted"
 msgstr "相片已刪除"
 
-#: apps/users/views.py:198 apps/users/views.py:258
+#: apps/users/views.py:197 apps/users/views.py:257
 msgid "Profile Updated"
 msgstr "更新個人檔案"
 
-#: apps/users/views.py:213
+#: apps/users/views.py:212
 msgid "Email Confirmation Sent"
 msgstr "確認信已送出"
 
-#: apps/users/views.py:214
+#: apps/users/views.py:213
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr "我們已經傳送新電子郵件帳號確認信至 {0}。您必須點選此電子郵件附上的連結，新的電子郵件帳號才能生效。在您完成此動作前，您可以繼續使用舊的電子郵件帳號來登入。"
 
-#: apps/users/views.py:226
+#: apps/users/views.py:225
 msgid "Please confirm your email address change at %s"
 msgstr "請確認您 %s 的 email 地址修改"
 
-#: apps/users/views.py:238 mkt/site/messages.py:17
+#: apps/users/views.py:237 mkt/site/messages.py:17
 msgid "Errors Found"
 msgstr "發生錯誤"
 
-#: apps/users/views.py:239 mkt/site/messages.py:18
+#: apps/users/views.py:238 mkt/site/messages.py:18
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "您所作的變更有錯誤，請更正後再重新送出一次。"
 
-#: apps/users/views.py:287
+#: apps/users/views.py:285
 msgid "Your email address was changed successfully"
 msgstr "您的電子郵件信箱已成功變更"
 
-#: apps/users/views.py:288
+#: apps/users/views.py:286
 msgid "From now on, please use {0} to log in."
 msgstr "從現在開始，請使用 {0} 登入。"
 
-#: apps/users/views.py:337
+#: apps/users/views.py:335
 msgid "Persona authentication failure."
 msgstr "Persona 驗證失敗。"
 
-#: apps/users/views.py:362
+#: apps/users/views.py:360
 msgid "Please use the verified email for this account."
 msgstr "請使用已確認的電子郵件信箱。"
 
-#: apps/users/views.py:486
+#: apps/users/views.py:484
 msgid "Wrong email address or password!"
 msgstr "錯誤的電子郵件地址或密碼！"
 
-#: apps/users/views.py:498
+#: apps/users/views.py:496
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "啟用您帳號的連結已經寄到您的電子信箱 {0} 了。您必須啟用帳號才能登入。"
 
-#: apps/users/views.py:503
+#: apps/users/views.py:501
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr "如果您仍未收到確認信，請您確定郵件服務提供者並未將其標為「垃圾郵件」。您可以要求我們 <a href=\"%s\">再次重新傳送確認信</a> 至您剛剛所提及之電子郵件信箱。"
 
-#: apps/users/views.py:508
+#: apps/users/views.py:506
 msgid "Activation Email Sent"
 msgstr "確認信已寄出"
 
-#: apps/users/views.py:509
+#: apps/users/views.py:507
 msgid "Having Trouble?"
 msgstr "遇到麻煩了？"
 
-#: apps/users/views.py:663
+#: apps/users/views.py:661
 msgid "You are already logged in to an account."
 msgstr "您已經使用帳號登入。"
 
-#: apps/users/views.py:685
+#: apps/users/views.py:683
 msgid "Congratulations! Your user account was successfully created."
 msgstr "恭喜您！您的使用者帳號已成功建立。"
 
-#: apps/users/views.py:709
+#: apps/users/views.py:707
 msgid "You already have an account."
 msgstr "您已經有帳號了。"
 
-#: apps/users/views.py:719
+#: apps/users/views.py:717
 msgid "There are errors in this form"
 msgstr "這個表單發生了錯誤"
 
-#: apps/users/views.py:720
+#: apps/users/views.py:718
 msgid "Please correct them and resubmit."
 msgstr "請更正並重新送出。"
 
-#: apps/users/views.py:735
+#: apps/users/views.py:733
 msgid "User reported."
 msgstr "使用者回報。"
 
@@ -13336,7 +13327,7 @@ msgstr "您的評論與評分將不會被刪除，但將無法與您關聯。"
 msgid "Confirm account deletion"
 msgstr "確認刪除帳號"
 
-#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:52 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
+#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
 #: apps/users/templates/users/mobile/login.html:52
 msgid "Password"
 msgstr "密碼"
@@ -13357,111 +13348,111 @@ msgstr "刪除使用者相片"
 msgid "Delete my user picture now"
 msgstr "立刻刪除我的使用者照片"
 
-#: apps/users/templates/users/edit.html:20 apps/users/templates/users/includes/navigation.html:12 templates/user_login.html:22
+#: apps/users/templates/users/edit.html:24 apps/users/templates/users/includes/navigation.html:12 templates/user_login.html:22
 msgid "My Account"
 msgstr "我的帳號"
 
-#: apps/users/templates/users/edit.html:22
+#: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr "管理基本帳號資訊，像是使用者名稱和 email 地址。"
 
-#: apps/users/templates/users/edit.html:28 apps/users/templates/users/register.html:48 mkt/lookup/templates/lookup/user_summary.html:17
+#: apps/users/templates/users/edit.html:32 apps/users/templates/users/register.html:48 mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Username"
 msgstr "使用者名稱"
 
-#: apps/users/templates/users/edit.html:33 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
+#: apps/users/templates/users/edit.html:37 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
 msgid "Email Address"
 msgstr "電子郵件地址"
 
-#: apps/users/templates/users/edit.html:40 apps/users/templates/users/register.html:70
+#: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
 msgstr "隱藏我的電子郵件位址"
 
-#: apps/users/templates/users/edit.html:46 mkt/site/context_processors.py:32
+#: apps/users/templates/users/edit.html:50 mkt/site/context_processors.py:32
 msgid "Change Password"
 msgstr "修改密碼"
 
-#: apps/users/templates/users/edit.html:54
+#: apps/users/templates/users/edit.html:58
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
 msgstr "修改您的密碼。如果您忘記您的密碼，您可以<a href=\"%(reset_url)s\">使用重設表單</a>。"
 
-#: apps/users/templates/users/edit.html:60
+#: apps/users/templates/users/edit.html:64
 msgid "Old Password"
 msgstr "舊密碼"
 
-#: apps/users/templates/users/edit.html:68
+#: apps/users/templates/users/edit.html:72
 msgid "New Password"
 msgstr "新密碼"
 
-#: apps/users/templates/users/edit.html:73
+#: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
 msgstr "再次確認您的密碼"
 
-#: apps/users/templates/users/edit.html:80
+#: apps/users/templates/users/edit.html:84
 msgid "Profile"
 msgstr "個人檔案"
 
-#: apps/users/templates/users/edit.html:82
+#: apps/users/templates/users/edit.html:86
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "提供更多關於您的資料。這些欄位都是選填的，不過它們將幫助其他使用者更加認識您。"
 
-#: apps/users/templates/users/edit.html:106
+#: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
 msgstr "除非您是開發者，網址才˙會顯示。"
 
-#: apps/users/templates/users/edit.html:115
+#: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
 msgstr "選擇照片&hellip;"
 
-#: apps/users/templates/users/edit.html:119
+#: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
 msgstr "刪除目前的照片"
 
-#: apps/users/templates/users/edit.html:128
+#: apps/users/templates/users/edit.html:132
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "如果您願意的話請向社群自我介紹。這些文字將會出現在您的使用者資訊頁面上。"
 
-#: apps/users/templates/users/edit.html:136
+#: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "允許的 HTML 標記: {0}。不允許使用鏈結。"
 
-#: apps/users/templates/users/edit.html:143
+#: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
 msgstr "其他"
 
-#: apps/users/templates/users/edit.html:145
+#: apps/users/templates/users/edit.html:150
 msgid "Decide what collections should be shown in your profile."
 msgstr "選擇您的個人檔案將出現哪些收藏集。"
 
-#: apps/users/templates/users/edit.html:153
+#: apps/users/templates/users/edit.html:158
 msgid "Display the collections I have created"
 msgstr "顯示由我建立的收藏集"
 
-#: apps/users/templates/users/edit.html:160
+#: apps/users/templates/users/edit.html:165
 msgid "Display collections I'm following"
 msgstr "顯示我訂閱的收藏集"
 
-#: apps/users/templates/users/edit.html:168 mkt/constants/features.py:273
+#: apps/users/templates/users/edit.html:173 mkt/constants/features.py:273
 msgid "Notifications"
 msgstr "通知"
 
-#: apps/users/templates/users/edit.html:170
+#: apps/users/templates/users/edit.html:175
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr "有時候 Mozilla 可能會寄給您即將釋出的版本和附加元件活動。請選擇您感興趣的主題。"
 
-#: apps/users/templates/users/edit.html:180
+#: apps/users/templates/users/edit.html:185
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr "Mozilla 保留使用此資訊與您聯絡，詢問關於您放上網的附加元件相關問題的權利。"
 
-#: apps/users/templates/users/edit.html:190
+#: apps/users/templates/users/edit.html:195
 msgid "Admin"
 msgstr "管理員"
 
-#: apps/users/templates/users/edit.html:222
+#: apps/users/templates/users/edit.html:227
 msgid "Delete Account"
 msgstr "刪除帳號"
 
-#: apps/users/templates/users/edit.html:224 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
+#: apps/users/templates/users/edit.html:229 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:26
 msgid "Update Account"
 msgstr "更新帳號"
@@ -13873,7 +13864,7 @@ msgstr "十六進位色彩"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "必須為有效的十六進位色碼，例如 #FF0035。"
 
-#: mkt/collections/serializers.py:221
+#: mkt/collections/serializers.py:241
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "您不能在同一區域、業者、分類的組合中有超過一個上到精選應用程式或電信業者展示架的軟體。"
 
@@ -13893,7 +13884,7 @@ msgstr "版本 %s 不存在"
 msgid "Attachment:"
 msgstr "附件:"
 
-#: mkt/comm/forms.py:45 mkt/submit/forms.py:344
+#: mkt/comm/forms.py:45 mkt/submit/forms.py:347
 msgid "Description:"
 msgstr "敘述:"
 
@@ -15715,127 +15706,127 @@ msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被停用了�
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "此網域已有一 App 存在；一個網域只能對應一個 App。"
 
-#: mkt/developers/forms.py:329
+#: mkt/developers/forms.py:332
 msgid "Invalid region(s) selected."
 msgstr "選擇了無效的區域。"
 
-#: mkt/developers/forms.py:399 mkt/webapps/models.py:448
+#: mkt/developers/forms.py:405 mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
 msgstr "您必須至少上傳一個螢幕截圖或影片。"
 
-#: mkt/developers/forms.py:440
+#: mkt/developers/forms.py:446
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "封裝應用程式過大，安裝需小於 %s。"
 
-#: mkt/developers/forms.py:455
+#: mkt/developers/forms.py:461
 msgid "Error extracting manifest from zip file."
 msgstr "從 zip 檔案抽取 manifest 時發生錯誤。"
 
-#: mkt/developers/forms.py:514
+#: mkt/developers/forms.py:520
 msgid "Provide a detailed description of your app"
 msgstr "請提供您應用程式詳細的說明"
 
 # 93%
-#: mkt/developers/forms.py:515 mkt/submit/forms.py:345
+#: mkt/developers/forms.py:521 mkt/submit/forms.py:348
 msgid "This description will appear on the details page."
 msgstr "這個敘述會顯示在詳細資訊頁面。"
 
 # 86%
-#: mkt/developers/forms.py:587
+#: mkt/developers/forms.py:593
 msgid "Please specify your app's Privacy Policy"
 msgstr "請註明您附加元件的隱私權保護政策："
 
-#: mkt/developers/forms.py:608
+#: mkt/developers/forms.py:614
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "在您修改預設語言之前，您必須有該語言的名稱和說明。您目前沒有 %s 。"
 
-#: mkt/developers/forms.py:663
+#: mkt/developers/forms.py:669
 msgid "Your comments"
 msgstr "您的留言"
 
-#: mkt/developers/forms.py:686
+#: mkt/developers/forms.py:692
 msgid "Choose the regions your app will be listed in:"
 msgstr "選擇您 App 的地區："
 
-#: mkt/developers/forms.py:690 mkt/developers/forms.py:776
+#: mkt/developers/forms.py:696 mkt/developers/forms.py:782
 msgid "You must select at least one region."
 msgstr "您必須至少選取一個地區。"
 
-#: mkt/developers/forms.py:695
+#: mkt/developers/forms.py:701
 msgid "Enable new regions"
 msgstr "啟用新區域"
 
-#: mkt/developers/forms.py:697
+#: mkt/developers/forms.py:703
 msgid "Make my app available in most regions"
 msgstr "讓我的應用程式可以在大部分的地區取得"
 
-#: mkt/developers/forms.py:698
+#: mkt/developers/forms.py:704
 msgid "Choose where my app is made available"
 msgstr "選擇我的應用程式可以在哪些地方取得"
 
-#: mkt/developers/forms.py:885
+#: mkt/developers/forms.py:891
 msgid "Agree"
 msgstr "同意"
 
-#: mkt/developers/forms.py:902
+#: mkt/developers/forms.py:908
 msgid "Please enter a valid email address."
 msgstr "請輸入一個有效的電子郵件地址。"
 
-#: mkt/developers/forms.py:905
+#: mkt/developers/forms.py:911
 msgid "Your email address"
 msgstr "您的電子郵件地址"
 
-#: mkt/developers/forms.py:908
+#: mkt/developers/forms.py:914
 msgid "Text"
 msgstr "文字"
 
-#: mkt/developers/forms.py:912
+#: mkt/developers/forms.py:918
 msgid "You must agree to the Privacy Policy."
 msgstr "您必須同意隱私權政策。"
 
-#: mkt/developers/forms.py:913 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:919 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "國家"
 
-#: mkt/developers/forms.py:948
+#: mkt/developers/forms.py:954
 msgid "Transaction Type"
 msgstr "交易類型"
 
-#: mkt/developers/forms.py:1002
+#: mkt/developers/forms.py:1008
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr "請考慮將我的應用程式加入為 Firefox OS 裝置的預載軟體。我同意上述的條款。我理解同意此文件並不一定代表我的應用程式將會被預載。"
 
-#: mkt/developers/forms.py:1009
+#: mkt/developers/forms.py:1015
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "上傳您的測試計劃（.pdf, .xls 小於 2.5MB）"
 
-#: mkt/developers/forms.py:1018
+#: mkt/developers/forms.py:1024
 msgid "Test plan required."
 msgstr "需要測試計畫。"
 
-#: mkt/developers/forms.py:1025
+#: mkt/developers/forms.py:1031
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "檔案過大。請保持小於 %s，現在大小 %s。"
 
-#: mkt/developers/forms.py:1031
+#: mkt/developers/forms.py:1037
 msgid "Invalid file type. Only %s files are supported."
 msgstr "無效的檔案類型。僅支援 %s 檔案格式。"
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1055
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "此 IARC 證明已被其他應用程式使用，請建立新的 IARC 分級證明。"
 
-#: mkt/developers/forms.py:1062
+#: mkt/developers/forms.py:1068
 msgid "Please enter a valid submission ID."
 msgstr "請輸入一個有效的識別碼。"
 
-#: mkt/developers/forms.py:1086 mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1092 mkt/developers/forms.py:1103
 msgid "Invalid submission ID or security code."
 msgstr "無效的提交 ID 或安全代碼。"
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:272
 msgid "App Price"
 msgstr "應用程式價格"
 
@@ -16009,164 +16000,164 @@ msgstr "共享帳號：{0}"
 msgid "Reference Implementation"
 msgstr "參照工具"
 
-#: mkt/developers/tasks.py:348
+#: mkt/developers/tasks.py:349
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "在該網址沒有找到安裝資訊檔。請確定網址並再試一次。"
 
-#: mkt/developers/tasks.py:354
+#: mkt/developers/tasks.py:355
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifest 並需包含 HTTP 標頭 \"Content-Type: application/x-web-app-manifest+json\"。詳情請參考 %s 。"
 
-#: mkt/developers/tasks.py:371
+#: mkt/developers/tasks.py:372
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "您的 manifest 沒有使用 UTF-8 編碼。"
 
-#: mkt/developers/tasks.py:382
+#: mkt/developers/tasks.py:383
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Manifest 的編碼與傳入的 HTTP Content-Type 不符。"
 
-#: mkt/developers/tasks.py:461
+#: mkt/developers/tasks.py:462
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} 區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/tasks.py:465
+#: mkt/developers/tasks.py:466
 msgid "New regions added to the Firefox Marketplace"
 msgstr "新區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/utils.py:48
+#: mkt/developers/utils.py:60
 msgid "Video support not enabled."
 msgstr "未啟用視訊支援。"
 
 # 80%
-#: mkt/developers/utils.py:79
+#: mkt/developers/utils.py:91
 msgid "Please use files smaller than %s."
 msgstr "請使用小於 %s MB 的圖片。"
 
-#: mkt/developers/utils.py:89
+#: mkt/developers/utils.py:101
 msgid "Icon could not be opened."
 msgstr "無法開啟圖示。"
 
-#: mkt/developers/utils.py:91
+#: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
 msgstr "無法開啟預覽圖。"
 
-#: mkt/developers/utils.py:98
+#: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
 msgstr "圖示大小至少要為 128px 長 128px 寬。"
 
-#: mkt/developers/utils.py:101
+#: mkt/developers/utils.py:113
 msgid "Icons must be square."
 msgstr "圖示必須為正方形。"
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
-#: mkt/developers/utils.py:111
+#: mkt/developers/utils.py:123
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "應用程式預覽圖應至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
 # 75%
-#: mkt/developers/views.py:153
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "無法刪除此付費附加元件，請直接停用。"
 
-#: mkt/developers/views.py:163
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "已刪除應用程式。"
 
-#: mkt/developers/views.py:168
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "密碼不正確。尚未刪除應用程式。"
 
-#: mkt/developers/views.py:223
+#: mkt/developers/views.py:224
 msgid "App successfully resubmitted."
 msgstr "已重新提交應用程式。"
 
-#: mkt/developers/views.py:254
+#: mkt/developers/views.py:255
 msgid "New version successfully added."
 msgstr "成功新增新版本。"
 
-#: mkt/developers/views.py:298
+#: mkt/developers/views.py:303
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "恭喜，您的應用程式已經送出，很會就會審核完成！"
 
-#: mkt/developers/views.py:300
+#: mkt/developers/views.py:305
 msgid "Content ratings successfully saved."
 msgstr "已儲存內容分級。"
 
-#: mkt/developers/views.py:424
+#: mkt/developers/views.py:423
 msgid "Application for preload successfully submitted."
 msgstr "已送出預載應用程式。"
 
-#: mkt/developers/views.py:427
+#: mkt/developers/views.py:426
 msgid "There was an error with the form."
 msgstr "表單中有錯誤。"
 
-#: mkt/developers/views.py:460
+#: mkt/developers/views.py:457
 msgid "Version successfully edited."
 msgstr "編輯版本成功。"
 
-#: mkt/developers/views.py:501
+#: mkt/developers/views.py:498
 msgid "Version successfully made public."
 msgstr "成功將版本公開。"
 
 # 77%
-#: mkt/developers/views.py:516
+#: mkt/developers/views.py:513
 msgid "Version \"{0}\" deleted."
 msgstr "已刪除版本 \"{0}\"。"
 
-#: mkt/developers/views.py:989
+#: mkt/developers/views.py:984
 msgid "Terms of service accepted."
 msgstr "已接受服務條款。"
 
-#: mkt/developers/views.py:1001
+#: mkt/developers/views.py:996
 msgid "Users with the admin role cannot use the API."
 msgstr "擁有管理員資格的使用者不能使用這個 API。"
 
-#: mkt/developers/views.py:1009
+#: mkt/developers/views.py:1004
 msgid "No such API key."
 msgstr "沒有此 API 金錀。"
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1016
 msgid "New API key generated."
 msgstr "已產生新的 API 金鑰。"
 
-#: mkt/developers/views.py:1039
+#: mkt/developers/views.py:1034
 msgid "Created blocklisted version."
 msgstr "封鎖的版本已建立。"
 
-#: mkt/developers/views.py:1041
+#: mkt/developers/views.py:1036
 msgid "App already blocklisted."
 msgstr "應用程式已被封鎖。"
 
-#: mkt/developers/views_payments.py:76 mkt/developers/views_payments.py:93
+#: mkt/developers/views_payments.py:75 mkt/developers/views_payments.py:92
 msgid "We encountered a problem connecting to the payment server."
 msgstr "在連線到付款伺服器時發生錯誤。"
 
-#: mkt/developers/views_payments.py:172
+#: mkt/developers/views_payments.py:169
 msgid "Credit card"
 msgstr "信用卡"
 
-#: mkt/developers/views_payments.py:173
+#: mkt/developers/views_payments.py:170
 msgid "Carrier"
 msgstr "電信帳單"
 
-#: mkt/developers/views_payments.py:295
+#: mkt/developers/views_payments.py:291
 msgid "A server error occurred when retrieving the application key."
 msgstr "取得應用程式金鑰時發生伺服器錯誤。"
 
-#: mkt/developers/views_payments.py:302
+#: mkt/developers/views_payments.py:298
 msgid "Secret was reset successfully."
 msgstr "密錀重設成功。"
 
-#: mkt/developers/views_payments.py:306
+#: mkt/developers/views_payments.py:302
 msgid "Key and secret were created successfully."
 msgstr "成功新增金錀與密錀。"
 
-#: mkt/developers/views_payments.py:330
+#: mkt/developers/views_payments.py:326
 msgid "Your app is not configured for in-app payments."
 msgstr "您的應用程式並未設定應用程式內付款。"
 
-#: mkt/developers/views_payments.py:336
+#: mkt/developers/views_payments.py:332
 msgid "No payment account for this app."
 msgstr "這個應用程式沒有付款帳號。"
 
@@ -16443,7 +16434,7 @@ msgid "Submit An App"
 msgstr "送出應用程式"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:130 mkt/reviewers/templates/reviewers/includes/mobile_details.html:150
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:129 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
 msgid "Team Members"
 msgstr "團隊成員"
 
@@ -16726,22 +16717,34 @@ msgid "Enter email addresses, separated by commas"
 msgstr "請輸入電子郵件信箱地址，如有額外地址請以逗號分隔"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
+msgid "Mozilla VIP App"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:92
+msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:93
+msgid "Use sparingly"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
 msgstr "橫幅訊息"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr "僅針對選擇的地區的軟體上架頁面中顯示此訊息。"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:110
+#: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Regions to show banner in"
 msgstr "要顯示橫幅的區域"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:112
+#: mkt/developers/templates/developers/apps/edit/admin.html:130
 msgid "Regions that the banner message will be shown in."
 msgstr "要在哪些區域顯示橫幅訊息。"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:135
+#: mkt/developers/templates/developers/apps/edit/admin.html:153
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "標籤能協助使用者更容易地找到您的應用程式。標籤應為簡單的描述，比如：分頁、工具列、twitter等。您最多可以標上 {0} 個標籤。"
 
@@ -16749,7 +16752,7 @@ msgstr "標籤能協助使用者更容易地找到您的應用程式。標籤應
 msgid "This field can only be edited by updating it in the manifest."
 msgstr "這個欄位只能透過更新安裝資訊來編輯。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:87 mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
+#: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:86 mkt/reviewers/templates/reviewers/includes/mobile_details.html:108
 msgid "Developer Name"
 msgstr "開發者名稱"
 
@@ -16773,7 +16776,7 @@ msgstr "這個 URL 是用來給 Marketplace API 存取這個應用程式的"
 msgid "View API documentation"
 msgstr "檢視 API 文件"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
+#: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:25 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:102
 msgid "Manifest URL"
 msgstr "安裝資訊網址"
@@ -16992,8 +16995,8 @@ msgstr "狀態 &amp; 版本"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:69 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:21 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:526
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:526
 msgid "Content Ratings"
 msgstr "內容分級"
 
@@ -17123,23 +17126,23 @@ msgstr "安全碼"
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "您可以在憑證中找到該識別碼。識別碼由數字和英文字母組成，例如 &quot;AB12CD3&quot;。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
 msgstr "分級系統"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25 mkt/developers/templates/developers/payments/premium.html:210
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:210
 msgid "Region"
 msgstr "地區"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
 msgstr "分級類別"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
 msgstr "描述"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:62
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:61
 msgid "Interactive Elements"
 msgstr "互動元素"
 
@@ -17435,15 +17438,15 @@ msgstr "您將會在有新的區域時收到郵件通知。"
 msgid "Select All"
 msgstr "全選"
 
-#: mkt/ecosystem/views.py:55
+#: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
 msgstr "感謝訂閱!"
 
-#: mkt/ecosystem/views.py:61
+#: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr "抱歉，我們的系統發生錯誤。請稍後重試。"
 
-#: mkt/ecosystem/views.py:230
+#: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
 msgstr "Gaia 基礎要素"
 
@@ -18483,27 +18486,27 @@ msgstr "請輸入退款詳細資訊以便進行退款交易"
 msgid "Reason for Deletion"
 msgstr "刪除原因"
 
-#: mkt/lookup/views.py:151
+#: mkt/lookup/views.py:145
 msgid "Currently unable to retrieve refund status."
 msgstr "目前無法讀取退款狀態。"
 
-#: mkt/lookup/views.py:178
+#: mkt/lookup/views.py:172
 msgid "A refund has already been processed."
 msgstr "退款已處理。"
 
-#: mkt/lookup/views.py:202
+#: mkt/lookup/views.py:195
 msgid "You cannot make a refund request for this transaction."
 msgstr "這個交易不能退款。"
 
-#: mkt/lookup/views.py:224
+#: mkt/lookup/views.py:217
 msgid "Refund for this transaction now pending."
 msgstr "這個交易的退款正在處理中。"
 
-#: mkt/lookup/views.py:233
+#: mkt/lookup/views.py:226
 msgid "Refund for this transaction successfully approved."
 msgstr "這個交易的退款已經核准通過。"
 
-#: mkt/lookup/views.py:238
+#: mkt/lookup/views.py:231
 msgid "Refund request for this transaction failed."
 msgstr "這個交易的退款要求失敗。"
 
@@ -18524,19 +18527,19 @@ msgstr "全部"
 msgid "Manifest"
 msgstr "安裝資訊"
 
-#: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
+#: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:34 mkt/reviewers/templates/reviewers/includes/mobile_details.html:56
 msgid "View"
 msgstr "檢視"
 
-#: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
+#: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:12 mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 msgid "Privileged Packaged app"
 msgstr "有權限的封裝應用程式"
 
-#: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
+#: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:14 mkt/reviewers/templates/reviewers/includes/mobile_details.html:46
 msgid "Packaged app"
 msgstr "已封存的應用程式"
 
-#: mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
+#: mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/includes/details.html:17 mkt/reviewers/templates/reviewers/includes/mobile_details.html:49
 msgid "Hosted app"
 msgstr "架設應用程式"
 
@@ -18792,11 +18795,6 @@ msgstr "找不到預載選項"
 msgid "Receipt for {0}"
 msgstr "{0} 的收據"
 
-#. L10n: {0} is the addon name.
-#: mkt/purchase/webpay.py:43
-msgid "Firefox Marketplace purchase of {0}"
-msgstr "於 Firefox Marketplace 購買 {0}"
-
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
 msgstr "收據"
@@ -18865,7 +18863,7 @@ msgstr "無效的測試用收據"
 msgid "Refunded test receipt"
 msgstr "已退還的測試用收據"
 
-#: mkt/receipts/views.py:98 mkt/receipts/views.py:188
+#: mkt/receipts/views.py:99 mkt/receipts/views.py:190
 msgid "There was a problem installing the app."
 msgstr "安裝應用程式時發生問題。"
 
@@ -18980,79 +18978,79 @@ msgstr "中國 ({0})"
 msgid "Device ({0})"
 msgstr "裝置 ({0})"
 
-#: mkt/reviewers/utils.py:425
+#: mkt/reviewers/utils.py:426
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "這將會讓沙盒的應用程式出現在公開頁面。"
 
-#: mkt/reviewers/utils.py:431
+#: mkt/reviewers/utils.py:432
 msgid "This will reject the app and remove it from the review queue."
 msgstr "這將會退回這個應用程式並從待審區移除。"
 
-#: mkt/reviewers/utils.py:437
+#: mkt/reviewers/utils.py:438
 msgid "This will send the author(s) an email requesting more information."
 msgstr "這將會向作者傳送一封電子郵件要求更多資訊。"
 
 # 88%
-#: mkt/reviewers/utils.py:441
+#: mkt/reviewers/utils.py:442
 msgid "Escalate"
 msgstr "向上呈報"
 
-#: mkt/reviewers/utils.py:443
+#: mkt/reviewers/utils.py:444
 msgid "Flag this app for an admin to review."
 msgstr "標記此應用程式給管理員審核。"
 
-#: mkt/reviewers/utils.py:448
+#: mkt/reviewers/utils.py:449
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "寫下這個應用程式的註解。應用程式作者看不到這個註解。"
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:453
 msgid "Clear Escalation"
 msgstr "清除向上呈報"
 
-#: mkt/reviewers/utils.py:454
+#: mkt/reviewers/utils.py:455
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr "從向上呈報等待區清除這個應用程式。作者不會接到任何電子郵件通知或是看到這邊的註解。"
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
 msgstr "清除再次審核"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:462
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr "從再次審核等待區清除這個應用程式。作者不會接到任何電子郵件通知或是看到這邊的註解。"
 
 # 90%
-#: mkt/reviewers/utils.py:466
+#: mkt/reviewers/utils.py:467
 msgid "Disable app"
 msgstr "停用這個應用程式"
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:469
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr "停用這個應用程式，使其不在公開搜尋結果中顯示。傳送意見給作者。"
 
 # 80%
-#: mkt/reviewers/views.py:84
+#: mkt/reviewers/views.py:83
 msgid "New Apps (Under 5 days)"
 msgstr "新的附加元件 (5天內)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "只有資深審核者可以審核已封鎖的應用程式。"
 
-#: mkt/reviewers/views.py:306
+#: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "審核者更改了裝置: {0}"
 
-#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:330 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "已移除 {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:332
+#: mkt/reviewers/views.py:331
 msgid "Requirements changed by reviewer: {0}"
 msgstr "需求已被審核者更改: {0}"
 
-#: mkt/reviewers/views.py:355
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "「{0}」處理成功（+{1} 點數，共 {2} 點）。"
 
@@ -19136,11 +19134,11 @@ msgstr "濫用報告:"
 msgid "{region} Review Queue"
 msgstr "{region} 審核佇列"
 
-#: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
+#: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:22
 msgid "In re-review queue"
 msgstr "位於再次審核待審區"
 
-#: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
+#: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In escalation queue"
 msgstr "位於向上呈報待審區"
 
@@ -19184,39 +19182,39 @@ msgstr "附件"
 msgid "This version has not been reviewed"
 msgstr "此版本上未通過審查"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:6
 msgid "ID"
 msgstr "ID"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:38 mkt/reviewers/templates/reviewers/includes/mobile_details.html:60
+#: mkt/reviewers/templates/reviewers/includes/details.html:37 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
 msgstr "應用程式網域"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:43 mkt/reviewers/templates/reviewers/includes/mobile_details.html:65
+#: mkt/reviewers/templates/reviewers/includes/details.html:42 mkt/reviewers/templates/reviewers/includes/mobile_details.html:64
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 msgstr "<strong>IDN 網域!</strong> punycode 版本: %(punycode_app_domain)s"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:50 mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
+#: mkt/reviewers/templates/reviewers/includes/details.html:49 mkt/reviewers/templates/reviewers/includes/mobile_details.html:71
 msgid "Signed Zip"
 msgstr "已簽署的 Zip 檔"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:72 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
+#: mkt/reviewers/templates/reviewers/includes/details.html:71 mkt/reviewers/templates/reviewers/includes/mobile_details.html:93
 msgid "This app has not yet been rated"
 msgstr "這個應用程式尚未被評分"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
+#: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Total Downloads"
 msgstr "總下載次數"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
+#: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
 msgstr "裝置類型"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:148
+#: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
 msgstr "需求"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:172
+#: mkt/reviewers/templates/reviewers/includes/details.html:171
 msgid "More about this app"
 msgstr "更多關於此應用程式的資訊"
 
@@ -19232,8 +19230,8 @@ msgstr "包含應用程式內付款的付費應用程式"
 msgid "Free with In-App"
 msgstr "包含應用程式內購買的免費應用程式"
 
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20 mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:170
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19 mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:171
 msgid "more..."
 msgstr "更多..."
 
@@ -19244,6 +19242,14 @@ msgstr "(%(locale)s)的使用者 %(user)s 於 %(date)s 給予 %(stars)s顆星"
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "版本 %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
+msgid "Next Page"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
+msgid "Previous Page"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -19423,56 +19429,56 @@ msgstr "封裝應用程式還不支援這些平台。"
 msgid "Agree and Continue"
 msgstr "同意並繼續"
 
-#: mkt/submit/forms.py:274
+#: mkt/submit/forms.py:277
 msgid "When should your app be made available for sale?"
 msgstr "想要什麼時候開始銷售您的應用程式?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:281
+#: mkt/submit/forms.py:284
 msgid "App to upgrade from"
 msgstr "應用程式升級從"
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
 msgstr "隱私權保護政策:"
 
-#: mkt/submit/forms.py:349
+#: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "必須陳述隱私權政策，解釋什麼資料會從使用者的電腦傳送出去，以及如何使用收集的資料。"
 
-#: mkt/submit/forms.py:353
+#: mkt/submit/forms.py:356
 msgid "Homepage:"
 msgstr "首頁:"
 
-#: mkt/submit/forms.py:354
+#: mkt/submit/forms.py:357
 msgid "If your app has another homepage, enter its address here."
 msgstr "如果您的應用程式有另一個首頁，請在這裡輸入網址。"
 
-#: mkt/submit/forms.py:358
+#: mkt/submit/forms.py:361
 msgid "Support Website:"
 msgstr "技術支援網站:"
 
-#: mkt/submit/forms.py:359
+#: mkt/submit/forms.py:362
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "如果您的應用程式有支援網站或是討論區，請在此輸入位址。"
 
-#: mkt/submit/forms.py:363
+#: mkt/submit/forms.py:366
 msgid "Support Email:"
 msgstr "技術支援信箱:"
 
-#: mkt/submit/forms.py:364
+#: mkt/submit/forms.py:367
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr "這個電子郵件將會公開在商城中讓使用者向您尋求協助。這個電子郵件將會在您的應用程式的詳細資料頁面中公開顯示。"
 
-#: mkt/submit/forms.py:371
+#: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
 msgstr "您的應用程式是否使用 Flash?"
 
-#: mkt/submit/forms.py:379
+#: mkt/submit/forms.py:382
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "通過審核後立即在 Firefox Marketplace 發佈我的應用程式。"
 
-#: mkt/submit/forms.py:381
+#: mkt/submit/forms.py:384
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
@@ -19738,20 +19744,20 @@ msgid "This app needs a payment account set up."
 msgstr "此應用程式需要設定付費帳號。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2275
+#: mkt/webapps/models.py:2294
 msgid "awaiting approval"
 msgstr "等待審核通過"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2279
+#: mkt/webapps/models.py:2298
 msgid "requires additional review"
 msgstr "需要額外審核"
 
-#: mkt/webapps/models.py:2330
+#: mkt/webapps/models.py:2349
 msgid "{region} approval status"
 msgstr "{region} 審核狀態"
 
-#: mkt/webapps/models.py:2335
+#: mkt/webapps/models.py:2354
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 

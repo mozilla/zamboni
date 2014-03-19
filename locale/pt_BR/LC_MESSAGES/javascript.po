@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: 2014-03-15 01:55+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,9 +228,7 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Esse recurso está desativado temporariamente enquanto realizamos a "
-"manutenção do site. Por favor, volte mais tarde."
+msgstr "Esse recurso está desativado temporariamente enquanto realizamos a manutenção do site. Por favor, volte mais tarde."
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -310,9 +308,7 @@ msgstr "HEBIC Grego/Code Bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código "
-"BSB australiano"
+msgstr "Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -339,14 +335,8 @@ msgstr "Detectado: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Aviso: exclusão da conta de pagamento \"{0}\" vai passar esse aplicativo "
-"associado a um estado incompleto e que deixará de estar disponível para "
-"venda"
-msgstr[1] ""
-"Aviso: exclusão da conta de pagamento \"{0}\" vai passar os aplicativos "
-"associados a um estado incompleto e eles não estarão mais disponíveis para "
-"venda:"
+msgstr[0] "Aviso: exclusão da conta de pagamento \"{0}\" vai passar esse aplicativo associado a um estado incompleto e que deixará de estar disponível para venda"
+msgstr[1] "Aviso: exclusão da conta de pagamento \"{0}\" vai passar os aplicativos associados a um estado incompleto e eles não estarão mais disponíveis para venda:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -556,8 +546,8 @@ msgstr "Erro ao aprovar o aplicativo: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Erro ao rejeitar o aplicativo"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g. "by Kevin on 2014-01-16").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:49
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
 msgstr "Por {0} em {1}"
 

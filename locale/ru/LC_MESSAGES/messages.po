@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-26 09:03-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: 2014-02-07 16:49+0400\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Translate Toolkit 1.9.0\n"
 
-#: apps/addons/buttons.py:188
+#: apps/addons/buttons.py:189
 msgid "Download Now"
 msgstr "Загрузить сейчас"
 
-#: apps/addons/buttons.py:190 mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
+#: apps/addons/buttons.py:191 mkt/developers/templates/developers/apps/status.html:237 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:92 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:199
@@ -33,30 +33,30 @@ msgid "Download"
 msgstr "Загрузить"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: apps/addons/buttons.py:194
+#: apps/addons/buttons.py:195
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Перейти к загрузке&nbsp;&rarr;"
 
-#: apps/addons/buttons.py:199
+#: apps/addons/buttons.py:200
 msgid "Install App"
 msgstr "Установить приложение"
 
-#: apps/addons/buttons.py:213
+#: apps/addons/buttons.py:214
 msgctxt "install_button"
 msgid "Featured"
 msgstr "Избранное"
 
-#: apps/addons/buttons.py:218
+#: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Не проверено"
 
-#: apps/addons/buttons.py:225
+#: apps/addons/buttons.py:226
 msgctxt "install_button"
 msgid "Experimental"
 msgstr "Экспериментальное"
 
-#: apps/addons/buttons.py:232
+#: apps/addons/buttons.py:233
 msgid "Add to {0}"
 msgstr "Добавить в {0}"
 
@@ -64,11 +64,11 @@ msgstr "Добавить в {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "Это имя уже используется. Пожалуйста, выберите другое."
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:555 mkt/submit/forms.py:403
+#: apps/addons/forms.py:62 mkt/developers/forms.py:561 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
 msgstr "Это окончание уже используется. Пожалуйста, выберите другое."
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:558 mkt/submit/forms.py:407
+#: apps/addons/forms.py:65 mkt/developers/forms.py:564 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr ""
 
@@ -115,7 +115,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "Категории не могут быть изменены, пока ваше дополнение избрано для этого приложения."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:859 mkt/webapps/api.py:260
+#: apps/addons/forms.py:256 mkt/developers/forms.py:865 mkt/webapps/api.py:260
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "У вас может быть только {0} категория."
@@ -150,9 +150,9 @@ msgstr "Введите новый адрес эл. почты автора"
 msgid "Not Reviewed"
 msgstr "Не проверено"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:329 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:328 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:17 apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:86 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:448
+#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:85 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:229 apps/browse/views.py:446
 #: apps/browse/templates/browse/impala/category_landing.html:24 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "Избранное"
@@ -166,28 +166,28 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Пользователей всегда будут просить в менеджере дополнений (Firefox 4 и выше)"
 
 # Column name in a table.
-#: apps/addons/models.py:2102
+#: apps/addons/models.py:2101
 msgid "Listed"
 msgstr "В списке"
 
-#: apps/addons/views.py:330 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:329 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Популярные"
 
-#: apps/addons/views.py:331 apps/browse/views.py:234 apps/browse/views.py:292 apps/browse/views.py:473
+#: apps/addons/views.py:330 apps/browse/views.py:232 apps/browse/views.py:290 apps/browse/views.py:471
 msgid "Recently Added"
 msgstr "Недавно добавленные"
 
-#: apps/addons/views.py:332 apps/bandwagon/views.py:90 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:95
+#: apps/addons/views.py:331 apps/bandwagon/views.py:89 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:96
 msgid "Recently Updated"
 msgstr "Недавно обновлённые"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:515
+#: apps/addons/views.py:514
 msgid "Contribution for {0}"
 msgstr "Взнос для {0}"
 
-#: apps/addons/views.py:603
+#: apps/addons/views.py:602
 msgid "Abuse reported."
 msgstr "О злоупотреблении сообщено."
 
@@ -340,7 +340,7 @@ msgstr "Сделайте взнос"
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/edit.html:127 apps/devhub/templates/devhub/versions/list.html:281
 #: apps/devhub/templates/devhub/versions/list.html:324 apps/devhub/templates/devhub/versions/list.html:357 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 mkt/developers/templates/developers/apps/status.html:335
-#: mkt/developers/templates/developers/apps/status.html:359 mkt/developers/templates/developers/apps/version_edit.html:81 mkt/developers/templates/developers/apps/edit/admin.html:167
+#: mkt/developers/templates/developers/apps/status.html:359 mkt/developers/templates/developers/apps/version_edit.html:81 mkt/developers/templates/developers/apps/edit/admin.html:185
 #: mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:68
 #: mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
@@ -454,20 +454,20 @@ msgid "Add-on Information for {0}"
 msgstr "Информация о дополнении для {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:73 mkt/developers/views.py:78
-#: mkt/reviewers/templates/reviewers/includes/details.html:75 mkt/reviewers/templates/reviewers/includes/mobile_details.html:95
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:448 apps/devhub/views.py:72 mkt/developers/views.py:77
+#: mkt/reviewers/templates/reviewers/includes/details.html:74 mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
 msgstr "Обновлено"
 
 #: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
-#: apps/discovery/templates/discovery/addons/detail.html:83 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:81
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:101
+#: apps/discovery/templates/discovery/addons/detail.html:83 mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:80
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
 msgstr "Веб-сайт"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51 apps/addons/templates/addons/mobile/details.html:81 apps/search/templates/search/results.html:72 apps/versions/templates/versions/version.html:21
-#: mkt/reviewers/templates/reviewers/includes/details.html:90 mkt/reviewers/templates/reviewers/includes/mobile_details.html:110
+#: mkt/reviewers/templates/reviewers/includes/details.html:89 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Works with"
 msgstr "Работает с"
 
@@ -490,7 +490,7 @@ msgid "Downloads"
 msgstr "Загрузок"
 
 #: apps/addons/templates/addons/details_box.html:87 apps/addons/templates/addons/details_box.html:99 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
-#: apps/devhub/templates/devhub/personas/edit.html:60 mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:121
+#: apps/devhub/templates/devhub/personas/edit.html:60 mkt/reviewers/templates/reviewers/includes/details.html:100 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
 msgstr "Просмотреть статистику"
 
@@ -499,20 +499,20 @@ msgid "Average Daily Users"
 msgstr "Среднее кол-во активных ежедневных пользователей"
 
 #: apps/addons/templates/addons/details_box.html:105 mkt/lookup/templates/lookup/app_summary.html:67 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:36
-#: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
+#: mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
 msgid "Abuse Reports"
 msgstr "Отчёты о нарушениях"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:310 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
+#: mkt/reviewers/templates/reviewers/includes/details.html:123 mkt/reviewers/templates/reviewers/includes/mobile_details.html:145 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
 #: templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "Политика приватности"
 
-#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:127
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
+#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:126
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:148
 msgid "View Privacy Policy"
 msgstr "Просмотреть политику приватности"
 
@@ -561,7 +561,7 @@ msgstr ""
 msgid "Version {0}:"
 msgstr "Версия {0}:"
 
-#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:175
+#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:174
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Здесь нечего смотреть! Разработчик не добавил никаких деталей."
 
@@ -609,7 +609,7 @@ msgstr "Вернуться к {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:257
 msgid "Add-ons for {0}"
 msgstr "Дополнения {0}"
 
@@ -622,7 +622,7 @@ msgid "Popular Extensions"
 msgstr "Популярные расширения"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/side_nav.html:18
-#: apps/amo/templates/amo/site_nav.html:3 apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:293 apps/browse/views.py:472
+#: apps/amo/templates/amo/site_nav.html:3 apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:230 apps/browse/views.py:291 apps/browse/views.py:470
 msgid "Most Popular"
 msgstr "Самые популярные"
 
@@ -663,7 +663,7 @@ msgstr "Обновлено {0}"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:44 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:308 mkt/reviewers/views.py:329 mkt/submit/forms.py:34 mkt/submit/forms.py:44
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:307 mkt/reviewers/views.py:328 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
 msgstr "Добавлено {0}"
 
@@ -682,7 +682,7 @@ msgstr[1] "%(num)s пользователя"
 msgstr[2] "%(num)s пользователей"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:22
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:23
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} загрузка за неделю"
@@ -792,7 +792,7 @@ msgstr "Просмотреть все темы от этого художник�
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 mkt/developers/templates/developers/apps/edit/basic.html:148
-#: mkt/reviewers/templates/reviewers/includes/details.html:137 mkt/reviewers/templates/reviewers/includes/mobile_details.html:157 mkt/reviewers/templates/reviewers/themes/themes.html:35
+#: mkt/reviewers/templates/reviewers/includes/details.html:136 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/reviewers/templates/reviewers/themes/themes.html:35
 #: templates/categories.html:7
 msgid "Categories"
 msgstr "Категории"
@@ -848,7 +848,7 @@ msgstr "Добавить"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:250
 #: mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10 mkt/developers/templates/developers/apps/edit/details.html:8
 #: mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7 mkt/developers/templates/developers/apps/edit/technical.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/ratings/templates/ratings/rating.html:43
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/ratings/templates/ratings/rating.html:43
 #: mkt/submit/templates/submit/details.html:83 templates/qunit/qunit.html:755
 msgid "Edit"
 msgstr "Правка"
@@ -996,7 +996,7 @@ msgstr "Отправить сообщение"
 #: apps/devhub/templates/devhub/versions/list.html:281 apps/devhub/templates/devhub/versions/list.html:324 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:103 mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:359
-#: mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/developers/templates/developers/apps/edit/basic.html:172
+#: mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:187 mkt/developers/templates/developers/apps/edit/basic.html:172
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:70 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
@@ -1206,7 +1206,7 @@ msgstr "Информация"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Выпущено на условиях <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:209 apps/addons/templates/addons/impala/details.html:214 apps/amo/helpers.py:410 apps/devhub/forms.py:139 apps/devhub/forms.py:169
+#: apps/addons/templates/addons/impala/details.html:209 apps/addons/templates/addons/impala/details.html:214 apps/amo/helpers.py:413 apps/devhub/forms.py:139 apps/devhub/forms.py:169
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Своя лицензия"
@@ -1284,7 +1284,7 @@ msgstr[0] "О разработчике"
 msgstr[1] "О разработчиках"
 msgstr[2] "О разработчиках"
 
-#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:112 apps/users/templates/users/profile.html:29
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:116 apps/users/templates/users/profile.html:29
 msgid "No Photo"
 msgstr "Нет фото"
 
@@ -1422,12 +1422,12 @@ msgstr "Подробнее"
 msgid "Users"
 msgstr "Пользователи"
 
-#: apps/addons/templates/addons/mobile/details.html:94 apps/browse/views.py:59 apps/browse/views.py:70 apps/devhub/views.py:82 apps/search/forms.py:93 apps/search/forms.py:101
-#: mkt/reviewers/templates/reviewers/includes/details.html:104 mkt/reviewers/templates/reviewers/includes/mobile_details.html:124 mkt/search/forms.py:16
+#: apps/addons/templates/addons/mobile/details.html:94 apps/browse/views.py:58 apps/browse/views.py:69 apps/devhub/views.py:81 apps/search/forms.py:94 apps/search/forms.py:102
+#: mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125 mkt/search/forms.py:16
 msgid "Weekly Downloads"
 msgstr "Еженедельные загрузки"
 
-#: apps/addons/templates/addons/mobile/details.html:101 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:956 apps/devhub/templates/devhub/versions/list.html:167
+#: apps/addons/templates/addons/mobile/details.html:101 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:958 apps/devhub/templates/devhub/versions/list.html:167
 msgid "Version"
 msgstr "Версия"
 
@@ -1477,7 +1477,7 @@ msgstr "Для установки дополнений вам потребует
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Вернуться на домашнюю страницу дополнений {0}"
 
-#: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/addons/templates/addons/mobile/home.html:19 apps/amo/helpers.py:259 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 mkt/reviewers/templates/reviewers/base.html:30 mkt/reviewers/templates/reviewers/performance.html:26
 #: templates/menu_links.html:4 templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19
 #: templates/mobile/base_addons.html:47
@@ -1488,8 +1488,8 @@ msgstr "Дополнения"
 msgid "Easy ways to personalize."
 msgstr "Легкие способы персонализации."
 
-#: apps/addons/templates/addons/mobile/home.html:22 apps/devhub/templates/devhub/addons/submit/done.html:61 apps/discovery/templates/discovery/pane.html:35
-#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/addons/templates/addons/mobile/home.html:22 apps/discovery/templates/discovery/pane.html:35 apps/discovery/templates/discovery/addons/detail.html:22
+#: apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Подробнее"
 
@@ -1513,12 +1513,12 @@ msgstr "Просмотреть все популярные дополнения"
 msgid "More Add-ons"
 msgstr "Ещё дополнения"
 
-#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:13 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
+#: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:13 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:16
 msgid "Highest Rated"
 msgstr "Лидеры рейтинга"
 
-#: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:88
-#: apps/browse/views.py:57 apps/browse/views.py:67 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:90 apps/search/forms.py:106
+#: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
 #: mkt/search/forms.py:19
 msgid "Newest"
 msgstr "Новейшие"
@@ -1593,7 +1593,7 @@ msgstr "Это должен быть действительный шестнад
 msgid "Enter at least one value."
 msgstr "Введите по меньшей мере одно значение."
 
-#: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:184 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
@@ -1603,22 +1603,22 @@ msgstr "Введите по меньшей мере одно значение."
 msgid "Collections"
 msgstr "Подборки"
 
-#: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:193 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Словари и локализации"
 
-#: apps/amo/helpers.py:278 apps/amo/helpers.py:280 mkt/developers/helpers.py:46 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
+#: apps/amo/helpers.py:281 apps/amo/helpers.py:283 mkt/developers/helpers.py:46 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
 msgstr "Магазин Firefox"
 
-#: apps/amo/helpers.py:321
+#: apps/amo/helpers.py:324
 msgid "Apps Marketplace"
 msgstr "Магазин Приложений"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:440
+#: apps/amo/helpers.py:443
 msgid "{0} ago"
 msgstr "{0} назад"
 
@@ -1766,7 +1766,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Коментарий о {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:475
-#: apps/editors/templates/editors/themes/history_table.html:11 mkt/constants/comm.py:34 mkt/reviewers/utils.py:446 mkt/reviewers/templates/reviewers/themes/history_table.html:11
+#: apps/editors/templates/editors/themes/history_table.html:11 mkt/constants/comm.py:34 mkt/reviewers/utils.py:447 mkt/reviewers/templates/reviewers/themes/history_table.html:11
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -2007,81 +2007,89 @@ msgstr "{addon}  повторно представлено на проверку
 msgid "App Resubmission"
 msgstr "Повторное представление приложения"
 
-#: apps/amo/log.py:543
+#: apps/amo/log.py:533
+msgid "{addon} auto-escalated because its a VIP app."
+msgstr ""
+
+#: apps/amo/log.py:534
+msgid "VIP auto-escalation"
+msgstr ""
+
+#: apps/amo/log.py:551
 msgid "Created: {0}."
 msgstr "Создано: {0}."
 
-#: apps/amo/log.py:549
+#: apps/amo/log.py:557
 msgid "Edited field: {2} set to: {0}."
 msgstr "Поле изменено: {2} установлено в: {0}."
 
-#: apps/amo/log.py:555
+#: apps/amo/log.py:563
 msgid "Deleted: {1}."
 msgstr "Удалено: {1}."
 
-#: apps/amo/log.py:561
+#: apps/amo/log.py:569
 msgid "User {user} edited, reason: {1}"
 msgstr "Пользователь {user} отредактирован, причина: {1}"
 
-#: apps/amo/log.py:567
+#: apps/amo/log.py:575
 msgid "User {user} anonymized."
 msgstr "Пользователь {user} анонимизирован."
 
-#: apps/amo/log.py:573
+#: apps/amo/log.py:581
 msgid "User {user} restricted."
 msgstr "Пользователь {user} ограничен."
 
-#: apps/amo/log.py:579
+#: apps/amo/log.py:587
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:594
 msgid "{review} for {addon} updated."
 msgstr "{review} для {addon} обновлён."
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:600
 msgid "{addon} reviewed."
 msgstr "{addon} проверено."
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:606
 msgid "User {0.name} added to {group}."
 msgstr "Пользователь {0.name} добавлен в {group}."
 
-#: apps/amo/log.py:606
+#: apps/amo/log.py:614
 msgid "User {0.name} removed from {group}."
 msgstr "Пользователь {0.name} удалён из {group}."
 
-#: apps/amo/log.py:613
+#: apps/amo/log.py:621
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr ""
 
-#: apps/amo/log.py:614
+#: apps/amo/log.py:622
 msgid "Requirements Changed by Reviewer"
 msgstr "Требования изменены проверяющим"
 
-#: apps/amo/log.py:621
+#: apps/amo/log.py:629
 msgid "{addon} minimum requirements manually changed."
 msgstr ""
 
-#: apps/amo/log.py:622
+#: apps/amo/log.py:630
 msgid "Requirements Changed"
 msgstr "Требования изменены"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:630
+#: apps/amo/log.py:638
 msgid "{version} status changed to {0}."
 msgstr "стутус {version} изменён на {0}."
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:637
+#: apps/amo/log.py:645
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr ""
 
-#: apps/amo/log.py:643
+#: apps/amo/log.py:651
 msgid "{addon} content rating changed to Adult."
 msgstr ""
 
-#: apps/amo/log.py:649
+#: apps/amo/log.py:657
 #, fuzzy
 msgid "{addon} content rating changed."
 msgstr "стутус {addon} изменён на {0}."
@@ -2187,8 +2195,8 @@ msgstr ""
 "<p> Пожалуйста, введите ниже <strong>оба слова</strong>, <strong>разделенные пробелом.</strong> </p><p> Если их трудно прочесть, вы можете <a href=\"#\" id=\"recaptcha_different\">попробовать "
 "другие слова</a> или <a href=\"#\" id=\"recaptcha_audio\">прослушать что-нибудь</a> вместо них. </p>"
 
-#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
-#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:294 apps/search/forms.py:89 apps/search/forms.py:102 mkt/search/forms.py:17
+#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:292 apps/search/forms.py:90 apps/search/forms.py:103 mkt/search/forms.py:17
 msgid "Top Rated"
 msgstr "Лидеры рейтинга"
 
@@ -2206,7 +2214,7 @@ msgstr "Расширения"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:87
+#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:86
 msgid "Most Followers"
 msgstr "Чаще всего отслеживаемые"
 
@@ -2220,7 +2228,7 @@ msgid "Collections I'm Following"
 msgstr "Подборки, за которыми я слежу"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:479
+#: apps/users/models.py:480
 msgid "My Favorite Add-ons"
 msgstr "Мои любимые дополнения"
 
@@ -2282,15 +2290,15 @@ msgid "Another Body"
 msgstr "Другое тело"
 
 #. L10n: {0} is comma separated data errors.
-#: apps/api/handlers.py:62
+#: apps/api/handlers.py:61
 msgid "Invalid data provided: {0}"
 msgstr "Предоставлены неверные данные:  {0}"
 
-#: apps/api/handlers.py:70
+#: apps/api/handlers.py:69
 msgid "Add-on did not validate: %s"
 msgstr "Дополнение не валидируется: %s"
 
-#: apps/api/views.py:246
+#: apps/api/views.py:247
 msgid "Not implemented yet."
 msgstr "Пока не реализовано."
 
@@ -2417,7 +2425,7 @@ msgstr "Приватность:"
 msgid "Icon"
 msgstr "Значок"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:340
+#: apps/bandwagon/forms.py:152 apps/users/forms.py:336
 msgid "No links are allowed."
 msgstr ""
 
@@ -2425,11 +2433,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr "Эта ссылка уже используется другой подборкой"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1223 mkt/developers/utils.py:61
+#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1207 mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
 msgstr "Значки могут быть либо в PNG либо в JPG."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1241 apps/users/forms.py:331
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1225 apps/users/forms.py:327
 msgid "Please use images smaller than %dMB."
 msgstr "Пожалуйста, используйте изображения менее %dМБ."
 
@@ -2469,15 +2477,15 @@ msgstr "Избранное"
 msgid "Remove from favorites"
 msgstr "Удалить из избранного"
 
-#: apps/bandwagon/views.py:89 apps/bandwagon/views.py:174 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:72 apps/devhub/views.py:80
-#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
-#: apps/search/forms.py:92 apps/search/forms.py:105 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:77
-#: mkt/developers/views.py:85 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
+#: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:447 apps/devhub/views.py:71 apps/devhub/views.py:79
+#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
+#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:76
+#: mkt/developers/views.py:84 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Имя"
 
-#: apps/bandwagon/views.py:91
+#: apps/bandwagon/views.py:90
 msgid "Recently Popular"
 msgstr "Недавно популярные"
 
@@ -2505,7 +2513,7 @@ msgstr "Подборка обновлена!"
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Просмотреть вашу подборку</a>, чтобы посмотреть изменения."
 
-#: apps/bandwagon/views.py:555
+#: apps/bandwagon/views.py:554
 msgid "Icon Deleted"
 msgstr "Значок удалён"
 
@@ -2779,7 +2787,7 @@ msgstr "Редактировать {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:27
 #: apps/editors/templates/editors/themes/themes.html:60 mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23
-#: mkt/reviewers/templates/reviewers/includes/details.html:156 mkt/reviewers/templates/reviewers/themes/themes.html:61
+#: mkt/reviewers/templates/reviewers/includes/details.html:155 mkt/reviewers/templates/reviewers/themes/themes.html:61
 msgid "Description"
 msgstr "Описание"
 
@@ -2794,7 +2802,7 @@ msgstr "Помощники и другое"
 #: apps/devhub/templates/devhub/payments/in-app-config.html:49 apps/devhub/templates/devhub/payments/premium.html:25 apps/devhub/templates/devhub/payments/voluntary.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300 apps/devhub/templates/devhub/versions/edit.html:127
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:52 mkt/developers/templates/developers/apps/version_edit.html:81
-#: mkt/developers/templates/developers/apps/edit/admin.html:167 mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/admin.html:185 mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:70 mkt/developers/templates/developers/payments/premium.html:99
 #: mkt/developers/templates/developers/payments/premium.html:144 mkt/developers/templates/developers/payments/premium.html:242 mkt/developers/templates/developers/payments/premium.html:256
@@ -3075,27 +3083,27 @@ msgstr "Инструменты поиска и связанные с поиск�
 msgid "Search tools"
 msgstr "Инструменты поиска"
 
-#: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:88
+#: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:89
 msgid "Most Users"
 msgstr "Число пользователей"
 
-#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:291 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:96
+#: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:289 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
+#: apps/search/forms.py:97
 msgid "Up & Coming"
 msgstr "Набирающие популярность"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:74 apps/devhub/views.py:81 mkt/developers/views.py:79 mkt/developers/views.py:86
+#: apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:80 mkt/developers/views.py:78 mkt/developers/views.py:85
 msgid "Created"
 msgstr "Создано"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:75 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:80
+#: apps/browse/views.py:450 apps/devhub/views.py:74 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:79
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
 msgstr "Загрузки"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
-#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:81 mkt/reviewers/templates/reviewers/includes/details.html:94
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:114
+#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
+#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:80 mkt/reviewers/templates/reviewers/includes/details.html:93
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Rating"
 msgstr "Рейтинг"
 
@@ -3345,7 +3353,8 @@ msgstr "Создать свою собственную тему"
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
-#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/versions/list.html:100 mkt/developers/templates/developers/apps/status.html:71
+#: apps/browse/templates/browse/personas/base.html:51 apps/devhub/templates/devhub/index.html:95 apps/devhub/templates/devhub/addons/submit/done.html:70
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:54 apps/devhub/templates/devhub/versions/list.html:100 mkt/developers/templates/developers/apps/status.html:71
 msgid "Learn more"
 msgstr "Узнать больше"
 
@@ -3398,7 +3407,7 @@ msgstr "Другие темы"
 msgid "&laquo; All Themes"
 msgstr "&laquo; Все темы"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:171 mkt/search/forms.py:27
+#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:168 mkt/search/forms.py:27
 msgid "All"
 msgstr "Все"
 
@@ -3414,7 +3423,7 @@ msgstr "Бинарные"
 msgid "Non-binary"
 msgstr "Не бинарные"
 
-#: apps/compat/views.py:88 apps/constants/base.py:418 apps/constants/payments.py:52 apps/devhub/forms.py:160
+#: apps/compat/views.py:84 apps/constants/base.py:418 apps/constants/payments.py:52 apps/devhub/forms.py:160
 msgid "Other"
 msgstr "Другое"
 
@@ -3438,7 +3447,7 @@ msgstr "Основные 95% всех дополнений"
 msgid "All active add-ons"
 msgstr "Все активные дополнения"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:946 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:952 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
@@ -3515,7 +3524,7 @@ msgstr "Фильтр по приложению"
 msgid "Report Type"
 msgstr "Тип отчёта"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:953 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:60
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:955 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:60
 msgid "Application"
 msgstr "Приложение"
 
@@ -3572,7 +3581,7 @@ msgstr "Firefox для Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: apps/constants/applications.py:149 mkt/api/forms.py:102 mkt/reviewers/forms.py:257
+#: apps/constants/applications.py:149 mkt/api/forms.py:104 mkt/reviewers/forms.py:257
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -3597,7 +3606,7 @@ msgstr "Планшет Firefox"
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: apps/constants/base.py:26 mkt/lookup/views.py:161
+#: apps/constants/base.py:26 mkt/lookup/views.py:155
 msgid "Incomplete"
 msgstr "Неполный"
 
@@ -3916,7 +3925,7 @@ msgid "Duplicate"
 msgstr "Дубликат"
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:466 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92 mkt/constants/reviewers.py:24
-#: mkt/reviewers/utils.py:429 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
+#: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43 mkt/reviewers/templates/reviewers/themes/queue.html:71 mkt/reviewers/templates/reviewers/themes/themes.html:93
 msgid "Reject"
 msgstr "Отклонить"
 
@@ -4093,8 +4102,8 @@ msgstr "Автор может только быть указан только о
 msgid "Password incorrect."
 msgstr "Пароль неверен."
 
-#: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:126 mkt/constants/submit.py:7
-#: mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:519
+#: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:130 mkt/constants/submit.py:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:4 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:519
 msgid "Details"
 msgstr "Подробности"
 
@@ -4174,7 +4183,7 @@ msgstr "Для принятия взносов необходим PayPal ID."
 msgid "Could not validate PayPal id."
 msgstr "Не удалось проверить PayPal id."
 
-#: apps/devhub/forms.py:429 apps/devhub/forms.py:879
+#: apps/devhub/forms.py:429 apps/devhub/forms.py:881
 msgid "Invalid version range."
 msgstr "Неверный диапазон версий."
 
@@ -4186,7 +4195,7 @@ msgstr "Нужна по крайней мере одно совместимое 
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "На этом домене уже существует приложение, допускается только одно приложение на домен."
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:170 mkt/submit/forms.py:236
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:173 mkt/submit/forms.py:239
 msgid "There was an error with your upload. Please try again."
 msgstr "В процессе вашей загрузки произошла ошибка. Пожалуйста, попробуйте снова."
 
@@ -4211,7 +4220,7 @@ msgstr "Предварительная проверка"
 msgid "Please choose a review nomination type"
 msgstr ""
 
-#: apps/devhub/forms.py:557 mkt/submit/forms.py:204
+#: apps/devhub/forms.py:557 mkt/submit/forms.py:207
 msgid "Version %s already exists"
 msgstr "Версия %s уже существует"
 
@@ -4239,135 +4248,135 @@ msgstr "Платформа может быть выбрана только од�
 msgid "A review type must be selected."
 msgstr "Должен быть выбран тип проверки."
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:759
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Дайте имя вашему дополнению. Наиболее успешные дополнения используют имя, чтобы дать определенное представление об их функции."
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:763
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Кратко опишите ваше дополнение в одном предложении. Это появится в окне управления дополнениями."
 
-#: apps/devhub/forms.py:764
+#: apps/devhub/forms.py:766
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Введите первоначальный номер версии. В зависимости от количества релизов и ваших предпочтений, это обычно 0.1 или 1.0"
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:770
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Каждое дополнение должно иметь уникальный идентификатор в виде UUID или адреса электронной почты, такого как addon-name@developer.com. Адрес электронной почты не обязан быть действительным."
 
-#: apps/devhub/forms.py:773
+#: apps/devhub/forms.py:775
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Имя пакета вашего дополнения используется внутри браузера. Это должна быть краткая форма его имени (например, Test Extension может быть test_extension)."
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:780
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Введите имя человека или организации, который должен быть указан в качестве автора этого дополнения."
 
-#: apps/devhub/forms.py:781
+#: apps/devhub/forms.py:783
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Введите имена всех остальных разработчиков этого расширения, по одному в каждой строке."
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:792
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Имена дополнений не должны содержать товарные знаки Mozilla."
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:799
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Введите допустимое имя пакета, состоящее из букв, цифр или символов подчеркивания."
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:803
 msgid "This package name is already in use."
 msgstr "Это имя пакета уже занято."
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:806
 msgid "The package name cannot be: %s."
 msgstr "Имя пакета не может быть: %s."
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:817
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "ID дополнения должен быть строкой UUID или адресом электронной почты."
 
-#: apps/devhub/forms.py:821
+#: apps/devhub/forms.py:823
 msgid "The version string is invalid."
 msgstr "Строка версии некорректна."
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:831
 msgid "Minimum"
 msgstr "Минимум"
 
-#: apps/devhub/forms.py:832
+#: apps/devhub/forms.py:834
 msgid "Maximum"
 msgstr "Максимум"
 
-#: apps/devhub/forms.py:883
+#: apps/devhub/forms.py:885
 msgid "Min version must be less than Max version."
 msgstr "Мин. версия должна быть меньше, чем Макс. версия."
 
-#: apps/devhub/forms.py:909
+#: apps/devhub/forms.py:911
 msgid "{0} is a required target application."
 msgstr "{0} - обязательное целевое приложение."
 
-#: apps/devhub/forms.py:921
+#: apps/devhub/forms.py:923
 msgid "About dialog"
 msgstr "Диалог \"О программе\""
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:924
 msgid "Creates a standard About dialog for your extension"
 msgstr "Создаёт стандартный диалог About для вашего расширения"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:928
 msgid "Preferences dialog"
 msgstr "Диалог настроек"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:929
 msgid "Creates an example Preferences window"
 msgstr "Создаёт пример окна Настройки"
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:932
 msgid "Toolbar"
 msgstr "Панель инструментов"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:933
 msgid "Creates an example toolbar for your extension"
 msgstr "Создаёт пример панели инструментов для вашего расширения"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:936
 msgid "Toolbar button"
 msgstr "Кнопка панели инструментов"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:937
 msgid "Creates an example button on the browser toolbar"
 msgstr "Создаёт пример кнопки на панели инструментов браузера"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:941
 msgid "Main menu command"
 msgstr "Команда главного меню"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:942
 msgid "Creates an item on the Tools menu"
 msgstr "Создаёт пункт в меню Инструменты"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:945
 msgid "Context menu command"
 msgstr "Команда контекстного меню"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:946
 msgid "Creates a context menu item for images"
 msgstr "Создаёт для изображений пункт контекстного меню"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:949
 msgid "Sidebar support"
 msgstr "Поддержка боковой панели"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:950
 msgid "Creates an example sidebar panel"
 msgstr "Создаёт пример боковой панели"
 
-#: apps/devhub/forms.py:957 apps/editors/forms.py:106 apps/zadmin/forms.py:64 apps/zadmin/forms.py:67
+#: apps/devhub/forms.py:959 apps/editors/forms.py:106 apps/zadmin/forms.py:64 apps/zadmin/forms.py:67
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
-#: apps/devhub/forms.py:1024
+#: apps/devhub/forms.py:1026
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Число требуемых дополнений не может превышать 3-х."
 
@@ -4433,145 +4442,145 @@ msgstr "Ваш манифест необходимо отправлять с HTT
 msgid "Your manifest must be served with the HTTP header \"Content-Type: %s\". We saw \"%s\"."
 msgstr "Ваш манифест необходимо отправлять с HTTP-заголовком \"Content-Type: %s\". Мы увидели \"%s\"."
 
-#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:363
+#: apps/devhub/tasks.py:417 mkt/developers/tasks.py:364
 msgid "Your manifest must be less than %s bytes."
 msgstr "Ваш манифест не должен превышать %s байт."
 
-#: apps/devhub/views.py:187
+#: apps/devhub/views.py:185
 msgid "All My Add-ons"
 msgstr "Все мои дополнения"
 
-#: apps/devhub/views.py:214
+#: apps/devhub/views.py:212
 msgid "All Activity"
 msgstr "Вся активность"
 
-#: apps/devhub/views.py:215
+#: apps/devhub/views.py:213
 msgid "Add-on Updates"
 msgstr "Обновления дополнения"
 
-#: apps/devhub/views.py:216
+#: apps/devhub/views.py:214
 msgid "Add-on Status"
 msgstr "Статус дополнения"
 
-#: apps/devhub/views.py:217
+#: apps/devhub/views.py:215
 msgid "User Collections"
 msgstr "Подборки пользователя"
 
-#: apps/devhub/views.py:218 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+#: apps/devhub/views.py:216 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "Отзывы пользователей"
 
-#: apps/devhub/views.py:334 apps/devhub/views.py:338 apps/devhub/views.py:457 apps/devhub/views.py:480 apps/devhub/views.py:508 apps/devhub/views.py:631 apps/devhub/views.py:1313
-#: mkt/developers/views.py:555 mkt/developers/views_payments.py:100 mkt/developers/views_payments.py:348 mkt/reviewers/views.py:715
+#: apps/devhub/views.py:332 apps/devhub/views.py:336 apps/devhub/views.py:452 apps/devhub/views.py:475 apps/devhub/views.py:503 apps/devhub/views.py:623 apps/devhub/views.py:1297
+#: mkt/developers/views.py:552 mkt/developers/views_payments.py:99 mkt/developers/views_payments.py:344 mkt/reviewers/views.py:709
 msgid "Changes successfully saved."
 msgstr "Изменения успешно сохранены."
 
-#: apps/devhub/views.py:341 apps/devhub/views.py:1721
+#: apps/devhub/views.py:339 apps/devhub/views.py:1703
 msgid "Please check the form for errors."
 msgstr ""
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:354
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Дополнение не может быть удалено. Вместо этого отключите это дополнение."
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Theme deleted."
 msgstr "Тема удалена."
 
-#: apps/devhub/views.py:368
+#: apps/devhub/views.py:363
 msgid "Add-on deleted."
 msgstr "Дополнение удалено."
 
-#: apps/devhub/views.py:374
+#: apps/devhub/views.py:369
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Пароль неверен. Тема не была удалено."
 
-#: apps/devhub/views.py:378
+#: apps/devhub/views.py:373
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Пароль неверен. Дополнение не было удалено."
 
-#: apps/devhub/views.py:514
+#: apps/devhub/views.py:509
 msgid "There were errors in your submission."
 msgstr "При вашей отправке были ошибки."
 
-#: apps/devhub/views.py:545
+#: apps/devhub/views.py:540
 msgid "Refund already processed."
 msgstr "Возмещение уже обработано."
 
-#: apps/devhub/views.py:553
+#: apps/devhub/views.py:548
 msgid "Refund failed. error: %s"
 msgstr "Возмещение не прошло. ошибка: %s"
 
-#: apps/devhub/views.py:563
+#: apps/devhub/views.py:558
 msgid "Refund was previously issued; no action taken."
 msgstr "Возврат был уже произведен; действие не произведено."
 
-#: apps/devhub/views.py:571
+#: apps/devhub/views.py:566
 msgid "Refund issued."
 msgstr "Возмещение выдано."
 
-#: apps/devhub/views.py:579
+#: apps/devhub/views.py:574
 msgid "Refund declined."
 msgstr "Возмещение отклонено."
 
-#: apps/devhub/views.py:651
+#: apps/devhub/views.py:642
 msgid "Validate Add-on"
 msgstr "Валидировать дополнение"
 
-#: apps/devhub/views.py:660
+#: apps/devhub/views.py:651
 msgid "Check Add-on Compatibility"
 msgstr "Проверка совместимости дополнений"
 
-#: apps/devhub/views.py:780 mkt/developers/views.py:637
+#: apps/devhub/views.py:770 mkt/developers/views.py:634
 msgid "There was an error with the submission."
 msgstr "В процессе представления произошла ошибка."
 
-#: apps/devhub/views.py:874
+#: apps/devhub/views.py:864
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-#: apps/devhub/views.py:1225 apps/users/forms.py:326 mkt/developers/utils.py:63
+#: apps/devhub/views.py:1209 apps/users/forms.py:322 mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
 
-#: apps/devhub/views.py:1229 mkt/developers/utils.py:68
+#: apps/devhub/views.py:1213 mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
 msgstr "Иконки не могут быть анимированы."
 
-#: apps/devhub/views.py:1231 mkt/developers/utils.py:70
+#: apps/devhub/views.py:1215 mkt/developers/utils.py:82
 msgid "Images cannot be animated."
 msgstr "Изображения не могут быть анимированы."
 
-#: apps/devhub/views.py:1244
+#: apps/devhub/views.py:1228
 msgid "Images cannot be larger than %dKB."
 msgstr "Изображения не могут быть больше %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1254
+#: apps/devhub/views.py:1238
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Изображение должно быть в точности {0} пикселей в ширину и {1} пикселей в высоту."
 
-#: apps/devhub/views.py:1258 mkt/developers/views.py:938
+#: apps/devhub/views.py:1242 mkt/developers/views.py:933
 msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
 
-#: apps/devhub/views.py:1352
+#: apps/devhub/views.py:1336
 msgid "Version %s disabled."
 msgstr "Версия %s отключена."
 
-#: apps/devhub/views.py:1355
+#: apps/devhub/views.py:1339
 msgid "Version %s deleted."
 msgstr "Версия %s удалена."
 
-#: apps/devhub/views.py:1365
+#: apps/devhub/views.py:1349
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1768
+#: apps/devhub/views.py:1749
 msgid "Preliminary Review Requested."
 msgstr "Запрошена предварительная проверка."
 
-#: apps/devhub/views.py:1769
+#: apps/devhub/views.py:1750
 msgid "Full Review Requested."
 msgstr "Запрошена полная проверка."
 
@@ -4701,90 +4710,86 @@ msgstr "Загрузить новую версию"
 msgid "View all add-ons ►"
 msgstr "Просмотреть все дополнения ►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "Рецензенты AMO"
+#: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
+msgid "Create Add-ons for Australis"
+msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:85
-#, fuzzy
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Выбейся вперёд! Стань AMO Редактором сегодня и твои дополнения будут рассмотрены быстрее."
+#: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
+#: apps/discovery/templates/discovery/modules/australis-contest.html:8
+msgid "Win a Firefox OS phone and Mozilla gear!"
+msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "Станьте рецензентом на AMO"
-
-#: apps/devhub/templates/devhub/index.html:96
+#: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
 msgstr "Лёгкое создание дополнений Firefox"
 
-#: apps/devhub/templates/devhub/index.html:98
+#: apps/devhub/templates/devhub/index.html:105
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:106
+#: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
 msgstr "Начать создавать дополнения"
 
-#: apps/devhub/templates/devhub/index.html:113
+#: apps/devhub/templates/devhub/index.html:120
 msgid "Learn &amp; Explore"
 msgstr "Учитесь и Исследуйте"
 
-#: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:72 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
+#: apps/devhub/templates/devhub/index.html:126 apps/devhub/templates/devhub/nav.html:72 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6 apps/devhub/templates/devhub/docs/how-to.html:3 apps/devhub/templates/devhub/docs/how-to.html:9
 #: apps/devhub/templates/devhub/docs/how-to.html:61 apps/devhub/templates/devhub/docs/how-to.html:62
 msgid "How-to Library"
 msgstr "Библиотека How-to"
 
-#: apps/devhub/templates/devhub/index.html:121 apps/devhub/templates/devhub/docs/how-to.html:64
+#: apps/devhub/templates/devhub/index.html:128 apps/devhub/templates/devhub/docs/how-to.html:64
 msgid "Get add-on development guidance in a top-notch collection of tutorials, articles, and more."
 msgstr "Получите руководство по разработке дополнений в виде первоклассной коллекции учебных пособий, статей и многого другого."
 
-#: apps/devhub/templates/devhub/index.html:132
+#: apps/devhub/templates/devhub/index.html:139
 msgid "API & Language Reference"
 msgstr "Справочник по API и языку"
 
-#: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
+#: apps/devhub/templates/devhub/index.html:141 apps/devhub/templates/devhub/docs/reference.html:14
 msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
 msgstr "Официальная документация по API и языкам. Что вам нужно и когда вам это нужно, чтобы создать свой шедевр."
 
-#: apps/devhub/templates/devhub/index.html:145 apps/devhub/templates/devhub/nav.html:70 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
+#: apps/devhub/templates/devhub/index.html:152 apps/devhub/templates/devhub/nav.html:70 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
 #: apps/devhub/templates/devhub/docs/case-studies.html:31 apps/devhub/templates/devhub/docs/case-studies.html:32
 msgid "Case Studies"
 msgstr "Учебные примеры"
 
-#: apps/devhub/templates/devhub/index.html:147 apps/devhub/templates/devhub/docs/case-studies.html:35
+#: apps/devhub/templates/devhub/index.html:154 apps/devhub/templates/devhub/docs/case-studies.html:35
 msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
 msgstr "Истории успеха с начала до конца. Посмотрите, какую магию вместе с Mozilla создали разработчики дополнений."
 
-#: apps/devhub/templates/devhub/index.html:159
+#: apps/devhub/templates/devhub/index.html:166
 msgid "Create &amp; Connect"
 msgstr "Создавайте и Общайтесь"
 
-#: apps/devhub/templates/devhub/index.html:165
+#: apps/devhub/templates/devhub/index.html:172
 msgid "Developer Forums"
 msgstr "Форумы разработчиков"
 
-#: apps/devhub/templates/devhub/index.html:167
+#: apps/devhub/templates/devhub/index.html:174
 msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
 msgstr "Обсуждайте разработку, проводите мозговой штурм идей и устанавливайте связи в мире дополнений."
 
-#: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:83 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
+#: apps/devhub/templates/devhub/index.html:185 apps/devhub/templates/devhub/nav.html:83 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"
 msgstr "Упаковщик дополнений"
 
-#: apps/devhub/templates/devhub/index.html:180
+#: apps/devhub/templates/devhub/index.html:187
 msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
 msgstr "Автоматически сгенерируйте упаковку дополнения, введя основную информацию и выбрав элементы интерфейса. Работает без установки."
 
-#: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:85
+#: apps/devhub/templates/devhub/index.html:198 apps/devhub/templates/devhub/nav.html:85
 msgid "Add-on Validator"
 msgstr "Валидатор дополнений"
 
-#: apps/devhub/templates/devhub/index.html:193
+#: apps/devhub/templates/devhub/index.html:200
 msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
 msgstr "Проверьте свое дополнение на типичные проблемы и ошибки. Открыто для всех, не только для размещённых здесь дополнений."
 
@@ -5204,7 +5209,7 @@ msgstr "Выберите короткий, уникальный URL slug для 
 msgid "View Listing"
 msgstr "Просмотреть его страницу"
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:56 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15 mkt/lookup/templates/lookup/helpers/app_header.html:21
+#: apps/devhub/templates/devhub/addons/edit/basic.html:56 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
 msgstr "Сводка"
 
@@ -5223,7 +5228,7 @@ msgstr ""
 "Если ваше дополнение для этого приложения является Избранным, его категории не могут быть изменены. Если у вас есть причина, по которой вам нужно изменить ваши категории, пожалуйста, напишите по <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:133
+#: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:151
 msgid "Tags"
 msgstr "Метки"
 
@@ -5232,7 +5237,7 @@ msgid "Tags help users find your add-on and should be short descriptors such as 
 msgstr "Метки помогают пользователям найти ваше дополнение и должны быть кратким описанием, таким как вкладки, панели или твиттер. Вы можете иметь максимум {0} меток."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:171 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
-#: mkt/developers/templates/developers/apps/edit/admin.html:145
+#: mkt/developers/templates/developers/apps/edit/admin.html:163
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Разделённые запятыми, не менее {0} символа."
@@ -5240,11 +5245,11 @@ msgstr[1] "Разделённые запятыми, не менее {0} симв
 msgstr[2] "Разделённые запятыми, не менее {0} символов."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:174 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
-#: mkt/developers/templates/developers/apps/edit/admin.html:148
+#: mkt/developers/templates/developers/apps/edit/admin.html:166
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:178 mkt/developers/templates/developers/apps/edit/admin.html:152
+#: apps/devhub/templates/devhub/addons/edit/basic.html:178 mkt/developers/templates/developers/apps/edit/admin.html:170
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Зарезервированная метка:"
@@ -5264,7 +5269,7 @@ msgid "A longer explanation of features, functionality, and other relevant infor
 msgstr "Более длинное описание особенностей, функциональности и другой соответствующей информации. Это поле отображается только на странице вашего дополнения."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/devhub/templates/devhub/addons/edit/details.html:65 apps/translations/templates/translations/trans-menu.html:13
-#: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:77
+#: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:54 mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Default Locale"
 msgstr "Локаль по умолчанию"
 
@@ -5272,7 +5277,7 @@ msgstr "Локаль по умолчанию"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Информация о вашем дополнении отображается на этом языке, если вы не замените её переводом на другой язык."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:82 apps/users/forms.py:197 apps/users/templates/users/edit.html:104 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:82 apps/users/forms.py:196 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22 mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
 msgstr "Домашняя страница"
@@ -5281,7 +5286,7 @@ msgstr "Домашняя страница"
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
 msgstr "Если у вашего дополнения есть другая домашняя страница, введите здесь её адрес. Если ваш сайт переведен на другие языки, для этого поля можно добавить несколько переводов."
 
-#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:161
+#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
 msgstr "Изображения"
 
@@ -5653,6 +5658,11 @@ msgstr "Удалить эту тему."
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr "Это дополнение будет автоматически удалено через несколько дней, если процесс представления не будет завершён."
 
+#. {1} is a version number.
+#: apps/devhub/templates/devhub/addons/listing/items.html:24
+msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
+msgstr ""
+
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -5776,15 +5786,9 @@ msgstr "Просмотрите и подпишитесь на <a href=\"{0}\">л
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Показать приблизительное <a href=\"{0}\">время ожидания</a> в очереди на проведение проверки."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:57
-#, fuzzy
-msgid "Get Ahead in the Review Queue!"
-msgstr "Продвиньтесь вперед в очереди на проверку!"
-
-#: apps/devhub/templates/devhub/addons/submit/done.html:59
-#, fuzzy
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Став сегодня редактором АМО вы ускорите процесс проверки ваших дополнений."
+#: apps/devhub/templates/devhub/addons/submit/done.html:67
+msgid "Submit your add-on for the Add-ons for Australis contest"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -8515,12 +8519,12 @@ msgstr "или <a href=\"%(cancel)s\">Отмена</a>"
 msgid "Manage Refunds"
 msgstr "Управление возмещениями"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:951 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:957 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "ID транзакции"
 
 #: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:158 mkt/purchase/templates/purchase/receipt.html:39
-#: mkt/reviewers/templates/reviewers/includes/details.html:57 mkt/reviewers/templates/reviewers/includes/mobile_details.html:79 mkt/reviewers/templates/reviewers/includes/search_results.html:9
+#: mkt/reviewers/templates/reviewers/includes/details.html:56 mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9
 #: mkt/search/forms.py:18
 msgid "Price"
 msgstr "Цена"
@@ -8715,8 +8719,8 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Могут ли другие делиться вашей темой, если вас указывают в качестве автора?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:103
-#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:374
+#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:105
+#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:377
 msgid "Yes"
 msgstr "Да"
 
@@ -8726,8 +8730,8 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу, в том числе в коммерческих целях."
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:104
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:375
+#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:106
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:378
 msgid "No"
 msgstr "Нет"
 
@@ -8954,7 +8958,7 @@ msgid "Upload Another File"
 msgstr "Загрузить другой файл"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:99 mkt/developers/templates/developers/apps/version_edit.html:24
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:46 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:61
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:46 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:62
 msgid "Version Notes"
 msgstr "Примечания к версии"
 
@@ -8971,7 +8975,7 @@ msgid "Approval Status"
 msgstr "Статус одобрения"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:109 mkt/developers/templates/developers/apps/version_edit.html:39
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:56 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:71
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:56 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:72
 msgid "Notes for Reviewers"
 msgstr "Примечания для проверяющих"
 
@@ -9137,7 +9141,7 @@ msgstr "История версий"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:217 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/lookup/templates/lookup/app_summary.html:65 mkt/lookup/templates/lookup/app_summary.html:121 mkt/reviewers/forms.py:239 mkt/reviewers/templates/reviewers/review.html:29
-#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:8 mkt/reviewers/templates/reviewers/includes/search_results_themes.html:7
 #: mkt/reviewers/templates/reviewers/themes/queue_list.html:46
 msgid "Status"
 msgstr "Состояние"
@@ -9471,27 +9475,13 @@ msgstr "Последнее обновление"
 msgid "Cancel Installation"
 msgstr "Отменить установку"
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:6
-#, fuzzy
-msgid "Amp Your Firefox Contest"
-msgstr "Приложения и хаки Firefox"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:7
-#, fuzzy
-msgid "Best Overall Add-on"
-msgstr "Информация о дополнении для {0}"
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:10
-msgid "Thumbnail Zoom Plus"
+#: apps/discovery/templates/discovery/modules/australis-contest.html:4
+msgid "Create add-ons for Firefox's new look"
 msgstr ""
 
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:12
-msgid "Shows a full-size image popup when<br> you hover over a thumbnail or image link."
+#: apps/discovery/templates/discovery/modules/australis-contest.html:9
+msgid "Contest details"
 msgstr ""
-
-#: apps/discovery/templates/discovery/modules/amp-your-firefox-winner.html:16
-msgid "Get it now!"
-msgstr "Получите его сейчас!"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -9555,7 +9545,7 @@ msgstr "Удалённые проверки"
 msgid "View entries between"
 msgstr "Просмотр записей между"
 
-#: apps/editors/forms.py:42 apps/editors/forms.py:60 mkt/developers/tasks.py:441 mkt/developers/tasks.py:447
+#: apps/editors/forms.py:42 apps/editors/forms.py:60 mkt/developers/tasks.py:442 mkt/developers/tasks.py:448
 msgid "and"
 msgstr "и"
 
@@ -9759,7 +9749,7 @@ msgid "Addon"
 msgstr "Дополнение"
 
 #: apps/editors/helpers.py:196 apps/localizers/templates/localizers/categories.html:35 mkt/developers/templates/developers/transactions.html:43 mkt/lookup/templates/lookup/app_summary.html:43
-#: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:9 mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
+#: mkt/lookup/templates/lookup/transaction_summary.html:21 mkt/reviewers/templates/reviewers/includes/details.html:8 mkt/reviewers/templates/reviewers/includes/mobile_details.html:40
 msgid "Type"
 msgstr "Тип"
 
@@ -9768,8 +9758,8 @@ msgid "Waiting Time"
 msgstr "Время ожидания"
 
 #: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:145
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:165 mkt/reviewers/templates/reviewers/includes/search_results.html:7
+#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:144
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:166 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "Флаги"
 
@@ -9821,11 +9811,11 @@ msgstr[0] "{0} день"
 msgstr[1] "{0} дня"
 msgstr[2] "{0} дней"
 
-#: apps/editors/helpers.py:458 mkt/reviewers/utils.py:424
+#: apps/editors/helpers.py:458 mkt/reviewers/utils.py:425
 msgid "Push to public"
 msgstr "Поместить в общий доступ"
 
-#: apps/editors/helpers.py:469 mkt/reviewers/utils.py:435
+#: apps/editors/helpers.py:469 mkt/reviewers/utils.py:436
 msgid "Request more information"
 msgstr "Запросить дополнительную информацию"
 
@@ -9953,64 +9943,64 @@ msgstr ""
 msgid "A question about your Theme submission"
 msgstr "Вопрос о представлении вашей темы"
 
-#: apps/editors/views.py:125
+#: apps/editors/views.py:124
 msgid "New Add-ons (Under 5 days)"
 msgstr "Новые дополнения (менее 5 дней)"
 
-#: apps/editors/views.py:126 mkt/reviewers/views.py:85
+#: apps/editors/views.py:125 mkt/reviewers/views.py:84
 msgid "Passable (5 to 10 days)"
 msgstr "Сносно (от 5 до 10 дней)"
 
-#: apps/editors/views.py:127 mkt/reviewers/views.py:86
+#: apps/editors/views.py:126 mkt/reviewers/views.py:85
 msgid "Overdue (Over 10 days)"
 msgstr "Просрочено (более 10 дней)"
 
-#: apps/editors/views.py:461
+#: apps/editors/views.py:460
 msgid "An unknown error occurred"
 msgstr "Произошла неизвестная ошибка"
 
-#: apps/editors/views.py:497 mkt/reviewers/views.py:250
+#: apps/editors/views.py:496 mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "Самопроверка не разрешена."
 
-#: apps/editors/views.py:529 mkt/reviewers/views.py:357
+#: apps/editors/views.py:528 mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Проверка успешно обработана."
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:708
 msgid "was approved"
 msgstr "было одобрено"
 
-#: apps/editors/views.py:710
+#: apps/editors/views.py:709
 msgid "given preliminary review"
 msgstr "дано предварительное одобрение"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:711 mkt/webapps/models.py:2277
+#: apps/editors/views.py:710 mkt/webapps/models.py:2296
 msgid "rejected"
 msgstr "отвергнуто"
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:711
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "отправлено наверх"
 
-#: apps/editors/views.py:714
+#: apps/editors/views.py:713
 msgid "needs more information"
 msgstr "необходимо больше информации"
 
-#: apps/editors/views.py:715
+#: apps/editors/views.py:714
 msgid "needs super review"
 msgstr "необходимо super review"
 
-#: apps/editors/views_themes.py:325 mkt/reviewers/views_themes.py:299
+#: apps/editors/views_themes.py:328 mkt/reviewers/views_themes.py:308
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: apps/editors/views_themes.py:340 mkt/reviewers/views_themes.py:314
+#: apps/editors/views_themes.py:343 mkt/reviewers/views_themes.py:324
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -10842,11 +10832,11 @@ msgstr "В загруженном файле нет файлов."
 msgid "Fetching file."
 msgstr "Получение файла."
 
-#: apps/localizers/views.py:39
+#: apps/localizers/views.py:38
 msgid "An error occurred saving this message."
 msgstr "При сохранении этого сообщения произошла ошибка."
 
-#: apps/localizers/views.py:42
+#: apps/localizers/views.py:41
 msgid "Access Denied"
 msgstr "В доступе отказано"
 
@@ -10957,7 +10947,7 @@ msgid "Locale name"
 msgstr "Имя локали"
 
 #. L10n: %s is the name of the price tier, eg: 10.
-#: apps/market/models.py:79
+#: apps/market/models.py:80
 msgid "Tier %s"
 msgstr "Уровень %s"
 
@@ -12574,7 +12564,7 @@ msgstr "Удалить отзыв"
 msgid "Other (please specify)"
 msgstr "Другая (пожалуйста укажите)"
 
-#: apps/reviews/views.py:154
+#: apps/reviews/views.py:153
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Спасибо; этот отзыв помечен и будет рассмотрен редактором."
 
@@ -12761,39 +12751,39 @@ msgstr[0] "Просмотреть все отзывы"
 msgstr[1] "Просмотреть все %(cnt)s отзыва"
 msgstr[2] "Просмотреть все %(cnt)s отзывов"
 
-#: apps/search/forms.py:12
+#: apps/search/forms.py:13
 msgid "Most popular this week"
 msgstr "Самые популярные за эту неделю"
 
-#: apps/search/forms.py:13
+#: apps/search/forms.py:14
 msgid "Most popular this month"
 msgstr "Самые популярные за этот месяц"
 
-#: apps/search/forms.py:14
+#: apps/search/forms.py:15
 msgid "Most popular all time"
 msgstr "Самые популярные за всё время"
 
-#: apps/search/forms.py:24
+#: apps/search/forms.py:25
 msgid "search for add-ons"
 msgstr "поиск дополнений"
 
-#: apps/search/forms.py:25
+#: apps/search/forms.py:26
 msgid "search for collections"
 msgstr "поиск подборок"
 
-#: apps/search/forms.py:26
+#: apps/search/forms.py:27
 msgid "search for themes"
 msgstr "поиск тем"
 
-#: apps/search/forms.py:27
+#: apps/search/forms.py:28
 msgid "search for apps"
 msgstr "поиск приложений"
 
-#: apps/search/forms.py:52
+#: apps/search/forms.py:53
 msgid "Sort By"
 msgstr "Сортировать по"
 
-#: apps/search/forms.py:87 apps/search/forms.py:100 mkt/search/forms.py:14
+#: apps/search/forms.py:88 apps/search/forms.py:101 mkt/search/forms.py:14
 msgid "Relevance"
 msgstr "Релевантность"
 
@@ -13106,7 +13096,7 @@ msgstr "по статусу дополнения"
 msgid "Subscribers"
 msgstr "Подписчики"
 
-#: apps/stats/templates/stats/collection_report_menu.html:12 mkt/reviewers/templates/reviewers/includes/details.html:65 mkt/reviewers/templates/reviewers/includes/mobile_details.html:87
+#: apps/stats/templates/stats/collection_report_menu.html:12 mkt/reviewers/templates/reviewers/includes/details.html:64 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Ratings"
 msgstr "Рейтинги"
 
@@ -13146,11 +13136,11 @@ msgstr "Пользователей зарегистрировано"
 msgid "Custom Date Range"
 msgstr "Настроенный диапазон дат"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:957
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:963
 msgid "From"
 msgstr "От"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:960
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:966
 msgid "To"
 msgstr "До"
 
@@ -13452,74 +13442,74 @@ msgstr "Вы уверены что вы хотите удалить все <b>{0
 msgid "Delete Locale"
 msgstr "Удалить локаль"
 
-#: apps/users/forms.py:31
+#: apps/users/forms.py:30
 msgid "Must be %s characters or more."
 msgstr "Должно быть не менее %s символов."
 
-#: apps/users/forms.py:48
+#: apps/users/forms.py:47
 msgid "Letters and numbers required."
 msgstr "Требуются буквы и цифры."
 
-#: apps/users/forms.py:51
+#: apps/users/forms.py:50
 msgid "That password is not allowed."
 msgstr "Этот пароль не разрешён."
 
-#: apps/users/forms.py:79
+#: apps/users/forms.py:78
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr ""
 "На запрошенную учетную запись было отправлено электронное письмо с дополнительной информацией. Если вы не получили письмо, то пожалуйста, подтвердите, что вы ввели тот же адрес электронной почты, "
 "который был указан при регистрации."
 
-#: apps/users/forms.py:107 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:106 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Новый пароль"
 
-#: apps/users/forms.py:146 apps/users/forms.py:311
+#: apps/users/forms.py:145 apps/users/forms.py:307
 msgid "Wrong password entered!"
 msgstr "Введён неверный пароль!"
 
-#: apps/users/forms.py:163
+#: apps/users/forms.py:162
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Введите корректное имя пользователя, состоящее из букв, цифр, подчеркиваний или дефисов."
 
-#: apps/users/forms.py:166
+#: apps/users/forms.py:165
 msgid "This username cannot be used."
 msgstr "Это имя пользователя не может быть использовано."
 
-#: apps/users/forms.py:172
+#: apps/users/forms.py:171
 msgid "This username is already in use."
 msgstr "Это имя пользователя уже используется."
 
-#: apps/users/forms.py:183 apps/users/templates/users/edit.html:89 mkt/lookup/templates/lookup/user_summary.html:15
+#: apps/users/forms.py:182 apps/users/templates/users/edit.html:93 mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
-#: apps/users/forms.py:185 apps/users/templates/users/edit.html:94 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:184 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Местонахождение"
 
-#: apps/users/forms.py:187 apps/users/templates/users/edit.html:99 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:186 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Род деятельности"
 
-#: apps/users/forms.py:211
+#: apps/users/forms.py:210
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."
 
-#: apps/users/forms.py:219
+#: apps/users/forms.py:218
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Пожалуйста, используйте адрес электронной почты от другого провайдера, чтобы завершить вашу регистрацию."
 
-#: apps/users/forms.py:235
+#: apps/users/forms.py:234
 msgid "The passwords did not match."
 msgstr "Пароли не совпадают."
 
-#: apps/users/forms.py:257 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:253 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Фото профиля"
 
-#: apps/users/forms.py:396
+#: apps/users/forms.py:392
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Для анонимизации, введите причину изменения, но не изменяйте никакое другое поле."
 
@@ -13528,31 +13518,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr "другие"
 
-#: apps/users/models.py:64
+#: apps/users/models.py:65
 msgid "algorithm"
 msgstr ""
 
-#: apps/users/models.py:65
+#: apps/users/models.py:66
 msgid "salt"
 msgstr ""
 
-#: apps/users/models.py:66
+#: apps/users/models.py:67
 msgid "hash"
 msgstr ""
 
-#: apps/users/models.py:124
+#: apps/users/models.py:125
 msgid "No user with that email."
 msgstr "Нет пользователя с таким почтовым адресом."
 
-#: apps/users/models.py:339
+#: apps/users/models.py:340
 msgid "Your account has been restricted"
 msgstr "Ваша учётная запись была ограничена"
 
-#: apps/users/models.py:416
+#: apps/users/models.py:417
 msgid "Please confirm your email address"
 msgstr "Пожалуйста, подтвердите свой адрес электронной почты"
 
-#: apps/users/models.py:474
+#: apps/users/models.py:475
 msgid "My Mobile Add-ons"
 msgstr "Мои мобильные дополнения"
 
@@ -13628,52 +13618,52 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Уведомления пользователя"
 
-#: apps/users/views.py:96
+#: apps/users/views.py:95
 msgid "An email address is required."
 msgstr "Требуется адрес эл. почты."
 
-#: apps/users/views.py:103
+#: apps/users/views.py:102
 msgid "A user with that email address does not exist."
 msgstr "Пользователь с этим адресом эл. почты не существует."
 
-#: apps/users/views.py:104
+#: apps/users/views.py:103
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Пользователь с данным email адресом не существует, либо пользователь ещё не принял соглашение разработчика."
 
-#: apps/users/views.py:122
+#: apps/users/views.py:121
 msgid "Invalid confirmation code!"
 msgstr "Неверный код подтверждения!"
 
-#: apps/users/views.py:127
+#: apps/users/views.py:126
 msgid "Successfully verified!"
 msgstr "Проверка успешно завершена!"
 
 # %1 is the user's email address
-#: apps/users/views.py:143 apps/users/views.py:689
+#: apps/users/views.py:142 apps/users/views.py:687
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Для подтверждения создания учётной записи по адресу {0} было отправлено письмо. Перед тем как войти, вы должны активировать учётную запись, щёлкнув по ссылке, находящейся в этом письме."
 
-#: apps/users/views.py:147 apps/users/views.py:693
+#: apps/users/views.py:146 apps/users/views.py:691
 msgid "Confirmation Email Sent"
 msgstr "Отправлено письмо для подтверждения"
 
-#: apps/users/views.py:158
+#: apps/users/views.py:157
 msgid "Profile Deleted"
 msgstr "Профиль удалён"
 
-#: apps/users/views.py:179
+#: apps/users/views.py:178
 msgid "Photo Deleted"
 msgstr "Фото удалено"
 
-#: apps/users/views.py:198 apps/users/views.py:258
+#: apps/users/views.py:197 apps/users/views.py:257
 msgid "Profile Updated"
 msgstr "Профиль обновлён"
 
-#: apps/users/views.py:213
+#: apps/users/views.py:212
 msgid "Email Confirmation Sent"
 msgstr "Запрос на подтверждение отправлен в письме "
 
-#: apps/users/views.py:214
+#: apps/users/views.py:213
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -13681,43 +13671,43 @@ msgstr ""
 "Для подтверждения вашего нового адреса эл. почты на адрес {0} было отправлено письмо. Для произведения смены, вам необходимо щёлкнуть по ссылке, указанной в этом письме. До тех пор вы можете "
 "входить, используя ваш текущий адрес эл. почты."
 
-#: apps/users/views.py:226
+#: apps/users/views.py:225
 msgid "Please confirm your email address change at %s"
 msgstr "Пожалуйста, подтвердите изменение своего адреса электронной почты на %s"
 
-#: apps/users/views.py:238 mkt/site/messages.py:17
+#: apps/users/views.py:237 mkt/site/messages.py:17
 msgid "Errors Found"
 msgstr "Найдены ошибки"
 
-#: apps/users/views.py:239 mkt/site/messages.py:18
+#: apps/users/views.py:238 mkt/site/messages.py:18
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "В изменениях, которые вы сделали, имеются ошибки. Исправьте их и отправьте данные заново…"
 
-#: apps/users/views.py:287
+#: apps/users/views.py:285
 msgid "Your email address was changed successfully"
 msgstr "Ваш адрес эл. почты был успешно изменён"
 
-#: apps/users/views.py:288
+#: apps/users/views.py:286
 msgid "From now on, please use {0} to log in."
 msgstr "С этого момента используйте для входа {0}."
 
-#: apps/users/views.py:337
+#: apps/users/views.py:335
 msgid "Persona authentication failure."
 msgstr "Ошибка аутентификации в Persona."
 
-#: apps/users/views.py:362
+#: apps/users/views.py:360
 msgid "Please use the verified email for this account."
 msgstr ""
 
-#: apps/users/views.py:486
+#: apps/users/views.py:484
 msgid "Wrong email address or password!"
 msgstr "Неверный почтовый адрес или пароль!"
 
-#: apps/users/views.py:498
+#: apps/users/views.py:496
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Ссылка для активации вашей учётной записи была отправлена по почте на ваш адрес {0}. Вы должны щёлкнуть по ней перед тем, как сможете войти на сайт."
 
-#: apps/users/views.py:503
+#: apps/users/views.py:501
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -13725,35 +13715,35 @@ msgstr ""
 "Если вы не получили письмо с подтверждением, убедитесь, что ваша почтовая служба не пометила его как \"нежелательная почта\" или \"спам\". Если нужно, мы можем <a href=\"%s\">повторно послать "
 "сообщение с подтверждением</a> на ваш адрес эл. почты, упомянутый выше."
 
-#: apps/users/views.py:508
+#: apps/users/views.py:506
 msgid "Activation Email Sent"
 msgstr "Отправлено письмо для активации"
 
-#: apps/users/views.py:509
+#: apps/users/views.py:507
 msgid "Having Trouble?"
 msgstr "Есть проблемы?"
 
-#: apps/users/views.py:663
+#: apps/users/views.py:661
 msgid "You are already logged in to an account."
 msgstr "Вы уже вошли под этой учётной записью."
 
-#: apps/users/views.py:685
+#: apps/users/views.py:683
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Поздравляем! Ваша учётная запись успешно создана."
 
-#: apps/users/views.py:709
+#: apps/users/views.py:707
 msgid "You already have an account."
 msgstr "У вас уже есть учётная запись."
 
-#: apps/users/views.py:719
+#: apps/users/views.py:717
 msgid "There are errors in this form"
 msgstr "В этой форме имеются ошибки "
 
-#: apps/users/views.py:720
+#: apps/users/views.py:718
 msgid "Please correct them and resubmit."
 msgstr "Пожалуйста, исправьте их и отправьте снова."
 
-#: apps/users/views.py:735
+#: apps/users/views.py:733
 msgid "User reported."
 msgstr "О пользователе сообщено."
 
@@ -13789,7 +13779,7 @@ msgstr ""
 msgid "Confirm account deletion"
 msgstr "Подтверждение удаления учётной записи"
 
-#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:52 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
+#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
 #: apps/users/templates/users/mobile/login.html:52
 msgid "Password"
 msgstr "Пароль"
@@ -13810,111 +13800,111 @@ msgstr "Удалить фото пользователя"
 msgid "Delete my user picture now"
 msgstr "Удалить мою фотографию"
 
-#: apps/users/templates/users/edit.html:20 apps/users/templates/users/includes/navigation.html:12 templates/user_login.html:22
+#: apps/users/templates/users/edit.html:24 apps/users/templates/users/includes/navigation.html:12 templates/user_login.html:22
 msgid "My Account"
 msgstr "Моя учётная запись"
 
-#: apps/users/templates/users/edit.html:22
+#: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr "Управление базовой информацией учетной записи, такой как имя пользователя и адрес электронной почты."
 
-#: apps/users/templates/users/edit.html:28 apps/users/templates/users/register.html:48 mkt/lookup/templates/lookup/user_summary.html:17
+#: apps/users/templates/users/edit.html:32 apps/users/templates/users/register.html:48 mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: apps/users/templates/users/edit.html:33 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
+#: apps/users/templates/users/edit.html:37 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
 msgid "Email Address"
 msgstr "Адрес эл. почты"
 
-#: apps/users/templates/users/edit.html:40 apps/users/templates/users/register.html:70
+#: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
 msgstr "Скрыть адрес электронной почты от других пользователей"
 
-#: apps/users/templates/users/edit.html:46 mkt/site/context_processors.py:32
+#: apps/users/templates/users/edit.html:50 mkt/site/context_processors.py:32
 msgid "Change Password"
 msgstr "Сменить пароль"
 
-#: apps/users/templates/users/edit.html:54
+#: apps/users/templates/users/edit.html:58
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
 msgstr "Измените ваш пароль. Если вы забыли свой ​​пароль, вы можете <a href=\"%(reset_url)s\">использовать форму сброса</a>."
 
-#: apps/users/templates/users/edit.html:60
+#: apps/users/templates/users/edit.html:64
 msgid "Old Password"
 msgstr "Старый пароль"
 
-#: apps/users/templates/users/edit.html:68
+#: apps/users/templates/users/edit.html:72
 msgid "New Password"
 msgstr "Новый пароль"
 
-#: apps/users/templates/users/edit.html:73
+#: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
 msgstr "Подтвердить пароль"
 
-#: apps/users/templates/users/edit.html:80
+#: apps/users/templates/users/edit.html:84
 msgid "Profile"
 msgstr "Профиль"
 
-#: apps/users/templates/users/edit.html:82
+#: apps/users/templates/users/edit.html:86
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "Приведите немного больше информации о себе. Все эти поля являются необязательными, но они помогут другим пользователям лучше узнать вас."
 
-#: apps/users/templates/users/edit.html:106
+#: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
 msgstr ""
 
-#: apps/users/templates/users/edit.html:115
+#: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
 msgstr "Выберите фото&hellip;"
 
-#: apps/users/templates/users/edit.html:119
+#: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
 msgstr "Удалить текущее фото"
 
-#: apps/users/templates/users/edit.html:128
+#: apps/users/templates/users/edit.html:132
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Представьте себя сообществу, если хотите! Этот текст будет публично доступен на вашей странице информации пользователя."
 
-#: apps/users/templates/users/edit.html:136
+#: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr ""
 
-#: apps/users/templates/users/edit.html:143
+#: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: apps/users/templates/users/edit.html:145
+#: apps/users/templates/users/edit.html:150
 msgid "Decide what collections should be shown in your profile."
 msgstr "Решите, какие подборки должны быть показаны в вашем профиле."
 
-#: apps/users/templates/users/edit.html:153
+#: apps/users/templates/users/edit.html:158
 msgid "Display the collections I have created"
 msgstr "Показать созданные мной подборки"
 
-#: apps/users/templates/users/edit.html:160
+#: apps/users/templates/users/edit.html:165
 msgid "Display collections I'm following"
 msgstr "Отобразить подборки, за которыми я слежу"
 
-#: apps/users/templates/users/edit.html:168 mkt/constants/features.py:273
+#: apps/users/templates/users/edit.html:173 mkt/constants/features.py:273
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: apps/users/templates/users/edit.html:170
+#: apps/users/templates/users/edit.html:175
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr "Время от времени Mozilla может посылать вам письма о выходящих вскоре релизах и событиях, касающихся дополнений. Пожалуйста, выберите темы, в которых вы заинтересованы:"
 
-#: apps/users/templates/users/edit.html:180
+#: apps/users/templates/users/edit.html:185
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr "Mozilla оставляет за собой право связаться с вами лично, в случае, если возникнут вопросы по размещенным вами дополнениям."
 
-#: apps/users/templates/users/edit.html:190
+#: apps/users/templates/users/edit.html:195
 msgid "Admin"
 msgstr "Админ"
 
-#: apps/users/templates/users/edit.html:222
+#: apps/users/templates/users/edit.html:227
 msgid "Delete Account"
 msgstr "Удалить учётную запись"
 
-#: apps/users/templates/users/edit.html:224 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
+#: apps/users/templates/users/edit.html:229 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:115
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:26
 msgid "Update Account"
 msgstr "Обновить учётную запись"
@@ -14332,7 +14322,7 @@ msgstr "Шестнадцатиричный цвет"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr ""
 
-#: mkt/collections/serializers.py:221
+#: mkt/collections/serializers.py:241
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
 
@@ -14354,7 +14344,7 @@ msgstr "Версия %s не существует"
 msgid "Attachment:"
 msgstr "Вложение:"
 
-#: mkt/comm/forms.py:45 mkt/submit/forms.py:344
+#: mkt/comm/forms.py:45 mkt/submit/forms.py:347
 msgid "Description:"
 msgstr "Описание:"
 
@@ -16183,125 +16173,125 @@ msgstr ""
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "На этом домене уже существует приложение; допускается только одно приложение на домен."
 
-#: mkt/developers/forms.py:329
+#: mkt/developers/forms.py:332
 msgid "Invalid region(s) selected."
 msgstr "Выбран некорректный регион(ы)."
 
-#: mkt/developers/forms.py:399 mkt/webapps/models.py:448
+#: mkt/developers/forms.py:405 mkt/webapps/models.py:448
 msgid "You must upload at least one screenshot or video."
 msgstr "Вы должны выгрузить не менее одного скриншота или видео."
 
-#: mkt/developers/forms.py:440
+#: mkt/developers/forms.py:446
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:455
+#: mkt/developers/forms.py:461
 msgid "Error extracting manifest from zip file."
 msgstr ""
 
-#: mkt/developers/forms.py:514
+#: mkt/developers/forms.py:520
 msgid "Provide a detailed description of your app"
 msgstr "Предоставьте подробное описание вашего приложения"
 
-#: mkt/developers/forms.py:515 mkt/submit/forms.py:345
+#: mkt/developers/forms.py:521 mkt/submit/forms.py:348
 msgid "This description will appear on the details page."
 msgstr "Это описание появится на странице сведений."
 
-#: mkt/developers/forms.py:587
+#: mkt/developers/forms.py:593
 msgid "Please specify your app's Privacy Policy"
 msgstr "Пожалуйста, укажите политику приватности вашего приложения"
 
-#: mkt/developers/forms.py:608
+#: mkt/developers/forms.py:614
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Перед изменением вашей локали по умолчанию, вы должны иметь имя и описание на этой локали. Вам недостаёт %s."
 
-#: mkt/developers/forms.py:663
+#: mkt/developers/forms.py:669
 msgid "Your comments"
 msgstr "Ваши комментарии"
 
-#: mkt/developers/forms.py:686
+#: mkt/developers/forms.py:692
 msgid "Choose the regions your app will be listed in:"
 msgstr ""
 
-#: mkt/developers/forms.py:690 mkt/developers/forms.py:776
+#: mkt/developers/forms.py:696 mkt/developers/forms.py:782
 msgid "You must select at least one region."
 msgstr "Вы должны выбрать не менее одного региона."
 
-#: mkt/developers/forms.py:695
+#: mkt/developers/forms.py:701
 msgid "Enable new regions"
 msgstr "Включить новые регионы"
 
-#: mkt/developers/forms.py:697
+#: mkt/developers/forms.py:703
 msgid "Make my app available in most regions"
 msgstr ""
 
-#: mkt/developers/forms.py:698
+#: mkt/developers/forms.py:704
 msgid "Choose where my app is made available"
 msgstr ""
 
-#: mkt/developers/forms.py:885
+#: mkt/developers/forms.py:891
 msgid "Agree"
 msgstr "Согласен"
 
-#: mkt/developers/forms.py:902
+#: mkt/developers/forms.py:908
 msgid "Please enter a valid email address."
 msgstr "Введите корректный адрес эл. почты."
 
-#: mkt/developers/forms.py:905
+#: mkt/developers/forms.py:911
 msgid "Your email address"
 msgstr "Ваш адрес эл. почты"
 
-#: mkt/developers/forms.py:908
+#: mkt/developers/forms.py:914
 msgid "Text"
 msgstr "Текст"
 
-#: mkt/developers/forms.py:912
+#: mkt/developers/forms.py:918
 msgid "You must agree to the Privacy Policy."
 msgstr "Вы должны принять Политику приватности."
 
-#: mkt/developers/forms.py:913 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:919 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Страна"
 
-#: mkt/developers/forms.py:948
+#: mkt/developers/forms.py:954
 msgid "Transaction Type"
 msgstr "Тип транзакции"
 
-#: mkt/developers/forms.py:1002
+#: mkt/developers/forms.py:1008
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
 
-#: mkt/developers/forms.py:1009
+#: mkt/developers/forms.py:1015
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr ""
 
-#: mkt/developers/forms.py:1018
+#: mkt/developers/forms.py:1024
 msgid "Test plan required."
 msgstr "Требуется план тестирования"
 
-#: mkt/developers/forms.py:1025
+#: mkt/developers/forms.py:1031
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
 
-#: mkt/developers/forms.py:1031
+#: mkt/developers/forms.py:1037
 msgid "Invalid file type. Only %s files are supported."
 msgstr ""
 
-#: mkt/developers/forms.py:1049
+#: mkt/developers/forms.py:1055
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
 
-#: mkt/developers/forms.py:1062
+#: mkt/developers/forms.py:1068
 msgid "Please enter a valid submission ID."
 msgstr "Введите корректный ID представления."
 
-#: mkt/developers/forms.py:1086 mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1092 mkt/developers/forms.py:1103
 msgid "Invalid submission ID or security code."
 msgstr ""
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:269
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:272
 msgid "App Price"
 msgstr "Цена приложения"
 
@@ -16475,161 +16465,161 @@ msgstr "Совместный счёт: {0}"
 msgid "Reference Implementation"
 msgstr "Референсная реализация"
 
-#: mkt/developers/tasks.py:348
+#: mkt/developers/tasks.py:349
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
 
-#: mkt/developers/tasks.py:354
+#: mkt/developers/tasks.py:355
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
 
-#: mkt/developers/tasks.py:371
+#: mkt/developers/tasks.py:372
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr ""
 
-#: mkt/developers/tasks.py:382
+#: mkt/developers/tasks.py:383
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:461
+#: mkt/developers/tasks.py:462
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "В Магазин Firefox добавлен регион {region}"
 
-#: mkt/developers/tasks.py:465
+#: mkt/developers/tasks.py:466
 msgid "New regions added to the Firefox Marketplace"
 msgstr "В Магазин Firefox добавлены новые регионы"
 
-#: mkt/developers/utils.py:48
+#: mkt/developers/utils.py:60
 msgid "Video support not enabled."
 msgstr "Поддержка видео не включена."
 
-#: mkt/developers/utils.py:79
+#: mkt/developers/utils.py:91
 msgid "Please use files smaller than %s."
 msgstr "Пожалуйста, используйте файлы меньше %s."
 
-#: mkt/developers/utils.py:89
+#: mkt/developers/utils.py:101
 msgid "Icon could not be opened."
 msgstr "Не удалось открыть значок."
 
-#: mkt/developers/utils.py:91
+#: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
 msgstr "Не удалось открыть предпросмотр."
 
-#: mkt/developers/utils.py:98
+#: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
 msgstr ""
 
-#: mkt/developers/utils.py:101
+#: mkt/developers/utils.py:113
 msgid "Icons must be square."
 msgstr "Значки должны быть квадратными."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
-#: mkt/developers/utils.py:111
+#: mkt/developers/utils.py:123
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
 
-#: mkt/developers/views.py:153
+#: mkt/developers/views.py:152
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr ""
 
-#: mkt/developers/views.py:163
+#: mkt/developers/views.py:162
 msgid "App deleted."
 msgstr "Приложение удалено."
 
-#: mkt/developers/views.py:168
+#: mkt/developers/views.py:167
 msgid "Password was incorrect. App was not deleted."
 msgstr "Пароль неверен. Приложение не было удалено."
 
-#: mkt/developers/views.py:223
+#: mkt/developers/views.py:224
 msgid "App successfully resubmitted."
 msgstr "Приложение успешно представлено заново."
 
-#: mkt/developers/views.py:254
+#: mkt/developers/views.py:255
 msgid "New version successfully added."
 msgstr "Новая версия успешно добавлена."
 
-#: mkt/developers/views.py:298
+#: mkt/developers/views.py:303
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
 
-#: mkt/developers/views.py:300
+#: mkt/developers/views.py:305
 msgid "Content ratings successfully saved."
 msgstr ""
 
-#: mkt/developers/views.py:424
+#: mkt/developers/views.py:423
 msgid "Application for preload successfully submitted."
 msgstr ""
 
-#: mkt/developers/views.py:427
+#: mkt/developers/views.py:426
 msgid "There was an error with the form."
 msgstr "С формой произошла ошибка."
 
-#: mkt/developers/views.py:460
+#: mkt/developers/views.py:457
 msgid "Version successfully edited."
 msgstr "Версия успешно отредактирована."
 
-#: mkt/developers/views.py:501
+#: mkt/developers/views.py:498
 msgid "Version successfully made public."
 msgstr "Версия успешно сделана публичной."
 
-#: mkt/developers/views.py:516
+#: mkt/developers/views.py:513
 msgid "Version \"{0}\" deleted."
 msgstr "Версия \"{0}\" удалена."
 
-#: mkt/developers/views.py:989
+#: mkt/developers/views.py:984
 msgid "Terms of service accepted."
 msgstr "Условия службы приняты."
 
-#: mkt/developers/views.py:1001
+#: mkt/developers/views.py:996
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:1009
+#: mkt/developers/views.py:1004
 msgid "No such API key."
 msgstr "Нет такого ключа API."
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1016
 msgid "New API key generated."
 msgstr "Сгенерирован новый ключ API."
 
-#: mkt/developers/views.py:1039
+#: mkt/developers/views.py:1034
 msgid "Created blocklisted version."
 msgstr "Создана заблокированная версия."
 
-#: mkt/developers/views.py:1041
+#: mkt/developers/views.py:1036
 msgid "App already blocklisted."
 msgstr "Приложение уже в черном списке."
 
-#: mkt/developers/views_payments.py:76 mkt/developers/views_payments.py:93
+#: mkt/developers/views_payments.py:75 mkt/developers/views_payments.py:92
 msgid "We encountered a problem connecting to the payment server."
 msgstr ""
 
-#: mkt/developers/views_payments.py:172
+#: mkt/developers/views_payments.py:169
 msgid "Credit card"
 msgstr "Кредитная карта"
 
-#: mkt/developers/views_payments.py:173
+#: mkt/developers/views_payments.py:170
 msgid "Carrier"
 msgstr "Оператор"
 
-#: mkt/developers/views_payments.py:295
+#: mkt/developers/views_payments.py:291
 msgid "A server error occurred when retrieving the application key."
 msgstr ""
 
-#: mkt/developers/views_payments.py:302
+#: mkt/developers/views_payments.py:298
 msgid "Secret was reset successfully."
 msgstr "Секрет был успешно сброшен."
 
-#: mkt/developers/views_payments.py:306
+#: mkt/developers/views_payments.py:302
 msgid "Key and secret were created successfully."
 msgstr ""
 
-#: mkt/developers/views_payments.py:330
+#: mkt/developers/views_payments.py:326
 msgid "Your app is not configured for in-app payments."
 msgstr ""
 
-#: mkt/developers/views_payments.py:336
+#: mkt/developers/views_payments.py:332
 msgid "No payment account for this app."
 msgstr ""
 
@@ -16906,7 +16896,7 @@ msgid "Submit An App"
 msgstr "Представить приложение"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:130 mkt/reviewers/templates/reviewers/includes/mobile_details.html:150
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:129 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
 msgid "Team Members"
 msgstr "Члены команды"
 
@@ -17189,23 +17179,35 @@ msgid "Enter email addresses, separated by commas"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
+msgid "Mozilla VIP App"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:92
+msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:93
+msgid "Use sparingly"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/admin.html:108
 #, fuzzy
 msgid "Banner message"
 msgstr "Сообщение дня"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:110
+#: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Regions to show banner in"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:112
+#: mkt/developers/templates/developers/apps/edit/admin.html:130
 msgid "Regions that the banner message will be shown in."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:135
+#: mkt/developers/templates/developers/apps/edit/admin.html:153
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Метки помогают пользователям найти ваше приложение и должны быть краткими описаниями, таким как вкладки, панели или твиттер. Вы можете иметь максимум {0} меток."
 
@@ -17213,7 +17215,7 @@ msgstr "Метки помогают пользователям найти ваш
 msgid "This field can only be edited by updating it in the manifest."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:87 mkt/reviewers/templates/reviewers/includes/mobile_details.html:107
+#: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:86 mkt/reviewers/templates/reviewers/includes/mobile_details.html:108
 msgid "Developer Name"
 msgstr "Имя разработчика"
 
@@ -17237,7 +17239,7 @@ msgstr ""
 msgid "View API documentation"
 msgstr "Посмотреть документацию по API"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
+#: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:25 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:102
 msgid "Manifest URL"
 msgstr "URL манифеста"
@@ -17449,8 +17451,8 @@ msgstr "Статус и версии"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:69 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:4 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:9
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:21 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:526
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:526
 msgid "Content Ratings"
 msgstr "Рейтинг контента"
 
@@ -17580,23 +17582,23 @@ msgstr "Код безопасности"
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
 msgstr "Система рейтингов"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25 mkt/developers/templates/developers/payments/premium.html:210
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:210
 msgid "Region"
 msgstr "Регион"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
 msgstr "Категория рейтингов"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:27
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
 msgstr "Дескрипторы"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:62
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:61
 msgid "Interactive Elements"
 msgstr "Интерактивные элементы"
 
@@ -17896,15 +17898,15 @@ msgstr ""
 msgid "Select All"
 msgstr "Выбрать всё"
 
-#: mkt/ecosystem/views.py:55
+#: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
 msgstr "Спасибо за подписку!"
 
-#: mkt/ecosystem/views.py:61
+#: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
 
-#: mkt/ecosystem/views.py:230
+#: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
 msgstr "Строительные блоки Gaia"
 
@@ -18946,28 +18948,28 @@ msgstr ""
 msgid "Reason for Deletion"
 msgstr "Причина удаления"
 
-#: mkt/lookup/views.py:151
+#: mkt/lookup/views.py:145
 msgid "Currently unable to retrieve refund status."
 msgstr ""
 
-#: mkt/lookup/views.py:178
+#: mkt/lookup/views.py:172
 #, fuzzy
 msgid "A refund has already been processed."
 msgstr "Этот уже было возмещено."
 
-#: mkt/lookup/views.py:202
+#: mkt/lookup/views.py:195
 msgid "You cannot make a refund request for this transaction."
 msgstr ""
 
-#: mkt/lookup/views.py:224
+#: mkt/lookup/views.py:217
 msgid "Refund for this transaction now pending."
 msgstr ""
 
-#: mkt/lookup/views.py:233
+#: mkt/lookup/views.py:226
 msgid "Refund for this transaction successfully approved."
 msgstr ""
 
-#: mkt/lookup/views.py:238
+#: mkt/lookup/views.py:231
 msgid "Refund request for this transaction failed."
 msgstr ""
 
@@ -18987,20 +18989,20 @@ msgstr "всё время"
 msgid "Manifest"
 msgstr "Манифест"
 
-#: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
+#: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:34 mkt/reviewers/templates/reviewers/includes/mobile_details.html:56
 msgid "View"
 msgstr "Просмотреть"
 
-#: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
+#: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:12 mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 #, fuzzy
 msgid "Privileged Packaged app"
 msgstr "Проверка упакованного приложения"
 
-#: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
+#: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:14 mkt/reviewers/templates/reviewers/includes/mobile_details.html:46
 msgid "Packaged app"
 msgstr "Упакованное приложение"
 
-#: mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
+#: mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/includes/details.html:17 mkt/reviewers/templates/reviewers/includes/mobile_details.html:49
 msgid "Hosted app"
 msgstr "Размещённое приложение"
 
@@ -19257,11 +19259,6 @@ msgstr "Не Рекомендуемые Найдено приложений"
 msgid "Receipt for {0}"
 msgstr "Квитанция для {0}"
 
-#. L10n: {0} is the addon name.
-#: mkt/purchase/webpay.py:43
-msgid "Firefox Marketplace purchase of {0}"
-msgstr "Покупка {0} в Магазине Firefox"
-
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
 msgstr "Квитанция"
@@ -19331,7 +19328,7 @@ msgstr "Некорректная тестовая квитанция"
 msgid "Refunded test receipt"
 msgstr "Истекшая тестовая квитанция"
 
-#: mkt/receipts/views.py:98 mkt/receipts/views.py:188
+#: mkt/receipts/views.py:99 mkt/receipts/views.py:190
 msgid "There was a problem installing the app."
 msgstr "При установке приложения возникла проблема."
 
@@ -19447,76 +19444,76 @@ msgstr "Китай ({0})"
 msgid "Device ({0})"
 msgstr "Устройство ({0})"
 
-#: mkt/reviewers/utils.py:425
+#: mkt/reviewers/utils.py:426
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr "Это одобрит приложение из песочницы и оно появится на публичной странице."
 
-#: mkt/reviewers/utils.py:431
+#: mkt/reviewers/utils.py:432
 msgid "This will reject the app and remove it from the review queue."
 msgstr "Это отклонит приложение и удалит его из очереди проверки."
 
-#: mkt/reviewers/utils.py:437
+#: mkt/reviewers/utils.py:438
 msgid "This will send the author(s) an email requesting more information."
 msgstr ""
 
-#: mkt/reviewers/utils.py:441
+#: mkt/reviewers/utils.py:442
 msgid "Escalate"
 msgstr "Эскалация"
 
-#: mkt/reviewers/utils.py:443
+#: mkt/reviewers/utils.py:444
 msgid "Flag this app for an admin to review."
 msgstr ""
 
-#: mkt/reviewers/utils.py:448
+#: mkt/reviewers/utils.py:449
 msgid "Make a comment on this app. The author won't be able to see this."
 msgstr "Прокомментируйте это приложение. Автор не сможет это увидеть."
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:453
 msgid "Clear Escalation"
 msgstr "Очистить эскалацию"
 
-#: mkt/reviewers/utils.py:454
+#: mkt/reviewers/utils.py:455
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
 msgstr "Отменить повторную проверку"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:462
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:466
+#: mkt/reviewers/utils.py:467
 msgid "Disable app"
 msgstr "Отключить приложение"
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:469
 msgid "Disable the app, removing it from public results. Sends comments to author."
 msgstr ""
 
-#: mkt/reviewers/views.py:84
+#: mkt/reviewers/views.py:83
 msgid "New Apps (Under 5 days)"
 msgstr "Новые приложения (менее 5 дней)"
 
-#: mkt/reviewers/views.py:256
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:306
+#: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Устройство изменено проверяющим: {0}"
 
-#: mkt/reviewers/views.py:310 mkt/reviewers/views.py:330 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
 msgstr "Удалено {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:332
+#: mkt/reviewers/views.py:331
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Требования изменены проверяющим: {0}"
 
-#: mkt/reviewers/views.py:355
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
@@ -19612,11 +19609,11 @@ msgstr "Сообщения о нарушениях:"
 msgid "{region} Review Queue"
 msgstr "Очередь проверки тем"
 
-#: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
+#: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:22
 msgid "In re-review queue"
 msgstr "В очереди на повторную проверку"
 
-#: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
+#: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In escalation queue"
 msgstr "В очереди на эскалацию"
 
@@ -19663,40 +19660,40 @@ msgstr ""
 msgid "This version has not been reviewed"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:7
+#: mkt/reviewers/templates/reviewers/includes/details.html:6
 msgid "ID"
 msgstr "ID"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:38 mkt/reviewers/templates/reviewers/includes/mobile_details.html:60
+#: mkt/reviewers/templates/reviewers/includes/details.html:37 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
 msgstr "Домен приложения"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:43 mkt/reviewers/templates/reviewers/includes/mobile_details.html:65
+#: mkt/reviewers/templates/reviewers/includes/details.html:42 mkt/reviewers/templates/reviewers/includes/mobile_details.html:64
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:50 mkt/reviewers/templates/reviewers/includes/mobile_details.html:72
+#: mkt/reviewers/templates/reviewers/includes/details.html:49 mkt/reviewers/templates/reviewers/includes/mobile_details.html:71
 msgid "Signed Zip"
 msgstr "Подписанный Zip"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:72 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
+#: mkt/reviewers/templates/reviewers/includes/details.html:71 mkt/reviewers/templates/reviewers/includes/mobile_details.html:93
 #, fuzzy
 msgid "This app has not yet been rated"
 msgstr "Это приложение не было проверено."
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:117
+#: mkt/reviewers/templates/reviewers/includes/details.html:96 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Total Downloads"
 msgstr "Всего загрузок"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135
+#: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
 msgstr "Типы устройств"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:148
+#: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
 msgstr "Требования"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:172
+#: mkt/reviewers/templates/reviewers/includes/details.html:171
 msgid "More about this app"
 msgstr "Подробнее об этом приложении"
 
@@ -19714,8 +19711,8 @@ msgstr "Премиум с платежами в приложении"
 msgid "Free with In-App"
 msgstr "Бесплатное с платежами в приложении"
 
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20 mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:170
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19 mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:171
 msgid "more..."
 msgstr "ещё..."
 
@@ -19725,6 +19722,14 @@ msgstr "%(stars)s от %(user)s поставлено %(date)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
+msgid "Next Page"
+msgstr ""
+
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
+msgid "Previous Page"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
@@ -19907,56 +19912,56 @@ msgstr ""
 msgid "Agree and Continue"
 msgstr "Согласиться и продолжить"
 
-#: mkt/submit/forms.py:274
+#: mkt/submit/forms.py:277
 msgid "When should your app be made available for sale?"
 msgstr ""
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:281
+#: mkt/submit/forms.py:284
 msgid "App to upgrade from"
 msgstr "Обновляемое приложение"
 
-#: mkt/submit/forms.py:348
+#: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
 msgstr "Политика приватности:"
 
-#: mkt/submit/forms.py:349
+#: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr ""
 
-#: mkt/submit/forms.py:353
+#: mkt/submit/forms.py:356
 msgid "Homepage:"
 msgstr "Домашняя страница:"
 
-#: mkt/submit/forms.py:354
+#: mkt/submit/forms.py:357
 msgid "If your app has another homepage, enter its address here."
 msgstr ""
 
-#: mkt/submit/forms.py:358
+#: mkt/submit/forms.py:361
 msgid "Support Website:"
 msgstr "Веб-сайт поддержки:"
 
-#: mkt/submit/forms.py:359
+#: mkt/submit/forms.py:362
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
 
-#: mkt/submit/forms.py:363
+#: mkt/submit/forms.py:366
 msgid "Support Email:"
 msgstr "Адрес эл. почты поддержки:"
 
-#: mkt/submit/forms.py:364
+#: mkt/submit/forms.py:367
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
 
-#: mkt/submit/forms.py:371
+#: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
 msgstr "Ваше приложение требует поддержки Flash?"
 
-#: mkt/submit/forms.py:379
+#: mkt/submit/forms.py:382
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr ""
 
-#: mkt/submit/forms.py:381
+#: mkt/submit/forms.py:384
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
@@ -20227,20 +20232,20 @@ msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2275
+#: mkt/webapps/models.py:2294
 msgid "awaiting approval"
 msgstr "ожидает одобрения"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2279
+#: mkt/webapps/models.py:2298
 msgid "requires additional review"
 msgstr "требует дополнительной проверки"
 
-#: mkt/webapps/models.py:2330
+#: mkt/webapps/models.py:2349
 msgid "{region} approval status"
 msgstr "{region} статус одобрения"
 
-#: mkt/webapps/models.py:2335
+#: mkt/webapps/models.py:2354
 msgid "{region} nomination date"
 msgstr "{region} дата номинации"
 
