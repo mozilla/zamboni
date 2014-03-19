@@ -225,8 +225,9 @@ SENTRY_DSN = None
 
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
-    'bn-BD', 'ca', 'cs', 'de', 'el', 'en-US', 'es', 'fr', 'hr', 'hu', 'it', 'mk', 'nl',
-    'pl', 'pt-BR', 'ro', 'ru', 'sr', 'sr-Latn', 'sk', 'tr', 'zh-CN'
+    'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'fr', 'ga-IE',
+    'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pl', 'pt-BR', 'ro',
+    'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'tr', 'zh-CN', 'zh-TW',
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
@@ -236,8 +237,8 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 # This list also enables translation edits.
 HIDDEN_LANGUAGES = (
     # List of languages from AMO's settings (excluding mkt's active locales).
-    'af', 'ar', 'bg', 'da', 'eu', 'fa', 'fi', 'ga-IE', 'he', 'id', 'ja', 'ko',
-    'mn', 'pt-PT', 'sl', 'sq', 'sv-SE', 'uk', 'vi', 'zh-TW',
+    'af', 'ar', 'eu', 'fa', 'fi', 'he', 'id', 'mn', 'pt-PT', 'sl', 'sv-SE',
+    'uk', 'vi',
     # The hidden list from AMO's settings:
     'cy',
 )
