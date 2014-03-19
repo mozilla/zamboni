@@ -19,7 +19,7 @@ from users.models import UserProfile, GroupUser
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
-from mkt.purchase.tests.utils import PurchaseTest
+from mkt.purchase.tests.utils import PurchaseTest, InAppPurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.resources import PricesViewSet
@@ -28,7 +28,7 @@ from stats.models import Contribution
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
        lambda s, r: mkt.regions.US)
-class TestPrepare(PurchaseTest, RestOAuth):
+class TestPrepareWebApp(PurchaseTest, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_2519', 'prices')
 
     def setUp(self):
@@ -43,7 +43,8 @@ class TestPrepare(PurchaseTest, RestOAuth):
             client = self.client
         if extra_headers is None:
             extra_headers = {}
-        return client.post(self.list_url, data=json.dumps({'app': 337141}),
+        return client.post(self.list_url,
+                           data=json.dumps({'app': self.addon.pk}),
                            **extra_headers)
 
     def test_allowed(self):
@@ -55,7 +56,7 @@ class TestPrepare(PurchaseTest, RestOAuth):
         eq_(res.json,
             {'detail': 'Authentication credentials were not provided.'})
 
-    def test_good(self, client=None, extra_headers=None):
+    def test_get_jwt(self, client=None, extra_headers=None):
         res = self._post(client=client, extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
         contribution = Contribution.objects.get()
@@ -75,7 +76,7 @@ class TestPrepare(PurchaseTest, RestOAuth):
                                   '458b4516242dad7ae'
         }
         self.user.update(email='cfinke@m.com')
-        self.test_good(client=self.anon, extra_headers=extra_headers)
+        self.test_get_jwt(client=self.anon, extra_headers=extra_headers)
 
     @patch('mkt.webapps.models.Webapp.has_purchased')
     def test_already_purchased(self, has_purchased):
@@ -83,6 +84,39 @@ class TestPrepare(PurchaseTest, RestOAuth):
         res = self._post()
         eq_(res.status_code, 409)
         eq_(res.json, {"reason": "Already purchased app."})
+
+
+class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
+    fixtures = fixture('webapp_337141', 'user_2519', 'prices')
+
+    def setUp(self):
+        RestOAuth.setUp(self)  # Avoid calling PurchaseTest.setUp().
+        self.user = UserProfile.objects.get(pk=2519)
+        self.setup_base()
+        self.setup_package()
+        self.list_url = reverse('webpay-prepare-inapp')
+
+    def _post(self, inapp_id=None, extra_headers=None):
+        inapp_id = inapp_id or self.inapp.pk
+        extra_headers = extra_headers or {}
+        return self.anon.post(self.list_url,
+                              data=json.dumps({'inapp': inapp_id}),
+                              **extra_headers)
+
+    def test_allowed(self):
+        self._allowed_verbs(self.list_url, ['post'])
+
+    def test_bad_id_raises_400(self):
+        res = self._post(inapp_id='invalid id')
+        eq_(res.status_code, 400, res.content)
+
+    def test_get_jwt(self, extra_headers=None):
+        res = self._post(extra_headers=extra_headers)
+        eq_(res.status_code, 201, res.content)
+        contribution = Contribution.objects.get()
+        eq_(res.json['contribStatusURL'],
+            reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
+        ok_(res.json['webpayJWT'])
 
 
 class TestStatus(RestOAuth):
