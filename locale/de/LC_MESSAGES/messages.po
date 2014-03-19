@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-03-19 18:00+0000\n"
+"PO-Revision-Date: 2014-03-19 18:02+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395252056.0\n"
+"X-POOTLE-MTIME: 1395252174.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -21164,7 +21164,7 @@ msgstr "Online"
 #: mkt/constants/ratingdescriptors.py:76
 #: mkt/constants/ratingdescriptors.py:88
 msgid "Fear"
-msgstr "Angstigende Inhalte"
+msgstr "Ängstigende Inhalte"
 
 #: mkt/constants/ratingdescriptors.py:94
 msgid "Social Interaction Functionality"
