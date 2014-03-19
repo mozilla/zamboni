@@ -1,6 +1,5 @@
 import calendar
 import time
-import uuid
 from urllib import urlencode
 
 from django.conf import settings
@@ -12,34 +11,13 @@ import amo
 from amo.helpers import absolutify
 from lib.crypto.webpay import sign_webpay_jwt
 from mkt.webpay.utils import make_external_id, strip_tags
-from stats.models import Contribution
 
 
 log = commonware.log.getLogger('z.purchase')
 
 
-def get_product_jwt(product, user=None, region=None,
-                    source=None, lang=None):
+def get_product_jwt(product, contribution):
     """Prepare a JWT for paid products to pass into navigator.pay()"""
-
-    # TODO: Contribution should be created outside of the JWT producer
-    contribution = Contribution.objects.create(
-        addon_id=product.addon().pk,
-        amount=product.amount(region),
-        paykey=None,
-        price_tier=product.price(),
-        source=source,
-        source_locale=lang,
-        type=amo.CONTRIB_PENDING,
-        user=user,
-        uuid=str(uuid.uuid4()),
-    )
-
-    log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
-
-    user_id = user.pk if user else None
-    log.debug('Starting purchase of app: {0} by user: {1}'.format(
-        product.id(), user_id))
 
     issued_at = calendar.timegm(time.gmtime())
 
@@ -70,9 +48,7 @@ def get_product_jwt(product, user=None, region=None,
         'webpayJWT': token,
         'contribStatusURL': reverse(
             'webpay-status',
-            kwargs={
-                'uuid': contribution.uuid
-            }
+            kwargs={'uuid': contribution.uuid}
         )
     }
 
@@ -94,9 +70,6 @@ class WebAppProduct(object):
 
     def addon(self):
         return self.webapp
-
-    def amount(self, region):
-        return self.webapp.get_price(region=region.id)
 
     def price(self):
         return self.webapp.premium.price
@@ -143,11 +116,6 @@ class InAppProduct(object):
 
     def addon(self):
         return self.inapp.webapp
-
-    def amount(self, region):
-        # In app payments are unauthenticated so we have no user
-        # and therefore can't determine a meaningful region
-        return None
 
     def price(self):
         return self.inapp.price

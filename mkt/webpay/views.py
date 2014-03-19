@@ -1,5 +1,6 @@
 import calendar
 import time
+import uuid
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -49,6 +50,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
         form = PrepareWebAppForm(request.DATA)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
         app = form.cleaned_data['app']
 
         region = getattr(request, 'REGION', None)
@@ -66,13 +68,24 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
         app_pay_cef.log(request._request, 'Preparing JWT', 'preparing_jwt',
                         'Preparing JWT for: {0}'.format(app.pk), severity=3)
 
-        token = get_product_jwt(
-            WebAppProduct(app),
-            lang=request._request.LANG,
-            region=request._request.REGION,
+        log.debug('Starting purchase of app: {0} by user: {1}'.format(
+            app.pk, request._request.amo_user))
+
+        contribution = Contribution.objects.create(
+            addon_id=app.pk,
+            amount=app.get_price(region=request._request.REGION.id),
+            paykey=None,
+            price_tier=app.premium.price,
             source=request._request.REQUEST.get('src', ''),
+            source_locale=request._request.LANG,
+            type=amo.CONTRIB_PENDING,
             user=request._request.amo_user,
+            uuid=str(uuid.uuid4()),
         )
+
+        log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+        token = get_product_jwt(WebAppProduct(app), contribution)
 
         return Response(token, status=status.HTTP_201_CREATED)
 
@@ -103,11 +116,25 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
             'Preparing InApp JWT for: {0}'.format(inapp.pk), severity=3
         )
 
-        token = get_product_jwt(
-            InAppProduct(inapp),
-            lang=request._request.LANG,
+        log.debug('Starting purchase of in app: {0}'.format(inapp.pk))
+
+        contribution = Contribution.objects.create(
+            addon_id=inapp.webapp.pk,
+            # In-App payments are unauthenticated so we have no user
+            # and therefore can't determine a meaningful region.
+            amount=None,
+            paykey=None,
+            price_tier=inapp.price,
             source=request._request.REQUEST.get('src', ''),
+            source_locale=request._request.LANG,
+            type=amo.CONTRIB_PENDING,
+            user=None,
+            uuid=str(uuid.uuid4()),
         )
+
+        log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+        token = get_product_jwt(InAppProduct(inapp), contribution)
 
         return Response(token, status=status.HTTP_201_CREATED)
 
