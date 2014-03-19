@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-02-27 09:53+0000\n"
+"PO-Revision-Date: 2014-03-19 18:43+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393494799.0\n"
+"X-POOTLE-MTIME: 1395254601.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1984,11 +1984,11 @@ msgstr "App-herindiening"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} automatisch geëscaleerd omdat het een VIP-app is."
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "Automatische VIP-escalatie"
 
 #: apps/amo/log.py:551
 msgid "Created: {0}."
@@ -4670,12 +4670,12 @@ msgstr "Alle add-ons bekijken ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Add-ons voor Australis maken"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Win een Firefox OS-telefoon en Mozilla-materialen!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5618,7 +5618,7 @@ msgstr "Deze add-on wordt automatisch na een paar dagen verwijderd als het indie
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Laatste versie:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5744,7 +5744,7 @@ msgstr "Bekijk bij benadering de <a href=\"{0}\">wachttijd</a> in de beoordeling
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Dien uw add-on voor de Add-ons voor Australis-wedstrijd in"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -9485,11 +9485,11 @@ msgstr "Installatie annuleren"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Maak add-ons voor de nieuwe look van Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Wedstrijddetails"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -17142,15 +17142,17 @@ msgstr "Voer e-mailadressen gescheiden door komma’s in"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Mozilla VIP-app"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"Is dit een zeer belangrijke app die altijd door Mozilla-personeel of ervaren "
+"app-beoordelaars moet worden behandeld?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Terughoudend gebruiken"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
@@ -19701,11 +19703,11 @@ msgstr "Versie %(version)s &middot; %(developer_name)s &middot; %(created)s <spa
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Volgende pagina"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Vorige pagina"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
