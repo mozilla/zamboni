@@ -307,6 +307,20 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.status_code, 201)
         assert self.addon.threads.count()
 
+    @mock.patch('waffle.switch_is_active')
+    def test_create_no_switch(self, waffle_mock):
+        waffle_mock.return_value = False
+        version_factory(addon=self.addon, version='1.1')
+        data = {
+            'app': self.addon.app_slug,
+            'version': '1.1',
+            'note_type': '0',
+            'body': 'flylikebee'
+        }
+        self.addon.addonuser_set.create(user=self.user.get_profile())
+        res = self.client.post(self.list_url, data=json.dumps(data))
+        eq_(res.status_code, 403)
+
 
 class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
     fixtures = fixture('webapp_337141', 'user_2519', 'user_999',
@@ -340,7 +354,6 @@ class TestNote(NoteSetupMixin):
             kwargs={'thread_id': self.thread.id, 'pk': note.id}))
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
-        eq_(res.json['reply_to'], None)
         eq_(res.json['is_read'], False)
 
         # Read.
@@ -397,8 +410,19 @@ class TestNote(NoteSetupMixin):
         eq_(res.status_code, 201)
         eq_(res.json['body'], 'something')
 
-    def test_create_perm(self):
+        # Decrement authors.count() by 1 because the author of the note is
+        # one of the authors of the addon.
+        eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
+
+    def test_create_no_perm(self):
         self.thread.update(read_permission_developer=False)
+        res = self.client.post(self.list_url, data=json.dumps(
+            {'note_type': '0', 'body': 'something'}))
+        eq_(res.status_code, 403)
+
+    @mock.patch('waffle.switch_is_active')
+    def test_create_no_switch(self, waffle_mock):
+        waffle_mock.return_value = False
         res = self.client.post(self.list_url, data=json.dumps(
             {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 403)
@@ -406,44 +430,6 @@ class TestNote(NoteSetupMixin):
     def test_cors_allowed(self):
         res = self.client.get(self.list_url)
         self.assertCORS(res, 'get', 'post', 'patch')
-
-    def test_reply_list(self):
-        note = self._note_factory(self.thread)
-        note.replies.create(thread=self.thread, author=self.profile)
-
-        res = self.client.get(reverse('comm-note-replies-list',
-                                      kwargs={'thread_id': self.thread.id,
-                                              'note_id': note.id}))
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 1)
-        eq_(res.json['objects'][0]['reply_to'], note.id)
-
-    def test_reply_create(self):
-        note = self._note_factory(self.thread)
-
-        res = self.client.post(
-            reverse('comm-note-replies-list',
-                    kwargs={'thread_id': self.thread.id, 'note_id': note.id}),
-                    data=json.dumps({'note_type': '0',
-                                     'body': 'something'}))
-        eq_(res.status_code, 201)
-        eq_(note.replies.count(), 1)
-
-    def test_note_emails(self):
-        self.create_switch(name='comm-dashboard')
-        note = self._note_factory(self.thread, perms=['developer'])
-
-        res = self.client.post(
-            reverse('comm-note-replies-list',
-                    kwargs={'thread_id': self.thread.id,
-                            'note_id': note.id}),
-                    data=json.dumps({'note_type': '0',
-                                     'body': 'something'}))
-        eq_(res.status_code, 201)
-
-        # Decrement authors.count() by 1 because the author of the note is
-        # one of the authors of the addon.
-        eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
 
     def test_mark_read(self):
         note = self._note_factory(self.thread)

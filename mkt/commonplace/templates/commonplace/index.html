@@ -12,7 +12,7 @@
     <link rel="icon" href="{{ media('fireplace/img/logos/64.png') }}" sizes="64x64">
     <link rel="icon" href="{{ media('fireplace/img/logos/32.png') }}" sizes="32x32">
     {% if repo == 'fireplace' -%}
-      <link rel="stylesheet" href="{{ media(repo + '/css/splash.styl.css') }}">
+      <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
     {%- endif %}
     <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
     <link title="Firefox Marketplace"
@@ -23,7 +23,7 @@
       <meta name="dns-prefetch" href="{{ media_origin }}">
     {%- endif %}
   </head>
-  <body class="home" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
+  <body class="home{{ ' overlayed' if repo == 'fireplace' }}" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
 
     {% if not robots -%}
       <noscript><p>Sorry, you need JavaScript to access the Marketplace.</p></noscript>
