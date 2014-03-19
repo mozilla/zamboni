@@ -28,7 +28,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.purchase.webpay import _prepare_pay, sign_webpay_jwt
+from mkt.purchase.webpay_jwt import get_product_jwt, WebAppProduct, sign_webpay_jwt
 from mkt.webpay.forms import FailureForm, PrepareForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
@@ -72,9 +72,9 @@ class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
         lang = request._request.LANG
         client_data = ClientData.get_or_create(request._request)
 
-        data = _prepare_pay(app, user=user, region=region,
-                            source=source, lang=lang,
-                            client_data=client_data)
+        data = get_product_jwt(WebAppProduct(app), user=user, region=region,
+                               source=source, lang=lang,
+                               client_data=client_data)
 
         return Response(data, status=status.HTTP_201_CREATED)
 
