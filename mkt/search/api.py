@@ -173,7 +173,11 @@ class RocketbarView(SearchView):
         results = S(WebappIndexer).get_es().send_request(
             'GET', [WebappIndexer.get_index(), '_suggest'], body=es_query)
 
-        serializer = self.get_serializer(results['apps'][0]['options'])
+        if 'apps' in results:
+            data = results['apps'][0]['options']
+        else:
+            data = []
+        serializer = self.get_serializer(data)
         # This returns a JSON list. Usually this is a bad idea for security
         # reasons, but we don't include any user-specific data, it's fully
         # anonymous, so we're fine.
