@@ -1143,15 +1143,15 @@ msgstr "Део ових колекција"
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
 msgstr[0] "Друге апликације од %(author)s"
-msgstr[1] "Друге апликације од ових аутора%(author)s"
+msgstr[1] "Друге апликације од ових аутора %(author)s"
 msgstr[2] "Друге апликације од ових аутора %(author)s"
 
 #: apps/addons/templates/addons/impala/details.html:43
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "Друге апликације од %(author)s"
-msgstr[1] "Друге апликације од ових аутора %(author)s"
-msgstr[2] "Друге апликације од ових аутор %(author)s"
+msgid_plural ""
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/details.html:71
 msgid "View statistics"
