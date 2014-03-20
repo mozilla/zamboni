@@ -72,15 +72,14 @@ class AttachmentManagementMixin(object):
         data = {}
         files = ['bacon.jpg', 'bacon.txt']
         descriptions = ['mmm, bacon', '']
-        if num > 0:
-            for n in xrange(num):
-                i = 0 if n % 2 else 1
-                path = os.path.join(ATTACHMENTS_DIR, files[i])
-                attachment = open(path, 'r')
-                data.update({
-                    'form-%d-attachment' % n: attachment,
-                    'form-%d-description' % n: descriptions[i]
-                })
+        for n in xrange(num):
+            i = 0 if n % 2 else 1
+            path = os.path.join(ATTACHMENTS_DIR, files[i])
+            attachment = open(path, 'r')
+            data.update({
+                'form-%d-attachment' % n: attachment,
+                'form-%d-description' % n: descriptions[i]
+            })
         return data
 
 
@@ -502,6 +501,8 @@ class TestAttachments(NoteSetupMixin):
 
         eq_(res.status_code, 403)
 
+    @mock.patch('mkt.comm.utils._save_attachment', new=mock.Mock())
+    @mock.patch('mkt.comm.models.CommAttachment.is_image', new=mock.Mock())
     def test_get_attachment(self):
         if not settings.XSENDFILE:
             raise SkipTest
@@ -518,6 +519,8 @@ class TestAttachments(NoteSetupMixin):
         eq_(res._headers['x-sendfile'][1],
             CommAttachment.objects.get(id=attachment_id).full_path())
 
+    @mock.patch('mkt.comm.utils._save_attachment', new=mock.Mock())
+    @mock.patch('mkt.comm.models.CommAttachment.is_image', new=mock.Mock())
     def test_get_attachment_not_note_perm(self):
         data = self._attachments(num=1)
         res = self.client.post(self.attachment_url, data=data,
