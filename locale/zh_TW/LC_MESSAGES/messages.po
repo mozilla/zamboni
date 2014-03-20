@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-02-27 01:30+0000\n"
+"PO-Revision-Date: 2014-03-20 03:05+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393464622.0\n"
+"X-POOTLE-MTIME: 1395284749.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1950,11 +1950,11 @@ msgstr "重新提交 App"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "由於是 VIP 應用程式，{addon} 自動提升為高級審核。"
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP 自動提升審核"
 
 #: apps/amo/log.py:551
 msgid "Created: {0}."
@@ -4611,12 +4611,12 @@ msgstr "瀏覽所有附加元件►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "為 Australis 打造附加元件"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "贏得 Firefox OS 與 Mozilla 澎湃包！"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5535,7 +5535,7 @@ msgstr "此附加元件將在送出審核過程未完成後的幾天內被自動
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>最新版本:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5660,7 +5660,7 @@ msgstr "檢視等待審核區<a href=\"{0}\">等候時間</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "為 Add-ons for Australis 競賽送出您的附加元件"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -9210,11 +9210,11 @@ msgstr "取消安裝"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "為 Firefox 的新妝打造附加元件"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "競賽詳情"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -16718,15 +16718,15 @@ msgstr "請輸入電子郵件信箱地址，如有額外地址請以逗號分隔
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Mozilla VIP 應用程式"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
-msgstr ""
+msgstr "這是非常重要的應用程式，每次都應該被 Mozilla 員工或資深的應用程式審核者處理嗎？"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "請保守使用"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
@@ -19245,11 +19245,11 @@ msgstr "版本 %(version)s &middot; %(developer_name)s &middot; %(created)s <spa
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "下一頁"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "上一頁"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
