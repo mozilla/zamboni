@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-03-20 03:05+0000\n"
+"PO-Revision-Date: 2014-03-20 03:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395284749.0\n"
+"X-POOTLE-MTIME: 1395286227.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -10765,7 +10765,9 @@ msgstr "在這個網站是誰的作品？"
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
-msgstr "多年來，很多人都對這個網站做出貢獻，包括社群志工以及一支專門的 AMO 團隊。您可以在<a href=\"%(url)s\">網站貢獻</a>頁面找到顯著貢獻者的名單。"
+msgstr ""
+"多年來，很多人都對這個網站做出貢獻，包括社群志工以及一支專門的 AMO 團隊。您可以在<a href=\"%"
+"(url)s\">網站貢獻者</a>頁面找到顯著貢獻者的名單。"
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -10816,7 +10818,7 @@ msgstr "感謝您的協助!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr "網站作者"
+msgstr "網站貢獻者"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
