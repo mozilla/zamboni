@@ -677,7 +677,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
             rb.PEGI: rb.PEGI_3,
             rb.GENERIC: rb.GENERIC_18,
         })
-        eq_(ContentRating.objects.count(), 3)
         for expected in [(rb.CLASSIND.id, rb.CLASSIND_10.id),
                          (rb.PEGI.id, rb.PEGI_3.id),
                          (rb.GENERIC.id, rb.GENERIC_18.id)]:
@@ -733,7 +732,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
         app = app_factory()
         eq_(RatingDescriptors.objects.count(), 0)
         app.set_descriptors([])
-        eq_(RatingDescriptors.objects.count(), 1)
 
         descriptors = RatingDescriptors.objects.get(addon=app)
         assert not descriptors.has_classind_drugs
@@ -743,7 +741,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
         app.set_descriptors([
             'has_classind_drugs', 'has_pegi_scary', 'has_generic_drugs'
         ])
-        eq_(RatingDescriptors.objects.count(), 1)
         descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_classind_drugs
         assert descriptors.has_pegi_scary
@@ -904,8 +901,7 @@ class TestWebappContentRatings(amo.tests.TestCase):
 
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         eq_(dict(app.get_descriptors()),
-            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
-             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
+            {'esrb': ['blood'], 'pegi': ['scary']})
 
     def test_get_interactives_es(self):
         app = app_factory()
@@ -920,9 +916,7 @@ class TestWebappContentRatings(amo.tests.TestCase):
         eq_(app.get_interactives(), [])
 
         app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-        eq_(app.get_interactives(),
-            [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
+        eq_(app.get_interactives(), ['shares-info', 'digital-purchases'])
 
     @override_settings(SECRET_KEY='test')
     def test_iarc_token(self):

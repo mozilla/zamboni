@@ -13,9 +13,9 @@ import mkt
 from mkt.api.fields import ESTranslationSerializerField
 from mkt.submit.serializers import SimplePreviewSerializer
 from mkt.webapps.models import Geodata, Webapp
-from mkt.webapps.utils import (
-    dehydrate_content_ratings, dehydrate_descriptors, dehydrate_interactives,
-    filter_content_ratings_by_region)
+from mkt.webapps.utils import (dehydrate_content_rating,
+                               dehydrate_descriptors,
+                               dehydrate_interactives)
 from mkt.webapps.api import AppSerializer, SimpleAppSerializer
 
 
@@ -150,15 +150,19 @@ class ESAppSerializer(AppSerializer):
         return obj
 
     def get_content_ratings(self, obj):
-        return filter_content_ratings_by_region({
-            'ratings': dehydrate_content_ratings(
-                obj.es_data.get('content_ratings', {})),
+        body = (mkt.regions.REGION_TO_RATINGS_BODY().get(
+            self.context['request'].REGION.slug, 'generic'))
+        return {
+            'body': body,
+            'rating': dehydrate_content_rating(
+                (obj.es_data.get('content_ratings') or {})
+                .get(body)) or None,
             'descriptors': dehydrate_descriptors(
-                obj.es_data.get('content_descriptors', {})),
-            'interactive_elements': dehydrate_interactives(
+                obj.es_data.get('content_descriptors', {})
+            ).get(body, []),
+            'interactives': dehydrate_interactives(
                 obj.es_data.get('interactive_elements', [])),
-            'regions': mkt.regions.REGION_TO_RATINGS_BODY()
-        }, region=self.context['request'].REGION.slug)
+        }
 
     def get_versions(self, obj):
         return dict((v['version'], v['resource_uri'])

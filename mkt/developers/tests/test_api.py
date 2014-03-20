@@ -33,11 +33,8 @@ class TestContentRating(amo.tests.TestCase):
         res = json.loads(res.content)
         eq_(len(res['objects']), 2)
         rating = res['objects'][0]
-        eq_(rating['body_slug'], 'classind')
-        eq_(rating['body_name'], 'CLASSIND')
-        assert rating['name']
-        eq_(rating['slug'], '0')
-        assert 'description' in rating
+        eq_(rating['body'], 'classind')
+        eq_(rating['rating'], '0')
 
     def test_get_content_ratings_since(self):
         cr = ContentRating.objects.create(addon=self.app, ratings_body=0,

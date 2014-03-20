@@ -23,7 +23,6 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.utils import (dehydrate_content_rating,
-                               _filter_iarc_obj_by_region,
                                get_supported_locales)
 from users.models import UserProfile
 from versions.models import Version
@@ -56,7 +55,7 @@ class TestAppSerializer(amo.tests.TestCase):
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):
-        eq_(self.serialize(self.app)['content_ratings']['ratings'], None)
+        eq_(self.serialize(self.app)['content_ratings']['rating'], None)
 
     def test_no_price(self):
         res = self.serialize(self.app)
@@ -130,57 +129,31 @@ class TestAppSerializer(amo.tests.TestCase):
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
-        res = self.serialize(self.app)
-        eq_(res['content_ratings']['ratings']['classind'],
-            {'body': 'CLASSIND',
-             'body_label': 'classind',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
-        eq_(res['content_ratings']['ratings']['generic'],
-            {'body': 'Generic',
-             'body_label': 'generic',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
 
-    def test_content_ratings_by_region(self):
-        self.app.set_content_ratings({
-            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
-            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
-        })
-        self.app.set_descriptors(['has_classind_lang', 'has_generic_lang'])
+        res = self.serialize(self.app)
+        eq_(res['content_ratings']['body'], 'generic')
+        eq_(res['content_ratings']['rating'], '18')
 
         self.request.REGION = mkt.regions.BR
-        res = self.serialize(self.app)['content_ratings']
-
-        for iarc_obj in ('ratings', 'descriptors', 'regions'):
-            eq_(len(res[iarc_obj]), 1)
-        for iarc_obj in ('ratings', 'descriptors'):
-            assert 'classind' in res[iarc_obj], iarc_obj
-        assert 'br' in res['regions']
-
-    def test_content_ratings_regions(self):
         res = self.serialize(self.app)
-        region_rating_bodies = res['content_ratings']['regions']
-        eq_(region_rating_bodies['br'], 'classind')
-        eq_(region_rating_bodies['de'], 'usk')
-        eq_(region_rating_bodies['es'], 'pegi')
-        eq_(region_rating_bodies['us'], 'esrb')
+        eq_(res['content_ratings']['body'], 'classind')
+        eq_(res['content_ratings']['rating'], '18')
 
     def test_content_descriptors(self):
-        self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        self.app.set_descriptors(['has_esrb_blood', 'has_esrb_crime',
+                                  'has_pegi_scary'])
+
+        self.request.REGION = mkt.regions.US
         res = self.serialize(self.app)
-        eq_(dict(res['content_ratings']['descriptors']),
-            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
-             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
+        self.assertSetEqual(res['content_ratings']['descriptors'],
+                            ['blood', 'crime'])
 
     def test_interactive_elements(self):
         self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         res = self.serialize(self.app)
-        eq_(res['content_ratings']['interactive_elements'],
-            [{'label': 'shares-info', 'name': 'Shares Info'},
-             {'label': 'digital-purchases', 'name': 'Digital Purchases'}])
+        self.assertSetEqual(
+            res['content_ratings']['interactives'],
+            ['shares-info', 'digital-purchases'])
 
     def test_dehydrate_content_rating_old_es(self):
         """Test dehydrate works with old ES mapping."""
@@ -191,51 +164,6 @@ class TestAppSerializer(amo.tests.TestCase):
                          'name': u'0+',
                          'body_slug': u'classind'})])
         eq_(rating, {})
-
-    def test_filter_iarc_obj_by_region_only(self):
-        region_map = {
-            'us': 'esrb',
-            'mx': 'esrb',
-            'es': 'pegi',
-            'br': 'classind',
-        }
-
-        for region in region_map:
-            eq_(_filter_iarc_obj_by_region(region_map, region=region),
-                {region: region_map[region]})
-        eq_(_filter_iarc_obj_by_region(region_map, region='DNE'), region_map)
-
-    def test_filter_iarc_obj_by_region_and_body(self):
-        classind_rating = {
-            'body': u'CLASSIND',
-            'slug': u'0',
-            'description': u'General Audiences',
-            'name': u'0+',
-            'body_slug': u'classind'
-        }
-        esrb_rating = {
-            'body': u'ESRB',
-            'slug': u'18',
-            'description': u'Adults Only 18+',
-            'name': u'18+',
-            'body_slug': u'esrb'
-        }
-        content_ratings = {
-            'classind': classind_rating,
-            'esrb': esrb_rating
-        }
-
-        esrb_only = _filter_iarc_obj_by_region(
-            content_ratings, region='us', lookup_body=True)
-        eq_(esrb_only, {'esrb': esrb_rating})
-
-        classind_only = _filter_iarc_obj_by_region(
-            content_ratings, region='br', lookup_body=True)
-        eq_(classind_only, {'classind': classind_rating})
-
-        no_rating_for_region = _filter_iarc_obj_by_region(
-            content_ratings, region='es', lookup_body=True)
-        eq_(no_rating_for_region, content_ratings)
 
     def test_no_release_notes(self):
         res = self.serialize(self.app)
@@ -504,77 +432,34 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 (v, k, res[k]))
 
     def test_content_ratings(self):
-        self.request.REGION = mkt.regions.RESTOFWORLD
         self.app.set_content_ratings({
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
-        self.app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
+        self.app.set_descriptors(['has_generic_violence', 'has_generic_scary',
+                                  'has_classind_shocking'])
         self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         self.app.save()
         self.refresh('webapp')
 
+        self.request.REGION = mkt.regions.ME
         res = self.serialize()
-        eq_(res['content_ratings']['ratings']['classind'],
-            {'body': 'CLASSIND',
-             'body_label': 'classind',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
-        eq_(res['content_ratings']['ratings']['generic'],
-            {'body': 'Generic',
-             'body_label': 'generic',
-             'rating': 'For ages 18+',
-             'rating_label': '18',
-             'description': unicode(ratingsbodies.DESC_LAZY) % 18})
-
-        eq_(dict(res['content_ratings']['descriptors']),
-            {'esrb': [{'label': 'blood', 'name': 'Blood'}],
-             'pegi': [{'label': 'scary', 'name': 'Fear'}]})
-        eq_(sorted(res['content_ratings']['interactive_elements'],
-                   key=lambda x: x['name']),
-            [{'label': 'digital-purchases', 'name': 'Digital Purchases'},
-             {'label': 'shares-info', 'name': 'Shares Info'}])
-
-    def test_content_ratings_by_region(self):
-        self.app.set_content_ratings({
-            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
-            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
-        })
-        self.app.set_descriptors(['has_classind_lang', 'has_generic_lang'])
-        self.app.save()
-        self.refresh('webapp')
+        eq_(res['content_ratings']['body'], 'generic')
+        eq_(res['content_ratings']['rating'], '18')
+        self.assertSetEqual(
+            res['content_ratings']['descriptors'],
+            ['violence', 'scary'])
+        self.assertSetEqual(
+            res['content_ratings']['interactives'],
+            ['digital-purchases', 'shares-info'])
 
         self.request.REGION = mkt.regions.BR
-        res = self.serialize()['content_ratings']
-
-        for iarc_obj in ('ratings', 'descriptors', 'regions'):
-            eq_(len(res[iarc_obj]), 1)
-        for iarc_obj in ('ratings', 'descriptors'):
-            assert 'classind' in res[iarc_obj], iarc_obj
-        assert 'br' in res['regions']
-
-    def test_content_ratings_regions(self):
-        self.request.REGION = mkt.regions.RESTOFWORLD
         res = self.serialize()
-        region_rating_bodies = res['content_ratings']['regions']
-        eq_(region_rating_bodies['br'], 'classind')
-        eq_(region_rating_bodies['de'], 'usk')
-        eq_(region_rating_bodies['es'], 'pegi')
-        eq_(region_rating_bodies['us'], 'esrb')
-
-    def test_content_ratings_regions_no_switch(self):
-        self.create_switch('iarc', active=False, db=True)
-        self.app.set_content_ratings({
-            ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
-            ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
-        })
-        self.app.save()
-        self.refresh('webapp')
-
-        res = self.serialize()
-        assert 'us' not in res['content_ratings']['regions']
-        eq_(res['content_ratings']['regions']['br'], 'classind')
+        eq_(res['content_ratings']['body'], 'classind')
+        eq_(res['content_ratings']['rating'], '18')
+        self.assertSetEqual(
+            res['content_ratings']['descriptors'],
+            ['shocking'])
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""

@@ -35,24 +35,16 @@ Content Rating
         {
             "objects": [
                 {
-                    "id": 34,
                     "created": "2013-06-14T11:54:24",
                     "modified": "2013-06-24T22:01:37",
-                    "body_name": "ESRB",
-                    "body_slug": "esrb",
-                    "name": "Everyone 10+",
-                    "slug": "10",
-                    "description": "Not recommended for users younger than 10 years of age"
+                    "body": "esrb",
+                    "rating": "10",
                 },
                 {
-                    "id": 35,
                     "created": "2013-06-14T11:54:24",
                     "modified": "2013-06-24T22:01:37",
-                    "body_name": "PEGI",
-                    "body_slug": "pegi",
-                    "name": "3+",
-                    "slug": "3",
-                    "description": "Not recommended for users younger than 3 years of age"
+                    "body": "pegi",
+                    "rating": "3",
                 },
                 ...
             ]
