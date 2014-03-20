@@ -18,7 +18,7 @@ from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
-from mkt.purchase import webpay
+from mkt.purchase.webpay_jwt import WebAppProduct
 
 root = 'developers/payments/includes/'
 
@@ -39,7 +39,7 @@ class Provider(object):
 
     def generic_create(self, account, app, secret):
         # This sets the product up in solitude.
-        external_id = webpay.make_ext_id(app.pk)
+        external_id = WebAppProduct(app).external_id()
         data = {'seller': uri_to_pk(account.seller_uri),
                 'external_id': external_id}
 
