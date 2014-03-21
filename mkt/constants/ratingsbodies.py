@@ -2,12 +2,6 @@
 from tower import ugettext_lazy as _lazy
 
 
-DESC_GENERAL = _lazy(u'General Audiences')
-# L10n: %d is the age in years.
-DESC_LAZY = _lazy(u'Not recommended for users younger than %d years of age')
-DESC_REJECTED = _lazy(u'Rejected for All Audiences')
-DESC_PENDING = _lazy(u'Rating Pending')
-
 NAME_GENERAL = _lazy('For all ages')
 # L10n: %d is the age in years. For ages %d and higher.
 NAME_LAZY = _lazy('For ages %d+')  # Fill this in after accessing.
@@ -23,12 +17,10 @@ class RATING(object):
     age -- minimum age of the rating's age recommendation.
     name -- how we name the rating, for translated display on all pages.
     label -- for CSS classes, to create icons.
-    description -- for general translated display on consumer pages.
     """
     age = None
     name = None
     label = None
-    description = None
     adult = False
 
 
@@ -138,7 +130,6 @@ class GENERIC_RP(RATING):
     iarc_name = 'RP'
     label = 'pending'
     name = NAME_PENDING
-    description = DESC_PENDING
 
 
 class GENERIC(RATING_BODY):
@@ -191,7 +182,6 @@ class USK_REJECTED(RATING):
     iarc_name = 'Rating Refused'
     label = 'rating-refused'
     name = NAME_REJECTED
-    description = DESC_REJECTED
 
 
 class USK(RATING_BODY):
@@ -215,7 +205,6 @@ class ESRB_E(RATING):
     age = 0
     iarc_name = 'Everyone'
     name = _lazy('Everyone')
-    description = DESC_GENERAL
 
 
 class ESRB_10(RATING):
@@ -379,14 +368,8 @@ def dehydrate_rating(rating_class):
             rating.name = unicode(NAME_GENERAL)
         else:
             rating.name = unicode(NAME_LAZY) % rating.age
-    if rating.description is None:
-        if rating.age == 0:
-            rating.description = unicode(DESC_GENERAL)
-        else:
-            rating.description = unicode(DESC_LAZY) % rating.age
 
     rating.name = unicode(rating.name)
-    rating.description = unicode(rating.description)
     return rating
 
 

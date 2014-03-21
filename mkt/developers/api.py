@@ -19,32 +19,18 @@ log = commonware.log.getLogger('z.devhub')
 
 
 class ContentRatingSerializer(ModelSerializer):
-    body_name = SerializerMethodField('get_body_name')
-    body_slug = SerializerMethodField('get_body_slug')
+    body = SerializerMethodField('get_body')
+    rating = SerializerMethodField('get_rating')
 
-    name = SerializerMethodField('get_rating_name')
-    slug = SerializerMethodField('get_rating_slug')
-    description = SerializerMethodField('get_rating_description')
-
-    def get_body_name(self, obj):
-        return obj.get_body().name
-
-    def get_body_slug(self, obj):
+    def get_body(self, obj):
         return obj.get_body().label
 
-    def get_rating_name(self, obj):
-        return obj.get_rating().name
-
-    def get_rating_slug(self, obj):
+    def get_rating(self, obj):
         return obj.get_rating().label
-
-    def get_rating_description(self, obj):
-        return obj.get_rating().description
 
     class Meta:
         model = ContentRating
-        fields = ('id', 'created', 'modified', 'body_name', 'body_slug',
-                  'name', 'slug', 'description')
+        fields = ('created', 'modified', 'body', 'rating')
 
 
 class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
