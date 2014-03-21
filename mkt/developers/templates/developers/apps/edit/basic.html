@@ -83,7 +83,7 @@
                 {{ form.manifest_url.errors }}
                 <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
                 <p class="note">
-                  {% trans email='app-reviews@mozilla.org' %}
+                  {% trans email='app-reviewers@mozilla.org' %}
                     Manifest URLs cannot be changed after your app has been
                     submitted. Please email
                     <a href="mailto:{{ email }}">{{ email }}</a> if there is a
