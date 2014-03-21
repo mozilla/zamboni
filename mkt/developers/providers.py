@@ -18,7 +18,7 @@ from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
-from mkt.purchase.webpay_jwt import WebAppProduct
+from mkt.webpay.webpay_jwt import WebAppProduct
 
 root = 'developers/payments/includes/'
 

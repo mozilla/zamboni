@@ -28,10 +28,11 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.purchase.webpay_jwt import get_product_jwt, WebAppProduct, sign_webpay_jwt
-from mkt.webpay.forms import FailureForm, PrepareForm
+from mkt.webpay.forms import FailureForm, PrepareWebAppForm, PrepareInAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
+from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
+                                   sign_webpay_jwt, WebAppProduct)
 
 from . import tasks
 
@@ -39,14 +40,14 @@ from . import tasks
 log = commonware.log.getLogger('z.webpay')
 
 
-class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
+class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
     permission_classes = [IsAuthenticated]
     cors_allowed_methods = ['post']
 
     def post(self, request, *args, **kwargs):
-        form = PrepareForm(request.DATA)
+        form = PrepareWebAppForm(request.DATA)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
         app = form.cleaned_data['app']
@@ -59,24 +60,59 @@ class PreparePayView(CORSMixin, MarketplaceView, GenericAPIView):
                             status=status.HTTP_403_FORBIDDEN)
 
         if app.is_premium() and app.has_purchased(request._request.amo_user):
-            log.info('Already purchased: %d' % app.pk)
+            log.info('Already purchased: {0}'.format(app.pk))
             return Response({'reason': u'Already purchased app.'},
                             status=status.HTTP_409_CONFLICT)
 
         app_pay_cef.log(request._request, 'Preparing JWT', 'preparing_jwt',
-                        'Preparing JWT for: %s' % (app.pk), severity=3)
+                        'Preparing JWT for: {0}'.format(app.pk), severity=3)
 
-        user = request._request.amo_user
-        region = request._request.REGION
-        source = request._request.REQUEST.get('src', '')
-        lang = request._request.LANG
-        client_data = ClientData.get_or_create(request._request)
+        token = get_product_jwt(
+            WebAppProduct(app),
+            client_data=ClientData.get_or_create(request._request),
+            lang=request._request.LANG,
+            region=request._request.REGION,
+            source=request._request.REQUEST.get('src', ''),
+            user=request._request.amo_user,
+        )
 
-        data = get_product_jwt(WebAppProduct(app), user=user, region=region,
-                               source=source, lang=lang,
-                               client_data=client_data)
+        return Response(token, status=status.HTTP_201_CREATED)
 
-        return Response(data, status=status.HTTP_201_CREATED)
+
+class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    cors_allowed_methods = ['post']
+
+    def post(self, request, *args, **kwargs):
+        form = PrepareInAppForm(request.DATA)
+        if not form.is_valid():
+            app_pay_cef.log(
+                request._request,
+                'Preparing InApp JWT Failed',
+                'preparing_inapp_jwt_failed',
+                'Preparing InApp JWT Failed error: {0}'.format(form.errors),
+                severity=3
+            )
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        inapp = form.cleaned_data['inapp']
+
+        app_pay_cef.log(
+            request._request,
+            'Preparing InApp JWT',
+            'preparing_inapp_jwt',
+            'Preparing InApp JWT for: {0}'.format(inapp.pk), severity=3
+        )
+
+        token = get_product_jwt(
+            InAppProduct(inapp),
+            client_data=ClientData.get_or_create(request._request),
+            lang=request._request.LANG,
+            source=request._request.REQUEST.get('src', ''),
+        )
+
+        return Response(token, status=status.HTTP_201_CREATED)
 
 
 class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
