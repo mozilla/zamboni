@@ -3,6 +3,7 @@ from collections import defaultdict
 
 import commonware.log
 
+import amo
 from amo.utils import find_language
 
 import mkt
@@ -92,3 +93,24 @@ def dehydrate_interactives(keys):
         if obj:
             results.append(key.lower().replace('_', '-'))
     return results
+
+
+def get_device_types(platforms, form_factors):
+    """
+    Given a list of platform and form_factor objects, returns the device types.
+
+    This is used to help maintain compatibility with API v1.
+    """
+    device_types = []
+
+    if mkt.PLATFORM_DESKTOP in platforms:
+        device_types.append(amo.DEVICE_DESKTOP)
+    if mkt.PLATFORM_FXOS in platforms:
+        device_types.append(amo.DEVICE_GAIA)
+    if mkt.PLATFORM_ANDROID in platforms:
+        if mkt.FORM_MOBILE in form_factors:
+            device_types.append(amo.DEVICE_MOBILE)
+        if mkt.FORM_TABLET in form_factors:
+            device_types.append(amo.DEVICE_TABLET)
+
+    return device_types

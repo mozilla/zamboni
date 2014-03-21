@@ -189,6 +189,9 @@ class DeviceDetectionMiddleware(object):
     devices = ['mobile', 'gaia', 'tablet']
 
     def process_request(self, request):
+        # TODO: Update or remove this middleware entirely when we stop
+        # switching on request.TABLET and request.MOBILE in
+        # mkt/site/context_processors.py.
         dev = request.GET.get('dev')
         if dev:
             setattr(request, 'MOBILE', dev == 'android')

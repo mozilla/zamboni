@@ -14,7 +14,7 @@ from files.models import Platform
 from lib.metrics import record_action
 from users.models import UserProfile
 
-from mkt.constants import DEVICE_LOOKUP
+import mkt
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import AppFormMedia, CategoryForm, PreviewFormSet
@@ -78,12 +78,11 @@ def terms(request):
 def manifest(request):
 
     form = forms.NewWebappForm(request.POST or None, request=request)
-
+    form_factor_form = forms.FormFactorForm(request.POST or None)
     features_form = forms.AppFeaturesForm(request.POST or None)
-    features_form_valid = features_form.is_valid()
 
-    if (request.method == 'POST' and form.is_valid()
-        and features_form_valid):
+    if (request.method == 'POST' and form.is_valid() and
+        form_factor_form.is_valid() and features_form.is_valid()):
 
         with transaction.commit_on_success():
 
@@ -92,15 +91,18 @@ def manifest(request):
                 [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
                 is_packaged=form.is_packaged())
 
-            # Set the device type.
-            for device in form.get_devices():
-                addon.addondevicetype_set.get_or_create(
-                    device_type=device.id)
+            # Set the app platforms.
+            for platform in form.get_platforms():
+                addon.platform_set.safer_get_or_create(
+                    platform_id=platform.id)
 
             # Set the premium type, only bother if it's not free.
             premium = form.get_paid()
             if premium:
                 addon.update(premium_type=premium)
+
+            # Save form factors.
+            form_factor_form.save(addon)
 
             if addon.has_icon_in_manifest():
                 # Fetch the icon, do polling.
@@ -123,9 +125,13 @@ def manifest(request):
 
         return redirect('submit.app.details', addon.app_slug)
 
-    return render(request, 'submit/manifest.html',
-                  {'step': 'manifest', 'features_form': features_form,
-                   'form': form, 'DEVICE_LOOKUP': DEVICE_LOOKUP})
+    return render(request, 'submit/manifest.html', {
+        'step': 'manifest',
+        'form': form,
+        'form_factor_form': form_factor_form,
+        'features_form': features_form,
+        'PLATFORM_SUMMARIES': mkt.PLATFORM_SUMMARIES,
+    })
 
 
 @dev_required
@@ -171,9 +177,9 @@ def details(request, addon_id, addon):
 
         # If this is an incomplete app from the legacy submission flow, it may
         # not have device types set yet - so assume it works everywhere.
-        if not addon.device_types:
-            for device in amo.DEVICE_TYPES:
-                addon.addondevicetype_set.create(device_type=device)
+        if not addon.platforms:
+            for platform in mkt.PLATFORM_TYPES:
+                addon.platform_set.create(platform_id=platform)
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 

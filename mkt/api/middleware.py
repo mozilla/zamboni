@@ -301,13 +301,8 @@ class APIFilterMiddleware(object):
     """
     def process_response(self, request, response):
         if getattr(request, 'API', False) and response.status_code < 500:
-            devices = []
-            for device in ('GAIA', 'MOBILE', 'TABLET'):
-                if getattr(request, device, False):
-                    devices.append(device.lower())
             filters = (
                 ('carrier', get_carrier() or ''),
-                ('device', devices),
                 ('lang', request.LANG),
                 ('pro', request.GET.get('pro', '')),
                 ('region', request.REGION.slug),

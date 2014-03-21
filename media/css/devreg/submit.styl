@@ -115,25 +115,22 @@ h2 .soon {
         border-box();
         display: inline-block;
         padding-left: 15px;
-        width: 25%;
+        width: 33.3%;
         a.choice, span.unclickable {
-            text-decoration: none;
-            text-align: center;
-            padding: 180px 10px 20px;
             margin-bottom: 0;
             opacity: .9;
+            padding: 180px 10px 20px;
+            text-align: center;
+            text-decoration: none;
 
             &[data-value$="-firefoxos"] {
-                background: url(../../img/developers/firefox_phone.png) no-repeat 50% 25px;
+                background: url(../../img/developers/firefox-os.png) no-repeat 50% 25px;
             }
             &[data-value$="-desktop"] {
-                background: url(../../img/developers/firefox_logo.png) no-repeat 50% 25px;
+                background: url(../../img/developers/firefox-desktop.png) no-repeat 50% 25px;
             }
-            &[data-value$="-android-mobile"] {
-                background: url(../../img/developers/firefox_android_phone.png) no-repeat 50% 25px;
-            }
-            &[data-value$="-android-tablet"] {
-                background: url(../../img/developers/firefox_android_tablet.png) no-repeat 50% 40px;
+            &[data-value$="-android"] {
+                background: url(../../img/developers/firefox-android.png) no-repeat 50% 25px;
             }
             &.selected,
             &.selected:hover {
@@ -162,15 +159,67 @@ h2 .soon {
         }
     }
     .listing-footer {
-        border-radius: 0 0 3px 3px;
         background: $faint-gray;
         border-color: $light-gray;
+        border-radius: 0 0 3px 3px;
         margin: 15px -10px -20px;
         padding: 0 10px 10px;
         text-align: center;
     }
     input {
         margin-top: 15px;
+    }
+}
+
+#submit-form-factor {
+    text-align: center;
+
+    .error {
+        margin-bottom: 15px;
+    }
+    h2 {
+        margin-top: 40px;
+    }
+    .form-factor-choices {
+        padding: 15px;
+        a.form_factor_choice {
+            display: inline-block;
+            margin-bottom: 0;
+            opacity: .9;
+            padding: 110px 20px 20px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: top;
+            width: 100px;
+
+            &#form-factor-responsive {
+                background: url(../../img/developers/responsive-off.png) no-repeat 50% 25px;
+                &.selected {
+                    background: url(../../img/developers/responsive.png) no-repeat 50% 25px;
+                }
+            }
+            &#form-factor-desktop {
+                background: url(../../img/developers/desktop-off.png) no-repeat 50% 25px;
+                &.selected {
+                    background: url(../../img/developers/desktop.png) no-repeat 50% 25px;
+                }
+            }
+            &#form-factor-tablet {
+                background: url(../../img/developers/tablet-off.png) no-repeat 50% 25px;
+                &.selected {
+                    background: url(../../img/developers/tablet.png) no-repeat 50% 25px;
+                }
+            }
+            &#form-factor-mobile {
+                background: url(../../img/developers/mobile-off.png) no-repeat 50% 25px;
+                &.selected {
+                    background: url(../../img/developers/mobile.png) no-repeat 50% 25px;
+                }
+            }
+            div {
+                color: #484848;
+            }
+        }
     }
 }
 

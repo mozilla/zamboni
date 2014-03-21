@@ -6,7 +6,6 @@ import amo
 from addons.models import Category, Preview
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from constants.applications import DEVICE_TYPES
 from versions.models import Version
 
 import mkt
@@ -111,7 +110,37 @@ class ESAppSerializer(AppSerializer):
         obj.all_categories = [Category(slug=cat) for cat in data['category']]
         obj.all_previews = [Preview(id=p['id'], modified=p['modified'],
             filetype=p['filetype']) for p in data['previews']]
-        obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
+
+        # Apps indexed under the old code don't have the 'platforms' or
+        # 'form_factor' fields, so fall back to the 'device' field translating
+        # the device to the new platforms and form_factors.
+        if data.get('platforms'):
+            obj._platforms = [mkt.PLATFORM_TYPES[p] for p in data['platforms']]
+        else:
+            # Use the old device type field.
+            # TODO: Remove when we no longer support API v1.
+            platforms = []
+            for d in data['device']:
+                platform = mkt.DEVICE_TO_PLATFORM.get(d)
+                if platform:
+                    platforms.append(platform)
+            obj._platforms = platforms
+        if data.get('form_factors'):
+            obj._form_factors = [mkt.FORM_FACTOR_CHOICES[ff]
+                                 for ff in data['form_factors']]
+        else:
+            # Use the old device type field.
+            # TODO: Remove when we no longer support API v1.
+            form_factors = []
+            for d in data['device']:
+                ff = mkt.DEVICE_TO_FORM_FACTOR.get(d)
+                if ff:
+                    form_factors.append(ff)
+            obj._form_factors = form_factors
+
+        # TODO: Remove when we no longer support API v1.
+        if data.get('devices'):
+            obj._device_types = [amo.DEVICE_TYPES[d] for d in data['device']]
 
         # Set base attributes on the "fake" app using the data from ES.
         # It doesn't mean they'll get exposed in the serializer output, that

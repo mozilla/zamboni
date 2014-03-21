@@ -30,10 +30,6 @@ Reviewing
 
     Each app in the response will contain the following:
 
-    :param device_types: a list of the device types at least one of:
-        `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
-        refer to Android mobile and tablet. As opposed to Firefox OS.
-    :type device_types: array
     :param id: the app's id.
     :type id: int
     :param is_escalated: a boolean indicating whether this app is currently

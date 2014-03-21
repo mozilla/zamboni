@@ -8,12 +8,11 @@ from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
 from nose.tools import eq_, ok_
-from rest_framework.exceptions import ParseError, PermissionDenied
 
 import amo
 import mkt
 from access.middleware import ACLMiddleware
-from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
+from addons.models import AddonCategory, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
@@ -33,11 +32,10 @@ from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.api import SearchView
 from mkt.search.serializers import SimpleESAppSerializer
-from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed, Webapp, WebappIndexer
+from mkt.webapps.models import Installed, Webapp, WebappIndexer, WebappPlatform
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -462,9 +460,18 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
 
+    def test_platform(self):
+        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_DESKTOP.id)
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={'platform': 'desktop'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_device(self):
-        AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
+        # To support ability to pass 'device' to API v1.
+        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_DESKTOP.id)
         self.webapp.save()
         self.refresh('webapp')
         res = self.client.get(self.url, data={'device': 'desktop'})
@@ -473,14 +480,13 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_on_firefoxos(self):
-        AddonDeviceType.objects.create(
-            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['firefoxos'])
+        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
         f = self.webapp.get_latest_file()
         f.uses_flash = True
         f.save()
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url, data={'dev': 'firefoxos'})
+        res = self.client.get(self.url, data={'platform': 'firefoxos'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 0)
 
@@ -681,13 +687,16 @@ class TestApiFeatures(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
+        self.webapp.form_factor_set.create(form_factor_id=mkt.FORM_MOBILE.id)
         self.category = Category.objects.create(name='test',
                                                 type=amo.ADDON_WEBAPP)
         # Pick a few common device features.
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
-        self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
+        self.qs = {'q': 'something', 'pro': self.profile,
+                   'platform': 'firefoxos', 'form_factor': 'mobile'}
 
     def test_no_features(self):
         # Base test to make sure we find the app.
@@ -737,7 +746,8 @@ class TestApiFeatures(RestOAuth, ESTestCase):
     def test_bad_profile_on_desktop(self):
         # Enable an app feature that doesn't match one in our profile.
         qs = self.qs.copy()
-        del qs['dev']  # Desktop doesn't send a device.
+        del qs['platform']  # Desktop doesn't send a platform/form_factor.
+        del qs['form_factor']
         self.webapp.current_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -756,13 +766,14 @@ class BaseFeaturedTests(RestOAuth, ESTestCase):
         super(BaseFeaturedTests, self).setUp()
         self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
         self.app = Webapp.objects.get(pk=337141)
-        AddonDeviceType.objects.create(
-            addon=self.app, device_type=DEVICE_CHOICES_IDS['firefoxos'])
+        self.app.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
+        self.app.form_factor_set.create(form_factor_id=mkt.FORM_MOBILE.id)
         AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
-        self.qs = {'cat': 'shiny', 'pro': self.profile, 'dev': 'firefoxos'}
+        self.qs = {'cat': 'shiny', 'pro': self.profile,
+                   'platform': 'firefoxos', 'form_factor': 'mobile'}
 
 
 class TestFeaturedCollections(BaseFeaturedTests):
@@ -819,14 +830,29 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 0)
 
-    def test_device_filtered(self):
+    def test_platform_filtered(self):
         """
         Test that the app list properly filters by supported device.
         """
-        AddonDeviceType.objects.filter(addon=self.app).update(
-            device_type=DEVICE_CHOICES_IDS['desktop'])
+        self.app.platform_set.update(platform_id=mkt.PLATFORM_DESKTOP.id)
         self.col.add_app(self.app)
         self.refresh('webapp')
+
+        res, json = self.test_added_to_results()
+        eq_(len(json[self.prop_name][0]['apps']), 0)
+
+    def test_device_filtered(self):
+        """
+        Test that the app list properly filters by supported device.
+        This is to support passing 'dev' to API v1.
+        """
+        self.app.platform_set.update(platform_id=mkt.PLATFORM_DESKTOP.id)
+        self.col.add_app(self.app)
+        self.refresh('webapp')
+
+        del self.qs['platform']
+        del self.qs['form_factor']
+        self.qs['dev'] = 'firefoxos'
 
         res, json = self.test_added_to_results()
         eq_(len(json[self.prop_name][0]['apps']), 0)
@@ -1008,7 +1034,7 @@ class TestRocketbarApi(ESTestCase):
         self.refresh('webapp')
         self.client = RestOAuthClient(None)
         self.app1 = Webapp.objects.get(pk=337141)
-        self.app1.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.app1.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
         self.app1.save()
 
         self.app2 = app_factory(name=u'Something Second Something Something',
@@ -1016,7 +1042,7 @@ class TestRocketbarApi(ESTestCase):
                                 icon_type='image/png',
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
-        self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        self.app2.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
         self.app2.save()
         self.refresh('webapp')
 
@@ -1060,7 +1086,7 @@ class TestRocketbarApi(ESTestCase):
                         'slug': self.app2.app_slug})
 
     def test_suggestion_non_gaia_apps(self):
-        AddonDeviceType.objects.all().delete()
+        WebappPlatform.objects.all().delete()
         self.app1.save()
         self.app2.save()
         self.refresh('webapp')

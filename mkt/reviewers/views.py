@@ -25,7 +25,7 @@ import amo
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
-from addons.models import AddonDeviceType, Persona, Version
+from addons.models import Persona, Version
 from addons.signals import version_changed
 from amo.decorators import (any_permission_required, json_view,
                             permission_required)
@@ -280,7 +280,7 @@ def _review(request, addon, version):
 
     if request.method == 'POST' and all(f.is_valid() for f in all_forms):
 
-        old_types = set(o.id for o in addon.device_types)
+        old_types = set(o.id for o in addon.platforms)
         new_types = set(form.cleaned_data.get('device_override'))
 
         old_features = set(features_list)
@@ -289,27 +289,27 @@ def _review(request, addon, version):
 
         if form.cleaned_data.get('action') == 'public':
             if old_types != new_types:
-                # The reviewer overrode the device types. We need to not
+                # The reviewer overrode the platforms. We need to not
                 # publish this app immediately.
                 if addon.make_public == amo.PUBLIC_IMMEDIATELY:
                     addon.update(make_public=amo.PUBLIC_WAIT)
 
-                # And update the device types to what the reviewer set.
-                AddonDeviceType.objects.filter(addon=addon).delete()
-                for device in form.cleaned_data.get('device_override'):
-                    addon.addondevicetype_set.create(device_type=device)
+                # And update the platforms to what the reviewer set.
+                addon.platform_set.all().delete()
+                for platform in form.cleaned_data.get('device_override'):
+                    addon.platform_set.create(platform_id=platform)
 
-                # Log that the reviewer changed the device types.
-                added_devices = new_types - old_types
-                removed_devices = old_types - new_types
-                msg = _(u'Device(s) changed by '
+                # Log that the reviewer changed the platforms.
+                added_platforms = new_types - old_types
+                removed_platforms = old_types - new_types
+                msg = _(u'Platform(s) changed by '
                          'reviewer: {0}').format(', '.join(
-                    [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
-                     for d in added_devices] +
+                    [_(u'Added {0}').format(unicode(mkt.PLATFORM_TYPES[p].name))
+                     for p in added_platforms] +
                     [_(u'Removed {0}').format(
-                     unicode(amo.DEVICE_TYPES[d].name))
-                     for d in removed_devices]))
-                amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
+                     unicode(mkt.PLATFORM_TYPES[p].name))
+                     for p in removed_platforms]))
+                amo.log(amo.LOG.REVIEW_PLATFORM_OVERRIDE, addon,
                         addon.current_version, details={'comments': msg})
 
             if old_features != new_features:

@@ -13,14 +13,12 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
+from addons.models import Addon, AddonCategory, AddonUser, Category
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
-from constants.applications import DEVICE_TYPES
 from files.tests.test_models import UploadTest as BaseUploadTest
 from translations.models import Translation
 from users.models import UserProfile
@@ -30,7 +28,7 @@ from mkt.site.fixtures import fixture
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AddonExcludedRegion as AER, AppFeatures, Webapp
+from mkt.webapps.models import AppFeatures, Webapp, WebappPlatform
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -237,15 +235,23 @@ class TestManifest(TestSubmit):
 class UploadAddon(object):
 
     def post(self, expect_errors=False, data=None):
-        if data is None:
-            data = {'free_platforms': ['free-desktop']}
-        data.update(upload=self.upload.pk)
-        r = self.client.post(self.url, data, follow=True)
+        defaults = {'free_platforms': ['free-desktop'],
+                    'form_factors': [mkt.FORM_DESKTOP.id]}
+        if data is not None:
+            defaults.update(data)
+        if 'paid_platforms' in defaults:
+            # We can only have free or paid, not both. If paid exists it was
+            # passed in so use that instead.
+            defaults.pop('free_platforms')
+        defaults.update(upload=self.upload.pk)
+        r = self.client.post(self.url, defaults, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
             # Show any unexpected form errors.
             if r.context and 'form' in r.context:
                 eq_(r.context['form'].errors, {})
+            if r.context and 'form_factor_form' in r.context:
+                eq_(r.context['form_factor_form'].errors, {})
         return r
 
 
@@ -368,20 +374,25 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_set_platform(self):
         app = self.post_addon(
-            {'free_platforms': ['free-android-tablet', 'free-desktop']})
-        self.assertSetEqual(app.device_types,
-                            [amo.DEVICE_TABLET, amo.DEVICE_DESKTOP])
+            {'free_platforms': ['free-android', 'free-desktop']})
+        self.assertSetEqual(app.platforms,
+                            [mkt.PLATFORM_ANDROID, mkt.PLATFORM_DESKTOP])
 
     def test_free(self):
         app = self.post_addon({'free_platforms': ['free-firefoxos']})
-        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
+        self.assertSetEqual(app.platforms, [mkt.PLATFORM_FXOS])
         eq_(app.premium_type, amo.ADDON_FREE)
 
     def test_premium(self):
         self.create_flag('allow-b2g-paid-submission')
         app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
-        self.assertSetEqual(app.device_types, [amo.DEVICE_GAIA])
+        self.assertSetEqual(app.platforms, [mkt.PLATFORM_FXOS])
         eq_(app.premium_type, amo.ADDON_PREMIUM)
+
+    def test_form_factors(self):
+        form_factors = [mkt.FORM_TABLET, mkt.FORM_MOBILE]
+        app = self.post_addon({'form_factors': [f.id for f in form_factors]})
+        self.assertSetEqual(app.form_factors, form_factors)
 
     def test_supported_locales(self):
         addon = self.post_addon()
@@ -591,11 +602,10 @@ class TestDetails(TestSubmit):
         # Associate app with user.
         AddonUser.objects.create(addon=self.webapp, user=self.user)
 
-        # Associate device type with app.
-        self.dtype = DEVICE_TYPES.values()[0]
-        AddonDeviceType.objects.create(addon=self.webapp,
-                                       device_type=self.dtype.id)
-        self.device_types = [self.dtype]
+        # Associate platform with app.
+        self.platform = mkt.PLATFORM_TYPES.values()[0]
+        self.webapp.platform_set.create(platform_id=self.platform.id)
+        self.platforms = [self.platform]
 
         # Associate category with app.
         self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
@@ -685,7 +695,7 @@ class TestDetails(TestSubmit):
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
 
-        self.assertSetEqual(addon.device_types, self.device_types)
+        self.assertSetEqual(addon.platforms, self.platforms)
 
     @mock.patch('mkt.submit.views.record_action')
     def test_success(self, record_action):
@@ -734,16 +744,16 @@ class TestDetails(TestSubmit):
         eq_(self.webapp.status, amo.STATUS_NULL)
         eq_(self.webapp.highest_status, amo.STATUS_PENDING)
 
-    def test_success_prefill_device_types_if_empty(self):
+    def test_success_prefill_platforms_if_empty(self):
         """
-        The new submission flow asks for device types at step one.
-        This ensures that existing incomplete apps still have device
+        The new submission flow asks for platforms at step one.
+        This ensures that existing incomplete apps still have platform
         compatibility.
         """
         self._step()
 
-        AddonDeviceType.objects.all().delete()
-        self.device_types = amo.DEVICE_TYPES.values()
+        WebappPlatform.objects.all().delete()
+        self.platforms = mkt.PLATFORM_TYPES.values()
 
         data = self.get_dict()
         r = self.client.post(self.url, data)
@@ -966,7 +976,7 @@ class TestDetails(TestSubmit):
 
 
 class TestDone(TestSubmit):
-    fixtures = fixture('base_users', 'user_999', 'webapp_337141')
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestDone, self).setUp()

@@ -7,11 +7,12 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import AddonDeviceType, Persona
+from addons.models import Persona
 from amo.utils import raise_required
 from editors.forms import NonValidatingChoiceField, ReviewLogForm
 from editors.models import CannedResponse, ReviewerScore, ThemeLock
 
+import mkt
 import mkt.constants.reviewers as rvw
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.utils import ReviewHelper
@@ -37,12 +38,11 @@ class ReviewAppForm(happyforms.Form):
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(widget=forms.RadioSelect())
-    device_types = forms.CharField(required=False,
-                                   label=_lazy(u'Device Types:'))
+    platforms = forms.CharField(required=False, label=_lazy(u'Platforms:'))
     browsers = forms.CharField(required=False,
                                label=_lazy(u'Browsers:'))
     device_override = forms.TypedMultipleChoiceField(
-        choices=[(k, v.name) for k, v in amo.DEVICE_TYPES.items()],
+        choices=[(k, v.name) for k, v in mkt.PLATFORM_TYPES.items()],
         coerce=int, label=_lazy(u'Device Type Override:'),
         widget=forms.CheckboxSelectMultiple, required=False)
     notify = forms.BooleanField(
@@ -77,10 +77,10 @@ class ReviewAppForm(happyforms.Form):
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [(k, v['label']) for k, v
                                          in self.helper.actions.items()]
-        device_types = AddonDeviceType.objects.filter(
-            addon=self.helper.addon).values_list('device_type', flat=True)
-        if device_types:
-            self.initial['device_override'] = device_types
+        platforms = self.helper.addon.platform_set.values_list('platform_id',
+                                                               flat=True)
+        if platforms:
+            self.initial['device_override'] = platforms
 
     def is_valid(self):
         result = super(ReviewAppForm, self).is_valid()

@@ -20,7 +20,6 @@ import commonware.log
 import jinja2
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
-from tower import ugettext as _
 
 import amo
 import amo.search
@@ -39,6 +38,7 @@ from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
 from market.utils import update_from_csv
+from mkt.constants import PLATFORM_DESKTOP
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
@@ -354,7 +354,7 @@ def notify(request, job):
                            .values_list('pk', 'addons__pk').distinct())
 
             users = list(UserProfile.objects.filter(
-                             pk__in=set(u for u, a in users_addons)))
+                pk__in=set(u for u, a in users_addons)))
 
             # Annotate fails in tests when using cached results
             addons = (Addon.objects.no_cache()
@@ -670,8 +670,9 @@ def email_devs(request):
             elif data['recipients'] == 'free_apps_region_disabled':
                 qs = qs.filter(addon__enable_new_regions=False)
         elif data['recipients'] == 'desktop_apps':
-            qs = (qs.filter(addon__type=amo.ADDON_WEBAPP,
-                addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
+            qs = qs.filter(
+                addon__type=amo.ADDON_WEBAPP,
+                addon__platform_set__platform_id=PLATFORM_DESKTOP.id)
         elif data['recipients'] == 'sdk':
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         elif data['recipients'] == 'all_extensions':

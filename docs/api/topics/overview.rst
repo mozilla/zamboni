@@ -74,12 +74,12 @@ Modifying Results
 
 In order to return the most relevant results for the client, the API attempts
 to detect and filter responses by region and language. Additionally, it is
-possible to globally restrict responses by device type and carrier.
+possible to globally restrict responses by carrier.
 
 The API will report which filters are implemented via the URL-encoded
 `API-Filter` header in responses::
 
-    API-Filter: lang=en-US&device=&region=us&carrier=
+    API-Filter: lang=en-US&region=us&carrier=
 
 In some cases, such as that where the API consumer is actually a proxy for the
 end user, it may be appropriate to manually set one or more of these parameters.
@@ -107,27 +107,6 @@ Responses may be filtered to only include results for a specific language. This
 is done by inspecting the value of the `Accept-Language` header on the request.
 This value may be overriden via the `lang` querystring parameter. This may be
 set to any of the valid `RFC 3060 languages`_.
-
-
-Device
-++++++
-
-Responses may be filtered to only include results relevant for one or more types
-of devices.
-
-* `gaia` - return results relevant to `Gaia`_.
-* `mobile` - return results relevant to mobile devices.
-* `tablet` - return results relevant to tablets.
-
-The `API-Filter` header will represent this as a representation of a list in a
-queryset::
-
-    API-Filter: device=mobile&device=gaia
-
-You may override these values with separate querystring values for each device
-type::
-
-    gaia=true&mobile=true&tablet=false
 
 
 Responses

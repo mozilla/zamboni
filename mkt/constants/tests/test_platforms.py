@@ -13,8 +13,7 @@ class TestPlatforms(amo.tests.TestCase):
         expected = (
             ('free-firefoxos', _('Firefox OS')),
             ('free-desktop', _('Firefox for Desktop')),
-            ('free-android-mobile', _('Firefox Mobile')),
-            ('free-android-tablet', _('Firefox Tablet')),
+            ('free-android', _('Android')),
         )
         eq_(platforms, expected)
 
@@ -42,8 +41,7 @@ class TestPlatforms(amo.tests.TestCase):
                                    is_packaged=True)
         expected = (
             ('free-firefoxos', _('Firefox OS')),
-            ('free-android-mobile', _('Firefox Mobile')),
-            ('free-android-tablet', _('Firefox Tablet')),
+            ('free-android', _('Android')),
         )
         eq_(platforms, expected)
 
@@ -55,8 +53,7 @@ class TestPlatforms(amo.tests.TestCase):
         expected = (
             ('free-firefoxos', _('Firefox OS')),
             ('free-desktop', _('Firefox for Desktop')),
-            ('free-android-mobile', _('Firefox Mobile')),
-            ('free-android-tablet', _('Firefox Tablet')),
+            ('free-android', _('Android')),
         )
         eq_(platforms, expected)
 
@@ -72,8 +69,7 @@ class TestPlatforms(amo.tests.TestCase):
         platforms = PAID_PLATFORMS(request=RequestFactory())
         expected = (
             ('paid-firefoxos', _('Firefox OS')),
-            ('paid-android-mobile', _('Firefox Mobile')),
-            ('paid-android-tablet', _('Firefox Tablet')),
+            ('paid-android', _('Android')),
         )
         eq_(platforms, expected)
 
@@ -93,7 +89,6 @@ class TestPlatforms(amo.tests.TestCase):
                                    is_packaged=True)
         expected = (
             ('paid-firefoxos', _('Firefox OS')),
-            ('paid-android-mobile', _('Firefox Mobile')),
-            ('paid-android-tablet', _('Firefox Tablet')),
+            ('paid-android', _('Android')),
         )
         eq_(platforms, expected)

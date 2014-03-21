@@ -13,8 +13,7 @@ from test_utils import RequestFactory
 
 import amo
 from access.models import Group, GroupUser
-from addons.models import (Addon, AddonDeviceType, AddonUpsell,
-                           AddonUser, Category, Preview)
+from addons.models import Addon, AddonUpsell, AddonUser, Category, Preview
 from amo.tests import AMOPaths, app_factory, TestCase
 from files.models import FileUpload
 from market.models import Price, PriceCurrency
@@ -70,6 +69,21 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def count(self):
         return Addon.objects.count()
+
+    def base_data(self):
+        return {
+            'support_email': 'a@a.com',
+            'privacy_policy': 'wat',
+            'homepage': 'http://www.whatever.com',
+            'name': 'mozball',
+            'categories': [c.slug for c in
+                           Category.objects.filter(type=amo.ADDON_WEBAPP)],
+            'description': 'wat...',
+            'premium_type': 'free',
+            'regions': ['us'],
+            'platforms': mkt.PLATFORM_LOOKUP.keys(),
+            'form_factors': mkt.FORM_FACTOR_LOOKUP.keys(),
+        }
 
     def test_verbs(self):
         self.create()
@@ -182,14 +196,24 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_list_anon(self):
         eq_(self.anon.get(self.list_url).status_code, 403)
 
-    def test_get_device(self):
+    def test_get_platform_and_form_factor(self):
         app = self.create_app()
-        AddonDeviceType.objects.create(addon=app,
-                                       device_type=amo.DEVICE_DESKTOP.id)
+        app.platform_set.create(platform_id=mkt.PLATFORM_ANDROID.id)
+        app.form_factor_set.create(form_factor_id=mkt.FORM_TABLET.id)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         content = json.loads(res.content)
-        eq_(content['device_types'], [u'desktop'])
+        eq_(content['platforms'], [u'android'])
+        eq_(content['form_factors'], [u'tablet'])
+
+    def test_get_device_types(self):
+        app = self.create_app()
+        app.platform_set.create(platform_id=mkt.PLATFORM_ANDROID.id)
+        app.form_factor_set.create(form_factor_id=mkt.FORM_TABLET.id)
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        content = json.loads(res.content)
+        eq_(content['device_types'], [u'android-tablet'])
 
     def test_not_public(self):
         self.create_app()
@@ -249,20 +273,6 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         url = reverse('app-privacy-policy-detail', kwargs={'pk': app.app_slug})
         res = self.client.get(url)
         eq_(res.json['privacy_policy'], data['privacy_policy'])
-
-    def base_data(self):
-        return {
-            'support_email': 'a@a.com',
-            'privacy_policy': 'wat',
-            'homepage': 'http://www.whatever.com',
-            'name': 'mozball',
-            'categories': [c.slug for c in
-                           Category.objects.filter(type=amo.ADDON_WEBAPP)],
-            'description': 'wat...',
-            'premium_type': 'free',
-            'regions': ['us'],
-            'device_types': amo.DEVICE_LOOKUP.keys()
-        }
 
     def test_put(self):
         app = self.create_app()
@@ -326,11 +336,15 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
                             [c.slug for c in app.categories.all()])
         eq_(data['current_version'], app.current_version.version)
         self.assertSetEqual(data['device_types'],
-                            [n.api_name for n in amo.DEVICE_TYPES.values()])
+                            [d.api_name for d in amo.DEVICE_TYPE_LIST])
+        self.assertSetEqual(data['form_factors'],
+                            [ff.slug for ff in mkt.FORM_FACTORS])
         eq_(data['homepage'], u'http://www.whatever.com')
         eq_(data['is_packaged'], False)
         eq_(data['author'], 'Mozilla Labs')
         eq_(data['manifest_url'], app.manifest_url)
+        self.assertSetEqual(data['platforms'],
+                            [p.slug for p in mkt.PLATFORM_LIST])
         eq_(data['premium_type'], 'free')
         eq_(data['price'], None)
         eq_(data['price_locale'], None)
@@ -368,23 +382,61 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 400)
         eq_(res.json['categories'], ['This field is required.'])
 
-    def test_put_no_desktop(self):
+    def test_put_no_device_types(self):
         self.create_app()
         data = self.base_data()
-        del data['device_types']
+        del data['platforms']
+        del data['form_factors']
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
-        eq_(res.json['device_types'], ['This field is required.'])
+        eq_(res.json['non_field_errors'],
+            [u'Both "platforms" and "form_factors" are required.'])
 
-    def test_put_devices_worked(self):
+    def test_put_no_platforms(self):
+        self.create_app()
+        data = self.base_data()
+        del data['platforms']
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(res.json['non_field_errors'],
+            [u'Both "platforms" and "form_factors" are required.'])
+
+    def test_put_no_form_factors(self):
+        self.create_app()
+        data = self.base_data()
+        del data['form_factors']
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(res.json['non_field_errors'],
+            [u'Both "platforms" and "form_factors" are required.'])
+
+    def test_put_device_types_worked(self):
+        # TODO: Remove when we no longer support API v1.
         app = self.create_app()
         data = self.base_data()
-        data['device_types'] = [a.api_name for a in amo.DEVICE_TYPES.values()]
+        data['device_types'] = [d.api_name for d in [amo.DEVICE_DESKTOP,
+                                                     amo.DEVICE_TABLET]]
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(set(d for d in app.device_types),
-            set(amo.DEVICE_TYPES[d] for d in amo.DEVICE_TYPES.keys()))
+
+        # Check platforms and form_factors got translated correctly.
+        self.assertSetEqual(app.platforms,
+                            [mkt.PLATFORM_DESKTOP, mkt.PLATFORM_ANDROID])
+        self.assertSetEqual(app.form_factors,
+                            [mkt.FORM_DESKTOP, mkt.FORM_TABLET])
+
+    def test_put_platforms_and_form_factors_worked(self):
+        app = self.create_app()
+        data = self.base_data()
+        data['platforms'] = [mkt.PLATFORM_ANDROID.slug]
+        data['form_factors'] = [mkt.FORM_TABLET.slug]
+        res = self.client.put(self.get_url, data=json.dumps(data))
+        eq_(res.status_code, 202)
+        app = Webapp.objects.get(pk=app.pk)
+
+        eq_(app.platforms, [mkt.PLATFORM_ANDROID])
+        eq_(app.form_factors, [mkt.FORM_TABLET])
 
     def test_put_desktop_error_nice(self):
         self.create_app()

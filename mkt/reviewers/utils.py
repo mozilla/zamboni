@@ -137,12 +137,12 @@ class ReviewBase(object):
         data = self.data.copy()
         data.update(self.get_context_data())
         data['tested'] = ''
-        dt, br = data.get('device_types'), data.get('browsers')
-        if dt and br:
-            data['tested'] = 'Tested on %s with %s' % (dt, br)
-        elif dt and not br:
-            data['tested'] = 'Tested on %s' % dt
-        elif not dt and br:
+        platforms, br = data.get('platforms'), data.get('browsers')
+        if platforms and br:
+            data['tested'] = 'Tested on %s with %s' % (platforms, br)
+        elif platforms and not br:
+            data['tested'] = 'Tested on %s' % platforms
+        elif not platforms and br:
             data['tested'] = 'Tested with %s' % br
 
         emails = list(self.addon.authors.values_list('email', flat=True))

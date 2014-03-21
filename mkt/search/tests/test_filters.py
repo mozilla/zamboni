@@ -8,11 +8,12 @@ from django.contrib.auth.models import AnonymousUser
 import amo
 from addons.models import Category
 
+import mkt
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
-from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
+from mkt.search.forms import ApiSearchForm
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -99,10 +100,27 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'cat': self.category.slug})
         ok_({'term': {'category': self.category.slug}} in qs['filter']['and'])
 
+    def test_platform(self):
+        qs = self._filter(self.req, {'platform': 'android'})
+        ok_({'term': {
+            'platforms': mkt.PLATFORM_ANDROID.id}} in qs['filter']['and'])
+
+    # For maintaining compatibility with API v1.
+    def test_dev(self):
+        qs = self._filter(self.req, {'dev': 'android', 'device': 'tablet'})
+        ok_({'term': {
+            'device': amo.DEVICE_TABLET.id}} in qs['filter']['and'])
+
+    # For maintaining compatibility with API v1.
     def test_device(self):
         qs = self._filter(self.req, {'device': 'desktop'})
         ok_({'term': {
-            'device': DEVICE_CHOICES_IDS['desktop']}} in qs['filter']['and'])
+            'device': amo.DEVICE_DESKTOP.id}} in qs['filter']['and'])
+
+    def test_form_factor(self):
+        qs = self._filter(self.req, {'form_factor': 'tablet'})
+        ok_({'term': {
+            'form_factors': mkt.FORM_TABLET.id}} in qs['filter']['and'])
 
     def test_premium_types(self):
         ptype = lambda p: amo.ADDON_PREMIUM_API_LOOKUP.get(p)

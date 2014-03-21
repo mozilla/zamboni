@@ -65,17 +65,48 @@ class CollectionMembershipField(serializers.RelatedField):
         ser = CollectionESAppSerializer(value, context=self.context, many=True)
         return ser.data
 
-    def _get_device(self, request):
-        # Fireplace sends `dev` and `device`. See the API docs. When
-        # `dev` is 'android' we also need to check `device` to pick a device
-        # object.
+    def _get_filters(self, request, es=False):
+        # To maintain compatibility with API v1 we check for `dev` and `device`
+        # first. If they exist we query against the old ES fields.
         dev = request.GET.get('dev')
         device = request.GET.get('device')
-
+        # When `dev` is 'android' we also need to check `device` to pick a
+        # device_type object.
         if dev == 'android' and device:
             dev = '%s-%s' % (dev, device)
+        device = amo.DEVICE_LOOKUP.get(dev)
 
-        return amo.DEVICE_LOOKUP.get(dev)
+        platform = mkt.PLATFORM_LOOKUP.get(request.GET.get('platform'))
+        form_factor = mkt.FORM_FACTOR_LOOKUP.get(request.GET.get('form_factor'))
+
+        filters = {}
+        if es:
+            if device:
+                # Query against the `device` field in ES since the new ES
+                # fields won't exist until after a complete reindex.
+                #
+                # TODO: Update to use new ES fields like below.
+                filters = {
+                    'device': device.id,
+                }
+            elif platform and form_factor:
+                # Query against the `platform` and `form_factor` fields.
+                filters = {
+                    'platforms': platform.id,
+                    'form_factors': form_factor.id,
+                }
+        else:
+            if device:
+                # Map device to platform and form_factor.
+                platform = mkt.DEVICE_TO_PLATFORM.get(device.id)
+                form_factor = mkt.DEVICE_TO_FORM_FACTOR.get(device.id)
+            if platform and form_factor:
+                filters = {
+                    'platform_set__platform_id': platform.id,
+                    'form_factor_set__form_factor_id': form_factor.id,
+                }
+
+        return filters
 
     def field_to_native(self, obj, field_name):
         if not hasattr(self, 'context') or not 'request' in self.context:
@@ -95,10 +126,8 @@ class CollectionMembershipField(serializers.RelatedField):
         qs = get_component(obj, self.source)
 
         # Filter apps based on device and feature profiles.
-        device = self._get_device(request)
+        qs = qs.filter(**self._get_filters(request))
         profile = get_feature_profile(request)
-        if device and device != amo.DEVICE_DESKTOP:
-            qs = qs.filter(addondevicetype__device_type=device.id)
         if profile:
             qs = qs.filter(**profile.to_kwargs(
                 prefix='_current_version__features__has_'))
@@ -115,14 +144,12 @@ class CollectionMembershipField(serializers.RelatedField):
         """
         profile = get_feature_profile(request)
         region = self.context['view'].get_region(request)
-        device = self._get_device(request)
+        platform = mkt.PLATFORM_LOOKUP.get(request.GET.get('dev'))
 
         _rget = lambda d: getattr(request, d, False)
-        qs = Webapp.from_search(request, region=region, gaia=_rget('GAIA'),
-                                mobile=_rget('MOBILE'), tablet=_rget('TABLET'))
+        qs = Webapp.from_search(request, region=region)
         filters = {'collection.id': obj.pk}
-        if device and device != amo.DEVICE_DESKTOP:
-            filters['device'] = device.id
+        filters.update(**self._get_filters(request, es=True))
         if profile:
             filters.update(**profile.to_kwargs(prefix='features.has_'))
         qs = qs.filter(**filters).order_by({

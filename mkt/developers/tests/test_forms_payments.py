@@ -5,14 +5,14 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-
-from addons.models import Addon, AddonDeviceType, AddonUser
+from addons.models import Addon, AddonUser
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 from users.models import UserProfile
 
+import mkt
 from mkt.developers import forms_payments, models
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.tests.test_views_payments import setup_payment_account
@@ -28,8 +28,7 @@ class TestPremiumForm(amo.tests.TestCase):
         self.request.POST = {'toggle-paid': ''}
 
         self.addon = Addon.objects.get(pk=337141)
-        AddonDeviceType.objects.create(
-            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
+        self.addon.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
         self.platforms = {'free_platforms': ['free-firefoxos'],
                           'paid_platforms': ['paid-firefoxos']}
 
@@ -126,7 +125,7 @@ class TestPremiumForm(amo.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.PLATFORM_DESKTOP in self.addon.platforms
         eq_(RereviewQueue.objects.count(), 0)
         eq_(self.addon.status, amo.STATUS_PENDING)
 
@@ -136,7 +135,7 @@ class TestPremiumForm(amo.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.PLATFORM_DESKTOP in self.addon.platforms
         eq_(RereviewQueue.objects.count(), 1)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
 
@@ -146,7 +145,7 @@ class TestPremiumForm(amo.tests.TestCase):
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        assert amo.DEVICE_DESKTOP in self.addon.device_types
+        assert mkt.PLATFORM_DESKTOP in self.addon.platforms
         eq_(RereviewQueue.objects.count(), 1)
         eq_(self.addon.status, amo.STATUS_PUBLIC_WAITING)
 
@@ -239,7 +238,7 @@ class TestPremiumForm(amo.tests.TestCase):
         eq_(self.addon.premium_type, amo.ADDON_PREMIUM)
         eq_(self.addon.status, amo.STATUS_NULL)
 
-        self.assertSetEqual(self.addon.device_types, form.get_devices())
+        self.assertSetEqual(self.addon.platforms, form.get_platforms())
 
     def test_cannot_set_desktop_for_packaged_app(self):
         self.platforms = {'free_platforms': ['free-desktop']}
@@ -263,38 +262,38 @@ class TestPremiumForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
 
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP])
+        self.assertSetEqual(self.addon.platforms, [mkt.PLATFORM_DESKTOP])
 
     def test_cannot_change_android_devices_for_packaged_app(self):
-        self.platforms = {'free_platforms': ['free-android-mobile'],
+        self.platforms = {'free_platforms': ['free-android'],
                           'paid_platforms': ['paid-firefoxos']}  # Ignored.
         self.addon.update(is_packaged=True)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert not form.is_valid()
 
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_GAIA])
+        self.assertSetEqual(self.addon.platforms, [mkt.PLATFORM_FXOS])
 
     def test_can_change_devices_for_packaged_app_behind_flag(self):
         self.create_flag('android-packaged')
-        self.platforms = {'free_platforms': ['free-android-mobile'],
+        self.platforms = {'free_platforms': ['free-android'],
                           'paid_platforms': ['paid-firefoxos']}  # Ignored.
         self.addon.update(is_packaged=True)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
 
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE])
+        self.assertSetEqual(self.addon.platforms, [mkt.PLATFORM_ANDROID])
 
     def test_can_change_devices_for_android_app_behind_flag(self):
         self.create_flag('android-payments')
-        data = {'paid_platforms': ['paid-firefoxos', 'paid-android-mobile'],
+        data = {'paid_platforms': ['paid-firefoxos', 'paid-android'],
                 'price': 'free', 'allow_inapp': 'True'}
         self.make_premium(self.addon)
         form = forms_payments.PremiumForm(data=data, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_MOBILE,
-                                                      amo.DEVICE_GAIA])
+        self.assertSetEqual(self.addon.platforms, [mkt.PLATFORM_ANDROID,
+                                                   mkt.PLATFORM_FXOS])
 
     def test_initial(self):
         form = forms_payments.PremiumForm(**self.kwargs)
