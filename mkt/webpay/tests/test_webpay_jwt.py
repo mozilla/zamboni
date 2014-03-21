@@ -10,12 +10,11 @@ from nose.tools import eq_
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from mkt.purchase.webpay_jwt import (get_product_jwt, WebAppProduct,
+from mkt.webpay.webpay_jwt import (get_product_jwt, WebAppProduct,
                                      InAppProduct)
 from mkt import regions
+from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from stats.models import Contribution
-
-from utils import InAppPurchaseTest, PurchaseTest
 
 
 class TestPurchaseJWT(PurchaseTest):

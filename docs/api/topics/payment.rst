@@ -375,7 +375,7 @@ with the in-app payment service.
 Preparing payment
 =================
 
-Produces the JWT that is passed to `navigator.mozPay`_.
+Produces the JWT for purchasing an app that is passed to `navigator.mozPay`_.
 
 .. note:: Authentication is required.
 
@@ -403,9 +403,40 @@ Produces the JWT that is passed to `navigator.mozPay`_.
     :type contribStatusURL: string
 
     :status 201: successfully completed.
+    :status 400: app not found.
     :status 401: not authenticated.
     :status 403: app cannot be purchased.
     :status 409: app already purchased.
+
+
+Produces the JWT for purchasing an in-app product that is passed to `navigator.mozPay`_.
+
+.. note:: Authentication is not required or supported.
+
+.. http:post:: /api/v1/webpay/inapp/prepare/
+
+    **Request**
+
+    :param int inapp: the id the in-app product to be purchased.
+
+    **Response**
+
+    .. code-block:: json
+
+        {
+            "contribStatusURL": "https://marketplace.firefox.com/api/v1/webpay/status/123/",
+            "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
+        }
+
+    :param webpayJWT: the JWT to pass to `navigator.mozPay`_
+    :type webpayJWT: string
+    :param contribStatusURL: the URL to poll for
+        :ref:`payment-status-label`.
+    :type contribStatusURL: string
+
+    :status 201: successfully completed.
+    :status 400: in-app product not found.
+
 
 Signature Check
 ===============

@@ -45,8 +45,8 @@ class PurchaseTest(amo.tests.TestCase):
 
 class InAppPurchaseTest(PurchaseTest):
 
-    def setUp(self):
-        super(InAppPurchaseTest, self).setUp()
+    def setup_base(self):
+        super(InAppPurchaseTest, self).setup_base()
         self.inapp = InAppProduct.objects.create(
             logo_url='logo.png', name='Inapp Object', price=self.price,
             webapp=self.addon)
