@@ -28,7 +28,6 @@ django-extensions==1.2.5
 django-filter==0.7
 django-memcached-pool==0.4.1
 django-multidb-router==0.5.1
-django-mysql-pool==0.2
 django-mysql-pymysql==0.1
 django-nose==1.2
 django-quieter-formset==0.4
