@@ -58,7 +58,6 @@ class TestRatingsBodies(amo.tests.TestCase):
             rating = ratingsbodies.dehydrate_rating(rating)
             assert isinstance(rating.name, unicode), rating
             assert rating.label and rating.label != str(None), rating
-            assert isinstance(rating.description, unicode), rating
 
     def test_dehydrate_ratings_body(self):
         self.create_switch('iarc')
