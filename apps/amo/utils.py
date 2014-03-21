@@ -671,12 +671,12 @@ def cache_ns_key(namespace, increment=False):
         except ValueError:
             log.info('Cache increment failed for key: %s. Resetting.' % ns_key)
             ns_val = epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
+            cache.set(ns_key, ns_val, 0)
     else:
         ns_val = cache.get(ns_key)
         if ns_val is None:
             ns_val = epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
+            cache.set(ns_key, ns_val, 0)
     return '%s:%s' % (ns_val, ns_key)
 
 

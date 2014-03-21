@@ -294,13 +294,17 @@ class PersonasFilter(BaseFilter):
     def _filter(self, field):
         qs = Addon.objects
         if field == 'created':
-            return qs.order_by('-created')
+            return (qs.order_by('-created')
+                    .with_index(addons='created_type_idx'))
         elif field == 'popular':
-            return qs.order_by('-persona__popularity')
+            return (qs.order_by('-persona__popularity')
+                    .with_index(personas='personas_popularity_idx'))
         elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
+            return (qs.order_by('-bayesian_rating')
+                    .with_index(addons='rating_type_idx'))
         else:
-            return qs.order_by('-persona__movers')
+            return (qs.order_by('-persona__movers')
+                    .with_index(personas='personas_movers_idx'))
 
 
 def personas_listing(request, category_slug=None):
