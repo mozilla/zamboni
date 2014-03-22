@@ -97,21 +97,6 @@ def install_cron(installed_dir):
 
 
 @task
-@roles('web')
-@parallel
-def restart_workers():
-    for gservice in settings.GUNICORN:
-        run("/sbin/service %s graceful" % gservice)
-    restarts = []
-    for g in settings.MULTI_GUNICORN:
-        restarts.append('( supervisorctl restart {0}-a; '
-                        'supervisorctl restart {0}-b )&'.format(g))
-
-    if restarts:
-        run('%s wait' % ' '.join(restarts))
-
-
-@task
 @roles('celery')
 @parallel
 def update_celery():
@@ -139,7 +124,6 @@ def deploy():
                               deploy_roles=['web', 'celery'],
                               package_dirs=['zamboni', 'venv'])
 
-    execute(restart_workers)
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
     execute(update_celery)
     execute(install_cron, rpmbuild.install_to)
@@ -148,15 +132,14 @@ def deploy():
 
 @task
 def deploy_web():
-    rpmbuild = helpers.deploy(name='zamboni',
-                              env=settings.ENV,
-                              cluster=settings.CLUSTER,
-                              domain=settings.DOMAIN,
-                              root=ROOT,
-                              use_yum=False,
-                              package_dirs=['zamboni', 'venv'])
+    helpers.deploy(name='zamboni',
+                   env=settings.ENV,
+                   cluster=settings.CLUSTER,
+                   domain=settings.DOMAIN,
+                   root=ROOT,
+                   use_yum=False,
+                   package_dirs=['zamboni', 'venv'])
 
-    execute(restart_workers)
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
 
 

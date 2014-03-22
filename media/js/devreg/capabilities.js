@@ -4,6 +4,7 @@ function safeMatchMedia(query) {
 }
 
 define('capabilities', [], function() {
+    var div = document.createElement('div');
     var capabilities = {
         'JSON': window.JSON && typeof JSON.parse == 'function',
         'debug': (('' + document.location).indexOf('dbg') >= 0),
@@ -19,6 +20,8 @@ define('capabilities', [], function() {
             typeof navigator.mozApps.html5Implementation === 'undefined'
         ),
         'fileAPI': !!window.FileReader,
+        'dragAndDrop': ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div),
+        'filesystem': false,
         'userAgent': navigator.userAgent,
         'desktop': false,
         'tablet': false,
@@ -76,6 +79,8 @@ define('capabilities', [], function() {
         }
     } catch (e) {
     }
+
+    capabilities.filesystem = capabilities.fileAPI && capabilities.dragAndDrop; 
 
     return capabilities;
 

@@ -137,8 +137,7 @@
         {{ form.device_types.errors }}
         {{ form.browsers.errors }}
       </div>
-      <div class="review-actions-section review-actions-attachments hidden">
-      <div class="review-actions-section review-actions-attachments">
+      <div class="review-actions-section review-actions-attachments filesystem-only">
         {% set max_attachment_size = attachment_formset[0].max_upload_size|filesizeformat %}
         <strong>{{ _('Attach a screenshot or log file (max {0})'|f(max_attachment_size)) }}</strong>
         {% for attachment_form_errors in attachment_formset.errors %}
