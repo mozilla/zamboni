@@ -4,6 +4,7 @@ import hashlib
 import json
 import logging
 import os
+import subprocess
 import sys
 import traceback
 import urlparse
@@ -137,8 +138,11 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
         for s in sizes:
-            resize_image(src, '%s-%s.png' % (dst, s), (s, s),
+            size_dst = '%s-%s.png' % (dst, s)
+            resize_image(src, size_dst, (s, s),
                          remove_src=False, locally=locally)
+            pngcrush_icon.delay(size_dst, **kw)
+
         if locally:
             with open(src) as fd:
                 icon_hash = _hash_file(fd)
@@ -152,6 +156,30 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
         return {'icon_hash': icon_hash}
     except Exception, e:
         log.error("Error saving addon icon: %s; %s" % (e, dst))
+
+
+@task
+@set_modified_on
+def pngcrush_icon(src, **kw):
+    """Optimizes an addon icon by running it through Pngcrush."""
+    log.info('[1@None] Optimizing icon: %s' % src)
+    try:
+        cmd = [settings.PNGCRUSH_BIN, '-rem', 'alla', '-brute', '-reduce',
+               '-ow', src]
+        sp = subprocess.Popen(cmd, stdin=subprocess.PIPE,
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = sp.communicate()
+
+        if sp.returncode != 0:
+            log.error('Error optimizing addon icon: %s; %s' % (src,
+                                                               stderr.strip()))
+            pngcrush_icon.retry(args=[src], kwargs=kw, max_retries=3)
+            return False
+
+        log.info('Icon optimization completed for: %s' % src)
+        return True
+    except Exception, e:
+        log.error('Error optimizing addon icon: %s; %s' % (src, e))
 
 
 @task

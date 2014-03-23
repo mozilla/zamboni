@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.tools import eq_
-from PIL import Image
+from PIL import Image, ImageChops
 from requests import RequestException
 
 import amo
@@ -103,6 +103,36 @@ def _uploader(resize_size, final_size):
         assert not os.path.exists(dest_image.filename)
 
     assert not os.path.exists(src.name)
+
+
+class TestPngcrushIcon(amo.tests.TestCase):
+
+    def setUp(self):
+        img = get_image_path('mozilla.png')
+        self.src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                               delete=False)
+        shutil.copyfile(img, self.src.name)
+
+    def tearDown(self):
+        os.remove(self.src.name)
+
+    def test_pngcrush_icon_is_optimized(self):
+        original_size = os.path.getsize(self.src.name)
+        tasks.pngcrush_icon(self.src.name)
+        optimized_size = os.path.getsize(self.src.name)
+        assert optimized_size < original_size
+
+    def test_pngcrush_icon_is_lossless(self):
+        src_copy = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                               delete=False)
+        shutil.copyfile(self.src.name, src_copy.name)
+
+        tasks.pngcrush_icon(self.src.name)
+
+        crushed_image = Image.open(self.src.name)
+        src_image = Image.open(src_copy.name)
+        eq_(ImageChops.difference(crushed_image, src_image).getbbox(), None)
+        os.remove(src_copy.name)
 
 
 class TestValidator(amo.tests.TestCase):
