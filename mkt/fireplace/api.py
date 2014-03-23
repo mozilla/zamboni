@@ -36,6 +36,10 @@ class FireplaceESAppSerializer(SimpleESAppSerializer):
         # Fireplace search should always be anonymous for extra-cacheability.
         return None
 
+    def get_icons(self, app):
+        # Fireplace only requires 64px-sized icons.
+        return {64: app.get_icon_url(64)}
+
 
 class AppViewSet(BaseAppViewset):
     serializer_class = FireplaceAppSerializer
