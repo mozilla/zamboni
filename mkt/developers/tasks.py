@@ -13,6 +13,7 @@ from datetime import date
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 from django.utils.http import urlencode
 
 import requests
