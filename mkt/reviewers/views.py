@@ -806,13 +806,20 @@ def reviewer_or_token_required(f):
             allowed = True
 
         if allowed:
+            if token:
+                log.info('Token provided for app:%s and all was happy'
+                         % addon.id)
+            else:
+                log.info('Apps:Review (no token) all happy for app:%s'
+                         % addon.id)
             return f(request, addon, *args, **kw)
         else:
             if token:
                 log.info('Token provided for app:%s but was not valid'
-                         % (addon.id))
+                         % addon.id)
             else:
-                log.info('Apps:Review permissions not met')
+                log.info('Apps:Review permissions not met for app:%s'
+                         % addon.id)
             raise PermissionDenied
 
     return wrapper
