@@ -263,8 +263,11 @@ class TestInstalled(RestOAuth):
 
     def test_installed_pagination(self):
         ins1 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins1.update(created=self.days_ago(1))
         ins2 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins2.update(created=self.days_ago(2))
         ins3 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins3.update(created=self.days_ago(3))
         res = self.client.get(self.list_url, {'limit': 2})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -293,6 +296,19 @@ class TestInstalled(RestOAuth):
         eq_(QueryDict(prev.query).dict(), {u'limit': u'2', u'offset': u'0'})
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
+
+    def test_installed_order(self):
+        # Should be reverse chronological order.
+        ins1 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins1.update(created=self.days_ago(1))
+        ins2 = Installed.objects.create(user=self.user, addon=app_factory())
+        ins2.update(created=self.days_ago(2))
+        res = self.client.get(self.list_url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 2)
+        eq_(data['objects'][0]['id'], ins1.addon.id)
+        eq_(data['objects'][1]['id'], ins2.addon.id)
 
     def not_there(self):
         res = self.client.get(self.list_url)

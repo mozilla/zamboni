@@ -66,7 +66,7 @@ class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
         return Webapp.objects.no_cache().filter(
             installed__user=self.request.amo_user,
             installed__install_type=INSTALL_TYPE_USER).order_by(
-                'installed__id')
+                '-installed__created')
 
 
 class CreateAPIViewWithoutModel(CreateAPIView):
