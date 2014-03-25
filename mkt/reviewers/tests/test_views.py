@@ -34,6 +34,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
@@ -3334,10 +3335,12 @@ class TestAbusePage(AppReviewerTest):
         ok_(unicode(escape(self.app.name)) in content)
 
 
-class TestReviewTranslate(AppReviewerTest):
+class TestReviewTranslate(RestOAuth):
+    fixtures = ['base/users']
 
     def setUp(self):
-        self.login_as_editor()
+        self.profile = self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.login_user()
         self.create_switch('reviews-translate')
         user = UserProfile.objects.create(username='diego')
         app = amo.tests.app_factory(slug='myapp')
@@ -3367,9 +3370,9 @@ class TestReviewTranslate(AppReviewerTest):
 
         # Call translation.
         review = self.review
-        res = self.client.get_ajax(reverse('reviewers.review_translate',
-                                           args=[review.addon.slug, review.id,
-                                                 'fr']),)
+        url = reverse('reviewers.review_translate',
+                      args=[review.addon.slug, review.id, 'fr'])
+        res = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 200)
         eq_(res.content, '{"body": "oui", "title": "oui"}')
 

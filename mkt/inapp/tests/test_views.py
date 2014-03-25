@@ -136,3 +136,39 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
         product = self.create_product()
         response = self.delete(self.detail_url(product.id))
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class TestInAppProductViewSetAuthorizedCookie(BaseInAppProductViewSetTests):
+    fixtures = fixture('user_999', 'webapp_337141', 'prices')
+
+    def setUp(self):
+        super(TestInAppProductViewSetAuthorizedCookie, self).setUp()
+        user = UserProfile.objects.get(id=31337)
+        self.login(user)
+
+    def test_create(self):
+        response = self.post(self.list_url(),
+                             self.valid_in_app_product_data)
+        eq_(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_update(self):
+        product = self.create_product()
+        self.valid_in_app_product_data['name'] = 'Orange Gems'
+        response = self.put(self.detail_url(product.id),
+                            self.valid_in_app_product_data)
+        eq_(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_list(self):
+        self.create_product()
+        response = self.get(self.list_url())
+        eq_(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_detail(self):
+        product = self.create_product()
+        response = self.get(self.detail_url(product.id))
+        eq_(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_delete(self):
+        product = self.create_product()
+        response = self.delete(self.detail_url(product.id))
+        eq_(response.status_code, status.HTTP_403_FORBIDDEN)

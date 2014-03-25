@@ -5,6 +5,8 @@ import time
 from urllib import urlencode
 
 from django.conf import settings
+from django.contrib.auth.middleware import (AuthenticationMiddleware as
+                                            BaseAuthenticationMiddleware)
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.middleware.gzip import GZipMiddleware as BaseGZipMiddleware
@@ -397,3 +399,15 @@ class GZipMiddleware(BaseGZipMiddleware):
             return response
 
         return super(GZipMiddleware, self).process_response(request, response)
+
+
+class AuthenticationMiddleware(BaseAuthenticationMiddleware):
+    """
+    Wrapper around AuthenticationMiddleware, which only performs the django
+    session based auth for non-API requests.
+    """
+    def process_request(self, request):
+        if getattr(request, 'API', False):
+            request.user = AnonymousUser()
+        else:
+            super(AuthenticationMiddleware, self).process_request(request)
