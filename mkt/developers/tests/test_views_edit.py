@@ -23,7 +23,6 @@ from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
@@ -1323,6 +1322,11 @@ class TestAdminSettings(TestAdmin):
         self.post_contact()
         webapp = self.get_webapp()
         eq_(webapp.mozilla_contact, 'a@mozilla.com')
+
+    def test_mozilla_contact_cleared(self):
+        self.post_contact(mozilla_contact='')
+        webapp = self.get_webapp()
+        eq_(webapp.mozilla_contact, '')
 
     def test_mozilla_contact_invalid(self):
         r = self.post_contact(
