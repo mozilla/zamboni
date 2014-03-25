@@ -53,7 +53,7 @@
     </div>
 
     {% if include_persona -%}
-      <script src="{{ settings.BROWSERID_JS_URL or 'https://login.persona.org/include.js' }}" async></script>
+      <script src="{{ settings.BROWSERID_JS_URL or 'https://login.persona.org/include.js' }}" {{ 'async' if repo == 'fireplace' else 'defer' }}></script>
     {% endif -%}
     <script type="text/javascript" src="{{ media(repo + '/js/l10n.js') }}"></script>
     <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>

@@ -35,12 +35,12 @@ class TestCommonplace(amo.tests.TestCase):
     def test_fireplace_persona_js_is_included_elsewhere(self):
         for url in ('/server.html', '/server.html?mcc=blah'):
             res = self.client.get(url)
-            self.assertContains(res, 'login.persona.org/include.js')
+            self.assertContains(res, 'login.persona.org/include.js" async')
 
     def test_rocketfuel_persona_js_is_included(self):
         for url in ('/curation/', '/curation/?nativepersona=true'):
             res = self.client.get(url)
-            self.assertContains(res, 'login.persona.org/include.js')
+            self.assertContains(res, 'login.persona.org/include.js" defer')
 
 
 class TestAppcacheManifest(amo.tests.TestCase):
