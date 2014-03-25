@@ -25,6 +25,16 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
 
+    def test_fireplace_persona_js(self):
+        for url in ('/server.html', '/server.html?mcc=blah'):
+            res = self.client.get(url)
+            self.assertContains(res, 'login.persona.org/include.js" async')
+
+    def test_rocketfuel_persona_js(self):
+        for url in ('/curation/', '/curation/?nativepersona=true'):
+            res = self.client.get(url)
+            self.assertContains(res, 'login.persona.org/include.js" defer')
+
 
 class TestAppcacheManifest(amo.tests.TestCase):
 
