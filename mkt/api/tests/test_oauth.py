@@ -5,9 +5,8 @@ from datetime import datetime
 from functools import partial
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
-from django.test.client import Client, FakePayload
+from django.test.client import FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
 
 from django_browserid.tests import mock_browserid
@@ -18,7 +17,7 @@ from rest_framework.request import Request
 from test_utils import RequestFactory
 
 from amo.helpers import absolutify, urlparams
-from amo.tests import TestCase
+from amo.tests import TestCase, TestClient
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
@@ -52,7 +51,7 @@ def wrap(response):
     return response
 
 
-class OAuthClient(Client):
+class OAuthClient(TestClient):
     """
     OAuthClient can do all the requests the Django test client,
     but even more. And it can magically sign requests.
@@ -116,14 +115,14 @@ class OAuthClient(Client):
     def post(self, url, data='', content_type='application/json', **kw):
         url, headers, _ = self.sign('POST', self.get_absolute_url(url))
         return wrap(super(OAuthClient, self).post(url, data=data,
-            content_type=content_type,
-            **self.kw(headers, **kw)))
+                    content_type=content_type,
+                    **self.kw(headers, **kw)))
 
     def put(self, url, data='', content_type='application/json', **kw):
         url, headers, body = self.sign('PUT', self.get_absolute_url(url))
         return wrap(super(OAuthClient, self).put(url, data=data,
-            content_type=content_type,
-            **self.kw(headers, **kw)))
+                    content_type=content_type,
+                    **self.kw(headers, **kw)))
 
     def patch(self, url, data='', **kw):
         url, headers, body = self.sign('PATCH', self.get_absolute_url(url))
@@ -173,6 +172,9 @@ class RestOAuth(BaseOAuth):
 
     def setUp(self):
         self.profile = self.user = UserProfile.objects.get(pk=2519)
+        self.login_user()
+
+    def login_user(self):
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',
                                             secret=generate(),
@@ -334,6 +336,7 @@ class Test3LeggedOAuthFlow(TestCase):
                               HTTP_AUTHORIZATION=auth_header)
         eq_(res.status_code, 401)
         assert not Token.objects.filter(token_type=REQUEST_TOKEN).exists()
+
 
 class Test2LeggedOAuthFlow(TestCase):
     fixtures = fixture('user_2519', 'user_999')

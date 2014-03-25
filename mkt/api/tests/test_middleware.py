@@ -13,7 +13,8 @@ from test_utils import RequestFactory
 import amo.tests
 from mkt.api.middleware import (APIFilterMiddleware, APIPinningMiddleware,
                                 APITransactionMiddleware, APIVersionMiddleware,
-                                CORSMiddleware, GZipMiddleware)
+                                AuthenticationMiddleware, CORSMiddleware,
+                                GZipMiddleware)
 import mkt.regions
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
@@ -313,3 +314,28 @@ class TestGzipMiddleware(amo.tests.TestCase):
         # modified by another middleware.
         eq_(settings.MIDDLEWARE_CLASSES[0],
             'mkt.api.middleware.GZipMiddleware')
+
+
+class TestAuthenticationMiddleware(amo.tests.TestCase):
+    @mock.patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
+    def test_does_not_auth_for_api(self, django_authentication_middleware):
+        request = mock.Mock()
+        request.API = True
+        AuthenticationMiddleware().process_request(request)
+        ok_(not django_authentication_middleware.called)
+
+    @mock.patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
+    def test_auths_for_non_api(self, django_authentication_middleware):
+        request = mock.Mock()
+        request.API = False
+        AuthenticationMiddleware().process_request(request)
+        ok_(django_authentication_middleware.called)
+
+    def test_settings(self):
+        # Test that AuthenticationMiddleware comes after
+        # RedirectPrefixedURIMiddleware so that request.API is set.
+        auth_middleware = 'mkt.api.middleware.AuthenticationMiddleware'
+        api_middleware = 'mkt.site.middleware.RedirectPrefixedURIMiddleware'
+        index = settings.MIDDLEWARE_CLASSES.index
+
+        ok_(index(auth_middleware) > index(api_middleware))

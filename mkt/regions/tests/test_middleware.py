@@ -9,6 +9,7 @@ import amo.tests
 from mkt.users.models import UserProfile
 
 import mkt
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 
 
@@ -123,10 +124,7 @@ class TestRegionMiddleware(amo.tests.TestCase):
         set_region.assert_called_with(mkt.regions.UK)
 
 
-class TestRegionMiddlewarePersistence(amo.tests.TestCase):
-    fixtures = fixture('user_999')
-
+class TestRegionMiddlewarePersistence(RestOAuth):
     def test_save_region(self):
-        self.client.login(username='regular@mozilla.com', password='password')
         self.client.get('/api/v1/apps/?region=br')
-        eq_(UserProfile.objects.get(pk=999).region, 'br')
+        eq_(UserProfile.objects.get(pk=2519).region, 'br')
