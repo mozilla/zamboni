@@ -62,16 +62,6 @@ class PaymentAccount(amo.models.ModelBase):
                                    default=PROVIDER_BANGO)
     shared = models.BooleanField(default=False)
 
-    BANGO_PACKAGE_VALUES = (
-        'adminEmailAddress', 'supportEmailAddress', 'financeEmailAddress',
-        'paypalEmailAddress', 'vendorName', 'companyName', 'address1',
-        'address2', 'addressCity', 'addressState', 'addressZipCode',
-        'addressPhone', 'countryIso', 'currencyIso', 'vatNumber')
-    BANGO_BANK_DETAILS_VALUES = (
-        'seller_bango', 'bankAccountPayeeName', 'bankAccountNumber',
-        'bankAccountCode', 'bankName', 'bankAddress1', 'bankAddressZipCode',
-        'bankAddressIso', )
-
     class Meta:
         db_table = 'payment_accounts'
         unique_together = ('user', 'uri')
