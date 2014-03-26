@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-26 20:10+0000\n"
+"PO-Revision-Date: 2014-03-26 20:16+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395864634.0\n"
+"X-POOTLE-MTIME: 1395865008.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -5986,7 +5986,8 @@ msgstr "Lees hoe StumbleUpon van start is gegaan met Firefox"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:63
 msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-msgstr "door <a href=\"https://addons.mozilla.org/firefox/user/9\">Devon Jensen</a>"
+msgstr ""
+"door <a href=\"https://addons.mozilla.org/nl/firefox/user/9\">Devon Jensen</a>"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:67
 msgid "Easy Download Management with Download Statusbar"
@@ -7416,7 +7417,10 @@ msgstr "De volgende add-ons zijn niet toegestaan in wat voor vorm dan ook:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr "Add-ons die bekende <a href=\"http://nl.wikipedia.org/wiki/Spyware\">spyware</a> of <a href=\"http://nl.wikipedia.org/wiki/Malware\">malware</a> bevatten."
+msgstr ""
+"Add-ons die bekende <a "
+"href=\"http://nl.wikipedia.org/wiki/Spyware\">spyware</a> of <a "
+"href=\"http://nl.wikipedia.org/wiki/Malware\">malware</a> bevatten"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -11267,8 +11271,10 @@ msgid ""
 "<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus.sourceforge.net/uk/site.htm"
 "\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
-"<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus.sourceforge.net/uk/site.htm"
-"\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li> <li><a href=\"http://www.pspad.com/\">PSPad</a></li> <li><a href=\"http://www.geany.org/\">Geany</a></li>"
+"<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus.sourceforge.net/uk/site.htm\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
