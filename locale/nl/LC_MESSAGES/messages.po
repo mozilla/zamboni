@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-19 18:43+0000\n"
+"PO-Revision-Date: 2014-03-26 20:10+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395254601.0\n"
+"X-POOTLE-MTIME: 1395864634.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1961,19 +1961,19 @@ msgstr "Video verwijderd"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new platform(s) added."
-msgstr ""
+msgstr "Herbeoordeling {addon} vanwege toevoeging nieuw(e) platform(s)."
 
 #: apps/amo/log.py:510
 msgid "Platforms(s) Added"
-msgstr ""
+msgstr "Platform(s) toegevoegd"
 
 #: apps/amo/log.py:517
 msgid "{addon} platform support manually changed by reviewer."
-msgstr ""
+msgstr "Platformondersteuning {addon} handmatig door beoordelaar gewijzigd."
 
 #: apps/amo/log.py:518
 msgid "Platform(s) Changed by Reviewer"
-msgstr ""
+msgstr "Platform(s) door beoordelaar gewijzigd"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -1993,11 +1993,11 @@ msgstr "Automatische VIP-escalatie"
 
 #: apps/amo/log.py:541
 msgid "{addon} re-review because of new form factor(s) added."
-msgstr ""
+msgstr "Herbeoordeling {addon} vanwege toevoeging nieuwe vormfactor(en)."
 
 #: apps/amo/log.py:542
 msgid "Form Factor(s) Added"
-msgstr ""
+msgstr "Vormfactor(en) toegevoegd"
 
 #: apps/amo/log.py:559
 msgid "Created: {0}."
@@ -8777,6 +8777,9 @@ msgstr "Ja, zo lang ze dat ook delen"
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
+"De licentiegever staat anderen uitsluitend toe afgeleid werk onder dezelfde "
+"licentie of een licentie die compatibel is met de licentie waaronder het "
+"werk van de licentiegever valt te distribueren."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -11370,6 +11373,17 @@ msgid ""
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
 "beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Om compatibiliteit met de laatste Mozilla-software te garanderen is het "
+"belangrijk om updates zodra ze beschikbaar komen te downloaden en uw add-on "
+"te testen om te controleren of deze nog altijd volgens verwachting werkt. U "
+"kunt het beste de stappen in de handleiding <a href=\"%(ext_url)s\">Een "
+"extensie bouwen</a> voor het <a href=\"%(test_url)s\">testen van uw add-on</a> "
+"volgen. In veel gevallen kan de laatste versie van Mozilla-software een b"
+"èta-uitgave zijn. Aangezien deze uitgaven soms wijzigingen in de "
+"architectuur met zich meebrengen die mogelijk van invloed zijn op uw add-on, "
+"is het van belang om actief betrokken te zijn bij het bèta-proces, zodat u "
+"ervoor kunt zorgen dat uw gebruikers geen negatieve gevolgen ondervinden bij "
+"de uiteindelijke uitgave van Mozilla-software."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -11596,6 +11610,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Add-ons worden beoordeeld door de AMO-editors, een groep getalenteerde "
+"ontwikkelaar die vrijwillig het Mozilla-project helpen door add-ons te "
+"beoordelen, en zo voor een stabiele en veilige ervaring voor Mozilla-"
+"gebruikers zorgen. Wees in de communicatie met editors vriendelijk, geduldig "
+"en respectvol, aangezien ze hard werken om ervoor te zorgen dat uw add-on "
+"juist is opgezet en de richtlijnen zoals neergelegd in de <a href=\"%"
+"(url)s\">Beoordelingsgids voor editors</a> volgt."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -15701,7 +15722,7 @@ msgstr "Windows, Mac en Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:81
 msgid "Devices running Android"
-msgstr ""
+msgstr "Apparaten met Android"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -17659,15 +17680,15 @@ msgstr "Lees over <a href=\"%(payments_url)s\" target=\"_blank\">verschillende b
 
 #: mkt/developers/templates/developers/payments/premium.html:105 mkt/submit/templates/submit/manifest.html:51
 msgid "Select the form factors your app supports"
-msgstr ""
+msgstr "Selecteer de vormfactoren die uw app ondersteunt"
 
 #: mkt/developers/templates/developers/payments/premium.html:109 mkt/submit/templates/submit/manifest.html:55
 msgid "Responsive"
-msgstr ""
+msgstr "Responsief"
 
 #: mkt/developers/templates/developers/payments/premium.html:110 mkt/submit/templates/submit/manifest.html:56
 msgid "all form factors"
-msgstr ""
+msgstr "all vormfactoren"
 
 #: mkt/developers/templates/developers/payments/premium.html:126 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -19353,7 +19374,7 @@ msgstr "Elke status"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Platforms:"
-msgstr ""
+msgstr "Platforms:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -19494,7 +19515,7 @@ msgstr "Alleen senior-beoordelaars kunnen geblokkeerde apps beoordelen."
 
 #: mkt/reviewers/views.py:305
 msgid "Platform(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Platform(s) gewijzigd door beoordelaar: {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:38 mkt/submit/forms.py:47 mkt/submit/forms.py:56
 msgid "Removed {0}"
@@ -19661,7 +19682,7 @@ msgstr "Totale aantal downloads"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:124
 msgid "Form factors"
-msgstr ""
+msgstr "Vormfactoren"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:157
 msgid "Requirements"
@@ -19746,11 +19767,11 @@ msgstr "Elk apparaattype"
 
 #: mkt/search/forms.py:63
 msgid "Any Platform"
-msgstr ""
+msgstr "Elk platform"
 
 #: mkt/search/forms.py:67
 msgid "Any Form Factor"
-msgstr ""
+msgstr "Elke vormfactor"
 
 #: mkt/search/forms.py:77
 msgid "Search for apps"
@@ -19766,7 +19787,7 @@ msgstr "Apparaattype"
 
 #: mkt/search/forms.py:108
 msgid "Form Factor"
-msgstr ""
+msgstr "Vormfactor"
 
 #: mkt/search/forms.py:111
 msgid "Premium types"
@@ -19866,11 +19887,11 @@ msgstr "Kwartaal"
 
 #: mkt/submit/forms.py:35
 msgid "Platform(s) changed: {0}"
-msgstr ""
+msgstr "Platform(s) gewijzigd: {0}"
 
 #: mkt/submit/forms.py:44
 msgid "Form Factor(s) changed: {0}"
-msgstr ""
+msgstr "Vormfactor(en) gewijzigd: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:54
@@ -19883,7 +19904,7 @@ msgstr "Kan niet gratis en betaald zijn."
 
 #: mkt/submit/forms.py:63
 msgid "Please select a platform."
-msgstr ""
+msgstr "Selecteer een platform."
 
 #: mkt/submit/forms.py:64
 msgid "Packaged apps are not yet supported for those platforms."
@@ -20191,11 +20212,11 @@ msgstr "U dient een naam voor de app op te geven."
 
 #: mkt/webapps/models.py:454
 msgid "You must provide at least one platform."
-msgstr ""
+msgstr "U dient ten minste één platform op te geven."
 
 #: mkt/webapps/models.py:456
 msgid "You must provide at least one form_factor."
-msgstr ""
+msgstr "U dient ten minste één vormfactor op te geven."
 
 #: mkt/webapps/models.py:459
 msgid "You must provide at least one category."
