@@ -10,6 +10,7 @@ from django.shortcuts import render
 
 import jingo
 import jinja2
+import newrelic.agent
 
 from cache_nuggets.lib import memoize
 
@@ -69,7 +70,9 @@ def commonplace(request, repo, **kwargs):
         'include_persona': include_persona,
         'repo': repo,
         'robots': 'googlebot' in ua,
-        'site_settings': site_settings
+        'site_settings': site_settings,
+        'newrelic_header': newrelic.agent.get_browser_timing_header,
+        'newrelic_footer': newrelic.agent.get_browser_timing_footer,
     }
 
     media_url = urlparse(settings.MEDIA_URL)
