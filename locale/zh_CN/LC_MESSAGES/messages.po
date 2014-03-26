@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-03-26 09:19-0700\n"
 "PO-Revision-Date: 2014-03-15 01:59+0000\n"
 "Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -58,11 +58,11 @@ msgstr "添加到 {0}"
 msgid "This name is already in use. Please choose another."
 msgstr "这个名字已被使用，请另选一个。"
 
-#: apps/addons/forms.py:62 mkt/developers/forms.py:561 mkt/submit/forms.py:406
+#: apps/addons/forms.py:62 mkt/developers/forms.py:568 mkt/submit/forms.py:436
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
 
-#: apps/addons/forms.py:65 mkt/developers/forms.py:564 mkt/submit/forms.py:410
+#: apps/addons/forms.py:65 mkt/developers/forms.py:571 mkt/submit/forms.py:440
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "短网址不能是 \"%s\"。请另选一个。"
 
@@ -101,7 +101,7 @@ msgid "Categories cannot be changed while your add-on is featured for this appli
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:256 mkt/developers/forms.py:865 mkt/webapps/api.py:260
+#: apps/addons/forms.py:256 mkt/developers/forms.py:872 mkt/webapps/api.py:278
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您只能选择 {0} 个分类。"
@@ -141,16 +141,16 @@ msgstr "尚未审核"
 msgid "Featured"
 msgstr "精选"
 
-#: apps/addons/models.py:332
+#: apps/addons/models.py:331
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "用户可以选择捐助多于或少于这个金额。"
 
-#: apps/addons/models.py:341
+#: apps/addons/models.py:340
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
-#: apps/addons/models.py:2101
+#: apps/addons/models.py:2094
 msgid "Listed"
 msgstr "已列出"
 
@@ -429,7 +429,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0} 的附加组件信息"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:448 apps/devhub/views.py:72 mkt/developers/views.py:77
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:448 apps/devhub/views.py:72 mkt/developers/views.py:78
 #: mkt/reviewers/templates/reviewers/includes/details.html:74 mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
 msgstr "更新日期"
@@ -481,12 +481,12 @@ msgstr "报告滥用行为"
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:116 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:310 apps/devhub/templates/devhub/includes/policy_form.html:19 mkt/developers/templates/developers/apps/edit/details.html:55
-#: mkt/reviewers/templates/reviewers/includes/details.html:123 mkt/reviewers/templates/reviewers/includes/mobile_details.html:145 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
+#: mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:145 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:84
 #: templates/mobile/base_apps.html:71
 msgid "Privacy Policy"
 msgstr "隐私政策"
 
-#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:126
+#: apps/addons/templates/addons/details_box.html:119 apps/discovery/templates/discovery/addons/detail.html:30 mkt/reviewers/templates/reviewers/includes/details.html:136
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:148
 msgid "View Privacy Policy"
 msgstr "查看隐私政策"
@@ -532,7 +532,7 @@ msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Moz
 msgid "Version {0}:"
 msgstr "版本 {0}："
 
-#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:174
+#: apps/addons/templates/addons/details_box.html:229 mkt/reviewers/templates/reviewers/includes/details.html:184
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "这里什么都没有！开发者没有写下任何详细信息。"
 
@@ -634,7 +634,8 @@ msgstr "{0} 更新"
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:44 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
-#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:307 mkt/reviewers/views.py:328 mkt/submit/forms.py:34 mkt/submit/forms.py:44
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37 mkt/reviewers/views.py:307 mkt/reviewers/views.py:328 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/submit/forms.py:55
 msgid "Added {0}"
 msgstr "{0} 添加"
 
@@ -649,7 +650,7 @@ msgid_plural "%(num)s users"
 msgstr[0] "%(num)s 位用户"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:23
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:63 mkt/detail/helpers.py:24
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} 次周下载量"
@@ -755,7 +756,7 @@ msgstr "查看本作者的全部主题"
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:29
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:94 apps/editors/templates/editors/review.html:270
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 mkt/developers/templates/developers/apps/edit/basic.html:148
-#: mkt/reviewers/templates/reviewers/includes/details.html:136 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/reviewers/templates/reviewers/themes/themes.html:35
+#: mkt/reviewers/templates/reviewers/includes/details.html:146 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/reviewers/templates/reviewers/themes/themes.html:35
 #: templates/categories.html:7
 msgid "Categories"
 msgstr "类别"
@@ -1363,7 +1364,7 @@ msgid "Users"
 msgstr "用户量"
 
 #: apps/addons/templates/addons/mobile/details.html:94 apps/browse/views.py:58 apps/browse/views.py:69 apps/devhub/views.py:81 apps/search/forms.py:94 apps/search/forms.py:102
-#: mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125 mkt/search/forms.py:16
+#: mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125 mkt/search/forms.py:17
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
@@ -1457,7 +1458,7 @@ msgstr "最受好评"
 
 #: apps/addons/templates/addons/mobile/home.html:72 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:87
 #: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91 apps/search/forms.py:107
-#: mkt/search/forms.py:19
+#: mkt/search/forms.py:20
 msgid "Newest"
 msgstr "最新的"
 
@@ -1921,20 +1922,20 @@ msgid "Video removed"
 msgstr "视频被移除"
 
 #: apps/amo/log.py:509
-msgid "{addon} re-review because of new device(s) added."
-msgstr "{addon} 因为添加了新设备重新审核。"
+msgid "{addon} re-review because of new platform(s) added."
+msgstr ""
 
 #: apps/amo/log.py:510
-msgid "Device(s) Added"
-msgstr "设备已添加。"
+msgid "Platforms(s) Added"
+msgstr ""
 
 #: apps/amo/log.py:517
-msgid "{addon} device support manually changed by reviewer."
-msgstr "审核者已手动更改 {addon} 支持的设备。"
+msgid "{addon} platform support manually changed by reviewer."
+msgstr ""
 
 #: apps/amo/log.py:518
-msgid "Device(s) Changed by Reviewer"
-msgstr "审核者已更改设备"
+msgid "Platform(s) Changed by Reviewer"
+msgstr ""
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -1952,81 +1953,89 @@ msgstr ""
 msgid "VIP auto-escalation"
 msgstr ""
 
-#: apps/amo/log.py:551
+#: apps/amo/log.py:541
+msgid "{addon} re-review because of new form factor(s) added."
+msgstr ""
+
+#: apps/amo/log.py:542
+msgid "Form Factor(s) Added"
+msgstr ""
+
+#: apps/amo/log.py:559
 msgid "Created: {0}."
 msgstr "已创建：{0}。"
 
-#: apps/amo/log.py:557
+#: apps/amo/log.py:565
 msgid "Edited field: {2} set to: {0}."
 msgstr "已编辑字段：{2} 设置为：{0}。"
 
-#: apps/amo/log.py:563
+#: apps/amo/log.py:571
 msgid "Deleted: {1}."
 msgstr "已删除：{1}。"
 
-#: apps/amo/log.py:569
+#: apps/amo/log.py:577
 msgid "User {user} edited, reason: {1}"
 msgstr "用户 {user} 已编辑，原因：{1}"
 
-#: apps/amo/log.py:575
+#: apps/amo/log.py:583
 msgid "User {user} anonymized."
 msgstr "用户 {user} 已匿名。"
 
-#: apps/amo/log.py:581
+#: apps/amo/log.py:589
 msgid "User {user} restricted."
 msgstr "用户 {user} 已限制。"
 
-#: apps/amo/log.py:587
+#: apps/amo/log.py:595
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理员“{0}”已审阅用户“{user}”的活动日志。"
 
-#: apps/amo/log.py:594
+#: apps/amo/log.py:602
 msgid "{review} for {addon} updated."
 msgstr "{addon} 的 {review} 已更新。"
 
-#: apps/amo/log.py:600
+#: apps/amo/log.py:608
 msgid "{addon} reviewed."
 msgstr "已审核 {addon} 。"
 
-#: apps/amo/log.py:606
+#: apps/amo/log.py:614
 msgid "User {0.name} added to {group}."
 msgstr "用户 {0.name} 已添加到组 {group} 。"
 
-#: apps/amo/log.py:614
+#: apps/amo/log.py:622
 msgid "User {0.name} removed from {group}."
 msgstr "用户 {0.name} 已从组 {group} 移除。"
 
-#: apps/amo/log.py:621
+#: apps/amo/log.py:629
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "审核者修改了 {addon} 的最低版本需求。"
 
-#: apps/amo/log.py:622
+#: apps/amo/log.py:630
 msgid "Requirements Changed by Reviewer"
 msgstr "请求已被审核者更改"
 
-#: apps/amo/log.py:629
+#: apps/amo/log.py:637
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} 最低版本需求已被手动修改。"
 
-#: apps/amo/log.py:630
+#: apps/amo/log.py:638
 msgid "Requirements Changed"
 msgstr "需求已变更"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:638
+#: apps/amo/log.py:646
 msgid "{version} status changed to {0}."
 msgstr "{version} 状态已更改为 {0} 。"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:645
+#: apps/amo/log.py:653
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "已通过查找工具删除用户 {0.name} {0.id} 。"
 
-#: apps/amo/log.py:651
+#: apps/amo/log.py:659
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} 内容分级已改为成人。"
 
-#: apps/amo/log.py:657
+#: apps/amo/log.py:665
 msgid "{addon} content rating changed."
 msgstr "{addon} 内容分级已更改。"
 
@@ -2129,7 +2138,7 @@ msgstr ""
 "\"recaptcha_audio\">尝试不同类型的挑战</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:19 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:292 apps/search/forms.py:90 apps/search/forms.py:103 mkt/search/forms.py:17
+#: apps/browse/views.py:65 apps/browse/views.py:231 apps/browse/views.py:292 apps/search/forms.py:90 apps/search/forms.py:103 mkt/search/forms.py:18
 msgid "Top Rated"
 msgstr "评分最高"
 
@@ -2407,9 +2416,9 @@ msgstr "从收藏夹中移除"
 
 #: apps/bandwagon/views.py:88 apps/bandwagon/views.py:174 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:447 apps/devhub/views.py:71 apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:76
-#: mkt/developers/views.py:84 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
-#: mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
+#: apps/search/forms.py:93 apps/search/forms.py:106 apps/users/templates/users/vcard.html:5 mkt/account/utils.py:18 mkt/developers/forms_payments.py:562 mkt/developers/views.py:77
+#: mkt/developers/views.py:85 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/reviewers/templates/reviewers/leaderboard.html:24
+#: mkt/reviewers/templates/reviewers/themes/queue_list.html:44 mkt/search/forms.py:22 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "名称"
 
@@ -2421,7 +2430,7 @@ msgstr "最近热门"
 msgid "Added"
 msgstr "添加日期"
 
-#: apps/bandwagon/views.py:173 mkt/search/forms.py:15
+#: apps/bandwagon/views.py:173 mkt/search/forms.py:16
 msgid "Popularity"
 msgstr "热门度"
 
@@ -2693,7 +2702,7 @@ msgstr "编辑 {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:27
 #: apps/editors/templates/editors/themes/themes.html:60 mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23
-#: mkt/reviewers/templates/reviewers/includes/details.html:155 mkt/reviewers/templates/reviewers/themes/themes.html:61
+#: mkt/reviewers/templates/reviewers/includes/details.html:165 mkt/reviewers/templates/reviewers/themes/themes.html:61
 msgid "Description"
 msgstr "描述"
 
@@ -2710,9 +2719,9 @@ msgstr "贡献者及更多"
 #: apps/translations/templates/translations/trans-menu.html:48 mkt/developers/templates/developers/apps/owner.html:52 mkt/developers/templates/developers/apps/version_edit.html:81
 #: mkt/developers/templates/developers/apps/edit/admin.html:185 mkt/developers/templates/developers/apps/edit/basic.html:170 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:68 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/developers/templates/developers/apps/forms_shared/media.html:164
-#: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:70 mkt/developers/templates/developers/payments/premium.html:99
-#: mkt/developers/templates/developers/payments/premium.html:144 mkt/developers/templates/developers/payments/premium.html:242 mkt/developers/templates/developers/payments/premium.html:256
-#: mkt/developers/templates/developers/payments/premium.html:296
+#: mkt/developers/templates/developers/includes/addons_create_profile.html:48 mkt/developers/templates/developers/payments/premium.html:120
+#: mkt/developers/templates/developers/payments/premium.html:156 mkt/developers/templates/developers/payments/premium.html:254 mkt/developers/templates/developers/payments/premium.html:268
+#: mkt/developers/templates/developers/payments/premium.html:308
 msgid "Save Changes"
 msgstr "保存更改"
 
@@ -2788,7 +2797,7 @@ msgstr "<b>警告：</b>改变此收藏集的所有者后您就不能再编辑�
 #: apps/editors/templates/editors/themes/themes.html:109 apps/editors/templates/editors/themes/themes.html:126 apps/editors/templates/editors/themes/themes.html:132
 #: apps/editors/templates/editors/themes/themes.html:139 mkt/developers/templates/developers/apps/status.html:285 mkt/developers/templates/developers/apps/forms_shared/media.html:171
 #: mkt/reviewers/templates/reviewers/themes/themes.html:110 mkt/reviewers/templates/reviewers/themes/themes.html:127 mkt/reviewers/templates/reviewers/themes/themes.html:133
-#: mkt/reviewers/templates/reviewers/themes/themes.html:140 mkt/submit/templates/submit/details.html:177 mkt/submit/templates/submit/manifest.html:117 mkt/submit/templates/submit/next_steps.html:99
+#: mkt/reviewers/templates/reviewers/themes/themes.html:140 mkt/submit/templates/submit/details.html:177 mkt/submit/templates/submit/manifest.html:132 mkt/submit/templates/submit/next_steps.html:99
 #: mkt/submit/templates/submit/payments-upsell.html:36 mkt/submit/templates/submit/payments.html:31
 msgid "Continue"
 msgstr "继续"
@@ -2995,17 +3004,17 @@ msgstr "用户最多"
 msgid "Up & Coming"
 msgstr "崭露头角"
 
-#: apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:80 mkt/developers/views.py:78 mkt/developers/views.py:85
+#: apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:80 mkt/developers/views.py:79 mkt/developers/views.py:86
 msgid "Created"
 msgstr "创建日期"
 
-#: apps/browse/views.py:450 apps/devhub/views.py:74 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:79
+#: apps/browse/views.py:450 apps/devhub/views.py:74 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18 mkt/developers/views.py:80
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Downloads"
 msgstr "下载次数"
 
 #: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:69 apps/reviews/templates/reviews/add.html:85
-#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:80 mkt/reviewers/templates/reviewers/includes/details.html:93
+#: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18 mkt/developers/views.py:81 mkt/reviewers/templates/reviewers/includes/details.html:93
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Rating"
 msgstr "评分"
@@ -3304,7 +3313,7 @@ msgstr "更多主题"
 msgid "&laquo; All Themes"
 msgstr "&laquo; 全部主题"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:168 mkt/search/forms.py:27
+#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43 mkt/developers/views_payments.py:179 mkt/search/forms.py:28
 msgid "All"
 msgstr "全部"
 
@@ -3344,7 +3353,7 @@ msgstr "全部附加组件的前 95%"
 msgid "All active add-ons"
 msgstr "全部活跃的附加组件"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:952 mkt/developers/templates/developers/transactions.html:41
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:190 apps/constants/base.py:431 mkt/developers/forms.py:959 mkt/developers/templates/developers/transactions.html:41
 #: mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:22
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:64 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/queue_region.html:24
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
@@ -3423,7 +3432,7 @@ msgstr "应用程序"
 msgid "Application Build"
 msgstr "应用程序编译版本"
 
-#: apps/compat/templates/compat/reporter_detail.html:49
+#: apps/compat/templates/compat/reporter_detail.html:49 mkt/search/forms.py:105
 msgid "Platform"
 msgstr "平台"
 
@@ -3460,7 +3469,7 @@ msgstr "SeaMonkey"
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: apps/constants/applications.py:89 mkt/search/forms.py:50
+#: apps/constants/applications.py:89 mkt/constants/form_factors.py:15 mkt/search/forms.py:51
 msgid "Mobile"
 msgstr "移动版"
 
@@ -3476,24 +3485,23 @@ msgstr "Mozilla"
 msgid "Unknown"
 msgstr "未知"
 
-#: apps/constants/applications.py:154 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:49 templates/mobile/header.html:5
+#: apps/constants/applications.py:155 mkt/constants/form_factors.py:9 mkt/constants/platforms.py:9 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:50
+#: templates/mobile/header.html:5
 msgid "Desktop"
 msgstr "桌面版"
 
-#: apps/constants/applications.py:161 mkt/constants/platforms.py:47 mkt/constants/platforms.py:68 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:45
-#: mkt/constants/tests/test_platforms.py:58 mkt/constants/tests/test_platforms.py:75 mkt/constants/tests/test_platforms.py:96
+#: apps/constants/applications.py:162
 msgid "Firefox Mobile"
 msgstr "Firefox 移动版"
 
-#: apps/constants/applications.py:168 mkt/constants/platforms.py:48 mkt/constants/platforms.py:69 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:46
-#: mkt/constants/tests/test_platforms.py:59 mkt/constants/tests/test_platforms.py:76 mkt/constants/tests/test_platforms.py:97
+#: apps/constants/applications.py:169
 msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
-#: apps/constants/applications.py:175 mkt/constants/platforms.py:32 mkt/constants/platforms.py:57 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:25
-#: mkt/constants/tests/test_platforms.py:34 mkt/constants/tests/test_platforms.py:44 mkt/constants/tests/test_platforms.py:56 mkt/constants/tests/test_platforms.py:66
-#: mkt/constants/tests/test_platforms.py:74 mkt/constants/tests/test_platforms.py:85 mkt/constants/tests/test_platforms.py:95 mkt/ecosystem/templates/ecosystem/dev_phone.html:10
-#: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:52
+#: apps/constants/applications.py:176 mkt/constants/platforms.py:21 mkt/constants/platforms.py:34 mkt/constants/platforms.py:58 mkt/constants/tests/test_platforms.py:14
+#: mkt/constants/tests/test_platforms.py:24 mkt/constants/tests/test_platforms.py:33 mkt/constants/tests/test_platforms.py:43 mkt/constants/tests/test_platforms.py:54
+#: mkt/constants/tests/test_platforms.py:63 mkt/constants/tests/test_platforms.py:71 mkt/constants/tests/test_platforms.py:81 mkt/constants/tests/test_platforms.py:91
+#: mkt/ecosystem/templates/ecosystem/dev_phone.html:10 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:53
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -3633,12 +3641,12 @@ msgstr "语言包（应用程序）"
 msgid "Apps"
 msgstr "应用"
 
-#: apps/constants/base.py:289 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:56 mkt/search/forms.py:28 mkt/search/forms.py:40
+#: apps/constants/base.py:289 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:57 mkt/search/forms.py:29 mkt/search/forms.py:41
 #: mkt/submit/templates/submit/manifest.html:32
 msgid "Free"
 msgstr "免费版"
 
-#: apps/constants/base.py:290 mkt/search/forms.py:42
+#: apps/constants/base.py:290 mkt/search/forms.py:43
 msgid "Premium"
 msgstr "付费版"
 
@@ -3959,7 +3967,8 @@ msgstr "Windows"
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:68
+#: apps/constants/platforms.py:68 mkt/constants/platforms.py:15 mkt/constants/platforms.py:49 mkt/constants/platforms.py:69 mkt/constants/tests/test_platforms.py:16
+#: mkt/constants/tests/test_platforms.py:44 mkt/constants/tests/test_platforms.py:56 mkt/constants/tests/test_platforms.py:72 mkt/constants/tests/test_platforms.py:92
 msgid "Android"
 msgstr "Android"
 
@@ -3992,7 +4001,7 @@ msgid "Password incorrect."
 msgstr "密码不正确。"
 
 #: apps/devhub/forms.py:129 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:130 mkt/constants/submit.py:7
-#: mkt/reviewers/templates/reviewers/includes/details.html:4 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:519
+#: mkt/reviewers/templates/reviewers/includes/details.html:4 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:532
 msgid "Details"
 msgstr "详情"
 
@@ -4084,7 +4093,7 @@ msgstr "需要至少一个兼容的应用程序。"
 msgid "An app already exists on this domain, only one app per domain is allowed."
 msgstr "此域上已经有一个应用存在，每个域上只允许有一个应用。"
 
-#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:173 mkt/submit/forms.py:239
+#: apps/devhub/forms.py:473 apps/devhub/forms.py:488 apps/devhub/forms.py:501 mkt/submit/forms.py:203 mkt/submit/forms.py:269
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上传过程中发生错误，请重试。"
 
@@ -4108,7 +4117,7 @@ msgstr "初步审核"
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:557 mkt/submit/forms.py:207
+#: apps/devhub/forms.py:557 mkt/submit/forms.py:237
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
@@ -4355,7 +4364,7 @@ msgid "User Reviews"
 msgstr "用户评论"
 
 #: apps/devhub/views.py:332 apps/devhub/views.py:336 apps/devhub/views.py:452 apps/devhub/views.py:475 apps/devhub/views.py:503 apps/devhub/views.py:623 apps/devhub/views.py:1297
-#: mkt/developers/views.py:552 mkt/developers/views_payments.py:99 mkt/developers/views_payments.py:344 mkt/reviewers/views.py:709
+#: mkt/developers/views.py:550 mkt/developers/views_payments.py:107 mkt/developers/views_payments.py:355 mkt/reviewers/views.py:709
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
@@ -4415,7 +4424,7 @@ msgstr "验证附加组件"
 msgid "Check Add-on Compatibility"
 msgstr "检查附加组件兼容性"
 
-#: apps/devhub/views.py:770 mkt/developers/views.py:634
+#: apps/devhub/views.py:770 mkt/developers/views.py:632
 msgid "There was an error with the submission."
 msgstr "提交时发生错误。"
 
@@ -4444,7 +4453,7 @@ msgstr "图像大小不能超过 %dKB。"
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "图像宽度必须刚好为 {0} 像素且高度为 {1} 像素。"
 
-#: apps/devhub/views.py:1242 mkt/developers/views.py:933
+#: apps/devhub/views.py:1242 mkt/developers/views.py:931
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
@@ -4530,7 +4539,7 @@ msgstr "{0} :: 搜索"
 #: apps/search/templates/search/mobile/results.html:8 mkt/developers/templates/developers/search.html:9 mkt/lookup/templates/lookup/includes/app_search.html:17
 #: mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6 mkt/reviewers/forms.py:231 mkt/reviewers/forms.py:233
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/reviewers/templates/reviewers/themes/queue_list.html:10
-#: mkt/search/forms.py:85 mkt/search/forms.py:87 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13 templates/search.html:14
+#: mkt/search/forms.py:94 mkt/search/forms.py:96 mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13 templates/search.html:14
 #: templates/impala/search.html:18
 msgid "Search"
 msgstr "搜索"
@@ -5151,7 +5160,7 @@ msgstr "主页"
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
 msgstr "如果您的附加组件还有其他的主页，请在这输入网址。如果您的网站已经本地化到其他语言，您也可以给这个字段添加对应的语言及其网址。"
 
-#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:160
+#: apps/devhub/templates/devhub/addons/edit/media.html:3 mkt/reviewers/templates/reviewers/includes/details.html:170
 msgid "Images"
 msgstr "图像"
 
@@ -5834,7 +5843,7 @@ msgstr "管理覆盖"
 msgid "Step 2. Link to Your App"
 msgstr "第 2 步：链接到您的应用"
 
-#: apps/devhub/templates/devhub/addons/submit/upload_webapp.html:24 mkt/developers/templates/developers/validate_addon.html:27 mkt/submit/templates/submit/manifest.html:66
+#: apps/devhub/templates/devhub/addons/submit/upload_webapp.html:24 mkt/developers/templates/developers/validate_addon.html:27 mkt/submit/templates/submit/manifest.html:80
 msgid "Validate"
 msgstr "验证"
 
@@ -8249,13 +8258,13 @@ msgstr "或<a href=\"%(cancel)s\">取消</a>"
 msgid "Manage Refunds"
 msgstr "管理退款"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:957 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: apps/devhub/templates/devhub/payments/refunds.html:12 mkt/developers/forms.py:964 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "交易 ID"
 
-#: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:158 mkt/purchase/templates/purchase/receipt.html:39
+#: apps/devhub/templates/devhub/payments/refunds.html:14 mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:170 mkt/purchase/templates/purchase/receipt.html:39
 #: mkt/reviewers/templates/reviewers/includes/details.html:56 mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9
-#: mkt/search/forms.py:18
+#: mkt/search/forms.py:19
 msgid "Price"
 msgstr "价格"
 
@@ -8445,7 +8454,7 @@ msgstr "其他人能在您给定的许可时间内分享您的主题吗？"
 
 #: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
 #: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119 mkt/api/forms.py:105
-#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:377
+#: mkt/developers/forms_payments.py:52 mkt/reviewers/forms.py:258 mkt/submit/forms.py:407
 msgid "Yes"
 msgstr "是"
 
@@ -8456,7 +8465,7 @@ msgstr "许可方允许他人对作品进行复制、发行、展览和表演，
 
 #: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
 #: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137 mkt/api/forms.py:106
-#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:378
+#: mkt/developers/forms_payments.py:52 mkt/lookup/templates/lookup/user_summary.html:71 mkt/reviewers/forms.py:259 mkt/submit/forms.py:408
 msgid "No"
 msgstr "取消"
 
@@ -8482,8 +8491,8 @@ msgid "Yes, as long as they share alike"
 msgstr "是的，只要他人以相同方式共享"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "许可方允许他人发行演绎作品，但仅限于使用相同的或兼容的（对许可方的作品有约束力的）许可协议授权的情况下。"
+msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
+msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -9308,7 +9317,9 @@ msgstr "已等待天数"
 msgid "Add-on Types"
 msgstr "附加组件类型"
 
-#: apps/editors/forms.py:119 apps/editors/helpers.py:201
+#: apps/editors/forms.py:119 apps/editors/helpers.py:201 mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:32
+#: mkt/reviewers/templates/reviewers/queue_region.html:27 mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Platforms"
 msgstr "平台"
 
@@ -9321,7 +9332,7 @@ msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 msgid "Files:"
 msgstr "文件："
 
-#: apps/editors/forms.py:247 mkt/reviewers/forms.py:37
+#: apps/editors/forms.py:247 mkt/reviewers/forms.py:38
 msgid "Comments:"
 msgstr "意见："
 
@@ -9456,7 +9467,7 @@ msgid "Waiting Time"
 msgstr "等待时间"
 
 #: apps/editors/helpers.py:198 apps/editors/templates/editors/review.html:278 mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/apps_reviewing.html:65
-#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:144
+#: mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25 mkt/reviewers/templates/reviewers/includes/details.html:154
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:166 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
 msgstr "标记"
@@ -9664,7 +9675,7 @@ msgid "given preliminary review"
 msgstr "已给予初步审核"
 
 #. L10n: An app is rejected for a particular region.
-#: apps/editors/views.py:710 mkt/webapps/models.py:2296
+#: apps/editors/views.py:710 mkt/webapps/models.py:2350
 msgid "rejected"
 msgstr "已拒绝"
 
@@ -9848,7 +9859,7 @@ msgstr "每日消息"
 msgid "Update message of the day"
 msgstr "更新每日消息"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:224 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:197
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:224 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:196
 msgid "Save"
 msgstr "保存"
 
@@ -10008,7 +10019,7 @@ msgstr "注意：请仅在您已经测试完<strong>每个</strong>文件后再�
 msgid "Tested on:"
 msgstr "已测试于："
 
-#: apps/editors/templates/editors/review.html:220 mkt/reviewers/templates/reviewers/review.html:193
+#: apps/editors/templates/editors/review.html:220 mkt/reviewers/templates/reviewers/review.html:192
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
@@ -11008,10 +11019,8 @@ msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. It's "
 "best to follow the steps outlined in the <a href=\"%(ext_url)s\">Building an Extension</a> tutorial for <a href=\"%(test_url)s\">testing your add-on</a>. In many cases, the latest version of "
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
-"beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
+"beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"为了保证与最新版本的火狐软件兼容，请在火狐软件更新下载开放后尽快下载测试它是否可以正常工作。最好参照如下列出的步骤 <a href=\"%(ext_url)s\">构建扩展</a> 教程 <a href=\"%(test_url)s\">测试您的附加组件"
-"</a>.通常，最新的Mozilla软件都是开发版。鉴于这些发行版偶尔会变更架构，产生对您的附加组件功能的影响，所以主动参与开发进程确保您的附加组件用户在最终发行版的Mozilla软件中不会受到负面影响是很重要的。"
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -11225,11 +11234,9 @@ msgstr "谁审核我的附加组件？"
 #: apps/pages/templates/pages/dev_faq.html:416
 msgid ""
 "Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that you're add-on is setup correctly and follows the guidelines outlined in the <a "
+"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"附加组件是由 AMO 的审核员进行审核，他们是一群志愿的开发者来帮助 Mozilla 项目审核附加组件，以确保 Mozilla 的用户们能有一个稳定且安全的使用体验。当与审核员沟通时，请注意礼貌、耐心与尊重，因为他们正在"
-"努力确保您的附加组件编写正确并符合<a href=\"%(url)s\">审核员审核指南</a>所述的准则。"
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -12321,7 +12328,7 @@ msgstr "搜索应用"
 msgid "Sort By"
 msgstr "排序依据"
 
-#: apps/search/forms.py:88 apps/search/forms.py:101 mkt/search/forms.py:14
+#: apps/search/forms.py:88 apps/search/forms.py:101 mkt/search/forms.py:15
 msgid "Relevance"
 msgstr "相关性"
 
@@ -12657,11 +12664,11 @@ msgstr "用户注册量"
 msgid "Custom Date Range"
 msgstr "自定日期范围"
 
-#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:963
+#: apps/stats/templates/stats/popup.html:12 mkt/developers/forms.py:970
 msgid "From"
 msgstr "从"
 
-#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:966
+#: apps/stats/templates/stats/popup.html:19 mkt/developers/forms.py:973
 msgid "To"
 msgstr "到"
 
@@ -13824,7 +13831,7 @@ msgstr "16进制颜色"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "必须为有效的16进制颜色代码，例如：#FF0035 。"
 
-#: mkt/collections/serializers.py:241
+#: mkt/collections/serializers.py:268
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "在相同分类、运营商、地区下，你最多只能有一个精选应用/Operator Shelf 收藏集组合。"
 
@@ -13844,7 +13851,7 @@ msgstr "不存在版本 %s"
 msgid "Attachment:"
 msgstr "附件："
 
-#: mkt/comm/forms.py:45 mkt/submit/forms.py:347
+#: mkt/comm/forms.py:45 mkt/submit/forms.py:377
 msgid "Description:"
 msgstr "描述："
 
@@ -13980,7 +13987,7 @@ msgstr "博茨瓦纳"
 msgid "Bouvet Island"
 msgstr "布维岛"
 
-#: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:98 mkt/constants/regions.py:81
+#: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:81
 msgid "Brazil"
 msgstr "巴西"
 
@@ -14184,7 +14191,7 @@ msgstr "冈比亚"
 msgid "Georgia"
 msgstr "格鲁吉亚"
 
-#: mkt/constants/bango.py:99 mkt/constants/ratingsbodies.py:207 mkt/constants/regions.py:151
+#: mkt/constants/bango.py:99 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:151
 msgid "Germany"
 msgstr "德国"
 
@@ -15218,15 +15225,19 @@ msgstr "多个网络信息"
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr "此应用需要获取有关多个网络连接的信息。"
 
+#: mkt/constants/form_factors.py:21 mkt/search/forms.py:52
+msgid "Tablet"
+msgstr "工具栏"
+
 #: mkt/constants/payments.py:8
 msgid "Completed"
 msgstr "已完成"
 
-#: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
+#: mkt/constants/platforms.py:44 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:34 mkt/constants/tests/test_platforms.py:55
 msgid "Firefox for Desktop"
 msgstr "Firefox 桌面版"
 
-#: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
+#: mkt/constants/platforms.py:77 mkt/constants/platforms.py:80
 msgid "Fully open mobile ecosystem"
 msgstr "完全开放的移动生态环境"
 
@@ -15234,13 +15245,9 @@ msgstr "完全开放的移动生态环境"
 msgid "Windows, Mac and Linux"
 msgstr "Windows, Mac and Linux"
 
-#: mkt/constants/platforms.py:79 mkt/constants/platforms.py:82 mkt/ecosystem/templates/ecosystem/partners.html:95
-msgid "Android smartphones"
-msgstr "Android 智能手机"
-
-#: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
-msgid "Tablets"
-msgstr "平板电脑"
+#: mkt/constants/platforms.py:79 mkt/constants/platforms.py:81
+msgid "Devices running Android"
+msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -15498,82 +15505,69 @@ msgid "Digital Purchases"
 msgstr "数字化购买"
 
 #: mkt/constants/ratingsbodies.py:5
-msgid "General Audiences"
-msgstr "大众级"
-
-#. L10n: %d is the age in years.
-#: mkt/constants/ratingsbodies.py:7
-msgid "Not recommended for users younger than %d years of age"
-msgstr "不推荐不满 %d 岁的用户使用"
-
-#: mkt/constants/ratingsbodies.py:8
-msgid "Rejected for All Audiences"
-msgstr "完全拒绝"
-
-#: mkt/constants/ratingsbodies.py:9 mkt/constants/ratingsbodies.py:15
-msgid "Rating Pending"
-msgstr "分级待定"
-
-#: mkt/constants/ratingsbodies.py:11
 msgid "For all ages"
 msgstr "适用所有年龄段"
 
 #. L10n: %d is the age in years. For ages %d and higher.
-#: mkt/constants/ratingsbodies.py:13
+#: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
 msgstr "适用年龄超过%d岁者"
 
-#: mkt/constants/ratingsbodies.py:14
+#: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
 msgstr "分级被驳回"
 
-#: mkt/constants/ratingsbodies.py:99
+#: mkt/constants/ratingsbodies.py:9
+msgid "Rating Pending"
+msgstr "分级待定"
+
+#: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
 msgstr "审批、评级、命名和资格审定部门"
 
-#: mkt/constants/ratingsbodies.py:153 mkt/constants/ratingsbodies.py:155
+#: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
 msgstr "通用"
 
-#: mkt/constants/ratingsbodies.py:208
+#: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
 msgstr "娱乐软件自律团体"
 
-#: mkt/constants/ratingsbodies.py:217
+#: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
 msgstr "所有人"
 
-#: mkt/constants/ratingsbodies.py:225
+#: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
 msgstr "所有人（10岁以上）"
 
-#: mkt/constants/ratingsbodies.py:232
+#: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
 msgstr "少年"
 
-#: mkt/constants/ratingsbodies.py:239
+#: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
 msgstr "17岁以上"
 
-#: mkt/constants/ratingsbodies.py:246
+#: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
 msgstr "仅限成年人（18岁以上）"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
-#: mkt/constants/ratingsbodies.py:260
+#: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
 msgstr "除巴西以外的美洲"
 
-#: mkt/constants/ratingsbodies.py:261
+#: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
 msgstr "娱乐软件分级委员会"
 
-#: mkt/constants/ratingsbodies.py:305
+#: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
 msgstr "欧洲"
 
-#: mkt/constants/ratingsbodies.py:306
+#: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
 msgstr "泛欧洲游戏信息组织"
 
@@ -15585,11 +15579,11 @@ msgstr "其他地区"
 msgid "Venezuela"
 msgstr "委内瑞拉"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:56
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:35 mkt/submit/templates/submit/manifest.html:70
 msgid "Hosted"
 msgstr "已托管应用"
 
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:35 mkt/submit/templates/submit/manifest.html:90
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:36 mkt/submit/templates/submit/manifest.html:104
 msgid "Packaged"
 msgstr "已打包应用"
 
@@ -15605,7 +15599,7 @@ msgstr "完成!"
 msgid "Administrative Actions"
 msgstr "管理操作"
 
-#: mkt/detail/templates/detail/helpers/device_list.html:10
+#: mkt/detail/templates/detail/helpers/platform_list.html:10
 msgid "(Unsupported)"
 msgstr "（尚不支持）"
 
@@ -15665,125 +15659,125 @@ msgstr "哦，看起来您已经提交了 %s 的清单，目前被禁用了。<a
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "该域名下已经存在一个应用了；每个域名下只允许一个应用。"
 
-#: mkt/developers/forms.py:332
+#: mkt/developers/forms.py:333
 msgid "Invalid region(s) selected."
 msgstr "选择了无效的区域。"
 
-#: mkt/developers/forms.py:405 mkt/webapps/models.py:448
+#: mkt/developers/forms.py:412 mkt/webapps/models.py:461
 msgid "You must upload at least one screenshot or video."
 msgstr "您至少应该上传一个截屏或视频。"
 
-#: mkt/developers/forms.py:446
+#: mkt/developers/forms.py:453
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "封装应用文件体积过大，必须小于 %s 才能提交。"
 
-#: mkt/developers/forms.py:461
+#: mkt/developers/forms.py:468
 msgid "Error extracting manifest from zip file."
 msgstr "从 zip 文件中解压缩资源配置时出错。"
 
-#: mkt/developers/forms.py:520
+#: mkt/developers/forms.py:527
 msgid "Provide a detailed description of your app"
 msgstr "请为您的应用提供详细的描述"
 
-#: mkt/developers/forms.py:521 mkt/submit/forms.py:348
+#: mkt/developers/forms.py:528 mkt/submit/forms.py:378
 msgid "This description will appear on the details page."
 msgstr "该描述将在详细页面显示。"
 
-#: mkt/developers/forms.py:593
+#: mkt/developers/forms.py:600
 msgid "Please specify your app's Privacy Policy"
 msgstr "请详细说明您应用的隐私策略"
 
-#: mkt/developers/forms.py:614
+#: mkt/developers/forms.py:621
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "要有那个语种的名称和描述才能改变默认语种。现在缺少 %s 。"
 
-#: mkt/developers/forms.py:669
+#: mkt/developers/forms.py:676
 msgid "Your comments"
 msgstr "您的评论。"
 
-#: mkt/developers/forms.py:692
+#: mkt/developers/forms.py:699
 msgid "Choose the regions your app will be listed in:"
 msgstr "选择您的应用将会被列出的地区。"
 
-#: mkt/developers/forms.py:696 mkt/developers/forms.py:782
+#: mkt/developers/forms.py:703 mkt/developers/forms.py:789
 msgid "You must select at least one region."
 msgstr "您必须选择至少一个地区。"
 
-#: mkt/developers/forms.py:701
+#: mkt/developers/forms.py:708
 msgid "Enable new regions"
 msgstr "启用新地区"
 
-#: mkt/developers/forms.py:703
+#: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
 msgstr "让我的应用在大部分地区可用"
 
-#: mkt/developers/forms.py:704
+#: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
 msgstr "选择我的应用在哪些地方发布"
 
-#: mkt/developers/forms.py:891
+#: mkt/developers/forms.py:898
 msgid "Agree"
 msgstr "同意"
 
-#: mkt/developers/forms.py:908
+#: mkt/developers/forms.py:915
 msgid "Please enter a valid email address."
 msgstr "请输入一个有效的电子邮件地址。"
 
-#: mkt/developers/forms.py:911
+#: mkt/developers/forms.py:918
 msgid "Your email address"
 msgstr "你的电子邮件地址"
 
-#: mkt/developers/forms.py:914
+#: mkt/developers/forms.py:921
 msgid "Text"
 msgstr "文本"
 
-#: mkt/developers/forms.py:918
+#: mkt/developers/forms.py:925
 msgid "You must agree to the Privacy Policy."
 msgstr "您必须同意隐私策略。"
 
-#: mkt/developers/forms.py:919 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:926 mkt/developers/forms_payments.py:404 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "国家"
 
-#: mkt/developers/forms.py:954
+#: mkt/developers/forms.py:961
 msgid "Transaction Type"
 msgstr "交易类型"
 
-#: mkt/developers/forms.py:1008
+#: mkt/developers/forms.py:1015
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr "请考虑将我的应用作为预装到 Firefox OS 设备中的候选品种。我同意上述条款和条件说明。我理解这份文件并不意味着我的应用获得了预装。"
 
-#: mkt/developers/forms.py:1015
+#: mkt/developers/forms.py:1022
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "上传您的测试计划 (.pdf, .xls 小于 2.5MB)"
 
-#: mkt/developers/forms.py:1024
+#: mkt/developers/forms.py:1031
 msgid "Test plan required."
 msgstr "测试计划是必须的。"
 
-#: mkt/developers/forms.py:1031
+#: mkt/developers/forms.py:1038
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "文件过大。请保持大小小于 %s。当前大小 %s。"
 
-#: mkt/developers/forms.py:1037
+#: mkt/developers/forms.py:1044
 msgid "Invalid file type. Only %s files are supported."
 msgstr "错误的文件类型。仅支持 %s 文件。"
 
-#: mkt/developers/forms.py:1055
+#: mkt/developers/forms.py:1062
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "这个 IARC 证书已经用于另外一个应用。请创建一个新的 IARC 评级证书。"
 
-#: mkt/developers/forms.py:1068
+#: mkt/developers/forms.py:1075
 msgid "Please enter a valid submission ID."
 msgstr "请输入一个有效的提交ID。"
 
-#: mkt/developers/forms.py:1092 mkt/developers/forms.py:1103
+#: mkt/developers/forms.py:1099 mkt/developers/forms.py:1110
 msgid "Invalid submission ID or security code."
 msgstr "无效的提交 ID 或安全码。"
 
-#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:272
+#: mkt/developers/forms_payments.py:55 mkt/submit/forms.py:302
 msgid "App Price"
 msgstr "应用价格"
 
@@ -15815,7 +15809,7 @@ msgstr "免费应用的“应用内付款”必须开启"
 msgid "Not a valid choice"
 msgstr "不是有效的选项"
 
-#: mkt/developers/forms_payments.py:332 mkt/developers/templates/developers/payments/premium.html:272
+#: mkt/developers/forms_payments.py:332 mkt/developers/templates/developers/payments/premium.html:284
 msgid "This is a paid upgrade of"
 msgstr "一个付费更新"
 
@@ -15919,7 +15913,7 @@ msgstr "银行所在国家"
 msgid "Account Name"
 msgstr "账户名称"
 
-#: mkt/developers/forms_payments.py:462 mkt/developers/templates/developers/payments/premium.html:128
+#: mkt/developers/forms_payments.py:462 mkt/developers/templates/developers/payments/premium.html:140
 msgid "Payment Account"
 msgstr "支付帐号"
 
@@ -16010,107 +16004,107 @@ msgstr "图标必须是正方形。"
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "应用程序预览图应至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
-#: mkt/developers/views.py:152
+#: mkt/developers/views.py:153
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "付费应用不能被删除。您可以禁用此应用。"
 
-#: mkt/developers/views.py:162
+#: mkt/developers/views.py:163
 msgid "App deleted."
 msgstr "应用已删除。"
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:168
 msgid "Password was incorrect. App was not deleted."
 msgstr "密码不正确，应用没有删除。"
 
-#: mkt/developers/views.py:224
+#: mkt/developers/views.py:225
 msgid "App successfully resubmitted."
 msgstr "应用已成功地重新提交。"
 
-#: mkt/developers/views.py:255
+#: mkt/developers/views.py:253
 msgid "New version successfully added."
 msgstr "新版本添加成功。"
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:301
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "恭喜，您的应用已经提交，很快就会完成审核！"
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:303
 msgid "Content ratings successfully saved."
 msgstr "内容分级保存成功。"
 
-#: mkt/developers/views.py:423
+#: mkt/developers/views.py:421
 msgid "Application for preload successfully submitted."
 msgstr "成功提交预载入应用。"
 
-#: mkt/developers/views.py:426
+#: mkt/developers/views.py:424
 msgid "There was an error with the form."
 msgstr "表单中存在错误。"
 
-#: mkt/developers/views.py:457
+#: mkt/developers/views.py:455
 msgid "Version successfully edited."
 msgstr "版本编辑成功。"
 
-#: mkt/developers/views.py:498
+#: mkt/developers/views.py:496
 msgid "Version successfully made public."
 msgstr "该版本已成功发布。"
 
-#: mkt/developers/views.py:513
+#: mkt/developers/views.py:511
 msgid "Version \"{0}\" deleted."
 msgstr "版本 \"{0}\" 已删除。"
 
-#: mkt/developers/views.py:984
+#: mkt/developers/views.py:982
 msgid "Terms of service accepted."
 msgstr "已接受服务条款。"
 
-#: mkt/developers/views.py:996
+#: mkt/developers/views.py:994
 msgid "Users with the admin role cannot use the API."
 msgstr "管理员角色的用户不能使用这个 API。"
 
-#: mkt/developers/views.py:1004
+#: mkt/developers/views.py:1002
 msgid "No such API key."
 msgstr "没有这个 API 密钥。"
 
-#: mkt/developers/views.py:1016
+#: mkt/developers/views.py:1014
 msgid "New API key generated."
 msgstr "新 API 密钥已生成。"
 
-#: mkt/developers/views.py:1034
+#: mkt/developers/views.py:1032
 msgid "Created blocklisted version."
 msgstr "创建封锁版本。"
 
-#: mkt/developers/views.py:1036
+#: mkt/developers/views.py:1034
 msgid "App already blocklisted."
 msgstr "应用已封锁。"
 
-#: mkt/developers/views_payments.py:75 mkt/developers/views_payments.py:92
+#: mkt/developers/views_payments.py:83 mkt/developers/views_payments.py:100
 msgid "We encountered a problem connecting to the payment server."
 msgstr "连接到支付服务器时遇到了问题。"
 
-#: mkt/developers/views_payments.py:169
+#: mkt/developers/views_payments.py:180
 msgid "Credit card"
 msgstr "信用卡"
 
-#: mkt/developers/views_payments.py:170
+#: mkt/developers/views_payments.py:181
 msgid "Carrier"
 msgstr "运营商"
 
-#: mkt/developers/views_payments.py:291
+#: mkt/developers/views_payments.py:302
 msgid "A server error occurred when retrieving the application key."
 msgstr "接收应用程序密钥时服务器出现错误。"
 
-#: mkt/developers/views_payments.py:298
+#: mkt/developers/views_payments.py:309
 msgid "Secret was reset successfully."
 msgstr "密文重置成功。"
 
-#: mkt/developers/views_payments.py:302
+#: mkt/developers/views_payments.py:313
 msgid "Key and secret were created successfully."
 msgstr "成功创建密钥和密文。"
 
-#: mkt/developers/views_payments.py:326
+#: mkt/developers/views_payments.py:337
 msgid "Your app is not configured for in-app payments."
 msgstr "您的应用没有配置应用内支付。"
 
-#: mkt/developers/views_payments.py:332
+#: mkt/developers/views_payments.py:343
 msgid "No payment account for this app."
 msgstr "这个应用没有支付帐号。"
 
@@ -16356,19 +16350,19 @@ msgstr "数量"
 msgid "Test App Validation"
 msgstr "测试应用验证"
 
-#: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
+#: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:71
 msgid "Submit your app manifest URL"
 msgstr "提交您的应用清单网址"
 
-#: mkt/developers/templates/developers/validate_addon.html:35 mkt/submit/templates/submit/manifest.html:74
+#: mkt/developers/templates/developers/validate_addon.html:35 mkt/submit/templates/submit/manifest.html:88
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr "<strong>不要忘记协议！</strong> 尝试添加 <a href=\"#\">%(http)s</a> 或者 <a href=\"#\">%(https)s</a>。"
 
-#: mkt/developers/templates/developers/validate_addon.html:43 mkt/submit/templates/submit/manifest.html:82
+#: mkt/developers/templates/developers/validate_addon.html:43 mkt/submit/templates/submit/manifest.html:96
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr "清单网址必须以一个协议（例如 <code>http://</code> 或者 <code>https://</code>）开头并且通常使用 <code>.webapp</code> 扩展名。"
 
-#: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
+#: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:139
 msgid "Learn more about submitting an app."
 msgstr "详细了解有关提交应用的信息。"
 
@@ -16389,7 +16383,7 @@ msgid "Submit An App"
 msgstr "提交一个应用"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:129 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30 mkt/reviewers/templates/reviewers/includes/details.html:139 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
 msgid "Team Members"
 msgstr "团队成员"
 
@@ -16730,7 +16724,7 @@ msgid "View API documentation"
 msgstr "查看 API 文档"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:25 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
-#: mkt/search/forms.py:102
+#: mkt/search/forms.py:116
 msgid "Manifest URL"
 msgstr "清单网址"
 
@@ -16940,12 +16934,12 @@ msgstr "状态和版本"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:69 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:526
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:539
 msgid "Content Ratings"
 msgstr "内容评级"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
-#: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:166
+#: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:178
 msgid "In-App Payments"
 msgstr "应用内支付"
 
@@ -16978,11 +16972,7 @@ msgstr "价格："
 msgid "Set up Payment Account"
 msgstr "设置支付账户"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:55
-msgid "Change Devices"
-msgstr "更改设备"
-
-#: mkt/developers/templates/developers/apps/listing/items.html:61
+#: mkt/developers/templates/developers/apps/listing/items.html:57
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr "<strong class=\"rating-notice alert-notice\">如果在 %(pretty_date)s 之前这个应用依然没有内容评级，则会被停用：</strong><a href=\"%(rating_url)s\">设置内容评级</a>"
 
@@ -17075,7 +17065,7 @@ msgstr "可以在发送给您的证书中找到安全码。这是一组字母数
 msgid "Rating System"
 msgstr "分级系统"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:210
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:222
 msgid "Region"
 msgstr "地区"
 
@@ -17152,121 +17142,133 @@ msgstr "以下密钥/密文仅能在开发应用过程中，用于模拟应用�
 msgid "Generate Keys"
 msgstr "生成密钥"
 
-#: mkt/developers/templates/developers/payments/premium.html:51
+#: mkt/developers/templates/developers/payments/premium.html:52
 msgid "App Compatibility"
 msgstr "应用兼容性"
 
-#: mkt/developers/templates/developers/payments/premium.html:65
+#: mkt/developers/templates/developers/payments/premium.html:66
 msgid "Change to Free"
 msgstr "改为免费"
 
-#: mkt/developers/templates/developers/payments/premium.html:66
+#: mkt/developers/templates/developers/payments/premium.html:67
 msgid "Changing to Free will put your app back into review."
 msgstr "改为免费时您的应用需要再次审核。"
 
-#: mkt/developers/templates/developers/payments/premium.html:82
+#: mkt/developers/templates/developers/payments/premium.html:79
 msgid "Paid mode requires that your app only supports:"
 msgstr "付费模式的应用仅支持："
 
-#: mkt/developers/templates/developers/payments/premium.html:83 mkt/developers/templates/developers/payments/premium.html:85 mkt/submit/templates/submit/manifest.html:44
+#: mkt/developers/templates/developers/payments/premium.html:80 mkt/developers/templates/developers/payments/premium.html:82 mkt/submit/templates/submit/manifest.html:42
 msgid "Paid / In-app"
 msgstr "付费版 / 应用内购买"
 
-#: mkt/developers/templates/developers/payments/premium.html:94
+#: mkt/developers/templates/developers/payments/premium.html:91
 msgid "Change to Paid"
 msgstr "改为收费"
 
-#: mkt/developers/templates/developers/payments/premium.html:95
+#: mkt/developers/templates/developers/payments/premium.html:92
 msgid "Changing to Paid will put your app back into review."
 msgstr "改为收费时你的应用需要再次审核。"
 
-#: mkt/developers/templates/developers/payments/premium.html:103
+#: mkt/developers/templates/developers/payments/premium.html:96
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr "了解<a href=\"%(payments_url)s\" target=\"_blank\">不同的付款类型</a>。<br />了解<a href=\"%(receipts_url)s\" target=\"_blank\">验证购买收据</a>。"
 
-#: mkt/developers/templates/developers/payments/premium.html:114 mkt/developers/templates/developers/payments/includes/account_list.html:6
+#: mkt/developers/templates/developers/payments/premium.html:105 mkt/submit/templates/submit/manifest.html:51
+msgid "Select the form factors your app supports"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/premium.html:109 mkt/submit/templates/submit/manifest.html:55
+msgid "Responsive"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/premium.html:110 mkt/submit/templates/submit/manifest.html:56
+msgid "all form factors"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/premium.html:126 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
 msgstr "付款帐号"
 
-#: mkt/developers/templates/developers/payments/premium.html:119
+#: mkt/developers/templates/developers/payments/premium.html:131
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
 msgstr "您的应用程序目前不完整。请选择一个付款帐号以及价位来恢复它。"
 
-#: mkt/developers/templates/developers/payments/premium.html:136
+#: mkt/developers/templates/developers/payments/premium.html:148
 msgid "Add, manage or view transactions for your payment account"
 msgstr "添加、管理或查看支付账户的交易"
 
-#: mkt/developers/templates/developers/payments/premium.html:151
+#: mkt/developers/templates/developers/payments/premium.html:163
 msgid "Prices and Countries"
 msgstr "价格和国家"
 
-#: mkt/developers/templates/developers/payments/premium.html:167
+#: mkt/developers/templates/developers/payments/premium.html:179
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr "你的应用是否使用 Mozilla 的应用内支付平台？"
 
-#: mkt/developers/templates/developers/payments/premium.html:177
+#: mkt/developers/templates/developers/payments/premium.html:189
 msgid "A server error occurred. Please try again later."
 msgstr "服务器发生错误。请稍后重试。"
 
-#: mkt/developers/templates/developers/payments/premium.html:183
+#: mkt/developers/templates/developers/payments/premium.html:195
 msgid "Not applicable"
 msgstr "不适用"
 
-#: mkt/developers/templates/developers/payments/premium.html:187
+#: mkt/developers/templates/developers/payments/premium.html:199
 msgid "Regions"
 msgstr "地区"
 
-#: mkt/developers/templates/developers/payments/premium.html:193
+#: mkt/developers/templates/developers/payments/premium.html:205
 msgid "Available Regions"
 msgstr "可用地区"
 
-#: mkt/developers/templates/developers/payments/premium.html:198
+#: mkt/developers/templates/developers/payments/premium.html:210
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr "在<a href=\"%(status_url)s\" target=\"_blank\">状态页面</a>可查看当前正在进行销售的国家。"
 
-#: mkt/developers/templates/developers/payments/premium.html:205
+#: mkt/developers/templates/developers/payments/premium.html:217
 msgid "Your app will be available in the following selected regions:"
 msgstr "您的应用程序将在下列选中的地区可用："
 
-#: mkt/developers/templates/developers/payments/premium.html:211
+#: mkt/developers/templates/developers/payments/premium.html:223
 msgid "Retail price"
 msgstr "零售价格"
 
-#: mkt/developers/templates/developers/payments/premium.html:212
+#: mkt/developers/templates/developers/payments/premium.html:224
 msgid "local currency"
 msgstr "当地货币"
 
-#: mkt/developers/templates/developers/payments/premium.html:213
+#: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Billing method"
 msgstr "付款方式"
 
-#: mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/payments/premium.html:236
 msgid "Other regions"
 msgstr "其他地区"
 
-#: mkt/developers/templates/developers/payments/premium.html:226
+#: mkt/developers/templates/developers/payments/premium.html:238
 msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr "只要基于您选定的价格点的付款功能已开通，您的应用就会在下述地区发布。如果要排除一个地区，请在保存之前选空对应的复选框。"
 
-#: mkt/developers/templates/developers/payments/premium.html:248
+#: mkt/developers/templates/developers/payments/premium.html:260
 msgid "Regions and Listings"
 msgstr "地区和列表"
 
-#: mkt/developers/templates/developers/payments/premium.html:263
+#: mkt/developers/templates/developers/payments/premium.html:275
 msgid "Promote as upgrade to free version"
 msgstr "以升级至免费版本方式促销"
 
-#: mkt/developers/templates/developers/payments/premium.html:273
+#: mkt/developers/templates/developers/payments/premium.html:285
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr "如果你有免费的应用，可以在这里将收费版本的应用链接至免费版本以促进销售。"
 
-#: mkt/developers/templates/developers/payments/premium.html:281
+#: mkt/developers/templates/developers/payments/premium.html:293
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr "链接这个应用可以促进与免费版本对应的增值收费版的销量。"
 
-#: mkt/developers/templates/developers/payments/premium.html:288
+#: mkt/developers/templates/developers/payments/premium.html:300
 msgid "No free apps"
 msgstr "没有免费应用"
 
@@ -17746,7 +17748,7 @@ msgid "Developing Game Apps"
 msgstr "开发游戏应用"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143 mkt/lookup/templates/lookup/app_summary.html:81 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47
-#: mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:532
+#: mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:545
 msgid "Payments"
 msgstr "支付"
 
@@ -17825,6 +17827,10 @@ msgstr "世界最热门的品牌和所有您最喜爱的应用都已经入驻火
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
 msgstr "一个真正跨平台，跨设备，非专有的环境，期待世界上最好的全球化和本地化 HTML5 应用。"
+
+#: mkt/ecosystem/templates/ecosystem/partners.html:95
+msgid "Android smartphones"
+msgstr "Android 智能手机"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -18816,13 +18822,13 @@ msgstr "收据类型"
 msgid "Manifest location"
 msgstr "资源配置文件位置"
 
-#: mkt/reviewers/forms.py:28
+#: mkt/reviewers/forms.py:29
 msgid "Any Status"
 msgstr "任何状态"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
-msgid "Device Types:"
-msgstr "设备类型："
+msgid "Platforms:"
+msgstr ""
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -18962,10 +18968,10 @@ msgid "Only senior reviewers can review blocklisted apps."
 msgstr "只有资深审核者可以审核封锁的应用。"
 
 #: mkt/reviewers/views.py:305
-msgid "Device(s) changed by reviewer: {0}"
-msgstr "审核者更改了设备：{0}"
+msgid "Platform(s) changed by reviewer: {0}"
+msgstr ""
 
-#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
+#: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:38 mkt/submit/forms.py:47 mkt/submit/forms.py:56
 msgid "Removed {0}"
 msgstr "已移除{0}"
 
@@ -18981,11 +18987,6 @@ msgstr "已成功处理 \"{0}\" （+{1} 点，共 {2} ）。"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
 msgstr "您目前没有审核任何应用。"
-
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:24 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:6
-msgid "Devices"
-msgstr "设备"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:35 mkt/reviewers/templates/reviewers/apps_reviewing.html:75 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
@@ -19080,19 +19081,19 @@ msgstr "应用尚未完成提交"
 msgid "Tested with:"
 msgstr "已测试："
 
-#: mkt/reviewers/templates/reviewers/review.html:155
+#: mkt/reviewers/templates/reviewers/review.html:154
 msgid "Browse"
 msgstr "浏览"
 
-#: mkt/reviewers/templates/reviewers/review.html:167
+#: mkt/reviewers/templates/reviewers/review.html:166
 msgid "Attach another file"
 msgstr "添加另一个附件"
 
-#: mkt/reviewers/templates/reviewers/review.html:170
+#: mkt/reviewers/templates/reviewers/review.html:169
 msgid "Device Override:"
 msgstr "排除设备："
 
-#: mkt/reviewers/templates/reviewers/review.html:176
+#: mkt/reviewers/templates/reviewers/review.html:175
 msgid "Minimum Requirements Override:"
 msgstr "覆盖最低需求："
 
@@ -19128,15 +19129,15 @@ msgstr "该应用尚无评分"
 msgid "Total Downloads"
 msgstr "总下载量"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
-msgid "Device Types"
-msgstr "设备类型"
+#: mkt/reviewers/templates/reviewers/includes/details.html:124
+msgid "Form factors"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:147
+#: mkt/reviewers/templates/reviewers/includes/details.html:157
 msgid "Requirements"
 msgstr "需求"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:171
+#: mkt/reviewers/templates/reviewers/includes/details.html:181
 msgid "More about this app"
 msgstr "更多关于此应用"
 
@@ -19181,67 +19182,75 @@ msgstr "主题队列"
 msgid "Theme Logs"
 msgstr "主题日志"
 
-#: mkt/search/forms.py:20
+#: mkt/search/forms.py:21
 msgid "Reviewed"
 msgstr "已审核"
 
-#: mkt/search/forms.py:29
+#: mkt/search/forms.py:30
 msgid "Paid"
 msgstr "已经支付"
 
-#: mkt/search/forms.py:33
+#: mkt/search/forms.py:34
 msgid "Any App Type"
 msgstr "任何应用类型"
 
-#: mkt/search/forms.py:36
+#: mkt/search/forms.py:37
 msgid "Privileged packaged app"
 msgstr "特权封装应用"
 
-#: mkt/search/forms.py:41
+#: mkt/search/forms.py:42
 msgid "Free with In-app"
 msgstr "免费（应用内付款）"
 
-#: mkt/search/forms.py:43
+#: mkt/search/forms.py:44
 msgid "Premium with In-app"
 msgstr "付费（应用内付款）"
 
-#: mkt/search/forms.py:44
+#: mkt/search/forms.py:45
 msgid "Other System for In-App"
 msgstr "其他应用内付款系统"
 
-#: mkt/search/forms.py:48
+#: mkt/search/forms.py:49
 msgid "Any Device Type"
 msgstr "任何设备类型"
 
-#: mkt/search/forms.py:51
-msgid "Tablet"
-msgstr "工具栏"
+#: mkt/search/forms.py:63
+msgid "Any Platform"
+msgstr ""
 
-#: mkt/search/forms.py:68
+#: mkt/search/forms.py:67
+msgid "Any Form Factor"
+msgstr ""
+
+#: mkt/search/forms.py:77
 msgid "Search for apps"
 msgstr "搜索应用"
 
-#: mkt/search/forms.py:89
+#: mkt/search/forms.py:98
 msgid "Add-on type"
 msgstr "附加组件类型"
 
-#: mkt/search/forms.py:94
+#: mkt/search/forms.py:103
 msgid "Device type"
 msgstr "设备类型"
 
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:108
+msgid "Form Factor"
+msgstr ""
+
+#: mkt/search/forms.py:111
 msgid "Premium types"
 msgstr "付费类型"
 
-#: mkt/search/forms.py:101
+#: mkt/search/forms.py:115
 msgid "App type"
 msgstr "应用类型"
 
-#: mkt/search/forms.py:104
+#: mkt/search/forms.py:118
 msgid "Works offline"
 msgstr "可离线工作"
 
-#: mkt/search/forms.py:106
+#: mkt/search/forms.py:120
 msgid "Supported languages"
 msgstr "支持的语言"
 
@@ -19325,81 +19334,85 @@ msgstr "周"
 msgid "Quarter"
 msgstr "季度"
 
-#: mkt/submit/forms.py:33
-msgid "Device(s) changed: {0}"
-msgstr "设备已更改： {0}"
+#: mkt/submit/forms.py:35
+msgid "Platform(s) changed: {0}"
+msgstr ""
+
+#: mkt/submit/forms.py:44
+msgid "Form Factor(s) changed: {0}"
+msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:43
+#: mkt/submit/forms.py:54
 msgid "Requirements changed: {0}"
 msgstr "需求已更改：{0}"
 
-#: mkt/submit/forms.py:51
+#: mkt/submit/forms.py:62
 msgid "Cannot be free and paid."
 msgstr "无法免费和付费。"
 
-#: mkt/submit/forms.py:52
-msgid "Please select a device."
-msgstr "请选择一个设备。"
+#: mkt/submit/forms.py:63
+msgid "Please select a platform."
+msgstr ""
 
-#: mkt/submit/forms.py:53
+#: mkt/submit/forms.py:64
 msgid "Packaged apps are not yet supported for those platforms."
 msgstr "那些平台尚不支持封装应用。"
 
-#: mkt/submit/forms.py:147
+#: mkt/submit/forms.py:177
 msgid "Agree and Continue"
 msgstr "同意并继续"
 
-#: mkt/submit/forms.py:277
+#: mkt/submit/forms.py:307
 msgid "When should your app be made available for sale?"
 msgstr "您的应用什么时候可以销售？"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
-#: mkt/submit/forms.py:284
+#: mkt/submit/forms.py:314
 msgid "App to upgrade from"
 msgstr "应用升级源于"
 
-#: mkt/submit/forms.py:351
+#: mkt/submit/forms.py:381
 msgid "Privacy Policy:"
 msgstr "隐私政策："
 
-#: mkt/submit/forms.py:352
+#: mkt/submit/forms.py:382
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
 msgstr "解释从用户的电脑中传送了哪些数据并用作何用是一项必须的隐私政策。"
 
-#: mkt/submit/forms.py:356
+#: mkt/submit/forms.py:386
 msgid "Homepage:"
 msgstr "主页："
 
-#: mkt/submit/forms.py:357
+#: mkt/submit/forms.py:387
 msgid "If your app has another homepage, enter its address here."
 msgstr "如果您的应用有另一个主页，在这里输入地址。"
 
-#: mkt/submit/forms.py:361
+#: mkt/submit/forms.py:391
 msgid "Support Website:"
 msgstr "支持的站点："
 
-#: mkt/submit/forms.py:362
+#: mkt/submit/forms.py:392
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "如果您的应用有支持网站或者论坛，在这里输入地址。"
 
-#: mkt/submit/forms.py:366
+#: mkt/submit/forms.py:396
 msgid "Support Email:"
 msgstr "用户支持邮箱："
 
-#: mkt/submit/forms.py:367
+#: mkt/submit/forms.py:397
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr "这个邮件地址会公开显示在应用市场以便最终用户联系您获得支持。邮件地址会公开显示在应用详情页面。"
 
-#: mkt/submit/forms.py:374
+#: mkt/submit/forms.py:404
 msgid "Does your app require Flash support?"
 msgstr "您的应用是否需要 Flash 支持？"
 
-#: mkt/submit/forms.py:382
+#: mkt/submit/forms.py:412
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr "一旦通过审核就在火狐应用市场中发布我的应用。"
 
-#: mkt/submit/forms.py:384
+#: mkt/submit/forms.py:414
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
@@ -19472,19 +19485,15 @@ msgstr "管理我的应用"
 msgid "Submit Another App"
 msgstr "提交另一个应用"
 
-#: mkt/submit/templates/submit/manifest.html:34
-msgid "Device Type"
-msgstr "设备类型"
-
-#: mkt/submit/templates/submit/manifest.html:108
+#: mkt/submit/templates/submit/manifest.html:123
 msgid "App Minimum Requirements"
 msgstr "应用最低需求"
 
-#: mkt/submit/templates/submit/manifest.html:113
+#: mkt/submit/templates/submit/manifest.html:128
 msgid "<b>What's next:</b> fill out the rest of your app's details"
 msgstr "<b>下一步：</b>补充您的应用的其他详情"
 
-#: mkt/submit/templates/submit/manifest.html:127
+#: mkt/submit/templates/submit/manifest.html:142
 msgid "Learn more about <b>packaged apps</b> on MDN."
 msgstr "在 MDN 上进一步了解<b>封装应用</b>。"
 
@@ -19587,7 +19596,7 @@ msgstr "要想开始，请阅读并接受我们的<strong>开发者协议</stron
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla 可以向我发送有关应用开发者的新闻与调查的邮件"
 
-#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1945
+#: mkt/submit/tests/test_forms.py:226 mkt/webapps/tests/test_models.py:1985
 msgid "Héllo"
 msgstr "您好"
 
@@ -19629,57 +19638,61 @@ msgstr "清除"
 msgid "Expand"
 msgstr "展开"
 
-#: mkt/webapps/models.py:439
+#: mkt/webapps/models.py:449
 msgid "You must provide a support email."
 msgstr "您必须提供一个支持的邮箱。"
 
-#: mkt/webapps/models.py:441
+#: mkt/webapps/models.py:451
 msgid "You must provide an app name."
 msgstr "您至少应该填写一个应用名称。"
 
-#: mkt/webapps/models.py:443
-msgid "You must provide at least one device type."
-msgstr "您应该提供至少一个设备类型。"
+#: mkt/webapps/models.py:454
+msgid "You must provide at least one platform."
+msgstr ""
 
-#: mkt/webapps/models.py:446
+#: mkt/webapps/models.py:456
+msgid "You must provide at least one form_factor."
+msgstr ""
+
+#: mkt/webapps/models.py:459
 msgid "You must provide at least one category."
 msgstr "您必须提供至少一个种类。"
 
-#: mkt/webapps/models.py:493
+#: mkt/webapps/models.py:506
 msgid "You must set up content ratings."
 msgstr "必须设置内容评级。"
 
-#: mkt/webapps/models.py:495
+#: mkt/webapps/models.py:508
 msgid "You must set up a payment account."
 msgstr "必须设置支付账号。"
 
-#: mkt/webapps/models.py:520
+#: mkt/webapps/models.py:533
 msgid "This app's submission process has not been fully completed."
 msgstr "程序提交步骤尚未完全完成。"
 
-#: mkt/webapps/models.py:527
+#: mkt/webapps/models.py:540
 msgid "This app needs to get a content rating."
 msgstr "该程序需要获取内容分级。"
 
-#: mkt/webapps/models.py:533
+#: mkt/webapps/models.py:546
 msgid "This app needs a payment account set up."
 msgstr "该程序需要设置一个支付账户。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2294
+#: mkt/webapps/models.py:2348
 msgid "awaiting approval"
 msgstr "等待审核"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2298
+#: mkt/webapps/models.py:2352
 msgid "requires additional review"
 msgstr "需要额外审核"
 
-#: mkt/webapps/models.py:2349
+#: mkt/webapps/models.py:2403
 msgid "{region} approval status"
 msgstr "{region} 审核状态"
 
-#: mkt/webapps/models.py:2354
+#: mkt/webapps/models.py:2408
 msgid "{region} nomination date"
 msgstr "{region} 提交日期"
 

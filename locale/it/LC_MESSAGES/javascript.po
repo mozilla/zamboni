@@ -1171,12 +1171,8 @@ msgstr[1] "Imposta la maxversion dei componenti aggiuntivi {0} a {1} e invia ema
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-"Invia una email all’autore del componente aggiuntivo {2} che non ha superato "
-"la validazione."
-msgstr[1] ""
-"Invia una email agli autori del componente aggiuntivo {2} che non ha "
-"superato la validazione."
+msgstr[0] "Invia una email all’autore del componente aggiuntivo {2} che non ha superato la validazione."
+msgstr[1] "Invia una email agli autori del componente aggiuntivo {2} che non ha superato la validazione."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
