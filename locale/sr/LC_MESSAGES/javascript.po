@@ -186,9 +186,9 @@ msgstr[2] "Ваша апликацијa није прошла проверу - {
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Ваша апликацијa није прошла проверу - {0} грешка и {1} message(s)."
-msgstr[1] "Ваша апликацијa није прошла проверу - {0} грешке и {1} message(s)."
-msgstr[2] "Ваша апликацијa није прошла проверу - {0} грешака и {1} message(s)."
+msgstr[0] "Ваша апликацијa је прошла проверу без грешака и {0} message(s)."
+msgstr[1] "Ваша апликацијa је прошла проверу без грешака и {0} message(s)."
+msgstr[2] "Ваша апликацијa је прошла проверу без грешака и {0} message(s)."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
