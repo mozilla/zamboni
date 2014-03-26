@@ -22,6 +22,7 @@
     {% if media_origin -%}
       <meta name="dns-prefetch" href="{{ media_origin }}">
     {% endif -%}
+    {{ newrelic_header() if repo == 'fireplace' }}
   </head>
   <body class="home{{ ' overlayed' if repo == 'fireplace' }}" data-languages="{{ settings.AMO_LANGUAGES|json }}" data-settings="{{ site_settings|json }}" data-build-id-js="{{ BUILD_ID_JS }}" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
 
@@ -57,6 +58,6 @@
     {% endif -%}
     <script type="text/javascript" src="{{ media(repo + '/js/l10n.js') }}"></script>
     <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
-
+    {{ newrelic_footer() if repo == 'fireplace' }}
   </body>
 </html>
