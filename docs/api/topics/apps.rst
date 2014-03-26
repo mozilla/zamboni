@@ -69,8 +69,8 @@ App
                 "en-US": "Description in english",
                 "fr": "Description en français"
             },
-            "device_types": [
-                "firefoxos"
+            "form_factors": [
+                "mobile"
             ],
             "homepage": {
                 "en-US": "http://www.example.com/"
@@ -89,6 +89,9 @@ App
             },
             "payment_account": null,
             "payment_required": false,
+            "platforms": [
+                "firefoxos"
+            ],
             "premium_type": "free",
             "previews": [
                 {
@@ -187,9 +190,10 @@ App
     :type default_locale: string
     :param description: The app's description.
     :type description: string|object
-    :param device_types: An array of strings representing the devices the app
-        is marked as compatible with. Currently available devices names are
-        ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``.
+    :param form_factors: An array of strings representing the form factors the
+        app is marked as compatible with. Currently available form factors are
+        ``desktop``, ``mobile``, ``tablet``.
+    :type platforms: array
     :param homepage: The app's homepage.
     :type homepage: string|object
     :param icons: An object containing information about the app icons. The
@@ -209,6 +213,10 @@ App
         could be that ``payment_required`` is ``true``, but price is ``null``.
         In this case, the app cannot be bought.
     :type payment_required: boolean
+    :param platforms: An array of strings representing the platforms the app
+        is marked as compatible with. Currently available platforms are
+        ``desktop``, ``android``, ``firefoxos``.
+    :type platforms: array
     :param premium_type: One of ``free``, ``premium``, ``free-inapp``,
         ``premium-inapp``. If ``premium`` or ``premium-inapp`` the app should
         be bought, check the ``price`` field to determine if it can.

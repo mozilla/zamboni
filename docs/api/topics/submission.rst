@@ -176,6 +176,9 @@ Creating an App
     :type categories: array
     :param required description: long description. Some HTML supported.
     :type description: string
+    :param required form_factor: a list of the form factors at least one of:
+        `desktop`, `mobile`, `tablet`.
+    :type platforms: array
     :param required privacy_policy: your privacy policy. Some HTML supported.
     :type privacy_policy: string
     :param optional homepage: a URL to your apps homepage.
@@ -184,10 +187,9 @@ Creating an App
     :type support_url: string
     :param required support_email: the email address for support.
     :type support_email: string
-    :param required device_types: a list of the device types at least one of:
-        `desktop`, `mobile`, `tablet`, `firefoxos`. `mobile` and `tablet` both
-        refer to Android mobile and tablet. As opposed to Firefox OS.
-    :type device_types: array
+    :param required platforms: a list of the platforms at least one of:
+        `desktop`, `firefoxos`, `android`.
+    :type platforms: array
     :param required premium_type: One of `free`, `premium`,
         `free-inapp`, `premium-inapp`, or `other`.
     :type premium_type: string
@@ -329,7 +331,7 @@ Valid transitions that users can initiate are:
             "error_message": {
                 "status": [
                     "You must provide a support email.",
-                    "You must provide at least one device type.",
+                    "You must provide at least one platform.",
                     "You must provide at least one category.",
                     "You must upload at least one screenshot or video.",
                     "You must set up content ratings.",

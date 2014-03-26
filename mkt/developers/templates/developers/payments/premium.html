@@ -16,15 +16,15 @@
      {{ {'href': '#',
          'id': item[0],
          'class': 'island choice' +
-                  (' selected' if form.device_data[item[0]] else '') +
+                  (' selected' if form.platform_data[item[0]] else '') +
                   (' unclickable' if not can_change else ''),
          'data-value': item[0],
-         'title': DEVICE_LOOKUP[item[0]]
+         'title': PLATFORM_SUMMARIES[item[0]]
         }|xmlattr }}>
       <h3>{{ item[1] }}</h3>
       {%- if can_change -%}
         <div class="listing-footer">
-          <input type="checkbox" {{ 'checked' if form.device_data[item[0]] }}>
+          <input type="checkbox" {{ 'checked' if form.platform_data[item[0]] }}>
         </div>
       {%- endif -%}
     </{{ tag }}>
@@ -44,6 +44,7 @@
       <div class="hidden">
         {{ form.free_platforms }}
         {{ form.paid_platforms }}
+        {{ form_factor_form.form_factors }}
       </div>
 
       <section id="submit-payment-type">
@@ -64,10 +65,6 @@
               <div id="free-tab-save" class="update-payment-type">
                 <button data-type="free">{{ _('Change to Free') }}</button>
                 {{ _('Changing to Free will put your app back into review.') }}
-              </div>
-            {% else %}
-              <div id="compat-save-button" class="hidden update-payment-type">
-                <button>{{ _('Save Changes') }}</button>
               </div>
             {% endif %}
           </div>
@@ -94,10 +91,6 @@
                 <button data-type="paid">{{ _('Change to Paid') }}</button>
                 {{ _('Changing to Paid will put your app back into review.') }}
               </div>
-            {% else %}
-              <div id="compat-save-button" class="hidden update-payment-type">
-                <button>{{ _('Save Changes') }}</button>
-              </div>
             {% endif %}
             <div class="helpful-links">
               {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
@@ -106,6 +99,25 @@
                Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
               {% endtrans %}
             </div>
+          </div>
+
+          <div id="submit-form-factor" class="c">
+            <h2>{{ _('Select the form factors your app supports') }}</h2>
+            <div class="error">{{ form_factor_form.errors.form_factors }}</div>
+            <div class="form-factor-choices">
+              <a href="#" id="form-factor-responsive" class="form_factor_choice{{ ' selected' if is_responsive }}" data-value="responsive">
+                <h3>{{ _('Responsive') }}</h3>
+                <div>({{ _('all form factors') }})</div>
+              </a>
+              {%- for id, ff in form_factor_form.fields['form_factors'].choices -%}
+                <a href="#" id="form-factor-{{ ff.slug }}" class="form_factor_choice form-fields{{ ' selected' if id in form_factor_ids }}" data-value="{{ id }}">
+                  <h3>{{ ff.name }}</h3>
+                </a>
+              {%- endfor %}
+            </div>
+          </div>
+          <div id="compat-save-button" class="update-payment-type hidden">
+            <button class="button">{{ _('Save Changes') }}</button>
           </div>
         </div>
       </section>

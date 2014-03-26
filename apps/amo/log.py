@@ -504,18 +504,18 @@ class VIDEO_ERROR(_LOG):
     short = _(u'Video removed')
 
 
-class REREVIEW_DEVICES_ADDED(_LOG):
+class REREVIEW_PLATFORMS_ADDED(_LOG):
     id = 75
-    format = _(u'{addon} re-review because of new device(s) added.')
-    short = _(u'Device(s) Added')
+    format = _(u'{addon} re-review because of new platform(s) added.')
+    short = _(u'Platforms(s) Added')
     keep = True
     review_queue = True
 
 
-class REVIEW_DEVICE_OVERRIDE(_LOG):
+class REVIEW_PLATFORM_OVERRIDE(_LOG):
     id = 76
-    format = _(u'{addon} device support manually changed by reviewer.')
-    short = _(u'Device(s) Changed by Reviewer')
+    format = _(u'{addon} platform support manually changed by reviewer.')
+    short = _(u'Platform(s) Changed by Reviewer')
     keep = True
     review_queue = True
 
@@ -532,6 +532,14 @@ class ESCALATION_VIP_APP(_LOG):
     id = 78
     format = _(u'{addon} auto-escalated because its a VIP app.')
     short = _(u'VIP auto-escalation')
+    keep = True
+    review_queue = True
+
+
+class REREVIEW_FORM_FACTORS_ADDED(_LOG):
+    id = 79
+    format = _(u'{addon} re-review because of new form factor(s) added.')
+    short = _(u'Form Factor(s) Added')
     keep = True
     review_queue = True
 

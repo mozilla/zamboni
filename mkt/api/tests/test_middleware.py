@@ -243,19 +243,10 @@ class TestFilterMiddleware(amo.tests.TestCase):
         assert 'en-US' in header['lang']
         assert '8a7d546c.32.1' in header['pro']
         assert carrier in header['carrier']
-        self.assertSetEqual(['gaia', 'mobile', 'tablet'], header['device'])
 
     def test_api_false(self):
         header = self._header(api=False)
         eq_(header, None)
-
-    def test_no_devices(self):
-        header = self._header(gaia=False, tablet=False, mobile=False)
-        assert 'device' not in header
-
-    def test_one_device(self):
-        header = self._header(gaia=True, tablet=False, mobile=False)
-        self.assertSetEqual(['gaia'], header['device'])
 
     @mock.patch('mkt.api.middleware.get_carrier')
     def test_no_carrier(self, gc):

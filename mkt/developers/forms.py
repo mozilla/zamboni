@@ -288,7 +288,8 @@ class AdminSettingsForm(PreviewForm):
                                            required=False)
     vip_app = forms.BooleanField(required=False)
     tags = forms.CharField(required=False)
-    banner_regions = JSONMultipleChoiceField(required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
+    banner_regions = JSONMultipleChoiceField(
+        required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
     banner_message = TransField(required=False)
 
     class Meta:
@@ -343,6 +344,12 @@ class AdminSettingsForm(PreviewForm):
     def clean_tags(self):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
+    def clean_mozilla_contact(self):
+        contact = self.cleaned_data.get('mozilla_contact')
+        if self.cleaned_data.get('mozilla_contact') is None:
+            return u''
+        return contact
+
     def save(self, addon, commit=True):
         if (self.cleaned_data.get('DELETE') and
             'upload_hash' not in self.changed_data and self.promo.id):
@@ -353,7 +360,7 @@ class AdminSettingsForm(PreviewForm):
             super(AdminSettingsForm, self).save(addon, True)
 
         contact = self.cleaned_data.get('mozilla_contact')
-        if contact:
+        if contact is not None:
             addon.update(mozilla_contact=contact)
 
         vip = self.cleaned_data.get('vip_app')
@@ -1007,9 +1014,9 @@ class PreloadTestPlanForm(happyforms.Form):
         widget=forms.CheckboxInput,
         label=_lazy(
             u'Please consider my app as a candidate to be pre-loaded on a '
-             'Firefox OS device. I agree to the terms and conditions outlined '
-             'above. I understand that this document is not a commitment to '
-             'pre-load my app.'
+            u'Firefox OS device. I agree to the terms and conditions outlined '
+            u'above. I understand that this document is not a commitment to '
+            u'pre-load my app.'
         ))
     test_plan = forms.FileField(
         label=_lazy(u'Upload Your Test Plan (.pdf, .xls under 2.5MB)'),

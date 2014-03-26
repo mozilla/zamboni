@@ -18,13 +18,11 @@ from waffle.models import Switch
 import amo
 import amo.tests
 from access.models import Group, GroupUser
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
+from addons.models import Addon, AddonCategory, AddonUser, Category
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
@@ -172,10 +170,9 @@ class TestEditBasic(TestEdit):
     def setUp(self):
         super(TestEditBasic, self).setUp()
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
-        self.dtype = DEVICE_TYPES.keys()[0]
+        self.platform = mkt.PLATFORM_TYPES.keys()[0]
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
-        AddonDeviceType.objects.create(addon=self.webapp,
-                                       device_type=self.dtype)
+        self.webapp.platform_set.create(platform_id=self.platform)
         self.url = self.get_url('basic')
         self.edit_url = self.get_url('basic', edit=True)
 
@@ -183,7 +180,7 @@ class TestEditBasic(TestEdit):
         return Addon.objects.get(id=337141)
 
     def get_dict(self, **kw):
-        result = {'device_types': self.dtype, 'slug': 'NeW_SluG',
+        result = {'slug': 'NeW_SluG',
                   'description': 'New description with <em>html</em>!',
                   'manifest_url': self.webapp.manifest_url,
                   'categories': [self.cat.id]}
@@ -1325,6 +1322,11 @@ class TestAdminSettings(TestAdmin):
         self.post_contact()
         webapp = self.get_webapp()
         eq_(webapp.mozilla_contact, 'a@mozilla.com')
+
+    def test_mozilla_contact_cleared(self):
+        self.post_contact(mozilla_contact='')
+        webapp = self.get_webapp()
+        eq_(webapp.mozilla_contact, '')
 
     def test_mozilla_contact_invalid(self):
         r = self.post_contact(

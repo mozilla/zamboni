@@ -21,22 +21,22 @@ import json_field
 import waffle
 from cache_nuggets.lib import memoize, memoize_key
 from elasticutils.contrib.django import F, Indexable, MappingType
+from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
 import amo
 import amo.models
 from access.acl import action_allowed, check_reviewer
 from addons import query
-from addons.models import (Addon, AddonDeviceType, AddonUpsell,
-                           attach_categories, attach_devices, attach_prices,
+from addons.models import (Addon, AddonUpsell, attach_categories, attach_prices,
                            attach_tags, attach_translations, Category)
 from addons.signals import version_changed
 from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
-from amo.utils import JSONEncoder, smart_path, to_language, urlparams
-from constants.applications import DEVICE_GAIA, DEVICE_TYPES
+from amo.utils import (JSONEncoder, smart_path, sorted_groupby, to_language,
+                       urlparams)
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from market.models import AddonPremium
@@ -55,8 +55,8 @@ from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
-                               dehydrate_interactives, get_locale_properties,
-                               get_supported_locales)
+                               dehydrate_interactives, get_device_types,
+                               get_locale_properties, get_supported_locales)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -206,12 +206,11 @@ class Webapp(Addon):
         # Attach prices.
         Addon.attach_prices(apps, apps_dict)
 
-        # FIXME: re-use attach_devices instead ?
-        for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
-            if not getattr(apps_dict[adt.addon_id], '_device_types', None):
-                apps_dict[adt.addon_id]._device_types = []
-            apps_dict[adt.addon_id]._device_types.append(
-                DEVICE_TYPES[adt.device_type])
+        # Attach platforms.
+        Webapp.attach_platforms(apps, apps_dict)
+
+        # Attach form factors.
+        Webapp.attach_form_factors(apps, apps_dict)
 
         # FIXME: attach geodata and content ratings. Maybe in a different
         # transformer that would then be called automatically for the API ?
@@ -230,13 +229,13 @@ class Webapp(Addon):
                              .select_related('version'))
 
         # Attach the files to the versions.
-        f_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(files, 'version_id'))
+        f_dict = dict((k, list(vs))
+                      for k, vs in sorted_groupby(files, 'version_id'))
         for version in versions:
             version.all_files = f_dict.get(version.id, [])
         # Attach the versions to the apps.
-        v_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(versions, 'addon_id'))
+        v_dict = dict((k, list(vs))
+                      for k, vs in sorted_groupby(versions, 'addon_id'))
         for app in apps:
             app.all_versions = v_dict.get(app.id, [])
 
@@ -245,8 +244,9 @@ class Webapp(Addon):
     @staticmethod
     def indexing_transformer(apps):
         """Attach everything we need to index apps."""
-        transforms = (attach_categories, attach_devices, attach_prices,
-                      attach_tags, attach_translations)
+        transforms = (attach_categories, Webapp.attach_form_factors,
+                      Webapp.attach_platforms, attach_prices, attach_tags,
+                      attach_translations)
         for t in transforms:
             qs = apps.transform(t)
         return qs
@@ -332,12 +332,22 @@ class Webapp(Addon):
         return urlparse.urlparse(self.app_domain)
 
     @property
-    def device_types(self):
+    def platforms(self):
         # If the transformer attached something, use it.
-        if hasattr(self, '_device_types'):
-            return self._device_types
-        return [DEVICE_TYPES[d.device_type] for d in
-                self.addondevicetype_set.order_by('device_type')]
+        if hasattr(self, '_platforms'):
+            return self._platforms
+        return [
+            mkt.PLATFORM_TYPES[p] for p in
+            self.platform_set.values_list('platform_id', flat=True)]
+
+    @property
+    def form_factors(self):
+        # If the transformer attached something, use it.
+        if hasattr(self, '_form_factors'):
+            return self._form_factors
+        return [
+            mkt.FORM_FACTOR_CHOICES[f] for f in
+            self.form_factor_set.values_list('form_factor_id', flat=True)]
 
     @property
     def origin(self):
@@ -439,8 +449,11 @@ class Webapp(Addon):
             reasons.append(_('You must provide a support email.'))
         if not self.name:
             reasons.append(_('You must provide an app name.'))
-        if not self.device_types:
-            reasons.append(_('You must provide at least one device type.'))
+
+        if not self.platforms:
+            reasons.append(_('You must provide at least one platform.'))
+        if not self.form_factors:
+            reasons.append(_('You must provide at least one form_factor.'))
 
         if not self.categories.count():
             reasons.append(_('You must provide at least one category.'))
@@ -799,8 +812,8 @@ class Webapp(Addon):
         return datetime.date.today()
 
     @classmethod
-    def from_search(cls, request, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False, filter_overrides=None):
+    def from_search(cls, request, cat=None, region=None,
+                    filter_overrides=None):
 
         filters = {
             'type': amo.ADDON_WEBAPP,
@@ -826,7 +839,16 @@ class Webapp(Addon):
             not waffle.flag_is_active(request, 'override-region-exclusion')):
             srch = srch.filter(~F(region_exclusions=region.id))
 
-        if mobile or gaia:
+        # Exclude apps that require flash on FxOS and Android.
+        platform = mkt.PLATFORM_LOOKUP.get(request.GET.get('platform'))
+        if not platform:
+            # Fall back to 'dev' for compatibility with API v1.
+            dev = request.GET.get('dev')
+            if dev == 'android':
+                platform = mkt.PLATFORM_ANDROID
+            elif dev == 'firefoxos':
+                platform = mkt.PLATFORM_FXOS
+        if platform and platform in [mkt.PLATFORM_ANDROID, mkt.PLATFORM_FXOS]:
             srch = srch.filter(uses_flash=False)
 
         return srch
@@ -1330,6 +1352,30 @@ class Webapp(Addon):
         if self.is_rated():
             return self.content_ratings.order_by('-modified')[0].modified
 
+    @staticmethod
+    def attach_platforms(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        platforms = (WebappPlatform.objects.no_cache()
+                     .filter(addon__in=addon_dict)
+                     .values_list('addon', 'platform_id'))
+        for addon, platforms in sorted_groupby(platforms, lambda x: x[0]):
+            addon_dict[addon]._platforms = [mkt.PLATFORM_TYPES[p[1]]
+                                            for p in platforms]
+
+    @staticmethod
+    def attach_form_factors(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        form_factors = (WebappFormFactor.objects.no_cache()
+                        .filter(addon__in=addon_dict)
+                        .values_list('addon', 'form_factor_id'))
+        for addon, factors in sorted_groupby(form_factors, lambda x: x[0]):
+            addon_dict[addon]._form_factors = [mkt.FORM_FACTOR_CHOICES[ff[1]]
+                                               for ff in factors]
+
 
 class Trending(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='trending')
@@ -1506,6 +1552,8 @@ class WebappIndexer(MappingType, Indexable):
                                        'index': 'not_analyzed'},
                     'description': {'type': 'string',
                                     'analyzer': 'default_icu'},
+                    # TODO: Remove when we've fully migrated to platforms
+                    # (bug 969242).
                     'device': {'type': 'byte'},
                     'features': {
                         'type': 'object',
@@ -1513,6 +1561,7 @@ class WebappIndexer(MappingType, Indexable):
                             ('has_%s' % f.lower(), {'type': 'boolean'})
                             for f in APP_FEATURES)
                     },
+                    'form_factors': {'type': 'byte'},
                     'has_public_stats': {'type': 'boolean'},
                     'icons': {
                         'type': 'object',
@@ -1548,8 +1597,9 @@ class WebappIndexer(MappingType, Indexable):
                     # Name for sorting.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     # Name for suggestions.
-                    'name_suggest' : {'type': 'completion', 'payloads': True},
+                    'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
+                    'platforms': {'type': 'byte'},
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
                     'previews': {
@@ -1678,10 +1728,13 @@ class WebappIndexer(MappingType, Indexable):
         d['content_descriptors'] = obj.get_descriptors(es=True)
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
+        # TODO: Remove when we've fully migrated to platforms (bug 969242).
+        d['device'] = [dev.id for dev in get_device_types(obj.platforms,
+                                                          obj.form_factors)]
         d['description'] = list(
             set(string for _, string in obj.translations[obj.description_id]))
-        d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
+        d['form_factors'] = [ff.id for ff in obj.form_factors]
         d['has_public_stats'] = obj.public_stats
         d['icons'] = [{'size': icon_size} for icon_size in (16, 48, 64, 128)]
         d['interactive_elements'] = obj.get_interactives(es=True)
@@ -1707,6 +1760,7 @@ class WebappIndexer(MappingType, Indexable):
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
+        d['platforms'] = [p.id for p in obj.platforms]
         d['popularity'] = d['_boost'] = len(installed_ids)
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id} for p in obj.previews.all()]
@@ -1788,11 +1842,11 @@ class WebappIndexer(MappingType, Indexable):
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to
         # Firefox OS.
-        if DEVICE_GAIA.id in d['device'] and obj.is_public():
+        if mkt.PLATFORM_FXOS.id in d['platforms'] and obj.is_public():
             d['name_suggest'] = {
                 'input': d['name'],
                 'output': unicode(obj.id),  # We only care about the payload.
-                'weight' : d['_boost'],
+                'weight': d['_boost'],
                 'payload': {
                     'id': d['id'],
                     'modified': d['modified'],
@@ -2364,3 +2418,39 @@ for region in (mkt.regions.BR, mkt.regions.DE):
 # Save geodata translations when a Geodata instance is saved.
 models.signals.pre_save.connect(save_signal, sender=Geodata,
                                 dispatch_uid='geodata_translations')
+
+
+class WebappPlatform(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon, related_name='platform_set')
+    platform_id = models.PositiveIntegerField(
+        default=mkt.PLATFORM_DESKTOP,
+        choices=do_dictsort(mkt.PLATFORM_TYPES), db_index=True)
+
+    class Meta:
+        db_table = 'webapps_platforms'
+        unique_together = ('addon', 'platform_id')
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.addon.name, self.platform.name)
+
+    @property
+    def platform(self):
+        return mkt.PLATFORM_TYPES[self.platform_id]
+
+
+class WebappFormFactor(amo.models.ModelBase):
+    addon = models.ForeignKey(Addon, related_name='form_factor_set')
+    form_factor_id = models.PositiveIntegerField(
+        default=mkt.constants.FORM_MOBILE,
+        choices=do_dictsort(mkt.constants.FORM_FACTOR_CHOICES), db_index=True)
+
+    class Meta:
+        db_table = 'webapps_form_factors'
+        unique_together = ('addon', 'form_factor_id')
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.addon.name, self.form_factor.name)
+
+    @property
+    def form_factors(self):
+        return mkt.constants.FORM_FACTOR_CHOICES[self.form_factor_id]

@@ -1,0 +1,15 @@
+<div class="device-list c">
+  <ul>
+    {% for platform in all_platforms %}
+      {% if platform in platforms %}
+        <li class="{{ platform.slug }}" title="{{ platform.name }}">
+          {{ platform.name }}
+        </li>
+      {% else %}
+        <li class="{{ platform.slug }} unavailable" title="{{ platform.name }}">
+          {{ platform.name }} {{ _('(Unsupported)') }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

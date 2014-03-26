@@ -11,9 +11,9 @@
 {%- macro button(form, item) -%}
   <div class="wrapper">
     <a href="#" class="island choice{{ ' selected' if form.data[item[0]] == 'on' }}"
-       id="{{ item[0] }}" data-value="{{ item[0] }}">
+       id="{{ item[0] }}" data-value="{{ item[0] }}" draggable="false">
       <h3>{{ item[1] }}</h3>
-      <div>{{ DEVICE_LOOKUP[item[0]] }}</div>
+      <div>{{ PLATFORM_SUMMARIES[item[0]] }}</div>
       <div class="listing-footer"><input type="checkbox"></div>
     </a>
   </div>
@@ -30,8 +30,6 @@
     <div class="free tab active">
       {% if waffle.flag('allow-b2g-paid-submission') %}
         <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
-      {% else %}
-        <h2>{{ _('Device Type') }}</h2>
       {% endif %}
       <div class="error">{{ form.errors.free_platforms }}</div>
       {%- for item in form.fields['free_platforms'].choices -%}
@@ -48,6 +46,22 @@
         {%- endfor %}
       </div>
     {% endif %}
+
+    <div id="submit-form-factor" class="c">
+      <h2>{{ _('Select the form factors your app supports') }}</h2>
+      <div class="error">{{ form_factor_form.errors.form_factors }}</div>
+      <div class="form-factor-choices">
+        <a href="#" id="form-factor-responsive" class="form_factor_choice" data-value="responsive" draggable="false">
+          <h3>{{ _('Responsive') }}</h3>
+          <div>({{ _('all form factors') }})</div>
+        </a>
+        {%- for id, ff in form_factor_form.fields['form_factors'].choices -%}
+          <a href="#" id="form-factor-{{ ff.slug }}" class="form_factor_choice form-fields" data-value="{{ id }}" draggable="false">
+            <h3>{{ ff.name }}</h3>
+          </a>
+        {%- endfor %}
+      </div>
+    </div>
   </section>
 
   <section id="upload-file" class="island tabbable spacer"
@@ -63,7 +77,7 @@
                      placeholder="http://" data-upload-url="{{ url('mkt.developers.upload_manifest') }}">
             </div>
             <div class="vf-button">
-              <button type="submit" class="disabled" id="validate_app">{{ _('Validate') }}</button>
+              <button type="submit" id="validate_app" class="disabled">{{ _('Validate') }}</button>
             </div>
           </form>
         </label>
@@ -102,6 +116,7 @@
         {{ form.free_platforms }}
         {{ form.paid_platforms }}
         {{ form.packaged }}
+        {{ form_factor_form.form_factors }}
       </div>
 
       <div id="upload-webapp-features">

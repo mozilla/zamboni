@@ -2,9 +2,10 @@ from django import forms
 
 from tower import ugettext_lazy as _lazy
 
-from addons.models import Category
 import amo
+from addons.models import Category
 
+import mkt
 from mkt.api.forms import SluggableModelChoiceField
 
 
@@ -59,6 +60,14 @@ DEVICE_CHOICES_IDS = {
     'firefoxos': amo.DEVICE_GAIA.id,
 }
 
+PLATFORM_CHOICES = [('', _lazy(u'Any Platform'))]
+for p in mkt.PLATFORM_LIST:
+    PLATFORM_CHOICES.append((p.slug, p.name))
+
+FORM_FACTOR_CHOICES = [('', _lazy(u'Any Form Factor'))]
+for ff in mkt.FORM_FACTORS:
+    FORM_FACTOR_CHOICES.append((ff.slug, ff.name))
+
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
 FREE_LISTING_SORT_CHOICES = [(k, v) for k, v in LISTING_SORT_CHOICES
@@ -92,6 +101,11 @@ class ApiSearchForm(forms.Form):
         sluggable_to_field_name='slug', required=False)
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
+    platform = forms.ChoiceField(
+        required=False, choices=PLATFORM_CHOICES, label=_lazy(u'Platform'))
+    form_factor = forms.ChoiceField(
+        required=False, choices=FORM_FACTOR_CHOICES,
+        label=_lazy(u'Form Factor'))
     premium_types = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(), required=False,
         label=_lazy(u'Premium types'), choices=PREMIUM_CHOICES)

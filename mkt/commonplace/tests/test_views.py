@@ -25,6 +25,23 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
 
+    def test_fireplace_persona_js_not_included_on_firefox_os(self):
+        for url in ('/server.html?mccs=blah',
+                    '/server.html?mcc=blah&mnc=blah',
+                    '/server.html?nativepersona=true'):
+            res = self.client.get(url)
+            self.assertNotContains(res, 'login.persona.org/include.js')
+
+    def test_fireplace_persona_js_is_included_elsewhere(self):
+        for url in ('/server.html', '/server.html?mcc=blah'):
+            res = self.client.get(url)
+            self.assertContains(res, 'login.persona.org/include.js" async')
+
+    def test_rocketfuel_persona_js_is_included(self):
+        for url in ('/curation/', '/curation/?nativepersona=true'):
+            res = self.client.get(url)
+            self.assertContains(res, 'login.persona.org/include.js" defer')
+
 
 class TestAppcacheManifest(amo.tests.TestCase):
 

@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
-from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
@@ -21,29 +21,28 @@ from nose.tools import assert_not_equal, eq_, ok_, raises
 
 import amo
 import amo.tests
-from amo import set_user
-from amo.helpers import absolutify
-from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonRecommendation, AddonType,
-                           AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
+                           AddonRecommendation, AddonType, AddonUpsell,
+                           AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from addons.search import setup_mapping
+from amo import set_user
+from amo.helpers import absolutify
+from amo.signals import _connect, _disconnect
 from applications.models import Application, AppVersion
-from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
-from files.tests.test_models import LanguagePackBase, UploadTest
+from files.tests.test_models import UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
+from mkt.webapps.models import Webapp
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
-from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
-from mkt.webapps.models import Webapp
+from versions.models import ApplicationsVersions, Version
 
 
 class TestCleanSlug(amo.tests.TestCase):
@@ -1453,8 +1452,6 @@ class TestAddonDelete(amo.tests.TestCase):
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
         AddonDependency.objects.create(addon=addon,
             dependent_addon=addon)
-        AddonDeviceType.objects.create(addon=addon,
-            device_type=DEVICE_TYPES.keys()[0])
         AddonRecommendation.objects.create(addon=addon,
             other_addon=addon, score=0)
         AddonUpsell.objects.create(free=addon, premium=addon)

@@ -218,7 +218,10 @@ class TestAddVersion(BasePackagedAppTest):
         # In this new version we should be prechecked new ones.
         features = self.app.versions.latest().features.to_dict()
         for key, feature in features.iteritems():
-            eq_(feature, key in ('has_apps', 'has_audio'))
+            if key == 'has_qhd':
+                continue  # FxOS apps get this populated by default.
+            eq_(feature, key in ('has_apps', 'has_audio'),
+                'Extra feature %s found' % key)
 
     def test_blocklist_on_new_version(self):
         # Test app blocked, then new version, doesn't update app status, and

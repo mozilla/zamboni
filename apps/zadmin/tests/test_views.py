@@ -16,6 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+import mkt
 from amo.tests import (assert_no_validation_errors, assert_required, formset,
                        initial)
 from access.models import Group, GroupUser
@@ -1983,17 +1984,14 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_desktop_apps(self):
-        from addons.models import AddonDeviceType
         self.addon.update(type=amo.ADDON_WEBAPP)
-        AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_MOBILE.id)
+        self.addon.platform_set.create(platform_id=mkt.PLATFORM_ANDROID.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
         mail.outbox = []
-        AddonDeviceType.objects.create(addon=self.addon,
-            device_type=amo.DEVICE_DESKTOP.id)
+        self.addon.platform_set.create(platform_id=mkt.PLATFORM_DESKTOP.id)
         res = self.post(recipients='desktop_apps')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 1)

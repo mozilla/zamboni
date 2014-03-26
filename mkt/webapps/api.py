@@ -13,7 +13,6 @@ from tower import ungettext as ngettext
 
 import amo
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
-from amo.utils import no_translation
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from market.models import AddonPremium, Price
@@ -33,9 +32,10 @@ from mkt.developers import tasks
 from mkt.developers.forms import IARCGetAppInfoForm
 from mkt.regions import get_region
 from mkt.submit.api import PreviewViewSet
-from mkt.submit.forms import mark_for_rereview
+from mkt.submit.forms import mark_for_rereview, mark_for_rereview_form_factors
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.webapps.models import AppFeatures, get_excluded_in, Webapp
+from mkt.webapps.utils import get_device_types
 
 
 log = commonware.log.getLogger('z.api')
@@ -93,6 +93,8 @@ class AppSerializer(serializers.ModelSerializer):
         source='current_version.version',
         read_only=True)
     default_locale = serializers.CharField(read_only=True)
+    platforms = SemiSerializerMethodField('get_platforms')
+    form_factors = SemiSerializerMethodField('get_form_factors')
     device_types = SemiSerializerMethodField('get_device_types')
     description = TranslationSerializerField(required=False)
     homepage = TranslationSerializerField(required=False)
@@ -143,13 +145,14 @@ class AppSerializer(serializers.ModelSerializer):
         fields = [
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
-            'default_locale', 'description', 'device_types', 'homepage',
-            'icons', 'id', 'is_packaged', 'manifest_url', 'name',
-            'payment_account', 'payment_required', 'premium_type', 'previews',
-            'price', 'price_locale', 'privacy_policy', 'public_stats',
-            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
-            'status', 'support_email', 'support_url', 'supported_locales',
-            'tags', 'upsell', 'upsold', 'user', 'versions', 'weekly_downloads']
+            'default_locale', 'description', 'device_types', 'form_factors',
+            'homepage', 'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'payment_account', 'payment_required', 'platforms', 'premium_type',
+            'previews', 'price', 'price_locale', 'privacy_policy',
+            'public_stats', 'ratings', 'regions', 'release_notes',
+            'resource_uri', 'slug', 'status', 'support_email', 'support_url',
+            'supported_locales', 'tags', 'upsell', 'upsold', 'user',
+            'versions', 'weekly_downloads']
 
     def _get_region_id(self):
         request = self.context.get('request')
@@ -249,6 +252,20 @@ class AppSerializer(serializers.ModelSerializer):
         if app.public_stats:
             return app.weekly_downloads
 
+    def validate(self, attrs):
+        # Maintain backwards compatibility with API v1, which sends
+        # "device_types" instead of "platforms" and "form_factors".
+        #
+        # TODO: Remove the option to send 'device_types' when we no longer
+        # support API v1.
+        if (attrs.get('device_types') is None and (
+                attrs.get('platforms') is None or
+                attrs.get('form_factors') is None)):
+            raise serializers.ValidationError(
+                'Both "platforms" and "form_factors" are required.')
+
+        return attrs
+
     def validate_categories(self, attrs, source):
         if not attrs.get('categories'):
             raise serializers.ValidationError('This field is required.')
@@ -265,25 +282,68 @@ class AppSerializer(serializers.ModelSerializer):
 
         return attrs
 
+    def get_platforms(self, app):
+        return [n.slug for n in app.platforms]
+
+    def save_platforms(self, obj, new):
+        new_platforms = [mkt.PLATFORM_LOOKUP[p].id for p in new]
+        old_platforms = [x.id for x in obj.platforms]
+
+        added_platforms = set(new_platforms) - set(old_platforms)
+        removed_platforms = set(old_platforms) - set(new_platforms)
+
+        for p in added_platforms:
+            obj.platform_set.create(platform_id=p)
+        obj.platform_set.filter(platform_id__in=removed_platforms).delete()
+
+        # Send app to re-review queue if public and new platforms are added.
+        if added_platforms and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
+            mark_for_rereview(obj, added_platforms, removed_platforms)
+
+    def get_form_factors(self, app):
+        return [ff.slug for ff in app.form_factors]
+
+    def save_form_factors(self, obj, new):
+        new_ff = [mkt.FORM_FACTOR_LOOKUP[ff].id for ff in new]
+        old_ff = [ff.id for ff in obj.form_factors]
+
+        added_ff = set(new_ff) - set(old_ff)
+        removed_ff = set(old_ff) - set(new_ff)
+
+        for ff in added_ff:
+            obj.form_factor_set.create(form_factor_id=ff)
+        obj.form_factor_set.filter(form_factor_id__in=removed_ff).delete()
+
+        # Send app to re-review queue if public and new platforms are added.
+        if added_ff and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
+            mark_for_rereview_form_factors(obj, added_ff, removed_ff)
+
     def get_device_types(self, app):
-        with no_translation():
-            return [n.api_name for n in app.device_types]
+        # To maintain compatibility with API v1.
+        return [d.api_name for d in get_device_types(app.platforms,
+                                                     app.form_factors)]
 
-    def save_device_types(self, obj, new_types):
-        new_types = [amo.DEVICE_LOOKUP[d].id for d in new_types]
-        old_types = [x.id for x in obj.device_types]
+    def save_device_types(self, app, new):
+        # To maintain compatibility with API v1.
+        # Translate old device_types to platform and form_factors.
+        platforms = set()
+        form_factors = set()
 
-        added_devices = set(new_types) - set(old_types)
-        removed_devices = set(old_types) - set(new_types)
+        if amo.DEVICE_DESKTOP.api_name in new:
+            platforms.add(mkt.PLATFORM_DESKTOP.slug)
+            form_factors.add(mkt.FORM_DESKTOP.slug)
+        if amo.DEVICE_GAIA.api_name in new:
+            platforms.add(mkt.PLATFORM_FXOS.slug)
+            form_factors.add(mkt.FORM_MOBILE.slug)
+        if amo.DEVICE_MOBILE.api_name in new:
+            platforms.add(mkt.PLATFORM_ANDROID.slug)
+            form_factors.add(mkt.FORM_MOBILE.slug)
+        if amo.DEVICE_TABLET.api_name in new:
+            platforms.add(mkt.PLATFORM_ANDROID.slug)
+            form_factors.add(mkt.FORM_TABLET.slug)
 
-        for d in added_devices:
-            obj.addondevicetype_set.create(device_type=d)
-        for d in removed_devices:
-            obj.addondevicetype_set.filter(device_type=d).delete()
-
-        # Send app to re-review queue if public and new devices are added.
-        if added_devices and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
-            mark_for_rereview(obj, added_devices, removed_devices)
+        self.save_platforms(app, list(platforms))
+        self.save_form_factors(app, list(form_factors))
 
     def save_categories(self, obj, categories):
         before = set(obj.categories.values_list('id', flat=True))
@@ -319,13 +379,28 @@ class AppSerializer(serializers.ModelSerializer):
         premium.price = Price.objects.active().get(price=price)
         premium.save()
 
+    def validate_platforms(self, attrs, source):
+        if attrs.get('platforms'):
+            for v in attrs['platforms']:
+                if v not in mkt.PLATFORM_LOOKUP.keys():
+                    raise serializers.ValidationError(
+                        '%s is not one of the available choices.' % v)
+        return attrs
+
+    def validate_form_factors(self, attrs, source):
+        if attrs.get('form_factors'):
+            for v in attrs['form_factors']:
+                if v not in mkt.FORM_FACTOR_LOOKUP.keys():
+                    raise serializers.ValidationError(
+                        '%s is not one of the available choices.' % v)
+        return attrs
+
     def validate_device_types(self, attrs, source):
-        if attrs.get('device_types') is None:
-            raise serializers.ValidationError('This field is required.')
-        for v in attrs['device_types']:
-            if v not in amo.DEVICE_LOOKUP.keys():
-                raise serializers.ValidationError(
-                    str(v) + ' is not one of the available choices.')
+        if attrs.get('device_types'):
+            for v in attrs.get('device_types', []):
+                if v not in amo.DEVICE_LOOKUP.keys():
+                    raise serializers.ValidationError(
+                        str(v) + ' is not one of the available choices.')
         return attrs
 
     def validate_price(self, attrs, source):
@@ -353,10 +428,16 @@ class AppSerializer(serializers.ModelSerializer):
         price = attrs.pop('price', None)
         if price is not None:
             extras.append((self.save_price, price))
-        device_types = attrs['device_types']
-        if device_types:
+        platforms = attrs.pop('platforms', None)
+        if platforms is not None:
+            extras.append((self.save_platforms, platforms))
+        form_factors = attrs.pop('form_factors', None)
+        if form_factors is not None:
+            extras.append((self.save_form_factors, form_factors))
+        # To maintain compatibility with API v1.
+        device_types = attrs.pop('device_types', None)
+        if device_types is not None:
             extras.append((self.save_device_types, device_types))
-            del attrs['device_types']
         if attrs.get('app_payment_account') is None:
             attrs.pop('app_payment_account')
         instance = super(AppSerializer, self).restore_object(

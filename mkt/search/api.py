@@ -74,8 +74,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return form.cleaned_data
 
     def get_query(self, request, base_filters=None, region=None):
-        return Webapp.from_search(request, region=region, gaia=request.GAIA,
-                                  mobile=request.MOBILE, tablet=request.TABLET,
+        return Webapp.from_search(request, region=region,
                                   filter_overrides=base_filters)
 
     def apply_filters(self, request, qs, data=None, profile=None):

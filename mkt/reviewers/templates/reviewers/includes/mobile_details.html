@@ -131,12 +131,12 @@
             <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
               <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
           </dd>
-          {% with device_types = product.device_types %}
-            {% if device_types %}
-              <dt>{{ _('Device Types') }}</dt>
+          {% with platforms = product.platforms %}
+            {% if platforms %}
+              <dt>{{ _('Platforms') }}</dt>
               <dd>
-                {% for device in device_types %}
-                  {{ device.name }}{% if not loop.last %}, {% endif %}
+                {% for platform in platforms %}
+                  {{ platform.name }}{% if not loop.last %}, {% endif %}
                 {% endfor %}
               </dd>
             {% endif %}

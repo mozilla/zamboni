@@ -56,12 +56,20 @@ def commonplace(request, repo, **kwargs):
 
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
 
+    include_persona = True
+    if repo == 'fireplace':
+        if (request.GET.get('nativepersona') or
+            'mccs' in request.GET or
+            ('mcc' in request.GET and 'mnc' in request.GET)):
+            include_persona = False
+
     ctx = {
         'BUILD_ID': BUILD_ID,
         'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
+        'include_persona': include_persona,
         'repo': repo,
-        'site_settings': site_settings,
-        'robots': 'googlebot' in ua
+        'robots': 'googlebot' in ua,
+        'site_settings': site_settings
     }
 
     media_url = urlparse(settings.MEDIA_URL)

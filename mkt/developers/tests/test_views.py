@@ -18,10 +18,9 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
+from addons.models import Addon, AddonUpsell, AddonUser
 from amo.helpers import absolutify
-from amo.tests import (app_factory, assert_no_validation_errors,
-                       version_factory)
+from amo.tests import app_factory, assert_no_validation_errors, version_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
@@ -326,6 +325,7 @@ class TestMarketplace(amo.tests.TestCase):
 
     def get_data(self, **kw):
         data = {
+            'form_factors': [mkt.FORM_DESKTOP.id],
             'price': self.price.pk,
             'upsell_of': self.other_addon.pk,
             'regions': mkt.regions.REGION_IDS,
@@ -334,8 +334,7 @@ class TestMarketplace(amo.tests.TestCase):
         return data
 
     def test_initial_free(self):
-        AddonDeviceType.objects.create(
-            addon=self.addon, device_type=amo.DEVICE_GAIA.id)
+        self.addon.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert 'Change to Paid' in res.content
@@ -389,6 +388,14 @@ class TestMarketplace(amo.tests.TestCase):
         upsell = self.addon._upsell_to.all()
         eq_(len(upsell), 1)
         eq_(upsell[0].free, new)
+
+    def test_change_form_factor(self):
+        self.setup_premium()
+        res = self.client.post(
+            self.url, data=self.get_data(form_factors=[mkt.FORM_DESKTOP.id,
+                                                       mkt.FORM_MOBILE.id]))
+        eq_(res.status_code, 302)
+        eq_(self.addon.form_factors, [mkt.FORM_DESKTOP, mkt.FORM_MOBILE])
 
 
 class TestPublicise(amo.tests.TestCase):

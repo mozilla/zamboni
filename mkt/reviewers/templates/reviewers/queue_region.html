@@ -24,7 +24,7 @@
             <th>{{ sort_link(_('App'), 'name')|safe }}</th>
             <th>{{ _('Flags') }}</th>
             <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
-            <th>{{ _('Devices') }}</th>
+            <th>{{ _('Platforms') }}</th>
             <th class="payments">{{ _('Payments') }}</th>
             <th class="action">&nbsp;</th>
           </tr>
@@ -36,7 +36,7 @@
               <td class="app-name"><a href="{{ qa.app.get_url_path(src='queue-region-' + region.slug) }}" target="_blank">{{ qa.app.name }}</a></td>
               <td class="flags">{{ app_flags(qa.app) }}</td>
               <td class="waiting-time">{{ qa.created|timelabel }}</td>
-              <td>{{ device_list(qa.app) }}</td>
+              <td>{{ platform_list(qa.app) }}</td>
               <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
               <td class="action">
                 <a class="button approve" data-action="approve">{{ _('Approve') }}</button>
