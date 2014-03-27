@@ -6,12 +6,13 @@ from django.test.utils import override_settings
 import mock
 from dateutil.tz import tzutc
 from nose.tools import eq_, ok_
+from test_utils import RequestFactory
 
 import amo.tests
 from users.models import UserProfile
 
+from mkt.site.middleware import DeviceDetectionMiddleware
 from mkt.site.fixtures import fixture
-
 
 _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
@@ -284,6 +285,7 @@ class TestVaryMiddleware(amo.tests.TestCase):
         'mkt.site.middleware.RequestCookiesMiddleware',
         'mkt.site.middleware.LocaleMiddleware',
         'mkt.regions.middleware.RegionMiddleware',
+        'mkt.site.middleware.DeviceDetectionMiddleware',
     ])
     def test_no_user_agent(self):
         # We've toggled the middleware to not rewrite the application and also
@@ -345,6 +347,13 @@ class TestDeviceMiddleware(amo.tests.TestCase):
 
             r = self.client.get('/robots.txt', follow=True)
             assert getattr(r.context['request'], device.upper())
+
+    def test_xmobile(self):
+        rf = RequestFactory().get('/robots.txt')
+        for state in [True, False]:
+            rf.MOBILE = state
+            DeviceDetectionMiddleware().process_request(rf)
+            eq_(rf.MOBILE, state)
 
 
 class TestCacheHeadersMiddleware(amo.tests.TestCase):

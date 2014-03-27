@@ -21,7 +21,7 @@
           <tr class="listing-header">
             <th>{{ _('App') }}</th>
             <th>{{ _('Flags') }}</th>
-            <th>{{ _('Platforms') }}</th>
+            <th>{{ _('Devices') }}</th>
             <th></th>
           </tr>
         </thead>
@@ -47,7 +47,7 @@
                   <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
                 {% endif %}
               </td>
-              <td>{{ platform_list(app.app) }}</td>
+              <td>{{ device_list(app.app) }}</td>
               <td>
                 <div class="product" data-product="{{ app.app_attrs }}">
                   {{ market_button(app.app, 'reviewer') }}
@@ -89,7 +89,7 @@
               </td>
             </tr>
             <tr>
-              <td>{{ platform_list(app.app) }}</td>
+              <td>{{ device_list(app.app) }}</td>
               <td>
                 <div class="product" data-product="{{ app.app_attrs }}">
                   {{ market_button(app.app, 'reviewer') }}

@@ -20,13 +20,14 @@ import mock
 from nose.tools import eq_, ok_, raises
 
 import amo
-from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
-                           Preview, version_changed)
+from addons.models import (Addon, AddonCategory, AddonDeviceType,
+                           BlacklistedSlug, Category, Preview, version_changed)
 from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
 from amo.utils import to_language
+from constants.applications import DEVICE_TYPES
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
 from files.tests.test_models import UploadTest as BaseUploadTest
@@ -49,8 +50,7 @@ from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
-                                RatingInteractives, Webapp, WebappFormFactor,
-                                WebappIndexer, WebappPlatform)
+                                RatingInteractives, Webapp, WebappIndexer)
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -635,16 +635,6 @@ class TestWebapp(amo.tests.TestCase):
 
         pay_mock.return_value = True
         assert app.payments_complete()
-
-    def test_platforms(self):
-        app = Webapp.objects.create(app_slug='slug')
-        app.platform_set.create(platform_id=mkt.PLATFORM_ANDROID.id)
-        eq_(app.platforms, [mkt.PLATFORM_ANDROID])
-
-    def test_form_factors(self):
-        app = Webapp.objects.create(app_slug='slug')
-        app.form_factor_set.create(form_factor_id=mkt.FORM_TABLET.id)
-        eq_(app.form_factors, [mkt.FORM_TABLET])
 
 
 class TestWebappContentRatings(amo.tests.TestCase):
@@ -1368,7 +1358,7 @@ class TestTransformer(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.platform = mkt.PLATFORM_TYPES.keys()[0]
+        self.device = DEVICE_TYPES.keys()[0]
 
     @mock.patch('mkt.webapps.models.Addon.transformer')
     def test_addon_transformer_not_called(self, transformer):
@@ -1410,44 +1400,27 @@ class TestTransformer(amo.tests.TestCase):
                 eq_(webapp.premium, None)
                 eq_(webapp.get_tier(), None)
 
-    def test_platforms(self):
-        WebappPlatform.objects.create(addon_id=337141,
-                                      platform_id=self.platform)
+    def test_device_types(self):
+        AddonDeviceType.objects.create(addon_id=337141,
+                                       device_type=self.device)
         webapps = list(Webapp.objects.filter(id=337141))
 
         with self.assertNumQueries(0):
             for webapp in webapps:
-                assert webapp._platforms
-                eq_(webapp.platforms, [mkt.PLATFORM_TYPES[self.platform]])
+                assert webapp._device_types
+                eq_(webapp.device_types, [DEVICE_TYPES[self.device]])
 
-    def test_platform_cache(self):
+    def test_device_type_cache(self):
         webapp = Webapp.objects.get(id=337141)
-        webapp._platforms = []
+        webapp._device_types = []
         with self.assertNumQueries(0):
-            eq_(webapp.platforms, [])
-
-    def test_form_factors(self):
-        WebappFormFactor.objects.create(addon_id=337141,
-                                        form_factor_id=mkt.FORM_DESKTOP.id)
-        webapps = list(Webapp.objects.filter(id=337141))
-
-        with self.assertNumQueries(0):
-            for webapp in webapps:
-                assert webapp._form_factors
-                eq_(webapp.form_factors, [mkt.FORM_DESKTOP])
-
-    def test_form_factor_cache(self):
-        webapp = Webapp.objects.get(id=337141)
-        webapp._form_factors = []
-        with self.assertNumQueries(0):
-            eq_(webapp.form_factors, [])
+            eq_(webapp.device_types, [])
 
 
 class TestDetailsComplete(amo.tests.TestCase):
 
     def setUp(self):
-        self.platform = mkt.PLATFORM_FXOS
-        self.form_factor = mkt.FORM_MOBILE
+        self.device = DEVICE_TYPES.keys()[0]
         self.cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
         self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP,
                                             status=amo.STATUS_NULL)
@@ -1466,13 +1439,9 @@ class TestDetailsComplete(amo.tests.TestCase):
 
         self.webapp.name = 'name'
         self.webapp.save()
-        self.fail('platform')
+        self.fail('device')
 
-        self.webapp.platform_set.create(platform_id=self.platform.id)
-        self.webapp.save()
-        self.fail('form_factor')
-
-        self.webapp.form_factor_set.create(form_factor_id=self.form_factor.id)
+        self.webapp.addondevicetype_set.create(device_type=self.device)
         self.webapp.save()
         self.fail('category')
 
@@ -1870,26 +1839,11 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['category'], [cat.slug])
 
     def test_extract_device(self):
-        # TODO: Remove this once platforms and form_factors have been
-        # reindexed.
-        self.app.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
+        device = DEVICE_TYPES.keys()[0]
+        AddonDeviceType.objects.create(addon=self.app, device_type=device)
 
         obj, doc = self._get_doc()
-        eq_(doc['device'], [amo.DEVICE_GAIA.id])
-
-    def test_extract_platform(self):
-        platform = mkt.PLATFORM_TYPES.keys()[0]
-        self.app.platform_set.create(platform_id=platform)
-
-        obj, doc = self._get_doc()
-        eq_(doc['platforms'], [platform])
-
-    def test_extract_form_factor(self):
-        ff = mkt.FORM_DESKTOP.id
-        self.app.form_factor_set.create(form_factor_id=ff)
-
-        obj, doc = self._get_doc()
-        eq_(doc['form_factors'], [ff])
+        eq_(doc['device'], [device])
 
     def test_extract_features(self):
         enabled = ('has_apps', 'has_sms', 'has_geolocation')

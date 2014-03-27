@@ -1,13 +1,10 @@
 import amo
 from apps.search.views import _get_locale_analyzer
 
-import mkt
-
 from . import forms
 
 
-DEFAULT_FILTERS = ['cat', 'device', 'form_factor', 'platform', 'premium_types',
-                   'price', 'sort']
+DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort']
 DEFAULT_SORTING = {
     'popularity': '-popularity',
     # TODO: Should popularity replace downloads?
@@ -114,15 +111,8 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
         elif query['price'] == 'free':
             qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
-    if 'platform' in show and query['platform'] in mkt.PLATFORM_LOOKUP:
-        qs = qs.filter(platforms=mkt.PLATFORM_LOOKUP[query['platform']].id)
-    # 'device' is here to maintain compatibility with API v1.
-    # TODO: Switch to platform/form_factor query.
-    if 'device' in show and query['device'] in forms.DEVICE_CHOICES_IDS:
+    if 'device' in show:
         qs = qs.filter(device=forms.DEVICE_CHOICES_IDS[query['device']])
-    if 'form_factor' in show and query['form_factor'] in mkt.FORM_FACTOR_LOOKUP:
-        qs = qs.filter(
-            form_factors=mkt.FORM_FACTOR_LOOKUP[query['form_factor']].id)
     if 'premium_types' in show:
         if query.get('premium_types'):
             qs = qs.filter(premium_type__in=query['premium_types'])

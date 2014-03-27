@@ -149,7 +149,6 @@ class UNKNOWN_APP(App):
     pretty = _(u'Unknown')
 
 
-# TODO: Remove DEVICE* after bug 978150 is fixed and verified.
 class DEVICE_DESKTOP(object):
     id = 1
     name = _(u'Desktop')

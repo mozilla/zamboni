@@ -1,37 +1,35 @@
-from tower import ugettext_lazy as _lazy
+import re
 
-from constants.applications import (DEVICE_DESKTOP, DEVICE_GAIA, DEVICE_MOBILE,
-                                    DEVICE_TABLET)
+from tower import ugettext_lazy as _
 
-
-class PLATFORM_DESKTOP(object):
-    id = 1
-    name = _lazy(u'Desktop')
-    slug = 'desktop'
+from versions.compare import version_int as vint
 
 
-class PLATFORM_ANDROID(object):
-    id = 2
-    name = _lazy(u'Android')
-    slug = 'android'
-
-
-class PLATFORM_FXOS(object):
-    id = 3
-    name = _lazy(u'Firefox OS')
-    slug = 'firefoxos'
-
-
-PLATFORM_LIST = [PLATFORM_DESKTOP, PLATFORM_ANDROID, PLATFORM_FXOS]
-PLATFORM_TYPES = dict((d.id, d) for d in PLATFORM_LIST)
-REVERSE_PLATFORM_LOOKUP = dict((d.id, d.slug) for d in PLATFORM_LIST)
-PLATFORM_LOOKUP = dict((d.slug, d) for d in PLATFORM_LIST)
+# These are the minimum versions required for `navigator.mozApps` support.
+APP_PLATFORMS = [
+    # Firefox for Desktop.
+    (
+        [
+            re.compile('Firefox/([\d.]+)')
+        ],
+        vint('16.0')
+    ),
+    # Firefox for Android.
+    (
+        [
+            re.compile('Fennec/([\d.]+)'),
+            re.compile('Android; Mobile; rv:([\d.]+)'),
+            re.compile('Mobile; rv:([\d.]+)')
+        ],
+        vint('17.0')
+    )
+]
 
 
 def FREE_PLATFORMS(request=None, is_packaged=False):
     import waffle
     platforms = (
-        ('free-firefoxos', _lazy('Firefox OS')),
+        ('free-firefoxos', _('Firefox OS')),
     )
 
     android_packaged_enabled = (request and
@@ -41,12 +39,13 @@ def FREE_PLATFORMS(request=None, is_packaged=False):
 
     if not is_packaged or (is_packaged and desktop_packaged_enabled):
         platforms += (
-            ('free-desktop', _lazy('Firefox for Desktop')),
+            ('free-desktop', _('Firefox for Desktop')),
         )
 
     if not is_packaged or (is_packaged and android_packaged_enabled):
         platforms += (
-            ('free-android', _lazy('Android')),
+            ('free-android-mobile', _('Firefox Mobile')),
+            ('free-android-tablet', _('Firefox Tablet')),
         )
 
     return platforms
@@ -55,7 +54,7 @@ def FREE_PLATFORMS(request=None, is_packaged=False):
 def PAID_PLATFORMS(request=None, is_packaged=False):
     import waffle
     platforms = (
-        ('paid-firefoxos', _lazy('Firefox OS')),
+        ('paid-firefoxos', _('Firefox OS')),
     )
 
     android_payments_enabled = (request and
@@ -63,30 +62,23 @@ def PAID_PLATFORMS(request=None, is_packaged=False):
     android_packaged_enabled = (request and
         waffle.flag_is_active(request, 'android-packaged'))
 
-    if android_payments_enabled:
+    if android_payments_enabled :
         if not is_packaged or (is_packaged and android_packaged_enabled):
             platforms += (
-                ('paid-android', _lazy('Android')),
+                ('paid-android-mobile', _('Firefox Mobile')),
+                ('paid-android-tablet', _('Firefox Tablet')),
             )
 
     return platforms
 
 
 # Extra information about those values for display in the page.
-PLATFORM_SUMMARIES = {
-    'free-firefoxos': _lazy('Fully open mobile ecosystem'),
-    'free-desktop': _lazy('Windows, Mac and Linux'),
-    'free-android': _lazy('Devices running Android'),
-    'paid-firefoxos': _lazy('Fully open mobile ecosystem'),
-    'paid-android': _lazy('Devices running Android'),
-}
-
-
-# Mapping from old device types to platforms. Used as a compatibility layer to
-# avoid breaking the API.
-DEVICE_TO_PLATFORM = {
-    DEVICE_DESKTOP.id: PLATFORM_DESKTOP,
-    DEVICE_MOBILE.id: PLATFORM_ANDROID,
-    DEVICE_TABLET.id: PLATFORM_ANDROID,
-    DEVICE_GAIA.id: PLATFORM_FXOS,
+DEVICE_LOOKUP = {
+    'free-firefoxos': _('Fully open mobile ecosystem'),
+    'free-desktop': _('Windows, Mac and Linux'),
+    'free-android-mobile': _('Android smartphones'),
+    'free-android-tablet': _('Tablets'),
+    'paid-firefoxos': _('Fully open mobile ecosystem'),
+    'paid-android-mobile': _('Android smartphones'),
+    'paid-android-tablet': _('Tablets'),
 }

@@ -10,22 +10,24 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonPremium, AddonUpsell, AddonUser, Category
 from amo.urlresolvers import reverse
+from addons.models import (Addon, AddonCategory, AddonDeviceType,
+                           AddonPremium, AddonUpsell, AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_REFERENCE)
+
 from market.models import Price
-from users.models import UserProfile
 
 import mkt
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.constants.regions import ALL_REGION_IDS
+from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
-from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.utils import uri_to_pk
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
+from users.models import UserProfile
 
 
 # Id without any significance but to be different of 1.
@@ -252,7 +254,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
     def setUp(self):
         super(TestPayments, self).setUp()
         self.webapp = self.get_webapp()
-        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
 
         self.user = UserProfile.objects.get(pk=31337)
@@ -271,11 +274,10 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def get_postdata(self, extension):
         base = {'regions': self.get_region_list(),
-                'free_platforms': ['free-%s' % p.slug for p in
-                                   self.webapp.platforms],
-                'paid_platforms': ['paid-%s' % p.slug for p in
-                                   self.webapp.platforms],
-                'form_factors': [ff.id for ff in mkt.FORM_FACTORS]}
+                'free_platforms': ['free-%s' % dt.class_name for dt in
+                                   self.webapp.device_types],
+                'paid_platforms': ['paid-%s' % dt.class_name for dt in
+                                   self.webapp.device_types]}
         base.update(extension)
         return base
 
@@ -807,45 +809,51 @@ class TestPayments(Patcher, amo.tests.TestCase):
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 403)
 
-    def test_platform_checkboxes_present_with_android_payments(self):
+    def test_device_checkboxes_present_with_android_payments(self):
         self.create_flag('android-payments')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('#paid-android input[type="checkbox"]')), 1)
+        eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 1)
+        eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 1)
 
-    def test_platform_checkboxes_not_present_without_android_payments(self):
+    def test_device_checkboxes_not_present_without_android_payments(self):
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('#paid-android input[type="checkbox"]')), 0)
+        eq_(len(pqr('#paid-android-mobile input[type="checkbox"]')), 0)
+        eq_(len(pqr('#paid-android-tablet input[type="checkbox"]')), 0)
 
     def test_cannot_be_paid_with_android_payments_just_ffos(self):
         self.create_flag('android-payments')
-        self.webapp.platform_set.get_or_create(
-            platform_id=mkt.PLATFORM_FXOS.id)
+        self.webapp.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_without_android_payments_just_ffos(self):
-        self.webapp.platform_set.filter(
-            platform_id=mkt.PLATFORM_FXOS.id).delete()
+        self.webapp.addondevicetype_set.filter(
+            device_type=amo.DEVICE_GAIA.id).delete()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
 
     def test_cannot_be_paid_with_android_payments(self):
         self.create_flag('android-payments')
-        for platform in (mkt.PLATFORM_FXOS, mkt.PLATFORM_ANDROID):
-            self.webapp.platform_set.get_or_create(platform_id=platform.id)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_without_android_payments(self):
-        for platform in (mkt.PLATFORM_FXOS, mkt.PLATFORM_ANDROID):
-            self.webapp.platform_set.get_or_create(platform_id=platform.id)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
@@ -853,16 +861,18 @@ class TestPayments(Patcher, amo.tests.TestCase):
     def test_cannot_be_paid_pkg_with_desktop_pkg(self):
         self.create_flag('desktop-packaged')
         self.webapp.update(is_packaged=True)
-        for platform in (mkt.PLATFORM_FXOS, mkt.PLATFORM_DESKTOP):
-            self.webapp.platform_set.get_or_create(platform_id=platform.id)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_DESKTOP):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
 
     def test_cannot_be_paid_pkg_without_desktop_pkg(self):
         self.webapp.update(is_packaged=True)
-        self.webapp.platform_set.get_or_create(
-            platform_id=mkt.PLATFORM_FXOS.id)
+        self.webapp.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
@@ -870,8 +880,10 @@ class TestPayments(Patcher, amo.tests.TestCase):
     def test_cannot_be_paid_pkg_with_android_pkg_no_android_payments(self):
         self.create_flag('android-packaged')
         self.webapp.update(is_packaged=True)
-        for platform in (mkt.PLATFORM_FXOS, mkt.PLATFORM_ANDROID):
-            self.webapp.platform_set.get_or_create(platform_id=platform.id)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], True)
@@ -880,8 +892,10 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.create_flag('android-packaged')
         self.create_flag('android-payments')
         self.webapp.update(is_packaged=True)
-        for platform in (mkt.PLATFORM_FXOS, mkt.PLATFORM_ANDROID):
-            self.webapp.platform_set.get_or_create(platform_id=platform.id)
+        for device_type in (amo.DEVICE_GAIA,
+                            amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
+            self.webapp.addondevicetype_set.get_or_create(
+                device_type=device_type.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
@@ -896,7 +910,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('#free-android')), 0)
+        eq_(len(pqr('#free-android-mobile')), 0)
+        eq_(len(pqr('#free-android-tablet')), 0)
 
     def test_desktop_if_packaged_desktop_flag_is_set(self):
         self.create_flag('desktop-packaged')
@@ -910,7 +925,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         pqr = pq(res.content)
-        eq_(len(pqr('#free-android')), 1)
+        eq_(len(pqr('#free-android-mobile')), 1)
+        eq_(len(pqr('#free-android-tablet')), 1)
 
 
 class TestRegions(amo.tests.TestCase):
@@ -918,7 +934,8 @@ class TestRegions(amo.tests.TestCase):
 
     def setUp(self):
         self.webapp = self.get_webapp()
-        self.webapp.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=amo.DEVICE_GAIA.id)
         self.url = self.webapp.get_dev_url('payments')
         self.username = 'admin@mozilla.com'
         assert self.client.login(username=self.username, password='password')
@@ -934,9 +951,8 @@ class TestRegions(amo.tests.TestCase):
     def get_dict(self, **kwargs):
         extension = {'regions': mkt.regions.ALL_REGION_IDS,
                      'other_regions': 'on',
-                     'free_platforms': ['free-%s' % p.slug for p in
-                                        self.webapp.platforms],
-                     'form_factors': [ff.id for ff in mkt.FORM_FACTORS]}
+                     'free_platforms': ['free-%s' % dt.class_name for dt in
+                                        self.webapp.device_types]}
         extension.update(kwargs)
         return extension
 

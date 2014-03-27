@@ -126,15 +126,15 @@
       <div class="review-actions-section review-actions-tested data-toggle"
            data-value="{{ actions_minimal|join("|") }}">
         <strong>{{ _('Tested with:') }}</strong>
-        <label for="{{ form.platforms.auto_id }}">
-          {{ _('Platforms:') }}
+        <label for="{{ form.device_types.auto_id }}">
+          {{ _('Device Types:') }}
         </label>
-        {{ form.platforms }}
+        {{ form.device_types }}
         <label for="{{ form.browsers.auto_id }}">
           {{ _('Browsers:') }}
         </label>
         {{ form.browsers }}
-        {{ form.platforms.errors }}
+        {{ form.device_types.errors }}
         {{ form.browsers.errors }}
       </div>
       <div class="review-actions-section review-actions-attachments filesystem-only">

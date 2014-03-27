@@ -1,24 +1,24 @@
 from decimal import Decimal
 
 from django import forms
-from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 import commonware
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon, AddonUpsell
 from amo.utils import raise_required
+from addons.models import Addon, AddonUpsell
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
 from market.models import AddonPremium, Price
 
-import mkt
 from mkt.api.forms import SluggableModelChoiceField
-from mkt.constants import BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES
+from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
+                           FREE_PLATFORMS, PAID_PLATFORMS)
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
@@ -74,29 +74,29 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
-        self.fields['paid_platforms'].choices = mkt.PAID_PLATFORMS(
-            self.request, is_packaged)
-        self.fields['free_platforms'].choices = mkt.FREE_PLATFORMS(
-            self.request, is_packaged)
+        self.fields['paid_platforms'].choices = PAID_PLATFORMS(self.request,
+                                                               is_packaged)
+        self.fields['free_platforms'].choices = FREE_PLATFORMS(self.request,
+                                                               is_packaged)
 
         if (self.is_paid() and not self.is_toggling()):
             # Require the price field if the app is premium and
             # we're not toggling from free <-> paid.
             self.fields['price'].required = True
 
-        # Get the list of supported platforms and put them in the data.
-        self.platform_data = {}
-        supported_platforms = [mkt.REVERSE_PLATFORM_LOOKUP[p.id]
-                               for p in self.addon.platforms]
+        # Get the list of supported devices and put them in the data.
+        self.device_data = {}
+        supported_devices = [amo.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
+                             self.addon.device_types]
         self.initial.setdefault('free_platforms', [])
         self.initial.setdefault('paid_platforms', [])
 
         for platform in set(x[0].split('-', 1)[1] for x in
-                            (mkt.FREE_PLATFORMS(self.request, is_packaged) +
-                             mkt.PAID_PLATFORMS(self.request, is_packaged))):
-            supported = platform in supported_platforms
-            self.platform_data['free-%s' % platform] = supported
-            self.platform_data['paid-%s' % platform] = supported
+                            (FREE_PLATFORMS(self.request, is_packaged) +
+                             PAID_PLATFORMS(self.request, is_packaged))):
+            supported = platform in supported_devices
+            self.device_data['free-%s' % platform] = supported
+            self.device_data['paid-%s' % platform] = supported
 
             if supported:
                 self.initial['free_platforms'].append('free-%s' % platform)

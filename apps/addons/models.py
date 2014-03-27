@@ -23,21 +23,22 @@ import waffle
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
+from addons.utils import get_creatured_ids, get_featured_ids
+
 import amo
 import amo.models
-import sharing.utils as sharing
 from access import acl
-from addons.utils import get_creatured_ids, get_featured_ids
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
-from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        JSONEncoder, send_mail, slugify, sorted_groupby, timer,
                        to_language, urlparams)
+from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
+import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
 from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
@@ -422,10 +423,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
-        # Check for soft deletion path. Happens only if the addon status isn't
-        # 0 (STATUS_INCOMPLETE), or when we are in Marketplace.
-        soft_deletion = (self.highest_status or self.status or
-                         settings.MARKETPLACE)
+        # Check for soft deletion path. Happens only if the addon status isn't 0
+        # (STATUS_INCOMPLETE), or when we are in Marketplace.
+        soft_deletion = self.highest_status or self.status or settings.MARKETPLACE
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return
@@ -441,6 +441,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # after the addon is deleted.
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
+
 
         if soft_deletion:
 
@@ -757,8 +758,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = dict([(k, v)
-                            for (k, v) in updated.iteritems() if v != ignore])
+            updated = dict([(k, v) for (k, v) in updated.iteritems() if v != ignore])
 
         if updated:
             # Pass along _signal to the .update() to prevent it from firing
@@ -1712,7 +1712,6 @@ dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 
 
-# TODO: Remove after bug 978150 is fixed and verified.
 class AddonDeviceType(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, db_constraint=False)
     device_type = models.PositiveIntegerField(
@@ -1781,6 +1780,14 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if instance.is_disabled and not Addon(**attrs).is_disabled:
         for f in File.objects.filter(version__addon=instance.id):
             f.hide_disabled_file()
+
+
+def attach_devices(addons):
+    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+               .values_list('addon', 'device_type'))
+    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
+        addon_dict[addon].device_ids = [d[1] for d in device_types]
 
 
 def attach_prices(addons):

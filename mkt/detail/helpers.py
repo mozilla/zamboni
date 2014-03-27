@@ -1,21 +1,20 @@
-import jinja2
 from jingo import env, register
+import jinja2
 
 from tower import ungettext as ngettext
 
 from amo.helpers import numberfmt
-
-import mkt
+from constants.applications import DEVICE_TYPES
 
 
 @register.function
-def platform_list(product):
-    platforms = product.platforms
-    if platforms:
-        t = env.get_template('detail/helpers/platform_list.html')
+def device_list(product):
+    device_types = product.device_types
+    if device_types:
+        t = env.get_template('detail/helpers/device_list.html')
         return jinja2.Markup(t.render({
-            'platforms': platforms,
-            'all_platforms': mkt.PLATFORM_TYPES.values()}))
+            'device_types': device_types,
+            'all_device_types': DEVICE_TYPES.values()}))
 
 
 @register.filter
