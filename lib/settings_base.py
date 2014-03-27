@@ -1261,6 +1261,7 @@ CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", SITE_URL,
                "https://ssl.google-analytics.com",
                "https://www.google-analytics.com",
+               "https://*.newrelic.com",
                "data:"
               )
 CSP_SCRIPT_SRC = ("'self'", SITE_URL,
@@ -1268,13 +1269,7 @@ CSP_SCRIPT_SRC = ("'self'", SITE_URL,
                   "https://firefoxos.persona.org",
                   "https://ssl.google-analytics.com",
                   "https://www.google-analytics.com",
-                  "https://js-agent.newrelic.com",
-                  "https://beacon-1.newrelic.com",
-                  "https://beacon-2.newrelic.com",
-                  "https://beacon-3.newrelic.com",
-                  "https://beacon-4.newrelic.com",
-                  "https://beacon-5.newrelic.com",
-                  "https://beacon-6.newrelic.com",
+                  "https://*.newrelic.com",
                   )
 CSP_STYLE_SRC = ("'self'", SITE_URL,
                 )
