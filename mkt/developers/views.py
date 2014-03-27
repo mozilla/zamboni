@@ -44,7 +44,6 @@ from versions.models import Version
 
 from lib.iarc.utils import get_iarc_app_title
 
-import mkt
 from mkt.api.models import Access, generate
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -244,7 +243,10 @@ def status(request, addon_id, addon, webapp=False):
             data = defaultdict.fromkeys(keys, True)
 
             # Set "Smartphone-Sized Displays" if it's a mobile-only app.
-            if addon.form_factors == [mkt.FORM_MOBILE] or mobile_only:
+            qhd_devices = (set((amo.DEVICE_GAIA,)),
+                           set((amo.DEVICE_MOBILE,)),
+                           set((amo.DEVICE_GAIA, amo.DEVICE_MOBILE,)))
+            if set(addon.device_types) in qhd_devices or mobile_only:
                 data['has_qhd'] = True
 
             # Update feature profile for this version.

@@ -29,7 +29,7 @@
               <th>{{ sort_link(_('App'), 'name')|safe }}</th>
               <th>{{ _('Flags') }}</th>
               <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
-              <th>{{ _('Platforms') }}</th>
+              <th>{{ _('Devices') }}</th>
               {% if DESKTOP %}
                 <th class="payments">{{ _('Payments') }}</th>
                 {% if tab == 'escalated' %}
@@ -45,7 +45,7 @@
                 <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
                 <td class="flags">{{ app_flags(qa.app) }}</td>
                 <td class="waiting-time">{{ qa.created|timelabel }}</td>
-                <td>{{ platform_list(qa.app) }}</td>
+                <td>{{ device_list(qa.app) }}</td>
                 {% if DESKTOP %}
                   <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
                   {% if tab == 'escalated' %}

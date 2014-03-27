@@ -37,9 +37,8 @@ class BaseTestCollectionMembershipField(object):
     def setUp(self):
         self.collection = Collection.objects.create(**self.collection_data)
         self.app = amo.tests.app_factory()
-        self.app.platform_set.get_or_create(platform_id=mkt.PLATFORM_FXOS.id)
-        self.app.form_factor_set.get_or_create(
-            form_factor_id=mkt.FORM_MOBILE.id)
+        self.app.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app, order=1)
         self.field = CollectionMembershipField()
         self.field.context = {}
@@ -81,14 +80,12 @@ class BaseTestCollectionMembershipField(object):
 
     def test_ordering(self):
         self.app2 = amo.tests.app_factory()
-        self.app2.platform_set.get_or_create(platform_id=mkt.PLATFORM_FXOS.id)
-        self.app2.form_factor_set.get_or_create(
-            form_factor_id=mkt.FORM_MOBILE.id)
+        self.app2.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app2, order=0)
         self.app3 = amo.tests.app_factory()
-        self.app3.platform_set.get_or_create(platform_id=mkt.PLATFORM_FXOS.id)
-        self.app3.form_factor_set.get_or_create(
-            form_factor_id=mkt.FORM_MOBILE.id)
+        self.app3.addondevicetype_set.get_or_create(
+            device_type=amo.DEVICE_GAIA.id)
         self.collection.add_app(self.app3)
         result = self._field_to_native_profile()
         eq_(len(result), 3)
@@ -128,12 +125,8 @@ class BaseTestCollectionMembershipField(object):
         eq_(int(result[0]['id']), self.app.id)
 
     def test_field_to_native_device_filter(self):
-        result = self._field_to_native_profile(dev='android', device='mobile')
-        eq_(len(result), 0)
-
-    def test_field_to_native_platform_form_factor_filter(self):
-        result = self._field_to_native_profile(platform='android',
-                                               form_factor='tablet', dev=None)
+        result = self._field_to_native_profile(pro='muahahah', dev='android',
+                                               device='mobile')
         eq_(len(result), 0)
 
 

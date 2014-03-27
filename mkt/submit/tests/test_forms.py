@@ -1,5 +1,3 @@
-from itertools import chain, combinations
-
 from django.forms.fields import BooleanField
 from django.utils.translation import ugettext_lazy as _
 
@@ -14,7 +12,7 @@ from editors.models import RereviewQueue
 from files.models import FileUpload
 from users.models import UserProfile
 
-import mkt.constants
+from mkt.constants.features import APP_FEATURES
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
 from mkt.webapps.models import AppFeatures, Webapp
@@ -56,20 +54,20 @@ class TestNewWebappForm(amo.tests.TestCase):
     def test_platform(self):
         self.create_flag('allow-b2g-paid-submission')
         mappings = (
-            ({'free_platforms': ['free-firefoxos']},
-             [mkt.constants.PLATFORM_FXOS]),
-            ({'paid_platforms': ['paid-firefoxos']},
-             [mkt.constants.PLATFORM_FXOS]),
-            ({'free_platforms': ['free-firefoxos', 'free-android']},
-             [mkt.constants.PLATFORM_FXOS, mkt.constants.PLATFORM_ANDROID]),
-            ({'free_platforms': ['free-android', 'free-desktop']},
-             [mkt.constants.PLATFORM_ANDROID, mkt.constants.PLATFORM_DESKTOP]),
+            ({'free_platforms': ['free-firefoxos']}, [amo.DEVICE_GAIA]),
+            ({'paid_platforms': ['paid-firefoxos']}, [amo.DEVICE_GAIA]),
+            ({'free_platforms': ['free-firefoxos',
+                                 'free-android-mobile']},
+             [amo.DEVICE_GAIA, amo.DEVICE_MOBILE]),
+            ({'free_platforms': ['free-android-mobile',
+                                 'free-android-tablet']},
+             [amo.DEVICE_MOBILE, amo.DEVICE_TABLET]),
         )
         for data, res in mappings:
             data['upload'] = self.file.uuid
             form = forms.NewWebappForm(data)
             assert form.is_valid(), form.errors
-            self.assertSetEqual(res, form.get_platforms())
+            self.assertSetEqual(res, form.get_devices())
 
     def test_both(self):
         self.create_flag('allow-b2g-paid-submission')
@@ -101,7 +99,9 @@ class TestNewWebappForm(amo.tests.TestCase):
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
     def test_packaged_disallowed_behind_flag(self):
-        for device in ('free-desktop', 'free-android'):
+        for device in ('free-desktop',
+                       'free-android-mobile',
+                       'free-android-tablet'):
             form = forms.NewWebappForm({'free_platforms': [device],
                                         'upload': self.file.uuid,
                                         'packaged': True})
@@ -115,7 +115,8 @@ class TestNewWebappForm(amo.tests.TestCase):
         self.create_flag('desktop-packaged')
         for device in ('free-firefoxos',
                        'free-desktop',
-                       'free-android'):
+                       'free-android-tablet',
+                       'free-android-mobile'):
             form = forms.NewWebappForm({'free_platforms': [device],
                                         'upload': self.file.uuid,
                                         'packaged': True},
@@ -218,15 +219,13 @@ class TestAppFeaturesForm(amo.tests.TestCase):
 
     def test_required_api_fields(self):
         fields = [f.help_text for f in self.form.required_api_fields()]
-        eq_(fields, sorted(f['name'] for f in
-                           mkt.constants.APP_FEATURES.values()))
+        eq_(fields, sorted(f['name'] for f in APP_FEATURES.values()))
 
     def test_required_api_fields_nonascii(self):
         forms.AppFeaturesForm.base_fields['has_apps'].help_text = _(
             u'H\xe9llo')
         fields = [f.help_text for f in self.form.required_api_fields()]
-        eq_(fields, sorted(f['name'] for f in
-                           mkt.constants.APP_FEATURES.values()))
+        eq_(fields, sorted(f['name'] for f in APP_FEATURES.values()))
 
     def test_changes_mark_for_rereview(self):
         self.features.update(has_sms=True)
@@ -264,57 +263,3 @@ class TestAppFeaturesForm(amo.tests.TestCase):
         action_id = amo.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(addon=self.app,
              activity_log__action=action_id).exists()
-
-
-class TestFormFactorForm(amo.tests.TestCase):
-    fixtures = fixture('user_999', 'webapp_337141')
-
-    def setUp(self):
-        amo.set_user(UserProfile.objects.all()[0])
-        self.app = Webapp.objects.get(pk=337141)
-        self.form = forms.FormFactorForm
-
-    def test_required(self):
-        # Test None selected.
-        form = self.form({})
-        eq_(form.is_valid(), False)
-
-        # Test all combinations of choices selected.
-        for ff in chain(combinations(mkt.FORM_FACTOR_CHOICES.keys(), 1),
-                        combinations(mkt.FORM_FACTOR_CHOICES.keys(), 2),
-                        combinations(mkt.FORM_FACTOR_CHOICES.keys(), 3)):
-            form = self.form({'form_factors': ff})
-            eq_(form.is_valid(), True, form.errors)
-
-    def test_save(self):
-        # Test all combinations of choices selected.
-        for ff in chain(combinations(mkt.FORM_FACTOR_CHOICES.keys(), 1),
-                        combinations(mkt.FORM_FACTOR_CHOICES.keys(), 2),
-                        combinations(mkt.FORM_FACTOR_CHOICES.keys(), 3)):
-            form = self.form({'form_factors': ff})
-            form.is_valid()
-            form.save(addon=self.app)
-            eq_([f.id for f in self.app.form_factors], list(ff))
-
-    def test_new_form_factors_rereview(self):
-        form = self.form({'form_factors': [mkt.FORM_TABLET.id]})
-        assert form.is_valid(), form.errors
-        form.save(addon=self.app)
-
-        assert AppLog.objects.filter(
-            addon=self.app,
-            activity_log__action=
-                amo.LOG.REREVIEW_FORM_FACTORS_ADDED.id).exists()
-        eq_(RereviewQueue.objects.count(), 1)
-
-    def test_no_change_no_rereview(self):
-        self.app.form_factor_set.create(form_factor_id=mkt.FORM_TABLET.id)
-        form = self.form({'form_factors': [mkt.FORM_TABLET.id]})
-        assert form.is_valid(), form.errors
-        form.save(addon=self.app)
-
-        assert not AppLog.objects.filter(
-            addon=self.app,
-            activity_log__action=
-                amo.LOG.REREVIEW_FORM_FACTORS_ADDED.id).exists()
-        eq_(RereviewQueue.objects.count(), 0)

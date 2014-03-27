@@ -663,7 +663,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         assert storefront_mock.called
 
     def test_iarc_unexclude(self):
-        geodata, created = Geodata.objects.get_or_create(addon=self.app)
+        geodata = Geodata.objects.create(addon=self.app)
         geodata.update(region_br_iarc_exclude=True,
                        region_de_iarc_exclude=True)
 

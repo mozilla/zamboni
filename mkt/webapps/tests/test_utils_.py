@@ -11,7 +11,7 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, Category, Preview
+from addons.models import AddonCategory, AddonDeviceType, Category, Preview
 from market.models import PriceCurrency
 
 import mkt
@@ -22,7 +22,8 @@ from mkt.search.serializers import ESAppSerializer
 from mkt.site.fixtures import fixture
 from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
-from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
+from mkt.webapps.utils import (dehydrate_content_rating,
+                               get_supported_locales)
 from users.models import UserProfile
 from versions.models import Version
 
@@ -314,8 +315,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.request.REGION = mkt.regions.US
         self.request.amo_user = self.profile
         self.app = Webapp.objects.get(pk=337141)
-        self.app.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
-        self.app.form_factor_set.create(form_factor_id=mkt.FORM_MOBILE.id)
         self.version = self.app.current_version
         self.category = Category.objects.create(name='cattest', slug='testcat',
                                                  type=amo.ADDON_WEBAPP)
@@ -352,8 +351,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
                 'en-US': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
                 'fr': u'Déscriptîon in frènch'
             },
-            'device_types': ['firefoxos'],
-            'form_factors': ['mobile'],
+            'device_types': [],
             'homepage': None,
             'icons': dict((size, self.app.get_icon_url(size))
                           for size in (16, 48, 64, 128)),
@@ -364,7 +362,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'name': {u'en-US': u'Something Something Steamcube!',
                      u'es': u'Algo Algo Steamcube!'},
             'payment_required': False,
-            'platforms': ['firefoxos'],
             'premium_type': 'free',
             'previews': [{'thumbnail_url': self.preview.thumbnail_url,
                           'image_url': self.preview.image_url}],
@@ -472,21 +469,13 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['weekly_downloads'], 9999)
 
     def test_devices(self):
-        # TODO: Remove when we no longer support API v1.
-        self.app.addondevicetype_set.all().delete()
-        self.app.platform_set.all().delete()
-        self.app.form_factor_set.all().delete()
-        self.app.platform_set.create(platform_id=mkt.PLATFORM_ANDROID.id)
-        self.app.form_factor_set.create(form_factor_id=mkt.FORM_TABLET.id)
-        # Remove device types to make it clear that 'device_types' gets
-        # populated from platforms and form_factors.
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=amo.DEVICE_GAIA.id)
         self.app.save()
         self.refresh('webapp')
 
         res = self.serialize()
-        eq_(res['device_types'], ['android-tablet'])
-        eq_(res['platforms'], ['android'])
-        eq_(res['form_factors'], ['tablet'])
+        eq_(res['device_types'], ['firefoxos'])
 
     def test_user(self):
         self.app.addonuser_set.create(user=self.profile)

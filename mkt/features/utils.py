@@ -3,9 +3,7 @@ from mkt.constants.features import FeatureProfile
 
 def get_feature_profile(request):
     profile = None
-    platforms = ('firefoxos', 'android')
-    if (request.GET.get('dev') in platforms or
-        request.GET.get('platform') in platforms):
+    if request.GET.get('dev') in ('firefoxos', 'android'):
         sig = request.GET.get('pro')
         if sig:
             try:

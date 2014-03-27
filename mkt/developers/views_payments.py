@@ -23,17 +23,14 @@ from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO)
 from lib.crypto import generate_key
 from lib.pay_server import client
-from market.models import Price
 
-import mkt
-from mkt.constants import PAID_PLATFORMS, PLATFORM_SUMMARIES
+from market.models import Price
+from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import uri_to_pk
-from mkt.submit.forms import FormFactorForm
-
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -60,19 +57,14 @@ def payments(request, addon_id, addon, webapp=False):
     account_list_form = forms_payments.AccountListForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
-    form_factor_ids = [ff.id for ff in addon.form_factors]
-    form_factor_form = FormFactorForm(
-        request.POST or None, initial={'form_factors': form_factor_ids})
-
     if request.method == 'POST':
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
-                       account_list_form, form_factor_form])
+                       account_list_form])
 
         if success:
             region_form.save()
-            form_factor_form.save(addon)
 
             try:
                 premium_form.save()
@@ -116,8 +108,8 @@ def payments(request, addon_id, addon, webapp=False):
     desktop_packaged_enabled = waffle.flag_is_active(request,
                                                      'desktop-packaged')
 
-    # If android payments is not allowed then firefox os must be 'checked' and
-    # android should not be.
+    # If android payments is not allowed then firefox os must
+    # be 'checked' and android-mobile and android-tablet should not be.
     invalid_paid_platform_state = []
 
     # If isn't packaged or it is packaged and the android-packaged flag is on
@@ -127,15 +119,16 @@ def payments(request, addon_id, addon, webapp=False):
 
     if not android_payments_enabled:
         # When android-payments is off...
-        # If isn't packaged or it is packaged and the android-packaged flag is
-        # on then we should check for the state of android.
+        # If isn't packaged or it is packaged and the android-packaged flag is on
+        # then we should check for the state of android-mobile and android-tablet.
         if not is_packaged or (is_packaged and android_packaged_enabled):
-            invalid_paid_platform_state += [('android', True)]
+            invalid_paid_platform_state += [('android-mobile', True),
+                                            ('android-tablet', True)]
         invalid_paid_platform_state.append(('firefoxos', False))
 
     cannot_be_paid = (
         addon.premium_type == amo.ADDON_FREE and
-        any(premium_form.platform_data['free-%s' % x] == y
+        any(premium_form.device_data['free-%s' % x] == y
             for x, y in invalid_paid_platform_state))
 
     try:
@@ -158,14 +151,10 @@ def payments(request, addon_id, addon, webapp=False):
     return render(request, 'developers/payments/premium.html',
                   {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
                    'form': premium_form, 'upsell_form': upsell_form,
-                   'form_factor_form': form_factor_form,
-                   'form_factor_ids': form_factor_ids,
-                   'is_responsive': (len(form_factor_ids) ==
-                                     len(mkt.FORM_FACTORS)),
                    'tier_zero_id': tier_zero_id, 'region_form': region_form,
-                   'PLATFORM_SUMMARIES': PLATFORM_SUMMARIES,
-                   'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS or
-                               addon.premium_type == amo.ADDON_FREE_INAPP),
+                   'DEVICE_LOOKUP': DEVICE_LOOKUP,
+                   'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
+                               or addon.premium_type == amo.ADDON_FREE_INAPP),
                    'cannot_be_paid': cannot_be_paid,
                    'paid_platform_names': paid_platform_names,
                    'has_incomplete_status': addon.status == amo.STATUS_NULL,

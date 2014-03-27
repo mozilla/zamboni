@@ -51,6 +51,18 @@
         }
     });
 
+    // When a big device button is clicked, update the form.
+    var $upload_form = $('#upload-webapp'),
+        $qhd = $('#id_has_qhd');
+    z.body.on('change', '#upload-webapp select', function() {
+        // IT'S FINE. IT'S FINE.
+        if (!$upload_form.find('option[value$="-desktop"]:selected, option[value$="-tablet"]:selected').length) {
+            $qhd.prop('checked', true).trigger('change');
+        } else if ($upload_form.find('option:selected').length) {
+            $qhd.prop('checked', false).trigger('change');
+        }
+    });
+
     $('#submit-payment-type a.choice').on('click',
         _pd(function() {
             var $this = $(this),
@@ -73,67 +85,6 @@
         })
     );
 
-    // Handle clicking of form_factors.
-    //
-    // When responsive is clicked, we check all form factors. This also handles
-    // unclicking and all the variations in between.
-    $('#submit-form-factor a.form_factor_choice').on('click', _pd(function() {
-        var $this = $(this);
-        var $input = $('#id_form_factors');
-        var vals = $input.val() || [];
-        var val = $this.attr('data-value');
-        var selected = $this.toggleClass('selected').hasClass('selected');
-        var $responsive = $('#form-factor-responsive');
-
-        function update_vals(vals, selected, val) {
-            if (selected) {
-                if (vals.indexOf(val) === -1) {
-                    vals.push(val);
-                }
-            } else {
-                vals.splice(vals.indexOf(val), 1);
-            }
-        }
-
-        if (val === 'responsive') {
-            // Handle responsive option.
-            $('.form-factor-choices a.form-fields').each(function(i, e) {
-                var $e = $(e);
-                $e.toggleClass('selected', selected);
-                update_vals(vals, selected, $e.attr('data-value'));
-            });
-        } else {
-            // Handle other options, single item selected.
-            update_vals(vals, selected, val);
-
-            // Handle cases where we need to turn on/off responsive button.
-            if (!selected && $responsive.hasClass('selected')) {
-                // If deselected but responsive is still selected.
-                $responsive.removeClass('selected');
-            } else if (selected && !$responsive.hasClass('selected')) {
-                // If selected but responsive is not selected, check others.
-                var enable = true;
-                $('.form-factor-choices a.form-fields').each(function(i, e) {
-                    if (!$(e).hasClass('selected')) {
-                        enable = false;
-                    }
-                });
-                if (enable) {
-                    $responsive.addClass('selected');
-                }
-            }
-        }
-
-        // If mobile (form factor id=2) is the only option selected, set the
-        // qHD buchet flag.
-        var mobile_id = $('#form-factor-mobile').attr('data-value');
-        $('#id_has_qhd').prop('checked', (
-            vals.length === 1 && vals[0] === mobile_id)).trigger('change');
-
-        $input.val(vals).trigger('change');
-        $compat_save_button.removeClass('hidden');
-    }));
-
     function nullifySelections() {
         $('#submit-payment-type a.choice').removeClass('selected')
             .find('input').removeAttr('checked');
@@ -152,12 +103,12 @@
     // Condition to show packaged tab...ugly but works.
     function showPackagedTab() {
         // If the Android flag is disabled, and you tried to select
-        // Android... no packaged apps for you.
+        // Android Mobile or Tablet... no packaged apps for you.
         // (This lets us prevent you from marking your app as compatible
         // with both Firefox OS *and* Android when Android support
         // hasn't landed yet.)
         if (!$('[data-packaged-platforms~="android"]').length &&
-            $('option[value*="-android"]:selected').length) {
+            $('option[value*="-android-"]:selected').length) {
             return false;
         }
 
@@ -171,7 +122,7 @@
         return ($('#id_free_platforms option[value="free-firefoxos"]:selected').length &&
             $('#id_free_platforms option:selected').length == 1) ||
             $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
-            $('[data-packaged-platforms~="android"] option[value*="-android"]:selected').length ||
+            $('[data-packaged-platforms~="android"] option[value*="-android-"]:selected').length ||
             $('[data-packaged-platforms~="desktop"] option[value$="-desktop"]:selected').length ||
             allTabsDeselected();
     }

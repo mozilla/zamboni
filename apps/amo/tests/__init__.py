@@ -48,6 +48,7 @@ from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
+from constants.applications import DEVICE_TYPES
 from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.es.signals import process, reset
@@ -752,8 +753,7 @@ def app_factory(**kw):
         cat, _ = Category.objects.get_or_create(slug='utilities',
                                                 type=amo.ADDON_WEBAPP)
         app.addoncategory_set.create(category=cat)
-        app.platform_set.create(platform_id=mkt.PLATFORM_FXOS.id)
-        app.form_factor_set.create(form_factor_id=mkt.FORM_MOBILE.id)
+        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
         app.previews.create()
 
     return app
