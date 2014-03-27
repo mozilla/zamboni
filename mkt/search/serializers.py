@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from django.conf import settings
+
 from rest_framework import serializers
 
 import amo
@@ -245,6 +247,7 @@ class RocketbarESAppSerializer(serializers.Serializer):
         # fake_app is a fake instance because we need to access a couple
         # properties and methods on Webapp. It should never hit the database.
         fake_app = Webapp(id=obj['id'], icon_type='image/png',
+            default_locale=obj.get('default_locale', settings.LANGUAGE_CODE),
             modified=datetime.strptime(obj['modified'], '%Y-%m-%dT%H:%M:%S'))
         ESTranslationSerializerField.attach_translations(fake_app, obj, 'name')
         return {
