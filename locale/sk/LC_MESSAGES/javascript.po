@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2013-10-21 12:44+0000\n"
-"Last-Translator: Vlado <valastiak@mozilla.sk>\n"
+"PO-Revision-Date: 2014-03-27 15:01+0000\n"
+"Last-Translator: bimbimka <barboradur@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1382359477.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1395932501.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -94,9 +94,9 @@ msgstr "Ukončené overovanie {0}"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplnok prešiel kontrolou bez chyby s {0} správou."
+msgstr[1] "Váš doplnok prešiel kontrolou bez chyby s {0} správami."
+msgstr[2] "Váš doplnok prešiel kontrolou bez chyby s {0} správami."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -344,8 +344,14 @@ msgstr "Rozpoznané: {0}"
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] ""
+"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradenú "
+"aplikáciu do nekompletného stavu a už nebude dostupná na predaji:"
 msgstr[1] ""
+"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené "
+"aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
 msgstr[2] ""
+"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené "
+"aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -484,7 +490,7 @@ msgstr "Najskôr zvoľte aplikáciu"
 
 #: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Chyba pri načítaní prekladu"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -544,19 +550,19 @@ msgstr "Nezáleží"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Schválená aplikácia: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zamietnutá aplikácia: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Chyba pri schválení aplikácie: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Chyba pri zamietnutí aplikácie: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
@@ -1440,9 +1446,9 @@ msgstr "Doplnok prešiel overením."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} upozornenie"
+msgstr[1] "{0} upozornenia"
+msgstr[2] "{0} upozornení"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
