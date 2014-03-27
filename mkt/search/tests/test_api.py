@@ -1071,6 +1071,21 @@ class TestRocketbarApi(ESTestCase):
                         'name': unicode(self.app2.name),
                         'slug': self.app2.app_slug})
 
+    def test_suggestion_default_locale(self):
+        self.app2.name.locale = 'es'
+        self.app2.name.save()
+        self.app2.default_locale = 'es'
+        self.app2.save()
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, data={'q': 'Something Second',
+                                                       'lang': 'en-US'})
+        parsed = json.loads(response.content)
+        eq_(len(parsed), 1)
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
+
     def test_suggestions_multiple_results(self):
         with self.assertNumQueries(0):
             response = self.client.get(self.url, data={'q': 'Something',

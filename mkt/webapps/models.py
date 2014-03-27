@@ -1852,6 +1852,7 @@ class WebappIndexer(MappingType, Indexable):
                     'modified': d['modified'],
                     'slug': d['app_slug'],
                     'manifest_url': d['manifest_url'],
+                    'default_locale': d['default_locale'],
                     'name_translations': d['name_translations']
                 }
             }
