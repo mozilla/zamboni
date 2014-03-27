@@ -1259,29 +1259,24 @@ CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = ("'self'", SITE_URL,
-               "https://www.google.com",  # Recaptcha comes from google
-               "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-               "http://mozorg.cdn.mozilla.net",
-               "https://www.getpersonas.com",
                "https://ssl.google-analytics.com",
-               "http://www.google-analytics.com",
+               "https://www.google-analytics.com",
                "data:"
               )
 CSP_SCRIPT_SRC = ("'self'", SITE_URL,
-                  "https://www.google.com",  # Recaptcha
-                  "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                  "http://mozorg.cdn.mozilla.net",
                   "https://login.persona.org",
                   "https://firefoxos.persona.org",
-                  "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
-                  "http://www.google-analytics.com",
+                  "https://www.google-analytics.com",
+                  "https://js-agent.newrelic.com",
+                  "https://beacon-1.newrelic.com",
+                  "https://beacon-2.newrelic.com",
+                  "https://beacon-3.newrelic.com",
+                  "https://beacon-4.newrelic.com",
+                  "https://beacon-5.newrelic.com",
+                  "https://beacon-6.newrelic.com",
                   )
 CSP_STYLE_SRC = ("'self'", SITE_URL,
-                 "https://mozorg.cdn.mozilla.net",  # Tabzilla.
-                 "http://mozorg.cdn.mozilla.net",
-                 "http://raw.github.com",
-                 "https://raw.github.com",
                 )
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
