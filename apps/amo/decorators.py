@@ -172,8 +172,11 @@ def write(f):
 
 def set_modified_on(f):
     """
-    Will update the modified timestamp on the provided objects
-    when the wrapped function exits sucessfully (returns True).
+    Will update the modified timestamp on the provided objects when the wrapped
+    function exits sucessfully (returns a truthy value). If the function
+    returns a dict, it will also use that dict as additional keyword arguments
+    to update on the provided objects.
+
     Looks up objects defined in the set_modified_on kwarg.
     """
     from amo.tasks import set_modified_on_object
@@ -183,11 +186,12 @@ def set_modified_on(f):
         objs = kw.pop('set_modified_on', None)
         result = f(*args, **kw)
         if objs and result:
+            extra_kwargs = result if isinstance(result, dict) else {}
             for obj in objs:
                 task_log.info('Delaying setting modified on object: %s, %s' %
                               (obj.__class__.__name__, obj.pk))
                 set_modified_on_object.apply_async(
-                    args=[obj], kwargs=None,
+                    args=[obj], kwargs=extra_kwargs,
                     eta=datetime.datetime.now() +
                         datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
         return result

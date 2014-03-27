@@ -119,9 +119,9 @@ class ESAppSerializer(AppSerializer):
         # It doesn't mean they'll get exposed in the serializer output, that
         # depends on what the fields/exclude attributes in Meta.
         for field_name in ('created', 'modified', 'default_locale',
-                           'is_escalated', 'is_offline', 'manifest_url',
-                           'premium_type', 'regions', 'reviewed', 'status',
-                           'weekly_downloads'):
+                           'icon_hash', 'is_escalated', 'is_offline',
+                           'manifest_url', 'premium_type', 'regions',
+                           'reviewed', 'status', 'weekly_downloads'):
             setattr(obj, field_name, data.get(field_name))
 
         # Attach translations for all translated attributes.
@@ -217,8 +217,10 @@ class RocketbarESAppSerializer(serializers.Serializer):
     def to_native(self, obj):
         # fake_app is a fake instance because we need to access a couple
         # properties and methods on Webapp. It should never hit the database.
-        fake_app = Webapp(id=obj['id'], icon_type='image/png',
+        fake_app = Webapp(
+            id=obj['id'], icon_type='image/png', type=amo.ADDON_WEBAPP,
             default_locale=obj.get('default_locale', settings.LANGUAGE_CODE),
+            icon_hash=obj.get('icon_hash'),
             modified=datetime.strptime(obj['modified'], '%Y-%m-%dT%H:%M:%S'))
         ESTranslationSerializerField.attach_translations(fake_app, obj, 'name')
         return {

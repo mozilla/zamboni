@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import base64
+import hashlib
 import json
 import logging
 import os
@@ -125,26 +126,30 @@ def run_validator(file_path, url=None):
                     url=url)
 
 
+def _hash_file(fd):
+    return hashlib.md5(fd.read()).hexdigest()[:8]
+
+
 @task
 @set_modified_on
-def resize_icon(src, dst, size, locally=False, **kw):
+def resize_icon(src, dst, sizes, locally=False, **kw):
     """Resizes addon icons."""
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
-        if isinstance(size, list):
-            for s in size:
-                resize_image(src, '%s-%s.png' % (dst, s), (s, s),
-                             remove_src=False, locally=locally)
-            if locally:
-                os.remove(src)
-            else:
-                storage.delete(src)
+        for s in sizes:
+            resize_image(src, '%s-%s.png' % (dst, s), (s, s),
+                         remove_src=False, locally=locally)
+        if locally:
+            with open(src) as fd:
+                icon_hash = _hash_file(fd)
+            os.remove(src)
         else:
-            resize_image(src, dst, (size, size), remove_src=True,
-                         locally=locally)
+            with storage.open(src) as fd:
+                icon_hash = _hash_file(fd)
+            storage.delete(src)
 
         log.info('Icon resizing completed for: %s' % dst)
-        return True
+        return {'icon_hash': icon_hash}
     except Exception, e:
         log.error("Error saving addon icon: %s; %s" % (e, dst))
 
@@ -251,7 +256,7 @@ def save_icon(webapp, content):
                 set_modified_on=[webapp])
 
     # Need to set the icon type so .get_icon_url() works
-    # normally submit step 4 does it through AddonFormMedia,
+    # normally submit step 4 does it through AppFormMedia,
     # but we want to beat them to the punch.
     # resize_icon outputs pngs, so we know it's 'image/png'
     webapp.icon_type = 'image/png'

@@ -600,14 +600,25 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=3615)
         expected = (settings.ADDON_ICON_URL % (3, 3615, 32, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
+
         a = Addon.objects.get(pk=6704)
         a.icon_type = None
         assert a.icon_url.endswith('/icons/default-theme.png'), (
             'No match for %s' % a.icon_url)
+
         a = Addon.objects.get(pk=3615)
         a.icon_type = None
-
         assert a.icon_url.endswith('icons/default-32.png')
+
+        a.icon_type = 'image/png'
+        assert a.icon_url.endswith('?modified=%s' %
+                                   int(time.mktime(a.modified.timetuple())))
+
+        a.type = amo.ADDON_WEBAPP  # a is now a Webapp, with no icon_hash.
+        assert a.icon_url.endswith('?modified=never')
+
+        a.icon_hash = 'fakehash'  # a is now a Webapp, with an icon_hash.
+        assert a.icon_url.endswith('?modified=fakehash')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)
