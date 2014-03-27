@@ -11,6 +11,7 @@ from lib.settings_base import (CACHE_PREFIX, ES_INDEXES,
 from .. import splitstrip
 import private_base as private
 
+ALLOWED_HOSTS += ['.mozflare.net']
 
 ENGAGE_ROBOTS = False
 
