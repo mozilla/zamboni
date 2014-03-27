@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-20 03:30+0000\n"
+"PO-Revision-Date: 2014-03-27 23:02+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395286227.0\n"
+"X-POOTLE-MTIME: 1395961342.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1927,11 +1927,11 @@ msgstr "影片被移除"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new platform(s) added."
-msgstr ""
+msgstr "因為新增了平台，需要重新審核 {addon}。"
 
 #: apps/amo/log.py:510
 msgid "Platforms(s) Added"
-msgstr ""
+msgstr "已新增平台"
 
 #: apps/amo/log.py:517
 msgid "{addon} platform support manually changed by reviewer."
@@ -11282,6 +11282,9 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"附加元件將經由 AMO 編輯審核，AMO 編輯是一群願意透過審核附加元件來貢獻到 Mozilla 的開發者，確保 Mozilla "
+"使用者能夠有穩定且安全的體驗。當與編輯溝通時，請保持禮貌、耐心，他們正在努力確認您的附加元件功能正常，且依照 <a href=\"%"
+"(url)s\">編輯審核指南</a> 當中定義的規範進行審核。"
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -15286,7 +15289,7 @@ msgstr "Windows, Mac 與 Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:81
 msgid "Devices running Android"
-msgstr ""
+msgstr "執行 Android 的裝置"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
