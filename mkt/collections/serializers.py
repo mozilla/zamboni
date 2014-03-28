@@ -32,22 +32,6 @@ from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
 
 
-class CollectionAppSerializer(SimpleAppSerializer):
-    """
-    Serializer to use when serializing apps belonging to a collection. Used
-    by CollectionMembershipField when fetching apps from the db instead of ES.
-    """
-    pass
-
-
-class CollectionESAppSerializer(SimpleESAppSerializer):
-    """
-    Like CollectionAppSerializer, but used when fetching apps from ES instead
-    of the database.
-    """
-    pass
-
-
 class CollectionMembershipField(serializers.RelatedField):
     """
     RelatedField subclass that serializes apps in a Collection, taking into
@@ -57,13 +41,17 @@ class CollectionMembershipField(serializers.RelatedField):
     Specifically created for use with CollectionSerializer; you probably don't
     want to use this elsewhere.
     """
-    def to_native(self, value):
-        ser = CollectionAppSerializer(value, context=self.context, many=True)
-        return ser.data
+    app_serializer_classes = {
+        'es': SimpleESAppSerializer,
+        'normal': SimpleAppSerializer,
+    }
 
-    def to_native_es(self, value):
-        ser = CollectionESAppSerializer(value, context=self.context, many=True)
-        return ser.data
+    def to_native(self, value, use_es=False):
+        if use_es:
+            serializer_class = self.app_serializer_classes['es']
+        else:
+            serializer_class = self.app_serializer_classes['normal']
+        return serializer_class(value, context=self.context, many=True).data
 
     def _get_device(self, request):
         # Fireplace sends `dev` and `device`. See the API docs. When
@@ -134,7 +122,7 @@ class CollectionMembershipField(serializers.RelatedField):
             }
         })
 
-        return self.to_native_es(qs)
+        return self.to_native(qs, use_es=True)
 
 
 class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):

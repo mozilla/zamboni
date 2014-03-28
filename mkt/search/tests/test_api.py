@@ -3,12 +3,12 @@ import json
 from urlparse import urlparse
 
 from django.conf import settings
+from django.db.models.query import QuerySet
 from django.http import QueryDict
 from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
 from nose.tools import eq_, ok_
-from rest_framework.exceptions import ParseError, PermissionDenied
 
 import amo
 import mkt
@@ -856,7 +856,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         header = 'API-Fallback-%s' % self.prop_name
         ok_(not header in res)
 
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native_es')
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
     def test_limit(self, mock_field_to_native):
         """
         Add a second collection, then ensure than the old one is not present
@@ -872,16 +872,17 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # add some or refresh ES.
         self.test_added_to_results()
 
-        # We are only dealing with one collection with only one app inside,
-        # our mock of the method that serializes app data from the db should
-        # only have been called once.
+        # Make sure to_native() was called only once, with ES data, with the
+        # use_es argument.
         eq_(mock_field_to_native.call_count, 1)
+        ok_(isinstance(mock_field_to_native.call_args[0][0], S))
+        eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
 
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native_es')
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
     def test_limit_preview(self, mock_field_to_native):
         """
         Like test_limit, except we are in preview mode, so we shouldn't be
-        using ES for apps. The mock is adjusted accordingly.
+        using ES for apps.
         """
         mock_field_to_native.return_value = None
         self.col.add_app(self.app)
@@ -889,16 +890,17 @@ class TestFeaturedCollections(BaseFeaturedTests):
             name='Me', description='Hello', collection_type=self.col_type,
             category=self.cat, is_public=True, region=mkt.regions.US.id)
 
-        # Call standard test method that adds the app and tests the result, but
-        # make sure we're in preview mode.
+        # Modify the query string to include preview parameter.
         self.qs['preview'] = True
-        res, json = self.test_apps_included()
-        eq_(json[self.prop_name][0]['apps'][0]['id'], self.app.id)
 
-        # We are only dealing with one collection with only one app inside,
-        # our mock of the method that serializes app data from ES should not
-        # have been called at all.
-        eq_(mock_field_to_native.call_count, 0)
+        # Call standard test method. We don't care about apps themselves here.
+        self.test_added_to_results()
+
+        # Make sure to_native() was called only once, with DB data, without the
+        # use_es argument (since we are in preview mode).
+        eq_(mock_field_to_native.call_count, 1)
+        ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
+        eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
 
     @patch('mkt.search.api.SearchView.get_region')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
