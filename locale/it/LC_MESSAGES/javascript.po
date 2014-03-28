@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-03-28 10:08+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-03-28 12:49+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396001286.0\n"
+"X-POOTLE-MTIME: 1396010966.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -145,7 +145,7 @@ msgstr "Non è possibile trovare il manifesto a questo indirizzo."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr "L’host dell'App non può essere raggiunto."
+msgstr "L’host dell’app non può essere raggiunto."
 
 #: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
@@ -153,11 +153,11 @@ msgstr "Il manifesto dell’app non è analizzabile."
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr "Il manifesto dell'app non è valido."
+msgstr "Il manifesto dell’app non è valido."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "L'app è già installata."
+msgstr "L’app è già installata."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
@@ -165,7 +165,9 @@ msgstr "Errore interno del server."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Errore interno del server durante l'installazione dell'app."
+msgstr ""
+"Si è verificato un errore interno del server durante l’installazione "
+"dell’app."
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
