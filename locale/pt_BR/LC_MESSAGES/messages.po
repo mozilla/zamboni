@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-18 18:07+0000\n"
+"PO-Revision-Date: 2014-03-28 00:08+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1395166070.0\n"
+"X-POOTLE-MTIME: 1395965302.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -2008,18 +2008,20 @@ msgstr "Vídeo removido"
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new platform(s) added."
 msgstr ""
+"{addon} precisa de nova revisão porque existem novas plataformas "
+"disponíveis."
 
 #: apps/amo/log.py:510
 msgid "Platforms(s) Added"
-msgstr ""
+msgstr "Plataforma(s) Adicionada(s)"
 
 #: apps/amo/log.py:517
 msgid "{addon} platform support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} suporte à plataforma alterado manualmente pelo revisor."
 
 #: apps/amo/log.py:518
 msgid "Platform(s) Changed by Reviewer"
-msgstr ""
+msgstr "Plataforma(s) alterada(s) pelo revisor"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -2031,11 +2033,11 @@ msgstr "Reenvio do aplicativo"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} auto-escalado porque é um aplicativo VIP"
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP auto-escalado"
 
 #: apps/amo/log.py:541
 msgid "{addon} re-review because of new form factor(s) added."
@@ -4749,7 +4751,7 @@ msgstr "Ver todos os complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Criar Complementos para o Australis"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
@@ -9587,11 +9589,11 @@ msgstr "Cancelar instalação"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Criar complementos para o novo visual do Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Detalhes do Concurso"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11164,6 +11166,9 @@ msgstr "Participe de nosso <a href=\"%(url)s\">fórum</a>"
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Revisão de complementos no site. Autores são mais propensos a melhorar os "
+"seus complementos e escrever novos quando conhecem as pessoas que apreciam o "
+"seu trabalho."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -11178,6 +11183,8 @@ msgstr ""
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Se você realmente precisa entrar em contato com alguém da equipe Mozilla, "
+"consulte a nossa página de <a href=\"%(url)s\">informações de contato</a>"
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -14212,6 +14219,9 @@ msgstr "Após o registro bem sucedido, você receberá um email de confirmação
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"Se desejar, você pode ler a nossa <a href=\"%(legal)s\" title=\"Avisos "
+"Legais\">Avisos Legais</a> e <a href=\"%(privacy)s\" title=\"Política de "
+"Privacidade\">Política de Privacidade</a>"
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
 msgid "Register"
@@ -15933,7 +15943,7 @@ msgstr "Sangue e violência"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Comic Mischief"
-msgstr ""
+msgstr "Malícia em quadrinhos"
 
 #: mkt/constants/ratingdescriptors.py:33
 msgid "Crime"
