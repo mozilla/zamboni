@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-30 00:33+0000\n"
+"PO-Revision-Date: 2014-03-30 20:16+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396139619.0\n"
+"X-POOTLE-MTIME: 1396210560.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -15863,7 +15863,7 @@ msgstr "Windows, Mac e Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:81
 msgid "Devices running Android"
-msgstr ""
+msgstr "Dispositivos rodando Android"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -19778,7 +19778,7 @@ msgstr "Histórico do aplicativo"
 
 #: mkt/reviewers/templates/reviewers/review.html:95
 msgid "App submission incomplete"
-msgstr ""
+msgstr "Envio do aplicativo incompleto"
 
 #: mkt/reviewers/templates/reviewers/review.html:128
 msgid "Tested with:"
@@ -19850,11 +19850,11 @@ msgstr "Aplicativo Privilegiado"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:80
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium com pagamentos pelo aplicativo"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Free with In-App"
-msgstr ""
+msgstr "Grátis com pagamentos pelo aplicativo"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19 mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:171
