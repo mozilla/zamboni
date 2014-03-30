@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-28 00:08+0000\n"
+"PO-Revision-Date: 2014-03-30 00:33+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1395965302.0\n"
+"X-POOTLE-MTIME: 1396139619.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -4756,7 +4756,7 @@ msgstr "Criar Complementos para o Australis"
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Ganhe um telefone Firefox OS e acessórios Mozilla"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5711,7 +5711,7 @@ msgstr "Esse complemento será excluído automaticamente após alguns dias caso 
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Última versão:</strong><a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5838,7 +5838,7 @@ msgstr "Ver o <a href=\"{0}\">tempo de espera</a> aproximado da análise."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Envie o seu complemento para o concurso de complemento Australis"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -8860,6 +8860,8 @@ msgstr "Sim, contanto que eles sejam distribuídos pela mesma licença"
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
+"O licenciante permite que outros distribuam obras derivadas somente sob a "
+"mesma licença ou uma compatível com o que rege o trabalho do licenciante."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -17298,7 +17300,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Use com moderação"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
@@ -17600,7 +17602,7 @@ msgstr "Preço:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Configurar conta de pagamento"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:57
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -17750,7 +17752,7 @@ msgstr "Teste de instalação do aplicativo"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Experimente os pagamentos no aplicativo"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -17817,7 +17819,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:109 mkt/submit/templates/submit/manifest.html:55
 msgid "Responsive"
-msgstr ""
+msgstr "Responsivo"
 
 #: mkt/developers/templates/developers/payments/premium.html:110 mkt/submit/templates/submit/manifest.html:56
 msgid "all form factors"
@@ -19516,7 +19518,7 @@ msgstr "Qualquer Estado"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Platforms:"
-msgstr ""
+msgstr "Plataformas:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -19663,7 +19665,7 @@ msgstr "Apenas editores seniores podem analisar aplicativos na lista de bloqueio
 
 #: mkt/reviewers/views.py:305
 msgid "Platform(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Plataforma(s) alterada(s) pelo revisor: {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:38 mkt/submit/forms.py:47 mkt/submit/forms.py:56
 msgid "Removed {0}"
@@ -19701,7 +19703,7 @@ msgstr "Ferramentas do editor <small>do Marketplace</small>"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Voltar para as ferramentas do revisor"
 
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
@@ -19869,11 +19871,11 @@ msgstr "Versão %(version)s &middot; %(developer_name)s &middot; %(created)s <sp
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Página Seguinte"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Página Anterior"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -19885,7 +19887,7 @@ msgstr "Logs do tema"
 
 #: mkt/search/forms.py:21
 msgid "Reviewed"
-msgstr ""
+msgstr "Revisado"
 
 #: mkt/search/forms.py:30
 msgid "Paid"
@@ -19917,7 +19919,7 @@ msgstr "Qualquer tipo de dispositivo"
 
 #: mkt/search/forms.py:63
 msgid "Any Platform"
-msgstr ""
+msgstr "Qualquer Plataforma"
 
 #: mkt/search/forms.py:67
 msgid "Any Form Factor"
@@ -19949,7 +19951,7 @@ msgstr "Tipo do aplicativo"
 
 #: mkt/search/forms.py:118
 msgid "Works offline"
-msgstr ""
+msgstr "Funciona offline"
 
 #: mkt/search/forms.py:120
 msgid "Supported languages"
@@ -20038,7 +20040,7 @@ msgstr "Trimestre"
 
 #: mkt/submit/forms.py:35
 msgid "Platform(s) changed: {0}"
-msgstr ""
+msgstr "Plataforma(s) alterada(s): {0}"
 
 #: mkt/submit/forms.py:44
 msgid "Form Factor(s) changed: {0}"
@@ -20055,7 +20057,7 @@ msgstr "Não pode ser gratuito e pago."
 
 #: mkt/submit/forms.py:63
 msgid "Please select a platform."
-msgstr ""
+msgstr "Selecione uma plataforma."
 
 #: mkt/submit/forms.py:64
 msgid "Packaged apps are not yet supported for those platforms."
@@ -20107,6 +20109,9 @@ msgstr "E-mail de ajuda:"
 #: mkt/submit/forms.py:397
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"Este endereço de e-mail será publicado no Marketplace e usado por usuários "
+"finais para contatá-lo para suporte. Este endereço de e-mail será publicado "
+"na sua página de detalhes do aplicativo."
 
 #: mkt/submit/forms.py:404
 msgid "Does your app require Flash support?"
@@ -20126,7 +20131,7 @@ msgstr ""
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Próximos Passos"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -20231,15 +20236,15 @@ msgstr "<span>Configurar <a href=\"%(pay_url)s\">pagamentos</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Wait for Review"
-msgstr ""
+msgstr "À espera de revisão"
 
 #: mkt/submit/templates/submit/next_steps.html:46
 msgid "At any point, you can"
-msgstr ""
+msgstr "A qualquer momento, você pode"
 
 #: mkt/submit/templates/submit/next_steps.html:49
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "Revise seus dados do aplicativos em <a href=\"%(url)s\">Editar lista</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:54
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
