@@ -171,7 +171,7 @@ class TestEditBasic(TestEdit):
     def setUp(self):
         super(TestEditBasic, self).setUp()
         self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
-        self.dtype = DEVICE_TYPES.keys()[0]
+        self.dtype = amo.DEVICE_TYPES.keys()[0]
         AddonCategory.objects.create(addon=self.webapp, category=self.cat)
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
