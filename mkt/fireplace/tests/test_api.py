@@ -1,4 +1,5 @@
 import json
+from urlparse import urlparse
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -77,6 +78,15 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         ok_('featured' in res.json)
         ok_('collections' in res.json)
         ok_('operator' in res.json)
+
+    def test_only_64px_icons(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        data = objects[0]['icons']
+        eq_(len(data), 1)
+        eq_(urlparse(data['64'])[0:3],
+            urlparse(self.webapp.get_icon_url(64))[0:3])
 
 
 class TestSearchView(RestOAuth, ESTestCase):

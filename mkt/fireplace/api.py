@@ -15,7 +15,13 @@ from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.api import SimpleAppSerializer, AppViewSet as BaseAppViewset
 
 
-class FireplaceAppSerializer(SimpleAppSerializer):
+class BaseFireplaceAppSerializer(object):
+    def get_icons(self, app):
+        # Fireplace only requires 64px-sized icons.
+        return {64: app.get_icon_url(64)}
+
+
+class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'banner_message', 'banner_regions', 'categories',
                   'content_ratings', 'current_version', 'description',
@@ -27,7 +33,8 @@ class FireplaceAppSerializer(SimpleAppSerializer):
         exclude = []
 
 
-class FireplaceESAppSerializer(SimpleESAppSerializer):
+class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
+                               SimpleESAppSerializer):
     class Meta(SimpleESAppSerializer.Meta):
         fields = FireplaceAppSerializer.Meta.fields
         exclude = FireplaceAppSerializer.Meta.exclude
