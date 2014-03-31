@@ -725,6 +725,7 @@ Provider:
 * ``1`` Bango
 * ``2`` `Reference implementation`_, not currently supported outside of
   development instances
+* ``3`` Boku
 
 .. _localized-tier-label:
 
