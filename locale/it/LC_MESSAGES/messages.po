@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-28 12:40+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-03-31 21:38+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396010443.0\n"
+"X-POOTLE-MTIME: 1396301883.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -4375,7 +4375,7 @@ msgstr "Le mie app"
 
 #: apps/devhub/helpers.py:72 mkt/developers/helpers.py:67 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:40 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
-msgstr "Le mie app"
+msgstr "App caricate"
 
 #: apps/devhub/helpers.py:106
 msgid "Developer Docs"
@@ -18308,7 +18308,9 @@ msgstr "Sviluppa app web in HTML5 per un marketplace aperto."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Scopri come progettare web app in grado di offrire un’esperienza utente ottimizzata per Firefox OS e Firefox Mobile"
+msgstr ""
+"Scopri come progettare app web in grado di offrire un’esperienza utente "
+"ottimizzata per Firefox OS e Firefox Mobile"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
@@ -18683,8 +18685,9 @@ msgstr "Hai altre domande?"
 #: mkt/ecosystem/templates/ecosystem/support.html:57
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
-"Stiamo lavorando per creare una serie di canali che possano aiutarti nella risoluzione dei problemi; nel frattempo per trovare una risposta alle tue domande riguardanti lo sviluppo delle web app "
-"puoi visitare StackOverflow."
+"Stiamo lavorando per creare una serie di canali che possano aiutarti nella "
+"risoluzione dei problemi; nel frattempo per trovare una risposta alle tue "
+"domande riguardanti lo sviluppo delle app web puoi visitare StackOverflow."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:65 mkt/ecosystem/templates/ecosystem/support.html:67
 msgid "Stack Overflow"
@@ -18700,7 +18703,7 @@ msgstr "Mozilla Web apps (inglese)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:83
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr "Web app di Mozilla (portoghese brasiliano)"
+msgstr "App web di Mozilla (portoghese brasiliano)"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
 msgid "Start Screen"
