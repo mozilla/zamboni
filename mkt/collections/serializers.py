@@ -141,19 +141,19 @@ class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
     read_only = True
 
     def __init__(self, *a, **kw):
-        self.pred = kw.get('predicate', lambda x: True)
-        if 'predicate' in kw:
-            del kw['predicate']
+        self.predicate = kw.pop('predicate', lambda x: True)
+        self.use_cdn = kw.pop('use_cdn', False)
         serializers.HyperlinkedRelatedField.__init__(self, *a, **kw)
 
     def get_url(self, obj, view_name, request, format):
         kwargs = {'pk': obj.pk}
-        if self.pred(obj):
+        if self.predicate(obj):
             url = reverse(view_name, kwargs=kwargs, request=request,
                           format=format)
-            if build_id:
-                url += '?' + build_id
-            return url
+            prefix = settings.STATIC_URL.strip('/') if self.use_cdn else ''
+            suffix = '?%s' % build_id if build_id else ''
+
+            return '%s%s%s' % (prefix, url, suffix)
         else:
             return None
 
@@ -166,6 +166,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     apps = CollectionMembershipField(many=True, source='apps')
     image = HyperlinkedRelatedOrNullField(
         source='*',
+        use_cdn=True,  # Always return the full URL with the CDN.
         view_name='collection-image-detail',
         format='png',
         predicate=lambda o: o.has_image)
