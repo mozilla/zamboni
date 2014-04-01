@@ -159,7 +159,7 @@ class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
 
 
 class CollectionSerializer(serializers.ModelSerializer):
-    name = TranslationSerializerField()
+    name = TranslationSerializerField(min_length=1)
     description = TranslationSerializerField()
     slug = serializers.CharField(required=False)
     collection_type = serializers.IntegerField()

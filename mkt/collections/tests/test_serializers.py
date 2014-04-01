@@ -272,6 +272,49 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         eq_(serializer.is_valid(), False)
         ok_('default_language' in serializer.errors)
 
+    def test_name_required(self):
+        data = {
+            'description': u'some description',
+            'collection_type': u'1'
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data)
+        eq_(serializer.is_valid(), False)
+        ok_('name' in serializer.errors)
+
+    def test_name_cannot_be_empty(self):
+        data = {
+            'name': u''
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.is_valid(), False)
+        ok_('name' in serializer.errors)
+        eq_(serializer.errors['name'],
+            [u'The field must have a length of at least 1 characters.'])
+
+    def test_name_all_locales_cannot_be_empty(self):
+        data = {
+            'name': {
+                'fr': u'',
+                'en-US': u''
+            }
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.is_valid(), False)
+        ok_('name' in serializer.errors)
+
+    def test_name_one_locale_must_be_non_empty(self):
+        data = {
+            'name': {
+                'fr': u'',
+                'en-US': u'Non-Empty Name'
+            }
+        }
+        serializer = CollectionSerializer(instance=self.collection, data=data,
+                                          partial=True)
+        eq_(serializer.is_valid(), True)
+
     def test_translation_deserialization(self):
         data = {
             'name': u'¿Dónde está la biblioteca?'
