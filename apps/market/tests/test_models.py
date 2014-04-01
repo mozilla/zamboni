@@ -9,8 +9,8 @@ from nose.tools import eq_, ok_
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
-from constants.payments import PROVIDER_BANGO
-from market.models import AddonPremium, Price, Refund
+from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from market.models import AddonPremium, Price, PriceCurrency, Refund
 from mkt.constants import apps
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
                                    SPAIN, US, RESTOFWORLD)
@@ -94,6 +94,16 @@ class TestPrice(amo.tests.TestCase):
     def test_get_tier_price(self):
         eq_(Price.objects.get(pk=2).get_price_locale(region=BR.id), 'R$1.01')
 
+    def test_get_tier_price_provider(self):
+        # Because we specify Boku, there is no tier to be found.
+        eq_(Price.objects.get(pk=2)
+            .get_price_locale(region=BR.id, provider=PROVIDER_BOKU), None)
+
+        # Turning on Boku will give us the tier.
+        PriceCurrency.objects.get(pk=3).update(provider=PROVIDER_BOKU)
+        eq_(Price.objects.get(pk=2)
+            .get_price_locale(region=BR.id, provider=PROVIDER_BOKU), 'R$1.01')
+
     def test_get_free_tier_price(self):
         price = self.make_price('0.00')
         eq_(price.get_price_locale(region=US.id), '$0.00')
@@ -119,6 +129,13 @@ class TestPrice(amo.tests.TestCase):
     def test_prices_provider(self):
         currencies = Price.objects.get(pk=1).prices(provider=PROVIDER_BANGO)
         eq_(len(currencies), 2)
+
+    def test_multiple_providers(self):
+        PriceCurrency.objects.get(pk=2).update(provider=PROVIDER_BOKU)
+        # This used to be 0, so changing it to 3 puts in scope of the filter.
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+            currencies = Price.objects.get(pk=1).prices()
+            eq_(len(currencies), 3)
 
     def test_region_ids_by_slug(self):
         eq_(Price.objects.get(pk=2).region_ids_by_slug(),
