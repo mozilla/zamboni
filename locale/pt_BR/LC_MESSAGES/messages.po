@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-04-01 19:28+0000\n"
+"PO-Revision-Date: 2014-04-01 20:14+0000\n"
 "Last-Translator: Marcelo <mlcaraldi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396380520.0\n"
+"X-POOTLE-MTIME: 1396383290.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -16034,11 +16034,11 @@ msgstr "Algo de sangue"
 
 #: mkt/constants/ratingdescriptors.py:50
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "Violência fictícia moderada"
 
 #: mkt/constants/ratingdescriptors.py:51
 msgid "Mild Language"
-msgstr ""
+msgstr "Linguagem moderada"
 
 #: mkt/constants/ratingdescriptors.py:52
 msgid "Mild Violence"
@@ -16210,7 +16210,7 @@ msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Informações de jogo europeu"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
@@ -17317,11 +17317,13 @@ msgstr "Insira endereços de e-mail, separados por vírgula"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Aplicativo VIP Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"Esse é um aplicativo muito importante, que deve sempre ser revisado por "
+"funcionários da Mozilla ou Revisores Senior?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -17329,7 +17331,7 @@ msgstr "Use com moderação"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
-msgstr ""
+msgstr "Mensagem do banner"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Exclusive message shown on the listing page, only in the selected regions."
@@ -17337,11 +17339,11 @@ msgstr "Mensagem exclusiva mostrada na página do perfil, apenas nas regiões se
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "Regiões para as quais o banner deve ser exibido"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:130
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regiões onde o banner será exibido."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:153
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -17632,6 +17634,9 @@ msgstr "Configurar conta de pagamento"
 #: mkt/developers/templates/developers/apps/listing/items.html:57
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
+"<strong class=\"rating-notice alert-notice\">Esse aplicativo será desativado "
+"se o conteúdo não for classificado até %(pretty_date):</strong><a href=\"%"
+"(rating_url)s\">Classificar conteúdo</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
