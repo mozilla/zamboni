@@ -66,7 +66,7 @@ def dehydrate_content_ratings(content_ratings):
 
 def dehydrate_descriptors(keys, body=None):
     """
-    List of keys to lists of objects (desc label, desc name) by body.
+    List of keys to lists of descriptor slugs by body.
 
     ['ESRB_BLOOD, ...] to {'esrb': ['blood'], ...}.
     """
@@ -82,7 +82,7 @@ def dehydrate_descriptors(keys, body=None):
 
 def dehydrate_interactives(keys):
     """
-    List of keys to list of objects (label, name).
+    List of keys to list of interactive slugs.
 
     ['SOCIAL_NETWORKING', ...] to ['social-networking', ...].
     """

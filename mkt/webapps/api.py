@@ -167,8 +167,8 @@ class AppSerializer(serializers.ModelSerializer):
         return {
             'body': body,
             'rating': app.get_content_ratings_by_body().get(body, None),
-            'descriptors': app.get_descriptors().get(body, []),
-            'interactives': app.get_interactives(),
+            'descriptors': app.get_descriptors_dehydrated().get(body, []),
+            'interactives': app.get_interactives_dehydrated(),
         }
 
     def get_icons(self, app):

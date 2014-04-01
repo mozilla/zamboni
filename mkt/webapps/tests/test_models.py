@@ -897,36 +897,37 @@ class TestWebappContentRatings(amo.tests.TestCase):
         eq_(data['title'], 'LOL')
         eq_(data['release_date'], '')
 
-    def test_get_descriptors_es(self):
+    def test_get_descriptors_slugs(self):
         app = app_factory()
-        eq_(app.get_descriptors(es=True), [])
+        eq_(app.get_descriptors_slugs(), [])
 
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
         self.assertSetEqual(
-            app.get_descriptors(es=True), ['ESRB_BLOOD', 'PEGI_SCARY'])
+            app.get_descriptors_slugs(), ['ESRB_BLOOD', 'PEGI_SCARY'])
 
     def test_get_descriptors_dehydrated(self):
         app = app_factory()
-        eq_(app.get_descriptors(), {})
+        eq_(app.get_descriptors_dehydrated(), {})
 
         app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        eq_(dict(app.get_descriptors()),
+        eq_(dict(app.get_descriptors_dehydrated()),
             {'esrb': ['blood'], 'pegi': ['scary']})
 
-    def test_get_interactives_es(self):
+    def test_get_interactives_slugs(self):
         app = app_factory()
-        eq_(app.get_interactives(es=True), [])
+        eq_(app.get_interactives_slugs(), [])
 
         app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-        self.assertSetEqual(app.get_interactives(es=True),
+        self.assertSetEqual(app.get_interactives_slugs(),
                             ['DIGITAL_PURCHASES', 'SHARES_INFO'])
 
     def test_get_interactives_dehydrated(self):
         app = app_factory()
-        eq_(app.get_interactives(), [])
+        eq_(app.get_interactives_dehydrated(), [])
 
         app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-        eq_(app.get_interactives(), ['shares-info', 'digital-purchases'])
+        eq_(app.get_interactives_dehydrated(), ['shares-info',
+                                                'digital-purchases'])
 
     @override_settings(SECRET_KEY='test')
     def test_iarc_token(self):

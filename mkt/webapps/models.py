@@ -5,6 +5,7 @@ import json
 import os
 import urlparse
 import uuid
+from collections import defaultdict
 from operator import attrgetter
 
 from django.conf import settings
@@ -1085,8 +1086,6 @@ class Webapp(Addon):
 
         es -- denotes whether to return ES-friendly results (just the IDs of
               rating classes) to fetch and translate later.
-        region -- region slug in case we know the region when serializing and
-                  want to limit the response size.
         """
         content_ratings = {}
         for cr in self.content_ratings.all():
@@ -1101,25 +1100,14 @@ class Webapp(Addon):
 
         return content_ratings
 
-    def get_descriptors(self, es=False):
+    def get_descriptors_slugs(self):
         """
-        Return lists of serialized content descriptors by body.
-        (e.g. {
-            'esrb': [{'label': 'esrb-blood', 'name': u'Blood}],
-            'pegi': [{'label': 'classind-lang', 'name': u'Language'}]}
-        )
-
-        es -- denotes whether to return ES-friendly results (just the keys of
-              the descriptors) to fetch and dehydrate later.
-              (e.g. ['ESRB_BLOOD', 'CLASSIND_LANG').
-
+        Return list of content descriptor slugs (e.g., ['has_esrb_drugs'...]).
         """
         try:
             app_descriptors = self.rating_descriptors
         except RatingDescriptors.DoesNotExist:
-            if es:
-                return []  # Serialized for ES.
-            return {}  # Dehydrated.
+            return []
 
         descriptors = []
         for key in mkt.ratingdescriptors.RATING_DESCS.keys():
@@ -1127,21 +1115,11 @@ class Webapp(Addon):
             if getattr(app_descriptors, field):
                 descriptors.append(key)
 
-        if not es:
-            # Convert the descriptor names into descriptor objects.
-            descriptors = dehydrate_descriptors(descriptors)
         return descriptors
 
-    def get_interactives(self, es=False):
+    def get_interactives_slugs(self):
         """
-        Return list of serialized interactive elements.
-        (e.g. [{'label': 'social-networking', 'name': u'Social Networking'},
-               {'label': 'milk', 'name': u'Milk'}])
-
-        es -- denotes whether to return ES-friendly results (just the keys of
-              the interactive elements) to fetch and dehydrate later.
-              (e.g. ['SOCIAL_NETWORKING', 'MILK'])
-
+        Return list of interactive element slugs (e.g., ['shares_info'...]).
         """
         try:
             app_interactives = self.rating_interactives
@@ -1154,9 +1132,55 @@ class Webapp(Addon):
             if getattr(app_interactives, field):
                 interactives.append(key)
 
-        if not es and interactives:
-            interactives = dehydrate_interactives(interactives)
         return interactives
+
+    def get_descriptors_dehydrated(self):
+        """
+        Return lists of descriptors slugs by body
+        (e.g., {'esrb': ['real-gambling'], 'pegi': ['scary']}).
+        """
+        return dehydrate_descriptors(self.get_descriptors_slugs())
+
+    def get_interactives_dehydrated(self):
+        """
+        Return lists of interactive element slugs
+        (e.g., ['shares-info', 'shares-location']).
+        """
+        return dehydrate_interactives(self.get_interactives_slugs())
+
+    def get_descriptors_full(self):
+        """
+        Return descriptor objects (label, name) by body.
+        (e.g., {'esrb': {'label': 'blood', 'name': 'Blood'}}).
+        """
+        keys = self.get_descriptors_slugs()
+        results = defaultdict(list)
+        for key in keys:
+            obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
+            if obj:
+                # Slugify and remove body prefix.
+                body, label = key.lower().replace('_', '-').split('-', 1)
+                results[body].append({
+                    'label': label,
+                    'name': unicode(obj['name']),
+                })
+        return dict(results)
+
+    def get_interactives_full(self):
+        """
+        Return list of interactive element objects (label, name).
+        e.g., [{'label': 'social-networking', 'name': 'Facebocks'}, ...].
+        """
+        keys = self.get_interactives_slugs()
+        results = []
+        for key in keys:
+            obj = mkt.ratinginteractives.RATING_INTERACTIVES.get(key)
+            if obj:
+                results.append({
+                    'label': key.lower().replace('_', '-'),
+                    'name': unicode(obj['name']),
+                })
+        return results
 
     def set_iarc_info(self, submission_id, security_code):
         """
@@ -1553,7 +1577,7 @@ class WebappIndexer(MappingType, Indexable):
                     # Name for sorting.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     # Name for suggestions.
-                    'name_suggest' : {'type': 'completion', 'payloads': True},
+                    'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
@@ -1680,7 +1704,7 @@ class WebappIndexer(MappingType, Indexable):
             d['collection'] = []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
-        d['content_descriptors'] = obj.get_descriptors(es=True)
+        d['content_descriptors'] = obj.get_descriptors_slugs()
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
         d['description'] = list(
@@ -1689,7 +1713,7 @@ class WebappIndexer(MappingType, Indexable):
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
         d['icons'] = [{'size': icon_size} for icon_size in (16, 48, 64, 128)]
-        d['interactive_elements'] = obj.get_interactives(es=True)
+        d['interactive_elements'] = obj.get_interactives_slugs()
         d['is_escalated'] = is_escalated
         d['is_offline'] = getattr(obj, 'is_offline', False)
         if latest_version:
@@ -1797,7 +1821,7 @@ class WebappIndexer(MappingType, Indexable):
             d['name_suggest'] = {
                 'input': d['name'],
                 'output': unicode(obj.id),  # We only care about the payload.
-                'weight' : d['_boost'],
+                'weight': d['_boost'],
                 'payload': {
                     'id': d['id'],
                     'modified': d['modified'],
