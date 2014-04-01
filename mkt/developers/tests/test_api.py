@@ -157,7 +157,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_Generic',
-                        'VALUE': 'Language'
+                        'VALUE': ''
                     },
                     {
                         'TYPE': 'string',
@@ -221,7 +221,6 @@ class TestContentRatingPingback(RestOAuth):
             app.rating_descriptors.to_keys(),
             ['has_classind_lang', 'has_classind_sex_content',
              'has_pegi_lang', 'has_pegi_online',
-             'has_generic_lang',
              'has_esrb_strong_lang',
              'has_usk_lang'])
 
