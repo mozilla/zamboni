@@ -7,6 +7,7 @@ import time
 from itertools import cycle
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
@@ -45,6 +46,7 @@ from versions.models import Version
 from zadmin.models import get_config, set_config
 
 import mkt
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
@@ -3232,10 +3234,12 @@ class TestReviewPage(amo.tests.TestCase):
         eq_(doc('.content-rating').length, 2)
 
 
-class TestReviewTranslate(AppReviewerTest):
+class TestReviewTranslate(RestOAuth):
+    fixtures = ['base/users']
 
     def setUp(self):
-        self.login_as_editor()
+        self.user = User.objects.get(email='editor@mozilla.com')
+        self.login_user()
         self.create_switch('reviews-translate')
         user = UserProfile.objects.create(username='diego')
         app = amo.tests.app_factory(slug='myapp')
@@ -3265,8 +3269,8 @@ class TestReviewTranslate(AppReviewerTest):
 
         # Call translation.
         review = self.review
-        res = self.client.get_ajax(reverse('reviewers.review_translate',
-                                           args=[review.addon.slug, review.id,
-                                                 'fr']),)
+        url = reverse('reviewers.review_translate',
+                      args=[review.addon.slug, review.id, 'fr'])
+        res = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 200)
         eq_(res.content, '{"body": "oui", "title": "oui"}')

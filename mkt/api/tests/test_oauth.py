@@ -168,6 +168,9 @@ class RestOAuth(BaseOAuth):
 
     def setUp(self):
         self.user = User.objects.get(pk=2519)
+        self.login_user()
+
+    def login_user(self):
         self.profile = self.user.get_profile()
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',

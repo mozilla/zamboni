@@ -99,8 +99,17 @@ MIDDLEWARE_CLASSES.remove('multidb.middleware.PinningRouterMiddleware')
 # We remove this to add it later since it's used after the api auth middleware.
 MIDDLEWARE_CLASSES.remove('access.middleware.ACLMiddleware')
 
+# Replace the base django auth with our wrapped version. The
+# RedirectPrefixedURIMiddleware must come first so that request.API is set.
+django_auth = 'django.contrib.auth.middleware.AuthenticationMiddleware'
+django_auth_index = MIDDLEWARE_CLASSES.index(django_auth)
+MIDDLEWARE_CLASSES.insert(django_auth_index,
+                          'mkt.site.middleware.RedirectPrefixedURIMiddleware')
+MIDDLEWARE_CLASSES.insert(django_auth_index + 1,
+                          'mkt.api.middleware.AuthenticationMiddleware')
+MIDDLEWARE_CLASSES.remove(django_auth)
+
 MIDDLEWARE_CLASSES += [
-    'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.api.middleware.RestOAuthMiddleware',
     'mkt.api.middleware.RestSharedSecretMiddleware',
     'access.middleware.ACLMiddleware',
