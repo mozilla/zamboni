@@ -5,10 +5,13 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, HOSTNAME
+from lib.settings_base import (ALLOWED_HOSTS, CACHE_PREFIX, ES_INDEXES,
+                               KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private
+
+ALLOWED_HOSTS += ['.mozflare.net']
 
 ENGAGE_ROBOTS = False
 
