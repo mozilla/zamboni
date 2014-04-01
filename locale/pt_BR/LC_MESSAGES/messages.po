@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-30 20:16+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-04-01 19:28+0000\n"
+"Last-Translator: Marcelo <mlcaraldi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1396210560.0\n"
+"X-POOTLE-MTIME: 1396380520.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -2041,11 +2041,11 @@ msgstr "VIP auto-escalado"
 
 #: apps/amo/log.py:541
 msgid "{addon} re-review because of new form factor(s) added."
-msgstr ""
+msgstr "Re-revisão de {addon} porque novas alterações foram feitas."
 
 #: apps/amo/log.py:542
 msgid "Form Factor(s) Added"
-msgstr ""
+msgstr "Alterações realizadas"
 
 #: apps/amo/log.py:559
 msgid "Created: {0}."
@@ -9040,7 +9040,7 @@ msgstr "Selecione a plataforma alvo para este arquivo."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Para qual tipo de revisão deseja candidatar-se?"
 
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -11181,6 +11181,10 @@ msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"Um ótimo lugar para começar é nosso <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">FAQ</abbr></a>. Se não encontrar nenhuma "
+"resposta por lá, tente <a href=\"%(forum_url)s\">abrir um tópico em nossos "
+"fóruns</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -11507,6 +11511,16 @@ msgid ""
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
 "beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para garantir compatibilidade com os últimos softwares da Mozilla é "
+"importante baixar as atualizações assim que forem disponibilizadas e "
+"executar testes com seu complemento para garantir que o mesmo continua "
+"funcionando como esperado. Além disso, aconselhamos seguir os passos "
+"detalhados no tutorial <a href=\"%(ext_url)s\">Criando um complemento</a> ao "
+"<a href=\"%(test_url)s\">realizar os testes</a>.  Em alguns casos as últimas "
+"versões dos softwares da Mozilla podem ser lançadas como Beta, mas elas "
+"trazem alterações importantes na arquitetura dos programas que devem ser "
+"testadas no seu complemento antes de serem disponibilizadas como versão "
+"corrente."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -11736,6 +11750,12 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Os complementos são revisados pelos Editores do AMO, um grupo de "
+"desenvolvedores talentosos que voluntariamente ajudam a Mozilla a garantir "
+"estabilidade e segurança para os usuários. Ao entrar em contato com os "
+"editores, por favor, seja cordial, paciente e educado, pois eles trabalham "
+"muito para garantir que seu complemento funcione corretamente e siga as "
+"instruções do nosso <a href=\"%(url)s\">Guia de Revisão para Editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -13498,6 +13518,11 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>O que são Usuários Diários?</h2> <p>Os temas instalados a partir deste "
+"site buscam atualizações uma vez por dia. O número total de pedidos de "
+"atualização recebidos por dia é conhecido como Usuários Diários Ativos, que "
+"nada mais é do que o número de pessoas usando seu tema em determinado "
+"dia.</p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -13988,7 +14013,7 @@ msgstr "Apresente-se à comunidade, se você quiser! Esse texto será exibido pu
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "HTML permitido: {0}. Links proibidos."
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
@@ -15993,7 +16018,7 @@ msgstr "Uso de drogas"
 
 #: mkt/constants/ratingdescriptors.py:44
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "Violência fictícia"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Hate Speech"
@@ -18326,9 +18351,9 @@ msgid "Build an early fan base and gain popularity."
 msgstr "Criar uma base de usuários e ganhar popularidade."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
-#, fuzzy
 msgid "Target tech savvy consumers with your app."
-msgstr "consumidores high-tech com o seu aplicativo."
+msgstr ""
+"Direcione seu aplicativo para consumidores interessados ​​em tecnologia."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -20249,6 +20274,7 @@ msgstr "Revise seus dados do aplicativos em <a href=\"%(url)s\">Editar lista</a>
 #: mkt/submit/templates/submit/next_steps.html:54
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr ""
+"Veja uma lista de todos os seus envios em <a href=\"%(url)s\">Meus envios</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:63
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
@@ -20257,19 +20283,23 @@ msgstr ""
 #: mkt/submit/templates/submit/next_steps.html:70
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr ""
+"Seu aplicativo foi aprovado! Ela agora está aparecendo nas páginas de "
+"listagem e busca para os outros desfrutarem."
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Uma vez que o aplicativo é revisado, ele vai aparecer nas páginas de "
+"listagem e busca para os outros desfrutarem."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Qual é o próximo:</strong> configurar %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:94
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Qual é o próximo:</strong> Publicar seu aplicativo"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
@@ -20371,7 +20401,7 @@ msgstr "Você deve fornecer um nome para seu aplicativo."
 
 #: mkt/webapps/models.py:454
 msgid "You must provide at least one platform."
-msgstr ""
+msgstr "Você deve prover pelo menos uma plataforma."
 
 #: mkt/webapps/models.py:456
 msgid "You must provide at least one form_factor."
@@ -20383,41 +20413,41 @@ msgstr "Você deve fornecer pelo menos uma categoria."
 
 #: mkt/webapps/models.py:506
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Você deve configurar a classificação do conteúdo."
 
 #: mkt/webapps/models.py:508
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Você deve configurar uma conta de pagamento."
 
 #: mkt/webapps/models.py:533
 msgid "This app's submission process has not been fully completed."
-msgstr ""
+msgstr "Processo de envio deste aplicativo não foi totalmente concluída."
 
 #: mkt/webapps/models.py:540
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Este aplicativo precisa ter uma classificação de conteúdo."
 
 #: mkt/webapps/models.py:546
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Este aplicativo precisa de uma conta de pagamento configurada."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2348
 msgid "awaiting approval"
-msgstr ""
+msgstr "aguardando aprovação"
 
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2352
 msgid "requires additional review"
-msgstr ""
+msgstr "requer análise adicional"
 
 #: mkt/webapps/models.py:2403
 msgid "{region} approval status"
-msgstr ""
+msgstr "{region} status de aprovação"
 
 #: mkt/webapps/models.py:2408
 msgid "{region} nomination date"
-msgstr ""
+msgstr "{region} data de nomeação"
 
 #: mkt/webapps/tasks.py:108
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
