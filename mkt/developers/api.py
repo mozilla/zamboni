@@ -134,10 +134,10 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             return False
 
         rates_bad = data.get('ratings') != check_data.get('ratings')
-        inter_bad = (set(data.get('interactives')) !=
-                     set(check_data.get('interactives')))
-        descs_bad = (set(data.get('descriptors')) !=
-                     set(check_data.get('descriptors')))
+        inter_bad = (set(data.get('interactives', [])) !=
+                     set(check_data.get('interactives', [])))
+        descs_bad = (set(data.get('descriptors', [])) !=
+                     set(check_data.get('descriptors', [])))
         if rates_bad:
             log.error('IARC pingback did not match rating %s vs %s' %
                       (data.get('ratings'), check_data.get('ratings')))
