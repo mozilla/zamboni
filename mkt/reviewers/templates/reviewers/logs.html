@@ -22,9 +22,7 @@
         <tbody>
           {% for item in pager.object_list %}
             <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
-              {% if DESKTOP %}
-                <td>{{ item.created|babel_datetime }}</td>
-              {% endif %}
+              <td class="reviewers-desktop">{{ item.created|babel_datetime }}</td>
               <td class="name">
                 {% if item.arguments.0 %}
                   {{ item.arguments.0|link }}
@@ -40,9 +38,7 @@
                     {{ _('App has been deleted.') }}
                 {% endif %}
               </td>
-              {% if not DESKTOP %}
-                <td>{{ item.created|babel_datetime }}</td>
-              {% endif %}
+              <td class="reviewers-mobile">{{ item.created|babel_datetime }}</td>
               <td>{{ item.user.display_name }}</td>
               <td>
                 <a class="comments show" href="#">{{ _('Show Comments') }}</a>
