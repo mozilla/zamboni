@@ -1210,10 +1210,15 @@ class Webapp(Addon):
         geodata.region_de_usk_exclude = has_usk_refused
 
         # Un-exclude games in Brazil/Germany once they get a content rating.
-        save = (save or geodata.region_br_iarc_exclude or
+        save = (save or
+                geodata.region_br_iarc_exclude or
                 geodata.region_de_iarc_exclude)
         geodata.region_br_iarc_exclude = False
         geodata.region_de_iarc_exclude = False
+
+        # Un-disable apps that were disabled by the great IARC purge.
+        if (self.status == amo.STATUS_DISABLED and self.iarc_purged):
+            self.update(status=amo.STATUS_PUBLIC, iarc_purged=False)
 
         if save:
             geodata.save()

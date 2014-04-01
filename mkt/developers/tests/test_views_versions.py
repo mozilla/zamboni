@@ -113,6 +113,18 @@ class TestVersion(amo.tests.TestCase):
             addon=webapp, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
+    def test_no_ratings_no_resubmit(self):
+        self.create_switch('iarc')
+        self.webapp.update(status=amo.STATUS_REJECTED)
+        r = self.client.post(self.url, {'notes': 'lol',
+                                        'resubmit-app': ''})
+        eq_(r.status_code, 403)
+
+        self.webapp.content_ratings.create(ratings_body=0, rating=0)
+        r = self.client.post(self.url, {'notes': 'lol',
+                                        'resubmit-app': ''})
+        self.assert3xx(r, self.webapp.get_dev_url('versions'))
+
     def test_comm_thread_after_resubmission(self):
         self.create_switch('comm-dashboard')
         self.webapp.update(status=amo.STATUS_REJECTED)
