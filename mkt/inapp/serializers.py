@@ -1,3 +1,5 @@
+from django import forms
+
 from rest_framework import serializers
 
 from mkt.api.forms import SchemeURLValidator as URLValidator
@@ -17,3 +19,10 @@ class InAppProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = InAppProduct
         fields = ['id', 'app', 'price_id', 'name', 'logo_url']
+
+
+class InAppProductForm(forms.ModelForm):
+
+    class Meta:
+        model = InAppProduct
+        fields = ['price',]

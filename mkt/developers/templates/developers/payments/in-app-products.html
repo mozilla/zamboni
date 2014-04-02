@@ -1,0 +1,56 @@
+{% extends 'developers/base_impala.html' %}
+{% from 'developers/includes/macros.html' import required %}
+
+{% set title = _('In-App Products') %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
+
+{% set can_edit = check_addon_ownership(request, addon) %}
+{% block bodyclass %}
+  {{ super() }}{% if not can_edit %} no-edit{% endif %}
+{% endblock %}
+
+{% block css_extra %}
+    {{ css('mkt/in-app-products') }}
+{% endblock %}
+
+{% block js %}
+    {{ js('mkt/in-app-products') }}
+{% endblock %}
+
+{% block content %}
+  <header>
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    <h1>{{ title }}</h1>
+  </header>
+
+  {{ disabled_payments_notice() }}
+  <section class="primary manage" role="main">
+    <div id="in-app-products" class="devhub-form island">
+      <div id="in-app-products-data"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ _('Icon') }}</th>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Price Point') }}</th>
+            <th>{{ _('Buy URL') }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            {% include "developers/payments/in-app-product-row.html" %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <button id="add-in-app-product">{{ _('+ Add a product') }}</button>
+    </div>
+    <script id="in-app-product-row-template" type="x-template">
+      {% with product=new_product %}
+        {% include "developers/payments/in-app-product-row.html" %}
+      {% endwith %}
+    </script>
+  </section>
+
+  {% include "developers/includes/addons_edit_nav.html" %}
+{% endblock %}

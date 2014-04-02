@@ -31,6 +31,8 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import uri_to_pk
+from mkt.inapp.models import InAppProduct
+from mkt.inapp.serializers import InAppProductForm
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -317,15 +319,38 @@ def in_app_key_secret(request, pk):
     return http.HttpResponse(key.get().secret())
 
 
+def require_in_app_payments(render_view):
+    def inner(request, addon_id, addon, *args, **kwargs):
+        inapp = addon.premium_type in amo.ADDON_INAPPS
+        if not inapp:
+            messages.error(
+                    request,
+                    _('Your app is not configured for in-app payments.'))
+            return redirect(reverse('mkt.developers.apps.payments',
+                                    args=[addon.app_slug]))
+        else:
+            return render_view(request, addon_id, addon, *args, **kwargs)
+    return inner
+
+
+@waffle_switch('in-app-products')
+@login_required
+@dev_required(webapp=True)
+@require_in_app_payments
+def in_app_products(request, addon_id, addon, webapp=True, account=None):
+    owner = acl.check_addon_ownership(request, addon)
+    products = addon.inappproduct_set.all()
+    new_product = InAppProduct(webapp=addon)
+    form = InAppProductForm()
+    return render(request, 'developers/payments/in-app-products.html',
+                  {'addon': addon, 'form': form, 'new_product': new_product,
+                   'owner': owner, 'products': products, 'form': form})
+
+
 @login_required
 @dev_required(owner_for_post=True, webapp=True)
+@require_in_app_payments
 def in_app_config(request, addon_id, addon, webapp=True):
-    inapp = addon.premium_type in amo.ADDON_INAPPS
-    if not inapp:
-        messages.error(request,
-                       _('Your app is not configured for in-app payments.'))
-        return redirect(reverse('mkt.developers.apps.payments',
-                                args=[addon.app_slug]))
     try:
         account = addon.app_payment_account
     except ObjectDoesNotExist:

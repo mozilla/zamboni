@@ -7,12 +7,13 @@ from curling.lib import HttpClientError
 from mock import ANY
 from nose.tools import eq_, ok_, raises
 from pyquery import PyQuery as pq
+from waffle.models import Switch
 
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           AddonPremium, AddonUpsell, AddonUser, Category)
+from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
+                           AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_REFERENCE)
 
@@ -25,6 +26,7 @@ from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
 from mkt.developers.utils import uri_to_pk
+from mkt.developers.views_payments import require_in_app_payments
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from users.models import UserProfile
@@ -114,6 +116,50 @@ class TestInappConfig(InappTest):
     def test_no_account(self, solitude):
         self.app.app_payment_account.delete()
         eq_(self.client.get(self.url).status_code, 302)
+
+
+@require_in_app_payments
+def render_in_app_view(request, addon_id, addon, *args, **kwargs):
+    return 'The view was rendered'
+
+
+class TestRequireInAppPayments(amo.tests.TestCase):
+    def test_inapp(self):
+        addon = mock.Mock(premium_type=amo.ADDON_INAPPS[0])
+        response = render_in_app_view(addon=addon, request=None, addon_id=None)
+        eq_(response, 'The view was rendered')
+
+    @mock.patch('amo.messages.error')
+    def test_not_inapp(self, error):
+        addon = mock.Mock(premium_type=amo.ADDON_FREE, app_slug='foo')
+        response = render_in_app_view(addon=addon, request=None, addon_id=None)
+        eq_(response.status_code, 302)
+
+
+class TestInAppProductsView(InappTest):
+    fixtures = fixture('webapp_337141', 'user_999')
+
+    def setUp(self):
+        super(TestInAppProductsView, self).setUp()
+        self.waffle = Switch.objects.create(name='in-app-products',
+                                            active=True)
+        self.url = reverse('mkt.developers.apps.in_app_products',
+                           args=[self.app.app_slug])
+
+    def get(self):
+        return self.client.get(self.url)
+
+    def test_finds_products(self):
+        eq_(self.get().status_code, 200)
+
+    def test_requires_author(self):
+        self.login(self.other)
+        eq_(self.get().status_code, 403)
+
+    def test_without_waffle(self):
+        self.waffle.active = False
+        self.waffle.save()
+        eq_(self.get().status_code, 404)
 
 
 @mock.patch('mkt.developers.views_payments.client')

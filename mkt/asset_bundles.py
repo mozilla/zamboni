@@ -99,6 +99,9 @@ CSS = {
         'css/devreg/buttons.styl',
         'css/devreg/in-app-payments.styl',
     ),
+    'mkt/in-app-products': (
+        'css/devreg/in-app-products.styl',
+    ),
     'mkt/lookup': (
         'css/devreg/manifest.styl',
         'css/devreg/lookup-tool.styl',
@@ -207,6 +210,11 @@ JS = {
         'js/lib/csrf.js',
         'js/impala/serializers.js',
         'js/devreg/login.js',
+    ),
+    'mkt/in-app-products': (
+        'js/lib/es5-shim.min.js', # We might already assume these work.
+        'js/lib/flight.min.js',
+        'js/devreg/in_app_products.js',
     ),
     'mkt/lookup': (
         'js/common/keys.js',

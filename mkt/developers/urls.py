@@ -92,6 +92,8 @@ app_detail_patterns = patterns('',
     # in-app payments.
     url('^in-app-config/$', views_payments.in_app_config,
         name='mkt.developers.apps.in_app_config'),
+    url('^in-app-products/$', views_payments.in_app_products,
+        name='mkt.developers.apps.in_app_products'),
     url('^in-app-secret/$', views_payments.in_app_secret,
         name='mkt.developers.apps.in_app_secret'),
     # Old stuff.
