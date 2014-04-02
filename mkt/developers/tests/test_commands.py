@@ -183,7 +183,7 @@ class TestRefreshIARCRatings(amo.tests.TestCase):
             addon=self.webapp, has_usk_violence=True)
         refresh_iarc_ratings.Command().handle()
 
-        ok_(rd.reload().has_generic_lang)
+        ok_(rd.reload().has_esrb_strong_lang)
         ok_(not rd.has_usk_violence)
 
     def test_no_cert_no_refresh(self):
