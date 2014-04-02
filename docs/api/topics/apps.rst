@@ -339,6 +339,29 @@ App
 
    See :ref:`Creating an app <app-put-label>`
 
+Updating an App Icon
+====================
+
+.. note:: Requires authentication and a successfully created app.
+
+.. http:put:: /api/v1/apps/app/(int:id|string:app_slug)/icon/
+
+    **Request**
+
+    :param file: a dictionary containing the appropriate file data in the upload field.
+    :type file: object
+    :param file.type: the content type.
+    :type file.type: string
+    :param file.name: the file name.
+    :type file.name: string
+    :param file.data: the base 64 encoded data.
+    :type file.data: string
+
+    **Response**
+
+    :status 200: successfully updated the icon.
+    :status 400: error processing the form.
+
 .. _versions-label:
 
 Versions

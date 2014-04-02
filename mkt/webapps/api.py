@@ -28,9 +28,10 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             TranslationSerializerField)
+from mkt.api.forms import IconJSONForm
 from mkt.constants.features import FeatureProfile
 from mkt.developers import tasks
-from mkt.developers.forms import IARCGetAppInfoForm
+from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
 from mkt.regions import get_region
 from mkt.submit.api import PreviewViewSet
 from mkt.submit.forms import mark_for_rereview
@@ -509,6 +510,23 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         kwargs['app'] = self.get_object()
         view = PreviewViewSet.as_view({'post': '_create'})
         return view(request, *args, **kwargs)
+
+    @action(methods=['PUT'], cors_allowed_methods=['put'])
+    def icon(self, request, *args, **kwargs):
+        app = self.get_object()
+
+        data_form = IconJSONForm(request.DATA)
+        if not data_form.is_valid():
+            return Response(data_form.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        form = AppFormMedia(data_form.cleaned_data, request=request)
+        if not form.is_valid():
+            return Response(data_form.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        form.save(app)
+        return Response(status=status.HTTP_200_OK)
 
 
 class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,

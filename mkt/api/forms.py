@@ -70,14 +70,13 @@ class NewPackagedForm(NewPackagedAppForm):
         return super(NewPackagedForm, self).clean_upload()
 
 
-class PreviewJSONForm(happyforms.Form):
+class FileJSONForm(happyforms.Form):
     file = JSONField(required=True)
-    position = forms.IntegerField(required=True)
 
     def clean_file(self):
         file_ = self.cleaned_data.get('file', {})
         file_obj = parse(file_)
-        errors, hash_ = check_upload(file_obj, 'preview', file_['type'])
+        errors, hash_ = check_upload(file_obj, self.upload_type, file_['type'])
         if errors:
             raise forms.ValidationError(errors)
 
@@ -85,8 +84,24 @@ class PreviewJSONForm(happyforms.Form):
         return file_
 
     def clean(self):
-        self.cleaned_data['upload_hash'] = getattr(self, 'hash_', None)
+        self.cleaned_data[self.hash_name] = getattr(self, 'hash_', None)
         return self.cleaned_data
+
+
+class PreviewJSONForm(FileJSONForm):
+    position = forms.IntegerField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.upload_type = 'preview'
+        self.hash_name = 'upload_hash'
+        super(PreviewJSONForm, self).__init__(*args, **kwargs)
+
+
+class IconJSONForm(FileJSONForm):
+    def __init__(self, *args, **kwargs):
+        self.upload_type = 'icon'
+        self.hash_name = 'icon_upload_hash'
+        super(IconJSONForm, self).__init__(*args, **kwargs)
 
 
 class CategoryForm(happyforms.Form):
