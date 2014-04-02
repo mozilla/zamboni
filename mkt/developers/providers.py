@@ -298,15 +298,24 @@ for p in (Bango, Reference, Boku):
     ALL_PROVIDERS_BY_ID[p.provider] = p
 
 
-def get_provider():
+def get_provider(name=None, id=None):
     """
     This returns the default provider so we can provide backwards capability
     for API's that expect get_provider to return 'bango'. This is something
     we'll have to clean out.
     """
-    if settings.DEFAULT_PAYMENT_PROVIDER not in settings.PAYMENT_PROVIDERS:
+    if id is not None:
+        provider = ALL_PROVIDERS_BY_ID[id]()
+    else:
+        if name is None:
+            name = settings.DEFAULT_PAYMENT_PROVIDER
+        provider = ALL_PROVIDERS[name]()
+    if provider.name not in settings.PAYMENT_PROVIDERS:
         raise ImproperlyConfigured(
-            'The DEFAULT_PAYMENT_PROVIDER {d} is not in PAYMENT_PROVIDERS {p}'
-            .format(d=settings.DEFAULT_PAYMENT_PROVIDER,
-                    p=settings.PAYMENT_PROVIDERS))
-    return ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER]()
+            'The provider {p} is not one of the '
+            'allowed PAYMENT_PROVIDERS.'.format(p=provider.name))
+    return provider
+
+
+def get_providers():
+    return [ALL_PROVIDERS[name]() for name in settings.PAYMENT_PROVIDERS]

@@ -326,6 +326,9 @@ class TestMarketplace(amo.tests.TestCase):
 
     def get_data(self, **kw):
         data = {
+            'form-TOTAL_FORMS': 0,
+            'form-INITIAL_FORMS': 0,
+            'form-MAX_NUM_FORMS': 0,
             'price': self.price.pk,
             'upsell_of': self.other_addon.pk,
             'regions': mkt.regions.REGION_IDS,
@@ -359,7 +362,7 @@ class TestMarketplace(amo.tests.TestCase):
     def test_set_upsell(self):
         self.setup_premium()
         res = self.client.post(self.url,
-            data=self.get_data(regions=self.paid_regions))
+                               data=self.get_data(regions=self.paid_regions))
         eq_(res.status_code, 302)
         eq_(len(self.addon._upsell_to.all()), 1)
 
@@ -369,7 +372,8 @@ class TestMarketplace(amo.tests.TestCase):
             free=self.other_addon, premium=self.addon)
         eq_(self.addon._upsell_to.all()[0], upsell)
         self.client.post(self.url,
-            data=self.get_data(upsell_of='', regions=self.paid_regions))
+                         data=self.get_data(upsell_of='',
+                                            regions=self.paid_regions))
         eq_(len(self.addon._upsell_to.all()), 0)
 
     def test_replace_upsell(self):

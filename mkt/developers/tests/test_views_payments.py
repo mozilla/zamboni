@@ -325,6 +325,12 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                    self.webapp.device_types],
                 'paid_platforms': ['paid-%s' % dt.class_name for dt in
                                    self.webapp.device_types]}
+        extension['form-TOTAL_FORMS'] = 1
+        extension['form-INITIAL_FORMS'] = 1
+        extension['form-MAX_NUM_FORMS'] = 1
+        if 'accounts' in extension:
+            extension['form-0-accounts'] = extension['accounts']
+            del extension['accounts']
         base.update(extension)
         return base
 
@@ -384,18 +390,20 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def test_free_with_in_app_deletes_upsell(self):
         self.make_premium(self.webapp)
-        new_upsell_app = Addon.objects.create(type=self.webapp.type,
-            status=self.webapp.status, name='upsell-%s' % self.webapp.id,
+        new_upsell_app = Addon.objects.create(
+            type=self.webapp.type,
+            status=self.webapp.status,
+            name='upsell-%s' % self.webapp.id,
             premium_type=amo.ADDON_FREE)
         new_upsell = AddonUpsell(premium=self.webapp)
         new_upsell.free = new_upsell_app
         new_upsell.save()
         assert self.get_webapp().upsold is not None
-        self.client.post(
-            self.url, self.get_postdata({'price': 'free',
-                                         'allow_inapp': 'True',
-                                         'regions': ALL_REGION_IDS}),
-                                         follow=True)
+        self.client.post(self.url,
+                         self.get_postdata({'price': 'free',
+                                            'allow_inapp': 'True',
+                                            'regions': ALL_REGION_IDS}),
+                         follow=True)
         eq_(self.get_webapp().upsold, None)
         eq_(AddonPremium.objects.all().count(), 0)
 
@@ -595,35 +603,35 @@ class TestPayments(Patcher, amo.tests.TestCase):
         assert not (AddonPaymentAccount.objects
                                        .filter(addon=self.webapp).exists())
         # Attempt to associate account with app as non-owner admin.
-        res = self.client.post(
-            self.url, self.get_postdata({'accounts': acct.pk,
-                                         'price': self.price.pk,
-                                         'regions': ALL_REGION_IDS}),
-                                         follow=True)
-        self.assertFormError(res, 'account_list_form', 'accounts',
-                             [u'You are not permitted to change payment '
-                               'accounts.'])
-
-        # Payment account shouldn't be set as we're not the owner.
-        assert not (AddonPaymentAccount.objects
-                                       .filter(addon=self.webapp).exists())
+        res = self.client.post(self.url,
+                               self.get_postdata({'accounts': acct.pk,
+                                                  'price': self.price.pk,
+                                                  'regions': ALL_REGION_IDS}),
+                               follow=True)
+        self.assertFalse(AddonPaymentAccount.objects
+                                            .filter(addon=self.webapp)
+                                            .exists(),
+                         'account was associated')
         pqr = pq(res.content)
         # Payment field should be disabled.
-        eq_(len(pqr('#id_accounts[disabled]')), 1)
+        eq_(len(pqr('#id_form-0-accounts[disabled]')), 1)
         # There's no existing associated account.
         eq_(len(pqr('.current-account')), 0)
 
     def test_associate_acct_to_app_when_admin_and_owner_acct_exists(self):
+        def current_account():
+            return self.webapp.payment_account(PROVIDER_BANGO).payment_account
+
         self.make_premium(self.webapp, price=self.price.price)
         owner_acct, owner_user = self.setup_payment_acct(make_owner=True)
 
         assert self.is_owner(owner_user)
 
-        res = self.client.post(
-            self.url, self.get_postdata({'accounts': owner_acct.pk,
-                                         'price': self.price.pk,
-                                         'regions': ALL_REGION_IDS}),
-                                         follow=True)
+        self.client.post(self.url,
+                         self.get_postdata({'accounts': owner_acct.pk,
+                                            'price': self.price.pk,
+                                            'regions': ALL_REGION_IDS}),
+                         follow=True)
         assert (AddonPaymentAccount.objects
                                    .filter(addon=self.webapp).exists())
 
@@ -632,16 +640,16 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                                          user=self.admin)
         # Check we're not an owner before we start.
         assert not self.is_owner(admin_user)
+        assert current_account().pk == owner_acct.pk
 
-        res = self.client.post(
-            self.url, self.get_postdata({'accounts': admin_acct.pk,
-                                         'price': self.price.pk,
-                                         'regions': ALL_REGION_IDS}),
-                                         follow=True)
+        self.client.post(self.url,
+                         self.get_postdata({'accounts': admin_acct.pk,
+                                            'price': self.price.pk,
+                                            'regions': ALL_REGION_IDS}),
+                         follow=True)
 
-        self.assertFormError(res, 'account_list_form', 'accounts',
-                             [u'You are not permitted to change payment '
-                               'accounts.'])
+        assert current_account().pk == owner_acct.pk
+
 
     def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -668,7 +676,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.status_code, 200)
         pqr = pq(res.content)
         # Check we have just our account option present + '----'.
-        eq_(len(pqr('#id_accounts option')), 2)
+        eq_(len(pqr('#id_form-0-accounts option')), 2)
         eq_(len(pqr('#id_account[disabled]')), 0)
         eq_(pqr('.current-account').text(), unicode(owner_acct))
 
@@ -681,9 +689,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.assertNoFormErrors(res)
         pqr = pq(res.content)
         eq_(len(pqr('.current-account')), 0)
-        eq_(pqr('#id_accounts option[selected]').text(), unicode(owner_acct2))
+        eq_(pqr('#id_form-0-accounts option[selected]').text(), unicode(owner_acct2))
         # Now there should just be our account.
-        eq_(len(pqr('#id_accounts option')), 1)
+        eq_(len(pqr('#id_form-0-accounts option')), 1)
 
     def test_existing_account_should_be_disabled_for_non_owner(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -737,7 +745,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.status_code, 200)
         pqr = pq(res.content)
         # Payment field should be disabled.
-        eq_(len(pqr('#id_accounts[disabled]')), 1)
+        eq_(len(pqr('#id_form-0-accounts[disabled]')), 1)
         # Currently associated account should be displayed separately.
         eq_(pqr('.current-account').text(), unicode(owner_acct))
 
@@ -775,14 +783,14 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def test_template_switches(self):
         payments_url = self.webapp.get_dev_url('payments')
-        for provider in ['reference', 'boku']:
+        providers = ['reference', 'boku', 'bango']
+        for provider in providers:
             with self.settings(PAYMENT_PROVIDERS=[provider],
-                               # Currently the view page uses get_provider().
                                DEFAULT_PAYMENT_PROVIDER=provider):
                 res = self.client.get(payments_url)
-            tmpl = self.extract_script_template(
-                res.content, '#payment-account-add-template')
-            eq_(len(tmpl('.payment-account-{0}'.format(provider))), 1)
+            tmpl_id = '#{p}-payment-account-add-template'.format(p=provider)
+            tmpl = self.extract_script_template(res.content, tmpl_id)
+            eq_(len(tmpl('.payment-account-{p}'.format(p=provider))), 1)
 
     def test_bango_portal_links(self):
         payments_url = self.webapp.get_dev_url('payments')
@@ -1072,7 +1080,8 @@ class TestPaymentAccountsAdd(Patcher, PaymentsBase):
             'bankAddress1': 'address 2',
             'bankAddressZipCode': '123',
             'bankAddressIso': 'BRA',
-            'account_name': 'account'
+            'account_name': 'account',
+            'provider': 'bango',
         })
         eq_(res.status_code, 200)
         output = json.loads(res.content)
@@ -1167,7 +1176,7 @@ class TestPaymentAgreement(Patcher, PaymentsBase):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_get(self):
+    def test_get_bango_only_provider(self):
         self.bango_patcher.sbi.agreement.get_object.return_value = {
             'text': 'blah', 'valid': '2010-08-31T00:00:00'}
         res = self.client.get(self.url)
@@ -1175,7 +1184,12 @@ class TestPaymentAgreement(Patcher, PaymentsBase):
         data = json.loads(res.content)
         eq_(data['text'], 'blah')
 
-    def test_set(self):
+    def test_get_bango_multiple_providers(self):
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'reference'],
+                           DEFAULT_PAYMENT_PROVIDER='reference'):
+            self.test_get_bango_only_provider()
+
+    def test_set_bango_only_provider(self):
         self.bango_patcher.sbi.post.return_value = {
             'expires': '2014-08-31T00:00:00',
             'valid': '2014-08-31T00:00:00'}
@@ -1184,12 +1198,19 @@ class TestPaymentAgreement(Patcher, PaymentsBase):
         data = json.loads(res.content)
         eq_(data['valid'], '2014-08-31T00:00:00')
 
+    def test_set_bango_multiple_providers(self):
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'reference'],
+                           DEFAULT_PAYMENT_PROVIDER='reference'):
+            self.test_set_bango_only_provider()
+
 
 class TestPaymentAccountsForm(PaymentsBase):
+    fixtures = PaymentsBase.fixtures + fixture('webapp_337141')
 
     def setUp(self):
         super(TestPaymentAccountsForm, self).setUp()
-        self.url = reverse('mkt.developers.provider.payment_accounts_form')
+        base_url = reverse('mkt.developers.provider.payment_accounts_form')
+        self.url = base_url + '?provider=bango&app_slug=something-something'
 
     def test_login_required(self):
         self.client.logout()

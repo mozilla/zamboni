@@ -122,25 +122,34 @@
           {% endtrans -%}
         </div>
         <section class="island payments">
+          {{ account_list_formset.management_form }}
           <table>
             <tbody>
-              <tr>
-                <th><label data-for="accounts">{{ _('Payment Account') }}</label></th>
-                <td>
-                  <div id="bango-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}">
-                    {{ account_list_form.errors }}
-                    {% include 'developers/payments/includes/accounts_list.html' %}
-                  </div>
-                  {% if can_edit and account_list_form.is_owner %}
-                    <a href="#" class="payment-account-note" id="payment-account-action" data-action="add">
-                      {{- _('Add, manage or view transactions for your payment account') -}}
-                    </a>
-                  {% endif %}
-                </td>
-              </tr>
+              {% for account_list_form in account_list_formset.forms %}
+                {% with provider=account_list_form.provider %}
+                  <tr>
+                    <th>
+                      <label data-for="accounts">
+                        <img src="{{ MEDIA_URL }}img/developers/logo-{{ provider.name }}.png" title="{{ provider.full }}">
+                      </label>
+                    </th>
+                    <td>
+                      <div id="{{ provider.name }}-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}?provider={{ provider.name }}&app_slug={{ addon.app_slug }}">
+                        {{ account_list_form.errors }}
+                        {% include 'developers/payments/includes/accounts_list.html' %}
+                      </div>
+                    </td>
+                  </tr>
+                {% endwith %}
+              {% endfor %}
             </tbody>
           </table>
           <div class="listing-footer">
+            {% if can_edit and account_list_forms[0].is_owner %}
+              <a href="#" class="payment-account-note" id="payment-account-action" data-action="add">
+                {{- _('Add, manage or view transactions for your payment accounts') -}}
+              </a>
+            {% endif %}
             <button>{{ _('Save Changes') }}</button>
           </div>
         </section>
@@ -303,7 +312,11 @@
 
   {% include 'developers/includes/addons_edit_nav.html' %}
   {% include 'developers/payments/includes/account_list.html' %}
-  {% include provider.templates['add'] %}
-  {% include provider.templates['edit'] %}
+  {% for provider in providers %}
+    {% with account_form=provider.forms['account']() %}
+      {% include provider.templates['add'] %}
+      {% include provider.templates['edit'] %}
+    {% endwith %}
+  {% endfor %}
   {% include 'developers/payments/includes/accept_terms.html' %}
 {% endblock %}

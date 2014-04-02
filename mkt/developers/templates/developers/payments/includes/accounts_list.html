@@ -6,7 +6,7 @@
   </p>
   {% endif %}
 
-  <div id="my-accounts-list">
+  <div id="{{ provider.name }}-accounts-list">
     {% if account_list_form.fields['accounts'].queryset.exists() %}
       {{ account_list_form.accounts }}
     {% else %}

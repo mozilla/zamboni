@@ -108,8 +108,8 @@ class PaymentAccount(amo.models.ModelBase):
         """Returns an instance of the payment provider for this account."""
         # TODO: fix circular import. Providers imports models which imports
         # forms which imports models.
-        from mkt.developers.providers import ALL_PROVIDERS_BY_ID
-        return ALL_PROVIDERS_BY_ID[self.provider]()
+        from mkt.developers.providers import get_provider
+        return get_provider(id=self.provider)
 
     def __unicode__(self):
         date = self.created.strftime('%m/%y')

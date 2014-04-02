@@ -4,6 +4,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
 import happyforms
@@ -464,6 +465,7 @@ class AccountListForm(happyforms.Form):
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
+        self.provider = kwargs.pop('provider')
         user = kwargs.pop('user')
 
         super(AccountListForm, self).__init__(*args, **kwargs)
@@ -473,17 +475,25 @@ class AccountListForm(happyforms.Form):
             self.is_owner = self.addon.authors.filter(user=user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
 
-        self.fields['accounts'].queryset = (PaymentAccount.objects
-            .filter(Q(user=user, inactive=False, agreed_tos=True) |
-                    Q(shared=True, inactive=False, agreed_tos=True))
+        accounts_field = self.fields['accounts']
+        accounts_field.queryset = (
+            PaymentAccount.objects.filter(
+                Q(user=user, inactive=False, agreed_tos=True) |
+                Q(shared=True, inactive=False, agreed_tos=True))
             .order_by('name', 'shared'))
 
+        if self.provider is not None:
+            accounts_field.queryset = accounts_field.queryset.filter(
+                provider=self.provider.provider)
+
         if self.is_owner is False:
-            self.fields['accounts'].widget.attrs['disabled'] = ''
+            accounts_field.widget.attrs['disabled'] = ''
 
         self.current_payment_account = None
         try:
-            current_acct = AddonPaymentAccount.objects.get(addon=self.addon)
+            current_acct = AddonPaymentAccount.objects.get(
+                addon=self.addon,
+                payment_account__provider=self.provider.provider)
             payment_account = PaymentAccount.objects.get(
                 uri=current_acct.account_uri)
 
@@ -492,7 +502,7 @@ class AccountListForm(happyforms.Form):
             # current account separately.
             if payment_account.user.pk == user.pk:
                 self.initial['accounts'] = payment_account
-                self.fields['accounts'].empty_label = None
+                accounts_field.empty_label = None
             else:
                 self.current_payment_account = payment_account
 
@@ -522,17 +532,18 @@ class AccountListForm(happyforms.Form):
         if self.cleaned_data.get('accounts'):
             try:
                 log.info('[1@%s] Deleting app payment account' % self.addon.pk)
-                AddonPaymentAccount.objects.get(addon=self.addon).delete()
+                AddonPaymentAccount.objects.get(
+                    addon=self.addon,
+                    payment_account__provider=self.provider.provider
+                ).delete()
             except AddonPaymentAccount.DoesNotExist:
                 pass
 
             log.info('[1@%s] Creating new app payment account' % self.addon.pk)
-            from mkt.developers.providers import get_provider
 
-            provider = get_provider()
             account = self.cleaned_data['accounts']
 
-            uri = provider.product_create(account, self.addon)
+            uri = self.provider.product_create(account, self.addon)
             AddonPaymentAccount.objects.create(
                 addon=self.addon, account_uri=account.uri,
                 payment_account=account, product_uri=uri)
@@ -552,8 +563,44 @@ class AccountListForm(happyforms.Form):
                 RereviewQueue.flag(
                     self.addon, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
-            if self.addon.has_incomplete_status() and self.addon.is_fully_complete():
+            if (self.addon.has_incomplete_status() and
+                    self.addon.is_fully_complete()):
                 _restore_app_status(self.addon)
+
+
+class AccountListBaseFormSet(BaseFormSet):
+    """Base FormSet for AccountListForm. Provide the extra data for the
+    AccountListForm as a list in `provider_data`.
+
+    Example:
+
+        formset = AccountListFormSet(provider_data=[
+            {'provider': Bango()}, {'provider': Boku()}])
+    """
+
+    def __init__(self, **kwargs):
+        self.provider_data = kwargs.pop('provider_data', [])
+        super(AccountListBaseFormSet, self).__init__(**kwargs)
+
+    def _construct_form(self, i, **kwargs):
+        if i < len(self.provider_data):
+            _kwargs = self.provider_data[i]
+        else:
+            _kwargs = {}
+        _kwargs.update(kwargs)
+        return (super(AccountListBaseFormSet, self)
+                ._construct_form(i, **_kwargs))
+
+    def save(self):
+        for form in self.forms:
+            form.save()
+
+
+provider_count = len(settings.PAYMENT_PROVIDERS)
+AccountListFormSet = formset_factory(AccountListForm,
+                                     formset=AccountListBaseFormSet,
+                                     extra=provider_count,
+                                     max_num=provider_count)
 
 
 class ReferenceAccountForm(happyforms.Form):

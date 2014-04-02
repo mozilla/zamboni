@@ -28,10 +28,11 @@ from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
-from mkt.developers.providers import get_provider
+from mkt.developers.providers import get_provider, get_providers
 from mkt.developers.utils import uri_to_pk
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
+from mkt.webapps.models import Webapp
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -55,14 +56,23 @@ def payments(request, addon_id, addon, webapp=False):
     upsell_form = forms_payments.UpsellForm(
         request.POST or None, addon=addon, user=request.amo_user)
 
-    account_list_form = forms_payments.AccountListForm(
-        request.POST or None, addon=addon, user=request.amo_user)
+    providers = get_providers()
+
+    if 'form-TOTAL_FORMS' in request.POST:
+        formset_data = request.POST
+    else:
+        formset_data = None
+    account_list_formset = forms_payments.AccountListFormSet(
+        data=formset_data,
+        provider_data=[
+            {'addon': addon, 'user': request.amo_user, 'provider': provider}
+            for provider in providers])
 
     if request.method == 'POST':
 
         success = all(form.is_valid() for form in
                       [premium_form, region_form, upsell_form,
-                       account_list_form])
+                       account_list_formset])
 
         if success:
             region_form.save()
@@ -86,7 +96,7 @@ def payments(request, addon_id, addon, webapp=False):
                 try:
                     if not is_free_inapp:
                         upsell_form.save()
-                    account_list_form.save()
+                    account_list_formset.save()
                 except client.Error as err:
                     log.error('Error saving payment information (%s)' % err)
                     messages.error(
@@ -120,8 +130,9 @@ def payments(request, addon_id, addon, webapp=False):
 
     if not android_payments_enabled:
         # When android-payments is off...
-        # If isn't packaged or it is packaged and the android-packaged flag is on
-        # then we should check for the state of android-mobile and android-tablet.
+        # If isn't packaged or it is packaged and the android-packaged flag is
+        # on then we should check for the state of android-mobile and
+        # android-tablet.
         if not is_packaged or (is_packaged and android_packaged_enabled):
             invalid_paid_platform_state += [('android-mobile', True),
                                             ('android-tablet', True)]
@@ -145,9 +156,8 @@ def payments(request, addon_id, addon, webapp=False):
     if tier_zero:
         paid_region_ids_by_slug = tier_zero.region_ids_by_slug()
 
-    provider = get_provider()
-    paid_platform_names = [unicode(platform[1])
-                           for platform in PAID_PLATFORMS(request, is_packaged)]
+    platforms = PAID_PLATFORMS(request, is_packaged)
+    paid_platform_names = [unicode(platform[1]) for platform in platforms]
 
     return render(request, 'developers/payments/premium.html',
                   {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
@@ -161,8 +171,8 @@ def payments(request, addon_id, addon, webapp=False):
                    'has_incomplete_status': addon.status == amo.STATUS_NULL,
                    'is_packaged': addon.is_packaged,
                    # Bango values
-                   'account_form': provider.forms['account'](),
-                   'account_list_form': account_list_form,
+                   'account_list_forms': account_list_formset.forms,
+                   'account_list_formset': account_list_formset,
                    # Waffles
                    'api_pricelist_url': reverse('price-list'),
                    'payment_methods': {
@@ -171,7 +181,7 @@ def payments(request, addon_id, addon, webapp=False):
                        PAYMENT_METHOD_OPERATOR: _('Carrier'),
                    },
                    'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
-                   'provider': provider})
+                   'providers': providers})
 
 
 @login_required
@@ -179,7 +189,9 @@ def payments(request, addon_id, addon, webapp=False):
 def payment_accounts(request):
     app_slug = request.GET.get('app-slug', '')
     accounts = PaymentAccount.objects.filter(
-        user=request.amo_user, inactive=False)
+        user=request.amo_user,
+        provider__in=[p.provider for p in get_providers()],
+        inactive=False)
 
     def account(acc):
         app_names = (', '.join(unicode(apa.addon.name)
@@ -213,11 +225,17 @@ def payment_accounts(request):
 
 @login_required
 def payment_accounts_form(request):
-    bango_account_form = forms_payments.AccountListForm(
-        user=request.amo_user, addon=None)
+    webapp = get_object_or_404(Webapp, app_slug=request.GET.get('app_slug'))
+    provider = get_provider(name=request.GET.get('provider'))
+    account_list_formset = forms_payments.AccountListFormSet(
+        provider_data=[
+            {'user': request.amo_user, 'addon': webapp, 'provider': p}
+            for p in get_providers()])
+    account_list_form = next(form for form in account_list_formset.forms
+                             if form.provider.name == provider.name)
     return render(request,
                   'developers/payments/includes/bango_accounts_form.html',
-                  {'account_list_form': bango_account_form})
+                  {'account_list_form': account_list_form})
 
 
 @write
@@ -225,7 +243,7 @@ def payment_accounts_form(request):
 @login_required
 @json_view
 def payments_accounts_add(request):
-    provider = get_provider()
+    provider = get_provider(name=request.POST.get('provider'))
     form = provider.forms['account'](request.POST)
     if not form.is_valid():
         return json_view.error(form.errors)
@@ -449,7 +467,7 @@ def get_seller_product(account):
 @json_view
 def agreement(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)
-    provider = get_provider()
+    provider = account.get_provider()
     if request.method == 'POST':
         return provider.terms_update(account)
 

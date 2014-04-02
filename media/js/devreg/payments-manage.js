@@ -2,23 +2,30 @@ define('payments-manage', ['payments'], function(payments) {
     'use strict';
 
     function refreshAccountForm(data) {
-        var $accountListForm = $('#my-accounts-list');
-        var $accountListContainer = $('#bango-account-list');
+        var $accountListForm = $('#' + data.provider + '-accounts-list');
+        var $accountListContainer = $('#' + data.provider + '-account-list');
         $accountListForm.load($accountListContainer.data('url'));
     }
 
     function newBangoPaymentAccount(e) {
+        var provider = e.currentTarget.attributes['data-provider'].value;
         var $overlay = payments.getOverlay({
             'id': 'payment-account-add',
-            'class': 'undismissable'
+            'class': 'undismissable',
+            'provider': provider,
         });
-        payments.setupPaymentAccountOverlay($overlay, showAgreement);
+        payments.setupPaymentAccountOverlay($overlay, function (data) {
+            data.provider = provider;
+            showAgreement(data);
+        });
     }
 
     function confirmPaymentAccountDeletion(data) {
         var spliter = ', ';
         var isPlural = data['app-names'].indexOf(spliter) < 0;
-        var $confirm_delete_overlay = payments.getOverlay('payment-account-delete-confirm');
+        var $confirm_delete_overlay = payments.getOverlay({
+            id: 'payment-account-delete-confirm',
+        });
         $confirm_delete_overlay.find('p').text(
             // L10n: This sentence introduces a list of applications.
             format(ngettext('Warning: deleting payment account "{0}" ' +
@@ -31,14 +38,19 @@ define('payments-manage', ['payments'], function(payments) {
         $confirm_delete_overlay.find('ul')
                                .html('<li>' + escape_(data['app-names']).split(spliter).join('</li><li>') + '</li>');
         $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
-            $.post(data['delete-url']).then(refreshAccountForm);
+            $.post(data['delete-url']).then(function () {
+                refreshAccountForm(data)
+            });
             $confirm_delete_overlay.remove();
             $('#paid-island-incomplete').toggleClass('hidden');
         }));
     }
 
     function setupAgreementOverlay(data, onsubmit) {
-        var $waiting_overlay = payments.getOverlay('payment-account-waiting');
+        var $waiting_overlay = payments.getOverlay({
+            id: 'payment-account-waiting',
+            provider: data.provider,
+        });
         var $portal_link = data['portal-link'];
 
         $.getJSON(data['agreement-url'], function(response) {
@@ -54,7 +66,9 @@ define('payments-manage', ['payments'], function(payments) {
                 }
 
                 // If the POST failed, we show an error message.
-                $.post(data['agreement-url'], $form.serialize(), refreshAccountForm).fail(function() {
+                $.post(data['agreement-url'], $form.serialize(), function () {
+                    refreshAccountForm(data);
+                }).fail(function() {
                     $waiting_overlay.find('h2').text(gettext('Error'));
                     $waiting_overlay.find('p').text(gettext('There was a problem contacting the payment server.'));
                     if ($portal_link) {
@@ -70,7 +84,7 @@ define('payments-manage', ['payments'], function(payments) {
 
     function showAgreement(data) {
         setupAgreementOverlay(data, function() {
-            refreshAccountForm();
+            refreshAccountForm(data);
             $('#no-payment-providers').addClass('js-hidden');
         });
     }
@@ -86,16 +100,24 @@ define('payments-manage', ['payments'], function(payments) {
             });
     }
 
-    function editBangoPaymentAccount(account_url) {
+    function editBangoPaymentAccount(account_url, provider) {
         function paymentAccountSetup() {
-            var $overlay = payments.getOverlay('payment-account-edit');
+            var $overlay = payments.getOverlay({
+                id: 'payment-account-edit',
+                provider: provider,
+            });
             $overlay.find('form').attr('action', account_url);
-            payments.setupPaymentAccountOverlay($overlay, refreshAccountForm);
+            payments.setupPaymentAccountOverlay($overlay, function () {
+                refreshAccountForm({provider: provider});
+            });
         }
 
         // Start the loading screen while we get the account data.
         return function(e) {
-            var $waiting_overlay = payments.getOverlay('payment-account-waiting');
+            var $waiting_overlay = payments.getOverlay({
+                id: 'payment-account-waiting',
+                provider: provider,
+            });
             $.getJSON(account_url, function(data) {
                 $waiting_overlay.remove();
                 z.body.removeClass('overlayed');
@@ -144,25 +166,29 @@ define('payments-manage', ['payments'], function(payments) {
                      })
                      .success(function() {
                          parent.remove();
-                         refreshAccountForm();
+                         refreshAccountForm({provider: parent.data('account-provider')});
                      });
                 } else {
                     confirmPaymentAccountDeletion({
                         'app-names': app_names,
                         'delete-url': delete_url,
                         'name': parent.data('account-name'),
-                        'shared': parent.data('shared')
+                        'shared': parent.data('shared'),
+                        'provider': parent.data('account-provider'),
                     });
                 }
             })).on('click', '.modify-account', _pd(function() {
                 // Get the account URL from the table row and pass it to
                 // the function to handle the Edit overlay.
-                editBangoPaymentAccount($(this).closest('tr').data('account-url'))();
+                var $row = $(this).closest('tr');
+                editBangoPaymentAccount($row.data('account-url'),
+                                        $row.data('account-provider'))();
             })).on('click', '.accept-tos', _pd(function() {
                 var $tr = $(this).closest('tr');
                 showAgreement({
                     'agreement-url': $tr.data('agreement-url'),
-                    'portal-link': $tr.closest('.portal-link')
+                    'portal-link': $tr.closest('.portal-link'),
+                    'provider': $tr.data('account-provider'),
                 });
             })).on('click', '.portal-account', _pd(function() {
                 var $this = $(this);

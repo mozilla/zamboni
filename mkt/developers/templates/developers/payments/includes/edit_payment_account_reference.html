@@ -1,4 +1,4 @@
-<script type="text/template" id="payment-account-edit-template">
+<script type="text/template" id="reference-payment-account-edit-template">
   <section class="payment-account-edit payment-account-reference">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
@@ -7,6 +7,7 @@
     <form method="post" class="island">
       {{ csrf() }}
       {{ account_form.uuid }}
+      <input type="hidden" name="provider" value="reference">
       <div id="payment-account-errors"></div>
       <div>
         <div class="field">
@@ -32,7 +33,7 @@
   </section>
 </script>
 
-<script type="text/template" id="payment-account-waiting-template">
+<script type="text/template" id="reference-payment-account-waiting-template">
   <section class="payment-account-waiting">
     <h2>{{ _('Processing Request...') }}</h2>
     <p>{% trans %}Please wait while we contact the payment server.{% endtrans %}</p>

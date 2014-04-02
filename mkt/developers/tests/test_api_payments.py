@@ -38,7 +38,8 @@ package_data = {
     'addressPhone': '123',
     'countryIso': 'BRA',
     'currencyIso': 'EUR',
-    'account_name': 'new'
+    'account_name': 'new',
+    'provider': 'bango',
 }
 
 bank_data = {
@@ -263,6 +264,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         data = self.bango_patcher.package.post.call_args[1]['data']
         expected = package_data.copy()
         expected.pop('account_name')
+        expected.pop('provider')
         for key in expected.keys():
             eq_(package_data[key], data[key])
 
@@ -275,6 +277,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         data = self.bango_patcher.api.by_url().patch.call_args[1]['data']
         expected = package_data.copy()
         expected.pop('account_name')
+        expected.pop('provider')
         for key in expected.keys():
             eq_(package_data[key], data[key])
 

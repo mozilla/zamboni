@@ -1,4 +1,4 @@
-<script type="text/template" id="payment-account-add-template">
+<script type="text/template" id="boku-payment-account-add-template">
   <section class="payment-account-add payment-account-boku">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
@@ -6,6 +6,7 @@
     </header>
     <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
       {{ csrf() }}
+      <input type="hidden" name="provider" value="boku">
       <p>
         {% trans boku_url=account_form.signup_url %}
         You will need a Boku merchant and service id to sign up for
@@ -38,7 +39,7 @@
   </section>
 </script>
 
-<script type="text/template" id="payment-account-waiting-template">
+<script type="text/template" id="boku-payment-account-waiting-template">
   <section class="payment-account-waiting">
     <h2>{{ _('Processing Request...') }}</h2>
     <p>{% trans %}Please wait while we contact the payment server.{% endtrans %}</p>
