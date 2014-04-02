@@ -98,6 +98,7 @@ class TestApi(RestOAuth, ESTestCase):
         self.webapp = Webapp.objects.get(pk=337141)
         self.category = Category.objects.create(name='test', slug='test',
                                                 type=amo.ADDON_WEBAPP)
+        self.webapp.icon_hash = 'fakehash'
         self.webapp.save()
         self.refresh('webapp')
 
@@ -204,6 +205,7 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(obj['description'],
                 {'en-US': self.webapp.description.localized_string})
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
+            ok_(obj['icons']['128'].endswith('?modified=fakehash'))
             eq_(obj['id'], long(self.webapp.id))
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
             eq_(obj['payment_account'], None)
@@ -674,6 +676,15 @@ class TestApi(RestOAuth, ESTestCase):
         res = self.client.get(self.url, {'region': 'de'})
         ok_(not res.json['objects'])
 
+    def test_icon_url_never(self):
+        self.webapp.update(icon_hash=None)
+        self.refresh('webapp')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['icons']['64'], self.webapp.get_icon_url(64))
+        ok_(obj['icons']['64'].endswith('?modified=never'))
+
 
 class TestApiFeatures(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
@@ -1017,6 +1028,7 @@ class TestRocketbarApi(ESTestCase):
         self.app2 = app_factory(name=u'Something Second Something Something',
                                 description=u'Second dèsc' * 25,
                                 icon_type='image/png',
+                                icon_hash='fakehash',
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
@@ -1046,6 +1058,7 @@ class TestRocketbarApi(ESTestCase):
                         'icon': self.app2.get_icon_url(64),
                         'name': unicode(self.app2.name),
                         'slug': self.app2.app_slug})
+        ok_(self.app2.get_icon_url(64).endswith('?modified=fakehash'))
 
     def test_suggestion_default_locale(self):
         self.app2.name.locale = 'es'
@@ -1071,7 +1084,7 @@ class TestRocketbarApi(ESTestCase):
         eq_(parsed[0], {'manifest_url': self.app1.get_manifest_url(),
                         'icon': self.app1.get_icon_url(64),
                         'name': unicode(self.app1.name),
-                      'slug': self.app1.app_slug})
+                        'slug': self.app1.app_slug})
         eq_(parsed[1], {'manifest_url': self.app2.get_manifest_url(),
                         'icon': self.app2.get_icon_url(64),
                         'name': unicode(self.app2.name),

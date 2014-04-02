@@ -258,6 +258,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         db_column='higheststatus')
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
+    icon_hash = models.CharField(max_length=8, blank=True, null=True)
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
@@ -1003,9 +1004,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
+            # If we don't have the icon_hash, and we are dealing with a Webapp,
+            # it's fine, set to a dummy string ("never"), when the icon is
+            # eventually changed, icon_hash will be updated. For regular Addons
+            # we rely on the modified instead like we always have.
+            if self.type == amo.ADDON_WEBAPP:
+                suffix = getattr(self, 'icon_hash', None) or 'never'
+            else:
+                suffix = int(time.mktime(self.modified.timetuple()))
             return settings.ADDON_ICON_URL % (
-                split_id.group(2) or 0, self.id, size,
-                int(time.mktime(self.modified.timetuple())))
+                split_id.group(2) or 0, self.id, size, suffix)
 
     @write
     def update_status(self):

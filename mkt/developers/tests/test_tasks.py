@@ -35,8 +35,8 @@ from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
 def test_resize_icon_shrink():
     """ Image should be shrunk so that the longest side is 32px. """
 
-    resize_size = 32
-    final_size = (32, 12)
+    resize_size = [32]
+    final_size = [(32, 12)]
 
     _uploader(resize_size, final_size)
 
@@ -44,8 +44,8 @@ def test_resize_icon_shrink():
 def test_resize_icon_enlarge():
     """ Image stays the same, since the new size is bigger than both sides. """
 
-    resize_size = 1000
-    final_size = (339, 128)
+    resize_size = [1000]
+    final_size = [(339, 128)]
 
     _uploader(resize_size, final_size)
 
@@ -53,8 +53,8 @@ def test_resize_icon_enlarge():
 def test_resize_icon_same():
     """ Image stays the same, since the new size is the same. """
 
-    resize_size = 339
-    final_size = (339, 128)
+    resize_size = [339]
+    final_size = [(339, 128)]
 
     _uploader(resize_size, final_size)
 
@@ -72,48 +72,35 @@ def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
 
-    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                      delete=False)
 
-    # resize_icon removes the original
-    shutil.copyfile(img, src.name)
+    for rsize, fsize in zip(resize_size, final_size):
+        dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
+        src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
+                                          delete=False)
+        # resize_icon removes the original, copy it to a tempfile and use that.
+        shutil.copyfile(img, src.name)
+        # Sanity check.
+        with storage.open(src.name) as fp:
+            src_image = Image.open(fp)
+            src_image.load()
+        eq_(src_image.size, original_size)
 
-    with storage.open(src.name) as fp:
-        src_image = Image.open(fp)
-        src_image.load()
-    eq_(src_image.size, original_size)
-
-    if isinstance(final_size, list):
-        for rsize, fsize in zip(resize_size, final_size):
-            dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
-
-            tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
-            with storage.open("%s-%s.png" % (dest_name, rsize)) as fp:
-                dest_image = Image.open(fp)
-                dest_image.load()
-
-            # Assert that the width is always identical.
-            eq_(dest_image.size[0], fsize[0])
-            # Assert that the height can be a wee bit fuzzy.
-            assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
-                "Got width %d, expected %d" %
-                    (fsize[1], dest_image.size[1]))
-
-            if os.path.exists(dest_image.filename):
-                os.remove(dest_image.filename)
-            assert not os.path.exists(dest_image.filename)
-    else:
-        dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png")
-        tasks.resize_icon(src.name, dest.name, resize_size, locally=True)
-        with storage.open(dest.name) as fp:
+        val = tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
+        eq_(val, {'icon_hash': 'bb362450'})
+        with storage.open('%s-%s.png' % (dest_name, rsize)) as fp:
             dest_image = Image.open(fp)
             dest_image.load()
 
         # Assert that the width is always identical.
-        eq_(dest_image.size[0], final_size[0])
+        eq_(dest_image.size[0], fsize[0])
         # Assert that the height can be a wee bit fuzzy.
-        assert -1 <= dest_image.size[1] - final_size[1] <= 1, (
-            "Got width %d, expected %d" % (final_size[1], dest_image.size[1]))
+        assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
+            'Got width %d, expected %d' %
+                (fsize[1], dest_image.size[1]))
+
+        if os.path.exists(dest_image.filename):
+            os.remove(dest_image.filename)
+        assert not os.path.exists(dest_image.filename)
 
     assert not os.path.exists(src.name)
 

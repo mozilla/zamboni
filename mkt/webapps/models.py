@@ -1543,12 +1543,8 @@ class WebappIndexer(MappingType, Indexable):
                             for f in APP_FEATURES)
                     },
                     'has_public_stats': {'type': 'boolean'},
-                    'icons': {
-                        'type': 'object',
-                        'properties': {
-                            'size': {'type': 'short'},
-                        }
-                    },
+                    'icon_hash': {'type': 'string',
+                                  'index': 'not_analyzed'},
                     'interactive_elements': {
                         'type': 'string',
                         'index': 'not_analyzed'
@@ -1712,7 +1708,7 @@ class WebappIndexer(MappingType, Indexable):
         d['device'] = getattr(obj, 'device_ids', [])
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
-        d['icons'] = [{'size': icon_size} for icon_size in (16, 48, 64, 128)]
+        d['icon_hash'] = obj.icon_hash
         d['interactive_elements'] = obj.get_interactives_slugs()
         d['is_escalated'] = is_escalated
         d['is_offline'] = getattr(obj, 'is_offline', False)
@@ -1823,12 +1819,13 @@ class WebappIndexer(MappingType, Indexable):
                 'output': unicode(obj.id),  # We only care about the payload.
                 'weight': d['_boost'],
                 'payload': {
-                    'id': d['id'],
-                    'modified': d['modified'],
-                    'slug': d['app_slug'],
-                    'manifest_url': d['manifest_url'],
                     'default_locale': d['default_locale'],
-                    'name_translations': d['name_translations']
+                    'icon_hash': d['icon_hash'],
+                    'id': d['id'],
+                    'manifest_url': d['manifest_url'],
+                    'modified': d['modified'],
+                    'name_translations': d['name_translations'],
+                    'slug': d['app_slug'],
                 }
             }
 
