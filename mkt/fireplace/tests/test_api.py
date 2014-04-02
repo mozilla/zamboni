@@ -13,6 +13,8 @@ from users.models import UserProfile
 import mkt
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
+from mkt.collections.models import Collection
 from mkt.fireplace.api import FireplaceAppSerializer
 from mkt.webapps.models import Webapp
 from mkt.site.fixtures import fixture
@@ -61,6 +63,9 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
         self.webapp = Webapp.objects.get(pk=337141)
+        collection = Collection.objects.create(name='Hi', description='Mom',
+            collection_type=COLLECTIONS_TYPE_BASIC, is_public=True)
+        collection.add_app(self.webapp)
         self.reindex(Webapp, 'webapp')
         self.url = reverse('fireplace-featured-search-api')
 
@@ -75,8 +80,15 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
             ok_(not field in data, field)
         for field in FireplaceAppSerializer.Meta.fields:
             ok_(field in data, field)
-        ok_('featured' in res.json)
+
         ok_('collections' in res.json)
+        eq_(res.json['collections'][0]['name'], {u'en-US': u'Hi'})
+        data = res.json['collections'][0]['apps'][0]
+        for field in FIREPLACE_EXCLUDED_FIELDS:
+            ok_(not field in data, field)
+        for field in FireplaceAppSerializer.Meta.fields:
+            ok_(field in data, field)
+        ok_('featured' in res.json)
         ok_('operator' in res.json)
 
     def test_only_64px_icons(self):

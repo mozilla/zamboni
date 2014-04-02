@@ -86,6 +86,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
 
 class FeaturedSearchView(SearchView):
+    collections_serializer_class = CollectionSerializer
 
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
@@ -98,10 +99,11 @@ class FeaturedSearchView(SearchView):
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
         preview_mode = filters.get('preview', False)
-        serializer = CollectionSerializer(qs[:limit], many=True, context={
-            'request': request,
-            'view': self,
-            'use-es-for-apps': not preview_mode
+        serializer = self.collections_serializer_class(qs[:limit], many=True,
+            context={
+                'request': request,
+                'view': self,
+                'use-es-for-apps': not preview_mode
         })
         return serializer.data, getattr(qs, 'filter_fallback', None)
 

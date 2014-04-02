@@ -9,6 +9,8 @@ from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.collections.serializers import (CollectionMembershipField,
+                                         CollectionSerializer)
 from mkt.search.api import (FeaturedSearchView as BaseFeaturedSearchView,
                             SearchView as BaseSearchView)
 from mkt.search.serializers import SimpleESAppSerializer
@@ -44,12 +46,24 @@ class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
         return None
 
 
+class FireplaceCollectionMembershipField(CollectionMembershipField):
+    app_serializer_classes = {
+        'es': FireplaceESAppSerializer,
+        'normal': FireplaceAppSerializer,
+    }
+
+
+class FireplaceCollectionSerializer(CollectionSerializer):
+    apps = FireplaceCollectionMembershipField(many=True, source='apps')
+
+
 class AppViewSet(BaseAppViewset):
     serializer_class = FireplaceAppSerializer
 
 
 class FeaturedSearchView(BaseFeaturedSearchView):
     serializer_class = FireplaceESAppSerializer
+    collections_serializer_class = FireplaceCollectionSerializer
     authentication_classes = []
 
 
