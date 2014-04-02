@@ -2,6 +2,7 @@
 import uuid
 from operator import itemgetter
 
+from django.conf import settings
 from django.core.cache import cache
 from django.db import connection, models
 from django.dispatch import receiver
@@ -20,7 +21,7 @@ from amo.decorators import write
 from amo.utils import get_locale_from_lang
 from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
                                 PAYMENT_METHOD_CHOICES, PROVIDER_BANGO,
-                                PROVIDER_CHOICES)
+                                PROVIDER_CHOICES, PROVIDER_LOOKUP)
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
@@ -29,6 +30,14 @@ from users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.market')
+
+
+def default_providers():
+    """
+    Returns a list of the default providers from the settings as the
+    appropriate constants.
+    """
+    return [PROVIDER_LOOKUP[p] for p in settings.PAYMENT_PROVIDERS]
 
 
 def price_locale(price, currency):
@@ -102,6 +111,9 @@ class Price(amo.models.ModelBase):
         :param optional provider: an int for the provider. Defaults to bango.
         """
         region = region or RESTOFWORLD.id
+        # Unless you specify a provider, we will give you the Bango tier.
+        # This is probably ok for now, because Bango is the default fall back
+        # however we might need to think about this for the long term.
         provider = provider or PROVIDER_BANGO
         if not hasattr(self, '_currencies'):
             Price.transformer([])
@@ -146,10 +158,16 @@ class Price(amo.models.ModelBase):
             return price_locale(price, currency)
 
     def prices(self, provider=None):
-        """A list of dicts of all the currencies and prices for this tier."""
-        provider = provider or PROVIDER_BANGO
+        """
+        A list of dicts of all the currencies and prices for this tier.
+
+        :param int provider: A provider, using the PAYMENT_* constant.
+            If not provided it will use settings.PAYMENT_PROVIDERS,
+        """
+        providers = [provider] if provider else default_providers()
         return [model_to_dict(o) for o in
-                self.pricecurrency_set.filter(provider=provider)]
+                self.pricecurrency_set.filter(provider__in=providers)]
+
 
     def region_ids_by_slug(self):
         """A tuple of price region ids sorted by slug."""
