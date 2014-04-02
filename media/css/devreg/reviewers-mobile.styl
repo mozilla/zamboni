@@ -527,3 +527,16 @@ $mobileborder = #d7d2c3;
         }
     }
 }
+
+/* Removing the use of MOBILE and DESKTOP context (bug 985754). */
+@media $portrait-max {
+    .reviewers-desktop {
+        display: none;
+    }
+}
+
+@media $landscape-min {
+    .reviewers-mobile {
+        display: none;
+    }
+}

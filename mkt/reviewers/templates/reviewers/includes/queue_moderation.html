@@ -1,7 +1,7 @@
 <div id="reviews-flagged">
   <form method="post" class="item">
-    {% if queue_counts[tab] != 0 and DESKTOP %}
-      <div class="review-saved">
+    {% if queue_counts[tab] != 0 %}
+      <div class="review-saved reviewers-desktop">
         <button type="submit">{{ _('Process Reviews') }}</button>
       </div>
     {% endif %}
@@ -9,43 +9,31 @@
     {{ reviews_formset.management_form }}
     {% for review in reviews_formset.forms %}
       <div class="review-flagged">
-        {% if DESKTOP %}
-          <div class="review-flagged-actions">
-            {{ review.errors }}
-            <strong>{{ _('Moderation actions:') }}</strong>
-            {{ review.id }}
-            {{ review.action }}
-          </div>
-        {% endif %}
+        <div class="review-flagged-actions reviewers-desktop">
+          {{ review.errors }}
+          <strong>{{ _('Moderation actions:') }}</strong>
+          {{ review.id }}
+          {{ review.action }}
+        </div>
         <h3>
           <a href="{{ review.instance.addon.get_url_path() }}">{{ review.instance.addon.name }}</a>
           {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
         </h3>
-        {% if DESKTOP %}
-          <p>
-            {% trans user=review.instance.user|user_link, date=review.instance.created|datetime,
-                     stars=review.instance.rating|stars, locale=review.instance.title.locale %}
-              by {{ user }} on {{ date }}
-              {{ stars }} ({{ locale }})
-            {% endtrans %}
-            {% if waffle.switch('reviews-translate') %}
-            - <a class="translate" rel="nofollow" target="_blank"
-                 href="{{ url('reviewers.review_translate', review.instance.addon.slug, review.instance.id, LANG) }}">
-                 {{ _('translate') }}
-              </a>
-            {% endif %}
-          </p>
-        {% else %}
-          <p>
-            {% trans user=review.instance.user|user_link,
-                     date=review.instance.created|datetime,
-                     stars=review.instance.rating|stars,
-                     locale=review.instance.title.locale %}
-              {{ stars }}
-              by {{ user }} on {{ date }} ({{ locale }})
-            {% endtrans %}
-          </p>
-        {% endif %}
+        <p>
+          {% trans user=review.instance.user|user_link,
+                   date=review.instance.created|datetime,
+                   stars=review.instance.rating|stars,
+                   locale=review.instance.title.locale %}
+            by {{ user }} on {{ date }}
+            {{ stars }} ({{ locale }})
+          {% endtrans %}
+          {% if waffle.switch('reviews-translate') %}
+          - <a class="translate reviewers-desktop" rel="nofollow" target="_blank"
+               href="{{ url('reviewers.review_translate', review.instance.addon.slug, review.instance.id, LANG) }}">
+               {{ _('translate') }}
+            </a>
+          {% endif %}
+        </p>
         <p class="description">{{ review.instance.body|nl2br }}</p>
         <ul class="reviews-flagged-reasons">
           {% for reason in review.instance.reviewflag_set.all() %}
@@ -61,14 +49,12 @@
             </li>
           {% endfor %}
         </ul>
-        {% if not DESKTOP %}
-          <div class="review-flagged-actions hidden">
-            {{ review.errors }}
-            <strong>{{ _('Moderation actions:') }}</strong>
-            {{ review.id }}
-            {{ review.action }}
-          </div>
-        {% endif %}
+        <div class="review-flagged-actions reviewers-mobile hidden">
+          {{ review.errors }}
+          <strong>{{ _('Moderation actions:') }}</strong>
+          {{ review.id }}
+          {{ review.action }}
+        </div>
       </div>
     {% endfor %}
     {% if queue_counts[tab] == 0 %}
