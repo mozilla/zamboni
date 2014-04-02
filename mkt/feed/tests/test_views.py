@@ -131,6 +131,7 @@ class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
                                 carrier=mkt.carriers.TELEFONICA.id,
                                 region=mkt.regions.BR.id)
         eq_(res.status_code, 201)
+        self.assertCORS(res, 'get', 'post')
         eq_(data['collection']['id'], self.collection.pk)
 
     def test_create_no_data(self):
@@ -317,6 +318,8 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(res.status_code, 201)
         eq_(data['app']['id'], self.feedapp_data['app'])
         eq_(data['description'], self.feedapp_data['description'])
+
+        self.assertCORS(res, 'get', 'post')
         return res, data
 
     def test_create_with_preview(self):
