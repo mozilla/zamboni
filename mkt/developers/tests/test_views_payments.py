@@ -772,11 +772,12 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def test_template_switches(self):
         payments_url = self.webapp.get_dev_url('payments')
-        with self.settings(PAYMENT_PROVIDERS=['reference']):
-            res = self.client.get(payments_url)
-        tmpl = self.extract_script_template(res.content,
-                                            '#payment-account-add-template')
-        eq_(len(tmpl('.payment-account-reference')), 1)
+        for provider in ['reference', 'boku']:
+            with self.settings(PAYMENT_PROVIDERS=[provider]):
+                res = self.client.get(payments_url)
+            tmpl = self.extract_script_template(
+                res.content, '#payment-account-add-template')
+            eq_(len(tmpl('.payment-account-{0}'.format(provider))), 1)
 
     def test_bango_portal_links(self):
         payments_url = self.webapp.get_dev_url('payments')

@@ -1620,6 +1620,12 @@ WHITELISTED_CLIENTS_EMAIL_API = []
 # Base URL to the Bango Vendor Portal (keep the trailing question mark).
 BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
 
+# URL to Boku signup flow, this will change per server.
+# See https://mana.mozilla.org/wiki/display/MARKET/Boku for more.
+#
+# This a good test one that developers can use.
+BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalYW56b6hrqfw%3D'
+
 # Auth token required to authorize a postfix host.
 POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'
 
