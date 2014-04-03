@@ -1,0 +1,49 @@
+<script type="text/template" id="payment-account-add-template">
+  <section class="payment-account-add payment-account-boku">
+    <header>
+      <a class="close" title="{{ _('close') }}">&times;</a>
+      <h2>{{ _('Add Boku Account') }}</h2>
+    </header>
+    <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
+      {{ csrf() }}
+<<<<<<< HEAD
+=======
+      <p>
+        {% trans boku_url=account_form.signup_url %}
+        You will need a Boku merchant and service id to sign up for
+        a Boku account. Boku accounts must be created through the
+        <a href="{{ boku_url }}">Mozilla sign up process</a>.
+        {% endtrans %}
+      </p>
+>>>>>>> fec8600... add in boku add template (bug 990007)
+      <div id="payment-account-errors"></div>
+      <div>
+        <div class="field">
+          {{ account_form.account_name.label_tag() }}
+          {{ account_form.account_name }}
+        </div>
+        <div class="field">
+          {{ account_form.merchant_id.label_tag() }}
+          {{ account_form.merchant_id }}
+        </div>
+        <div class="field no-border">
+          {{ account_form.service_id.label_tag() }}
+          {{ account_form.service_id }}
+        </div>
+      </div>
+      <div class="listing-footer">
+        <button type="submit">{{ _('Register Payment Account') }}</button>
+        {# L10n: This 'or' goes between two choices in a dialog. #}
+        {{ _('or') }}
+        <a href="#" class="close">{{ _('Cancel') }}</a>
+      </div>
+    </form>
+  </section>
+</script>
+
+<script type="text/template" id="payment-account-waiting-template">
+  <section class="payment-account-waiting">
+    <h2>{{ _('Processing Request...') }}</h2>
+    <p>{% trans %}Please wait while we contact the payment server.{% endtrans %}</p>
+  </section>
+</script>

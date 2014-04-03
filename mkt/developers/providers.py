@@ -10,7 +10,8 @@ import commonware
 from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
 
-from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
+from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
+                                PROVIDER_REFERENCE)
 from lib.crypto import generate_key
 # Because client is used in the classes, renaming here for clarity.
 from lib.pay_server import client as pay_client
@@ -275,8 +276,24 @@ class Reference(Provider):
         return self.client.sellers(account.account_id).put(data)
 
 
+class Boku(Provider):
+    """
+    Specific Boku implementation details.
+    """
+    forms = {
+        'account': forms_payments.BokuAccountForm,
+    }
+    full = _('Boku')
+    name = 'boku'
+    provider = PROVIDER_BOKU
+    templates = {
+        'add': os.path.join(root, 'add_payment_account_boku.html'),
+        'edit': os.path.join(root, 'edit_payment_account_boku.html'),
+    }
+
+
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
-for p in (Bango, Reference):
+for p in (Bango, Reference, Boku):
     ALL_PROVIDERS[p.name] = p
     ALL_PROVIDERS_BY_ID[p.provider] = p
 

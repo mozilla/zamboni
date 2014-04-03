@@ -1,8 +1,9 @@
 from decimal import Decimal
 
 from django import forms
-from django.db.models import Q
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 
 import commonware
 import happyforms
@@ -570,6 +571,15 @@ class ReferenceAccountForm(happyforms.Form):
         # Save the account name, if it was updated.
         provider = self.account.get_provider()
         provider.account_update(self.account, self.cleaned_data)
+
+
+class BokuAccountForm(happyforms.Form):
+    signup_url = settings.BOKU_SIGNUP_URL
+    account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
+    # The lengths of these are not specified in the Boku documentation, so
+    # making a guess here about max lengths.
+    merchant_id = forms.CharField(max_length=50, label=_lazy(u'Merchant ID'))
+    service_id = forms.CharField(max_length=50, label=_lazy(u'Service ID'))
 
 
 class PaymentCheckForm(happyforms.Form):
