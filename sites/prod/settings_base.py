@@ -120,7 +120,7 @@ csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = private.RESPONSYS_ID
 
-CRONJOB_LOCK_PREFIX = 'addons'
+CRONJOB_LOCK_PREFIX = 'mkt'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 
