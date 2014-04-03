@@ -282,8 +282,9 @@ for p in (Bango, Reference):
 
 
 def get_provider():
-    if len(settings.PAYMENT_PROVIDERS) != 1:
-        raise ImproperlyConfigured(
-            'You must have only one payment provider in zamboni. Having '
-            'multiple providers at one time will be added at a later date.')
-    return ALL_PROVIDERS[settings.PAYMENT_PROVIDERS[0]]()
+    """
+    This returns the default provider so we can provide backwards capability
+    for API's that expect get_provider to return 'bango'. This is something
+    we'll have to clean out.
+    """
+    return ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER]()

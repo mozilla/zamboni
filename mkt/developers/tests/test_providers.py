@@ -62,10 +62,10 @@ class Patcher(object):
 
 class TestSetup(TestCase):
 
-    @raises(ImproperlyConfigured)
     def test_multiple(self):
-        with self.settings(PAYMENT_PROVIDERS=['foo', 'bar']):
-            get_provider()
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'reference'],
+                           DEFAULT_PAYMENT_PROVIDER='bango'):
+            eq_(get_provider().name, 'bango')
 
 
 class TestBango(Patcher, TestCase):
