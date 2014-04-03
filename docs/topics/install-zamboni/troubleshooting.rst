@@ -15,11 +15,11 @@ ____________________________
 First look for the following image serving settings::
 
     SERVE_TMP_PATH = True  # maps /tmp to zamboni/tmp
-    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%d'
-    PREVIEW_FULL_URL = '/tmp/uploads/previews/full/%s/%d.png?modified=%d'
-    USERPICS_URL = '/tmp/uploads/userpics/%s/%s/%s.png?modified=%d'
-    ADDON_ICON_URL = '/tmp/uploads/addon_icons/%s/%s-%s.png?modified=%d'
-    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%d'
+    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%s'
+    PREVIEW_FULL_URL = '/tmp/uploads/previews/full/%s/%d.png?modified=%s'
+    USERPICS_URL = '/tmp/uploads/userpics/%s/%s/%s.png?modified=%s'
+    ADDON_ICON_URL = '/tmp/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%s'
     NEW_PERSONAS_IMAGE_URL = '/tmp/uploads/personas/%(id)d/%(file)s'
 
 Check that ``CELERY_ALWAYS_EAGER`` is set to ``True`` in your settings file. This
