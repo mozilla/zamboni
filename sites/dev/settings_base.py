@@ -123,7 +123,7 @@ csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = private.RESPONSYS_ID
 
-CRONJOB_LOCK_PREFIX = 'addons-dev'
+CRONJOB_LOCK_PREFIX = 'mkt-dev'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
 BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
