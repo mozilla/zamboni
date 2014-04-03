@@ -16497,7 +16497,7 @@ msgstr "Les icônes doivent être carrées."
 #. in px.
 #: mkt/developers/utils.py:123
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
-msgstr "Les aperçus d'application doivent faire moins de {0}px*{1}px ou {1}px*{0}px."
+msgstr "Les aperçus d'application doivent faire au moins {0}px*{1}px ou {1}px*{0}px."
 
 #: mkt/developers/views.py:153
 msgid "Paid apps cannot be deleted. Disable this app instead."
