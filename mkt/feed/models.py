@@ -1,14 +1,21 @@
+import os
+
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 
 import amo.models
+from amo.models import SlugField
+from addons.models import Category, Preview
+from translations.fields import PurifiedField, save_signal
+
 import mkt.carriers
 import mkt.regions
-from addons.models import Category, Preview
+from mkt.collections.fields import ColorField
 from mkt.collections.models import Collection
+from mkt.constants.feed import FEEDAPP_TYPES
 from mkt.ratings.validators import validate_rating
 from mkt.webapps.models import Webapp
-from translations.fields import PurifiedField, save_signal
 
 
 class FeedApp(amo.models.ModelBase):
@@ -17,7 +24,11 @@ class FeedApp(amo.models.ModelBase):
     on the feed.
     """
     app = models.ForeignKey(Webapp)
+    feedapp_type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
     description = PurifiedField()
+    slug = SlugField(max_length=30)
+    background_color = ColorField(null=True)
+    has_image = models.BooleanField(default=False)
 
     # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
@@ -41,6 +52,11 @@ class FeedApp(amo.models.ModelBase):
             raise ValidationError('Pullquote text required if rating or '
                                   'attribution is defined.')
         super(FeedApp, self).clean()
+
+    def image_path(self):
+        return os.path.join(settings.FEATURED_APP_BG_PATH,
+                            str(self.pk / 1000),
+                            'featured_app_%s.png' % (self.pk,))
 
 
 class FeedItem(amo.models.ModelBase):

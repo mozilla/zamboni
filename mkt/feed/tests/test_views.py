@@ -36,9 +36,13 @@ class FeedAppMixin(object):
     def setUp(self):
         self.feedapp_data = {
             'app': 337141,
+            'background_color': '#B90000',
+            'feedapp_type': 'icon',
             'description': {
                 'en-US': u'pan-fried potatoes'
             },
+            'has_image': False,
+            'slug': 'my-feed-app',
         }
         self.pullquote_data = {
             'pullquote_text': {'en-US': u'The bést!'},
@@ -318,9 +322,16 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(res.status_code, 201)
         eq_(data['app']['id'], self.feedapp_data['app'])
         eq_(data['description'], self.feedapp_data['description'])
+        eq_(data['slug'], self.feedapp_data['slug'])
+        eq_(data['feedapp_type'], self.feedapp_data['feedapp_type'])
 
         self.assertCORS(res, 'get', 'post')
         return res, data
+
+    def test_create_with_background_color(self):
+        self.feedapp_data.update(background_color='#00AACC')
+        res, data = self.test_create_with_permission()
+        eq_(data['background_color'], '#00AACC')
 
     def test_create_with_preview(self):
         preview = Preview.objects.create(addon=self.app, position=0)

@@ -6,7 +6,8 @@ import mkt.regions
 from addons.models import Category
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
-from mkt.collections.serializers import (CollectionSerializer, SlugChoiceField,
+from mkt.collections.serializers import (CollectionImageField,
+                                         CollectionSerializer, SlugChoiceField,
                                          SlugModelChoiceField)
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.api import AppSerializer
@@ -15,9 +16,14 @@ from .models import FeedApp, FeedItem
 
 
 class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
+    """Thin wrappers around apps w/ metadata related to its feature in feed."""
     app = SplitField(relations.PrimaryKeyRelatedField(required=True),
                      AppSerializer())
     description = TranslationSerializerField(required=False)
+    image = CollectionImageField(
+        source='*',
+        view_name='feed-app-image-detail',
+        format='png')
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
                          PreviewSerializer())
     pullquote_attribution = TranslationSerializerField(required=False)
@@ -25,14 +31,15 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'description', 'id', 'preview',
-                  'pullquote_attribution', 'pullquote_rating', 'pullquote_text',
-                  'url')
+        fields = ('app', 'background_color', 'description', 'feedapp_type',
+                  'id', 'image', 'preview', 'pullquote_attribution',
+                  'pullquote_rating', 'pullquote_text', 'slug', 'url')
         model = FeedApp
         url_basename = 'feedapps'
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
+    """Thin wrappers around apps w/ metadata related to its feature in feed."""
     carrier = SlugChoiceField(required=False,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
