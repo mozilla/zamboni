@@ -78,6 +78,13 @@ DATABASES['default']['ENGINE'] = 'mysql_pool'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+
+DATABASE_POOL_ARGS = {
+    'max_overflow': 10,
+    'pool_size': 5,
+    'recycle': 30
+}
+
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.locmem.LocMemCache',
