@@ -8,7 +8,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from PIL import Image
 
-from rest_framework import generics, status, viewsets
+from rest_framework import generics, serializers, status, viewsets
 from rest_framework.decorators import action, link
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
@@ -249,6 +249,9 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'put', 'delete')
+
+    # Dummy serializer to keep DRF happy when it's answering to OPTIONS.
+    serializer_class = serializers.Serializer
 
     def perform_content_negotiation(self, request, force=False):
         """

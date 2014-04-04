@@ -2,7 +2,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ImproperlyConfigured
 
 import commonware.log
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 from access import acl
 
@@ -14,7 +14,7 @@ class CuratorAuthorization(BasePermission):
     Permission class governing ability to interact with Collection-related APIs.
 
     Rules:
-    - All users may make GET requests.
+    - All users may make GET, HEAD, OPTIONS requests.
     - Users with Collections:Curate may make any request.
     - Users in Collection().curators may make any request using a verb in the
       curator_verbs property.
@@ -25,11 +25,12 @@ class CuratorAuthorization(BasePermission):
         permission is abstracted from those methods and situationally called in
         each.
     """
-    allow_public_get_requests = True
+    allow_public_safe_requests = True
     curator_verbs = ['POST', 'PUT', 'PATCH']
 
-    def is_public_get_request(self, request):
-        return self.allow_public_get_requests and request.method == 'GET'
+    def is_public_safe_request(self, request):
+        return (self.allow_public_safe_requests and
+                request.method in SAFE_METHODS)
 
     def is_curator_for(self, request, obj):
         if isinstance(request.user, AnonymousUser):
@@ -41,7 +42,7 @@ class CuratorAuthorization(BasePermission):
         return acl.action_allowed(request, 'Collections', 'Curate')
 
     def has_permission(self, request, view):
-        if self.is_public_get_request(request):
+        if self.is_public_safe_request(request):
             return True
 
         try:
@@ -54,7 +55,7 @@ class CuratorAuthorization(BasePermission):
                     self.is_curator_for(request, obj))
 
     def has_object_permission(self, request, view, obj):
-        if (self.is_public_get_request(request) or
+        if (self.is_public_safe_request(request) or
             self.has_curate_permission(request)):
             return True
         return self.is_curator_for(request, obj)
@@ -62,11 +63,11 @@ class CuratorAuthorization(BasePermission):
 
 class StrictCuratorAuthorization(CuratorAuthorization):
     """
-    The same as CuratorAuthorization, with GET requests for unauthorized users
-    disallowed.
+    The same as CuratorAuthorization, with GET / HEAD / OPTIONS requests
+    disallowed for unauthorized users.
     """
-    allow_public_get_requests = False
-    curator_verbs = CuratorAuthorization.curator_verbs + ['GET']
+    allow_public_safe_requests = False
+    curator_verbs = CuratorAuthorization.curator_verbs + SAFE_METHODS
 
 
 class CanBeHeroAuthorization(BasePermission):

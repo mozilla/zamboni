@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
+
+from django.test.utils import override_settings
+
 from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework import serializers
@@ -255,6 +258,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         data = self.serializer.to_native(self.collection)
         ok_('can_be_hero' in data.keys())
 
+    @override_settings(STATIC_URL='https://testserver-cdn/')
     @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_image(self):
         data = self.serializer.to_native(self.collection)
@@ -262,7 +266,8 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         self.collection.update(has_image=True)
         data = self.serializer.to_native(self.collection)
         self.assertApiUrlEqual(data['image'],
-            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk)
+            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk,
+            scheme='https', netloc='testserver-cdn')
 
     def test_wrong_default_language_serialization(self):
         # The following is wrong because we only accept the 'en-us' form.

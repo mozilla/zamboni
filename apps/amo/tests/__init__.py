@@ -472,6 +472,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         This is done by prepending '/api/vx' (where x is equal to the `version`
         keyword argument or API_CURRENT_VERSION) to each string passed as a
         positional argument if that URL doesn't already start with that string.
+        Also accepts 'netloc' and 'scheme' optional keyword arguments to
+        compare absolute URLs.
 
         Example usage:
 
@@ -482,14 +484,25 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         url = '/api/v1/apps/app/bastacorp/'
         self.assertApiUrlEqual(url, '/apps/app/bastacorp/', version=1)
         """
+        # Constants for the positions of the URL components in the tuple
+        # returned by urlsplit. Only here for readability purposes.
+        SCHEME = 0
+        NETLOC = 1
         PATH = 2
+
         version = kwargs.get('version', settings.API_CURRENT_VERSION)
+        scheme = kwargs.get('scheme', None)
+        netloc = kwargs.get('netloc', None)
         urls = list(args)
         prefix = '/api/v%d' % version
         for idx, url in enumerate(urls):
             urls[idx] = list(urlsplit(url))
             if not urls[idx][PATH].startswith(prefix):
                 urls[idx][PATH] = prefix + urls[idx][PATH]
+            if scheme and not urls[idx][SCHEME]:
+                urls[idx][SCHEME] = scheme
+            if netloc and not urls[idx][NETLOC]:
+                urls[idx][NETLOC] = netloc
             urls[idx] = SplitResult(*urls[idx])
         eq_(*urls)
 

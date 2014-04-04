@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
+from django.test.utils import override_settings
 from django.utils import translation
 
 from mock import patch
@@ -558,13 +559,15 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         res, data = self.detail(self.anon)
         ok_(not data['image'])
 
+    @override_settings(STATIC_URL='https://testserver-cdn/')
     @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_detail_image(self):
         storage.open(self.collection.image_path(), 'w').write(IMAGE_DATA)
         self.collection.update(has_image=True)
         res, data = self.detail(self.anon)
         self.assertApiUrlEqual(data['image'],
-            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk)
+            '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk,
+            scheme='https', netloc='testserver-cdn')
 
     def test_detail_slug(self):
         self.detail(self.client, collection_id=self.collection.slug)
@@ -1676,9 +1679,8 @@ class TestCollectionImageViewSet(RestOAuth):
         res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 403)
 
+    @override_settings(XSENDFILE=True)
     def _test_get(self):
-        if not settings.XSENDFILE:
-            raise SkipTest
         img_path = self.add_img()
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
