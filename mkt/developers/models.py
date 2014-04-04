@@ -127,20 +127,14 @@ class PaymentAccount(amo.models.ModelBase):
 
 
 class AddonPaymentAccount(amo.models.ModelBase):
-    addon = models.OneToOneField(
-        'addons.Addon', related_name='app_payment_account')
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='app_payment_accounts')
     payment_account = models.ForeignKey(PaymentAccount)
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
 
     class Meta:
         db_table = 'addon_payment_account'
-
-    def save(self, *args, **kwargs):
-        # On save, reset the addon's payment_account cached_property just in
-        # case it was already set to something else, like None.
-        super(AddonPaymentAccount, self).save(*args, **kwargs)
-        self.addon.payment_account = self
 
 
 class UserInappKey(amo.models.ModelBase):

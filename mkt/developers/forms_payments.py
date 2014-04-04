@@ -590,10 +590,7 @@ class PaymentCheckForm(happyforms.Form):
 
     def clean_app(self):
         app = self.cleaned_data['app']
-        if not app.app_payment_account:
+        if not app.has_payment_account():
             raise ValidationError(_('No payment account set up for that app'))
-
-        if not app.app_payment_account.account_uri:
-            raise ValidationError(_('Account not set up'))
 
         return app

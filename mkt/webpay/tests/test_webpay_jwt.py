@@ -111,7 +111,7 @@ class TestWebAppProduct(PurchaseTest):
         eq_(self.product.application_size(),
             self.addon.current_version.all_files[0].size)
         eq_(self.product.seller_uuid(), (self.addon
-                                             .app_payment_account
+                                             .single_pay_account()
                                              .payment_account
                                              .solitude_seller
                                              .uuid))
@@ -152,7 +152,7 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(self.product.application_size(), None)
         eq_(self.product.seller_uuid(), (self.inapp
                                              .webapp
-                                             .app_payment_account
+                                             .single_pay_account()
                                              .payment_account
                                              .solitude_seller
                                              .uuid))

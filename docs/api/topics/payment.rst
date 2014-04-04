@@ -220,49 +220,6 @@ Upsell
 
     :status 204: sucessfully deleted.
 
-Payment accounts
-================
-
-.. http:post:: /api/v1/payments/app/
-
-    Creates a relationship between the payment account and the app.
-
-    **Request**
-
-    :param app: URL to the premium app.
-    :type app: string
-    :param account: URL to the account.
-    :type account: string
-
-    Once created, the app is not changeable.
-
-    **Response**
-
-    :status 201: sucessfully created.
-    :param app: URL to the premium app.
-    :type app: string
-    :param account: URL to the account.
-    :type account: string
-
-.. http:patch:: /api/v1/payments/app/(int:id)/
-
-    Alter the payment account being used.
-
-    **Request**
-
-    :param app: URL to the premium app. Must be unchanged.
-    :type app: string
-    :param account: URL to the account.
-    :type account: string
-
-    **Response**
-
-    :status 200: sucessfully updated.
-    :param app: URL to the premium app.
-    :type app: string
-    :param account: URL to the account.
-    :type account: string
-
 
 In-app products
 ===============

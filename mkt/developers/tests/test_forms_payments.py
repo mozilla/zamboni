@@ -385,7 +385,9 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
             data={'accounts': shared.pk}, user=self.user, **self.kwargs)
         assert form.is_valid()
         form.save()
-        eq_(self.addon.app_payment_account.payment_account.pk, shared.pk)
+        accts = set(a.payment_account.pk for a in
+                    self.addon.all_payment_accounts())
+        assert shared.pk in accts, 'Unexpected: {a}'.format(a=accts)
 
     def test_with_non_owner_account(self):
         user = self.other

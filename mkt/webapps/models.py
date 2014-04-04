@@ -38,6 +38,7 @@ from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path, to_language, urlparams
 from constants.applications import DEVICE_GAIA, DEVICE_TYPES
+from constants.payments import PROVIDER_CHOICES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
 from market.models import AddonPremium
@@ -52,6 +53,7 @@ from lib.iarc.utils import (get_iarc_app_title, render_xml,
 
 import mkt
 from mkt.constants import APP_FEATURES, apps
+from mkt.developers.models import AddonPaymentAccount
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
@@ -167,6 +169,9 @@ class Webapp(Addon):
 
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)
+
+    class PayAccountDoesNotExist(Exception):
+        """The app has no payment account for the query."""
 
     class Meta:
         proxy = True
@@ -463,17 +468,51 @@ class Webapp(Addon):
         """Checks for waffle."""
         return not waffle.switch_is_active('iarc') or self.is_rated()
 
-    def has_payment_account(self):
-        """App doesn't have a payment account set up yet."""
-        return bool(self.payment_account)
+    def all_payment_accounts(self):
+        # TODO: cache this somehow. Using @cached_property was hard because
+        # there's no easy way to invalidate something that should be
+        # recalculated.
+        return (self.app_payment_accounts.select_related('payment_account')
+                .all())
 
-    @amo.cached_property(writable=True)
-    def payment_account(self):
+    def payment_account(self, provider_id):
+        qs = (self.app_payment_accounts.select_related('payment_account')
+              .filter(payment_account__provider=provider_id))
+
         try:
-            return self.app_payment_account
-        except ObjectDoesNotExist:
-            pass
-        return None
+            return qs.get()
+        except AddonPaymentAccount.DoesNotExist, exc:
+            log.info('non-existant payment account for app {app}: '
+                    '{exc.__class__.__name__}: {exc}'
+                    .format(app=self, exc=exc))
+
+            raise self.PayAccountDoesNotExist(
+                'No payment account for {app} named {pr}. '
+                'Choices: {all}'
+                .format(app=self,
+                        pr=PROVIDER_CHOICES[provider_id],
+                        all=[PROVIDER_CHOICES[a.payment_account.provider]
+                             for a in self.all_payment_accounts()]))
+
+    def has_payment_account(self):
+        """True if app has at least one payment account."""
+        return bool(self.all_payment_accounts().count())
+
+    def single_pay_account(self):
+        """
+        Assuming the app has only one payment account, return it.
+
+        Don't use this unless you have to.
+        """
+        # This is a fast hack to get multiple accounts up and going without
+        # breaking too much. All code that calls this method should be
+        # updated to support multiple accounts.
+        accts = list(self.all_payment_accounts())
+        if len(accts) != 1:
+            raise ValueError('App {app} has zero or multiple payment '
+                             'accounts: {accts}'
+                             .format(app=self, accts=accts))
+        return accts[0]
 
     def payments_complete(self):
         """Also returns True if the app doesn't needs payments."""

@@ -3,7 +3,6 @@ import urllib
 
 from django import http
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware
@@ -351,13 +350,13 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
 @dev_required(owner_for_post=True, webapp=True)
 @require_in_app_payments
 def in_app_config(request, addon_id, addon, webapp=True):
-    try:
-        account = addon.app_payment_account
-    except ObjectDoesNotExist:
+    if not addon.has_payment_account():
         messages.error(request, _('No payment account for this app.'))
         return redirect(reverse('mkt.developers.apps.payments',
                                 args=[addon.app_slug]))
 
+    # TODO: support multiple accounts.
+    account = addon.single_pay_account()
     seller_config = get_seller_product(account)
 
     owner = acl.check_addon_ownership(request, addon)
@@ -378,17 +377,23 @@ def in_app_config(request, addon_id, addon, webapp=True):
 @login_required
 @dev_required(webapp=True)
 def in_app_secret(request, addon_id, addon, webapp=True):
-    seller_config = get_seller_product(addon.app_payment_account)
+    seller_config = get_seller_product(addon.single_pay_account())
     return http.HttpResponse(seller_config['secret'])
 
 
 @waffle_switch('bango-portal')
 @dev_required(webapp=True)
 def bango_portal_from_addon(request, addon_id, addon, webapp=True):
-    account = addon.app_payment_account.payment_account
-    if account.provider != PROVIDER_BANGO:
-        log.error('Bango portal not available for account: %s' % account.pk)
+    try:
+        bango = addon.payment_account(PROVIDER_BANGO)
+    except addon.PayAccountDoesNotExist:
+        log.error('Bango portal not available for app {app} '
+                  'with accounts {acct}'
+                  .format(app=addon,
+                          acct=list(addon.all_payment_accounts())))
         return http.HttpResponseForbidden()
+    else:
+        account = bango.payment_account
 
     if not ((addon.authors.filter(user=request.user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()) and

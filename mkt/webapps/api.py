@@ -14,6 +14,7 @@ from tower import ungettext as ngettext
 import amo
 from addons.models import AddonCategory, AddonUpsell, AddonUser, Category
 from amo.utils import no_translation
+from constants.payments import PROVIDER_BANGO
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from market.models import AddonPremium, Price
@@ -102,9 +103,7 @@ class AppSerializer(serializers.ModelSerializer):
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     name = TranslationSerializerField(required=False)
-    payment_account = serializers.HyperlinkedRelatedField(
-        view_name='payment-account-detail', source='app_payment_account',
-        required=False)
+    payment_account = serializers.SerializerMethodField('get_payment_account')
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
     premium_type = ReverseChoiceField(
@@ -174,6 +173,16 @@ class AppSerializer(serializers.ModelSerializer):
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
                      for icon_size in (16, 48, 64, 128)])
+
+    def get_payment_account(self, app):
+        try:
+            # This is a soon to be deprecated API property that only
+            # returns the Bango account for historic compatibility.
+            app_acct = app.payment_account(PROVIDER_BANGO)
+            return reverse('payment-account-detail',
+                           args=[app_acct.payment_account.pk])
+        except app.PayAccountDoesNotExist:
+            return None
 
     def get_payment_required(self, app):
         if app.has_premium():
@@ -357,8 +366,6 @@ class AppSerializer(serializers.ModelSerializer):
         if device_types:
             extras.append((self.save_device_types, device_types))
             del attrs['device_types']
-        if attrs.get('app_payment_account') is None:
-            attrs.pop('app_payment_account')
         instance = super(AppSerializer, self).restore_object(
             attrs, instance=instance)
         for f, v in extras:
