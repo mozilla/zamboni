@@ -1651,6 +1651,8 @@ IARC_ALLOW_CERT_REUSE = False
 
 # The payment providers supported.
 PAYMENT_PROVIDERS = []
+# If you need to get a payment provider, which one will be the default?
+DEFAULT_PAYMENT_PROVIDER = 'bango'
 
 # The currently-recommended version of the API. Any requests to versions older
 # than this will include the `API-Status: Deprecated` header.
