@@ -364,11 +364,12 @@ def content_ratings_edit(request, addon_id, addon):
     except IARCInfo.DoesNotExist:
         pass
 
-    form = IARCGetAppInfoForm(data=request.POST or None, initial=initial)
+    form = IARCGetAppInfoForm(data=request.POST or None, initial=initial,
+                              app=addon)
 
     if request.method == 'POST' and form.is_valid():
         try:
-            form.save(addon)
+            form.save()
             return redirect(addon.get_dev_url('ratings'))
         except django_forms.ValidationError:
             pass  # Fall through to show the form error.

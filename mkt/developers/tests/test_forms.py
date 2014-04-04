@@ -486,28 +486,28 @@ class TestAppVersionForm(amo.tests.TestCase):
                         file_kw=dict(status=amo.STATUS_PENDING))
         self.app.reload()
 
-    def get_form(self, version, data=None):
+    def _get_form(self, version, data=None):
         return forms.AppVersionForm(data, instance=version)
 
     def test_get_publish(self):
-        form = self.get_form(self.app.latest_version)
+        form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, True)
 
         self.app.update(make_public=amo.PUBLIC_WAIT)
         self.app.reload()
-        form = self.get_form(self.app.latest_version)
+        form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, False)
 
     def test_post_publish(self):
         # Using the latest_version, which is pending.
-        form = self.get_form(self.app.latest_version,
+        form = self._get_form(self.app.latest_version,
                              data={'publish_immediately': True})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
         eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
 
-        form = self.get_form(self.app.latest_version,
+        form = self._get_form(self.app.latest_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
@@ -516,7 +516,7 @@ class TestAppVersionForm(amo.tests.TestCase):
 
     def test_post_publish_not_pending(self):
         # Using the current_version, which is public.
-        form = self.get_form(self.app.current_version,
+        form = self._get_form(self.app.current_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
@@ -618,44 +618,62 @@ class TestAdminSettingsForm(TestAdmin):
 
 class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
 
+    def _get_form(self, app=None, **kwargs):
+        data = {
+            'submission_id': 1,
+            'security_code': 'a'
+        }
+        data.update(kwargs)
+        return forms.IARCGetAppInfoForm(data=data, app=app or self.app)
+
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_good(self, storefront_mock):
         with self.assertRaises(IARCInfo.DoesNotExist):
             self.app.iarc_info
 
-        form = forms.IARCGetAppInfoForm({'submission_id': 1,
-                                         'security_code': 'a'})
+        form = self._get_form()
         assert form.is_valid(), form.errors
-        form.save(self.app)
+        form.save()
 
-        iarc_info = self.app.iarc_info
+        iarc_info = IARCInfo.objects.get(addon=self.app)
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
         assert storefront_mock.called
 
     @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
-    def test_iarc_already_used(self):
+    def test_iarc_cert_reuse_on_self(self):
+        # Test okay to use on self.
         self.app.set_iarc_info(1, 'a')
-        form = forms.IARCGetAppInfoForm({'submission_id': 1,
-                                         'security_code': 'a'})
-        ok_(not form.is_valid(), 'Form should be invalid.')
-        ok_('Please create a new IARC Ratings Certificate.'
-            in form.non_field_errors()[0], 'Expected appropriate form error.')
+        form = self._get_form()
+        ok_(form.is_valid())
+        form.save()
+        eq_(IARCInfo.objects.count(), 1)
+
+    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
+    def test_iarc_cert_already_used(self):
+        # Test okay to use on self.
+        self.app.set_iarc_info(1, 'a')
+        eq_(IARCInfo.objects.count(), 1)
+
+        some_app = amo.tests.app_factory()
+        form = self._get_form(app=some_app)
+        ok_(not form.is_valid())
+
+        form = self._get_form(app=some_app, submission_id=2)
+        ok_(form.is_valid())
 
     @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', True)
     def test_iarc_already_used_dev(self):
         self.app.set_iarc_info(1, 'a')
-        form = forms.IARCGetAppInfoForm({'submission_id': 1,
-                                         'security_code': 'a'})
+        form = self._get_form()
         ok_(form.is_valid())
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_changing_cert(self, storefront_mock):
         self.app.set_iarc_info(1, 'a')
-        form = forms.IARCGetAppInfoForm({'submission_id': 2,
-                                         'security_code': 'b'})
+        form = self._get_form(submission_id=2, security_code='b')
         ok_(form.is_valid(), form.errors)
-        form.save(self.app)
+        form.save()
 
         iarc_info = self.app.iarc_info.reload()
         eq_(iarc_info.submission_id, 2)
@@ -667,20 +685,18 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         geodata.update(region_br_iarc_exclude=True,
                        region_de_iarc_exclude=True)
 
-        form = forms.IARCGetAppInfoForm({'submission_id': 1,
-                                         'security_code': 'a'})
-        form.is_valid()
-        form.save(self.app)
+        form = self._get_form()
+        ok_(form.is_valid())
+        form.save()
 
         geodata = Geodata.objects.get(addon=self.app)
         assert not geodata.region_br_iarc_exclude
         assert not geodata.region_de_iarc_exclude
 
     def test_allow_subm(self):
-        form = forms.IARCGetAppInfoForm({'submission_id': 'subm-1231',
-                                         'security_code': 'a'})
+        form = self._get_form(submission_id='subm-1231')
         assert form.is_valid(), form.errors
-        form.save(self.app)
+        form.save()
 
         iarc_info = self.app.iarc_info
         eq_(iarc_info.submission_id, 1231)
@@ -688,14 +704,13 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_bad_submission_id(self, storefront_mock):
-        form = forms.IARCGetAppInfoForm({'submission_id': 'subwayeatfresh-133',
-                                         'security_code': 'jksubwaysux'})
+        form = self._get_form(submission_id='subwayeatfresh-133')
         assert not form.is_valid()
         assert not storefront_mock.called
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_incomplete(self, storefront_mock):
-        form = forms.IARCGetAppInfoForm({'submission_id': 1})
+        form = self._get_form(submission_id=None)
         assert not form.is_valid(), 'Form was expected to be invalid.'
         assert not storefront_mock.called
 
@@ -704,8 +719,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         _mock.return_value = {'rows': [
             {'ActionStatus': 'No records found. Please try another criteria.'}
         ]}
-        form = forms.IARCGetAppInfoForm({'submission_id': 1,
-                                         'security_code': 'a'})
+        form = self._get_form()
         assert form.is_valid(), form.errors
         with self.assertRaises(django_forms.ValidationError):
-            form.save('app')  # Just pass string to avoid making a Webapp obj.
+            form.save()
