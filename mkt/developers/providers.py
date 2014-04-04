@@ -304,4 +304,7 @@ def get_provider():
     for API's that expect get_provider to return 'bango'. This is something
     we'll have to clean out.
     """
+    if settings.DEFAULT_PAYMENT_PROVIDER not in settings.PAYMENT_PROVIDERS:
+        raise ImproperlyConfigured('The DEFAULT_PAYMENT_PROVIDER is '
+                                   'not in PAYMENT_PROVIDERS.')
     return ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER]()
