@@ -6,8 +6,6 @@
     </header>
     <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
       {{ csrf() }}
-<<<<<<< HEAD
-=======
       <p>
         {% trans boku_url=account_form.signup_url %}
         You will need a Boku merchant and service id to sign up for
@@ -15,7 +13,6 @@
         <a href="{{ boku_url }}">Mozilla sign up process</a>.
         {% endtrans %}
       </p>
->>>>>>> fec8600... add in boku add template (bug 990007)
       <div id="payment-account-errors"></div>
       <div>
         <div class="field">
