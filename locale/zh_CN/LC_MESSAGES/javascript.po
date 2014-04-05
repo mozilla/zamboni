@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:32-0700\n"
-"PO-Revision-Date: 2014-02-28 01:55+0000\n"
+"PO-Revision-Date: 2014-04-05 01:20+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393552553.0\n"
+"X-POOTLE-MTIME: 1396660837.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -108,7 +108,7 @@ msgstr "您已取消上传。"
 
 #: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr "图像必须为 PNG 或 JPG 格式。"
+msgstr "图像必须是 PNG 或者 JPG 格式。"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."

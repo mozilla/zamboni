@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-26 09:19-0700\n"
-"PO-Revision-Date: 2014-03-15 01:59+0000\n"
-"Last-Translator: Shaohua <shaohua.wen@gmail.com>\n"
+"PO-Revision-Date: 2014-04-05 01:24+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1394848796.0\n"
+"X-POOTLE-MTIME: 1396661077.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1923,19 +1923,19 @@ msgstr "视频被移除"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new platform(s) added."
-msgstr ""
+msgstr "由于增加了新平台，{addon} 需要重新进行审核。"
 
 #: apps/amo/log.py:510
 msgid "Platforms(s) Added"
-msgstr ""
+msgstr "已新增平台"
 
 #: apps/amo/log.py:517
 msgid "{addon} platform support manually changed by reviewer."
-msgstr ""
+msgstr "审核者手动更改了 {addon} 支持的平台。"
 
 #: apps/amo/log.py:518
 msgid "Platform(s) Changed by Reviewer"
-msgstr ""
+msgstr "审核者更改了平台"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -1947,19 +1947,19 @@ msgstr "重新提交应用"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "由于是 VIP 应用，{addon} 自动提升了审核等级。"
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP 自动提升审核"
 
 #: apps/amo/log.py:541
 msgid "{addon} re-review because of new form factor(s) added."
-msgstr ""
+msgstr "因为添加了新的设备尺寸，需要重新审核 {addon}。"
 
 #: apps/amo/log.py:542
 msgid "Form Factor(s) Added"
-msgstr ""
+msgstr "新增了设备尺寸"
 
 #: apps/amo/log.py:559
 msgid "Created: {0}."
@@ -4605,12 +4605,12 @@ msgstr "查看所有附加组件►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "打造适用于 Australis 的附加组件"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "赢取 Firefox OS 手机和 Mozilla Gear!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5527,7 +5527,7 @@ msgstr "如果几天后提交流程仍未完成，此附加组件将被自动删
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>最新版本:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:228
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5652,7 +5652,7 @@ msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "提交您针对 Add-ons for Australis 竞赛制作的附加组件"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -8492,7 +8492,7 @@ msgstr "是的，只要他人以相同方式共享"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "许可方允许其他人依照与原作相同或兼容的许可协议发布衍生作品。"
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -9196,11 +9196,11 @@ msgstr "放弃安装"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "为 Firefox 的新面貌打造附加组件"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "竞赛详情"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11021,6 +11021,11 @@ msgid ""
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
 "beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"为了确保与最新版 Mozilla "
+"软件的兼容性，更重要的是有更新的软件可用时您能下载到更新并保证您的附加组件仍可用于新版本并达到预期效果，最好的方法就是遵循 <a href=\"%"
+"(ext_url)s\">构建一个扩展</a> 教程的步骤来<a href=\"%"
+"(test_url)s\">测试你的附加组件</a>。在多数情况下，Mozilla 软件的最新版都会有发布测试版本。由于这些版本有时会引入可能影响你的附加"
+"组件的功能体系的变更，所以重要的是参与到我们的测试过程中来，以确保您的附加组件的用户不会在 Mozilla 软件的正式发布版中受到负面影响。"
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -11237,6 +11242,9 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"附件组件将经由 AMO 编辑审核，他们是一组很有才华的开发人员，志愿帮助 Mozilla 项目审核附加组件，确保它们能给 Mozilla "
+"用户带来稳定且安全的使用体验。在与编辑沟通时，请尽量礼貌、耐心并尊重他们，因为他们是正在努力确保你的附加组件运行正确，并遵循 <a href=\"%"
+"(url)s\">编辑审核指南</a> 进行工作。"
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -15247,7 +15255,7 @@ msgstr "Windows, Mac and Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:81
 msgid "Devices running Android"
-msgstr ""
+msgstr "运行 Android 的设备"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -16665,15 +16673,15 @@ msgstr "请输入电子邮件地址（如输入多个则请以英文逗号分隔
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Mozilla VIP 应用"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
-msgstr ""
+msgstr "这是一个非常重要的应用，应该每次都经由 Mozilla 职员或资深的应用审核者处理吗？"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "请珍惜使用"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
@@ -17176,15 +17184,15 @@ msgstr "了解<a href=\"%(payments_url)s\" target=\"_blank\">不同的付款类�
 
 #: mkt/developers/templates/developers/payments/premium.html:105 mkt/submit/templates/submit/manifest.html:51
 msgid "Select the form factors your app supports"
-msgstr ""
+msgstr "选择您的应用支持的设备尺寸"
 
 #: mkt/developers/templates/developers/payments/premium.html:109 mkt/submit/templates/submit/manifest.html:55
 msgid "Responsive"
-msgstr ""
+msgstr "响应式"
 
 #: mkt/developers/templates/developers/payments/premium.html:110 mkt/submit/templates/submit/manifest.html:56
 msgid "all form factors"
-msgstr ""
+msgstr "所有设备尺寸"
 
 #: mkt/developers/templates/developers/payments/premium.html:126 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -18828,11 +18836,11 @@ msgstr "任何状态"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Platforms:"
-msgstr ""
+msgstr "平台:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
-msgstr "浏览者："
+msgstr "浏览器:"
 
 #: mkt/reviewers/forms.py:46
 msgid "Device Type Override:"
@@ -18969,11 +18977,11 @@ msgstr "只有资深审核者可以审核封锁的应用。"
 
 #: mkt/reviewers/views.py:305
 msgid "Platform(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "审核者更改了平台：{0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:38 mkt/submit/forms.py:47 mkt/submit/forms.py:56
 msgid "Removed {0}"
-msgstr "已移除{0}"
+msgstr "已移除 {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:331
@@ -19131,7 +19139,7 @@ msgstr "总下载量"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:124
 msgid "Form factors"
-msgstr ""
+msgstr "外型尺寸"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:157
 msgid "Requirements"
@@ -19168,11 +19176,11 @@ msgstr "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <sp
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "下一页"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "上一页"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -19216,11 +19224,11 @@ msgstr "任何设备类型"
 
 #: mkt/search/forms.py:63
 msgid "Any Platform"
-msgstr ""
+msgstr "任何平台"
 
 #: mkt/search/forms.py:67
 msgid "Any Form Factor"
-msgstr ""
+msgstr "任何外型尺寸"
 
 #: mkt/search/forms.py:77
 msgid "Search for apps"
@@ -19236,7 +19244,7 @@ msgstr "设备类型"
 
 #: mkt/search/forms.py:108
 msgid "Form Factor"
-msgstr ""
+msgstr "外型尺寸"
 
 #: mkt/search/forms.py:111
 msgid "Premium types"
@@ -19336,11 +19344,11 @@ msgstr "季度"
 
 #: mkt/submit/forms.py:35
 msgid "Platform(s) changed: {0}"
-msgstr ""
+msgstr "平台已更改：{0}"
 
 #: mkt/submit/forms.py:44
 msgid "Form Factor(s) changed: {0}"
-msgstr ""
+msgstr "外型尺寸已更改：{0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:54
@@ -19353,7 +19361,7 @@ msgstr "无法免费和付费。"
 
 #: mkt/submit/forms.py:63
 msgid "Please select a platform."
-msgstr ""
+msgstr "请选择一个平台。"
 
 #: mkt/submit/forms.py:64
 msgid "Packaged apps are not yet supported for those platforms."
@@ -19648,11 +19656,11 @@ msgstr "您至少应该填写一个应用名称。"
 
 #: mkt/webapps/models.py:454
 msgid "You must provide at least one platform."
-msgstr ""
+msgstr "您必须指定至少一个平台。"
 
 #: mkt/webapps/models.py:456
 msgid "You must provide at least one form_factor."
-msgstr ""
+msgstr "您必须指定至少一种外型尺寸。"
 
 #: mkt/webapps/models.py:459
 msgid "You must provide at least one category."
