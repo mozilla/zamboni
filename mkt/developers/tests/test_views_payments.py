@@ -773,7 +773,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
     def test_template_switches(self):
         payments_url = self.webapp.get_dev_url('payments')
         for provider in ['reference', 'boku']:
-            with self.settings(PAYMENT_PROVIDERS=[provider]):
+            with self.settings(PAYMENT_PROVIDERS=[provider],
+                               # Currently the view page uses get_provider().
+                               DEFAULT_PAYMENT_PROVIDER=provider):
                 res = self.client.get(payments_url)
             tmpl = self.extract_script_template(
                 res.content, '#payment-account-add-template')

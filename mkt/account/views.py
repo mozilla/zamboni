@@ -3,15 +3,18 @@ import hmac
 import uuid
 
 from django.conf import settings
+from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
 
 import basket
 import commonware.log
+from django_browserid import get_audience
 from django_statsd.clients import statsd
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.generics import (CreateAPIView, RetrieveAPIView,
-                                     RetrieveUpdateAPIView, ListAPIView)
+from rest_framework.generics import (CreateAPIView, DestroyAPIView,
+                                     RetrieveAPIView, RetrieveUpdateAPIView,
+                                     ListAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
@@ -155,7 +158,8 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         with statsd.timer('auth.browserid.verify'):
             profile, msg = browserid_authenticate(
                 request, serializer.data['assertion'],
-                browserid_audience=serializer.data['audience'],
+                browserid_audience=serializer.data['audience'] or
+                                   get_audience(request),
                 is_mobile=serializer.data['is_mobile'],
             )
         if profile is None:
@@ -166,8 +170,8 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         request.user, request.amo_user = profile.user, profile
         request.groups = profile.groups.all()
 
-        # TODO: move this to the signal.
-        profile.log_login_attempt(True)
+        auth.login(request, profile.user)
+        profile.log_login_attempt(True)  # TODO: move this to the signal.
         user_logged_in.send(sender=profile.user.__class__, request=request,
                             user=profile.user)
 
@@ -191,6 +195,17 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         data['apps'] = user_relevant_apps(profile)
 
         return data
+
+
+class LogoutView(CORSMixin, DestroyAPIView):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = (IsAuthenticated,)
+    cors_allowed_methods = ['delete']
+
+    def delete(self, request):
+        auth.logout(request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
