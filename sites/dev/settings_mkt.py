@@ -231,6 +231,6 @@ PAYMENT_PROVIDERS = ['reference']
 
 # Since Bango won't actually work on -dev anyway, may as well make it the
 # reference implementation anyway.
-DEFAULT_PAYMENT_PROVIDER = ['reference']
+DEFAULT_PAYMENT_PROVIDER = 'reference'
 
 PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'
