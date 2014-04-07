@@ -11,6 +11,7 @@ from rest_framework.routers import Route, SimpleRouter
 from rest_framework.response import Response
 from rest_framework.urlpatterns import format_suffix_patterns
 
+import mkt
 
 log = commonware.log.getLogger('z.api')
 
@@ -144,6 +145,19 @@ class MarketplaceView(object):
             self.kwargs[self.page_kwarg] = page_number
         return super(MarketplaceView, self).paginate_queryset(queryset,
             page_size=page_size)
+
+    def get_region_from_request(self, request):
+        """
+        Returns the REGION object for the passed request. If the GET param
+        `region` is `'None'`, return `None`. Otherwise, return `request.REGION`
+        which will have been set by the RegionMiddleware. If somehow we didn't
+        go through the middleware and request.REGION is absent, we fall back to
+        RESTOFWORLD.
+        """
+        region = request.GET.get('region')
+        if region and region == 'None':
+            return None
+        return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
 
 
 class CORSMixin(object):

@@ -1,6 +1,8 @@
 import json
 from urlparse import urlparse
 
+from django.db.models.query import QuerySet
+
 from mock import patch
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
@@ -17,6 +19,7 @@ from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.fireplace.api import FireplaceAppSerializer
 from mkt.webapps.models import Webapp
+from mkt.search.utils import S
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
 
@@ -99,6 +102,54 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         eq_(len(data), 1)
         eq_(urlparse(data['64'])[0:3],
             urlparse(self.webapp.get_icon_url(64))[0:3])
+
+
+class TestCollectionViewSet(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestCollectionViewSet, self).setUp()
+        self.webapp = Webapp.objects.get(pk=337141)
+        collection = Collection.objects.create(name='Hi', description='Mom',
+            collection_type=COLLECTIONS_TYPE_BASIC, is_public=True)
+        collection.add_app(self.webapp)
+        self.reindex(Webapp, 'webapp')
+        self.url = reverse('fireplace-collection-detail',
+                           kwargs={'pk': collection.pk})
+
+    def test_get(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.json['name'], {u'en-US': u'Hi'})
+        data = res.json['apps'][0]
+        for field in FIREPLACE_EXCLUDED_FIELDS:
+            ok_(not field in data, field)
+        for field in FireplaceAppSerializer.Meta.fields:
+            ok_(field in data, field)
+
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
+    def test_get_preview(self, mock_field_to_native):
+        mock_field_to_native.return_value = []
+        res = self.client.get(self.url, {'preview': 1})
+        eq_(res.status_code, 200)
+        eq_(res.json['name'], {u'en-US': u'Hi'})
+        eq_(res.json['apps'], [])
+
+        eq_(mock_field_to_native.call_count, 1)
+        ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
+        eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
+
+    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
+    def test_no_get_preview(self, mock_field_to_native):
+        mock_field_to_native.return_value = []
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.json['name'], {u'en-US': u'Hi'})
+        eq_(res.json['apps'], [])
+
+        eq_(mock_field_to_native.call_count, 1)
+        ok_(isinstance(mock_field_to_native.call_args[0][0], S))
+        eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
 
 
 class TestSearchView(RestOAuth, ESTestCase):

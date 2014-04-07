@@ -37,26 +37,13 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
     form_class = ApiSearchForm
     paginator_class = ESPaginator
 
-    def get_region(self, request):
-        """
-        Returns the REGION object for the passed request. If the GET param
-        `region` is `'None'`, return `None`. Otherwise, return `request.REGION`
-        which will have been set by the RegionMiddleware. If somehow we didn't
-        go through the middleware and request.REGION is absent, we fall back to
-        RESTOFWORLD.
-        """
-        region = request.GET.get('region')
-        if region and region == 'None':
-            return None
-        return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
-
     def search(self, request):
         form_data = self.get_search_data(request)
         query = form_data.get('q', '')
         base_filters = {'type': form_data['type']}
 
         qs = self.get_query(request, base_filters=base_filters,
-                            region=self.get_region(request))
+                            region=self.get_region_from_request(request))
         profile = get_feature_profile(request)
         qs = self.apply_filters(request, qs, data=form_data,
                                 profile=profile)
@@ -80,7 +67,7 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
     def apply_filters(self, request, qs, data=None, profile=None):
         # Build region filter.
-        region = self.get_region(request)
+        region = self.get_region_from_request(request)
         return _filter_search(request, qs, data, region=region,
                               profile=profile)
 
@@ -90,7 +77,7 @@ class FeaturedSearchView(SearchView):
 
     def collections(self, request, collection_type=None, limit=1):
         filters = request.GET.dict()
-        region = self.get_region(request)
+        region = self.get_region_from_request(request)
         if region:
             filters.setdefault('region', region.slug)
         if collection_type is not None:
