@@ -102,7 +102,7 @@ class CollectionMembershipField(serializers.RelatedField):
         to properly rehydrate results returned by ES.
         """
         profile = get_feature_profile(request)
-        region = self.context['view'].get_region(request)
+        region = self.context['view'].get_region_from_request(request)
         device = self._get_device(request)
 
         _rget = lambda d: getattr(request, d, False)

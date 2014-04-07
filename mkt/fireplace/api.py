@@ -11,6 +11,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer)
+from mkt.collections.views import CollectionViewSet as BaseCollectionViewSet
 from mkt.search.api import (FeaturedSearchView as BaseFeaturedSearchView,
                             SearchView as BaseSearchView)
 from mkt.search.serializers import SimpleESAppSerializer
@@ -55,6 +56,17 @@ class FireplaceCollectionMembershipField(CollectionMembershipField):
 
 class FireplaceCollectionSerializer(CollectionSerializer):
     apps = FireplaceCollectionMembershipField(many=True, source='apps')
+
+
+class CollectionViewSet(BaseCollectionViewSet):
+    serializer_class = FireplaceCollectionSerializer
+
+    def get_serializer_context(self):
+        """Context passed to the serializer. Since we are in Fireplace, we
+        always want to use ES to fetch apps."""
+        context = super(CollectionViewSet, self).get_serializer_context()
+        context['use-es-for-apps'] = not self.request.GET.get('preview')
+        return context
 
 
 class AppViewSet(BaseAppViewset):
