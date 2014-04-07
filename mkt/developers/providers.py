@@ -305,6 +305,8 @@ def get_provider():
     we'll have to clean out.
     """
     if settings.DEFAULT_PAYMENT_PROVIDER not in settings.PAYMENT_PROVIDERS:
-        raise ImproperlyConfigured('The DEFAULT_PAYMENT_PROVIDER is '
-                                   'not in PAYMENT_PROVIDERS.')
+        raise ImproperlyConfigured(
+            'The DEFAULT_PAYMENT_PROVIDER {d} is not in PAYMENT_PROVIDERS {p}'
+            .format(d=settings.DEFAULT_PAYMENT_PROVIDER,
+                    p=settings.PAYMENT_PROVIDERS))
     return ALL_PROVIDERS[settings.DEFAULT_PAYMENT_PROVIDER]()
