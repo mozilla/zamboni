@@ -14,6 +14,8 @@ from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from amo.tests import TestCase, app_factory
+from amo.utils import urlparams
+
 from mkt.account.views import MineMixin
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
@@ -436,8 +438,9 @@ class TestLoginHandler(TestCase):
             backend='django_browserid.auth.BrowserIDBackend')
         data = self._test_login()
 
-        r = self.client.delete(self.logout_url, {'_user': data['token']},
-                               content_type='application/json')
+        r = self.client.delete(
+            urlparams(self.logout_url, _user=data['token']),
+            content_type='application/json')
         eq_(r.status_code, 204)
 
 
