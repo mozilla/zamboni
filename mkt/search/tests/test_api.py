@@ -59,7 +59,7 @@ class TestGetRegion(TestCase):
         req.amo_user = self.profile
         RegionMiddleware().process_request(req)
         ACLMiddleware().process_request(req)
-        return self.resource.get_region(req)
+        return self.resource.get_region_from_request(req)
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all(self, mock_request_region):
@@ -913,15 +913,15 @@ class TestFeaturedCollections(BaseFeaturedTests):
         ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
         eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
 
-    @patch('mkt.search.api.SearchView.get_region')
+    @patch('mkt.search.api.SearchView.get_region_from_request')
     @patch('mkt.search.api.CollectionFilterSetWithFallback')
     def test_collection_filterset_called(self, mock_fallback, mock_region):
         """
         CollectionFilterSetWithFallback should be called 3 times, one for each
         collection_type.
         """
-        # Mock get_region() and ensure we are not passing it as the query
-        # string parameter.
+        # Mock get_region_from_request() and ensure we are not passing it as
+        # the query string parameter.
         self.qs.pop('region', None)
         mock_region.return_value = mkt.regions.SPAIN
 
@@ -950,9 +950,9 @@ class TestFeaturedCollections(BaseFeaturedTests):
         ok_(header in res)
         eq_(res[header], 'region,carrier')
 
-    @patch('mkt.search.api.FeaturedSearchView.get_region')
-    def test_region_None(self, get_region):
-        get_region.return_value = None
+    @patch('mkt.search.api.FeaturedSearchView.get_region_from_request')
+    def test_region_None(self, get_region_from_request):
+        get_region_from_request.return_value = None
         self.test_added_to_results()
 
 
