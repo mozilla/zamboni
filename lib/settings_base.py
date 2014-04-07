@@ -1650,7 +1650,7 @@ IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
 IARC_ALLOW_CERT_REUSE = False
 
 # The payment providers supported.
-PAYMENT_PROVIDERS = []
+PAYMENT_PROVIDERS = ['bango']
 # If you need to get a payment provider, which one will be the default?
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 
