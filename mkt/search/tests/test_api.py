@@ -103,9 +103,9 @@ class TestApi(RestOAuth, ESTestCase):
         self.refresh('webapp')
 
     def tearDown(self):
-        unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
         for w in Webapp.objects.all():
             w.delete()
+        unindex_webapps(list(Webapp.with_deleted.values_list('id', flat=True)))
         super(TestApi, self).tearDown()
 
     def test_verbs(self):
@@ -245,8 +245,8 @@ class TestApi(RestOAuth, ESTestCase):
                                '/apps/app/%s/' % upsell.id)
         eq_(obj['upsell']['region_exclusions'], [])
 
-        unindex_webapps([upsell.id])
         upsell.delete()
+        unindex_webapps([upsell.id])
 
     def test_dehydrate_regions(self):
         self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
@@ -372,10 +372,10 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], app2.app_slug)
 
-        unindex_webapps([app1.id, app2.id, app3.id])
         app1.delete()
         app2.delete()
         app3.delete()
+        unindex_webapps([app1.id, app2.id, app3.id])
 
     def test_q_is_tag(self):
         Tag(tag_text='whatsupp').save_tag(self.webapp)
@@ -599,9 +599,9 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(int(objects[2]['id']), self.webapp.id)
 
         # Cleanup to remove these from the index.
-        unindex_webapps([unknown1.id, unknown2.id])
         unknown1.delete()
         unknown2.delete()
+        unindex_webapps([unknown1.id, unknown2.id])
 
     def test_word_delimiter_preserves_original(self):
         self.webapp.description = {
@@ -984,9 +984,9 @@ class TestSuggestionsApi(ESTestCase):
 
     def tearDown(self):
         # Cleanup to remove these from the index.
-        unindex_webapps([self.app1.id, self.app2.id])
         self.app1.delete()
         self.app2.delete()
+        unindex_webapps([self.app1.id, self.app2.id])
 
     def test_suggestions(self):
         response = self.client.get(self.url, data={'lang': 'en-US'})
@@ -1037,9 +1037,13 @@ class TestRocketbarApi(ESTestCase):
 
     def tearDown(self):
         # Cleanup to remove these from the index.
-        unindex_webapps([self.app1.id, self.app2.id])
         self.app1.delete()
         self.app2.delete()
+        unindex_webapps([self.app1.id, self.app2.id])
+        # Required to purge the suggestions data structure. In Lucene, a
+        # document is not deleted from a segment, just marked as deleted.
+        WebappIndexer.get_es().optimize(WebappIndexer.get_index(),
+                                        only_expunge_deletes=True)
 
     def test_no_results(self):
         with self.assertNumQueries(0):
