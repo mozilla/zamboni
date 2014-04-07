@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import os
 import uuid
 
@@ -13,11 +14,6 @@ from django.core.files.base import File
 from django.core.files.storage import default_storage as storage
 
 import amo
-try:
-    from build import BUILD_ID_IMG
-    build_id = BUILD_ID_IMG
-except ImportError:
-    build_id = ''
 import mkt
 from addons.models import Category
 from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
@@ -125,22 +121,17 @@ class CollectionMembershipField(serializers.RelatedField):
         return self.to_native(qs, use_es=True)
 
 
-class HyperlinkedRelatedOrNullField(serializers.HyperlinkedRelatedField):
+class CollectionImageField(serializers.HyperlinkedRelatedField):
     read_only = True
 
-    def __init__(self, *a, **kw):
-        self.predicate = kw.pop('predicate', lambda x: True)
-        self.use_cdn = kw.pop('use_cdn', False)
-        serializers.HyperlinkedRelatedField.__init__(self, *a, **kw)
-
     def get_url(self, obj, view_name, request, format):
-        kwargs = {'pk': obj.pk}
-        if self.predicate(obj):
-            url = reverse(view_name, kwargs=kwargs, request=request,
+        if obj.has_image:
+            # Always prefix with STATIC_URL to return images from our CDN.
+            prefix = settings.STATIC_URL.strip('/')
+            # Always append image_hash so that we can send far-future expires.
+            suffix = '?%s' % obj.image_hash
+            url = reverse(view_name, kwargs={'pk': obj.pk}, request=request,
                           format=format)
-            prefix = settings.STATIC_URL.strip('/') if self.use_cdn else ''
-            suffix = '?%s' % build_id if build_id else ''
-
             return '%s%s%s' % (prefix, url, suffix)
         else:
             return None
@@ -152,12 +143,10 @@ class CollectionSerializer(serializers.ModelSerializer):
     slug = serializers.CharField(required=False)
     collection_type = serializers.IntegerField()
     apps = CollectionMembershipField(many=True, source='apps')
-    image = HyperlinkedRelatedOrNullField(
+    image = CollectionImageField(
         source='*',
-        use_cdn=True,  # Always return the full URL with the CDN.
         view_name='collection-image-detail',
-        format='png',
-        predicate=lambda o: o.has_image)
+        format='png')
     carrier = SlugChoiceField(required=False, empty=None,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False, empty=None,
@@ -252,7 +241,8 @@ class DataURLImageField(serializers.CharField):
             with storage.open(tmp_dst, 'wb') as f:
                 f.write(content)
             tmp = File(storage.open(tmp_dst))
-            return serializers.ImageField().from_native(tmp)
+            hash_ = hashlib.md5(content).hexdigest()[:8]
+            return serializers.ImageField().from_native(tmp), hash_
         else:
             raise serializers.ValidationError('Not a base64 data URI.')
 
