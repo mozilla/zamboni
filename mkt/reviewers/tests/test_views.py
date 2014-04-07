@@ -3018,15 +3018,17 @@ class TestQueueSort(AppReviewerTest):
             url, user=user, data={'sort': 'nomination'})
         res = queue_apps(req)
         doc = pq(res.content)
+        # Desktop and mobile (hidden on desktop) alternate, so we jump by 2.
         eq_(doc('tbody tr')[0].get('data-addon'), str(version_1.addon.id))
-        eq_(doc('tbody tr')[1].get('data-addon'), str(version_0.addon.id))
+        eq_(doc('tbody tr')[2].get('data-addon'), str(version_0.addon.id))
 
         req = amo.tests.req_factory_factory(
             url, user=user, data={'sort': 'nomination', 'order': 'desc'})
         res = queue_apps(req)
         doc = pq(res.content)
+        # Desktop and mobile (hidden on desktop) alternate, so we jump by 2.
         eq_(doc('tbody tr')[0].get('data-addon'), str(version_0.addon.id))
-        eq_(doc('tbody tr')[1].get('data-addon'), str(version_1.addon.id))
+        eq_(doc('tbody tr')[2].get('data-addon'), str(version_1.addon.id))
 
     def test_do_sort_queue_object(self):
         """Tests sorting queue object."""
