@@ -493,7 +493,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     @action()
     def content_ratings(self, request, *args, **kwargs):
         app = self.get_object()
-        form = IARCGetAppInfoForm(data=request.DATA)
+        form = IARCGetAppInfoForm(data=request.DATA, app=app)
 
         if form.is_valid():
             try:

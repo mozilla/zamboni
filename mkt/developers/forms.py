@@ -1053,16 +1053,9 @@ class IARCGetAppInfoForm(happyforms.Form):
     submission_id = forms.CharField()
     security_code = forms.CharField(max_length=10)
 
-    def clean(self):
-        if not settings.IARC_ALLOW_CERT_REUSE:
-            iarc_id = self.cleaned_data.get('submission_id')
-
-            if IARCInfo.objects.filter(submission_id=iarc_id).exists():
-                raise forms.ValidationError(
-                    _('This IARC certificate is already being used for another '
-                      'app. Please create a new IARC Ratings Certificate.'))
-
-        return self.cleaned_data
+    def __init__(self, app, *args, **kwargs):
+        self.app = app
+        super(IARCGetAppInfoForm, self).__init__(*args, **kwargs)
 
     def clean_submission_id(self):
         submission_id = (
@@ -1074,7 +1067,27 @@ class IARCGetAppInfoForm(happyforms.Form):
 
         raise forms.ValidationError(_('Please enter a valid submission ID.'))
 
-    def save(self, app, *args, **kwargs):
+    def clean(self):
+        cleaned_data = super(IARCGetAppInfoForm, self).clean()
+
+        app = self.app
+        iarc_id = cleaned_data.get('submission_id')
+
+        if not app or not iarc_id:
+            return cleaned_data
+
+        if (not settings.IARC_ALLOW_CERT_REUSE and
+            IARCInfo.objects.filter(submission_id=iarc_id)
+                            .exclude(addon=app).exists()):
+            del cleaned_data['submission_id']
+            raise forms.ValidationError(
+                _('This IARC certificate is already being used for another '
+                  'app. Please create a new IARC Ratings Certificate.'))
+
+        return cleaned_data
+
+    def save(self, *args, **kwargs):
+        app = self.app
         iarc_id = self.cleaned_data['submission_id']
         iarc_code = self.cleaned_data['security_code']
 
