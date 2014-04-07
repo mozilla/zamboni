@@ -141,6 +141,7 @@ class CommunicationThread(CommunicationPermissionModel):
 
     class Meta:
         db_table = 'comm_threads'
+        unique_together = ('addon', 'version')
 
     def join_thread(self, user):
         return self.thread_cc.get_or_create(user=user)
