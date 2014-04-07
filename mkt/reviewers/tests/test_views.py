@@ -2665,7 +2665,7 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         doc = pq(res.content)('#reviews-flagged')
 
         # Test the default action is "skip".
-        eq_(doc('#id_form-0-action_1:checked').length, 1)
+        eq_(doc('.reviewers-desktop #id_form-0-action_1:checked').length, 1)
 
     def test_skip(self):
         # Skip the first review, which still leaves two.
