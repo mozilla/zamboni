@@ -18,6 +18,7 @@ from tower import ugettext as _
 
 import amo
 from addons.models import AddonUpsell
+from constants.payments import PROVIDER_BANGO
 
 from mkt.api.authorization import (AllowAppOwner, GroupPermission,
                                    switch)
@@ -30,7 +31,6 @@ from mkt.developers.forms_payments import (BangoPaymentAccountForm,
 from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount)
 from mkt.developers.providers import get_provider
-from mkt.webapps.models import Webapp
 
 
 from lib.pay_server import get_client
@@ -130,25 +130,6 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
                             status=status.HTTP_409_CONFLICT)
         log.info('Account cancelled: %s' % account.pk)
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class PaymentSerializer(HyperlinkedModelSerializer):
-    upsell = HyperlinkedRelatedField(read_only=True, required=False,
-                                     view_name='app-upsell-detail')
-    account = HyperlinkedRelatedField(read_only=True, required=False,
-                                      source='app_payment_account',
-                                      view_name='app-payment-account-detail')
-
-    class Meta:
-        model = Webapp
-        fields = ('upsell', 'account', 'url')
-        view_name = 'app-payments-detail'
-
-
-class PaymentViewSet(RetrieveModelMixin, MarketplaceView, GenericViewSet):
-    permission_classes = (AllowAppOwner,)
-    queryset = Webapp.objects.filter()
-    serializer_class = PaymentSerializer
 
 
 class UpsellSerializer(HyperlinkedModelSerializer):
@@ -283,7 +264,7 @@ class PaymentCheckViewSet(PaymentAppViewSet):
 
         res = client.api.bango.status.post(
                 data={'seller_product_bango':
-                      self.app.app_payment_account.account_uri})
+                      self.app.payment_account(PROVIDER_BANGO).account_uri})
 
         filtered = {
             'bango': {
@@ -305,7 +286,7 @@ class PaymentDebugViewSet(PaymentAppViewSet):
         client = get_client()
         res = client.api.bango.debug.get(
                 data={'seller_product_bango':
-                      self.app.app_payment_account.account_uri})
+                      self.app.payment_account(PROVIDER_BANGO).account_uri})
         filtered = {
             'bango': res['bango'],
         }

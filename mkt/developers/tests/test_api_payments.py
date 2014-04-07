@@ -150,35 +150,6 @@ class TestUpsell(RestOAuth, UpsellCase):
         eq_(res.status_code, 200)
 
 
-class TestPayment(RestOAuth, UpsellCase):
-    fixtures = fixture('webapp_337141', 'user_2519')
-
-    def setUp(self):
-        super(TestPayment, self).setUp()
-        UpsellCase.setUp(self)
-        self.payment_url = reverse('app-payments-detail',
-                                   kwargs={'pk': 337141})
-
-    def test_get_not_allowed(self):
-        res = self.client.get(self.payment_url)
-        eq_(res.status_code, 403)
-
-    def test_get_allowed(self):
-        AddonUser.objects.create(addon_id=337141, user=self.profile)
-        res = self.client.get(self.payment_url)
-        eq_(res.json['upsell'], None)
-        eq_(res.status_code, 200)
-
-    def test_upsell(self):
-        AddonUser.objects.create(addon_id=337141, user=self.profile)
-        upsell = AddonUpsell.objects.create(free_id=337141,
-                                            premium=self.premium)
-        res = self.client.get(self.payment_url)
-        eq_(res.json['upsell'],
-            reverse('app-upsell-detail', kwargs={'pk': upsell.pk}))
-        eq_(res.status_code, 200)
-
-
 class AccountCase(Patcher, TestCase):
 
     def setUp(self):
@@ -429,8 +400,7 @@ class TestPaymentStatus(AccountCase, RestOAuth):
         eq_(self.client.post(self.list_url, data={}).status_code, 403)
 
     def test_no_account(self):
-        self.payment.account_uri = ''
-        self.payment.save()
+        self.payment.delete()
         eq_(self.client.post(self.list_url, data={}).status_code, 400)
 
     @patch('mkt.developers.api_payments.get_client')

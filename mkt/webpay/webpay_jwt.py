@@ -138,7 +138,7 @@ class WebAppProduct(object):
 
     def seller_uuid(self):
         return (self.webapp
-                    .app_payment_account
+                    .single_pay_account()
                     .payment_account
                     .solitude_seller
                     .uuid)
@@ -194,7 +194,7 @@ class InAppProduct(object):
     def seller_uuid(self):
         return (self.inapp
                     .webapp
-                    .app_payment_account
+                    .single_pay_account()
                     .payment_account
                     .solitude_seller
                     .uuid)

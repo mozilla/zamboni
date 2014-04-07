@@ -28,6 +28,7 @@ from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
 from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
+from constants.payments import PROVIDER_BANGO
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
 from files.tests.test_models import UploadTest as BaseUploadTest
@@ -55,6 +56,16 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
 
 class TestWebapp(amo.tests.TestCase):
     fixtures = fixture('prices')
+
+    def add_payment_account(self, app, provider_id, user=None):
+        if not user:
+            user = UserProfile.objects.create(email='a', username='b')
+        payment = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            provider=provider_id,
+            user=user)
+        return AddonPaymentAccount.objects.create(
+            addon=app, payment_account=payment)
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
@@ -616,12 +627,20 @@ class TestWebapp(amo.tests.TestCase):
         app = app_factory()
         assert not app.has_payment_account()
 
-        user = UserProfile.objects.create(email='a', username='b')
-        payment = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user),
-            user=user)
-        AddonPaymentAccount.objects.create(addon=app, payment_account=payment)
+        self.add_payment_account(app, PROVIDER_BANGO)
         assert app.has_payment_account()
+
+    def test_no_payment_account(self):
+        app = app_factory()
+        assert not app.has_payment_account()
+        with self.assertRaises(app.PayAccountDoesNotExist):
+            app.payment_account(PROVIDER_BANGO)
+
+    def test_get_payment_account(self):
+        app = app_factory()
+        acct = self.add_payment_account(app, PROVIDER_BANGO)
+        fetched_acct = app.payment_account(PROVIDER_BANGO)
+        eq_(acct, fetched_acct)
 
     @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
     def test_payments_complete(self, pay_mock):

@@ -30,7 +30,6 @@ import mkt.constants.lookup as lkp
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
 from mkt.account.utils import purchase_list
-from mkt.developers.models import AddonPaymentAccount
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
@@ -247,10 +246,13 @@ def app_summary(request, addon_id):
         price = None
 
     purchases, refunds = _app_purchases_and_refunds(app)
-    try:
-        payment_account = app.app_payment_account.payment_account
-    except AddonPaymentAccount.DoesNotExist:
-        payment_account = False
+    payment_account = False
+    # TODO: fixme for multiple accounts
+    if hasattr(app, 'single_pay_account'):
+        try:
+            payment_account = app.single_pay_account().payment_account
+        except ValueError:
+            pass
     return render(request, 'lookup/app_summary.html',
                   {'abuse_reports': app.abuse_reports.count(), 'app': app,
                    'authors': authors, 'downloads': _app_downloads(app),

@@ -13,7 +13,7 @@ from mkt.api.base import SubRouter
 from mkt.developers.api import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
-    PaymentDebugViewSet, PaymentViewSet, UpsellViewSet)
+    PaymentDebugViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
 from mkt.inapp.views import InAppProductViewSet
 from mkt.receipts.urls import test_patterns
@@ -192,7 +192,6 @@ in_app_products.register(r'in-app', InAppProductViewSet,
                          base_name='in-app-products')
 
 app_payments = SubRouter()
-app_payments.register(r'payments', PaymentViewSet, base_name='app-payments')
 app_payments.register(r'payments/status', PaymentCheckViewSet,
                       base_name='app-payments-status')
 app_payments.register(r'payments/debug', PaymentDebugViewSet,

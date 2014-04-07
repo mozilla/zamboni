@@ -205,6 +205,9 @@ App
     :type name: string|object
     :param payment_account: The path to the :ref:`payment account <payment-account-response-label>`
         being used for this app, or none if not applicable.
+        **NOTE**: This will always point to the Bango account or else it will
+        be None. In other words, it will not tell you *all* the payment
+        providers that this app supports.
     :param payment_required: A payment is required for this app. It
         could be that ``payment_required`` is ``true``, but price is ``null``.
         In this case, the app cannot be bought.

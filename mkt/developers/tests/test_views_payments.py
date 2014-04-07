@@ -15,7 +15,8 @@ from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
                            AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR, PROVIDER_REFERENCE)
+                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
+                                PROVIDER_REFERENCE)
 
 from market.models import Price
 
@@ -114,7 +115,7 @@ class TestInappConfig(InappTest):
         eq_(self.client.get(self.url).status_code, 302)
 
     def test_no_account(self, solitude):
-        self.app.app_payment_account.delete()
+        self.app.app_payment_accounts.all().delete()
         eq_(self.client.get(self.url).status_code, 302)
 
 
@@ -541,7 +542,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                          'accounts': acct.pk}), follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
-        eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
+        eq_(self.webapp.payment_account(PROVIDER_BANGO).payment_account.pk,
+            acct.pk)
         eq_(AddonPremium.objects.all().count(), 0)
 
     def test_associate_acct_to_app(self):
@@ -561,7 +563,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                          follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
-        eq_(self.webapp.app_payment_account.payment_account.pk, acct.pk)
+        eq_(self.webapp.payment_account(PROVIDER_BANGO).payment_account.pk,
+            acct.pk)
         kw = self.generic_patcher.product.post.call_args[1]['data']
         eq_(kw['access'], ACCESS_PURCHASE)
         kw = self.bango_p_patcher.product.post.call_args[1]['data']
@@ -853,8 +856,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
         # Checks that the owner has a SolitudeSeller instance for this app.
         self.setup_bango_portal()
         assert self.is_owner(self.user)
-        (self.webapp.app_payment_account.payment_account.
-            solitude_seller.update(user=self.other))
+        for acct in self.webapp.app_payment_accounts.all():
+            acct.payment_account.solitude_seller.update(user=self.other)
         res = self.client.get(self.portal_url)
         eq_(res.status_code, 403)
 
