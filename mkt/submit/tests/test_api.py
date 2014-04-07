@@ -1,8 +1,10 @@
 import base64
+import os
 import json
 
 from nose.tools import eq_, ok_
 from mock import patch
+from PIL import Image, ImageChops
 
 from django.core.urlresolvers import reverse
 
@@ -407,3 +409,46 @@ class TestPreviewHandler(RestOAuth, amo.tests.AMOPaths):
                                kwargs={'pk': 123123123})
         res = self.client.get(self.get_url)
         eq_(res.status_code, 404)
+
+
+class TestIconUpdate(RestOAuth, amo.tests.AMOPaths):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestIconUpdate, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=2519)
+        AddonUser.objects.create(user=self.user, addon=self.app)
+        self.file = base64.b64encode(open(self.mozball_image(), 'r').read())
+        self.url = reverse('app-icon', kwargs={'pk': self.app.pk})
+        self.data = {'file': {'data': self.file, 'type': 'image/png'}}
+
+    def images_are_equal(self, image_file_1, image_file_2):
+        im1 = Image.open(image_file_1)
+        im2 = Image.open(image_file_2)
+        return ImageChops.difference(im1, im2).getbbox() is None
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.post(self.url), 'put')
+
+    def test_put_icon_success(self):
+        res = self.client.put(self.url, data=json.dumps(self.data))
+        eq_(res.status_code, 200)
+
+    def test_correct_new_icon(self):
+        self.client.put(self.url, data=json.dumps(self.data))
+        icon_dir = self.app.get_icon_dir()
+        icon_path = os.path.join(icon_dir, '%s-128.png' % str(self.app.id))
+        eq_(self.images_are_equal(self.mozball_image(), icon_path), True)
+
+    def test_invalid_owner_permissions(self):
+        self.app.authors.clear()
+        res = self.client.put(self.url, data=json.dumps(self.data))
+        eq_(res.status_code, 403)
+
+    def test_invalid_icon_type(self):
+        data = {'file': {'data': self.file, 'type': 'image/gif'}}
+        res = self.client.put(self.url, data=json.dumps(data))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content)['file'][0],
+            u'Icons must be either PNG or JPG.')
