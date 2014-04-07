@@ -34,8 +34,6 @@ class ESAppSerializer(AppSerializer):
     # will call self.queryset early if they are not read_only, so force that.
     categories = serializers.SlugRelatedField(read_only=True,
         many=True, slug_field='slug', source='all_categories')
-    payment_account = serializers.HyperlinkedRelatedField(read_only=True,
-        view_name='payment-account-detail', source='payment_account')
     manifest_url = serializers.CharField(source='manifest_url')
 
     # Override translations, because we want a different field.
@@ -137,10 +135,6 @@ class ESAppSerializer(AppSerializer):
         # Set attributes that have a different name in ES.
         obj.public_stats = data['has_public_stats']
 
-        # Avoid a query for payment_account if the app is not premium.
-        if not obj.is_premium():
-            obj.payment_account = None
-
         # Override obj.get_region() with a static list of regions generated
         # from the region_exclusions stored in ES.
         obj.get_regions = obj.get_regions(obj.get_region_ids(restofworld=True,
@@ -225,7 +219,7 @@ class RocketbarESAppSerializer(serializers.Serializer):
         ESTranslationSerializerField.attach_translations(fake_app, obj, 'name')
         return {
             'name': self.fields['name'].field_to_native(fake_app, 'name'),
-            'icon' : fake_app.get_icon_url(64),
+            'icon': fake_app.get_icon_url(64),
             'slug': obj['slug'],
             'manifest_url': obj['manifest_url'],
         }

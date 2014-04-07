@@ -4,7 +4,7 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
-from constants.payments import PROVIDER_BANGO
+from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import APP_FEATURES
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
@@ -57,23 +57,35 @@ class TestSimpleAppSerializer(amo.tests.TestCase):
         return SimpleAppSerializer(self.webapp,
                                    context={'request': self.request})
 
+    def add_pay_account(self, provider=PROVIDER_BANGO):
+        user = UserProfile.objects.create(email='a', username='b')
+        acct = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            provider=provider, user=user)
+        AddonPaymentAccount.objects.create(addon=self.webapp,
+                                           payment_account=acct)
+        return acct
+
     def test_regions_present(self):
         # Regression test for bug 964802.
         data = self.simple_app().data
         ok_('regions' in data)
         eq_(len(data['regions']), len(self.webapp.get_regions()))
 
+    def test_no_payment_account_when_not_premium(self):
+        eq_(self.app().data['payment_account'], None)
+
     def test_no_payment_account(self):
+        self.make_premium(self.webapp)
+        eq_(self.app().data['payment_account'], None)
+
+    def test_no_bango_account(self):
+        self.make_premium(self.webapp)
+        self.add_pay_account(provider=PROVIDER_REFERENCE)
         eq_(self.app().data['payment_account'], None)
 
     def test_payment_account(self):
-        user = UserProfile.objects.create(email='a', username='b')
-        acct = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user),
-            provider=PROVIDER_BANGO,
-            user=user)
-        AddonPaymentAccount.objects.create(addon=self.webapp,
-                                           payment_account=acct)
-
+        self.make_premium(self.webapp)
+        acct = self.add_pay_account()
         eq_(self.app().data['payment_account'],
             reverse('payment-account-detail', args=[acct.pk]))
