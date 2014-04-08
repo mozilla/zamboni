@@ -176,6 +176,11 @@ class AppSerializer(serializers.ModelSerializer):
                      for icon_size in (16, 48, 64, 128)])
 
     def get_payment_account(self, app):
+
+        # Avoid a query for payment_account if the app is not premium.
+        if not app.is_premium():
+            return None
+
         try:
             # This is a soon to be deprecated API property that only
             # returns the Bango account for historic compatibility.

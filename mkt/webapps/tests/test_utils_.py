@@ -317,7 +317,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
         self.category = Category.objects.create(name='cattest', slug='testcat',
-                                                 type=amo.ADDON_WEBAPP)
+                                                type=amo.ADDON_WEBAPP)
         AddonCategory.objects.create(addon=self.app, category=self.category)
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
@@ -534,6 +534,9 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
 
+    def test_no_payment_account(self):
+        eq_(self.serialize()['payment_account'], None)
+
     def test_payment_account(self):
         self.make_premium(self.app)
         seller = SolitudeSeller.objects.create(
@@ -541,15 +544,14 @@ class TestESAppToDict(amo.tests.ESTestCase):
         account = PaymentAccount.objects.create(
             user=self.profile, uri='asdf', name='test', inactive=False,
             solitude_seller=seller, account_id=123)
-        addon_payment_account = AddonPaymentAccount.objects.create(
+        AddonPaymentAccount.objects.create(
             addon=self.app, account_uri='foo', payment_account=account,
             product_uri='bpruri')
         self.app.save()
         self.refresh('webapp')
 
-        res = self.serialize()
-        eq_(res['payment_account'], reverse('payment-account-detail',
-            kwargs={'pk': addon_payment_account.pk}))
+        eq_(self.serialize()['payment_account'],
+            reverse('payment-account-detail', kwargs={'pk': account.pk}))
 
     def test_release_notes(self):
         res = self.serialize()
