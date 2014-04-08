@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 
 from django.test.utils import override_settings
 
-from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework import serializers
 from test_utils import RequestFactory
@@ -259,11 +259,10 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         ok_('can_be_hero' in data.keys())
 
     @override_settings(STATIC_URL='https://testserver-cdn/')
-    @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_image(self):
         data = self.serializer.to_native(self.collection)
         eq_(data['image'], None)
-        self.collection.update(has_image=True)
+        self.collection.update(image_hash='bbbbbb')
         data = self.serializer.to_native(self.collection)
         self.assertApiUrlEqual(data['image'],
             '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk,
@@ -392,6 +391,7 @@ sb1muru1x6RshlvMeqhP0U3Sal8s0LZ5ikamItTat7ihft+hv+bqYI8RADs=
 class TestDataURLImageField(CollectionDataMixin, amo.tests.TestCase):
 
     def test_from_native(self):
-        d = DataURLImageField().from_native(
+        data, hash_ = DataURLImageField().from_native(
             'data:image/gif;base64,' + IMAGE_DATA)
-        eq_(d.read(), IMAGE_DATA.decode('base64'))
+        eq_(hash_, hashlib.md5(IMAGE_DATA.decode('base64')).hexdigest()[:8])
+        eq_(data.read(), IMAGE_DATA.decode('base64'))
