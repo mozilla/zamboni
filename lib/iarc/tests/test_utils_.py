@@ -124,7 +124,7 @@ class TestXMLParser(amo.tests.TestCase):
 
         # Test descriptors.
         self.assertSetEqual(data['descriptors'],
-                            ['has_usk_lang',
+                            ['has_generic_lang', 'has_usk_lang',
                              'has_esrb_strong_lang',
                              'has_classind_sex_content', 'has_classind_lang',
                              'has_pegi_lang', 'has_pegi_online'])
