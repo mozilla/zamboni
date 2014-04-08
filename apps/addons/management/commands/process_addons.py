@@ -13,8 +13,8 @@ from market.tasks import check_paypal, check_paypal_multiple
 
 from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
                                fix_missing_icons, import_manifests,
-                               update_manifests, update_supported_locales,
-                               zip_apps)
+                               regenerate_thumbnails, update_manifests,
+                               update_supported_locales, zip_apps)
 
 
 tasks = {
@@ -56,10 +56,16 @@ tasks = {
                   'post': zip_apps},
     'fix_missing_icons': {'method': fix_missing_icons,
                           'qs': [Q(type=amo.ADDON_WEBAPP,
-                                  status__in=[amo.STATUS_PENDING,
-                                              amo.STATUS_PUBLIC,
-                                              amo.STATUS_PUBLIC_WAITING],
-                                  disabled_by_user=False)]},
+                                   status__in=[amo.STATUS_PENDING,
+                                               amo.STATUS_PUBLIC,
+                                               amo.STATUS_PUBLIC_WAITING],
+                                   disabled_by_user=False)]},
+    'regenerate_thumbnails': {'method': regenerate_thumbnails,
+                              'qs': [Q(type=amo.ADDON_WEBAPP,
+                                       status__in=[amo.STATUS_PENDING,
+                                                   amo.STATUS_PUBLIC,
+                                                   amo.STATUS_PUBLIC_WAITING],
+                                       disabled_by_user=False)]},
     'import_manifests': {'method': import_manifests,
                          'qs': [Q(type=amo.ADDON_WEBAPP,
                                   disabled_by_user=False)]},
