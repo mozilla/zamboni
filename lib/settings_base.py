@@ -66,6 +66,9 @@ CLEANCSS_BIN = 'cleancss'
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
+# Path to pngcrush (for image optimization).
+PNGCRUSH_BIN = 'pngcrush'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
