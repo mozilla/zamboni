@@ -187,7 +187,7 @@ def pngcrush_icon(src, **kw):
 def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
     thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
-    sizes = {}
+    sizes = instance.sizes or {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         thumbnail_size = APP_PREVIEW_SIZES[0][:2]
@@ -201,12 +201,14 @@ def resize_preview(src, instance, **kw):
             thumbnail_size = thumbnail_size[::-1]
             image_size = image_size[::-1]
 
-        sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          thumbnail_size,
+        if kw.get('generate_thumbnail', True):
+            sizes['thumbnail'] = resize_image(src, thumb_dst,
+                                              thumbnail_size,
+                                              remove_src=False)
+        if kw.get('generate_image', True):
+            sizes['image'] = resize_image(src, full_dst,
+                                          image_size,
                                           remove_src=False)
-        sizes['image'] = resize_image(src, full_dst,
-                                      image_size,
-                                      remove_src=False)
         instance.sizes = sizes
         instance.save()
         log.info('Preview resized to: %s' % thumb_dst)

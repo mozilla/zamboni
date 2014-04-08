@@ -18,7 +18,7 @@ from requests.exceptions import RequestException
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
+from addons.models import Addon, AddonUser, Preview
 from amo.helpers import absolutify
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
@@ -632,6 +632,18 @@ class TestFixMissingIcons(amo.tests.TestCase):
         assert _log.any_call(337141, 'Webapp is missing icon size 64')
         assert _log.any_call(337141, 'Webapp is missing icon size 128')
         assert fetch_icon.called
+
+
+class TestRegenerateThumbnails(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    @mock.patch('mkt.webapps.tasks.resize_preview.delay')
+    def test_command(self, resize_preview):
+        preview = Preview.objects.create(filetype='image/png', addon_id=337141)
+        call_command('process_addons', task='regenerate_thumbnails')
+
+        resize_preview.assert_called_once_with(preview.image_path, preview,
+                                               generate_image=False)
 
 
 @mock.patch('mkt.webapps.tasks.requests')
