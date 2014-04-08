@@ -26,6 +26,9 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertEquals(res.context['repo'], 'rocketfuel')
 
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
+        # Temporarily enabling include.js shim (bug 992334).
+        raise SkipTest
+
         for url in ('/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah',
                     '/server.html?nativepersona=true'):
