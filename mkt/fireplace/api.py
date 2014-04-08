@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.serializers import SerializerMethodField
 
 from mkt.account.views import user_relevant_apps
 from mkt.api.base import CORSMixin
@@ -25,6 +26,7 @@ class BaseFireplaceAppSerializer(object):
 
 
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
+
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'banner_message', 'banner_regions', 'categories',
                   'content_ratings', 'current_version', 'description',
@@ -38,9 +40,14 @@ class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
 
 class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
                                SimpleESAppSerializer):
+    weight = SerializerMethodField('get_weight')
+
     class Meta(SimpleESAppSerializer.Meta):
-        fields = FireplaceAppSerializer.Meta.fields
+        fields = sorted(FireplaceAppSerializer.Meta.fields + ['weight'])
         exclude = FireplaceAppSerializer.Meta.exclude
+
+    def get_weight(self, obj):
+        return obj.es_data.get('weight', 1)
 
     def get_user_info(self, app):
         # Fireplace search should always be anonymous for extra-cacheability.
