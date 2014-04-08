@@ -112,7 +112,7 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
         })
 
         exclude_games.Command().handle()
-        assert self._germany_listed()
+        assert not self._germany_listed()
         assert not self._brazil_listed()
 
     def test_germany_case_usk(self):

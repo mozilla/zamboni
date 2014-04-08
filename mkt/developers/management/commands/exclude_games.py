@@ -26,10 +26,8 @@ class Command(BaseCommand):
             geodata, c = Geodata.objects.safer_get_or_create(addon=app)
 
             # Germany.
-            german_bodies = (mkt.ratingsbodies.USK.id,
-                             mkt.ratingsbodies.GENERIC.id)
             if (not app.content_ratings.filter(
-                ratings_body__in=german_bodies).exists()):
+                ratings_body=mkt.ratingsbodies.USK.id).exists()):
                 save = True
                 geodata.region_de_iarc_exclude = True
                 log.info('[App %s - %s] Excluded in region de'
