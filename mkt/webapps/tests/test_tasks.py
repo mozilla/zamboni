@@ -634,13 +634,13 @@ class TestFixMissingIcons(amo.tests.TestCase):
         assert fetch_icon.called
 
 
-class TestRegenerateThumbnails(amo.tests.TestCase):
+class TestRegenerateIconsAndThumbnails(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     @mock.patch('mkt.webapps.tasks.resize_preview.delay')
     def test_command(self, resize_preview):
         preview = Preview.objects.create(filetype='image/png', addon_id=337141)
-        call_command('process_addons', task='regenerate_thumbnails')
+        call_command('process_addons', task='regenerate_icons_and_thumbnails')
 
         resize_preview.assert_called_once_with(preview.image_path, preview,
                                                generate_image=False)

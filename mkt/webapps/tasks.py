@@ -37,8 +37,8 @@ from users.utils import get_task_user
 
 import mkt
 from mkt.constants.regions import RESTOFWORLD
-from mkt.developers.tasks import (_fetch_manifest, fetch_icon, resize_preview,
-                                  validator)
+from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
+                                  resize_preview, validator)
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
@@ -506,13 +506,14 @@ def fix_missing_icons(ids, **kw):
         _fix_missing_icons(id)
 
 
-def _regenerate_thumbnails(pk):
+def _regenerate_icons_and_thumbnails(pk):
     try:
         webapp = Webapp.objects.get(pk=pk)
     except Webapp.DoesNotExist:
         _log(id, u'Webapp does not exist')
         return
 
+    # Previews.
     for preview in webapp.all_previews:
         # Re-resize each preview by calling the task with the image that we
         # have and asking the task to only deal with the thumbnail. We no
@@ -520,12 +521,16 @@ def _regenerate_thumbnails(pk):
         # enough for us to generate a thumbnail.
         resize_preview.delay(preview.image_path, preview, generate_image=False)
 
+    # Icons. The only thing we need to do is crush the 64x64 icon.
+    icon_path = os.path.join(webapp.get_icon_dir(), '%s-64.png' % webapp.id)
+    pngcrush_image.delay(icon_path)
+
 
 @task
 @write
-def regenerate_thumbnails(ids, **kw):
+def regenerate_icons_and_thumbnails(ids, **kw):
     for pk in ids:
-        _regenerate_thumbnails(pk);
+        _regenerate_icons_and_thumbnails(pk);
 
 
 @task
