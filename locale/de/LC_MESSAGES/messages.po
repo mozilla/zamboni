@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-09 16:51+0000\n"
+"PO-Revision-Date: 2014-04-09 16:52+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397062270.0\n"
+"X-POOTLE-MTIME: 1397062346.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -19617,7 +19617,7 @@ msgstr "Nur Senior-Überprüfer können Apps auf der Blockliste überprüfen."
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr "Vom Überprüfer geänderte Gerät(e): {0}"
+msgstr "Vom Überprüfer geänderte(s) Gerät(e): {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -19982,7 +19982,7 @@ msgstr "Vierteljahr"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr "Geänderte Gerät(e): {0}"
+msgstr "Geänderte(s) Gerät(e): {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
