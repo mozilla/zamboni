@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:15-0700\n"
+"POT-Creation-Date: 2014-03-19 09:32-0700\n"
 "PO-Revision-Date: 2014-03-27 17:25+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,11 +234,11 @@ msgstr "Esse recurso está desativado temporariamente enquanto realizamos a manu
 msgid "Remove this localization"
 msgstr "Remover essa tradução"
 
-#: media/js/devreg/login.js:75
+#: media/js/devreg/login.js:73
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "O login com Persona falhou. Será que você tem uma conta com este e-mail?"
 
-#: media/js/devreg/login.js:80
+#: media/js/devreg/login.js:78
 msgid "Persona login failed. A server error was encountered."
 msgstr "O login com Persona falhou. O servidor está passando por problemas."
 
@@ -1167,7 +1167,10 @@ msgstr[1] "Definir a versão máxima dos complementos {0} para {1} e notificar o
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Enviar e-mail para o autor do {2} complemento que não passou na validação.Enviar e-mail para os autores dos {2} complementos que não passaram na validação."
+msgstr[0] ""
+"Enviar e-mail para o autor do {2} complemento que não passou na "
+"validação.Enviar e-mail para os autores dos {2} complementos que não "
+"passaram na validação."
 msgstr[1] ""
 
 #: media/js/zamboni/apps.js:54
