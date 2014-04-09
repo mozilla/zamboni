@@ -1015,12 +1015,13 @@ class TestSuggestionsApi(ESTestCase):
 
 
 class TestRocketbarApi(ESTestCase):
-    fixtures = fixture('webapp_337141')
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         self.url = reverse('rocketbar-search-api')
         self.refresh('webapp')
         self.client = RestOAuthClient(None)
+        self.profile = UserProfile.objects.get(pk=2519)
         self.app1 = Webapp.objects.get(pk=337141)
         self.app1.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         self.app1.save()
@@ -1032,6 +1033,9 @@ class TestRocketbarApi(ESTestCase):
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        # Add 2 installed records so this app is boosted higher than app1.
+        Installed.objects.create(user=self.profile, addon=self.app2)
+        Installed.objects.create(user=self.profile, addon=self.app2)
         self.app2.save()
         self.refresh('webapp')
 
@@ -1085,14 +1089,15 @@ class TestRocketbarApi(ESTestCase):
                                                        'lang': 'en-US'})
         parsed = json.loads(response.content)
         eq_(len(parsed), 2)
-        eq_(parsed[0], {'manifest_url': self.app1.get_manifest_url(),
-                        'icon': self.app1.get_icon_url(64),
-                        'name': unicode(self.app1.name),
-                        'slug': self.app1.app_slug})
-        eq_(parsed[1], {'manifest_url': self.app2.get_manifest_url(),
+        # Show app2 first since it gets boosted higher b/c of installs.
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
                         'icon': self.app2.get_icon_url(64),
                         'name': unicode(self.app2.name),
                         'slug': self.app2.app_slug})
+        eq_(parsed[1], {'manifest_url': self.app1.get_manifest_url(),
+                        'icon': self.app1.get_icon_url(64),
+                        'name': unicode(self.app1.name),
+                        'slug': self.app1.app_slug})
 
     def test_suggestion_non_gaia_apps(self):
         AddonDeviceType.objects.all().delete()
@@ -1111,10 +1116,10 @@ class TestRocketbarApi(ESTestCase):
                                                        'limit': 1})
         parsed = json.loads(response.content)
         eq_(len(parsed), 1)
-        eq_(parsed[0], {'manifest_url': self.app1.get_manifest_url(),
-                        'icon': self.app1.get_icon_url(64),
-                        'name': unicode(self.app1.name),
-                        'slug': self.app1.app_slug})
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
 
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):
