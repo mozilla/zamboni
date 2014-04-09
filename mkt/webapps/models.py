@@ -1815,7 +1815,7 @@ class WebappIndexer(MappingType, Indexable):
         # expose the number - it's relative to the max weekly downloads for
         # the whole database.
         max_downloads = float(
-            Webapp.objects.aggregate(max=Max('weekly_downloads')).get('max'))
+            Webapp.objects.aggregate(Max('weekly_downloads')).values()[0] or 0)
         if max_downloads:
             d['weight'] = math.ceil(d['weekly_downloads'] / max_downloads * 5)
         else:
