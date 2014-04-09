@@ -458,7 +458,7 @@ database migrations)::
     make update
 
 Use the following if you also wish to prefill your database with the data from
-landfill::
+landfill **WARNING** Do not do this once you have things running as it will overwrite your database!::
 
     make update_landfill
 
