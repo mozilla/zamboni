@@ -106,7 +106,7 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-class TestPngcrushIcon(amo.tests.TestCase):
+class TestPngcrushImage(amo.tests.TestCase):
 
     def setUp(self):
         img = get_image_path('mozilla.png')
@@ -117,23 +117,22 @@ class TestPngcrushIcon(amo.tests.TestCase):
     def tearDown(self):
         os.remove(self.src.name)
 
-    def test_pngcrush_icon_is_optimized(self):
-        original_size = os.path.getsize(self.src.name)
-        tasks.pngcrush_icon(self.src.name)
-        optimized_size = os.path.getsize(self.src.name)
-        assert optimized_size < original_size
+    def test_pngcrush_image_is_optimized(self):
+        src_crushed = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                                  delete=False)
+        shutil.copyfile(self.src.name, src_crushed.name)
 
-    def test_pngcrush_icon_is_lossless(self):
-        src_copy = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
-                                               delete=False)
-        shutil.copyfile(self.src.name, src_copy.name)
+        rval = tasks.pngcrush_image(src_crushed.name)
+        eq_(rval, True)
 
-        tasks.pngcrush_icon(self.src.name)
+        crushed_size = os.path.getsize(src_crushed.name)
+        orig_size = os.path.getsize(self.src.name)
+        assert crushed_size < orig_size
 
-        crushed_image = Image.open(self.src.name)
-        src_image = Image.open(src_copy.name)
-        eq_(ImageChops.difference(crushed_image, src_image).getbbox(), None)
-        os.remove(src_copy.name)
+        orig_image = Image.open(self.src.name)
+        crushed_image = Image.open(src_crushed.name)
+        eq_(ImageChops.difference(crushed_image, orig_image).getbbox(), None)
+        os.remove(src_crushed.name)
 
 
 class TestValidator(amo.tests.TestCase):
