@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2014-04-08 21:15+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -242,11 +242,11 @@ msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu.
 msgid "Remove this localization"
 msgstr "Odebrat lokalizaci"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Přihlášení pomocí Persona selhalo. Možná pod touto e-mailovou adresou nemáte účet?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Přihlášení pomocí Persona selhalo. Nastala chyba serveru."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2014-04-07 16:32-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -226,11 +226,11 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 msgid "Remove this localization"
 msgstr "このローカライズを削除"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona のログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 

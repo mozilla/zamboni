@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2013-09-24 12:31+0000\n"
 "Last-Translator: Milos <mdinic@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,11 +242,11 @@ msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održa
 msgid "Remove this localization"
 msgstr "Ukloni ovu lokalizaciju"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom adresom e-pošte? "
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prijava putem Persona sistema je neuspešna. Došlo je do greške na serveru."
 

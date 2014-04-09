@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 09:19-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,7 +268,7 @@ msgstr ""
 msgid "Remove this localization"
 msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
@@ -276,7 +276,7 @@ msgstr ""
 "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
 "ȧḓḓřḗşş?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
 

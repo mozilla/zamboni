@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2013-06-05 13:28+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -233,11 +233,11 @@ msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholde
 msgid "Remove this localization"
 msgstr ""
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Log ind med Pesona mislykkedes. Måske har du ikke en konto under den mailadresse?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Log ind med Persona mislykkedes. Der opstod en serverfejl."
 

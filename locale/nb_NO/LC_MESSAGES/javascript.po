@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2013-10-25 19:48+0000\n"
 "Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,11 +234,11 @@ msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemes
 msgid "Remove this localization"
 msgstr "Fjern denne oversettelsen"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona-innlogging mislykket. Kanskje hadde du ikke en konto med den e-postadressen?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2014-02-27 10:01+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -234,11 +234,11 @@ msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website
 msgid "Remove this localization"
 msgstr "Deze vertaling verwijderen"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-aanmelding mislukt. Er is een serverfout opgetreden."
 

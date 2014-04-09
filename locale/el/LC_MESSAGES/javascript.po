@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2012-03-08 05:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -233,11 +233,11 @@ msgstr "Αυτό το χαρακτηριστικό έχει απενεργοπο
 msgid "Remove this localization"
 msgstr "Αφαίρεση αυτής της μετάφρασης"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Η σύνδεση στο Persona απέτυχε. Μήπως δεν έχετε λογαριασμό με αυτή τη διεύθυνση email;"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Η σύνδεση στο Persona απέτυχε. Προέκυψε σφάλμα διακομιστή."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2014-03-27 15:01+0000\n"
 "Last-Translator: bimbimka <barboradur@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -242,11 +242,11 @@ msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe ser
 msgid "Remove this localization"
 msgstr "Odstrániť túto lokalizáciu"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Možno pod touto e-mailovou adresou nemáte účet?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Nastala chyba servera."
 
@@ -343,15 +343,9 @@ msgstr "Rozpoznané: {0}"
 #: media/js/devreg/payments-manage.js:24
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradenú "
-"aplikáciu do nekompletného stavu a už nebude dostupná na predaji:"
-msgstr[1] ""
-"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené "
-"aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
-msgstr[2] ""
-"Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené "
-"aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
+msgstr[0] "Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradenú aplikáciu do nekompletného stavu a už nebude dostupná na predaji:"
+msgstr[1] "Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
+msgstr[2] "Upozornenie: odstránením účtu pre platby \"{0}\" presuniete priradené aplikácie do nekompletného stavu a už nebudú dostupné na predaji:"
 
 #: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468

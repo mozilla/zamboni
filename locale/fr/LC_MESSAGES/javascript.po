@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:32-0700\n"
+"POT-Creation-Date: 2014-04-09 09:15-0700\n"
 "PO-Revision-Date: 2014-03-04 21:08+0000\n"
 "Last-Translator: Jean-Bernard <goofyfr@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -240,11 +240,11 @@ msgstr "Cette fonctionnalité est désactivée temporairement pendant la mainten
 msgid "Remove this localization"
 msgstr "Retirer cette localisation"
 
-#: media/js/devreg/login.js:73
+#: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Connexion avec Persona échouée. Peut-être n'avez-vous pas de compte avec cette adresse courriel ?"
 
-#: media/js/devreg/login.js:78
+#: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
 msgstr "Connexion avec Persona échouée. Une erreur serveur est survenue."
 
