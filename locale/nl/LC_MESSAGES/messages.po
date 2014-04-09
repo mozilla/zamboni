@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-03-26 20:16+0000\n"
+"PO-Revision-Date: 2014-04-09 18:32+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1395865008.0\n"
+"X-POOTLE-MTIME: 1397068325.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1961,19 +1961,19 @@ msgstr "Video verwijderd"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Herbeoordeling {addon} vanwege toevoeging nieuw(e) appara(a)t(en)."
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Appara(a)t(en) toegevoegd"
 
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "Apparaatondersteuning {addon} handmatig door beoordelaar gewijzigd."
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Appara(a)t(en) handmatig door beoordelaar gewijzigd"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -14258,7 +14258,7 @@ msgstr "Selecteer een geldige optie. %(value)s is niet beschikbaar."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Dit veld dient een lengte van ten minste {num} tekens te hebben."
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15702,7 +15702,7 @@ msgstr "Android-smartphones"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tablets"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -16224,7 +16224,7 @@ msgstr "Ongeldig bestandstype. Alleen bestanden van het type %s worden ondersteu
 
 #: mkt/developers/forms.py:1068
 msgid "Please enter a valid submission ID."
-msgstr "Voer een geldige indienings-ID in."
+msgstr "Voer een geldig indieningskenmerk in."
 
 #: mkt/developers/forms.py:1084
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
@@ -16232,7 +16232,7 @@ msgstr "Dit IARC-certificaat wordt al voor een andere app gebruikt. Maak een nie
 
 #: mkt/developers/forms.py:1112 mkt/developers/forms.py:1124
 msgid "Invalid submission ID or security code."
-msgstr "Ongeldig indienings-ID of beveiligingscode."
+msgstr "Ongeldig indieningskenmerk of beveiligingscode."
 
 #: mkt/developers/forms_payments.py:56 mkt/submit/forms.py:272
 msgid "App Price"
@@ -16388,11 +16388,11 @@ msgstr "Accountnaam"
 
 #: mkt/developers/forms_payments.py:581
 msgid "Merchant ID"
-msgstr ""
+msgstr "Verkoperskenmerk"
 
 #: mkt/developers/forms_payments.py:582
 msgid "Service ID"
-msgstr ""
+msgstr "Dienstkenmerk"
 
 #: mkt/developers/forms_payments.py:594
 msgid "No payment account set up for that app"
@@ -16413,7 +16413,7 @@ msgstr "Referentie-implementatie"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16928,6 +16928,9 @@ msgstr "Deze app is <b>uitgeschakeld door Mozilla</b>."
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Uw app is uitgeschakeld omdat de inhoudswaardering ontbreekt. De app wordt "
+"automatisch weer ingeschakeld na <a href=\"%(ratings_url)s\">verkrijgen van "
+"inhoudswaardering</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -16972,6 +16975,8 @@ msgstr "App opnieuw indienen"
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr ""
+"U dient <a href=\"%(ratings_url)s\">een inhoudswaardering verkrijgen</a> "
+"voordat u uw app opnieuw indient."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -17462,7 +17467,7 @@ msgstr "Betalingsaccount instellen"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Apparaten wijzigen"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -17496,6 +17501,13 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"U kunt uw app voordragen voor <strong>vooruit laden en verkoop met "
+"FirefoxOS-apparaten</strong> door telecomaanbieders. Om u aan te melden voor "
+"vooruit laden kunt u hieronder een testsjabloon downloaden, uw app testen, "
+"het sjabloon invullen en uw resultaten via het <a href=\"%(submit_url)s\">app-"
+"voorinstallatie-voordrachtsformulier</a> naar ons uploaden. We slaan uw "
+"resultaten op onze servers, waar ze worden beoordeeld door geïnteresseerde "
+"telecomaanbieders. Verdere vragen kunt u sturen naar %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -17585,7 +17597,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "In-app-producten"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17649,19 +17661,19 @@ msgstr "Sleutels aanmaken"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Kopieer mij"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "Prijspunt"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "URL kopen"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Een product toevoegen"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -17859,11 +17871,14 @@ msgstr "Een ogenblik geduld terwijl we contact opnemen met de betalingsserver."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Bolu-account toevoegen"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid "You will need a Boku merchant and service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"U hebt een Boku-verkopers- en dienstkenmerk nodig om u te kunnen aanmelden "
+"voor een Boku-account. Bolu-accounts dienen te worden aangemaakt via het <a "
+"href=\"%(boku_url)s\">registratieproces van Mozilla</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17875,7 +17890,7 @@ msgstr "Bango-account aanpassen"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:5
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Boku-account aanpassen"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19390,7 +19405,7 @@ msgstr "Elke status"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Device Types:"
-msgstr ""
+msgstr "Apparaattypes:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -19531,7 +19546,7 @@ msgstr "Alleen senior-beoordelaars kunnen geblokkeerde apps beoordelen."
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Appara(a)t(en) gewijzigd door beoordelaar: {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -19553,7 +19568,7 @@ msgstr "U hebt momenteel geen apps ter beoordeling."
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Apparaten"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
@@ -19703,7 +19718,7 @@ msgstr "Totale aantal downloads"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Apparaattypes"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
@@ -19896,7 +19911,7 @@ msgstr "Kwartaal"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Appara(a)t(en) gewijzigd: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -19909,7 +19924,7 @@ msgstr "Kan niet gratis en betaald zijn."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Selecteer een apparaat."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -20049,7 +20064,7 @@ msgstr "Nog een app indienen"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Apparaattype"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -20221,7 +20236,7 @@ msgstr "U dient een naam voor de app op te geven."
 
 #: mkt/webapps/models.py:450
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "U dient ten minste één apparaattype op te geven."
 
 #: mkt/webapps/models.py:453
 msgid "You must provide at least one category."
