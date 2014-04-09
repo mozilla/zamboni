@@ -1110,7 +1110,7 @@ class IARCGetAppInfoForm(happyforms.Form):
         else:
             msg = _('Invalid submission ID or security code.')
             self._errors['submission_id'] = self.error_class([msg])
-            log.info('[IARC] Bad GetAppInfo. No rows: %s' % row)
+            log.info('[IARC] Bad GetAppInfo. No rows: %s' % data)
             raise forms.ValidationError(msg)
 
 
