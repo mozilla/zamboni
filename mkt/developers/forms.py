@@ -1098,6 +1098,7 @@ class IARCGetAppInfoForm(happyforms.Form):
                 #                   'criteria.', 'rowId: 1}].
                 msg = _('Invalid submission ID or security code.')
                 self._errors['submission_id'] = self.error_class([msg])
+                log.info('[IARC] Bad GetAppInfo: %s' % row)
                 raise forms.ValidationError(msg)
 
             # We found a rating, so store the id and code for future use.
@@ -1109,6 +1110,7 @@ class IARCGetAppInfoForm(happyforms.Form):
         else:
             msg = _('Invalid submission ID or security code.')
             self._errors['submission_id'] = self.error_class([msg])
+            log.info('[IARC] Bad GetAppInfo. No rows: %s' % row)
             raise forms.ValidationError(msg)
 
 
