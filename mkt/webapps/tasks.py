@@ -14,6 +14,7 @@ from django.template import Context, loader
 
 import pytz
 import requests
+from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 from requests.exceptions import RequestException
@@ -71,13 +72,15 @@ def update_manifests(ids, **kw):
     for id in ids:
         _update_manifest(id, check_hash, retries)
     if retries:
-        _log(id, 'Retrying task in %d seconds.' % retry_secs)
-        update_manifests.retry(args=(retries.keys(),),
-                               kwargs={'check_hash': check_hash,
-                                       'retries': retries},
-                               eta=datetime.datetime.now() +
-                                   datetime.timedelta(seconds=retry_secs),
-                               max_retries=5)
+        try:
+            update_manifests.retry(args=(retries.keys(),),
+                                   kwargs={'check_hash': check_hash,
+                                           'retries': retries},
+                                   eta=datetime.datetime.now() +
+                                       datetime.timedelta(seconds=retry_secs),
+                                   max_retries=5)
+        except RetryTaskError:
+            _log(id, 'Retrying task in %d seconds.' % retry_secs)
 
     return retries
 
