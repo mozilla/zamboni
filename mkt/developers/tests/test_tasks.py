@@ -207,7 +207,7 @@ class TestResizePreview(amo.tests.TestCase):
     def setUp(self):
         # Make sure there are no leftover files in the test directory before
         # launching tests that depend on the files presence/absence.
-        os.rmdir('/tmp/uploads-tests/previews/')
+        shutil.rmtree('/tmp/uploads-tests/previews/', ignore_errors=True)
 
     def test_preview(self):
         addon = Webapp.objects.get(pk=337141)
