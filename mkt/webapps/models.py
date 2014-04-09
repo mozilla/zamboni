@@ -2,6 +2,7 @@
 import datetime
 import hashlib
 import json
+import math
 import os
 import urlparse
 import uuid
@@ -14,7 +15,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
 from django.db import models
-from django.db.models import Min, Q, signals as dbsignals
+from django.db.models import Max, Min, Q, signals as dbsignals
 from django.dispatch import receiver
 
 import commonware.log
@@ -1660,6 +1661,7 @@ class WebappIndexer(MappingType, Indexable):
                         }
                     },
                     'weekly_downloads': {'type': 'long'},
+                    'weight': {'type': 'short'},
                 }
             }
         }
@@ -1808,6 +1810,16 @@ class WebappIndexer(MappingType, Indexable):
         d['versions'] = [dict(version=v.version,
                               resource_uri=reverse_version(v))
                          for v in obj.versions.all()]
+
+        # Calculate weight. It's similar to popularity, except that we can
+        # expose the number - it's relative to the max weekly downloads for
+        # the whole database.
+        max_downloads = float(
+            Webapp.objects.aggregate(Max('weekly_downloads')).values()[0] or 0)
+        if max_downloads:
+            d['weight'] = math.ceil(d['weekly_downloads'] / max_downloads * 5)
+        else:
+            d['weight'] = 1
 
         # Handle our localized fields.
         for field in ('description', 'homepage', 'name', 'support_email',

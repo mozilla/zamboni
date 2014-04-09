@@ -112,7 +112,7 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
         })
 
         exclude_games.Command().handle()
-        assert self._germany_listed()
+        assert not self._germany_listed()
         assert not self._brazil_listed()
 
     def test_germany_case_usk(self):
@@ -179,12 +179,12 @@ class TestRefreshIARCRatings(amo.tests.TestCase):
     def test_refresh_update(self):
         IARCInfo.objects.create(
             addon=self.webapp, submission_id=52, security_code='FZ32CU8')
-        rd = RatingDescriptors.objects.create(
+        RatingDescriptors.objects.create(
             addon=self.webapp, has_usk_violence=True)
         refresh_iarc_ratings.Command().handle()
 
-        ok_(rd.reload().has_esrb_strong_lang)
-        ok_(not rd.has_usk_violence)
+        ok_(not RatingDescriptors.objects.get(
+                addon=self.webapp).has_usk_violence)
 
     def test_no_cert_no_refresh(self):
         refresh_iarc_ratings.Command().handle()

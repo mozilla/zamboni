@@ -11,10 +11,11 @@ from cStringIO import StringIO
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_
-from PIL import Image
+from PIL import Image, ImageChops
 from requests import RequestException
 
 import amo
@@ -105,6 +106,35 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
+class TestPngcrushImage(amo.tests.TestCase):
+
+    def setUp(self):
+        img = get_image_path('mozilla.png')
+        self.src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                               delete=False)
+        shutil.copyfile(img, self.src.name)
+
+    def tearDown(self):
+        os.remove(self.src.name)
+
+    def test_pngcrush_image_is_optimized(self):
+        src_crushed = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                                  delete=False)
+        shutil.copyfile(self.src.name, src_crushed.name)
+
+        rval = tasks.pngcrush_image(src_crushed.name)
+        eq_(rval, True)
+
+        crushed_size = os.path.getsize(src_crushed.name)
+        orig_size = os.path.getsize(self.src.name)
+        assert crushed_size < orig_size
+
+        orig_image = Image.open(self.src.name)
+        crushed_image = Image.open(src_crushed.name)
+        eq_(ImageChops.difference(crushed_image, orig_image).getbbox(), None)
+        os.remove(src_crushed.name)
+
+
 class TestValidator(amo.tests.TestCase):
 
     def setUp(self):
@@ -168,8 +198,16 @@ def _mock_hide_64px_icon(path, *args, **kwargs):
     return storage_open(path, *args, **kwargs)
 
 
+@override_settings(
+    PREVIEW_FULL_PATH='/tmp/uploads-tests/previews/full/%s/%d.%s',
+    PREVIEW_THUMBNAIL_PATH='/tmp/uploads-tests/previews/thumbs/%s/%d.png')
 class TestResizePreview(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        # Make sure there are no leftover files in the test directory before
+        # launching tests that depend on the files presence/absence.
+        shutil.rmtree('/tmp/uploads-tests/previews/', ignore_errors=True)
 
     def test_preview(self):
         addon = Webapp.objects.get(pk=337141)
@@ -178,11 +216,14 @@ class TestResizePreview(amo.tests.TestCase):
         tasks.resize_preview(src, preview)
         preview = preview.reload()
         eq_(preview.image_size, [400, 533])
-        eq_(preview.thumbnail_size, [180, 240])
+        eq_(preview.thumbnail_size, [100, 133])
         eq_(preview.is_landscape, False)
         with storage.open(preview.thumbnail_path) as fp:
             im = Image.open(fp)
-            eq_(list(im.size), [180, 240])
+            eq_(list(im.size), [100, 133])
+        with storage.open(preview.image_path) as fp:
+            im = Image.open(fp)
+            eq_(list(im.size), [400, 533])
 
     def test_preview_rotated(self):
         addon = Webapp.objects.get(pk=337141)
@@ -191,12 +232,28 @@ class TestResizePreview(amo.tests.TestCase):
         tasks.resize_preview(src, preview)
         preview = preview.reload()
         eq_(preview.image_size, [533, 400])
-        eq_(preview.thumbnail_size, [240, 180])
+        eq_(preview.thumbnail_size, [133, 100])
         eq_(preview.is_landscape, True)
         with storage.open(preview.thumbnail_path) as fp:
             im = Image.open(fp)
-            eq_(list(im.size), [240, 180])
+            eq_(list(im.size), [133, 100])
+        with storage.open(preview.image_path) as fp:
+            im = Image.open(fp)
+            eq_(list(im.size), [533, 400])
 
+    def test_preview_dont_generate_image(self):
+        addon = Webapp.objects.get(pk=337141)
+        preview = Preview.objects.create(addon=addon)
+        src = get_image_path('preview.jpg')
+        tasks.resize_preview(src, preview, generate_image=False)
+        preview = preview.reload()
+        eq_(preview.image_size, [])
+        eq_(preview.thumbnail_size, [100, 133])
+        eq_(preview.sizes, {u'thumbnail': [100, 133]})
+        with storage.open(preview.thumbnail_path) as fp:
+            im = Image.open(fp)
+            eq_(list(im.size), [100, 133])
+        assert not os.path.exists(preview.image_path), preview.image_path
 
 class TestFetchManifest(amo.tests.TestCase):
 

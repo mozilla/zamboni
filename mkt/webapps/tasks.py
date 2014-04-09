@@ -14,7 +14,6 @@ from django.template import Context, loader
 
 import pytz
 import requests
-from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 from requests.exceptions import RequestException
@@ -37,7 +36,8 @@ from users.utils import get_task_user
 
 import mkt
 from mkt.constants.regions import RESTOFWORLD
-from mkt.developers.tasks import _fetch_manifest, fetch_icon, validator
+from mkt.developers.tasks import (_fetch_manifest, fetch_icon, resize_preview,
+                                  validator)
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 
@@ -71,15 +71,13 @@ def update_manifests(ids, **kw):
     for id in ids:
         _update_manifest(id, check_hash, retries)
     if retries:
-        try:
-            update_manifests.retry(args=(retries.keys(),),
-                                   kwargs={'check_hash': check_hash,
-                                           'retries': retries},
-                                   eta=datetime.datetime.now() +
-                                       datetime.timedelta(seconds=retry_secs),
-                                   max_retries=5)
-        except RetryTaskError:
-            _log(id, 'Retrying task in %d seconds.' % retry_secs)
+        _log(id, 'Retrying task in %d seconds.' % retry_secs)
+        update_manifests.retry(args=(retries.keys(),),
+                               kwargs={'check_hash': check_hash,
+                                       'retries': retries},
+                               eta=datetime.datetime.now() +
+                                   datetime.timedelta(seconds=retry_secs),
+                               max_retries=5)
 
     return retries
 
@@ -503,6 +501,28 @@ def _fix_missing_icons(id):
 def fix_missing_icons(ids, **kw):
     for id in ids:
         _fix_missing_icons(id)
+
+
+def _regenerate_thumbnails(pk):
+    try:
+        webapp = Webapp.objects.get(pk=pk)
+    except Webapp.DoesNotExist:
+        _log(id, u'Webapp does not exist')
+        return
+
+    for preview in webapp.all_previews:
+        # Re-resize each preview by calling the task with the image that we
+        # have and asking the task to only deal with the thumbnail. We no
+        # longer have the original, but it's fine, the image should be large
+        # enough for us to generate a thumbnail.
+        resize_preview.delay(preview.image_path, preview, generate_image=False)
+
+
+@task
+@write
+def regenerate_thumbnails(ids, **kw):
+    for pk in ids:
+        _regenerate_thumbnails(pk);
 
 
 @task

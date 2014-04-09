@@ -41,7 +41,7 @@ class Collection(amo.models.ModelBase):
     curators = models.ManyToManyField('users.UserProfile')
     background_color = ColorField(null=True)
     text_color = ColorField(null=True)
-    has_image = models.BooleanField(default=False)
+    image_hash = models.CharField(default=None, max_length=8, null=True)
     can_be_hero = models.BooleanField(default=False, help_text=(
         'Indicates whether an operator shelf collection can be displayed with'
         'a hero graphic'))
@@ -157,6 +157,10 @@ class Collection(amo.models.ModelBase):
         ret = self.curators.remove(userprofile)
         Collection.objects.invalidate(*self.curators.all())
         return ret
+
+    @property
+    def has_image(self):
+        return bool(self.image_hash)
 
 
 class CollectionMembership(amo.models.ModelBase):

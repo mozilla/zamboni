@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.http import Http404
 from django.utils.datastructures import MultiValueDictKeyError
+from django.views.decorators.cache import cache_control
 
 from PIL import Image
 
@@ -262,6 +263,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return super(CollectionImageViewSet, self).perform_content_negotiation(
             request, force=True)
 
+    @cache_control(max_age=60 * 60 * 24 * 365)
     def retrieve(self, request, *args, **kwargs):
         obj = self.get_object()
         if not obj.has_image:
@@ -272,18 +274,19 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     def update(self, request, *args, **kwargs):
         obj = self.get_object()
         try:
-            img = DataURLImageField().from_native(request.read())
+            img, hash_ = DataURLImageField().from_native(request.read())
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         i = Image.open(img)
         with storage.open(obj.image_path(), 'wb') as f:
             i.save(f, 'png')
-        obj.update(has_image=True)
+        # Store the hash of the original image data sent.
+        obj.update(image_hash=hash_)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.has_image:
             storage.delete(obj.image_path())
-            obj.update(has_image=False)
+            obj.update(image_hash=None)
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -82,7 +82,14 @@ class TranslationSerializerField(fields.WritableField):
       Else, just returns a dict with all translations for the given `field_name`
       on `obj`, with languages as the keys.
     """
+    default_error_messages = {
+        'min_length': _('The field must have a length of at least {num} '
+                        'characters.'),
+    }
+
     def __init__(self, *args, **kwargs):
+        self.min_length = kwargs.pop('min_length', None)
+
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
         # Default to return all translations for each field.
         self.requested_language = None
@@ -129,6 +136,26 @@ class TranslationSerializerField(fields.WritableField):
             return data
         data = super(TranslationSerializerField, self).from_native(data)
         return unicode(data)
+
+    def validate(self, value):
+        super(TranslationSerializerField, self).validate(value)
+
+        if self.min_length is None:
+            return
+
+        raise_error = True
+        if isinstance(value, basestring):
+            if len(value.strip()) >= self.min_length:
+                raise_error = False
+        else:
+            for k, v in value.items():
+                if len(v.strip()) >= self.min_length:
+                    raise_error = False
+                    break
+
+        if raise_error:
+            raise ValidationError(
+                self.error_messages['min_length'].format(num=self.min_length))
 
 
 class ESTranslationSerializerField(TranslationSerializerField):

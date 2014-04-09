@@ -4,6 +4,8 @@ import hashlib
 import json
 import logging
 import os
+import shutil
+import subprocess
 import sys
 import traceback
 import urlparse
@@ -14,7 +16,6 @@ from datetime import date
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 from django.utils.http import urlencode
 
 import requests
@@ -137,8 +138,11 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
     log.info('[1@None] Resizing icon: %s' % dst)
     try:
         for s in sizes:
-            resize_image(src, '%s-%s.png' % (dst, s), (s, s),
+            size_dst = '%s-%s.png' % (dst, s)
+            resize_image(src, size_dst, (s, s),
                          remove_src=False, locally=locally)
+            pngcrush_image.delay(size_dst, **kw)
+
         if locally:
             with open(src) as fd:
                 icon_hash = _hash_file(fd)
@@ -156,10 +160,39 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
 
 @task
 @set_modified_on
+def pngcrush_image(src, **kw):
+    """Optimizes a PNG image by running it through Pngcrush."""
+    log.info('[1@None] Optimizing image: %s' % src)
+    try:
+        # pngcrush -ow has some issues, use a temporary file and do the final
+        # renaming ourselves.
+        suffix = '.opti.png'
+        tmp_path = '%s%s' % (os.path.splitext(src)[0], suffix)
+        cmd = [settings.PNGCRUSH_BIN, '-q', '-rem', 'alla', '-brute',
+               '-reduce', '-e', suffix, src]
+        sp = subprocess.Popen(cmd, stdin=subprocess.PIPE,
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = sp.communicate()
+
+        if sp.returncode != 0:
+            log.error('Error optimizing image: %s; %s' % (src,
+                                                               stderr.strip()))
+            pngcrush_image.retry(args=[src], kwargs=kw, max_retries=3)
+            return False
+
+        shutil.move(tmp_path, src)
+        log.info('Image optimization completed for: %s' % src)
+        return True
+    except Exception, e:
+        log.error('Error optimizing image: %s; %s' % (src, e))
+
+
+@task
+@set_modified_on
 def resize_preview(src, instance, **kw):
     """Resizes preview images and stores the sizes on the preview."""
     thumb_dst, full_dst = instance.thumbnail_path, instance.image_path
-    sizes = {}
+    sizes = instance.sizes or {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         thumbnail_size = APP_PREVIEW_SIZES[0][:2]
@@ -173,12 +206,14 @@ def resize_preview(src, instance, **kw):
             thumbnail_size = thumbnail_size[::-1]
             image_size = image_size[::-1]
 
-        sizes['thumbnail'] = resize_image(src, thumb_dst,
-                                          thumbnail_size,
+        if kw.get('generate_thumbnail', True):
+            sizes['thumbnail'] = resize_image(src, thumb_dst,
+                                              thumbnail_size,
+                                              remove_src=False)
+        if kw.get('generate_image', True):
+            sizes['image'] = resize_image(src, full_dst,
+                                          image_size,
                                           remove_src=False)
-        sizes['image'] = resize_image(src, full_dst,
-                                      image_size,
-                                      remove_src=False)
         instance.sizes = sizes
         instance.save()
         log.info('Preview resized to: %s' % thumb_dst)

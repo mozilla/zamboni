@@ -87,7 +87,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'int',
                         'NAME': 'submission_id',
-                        'VALUE': '52'
+                        'VALUE': '321'
                     },
                     {
                         'TYPE': 'string',
@@ -102,7 +102,7 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'company',
-                        'VALUE': 'Mozilla'
+                        'VALUE': 'Developer Name'
                     },
                     {
                         'TYPE': 'string',
@@ -112,62 +112,62 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'rating_PEGI',
-                        'VALUE': '16+'
+                        'VALUE': '18+'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_PEGI',
-                        'VALUE': 'Language,Online'
+                        'VALUE': 'Language,Gambling'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'rating_USK',
-                        'VALUE': 'Rating Refused'
+                        'VALUE': '6+'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_USK',
-                        'VALUE': u'Explizite Sprache'
+                        'VALUE': u'Explizite Sprache,\xC4ngstigende Inhalte'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'rating_ESRB',
-                        'VALUE': 'Mature 17+'
+                        'VALUE': 'Teen'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_ESRB',
-                        'VALUE': 'Strong Language'
+                        'VALUE': 'Language,Simulated Gambling'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'rating_CLASSIND',
-                        'VALUE': '14+'
+                        'VALUE': '12+'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_CLASSIND',
-                        'VALUE': u'Linguagem Impr\xF3pria,Cont\xE9udo Sexual'
+                        'VALUE': u'Linguagem Impr\xF3pria,Conte\xFAdo Impactante'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'rating_Generic',
-                        'VALUE': '16+'
+                        'VALUE': '12+'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'descriptors_Generic',
-                        'VALUE': ''
+                        'VALUE': 'Language,Drugs'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'storefront',
-                        'VALUE': 'Mozilla'
+                        'VALUE': 'Firefox Marketplace'
                     },
                     {
                         'TYPE': 'string',
                         'NAME': 'interactive_elements',
-                        'VALUE': 'Shares Info,Shares Location,Digital Purchases,Users Interact'
+                        'VALUE': 'Shares Info,Shares Location'
                     }
                 ]
             }
@@ -201,34 +201,34 @@ class TestContentRatingPingback(RestOAuth):
         app = self.app.reload()
 
         # IARC info.
-        eq_(app.iarc_info.submission_id, 52)
+        eq_(app.iarc_info.submission_id, 321)
         eq_(app.iarc_info.security_code, 'AB12CD3')
         assert storefront_mock.called
 
         # Ratings.
         eq_(app.content_ratings.count(), 5)
         for rb, rating in [
-            (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.CLASSIND_14),
-            (mkt.ratingsbodies.ESRB, mkt.ratingsbodies.ESRB_M),
-            (mkt.ratingsbodies.GENERIC, mkt.ratingsbodies.GENERIC_16),
-            (mkt.ratingsbodies.PEGI, mkt.ratingsbodies.PEGI_16),
-            (mkt.ratingsbodies.USK, mkt.ratingsbodies.USK_REJECTED)]:
+            (mkt.ratingsbodies.CLASSIND, mkt.ratingsbodies.CLASSIND_12),
+            (mkt.ratingsbodies.ESRB, mkt.ratingsbodies.ESRB_T),
+            (mkt.ratingsbodies.GENERIC, mkt.ratingsbodies.GENERIC_12),
+            (mkt.ratingsbodies.PEGI, mkt.ratingsbodies.PEGI_18),
+            (mkt.ratingsbodies.USK, mkt.ratingsbodies.USK_6)]:
             eq_(app.content_ratings.get(ratings_body=rb.id).rating, rating.id,
                 'Unexpected rating for rating body %s.' % rb)
 
         # Descriptors.
         self.assertSetEqual(
             app.rating_descriptors.to_keys(),
-            ['has_classind_lang', 'has_classind_sex_content',
-             'has_pegi_lang', 'has_pegi_online',
-             'has_esrb_strong_lang',
-             'has_usk_lang'])
+            ['has_classind_lang', 'has_classind_shocking',
+             'has_pegi_lang', 'has_pegi_gambling',
+             'has_generic_lang', 'has_generic_drugs',
+             'has_esrb_lang', 'has_esrb_sim_gambling',
+             'has_usk_lang', 'has_usk_scary'])
 
         # Interactives.
         self.assertSetEqual(
             app.rating_interactives.to_keys(),
-            ['has_shares_info', 'has_shares_location',
-             'has_digital_purchases', 'has_users_interact'])
+            ['has_shares_info', 'has_shares_location'])
 
         eq_(app.status, amo.STATUS_PENDING)
         assert app.current_version.nomination
@@ -251,13 +251,3 @@ class TestContentRatingPingback(RestOAuth):
         geodata = Geodata.objects.get(addon=self.app)
         assert not geodata.region_br_iarc_exclude
         assert not geodata.region_de_iarc_exclude
-
-    @mock.patch('mkt.developers.api.ContentRatingsPingback.verify_data')
-    @mock.patch('mkt.webapps.models.Webapp.details_complete',
-                new=mock.Mock())
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data',
-                new=mock.Mock())
-    def test_verify_data(self, verify_mock):
-        verify_mock.return_value = False
-        res = self.anon.post(self.url, data=json.dumps(self.data))
-        eq_(res.status_code, 400)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import json
 import os
 from random import shuffle
@@ -11,7 +12,6 @@ from django.http import QueryDict
 from django.test.utils import override_settings
 from django.utils import translation
 
-from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from PIL import Image
@@ -560,10 +560,9 @@ class TestCollectionViewSetDetail(BaseCollectionViewSetTest):
         ok_(not data['image'])
 
     @override_settings(STATIC_URL='https://testserver-cdn/')
-    @patch('mkt.collections.serializers.build_id', 'bbbbbb')
     def test_detail_image(self):
         storage.open(self.collection.image_path(), 'w').write(IMAGE_DATA)
-        self.collection.update(has_image=True)
+        self.collection.update(image_hash='bbbbbb')
         res, data = self.detail(self.anon)
         self.assertApiUrlEqual(data['image'],
             '/rocketfuel/collections/%s/image.png?bbbbbb' % self.collection.pk,
@@ -1642,7 +1641,7 @@ class TestCollectionImageViewSet(RestOAuth):
     def add_img(self):
         path = self.collection.image_path()
         storage.open(path, 'w').write(self.img)
-        self.collection.update(has_image=True)
+        self.collection.update(image_hash='fakehash')
         return path
 
     def test_put(self, pk_or_slug=None):
@@ -1655,13 +1654,20 @@ class TestCollectionImageViewSet(RestOAuth):
         res = self.client.put(self.url, 'data:image/gif;base64,' + IMAGE_DATA)
         eq_(res.status_code, 204)
         assert os.path.exists(self.collection.image_path())
-        ok_(Collection.objects.get(pk=self.collection.pk).has_image)
+        self.collection.reload()
+        ok_(self.collection.has_image)
+        expected_hash = hashlib.md5(IMAGE_DATA.decode('base64')).hexdigest()
+        eq_(self.collection.image_hash, expected_hash[:8])
         im = Image.open(self.collection.image_path())
         im.verify()
         assert im.format == 'PNG'
 
     def test_put_slug(self):
         self.test_put(pk_or_slug=self.collection.slug)
+
+    def test_replace_image(self):
+        self.add_img()
+        self.test_put()
 
     def test_put_non_data_uri(self):
         self.grant_permission(self.profile, 'Collections:Curate')
@@ -1685,6 +1691,7 @@ class TestCollectionImageViewSet(RestOAuth):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res[settings.XSENDFILE_HEADER], img_path)
+        ok_('max-age=31536000' in res['Cache-Control'])
 
     def test_get(self):
         self.assertApiUrlEqual(self.url,
