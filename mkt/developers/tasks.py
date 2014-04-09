@@ -4,6 +4,7 @@ import hashlib
 import json
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import traceback
@@ -15,7 +16,6 @@ from datetime import date
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 from django.utils.http import urlencode
 
 import requests
@@ -141,7 +141,7 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
             size_dst = '%s-%s.png' % (dst, s)
             resize_image(src, size_dst, (s, s),
                          remove_src=False, locally=locally)
-            pngcrush_icon.delay(size_dst, **kw)
+            pngcrush_image.delay(size_dst, **kw)
 
         if locally:
             with open(src) as fd:
@@ -160,26 +160,31 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
 
 @task
 @set_modified_on
-def pngcrush_icon(src, **kw):
-    """Optimizes an addon icon by running it through Pngcrush."""
-    log.info('[1@None] Optimizing icon: %s' % src)
+def pngcrush_image(src, **kw):
+    """Optimizes a PNG image by running it through Pngcrush."""
+    log.info('[1@None] Optimizing image: %s' % src)
     try:
-        cmd = [settings.PNGCRUSH_BIN, '-rem', 'alla', '-brute', '-reduce',
-               '-ow', src]
+        # pngcrush -ow has some issues, use a temporary file and do the final
+        # renaming ourselves.
+        suffix = '.opti.png'
+        tmp_path = '%s%s' % (os.path.splitext(src)[0], suffix)
+        cmd = [settings.PNGCRUSH_BIN, '-q', '-rem', 'alla', '-brute',
+               '-reduce', '-e', suffix, src]
         sp = subprocess.Popen(cmd, stdin=subprocess.PIPE,
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = sp.communicate()
 
         if sp.returncode != 0:
-            log.error('Error optimizing addon icon: %s; %s' % (src,
+            log.error('Error optimizing image: %s; %s' % (src,
                                                                stderr.strip()))
-            pngcrush_icon.retry(args=[src], kwargs=kw, max_retries=3)
+            pngcrush_image.retry(args=[src], kwargs=kw, max_retries=3)
             return False
 
-        log.info('Icon optimization completed for: %s' % src)
+        shutil.move(tmp_path, src)
+        log.info('Image optimization completed for: %s' % src)
         return True
     except Exception, e:
-        log.error('Error optimizing addon icon: %s; %s' % (src, e))
+        log.error('Error optimizing image: %s; %s' % (src, e))
 
 
 @task
