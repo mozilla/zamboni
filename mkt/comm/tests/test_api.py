@@ -41,6 +41,8 @@ class CommTestMixin(object):
         thread = self.addon.threads.create(**kw)
         if note:
             self._note_factory(thread)
+            CommunicationThreadCC.objects.create(user=self.profile,
+                                                 thread=thread)
         return thread
 
     def _note_factory(self, thread, perms=None, no_perms=None, **kw):
@@ -574,3 +576,20 @@ class TestEmailApi(RestOAuth):
         """Test with no email body."""
         res = post_email(self.get_request())
         eq_(res.status_code, 400)
+
+
+class TestCommCC(RestOAuth, CommTestMixin):
+    fixtures = fixture('webapp_337141', 'user_2519', 'user_support_staff')
+
+    def setUp(self):
+        super(TestCommCC, self).setUp()
+        self.addon = Webapp.objects.get(pk=337141)
+        self.profile = UserProfile.objects.get(id=2519)
+
+    def test_delete(self):
+        thread = self._thread_factory()
+        ok_(thread.thread_cc.create(user=self.profile))
+        res = self.client.delete(
+            reverse('comm-thread-cc-detail', args=[thread.id]))
+        eq_(res.status_code, 204)
+        eq_(CommunicationThreadCC.objects.count(), 0)

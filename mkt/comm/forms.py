@@ -7,6 +7,7 @@ from jinja2.filters import do_filesizeformat
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from mkt.api.forms import SluggableModelChoiceField
+from mkt.comm.models import CommunicationThread
 from mkt.constants import comm
 from mkt.webapps.models import Webapp
 
@@ -59,3 +60,9 @@ class CommAttachmentForm(happyforms.Form):
 
 
 CommAttachmentFormSet = forms.formsets.formset_factory(CommAttachmentForm)
+
+
+class UnCCForm(happyforms.Form):
+    pk = SluggableModelChoiceField(
+        queryset=CommunicationThread.objects.all(),
+        sluggable_to_field_name='id')

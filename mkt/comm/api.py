@@ -35,8 +35,8 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationNoteRead, CommunicationThread,
-                             user_has_perm_app, user_has_perm_note,
-                             user_has_perm_thread)
+                             CommunicationThreadCC, user_has_perm_app,
+                             user_has_perm_note, user_has_perm_thread)
 from mkt.comm.tasks import consume_email, mark_thread_read
 from mkt.comm.utils import (create_attachments, create_comm_note,
                             filter_notes_by_read_status)
@@ -87,7 +87,7 @@ class AddonSerializer(ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('name', 'url', 'thumbnail_url', 'app_slug', 'slug',
+        fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug', 'slug',
                   'review_url')
 
     def get_icon(self, app):
@@ -264,8 +264,6 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
     def list(self, request):
         self.serializer_class = ThreadSerializer
         profile = request.amo_user
-        # We list all the threads the user has posted a note to.
-        notes = list(profile.comm_notes.values_list('thread', flat=True))
         # We list all the threads where the user has been CC'd.
         cc = list(profile.comm_thread_cc.values_list('thread', flat=True))
 
@@ -287,12 +285,12 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
             data['app_threads'] = list(queryset.order_by('version__version')
                 .values('id', 'version__version'))
         else:
-            # We list all the threads which uses an add-on authored by the
-            # user and with read permissions for add-on devs.
+            # We list all the threads that user is developer of or
+            # is subscribed/CC'ed to.
             addons = list(profile.addons.values_list('pk', flat=True))
             q_dev = Q(addon__in=addons, read_permission_developer=True)
             queryset = CommunicationThread.objects.filter(
-                Q(pk__in=notes + cc) | q_dev)
+                Q(pk__in=cc) | q_dev)
 
         self.queryset = queryset
         res = SilentListModelMixin.list(self, request)
@@ -439,6 +437,26 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
     def mark_as_read(self, profile):
         CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
             user=profile)
+
+
+class ThreadCCViewSet(DestroyModelMixin, CommViewSet):
+    model = CommunicationThreadCC
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = ()
+    cors_allowed_methods = ['delete']
+
+    def destroy(self, request, **kw):
+        form = forms.UnCCForm(kw)
+        if not form.is_valid():
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        CommunicationThreadCC.objects.filter(
+            thread=form.cleaned_data['pk'],
+            user=request.amo_user).delete()
+
+        return Response("Successfully un-cc'ed from thread.",
+                        status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['POST'])
