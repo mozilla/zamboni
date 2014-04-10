@@ -86,6 +86,11 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         if data.get('ratings'):
+            # Double-check with IARC that it's the correct rating.
+            if not self.verify_data(data):
+                return Response('The ratings do not match the submission ID.',
+                                status=status.HTTP_400_BAD_REQUEST)
+
             log.info(u'Setting content ratings from IARC pingback for app:%s' %
                      app.id)
             # We found a rating, so store the id and code for future use.
@@ -117,3 +122,33 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             app.set_content_ratings(data.get('ratings', {}))
 
         return Response('ok')
+
+    def verify_data(self, data):
+        client = lib.iarc.client.get_iarc_client('services')
+        xml = lib.iarc.utils.render_xml('get_app_info.xml', data)
+        resp = client.Get_App_Info(XMLString=xml)
+        check_data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
+        try:
+            check_data = check_data.get('rows', [])[0]
+        except IndexError:
+            return False
+
+        rates_bad = data.get('ratings') != check_data.get('ratings')
+        inter_bad = (set(data.get('interactives', [])) !=
+                     set(check_data.get('interactives', [])))
+        descs_bad = (set(data.get('descriptors', [])) !=
+                     set(check_data.get('descriptors', [])))
+        if rates_bad:
+            log.error('IARC pingback did not match rating %s vs %s' %
+                      (data.get('ratings'), check_data.get('ratings')))
+        if inter_bad:
+            log.error('IARC pingback did not match interactives %s vs %s' %
+                      (data.get('interactives'),
+                       check_data.get('interactives')))
+        if descs_bad:
+            log.error('IARC pingback did not match descriptors %s vs %s' %
+                      (data.get('descriptors'), check_data.get('descriptors')))
+        if rates_bad or inter_bad or descs_bad:
+            return False
+
+        return True

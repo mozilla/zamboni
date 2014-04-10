@@ -106,7 +106,7 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
         <FIELD NAME="rating_CLASSIND" TYPE="string" VALUE="14+" />
         <FIELD NAME="descriptors_CLASSIND" TYPE="string" VALUE="Cont\xc3\xa9udo Sexual, Linguagem Impr\xc3\xb3pria" />
         <FIELD NAME="rating_Generic" TYPE="string" VALUE="16+" />
-        <FIELD NAME="descriptors_Generic" TYPE="string" VALUE="Language" />
+        <FIELD NAME="descriptors_Generic" TYPE="string" VALUE="" />
         <FIELD NAME="storefront" TYPE="string" VALUE="Mozilla" />
         <FIELD NAME="interactive_elements" TYPE="string" VALUE="Shares Info, Shares Location, Digital Purchases, Users Interact, " />
     </ROW>
