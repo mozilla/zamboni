@@ -146,7 +146,7 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % br
 
         emails = list(self.addon.authors.values_list('email', flat=True))
-        cc_email = self.addon.mozilla_contact or None
+        cc_email = self.addon.get_mozilla_contacts()
 
         log.info(u'Sending email for %s' % self.addon)
         send_mail(subject % data['name'],

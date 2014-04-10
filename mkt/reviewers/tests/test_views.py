@@ -1265,7 +1265,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def _check_email(self, msg, subject, with_mozilla_contact=True):
         eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
         if with_mozilla_contact:
-            eq_(msg.cc, [self.mozilla_contact])
+            if self.mozilla_contact:
+                moz_contacts = [x.strip() for x in self.mozilla_contact.split(u',')]
+            else:
+                moz_contacts = []
+            eq_(msg.cc, moz_contacts)
         else:
             eq_(msg.cc, [])
         eq_(msg.subject, '%s: %s' % (subject, self.app.name))
