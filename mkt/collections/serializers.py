@@ -42,12 +42,14 @@ class CollectionMembershipField(serializers.RelatedField):
         'normal': SimpleAppSerializer,
     }
 
-    def to_native(self, value, use_es=False):
+    def to_native(self, qs, use_es=False):
         if use_es:
             serializer_class = self.app_serializer_classes['es']
         else:
             serializer_class = self.app_serializer_classes['normal']
-        return serializer_class(value, context=self.context, many=True).data
+        # To work around elasticsearch default limit of 10, hardcode a higher
+        # limit.
+        return serializer_class(qs[:100], context=self.context, many=True).data
 
     def _get_device(self, request):
         # Fireplace sends `dev` and `device`. See the API docs. When
