@@ -14,6 +14,7 @@ from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from mkt.developers import forms_payments, models
+from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
@@ -315,6 +316,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
+        self.provider = get_provider(name='bango')
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
 
@@ -326,6 +328,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
 
         self.kwargs = {
             'addon': self.addon,
+            'provider': self.provider,
         }
 
     def create_user_account(self, user, **kwargs):
@@ -493,6 +496,7 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
         self.addon = Addon.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
+        self.provider = get_provider(name='bango')
         self.price = Price.objects.filter()[0]
         AddonPremium.objects.create(addon=self.addon, price=self.price)
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
@@ -507,6 +511,7 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
         self.kwargs = {
             'addon': self.addon,
             'user': self.user,
+            'provider': self.provider,
         }
 
     @mock.patch('mkt.webapps.models.Webapp.is_fully_complete',

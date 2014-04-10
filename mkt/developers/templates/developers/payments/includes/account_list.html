@@ -23,9 +23,11 @@
     </table>
 
     <div class="listing-footer">
-      <a href="#" class="add-payment-account button">
-          {{- _('Add a new payment account') -}}
-      </a>
+      {% for provider in providers %}
+        <a href="#" class="add-payment-account button" data-provider="{{ provider.name }}">
+          {{- _('Add a {provider} account').format(provider=provider.full) -}}
+        </a>
+      {% endfor %}
     </div>
   </section>
 </script>

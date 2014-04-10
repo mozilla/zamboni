@@ -20,13 +20,18 @@ define('payments', [], function() {
     function getOverlay(opts) {
         var id = opts;
         if (_.isObject(opts)) {
-            id = opts.id;
+            if (opts.provider) {
+                id = [opts.provider, opts.id].join('-');
+            } else {
+                id = opts.id;
+            }
         }
         $('.overlay').remove();
         z.body.addClass('overlayed');
         var overlay = makeOrGetOverlay(opts);
         overlay.html($('#' + id + '-template').html())
                .addClass('show')
+               .data('provider', opts.provider)
                .on('click', '.close', _pd(function() {
                    overlay.trigger('overlay_dismissed').remove();
                }));
@@ -36,7 +41,10 @@ define('payments', [], function() {
     function setupPaymentAccountOverlay($overlay, onsubmit) {
         $overlay.on('submit', 'form', _pd(function() {
             var $form = $(this);
-            var $waiting_overlay = getOverlay('payment-account-waiting');
+            var $waiting_overlay = getOverlay({
+                id: 'payment-account-waiting',
+                provider: $overlay.data('provider'),
+            });
             var $old_overlay = $overlay.children('section');
             $old_overlay.detach();
             $form.find('.error').remove();

@@ -1,11 +1,12 @@
-<script type="text/template" id="payment-account-edit-template">
-  <section class="payment-account-edit">
+<script type="text/template" id="bango-payment-account-edit-template">
+  <section class="payment-account-edit payment-account-bango">
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Modify Bango Account') }}</h2>
     </header>
     <form method="post" class="island">
       {{ csrf() }}
+      <input type="hidden" name="provider" value="bango">
       <div id="payment-account-errors"></div>
       <div>
         {#
@@ -121,7 +122,7 @@
   </section>
 </script>
 
-<script type="text/template" id="payment-account-waiting-template">
+<script type="text/template" id="bango-payment-account-waiting-template">
   <section class="payment-account-waiting">
     <h2>{{ _('Processing Request...') }}</h2>
     <p>
