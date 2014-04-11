@@ -325,10 +325,10 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                    self.webapp.device_types],
                 'paid_platforms': ['paid-%s' % dt.class_name for dt in
                                    self.webapp.device_types]}
-        extension['form-TOTAL_FORMS'] = 1
-        extension['form-INITIAL_FORMS'] = 1
-        extension['form-MAX_NUM_FORMS'] = 1
         if 'accounts' in extension:
+            extension['form-TOTAL_FORMS'] = 1
+            extension['form-INITIAL_FORMS'] = 1
+            extension['form-MAX_NUM_FORMS'] = 1
             extension['form-0-accounts'] = extension['accounts']
             del extension['accounts']
         base.update(extension)
@@ -342,8 +342,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def test_premium_passes(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
-        res = self.client.post(
-            self.url, self.get_postdata({'toggle-paid': 'paid'}), follow=True)
+        res = self.client.post(self.url,
+                               self.get_postdata({'toggle-paid': 'paid'}),
+                               follow=True)
         eq_(self.get_webapp().premium_type, amo.ADDON_PREMIUM)
         eq_(res.context['is_paid'], True)
 

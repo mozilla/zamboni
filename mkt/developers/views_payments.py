@@ -70,9 +70,11 @@ def payments(request, addon_id, addon, webapp=False):
 
     if request.method == 'POST':
 
-        success = all(form.is_valid() for form in
-                      [premium_form, region_form, upsell_form,
-                       account_list_formset])
+        active_forms = [premium_form, region_form, upsell_form]
+        if formset_data is not None:
+            active_forms.append(account_list_formset)
+
+        success = all(form.is_valid() for form in active_forms)
 
         if success:
             region_form.save()
@@ -96,7 +98,8 @@ def payments(request, addon_id, addon, webapp=False):
                 try:
                     if not is_free_inapp:
                         upsell_form.save()
-                    account_list_formset.save()
+                    if formset_data is not None:
+                        account_list_formset.save()
                 except client.Error as err:
                     log.error('Error saving payment information (%s)' % err)
                     messages.error(
