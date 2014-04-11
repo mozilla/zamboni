@@ -13,9 +13,7 @@
           <th>{{ _('Provider') }}</th>
           <th>{{ _('Modify') }}</th>
           <th>{{ _('Delete') }}</th>
-          {% if waffle.switch('bango-portal') %}
-            <th>{{ _('View transactions') }}</th>
-          {% endif %}
+          <th>{{ _('View transactions') }}</th>
         </tr>
 
         {# Payment accounts get added via JS here. #}
@@ -49,9 +47,7 @@
     <td class="portal-account-name">{provider-full}</td>
     <td><a href="#" class="modify-account">{{ _('Modify') }}</a> <a href="#" class="accept-tos">{{ _('Accept Terms of Service') }}</a></td>
     <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>
-    {% if waffle.switch('bango-portal') %}
-      <td><a href="#" class="portal-account portal-link portal-link-{provider}">{{ _('View transactions') }}</a></td>
-    {% endif %}
+    <td><a href="{portal-url}" class="portal-account portal-link portal-link-{provider}">{{ _('View transactions') }}</a></td>
   </tr>
 </script>
 

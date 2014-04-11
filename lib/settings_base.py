@@ -1628,6 +1628,7 @@ BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
 #
 # This a good test one that developers can use.
 BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalYW56b6hrqfw%3D'
+BOKU_PORTAL = 'https://merchants.boku.com/login'
 
 # Auth token required to authorize a postfix host.
 POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'

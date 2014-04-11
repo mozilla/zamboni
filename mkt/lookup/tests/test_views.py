@@ -220,7 +220,6 @@ class TestBangoRedirect(TestCase):
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
         self.login(UserProfile.objects.get(username='support_staff'))
-        self.create_switch('bango-portal')
         self.steamcube.update(premium_type=amo.ADDON_PREMIUM)
         self.account = setup_payment_account(self.steamcube, self.user)
         self.portal_url = reverse('lookup.bango_portal_from_package',

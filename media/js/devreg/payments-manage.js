@@ -194,7 +194,7 @@ define('payments-manage', ['payments'], function(payments) {
                     'portal-link': $tr.closest('.portal-link'),
                     'provider': $tr.data('account-provider'),
                 });
-            })).on('click', '.portal-account', _pd(function() {
+            })).on('click', '.portal-link-bango', _pd(function() {
                 var $this = $(this);
                 // Prevent double-click leading to an authentication error.
                 $this.click(function () { return false; });

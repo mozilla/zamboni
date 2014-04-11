@@ -10,6 +10,7 @@ import commonware
 from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
 
+from amo.urlresolvers import reverse
 from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
                                 PROVIDER_REFERENCE)
 from lib.crypto import generate_key
@@ -96,6 +97,9 @@ class Provider(object):
     @account_check
     def terms_retrieve(self, account):
         raise NotImplementedError
+
+    def get_portal_url(self, app_slug):
+        return ''
 
 
 class Bango(Provider):
@@ -214,6 +218,10 @@ class Bango(Provider):
             res['text'] = bleach.clean(res['text'], tags=['h3', 'h4', 'br',
                                                           'p', 'hr'])
         return res
+
+    def get_portal_url(self, app_slug):
+        url = 'mkt.developers.apps.payments.bango_portal_from_addon'
+        return reverse(url, args=app_slug) if app_slug else ''
 
 
 class Reference(Provider):
@@ -358,6 +366,9 @@ class Boku(Provider):
     def terms_update(self, account):
         account.update(agreed_tos=True)
         return {'agreed': True}
+
+    def get_portal_url(self, app_slug):
+        return settings.BOKU_PORTAL
 
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
