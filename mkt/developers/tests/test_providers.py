@@ -269,3 +269,16 @@ class TestBoku(Patcher, TestCase):
             'merchant_id': 'f',
             'service_id': 'b',
         })
+
+    def test_terms_update(self):
+        seller = SolitudeSeller.create(self.user)
+        account = PaymentAccount.objects.create(account_id=10,
+                                                agreed_tos=False,
+                                                name='My account',
+                                                solitude_seller=seller,
+                                                user=self.user,
+                                                uri='/sell')
+        assert not account.agreed_tos
+        response = self.boku.terms_update(account)
+        assert account.agreed_tos
+        assert response['accepted']
