@@ -7,10 +7,16 @@
   {% endif %}
 
   <div id="{{ provider.name }}-accounts-list">
-    {% if account_list_form.fields['accounts'].queryset.exists() %}
+    {% if account_list_form.has_completed_accounts() %}
       {{ account_list_form.accounts }}
     {% else %}
-      <p class="no-accounts">{{ _("You don't have any payment accounts set up.") }}</p>
+      <p class="no-accounts">
+        {% if account_list_form.has_accounts() %}
+          {{ _("You have an incomplete payment account. Complete it or set up a new one below.") }}
+        {% else %}
+          {{ _("You don't have any payment accounts set up.") }}
+        {% endif %}
+      </p>
     {% endif %}
   </div>
 </div>
