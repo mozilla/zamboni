@@ -216,11 +216,8 @@ def payment_accounts(request):
             'provider': provider.name,
             'provider-full': unicode(provider.full),
             'shared': acc.shared,
+            'portal-url': provider.get_portal_url(app_slug)
         }
-        if waffle.switch_is_active('bango-portal') and app_slug:
-            data['portal-url'] = reverse(
-                'mkt.developers.apps.payments.bango_portal_from_addon',
-                args=[app_slug])
         return data
 
     return map(account, accounts)
@@ -402,7 +399,6 @@ def in_app_secret(request, addon_id, addon, webapp=True):
     return http.HttpResponse(seller_config['secret'])
 
 
-@waffle_switch('bango-portal')
 @dev_required(webapp=True)
 def bango_portal_from_addon(request, addon_id, addon, webapp=True):
     try:

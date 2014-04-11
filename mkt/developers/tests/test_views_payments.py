@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 import mock
@@ -16,7 +17,7 @@ from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
                            AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
-                                PROVIDER_REFERENCE)
+                                PROVIDER_BOKU, PROVIDER_REFERENCE)
 
 from market.models import Price
 
@@ -774,7 +775,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(json.loads(res.content)[0]['app-names'], u'')
 
     def setup_bango_portal(self):
-        self.create_switch('bango-portal')
         self.user = UserProfile.objects.get(pk=31337)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         self.login(self.user)
@@ -799,7 +799,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         account_template = self.extract_script_template(
                                 res.content, '#account-row-template')
         eq_(len(account_template('.portal-account')), 0)
-        self.create_switch('bango-portal', db=True)
         res = self.client.get(payments_url)
         account_template = self.extract_script_template(
                                 res.content, '#account-row-template')
@@ -1113,7 +1112,6 @@ class TestPaymentPortal(PaymentsBase):
 
     def setUp(self):
         super(TestPaymentPortal, self).setUp()
-        self.create_switch('bango-portal')
         self.app_slug = 'app-slug'
         self.url = reverse('mkt.developers.provider.payment_accounts')
         self.bango_url = reverse(
@@ -1130,13 +1128,21 @@ class TestPaymentPortal(PaymentsBase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         output = json.loads(res.content)
-        ok_('portal-url' not in output[0])
+        ok_(output[0]['portal-url'] is None)
 
-    def test_not_bango(self):
+    def test_reference(self):
         amo.tests.app_factory(app_slug=self.app_slug)
         PaymentAccount.objects.update(provider=PROVIDER_REFERENCE)
         res = self.client.get(self.bango_url)
         eq_(res.status_code, 403)
+
+    def test_boku(self):
+        PaymentAccount.objects.update(provider=PROVIDER_BOKU)
+        with self.settings(PAYMENT_PROVIDERS=['boku']):
+            res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        output = json.loads(res.content)
+        eq_(output[0]['portal-url'], settings.BOKU_PORTAL)
 
 
 class TestPaymentAccount(Patcher, PaymentsBase):
