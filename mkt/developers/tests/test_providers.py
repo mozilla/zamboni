@@ -6,9 +6,10 @@ from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_, raises
 
 from amo.tests import app_factory, TestCase
-from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
+from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
+                                PROVIDER_REFERENCE)
 from mkt.developers.models import PaymentAccount, SolitudeSeller
-from mkt.developers.providers import Bango, get_provider, Reference
+from mkt.developers.providers import Bango, Boku, get_provider, Reference
 from mkt.site.fixtures import fixture
 
 from users.models import UserProfile
@@ -46,6 +47,12 @@ class Patcher(object):
         self.bango_p_patcher = bango_p_patcher.start()
         self.bango_p_patcher.patcher = bango_p_patcher
         self.addCleanup(bango_p_patcher.stop)
+
+        boku_patcher = patch('mkt.developers.providers.Boku.client',
+                              name='test_providers.Patcher.boku_patcher')
+        self.boku_patcher = boku_patcher.start()
+        self.boku_patcher.patcher = boku_patcher
+        self.addCleanup(boku_patcher.stop)
 
         ref_patcher = patch('mkt.developers.providers.Reference.client',
                             name='test_providers.Patcher.ref_patcher')
@@ -238,4 +245,27 @@ class TestReference(Patcher, TestCase):
             'external_id': 'ext',
             'name': unicode(app.name),
             'uuid': ANY,
+        })
+
+
+class TestBoku(Patcher, TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self, *args, **kw):
+        super(TestBoku, self).setUp(*args, **kw)
+        self.user = UserProfile.objects.get(pk=999)
+        self.boku = Boku()
+
+    def test_account_create(self):
+        data = {'account_name': 'account', 'merchant_id': 'f',
+                'service_id': 'b'}
+        res = self.boku.account_create(self.user, data)
+        acct = PaymentAccount.objects.get(user=self.user)
+        eq_(acct.provider, PROVIDER_BOKU)
+        eq_(acct.agreed_tos, True)
+        eq_(res.pk, acct.pk)
+        self.boku_patcher.seller.post.assert_called_with(data={
+            'seller': ANY,
+            'merchant_id': 'f',
+            'service_id': 'b',
         })
