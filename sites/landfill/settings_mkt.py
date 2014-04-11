@@ -8,10 +8,10 @@ import private_mkt
 
 SERVER_EMAIL = 'zmktlandfill@addons.mozilla.org'
 
-DOMAIN = "landfill.marketplace.allizom.org"
-SITE_URL = 'https://landfill.marketplace.allizom.org'
+DOMAIN = "landfill-mkt.allizom.org"
+SITE_URL = 'https://landfill-mkt.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = SITE_URL + '/'
+STATIC_URL = 'https://landfill-mkt-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
@@ -98,7 +98,7 @@ SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org',
-                      'https://landfill.addons.allizom.org']
+                      'https://landfill-mkt.allizom.org']
 
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
