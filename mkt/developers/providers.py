@@ -307,6 +307,13 @@ class Boku(Provider):
     def account_retrieve(self, account):
         return {}
 
+    def terms_retrieve(self, account):
+        return {'accepted': True}
+
+    def terms_update(self, account):
+        account.update(agreed_tos=True)
+        return {'accepted': True}
+
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
 for p in (Bango, Reference, Boku):
