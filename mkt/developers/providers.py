@@ -304,6 +304,9 @@ class Boku(Provider):
                                   user=user,
                                   uri=res['resource_uri'])
 
+    def account_retrieve(self, account):
+        return {}
+
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
 for p in (Bango, Reference, Boku):
