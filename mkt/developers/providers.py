@@ -157,7 +157,6 @@ class Bango(Provider):
 
     @account_check
     def account_retrieve(self, account):
-        self.account_check(account)
         data = {'account_name': account.name}
         package_data = (self.client.package(uri_to_pk(account.uri))
                         .get(data={'full': True}))
