@@ -798,10 +798,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         res = self.client.get(payments_url)
         account_template = self.extract_script_template(
                                 res.content, '#account-row-template')
-        eq_(len(account_template('.portal-account')), 0)
-        res = self.client.get(payments_url)
-        account_template = self.extract_script_template(
-                                res.content, '#account-row-template')
         eq_(len(account_template('.portal-account')), 1)
 
     @mock.patch('mkt.developers.views_payments.client.api')
@@ -1128,7 +1124,7 @@ class TestPaymentPortal(PaymentsBase):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         output = json.loads(res.content)
-        ok_(output[0]['portal-url'] is None)
+        eq_(output[0]['portal-url'], '')
 
     def test_reference(self):
         amo.tests.app_factory(app_slug=self.app_slug)
