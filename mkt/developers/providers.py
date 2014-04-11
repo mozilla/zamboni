@@ -280,6 +280,7 @@ class Boku(Provider):
     """
     Specific Boku implementation details.
     """
+    client = pay_client.api.boku
     forms = {
         'account': forms_payments.BokuAccountForm,
     }
@@ -290,6 +291,18 @@ class Boku(Provider):
         'add': os.path.join(root, 'add_payment_account_boku.html'),
         'edit': os.path.join(root, 'edit_payment_account_boku.html'),
     }
+
+    def account_create(self, user, form_data):
+        user_seller = self.setup_seller(user)
+        form_data.update({'seller': user_seller.resource_uri})
+        name = form_data.pop('account_name')
+        res = self.client.seller.post(data=form_data)
+        return self.setup_account(account_id=res['id'],
+                                  agreed_tos=True,
+                                  name=name,
+                                  solitude_seller=user_seller,
+                                  user=user,
+                                  uri=res['resource_uri'])
 
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
