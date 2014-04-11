@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_, raises
@@ -42,14 +42,14 @@ class Patcher(object):
         self.addCleanup(bango_patcher.stop)
 
         bango_p_patcher = patch(
-                'mkt.developers.providers.Bango.client_provider',
-                name='test_providers.Patcher.bango_p_patcher')
+            'mkt.developers.providers.Bango.client_provider',
+            name='test_providers.Patcher.bango_p_patcher')
         self.bango_p_patcher = bango_p_patcher.start()
         self.bango_p_patcher.patcher = bango_p_patcher
         self.addCleanup(bango_p_patcher.stop)
 
         boku_patcher = patch('mkt.developers.providers.Boku.client',
-                              name='test_providers.Patcher.boku_patcher')
+                             name='test_providers.Patcher.boku_patcher')
         self.boku_patcher = boku_patcher.start()
         self.boku_patcher.patcher = boku_patcher
         self.addCleanup(boku_patcher.stop)
@@ -207,7 +207,7 @@ class TestReference(Patcher, TestCase):
             'name': 'Test',
         }
         seller_mock = Mock()
-        seller_mock.get.return_value =  account_data
+        seller_mock.get.return_value = account_data
         self.ref_patcher.sellers.return_value = seller_mock
         account = self.make_account()
         self.ref.account_update(account, account_data)
