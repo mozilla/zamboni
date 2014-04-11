@@ -26,18 +26,36 @@ root = 'developers/payments/includes/'
 log = commonware.log.getLogger('z.devhub.providers')
 
 
+def account_check(f):
+    """
+    Use this decorator on Provider methods to ensure that the account
+    being passed into the method belongs to that provider.
+    """
+    def wrapper(self, *args, **kwargs):
+        for arg in args:
+            if (isinstance(arg, PaymentAccount)
+                and arg.provider != self.provider):
+                raise ValueError('Wrong account {0} != {1}'
+                                 .format(arg.provider, self.provider))
+        return f(self, *args, **kwargs)
+    return wrapper
+
+
 class Provider(object):
     generic = pay_client.api.generic
 
     def account_create(self, user, form_data):
         raise NotImplementedError
 
+    @account_check
     def account_retrieve(self, account):
         raise NotImplementedError
 
+    @account_check
     def account_update(self, account, form_data):
         raise NotImplementedError
 
+    @account_check
     def generic_create(self, account, app, secret):
         # This sets the product up in solitude.
         external_id = WebAppProduct(app).external_id()
@@ -56,6 +74,7 @@ class Provider(object):
 
         return generic
 
+    @account_check
     def product_create(self, account, app, secret):
         raise NotImplementedError
 
@@ -70,9 +89,11 @@ class Provider(object):
                    'provider': self.provider})
         return PaymentAccount.objects.create(**kw)
 
+    @account_check
     def terms_create(self, account):
         raise NotImplementedError
 
+    @account_check
     def terms_retrieve(self, account):
         raise NotImplementedError
 
@@ -134,7 +155,9 @@ class Bango(Provider):
                                   account_id=res['package_id'],
                                   name=form_data['account_name'])
 
+    @account_check
     def account_retrieve(self, account):
+        self.account_check(account)
         data = {'account_name': account.name}
         package_data = (self.client.package(uri_to_pk(account.uri))
                         .get(data={'full': True}))
@@ -142,12 +165,14 @@ class Bango(Provider):
                     k in self.package_values)
         return data
 
+    @account_check
     def account_update(self, account, form_data):
         account.update(name=form_data.pop('account_name'))
         self.client.api.by_url(account.uri).patch(
             data=dict((k, v) for k, v in form_data.items() if
                       k in self.package_values))
 
+    @account_check
     def product_create(self, account, app):
         secret = generate_key(48)
         generic = self.generic_create(account, app, secret)
@@ -174,12 +199,14 @@ class Bango(Provider):
 
         return res['resource_uri']
 
+    @account_check
     def terms_update(self, account):
         package = self.client.package(account.uri).get_object_or_404()
         account.update(agreed_tos=True)
         return self.client.sbi.post(data={
             'seller_bango': package['resource_uri']})
 
+    @account_check
     def terms_retrieve(self, account):
         package = self.client.package(account.uri).get_object_or_404()
         res = self.client.sbi.agreement.get_object(data={
@@ -219,15 +246,18 @@ class Reference(Provider):
                                   account_id=res['id'],
                                   name=name)
 
+    @account_check
     def account_retrieve(self, account):
         data = {'account_name': account.name}
         data.update(self.client.sellers(account.account_id).get())
         return data
 
+    @account_check
     def account_update(self, account, form_data):
         account.update(name=form_data.pop('account_name'))
         self.client.sellers(account.account_id).put(form_data)
 
+    @account_check
     def product_create(self, account, app):
         secret = generate_key(48)
         generic = self.generic_create(account, app, secret)
@@ -249,8 +279,6 @@ class Reference(Provider):
         elif len(created) == 1:
             return created[0]['resource_uri']
 
-        # Note that until zippy get some persistence, this will just
-        # throw a 409 if the seller doesn't exist.
         created = self.client.products.post(data={
             'external_id': generic['external_id'],
             'seller_id': uri_to_pk(account.uri),
@@ -259,12 +287,14 @@ class Reference(Provider):
         })
         return created['resource_uri']
 
+    @account_check
     def terms_retrieve(self, account):
         res = self.client.terms(account.account_id).get()
         if 'text' in res:
             res['text'] = bleach.clean(res['text'])
         return res
 
+    @account_check
     def terms_update(self, account):
         account.update(agreed_tos=True)
         # GETed data from Zippy needs to be reformated prior to be PUT
@@ -304,6 +334,7 @@ class Boku(Provider):
                                   user=user,
                                   uri=res['resource_uri'])
 
+    @account_check
     def account_retrieve(self, account):
         return {}
 
@@ -313,6 +344,21 @@ class Boku(Provider):
     def terms_update(self, account):
         account.update(agreed_tos=True)
         return {'accepted': True}
+
+    @account_check
+    def product_create(self, account, app):
+        secret = generate_key(48)
+        created = self.generic_create(account, app, secret)
+        # Note this is setting the generic product account,
+        # not the specific product uri.
+        return created['resource_uri']
+
+    def terms_retrieve(self, account):
+        return {'agreed': True}
+
+    def terms_update(self, account):
+        account.update(agreed_tos=True)
+        return {'agreed': True}
 
 
 ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}

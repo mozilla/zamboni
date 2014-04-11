@@ -9,7 +9,8 @@ from amo.tests import app_factory, TestCase
 from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
                                 PROVIDER_REFERENCE)
 from mkt.developers.models import PaymentAccount, SolitudeSeller
-from mkt.developers.providers import Bango, Boku, get_provider, Reference
+from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
+                                      Reference)
 from mkt.site.fixtures import fixture
 
 from users.models import UserProfile
@@ -73,6 +74,20 @@ class TestSetup(TestCase):
         with self.settings(PAYMENT_PROVIDERS=['bango', 'reference'],
                            DEFAULT_PAYMENT_PROVIDER='bango'):
             eq_(get_provider().name, 'bango')
+
+
+class TestBase(TestCase):
+
+    def test_check(self):
+        provider = Reference()
+        @account_check
+        def test(self, account):
+            pass
+
+        provider.test = test
+        provider.test(provider, PaymentAccount(provider=PROVIDER_REFERENCE))
+        with self.assertRaises(ValueError):
+            provider.test(provider, PaymentAccount(provider=PROVIDER_BOKU))
 
 
 class TestBango(Patcher, TestCase):
@@ -152,7 +167,8 @@ class TestReference(Patcher, TestCase):
         return PaymentAccount.objects.create(user=self.user,
                                              solitude_seller=seller,
                                              uri='/f/b/1',
-                                             name='account name')
+                                             name='account name',
+                                             provider=PROVIDER_REFERENCE)
 
     def test_terms_retrieve(self):
         account = self.make_account()
@@ -256,6 +272,14 @@ class TestBoku(Patcher, TestCase):
         self.user = UserProfile.objects.get(pk=999)
         self.boku = Boku()
 
+    def make_account(self):
+        seller = SolitudeSeller.objects.create(user=self.user)
+        return PaymentAccount.objects.create(user=self.user,
+                                             solitude_seller=seller,
+                                             uri='/f/b/1',
+                                             name='account name',
+                                             provider=PROVIDER_BOKU)
+
     def test_account_create(self):
         data = {'account_name': 'account', 'merchant_id': 'f',
                 'service_id': 'b'}
@@ -271,14 +295,15 @@ class TestBoku(Patcher, TestCase):
         })
 
     def test_terms_update(self):
-        seller = SolitudeSeller.create(self.user)
-        account = PaymentAccount.objects.create(account_id=10,
-                                                agreed_tos=False,
-                                                name='My account',
-                                                solitude_seller=seller,
-                                                user=self.user,
-                                                uri='/sell')
+        account = self.make_account()
         assert not account.agreed_tos
         response = self.boku.terms_update(account)
         assert account.agreed_tos
         assert response['accepted']
+
+    def test_product_create_exists(self):
+        self.generic_patcher.product.get_object_or_404.return_value = {
+            'resource_uri': '/f'}
+        account = self.make_account()
+        app = app_factory()
+        eq_(self.boku.product_create(account, app), '/f')
