@@ -76,7 +76,8 @@ def dehydrate_descriptors(keys, body=None):
         if obj:
             # Slugify and remove body prefix.
             body, label = key.lower().replace('_', '-').split('-', 1)
-            results[body].append(label)
+            if label != 'no-descs':
+                results[body].append(label)
     return dict(results)
 
 
