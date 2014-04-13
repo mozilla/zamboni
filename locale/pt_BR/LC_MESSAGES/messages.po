@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-09 17:40+0000\n"
+"PO-Revision-Date: 2014-04-13 22:10+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1397065213.0\n"
+"X-POOTLE-MTIME: 1397427017.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -2699,18 +2699,19 @@ msgstr "Vídeo removido"
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
 msgstr ""
+"re-análise de {addon} por causa de novo(s) dispositivo(s) adicionado(s)."
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Dispositivo(s) adicionado(s)"
 
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} suporte ao dispositivo alterado manualmente pelo revisor."
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Dispositivo(s) modificados pelo revisor"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -19338,7 +19339,7 @@ msgstr "Selecione uma opção válida. %(value)s não é uma das opções dispon
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "O campo deve ter pelo menos {num} caracteres."
 
 #: mkt/api/serializers.py:57
 #: mkt/site/forms.py:50
@@ -20929,7 +20930,7 @@ msgstr "Telefones Android"
 #: mkt/constants/platforms.py:80
 #: mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tablets"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -21701,11 +21702,11 @@ msgstr "Nome da conta"
 
 #: mkt/developers/forms_payments.py:581
 msgid "Merchant ID"
-msgstr ""
+msgstr "ID do vendedor"
 
 #: mkt/developers/forms_payments.py:582
 msgid "Service ID"
-msgstr ""
+msgstr "ID de serviço"
 
 #: mkt/developers/forms_payments.py:594
 msgid "No payment account set up for that app"
@@ -21727,7 +21728,7 @@ msgstr "Implementação de referência"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -22384,6 +22385,9 @@ msgid ""
 "automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining "
 "content ratings</a>."
 msgstr ""
+"Seu aplicativo foi desativado porque está faltando a classificações do "
+"conteúdo. Ele será reativado automaticamente após <a href=\"%"
+"(ratings_url)s\">obtenção da classificações do conteúdo</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid ""
@@ -23098,7 +23102,7 @@ msgstr "Configurar conta de pagamento"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Alterar aparelhos"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid ""
@@ -23371,7 +23375,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Adicionar um produto"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -23615,7 +23619,7 @@ msgstr "Por favor, aguarde enquanto contatamos o servidor de pagamentos."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Adicionar conta Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid ""
@@ -23634,7 +23638,7 @@ msgstr "Modificar conta do Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:5
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Modificar conta Boku"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -23771,7 +23775,7 @@ msgstr "Aplicativos empacotados"
 #: mkt/ecosystem/templates/ecosystem/base.html:66
 #: mkt/ecosystem/templates/ecosystem/macros.html:211
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Medalhas, banners e ícones"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:15
 msgid ""
@@ -25623,7 +25627,7 @@ msgstr "Qualquer Estado"
 #: mkt/reviewers/forms.py:41
 #: mkt/reviewers/templates/reviewers/review.html:130
 msgid "Device Types:"
-msgstr ""
+msgstr "Tipos de aparelhos:"
 
 #: mkt/reviewers/forms.py:43
 #: mkt/reviewers/templates/reviewers/review.html:134
@@ -25793,7 +25797,7 @@ msgstr ""
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Aparelho(s) alterado(s) pelo revisor: {0}"
 
 #: mkt/reviewers/views.py:309
 #: mkt/reviewers/views.py:329
@@ -25820,7 +25824,7 @@ msgstr "Você não está revisando nenhum aplicativo neste momento."
 #: mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Aparelhos"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34
 #: mkt/reviewers/templates/reviewers/includes/macros.html:70
@@ -25987,7 +25991,7 @@ msgstr "Downloads totais"
 #: mkt/reviewers/templates/reviewers/includes/details.html:114
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Tipos de aparelhos"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
@@ -26398,7 +26402,7 @@ msgstr "Enviar outro aplicativo"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Tipo de aparelho"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -26615,7 +26619,7 @@ msgstr "Você deve fornecer um nome para seu aplicativo."
 
 #: mkt/webapps/models.py:450
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Você deve fornecer pelo menos um tipo de aparelho"
 
 #: mkt/webapps/models.py:453
 msgid "You must provide at least one category."
