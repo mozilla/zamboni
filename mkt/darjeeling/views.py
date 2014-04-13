@@ -1,8 +1,5 @@
-import json
-
-from django.http import HttpResponse
-
 from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
 from rest_framework.serializers import SerializerMethodField
 
 from mkt.api.base import CORSMixin, MarketplaceView
@@ -76,4 +73,4 @@ class DarjeelingAppList(CORSMixin, MarketplaceView, ListAPIView):
         data = {}
         data['all'] = self.get_queryset()
         data['featured'] = [d['id'] for d in data['all'] if d['featured']]
-        return HttpResponse(json.dumps(data), content_type='application/json')
+        return Response(data)
