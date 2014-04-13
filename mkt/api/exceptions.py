@@ -54,8 +54,8 @@ def custom_exception_handler(exc):
         # Start with a generic default error message.
         data = {"detail": "Internal Server Error"}
 
-        # Include traceback if DEBUG is active.
-        if settings.DEBUG:
+        # Include traceback if API_SHOW_TRACEBACKS is active.
+        if getattr(settings, 'API_SHOW_TRACEBACKS', settings.DEBUG):
             import traceback
             import sys
 

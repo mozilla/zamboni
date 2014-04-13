@@ -1662,5 +1662,8 @@ DEFAULT_PAYMENT_PROVIDER = 'bango'
 # than this will include the `API-Status: Deprecated` header.
 API_CURRENT_VERSION = 1
 
+# When True, the API will return a full traceback when an exception occurs.
+API_SHOW_TRACEBACKS = False
+
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'

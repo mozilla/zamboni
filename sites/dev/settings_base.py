@@ -200,6 +200,8 @@ RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
 
+API_SHOW_TRACEBACKS = True
+
 NEWRELIC_WHITELIST = ['dev1.addons.phx1.mozilla.com',
                       'dev2.addons.phx1.mozilla.com']
 
