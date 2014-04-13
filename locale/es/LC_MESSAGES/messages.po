@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-03-09 21:29+0000\n"
-"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
+"PO-Revision-Date: 2014-04-13 12:02+0000\n"
+"Last-Translator: Yunier <yjsosa@estudiantes.uci.cu>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1394400576.0\n"
+"X-POOTLE-MTIME: 1397390552.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1973,18 +1973,21 @@ msgstr "Video eliminado"
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
 msgstr ""
+"Segunda revisión de {addon} porque se añadieron nuevo(s) dispositivos(s)."
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Dispositivo(s) añadido(s)"
 
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
+"Compatibilidad con dispositivo para {addon} cambiado manualmente por el "
+"revisor."
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Dispositivo(s) cambiado(s) por el revisor"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -1996,11 +1999,11 @@ msgstr "Reenvío de la aplicación"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} remitido automáticamente porque es una aplicación VIP."
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "Remisión automática VIP"
 
 #: apps/amo/log.py:551
 msgid "Created: {0}."
@@ -4090,11 +4093,11 @@ msgstr "Cuando se elige Otro, el texto de la licencia es obligatorio."
 
 #: apps/devhub/forms.py:224
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Este complemento tiene un acuerdo de licencia de usuario final"
 
 #: apps/devhub/forms.py:226
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Especifica el acuerdo de licencia de usuario final de tu complemento:"
 
 #: apps/devhub/forms.py:229
 msgid "This add-on has a Privacy Policy"
@@ -4561,12 +4564,18 @@ msgstr "SDK de complementos"
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
 msgstr ""
+"<strong>SDK de complementos:</strong> crea complementos fácil y rápidamente"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"El SDK de complementos proporciona una colección de potentes API que "
+"permiten a los desarrolladores crear complementos para Firefox utilizando "
+"HTML, CSS y JavaScript. Cuando esté completo tu complemento, nosotros te "
+"ayudamos a compartirlo con más de 400 millones de usuarios de Firefox en "
+"todo el mundo."
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4677,12 +4686,12 @@ msgstr "Ver todos los complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Crear complementos para Australis"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "¡Gana un teléfono Firefox OS y accesorios de Mozilla!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -4693,6 +4702,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Los complementos permiten a millones de usuarios de Firefox mejorar y "
+"personalizar su experiencia de navegación. Si eres desarrollador y conoces "
+"HTML, JavaScript y CSS, ya tienes todo lo que necesitas para hacer "
+"estupendos complementos con el SDK de complementos. Además, los complementos "
+"construidos con el SDK no requieren reiniciar."
 
 #: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
@@ -5625,7 +5639,7 @@ msgstr "Este complemento será borrado automáticamente después de unos días s
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Última versión:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:241
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5751,7 +5765,7 @@ msgstr "Ver los <a href=\"{0}\">tiempos de espera</a> aproximados de la cola de 
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Envía tu complemento para el concurso Complementos para Australis"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5931,7 +5945,9 @@ msgstr "Paso 2. Envía tu complemento"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
-"Use los siguientes campos para enviar tu paquete y seleccionar cualquier restricción en la plataforma. Tras enviarlo, una serie de pruebas de validación automática se ejecutarán sobre tu fichero."
+"Usa los siguientes campos para enviar el paquete de complementos y "
+"seleccionar cualquier restricción en la plataforma. Tras enviarlo, una serie "
+"de pruebas de validación automática se ejecutarán sobre tu fichero."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:28 apps/devhub/templates/devhub/versions/add_file_modal.html:25
 msgid "Which desktop platforms is this file compatible with?"
@@ -6096,6 +6112,12 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Si tu complemento necesita más funcionalidades que el panel lateral vacío "
+"que te ha creado el Empaquetador, existen distintas formas para encontrar "
+"cómo agregar la funcionalidad que buscas. Una de las más formas más comunes "
+"de descubrir cómo hacer algo en una extensión es mirar lo que hacen otras. "
+"Recuerda que si la licencia de la extensión no te permite copiar su código "
+"fuente, no puedes hacerlo."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -6373,7 +6395,9 @@ msgstr "Si no puedes encontrar lo que buscas en los artículos de la parte super
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
-msgstr "Aprende lo básico del desarrollo de un complemento en la plataforma Mozilla con esta sección llena de guías para principiantes."
+msgstr ""
+"Aprende los conceptos básicos sobre desarrollo de una extensión en la "
+"plataforma Mozilla gracias a esta sección llena de guías para principiantes."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
 msgid "The Basics"
@@ -6838,9 +6862,14 @@ msgid ""
 "mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
 "please remember that versions must be reviewed by an editor."
 msgstr ""
-"Se anima a los desarrolladores a que envíen actualizaciones de sus complementos con el fin de solucionar fallos, agregar funcionalidades y mejorar su producto. Las nuevas versiones de un "
-"complemento deben tener un <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">número de versión superior</a> y pueden enviarse a través de las Herramientas para desarrolladores que "
-"se ofrecen. No existe ningún límite al número de versiones que pueden enviarse, pero recuerda que las versiones tiene que valorarlas un editor."
+"Animamos a los desarrolladores a que envíen actualizaciones de sus "
+"complementos con el fin de solucionar fallos, agregar funcionalidades y "
+"mejorar su producto. Las nuevas versiones de un complemento deben tener un "
+"<a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">número de "
+"versión superior</a> y pueden enviarse a través de las herramientas para "
+"desarrolladores que se ofrecen. No existe ningún límite en el número de "
+"versiones que pueden enviarse, pero recuerda que las versiones tiene que "
+"valorarlas un editor."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -8795,6 +8824,8 @@ msgstr "Sí, siempre que lo compartan de la misma manera"
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
+"El licenciatario permite que otros distribuyan trabajos derivados solo bajo "
+"la misma licencia o una compatible con la que rige su trabajo."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -9519,11 +9550,11 @@ msgstr "Cancelar instalación"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Crea complementos para el nuevo diseño de Firefox"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Información del concurso"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -11402,6 +11433,17 @@ msgid ""
 "Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the "
 "beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para garantizar la compatibilidad con el último software de Mozilla, es "
+"importante descargar las actualizaciones a medida que estén disponibles y "
+"probar tu complemento para asegurarte de que sigue funcionando como se "
+"supone que debe hacerlo. Lo mejor es que sigas los pasos descritos en el "
+"tutorial <a href=\"%(ext_url)s\">Construir una extensión</a> y <a href=\"%"
+"(test_url)s\">pruebes el complemento</a>. En muchos casos, la última versión "
+"del software de Mozilla puede ser una versión beta. Dado que estos "
+"lanzamientos a veces introducen cambios arquitectónicos que pueden afectar "
+"la funcionalidad del complemento, es importante participar activamente en el "
+"proceso beta para garantizar que los usuarios de tu complemento no se vean "
+"afectados negativamente en la versión final del software de Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
@@ -11632,6 +11674,13 @@ msgid ""
 "When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Los complementos los revisan los editores AMO, un grupo de desarrolladores "
+"con talento que voluntariamente ayudan al proyecto Mozilla revisando "
+"complementos y garantizando que los usuarios de Mozilla disfruten de una "
+"experiencia estable y segura. Al comunicarte con los editores, intenta ser "
+"educado, paciente y respetuoso mientras dedican sus esfuerzos a revisar que "
+"tu complemento está configurado correctamente y cumple las directrices "
+"detalladas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
@@ -13537,7 +13586,7 @@ msgstr "sal"
 
 #: apps/users/models.py:67
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:125
 msgid "No user with that email."
@@ -13875,7 +13924,7 @@ msgstr "¡Preséntate a ti mismo en la comunidad, si quieres! Este texto aparece
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Se admite HTML: {0}. Están prohibidos los enlaces."
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
@@ -14307,7 +14356,7 @@ msgstr "Selecciona una opción válida. %(value)s no es una de las opciones disp
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "El campo debe tener una longitud de al menos {num} caracteres."
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15383,11 +15432,11 @@ msgstr "Aprobada, pero aún no se ha hecho pública"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Remitido debido al alto número de informes de infracción"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Remitido debido al alto número de solicitudes de reembolso"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -15753,7 +15802,7 @@ msgstr "Teléfonos inteligentes Android"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tabletas"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -16280,6 +16329,8 @@ msgstr "Por favor introduce un ID de envío válido."
 #: mkt/developers/forms.py:1084
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Este certificado IARC está siendo usado por otra aplicación. Por favor, crea "
+"un nuevo certificado de calificación IARC."
 
 #: mkt/developers/forms.py:1112 mkt/developers/forms.py:1124
 msgid "Invalid submission ID or security code."
@@ -16439,11 +16490,11 @@ msgstr "Nombre de la cuenta"
 
 #: mkt/developers/forms_payments.py:581
 msgid "Merchant ID"
-msgstr ""
+msgstr "ID del vendedor"
 
 #: mkt/developers/forms_payments.py:582
 msgid "Service ID"
-msgstr ""
+msgstr "ID del servicio"
 
 #: mkt/developers/forms_payments.py:594
 msgid "No payment account set up for that app"
@@ -16464,7 +16515,7 @@ msgstr "Implementación de referencia"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16978,6 +17029,9 @@ msgstr "Esta aplicación ha sido <b>desactivada por Mozilla</b>."
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Tu aplicación ha sido deshabilitada porque falta la clasificación de "
+"contenido. Automáticamente será habilitada después de que <a href=\"%"
+"(ratings_url)s\">obtengas una clasificación de contenido</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -17022,6 +17076,8 @@ msgstr "Reenviar aplicación"
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr ""
+"Debes <a href=\"%(ratings_url)s\">obtener una clasificación de contenido</a> "
+"antes de reenviar tu aplicación."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -17200,15 +17256,17 @@ msgstr "Escribe direcciones de correo electrónico separadas por comas"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Aplicación VIP de Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"¿Es una aplicación importante que debe ser gestionada siempre por el "
+"personal de Mozilla o un revisor de aplicaciones experimentado?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Usar con moderación"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Banner message"
@@ -17527,7 +17585,7 @@ msgstr "Configurar cuenta de pago"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Cambiar dispositivos"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -17561,6 +17619,14 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Puedes enviar una aplicación para que los operadores de telefonía consideren "
+"la posibilidad de <strong>precargarla y lanzarla con dispositivos Firefox "
+"OS</strong>. Para optar a esta posibilidad, puedes descargar abajo una "
+"plantilla de prueba, probar tu aplicación, completar la plantilla y subir "
+"los resultados desde <a href=\"%(submit_url)s\">el formulario de envío de "
+"precarga de aplicaciones</a>. Guardaremos los resultados de la prueba en "
+"nuestros servidores donde los operadores de telefonía que les interese "
+"podrán revisarlos. Si tienes más preguntas, puedes escribirnos a %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -17657,7 +17723,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Productos en la aplicación"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17721,19 +17787,19 @@ msgstr "Generar claves"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Cópiame"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "Rango de precio"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "URL de compra"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Añadir un producto"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -17939,11 +18005,14 @@ msgstr "Por favor, espera mientras contactamos con el servidor de pagos."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Agregar una cuenta Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid "You will need a Boku merchant and service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"Necesitarás una ID Boku del servicio y vendedor para registrar una cuenta "
+"Boku. Las cuentas Boku deben crearse a través del <a href=\"%"
+"(boku_url)s\">proceso de registro de Mozilla</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17955,7 +18024,7 @@ msgstr "Modificar cuenta de Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:5
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Modificar cuenta Boku"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19483,7 +19552,7 @@ msgstr "Cualquier estado"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Device Types:"
-msgstr ""
+msgstr "Tipos de dispositivos:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -19626,7 +19695,7 @@ msgstr "Solo los revisores experimentados pueden revisar las aplicaciones de la 
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Dispositivo(s) cambiado(s) por el revisor: {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -19648,7 +19717,7 @@ msgstr "Actualmente no estás revisando ninguna aplicación."
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
@@ -19798,7 +19867,7 @@ msgstr "Descargas totales"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Tipos de dispositivos"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
@@ -19831,11 +19900,11 @@ msgstr "Versión %(version)s &middot; %(developer_name)s &middot; %(created)s <s
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Página siguiente"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Página anterior"
 
 #: mkt/reviewers/templates/reviewers/themes/base.html:24
 msgid "Theme Queues"
@@ -19991,7 +20060,7 @@ msgstr "Trimestre"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Dispositivo(s) cambiado(s): {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -20004,7 +20073,7 @@ msgstr "No puede ser gratuita y de pago."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Selecciona un dispositivo."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -20145,7 +20214,7 @@ msgstr "Enviar otra aplicación"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Tipo de dispositivo"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -20322,7 +20391,7 @@ msgstr "Debes ponerle un nombre a la aplicación."
 
 #: mkt/webapps/models.py:450
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Tienes que facilitar al menos un tipo de dispositivo."
 
 # 76%
 # 100%
