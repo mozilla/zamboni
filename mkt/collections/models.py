@@ -20,6 +20,7 @@ from .managers import PublicCollectionsManager
 
 
 class Collection(amo.models.ModelBase):
+    # `collection_type` for rocketfuel, not transonic.
     collection_type = models.IntegerField(choices=COLLECTION_TYPES)
     description = PurifiedField()
     name = PurifiedField()

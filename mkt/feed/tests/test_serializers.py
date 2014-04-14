@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from rest_framework import serializers
 
 import amo
 import amo.tests
+
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.feed.serializers import FeedItemSerializer

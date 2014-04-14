@@ -5,6 +5,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin
+from mkt.collections.views import CollectionImageViewSet
 
 from .models import FeedApp, FeedItem
 from .serializers import FeedAppSerializer, FeedItemSerializer
@@ -30,3 +31,7 @@ class FeedAppViewSet(CORSMixin, viewsets.ModelViewSet):
     queryset = FeedApp.objects.all()
     cors_allowed_methods = ('get', 'post')
     serializer_class = FeedAppSerializer
+
+
+class FeedAppImageViewSet(CollectionImageViewSet):
+    queryset = FeedApp.objects.all()

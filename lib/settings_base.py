@@ -975,6 +975,7 @@ PRIVATE_MIRROR_URL = '/_privatefiles'
 # File paths
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
+FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'

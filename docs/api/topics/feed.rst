@@ -10,7 +10,7 @@ the Marketplace home page. The feed is comprised of a number of :ref:`feed items
 <feed-items>`, each containing a singular of piece of content. Currently, the
 feed may include:
 
-- :ref:`Apps <feed-apps>`
+- :ref:`Feed Apps <feed-apps>`
 - :ref:`Collections <feed-collections>`
 
 .. note::
@@ -26,7 +26,9 @@ feed may include:
 Feed Items
 ----------
 
-Feed items are represented thusly:
+A feed item wraps a :ref:`FeedApp  <feed-apps>` or
+:ref:`Collection <feed-collections>` with additional metadata regarding
+when and where to feature the content. Feed items are represented thusly:
 
 .. code-block:: json
 
@@ -61,7 +63,7 @@ Feed items are represented thusly:
     always be usable as a key on the feed item instance to fetch that object's
     data (i.e. ``feeditem[feeditem['item_type']]`` will always be non-null).
 ``resource_url``
-    *string* - the permanent URL for this feed item. 
+    *string* - the permanent URL for this feed item.
 ``region``
     *string|null* - the slug of a :ref:`region <regions>`. If defined, this feed
     item will only be available in that region.
@@ -210,7 +212,8 @@ Feed Apps
 ---------
 
 A feed app is a thin wrapper around an :ref:`app <app>`, object containing
-additional metadata related to its feature in the feed.
+additional metadata related to its feature in the feed. A feed app represents
+a featured app, a single app that is highlighted on its own in the feed.
 
 Feed apps are represented thusly:
 
@@ -220,25 +223,36 @@ Feed apps are represented thusly:
         "app": {
             "data": "..."
         },
+        "background_color": "#A90000",
         "description": {
             "en-US": "A featured app",
             "fr": "Une application sélectionnée"
         },
+        "feedapp_type": "icon",
+        "image": "http://somecdn.com/someimage.png"
         "id": 1
         "preview": null,
         "pullquote_attribute": null,
         "pullquote_rating": null,
         "pullquote_text": null,
+        "slug": "app-of-the-month",
         "url": "/api/v2/feed/apps/1/"
     }
 
 ``app``
     *object* - the full representation of an :ref:`app <app>`.
+``background_color``
+    *string* - background color in 6-digit hex format prepending by a hash
 ``description``
     *string|null* - a :ref:`translated <overview-translations>` description of
     the app being featured.
+``feedapp_type``
+    *string* - describes how the feed app will be displayed or featured. Can be
+    ``icon``, ``image``, ``description``, ``quote``, ``preview``.
 ``id``
     *int* - the ID of this feed app.
+``image``
+    *string* - header graphic or background image
 ``preview``
     *object|null* - a featured :ref:`preview <screenshot-response-label>`
     (screenshot or video) of the app.
@@ -251,6 +265,8 @@ Feed apps are represented thusly:
 ``pullquote_text``
     *object|null* - the :ref:`translated <overview-translations>` text of a pull
     quote to feature with the app
+``slug``
+    *string* - a slug to use in URLs for the featured app
 ``url``
     *string|null* - the permanent URL for this feed app.
 
@@ -299,9 +315,14 @@ Create
 
     :param app: the ID of a :ref:`feed app <feed-apps>`.
     :type app: int|null
+    :param background_color: color in six-digit hex (with hash prefix)
+    :type background_color: string
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
+    :param feedapp_type: can be ``icon``, ``image``, ``description``,
+        ``quote``, or ``preview.
+    :type feedapp_type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null
@@ -315,20 +336,25 @@ Create
         a pull quote to feature with the app. Required if
         ``pullquote_attribute`` or ``pullquote_rating`` are defined.
     :type pullquote_text: object|null
+    :param slug: unique slug to use in URLs for the featured app
+    :type slug: string
 
     .. code-block:: json
 
         {
             "app": 710,
+            "background_color": "#A90000",
             "description": {
                 "en-US": "A featured app",
                 "fr": "Une application sélectionnée"
             },
+            "feedapp_type": "icon",
             "pullquote_rating": 4,
             "pullquote_text": {
                 "en-US": "This featured app is excellent.",
                 "fr": "Pommes frites"
-            }
+            },
+            "slug": "app-of-the-month"
         }
 
     **Response**
@@ -351,9 +377,14 @@ Update
 
     :param app: the ID of a :ref:`feed app <feed-apps>`.
     :type app: int|null
+    :param background_color: color in six-digit hex (with hash prefix)
+    :type background_color: string
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
+    :param feedapp_type: can be ``icon``, ``image``, ``description``,
+       ``quote``, or ``preview.
+    :type feedapp_type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null
@@ -367,6 +398,8 @@ Update
         a pull quote to feature with the app. Required if
         ``pullquote_attribute`` or ``pullquote_rating`` are defined.
     :type pullquote_text: object|null
+    :param slug: unique slug to use in URLs for the featured app
+    :type slug: string
 
     **Response**
 
@@ -396,13 +429,43 @@ Delete
     :status 403: not authorized.
 
 
+Feed App Image
+==============
+
+One-to-one background image or header graphic used to display with the
+feed app.
+
+.. http:get:: /api/v2/feed/apps/(int:id|string:slug)/image/
+
+    Get the image for a feed app.
+
+    .. note:: Authentication is optional.
+
+
+.. http:put:: /api/v2/feed/apps/(int:id|string:slug)/image/
+
+    Set the image for a feed app. Accepts a data URI as the request
+    body containing the image, rather than a JSON object.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the feed app are required.
+
+
+.. http:delete:: /api/v2/feed/apps/(int:id|string:slug)/image/
+
+    Delete the image for a feed app.
+
+    .. note:: Authentication and one of the 'Collections:Curate' permission or
+        curator-level access to the feed app are required.
+
+
 .. _feed-collections:
 
 -----------
 Collections
 -----------
 
-A collection is a group of applications
+A collection is a group of apps (not to be confused with :ref:`Feed Apps <feed-app>`)
 
 .. note::
 
@@ -704,8 +767,11 @@ Reorder Apps
         For convenience, a list of all apps in the collection will be included
         in the response.
 
-Image
-=====
+Collection Image
+================
+
+One-to-one background image or header graphic used to display with the
+collection.
 
 .. http:get:: /api/v2/feed/collections/(int:id|string:slug)/image/
 
