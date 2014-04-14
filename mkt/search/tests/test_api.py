@@ -419,6 +419,16 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_phrase_slop(self):
+        self.webapp.name = {'es': 'Metro de Santiago',
+                            'en': None}
+        self.webapp.save()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={'q': 'metro santiago'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
     def test_name_localized(self):
         # First test no ?lang parameter returns all localizations.
         res = self.client.get(self.url, data={'q': 'something'})

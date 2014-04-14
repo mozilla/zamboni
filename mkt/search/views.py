@@ -37,7 +37,7 @@ def name_only_query(q):
 
     rules = {
         'match': {'query': q, 'boost': 3, 'analyzer': 'standard'},
-        'match': {'query': q, 'boost': 4, 'type': 'phrase'},
+        'match': {'query': q, 'boost': 4, 'type': 'phrase', 'slop': 1},
         'startswith': {'value': q, 'boost': 1.5}
     }
 
