@@ -1,6 +1,7 @@
 # You can set these variables from the command line.
 DJANGO = python manage.py
 SETTINGS = settings_local
+SHELL := /usr/bin/env bash
 
 .PHONY: help docs test test_force_db tdd test_failed update update_landfill reindex reindex_mkt
 
@@ -36,7 +37,7 @@ test_failed:
 
 update:
 	git checkout master && git pull && git submodule update --init --recursive
-	pushd vendor && git pull && git submodule update --init && popd
+	pushd vendor && git pull . && git submodule update --init && popd
 	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/ --allow-external PIL --allow-unverified PIL
 	schematic migrations
 	npm install
