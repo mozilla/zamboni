@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 from urlparse import urlparse
 
 from django import forms
-from django.contrib.auth.models import AnonymousUser
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
@@ -21,9 +21,6 @@ from nose.tools import assert_not_equal, eq_, ok_, raises
 
 import amo
 import amo.tests
-from amo import set_user
-from amo.helpers import absolutify
-from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
@@ -31,18 +28,22 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from addons.search import setup_mapping
+from amo import set_user
+from amo.helpers import absolutify
+from amo.signals import _connect, _disconnect
 from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
-from files.tests.test_models import LanguagePackBase, UploadTest
+from files.tests.test_models import UploadTest
 from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
-from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
+from versions.models import ApplicationsVersions, Version
+
 from mkt.webapps.models import Webapp
 
 

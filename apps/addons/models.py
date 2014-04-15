@@ -254,7 +254,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         choices=STATUS_CHOICES, db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, default=0,
-        help_text="An upper limit for what an author can change.",
+        help_text='An upper limit for what an author can change.',
         db_column='higheststatus')
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
@@ -309,7 +309,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
     dev_agreement = models.BooleanField(
-        default=False, help_text="Has the dev agreement been signed?")
+        default=False, help_text='Has the dev agreement been signed?')
     auto_repackage = models.BooleanField(
         default=True, help_text='Automatically upgrade jetpack add-on to a '
                                 'new sdk version?')
@@ -319,10 +319,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                           db_column='nominationmessage')
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs')
     locale_disambiguation = models.CharField(
         max_length=255, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs')
 
     wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
@@ -331,7 +331,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     suggested_amount = DecimalCharField(
         max_digits=8, decimal_places=2, nullify_invalid=True, blank=True,
         null=True, help_text=_(u'Users have the option of contributing more '
-                               'or less than this amount.'))
+                               u'or less than this amount.'))
 
     total_contributions = DecimalCharField(max_digits=8, decimal_places=2,
                                            nullify_invalid=True, blank=True,
@@ -340,7 +340,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
         help_text=_(u'Users will always be asked in the Add-ons'
-                     ' Manager (Firefox 4 and above)'))
+                    u' Manager (Firefox 4 and above)'))
     enable_thankyou = models.BooleanField(
         default=False, help_text='Should the thank you note be sent to '
                                  'contributors?')
@@ -428,9 +428,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
-        # Check for soft deletion path. Happens only if the addon status isn't 0
-        # (STATUS_INCOMPLETE), or when we are in Marketplace.
-        soft_deletion = self.highest_status or self.status or settings.MARKETPLACE
+        # Check for soft deletion path. Happens only if the addon status isn't
+        # 0 (STATUS_INCOMPLETE), or when we are in Marketplace.
+        soft_deletion = (self.highest_status or self.status or
+                         settings.MARKETPLACE)
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return
@@ -446,7 +447,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # after the addon is deleted.
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
-
 
         if soft_deletion:
 
@@ -763,7 +763,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = dict([(k, v) for (k, v) in updated.iteritems() if v != ignore])
+            updated = dict([(k, v)
+                            for (k, v) in updated.iteritems() if v != ignore])
 
         if updated:
             # Pass along _signal to the .update() to prevent it from firing
@@ -774,13 +775,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
-                          'current: %s to %s, latest: %s to %s for addon %s'
-                          % tuple(diff + [self]))
+                         u'current: %s to %s, latest: %s to %s for addon %s'
+                         % tuple(diff + [self]))
             except Exception, e:
                 log.error(u'Could not save version changes backup: %s to %s, '
-                          'current: %s to %s, latest: %s to %s '
-                          'for addon %s (%s)' %
-                          tuple(diff + [self, e]))
+                          u'current: %s to %s, latest: %s to %s '
+                          u'for addon %s (%s)'
+                          % tuple(diff + [self, e]))
 
         return bool(updated)
 
@@ -799,8 +800,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 platform = None
 
         log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                   'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
-                                      compat_mode))
+                  u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
+                                       compat_mode))
         valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
         data = dict(id=self.id, app_id=app_id, platform=platform,
                     valid_file_statuses=valid_file_statuses)
@@ -1426,15 +1427,18 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         status_change = Max('versions__files__datestatuschanged')
         public = (
-            Addon.objects.no_cache().filter(status=amo.STATUS_PUBLIC,
-                                  versions__files__status=amo.STATUS_PUBLIC)
+            Addon.objects.no_cache().filter(
+                status=amo.STATUS_PUBLIC,
+                versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
             .values('id').annotate(last_updated=status_change))
 
-        lite = (Addon.objects.no_cache().filter(status__in=amo.LISTED_STATUSES,
-                                      versions__files__status=amo.STATUS_LITE)
-                .exclude(type=amo.ADDON_WEBAPP)
-                .values('id').annotate(last_updated=status_change))
+        lite = (
+            Addon.objects.no_cache().filter(
+                status__in=amo.LISTED_STATUSES,
+                versions__files__status=amo.STATUS_LITE)
+            .exclude(type=amo.ADDON_WEBAPP)
+            .values('id').annotate(last_updated=status_change))
 
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
         exp = (Addon.objects.no_cache().exclude(status__in=stati)
