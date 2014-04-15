@@ -1144,6 +1144,7 @@ CELERY_ROUTES = {
     'users.tasks.delete_photo': {'queue': 'images'},
     'devhub.tasks.resize_icon': {'queue': 'images'},
     'devhub.tasks.resize_preview': {'queue': 'images'},
+    'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
