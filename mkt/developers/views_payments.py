@@ -19,7 +19,8 @@ from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from amo.urlresolvers import reverse
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO)
+                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
+                                PROVIDER_CHOICES)
 from lib.crypto import generate_key
 from lib.pay_server import client
 
@@ -183,6 +184,7 @@ def payments(request, addon_id, addon, webapp=False):
                        PAYMENT_METHOD_CARD: _('Credit card'),
                        PAYMENT_METHOD_OPERATOR: _('Carrier'),
                    },
+                   'provider_lookup': dict(PROVIDER_CHOICES),
                    'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
                    'providers': providers})
 

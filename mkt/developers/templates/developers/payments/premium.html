@@ -192,7 +192,8 @@
                        data-not-applicable-msg="{{ _('Not applicable') }}"
                        data-payment-methods="{{ payment_methods|json }}"
                        data-pricelist-api-url="{{ api_pricelist_url }}"
-                       data-tier-zero-id="{{ tier_zero_id }}">
+                       data-tier-zero-id="{{ tier_zero_id }}"
+                       data-provider-lookup="{{ provider_lookup|json }}">
                     <h3>{{ _('Regions') }}</h3>
                     {{ region_form.regions.errors }}
 

@@ -16,6 +16,7 @@ define('payments', [], function() {
     var pricesApiEndpoint = regionsData.pricelistApiUrl + '{0}/';
     var $tdNodes = $('<td class="cb"></td><td class="lp"></td><td class="lm"></td>');
     var $paidRegionTableTbody = $('#paid-regions tbody');
+    var providerLookup = regionsData.providerLookup;
 
     function getOverlay(opts) {
         var id = opts;
@@ -118,13 +119,13 @@ define('payments', [], function() {
         });
     }
 
-    function createTableRow(checkBox, ident, localPriceText, localMethodText) {
+    function createTableRow(checkBox, ident, localPriceText, localMethodText, provider) {
         var $tds = $tdNodes.clone();
         var $tr = $paidRegionTableTbody.find('tr[data-region="' + ident + '"]');
         var $checkBoxContainer = $($tds[0]);
         var $localPriceContainer = $($tds[1]);
         var $localMethodContainer = $($tds[2]);
-        $localMethodContainer.text(localMethodText);
+        $localMethodContainer.text(localMethodText + ' (' + provider + ')');
         $localPriceContainer.text(localPriceText);
         $tr.append($tds);
         return $tr;
@@ -173,33 +174,50 @@ define('payments', [], function() {
             success: function(data) {
                 var moveQueue = [];
                 var prices = data.prices || [];
-                var seen = [];
+                var seenCheckBoxes = [];
+                var seenRegions = [];
                 var tierPrice = data.price;
 
                 // Iterate over the prices for the regions
                 for (var i=0, j=prices.length; i<j; i++) {
                     var price = prices[i];
                     var regionId = price.region;
-                    var billingMethodText = paymentMethods[parseInt(price.method, 10)] || '';
+                    var regionSeen = seenRegions.indexOf(regionId) > -1;
 
+                    if (!regionSeen) {
+                        seenRegions.push(regionId);
+                    }
+
+                    var billingMethodText = paymentMethods[parseInt(price.method, 10)] || '';
                     var localPrice = price.price + ' ' + price.currency;
                     var localMethod = selectedPrice === tierZeroId ? notApplicableMsg : billingMethodText;
+                    var provider = providerLookup[price.provider];
+                    if (provider) {
+                        provider = provider.charAt(0).toUpperCase() + provider.substring(1);
+                    }
 
                     // If the checkbox we're interested is already in the table just update it.
                     // Otherwise we need to create a new tableRow and move it into position.
                     var $chkbox = $regions.find('input:checkbox[value=' + regionId + ']');
                     var $row = $('#paid-regions tr[data-region=' + regionId + ']');
 
+                    // If we've already dealt with this region append this provider to existing row and break.
+                    if (regionSeen && $row.length) {
+                        var $billingMethodCell = $row.find('.lm');
+                        $billingMethodCell.text($billingMethodCell.text() + ', ' + localMethod + ' (' + provider + ')');
+                        break;
+                    }
+
                     if ($row.length) {
                         if ($row.find('td').length) {
                             $row.find('.lp').text(localPrice);
-                            $row.find('.lm').text(localMethod);
+                            $row.find('.lm').text(localMethod + ' (' + provider + ')');
                         } else {
-                            var $tr = createTableRow($chkbox.closest('label'), regionId, localPrice, localMethod);
+                            var $tr = createTableRow($chkbox.closest('label'), regionId, localPrice, localMethod, provider);
                             moveQueue.push([$chkbox.closest('label'), $tr.find('.cb')]);
                             $chkbox.closest('li').hide(500);
                         }
-                        seen.push($chkbox[0]);
+                        seenCheckBoxes.push($chkbox[0]);
                     } else {
                         console.log('No row found with regionId "' + regionId + '" (noop)');
                     }
@@ -210,7 +228,7 @@ define('payments', [], function() {
                     moveAnimate(current[0], current[1]);
                 }
 
-                $('#paid-regions input[type=checkbox]').not(seen).each(function() {
+                $('#paid-regions input[type=checkbox]').not(seenCheckBoxes).each(function() {
                     // If the item we don't want here is in the table then we need to move it back
                     // out of the table and destroy the row contents.
                     var $chkbox = $(this);
