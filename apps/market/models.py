@@ -171,8 +171,9 @@ class Price(amo.models.ModelBase):
 
     def region_ids_by_slug(self):
         """A tuple of price region ids sorted by slug."""
-        price_regions_ids = [(p['region'], RID.get(p['region']).slug)
-                             for p in self.prices() if p['paid'] is True]
+        price_regions_ids = set([(p['region'], RID.get(p['region']).slug)
+                                 for p in self.prices() if p['paid'] is True])
+
         if price_regions_ids:
             return zip(*sorted(price_regions_ids, key=itemgetter(1)))[0]
         return tuple()
