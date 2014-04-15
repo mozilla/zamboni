@@ -299,7 +299,7 @@ class TestBoku(Patcher, TestCase):
         assert not account.agreed_tos
         response = self.boku.terms_update(account)
         assert account.agreed_tos
-        assert response['agreed']
+        assert response['accepted']
 
     def test_product_create_exists(self):
         self.generic_patcher.product.get_object_or_404.return_value = {

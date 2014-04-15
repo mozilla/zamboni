@@ -466,28 +466,19 @@ class AccountListForm(happyforms.Form):
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
         self.provider = kwargs.pop('provider')
-        user = kwargs.pop('user')
+        self.user = kwargs.pop('user')
 
         super(AccountListForm, self).__init__(*args, **kwargs)
 
         self.is_owner = None
         if self.addon:
-            self.is_owner = self.addon.authors.filter(user=user,
+            self.is_owner = self.addon.authors.filter(user=self.user,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
 
-        accounts_field = self.fields['accounts']
-        accounts_field.queryset = (
-            PaymentAccount.objects.filter(
-                Q(user=user, inactive=False, agreed_tos=True) |
-                Q(shared=True, inactive=False, agreed_tos=True))
-            .order_by('name', 'shared'))
-
-        if self.provider is not None:
-            accounts_field.queryset = accounts_field.queryset.filter(
-                provider=self.provider.provider)
+        self.fields['accounts'].queryset = self.agreed_payment_accounts
 
         if self.is_owner is False:
-            accounts_field.widget.attrs['disabled'] = ''
+            self.fields['accounts'].widget.attrs['disabled'] = ''
 
         self.current_payment_account = None
         try:
@@ -500,14 +491,34 @@ class AccountListForm(happyforms.Form):
             # If this user owns this account then set initial otherwise
             # we'll stash it on the form so we can display the non-owned
             # current account separately.
-            if payment_account.user.pk == user.pk:
+            if payment_account.user.pk == self.user.pk:
                 self.initial['accounts'] = payment_account
-                accounts_field.empty_label = None
+                self.fields['accounts'].empty_label = None
             else:
                 self.current_payment_account = payment_account
 
         except (AddonPaymentAccount.DoesNotExist, PaymentAccount.DoesNotExist):
             pass
+
+    @property
+    def payment_accounts(self):
+        queryset = (PaymentAccount.objects
+                                  .filter(inactive=False)
+                                  .filter(Q(user=self.user) | Q(shared=True))
+                                  .order_by('name', 'shared'))
+        if self.provider is not None:
+            queryset = queryset.filter(provider=self.provider.provider)
+        return queryset
+
+    @property
+    def agreed_payment_accounts(self):
+        return self.payment_accounts.filter(agreed_tos=True)
+
+    def has_accounts(self):
+        return self.payment_accounts.exists()
+
+    def has_completed_accounts(self):
+        return self.agreed_payment_accounts.exists()
 
     def clean_accounts(self):
         accounts = self.cleaned_data.get('accounts')
