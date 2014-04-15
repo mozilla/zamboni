@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-07 20:11-0500\n"
+"PO-Revision-Date: 2014-04-15 13:28-0500\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1946,19 +1946,19 @@ msgstr "動画削除"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} は、端末が新たに追加されたため、再審査を受けました。"
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
-msgstr ""
+msgstr "端末追加"
 
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} の対応端末が審査担当者により手作業で変更されました。"
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "審査担当者による端末変更"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -8158,11 +8158,11 @@ msgstr "返品を拒否"
 
 #: apps/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "あなたは現在ユーザからの <b>寄付</b> を求めています"
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "あなたの寄付ページ: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -8268,6 +8268,7 @@ msgstr "ステップ 4: 確認"
 msgid ""
 "Please review your Marketplace enrollment details below. Once you enroll in Marketplace, your add-on must be reviewed for compliance with Marketplace policies before it will be available for sale."
 msgstr ""
+"以下に表示された Marketplace 登録内容を確認してください。Marketplace へ登録すると、あなたのアドオンは販売開始前に Marketplace ポリシーに準拠しているかどうか審査されます。"
 
 #: apps/devhub/templates/devhub/payments/second-confirm.html:32
 msgid "Price %(price)s"
@@ -8283,7 +8284,7 @@ msgstr "Marketplace での販売"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "ステップ 2: 価格と配布条件"
 
 #: apps/devhub/templates/devhub/payments/upsell.html:15
 msgid "Step 3. Upsell Settings"
@@ -8295,11 +8296,11 @@ msgstr "寄付"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "ユーザに対して任意の寄付をお願いするには、以下の項目に記入してください。"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "誰がこのアドオンへの寄付を受け取りますか？"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
@@ -8331,7 +8332,7 @@ msgstr "(例: 3.99)"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "いつユーザに寄付をお願いしますか？"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
@@ -9216,11 +9217,11 @@ msgstr "削除されたレビュー"
 
 #: apps/editors/forms.py:40 apps/editors/forms.py:59
 msgid "View entries between"
-msgstr ""
+msgstr "この期間の記事を表示"
 
 #: apps/editors/forms.py:42 apps/editors/forms.py:60 mkt/developers/tasks.py:483 mkt/developers/tasks.py:489
 msgid "and"
-msgstr "と"
+msgstr "から"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
@@ -11895,24 +11896,24 @@ msgstr ""
 
 #: apps/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "PayPal との通信中にエラーが発生しました。また後で試してください。"
 
 #: apps/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "この通貨に関してエラーが発生しました。"
 
 #: apps/paypal/__init__.py:67
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "受取人の通貨へ変換するにあたって、金額が少なすぎます。"
 
 #: apps/paypal/__init__.py:69
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "購入者と販売者は同じ PayPal アカウントを使用できません。"
 
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:72
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "販売者は %s による支払いを受け付けていません。"
 
 #: apps/paypal/check.py:51
 msgid "No PayPal ID provided."
@@ -11924,11 +11925,11 @@ msgstr "正しいメールアドレスを入力してください。"
 
 #: apps/paypal/check.py:64
 msgid "You have not setup permissions for us to check this PayPal account."
-msgstr ""
+msgstr "Mozilla がこの PayPal アカウントをチェックできるようにする許可設定が行われてません。"
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
-msgstr ""
+msgstr "動作が遅いアドオン"
 
 #: apps/perf/templates/perf/index.html:24
 msgid ""
@@ -11939,7 +11940,7 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
-msgstr ""
+msgstr "起動を遅くするアドオン"
 
 #: apps/perf/templates/perf/index.html:34
 msgid "The following add-ons have a significant impact on how long it takes %(app)s to start up."
@@ -12096,7 +12097,7 @@ msgstr "{0} のレビュー"
 #: apps/reviews/templates/reviews/review_list.html:28
 msgid "<b>{0}</b> review for this app"
 msgid_plural "<b>{0}</b> reviews for this app"
-msgstr[0] ""
+msgstr[0] "このアプリの <b>{0}</b> 件のレビュー"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -12162,7 +12163,7 @@ msgstr "まだ評価されていません。"
 #: apps/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
+msgstr[0] "{0} 件の評価の平均"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
@@ -12312,7 +12313,7 @@ msgstr "タグ「{0}」の検索結果"
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> 件の検索結果"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -12811,11 +12812,11 @@ msgstr "{0} の人気タグ"
 
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "ローカライズ対象: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16 apps/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
@@ -12827,7 +12828,7 @@ msgstr "新規ロケール"
 
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "<b>{0}</b> ロケールに未保存の変更があります。ロケールを変更する前にそれらの変更を保存しますか？"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -12835,7 +12836,7 @@ msgstr "変更を破棄"
 
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "本当に <b>{0}</b> の翻訳をすべて削除しますか？ この操作は取り消せません。"
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -12945,71 +12946,71 @@ msgstr "自分のモバイル向けアドオン"
 
 #: apps/users/notifications.py:17
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "アドオン開発者があなたの寄付に感謝しました"
 
 #: apps/users/notifications.py:26
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "アドオン開発者があなたのレビューに返信しました"
 
 #: apps/users/notifications.py:34
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "アプリ開発者があなたのレビューに返信しました"
 
 #: apps/users/notifications.py:41
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "新しいアドオンか Firefox の機能が利用可能です"
 
 #: apps/users/notifications.py:50
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "あなたのアドオンの互換性が更新されました"
 
 #: apps/users/notifications.py:59
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "あなたの SDK ベースのアドオンが更新されました"
 
 #: apps/users/notifications.py:68
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "誰かがあなたのアドオンのレビューを投稿しました"
 
 #: apps/users/notifications.py:76
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "誰かがあなたのアプリのレビューを投稿しました"
 
 #: apps/users/notifications.py:83
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "アドオンコンテストかイベントが発表されました"
 
 #: apps/users/notifications.py:92
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "あなたのアドオンの互換性が更新されませんでした"
 
 #: apps/users/notifications.py:101
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "あなたの SDK ベースのアドオンが更新されませんでした"
 
 #: apps/users/notifications.py:110
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "あなたのアドオンがエディタによって審査されました"
 
 #: apps/users/notifications.py:119
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla があなたのアドオンについて連絡を求めています"
 
 #: apps/users/notifications.py:128
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "あなたのアプリがエディタによって審査されました"
 
 #: apps/users/notifications.py:134
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla があなたのアプリについて連絡を求めています"
 
 #: apps/users/notifications.py:141
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla が関連するアプリ開発者ニュースやアンケートについて連絡を求めています"
 
 #: apps/users/notifications.py:152
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr ""
+msgstr "Mozilla が Marketplace へ追加された新しい地域について連絡を求めています"
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
@@ -13162,15 +13163,15 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "「削除」をクリックすることで、あなたのアカウントは <strong>永久に削除</strong> されます。つまり、"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "今後 %(site)s へログインできなくなります。"
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "あなたのレビューや評価は削除されませんが、あなたとの関連付けは失われます。"
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13247,7 +13248,7 @@ msgstr "あなたについてのもう少し詳しい情報を記入してくだ
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "この URL はあなたが開発者である場合のみ表示されます。"
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -13263,7 +13264,7 @@ msgstr "もしよければ、コミュニティに向けて自己紹介してく
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "使用可能な HTML は {0} です。リンクは入力できません。"
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
@@ -13691,7 +13692,7 @@ msgstr "正しい選択肢を選んでください。%(value)s は選択肢に�
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "この項目には最低でも {num} 文字入力してください。"
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -14931,7 +14932,7 @@ msgstr "タッチ"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr "アプリはタッチイベント対応のプラットフォームを必要とします。このオプションは、アプリがマウスで操作したときに正しく機能しないことを示します。"
+msgstr "このアプリは、タッチイベントに対応したプラットフォームを必要とします。このオプションは、アプリがマウスで操作したときに正しく機能しないことを示します。"
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
@@ -14942,10 +14943,12 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"このアプリはスマートフォンサイズの画面 (qHD 解像度) を備えたプラットフォームを必要とします。このオプションは、それより大きな画面 (タブレット、デスクトップ、大型もしくは高解像度のスマートフォン) ではアプリが正しく機能"
+"しないことを示します。"
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "このアプリは、MP3 ファイルをデコード、再生できるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:167
 msgid "Audio"
@@ -14953,7 +14956,7 @@ msgstr "音声"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "このアプリは、HTML5 音声 API に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
@@ -14961,15 +14964,15 @@ msgstr "Web Audio"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr ""
+msgstr "このアプリは、Web Audio API (`window.AudioContext`) に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
+msgstr "このアプリは、H.264 動画ファイルをデコード、再生できるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr ""
+msgstr "このアプリは、WebM 動画ファイル (VP8) をデコード、再生できるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
@@ -14977,7 +14980,7 @@ msgstr "全画面表示"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
-msgstr ""
+msgstr "このアプリはフルスクリーン API (`requestFullScreen` または `mozRequestFullScreen`) を必要とします。"
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
@@ -14985,7 +14988,7 @@ msgstr "ゲームパッド"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
+msgstr "このアプリはゲームパッド API (`navigator.getGamepads`) に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
@@ -14993,7 +14996,7 @@ msgstr "クオータ管理"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
-msgstr ""
+msgstr "このアプリは、アプリに通常許可される上限以上の永続的なストレージ容量追加が可能なプラットフォーム (`window.StorageInfo` または `window.persistentStorage`) を必要とします。"
 
 #: mkt/constants/features.py:213
 msgid "Camera"
@@ -15001,7 +15004,7 @@ msgstr "カメラ"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
+msgstr "このアプリは、LocalMediaStream オブジェクトを通じて端末付属カメラで撮影した動画へアクセス可能なプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
@@ -15009,7 +15012,7 @@ msgstr "マイク"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "このアプリは、端末のマイクロフォンで録音した音声へアクセス可能なプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -15017,7 +15020,7 @@ msgstr "スクリーンショット"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "このアプリは、端末の画面キャプチャが可能なプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
@@ -15025,7 +15028,7 @@ msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr ""
+msgstr "このアプリは、Web ブラウザ間のリアルタイム通信に対応し、入力メディアストリームを扱えるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
@@ -15033,7 +15036,7 @@ msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
+msgstr "このアプリは、音声と動画以外のピアツーピアデータ交換に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -15041,7 +15044,7 @@ msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
+msgstr "このアプリは、ピア間ストリーミングデータ通信に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -15049,7 +15052,7 @@ msgstr "Web スピーチ合成"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "このアプリは、テキストの読み上げに対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
@@ -15057,7 +15060,7 @@ msgstr "Web スピーチ認識"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "このアプリは、音声のテキスト変換に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
@@ -15065,11 +15068,11 @@ msgstr "ポインタロック"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
-msgstr ""
+msgstr "このアプリは、ポインタに関する追加情報とコントロールを提供するプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
-msgstr ""
+msgstr "このアプリは、スマートフォンもしくはデスクトップ上での通知表示に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
@@ -15077,7 +15080,7 @@ msgstr "アラーム"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
-msgstr ""
+msgstr "このアプリは、特定の時間に通知やイベントの予定を入れるため、端末のアラーム設定へのアクセスを提供するプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
@@ -15085,7 +15088,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr ""
+msgstr "このアプリは、同一オリジンポリシーの制限なく非同期 HTTP リクエストを送信できるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
@@ -15093,7 +15096,7 @@ msgstr "TCP ソケット"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "このアプリは、TCP 生ソケットを開けるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
@@ -15101,7 +15104,7 @@ msgstr "サードパーティ製キーボード対応"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "このアプリは、サードパーティ製キーボードに対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
@@ -15109,7 +15112,7 @@ msgstr "複数ネットワーク情報"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
+msgstr "このアプリは、複数のネットワーク接続に関する情報を入手できるプラットフォームを必要とします。"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -15133,7 +15136,7 @@ msgstr "Android スマートフォン"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "タブレット"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -15817,11 +15820,11 @@ msgstr "口座名"
 
 #: mkt/developers/forms_payments.py:581
 msgid "Merchant ID"
-msgstr ""
+msgstr "販売者 ID"
 
 #: mkt/developers/forms_payments.py:582
 msgid "Service ID"
-msgstr ""
+msgstr "サービス ID"
 
 #: mkt/developers/forms_payments.py:594
 msgid "No payment account set up for that app"
@@ -15842,7 +15845,7 @@ msgstr "参考情報"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16351,7 +16354,7 @@ msgstr "このアプリは <b>Mozilla によって無効化</b> されていま�
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
-msgstr ""
+msgstr "このアプリはコンテンツレーティングが設定されていないため無効化されています。<a href=\"%(ratings_url)s\">コンテンツレーティングを取得</a> すると再度自動的に有効化されます。"
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -16395,7 +16398,7 @@ msgstr "アプリを再登録"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
-msgstr ""
+msgstr "アプリを再登録する前に <a href=\"%(ratings_url)s\">コンテンツレーティングを取得</a> してください。"
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -16992,7 +16995,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "アプリ内商品"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17051,19 +17054,19 @@ msgstr "鍵を生成"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "コピー"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "価格帯"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "購入 URL"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ 商品を追加"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -17079,7 +17082,7 @@ msgstr "無料版へ変更すると、アプリは再度審査に回されます
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "有料版へ変更する場合、アプリの対応を以下に限定する必要があります:"
 
 #: mkt/developers/templates/developers/payments/premium.html:83 mkt/developers/templates/developers/payments/premium.html:85 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
@@ -17259,7 +17262,7 @@ msgstr "決済サーバへ接続しています。しばらくお待ちくださ
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Boku アカウントを追加"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid "You will need a Boku merchant and service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
@@ -17275,7 +17278,7 @@ msgstr "Bango アカウントを編集"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:5
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Boku アカウントを編集"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -17287,7 +17290,7 @@ msgstr "特別な配慮を必要とする地域:"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
-msgstr ""
+msgstr "一部の地域が制限されている理由"
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
@@ -18741,7 +18744,7 @@ msgstr "すべてのステータス"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Device Types:"
-msgstr ""
+msgstr "端末の種類:"
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -18882,7 +18885,7 @@ msgstr "ブロックリストへ追加されたアプリを審査できるのは
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "審査担当者によって変更された端末の種類: {0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -18904,7 +18907,7 @@ msgstr "あなたは現在どのアプリも審査していません。"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "端末"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
@@ -19049,7 +19052,7 @@ msgstr "累計ダウンロード数"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "端末の種類"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
@@ -19242,7 +19245,7 @@ msgstr "四半期"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "端末が変更されました: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -19255,7 +19258,7 @@ msgstr "無料と有料を組み合わせることはできません。"
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "端末を選択してください。"
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -19393,7 +19396,7 @@ msgstr "他のアプリを登録"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "端末の種類"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -19564,7 +19567,7 @@ msgstr "アプリの名前を入力してください。"
 
 #: mkt/webapps/models.py:450
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "少なくともひとつ端末の種類を選んでください。"
 
 #: mkt/webapps/models.py:453
 msgid "You must provide at least one category."
