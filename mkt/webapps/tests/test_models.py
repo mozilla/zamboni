@@ -1959,16 +1959,15 @@ class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         self.related_name = 'rating_descriptors'
 
         self.BOOL_DICT = mkt.ratingdescriptors.RATING_DESCS
-        self.flags = ('USK_NO_DESCS', 'ESRB_VIOLENCE', 'PEGI_LANG',
-                      'CLASSIND_DRUGS')
-        self.expected = [u'No Descriptors', u'Violence', u'Language', u'Drugs']
+        self.flags = ('ESRB_VIOLENCE', 'PEGI_LANG', 'CLASSIND_DRUGS')
+        self.expected = [u'Violence', u'Language', u'Drugs']
 
         RatingDescriptors.objects.create(addon=self.app)
 
     @mock.patch.dict('mkt.ratingdescriptors.RATING_DESCS',
-                     USK_NO_DESCS={'name': _(u'H\xe9llo')})
+                     PEGI_LANG={'name': _(u'H\xe9llo')})
     def test_to_list_nonascii(self):
-        self.expected[0] = u'H\xe9llo'
+        self.expected[1] = u'H\xe9llo'
         self._flag()
         to_list = self.app.rating_descriptors.to_list()
         self.assertSetEqual(self.to_unicode(to_list), self.expected)

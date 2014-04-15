@@ -40,12 +40,8 @@
                   {% set desc_icon = ratings_body.label in desc_icons and desc_icons[ratings_body.label][descriptor.label] %}
                   {% if desc_icon %}
                     <img src="{{ media(desc_icon) }}" class="icon" title="{{ descriptor.name }}">
-                  {% elif descriptor.label != 'no-descs' %}
+                  {% else %}
                     <span class="dot-sep">{{ descriptor.name }}</span>
-                  {% elif descriptor.label == 'no-descs' and not loop.length > 1%}
-                    {# PEGI can have No Descriptors and interactive elements in the form of descriptors. #}
-                    {# If it has no descriptors, check if it has IEs before showing dashes. #}
-                    &mdash;
                   {% endif %}
                 {% else %}
                   &mdash;

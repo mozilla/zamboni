@@ -13,7 +13,6 @@ RATING_DESCS = {
     'CLASSIND_DRUGS_LEGAL': {'name': _lazy('Legal Drugs')},
     # L10n: `Language` as in foul language.
     'CLASSIND_LANG': {'name': _lazy('Inappropriate Language')},
-    'CLASSIND_NO_DESCS': {'name': _lazy('No Descriptors')},
     'CLASSIND_NUDITY': {'name': _lazy('Nudity')},
     # L10n: `Sex` as in sexual, not as in gender.
     'CLASSIND_SEX': {'name': _lazy('Sex')},
@@ -50,7 +49,6 @@ RATING_DESCS = {
     'ESRB_MILD_FANTASY_VIOLENCE': {'name': _lazy('Mild Fantasy Violence')},
     'ESRB_MILD_LANG': {'name': _lazy('Mild Language')},
     'ESRB_MILD_VIOLENCE': {'name': _lazy('Mild Violence')},
-    'ESRB_NO_DESCS': {'name': _lazy('No Descriptors')},
     'ESRB_NUDITY': {'name': _lazy('Nudity')},
     'ESRB_PARTIAL_NUDITY': {'name': _lazy('Partial Nudity')},
     'ESRB_REAL_GAMBLING': {'name': _lazy('Real Gambling')},
@@ -71,7 +69,6 @@ RATING_DESCS = {
     'GENERIC_GAMBLING': {'name': _lazy('Gambling')},
     # L10n: `Language` as in foul language.
     'GENERIC_LANG': {'name': _lazy('Language')},
-    'GENERIC_NO_DESCS': {'name': _lazy('No Descriptors')},
     'GENERIC_ONLINE': {'name': _lazy('Online')},
     'GENERIC_SCARY': {'name': _lazy('Fear')},
     # L10n: `Sex` as in sexual, not as in gender.
@@ -83,7 +80,6 @@ RATING_DESCS = {
     'PEGI_GAMBLING': {'name': _lazy('Gambling')},
     # L10n: `Language` as in foul language.
     'PEGI_LANG': {'name': _lazy('Language')},
-    'PEGI_NO_DESCS': {'name': _lazy('No Descriptors')},
     'PEGI_ONLINE': {'name': _lazy('Online')},
     'PEGI_SCARY': {'name': _lazy('Fear')},
     # L10n: `Sex` as in sexual, not as in gender.
@@ -100,7 +96,6 @@ RATING_DESCS = {
     'USK_DRUGS': {'name': _lazy('Drugs')},
     # L10n: `Language` as in foul language.
     'USK_LANG': {'name': _lazy('Explicit Language')},
-    'USK_NO_DESCS': {'name': _lazy('No Descriptors')},
     'USK_SCARY': {'name': _lazy('Frightening Content')},
     'USK_SEX_CONTENT': {'name': _lazy('Sexual Content')},
     'USK_VIOLENCE': {'name': _lazy('Violence')},
