@@ -345,9 +345,11 @@ class Boku(Provider):
     def account_retrieve(self, account):
         return {}
 
+    @account_check
     def terms_retrieve(self, account):
         return {'accepted': True}
 
+    @account_check
     def terms_update(self, account):
         account.update(agreed_tos=True)
         return {'accepted': True}
