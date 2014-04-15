@@ -360,13 +360,6 @@ class Boku(Provider):
         # not the specific product uri.
         return created['resource_uri']
 
-    def terms_retrieve(self, account):
-        return {'agreed': True}
-
-    def terms_update(self, account):
-        account.update(agreed_tos=True)
-        return {'agreed': True}
-
     def get_portal_url(self, app_slug):
         return settings.BOKU_PORTAL
 
