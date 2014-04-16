@@ -1323,7 +1323,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved but waiting')
+        self._check_email(msg, 'App approved but waiting')
         self._check_email_body(msg)
 
         assert not storefront_mock.called
@@ -1348,7 +1348,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -1422,7 +1422,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved')
+        self._check_email(msg, 'App approved')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1545,7 +1545,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved', with_mozilla_contact=False)
+        self._check_email(msg, 'App approved', with_mozilla_contact=False)
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1578,7 +1578,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved but waiting')
+        self._check_email(msg, 'App approved but waiting')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1613,7 +1613,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1651,7 +1651,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved')
+        self._check_email(msg, 'App approved')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
@@ -1679,7 +1679,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_UPDATE)
 
@@ -1742,7 +1742,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'App Approved')
+        self._check_email(msg, 'App approved')
         self._check_email_body(msg)
 
         assert storefront_mock.called
@@ -1763,7 +1763,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_HOSTED)
 
@@ -1822,7 +1822,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'Your submission has been rejected')
         self._check_email_body(msg)
         self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
 
@@ -1894,7 +1894,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(vqs.filter(has_info_request=True).count(), 1)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'More information needed to review')
 
     def test_multi_cc_email(self):
         # Test multiple mozilla_contact emails via more information.
@@ -1906,7 +1906,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
-        self._check_email(msg, 'Submission Update')
+        self._check_email(msg, 'More information needed to review')
 
     def test_comment(self):
         # Test the same for all queues.

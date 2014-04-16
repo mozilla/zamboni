@@ -1,10 +1,8 @@
-App: {{ name }}
-URL: {{ detail_url }}
-
-Reviewed by: {{ reviewer }}
-Comments:
+{% if comments %}
+Reviewer comments {% if waffle.switch('comm-dashboard') %} - {{ ('/comm/thread/' + thread_id)|absolutify }} {% endif %}
 {{ comments }}
-{% if tested %}
+{% endif %}
 
+{% if tested %}
 {{ tested }}
 {% endif %}
