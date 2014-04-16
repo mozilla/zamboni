@@ -158,7 +158,6 @@ This runs a command like this::
 
     pip install --no-deps -r requirements/dev.txt --exists-action=w \
                 --find-links https://pyrepo.addons.mozilla.org/ \
-                --allow-external PIL --allow-unverified PIL \
                 --download-cache=/tmp/pip-cache
 
 .. _pip: http://www.pip-installer.org/en/latest/
@@ -474,8 +473,9 @@ This updates zamboni-lib in the ``vendor/`` directory::
 
 This updates the python packages::
 
-    pip install --no-deps --exists-action=w -r requirements/dev.txt
-
+    pip install --no-deps -r requirements/dev.txt --exists-action=w \
+                --find-links https://pyrepo.addons.mozilla.org/ \
+                --download-cache=/tmp/pip-cache
 We use `schematic <http://github.com/mozilla/schematic/>`_ to run migrations::
 
     schematic migrations
