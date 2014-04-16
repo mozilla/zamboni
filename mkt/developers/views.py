@@ -339,14 +339,15 @@ def content_ratings(request, addon_id, addon):
 
     # Use _ratings_success_msg to display success message.
     session = request.session
-    if 'ratings_edit' in session and addon.id in session['ratings_edit']:
-        prev_state = session['ratings_edit'][addon.id]
+    app_id = str(addon.id)
+    if 'ratings_edit' in session and app_id in session['ratings_edit']:
+        prev_state = session['ratings_edit'][app_id]
         msg = _ratings_success_msg(
             addon, prev_state['app_status'],
             datetime.strptime(prev_state['rating_modified'],
                               '%Y-%m-%dT%H:%M:%S'))
         messages.success(request, msg) if msg else None
-        del session['ratings_edit'][addon.id]  # Clear msg so not shown again.
+        del session['ratings_edit'][app_id]  # Clear msg so not shown again.
         request.session.modified = True
 
     return render(request, 'developers/apps/ratings/ratings_summary.html',
@@ -378,7 +379,7 @@ def content_ratings_edit(request, addon_id, addon):
     if not 'ratings_edit' in request.session:
         request.session['ratings_edit'] = {}
     last_rated = addon.last_rated_time()
-    request.session['ratings_edit'][addon.id] = {
+    request.session['ratings_edit'][str(addon.id)] = {
         'app_status': addon.status,
         'rating_modified': last_rated.isoformat() if last_rated else None
     }

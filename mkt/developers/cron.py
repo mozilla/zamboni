@@ -98,9 +98,6 @@ def process_iarc_changes(date=None):
 
             _flag_rereview_adult(app, ratings_body, rating)
 
-            # Save new rating.
-            app.set_content_ratings({ratings_body: rating})
-
             # Process 'new_descriptors'.
             native_descs = filter(None, [
                 s.strip() for s in row.get('new_descriptors', '').split(',')])
@@ -115,6 +112,9 @@ def process_iarc_changes(date=None):
             interactives = filter(None, [INTERACTIVES_MAPPING.get(desc)
                                          for desc in native_interactives])
             app.set_interactives(interactives)
+
+            # Save new rating.
+            app.set_content_ratings({ratings_body: rating})
 
             # Log change reason.
             reason = row.get('change_reason')
