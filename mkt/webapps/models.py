@@ -136,7 +136,7 @@ class WebappManager(amo.models.ManagerBase):
         region = parse_region(region)
         column_prefix = '_geodata__region_%s' % region.slug
         return self.filter(**{
-            'status': amo.STATUS_PUBLIC,
+            'status__in': amo.WEBAPPS_APPROVED_STATUSES,
             'disabled_by_user': False,
             'escalationqueue__isnull': True,
             '%s_status' % column_prefix: amo.STATUS_PENDING,

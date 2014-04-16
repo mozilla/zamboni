@@ -564,7 +564,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps = [app_factory(name='WWW',
                                  status=amo.STATUS_PUBLIC),
                      app_factory(name='XXX',
-                                 status=amo.STATUS_PUBLIC),
+                                 status=amo.STATUS_PUBLIC_WAITING),
                      app_factory(name='YYY',
                                  status=amo.STATUS_PUBLIC),
                      app_factory(name='ZZZ',
@@ -583,12 +583,11 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                            args=[mkt.regions.CN.slug])
 
     def test_template_links(self):
-        raise SkipTest, 'TODO(cvan): Figure out sorting issue'
-
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('.regional-queue tbody tr td:first-child a')
-        apps = Webapp.objects.order_by('-_geodata__region_cn_nominated')
+        apps = Webapp.objects.pending_in_region('cn').order_by(
+            '_geodata__region_cn_nominated')
         src = '?src=queue-region-cn'
         expected = [
             (unicode(apps[0].name), apps[0].get_url_path() + src),
