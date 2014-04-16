@@ -76,7 +76,7 @@ def global_settings(request):
                    footer_links=footer_links,
                    ADMIN_MESSAGE=get_config('site_notice'),
                    collect_timings_percent=get_collect_timings(),
-                   is_admin=acl.action_allowed(request, 'Addons', 'Edit'),
+                   is_admin=acl.action_allowed(request, 'Apps', 'Edit'),
                    DESKTOP=DESKTOP,
                    logged=logged)
     return context
