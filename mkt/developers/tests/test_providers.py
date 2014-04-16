@@ -281,7 +281,7 @@ class TestBoku(Patcher, TestCase):
                                              provider=PROVIDER_BOKU)
 
     def test_account_create(self):
-        data = {'account_name': 'account', 'merchant_id': 'f',
+        data = {'account_name': 'account',
                 'service_id': 'b'}
         res = self.boku.account_create(self.user, data)
         acct = PaymentAccount.objects.get(user=self.user)
@@ -290,7 +290,6 @@ class TestBoku(Patcher, TestCase):
         eq_(res.pk, acct.pk)
         self.boku_patcher.seller.post.assert_called_with(data={
             'seller': ANY,
-            'merchant_id': 'f',
             'service_id': 'b',
         })
 

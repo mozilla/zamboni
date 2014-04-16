@@ -636,7 +636,6 @@ class BokuAccountForm(happyforms.Form):
     account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
     # The lengths of these are not specified in the Boku documentation, so
     # making a guess here about max lengths.
-    merchant_id = forms.CharField(max_length=50, label=_lazy(u'Merchant ID'))
     service_id = forms.CharField(max_length=50, label=_lazy(u'Service ID'))
 
 
