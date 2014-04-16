@@ -26,6 +26,7 @@ from lib.pay_server import client
 
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
+from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
@@ -156,12 +157,16 @@ def payments(request, addon_id, addon, webapp=False):
 
     # Get the regions based on tier zero. This should be all the
     # regions with payments enabled.
-    paid_region_ids_by_slug = []
+    paid_region_ids_by_name = []
     if tier_zero:
-        paid_region_ids_by_slug = tier_zero.region_ids_by_slug()
+        paid_region_ids_by_name = tier_zero.region_ids_by_name()
 
     platforms = PAID_PLATFORMS(request, is_packaged)
     paid_platform_names = [unicode(platform[1]) for platform in platforms]
+
+    provider_regions = {}
+    if tier_zero:
+        provider_regions = tier_zero.provider_regions()
 
     return render(request, 'developers/payments/premium.html',
                   {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
@@ -185,8 +190,10 @@ def payments(request, addon_id, addon, webapp=False):
                        PAYMENT_METHOD_OPERATOR: _('Carrier'),
                    },
                    'provider_lookup': dict(PROVIDER_CHOICES),
-                   'all_paid_region_ids_by_slug': paid_region_ids_by_slug,
-                   'providers': providers})
+                   'all_paid_region_ids_by_name': paid_region_ids_by_name,
+                   'providers': providers,
+                   'provider_regions': provider_regions,
+                  })
 
 
 @login_required

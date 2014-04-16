@@ -366,7 +366,8 @@ class Boku(Provider):
         return settings.BOKU_PORTAL
 
 
-ALL_PROVIDERS = ALL_PROVIDERS_BY_ID = {}
+ALL_PROVIDERS = {}
+ALL_PROVIDERS_BY_ID = {}
 for p in (Bango, Reference, Boku):
     ALL_PROVIDERS[p.name] = p
     ALL_PROVIDERS_BY_ID[p.provider] = p

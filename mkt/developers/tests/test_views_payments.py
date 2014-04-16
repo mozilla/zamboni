@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import json
 
 from django.conf import settings
@@ -23,7 +25,7 @@ from market.models import Price
 
 import mkt
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
-from mkt.constants.regions import ALL_REGION_IDS
+from mkt.constants.regions import ALL_REGION_IDS, SPAIN, US, UK
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
@@ -369,7 +371,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(len(pqr('#paid-regions-island')), 1)
 
     def test_free_with_in_app_tier_id_in_content(self):
-        price_tier_zero = Price.objects.create(price='0.00')
+        price_tier_zero = Price.objects.get(price='0.00')
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
         pqr = pq(res.content)
@@ -436,7 +438,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(AddonPremium.objects.all().count(), 0)
 
     def test_premium_price_initial_already_set(self):
-        Price.objects.create(price='0.00')  # Make a free tier for measure.
         self.make_premium(self.webapp)
         r = self.client.get(self.url)
         eq_(pq(r.content)('select[name=price] option[selected]').attr('value'),
@@ -579,6 +580,35 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(kw['access'], ACCESS_PURCHASE)
         kw = self.bango_p_patcher.product.post.call_args[1]['data']
         ok_(kw['secret'], kw)
+
+    def test_acct_region_sorting_by_locale(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        res = self.client.get(self.url + '?lang=en')
+        regions = res.context['provider_regions'][PROVIDER_BANGO]
+        eq_(regions, [SPAIN, UK, US])
+        # Form choices sort in English.
+        form_choices = [r[1] for r in
+                        res.context['region_form']['regions'].field.choices]
+        # For EN, Spain comes before United Kingdom.
+        ok_(form_choices.index(SPAIN.name) < form_choices.index(UK.name))
+        # and United Kingdome comes before United States.
+        ok_(form_choices.index(UK.name) < form_choices.index(US.name))
+
+    def test_acct_region_sorting_by_locale_fr(self):
+        self.make_premium(self.webapp, price=self.price.price)
+        res = self.client.get(self.url + '?lang=fr')
+        regions = res.context['provider_regions'][PROVIDER_BANGO]
+        # En français: Espagne, États-Unis, Royaume-Uni
+        # Without unicode normalization this would be:
+        # Espagne, Royaume-Uni, États-Unis
+        eq_(regions, [SPAIN, US, UK])
+        # Check we're also doing a normalized sort of the form choices.
+        form_choices = [r[1] for r in
+                        res.context['region_form']['regions'].field.choices]
+        # For FR, Espagne comes before États-Unis.
+        ok_(form_choices.index(SPAIN.name) < form_choices.index(US.name))
+        # and États-Unis comes before Royaume-Uni.
+        ok_(form_choices.index(US.name) < form_choices.index(UK.name))
 
     def test_associate_acct_to_app_when_not_owner(self):
         self.make_premium(self.webapp, price=self.price.price)

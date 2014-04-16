@@ -1,7 +1,8 @@
+ # -*- coding: utf-8 -*-
 from nose.tools import eq_
 
 from mkt.constants import regions
-from mkt.regions.utils import parse_region
+from mkt.regions.utils import parse_region, remove_accents
 
 
 def test_parse_region():
@@ -16,3 +17,13 @@ def test_parse_region():
 
 def test_parse_worldwide_region_as_restofworld():
     eq_(parse_region('worldwide'), regions.RESTOFWORLD)
+
+def test_remove_accents():
+    eq_(remove_accents(u'café'), u'cafe')
+    eq_(remove_accents(u'Équateur'), u'Equateur')
+    eq_(remove_accents(u'Pérou'), u'Perou')
+    eq_(remove_accents(u'Węgry'), u'Wegry')
+    # This hits the limitations of what's possible with built-in
+    # functions but shows that if the diacritic isn't found the
+    # string remains un-molested.
+    eq_(remove_accents(u'Włochy'), u'Włochy')
