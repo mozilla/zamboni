@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-05 01:24+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-04-16 15:09+0000\n"
+"Last-Translator: webster <go.to.hell@qq.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396661077.0\n"
+"X-POOTLE-MTIME: 1397660998.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1923,19 +1923,19 @@ msgstr "视频被移除"
 
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "由于新增了设备，{addon} 要重新审核。"
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
-msgstr ""
+msgstr "已新增设备"
 
 #: apps/amo/log.py:517
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "审核者手动更改了 {addon} 支持的设备。"
 
 #: apps/amo/log.py:518
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "审核者更改了支持的设备"
 
 #: apps/amo/log.py:525
 msgid "{addon} resubmitted for review."
@@ -13802,7 +13802,7 @@ msgstr "请选择一个有效的选项。%(value)s 不是一个可用的选项�
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "此字段至少要填写 {num} 个字符。"
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
@@ -15244,7 +15244,7 @@ msgstr "Android 智能手机"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "平板"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -15928,11 +15928,11 @@ msgstr "账号名称"
 
 #: mkt/developers/forms_payments.py:581
 msgid "Merchant ID"
-msgstr ""
+msgstr "商家 ID"
 
 #: mkt/developers/forms_payments.py:582
 msgid "Service ID"
-msgstr ""
+msgstr "服务 ID"
 
 #: mkt/developers/forms_payments.py:594
 msgid "No payment account set up for that app"
@@ -15953,7 +15953,7 @@ msgstr "引用工具"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16462,7 +16462,7 @@ msgstr "该应用<b>被 Mozilla 禁用</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
-msgstr ""
+msgstr "由于没有内容分级，您的应用被停用。<a href=\"%(ratings_url)s\">获得内容分级</a>后会自动重新启用。"
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -16506,7 +16506,7 @@ msgstr "重新提交应用"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
-msgstr ""
+msgstr "<a href=\"%(ratings_url)s\">获得内容分级</a>后才能重新提交您的应用。"
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -16747,7 +16747,9 @@ msgstr "刷新"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
-msgstr "您的应用提交之后旧不能修改清单网址。如果因为某种原因您需要修改您的清单网址，请发邮件给 <a href=\"mailto:%(email)s\">%(email)s</a>。"
+msgstr ""
+"您的应用提交之后就不能修改清单网址。如果因为某种原因您需要修改您的清单网址，请发邮件给 <a href=\"mailto:%(email)s\">%"
+"(email)s</a>。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
@@ -16987,7 +16989,7 @@ msgstr "设置支付账户"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "更改设备"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -17019,6 +17021,10 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"您可以将自己的应用提交给移动运营商选择<strong>预装到 FirefoxOS "
+"设备中</strong>。要加入预装候选，可以从下面下载测试模版测试您的应用，填写好模版，上传结果到<a href=\"%"
+"(submit_url)s\">应用提请预装表单</a>。您的测试结果会保存在我们的服务器上，有兴趣的移动运营商可以审核。如果有更多问题，可以发送邮件至 "
+"%(email)s 。"
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -17104,7 +17110,7 @@ msgstr "抱歉， <b>当前无法支付</b> ，此功能即将支持。如果您
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "应用内产品"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17163,19 +17169,19 @@ msgstr "生成密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "复制我"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "价格点"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "购买网址"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ 添加产品"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -17371,11 +17377,13 @@ msgstr "正在联系支付服务器，请等候。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "添加 Boku 账号"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid "You will need a Boku merchant and service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"您需要 Boku 商家和服务 ID 已注册 Boku 账号。Boku 账号必须通过<a href=\"%(boku_url)s\">Mozilla "
+"注册流程</a>创建。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17387,7 +17395,7 @@ msgstr "修改 Bango 帐号"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:5
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "修改 Boku 账号"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -18862,7 +18870,7 @@ msgstr "任何状态"
 
 #: mkt/reviewers/forms.py:41 mkt/reviewers/templates/reviewers/review.html:130
 msgid "Device Types:"
-msgstr ""
+msgstr "设备类型："
 
 #: mkt/reviewers/forms.py:43 mkt/reviewers/templates/reviewers/review.html:134
 msgid "Browsers:"
@@ -19003,7 +19011,7 @@ msgstr "只有资深审核者可以审核封锁的应用。"
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "审核者更改了设备：{0}"
 
 #: mkt/reviewers/views.py:309 mkt/reviewers/views.py:329 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -19025,7 +19033,7 @@ msgstr "您目前没有审核任何应用。"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "设备"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:70
 msgid "Packaged App"
@@ -19170,7 +19178,7 @@ msgstr "总下载量"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "设备类型"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:147
 msgid "Requirements"
@@ -19363,7 +19371,7 @@ msgstr "季度"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "设备已更改：{0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -19376,7 +19384,7 @@ msgstr "无法免费和付费。"
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "请选择设备。"
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -19510,7 +19518,7 @@ msgstr "提交另一个应用"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "设备类型"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -19675,7 +19683,7 @@ msgstr "您至少应该填写一个应用名称。"
 
 #: mkt/webapps/models.py:450
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "至少提供一种设备类型。"
 
 #: mkt/webapps/models.py:453
 msgid "You must provide at least one category."
