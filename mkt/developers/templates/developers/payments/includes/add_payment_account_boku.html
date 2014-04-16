@@ -9,7 +9,7 @@
       <input type="hidden" name="provider" value="boku">
       <p>
         {% trans boku_url=account_form.signup_url %}
-        You will need a Boku merchant and service id to sign up for
+        You will need a Boku service id to sign up for
         a Boku account. Boku accounts must be created through the
         <a href="{{ boku_url }}">Mozilla sign up process</a>.
         {% endtrans %}
@@ -19,10 +19,6 @@
         <div class="field">
           {{ account_form.account_name.label_tag() }}
           {{ account_form.account_name }}
-        </div>
-        <div class="field">
-          {{ account_form.merchant_id.label_tag() }}
-          {{ account_form.merchant_id }}
         </div>
         <div class="field no-border">
           {{ account_form.service_id.label_tag() }}
