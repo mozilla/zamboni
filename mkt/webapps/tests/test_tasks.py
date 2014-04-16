@@ -4,7 +4,9 @@ import hashlib
 import json
 import os
 import stat
+import tarfile
 from copy import deepcopy
+from tempfile import mkdtemp
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -29,9 +31,11 @@ from versions.models import Version
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs,
+                               export_data,
                                notify_developers_of_failure,
                                pre_generate_apk,
                                PreGenAPKError,
+                               rm_directory,
                                update_manifests,
                                zip_apps)
 
@@ -678,3 +682,29 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
         req.get.side_effect = RequestException
         with self.assertRaises(PreGenAPKError):
             pre_generate_apk.delay(self.app.id)
+
+
+class TestExportData(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'collection_81721')
+
+    def setUp(self):
+        self.export_directory = mkdtemp()
+
+    def tearDown(self):
+        rm_directory(self.export_directory)
+
+    def test_export_is_created(self):
+        with self.settings(DUMPED_APPS_PATH=self.export_directory):
+            name = 'tarball-name'
+            tarball_path = export_data(name=name)
+            eq_(os.path.basename(tarball_path), name + '.tgz')
+            expected_files = [
+                'collections/81/81721.json',
+                'apps/337/337141.json',
+                'license.txt',
+                'readme.txt',
+            ]
+            tarball = tarfile.open(tarball_path)
+            actual_files = tarball.getnames()
+            for expected_file in expected_files:
+                assert expected_file in actual_files, expected_file

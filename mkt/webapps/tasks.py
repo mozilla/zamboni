@@ -14,6 +14,7 @@ from django.template import Context, loader
 
 import pytz
 import requests
+from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task
 from pyelasticsearch.exceptions import ElasticHttpNotFoundError
@@ -367,8 +368,7 @@ def dump_app(id, **kw):
 @task
 def clean_apps(pks, **kw):
     app_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps')
-    if os.path.exists(app_dir):
-        shutil.rmtree(app_dir)
+    rm_directory(app_dir)
     return pks
 
 
@@ -382,25 +382,66 @@ def dump_apps(ids, **kw):
 
 @task
 def zip_apps(*args, **kw):
-    # Note: not using storage because all these operations should be local.
     today = datetime.datetime.today().strftime('%Y-%m-%d')
+    files = ['apps'] + compile_extra_files(date=today)
+    return compress_export(filename=today, files=files)
+
+
+def rm_directory(path):
+    if os.path.exists(path):
+        shutil.rmtree(path)
+
+
+def dump_all_apps_tasks():
+    all_pks = (Webapp.objects.visible()
+                             .values_list('pk', flat=True)
+                             .order_by('pk'))
+    return [dump_apps.si(pks) for pks in chunked(all_pks, 100)]
+
+
+@task
+def export_data(name=None):
+    from mkt.collections.tasks import dump_all_collections_tasks
+    today = datetime.datetime.today().strftime('%Y-%m-%d')
+    if name is None:
+        name = today
+    root = settings.DUMPED_APPS_PATH
+    directories = ['apps', 'collections']
+    for directory in directories:
+        rm_directory(os.path.join(root, directory))
+    files = directories + compile_extra_files(date=today)
+    chord(dump_all_apps_tasks() + dump_all_collections_tasks(),
+          compress_export.si(filename=name, files=files)).apply_async()
+
+
+def compile_extra_files(date):
+    # Put some .txt files in place.
+    context = Context({'date': date, 'url': settings.SITE_URL})
+    files = ['license.txt', 'readme.txt']
+    if not os.path.exists(settings.DUMPED_APPS_PATH):
+        os.makedirs(settings.DUMPED_APPS_PATH)
+    created_files = []
+    for f in files:
+        template = loader.get_template('webapps/dump/apps/' + f)
+        dest = os.path.join(settings.DUMPED_APPS_PATH, f)
+        open(dest, 'w').write(template.render(context))
+        created_files.append(f)
+    return created_files
+
+
+@task
+def compress_export(filename, files):
+    # Note: not using storage because all these operations should be local.
     target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'tarballs')
-    target_file = os.path.join(target_dir, today + '.tgz')
+    target_file = os.path.join(target_dir, filename + '.tgz')
 
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
     # Put some .txt files in place.
-    context = Context({'date': today, 'url': settings.SITE_URL})
-    files = ['license.txt', 'readme.txt']
-    for f in files:
-        template = loader.get_template('webapps/dump/apps/' + f)
-        dest = os.path.join(settings.DUMPED_APPS_PATH, f)
-        open(dest, 'w').write(template.render(context))
-
     cmd = ['tar', 'czf', target_file, '-C',
-           settings.DUMPED_APPS_PATH, 'apps'] + files
-    task_log.info(u'Creating app dump {0}'.format(target_file))
+           settings.DUMPED_APPS_PATH] + files
+    task_log.info(u'Creating dump {0}'.format(target_file))
     subprocess.call(cmd)
     return target_file
 
