@@ -1315,5 +1315,5 @@ class TestContentRatingsSuccessMsg(amo.tests.TestCase):
         self._rate_app()
         self.app.update(status=amo.STATUS_PENDING)
         eq_(_ratings_success_msg(self.app, amo.STATUS_PENDING,
-                                 self.days_ago(5)),
+                                 self.days_ago(5).isoformat()),
             _submission_msgs()['content_ratings_saved'])

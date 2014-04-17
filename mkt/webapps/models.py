@@ -226,8 +226,10 @@ class Webapp(Addon):
     @staticmethod
     def version_and_file_transformer(apps):
         """Attach all the versions and files to the apps."""
-        if not apps:
-            return []
+        # Don't just return an empty list, it will break code that expects
+        # a query object
+        if not len(apps):
+            return apps
 
         ids = set(app.id for app in apps)
         versions = (Version.objects.no_cache().filter(addon__in=ids)

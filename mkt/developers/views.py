@@ -322,6 +322,10 @@ def _ratings_success_msg(app, old_status, old_modified):
     old_status -- app status during ratings edit page.
     old_modified -- rating modified datetime during ratings edit page.
     """
+    if old_modified:
+        old_modified = datetime.strptime(
+            old_modified, '%Y-%m-%dT%H:%M:%S')
+
     if old_status != app.status:
         # App just created a rating to go pending, show 'app now pending'.
         return _submission_msgs()['complete']
@@ -343,9 +347,7 @@ def content_ratings(request, addon_id, addon):
     if 'ratings_edit' in session and app_id in session['ratings_edit']:
         prev_state = session['ratings_edit'][app_id]
         msg = _ratings_success_msg(
-            addon, prev_state['app_status'],
-            datetime.strptime(prev_state['rating_modified'],
-                              '%Y-%m-%dT%H:%M:%S'))
+            addon, prev_state['app_status'], prev_state['rating_modified'])
         messages.success(request, msg) if msg else None
         del session['ratings_edit'][app_id]  # Clear msg so not shown again.
         request.session.modified = True

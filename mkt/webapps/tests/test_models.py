@@ -655,6 +655,13 @@ class TestWebapp(amo.tests.TestCase):
         pay_mock.return_value = True
         assert app.payments_complete()
 
+    def test_version_and_file_transformer_with_empty_query(self):
+        # When we process a query, don't return a list just because
+        # the query is empty
+        empty_query = Webapp.objects.filter(app_slug='mahna__mahna')
+        empty_result = Webapp.version_and_file_transformer(empty_query)
+        self.assertEqual(empty_result.count(), 0)
+
 
 class TestWebappContentRatings(amo.tests.TestCase):
 
