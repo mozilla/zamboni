@@ -16,6 +16,7 @@ from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware.log
+import jinja2
 import requests
 from cache_nuggets.lib import Token
 from tower import ugettext as _
@@ -781,10 +782,11 @@ def app_view_manifest(request, addon):
                 # If it's not valid JSON, just return the content as is.
                 pass
 
-    return escape_all({'content': smart_decode(content),
-                       'headers': dict(headers),
-                       'success': success,
-                       'permissions': _get_permissions(manifest)})
+    return {'content': jinja2.escape(smart_decode(content)),
+            'headers': dict((jinja2.escape(k), jinja2.escape(v))
+                            for k, v in headers.items()),
+            'success': success,
+            'permissions': jinja2.escape(_get_permissions(manifest))}
 
 
 def reviewer_or_token_required(f):

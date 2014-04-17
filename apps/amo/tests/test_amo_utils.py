@@ -15,6 +15,7 @@ from amo.utils import (cache_ns_key, escape_all, find_language,
                        LocalFileStorage, no_translation, resize_image,
                        rm_local_tmp_dir, slugify, slug_validator, to_language)
 from product_details import product_details
+from translations.models import Translation
 
 u = u'Ελληνικά'
 
@@ -227,24 +228,40 @@ class TestCacheNamespaces(unittest.TestCase):
         eq_(cache_ns_key(self.namespace), expected)
 
 
-def test_escape_all():
-    x = '-'.join([u, u])
-    y = ' - '.join([u, u])
+class TestEscapeAll(unittest.TestCase):
 
-    def check(x, y):
-        eq_(escape_all(x), y)
+    def test_basics(self):
+        x = '-'.join([u, u])
+        y = ' - '.join([u, u])
 
-    # All I ask: Don't crash me, bro.
-    s = [
-        ('<script>alert("BALL SO HARD")</script>',
-         '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
-        (u'Bän...g (bang)', u'Bän...g (bang)'),
-        (u, u),
-        (x, x),
-        (y, y),
-        (u'x荿', u'x\u837f'),
-        (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
-        (u'¿x', u'¿x'),
-    ]
-    for val, expected in s:
-        yield check, val, expected
+        tests = [
+            ('<script>alert("BALL SO HARD")</script>',
+             '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
+            (u'Bän...g (bang)', u'Bän...g (bang)'),
+            (u, u),
+            (x, x),
+            (y, y),
+            (u'x荿', u'x\u837f'),
+            (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
+            (u'¿x', u'¿x'),
+        ]
+
+        for val, expected in tests:
+            eq_(escape_all(val), expected)
+
+    def test_nested(self):
+        value = '<script>alert("BALL SO HARD")</script>'
+        expected = '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'
+
+        test = {
+            'string': value,
+            'dict': {'x': value},
+            'list': [value],
+            'bool': True,
+        }
+        res = escape_all(test)
+
+        eq_(res['string'], expected)
+        eq_(res['dict'], {'x': expected})
+        eq_(res['list'], [expected])
+        eq_(res['bool'], True)
