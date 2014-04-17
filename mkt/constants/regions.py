@@ -244,6 +244,66 @@ class CL(REGION):
     ratingsbody = ratingsbodies.ESRB
 
 
+class SV(REGION):
+    id = 24
+    name = _lazy(u'El Salvador')
+    slug = 'sv'
+    default_currency = 'USD'
+    default_language = 'es'
+    mcc = 706
+    ratingsbody = ratingsbodies.ESRB
+
+
+class GT(REGION):
+    id = 25
+    name = _lazy(u'Guatemala')
+    slug = 'gt'
+    default_currency = 'GTQ'
+    default_language = 'es'
+    mcc = 704
+    ratingsbody = ratingsbodies.ESRB
+
+
+class EC(REGION):
+    id = 26
+    name = _lazy(u'Ecuador')
+    slug = 'ec'
+    default_currency = 'USD'
+    default_language = 'es'
+    mcc = 740
+    ratingsbody = ratingsbodies.ESRB
+
+
+class CR(REGION):
+    id = 27
+    name = _lazy(u'Costa Rica')
+    slug = 'cr'
+    default_currency = 'CRC'
+    default_language = 'es'
+    mcc = 712
+    ratingsbody = ratingsbodies.ESRB
+
+
+class PA(REGION):
+    id = 28
+    name = _lazy(u'Panama')
+    slug = 'pa'
+    default_currency = 'USD'
+    default_language = 'es'
+    mcc = 714
+    ratingsbody = ratingsbodies.ESRB
+
+
+class NI(REGION):
+    id = 29
+    name = _lazy(u'Nicaragua')
+    slug = 'ni'
+    default_currency = 'NIO'
+    default_language = 'es'
+    mcc = 710
+    ratingsbody = ratingsbodies.ESRB
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('restofworld', <class 'mkt.constants.regions.RESTOFWORLD'>),
