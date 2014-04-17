@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-17 12:30+0200\n"
+"PO-Revision-Date: 2014-04-17 14:46+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -18797,11 +18797,11 @@ msgstr "Ndarje me bashkësinë"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:124
 msgid "When developing for a nascent platform, useful sources of information are always more difficult to find than for more established platforms. To give Firefox OS developers as much help as possible, we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You can edit pages after creating a Mozilla Persona user account and logging in."
-msgstr ""
+msgstr "Kur programohet për një platformë që ka filluar të lindë, është përherë më e vështirë të gjenden burime të dobishme, se sa për platforma që kanë zënë vend tashmë. Që t'u jepet zhvilluesve të Firefox OS-it sa më shumë ndihmë që mundet, do të donim që të përfshiheshit në këtë përpjekje! Duam t'ju ftojmë të shtoni te <a href=\"%(mdn_url)s\" target=\"_blank\">Rrjeti i Zhvilluesve Mozilla</a> çfarëdo burimi të dobishëm informacionesh që keni. Faqe mund të përpunoni pasi të keni krijuar dhe të keni bërë hyrjen në një llogari përdoruesi Mozilla Persona."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:133
 msgid "In particular we'd love you to <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">add tips and tricks on hacking Firefox OS itself</a>, <a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">add tips for developing Firefox OS Apps</a>, and add information concerning your <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">experiences of getting Firefox OS to work on different devices</a>. In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-mail</a>."
-msgstr ""
+msgstr "Do të donim veçanërisht <a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">të shtonit ndihmëza dhe rrengje lidhur me vetë Firefox OS-in</a>, <a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">të shtonit ndihmëza mbi programim Zbatimesh Firefox OS-i</a>, dhe të shtoni të dhëna nga <a href=\"%(mdn_devphone_url)s\" target=\"_blank\">përvoja juaj e kalimi të Firefox OS-it në pajisje të ndryshme</a>. Veç këtyre, mirëpresim përherë pyetjet tuaja, dhe çdo përshtypje apo burim që ndani me të tjerët në <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> dhe <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-mail</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -18809,15 +18809,15 @@ msgstr "Zhvilloni Zbatime Web HTML5 për një treg të hapur."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr ""
+msgstr "Mësoni si të hartoni zbatime që i ofrojnë përdoruesit funksionim të optimizuar për Firefox OS-in &amp; Celularin"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr ""
+msgstr "Krejt mjetet, dokumentet dhe referencat që do t'ju duhen për zhvillimin dhe testimin e zbatimit tuaj"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr ""
+msgstr "Mësoni se si t'i shpërndani zbatimet tuaja në një treg të hapur që vendos mbi të gjitha përdoruesit dhe zhvilluesit"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -20691,7 +20691,7 @@ msgstr "Email Asistence:"
 
 #: mkt/submit/forms.py:367
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
-msgstr ""
+msgstr "Kjo adresë email do të shfaqet botërisht te Marketplace-i dhe përdoret nga përdoruesit e zakonshëm për t'u lidhur me ju për çështje asistence. Ky adresë email do të shfaqet botërisht te faqja e hollësive të zbatimit tuaj."
 
 #: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
@@ -20821,7 +20821,7 @@ msgstr "Në çfarëdo kohe, mundeni"
 
 #: mkt/submit/templates/submit/next_steps.html:49
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr ""
+msgstr "Rishikoni hollësitë e zbatimit tuaj te <a href=\"%(url)s\">Përpunoni Lista</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:54
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
@@ -20829,15 +20829,15 @@ msgstr "Shihni te <a href=\"%(url)s\">Parashtrimet e Mia</a> një listë të kre
 
 #: mkt/submit/templates/submit/next_steps.html:63
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Pasi zbatimi juaj të jetë shqyrtuar, do t'ju duhet ta botoni dorazi prej <a href=\"%(url)s\">Administroni Gjendje</a>. Mandej do të duket te faqet e listave dhe në kërkime, që të shijohet nga publiku."
 
 #: mkt/submit/templates/submit/next_steps.html:70
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Zbatimi juaj u miratua! Tani duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr ""
+msgstr "Pasi zbatimi juaj të jetë miratuar! do të duket te faqet e listave dhe te kërkimet, që të shijohet nga publiku."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
