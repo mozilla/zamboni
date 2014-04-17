@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-16 14:42+0200\n"
+"PO-Revision-Date: 2014-04-17 12:30+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -10727,7 +10727,7 @@ msgstr[1] "U pëërpunuan me sukses {0} shqyrtime temash (+{1} pikë, {2} gjiths
 #: apps/editors/views_themes.py:343
 #: mkt/reviewers/views_themes.py:324
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
+msgstr "Bllokimet mbi temën tuaj u hoqën me sukses. Tani shqyrtues të tjerë mund të shqyrtojnë këto tema të zhbllokuara. Mund t'ju duhet të rifreskoni faqen që ndryshimet t'i shihni të pasqyruara te tabela më poshtë."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -17085,7 +17085,7 @@ msgstr "Sendërtim Reference"
 
 #: mkt/developers/providers.py:286
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -17611,7 +17611,7 @@ msgstr "Kjo zbatim është <b>çaktivizuar prej Mozilla-s</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
-msgstr ""
+msgstr "Zbatimi juaj është çaktivizuar ngaqë është pa klasifikim lënde. Do të riaktivizohet vetvetiu pasi <a href=\"%(ratings_url)s\">të marrë klasifikim lënde</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -17833,11 +17833,11 @@ msgstr "Jepni adresa e-mail, ndarë me presje"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Zbatim Mozilla VIP"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
-msgstr ""
+msgstr "Është zbatim shumë i rëndësishëm që do të duhej trajtuar përherë nga Staf i Mozilla-s ose Shqyrtues të Sprovuar Zbatimesh?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -18563,7 +18563,7 @@ msgstr "Shtoni Llogari Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:10
 msgid "You will need a Boku merchant and service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
-msgstr ""
+msgstr "Do t'ju duhet një id tregtuesi dhe shërbimi Boku që të mund të regjistroni një llogari Boku. Llogaritë Boku duhet të krijohen përmes <a href=\"%(boku_url)s\">procesit të regjistrimit Mozilla</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -18591,11 +18591,11 @@ msgstr "Mësoni pse disa rajone kanë kufizime."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr ""
+msgstr "Zbatimi juaj nuk do të shfaqet më në disa nga rajonet, ngaqë këto rajone nuk mbulojnë pagesat. I kemi transferuar zgjedhjet tuaja për rajonet. Ju lutemi, shqyrtoni ndryshimet, para se t'i ruani."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
+msgstr "Zbatimi juaj do të shfaqet në çfarëdo Marketplace-i rajonal që shtohet në të ardhmen."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
@@ -18615,7 +18615,7 @@ msgstr "Faleminderit që u pajtuat!"
 
 #: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
-msgstr ""
+msgstr "Kërkojmë ndjesë, por ndodhi një gabim në sistemin tonë. Ju lutemi, riprovoni më vonë."
 
 #: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
@@ -18700,7 +18700,7 @@ msgstr "Stema, Parulla, dhe Ikona"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:15
 msgid "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
-msgstr ""
+msgstr "Nuk ka &quot;rrugë të saktë&quot; për të hartuar një ndërfaqe përdoruesi, por ka plot rrugë për ta bërë zbatimin tuaj më pak zbavitës dhe më pak të lehtë në përdorim. Me këto në mendje, ndarjet vijuese mund t'ju ndihmojnë të shmangni disa nga gabimet më të rëndomta lidhur me UI-n, duke ju drejtuar në shtegun e duhur të ndërtimit të një zbatimi që ke qejf ta përdorësh, pavarësisht se në cilën platformë përdoret."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:27
 #: mkt/ecosystem/templates/ecosystem/macros.html:24
@@ -18710,7 +18710,7 @@ msgstr "Hyrje në Dizajnin Reagues"
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:31
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:43
 msgid "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
-msgstr ""
+msgstr "Një zbatim, shumë lloje ekranesh. Si i bëhet që një UI që duket dhe funksionon shkëlqyeshëm në një telefon të mençur, të jetë po njësoj në desktop? Mësoni si të hartoni dhe të krijoni UI që ndryshojnë për t'iu përshtatur ekranit të përdoruesit."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:39
 #: mkt/ecosystem/templates/ecosystem/macros.html:28
@@ -18724,7 +18724,7 @@ msgstr "Udhëzime UI për Firefox OS-in"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:56
 msgid "Want to make your app look and feel like it's a Firefox OS native? These guidelines will show you how."
-msgstr ""
+msgstr "Doni ta bëni zbatimin tuaj të duket dhe të japë ndjesinë si të ishte krijuar për Firefox OS-in? Këto udhëzime do t'ju tregojnë se si."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
@@ -18736,11 +18736,11 @@ msgstr "Prurja e Web-it të Hapët te pajisjet celulare."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:22
 msgid "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the phone vibrate, placing phone calls, and sending text messages."
-msgstr ""
+msgstr "Firefox OS-i është një sistem i ri operativ për celularët, i ndërtuar krejtësisht duke përdorur standarde web të hapura. Nën Firefox OS, zbatimet HTML5 munden të kontrollojnë drejtpërsëdrejti hardware-in dhe funksione bazë të telefonit — për shembull ta bëjnë telefonin të dridhet, të nisin thirrje telefonike, dhe të dërgojnë mesazhe tekst."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
-msgstr ""
+msgstr "Ne besojmë se zhvilluesit do të kenë vërtet rol të dorës së parë në sjelljen e fuqisë së web-i në fushën e celularëve, ndaj kemi bashkëpunuar me partnerë të ndryshëm për t'i bërë pajisjet të gatshme për zhvillim dhe testim zbatimesh, dhe për të mësuar më tepër rreth personalizimit të vetë Firefox OS-it. Kjo faqe ofron të dhëna të dobishme për zhvilluesit, të tilla si lidhje për te dokumentime për zhvilluesit, pajisje të mundshme, dhe se prej ku të merren ato."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -18753,7 +18753,7 @@ msgstr "ZTE OPEN"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</a>"
-msgstr ""
+msgstr "<a href=\"%(us_ebay_url)s\" class=\"button\">Blijini prej tregtores në ShBA</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Blijini prej tregtores në Mbretërinë e Bashkuar</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Blijini prej tregtores në Hong Kong</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
@@ -18789,7 +18789,7 @@ msgstr "Nëse keni tashmë një pajisje Firefox OS dhe dëshironi ca udhëzime d
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
-msgstr ""
+msgstr "Nëse nuk keni një pajisje me Firefox OS, shihni skedat e tjera që të mësoni se si të keni një të tillë. Por nuk keni pse prisni — mund të filloni të programoni dhe të testoni që tani zbatime për Firefox OS-in, përmes <a href=\"%(simulator_url)s\">simuluesit të Firefox OS-it</a>."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
