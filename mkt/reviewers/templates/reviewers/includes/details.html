@@ -1,4 +1,5 @@
 {% from 'detail/includes/price.html' import price %}
+{% from 'reviewers/includes/macros.html' import app_flags with context %}
 
 <div id="summary">
   <h2>{{ _('Details') }}</h2>
@@ -140,10 +141,8 @@
           {{ category.name }}</a>{% if not loop.last %}, {% endif %}
       {% endfor %}
     </dd>
-    {% if flags %}
-      <dt>{{ _('Flags') }}</dt>
-      <dd>{{ flags|join(', ') }}</dd>
-    {% endif %}
+    <dt>{{ _('Flags') }}</dt>
+    <dd>{{ app_flags(product) }}</dd>
     <dt>{{ _('Requirements') }}</dt>
     <dd>{{ feature_list|join(', ') }}</dd>
   </dl>
