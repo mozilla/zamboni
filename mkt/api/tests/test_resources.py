@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 from django.test.utils import override_settings
 
+from amo.helpers import urlparams
+
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.api.resources import ErrorViewSet
@@ -77,7 +79,7 @@ class TestConfig(RestOAuth):
 class TestRegion(RestOAuth):
 
     def test_list(self):
-        res = self.anon.get(reverse('regions-list'))
+        res = self.anon.get(urlparams(reverse('regions-list'), limit=100))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         for row in data['objects']:
