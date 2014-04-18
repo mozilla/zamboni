@@ -15,6 +15,7 @@ from oauth2client.client import OAuth2Credentials
 import amo
 import amo.search
 from addons.models import Addon, AddonUser
+from amo.decorators import write
 from bandwagon.models import Collection
 from lib.es.utils import get_indices
 from reviews.models import Review
@@ -375,6 +376,7 @@ def index_theme_user_counts(ids, **kw):
 
 
 @task
+@write
 def update_monolith_stats(metric, date, **kw):
     log.info('Updating monolith statistics (%s) for (%s)' % (metric, date))
 
