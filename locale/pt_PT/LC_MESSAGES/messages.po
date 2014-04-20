@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-09 09:15-0700\n"
-"PO-Revision-Date: 2014-04-20 20:27+0100\n"
+"PO-Revision-Date: 2014-04-20 22:39+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -5691,6 +5691,8 @@ msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
+"Este envio falhou a validação e pode não ter os resultados completos da "
+"validação. Tenha atenção a este facto durante a sua análise."
 
 #: apps/devhub/views.py:1749
 msgid "Preliminary Review Requested."
@@ -5715,7 +5717,7 @@ msgstr "SDK dos extras"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>SDK para Extras:</strong> Criar Extras de modo rápido e fácil"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
@@ -5724,6 +5726,10 @@ msgid ""
 "complete, we make it easy to share it with over 400 million Firefox users "
 "world wide."
 msgstr ""
+"O SDK para Extras fornece poderosas APIs que permitem aos programadores "
+"criar Extras para o Firefox utilizando HTML, CSS e JavaScript. Quando o seu "
+"Extra estiver completo nós faremos com seja fácil partilhá-lo com mais de "
+"400 milhões de utilizadores do Firefox a nível mundial."
 
 #: apps/devhub/templates/devhub/builder.html:32
 #: mkt/developers/templates/developers/builder.html:70
@@ -5889,14 +5895,14 @@ msgstr "Ver todos os extras ►"
 #: apps/devhub/templates/devhub/index.html:93
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Criar Extras para o Australis"
 
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/addons/submit/done.html:69
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Ganhe um telemóvel com Firefox OS e material Mozilla!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -5909,6 +5915,11 @@ msgid ""
 "already have what it takes to make great add-ons with the Add-on SDK. What's "
 "more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Os Extras permitem que milhões de utilizadores Firefox melhorem e "
+"personalizem a sua experiência de navegação. Se é um programador e sabe "
+"HTML, JavaScript e CSS , já tem o que precisa para fazer fantásticos Extras "
+"com o SDK para Extras. Mas há mais, por omissão os Extras construídos com o "
+"SDK não necessitam de reinícios."
 
 #: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
@@ -6078,7 +6089,7 @@ msgstr "Políticas do extra"
 
 #: apps/devhub/templates/devhub/nav.html:74
 msgid "API &amp; Language Reference"
-msgstr ""
+msgstr "API e documentação para a linguagem"
 
 #: apps/devhub/templates/devhub/nav.html:87
 msgid "Add-on Compatibility Checker"
@@ -6243,6 +6254,10 @@ msgid ""
 "source code that you don't eventually use.</li> <li>Read the documentation "
 "and ask for help when you need it!</li> </ol>"
 msgstr ""
+"<ol> <li> Siga as instruções no código fonte empacotado para criar as suas "
+"preferências e as suas próprias personalizações. </li> <li>Remova qualquer "
+"código fonte que não use.</li> <li>Leia a documentação e peça por ajuda "
+"quando precisar!</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
@@ -6452,8 +6467,8 @@ msgstr "Actividade antiga para os meus extras"
 #: apps/devhub/templates/devhub/addons/dashboard.html:116
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> temas"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -6653,7 +6668,7 @@ msgstr[1] "Separado por vírgulas, mínimo de {0} caracteres."
 #: apps/devhub/templates/devhub/personas/submit.html:49
 #: mkt/developers/templates/developers/apps/edit/admin.html:166
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Exemplo: escuro, cinema, preto. Limite 20."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:178
 #: mkt/developers/templates/developers/apps/edit/admin.html:170
@@ -6746,6 +6761,9 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added."
 msgstr ""
+"Se o seu Extra tem suporte para um site Web ou um fórum, especifique o seu "
+"endereço aqui. Se o seu site Web estiver disponível em vários idiomas, "
+"múltiplas traduções deste campo podem ser adicionadas."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
@@ -7014,7 +7032,7 @@ msgstr "Topo"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr ""
+msgstr "Eliminar tema"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/versions/list.html:146
@@ -7023,7 +7041,7 @@ msgstr "Eliminar extra"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Eliminar o seu tema irá removê-lo de modo permanente do site."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:15
 msgid ""
@@ -7043,11 +7061,11 @@ msgstr "Escreva a sua senha para confirmar a sua decisão:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Por favor, diga-nos o motivo pelo qual está a remover o seu tema:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:37
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Por favor, diga-nos o motivo pelo qual está a remover o seu extra:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:1
@@ -7137,7 +7155,7 @@ msgstr "Eliminar esta app."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
 msgid "Edit details about this app's listing."
-msgstr ""
+msgstr "Editar detalhes de listagem desta aplicação."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39
 msgid "Manage Status"
@@ -7155,27 +7173,27 @@ msgstr "Ver listagem de App"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Editar detalhes de listagem deste tema."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr ""
+msgstr "Ver página de listagem pública do tema."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Ver a popularidade deste tema ao longo do tempo."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Alterar o proprietário deste tema."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Transferir propriedade"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr ""
+msgstr "Eliminar este tema."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid ""
@@ -7188,7 +7206,7 @@ msgstr ""
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Última versão:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41
 #: mkt/constants/comm.py:31
@@ -7200,7 +7218,7 @@ msgstr "Desactivado"
 #: apps/devhub/templates/devhub/addons/listing/items.html:51
 #: mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Posição na fila:</b> %(pos)s de %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:24
@@ -7258,6 +7276,7 @@ msgstr "A página de detalhes será:"
 #: apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+"Por favor utilize apenas letras, números, sublinhados e traços na sua URL."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
@@ -7351,7 +7370,7 @@ msgstr "Ver a lista de <a href=\"{0}\">espera</a> aproximada da revisão."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Submeta o seu extra para o concurso de Extras para o Australis"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7590,7 +7609,7 @@ msgstr "Com que plataformas móveis é este ficheiro compatível?"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:41
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Sobreposições administrativas"
 
 #: apps/devhub/templates/devhub/addons/submit/upload_webapp.html:7
 msgid "Step 2. Link to Your App"
@@ -7805,6 +7824,12 @@ msgid ""
 "Just remember that if the other extension's license doesn't allow you to "
 "copy its source, you can't."
 msgstr ""
+"Se o seu extra necessita de mais funcionalidade do que a barra lateral vazia "
+"que o Empacotador criou para si, existem várias formas de descobrir como "
+"adicionar a funcionalidade que pretende. Uma das formas mais comuns de "
+"aprender como  fazer algo numa extensão é olhar para o que as outras "
+"extensões já fazem. Lembre-se apenas de confirmar se a licença das outras "
+"extensões permite copiar o seu código fonte."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -8054,6 +8079,8 @@ msgid ""
 "This article explains how to create sandboxed HTTP connections that don't "
 "affect the user's cookies."
 msgstr ""
+"Este artigo explica como criar ligações HTTP encapsuladas que não afetam as "
+"cookies do utilizador."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -8384,6 +8411,8 @@ msgid ""
 "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-"
 "ons here."
 msgstr ""
+"Encontre informação em extensões de pesquisa, Jetpack, temas e outros tipos "
+"de extra aqui."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
 msgid "Jetpack"
@@ -8409,12 +8438,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr ""
+msgstr "Como criar temas"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid ""
 "Learn how to create your very own Theme with this official walk-through."
 msgstr ""
+"Aprenda a criar o seu próprio tema com este tutorial passo a passo oficial."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
@@ -8797,7 +8827,7 @@ msgstr "Vulnerabilidades de segurança do extra"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
-msgstr ""
+msgstr "marketplace-staff arroba mozilla ponto org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -9009,6 +9039,10 @@ msgid ""
 "group, or email address. It is recommended that support questions be posted "
 "via those mediums instead of in an add-on's review section."
 msgstr ""
+"Muitos programadores fornecem um mecanismo de apoio, tais como fóruns, "
+"grupos de discussão ou endereço de correio electrónico. É recomendável que "
+"pedidos se apoio sejam enviadas através destes canais em vez da seção de "
+"revisão de extras."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -9065,6 +9099,10 @@ msgid ""
 "other Mozilla websites. These add-ons showcase the power of Firefox "
 "customization and are useful to a wide audience."
 msgstr ""
+"Os extras destacados são extensões e temas de elevada qualidade destacados "
+"no <a href=\"%(link_gallery)s\">AMO</a>, Gestor de Extras do Firefox e ao "
+"longo dos vários sites Mozilla. Estes extras demonstram o poder da "
+"personalização do Firefox e são úteis para uma grande audiência."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -9072,6 +9110,9 @@ msgid ""
 "group of add-on developers and fans from the Mozilla community who have "
 "volunteered to review and vote on nominations."
 msgstr ""
+"Os extras destacados são escolhidos pelo Conselho Consultivo dos Extras "
+"Destacados, um pequeno grupo de programadores de extras e fãs da comunidade "
+"Mozilla que se voluntariaram para rever e votar em nomeados."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid ""
@@ -9079,6 +9120,9 @@ msgid ""
 "month, and <a href=\"%(link_themes)s\">featured complete themes</a> are "
 "chosen every quarter."
 msgstr ""
+"As <a href=\"%(link_featured)s\">extensões em destaque</a> são escolhidas "
+"todos os meses e <a href=\"%(link_themes)s\">temas completos destacados</a> "
+"são escolhidos a cada trimestre."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -9089,6 +9133,8 @@ msgid ""
 "Before nominating an add-on to be featured, please ensure it meets the "
 "following criteria:"
 msgstr ""
+"Antes de nomear o extra para ser destacado, por favor verifique se este "
+"cumpre os seguintes critérios:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid ""
@@ -9146,6 +9192,11 @@ msgid ""
 "performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
+"<strong>Mais importante</strong>, o extra tem de ser apelativo para um "
+"grande grupo de utilizadores do Firefox e de se destacar de quase todas as "
+"formas: experiência de utilização, performance, segurança, utilidade e valor "
+"de entretenimento. Os temas completos destacados também têm de ser "
+"visualmente apelativos."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:53
 msgid "Nominating an Add-on"
@@ -9184,6 +9235,8 @@ msgid ""
 "optionally, a video overview/demo/tutorial of the add-on not more than 5 "
 "minutes long"
 msgstr ""
+"opcionalmente, uma análise/demonstração/tutorial do extra em vídeo com não "
+"mais de 5 minutos de duração"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
