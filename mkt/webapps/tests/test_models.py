@@ -28,7 +28,7 @@ from amo.tests import app_factory, version_factory
 from amo.urlresolvers import reverse
 from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
-from constants.payments import PROVIDER_BANGO
+from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
 from files.tests.test_models import UploadTest as BaseUploadTest
@@ -61,11 +61,14 @@ class TestWebapp(amo.tests.TestCase):
         if not user:
             user = UserProfile.objects.create(email='a', username='b')
         payment = PaymentAccount.objects.create(
-            solitude_seller=SolitudeSeller.objects.create(user=user),
+            solitude_seller=SolitudeSeller.objects.create(user=user,
+                                                          uuid=uuid.uuid4()),
             provider=provider_id,
-            user=user)
+            user=user,
+            seller_uri=uuid.uuid4(),
+            uri=uuid.uuid4())
         return AddonPaymentAccount.objects.create(
-            addon=app, payment_account=payment)
+            addon=app, payment_account=payment, product_uri=uuid.uuid4())
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
@@ -629,6 +632,16 @@ class TestWebapp(amo.tests.TestCase):
 
         self.add_payment_account(app, PROVIDER_BANGO)
         assert app.has_payment_account()
+
+    def test_has_multiple_payment_accounts(self):
+        app = app_factory()
+        assert not app.has_multiple_payment_accounts(), 'no accounts'
+
+        account = self.add_payment_account(app, PROVIDER_BANGO)
+        assert not app.has_multiple_payment_accounts(), 'one account'
+
+        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
+        ok_(app.has_multiple_payment_accounts(), 'two accounts')
 
     def test_no_payment_account(self):
         app = app_factory()

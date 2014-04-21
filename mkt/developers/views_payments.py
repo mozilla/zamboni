@@ -200,26 +200,41 @@ def payments(request, addon_id, addon, webapp=False):
 @json_view
 def payment_accounts(request):
     app_slug = request.GET.get('app-slug', '')
+    if app_slug:
+        app = Webapp.objects.get(app_slug=app_slug)
+        app_name = app.name
+    else:
+        app_name = ''
     accounts = PaymentAccount.objects.filter(
         user=request.amo_user,
         provider__in=[p.provider for p in get_providers()],
         inactive=False)
 
     def account(acc):
-        app_names = (', '.join(unicode(apa.addon.name)
-                     for apa in acc.addonpaymentaccount_set.all()
-                        if hasattr(apa, 'addon')))
+        def payment_account_names(app):
+            account_names = [unicode(acc.payment_account)
+                             for acc in app.all_payment_accounts()]
+            return (unicode(app.name), account_names)
+
+        addon_payment_accounts = acc.addonpaymentaccount_set.all()
+        associated_apps = [apa.addon
+                           for apa in addon_payment_accounts
+                           if hasattr(apa, 'addon')]
+        app_names = u', '.join(unicode(app.name) for app in associated_apps)
+        app_payment_accounts = json.dumps(dict([payment_account_names(app)
+                                                for app in associated_apps]))
         provider = acc.get_provider()
         data = {
-            'account-url':
-                reverse('mkt.developers.provider.payment_account',
-                        args=[acc.pk]),
+            'account-url': reverse('mkt.developers.provider.payment_account',
+                                   args=[acc.pk]),
             'agreement-url': acc.get_agreement_url(),
             'agreement': 'accepted' if acc.agreed_tos else 'rejected',
+            'current-app-name': jinja2.escape(app_name),
             'app-names': jinja2.escape(app_names),
-            'delete-url':
-                reverse('mkt.developers.provider.delete_payment_account',
-                        args=[acc.pk]),
+            'app-payment-accounts': jinja2.escape(app_payment_accounts),
+            'delete-url': reverse(
+                'mkt.developers.provider.delete_payment_account',
+                args=[acc.pk]),
             'id': acc.pk,
             'name': jinja2.escape(unicode(acc)),
             'provider': provider.name,

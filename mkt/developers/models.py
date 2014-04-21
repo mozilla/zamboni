@@ -94,7 +94,8 @@ class PaymentAccount(amo.models.ModelBase):
         log.info('Soft-deleted payment account (uri: %s)' % self.uri)
 
         for acc_ref in account_refs:
-            if disable_refs:
+            if (disable_refs and
+                    not acc_ref.addon.has_multiple_payment_accounts()):
                 log.info('Changing app status to NULL for app: {0}'
                          'because of payment account deletion'.format(
                              acc_ref.addon_id))
@@ -135,6 +136,10 @@ class AddonPaymentAccount(amo.models.ModelBase):
 
     class Meta:
         db_table = 'addon_payment_account'
+
+    @property
+    def user(self):
+        return self.payment_account.user
 
 
 class UserInappKey(amo.models.ModelBase):
