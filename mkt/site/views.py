@@ -101,10 +101,17 @@ def manifest(request):
 
 
 def package_minifest(request):
-    """Serves the mini manifest ("minifest") for the packaged `.zip`."""
+    """Serve mini manifest ("minifest") for Yulelog's packaged `.zip`."""
     if not settings.MARKETPLACE_GUID:
         return HttpResponseNotFound()
     return mini_manifest(request, settings.MARKETPLACE_GUID)
+
+
+def yogafire_minifest(request):
+    """Serve mini manifest ("minifest") for Yogafire's packaged `.zip`."""
+    if not settings.YOGAFIRE_GUID:
+        return HttpResponseNotFound()
+    return mini_manifest(request, settings.YOGAFIRE_GUID)
 
 
 def robots(request):

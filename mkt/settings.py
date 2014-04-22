@@ -276,6 +276,11 @@ SIG_CHECK_TYP = 'mozilla/payments/sigcheck/v1'
 #     /media/packaged-apps/<path>
 MARKETPLACE_GUID = 'e6a59937-29e4-456a-b636-b69afa8693b4'
 
+# The UUID for Yogafire (Tarako Marketplace).
+# (`Webapp.objects.get(app_slug='marketplace-package').guid` has been
+#  carefully set on prod, -dev, and stage.)
+YOGAFIRE_GUID = 'f34d3c22-3efe-47ca-803d-6c740da1a851'
+
 # A solitude specific settings that allows you to send fake refunds to
 # solitude. The matching setting will have to be on in solitude, otherwise
 # it will just laugh at your request.
