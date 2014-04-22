@@ -9,6 +9,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 import amo
 import lib.iarc
+from amo.decorators import skip_cache
 
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.developers.forms import ContentRatingForm
@@ -42,6 +43,7 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 
+    @skip_cache
     def get(self, request, *args, **kwargs):
         app = self.get_object()
 
