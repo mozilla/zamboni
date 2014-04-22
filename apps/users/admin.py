@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import User
@@ -7,16 +6,16 @@ from django.db.utils import IntegrityError
 from django.shortcuts import render
 
 from access.admin import GroupUserInline
-from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
+
 from . import forms
+from .models import BlacklistedEmailDomain, BlacklistedUsername, UserProfile
 
 
 class BetterDjangoUserAdmin(DjangoUserAdmin):
 
     # Password is always empty for users registered through BrowserID.
-    if settings.MARKETPLACE:
-        fieldsets = list(DjangoUserAdmin.fieldsets)
-        fieldsets[0] = None, {'fields': ('username',)}
+    fieldsets = list(DjangoUserAdmin.fieldsets)
+    fieldsets[0] = None, {'fields': ('username',)}
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         """

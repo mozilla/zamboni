@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
-
 from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
@@ -11,19 +11,19 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
-from amo.tests import addon_factory
-from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
-from applications.models import AppVersion, Application
+from amo.tests import addon_factory
+from amo.urlresolvers import reverse
+from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
-from versions.models import Version, ApplicationsVersions
-from versions.compare import (MAXVERSION, version_int, dict_from_int,
-                              version_dict)
+from versions.compare import (dict_from_int, MAXVERSION, version_dict,
+                              version_int)
+from versions.models import ApplicationsVersions, Version
 
 
 def test_version_int():
@@ -170,7 +170,6 @@ class TestVersion(amo.tests.TestCase):
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.with_deleted.filter(addon=addon).exists()
 
-    @mock.patch('versions.models.settings.MARKETPLACE', True)
     @mock.patch('versions.models.storage')
     def test_version_delete_marketplace(self, storage_mock):
         version = Version.objects.get(pk=81551)
@@ -183,7 +182,6 @@ class TestVersion(amo.tests.TestCase):
 
         assert not storage_mock.delete.called
 
-    @mock.patch('versions.models.settings.MARKETPLACE', True)
     @mock.patch('versions.models.storage')
     def test_packaged_version_delete_marketplace(self, storage_mock):
         addon = Addon.objects.no_cache().get(pk=3615)

@@ -13,7 +13,6 @@ from django.conf import settings
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import User as DjangoUser
 from django.core import validators
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import translation
@@ -36,8 +35,8 @@ from translations.fields import NoLinksField, save_signal
 from translations.models import Translation
 from translations.query import order_by_translation
 
-log = commonware.log.getLogger('z.users')
 
+log = commonware.log.getLogger('z.users')
 
 
 class SHA512PasswordHasher(BasePasswordHasher):
@@ -194,7 +193,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         characters - in which case use <id> as the slug.
         """
         # TODO: Remove this ASAP (bug 880767).
-        if settings.MARKETPLACE and name == 'profile':
+        if name == 'profile':
             return '#'
         from amo.utils import urlparams
         chars = '/<>"\''
@@ -374,8 +373,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def check_password(self, raw_password):
         # BrowserID does not store a password.
-        if (self.source in amo.LOGIN_SOURCE_BROWSERIDS
-            and settings.MARKETPLACE):
+        if self.source in amo.LOGIN_SOURCE_BROWSERIDS:
             return True
 
         if '$' not in self.password:
@@ -590,6 +588,9 @@ class RequestUser(UserProfile):
 
     @staticmethod
     def transformer(users):
+        # Until the Marketplace gets collections, these lookups are pointless.
+        return
+
         # We don't want to cache these things on every UserProfile; they're
         # only used by a user attached to a request.
         if not users:
@@ -598,10 +599,6 @@ class RequestUser(UserProfile):
         # Touch this @cached_property so the answer is cached with the object.
         user = users[0]
         user.is_developer
-
-        # Until the Marketplace gets collections, these lookups are pointless.
-        if settings.MARKETPLACE:
-            return
 
         from bandwagon.models import CollectionAddon, CollectionWatcher
         SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()

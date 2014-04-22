@@ -21,7 +21,7 @@ from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
-from files.models import File, Platform, cleanup_file
+from files.models import cleanup_file, File, Platform
 from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
@@ -218,18 +218,14 @@ class Version(amo.models.ModelBase):
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
-        if settings.MARKETPLACE:
-            self.update(deleted=True)
-            if self.addon.is_packaged:
-                f = self.all_files[0]
-                # Unlink signed packages if packaged app.
-                storage.delete(f.signed_file_path)
-                log.info(u'Unlinked file: %s' % f.signed_file_path)
-                storage.delete(f.signed_reviewer_file_path)
-                log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
-
-        else:
-            super(Version, self).delete()
+        self.update(deleted=True)
+        if self.addon.is_packaged:
+            f = self.all_files[0]
+            # Unlink signed packages if packaged app.
+            storage.delete(f.signed_file_path)
+            log.info(u'Unlinked file: %s' % f.signed_file_path)
+            storage.delete(f.signed_reviewer_file_path)
+            log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
 
     @property
     def current_queue(self):
@@ -349,11 +345,9 @@ class Version(amo.models.ModelBase):
 
     @property
     def status(self):
-        status_choices = amo.STATUS_CHOICES
-        if settings.MARKETPLACE:
-            status_choices = amo.MKT_STATUS_FILE_CHOICES
+        status_choices = amo.MKT_STATUS_FILE_CHOICES
 
-        if settings.MARKETPLACE and self.deleted:
+        if self.deleted:
             return [status_choices[amo.STATUS_DELETED]]
         else:
             return [status_choices[f.status] for f in self.all_files]

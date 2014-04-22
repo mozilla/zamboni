@@ -1491,25 +1491,6 @@ class TestAddonDelete(amo.tests.TestCase):
         addon.delete()
 
 
-class TestAddonGetURLPath(amo.tests.TestCase):
-
-    def test_get_url_path(self):
-        if not settings.MARKETPLACE:
-            addon = Addon(slug='woo')
-            eq_(addon.get_url_path(), '/en-US/firefox/addon/woo/')
-
-    def test_get_url_path_more(self):
-        if not settings.MARKETPLACE:
-            addon = Addon(slug='yeah')
-            eq_(addon.get_url_path(more=True),
-                '/en-US/firefox/addon/yeah/more')
-
-    def test_get_url_path_theme(self):
-        if settings.MARKETPLACE:
-            addon = Addon(slug='boi', type=amo.ADDON_PERSONA)
-            eq_(addon.get_url_path(), '/en-US/theme/boi/')
-
-
 class TestAddonModelsFeatured(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',
                 'addons/featured', 'bandwagon/featured_collections',
@@ -2218,8 +2199,9 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
         assert 'title=Select a language' in self.addon.get_localepicker()
 
     def test_extract_no_file(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
+        File.objects.create(
+            platform=self.platform_mob, version=self.version,
+            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
         eq_(self.addon.reload().get_localepicker(), '')
 
     def test_extract_no_files(self):

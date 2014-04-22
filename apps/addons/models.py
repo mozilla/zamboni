@@ -430,9 +430,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE), or when we are in Marketplace.
-        soft_deletion = (self.highest_status or self.status or
-                         settings.MARKETPLACE)
-        if soft_deletion and self.status == amo.STATUS_DELETED:
+        if self.status == amo.STATUS_DELETED:
             # We're already done.
             return
 
@@ -448,71 +446,58 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
 
-        if soft_deletion:
+        if self.guid:
+            log.debug('Adding guid to blacklist: %s' % self.guid)
+            BlacklistedGuid(guid=self.guid, comments=msg).save()
+        log.debug('Deleting add-on: %s' % self.id)
 
-            if self.guid:
-                log.debug('Adding guid to blacklist: %s' % self.guid)
-                BlacklistedGuid(guid=self.guid, comments=msg).save()
-            log.debug('Deleting add-on: %s' % self.id)
+        to = [settings.FLIGTAR]
+        user = amo.get_user()
 
-            to = [settings.FLIGTAR]
-            user = amo.get_user()
+        context = {
+            'atype': amo.ADDON_TYPE.get(self.type).upper(),
+            'authors': [u.email for u in self.authors.all()],
+            'adu': self.average_daily_users,
+            'guid': self.guid,
+            'id': self.id,
+            'msg': msg,
+            'reason': reason,
+            'name': self.name,
+            'slug': self.slug,
+            'total_downloads': self.total_downloads,
+            'url': absolutify(self.get_url_path()),
+            'user_str': ("%s, %s (%s)" % (user.display_name or
+                                          user.username, user.email,
+                                          user.id) if user else "Unknown"),
+        }
 
-            context = {
-                'atype': amo.ADDON_TYPE.get(self.type).upper(),
-                'authors': [u.email for u in self.authors.all()],
-                'adu': self.average_daily_users,
-                'guid': self.guid,
-                'id': self.id,
-                'msg': msg,
-                'reason': reason,
-                'name': self.name,
-                'slug': self.slug,
-                'total_downloads': self.total_downloads,
-                'url': absolutify(self.get_url_path()),
-                'user_str': ("%s, %s (%s)" % (user.display_name or
-                                              user.username, user.email,
-                                              user.id) if user else "Unknown"),
-            }
+        email_msg = u"""
+        The following %(atype)s was deleted.
+        %(atype)s: %(name)s
+        URL: %(url)s
+        DELETED BY: %(user_str)s
+        ID: %(id)s
+        GUID: %(guid)s
+        AUTHORS: %(authors)s
+        TOTAL DOWNLOADS: %(total_downloads)s
+        AVERAGE DAILY USERS: %(adu)s
+        NOTES: %(msg)s
+        REASON GIVEN BY USER FOR DELETION: %(reason)s
+        """ % context
+        log.debug('Sending delete email for %(atype)s %(id)s' % context)
+        subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
 
-            email_msg = u"""
-            The following %(atype)s was deleted.
-            %(atype)s: %(name)s
-            URL: %(url)s
-            DELETED BY: %(user_str)s
-            ID: %(id)s
-            GUID: %(guid)s
-            AUTHORS: %(authors)s
-            TOTAL DOWNLOADS: %(total_downloads)s
-            AVERAGE DAILY USERS: %(adu)s
-            NOTES: %(msg)s
-            REASON GIVEN BY USER FOR DELETION: %(reason)s
-            """ % context
-            log.debug('Sending delete email for %(atype)s %(id)s' % context)
-            subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
+        # Update or NULL out various fields.
+        models.signals.pre_delete.send(sender=Addon, instance=self)
+        self.update(status=amo.STATUS_DELETED,
+                    slug=None, app_slug=None, app_domain=None,
+                    _current_version=None)
+        models.signals.post_delete.send(sender=Addon, instance=self)
 
-            # Update or NULL out various fields.
-            models.signals.pre_delete.send(sender=Addon, instance=self)
-            self.update(status=amo.STATUS_DELETED,
-                        slug=None, app_slug=None, app_domain=None,
-                        _current_version=None)
-            models.signals.post_delete.send(sender=Addon, instance=self)
-
-            send_mail(subject, email_msg, recipient_list=to)
-        else:
-            # Real deletion path.
-            super(Addon, self).delete()
+        send_mail(subject, email_msg, recipient_list=to)
 
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
-
-        # Remove from search index.
-        #
-        # Note: We keep webapps in the indexes so the lookup tool can find
-        # deleted apps (bug 896782). Otherwise we'd call:
-        # `mkt.webapps.tasks.unindex_webapps.delay([id])`
-        if not self.type == amo.ADDON_WEBAPP:
-            tasks.unindex_addons.delay([id])
 
         return True
 
@@ -563,9 +548,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_url_path(self, more=False, add_prefix=True):
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
-        if settings.MARKETPLACE and self.is_persona():
-            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
-            return 'https://addons.mozilla.org/firefox/addon/%s/' % self.slug
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
@@ -574,15 +556,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
-        # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
-        if settings.MARKETPLACE and self.is_persona():
-            return 'https://addons.mozilla.org/firefox/themes/%s/edit' % (
-                self.slug)
-
         # Either link to the "new" Marketplace Developer Hub or the old one.
         args = args or []
-        prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
-                  else 'devhub')
+        prefix = 'mkt.developers'
         if self.is_webapp():
             view_name = '%s.%s' if prefix_only else '%s.apps.%s'
             return reverse(view_name % (prefix, action),
@@ -2178,16 +2154,7 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
         return urls
 
     def get_url_path(self):
-        try:
-            type = amo.ADDON_SLUGS[self.type]
-        except KeyError:
-            type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
-        if settings.MARKETPLACE and self.type == amo.ADDON_PERSONA:
-            # TODO: Move Theme Reviewer Tools to AMO so we don't have to hack.
-            return 'https://addons.mozilla.org/firefox/themes/%s' % self.slug
-        elif settings.MARKETPLACE and self.type == amo.ADDON_WEBAPP:
-            return '/search?cat=%s' % self.slug
-        return reverse('browse.%s' % type, args=[self.slug])
+        return '/search?cat=%s' % self.slug
 
     @staticmethod
     def transformer(addons):

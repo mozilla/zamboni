@@ -16,10 +16,6 @@ WAFFLE_TABLE_SUFFIX = 'mkt'
 LOG_TABLE_SUFFIX = '_mkt'
 EVENT_TABLE_SUFFIX = '_mkt'
 
-# So temporary. Allow us to link to new devhub URLs from `Addon.get_dev_url()`.
-# Also used to determine if we add the /<app>/ to URLs.
-MARKETPLACE = True
-
 # 403 view to render for CSRF failures.
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 

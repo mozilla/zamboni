@@ -1,9 +1,9 @@
-from copy import copy
-from datetime import datetime
 import imghdr
 import json
 import os.path
 import string
+from copy import copy
+from datetime import datetime
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -393,11 +393,7 @@ class ActivityLog(amo.models.ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version {0}')
-                if settings.MARKETPLACE:
-                    version = self.f(text, arg.version)
-                else:
-                    version = self.f(u'<a href="{1}">%s</a>' % text,
-                                     arg.version, arg.get_url_path())
+                version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(u'<a href="{0}">{1}</a>',
@@ -434,8 +430,8 @@ class ActivityLog(amo.models.ModelBase):
 class ActivityLogAttachment(amo.models.ModelBase):
     """
     Model for an attachment to an ActivityLog instance. Used by the Marketplace
-    reviewer tools, where reviewers can attach files to comments made during the
-    review process.
+    reviewer tools, where reviewers can attach files to comments made during
+    the review process.
     """
     activity_log = models.ForeignKey('ActivityLog')
     filepath = models.CharField(max_length=255)
@@ -447,9 +443,7 @@ class ActivityLogAttachment(amo.models.ModelBase):
         ordering = ('id',)
 
     def get_absolute_url(self):
-        if settings.MARKETPLACE:
-            return reverse('reviewers.apps.review.attachment', args=[self.pk])
-        return None
+        return reverse('reviewers.apps.review.attachment', args=[self.pk])
 
     def filename(self):
         """

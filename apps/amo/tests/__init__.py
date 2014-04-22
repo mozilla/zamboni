@@ -36,14 +36,14 @@ from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
-from access.acl import check_ownership
 import addons.search
 import amo
 import amo.search
 import stats.search
+from access.acl import check_ownership
 from access.models import Group, GroupUser
-from addons.models import (Addon, Category, Persona,
-                           update_search_index as addon_update_search_index)
+from addons.models import update_search_index as addon_update_search_index
+from addons.models import Addon, Category, Persona
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
@@ -54,15 +54,15 @@ from files.models import File, Platform
 from lib.es.signals import process, reset
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
-from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
+from versions.models import ApplicationsVersions, Version
 
 import mkt
 from mkt.constants import regions
-from mkt.webapps.models import (update_search_index as app_update_search_index,
-                                WebappIndexer, Webapp)
-from mkt.webapps.tasks import unindex_webapps
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import update_search_index as app_update_search_index
+from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.tasks import unindex_webapps
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -872,8 +872,7 @@ class ESTestCase(TestCase):
         # because we may have indexation occuring in upper classes.
         for key, index in settings.ES_INDEXES.items():
             if not index.startswith('test_'):
-                settings.ES_INDEXES[key] = 'test_%s_%s' % (
-                    'mkt' if settings.MARKETPLACE else 'amo', index)
+                settings.ES_INDEXES[key] = 'test_mkt_%s' % index
 
         super(ESTestCase, cls).setUpClass()
         try:
@@ -912,8 +911,7 @@ class ESTestCase(TestCase):
 
         addons.search.setup_mapping()
         stats.search.setup_indexes()
-        if settings.MARKETPLACE:
-            WebappIndexer.setup_mapping()
+        WebappIndexer.setup_mapping()
 
     @classmethod
     def tearDownClass(cls):

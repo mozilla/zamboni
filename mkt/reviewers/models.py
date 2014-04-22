@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 
 import amo
@@ -24,7 +23,5 @@ def cleanup_queues(sender, instance, **kwargs):
     EscalationQueue.objects.filter(addon=instance).delete()
 
 
-# Don't add this signal in if we are not in the marketplace.
-if settings.MARKETPLACE:
-    models.signals.post_delete.connect(cleanup_queues, sender=Addon,
-                                       dispatch_uid='queue-addon-cleanup')
+models.signals.post_delete.connect(cleanup_queues, sender=Addon,
+                                   dispatch_uid='queue-addon-cleanup')

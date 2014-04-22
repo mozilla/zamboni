@@ -193,10 +193,6 @@ class Command(BaseCommand):
         Creates a Tasktree that creates a new indexes and indexes all objects,
         then points the alias to this new index when finished.
         """
-        if not settings.MARKETPLACE:
-            raise CommandError('This command affects only marketplace and '
-                               'should be run under Marketplace settings.')
-
         force = kwargs.get('force', False)
         prefix = kwargs.get('prefix', '')
 

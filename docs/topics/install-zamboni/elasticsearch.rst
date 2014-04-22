@@ -64,11 +64,10 @@ Zamboni has commands that sets up mappings and indexes objects such as add-ons
 and apps for you. Setting up the mappings is analagous to defining the
 structure of a table, indexing is analagous to storing rows.
 
-For AMO, this will set up all indexes and start the indexing processeses::
+It is worth noting that the index is maintained incrementally through
+post_save and post_delete hooks.
 
-    ./manage.py reindex --settings=your_local_amo_settings
-
-For Marketplace, use this to only create the apps index and index apps::
+Use this to create the apps index and index apps::
 
     ./manage.py reindex_mkt --settings=your_local_mkt_settings
 
@@ -79,25 +78,6 @@ Or you could use the makefile target (using the ``settings_local.py`` file)::
 If you need to use another settings file and add arguments::
 
     make SETTINGS=settings_other ARGS='--with-stats --wipe --force' reindex
-
-
-Indexing
---------
-
-Zamboni has other indexing commands. It is worth noting that the index is
-maintained incrementally through post_save and post_delete hooks::
-
-    ./manage.py cron reindex_addons  # Index all the add-ons.
-
-    ./manage.py index_stats  # Index all the update and download counts.
-
-    ./manage.py cron reindex_collections  # Index all the collections.
-
-    ./manage.py cron reindex_users  # Index all the users.
-
-    ./manage.py cron compatibility_report  # Set up the compatibility index.
-
-    ./manage.py weekly_downloads # Index weekly downloads.
 
 Querying Elasticsearch in Django
 --------------------------------

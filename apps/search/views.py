@@ -211,7 +211,7 @@ class BaseAjaxSearch(object):
 
 
 class SearchSuggestionsAjax(BaseAjaxSearch):
-    src = 'mkt-ss' if settings.MARKETPLACE else 'ss'
+    src = 'mkt-ss'
 
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
@@ -238,10 +238,8 @@ def ajax_search(request):
 
 @json_view
 def ajax_search_suggestions(request):
-    cat = request.GET.get('cat', 'all')
     # Don't let Marketplace query any other types.
-    if settings.MARKETPLACE:
-        cat = 'apps'
+    cat = 'apps'
     suggesterClass = {
         'all': AddonSuggestionsAjax,
         'themes': PersonaSuggestionsAjax,
@@ -340,9 +338,10 @@ def name_query(q):
     # * Look for phrase matches inside the description using language
     #   specific analyzer (boost=0.1).
     # * Look for matches inside tags (boost=0.1).
-    more = dict(summary__match={'query': q, 'boost': 0.8, 'type': 'phrase'},
-                description__match={'query': q, 'boost': 0.3, 'type': 'phrase'},
-                tags__match={'query': q.split(), 'boost': 0.1})
+    more = dict(
+        summary__match={'query': q, 'boost': 0.8, 'type': 'phrase'},
+        description__match={'query': q, 'boost': 0.3, 'type': 'phrase'},
+        tags__match={'query': q.split(), 'boost': 0.1})
 
     analyzer = _get_locale_analyzer()
     if analyzer:

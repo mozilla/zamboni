@@ -1093,7 +1093,6 @@ CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
-                  'lib.es.management.commands.reindex',
                   'lib.es.management.commands.reindex_mkt')
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
@@ -1477,9 +1476,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Temporary variables for the app-preview server, set this to True
 # if you want to experience app-preview.mozilla.org.
 APP_PREVIEW = False
-
-# Super temporary.
-MARKETPLACE = False
 
 # Name of view to use for homepage. AMO uses this. Marketplace has its own.
 HOME = 'addons.views.home'

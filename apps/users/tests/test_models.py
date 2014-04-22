@@ -6,8 +6,8 @@ from urlparse import urlparse
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth.hashers import (is_password_usable,
-    check_password, make_password, load_hashers, identify_hasher)
+from django.contrib.auth.hashers import (check_password, identify_hasher,
+                                         is_password_usable, make_password)
 from django.contrib.auth.models import User
 from django.core import mail
 from django.utils import encoding, translation
@@ -321,10 +321,9 @@ class TestPasswords(amo.tests.TestCase):
         assert u.check_password('password') is True
 
     def test_browserid_password(self):
-        with self.settings(MARKETPLACE=True):
-            for source in amo.LOGIN_SOURCE_BROWSERIDS:
-                u = UserProfile(password=self.utf, source=source)
-                assert u.check_password('foo')
+        for source in amo.LOGIN_SOURCE_BROWSERIDS:
+            u = UserProfile(password=self.utf, source=source)
+            assert u.check_password('foo')
 
         u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
         assert not u.check_password('foo')

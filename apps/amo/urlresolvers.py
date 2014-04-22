@@ -1,22 +1,20 @@
 #-*- coding: utf-8 -*-
-import bleach
 import hashlib
 import hmac
 import urllib
-import sys
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
+
+import bleach
+import jinja2
 
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils import encoding
 from django.utils.translation.trans_real import parse_accept_lang_header
 
-import jinja2
-
 import amo
 
-from . import logger_log as log
 
 # Get a pointer to Django's reverse because we're going to hijack it after we
 # define our own.
@@ -58,8 +56,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
-    if settings.MARKETPLACE:
-        prefix = None
+    prefix = None
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
@@ -149,22 +146,7 @@ class Prefixer(object):
 
     def fix(self, path):
         # Marketplace URLs are not prefixed with `/<locale>/<app>`.
-        if settings.MARKETPLACE:
-            return path
-
-        path = path.lstrip('/')
-        url_parts = [self.request.META['SCRIPT_NAME']]
-
-        if path.partition('/')[0] not in settings.SUPPORTED_NONLOCALES:
-            url_parts.append(self.locale or self.get_language())
-
-        if (not settings.MARKETPLACE and
-            path.partition('/')[0] not in settings.SUPPORTED_NONAPPS):
-            url_parts.append(self.app or self.get_app())
-
-        url_parts.append(path)
-
-        return '/'.join(url_parts)
+        return path
 
 
 def get_outgoing_url(url):

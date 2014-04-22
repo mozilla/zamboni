@@ -5,18 +5,19 @@ from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
 import jingo
-from nose.tools import eq_
 from mock import Mock, patch
+from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, ActivityLogAttachment, AddonLog, BlogPost
-from tags.models import Tag
+from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
+                           BlogPost)
 from files.models import File
 from reviews.models import Review
+from tags.models import Tag
 from users.models import UserProfile
 from versions.models import Version
 
@@ -131,7 +132,6 @@ class TestActivityLog(amo.tests.TestCase):
         entries = ActivityLog.objects.for_version(version)
         eq_(len(entries), 1)
 
-    @patch('django.conf.settings.MARKETPLACE', True)
     @patch('users.helpers._user_link', lambda *args: 'xss bob link')
     def test_version_xss(self):
         addon = Addon.objects.get()
@@ -362,13 +362,12 @@ class TestActivityLogAttachment(amo.tests.TestCase):
         """
         Create and return a tuple of ActivityLogAttachment instances.
         """
-        ala1 = ActivityLogAttachment.objects.create(activity_log=activity_log,
-                                                    filepath='bacon.txt',
-                                                    mimetype='text/plain')
-        ala2 = ActivityLogAttachment.objects.create(activity_log=activity_log,
-                                                    filepath='bacon.jpg',
-                                                    description=self.XSS_STRING,
-                                                    mimetype='image/jpeg')
+        ala1 = ActivityLogAttachment.objects.create(
+            activity_log=activity_log, filepath='bacon.txt',
+            mimetype='text/plain')
+        ala2 = ActivityLogAttachment.objects.create(
+            activity_log=activity_log, filepath='bacon.jpg',
+            description=self.XSS_STRING, mimetype='image/jpeg')
         return ala1, ala2
 
     def test_filename(self):

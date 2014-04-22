@@ -1,4 +1,3 @@
-import chardet
 import codecs
 import collections
 import contextlib
@@ -22,8 +21,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.core import paginator
 from django.core.cache import cache
-from django.core.files.storage import (FileSystemStorage,
-                                       default_storage as storage)
+from django.core.files.storage import default_storage as storage
+from django.core.files.storage import FileSystemStorage
 from django.core.serializers import json
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
@@ -35,6 +34,7 @@ from django.utils.functional import Promise
 from django.utils.http import urlquote
 
 import bleach
+import chardet
 import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
@@ -144,6 +144,7 @@ def paginate(request, queryset, per_page=20, count=None):
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
+
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
@@ -243,7 +244,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     'mandatory': perm_setting.mandatory,
                     # Hide "Unsubscribe" links in Marketplace emails
                     # (bug 802379).
-                    'show_unsubscribe': not settings.MARKETPLACE
+                    'show_unsubscribe': False,
                 }
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
@@ -650,8 +651,6 @@ def redirect_for_login(request):
     url = '%s?to=%s' % (reverse('users.login'),
                         urlquote(request.get_full_path()))
     return http.HttpResponseRedirect(url)
-
-
 
 
 def cache_ns_key(namespace, increment=False):

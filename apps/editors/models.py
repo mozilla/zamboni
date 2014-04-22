@@ -14,10 +14,10 @@ from tower import ugettext_lazy as _lazy
 import amo
 import amo.models
 from access.models import Group
+from addons.models import Addon, Persona
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import cache_ns_key, send_mail
-from addons.models import Addon, Persona
 from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
@@ -311,13 +311,12 @@ class EditorSubscription(amo.models.ModelBase):
 
 
 def send_notifications(signal=None, sender=None, **kw):
-    if sender.is_beta:
-        return
-
     # See bug 741679 for implementing this in Marketplace. This is deactivated
     # in the meantime because EditorSubscription.send_notification() uses
     # AMO-specific code.
-    if settings.MARKETPLACE:
+    return
+
+    if sender.is_beta:
         return
 
     subscribers = sender.addon.editorsubscription_set.all()
@@ -420,9 +419,9 @@ class ReviewerScore(amo.models.ModelBase):
                                note_key=event)
             cls.get_key(invalidate=True)
             user_log.info(
-                (u'Awarding %s points to user %s for "%s" for addon %s' % (
-                    score, user, amo.REVIEWED_CHOICES[event], addon.id)
-             ).encode('utf-8'))
+                (u'Awarding %s points to user %s for "%s" for addon %s'
+                 % (score, user, amo.REVIEWED_CHOICES[event], addon.id))
+                .encode('utf-8'))
         return score
 
     @classmethod

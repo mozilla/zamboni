@@ -19,14 +19,13 @@ from django.views.decorators.cache import never_cache
 import commonware.log
 import jinja2
 from hera.contrib.django_forms import FlushForm
-from hera.contrib.django_utils import get_hera, flush_urls
-from tower import ugettext as _
+from hera.contrib.django_utils import flush_urls, get_hera
 
 import amo
 import amo.search
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
-from amo import messages, get_user
+from amo import get_user, messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import FakeEmailBackend
@@ -58,9 +57,7 @@ log = commonware.log.getLogger('z.zadmin')
 
 @admin_required(reviewers=True)
 def flagged(request):
-    types = (amo.MARKETPLACE_TYPES if settings.MARKETPLACE
-             else list(set(amo.ADDON_TYPES.keys()) -
-                       set(amo.MARKETPLACE_TYPES)))
+    types = amo.MARKETPLACE_TYPES
     addons = (Addon.objects.no_cache()
                            .filter(admin_review=True, type__in=types)
                            .no_transforms().order_by('-created'))
@@ -354,14 +351,14 @@ def notify(request, job):
                            .values_list('pk', 'addons__pk').distinct())
 
             users = list(UserProfile.objects.filter(
-                             pk__in=set(u for u, a in users_addons)))
+                pk__in=set(u for u, a in users_addons)))
 
             # Annotate fails in tests when using cached results
             addons = (Addon.objects.no_cache()
                            .filter(**{
                                'pk__in': set(a for u, a in users_addons),
                                'versions__files__'
-                                    'validation_results__validation_job': job
+                                   'validation_results__validation_job': job
                            })
                            .annotate(errors=Sum(
                                'versions__files__validation_results__errors')))
@@ -717,9 +714,7 @@ def addon_search(request):
         else:
             qs = (Addon.search()
                        .query(name__match=q.lower())
-                       .filter(type__in=amo.MARKETPLACE_TYPES if
-                                        settings.MARKETPLACE else
-                                        amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
+                       .filter(type__in=amo.MARKETPLACE_TYPES)[:100])
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

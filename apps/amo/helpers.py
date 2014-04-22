@@ -8,9 +8,9 @@ from urlparse import urljoin
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
+from django.template import defaultfilters
 from django.utils import translation
 from django.utils.encoding import smart_unicode
-from django.template import defaultfilters
 
 import caching.base as caching
 import jinja2
@@ -22,11 +22,12 @@ from jingo import helpers  # noqa
 from tower import ugettext as _, strip_whitespace
 
 import amo
-from amo import utils, urlresolvers
+from amo import urlresolvers, utils
 from constants.licenses import PERSONA_LICENSES_IDS
-from translations.query import order_by_translation
 from translations.helpers import truncate
+from translations.query import order_by_translation
 from versions.models import License
+
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -69,13 +70,9 @@ def babel_date(date, format='medium'):
 
 @register.function
 def locale_url(url):
-    """Take a URL and give it the locale prefix."""
-    if settings.MARKETPLACE:
-        return url
-    prefixer = urlresolvers.get_url_prefix()
-    script = prefixer.request.META['SCRIPT_NAME']
-    parts = [script, prefixer.locale, url.lstrip('/')]
-    return '/'.join(parts)
+    """Marketplace doesn't use locale prefixed URLs but we call this a lot."""
+    # TODO: Remove uses of this in templates.
+    return url
 
 
 @register.inclusion_tag('includes/refinements.html')

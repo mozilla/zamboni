@@ -87,6 +87,6 @@ def send_abuse_report(request, obj, message):
     report.send()
 
     # Trigger addon high abuse report detection task.
-    if settings.MARKETPLACE and isinstance(obj, Addon):
+    if isinstance(obj, Addon):
         from amo.tasks import find_abuse_escalations
         find_abuse_escalations.delay(obj.id)

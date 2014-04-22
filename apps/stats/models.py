@@ -13,11 +13,13 @@ from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
 import amo
+from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
 from amo.models import SearchMixin
-from amo.fields import DecimalCharField
 from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
 from zadmin.models import DownloadSource
+
+import mkt
 
 from .db import StatsDictField
 
@@ -421,12 +423,10 @@ class ClientData(models.Model):
         except DownloadSource.DoesNotExist:
             download_source = None
         region = None
-        if settings.MARKETPLACE:
-            import mkt
-            if hasattr(request, 'REGION') and request.REGION:
-                region = request.REGION.id
-            else:
-                region = mkt.regions.RESTOFWORLD.id
+        if hasattr(request, 'REGION') and request.REGION:
+            region = request.REGION.id
+        else:
+            region = mkt.regions.RESTOFWORLD.id
         if hasattr(request, 'LANG'):
             lang = request.LANG
         else:

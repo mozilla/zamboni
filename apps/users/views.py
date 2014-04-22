@@ -3,16 +3,16 @@ from functools import partial
 
 from django import http
 from django.conf import settings
-from django.db import IntegrityError, transaction
-from django.shortcuts import (get_list_or_404, get_object_or_404,
-                              redirect, render)
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
+from django.db import IntegrityError, transaction
+from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
+                              render)
 from django.template import Context, loader
+from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.http import urlsafe_base64_decode, is_safe_url
 
 import commonware.log
 import waffle
@@ -25,6 +25,7 @@ from tower import ugettext as _
 import amo
 import users.notifications as notifications
 from abuse.models import send_abuse_report
+from access import acl
 from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
 from addons.models import Addon, Category
@@ -35,7 +36,6 @@ from amo.forms import AbuseForm
 from amo.helpers import loc
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
-from access import acl
 from bandwagon.models import Collection
 from browse.views import PersonasFilter
 from translations.query import order_by_translation
@@ -43,11 +43,11 @@ from users.models import UserNotification
 
 from lib.metrics import record_action
 
+from . import forms, tasks
 from .models import UserProfile
 from .signals import logged_out
-from . import forms
 from .utils import autocreate_username, EmailResetCode, UnsubscribeCode
-import tasks
+
 
 log = commonware.log.getLogger('z.users')
 
@@ -89,7 +89,6 @@ def ajax(request):
         dev_only = int(dev_only)
     except ValueError:
         dev_only = 1
-    dev_only = dev_only and settings.MARKETPLACE
 
     if not email:
         data.update(message=_('An email address is required.'))
@@ -370,8 +369,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
         return profile, None
 
     username = autocreate_username(email.partition('@')[0])
-    source = (amo.LOGIN_SOURCE_MMO_BROWSERID if settings.MARKETPLACE else
-              amo.LOGIN_SOURCE_AMO_BROWSERID)
+    source = amo.LOGIN_SOURCE_MMO_BROWSERID
     profile = UserProfile.objects.create(username=username, email=email,
                                          source=source, display_name=username,
                                          is_verified=verified)
@@ -380,8 +378,8 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     log_cef('New Account', 5, request, username=username,
             signature='AUTHNOTICE',
             msg='User created a new account (from Persona)')
-    if settings.MARKETPLACE:
-        record_action('new-user', request)
+    record_action('new-user', request)
+
     return profile, None
 
 
@@ -424,9 +422,7 @@ def login_modal(request, template=None):
 @mobile_template('users/{mobile/}login.html')
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
-    if settings.MARKETPLACE:
-        return redirect('users.login')
-    return _login(request, template=template)
+    return redirect('users.login')
 
 
 def _login(request, template=None, data=None, dont_redirect=False):
@@ -559,8 +555,7 @@ def logout(request):
 @user_view
 def profile(request, user):
     # Temporary until we decide we want user profile pages.
-    if settings.MARKETPLACE:
-        raise http.Http404
+    raise http.Http404
 
     webapp = False
 

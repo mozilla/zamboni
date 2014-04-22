@@ -409,30 +409,18 @@ def site_events(request, start, end):
 
     events = list(site_event_format(request, qs))
 
-    type_pretty = unicode(amo.SITE_EVENT_CHOICES[amo.SITE_EVENT_RELEASE])
-
-    if not settings.MARKETPLACE:
-        releases = product_details.firefox_history_major_releases
-
-        for version, date in releases.items():
-            events.append({
-                'start':       date,
-                'type_pretty': type_pretty,
-                'type':        amo.SITE_EVENT_RELEASE,
-                'description': 'Firefox %s released' % version,
-            })
     return events
 
 
 def site_event_format(request, events):
     for e in events:
         yield {
-            'start':        e.start.isoformat(),
-            'end':          e.end.isoformat() if e.end else None,
-            'type_pretty':  unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
-            'type':         e.event_type,
-            'description':  e.description,
-            'url':          e.more_info_url,
+            'start': e.start.isoformat(),
+            'end': e.end.isoformat() if e.end else None,
+            'type_pretty': unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
+            'type': e.event_type,
+            'description': e.description,
+            'url': e.more_info_url,
         }
 
 
@@ -473,14 +461,15 @@ def fake_collection_stats(request, username, slug, group, start, end, format):
     for single_date in daterange(start, end):
         isodate = strftime("%Y-%m-%d", single_date.timetuple())
         faked.append({
-         'date': isodate,
-         'count': floor(200 + 50 * sin(val + 1)),
-         'data': {
-            'downloads': floor(200 + 50 * sin(2 * val + 2)),
-            'votes_up': floor(200 + 50 * sin(3 * val + 3)),
-            'votes_down': floor(200 + 50 * sin(4 * val + 4)),
-            'subscribers': floor(200 + 50 * sin(5 * val + 5)),
-        }})
+            'date': isodate,
+            'count': floor(200 + 50 * sin(val + 1)),
+            'data': {
+                'downloads': floor(200 + 50 * sin(2 * val + 2)),
+                'votes_up': floor(200 + 50 * sin(3 * val + 3)),
+                'votes_down': floor(200 + 50 * sin(4 * val + 4)),
+                'subscribers': floor(200 + 50 * sin(5 * val + 5)),
+            }
+        })
         val += .01
     return faked
 
@@ -506,8 +495,6 @@ _CACHED_KEYS = sorted(_KEYS.values())
 
 @memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
-    old_version = request and request.GET.get('old_version', '0') or '0'
-
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the
     # assert.

@@ -42,7 +42,7 @@ class LocaleAndAppURLMiddleware(object):
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
         # In mkt, don't vary headers on User-Agent.
-        with_app = not getattr(settings, 'MARKETPLACE', False)
+        with_app = False
 
         if (prefixer.app == amo.MOBILE.short and
                 request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):

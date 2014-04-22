@@ -5,7 +5,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.conf import settings
 
-from mock import Mock, patch
+from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -21,9 +21,9 @@ from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
 
-from . test_models import create_addon_file
+from .test_models import create_addon_file
 
-from mkt.site.fixtures import fixture
+
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
 REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
@@ -834,9 +834,8 @@ def test_version_status():
     version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
     eq_(u'Awaiting Preliminary Review', helpers.version_status(addon, version))
 
-    with patch.object(settings, 'MARKETPLACE', True):
-        version.all_files = [File(status=amo.STATUS_PENDING)]
-        eq_(u'Pending approval', helpers.version_status(addon, version))
+    version.all_files = [File(status=amo.STATUS_PENDING)]
+    eq_(u'Pending approval', helpers.version_status(addon, version))
 
-        version.deleted = True
-        eq_(u'Deleted', helpers.version_status(addon, version))
+    version.deleted = True
+    eq_(u'Deleted', helpers.version_status(addon, version))

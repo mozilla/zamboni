@@ -1,26 +1,25 @@
 import collections
-from datetime import datetime
 import json
+from datetime import datetime
 from urlparse import urlparse
 
 from django.conf import settings
-from django.core import mail
-from django.core.cache import cache
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
+from django.core import mail
+from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.utils.http import urlsafe_base64_encode
 
-from mock import ANY, Mock, patch
-from nose.tools import eq_
-from nose import SkipTest
-
-# Unused, but needed so that we can patch jingo.
-from waffle import helpers  # NOQA
 import waffle
+from mock import ANY, Mock, patch
+from nose import SkipTest
+from nose.tools import eq_
+from waffle import helpers  # NOQA
 
 import amo
 import amo.tests
+import users.notifications as email
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonPremium, AddonUser, Category
@@ -31,8 +30,7 @@ from bandwagon.models import Collection, CollectionWatcher
 from devhub.models import ActivityLog
 from market.models import Price
 from reviews.models import Review
-from users.models import BlacklistedPassword, UserProfile, UserNotification
-import users.notifications as email
+from users.models import BlacklistedPassword, UserNotification, UserProfile
 from users.utils import EmailResetCode, UnsubscribeCode
 from users.views import browserid_authenticate
 
@@ -95,16 +93,6 @@ class TestAjax(UserViewBase):
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content
 
-    @patch.object(settings, 'MARKETPLACE', False)
-    def test_ajax_failure_incorrect_email(self):
-        r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
-                            follow=True)
-        data = json.loads(r.content)
-        eq_(data,
-            {'status': 0,
-             'message': 'A user with that email address does not exist.'})
-
-    @patch.object(settings, 'MARKETPLACE', True)
     def test_ajax_failure_incorrect_email_mkt(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
                             follow=True)
@@ -566,18 +554,6 @@ class TestLogin(UserViewBase):
         text = 'Please enter a correct username and password.'
         assert res.context['form'].errors['__all__'][0].startswith(text)
 
-    def test_login_pwd(self):
-        user = User.objects.get(email='jbalogh@mozilla.com')
-        profile = user.get_profile()
-        profile.source = amo.LOGIN_SOURCE_BROWSERID
-        profile.password = ''
-        profile.save()
-
-        self.client.get(self.url)
-        with self.settings(MARKETPLACE=False):
-            # A failed login produces a 200.
-            eq_(self.client.post(self.url, data=self.data).status_code, 200)
-
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)
@@ -614,7 +590,6 @@ class TestLogin(UserViewBase):
         self.client.post(self.url, data={'username': self.data['username']})
         eq_(user.get().failed_login_attempts, 4)
 
-
     def test_doubled_account(self):
         """
         Logging in to an account that shares a User object with another
@@ -631,16 +606,19 @@ class TestLogin(UserViewBase):
         profile2.set_password('foo')
         profile2.save()
 
-        res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrong'})
+        res = self.client.post(self.url,
+                               data={'username': 'charlie@example.com',
+                                     'password': 'wrong'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
-        res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'baz'})
+        res2 = self.client.post(self.url,
+                                data={'username': 'charlie@example.com',
+                                      'password': 'baz'})
         eq_(res2.status_code, 302)
-        res3 = self.client.post(self.url, data={'username': 'bob@example.com',
-                                                'password': 'foo'})
+        res3 = self.client.post(self.url,
+                                data={'username': 'bob@example.com',
+                                      'password': 'foo'})
         eq_(res3.status_code, 302)
 
     def test_changed_account(self):
@@ -654,13 +632,15 @@ class TestLogin(UserViewBase):
         profile.email = 'charlie@example.com'
         profile.save()
 
-        res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrong'})
+        res = self.client.post(self.url,
+                               data={'username': 'charlie@example.com',
+                                     'password': 'wrong'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
-        res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'baz'})
+        res2 = self.client.post(self.url,
+                                data={'username': 'charlie@example.com',
+                                      'password': 'baz'})
         eq_(res2.status_code, 302)
 
 
@@ -868,7 +848,6 @@ class TestPersonaLogin(UserViewBase):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
 
-    @patch.object(settings, 'MARKETPLACE', True)
     @patch('users.views.record_action')
     def test_mmo_source(self, record_action):
         profile = self.create_profile()
@@ -1497,7 +1476,8 @@ class TestThemesProfile(amo.tests.TestCase):
         self.theme.addonuser_set.create(user=self.user, listed=True)
         cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
 
-        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        res = self.client.get(self.user.get_user_url('themes',
+                                                     args=[cat.slug]))
         eq_(res.status_code, 200)
 
     def test_themes_category(self):
@@ -1506,7 +1486,8 @@ class TestThemesProfile(amo.tests.TestCase):
         cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
         self.theme.addoncategory_set.create(category=cat)
 
-        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        res = self.client.get(self.user.get_user_url('themes',
+                                                     args=[cat.slug]))
         self._test_good(res)
 
 

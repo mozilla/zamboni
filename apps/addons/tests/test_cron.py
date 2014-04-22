@@ -1,11 +1,8 @@
-import os
 import datetime
+import os
 
-from nose.exc import SkipTest
-from nose.tools import eq_
 import mock
-
-from django.conf import settings
+from nose.tools import eq_
 
 import amo
 import amo.tests
@@ -254,8 +251,6 @@ class TestReindex(amo.tests.ESTestCase):
 
     @classmethod
     def setUpClass(cls):
-        if not settings.MARKETPLACE:
-            raise SkipTest('Only a marketplace management command')
         super(TestReindex, cls).setUpClass()
 
     @mock.patch('addons.models.update_search_index', new=mock.Mock)

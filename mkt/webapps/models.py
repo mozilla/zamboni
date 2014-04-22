@@ -71,7 +71,7 @@ def reverse_version(version):
     The try/except AttributeError allows this to be used where the input is
     ambiguous, and could be either an already-reversed URL or a Version object.
     """
-    if version and settings.MARKETPLACE:
+    if version:
         try:
             return reverse('version-detail', kwargs={'pk': version.pk})
         except AttributeError:
@@ -302,8 +302,7 @@ class Webapp(Addon):
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         # Either link to the "new" Marketplace Developer Hub or the old one.
         args = args or []
-        prefix = ('mkt.developers' if getattr(settings, 'MARKETPLACE', False)
-                  else 'devhub')
+        prefix = 'mkt.developers'
         view_name = ('%s.%s' if prefix_only else '%s.apps.%s')
         return reverse(view_name % (prefix, action),
                        args=[self.app_slug] + args)
