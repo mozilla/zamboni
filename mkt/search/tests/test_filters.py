@@ -12,7 +12,8 @@ from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
-from mkt.search.forms import ApiSearchForm, DEVICE_CHOICES_IDS
+from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
+                              TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
@@ -97,7 +98,20 @@ class TestSearchFilters(BaseOAuth):
 
     def test_category(self):
         qs = self._filter(self.req, {'cat': self.category.slug})
-        ok_({'term': {'category': self.category.slug}} in qs['filter']['and'])
+        ok_({'in': {'category': [self.category.slug]}} in qs['filter']['and'])
+
+    def test_tarako_categories(self):
+        qs = self._filter(self.req, {'cat': 'tarako-lifestyle'})
+        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-lifestyle']}}
+            in qs['filter']['and'])
+
+        qs = self._filter(self.req, {'cat': 'tarako-games'})
+        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-games']}}
+            in qs['filter']['and'])
+
+        qs = self._filter(self.req, {'cat': 'tarako-tools'})
+        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-tools']}}
+            in qs['filter']['and'])
 
     def test_device(self):
         qs = self._filter(self.req, {'device': 'desktop'})

@@ -8,7 +8,6 @@ from rest_framework.generics import GenericAPIView
 
 from translations.helpers import truncate
 
-import mkt
 from mkt.api.authentication import (RestSharedSecretAuthentication,
                                     RestOAuthAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
@@ -21,7 +20,7 @@ from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
 from mkt.features.utils import get_feature_profile
 from mkt.search.views import _filter_search
-from mkt.search.forms import ApiSearchForm
+from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
 from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                     SuggestionsESAppSerializer)
 from mkt.search.utils import S
@@ -104,6 +103,9 @@ class FeaturedSearchView(SearchView):
         return response
 
     def add_featured_etc(self, request, data):
+        # Tarako categories don't have collections.
+        if request.GET.get('cat') in TARAKO_CATEGORIES_MAPPING:
+            return data, {}
         types = (
             ('collections', COLLECTIONS_TYPE_BASIC),
             ('featured', COLLECTIONS_TYPE_FEATURED),

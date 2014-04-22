@@ -96,7 +96,7 @@ class TestApi(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='test', slug='test',
+        self.category = Category.objects.create(name='Books', slug='books',
                                                 type=amo.ADDON_WEBAPP)
         self.webapp.icon_hash = 'fakehash'
         self.webapp.save()
@@ -154,7 +154,7 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(res.status_code, 200)
 
     def test_right_category(self):
-        res = self.client.get(self.url, data={'cat': self.category.pk})
+        res = self.client.get(self.url, data={'cat': self.category.slug})
         eq_(res.status_code, 200)
         eq_(res.json['objects'], [])
 
@@ -165,11 +165,30 @@ class TestApi(RestOAuth, ESTestCase):
 
     def test_right_category_present(self):
         self.create()
-        res = self.client.get(
-            self.url, data={'cat': self.category.pk})
+        res = self.client.get(self.url, data={'cat': self.category.slug})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
+
+    def test_tarako_category(self):
+        self.create()
+        # tarako-lifestyle includes books.
+        res = self.client.get(self.url, data={'cat': 'tarako-lifestyle'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+
+        # tarako-games includes only games.
+        res = self.client.get(self.url, data={'cat': 'tarako-games'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        # tarako-tools includes multiple categories, but not books.
+        res = self.client.get(self.url, data={'cat': 'tarako-tools'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
 
     def test_user_info_with_shared_secret(self):
         user = UserProfile.objects.all()[0]
@@ -182,15 +201,14 @@ class TestApi(RestOAuth, ESTestCase):
                    '.process_request', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
-            res = self.client.get(
-                self.url, data={'cat': self.category.pk})
+            res = self.client.get(self.url, data={'cat': self.category.slug})
             obj = res.json['objects'][0]
             assert 'user' in obj
 
     def test_dehydrate(self):
         with self.settings(SITE_URL='http://hy.fr'):
             self.create()
-            res = self.client.get(self.url, data={'cat': self.category.pk})
+            res = self.client.get(self.url, data={'cat': self.category.slug})
             eq_(res.status_code, 200)
             obj = res.json['objects'][0]
             content_ratings = obj['content_ratings']
@@ -703,8 +721,6 @@ class TestApiFeatures(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='test',
-                                                type=amo.ADDON_WEBAPP)
         # Pick a few common device features.
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
@@ -776,7 +792,7 @@ class BaseFeaturedTests(RestOAuth, ESTestCase):
 
     def setUp(self):
         super(BaseFeaturedTests, self).setUp()
-        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='shiny')
+        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='books')
         self.app = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(
             addon=self.app, device_type=DEVICE_CHOICES_IDS['firefoxos'])
@@ -784,7 +800,7 @@ class BaseFeaturedTests(RestOAuth, ESTestCase):
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
-        self.qs = {'cat': 'shiny', 'pro': self.profile, 'dev': 'firefoxos'}
+        self.qs = {'cat': 'books', 'pro': self.profile, 'dev': 'firefoxos'}
 
 
 class TestFeaturedCollections(BaseFeaturedTests):
@@ -964,6 +980,14 @@ class TestFeaturedCollections(BaseFeaturedTests):
     def test_region_None(self, get_region_from_request):
         get_region_from_request.return_value = None
         self.test_added_to_results()
+
+    def test_tarako_category(self):
+        """
+        Test that when passing a tarako category, collections are not included.
+        """
+        self.qs['cat'] = 'tarako-lifestyle'
+        res, json = self.make_request()
+        ok_(not self.prop_name in res.json)
 
 
 class TestFeaturedOperator(TestFeaturedCollections):

@@ -105,7 +105,9 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     if query.get('q'):
         qs = qs.query(should=True, **name_query(query['q'].lower()))
     if 'cat' in show:
-        qs = qs.filter(category=query['cat'])
+        # query['cat'] should be a list, the form clean_cat method takes care
+        # of that.
+        qs = qs.filter(category__in=query['cat'])
     if 'price' in show:
         if query['price'] == 'paid':
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
