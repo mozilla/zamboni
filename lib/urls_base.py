@@ -8,7 +8,6 @@ from django.views.decorators.cache import cache_page
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
-import blocklist.views
 import versions.urls
 
 admin.autodiscover()
@@ -21,12 +20,6 @@ handler500 = 'amo.views.handler500'
 urlpatterns = patterns('',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
-
-    # There are many more params but we only care about these three. The end is
-    # not anchored on purpose!
-    url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
-        blocklist.views.blocklist, name='blocklist'),
-    ('^blocked/', include('blocklist.urls')),
 
     # AMO homepage or Marketplace Developer Hub? Choose your destiny.
     url('^$', settings.HOME, name='home'),
