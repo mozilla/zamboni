@@ -59,6 +59,44 @@ DEVICE_CHOICES_IDS = {
     'firefoxos': amo.DEVICE_GAIA.id,
 }
 
+CATEGORY_CHOICES = [
+    ('', _lazy(u'All Categories')),
+    ('games', _lazy(u'Games')),
+    ('books', _lazy(u'Books')),
+    ('business', _lazy(u'Business')),
+    ('education', _lazy(u'Education')),
+    ('entertainment', _lazy(u'Entertainment')),
+    ('health-fitness', _lazy(u'Health & Fitness')),
+    ('lifestyle', _lazy(u'Lifestyle')),
+    ('maps-navigation', _lazy(u'Maps & Navigation')),
+    ('music', _lazy(u'Music')),
+    ('news-weather', _lazy(u'News & Weather')),
+    ('photo-video', _lazy(u'Photo & Video')),
+    ('productivity', _lazy(u'Productivity')),
+    ('reference', _lazy(u'Reference')),
+    ('shopping', _lazy(u'Shopping')),
+    ('social', _lazy(u'Social')),
+    ('sports', _lazy(u'Sports')),
+    ('travel', _lazy(u'Travel')),
+    ('utilities', _lazy(u'Utilities'))
+]
+
+TARAKO_CATEGORIES_MAPPING = {
+    'tarako-tools': ['business', 'education', 'productivity',
+                     'reference', 'utilities'],
+    'tarako-games': ['games'],
+    'tarako-lifestyle': ['books', 'entertainment', 'health-fitness',
+                         'lifestyle', 'maps-navigation', 'music',
+                         'news-weather', 'photo-video', 'shopping',
+                         'social', 'sports', 'travel'],
+}
+
+TARAKO_CATEGORY_CHOICES = [
+    ('tarako-tools', _lazy(u'Tools')),
+    ('tarako-games', _lazy(u'Games')),
+    ('tarako-lifestyle', _lazy(u'Lifestyle')),
+]
+
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
 FREE_LISTING_SORT_CHOICES = [(k, v) for k, v in LISTING_SORT_CHOICES
@@ -87,9 +125,8 @@ class ApiSearchForm(forms.Form):
                                       'placeholder': _lazy(u'Search')}))
     type = forms.ChoiceField(required=False, choices=ADDON_CHOICES,
                              label=_lazy(u'Add-on type'))
-    cat = SluggableModelChoiceField(
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
-        sluggable_to_field_name='slug', required=False)
+    cat = forms.ChoiceField(required=False, label=_lazy(u'Categories'),
+                            choices=CATEGORY_CHOICES + TARAKO_CATEGORY_CHOICES)
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
@@ -112,12 +149,6 @@ class ApiSearchForm(forms.Form):
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
-
-        # Clients understand cats via slugs, Zamboni thinks of them via IDs.
-        self.fields['cat'].choices = (
-            Category.objects.filter(type=amo.ADDON_WEBAPP, weight__gte=0)
-            .values_list('slug', 'id'))
-
         self.initial.update({
             'type': 'app',
             'status': 'pending',
@@ -125,12 +156,16 @@ class ApiSearchForm(forms.Form):
         })
 
     def clean_cat(self):
+        # If request category is a tarako one, get the corresponding list of
+        # slugs, otherwise just build a list with the slug requested.
         if self.cleaned_data['cat']:
-            return self.cleaned_data['cat'].slug
+            return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
+                                                 [self.cleaned_data['cat']])
+        return None
 
     def clean_type(self):
-            return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
-                                               amo.ADDON_WEBAPP)
+        return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
+                                           amo.ADDON_WEBAPP)
 
     def clean_premium_types(self):
         """After cleaned, return a list of ints for the constants."""

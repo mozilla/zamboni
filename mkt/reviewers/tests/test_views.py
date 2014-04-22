@@ -2763,6 +2763,9 @@ class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
         eq_(res.status_code, 404)
 
     def test_token_good(self):
+        if not settings.XSENDFILE:
+            raise SkipTest()
+
         token = Token(data={'app_id': self.app.id})
         token.save()
         self.setup_files()
