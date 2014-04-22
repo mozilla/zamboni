@@ -20485,3 +20485,71 @@ msgstr "Odwiedź Mozillę"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Mapy i nawigacja"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Styl życia"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Pomoce"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Biznes"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Rozrywka"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Zakupy"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Zdjęcia i wideo"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Podróże"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produktywność"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Narzędzia"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Gry"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Zdrowie i kondycja"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Muzyka"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Edukacja"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Informacje i pogoda"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Społecznościowe"

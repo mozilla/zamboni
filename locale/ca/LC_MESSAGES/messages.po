@@ -19974,3 +19974,71 @@ msgstr "Vés a Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menú"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Mapes i navegació"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Estil de vida"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Referència"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Negocis"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Entreteniment"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Compres"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Foto i vídeo"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Viatge"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Productivitat"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Utilitats"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Esports"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Jocs"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Salut i benestar"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Música"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Educació"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Notícies i temps"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Social"

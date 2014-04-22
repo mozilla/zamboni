@@ -19933,3 +19933,71 @@ msgstr "Посетите Mozilla сајт"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "мени"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Мапе и навигација"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Животни стил"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Упутства"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Посао"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Забава"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Куповина"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Слике и видео"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Путовањa"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Продуктивност"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Услужне апликације"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Спортови"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Игрице"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Здравље и фитнес"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Музика"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Образовање"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Вести и временска прогноза"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Друштвене"

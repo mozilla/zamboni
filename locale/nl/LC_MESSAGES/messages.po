@@ -20487,3 +20487,71 @@ msgstr "Bezoek Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Kaarten en navigatie"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Levensstijl"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Referentie"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Zakelijk"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Sport en spel"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Winkelen"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Foto’s en media"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Reizen"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Productiviteit"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Nuttig"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Spellen"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Gezondheid en fitness"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Muziek"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Opleiding"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Nieuws en weer"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Sociaal en communicatie"

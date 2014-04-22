@@ -20902,3 +20902,71 @@ msgstr "Navštívte stránky Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "ponuka"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Mapy a navigácie"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Životný štýl"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Referencie"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Podnikanie"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Zábava"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Nakupovanie"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Fotografie a médiá"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Cestovanie"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produktivita"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Nástroje"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Šport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Hry"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Zdravie a fitnes"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Hudba"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Vzdelávanie"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Správy a počasie"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Spoločenstvo"

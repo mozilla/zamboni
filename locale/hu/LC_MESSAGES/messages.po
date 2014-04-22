@@ -19954,3 +19954,71 @@ msgstr "Mozilla weboldal"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menü"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Térkép és navigáció"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Életmód"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Információforrások"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Üzleti appok"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Szórakozás"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Vásárlás"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Fotó és videó"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Utazás"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Hasznos appok"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Eszközök"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Játékok"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Egészség és fitnesz"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Zene"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Oktatás"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Hírek és időjárás"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Közösségi média"

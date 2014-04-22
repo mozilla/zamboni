@@ -20565,3 +20565,71 @@ msgstr "Mozilla besuchen"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "Menü"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Straßenkarten & Navigation"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Nachschlagewerke"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Geschäftliches"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Unterhaltung"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Einkaufen"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Foto & Video"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Reisen"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produktivität"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Werkzeuge"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Spiele"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Gesundheit & Fitness"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Musik"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Lernen"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Nachrichten & Wetter"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Soziale Netzwerke"

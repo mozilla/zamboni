@@ -20486,3 +20486,71 @@ msgstr "Посетить Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "меню"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Карты и навигация"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Стиль"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Ссылки"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Бизнес"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Развлечения"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Шоппинг"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Фото и видео"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Путешествия"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Продуктивность"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Утилиты"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Спорт"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Игры"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Здоровье и фитнесс"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Музыка"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Образование"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Новости и погода"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Социальные"

@@ -20013,3 +20013,71 @@ msgstr "Επισκεφθείτε το Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "μενού"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Χάρτες & πλοήγηση"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Αναφοράς"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Επιχειρήσεις"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Ψυχαγωγία"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Αγορές"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Φωτογραφίες & βίντεο"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Ταξίδια"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Παραγωγικότητα"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Βοηθήματα"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Αθλήματα"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Παιχνίδια"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Υγεία & φυσική κατάσταση"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Μουσική"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Εκπαίδευση"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Ειδήσεις & καιρός"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Κοινωνική δικτύωση"

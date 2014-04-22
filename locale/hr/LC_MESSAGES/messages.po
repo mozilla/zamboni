@@ -19893,3 +19893,71 @@ msgstr "Posjeti Mozillu"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr ""
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Karte i navigacija"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Životni stil"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Reference"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Posao"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Zabava"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Shopping"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Slike i video"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Putovanja"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produktivnost"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Pomagala"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Igre"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Zdravlje i tjelovježba"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Glazba"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Edukacija"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Vijesti i vrijeme"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Društveno"

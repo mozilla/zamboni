@@ -21273,3 +21273,71 @@ msgstr "menu"
 
 #~ msgid "Firefox Marketplace purchase of {0}"
 #~ msgstr "Blerje e {0} te Firefox Marketplace"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Harta & Lundrim"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Lifestyle"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Referenca"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Biznes"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Spektakël"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Blerje"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Foto & Video"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Udhëtim"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Prodhimshmëri"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Të dobishme"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sporte"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Lojëra"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Shëndet & Kalitje"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Muzikë"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Edukim"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Lajme & Moti"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Shoqërore"

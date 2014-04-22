@@ -20576,3 +20576,71 @@ msgstr "Visita Mozilla"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "menu"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Mappe e navigazione"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Stili di vita"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Riferimento"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Business"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Intrattenimento"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Shopping"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Foto e video"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Viaggi"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produttività"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Utility"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sport"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Giochi"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Salute e benessere"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Musica"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Istruzione"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Notizie e meteo"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Social network"

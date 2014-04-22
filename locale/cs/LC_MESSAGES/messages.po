@@ -20420,3 +20420,71 @@ msgstr "Navštívit Mozillu"
 #: templates/mobile/header.html:10
 msgid "menu"
 msgstr "Nabídka"
+
+#: /mkt/search/forms.py
+msgid "Maps & Navigation"
+msgstr "Mapy a navigace"
+
+#: /mkt/search/forms.py
+msgid "Lifestyle"
+msgstr "Životní styl"
+
+#: /mkt/search/forms.py
+msgid "Reference"
+msgstr "Reference"
+
+#: /mkt/search/forms.py
+msgid "Business"
+msgstr "Finance"
+
+#: /mkt/search/forms.py
+msgid "Entertainment"
+msgstr "Zábava"
+
+#: /mkt/search/forms.py
+msgid "Shopping"
+msgstr "Nakupování"
+
+#: /mkt/search/forms.py
+msgid "Photo & Video"
+msgstr "Fotky a média"
+
+#: /mkt/search/forms.py
+msgid "Travel"
+msgstr "Cestování"
+
+#: /mkt/search/forms.py
+msgid "Productivity"
+msgstr "Produktivita"
+
+#: /mkt/search/forms.py
+msgid "Utilities"
+msgstr "Nástroje"
+
+#: /mkt/search/forms.py
+msgid "Sports"
+msgstr "Sporty"
+
+#: /mkt/search/forms.py
+msgid "Games"
+msgstr "Hry"
+
+#: /mkt/search/forms.py
+msgid "Health & Fitness"
+msgstr "Zdraví a fitness"
+
+#: /mkt/search/forms.py
+msgid "Music"
+msgstr "Hudba"
+
+#: /mkt/search/forms.py
+msgid "Education"
+msgstr "Vzdělávání"
+
+#: /mkt/search/forms.py
+msgid "News & Weather"
+msgstr "Novinky"
+
+#: /mkt/search/forms.py
+msgid "Social"
+msgstr "Sociální sítě"
