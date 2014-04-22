@@ -428,7 +428,6 @@ INSTALLED_APPS = (
     'devhub',
     'discovery',
     'editors',
-    'extras',
     'files',
     'jingo_minify',
     'market',
