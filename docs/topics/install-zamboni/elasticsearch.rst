@@ -78,7 +78,7 @@ Or you could use the makefile target (using the ``settings_local.py`` file)::
 
 If you need to use another settings file and add arguments::
 
-    make SETTINGS=settings_amo ARGS='--with-stats --wipe --force' reindex
+    make SETTINGS=settings_other ARGS='--with-stats --wipe --force' reindex
 
 
 Indexing

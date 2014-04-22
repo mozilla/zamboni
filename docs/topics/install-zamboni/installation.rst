@@ -152,7 +152,7 @@ Finish the install
 First make sure you have a recent `pip`_ for security reasons.
 From inside your activated virtualenv, install the required python packages::
 
-    make update
+    make update_deps
 
 This runs a command like this::
 
@@ -416,9 +416,10 @@ To add the code from all front-end dependencies, you can simply run::
     commonplace fiddle
 
 Commonplace is a set of CLI tools that will handle cloning and updating front-
-end dependencies. This is done automatically if you use the ``make update_mkt``
-command. More information on how this command works is available in the
-`Commonplace wiki <https://github.com/mozilla/commonplace/wiki/CLI-Tools#fiddle>`_
+end dependencies. This is done automatically if you use the ``make
+update_commonplace`` command. More information on how this command works is
+available in the `Commonplace wiki
+<https://github.com/mozilla/commonplace/wiki/CLI-Tools#fiddle>`_
 
 Each of our front-end projects live in their own repositories. These are
 single-page apps that talk to the APIs in Zamboni. Commonplace serves as the
@@ -454,7 +455,7 @@ Updating
 To run a full update of zamboni (including source files, pip requirements and
 database migrations)::
 
-    make update
+    make full_update
 
 Use the following if you also wish to prefill your database with the data from
 landfill **WARNING** Do not do this once you have things running as it will overwrite your database!::
