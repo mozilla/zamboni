@@ -7,4 +7,5 @@ class Command(BaseCommand):
     help = 'Export our data as a tgz for third-parties'
 
     def handle(self, *args, **kwargs):
-        export_data()
+        # Execute as a celery task so we get the right permissions.
+        export_data.delay()
