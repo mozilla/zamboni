@@ -11,7 +11,6 @@ from django.core.cache import cache
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
-from piston.models import Consumer
 from pyquery import PyQuery as pq
 
 import amo
@@ -1304,21 +1303,6 @@ class TestFeatures(amo.tests.TestCase):
         eq_(FeaturedCollection.objects.count(), 0)
 
 
-class TestOAuth(amo.tests.TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def test_create_consumer(self):
-        self.client.post(reverse('zadmin.oauth-consumer-create'),
-                         data={'name': 'Test',
-                               'description': 'Test description',
-                               'status': 'accepted'})
-        eq_(Consumer.objects.count(), 1)
-
-
 class TestLookup(amo.tests.TestCase):
     fixtures = ['base/users']
 
@@ -1991,8 +1975,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
         eq_(self.client.get(
             reverse('discovery.module_admin')).status_code, 200)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -2010,8 +1992,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
         eq_(self.client.get(
             reverse('discovery.module_admin')).status_code, 200)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
 
     def test_sr_reviewers_user(self):
         # Sr Reviewers users have only a few privileges.
@@ -2026,8 +2006,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
 
     def test_bulk_compat_user(self):
         # Bulk Compatibility Updaters only have access to /admin/validation/*.
@@ -2043,8 +2021,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
@@ -2059,8 +2035,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.features')).status_code, 403)
         eq_(self.client.get(
             reverse('discovery.module_admin')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertRedirects(self.client.get(reverse('zadmin.index')),

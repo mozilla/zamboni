@@ -8,9 +8,6 @@
 
     {% block rss_feed %}{% endblock %}
 
-    <link title="{{ loc('Apps') }}" href="{{ url('amo.opensearch') }}"
-          rel="search" type="application/opensearchdescription+xml">
-
     {% block site_css %}
       {{ css('zamboni/mobile') }}
     {% endblock %}

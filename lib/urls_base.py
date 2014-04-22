@@ -86,9 +86,6 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
-    # SAMO/API
-    ('^api/', include('api.urls')),
-
     ('^compatibility/', include('compat.urls')),
 
     # Site events data.
@@ -168,15 +165,6 @@ urlpatterns = patterns('',
     ('^recommended/format:rss$',
      lambda r: redirect('browse.featured.rss', permanent=True)),
 
-)
-
-urlpatterns += patterns('piston.authentication.oauth.views',
-    url(r'^oauth/request_token/$', 'get_request_token',
-        name='oauth.request_token'),
-    url(r'^oauth/authorize/$', 'authorize_request_token',
-        name='oauth.authorize'),
-    url(r'^oauth/access_token/$', 'get_access_token',
-        name='oauth.access_token'),
 )
 
 if 'django_qunit' in settings.INSTALLED_APPS:

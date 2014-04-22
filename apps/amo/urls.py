@@ -23,9 +23,4 @@ urlpatterns = patterns('',
     url('^robots.txt$', views.robots, name='robots.txt'),
     url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
-
-    url('^opensearch.xml$', 'api.views.render_xml',
-                            {'template': 'amo/opensearch.xml'},
-                            name='amo.opensearch'),
-
 )

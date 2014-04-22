@@ -7,7 +7,6 @@ from django import test
 from django.conf import settings
 
 import commonware.log
-from lxml import etree
 import mock
 from mock import patch
 from nose.tools import eq_
@@ -291,17 +290,6 @@ class TestOtherStuff(amo.tests.TestCase):
         for app in ('thunderbird', 'mobile'):
             doc = pq(test.Client().get('/' + app, follow=True).content)
             eq_(doc('#site-nav #more .more-mobile').length, 0)
-
-    def test_opensearch(self):
-        client = test.Client()
-        page = client.get('/en-US/firefox/opensearch.xml')
-
-        wanted = ('Content-Type', 'text/xml')
-        eq_(page._headers['content-type'], wanted)
-
-        doc = etree.fromstring(page.content)
-        e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
-        eq_(e.text, "Firefox Add-ons")
 
     def test_login_link(self):
         # Test that the login link encodes parameters correctly.

@@ -256,8 +256,6 @@ def mkt_admin_site_links():
             ('Manage elasticsearch', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Purge pages from zeus', reverse('zadmin.hera')),
-            ('Create a new OAuth Consumer',
-             reverse('zadmin.oauth-consumer-create')),
             ('Generate error', reverse('zadmin.generate-error')),
             ('Site Status', reverse('amo.monitor')),
             ('Force Manifest Re-validation',

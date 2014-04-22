@@ -13,6 +13,7 @@ from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
 from django.views.decorators.http import etag
+from django.views.generic.base import TemplateView
 
 import jingo_minify
 from django_statsd.clients import statsd
@@ -189,3 +190,8 @@ def _open_pipe(cmd):
     return subprocess.Popen(cmd,
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)
+
+
+class OpensearchView(TemplateView):
+    content_type = 'text/xml'
+    template_name = 'mkt/opensearch.xml'

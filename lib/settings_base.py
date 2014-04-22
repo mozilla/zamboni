@@ -419,7 +419,6 @@ INSTALLED_APPS = (
     'abuse',
     'access',
     'addons',
-    'api',
     'applications',
     'bandwagon',
     'blocklist',
@@ -459,7 +458,6 @@ INSTALLED_APPS = (
     'django_nose',
     'gunicorn',
     'raven.contrib.django',
-    'piston',
     'waffle',
 
     # Django contrib apps

@@ -1,42 +1,26 @@
 """
 API views
 """
-import hashlib
 import itertools
 import json
 import random
-import urllib
 from datetime import date, timedelta
 
-from django.core.cache import cache
-from django.http import HttpResponse, HttpResponsePermanentRedirect
-from django.shortcuts import render
+from django.http import HttpResponse
 from django.template.context import get_standard_processors
 from django.utils import encoding, translation
-from django.utils.encoding import smart_str
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
-import waffle
 from caching.base import cached_with
-from piston.utils import rc
 from tower import ugettext as _, ugettext_lazy
 
 import amo
 import api
-from addons.models import Addon, CompatOverride
-from amo.decorators import post_required, allow_cross_site_request, json_view
+from addons.models import Addon
 from amo.models import manual_order
-from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
-from api.authentication import AMOOAuthAuthentication
-from api.forms import PerformanceForm
-from api.utils import addon_to_dict, extract_filters
-from perf.models import (Performance, PerformanceAppVersions,
-                         PerformanceOSVersion)
-from search.views import (AddonSuggestionsAjax, PersonaSuggestionsAjax,
-                          name_query)
+from api.utils import addon_to_dict
 from versions.compare import version_int
 
 
@@ -44,8 +28,6 @@ ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
     u"The API version, {0:.1f}, you are using is not valid.  "
     u"Please upgrade to the current version {1:.1f} API.")
-SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                       amo.STATUS_LITE_AND_NOMINATED)
 
 xml_env = jingo.env.overlay()
 old_finalize = xml_env.finalize
@@ -61,11 +43,7 @@ NEW_DAYS = 10
 log = commonware.log.getLogger('z.api')
 
 
-def partition(seq, key):
-    """Group a sequence based into buckets by key(x)."""
-    groups = itertools.groupby(sorted(seq, key=key), key=key)
-    return ((k, list(v)) for k, v in groups)
-
+# TODO: Remove code below along with /apps/discovery.
 
 def render_xml_to_string(request, template, context={}):
     if not jingo._helpers_loaded:
@@ -88,33 +66,10 @@ def render_xml(request, template, context={}, **kwargs):
     return HttpResponse(rendered, **kwargs)
 
 
-def handler403(request):
-    context = {'error_level': ERROR, 'msg': 'Not allowed'}
-    return render_xml(request, 'api/message.xml', context, status=403)
-
-
-def handler404(request):
-    context = {'error_level': ERROR, 'msg': 'Not Found'}
-    return render_xml(request, 'api/message.xml', context, status=404)
-
-
-def handler500(request):
-    context = {'error_level': ERROR, 'msg': 'Server Error'}
-    return render_xml(request, 'api/message.xml', context, status=500)
-
-
-def validate_api_version(version):
-    """
-    We want to be able to deprecate old versions of the API, therefore we check
-    for a minimum API version before continuing.
-    """
-    if float(version) < api.MIN_VERSION:
-        return False
-
-    if float(version) > api.MAX_VERSION:
-        return False
-
-    return True
+def partition(seq, key):
+    """Group a sequence based into buckets by key(x)."""
+    groups = itertools.groupby(sorted(seq, key=key), key=key)
+    return ((k, list(v)) for k, v in groups)
 
 
 def addon_filter(addons, addon_type, limit, app, platform, version,
@@ -182,7 +137,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     # We prefer add-ons that support the current locale.
     lang = translation.get_language()
-    partitioner = lambda x: (x.description != None and
+    partitioner = lambda x: (x.description is not None and
                              (x.description.locale == lang))
     groups = dict(partition(addons, partitioner))
     good, others = groups.get(True, []), groups.get(False, [])
@@ -200,6 +155,20 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
     else:
         good.extend(others)
         return good
+
+
+def validate_api_version(version):
+    """
+    We want to be able to deprecate old versions of the API, therefore we check
+    for a minimum API version before continuing.
+    """
+    if float(version) < api.MIN_VERSION:
+        return False
+
+    if float(version) > api.MAX_VERSION:
+        return False
+
+    return True
 
 
 class APIView(object):
@@ -245,166 +214,6 @@ class APIView(object):
 
     def render_json(self, context):
         return json.dumps({'msg': _('Not implemented yet.')})
-
-
-class AddonDetailView(APIView):
-
-    @allow_cross_site_request
-    def process_request(self, addon_id):
-        try:
-            addon = (Addon.objects.id_or_slug(addon_id)
-                                  .exclude(type=amo.ADDON_WEBAPP).get())
-        except Addon.DoesNotExist:
-            return self.render_msg('Add-on not found!', ERROR, status=404,
-                mimetype=self.mimetype)
-
-        if addon.is_disabled:
-            return self.render_msg('Add-on disabled.', ERROR, status=404,
-                                   mimetype=self.mimetype)
-        return self.render_addon(addon)
-
-    def render_addon(self, addon):
-        return self.render('api/addon_detail.xml', {'addon': addon})
-
-    def render_json(self, context):
-        return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
-
-
-def guid_search(request, api_version, guids):
-    lang = request.LANG
-
-    def guid_search_cache_key(guid):
-        key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
-        return hashlib.md5(smart_str(key)).hexdigest()
-
-    guids = [g.strip() for g in guids.split(',')] if guids else []
-
-    addons_xml = cache.get_many([guid_search_cache_key(g) for g in guids])
-    dirty_keys = set()
-
-    for g in guids:
-        key = guid_search_cache_key(g)
-        if key not in addons_xml:
-            dirty_keys.add(key)
-            try:
-                addon = Addon.objects.get(guid=g, disabled_by_user=False,
-                                          status__in=SEARCHABLE_STATUSES)
-
-            except Addon.DoesNotExist:
-                addons_xml[key] = ''
-
-            else:
-                addon_xml = render_xml_to_string(request,
-                                                 'api/includes/addon.xml',
-                                                 {'addon': addon,
-                                                  'api_version': api_version,
-                                                  'api': api})
-                addons_xml[key] = addon_xml
-
-    cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
-                                                    if k in dirty_keys))
-
-    compat = (CompatOverride.objects.filter(guid__in=guids)
-              .transform(CompatOverride.transformer))
-
-    addons_xml = [v for v in addons_xml.values() if v]
-    return render_xml(request, 'api/search.xml',
-                      {'addons_xml': addons_xml,
-                       'total': len(addons_xml),
-                       'compat': compat,
-                       'api_version': api_version, 'api': api})
-
-
-class SearchView(APIView):
-
-    def process_request(self, query, addon_type='ALL', limit=10,
-                        platform='ALL', version=None, compat_mode='strict'):
-        """
-        Query the search backend and serve up the XML.
-        """
-        limit = min(MAX_LIMIT, int(limit))
-        app_id = self.request.APP.id
-
-        filters = {
-            'app': app_id,
-            'status': amo.STATUS_PUBLIC,
-            'is_disabled': False,
-            'has_version': True,
-        }
-
-        # Opts may get overridden by query string filters.
-        opts = {
-            'addon_type': addon_type,
-            'platform': platform,
-            'version': version,
-        }
-
-        if self.version < 1.5:
-            # By default we show public addons only for api_version < 1.5.
-            filters['status__in'] = [amo.STATUS_PUBLIC]
-
-            # Fix doubly encoded query strings.
-            try:
-                query = urllib.unquote(query.encode('ascii'))
-            except UnicodeEncodeError:
-                # This fails if the string is already UTF-8.
-                pass
-
-        query, qs_filters = extract_filters(query, filters['app'], opts)
-
-        qs = Addon.search().query(or_=name_query(query))
-        filters.update(qs_filters)
-        if 'type' not in filters:
-            # Filter by ALL types, which is really all types except for apps.
-            filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
-        qs = qs.filter(**filters)
-
-        if qs_filters.get('platform__in', []):
-            # More than one platform, pluck it out.
-            platforms = qs_filters.get('platform__in')[:]
-            platforms.remove(1)  # ALL is already queried in compat SQL.
-            if platforms:
-                platform = amo.PLATFORMS[platforms[0]].api_name
-
-        addons = qs[:limit]
-        total = qs.count()
-
-        results = []
-        for addon in qs:
-            compat_version = addon.compatible_version(app_id, version,
-                                                      platform, compat_mode)
-            if compat_version:
-                addon.compat_version = compat_version
-                results.append(addon)
-                if len(results) == limit:
-                    break
-            else:
-                # We're excluding this addon because there are no
-                # compatible versions. Decrement the total.
-                total -= 1
-
-        return self.render('api/search.xml', {
-            'results': results,
-            'total': total,
-            # For caching
-            'version': version,
-            'compat_mode': compat_mode,
-        })
-
-
-@json_view
-def search_suggestions(request):
-    if waffle.sample_is_active('autosuggest-throttle'):
-        return HttpResponse(status=503)
-    cat = request.GET.get('cat', 'all')
-    suggesterClass = {
-        'all': AddonSuggestionsAjax,
-        'themes': PersonaSuggestionsAjax,
-    }.get(cat, AddonSuggestionsAjax)
-    items = suggesterClass(request, ratings=True).items
-    for s in items:
-        s['rating'] = float(s['rating'])
-    return {'suggestions': items}
 
 
 class ListView(APIView):
@@ -454,65 +263,3 @@ class ListView(APIView):
     def render_json(self, context):
         return json.dumps([addon_to_dict(a) for a in context['addons']],
                           cls=JSONEncoder)
-
-
-class LanguageView(APIView):
-
-    def process_request(self):
-        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                      type=amo.ADDON_LPAPP,
-                                      appsupport__app=self.request.APP.id,
-                                      disabled_by_user=False).order_by('pk')
-        return self.render('api/list.xml', {'addons': addons,
-                                            'show_localepicker': True})
-
-
-# pylint: disable-msg=W0613
-def redirect_view(request, url):
-    """
-    Redirect all requests that come here to an API call with a view parameter.
-    """
-    dest = '/api/%.1f/%s' % (api.CURRENT_VERSION,
-                             urllib.quote(url.encode('utf-8')))
-    dest = get_url_prefix().fix(dest)
-
-    return HttpResponsePermanentRedirect(dest)
-
-
-def request_token_ready(request, token):
-    error = request.GET.get('error', '')
-    ctx = {'error': error, 'token': token}
-    return render(request, 'piston/request_token_ready.html', ctx)
-
-
-@csrf_exempt
-@post_required
-def performance_add(request):
-    """
-    A wrapper around adding in performance data that is easier than
-    using the piston API.
-    """
-    # Trigger OAuth.
-    if not AMOOAuthAuthentication(two_legged=True).is_authenticated(request):
-        return rc.FORBIDDEN
-
-    form = PerformanceForm(request.POST)
-    if not form.is_valid():
-        return form.show_error()
-
-    os, created = (PerformanceOSVersion
-                        .objects.safer_get_or_create(**form.os_version))
-    app, created = (PerformanceAppVersions
-                        .objects.safer_get_or_create(**form.app_version))
-
-    data = form.performance
-    data.update({'osversion': os, 'appversion': app})
-
-    # Look up on everything except the average time.
-    result, created = Performance.objects.safer_get_or_create(**data)
-    result.average = form.cleaned_data['average']
-    result.save()
-
-    log.info('Performance created for add-on: %s, %s' %
-             (form.cleaned_data['addon_id'], form.cleaned_data['average']))
-    return rc.ALL_OK
