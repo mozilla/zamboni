@@ -227,7 +227,8 @@ IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submiss
 IARC_ALLOW_CERT_REUSE = True
 
 # We'll use zippy, the reference implementation on -dev.
-PAYMENT_PROVIDERS = ['reference']
+#PAYMENT_PROVIDERS = ['reference']
+PAYMENT_PROVIDERS = ['boku']
 
 # Since Bango won't actually work on -dev anyway, may as well make it the
 # reference implementation anyway.
