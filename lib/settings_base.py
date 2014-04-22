@@ -286,8 +286,8 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'credits',
                      'developer_agreement', 'developer_faq', 'developers',
                      'editors', 'faq', 'google1f3e37b7351799a5.html', 'img',
-                     'jsi18n', 'localizers', 'media', 'review_guide',
-                     'robots.txt', 'statistics', 'services', 'sunbird')
+                     'jsi18n', 'media', 'review_guide', 'robots.txt',
+                     'statistics', 'services', 'sunbird')
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
@@ -431,7 +431,6 @@ INSTALLED_APPS = (
     'files',
     'jingo_minify',
     'market',
-    'localizers',
     'lib.es',
     'pages',
     'perf',
@@ -581,7 +580,6 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
             'css/impala/compat.less',
-            'css/impala/localizers.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
@@ -892,9 +890,6 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/storage.js',
             'js/zamboni/files.js',
-        ),
-        'zamboni/localizers': (
-            'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
             'js/lib/jquery-1.6.4.js',

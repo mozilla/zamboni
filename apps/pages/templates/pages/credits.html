@@ -18,19 +18,6 @@
 <h2>{{ _('Developers &amp; Administrators') }}</h2>
 <p>{{ users_list(developers) }}</p>
 
-<h2>{{ _('Localizers') }}</h2>
-<table>
-  <tbody>
-    <tr>
-      {% for lang, users in localizers %}
-        <td>{{ lang }}</td>
-        <td>{{ users_list(users) }}</td>
-        {% if loop.index % 2 == 0 %}</tr><tr>{% endif %}
-      {% endfor %}
-    </tr>
-  </tbody>
-</table>
-
 <h2>{{ _('Reviewers') }}</h2>
 {% for num in [1000, 500, 100, 10] %}
   {% with users=reviewers[num] %}

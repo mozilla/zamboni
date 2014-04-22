@@ -29,16 +29,6 @@ def credits(request):
         set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
         set(['en-US'])))
 
-    localizers = []
-    for lang in languages:
-        users = (UserProfile.objects
-            .exclude(display_name=None)
-            .filter(groupuser__group__name='%s Localizers' % lang)
-            .order_by('display_name')
-            .distinct())
-        if users:
-            localizers.append((lang, users))
-
     total_reviews = (ActivityLog.objects.total_reviews()
                                         .filter(approval_count__gt=10))
     reviewers = defaultdict(list)
@@ -57,7 +47,6 @@ def credits(request):
         'developers': developers,
         'past_developers': past_developers,
         'other_contribs': other_contribs,
-        'localizers': localizers,
         'reviewers': reviewers,
     }
 

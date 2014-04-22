@@ -156,7 +156,6 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
-            ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -180,7 +179,6 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
-            ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
