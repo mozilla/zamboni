@@ -696,14 +696,16 @@ class TestExportData(amo.tests.TestCase):
     def test_export_is_created(self):
         with self.settings(DUMPED_APPS_PATH=self.export_directory):
             name = 'tarball-name'
-            tarball_path = export_data(name=name)
-            eq_(os.path.basename(tarball_path), name + '.tgz')
+            tarball_path = os.path.join(self.export_directory,
+                                        'tarballs',
+                                        name + '.tgz')
             expected_files = [
                 'collections/81/81721.json',
                 'apps/337/337141.json',
                 'license.txt',
                 'readme.txt',
             ]
+            export_data(name=name)
             tarball = tarfile.open(tarball_path)
             actual_files = tarball.getnames()
             for expected_file in expected_files:
