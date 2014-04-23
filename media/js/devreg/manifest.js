@@ -1,6 +1,6 @@
 define('prefetchManifest', [], function() {
-    var $viewManifest = $('#view-manifest'),
-        $manifest = $('#manifest-contents');
+    var $viewManifest = $('#view-manifest');
+    var $manifest = $('#manifest-contents');
 
     if (!$viewManifest.length) {
         return;
@@ -12,8 +12,9 @@ define('prefetchManifest', [], function() {
 
         // Show manifest.
         $viewManifest.click(_pd(function() {
-            var $this = $viewManifest,
-                $manifest = $('#manifest-headers, #manifest-contents, #manifest-permissions');
+            var $this = $viewManifest;
+            var $manifest = $('#manifest-headers, #manifest-contents, #manifest-permissions');
+
             if ($manifest.length) {
                 $manifest.toggle();
             } else {
@@ -72,5 +73,8 @@ define('prefetchManifest', [], function() {
                 }
             }
         }));
+    })
+    .done(function() {
+        $viewManifest.removeClass('hidden');
     });
 });

@@ -29,7 +29,7 @@
       {% else %}
         <a target="_blank" href="{{ product.manifest_url }}">{{ product.manifest_url }}</a>
       {% endif %}
-      <a href="#" id="view-manifest" data-manifest="{{ product.manifest_url }}"
+      <a href="#" id="view-manifest" class="hidden" data-manifest="{{ product.manifest_url }}"
          data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
         <b>{{ _('View') }}</b></a>
     </dd>
