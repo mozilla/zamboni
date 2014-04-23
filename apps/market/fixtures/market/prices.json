@@ -135,5 +135,18 @@
       "modified": "2011-08-15 16:14:26",
       "created": "2011-08-15 16:14:26"
     }
+  },
+  {
+    "pk": 8,
+    "model": "market.pricecurrency",
+    "fields": {
+      "currency": "GBP",
+      "tier": 2,
+      "provider": 3,
+      "region": 4,
+      "price": "0.99",
+      "modified": "2011-08-15 16:14:26",
+      "created": "2011-08-15 16:14:26"
+    }
   }
 ]

@@ -391,3 +391,19 @@ def REGION_TO_RATINGS_BODY():
         })
 
     return region_to_bodies
+
+
+def REGIONS_CHOICES_SORTED_BY_NAME():
+    """Get the region choices and sort by name.
+
+    Requires a function due to localisation.
+
+    """
+
+    # Avoid circular import.
+    from mkt.regions.utils import remove_accents
+
+    by_name = sorted([v for k, v in DEFINED if v.id and v.weight > -1],
+                     key=lambda v: remove_accents(unicode(v.name)))
+    return ([(v.id, v.name) for v in by_name] +
+            [(RESTOFWORLD.id, RESTOFWORLD.name)])

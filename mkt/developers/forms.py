@@ -41,6 +41,7 @@ import mkt
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.regions.utils import parse_region
+from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import index_webapps
@@ -697,7 +698,7 @@ class AppAppealForm(happyforms.Form):
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(required=False,
         label=_lazy(u'Choose the regions your app will be listed in:'),
-        choices=mkt.regions.REGIONS_CHOICES_NAME,
+        choices=[],
         widget=forms.CheckboxSelectMultiple,
         error_messages={'required':
             _lazy(u'You must select at least one region.')})
@@ -718,6 +719,7 @@ class RegionForm(forms.Form):
         self.request = kw.pop('request', None)
         super(RegionForm, self).__init__(*args, **kw)
 
+        self.fields['regions'].choices = REGIONS_CHOICES_SORTED_BY_NAME()
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
         self.regions_before = self.product.get_region_ids(restofworld=True)

@@ -13,7 +13,7 @@ from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from market.models import AddonPremium, Price, PriceCurrency, Refund
 from mkt.constants import apps
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
-                                   SPAIN, US, RESTOFWORLD)
+                                   SPAIN, UK, US, RESTOFWORLD)
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -137,9 +137,38 @@ class TestPrice(amo.tests.TestCase):
             currencies = Price.objects.get(pk=1).prices()
             eq_(len(currencies), 3)
 
-    def test_region_ids_by_slug(self):
-        eq_(Price.objects.get(pk=2).region_ids_by_slug(),
-            (BR.id, SPAIN.id, RESTOFWORLD.id))
+    def test_region_ids_by_name_multi_provider(self):
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+            eq_(Price.objects.get(pk=2).region_ids_by_name(),
+                [BR.id, SPAIN.id, UK.id, RESTOFWORLD.id])
+
+    def test_region_ids_by_name(self):
+        eq_(Price.objects.get(pk=2).region_ids_by_name(),
+            [BR.id, SPAIN.id, RESTOFWORLD.id])
+
+    def test_region_ids_by_name_w_provider_boku(self):
+        eq_(Price.objects.get(pk=2).region_ids_by_name(
+            provider=PROVIDER_BOKU), [UK.id])
+
+    def test_region_ids_by_name_w_provider_bango(self):
+        eq_(Price.objects.get(pk=2).region_ids_by_name(
+            provider=PROVIDER_BANGO), [BR.id, SPAIN.id, RESTOFWORLD.id])
+
+    def test_provider_regions(self):
+        with self.settings(PAYMENT_PROVIDERS=['bango', 'boku']):
+            eq_(Price.objects.get(pk=2).provider_regions(), {
+                PROVIDER_BANGO: [BR, SPAIN, RESTOFWORLD],
+                PROVIDER_BOKU: [UK]})
+
+    def test_provider_regions_boku(self):
+        with self.settings(PAYMENT_PROVIDERS=['boku']):
+            eq_(Price.objects.get(pk=2).provider_regions(), {
+                PROVIDER_BOKU: [UK]})
+
+    def test_provider_regions_bango(self):
+        with self.settings(PAYMENT_PROVIDERS=['bango']):
+            eq_(Price.objects.get(pk=2).provider_regions(), {
+                PROVIDER_BANGO: [BR, SPAIN, RESTOFWORLD]})
 
 
 class TestPriceCurrencyChanges(amo.tests.TestCase):

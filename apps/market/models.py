@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import uuid
-from operator import itemgetter
 
 from django.conf import settings
 from django.core.cache import cache
@@ -25,6 +24,7 @@ from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
+from mkt.regions.utils import remove_accents
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -168,15 +168,62 @@ class Price(amo.models.ModelBase):
         return [model_to_dict(o) for o in
                 self.pricecurrency_set.filter(provider__in=providers)]
 
+    def regions_by_name(self, provider=None):
+        """A list of price regions sorted by name.
 
-    def region_ids_by_slug(self):
-        """A tuple of price region ids sorted by slug."""
-        price_regions_ids = set([(p['region'], RID.get(p['region']).slug)
-                                 for p in self.prices() if p['paid'] is True])
+        :param int provider: A provider, using the PAYMENT_* constant.
+            If not provided it will use settings.PAYMENT_PROVIDERS,
 
-        if price_regions_ids:
-            return zip(*sorted(price_regions_ids, key=itemgetter(1)))[0]
-        return tuple()
+        """
+
+        prices = self.prices(provider=provider)
+
+        regions = set()
+        append_rest_of_world = False
+
+        for price in prices:
+            region = RID[price['region']]
+            if price['paid'] is True and region != RESTOFWORLD:
+                regions.add(region)
+            if price['paid'] is True and region == RESTOFWORLD:
+                append_rest_of_world = True
+
+        if regions:
+            # Sort by name based on normalized unicode name.
+            regions = sorted(regions,
+                             key=lambda r: remove_accents(unicode(r.name)))
+            if append_rest_of_world:
+                regions.append(RESTOFWORLD)
+
+        return regions if regions else []
+
+    def region_ids_by_name(self, provider=None):
+        """A list of price region ids sorted by name.
+
+        :param int provider: A provider, using the PAYMENT_* constant.
+            If not provided it will use settings.PAYMENT_PROVIDERS,
+
+        """
+        return [region.id for region in
+                self.regions_by_name(provider=provider)]
+
+    def provider_regions(self):
+        """A dict of provider regions keyed by provider id.
+
+        Sorted by name (except for rest of world which is
+        always last).
+
+        """
+
+        # Avoid circular import.
+        from mkt.developers.providers import get_providers
+
+        provider_regions = {}
+        providers = get_providers()
+        for prv in providers:
+            provider_regions[prv.provider] = self.regions_by_name(
+                provider=prv.provider)
+        return provider_regions
 
 
 class PriceCurrency(amo.models.ModelBase):

@@ -1,3 +1,5 @@
+import unicodedata
+
 from mkt.constants import regions
 
 
@@ -23,3 +25,9 @@ def parse_region(region):
         for region in regions.ALL_REGIONS:
             if unicode(region.name).lower() == region_lower:
                 return region
+
+
+def remove_accents(input_str):
+    """Remove accents from input."""
+    nkfd_form = unicodedata.normalize('NFKD', unicode(input_str))
+    return u''.join([c for c in nkfd_form if not unicodedata.combining(c)])

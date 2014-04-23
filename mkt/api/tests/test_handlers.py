@@ -933,7 +933,7 @@ class TestPriceCurrency(RestOAuth):
         self.grant_permission(self.profile, self.permission)
         res = self.client.get(self.list_url)
         j = json.loads(res.content)
-        eq_(len(j['objects']), 7)
+        eq_(len(j['objects']), 8)
         eq_(j['objects'][0], {
             'carrier': None,
             'currency': 'PLN',
