@@ -754,9 +754,10 @@ def _get_manifest_json(addon):
 @addon_view
 @json_view
 def app_view_manifest(request, addon):
+    headers = {}
     manifest = {}
     success = False
-    headers = ''
+
     if addon.is_packaged:
         manifest = _get_manifest_json(addon)
         content = json.dumps(manifest, indent=4)
@@ -782,11 +783,17 @@ def app_view_manifest(request, addon):
                 # If it's not valid JSON, just return the content as is.
                 pass
 
-    return {'content': jinja2.escape(smart_decode(content)),
-            'headers': dict((jinja2.escape(k), jinja2.escape(v))
-                            for k, v in headers.items()),
-            'success': success,
-            'permissions': jinja2.escape(_get_permissions(manifest))}
+    return {
+        'content': jinja2.escape(smart_decode(content)),
+        'headers': dict((jinja2.escape(k), jinja2.escape(v))
+                        for k, v in headers.items()),
+        'success': success,
+        # Note: We're using `escape_all` on the values here since we know the
+        # keys of the nested dict don't come from user input (manifest) and are
+        # known safe.
+        'permissions': dict((jinja2.escape(k), escape_all(v))
+                            for k, v in _get_permissions(manifest).items())
+    }
 
 
 def reviewer_or_token_required(f):
