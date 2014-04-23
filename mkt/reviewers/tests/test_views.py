@@ -1972,7 +1972,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                                     args=[self.app.app_slug]))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert u'"name": "W2MO\u017d"' in data['content']
+        assert u'&#34;name&#34;: &#34;W2MO\u017d&#34;' in data['content']
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json_encoding_empty(self, mock_get):
