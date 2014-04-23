@@ -1,8 +1,8 @@
 {% extends 'reviewers/emails/base.txt' %}
 {% block content %}
-Congratulations! Your app has been approved and is listed on the Firefox Marketplace.
+Congratulations! {{ name }} has been approved and is listed on the Firefox Marketplace.
 
-Follow Mozilla Hacks (http://hacks.mozilla.org, http://twitter.com/mozhacks) to stay updated on when we plan to launch on other platforms.
+Check it out: {{ detail_url }}
 
 {% include 'reviewers/emails/decisions/includes/details.txt' %}
 

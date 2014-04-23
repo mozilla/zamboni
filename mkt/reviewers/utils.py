@@ -185,7 +185,7 @@ class ReviewBase(object):
                  (self.addon, emails))
 
         # Create thread.
-        self.notify_email('info', u'Submission Update: %s')
+        self.notify_email('info', u'More information needed to review: %s')
 
 
 class ReviewApp(ReviewBase):
@@ -233,7 +233,7 @@ class ReviewApp(ReviewBase):
 
         self.create_note(amo.LOG.APPROVE_VERSION_WAITING)
         self.notify_email('pending_to_public_waiting',
-                          u'App Approved but waiting: %s')
+                          u'App approved but waiting: %s')
 
         log.info(u'Making %s public but pending' % self.addon)
 
@@ -271,7 +271,7 @@ class ReviewApp(ReviewBase):
             self.addon.set_iarc_storefront_data()
 
         self.create_note(amo.LOG.APPROVE_VERSION)
-        self.notify_email('pending_to_public', u'App Approved: %s')
+        self.notify_email('pending_to_public', u'App approved: %s')
 
         log.info(u'Making %s public' % self.addon)
 
@@ -300,7 +300,7 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.create_note(amo.LOG.REJECT_VERSION)
-        self.notify_email('pending_to_sandbox', u'Submission Update: %s')
+        self.notify_email('pending_to_sandbox', u'Your submission has been rejected: %s')
 
         log.info(u'Making %s disabled' % self.addon)
 
