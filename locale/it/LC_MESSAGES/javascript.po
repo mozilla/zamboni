@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:15-0700\n"
+"POT-Creation-Date: 2014-04-23 09:14-0700\n"
 "PO-Revision-Date: 2014-03-28 12:49+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -333,26 +333,26 @@ msgid "Detected: {0}"
 msgstr "Rilevati: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
+#: media/js/devreg/payments-manage.js:31
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] "Importante: cancellando il conto pagamenti \"{0}\" l'app ad esso associata passerà a uno stato incompleto e non sarà più disponibile per la vendita:"
 msgstr[1] "Importante: cancellando il conto pagamenti \"{0}\" le app ad esso associate passeranno a uno stato incompleto e non saranno più disponibile per la vendita:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:72 media/js/devreg/payments-manage.js:133 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Errore"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:73 media/js/devreg/payments-manage.js:134
 msgid "There was a problem contacting the payment server."
 msgstr "Si è verificato un errore durante la connessione al server per i pagamenti."
 
-#: media/js/devreg/payments-manage.js:85
+#: media/js/devreg/payments-manage.js:103
 msgid "Authentication error"
 msgstr "Errore durante l'autenticazione"
 
-#: media/js/devreg/payments-manage.js:131
+#: media/js/devreg/payments-manage.js:157
 msgid "You do not currently have any payment accounts."
 msgstr "Al momento non disponi di un conto pagamenti."
 

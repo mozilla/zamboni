@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-09 09:15-0700\n"
+"POT-Creation-Date: 2014-04-23 09:14-0700\n"
 "PO-Revision-Date: 2014-04-07 16:32-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -324,25 +324,25 @@ msgid "Detected: {0}"
 msgstr "判別結果: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
+#: media/js/devreg/payments-manage.js:31
 msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
 msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
 msgstr[0] "警告: 決済用アカウント「{0}」を削除すると、それに関連付けられている次のアプリのステータスが非互換となり、販売が中止されます:"
 
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:72 media/js/devreg/payments-manage.js:133 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "エラー"
 
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
+#: media/js/devreg/payments-manage.js:73 media/js/devreg/payments-manage.js:134
 msgid "There was a problem contacting the payment server."
 msgstr "決済サーバへの接続中に問題が発生しました。"
 
-#: media/js/devreg/payments-manage.js:85
+#: media/js/devreg/payments-manage.js:103
 msgid "Authentication error"
 msgstr "認証エラー"
 
-#: media/js/devreg/payments-manage.js:131
+#: media/js/devreg/payments-manage.js:157
 msgid "You do not currently have any payment accounts."
 msgstr "あなたはまだ決済用アカウントを設定していません。"
 
