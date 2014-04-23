@@ -64,6 +64,9 @@ app_detail_patterns = patterns('',
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
+     # Only present if DEBUG=True.
+    url('^debug/', views.debug, name='mkt.developers.debug'),
+
     # IARC content ratings.
     url('^content_ratings$', views.content_ratings,
         name='mkt.developers.apps.ratings'),

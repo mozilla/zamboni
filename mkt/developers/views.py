@@ -37,7 +37,7 @@ from amo.utils import escape_all
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from stats.models import Contribution
+from stats.models import ClientData, Contribution
 from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
@@ -61,6 +61,7 @@ from mkt.developers.utils import check_upload, handle_vip
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
+from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
 
 from . import forms, tasks
 
@@ -1091,3 +1092,26 @@ def _filter_transactions(qs, data):
 
 def testing(request):
     return render(request, 'developers/testing.html')
+
+
+@addon_view
+def debug(request, addon):
+    if not settings.DEBUG:
+        raise http.Http404
+
+    data = {
+        'urls': {'es': '%s/apps/webapp/%s' % (settings.ES_URLS[0], addon.pk)},
+        'pay_request': ''
+    }
+    if addon.is_premium():
+        data['pay_request'] = get_product_jwt(
+            WebAppProduct(addon),
+            user=request.amo_user,
+            region=request.REGION,
+            source=request.REQUEST.get('src', ''),
+            lang=request.LANG,
+            client_data=ClientData.get_or_create(request),
+        )['webpayJWT']
+
+    return render(request, 'developers/debug.html',
+                  {'app': addon, 'data': data})
