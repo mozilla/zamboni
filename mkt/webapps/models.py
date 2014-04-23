@@ -500,6 +500,10 @@ class Webapp(Addon):
         """True if app has at least one payment account."""
         return bool(self.all_payment_accounts().count())
 
+    def has_multiple_payment_accounts(self):
+        """True if the app has more than one payment account."""
+        return self.all_payment_accounts().count() > 1
+
     def single_pay_account(self):
         """
         Assuming the app has only one payment account, return it.
