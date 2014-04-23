@@ -168,9 +168,6 @@
           <th>{{ _('Submitted') }}</th>
           <th>{{ _('Status') }}</th>
           <th>{{ _('Validation') }}</th>
-          {% if waffle.flag('perf-tests') %}
-            <th>{{ _('Performance') }}</th>
-          {% endif %}
           <th class="version-delete">{{ _('Delete') }}</th>
         </tr>
         <tr>
@@ -221,11 +218,6 @@
               {% endfor %}
             </ul>
           </td>
-          {% if waffle.flag('perf-tests') %}
-            <td class="perf-tests">
-              {% include "devhub/addons/listing/perf_file_listing.html" %}
-            </td>
-          {% endif %}
           <td class="version-delete">
             <a href="#" class="remove" data-version="{{ version.id }}">x</a>
           </td>

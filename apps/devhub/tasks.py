@@ -25,7 +25,6 @@ from amo.utils import remove_icons, resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import Application, AppVersion
-from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
 
@@ -426,16 +425,6 @@ def fetch_manifest(url, upload_pk=None, **kw):
     upload.add_file([content], url, len(content))
     # Send the upload to the validator.
     validator(upload.pk)
-
-
-@task
-def start_perf_test_for_file(file_id, os_name, app_name, **kw):
-    log.info('[@%s] Starting perf tests for file %s on %s / %s'
-             % (start_perf_test_for_file.rate_limit, file_id,
-                os_name, app_name))
-    file_ = File.objects.get(pk=file_id)
-    # TODO(Kumar) store token to retrieve results later?
-    perf.start_perf_test(file_, os_name, app_name)
 
 
 @task

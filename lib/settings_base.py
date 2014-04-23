@@ -203,9 +203,6 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# When True, the addon API should include performance data.
-API_SHOW_PERF_DATA = True
-
 # The domain of the mobile site.
 MOBILE_DOMAIN = 'm.%s' % DOMAIN
 
@@ -432,7 +429,6 @@ INSTALLED_APPS = (
     'market',
     'lib.es',
     'pages',
-    'perf',
     'product_details',
     'reviews',
     'search',
@@ -697,9 +693,6 @@ MINIFY_BUNDLES = {
             # Collections
             'js/zamboni/collections.js',
 
-            # Performance
-            'js/zamboni/perf.js',
-
             # Users
             'js/zamboni/users.js',
 
@@ -793,9 +786,6 @@ MINIFY_BUNDLES = {
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
-
-            # Performance
-            'js/zamboni/perf.js',
 
             # Users
             'js/zamboni/users.js',
@@ -1327,13 +1317,6 @@ RECAPTCHA_AJAX_URL = (
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
 
-# Performance notes on add-ons
-PERFORMANCE_NOTES = False
-
-# Used to flag slow addons.
-# If slowness of addon is THRESHOLD percent slower, show a warning.
-PERF_THRESHOLD = 25
-
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Directory of JavaScript test files for django_qunit to run
@@ -1427,10 +1410,6 @@ GRAPHITE_HOST = 'localhost'
 GRAPHITE_PORT = 2003
 GRAPHITE_PREFIX = 'amo'
 GRAPHITE_TIMEOUT = 1
-
-# URL to the service that triggers addon performance tests.  See devhub.perf.
-PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
-PERF_TEST_TIMEOUT = 5  # seconds
 
 # IP addresses of servers we use as proxies.
 KNOWN_PROXIES = []

@@ -1466,37 +1466,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def app_perf_results(self):
-        """Generator of (AppVersion, [list of perf results contexts]).
-
-        A performance result context is a dict that has these keys:
-
-        **baseline**
-            The baseline of the result. For startup time this is the
-            time it takes to start up with no addons.
-
-        **startup_is_too_slow**
-            True/False if this result is slower than the threshold.
-
-        **result**
-            Actual result object
-        """
-        res = collections.defaultdict(list)
-        baselines = {}
-        for result in (self.performance
-                       .select_related('osversion', 'appversion')
-                       .order_by('-created')[:20]):
-            k = (result.appversion.id, result.osversion.id, result.test)
-            if k not in baselines:
-                baselines[k] = result.get_baseline()
-            baseline = baselines[k]
-            appver = result.appversion
-            slow = result.startup_is_too_slow(baseline=baseline)
-            res[appver].append({'baseline': baseline,
-                                'startup_is_too_slow': slow,
-                                'result': result})
-        return res.iteritems()
-
     def get_localepicker(self):
         """For language packs, gets the contents of localepicker."""
         if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
