@@ -43,7 +43,7 @@ update_code:
 	cd vendor && git pull . && git submodule update --init && cd -
 
 update_deps:
-	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/ --allow-external PIL --allow-unverified PIL
+	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
 	npm install
 
 update_db:
