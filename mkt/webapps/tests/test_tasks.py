@@ -689,24 +689,34 @@ class TestExportData(amo.tests.TestCase):
 
     def setUp(self):
         self.export_directory = mkdtemp()
+        self.collection_path = 'collections/81/81721.json'
+        self.app_path = 'apps/337/337141.json'
 
     def tearDown(self):
         rm_directory(self.export_directory)
 
-    def test_export_is_created(self):
+    def create_export(self, name):
         with self.settings(DUMPED_APPS_PATH=self.export_directory):
-            name = 'tarball-name'
-            tarball_path = os.path.join(self.export_directory,
-                                        'tarballs',
-                                        name + '.tgz')
-            expected_files = [
-                'collections/81/81721.json',
-                'apps/337/337141.json',
-                'license.txt',
-                'readme.txt',
-            ]
             export_data(name=name)
-            tarball = tarfile.open(tarball_path)
-            actual_files = tarball.getnames()
-            for expected_file in expected_files:
-                assert expected_file in actual_files, expected_file
+        tarball_path = os.path.join(self.export_directory,
+                                    'tarballs',
+                                    name + '.tgz')
+        return tarfile.open(tarball_path)
+
+    def test_export_is_created(self):
+        expected_files = [
+            self.collection_path,
+            self.app_path,
+            'license.txt',
+            'readme.txt',
+        ]
+        tarball = self.create_export('tarball-name')
+        actual_files = tarball.getnames()
+        for expected_file in expected_files:
+            assert expected_file in actual_files, expected_file
+
+    def test_collections_point_to_apps(self):
+        tarball = self.create_export('tarball-name')
+        collection_file = tarball.extractfile(self.collection_path)
+        collection_data = json.loads(collection_file.read())
+        eq_(collection_data['apps'][0]['filepath'], self.app_path)

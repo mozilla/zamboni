@@ -6,28 +6,50 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 
 from celeryutils import task
+from rest_framework import serializers
 from test_utils import RequestFactory
 
 from amo.utils import chunked, JSONEncoder
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
 from mkt.constants.regions import RESTOFWORLD
+from mkt.webapps.models import Webapp
 
 task_log = logging.getLogger('collections.tasks')
+
+
+class ShortAppSerializer(serializers.ModelSerializer):
+    pk = serializers.IntegerField()
+    filepath = serializers.SerializerMethodField('get_filepath')
+
+    class Meta:
+        model = Webapp
+        fields = ('pk', 'filepath')
+
+    def get_filepath(self, obj):
+        return os.path.join('apps', object_path(obj))
+
+
+class ShortAppsCollectionSerializer(CollectionSerializer):
+    apps = ShortAppSerializer(many=True, read_only=True, source='apps')
+
+
+def object_path(obj):
+    return os.path.join(str(obj.pk / 1000), '{pk}.json'.format(pk=obj.pk))
 
 
 def collection_filepath(collection):
     return os.path.join(settings.DUMPED_APPS_PATH,
                         'collections',
-                        str(collection.pk / 1000),
-                        '{pk}.json'.format(pk=collection.pk))
+                        object_path(collection))
 
 
 def collection_data(collection):
     request = RequestFactory().get('/')
     request.user = AnonymousUser()
     request.REGION = RESTOFWORLD
-    return CollectionSerializer(collection, context={'request': request}).data
+    return ShortAppsCollectionSerializer(collection,
+                                         context={'request': request}).data
 
 
 def write_file(filepath, output):
