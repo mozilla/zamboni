@@ -54,9 +54,6 @@ urlpatterns = patterns('',
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
-    # Localizable pages.
-    ('', include('pages.urls')),
-
     # App versions.
     ('pages/appversions/', include('applications.urls')),
 
@@ -98,15 +95,6 @@ urlpatterns = patterns('',
 
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
-
-    ('^pages/about$',
-     lambda r: redirect('pages.about', permanent=True)),
-
-    ('^pages/credits$',
-     lambda r: redirect('pages.credits', permanent=True)),
-
-    ('^pages/faq$',
-     lambda r: redirect('pages.faq', permanent=True)),
 
     # Redirect persona/xxx
     ('^getpersonas$',
