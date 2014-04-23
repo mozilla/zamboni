@@ -8,6 +8,7 @@ from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
 import happyforms
+from curling.lib import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
@@ -16,6 +17,7 @@ from addons.models import Addon, AddonUpsell
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
+from lib.pay_server import client
 from market.models import AddonPremium, Price
 
 from mkt.api.forms import SluggableModelChoiceField
@@ -637,6 +639,15 @@ class BokuAccountForm(happyforms.Form):
     # The lengths of these are not specified in the Boku documentation, so
     # making a guess here about max lengths.
     service_id = forms.CharField(max_length=50, label=_lazy(u'Service ID'))
+
+    def clean_service_id(self):
+        service_id = self.cleaned_data['service_id']
+        try:
+            client.api.boku.verify_service.post({'service_id': service_id})
+        except HttpClientError:
+            raise ValidationError(_('Service ID is not valid'))
+        else:
+            return service_id
 
 
 class PaymentCheckForm(happyforms.Form):
