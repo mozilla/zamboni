@@ -748,33 +748,6 @@ $(document).ready(function () {
         });
     });
 
-    //New sharing interaction
-    $("#sharing-popup").popup(".share.widget", {
-        width: 280,
-        offset: {x: 8},
-        callback: function(obj) {
-            var ret = {};
-            var el = $(obj.click_target);
-            var $popup = this;
-            var base_url = el.attr('data-base-url');
-            var counts = $.parseJSON(el.attr("data-share-counts"));
-            $popup.hideMe();
-            if (counts) {
-                for (s in counts) {
-                    if (!counts.hasOwnProperty(s)) continue;
-                    var c = counts[s];
-                    var $li = $("li." + s, this);
-                    $(".share-count", $li).text(c);
-                    $(".uniquify", $li).attr("href", base_url + s);
-                }
-            } else {
-                return false;
-            }
-            ret.pointTo = obj.click_target;
-            return ret;
-        }
-    });
-
     if ($('#details-edit').length && $('div.notification-box').length) {
         $(document).scrollTop($("div.primary").position().top);
     }

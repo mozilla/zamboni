@@ -397,9 +397,6 @@ class Webapp(Addon):
 
             return WebAppParser().get_json_data(file_path)
 
-    def share_url(self):
-        return reverse('apps.share', args=[self.app_slug])
-
     def manifest_updated(self, manifest, upload):
         """The manifest has updated, update the version and file.
 

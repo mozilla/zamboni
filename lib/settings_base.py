@@ -432,7 +432,6 @@ INSTALLED_APPS = (
     'product_details',
     'reviews',
     'search',
-    'sharing',
     'stats',
     'tags',
     'tower',  # for ./manage.py extract
@@ -557,7 +556,6 @@ MINIFY_BUNDLES = {
             'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/prose.less',
-            'css/impala/sharing.less',
             'css/impala/abuse.less',
             'css/impala/paginator.less',
             'css/impala/listing.less',

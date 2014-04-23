@@ -81,7 +81,6 @@
     {% if not settings.APP_PREVIEW %}
       {{ favorites_widget(addon) }}
       {% include 'addons/includes/collection_add_widget.html' %}
-      {{ sharing_widget(addon) }}
     {% endif %}
   </div>
   {% if is_author %}

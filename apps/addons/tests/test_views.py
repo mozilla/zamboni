@@ -1346,21 +1346,6 @@ class TestPrivacyPolicy(amo.tests.TestCase):
         check_cat_sidebar(self.url, self.addon)
 
 
-class TestAddonSharing(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
-
-    def test_redirect_sharing(self):
-        addon = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.share', args=['a3615']),
-                            {'service': 'delicious'})
-        url = absolutify(unicode(addon.get_url_path()))
-        summary = truncate(addon.summary, length=250)
-        eq_(r.status_code, 302)
-        assert iri_to_uri(addon.name) in r['Location']
-        assert iri_to_uri(url) in r['Location']
-        assert iri_to_uri(summary) in r['Location']
-
-
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
 

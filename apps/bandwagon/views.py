@@ -14,7 +14,6 @@ from tower import ugettext_lazy as _lazy, ugettext as _
 
 import amo
 from amo import messages
-import sharing.views
 from amo.decorators import (allow_mine, json_view, login_required,
                             post_required, restricted_content, write)
 from amo.urlresolvers import reverse
@@ -578,13 +577,6 @@ def watch(request, username, slug):
         return {'watching': watching}
     else:
         return http.HttpResponseRedirect(collection.get_url_path())
-
-
-def share(request, username, slug):
-    collection = get_collection(request, username, slug)
-    return sharing.views.share(request, collection,
-                               name=collection.name,
-                               description=collection.description)
 
 
 @login_required

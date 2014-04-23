@@ -37,7 +37,6 @@ import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
 from session_csrf import anonymous_csrf_exempt
-from sharing.views import share as share_redirect
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
@@ -567,12 +566,6 @@ def paypal_result(request, addon, status):
                       {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
-
-
-@addon_view
-def share(request, addon):
-    """Add-on sharing"""
-    return share_redirect(request, addon, addon.name, addon.summary)
 
 
 @addon_view

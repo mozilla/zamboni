@@ -24,7 +24,6 @@ detail_urls = patterns('',
     url('^(?P<action>add|remove)$', views.collection_alter,
         name='collections.alter'),
     url('^watch$', views.watch, name='collections.watch'),
-    url('^share$', views.share, name='collections.share'),
     url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
 )
