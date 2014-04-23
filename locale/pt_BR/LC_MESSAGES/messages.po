@@ -19714,7 +19714,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr "Fila de revisão {region}"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
