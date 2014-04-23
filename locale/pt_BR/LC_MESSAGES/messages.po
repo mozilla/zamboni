@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-13 22:10+0000\n"
+"PO-Revision-Date: 2014-04-23 22:38+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1397427017.0\n"
+"X-POOTLE-MTIME: 1398292696.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:189
@@ -15723,15 +15723,15 @@ msgstr "O aplicativo necessita a capacidade de obter informações sobre várias
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "Encabeçamento gráfico"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "Cota"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "Captura de tela"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -17016,6 +17016,8 @@ msgstr "Reenviar aplicativo"
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr ""
+"Você deve <a href=\"%(ratings_url)s\">obter as classificações do "
+"conteúdo</a>antes de reenviar o seu aplicativo."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -17543,6 +17545,15 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Você pode enviar o seu aplicativo a ser considerado para ser "
+"<strong>pré-carregado e enviados com dispositivos FirefoxOS</strong> por "
+"operadoras de telefonia. Para ser considerado para o pré-carregamento, você "
+"pode baixar um modelo de teste, testar seu aplicativo, preencher o modelo, e "
+"enviar seus resultados de volta para nós, <a href=\"%"
+"(submit_url)s\">formulário de apresentação de aplicativo pré-carregado</a>. "
+"Vamos guardar os seus resultados dos testes em nossos servidores, onde será "
+"analisado por operadoras de telefonia interessadas. Se você tiver dúvidas, "
+"você pode enviar um e-mail %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -17631,7 +17642,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Produtos no aplicativos"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
@@ -17695,15 +17706,15 @@ msgstr "Gerar chaves"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Copie me"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "Faixa de Preço"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "URL de compra"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
@@ -17752,11 +17763,11 @@ msgstr "Seu aplicativo não está terminado. Selecione uma conta para pagamento 
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "Países"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Adicionar, gerenciar ou ver as transações das suas contas de pagamento"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -17857,7 +17868,7 @@ msgstr "Ver transações"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Adicionar uma conta {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Accept Terms of Service"
@@ -17878,6 +17889,8 @@ msgstr "Essa conta para pagamento foi associada ao aplicativo por um dono do apl
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"Você tem uma conta de pagamento incompleta. Complete-a ou crie uma nova "
+"abaixo."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -17923,6 +17936,9 @@ msgstr "Adicionar conta Boku"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"Você vai precisar de um ID de serviço Boku para se inscrever para uma conta "
+"do Boku. Contas Boku devem ser criadas através do <a href=\"%(boku_url)s\"> "
+"processo de inscrição da Mozilla</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17940,7 +17956,7 @@ msgstr "Modificar conta Boku"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "Atualmente a edição de uma conta Boku não é possível."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19348,7 +19364,7 @@ msgstr "Candidatos para pré-carregamento"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Inclusão para pré-carregamento"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -19710,11 +19726,11 @@ msgstr "Denúncias de abuso:"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:10
 msgid "{region} Review Queue"
-msgstr ""
+msgstr "Fila de revisão {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Fila de revisão {region}"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -19871,75 +19887,75 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "Todas as categorias"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
-msgstr ""
+msgstr "Jogos"
 
 #: mkt/search/forms.py:66
 msgid "Business"
-msgstr ""
+msgstr "Negócios"
 
 #: mkt/search/forms.py:67
 msgid "Education"
-msgstr ""
+msgstr "Educação"
 
 #: mkt/search/forms.py:68
 msgid "Entertainment"
-msgstr ""
+msgstr "Entretenimento "
 
 #: mkt/search/forms.py:69
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Saúde e Bem-Estar"
 
 #: mkt/search/forms.py:70 mkt/search/forms.py:97
 msgid "Lifestyle"
-msgstr ""
+msgstr "Estilo de vida"
 
 #: mkt/search/forms.py:71
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Mapas e navegação"
 
 #: mkt/search/forms.py:72
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 #: mkt/search/forms.py:73
 msgid "News & Weather"
-msgstr ""
+msgstr "Notícias e previsão do tempo"
 
 #: mkt/search/forms.py:74
 msgid "Photo & Video"
-msgstr ""
+msgstr "Foto e Vídeo"
 
 #: mkt/search/forms.py:75
 msgid "Productivity"
-msgstr ""
+msgstr "Produtividade"
 
 #: mkt/search/forms.py:76
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #: mkt/search/forms.py:77
 msgid "Shopping"
-msgstr ""
+msgstr "Compras"
 
 #: mkt/search/forms.py:78
 msgid "Social"
-msgstr ""
+msgstr "Redes Sociais"
 
 #: mkt/search/forms.py:79
 msgid "Sports"
-msgstr ""
+msgstr "Esportes"
 
 #: mkt/search/forms.py:80
 msgid "Travel"
-msgstr ""
+msgstr "Viajes"
 
 #: mkt/search/forms.py:81
 msgid "Utilities"
-msgstr ""
+msgstr "Utilidades"
 
 #: mkt/search/forms.py:106
 msgid "Search for apps"
@@ -20052,7 +20068,7 @@ msgstr "Trimestre"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Dispositivo(s) alterado(s): {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -20065,7 +20081,7 @@ msgstr "Não pode ser gratuito e pago."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Por favor, selecione um dispositivo."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -20262,6 +20278,9 @@ msgstr "Veja uma lista de todos os seus envios em <a href=\"%(url)s\">Meus envio
 #: mkt/submit/templates/submit/next_steps.html:63
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
+"Uma vez que o aplicativo é revisado, você deve publicá-lo manualmente no <a "
+"href=\"%(url)s\">Gerenciar Estado</a>. Aparecendo em páginas de listagem e em "
+"busca para todos."
 
 #: mkt/submit/templates/submit/next_steps.html:70
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
