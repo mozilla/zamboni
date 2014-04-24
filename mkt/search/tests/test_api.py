@@ -18,7 +18,7 @@ from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase
 from amo.urlresolvers import reverse
 from stats.models import ClientData
-from tags.models import Tag
+from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 
@@ -235,6 +235,7 @@ class TestApi(RestOAuth, ESTestCase):
                                    '/apps/app/337141/')
             eq_(obj['slug'], self.webapp.app_slug)
             eq_(obj['supported_locales'], ['en-US', 'es', 'pt-BR'])
+            eq_(obj['tags'], [])
             ok_('1.0' in obj['versions'])
             self.assertApiUrlEqual(obj['versions']['1.0'],
                                    '/apps/versions/1268829/')
@@ -702,6 +703,18 @@ class TestApi(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['icons']['64'], self.webapp.get_icon_url(64))
         ok_(obj['icons']['64'].endswith('?modified=never'))
+
+    def test_tag(self):
+        tag1 = Tag.objects.create(tag_text='tagtagtag')
+        tag2 = Tag.objects.create(tag_text='tarako')
+        Tag.objects.create(tag_text='dummy')
+        AddonTag.objects.create(addon=self.webapp, tag=tag1)
+        AddonTag.objects.create(addon=self.webapp, tag=tag2)
+        self.reindex(Webapp, 'webapp')
+        res = self.client.get(self.url, {'tag': 'tarako'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        self.assertSetEqual(obj['tags'], ['tagtagtag', 'tarako'])
 
 
 class TestApiFeatures(RestOAuth, ESTestCase):
