@@ -97,6 +97,13 @@ TARAKO_CATEGORY_CHOICES = [
     ('tarako-lifestyle', _lazy(u'Lifestyle')),
 ]
 
+# Tags are only available to admins. They are free-form, and we expose them in
+# the API, but they are not supposed to be manipulated by users atm, so we only
+# allow to search for specific, whitelisted ones.
+TAG_CHOICES = [
+    ('tarako', 'tarako'),
+]
+
 # "Relevance" doesn't make sense for Category listing pages.
 LISTING_SORT_CHOICES = SORT_CHOICES[1:]
 FREE_LISTING_SORT_CHOICES = [(k, v) for k, v in LISTING_SORT_CHOICES
@@ -144,15 +151,15 @@ class ApiSearchForm(forms.Form):
 
     sort = forms.MultipleChoiceField(required=False,
                                      choices=LISTING_SORT_CHOICES)
-    # TODO: Drop this back to a reasonable value when we do pagination.
     limit = forms.IntegerField(required=False, widget=forms.HiddenInput())
+    tag = forms.ChoiceField(required=False, label=_lazy(u'Tags'),
+                            choices=TAG_CHOICES)
 
     def __init__(self, *args, **kw):
         super(ApiSearchForm, self).__init__(*args, **kw)
         self.initial.update({
             'type': 'app',
             'status': 'pending',
-            'limit': 200,
         })
 
     def clean_cat(self):

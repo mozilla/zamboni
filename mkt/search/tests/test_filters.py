@@ -100,6 +100,10 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'cat': self.category.slug})
         ok_({'in': {'category': [self.category.slug]}} in qs['filter']['and'])
 
+    def test_tag(self):
+        qs = self._filter(self.req, {'tag': 'tarako'})
+        ok_({'term': {'tags': 'tarako'}} in qs['filter']['and'], qs['filter']['and'])
+
     def test_tarako_categories(self):
         qs = self._filter(self.req, {'cat': 'tarako-lifestyle'})
         ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-lifestyle']}}

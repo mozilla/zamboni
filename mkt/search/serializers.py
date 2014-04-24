@@ -54,9 +54,7 @@ class ESAppSerializer(AppSerializer):
     def __init__(self, *args, **kwargs):
         super(ESAppSerializer, self).__init__(*args, **kwargs)
 
-        # Remove fields that we don't have in ES or don't want / need to
-        # support/support in search results at the moment.
-        self.fields.pop('tags', None)
+        # Remove fields that we don't have in ES at the moment.
         self.fields.pop('upsold', None)
 
         # Set all fields as read_only just in case.
@@ -181,6 +179,9 @@ class ESAppSerializer(AppSerializer):
 
     def get_absolute_url(self, obj):
         return absolutify(obj.get_absolute_url())
+
+    def get_tags(self, obj):
+        return obj.es_data['tags']
 
 
 class SimpleESAppSerializer(ESAppSerializer):
