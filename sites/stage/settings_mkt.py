@@ -192,3 +192,5 @@ IARC_ALLOW_CERT_REUSE = True
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
+
+BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxalP1pJZFv5d9oI%0A9bcXqxv0MQ%3D%3D'
