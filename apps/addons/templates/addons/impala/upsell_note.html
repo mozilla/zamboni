@@ -4,12 +4,7 @@
     <h3>{{ _('Premium version available') }}</h3>
     <div class="premium">
       {% with prm = upsell.premium %}
-        {% if module_context == 'discovery' %}
-          <a href="{{ services_url('discovery.addons.detail', prm.slug, src='discovery-upsell') }}">
-            <img src="{{ prm.icon }}">{{ prm.name }}</a>
-        {% else %}
-          {{ prm|addon_hovercard(src='dp-hc-upsell', dl_src='dp-dl-upsell') }}
-        {% endif %}
+        {{ prm|addon_hovercard(src='dp-hc-upsell', dl_src='dp-dl-upsell') }}
       {% endwith %}
     </div>
   </div>

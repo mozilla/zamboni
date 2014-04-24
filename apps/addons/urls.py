@@ -41,8 +41,6 @@ detail_patterns = patterns('',
 
 
 urlpatterns = patterns('',
-    # Promo modules for the homepage
-    url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),

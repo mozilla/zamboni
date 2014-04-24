@@ -42,7 +42,6 @@ ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
 INSTALLED_APPS.remove('browse')
-INSTALLED_APPS.remove('discovery')
 INSTALLED_APPS.remove('devhub')
 INSTALLED_APPS.remove('search')
 INSTALLED_APPS = tuple(INSTALLED_APPS)

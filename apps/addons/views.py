@@ -376,14 +376,6 @@ def home(request):
                   {'featured': featured, 'popular': popular})
 
 
-def homepage_promos(request):
-    from discovery.views import promos
-    version, platform = request.GET.get('version'), request.GET.get('platform')
-    if not (platform or version):
-        raise http.Http404
-    return promos(request, 'home', version, platform)
-
-
 class CollectionPromoBox(object):
 
     def __init__(self, request):

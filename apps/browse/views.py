@@ -510,11 +510,3 @@ def search_tools(request, category=None):
                   {'categories': categories, 'category': category,
                    'addons': addons, 'filter': filter,
                    'search_extensions_filter': sidebar_ext})
-
-
-def moreinfo_redirect(request):
-    try:
-        addon_id = int(request.GET.get('id', ''))
-        return redirect('discovery.addons.detail', addon_id, permanent=True)
-    except ValueError:
-        raise http.Http404

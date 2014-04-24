@@ -2737,18 +2737,6 @@ td .addon-rating,
     clear: both;
 }
 
-#discovery-modules .ordering input {
-    width: 2em;
-}
-
-#discovery-modules .module {
-    font-weight: bold;
-}
-
-#discovery-modules .locales input {
-    width: 20em;
-}
-
 /* Carousel arrows for personas carousel */
 
 .personas-home ol.breadcrumbs {

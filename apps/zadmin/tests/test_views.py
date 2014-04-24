@@ -1800,8 +1800,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -1817,8 +1815,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 200)
 
     def test_sr_reviewers_user(self):
         # Sr Reviewers users have only a few privileges.
@@ -1860,8 +1856,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 403)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertRedirects(self.client.get(reverse('zadmin.index')),

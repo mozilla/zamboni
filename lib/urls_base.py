@@ -18,9 +18,6 @@ handler500 = 'amo.views.handler500'
 
 
 urlpatterns = patterns('',
-    # Discovery pane is first for undetectable efficiency wins.
-    ('^discovery/', include('discovery.urls')),
-
     # AMO homepage or Marketplace Developer Hub? Choose your destiny.
     url('^$', settings.HOME, name='home'),
 

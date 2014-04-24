@@ -422,7 +422,6 @@ INSTALLED_APPS = (
     'cronjobs',
     'csp',
     'devhub',
-    'discovery',
     'editors',
     'files',
     'jingo_minify',
@@ -543,10 +542,8 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/hovercards.less',
             'css/impala/toplist.less',
-            'css/impala/carousel.less',
             'css/impala/reviews.less',
             'css/impala/buttons.less',
-            'css/impala/promos.less',
             'css/impala/addon_details.less',
             'css/impala/policy.less',
             'css/impala/expando.less',
@@ -574,11 +571,6 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
-        ),
-        'zamboni/discovery-pane': (
-            'css/zamboni/discovery-pane.css',
-            'css/impala/promos.less',
-            'css/legacy/jquery-lightbox.css',
         ),
         'zamboni/devhub': (
             'css/impala/tooltips.less',
@@ -672,7 +664,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/debouncer.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/zamboni/homepage.js',
 
             # Add-ons details page
@@ -718,7 +709,6 @@ MINIFY_BUNDLES = {
         # Impala: Things to be loaded at the bottom
         'impala': (
             'js/lib/underscore.js',
-            'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -757,7 +747,6 @@ MINIFY_BUNDLES = {
             'js/impala/forms.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/impala/homepage.js',
 
             # Add-ons details page
@@ -799,38 +788,6 @@ MINIFY_BUNDLES = {
 
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
-        ),
-        'zamboni/discovery': (
-            'js/lib/jquery-1.6.4.js',
-            'js/lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/impala/carousel.js',
-
-            # Add-ons details
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/buttons.js',
-            'js/lib/jquery-ui/ui.lightbox.js',
-
-            # Personas
-            'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
-
-            'js/zamboni/debouncer.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-
-            'js/impala/promos.js',
-            'js/zamboni/discovery_addons.js',
-            'js/zamboni/discovery_pane.js',
-        ),
-        'zamboni/discovery-video': (
-            'js/lib/popcorn-1.0.js',
-            'js/zamboni/discovery_video.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
