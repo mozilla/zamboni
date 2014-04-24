@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-09 18:32+0000\n"
+"PO-Revision-Date: 2014-04-24 05:55+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397068325.0\n"
+"X-POOTLE-MTIME: 1398318954.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -15572,15 +15572,15 @@ msgstr "De app vereist de mogelijkheid om informatie over meerdere netwerkverbin
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "Headerafbeelding"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "Citaat"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "Schermafbeelding"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -17606,11 +17606,11 @@ msgstr "Uw app is nog niet volledig. Selecteer een betalingsmethode en prijspunt
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "Landen"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Transacties voor uw betalingsaccounts toevoegen, beheren of bekijken"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -17711,7 +17711,7 @@ msgstr "Transacties bekijken"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Een {provider}-account toevoegen"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Accept Terms of Service"
@@ -17732,6 +17732,8 @@ msgstr "De huidige betalingsaccount is door een app-eigenaar aan de app verbonde
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"U hebt een onvolledige betalingsaccount. Voltooi deze of stel hieronder een "
+"nieuwe in."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -17777,6 +17779,9 @@ msgstr "Bolu-account toevoegen"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"U hebt een Boku-servicekenmerk nodig om een Boku-account te kunnen openen. "
+"Boku-accounts dienen via het <a href=\"%(boku_url)s\">Mozilla-"
+"inschrijfproces</a> te worden aangemaakt."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17794,7 +17799,7 @@ msgstr "Boku-account aanpassen"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "Op dit moment is bewerken van een Boku-account niet mogelijk."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19707,7 +19712,7 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "Alle categorieën"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
