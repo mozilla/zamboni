@@ -1136,9 +1136,11 @@ class TestPaymentAccounts(PaymentsBase):
 
 class TestPaymentPortal(PaymentsBase):
 
+    fixtures = PaymentsBase.fixtures + fixture('webapp_337141')
+
     def setUp(self):
         super(TestPaymentPortal, self).setUp()
-        self.app_slug = 'app-slug'
+        self.app_slug = 'something-something'
         self.url = reverse('mkt.developers.provider.payment_accounts')
         self.bango_url = reverse(
             'mkt.developers.apps.payments.bango_portal_from_addon',
