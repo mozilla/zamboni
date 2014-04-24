@@ -22,27 +22,51 @@ define('payments-manage', ['payments'], function(payments) {
 
     function confirmPaymentAccountDeletion(data) {
         var spliter = ', ';
-        var isPlural = data['app-names'].indexOf(spliter) < 0;
+        var isPlural = data['app-names'].indexOf(spliter) !== -1;
         var $confirm_delete_overlay = payments.getOverlay({
             id: 'payment-account-delete-confirm',
         });
-        $confirm_delete_overlay.find('p').text(
-            // L10n: This sentence introduces a list of applications.
-            format(ngettext('Warning: deleting payment account "{0}" ' +
-                            'will move that associated app to an incomplete status ' +
-                            'and it will no longer be available for sale:',
-                            'Warning: deleting payment account "{0}" ' +
-                            'will move those associated apps to an incomplete status ' +
-                            'and they will no longer be available for sale:',
-                            isPlural), [data['name']]));
-        $confirm_delete_overlay.find('ul')
-                               .html('<li>' + escape_(data['app-names']).split(spliter).join('</li><li>') + '</li>');
+        var deletingAccountName = data['name'];
+        // L10n: This sentence introduces a list of applications.
+        $confirm_delete_overlay.find('p').text(format(ngettext(
+            'Deleting payment account "{0}" will remove the payment ' +
+            'account from the following apps. Applications without a ' +
+            'payment account will no longer be available for sale.',
+            'Deleting payment account "{0}" will remove the payment ' +
+            'account from the following app. Applications without a ' +
+            'payment account will no longer be available for sale.',
+            isPlural),
+            [deletingAccountName]));
+        var $ul = $confirm_delete_overlay.find('ul');
+        data['app-names'].split(spliter).forEach(function (appName) {
+            var $el = $('<li/>');
+            var paymentAccounts = data['app-payment-accounts'][appName];
+            $el.append($('<span class="app-name"/>').text(format(gettext(
+                '{appName} payment accounts:'), {appName: appName})));
+            paymentAccounts.forEach(function (accountName, i, all) {
+                var $nameEl = $('<span/>').text(accountName);
+                if (accountName == deletingAccountName) {
+                    $nameEl.addClass('deleting-account-name');
+                }
+                $el.append($nameEl);
+                if (i < all.length - 1) {
+                    $el.append(', ');
+                }
+            });
+            $ul.append($el);
+        });
         $confirm_delete_overlay.on('click', 'a.payment-account-delete-confirm', _pd(function() {
             $.post(data['delete-url']).then(function () {
                 refreshAccountForm(data)
             });
             $confirm_delete_overlay.remove();
-            $('#paid-island-incomplete').toggleClass('hidden');
+            var currentAppName = data['current-app-name'];
+            var paymentAccounts = data['app-payment-accounts'][currentAppName];
+            // If this app is associated with the account and it only has one
+            // account show the warning.
+            if (paymentAccounts && paymentAccounts.length === 1) {
+                $('#paid-island-incomplete').removeClass('hidden');
+            }
         }));
     }
 
@@ -162,6 +186,8 @@ define('payments-manage', ['payments'], function(payments) {
             $overlay_section.on('click', 'a.delete-account', _pd(function() {
                 var parent = $(this).closest('tr');
                 var app_names = parent.data('app-names');
+                var app_payment_accounts = parent.data('app-payment-accounts');
+                var current_app_name = parent.data('current-app-name');
                 var delete_url = parent.data('delete-url');
                 if (app_names === '') {
                     $.post(delete_url)
@@ -175,6 +201,8 @@ define('payments-manage', ['payments'], function(payments) {
                 } else {
                     confirmPaymentAccountDeletion({
                         'app-names': app_names,
+                        'app-payment-accounts': app_payment_accounts,
+                        'current-app-name': current_app_name,
                         'delete-url': delete_url,
                         'name': parent.data('account-name'),
                         'shared': parent.data('shared'),

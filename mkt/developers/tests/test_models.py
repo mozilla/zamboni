@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from mock import Mock, patch
 
 import amo
 import amo.tests
 from addons.models import Addon
+from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from users.models import UserProfile
 
 from devhub.models import ActivityLog
@@ -85,13 +86,18 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.filter()[0]
-        solsel_patcher = patch('mkt.developers.models.SolitudeSeller.create')
-        self.solsel = solsel_patcher.start()
-        self.solsel.return_value = self.seller = (
-            SolitudeSeller.objects.create(
-                resource_uri='selleruri', user=self.user))
-        self.solsel.patcher = solsel_patcher
+        self.seller, self.solsel = self.create_solitude_seller()
         super(TestPaymentAccount, self).setUp()
+
+    def create_solitude_seller(self, **kwargs):
+        solsel_patcher = patch('mkt.developers.models.SolitudeSeller.create')
+        solsel = solsel_patcher.start()
+        seller_params = {'resource_uri': 'selleruri', 'user': self.user}
+        seller_params.update(kwargs)
+        seller = SolitudeSeller.objects.create(**seller_params)
+        solsel.return_value = seller
+        solsel.patcher = solsel_patcher
+        return seller, solsel
 
     def tearDown(self):
         self.solsel.patcher.stop()
@@ -121,7 +127,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
     def test_cancel(self):
         res = PaymentAccount.objects.create(
-            name='asdf', user=self.user, uri='foo',
+            name='asdf', user=self.user, uri='foo', seller_uri='uri1',
             solitude_seller=self.seller)
 
         addon = Addon.objects.get()
@@ -129,8 +135,10 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
 
-        res.cancel()
+        assert addon.reload().status != amo.STATUS_NULL
+        res.cancel(disable_refs=True)
         assert res.inactive
+        assert addon.reload().status == amo.STATUS_NULL
         assert not AddonPaymentAccount.objects.exists()
 
     def test_cancel_shared(self):
@@ -145,6 +153,30 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
         with self.assertRaises(CantCancel):
             res.cancel()
+
+    def test_cancel_multiple_accounts(self):
+        acct1 = PaymentAccount.objects.create(
+            name='asdf', user=self.user, uri='foo', seller_uri='uri1',
+            solitude_seller=self.seller, provider=PROVIDER_BANGO)
+        acct2 = PaymentAccount.objects.create(
+            name='fdsa', user=self.user, uri='bar', seller_uri='uri2',
+            solitude_seller=self.seller, provider=PROVIDER_BOKU)
+
+        addon = Addon.objects.get(pk=337141)
+        AddonPaymentAccount.objects.create(
+            addon=addon, account_uri='foo',
+            payment_account=acct1, product_uri='bpruri')
+        still_around = AddonPaymentAccount.objects.create(
+            addon=addon, account_uri='bar',
+            payment_account=acct2, product_uri='asiuri')
+
+        ok_(addon.reload().status != amo.STATUS_NULL)
+        acct1.cancel(disable_refs=True)
+        ok_(acct1.inactive)
+        ok_(addon.reload().status != amo.STATUS_NULL)
+        pks = AddonPaymentAccount.objects.values_list('pk', flat=True)
+        eq_(len(pks), 1)
+        eq_(pks[0], still_around.pk)
 
     def test_get_details(self):
         package = Mock()

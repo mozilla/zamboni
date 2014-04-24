@@ -37,7 +37,9 @@
       data-account-full-name="{provider-full}"
       data-account-provider="{provider}"
       data-account-url="{account-url}"
+      data-current-app-name="{current-app-name}"
       data-app-names="{app-names}"
+      data-app-payment-accounts="{app-payment-accounts}"
       data-agreement-url="{agreement-url}"
       data-portal-url="{portal-url}"
       data-delete-url="{delete-url}"
@@ -55,13 +57,16 @@
   <section>
     <header>
       <a class="close" title="{{ _('close') }}">&times;</a>
-      <h2>{{ _('Payment Account deletion') }}</h2>
+      <h2>{{ _('Confirm deletion of payment account') }}</h2>
     </header>
-    <p></p>
-    <ul></ul>
-    <div class="listing-footer">
-      <a href="#" class="close">{{ _('Cancel') }}</a>
-      <a href="#" class="payment-account-delete-confirm button">{{ _('Confirm') }}</a>
+    <div class="island">
+        <p></p>
+        <ul class="app-list"></ul>
+        <div class="listing-footer">
+            <a href="#" class="payment-account-delete-confirm button">{{ _('Delete Payment Account') }}</a>
+            {{ _('or') }}
+            <a href="#" class="close">{{ _('Cancel') }}</a>
+        </div>
     </div>
   </section>
 </script>
