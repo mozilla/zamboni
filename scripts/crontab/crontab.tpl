@@ -20,9 +20,6 @@ HOME=/tmp
 55 * * * * %(z_cron)s unhide_disabled_files
 
 
-# Every 3 hours.
-# 20 */3 * * * %(z_cron)s compatibility_report
-
 # Every 4 hours.
 40 */4 * * * %(django)s clean_redis
 

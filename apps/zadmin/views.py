@@ -24,7 +24,7 @@ from hera.contrib.django_utils import flush_urls, get_hera
 import amo
 import amo.search
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser, CompatOverride
+from addons.models import Addon, AddonUser
 from amo import get_user, messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
@@ -32,24 +32,21 @@ from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from bandwagon.models import Collection
-from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
 from market.utils import update_from_csv
 from users.models import UserProfile
-from versions.compare import version_int as vint
 from versions.models import Version
 from zadmin.forms import GenerateErrorForm, PriceTiersForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
 from .decorators import admin_required
-from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
-                    DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
-                    JetpackUpgradeForm, MonthlyPickFormSet, NotifyForm,
-                    YesImSure)
+from .forms import (AddonStatusForm, BulkValidationForm, DevMailerForm,
+                    FeaturedCollectionFormSet, FileFormSet, JetpackUpgradeForm,
+                    MonthlyPickFormSet, NotifyForm, YesImSure)
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -480,70 +477,6 @@ def jetpack_resend(request, file_id):
     log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
     start_upgrade_task.delay([file_id], sdk_version=maxver)
     return redirect('zadmin.jetpack')
-
-
-@admin_required
-def compat(request):
-    APP = amo.FIREFOX
-    VER = amo.COMPAT[0]['main']  # Default: latest Firefox version.
-    minimum = 10
-    ratio = .8
-    binary = None
-
-    # Expected usage:
-    #     For Firefox 8.0 reports:      ?appver=1-8.0
-    #     For over 70% incompatibility: ?appver=1-8.0&ratio=0.7
-    #     For binary-only add-ons:      ?appver=1-8.0&type=binary
-    initial = {'appver': '%s-%s' % (APP.id, VER), 'minimum': minimum,
-               'ratio': ratio, 'type': 'all'}
-    initial.update(request.GET.items())
-
-    form = CompatForm(initial)
-    if request.GET and form.is_valid():
-        APP, VER = form.cleaned_data['appver'].split('-')
-        APP = amo.APP_IDS[int(APP)]
-        if form.cleaned_data['ratio'] is not None:
-            ratio = float(form.cleaned_data['ratio'])
-        if form.cleaned_data['minimum'] is not None:
-            minimum = int(form.cleaned_data['minimum'])
-        if form.cleaned_data['type'] == 'binary':
-            binary = True
-
-    app, ver = str(APP.id), VER
-    usage_addons, usage_total = compat_stats(request, app, ver, minimum, ratio,
-                                             binary)
-
-    return render(request, 'zadmin/compat.html', {
-        'app': APP, 'version': VER, 'form': form, 'usage_addons': usage_addons,
-        'usage_total': usage_total})
-
-
-def compat_stats(request, app, ver, minimum, ratio, binary):
-    # Get the list of add-ons for usage stats.
-    # Show add-ons marked as incompatible with this current version having
-    # greater than 10 incompatible reports and whose average exceeds 80%.
-    ver_int = str(vint(ver))
-    prefix = 'works.%s.%s' % (app, ver_int)
-    qs = (AppCompat.search()
-          .filter(**{'%s.failure__gt' % prefix: minimum,
-                     '%s.failure_ratio__gt' % prefix: ratio,
-                     'support.%s.max__gte' % app: 0})
-          .order_by('-%s.failure_ratio' % prefix,
-                    '-%s.total' % prefix)
-          .values_dict())
-    if binary is not None:
-        qs = qs.filter(binary=binary)
-    addons = amo.utils.paginate(request, qs)
-    for obj in addons.object_list:
-        obj['usage'] = obj['usage'][app]
-        obj['max_version'] = obj['max_version'][app]
-        obj['works'] = obj['works'][app].get(ver_int, {})
-        # Get all overrides for this add-on.
-        obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])
-        # Determine if there is an override for this current app version.
-        obj['has_override'] = obj['overrides'].filter(
-            _compat_ranges__min_app_version=ver + 'a1').exists()
-    return addons, CompatTotals.objects.get(app=app).total
 
 
 @login_required

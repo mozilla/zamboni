@@ -11,7 +11,6 @@ import amo.search
 from addons.models import Persona
 from amo.utils import create_es_index_if_missing
 from bandwagon.models import Collection
-from compat.models import AppCompat
 from users.models import UserProfile
 from versions.compare import version_int
 
@@ -150,7 +149,7 @@ def setup_mapping(index=None, aliased=True):
     # Adjust the mapping for all models at once because fields are shared
     # across all doc types in an index. If we forget to adjust one of them
     # we'll get burned later on.
-    for model in Addon, AppCompat, Collection, UserProfile:
+    for model in Addon, Collection, UserProfile:
         index = index or model._get_index()
         index = create_es_index_if_missing(index, aliased=aliased)
         try:

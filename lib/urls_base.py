@@ -76,8 +76,6 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
-    ('^compatibility/', include('compat.urls')),
-
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
         'stats.views.site_events', name='amo.site_events'),
