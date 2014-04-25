@@ -66,11 +66,12 @@
 <div id="addon" data-id="{{ product.id }}" data-url="{{ url('editors.review_viewing') }}">
 
 <section class="island alpha summary">
-  {% if DESKTOP %}
+  <div class="reviewers-desktop">
     {% include 'reviewers/includes/details.html' %}
-  {% else %}
+  </div>
+  <div class="reviewers-mobile">
     {% include 'reviewers/includes/mobile_details.html' %}
-  {% endif %}
+  </div>
 </section>
 
 {% if waffle.switch('comm-dashboard') %}
