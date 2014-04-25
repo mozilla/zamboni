@@ -27,7 +27,6 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-import lib.iarc
 from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
@@ -37,6 +36,7 @@ from files.utils import SafeUnzip
 
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.utils import iarc_get_app_info
 
 
 log = logging.getLogger('z.mkt.developers.task')
@@ -549,23 +549,8 @@ def refresh_iarc_ratings(ids, **kw):
     """
     Refresh old or corrupt IARC ratings by re-fetching the certificate.
     """
-    client = lib.iarc.client.get_iarc_client('services')
-
     for app in Webapp.objects.filter(id__in=ids):
-        iarc = app.iarc_info
-        iarc_id = iarc.submission_id
-        iarc_code = iarc.security_code
-
-        # Generate XML.
-        xml = lib.iarc.utils.render_xml(
-            'get_app_info.xml',
-            {'submission_id': iarc_id, 'security_code': iarc_code})
-
-        # Process that shizzle.
-        resp = client.Get_App_Info(XMLString=xml)
-
-        # Handle response.
-        data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
+        data = iarc_get_app_info(app)
 
         if data.get('rows'):
             row = data['rows'][0]

@@ -33,16 +33,6 @@
       {% if not theme %}
         <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
           {{ _('View Statistics Dashboard') }}</a></li>
-        <li class="compat-reports">
-          <a href="{{ url('compat.reporter_detail', addon.guid) }}">
-            <span>{{ _('Compatibility Reports') }}</span>
-            {% set compat_counts = get_compat_counts(addon) %}
-            <b class="failure" title="{{ _('{0} failure reports')|f(compat_counts.failure) }}">
-              {{ compat_counts.failure|numberfmt }}</b>
-            <b class="success" title="{{ _('{0} success reports')|f(compat_counts.success) }}">
-              {{ compat_counts.success|numberfmt }}</b>
-          </a>
-        </li>
       {% endif %}
     </ul>
   </div>

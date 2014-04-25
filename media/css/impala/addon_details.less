@@ -111,6 +111,7 @@ h1.addon,
     }
     &.author {
         min-height: 64px;
+        padding-left: 104px;
         position: relative;
 
         .aux {
@@ -136,15 +137,6 @@ h1.addon,
         #contribute-box {
             display: none;
         }
-    }
-    &.author,
-    &.performance-note {
-        padding-left: 104px;
-    }
-    &.performance-note {
-        background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
-        border-color: #e2dbbf;
-        .box-shadow(0 -1px 0 #F7F0D5 inset, 0 1px 0 rgba(0, 0, 0, 0.05));
     }
     &.upsell,
     &.dependencies {
@@ -173,10 +165,6 @@ h1.addon,
 }
 
 .html-rtl .notice {
-    &.author,
-    &.performance-note {
-        padding: 14px 104px 14px 14px;
-    }
     &.author {
         .aux {
             float: left;
@@ -186,9 +174,7 @@ h1.addon,
             left: auto;
             right: 20px;
         }
-    }
-    &.performance-note {
-        background-position: 96% 16px;
+        padding: 14px 104px 14px 14px;
     }
     &.upsell {
         .premium {
@@ -267,12 +253,6 @@ h1.addon,
             .sprite-pos(4, 20, 4px);
         }
     }
-    &.share {
-        .sprite-pos(5, 20, 4px);
-        &:hover {
-            .sprite-pos(6, 20, 4px);
-        }
-    }
     &.ajax-loading {
         background: url(../../img/zamboni/loading-white.gif) no-repeat 0 2px !important;
     }
@@ -295,12 +275,6 @@ h1.addon,
             .sprite-pos-right(3, 20, 4px);
             &:hover {
                 .sprite-pos-right(4, 20, 4px);
-            }
-        }
-        &.share {
-            .sprite-pos-right(5, 20, 4px);
-            &:hover {
-                .sprite-pos-right(6, 20, 4px);
             }
         }
         &.ajax-loading {

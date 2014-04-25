@@ -16,10 +16,6 @@
             {{ big_install_button(addon, show_warning=False) }}
           {% endif %}
 
-          {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-            {{ performance_note(amount=addon.ts_slowness) }}
-          {% endif %}
-
           {% if addon.takes_contributions %}
             {{ contribution(addon=addon, src='addon-detail') }}
           {% endif %}
@@ -153,7 +149,6 @@
         <div class="widgets">
           {{ favorites_widget(addon) }}
           {% include 'addons/includes/collection_add_widget.html' %}
-          {{ sharing_widget(addon) }}
         </div>
         {% endif %}
       </div>{# /secondary #}

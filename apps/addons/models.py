@@ -38,8 +38,6 @@ from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
-import sharing.utils as sharing
-from stats.models import AddonShareCountTotal
 from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField, Translation)
@@ -376,9 +374,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Whether the app is packaged or not (aka hosted).
     is_packaged = models.BooleanField(default=False, db_index=True)
 
-    # This gets overwritten in the transformer.
-    share_counts = collections.defaultdict(int)
-
     enable_new_regions = models.BooleanField(default=False, db_index=True)
 
     # Annotates disabled apps from the Great IARC purge for auto-reapprove.
@@ -592,9 +587,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def type_url(self):
         """The url for this add-on's AddonType."""
         return AddonType(self.type).get_url_path()
-
-    def share_url(self):
-        return reverse('addons.share', args=[self.slug])
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
@@ -1125,9 +1117,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
 
-        # Attach sharing stats.
-        sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
-
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
 
@@ -1465,37 +1454,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
-
-    def app_perf_results(self):
-        """Generator of (AppVersion, [list of perf results contexts]).
-
-        A performance result context is a dict that has these keys:
-
-        **baseline**
-            The baseline of the result. For startup time this is the
-            time it takes to start up with no addons.
-
-        **startup_is_too_slow**
-            True/False if this result is slower than the threshold.
-
-        **result**
-            Actual result object
-        """
-        res = collections.defaultdict(list)
-        baselines = {}
-        for result in (self.performance
-                       .select_related('osversion', 'appversion')
-                       .order_by('-created')[:20]):
-            k = (result.appversion.id, result.osversion.id, result.test)
-            if k not in baselines:
-                baselines[k] = result.get_baseline()
-            baseline = baselines[k]
-            appver = result.appversion
-            slow = result.startup_is_too_slow(baseline=baseline)
-            res[appver].append({'baseline': baseline,
-                                'startup_is_too_slow': slow,
-                                'result': result})
-        return res.iteritems()
 
     def get_localepicker(self):
         """For language packs, gets the contents of localepicker."""

@@ -183,3 +183,5 @@ IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServi
 IARC_STOREFRONT_ID = 4
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'
 IARC_ALLOW_CERT_REUSE = False
+
+BOKU_SIGNUP_URL = 'https://merchants.boku.com/signup/signup_business?params=jEHWaTM7zm5cbPpheT2iS4xB1mkzO85uxVAo7rs7LVgy5JYGMWnUYDvxyEk8lxal8v7jEulGAjIG%0AHNcbGXc61g%3D%3D'

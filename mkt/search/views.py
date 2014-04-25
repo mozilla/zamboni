@@ -4,7 +4,7 @@ from apps.search.views import _get_locale_analyzer
 from . import forms
 
 
-DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort']
+DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort', 'tag']
 DEFAULT_SORTING = {
     'popularity': '-popularity',
     # TODO: Should popularity replace downloads?
@@ -108,6 +108,9 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
         # query['cat'] should be a list, the form clean_cat method takes care
         # of that.
         qs = qs.filter(category__in=query['cat'])
+    if 'tag' in show:
+        # We only allow searching on one tag for now, and not a list.
+        qs = qs.filter(tags=query['tag'])
     if 'price' in show:
         if query['price'] == 'paid':
             qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)

@@ -911,12 +911,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.get_pq()('#weekly-downloads a.stats').attr('href'),
             reverse('stats.overview', args=[self.addon.slug]))
 
-    def test_perf_warning(self):
-        eq_(self.addon.ts_slowness, None)
-        eq_(self.get_pq()('.performance-note').length, 0)
-        self.addon.update(ts_slowness=100)
-        eq_(self.get_pq()('.performance-note').length, 1)
-
     def test_dependencies(self):
         eq_(self.get_pq()('.dependencies').length, 0)
         req = Addon.objects.get(id=592)
@@ -1350,21 +1344,6 @@ class TestPrivacyPolicy(amo.tests.TestCase):
         self.addon.privacy_policy = 'shizzle'
         self.addon.save()
         check_cat_sidebar(self.url, self.addon)
-
-
-class TestAddonSharing(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
-
-    def test_redirect_sharing(self):
-        addon = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.share', args=['a3615']),
-                            {'service': 'delicious'})
-        url = absolutify(unicode(addon.get_url_path()))
-        summary = truncate(addon.summary, length=250)
-        eq_(r.status_code, 302)
-        assert iri_to_uri(addon.name) in r['Location']
-        assert iri_to_uri(url) in r['Location']
-        assert iri_to_uri(summary) in r['Location']
 
 
 class TestReportAbuse(amo.tests.TestCase):

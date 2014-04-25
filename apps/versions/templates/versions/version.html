@@ -47,10 +47,6 @@
             {% endtrans %}
           {% endif %}
         </li>
-        <li>
-          <a class="license-faq" href="{{ url('pages.faq')|urlparams('license') }}">
-            {{ _("What's this?", 'addons_display_a_license_what') }}</a>
-        </li>
     {% endif %}
     {% if addon.view_source and version.has_files and
           addon.status in amo.REVIEWED_STATUSES %}

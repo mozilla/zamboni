@@ -54,12 +54,6 @@ urlpatterns = patterns('',
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
-    # Performance wall of shame.
-    ('^performance/', include('perf.urls')),
-
-    # Localizable pages.
-    ('', include('pages.urls')),
-
     # App versions.
     ('pages/appversions/', include('applications.urls')),
 
@@ -75,8 +69,6 @@ urlpatterns = patterns('',
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
-
-    ('^compatibility/', include('compat.urls')),
 
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
@@ -103,15 +95,6 @@ urlpatterns = patterns('',
 
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
-
-    ('^pages/about$',
-     lambda r: redirect('pages.about', permanent=True)),
-
-    ('^pages/credits$',
-     lambda r: redirect('pages.credits', permanent=True)),
-
-    ('^pages/faq$',
-     lambda r: redirect('pages.faq', permanent=True)),
 
     # Redirect persona/xxx
     ('^getpersonas$',

@@ -95,7 +95,7 @@ WEBAPPS_UNIQUE_BY_DOMAIN = True
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
-SOLITUDE_HOSTS = ('https://payments.allizom.org',)
+SOLITUDE_HOSTS = ('https://payments-bango-solitude.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 

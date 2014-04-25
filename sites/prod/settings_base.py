@@ -108,9 +108,6 @@ PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
-PERF_THRESHOLD = None
-PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
-
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
 # Remove DetectMobileMiddleware from middleware in production.

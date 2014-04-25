@@ -12,7 +12,6 @@
         <div class="collection_widgets widgets condensed">
           {{ favorites_widget(addon, condensed=True) }}
           {{ collection_add_widget(addon, condensed=True) }}
-          {{ sharing_widget(addon, condensed=True) }}
         </div>
       {% endif %}
     </div>
@@ -23,9 +22,6 @@
         <div>{{ addon.summary|truncate(250)|nl2br }}</div>
       {% endif %}
     </blockquote>
-    {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-      {{ performance_note(amount=addon.ts_slowness, listing=True) }}
-    {% endif %}
     {% if notes and notes[addon.id] %}
     <blockquote class="collector-note">
       <strong>{{ _("Collector's Note") }}</strong>
