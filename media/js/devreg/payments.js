@@ -84,7 +84,7 @@ define('payments', [], function() {
                     // There was a JSON parse error, just stick the error
                     // message on the form.
                     $old_overlay.find('#payment-account-errors')
-                                .html(error_data.responseText);
+                                .append($('<p class="error"></p>').text(apiErrorMsg));
                 }
 
                 // Re-initialize the form submit binding.
