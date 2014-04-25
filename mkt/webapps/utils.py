@@ -4,6 +4,7 @@ from collections import defaultdict
 import commonware.log
 
 from amo.utils import find_language
+import lib.iarc
 
 import mkt
 
@@ -92,3 +93,21 @@ def dehydrate_interactives(keys):
         if obj:
             results.append(key.lower().replace('_', '-'))
     return results
+
+
+def iarc_get_app_info(app):
+    client = lib.iarc.client.get_iarc_client('services')
+    iarc = app.iarc_info
+    iarc_id = iarc.submission_id
+    iarc_code = iarc.security_code
+
+    # Generate XML.
+    xml = lib.iarc.utils.render_xml(
+        'get_app_info.xml',
+        {'submission_id': iarc_id, 'security_code': iarc_code})
+
+    # Process that shizzle.
+    resp = client.Get_App_Info(XMLString=xml)
+
+    # Handle response.
+    return lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
