@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-08 21:15+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2014-04-25 05:20+0000\n"
+"Last-Translator: anonym13 <lesyalouky@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396991716.0\n"
+"X-POOTLE-MTIME: 1398403206.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -100,7 +100,7 @@ msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
+msgstr "Váš doplněk prošel kontrolou bez chyb a varování."
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
@@ -136,13 +136,13 @@ msgstr[2] "Kontrola vaší aplikace skončila s {0} chybama."
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováním."
-msgstr[1] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováními."
-msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováními."
+msgstr[0] "Vaše aplikace prošla kontrolou bez chyb a s {0} varováním."
+msgstr[1] "Vaše aplikace prošla kontrolou bez chyb a s {0} varováními."
+msgstr[2] "Vaše aplikace prošla kontrolou bez chyb a s {0} varováními."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Vaše aplikace prošla kontrolou bez chyby či varování."
+msgstr "Vaše aplikace prošla kontrolou bez chyb či varování."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -192,7 +192,7 @@ msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprá
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
 msgid "Your app passed validation with no errors or messages."
-msgstr "Vaše aplikace prošla kontrolou bez chyby či informační zprávy."
+msgstr "Vaše aplikace prošla kontrolou bez chyb či informačních zpráv."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
 msgid "Changes Saved"
