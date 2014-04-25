@@ -1923,7 +1923,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_receipt_has_node(self):
         self.get_app().update(premium_type=amo.ADDON_PREMIUM)
         res = self.client.get(self.url)
-        eq_(len(pq(res.content)('#receipt-check-result')), 1)
+        eq_(len(pq(res.content)('.reviewers-desktop #receipt-check-result')),
+            1)
+        eq_(len(pq(res.content)('.reviewers-mobile #receipt-check-result')),
+            1)
 
     @mock.patch('mkt.reviewers.views.requests.get')
     def test_manifest_json(self, mock_get):
@@ -2036,7 +2039,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         AbuseReport.objects.create(addon=self.app, message='!@#$')
         res = self.client.get(self.url)
         doc = pq(res.content)
-        dd = doc('#summary dd.abuse-reports')
+        dd = doc('.reviewers-desktop #summary dd.abuse-reports')
+        eq_(dd.text(), u'1')
+        eq_(dd.find('a').attr('href'), reverse('reviewers.apps.review.abuse',
+                                               args=[self.app.app_slug]))
+        dd = doc('.reviewers-mobile #summary dd.abuse-reports')
         eq_(dd.text(), u'1')
         eq_(dd.find('a').attr('href'), reverse('reviewers.apps.review.abuse',
                                                args=[self.app.app_slug]))
@@ -3233,7 +3240,8 @@ class TestReviewPage(amo.tests.TestCase):
         req = req_factory_factory(self.url, user=self.reviewer)
         res = app_review(req, app_slug=self.app.app_slug)
         doc = pq(res.content)
-        eq_(doc('.content-rating').length, 2)
+        eq_(doc('.reviewers-desktop .content-rating').length, 2)
+        eq_(doc('.reviewers-mobile .content-rating').length, 2)
 
 
 class TestReviewTranslate(AppReviewerTest):
