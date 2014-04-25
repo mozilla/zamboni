@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-10 17:12+0000\n"
+"PO-Revision-Date: 2014-04-25 04:11+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397149966.0\n"
+"X-POOTLE-MTIME: 1398399116.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -15155,15 +15155,15 @@ msgstr "此應用程式需要取得多重網路連線的資訊。"
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "標題圖片"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "引用"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "畫面擷圖"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -17177,11 +17177,11 @@ msgstr "您的應用程式目前不完整。選擇一個付款帳號以及價位
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "國家"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "新增、管理或檢視您的付款帳號中的交易"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -17280,7 +17280,7 @@ msgstr "檢視交易"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "新增 {provider} 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Accept Terms of Service"
@@ -17300,7 +17300,7 @@ msgstr "目前的付款帳戶已由應用程式管理員連結至應用程式。
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
-msgstr ""
+msgstr "您還有未設定完成的付款帳號。請將其設定完成，或是在下面新增一個。"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -17346,6 +17346,8 @@ msgstr "新增 Boku 帳號"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"您將需要 Boku 服務 ID 以註冊 Boku 帳號。Boku 帳號必須透過 <a href=\"%(boku_url)s\">Mozilla "
+"註冊程序</a> 完成註冊。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17363,7 +17365,7 @@ msgstr "修改 Boku 帳號"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "目前無法編輯 Boku 帳號。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19252,75 +19254,75 @@ msgstr "平板"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "所有分類"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
-msgstr ""
+msgstr "遊戲"
 
 #: mkt/search/forms.py:66
 msgid "Business"
-msgstr ""
+msgstr "商業"
 
 #: mkt/search/forms.py:67
 msgid "Education"
-msgstr ""
+msgstr "教育"
 
 #: mkt/search/forms.py:68
 msgid "Entertainment"
-msgstr ""
+msgstr "娛樂"
 
 #: mkt/search/forms.py:69
 msgid "Health & Fitness"
-msgstr ""
+msgstr "健康與健身"
 
 #: mkt/search/forms.py:70 mkt/search/forms.py:97
 msgid "Lifestyle"
-msgstr ""
+msgstr "生活型態"
 
 #: mkt/search/forms.py:71
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "地圖與導航"
 
 #: mkt/search/forms.py:72
 msgid "Music"
-msgstr ""
+msgstr "音樂"
 
 #: mkt/search/forms.py:73
 msgid "News & Weather"
-msgstr ""
+msgstr "新聞與天氣"
 
 #: mkt/search/forms.py:74
 msgid "Photo & Video"
-msgstr ""
+msgstr "相片與影片"
 
 #: mkt/search/forms.py:75
 msgid "Productivity"
-msgstr ""
+msgstr "生產力"
 
 #: mkt/search/forms.py:76
 msgid "Reference"
-msgstr ""
+msgstr "參考"
 
 #: mkt/search/forms.py:77
 msgid "Shopping"
-msgstr ""
+msgstr "購物"
 
 #: mkt/search/forms.py:78
 msgid "Social"
-msgstr ""
+msgstr "社交"
 
 #: mkt/search/forms.py:79
 msgid "Sports"
-msgstr ""
+msgstr "體育"
 
 #: mkt/search/forms.py:80
 msgid "Travel"
-msgstr ""
+msgstr "旅遊"
 
 #: mkt/search/forms.py:81
 msgid "Utilities"
-msgstr ""
+msgstr "小工具"
 
 #: mkt/search/forms.py:106
 msgid "Search for apps"
