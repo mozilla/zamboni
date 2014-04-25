@@ -9,10 +9,10 @@ import private_mkt
 DOMAIN = 'marketplace.allizom.org'
 SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
-DOMAIN = "payments-bango.allizom.org"
+DOMAIN = "payments-alt.allizom.org"
 SITE_URL = 'https://marketplace.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = os.getenv('CUSTOM_CDN', 'https://payments-bango-cdn.allizom.org/')
+STATIC_URL = os.getenv('CUSTOM_CDN', 'https://payments-alt-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
 
@@ -95,7 +95,7 @@ WEBAPPS_UNIQUE_BY_DOMAIN = True
 
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
-SOLITUDE_HOSTS = ('https://payments-bango-solitude.allizom.org',)
+SOLITUDE_HOSTS = ('https://payments-alt-solitude.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
@@ -107,7 +107,7 @@ DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
-                      'https://payments-bango.allizom.org',
+                      'https://payments-alt.allizom.org',
                       'https://marketplace-dev.allizom.org',
                       'https://marketplace-altdev.allizom.org']
 
