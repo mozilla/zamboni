@@ -54,7 +54,6 @@ from translations.models import delete_translation
 from users.models import UserProfile
 from versions.models import Version
 from mkt.webapps.models import Webapp
-from zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, signals
 
@@ -868,20 +867,6 @@ def file_validation(request, addon_id, addon, file_id):
                        timestamp=file.created, addon=addon))
 
 
-@dev_required(allow_editors=True)
-def bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    job = result.validation_job
-    revalidate_url = reverse('devhub.json_bulk_compat_result',
-                             args=[addon.slug, result.id])
-    return _compat_result(request, revalidate_url,
-                          job.application, job.target_version,
-                          for_addon=result.file.version.addon,
-                          validated_filename=result.file.filename,
-                          validated_ts=result.completed)
-
-
 def _compat_result(request, revalidate_url, target_app, target_version,
                    validated_filename=None, validated_ts=None,
                    for_addon=None):
@@ -925,21 +910,6 @@ def json_file_validation(request, addon_id, addon, file_id):
 
     return make_validation_result(dict(validation=validation,
                                        error=None))
-
-
-@json_view
-@csrf_exempt
-@post_required
-@dev_required(allow_editors=True)
-def json_bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    if result.task_error:
-        return make_validation_result({'validation': '',
-                                       'error': result.task_error})
-    else:
-        validation = json.loads(result.validation)
-        return make_validation_result(dict(validation=validation, error=None))
 
 
 @json_view

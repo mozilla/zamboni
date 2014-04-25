@@ -9,7 +9,6 @@ import uuid
 import zipfile
 from datetime import datetime, timedelta
 
-import django.dispatch
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -29,10 +28,8 @@ from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
-import devhub.signals
 from files.utils import SafeUnzip
 from tags.models import Tag
-from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
 
@@ -637,17 +634,3 @@ def nfd_str(u):
     if isinstance(u, unicode):
         return unicodedata.normalize('NFD', u).encode('utf-8')
     return u
-
-
-@django.dispatch.receiver(devhub.signals.submission_done)
-def check_jetpack_version(sender, **kw):
-    import files.tasks
-    from files.utils import JetpackUpgrader
-
-    minver, maxver = JetpackUpgrader().jetpack_versions()
-    qs = File.objects.filter(version__addon=sender,
-                             jetpack_version__isnull=False)
-    ids = [f.id for f in qs
-           if vint(minver) <= vint(f.jetpack_version) < vint(maxver)]
-    if ids:
-        files.tasks.start_upgrade.delay(ids, priority='high')

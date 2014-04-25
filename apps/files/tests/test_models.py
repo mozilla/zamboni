@@ -18,17 +18,17 @@ from nose.tools import eq_
 import amo
 import amo.tests
 import amo.utils
-import devhub.signals
 
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from files.helpers import copyfileobj
-from files.utils import check_rdf, JetpackUpgrader, parse_addon, parse_xpi
+from files.utils import check_rdf, parse_addon, parse_xpi
 from versions.models import Version
 
 from mkt.site.fixtures import fixture
+
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
@@ -927,31 +927,6 @@ def test_parse_xpi():
                           'apps/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(open(firefm))
     eq_(rdf['name'], 'Fire.fm')
-
-
-class TestCheckJetpackVersion(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        JetpackUpgrader().jetpack_versions('1.0', '1.1')
-
-    @mock.patch('files.tasks.start_upgrade.delay')
-    def test_upgrade(self, upgrade_mock):
-        File.objects.update(jetpack_version='1.0')
-        ids = list(File.objects.values_list('id', flat=True))
-        devhub.signals.submission_done.send(sender=self.addon)
-        upgrade_mock.assert_called_with(ids, priority='high')
-
-    @mock.patch('files.tasks.start_upgrade.delay')
-    def test_no_upgrade(self, upgrade_mock):
-        File.objects.update(jetpack_version=None)
-        devhub.signals.submission_done.send(sender=self.addon)
-        assert not upgrade_mock.called
-
-        File.objects.update(jetpack_version='0.9')
-        devhub.signals.submission_done.send(sender=self.addon)
-        assert not upgrade_mock.called
 
 
 class LanguagePackBase(UploadTest):

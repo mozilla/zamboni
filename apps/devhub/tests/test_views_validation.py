@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
 import json
-import sys
-import traceback
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -28,7 +26,6 @@ from files.models import File, FileUpload, FileValidation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon
 from users.models import UserProfile
-from zadmin.models import ValidationResult
 
 
 class TestUploadValidation(BaseUploadTest):
@@ -554,98 +551,6 @@ class TestValidateFile(BaseUploadTest):
         compatibility_check(xpi, FIREFOX.guid, '10.0.*')
 
         eq_(run_validator.call_args[1]['compat'], True)
-
-
-class TestCompatibilityResults(amo.tests.TestCase):
-    fixtures = ['base/users', 'devhub/addon-compat-results']
-
-    def setUp(self):
-        super(TestCompatibilityResults, self).setUp()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
-        self.addon = Addon.objects.get(slug='addon-compat-results')
-        self.result = ValidationResult.objects.get(
-                                        file__version__addon=self.addon)
-        self.job = self.result.validation_job
-
-    def validate(self, expected_status=200):
-        r = self.client.post(reverse('devhub.json_bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        eq_(r.status_code, expected_status)
-        return json.loads(r.content)
-
-    def test_login_protected(self):
-        self.client.logout()
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
-        eq_(r.status_code, 302)
-        r = self.client.post(reverse('devhub.json_bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
-        eq_(r.status_code, 302)
-
-    def test_target_version(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                    args=[self.addon.slug, self.result.id]))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        ver = json.loads(doc('.results').attr('data-target-version'))
-        assert amo.FIREFOX.guid in ver, ('Unexpected: %s' % ver)
-        eq_(ver[amo.FIREFOX.guid], self.job.target_version.version)
-
-    def test_app_trans(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        trans = json.loads(doc('.results').attr('data-app-trans'))
-        for app in amo.APPS.values():
-            eq_(trans[app.guid], app.pretty)
-
-    def test_app_version_change_links(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        trans = json.loads(doc('.results').attr('data-version-change-links'))
-        eq_(trans['%s 4.0.*' % amo.FIREFOX.guid],
-            'https://developer.mozilla.org/en/Firefox_4_for_developers')
-
-    def test_validation_success(self):
-        data = self.validate()
-        eq_(data['validation']['messages'][3]['for_appversions'],
-            {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
-
-    def test_time(self):
-        r = self.client.post(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        assert doc('time').text()
-        eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
-    def test_validation_error(self):
-        try:
-            raise RuntimeError('simulated task error')
-        except:
-            error = ''.join(traceback.format_exception(*sys.exc_info()))
-        self.result.update(validation='', task_error=error)
-        data = self.validate()
-        eq_(data['validation'], '')
-        eq_(data['error'], error)
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
-    def test_hide_validation_traceback(self):
-        try:
-            raise RuntimeError('simulated task error')
-        except:
-            error = ''.join(traceback.format_exception(*sys.exc_info()))
-        self.result.update(validation='', task_error=error)
-        data = self.validate()
-        eq_(data['validation'], '')
-        eq_(data['error'], 'RuntimeError: simulated task error')
 
 
 class TestUploadCompatCheck(BaseUploadTest):

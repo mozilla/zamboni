@@ -13,13 +13,11 @@ import zipfile
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime
-from itertools import groupby
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
 
 from django import forms
 from django.conf import settings
-from django.core.cache import cache
 from django.utils.translation import trans_real as translation
 from django.core.files.storage import default_storage as storage
 
@@ -29,14 +27,9 @@ from tower import ugettext as _
 import amo
 from amo.utils import rm_local_tmp_dir, strip_bom, to_language
 from applications.models import AppVersion
-from versions.compare import version_int as vint
 
 
 log = logging.getLogger('files.utils')
-
-
-class ParseError(forms.ValidationError):
-    pass
 
 
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
@@ -541,100 +534,3 @@ def get_md5(filename, **kw):
 
 def get_sha256(filename, **kw):
     return _get_hash(filename, hash=hashlib.sha256, **kw)
-
-
-def find_jetpacks(minver, maxver, from_builder_only=False):
-    """
-    Find all jetpack files that aren't disabled.
-
-    Files that should be upgraded will have needs_upgrade=True.
-
-    Keyword Args
-
-    from_builder_only=False
-        If True, the jetpacks returned are only those that were created
-        and packaged by the builder.
-    """
-    from .models import File
-    statuses = amo.VALID_STATUSES
-    files = (File.objects.filter(jetpack_version__isnull=False,
-                                 version__addon__auto_repackage=True,
-                                 version__addon__status__in=statuses,
-                                 version__addon__disabled_by_user=False)
-             .exclude(status=amo.STATUS_DISABLED).no_cache()
-             .select_related('version'))
-    if from_builder_only:
-        files = files.exclude(builder_version=None)
-    files = sorted(files, key=lambda f: (f.version.addon_id, f.version.id))
-
-    # Figure out which files need to be upgraded.
-    for file_ in files:
-        file_.needs_upgrade = False
-    # If any files for this add-on are reviewed, take the last reviewed file
-    # plus all newer files.  Otherwise, only upgrade the latest file.
-    for _, fs in groupby(files, key=lambda f: f.version.addon_id):
-        fs = list(fs)
-        if any(f.status in amo.REVIEWED_STATUSES for f in fs):
-            for file_ in reversed(fs):
-                file_.needs_upgrade = True
-                if file_.status in amo.REVIEWED_STATUSES:
-                    break
-        else:
-            fs[-1].needs_upgrade = True
-    # Make sure only old files are marked.
-    for file_ in [f for f in files if f.needs_upgrade]:
-        if not (vint(minver) <= vint(file_.jetpack_version) < vint(maxver)):
-            file_.needs_upgrade = False
-    return files
-
-
-class JetpackUpgrader(object):
-    """A little manager for jetpack upgrade data in memcache."""
-    prefix = 'admin:jetpack:upgrade:'
-
-    def __init__(self):
-        self.version_key = self.prefix + 'version'
-        self.file_key = self.prefix + 'files'
-        self.jetpack_key = self.prefix + 'jetpack'
-
-    def jetpack_versions(self, min_=None, max_=None):
-        if None not in (min_, max_):
-            d = {'min': min_, 'max': max_}
-            return cache.set(self.jetpack_key, d)
-        d = cache.get(self.jetpack_key, {})
-        return d.get('min'), d.get('max')
-
-    def version(self, val=None):
-        if val is not None:
-            return cache.add(self.version_key, val)
-        return cache.get(self.version_key)
-
-    def files(self, val=None):
-        if val is not None:
-            current = cache.get(self.file_key, {})
-            current.update(val)
-            return cache.set(self.file_key, val)
-        return cache.get(self.file_key, {})
-
-    def file(self, file_id, val=None):
-        file_id = int(file_id)
-        if val is not None:
-            current = cache.get(self.file_key, {})
-            current[file_id] = val
-            cache.set(self.file_key, current)
-            return val
-        return cache.get(self.file_key, {}).get(file_id, {})
-
-    def cancel(self):
-        cache.delete(self.version_key)
-        newfiles = dict([(k, v) for (k, v) in self.files().items()
-                         if v.get('owner') != 'bulk'])
-        cache.set(self.file_key, newfiles)
-
-    def finish(self, file_id):
-        file_id = int(file_id)
-        newfiles = dict([(k, v) for (k, v) in self.files().items()
-                         if k != file_id])
-        cache.set(self.file_key, newfiles)
-        if not newfiles:
-            cache.delete(self.version_key)

@@ -1,6 +1,4 @@
 import csv
-import json
-from decimal import Decimal
 from urlparse import urlparse
 
 from django import http
@@ -9,10 +7,8 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
-from django.db.models import Sum
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.encoding import smart_str
 from django.views import debug
 from django.views.decorators.cache import never_cache
 
@@ -25,99 +21,25 @@ import amo
 import amo.search
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
-from amo import get_user, messages
-from amo.decorators import (any_permission_required, json_view, login_required,
-                            post_required)
+from amo import messages
+from amo.decorators import any_permission_required, json_view, post_required
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
-from amo.utils import chunked, sorted_groupby
-from bandwagon.models import Collection
+from amo.utils import chunked
 from devhub.models import ActivityLog
-from files.models import Approval, File
-from files.tasks import start_upgrade as start_upgrade_task
-from files.utils import find_jetpacks, JetpackUpgrader
+from files.models import File
 from market.utils import update_from_csv
 from users.models import UserProfile
-from versions.models import Version
 from zadmin.forms import GenerateErrorForm, PriceTiersForm, SiteEventForm
 from zadmin.models import SiteEvent
 
 from . import tasks
 from .decorators import admin_required
-from .forms import (AddonStatusForm, BulkValidationForm, DevMailerForm,
-                    FeaturedCollectionFormSet, FileFormSet, JetpackUpgradeForm,
-                    MonthlyPickFormSet, NotifyForm, YesImSure)
-from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
+from .forms import AddonStatusForm, DevMailerForm, FileFormSet, YesImSure
+from .models import EmailPreviewTopic
+
 
 log = commonware.log.getLogger('z.zadmin')
-
-
-@admin_required(reviewers=True)
-def flagged(request):
-    types = amo.MARKETPLACE_TYPES
-    addons = (Addon.objects.no_cache()
-                           .filter(admin_review=True, type__in=types)
-                           .no_transforms().order_by('-created'))
-
-    if request.method == 'POST':
-        ids = map(int, request.POST.getlist('addon_id'))
-        for addon in addons.filter(id__in=ids):
-            addon.update(admin_review=False)
-        return redirect('zadmin.flagged')
-
-    if not addons:
-        return render(request, 'zadmin/flagged_addon_list.html',
-                      {'addons': addons, 'reverse': reverse})
-
-    sql = """SELECT {t}.* FROM {t} JOIN (
-                SELECT addon_id, MAX(created) AS created
-                FROM {t}
-                GROUP BY addon_id) as J
-             ON ({t}.addon_id = J.addon_id AND {t}.created = J.created)
-             WHERE {t}.addon_id IN {ids}"""
-    approvals_sql = sql + """
-        AND (({t}.reviewtype = 'nominated' AND {t}.action = %s)
-             OR ({t}.reviewtype = 'pending' AND {t}.action = %s))"""
-
-    ids = '(%s)' % ', '.join(str(a.id) for a in addons)
-    versions_sql = sql.format(t=Version._meta.db_table, ids=ids)
-    approvals_sql = approvals_sql.format(t=Approval._meta.db_table, ids=ids)
-
-    versions = dict((x.addon_id, x) for x in
-                    Version.objects.raw(versions_sql))
-    approvals = dict((x.addon_id, x) for x in
-                     Approval.objects.raw(approvals_sql,
-                                          [amo.STATUS_NOMINATED,
-                                           amo.STATUS_PENDING]))
-
-    for addon in addons:
-        addon.version = versions.get(addon.id)
-        addon.approval = approvals.get(addon.id)
-
-    return render(request, 'zadmin/flagged_addon_list.html',
-                  {'addons': addons})
-
-
-@admin_required(reviewers=True)
-def langpacks(request):
-    if request.method == 'POST':
-        try:
-            tasks.fetch_langpacks.delay(request.POST['path'])
-        except ValueError:
-            messages.error(request, 'Invalid language pack sub-path provided.')
-
-        return redirect('zadmin.langpacks')
-
-    addons = (Addon.objects.no_cache()
-              .filter(addonuser__user__email=settings.LANGPACK_OWNER_EMAIL,
-                      type=amo.ADDON_LPAPP)
-              .order_by('name'))
-
-    data = {'addons': addons, 'base_url': settings.LANGPACK_DOWNLOAD_BASE,
-            'default_path': settings.LANGPACK_PATH_DEFAULT % (
-                'firefox', amo.FIREFOX.latest_version)}
-
-    return render(request, 'zadmin/langpack_update.html', data)
 
 
 @admin.site.admin_view
@@ -193,190 +115,6 @@ def fix_disabled_file(request):
                   {'file': file_, 'file_id': request.POST.get('file', '')})
 
 
-@login_required
-@post_required
-@json_view
-def application_versions_json(request):
-    app_id = request.POST['application_id']
-    f = BulkValidationForm()
-    return {'choices': f.version_choices_for_app_id(app_id)}
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-def validation(request, form=None):
-    if not form:
-        form = BulkValidationForm()
-    jobs = ValidationJob.objects.order_by('-created')
-    return render(request, 'zadmin/validation.html',
-                  {'form': form,
-                   'notify_form': NotifyForm(text='validation'),
-                   'validation_jobs': jobs})
-
-
-def find_files(job):
-    # This is a first pass, we know we don't want any addons in the states
-    # STATUS_NULL and STATUS_DISABLED.
-    current = job.curr_max_version.version_int
-    target = job.target_version.version_int
-    addons = (Addon.objects.filter(
-                        status__in=amo.VALID_STATUSES,
-                        disabled_by_user=False,
-                        versions__apps__application=job.application.id,
-                        versions__apps__max__version_int__gte=current,
-                        versions__apps__max__version_int__lt=target)
-                           # Exclude lang packs and themes.
-                           .exclude(type__in=[amo.ADDON_LPAPP,
-                                              amo.ADDON_THEME])
-                           .no_transforms().values_list("pk", flat=True)
-                           .distinct())
-    for pks in chunked(addons, 100):
-        tasks.add_validation_jobs.delay(pks, job.pk)
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-def start_validation(request):
-    form = BulkValidationForm(request.POST)
-    if form.is_valid():
-        job = form.save(commit=False)
-        job.creator = get_user()
-        job.save()
-        find_files(job)
-        return redirect(reverse('zadmin.validation'))
-    else:
-        return validation(request, form=form)
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-@post_required
-@json_view
-def job_status(request):
-    ids = json.loads(request.POST['job_ids'])
-    jobs = ValidationJob.objects.filter(pk__in=ids)
-    all_stats = {}
-    for job in jobs:
-        status = job.stats
-        for k, v in status.items():
-            if isinstance(v, Decimal):
-                status[k] = str(v)
-        all_stats[job.pk] = status
-    return all_stats
-
-
-def _completed_versions(job, prefix=''):
-    filter = dict(files__validation_results__validation_job=job,
-                  files__validation_results__completed__isnull=False)
-    if not prefix:
-        return filter
-
-    res = {}
-    for k, v in filter.iteritems():
-        res['%s__%s' % (prefix, k)] = v
-    return res
-
-
-def updated_versions(job):
-    return (Version.objects
-                   .filter(files__validation_results__validation_job=job,
-                           files__validation_results__errors=0,
-                           files__validation_results__completed__isnull=False,
-                           apps__application=job.curr_max_version.application,
-                           apps__max__version_int__gte=
-                                job.curr_max_version.version_int,
-                           apps__max__version_int__lt=
-                                job.target_version.version_int)
-                   .exclude(files__validation_results__errors__gt=0)
-                   .values_list('pk', flat=True).distinct())
-
-
-def completed_version_authors(job):
-    return (Version.objects
-                   .filter(**_completed_versions(job))
-                   # Prevent sorting by version creation date and
-                   # thereby breaking `.distinct()`
-                   .order_by('addon__authors__pk')
-                   .values_list('addon__authors__pk', flat=True).distinct())
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-@post_required
-@json_view
-def notify_syntax(request):
-    notify_form = NotifyForm(request.POST)
-    if not notify_form.is_valid():
-        return {'valid': False, 'error': notify_form.errors['text'][0]}
-    else:
-        return {'valid': True, 'error': None}
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-@post_required
-def notify(request, job):
-    job = get_object_or_404(ValidationJob, pk=job)
-    notify_form = NotifyForm(request.POST, text='validation')
-
-    if not notify_form.is_valid():
-        messages.error(request, notify_form)
-    else:
-        for chunk in chunked(updated_versions(job), 100):
-            tasks.update_maxversions.delay(chunk, job.pk,
-                                           notify_form.cleaned_data)
-
-        updated_authors = completed_version_authors(job)
-        for chunk in chunked(updated_authors, 100):
-            # There are times when you want to punch django's ORM in
-            # the face. This may be one of those times.
-            # TODO: Offload most of this work to the task?
-            users_addons = list(
-                UserProfile.objects.filter(pk__in=chunk)
-                           .filter(**_completed_versions(job,
-                                                         'addons__versions'))
-                           .values_list('pk', 'addons__pk').distinct())
-
-            users = list(UserProfile.objects.filter(
-                pk__in=set(u for u, a in users_addons)))
-
-            # Annotate fails in tests when using cached results
-            addons = (Addon.objects.no_cache()
-                           .filter(**{
-                               'pk__in': set(a for u, a in users_addons),
-                               'versions__files__'
-                                   'validation_results__validation_job': job
-                           })
-                           .annotate(errors=Sum(
-                               'versions__files__validation_results__errors')))
-            addons = dict((a.id, a) for a in addons)
-
-            users_addons = dict((u, [addons[a] for u, a in row])
-                                for u, row in sorted_groupby(users_addons,
-                                                             lambda k: k[0]))
-
-            for u in users:
-                addons = users_addons[u.pk]
-
-                u.passing_addons = [a for a in addons if a.errors == 0]
-                u.failing_addons = [a for a in addons if a.errors > 0]
-
-            tasks.notify_compatibility.delay(users, job,
-                                             notify_form.cleaned_data)
-
-    return redirect(reverse('zadmin.validation'))
-
-
 @any_permission_required([('Admin', '%'),
                           ('BulkValidationAdminTools', 'View')])
 def email_preview_csv(request, topic):
@@ -390,148 +128,6 @@ def email_preview_csv(request, topic):
     for row in rs:
         writer.writerow([r.encode('utf8') for r in row])
     return resp
-
-
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
-def validation_tally_csv(request, job_id):
-    resp = http.HttpResponse()
-    resp['Content-Type'] = 'text/csv; charset=utf-8'
-    resp['Content-Disposition'] = ('attachment; '
-                                   'filename=validation_tally_%s.csv'
-                                   % job_id)
-    writer = csv.writer(resp)
-    fields = ['message_id', 'message', 'long_message',
-              'type', 'addons_affected']
-    writer.writerow(fields)
-    job = ValidationJobTally(job_id)
-    keys = ['key', 'message', 'long_message', 'type', 'addons_affected']
-    for msg in job.get_messages():
-        writer.writerow([smart_str(msg[k], encoding='utf8', strings_only=True)
-                         for k in keys])
-    return resp
-
-
-@admin.site.admin_view
-def jetpack(request):
-    upgrader = JetpackUpgrader()
-    minver, maxver = upgrader.jetpack_versions()
-    form = JetpackUpgradeForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            if 'minver' in request.POST:
-                data = form.cleaned_data
-                upgrader.jetpack_versions(data['minver'], data['maxver'])
-            elif 'upgrade' in request.POST:
-                if upgrader.version(maxver):
-                    start_upgrade(minver, maxver)
-            elif 'cancel' in request.POST:
-                upgrader.cancel()
-            return redirect('zadmin.jetpack')
-        else:
-            messages.error(request, form.errors.as_text())
-
-    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
-
-    upgrading = upgrader.version()    # Current Jetpack version upgrading to.
-    repack_status = upgrader.files()  # The files being repacked.
-
-    show = request.GET.get('show', upgrading or minver)
-    subset = filter(lambda f: not f.needs_upgrade and
-                              f.jetpack_version == show, jetpacks)
-    need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
-    repacked = []
-
-    if upgrading:
-        # Group the repacked files by status for this Jetpack upgrade.
-        grouped_files = sorted_groupby(repack_status.values(),
-                                       key=lambda f: f['status'])
-        for group, rows in grouped_files:
-            rows = sorted(list(rows), key=lambda f: f['file'])
-            for idx, row in enumerate(rows):
-                rows[idx]['file'] = File.objects.get(id=row['file'])
-            repacked.append((group, rows))
-
-    groups = sorted_groupby(jetpacks, 'jetpack_version')
-    by_version = dict((version, len(list(files))) for version, files in groups)
-    return render(request, 'zadmin/jetpack.html',
-                  dict(form=form, upgrader=upgrader,
-                       by_version=by_version, upgrading=upgrading,
-                       need_upgrade=need_upgrade, subset=subset,
-                       show=show, repacked=repacked,
-                       repack_status=repack_status))
-
-
-def start_upgrade(minver, maxver):
-    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
-    ids = [f.id for f in jetpacks if f.needs_upgrade]
-    log.info('Starting a jetpack upgrade to %s [%s files].'
-             % (maxver, len(ids)))
-    start_upgrade_task.delay(ids, sdk_version=maxver)
-
-
-def jetpack_resend(request, file_id):
-    maxver = JetpackUpgrader().version()
-    log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
-    start_upgrade_task.delay([file_id], sdk_version=maxver)
-    return redirect('zadmin.jetpack')
-
-
-@login_required
-@json_view
-def es_collections_json(request):
-    app = request.GET.get('app', '')
-    q = request.GET.get('q', '')
-    qs = Collection.search()
-    try:
-        qs = qs.query(id__startswith=int(q))
-    except ValueError:
-        qs = qs.query(name__match=q)
-    try:
-        qs = qs.filter(app=int(app))
-    except ValueError:
-        pass
-    data = []
-    for c in qs[:7]:
-        data.append({'id': c.id,
-                     'name': unicode(c.name),
-                     'all_personas': c.all_personas,
-                     'url': c.get_url_path()})
-    return data
-
-
-@admin_required
-@post_required
-def featured_collection(request):
-    try:
-        pk = int(request.POST.get('collection', 0))
-    except ValueError:
-        pk = 0
-    c = get_object_or_404(Collection, pk=pk)
-    return render(request, 'zadmin/featured_collection.html',
-                  dict(collection=c))
-
-
-@admin_required
-def features(request):
-    form = FeaturedCollectionFormSet(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save(commit=False)
-        messages.success(request, 'Changes successfully saved.')
-        return redirect('zadmin.features')
-    return render(request, 'zadmin/features.html', dict(form=form))
-
-
-@admin_required
-def monthly_pick(request):
-    form = MonthlyPickFormSet(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        messages.success(request, 'Changes successfully saved.')
-        return redirect('zadmin.monthly_pick')
-    return render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
 @admin.site.admin_view

@@ -241,7 +241,6 @@ def mkt_admin_site_links():
         'addons': [
             ('Search for apps by name or id', reverse('zadmin.addon-search')),
             ('Fake mail', reverse('zadmin.mail')),
-            ('Flagged reviews', reverse('zadmin.flagged')),
         ],
         'users': [
             ('Configure groups', reverse('admin:access_group_changelist')),

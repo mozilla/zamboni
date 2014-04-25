@@ -1059,9 +1059,6 @@ CELERY_ROUTES = {
     'devhub.tasks.resize_preview': {'queue': 'images'},
     'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},
 
-    # AMO validator.
-    'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
-
     # Comm.
     'mkt.comm.tasks.migrate_activity_log': {'queue': 'limited'},
 }
