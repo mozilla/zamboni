@@ -177,6 +177,12 @@ ES_USE_PLUGINS = True
 
 BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
 
+WHITELISTED_CLIENTS_EMAIL_API = private_mkt.WHITELISTED_CLIENTS_EMAIL_API
+
+POSTFIX_AUTH_TOKEN = private_mkt.POSTFIX_AUTH_TOKEN
+
+POSTFIX_DOMAIN = DOMAIN
+
 MONOLITH_INDEX = 'mktstage-time_*'
 
 # IARC content ratings.
