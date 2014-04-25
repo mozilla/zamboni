@@ -18,11 +18,6 @@
     <a href="{{ url('devhub.feed', addon.slug) }}">
       {{ _('View Recent Changes') }}</a>
   </li>
-  <li>
-    <a href="{{ url('stats.usage', addon.slug) }}" class="tooltip"
-       title="{{ _("View the popularity of this theme over time.") }}">
-      {{ _('View Statistics') }}</a>
-  </li>
   {% if check_addon_ownership(request, addon) %}
     <li>
       <a href="{{ addon.get_dev_url() }}#ownership" class="tooltip"

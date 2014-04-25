@@ -9,7 +9,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
-from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
@@ -29,7 +28,6 @@ from bandwagon.models import Collection
 from files.models import File
 from paypal.tests.test import other_error
 from stats.models import Contribution
-from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
@@ -842,16 +840,11 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.addon.public_stats, False)
         adu = self.get_pq()('#daily-users')
         eq_(adu.length, 1)
-        eq_(adu.find('a').length, 0)
 
     def test_adu_stats_public(self):
         self.addon.update(public_stats=True)
         eq_(self.addon.show_adu(), True)
         adu = self.get_pq()('#daily-users')
-
-        # Check that ADU does link to public statistics dashboard.
-        eq_(adu.find('a').attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
 
         # Check formatted count.
         eq_(adu.text().split()[0], numberfmt(self.addon.average_daily_users))
@@ -865,29 +858,17 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         # Should not be a link to statistics dashboard for regular users.
         adu = self.get_pq()('#daily-users')
         eq_(adu.length, 1)
-        eq_(adu.find('a').length, 0)
-
-    def test_adu_stats_admin(self):
-        self.client.login(username='del@icio.us', password='password')
-        # Check link to statistics dashboard for add-on authors.
-        eq_(self.get_pq()('#daily-users a.stats').attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
 
     def test_downloads_stats_private(self):
         self.addon.update(type=amo.ADDON_SEARCH)
         eq_(self.addon.public_stats, False)
         adu = self.get_pq()('#weekly-downloads')
         eq_(adu.length, 1)
-        eq_(adu.find('a').length, 0)
 
     def test_downloads_stats_public(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         eq_(self.addon.show_adu(), False)
         dls = self.get_pq()('#weekly-downloads')
-
-        # Check that weekly downloads links to statistics dashboard.
-        eq_(dls.find('a').attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
 
         # Check formatted count.
         eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))
@@ -902,14 +883,10 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         # Should not be a link to statistics dashboard for regular users.
         dls = self.get_pq()('#weekly-downloads')
         eq_(dls.length, 1)
-        eq_(dls.find('a').length, 0)
 
     def test_downloads_stats_admin(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         self.client.login(username='del@icio.us', password='password')
-        # Check link to statistics dashboard for add-on authors.
-        eq_(self.get_pq()('#weekly-downloads a.stats').attr('href'),
-            reverse('stats.overview', args=[self.addon.slug]))
 
     def test_dependencies(self):
         eq_(self.get_pq()('.dependencies').length, 0)

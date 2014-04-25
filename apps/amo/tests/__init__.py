@@ -39,7 +39,6 @@ from waffle.models import Flag, Sample, Switch
 import addons.search
 import amo
 import amo.search
-import stats.search
 from access.acl import check_ownership
 from access.models import Group, GroupUser
 from addons.models import update_search_index as addon_update_search_index
@@ -910,7 +909,6 @@ class ESTestCase(TestCase):
                 print 'Could not delete index %r: %s' % (index, exc)
 
         addons.search.setup_mapping()
-        stats.search.setup_indexes()
         WebappIndexer.setup_mapping()
 
     @classmethod

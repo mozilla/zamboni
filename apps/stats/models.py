@@ -4,8 +4,6 @@ from django.conf import settings
 from django.db import models
 from django.utils import translation
 
-import bleach
-import caching.base
 import tower
 from babel import Locale, numbers
 from jingo import env
@@ -15,67 +13,12 @@ from tower import ugettext as _
 import amo
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
-from amo.models import SearchMixin
 from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
 from zadmin.models import DownloadSource
 
 import mkt
 
 from .db import StatsDictField
-
-
-class AddonCollectionCount(models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    collection = models.ForeignKey('bandwagon.Collection')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_addons_collections_counts'
-
-
-class CollectionCount(SearchMixin, models.Model):
-    collection = models.ForeignKey('bandwagon.Collection')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_collections_counts'
-
-
-class CollectionStats(models.Model):
-    """In the running for worst-named model ever."""
-    collection = models.ForeignKey('bandwagon.Collection')
-    name = models.CharField(max_length=255, null=True)
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_collections'
-
-
-class DownloadCount(SearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    sources = StatsDictField(db_column='src', null=True)
-
-    class Meta:
-        db_table = 'download_counts'
-
-
-class UpdateCount(SearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    versions = StatsDictField(db_column='version', null=True)
-    statuses = StatsDictField(db_column='status', null=True)
-    applications = StatsDictField(db_column='application', null=True)
-    oses = StatsDictField(db_column='os', null=True)
-    locales = StatsDictField(db_column='locale', null=True)
-
-    class Meta:
-        db_table = 'update_counts'
 
 
 class ContributionError(Exception):
@@ -231,62 +174,6 @@ class Contribution(amo.models.ModelBase):
                    _(u'%s refund declined' % self.addon.name),
                    {'name': self.addon.name})
 
-    def mail_thankyou(self, request=None):
-        """
-        Mail a thankyou note for a completed contribution.
-
-        Raises a ``ContributionError`` exception when the contribution
-        is not complete or email addresses are not found.
-        """
-        locale = self._switch_locale()
-
-        # Thankyous must be enabled.
-        if not self.addon.enable_thankyou:
-            # Not an error condition, just return.
-            return
-
-        # Contribution must be complete.
-        if not self.transaction_id:
-            raise ContributionError('Transaction not complete')
-
-        # Send from support_email, developer's email, or default.
-        from_email = settings.DEFAULT_FROM_EMAIL
-        if self.addon.support_email:
-            from_email = str(self.addon.support_email)
-        else:
-            try:
-                author = self.addon.listed_authors[0]
-                if author.email and not author.emailhidden:
-                    from_email = author.email
-            except (IndexError, TypeError):
-                # This shouldn't happen, but the default set above is still ok.
-                pass
-
-        # We need the contributor's email.
-        to_email = self.post_data['payer_email']
-        if not to_email:
-            raise ContributionError('Empty payer email')
-
-        # Make sure the url uses the right language.
-        # Setting a prefixer would be nicer, but that requires a request.
-        url_parts = self.addon.meet_the_dev_url().split('/')
-        url_parts[1] = locale.language
-
-        subject = _('Thanks for contributing to {addon_name}').format(
-                    addon_name=self.addon.name)
-
-        # Send the email.
-        send_mail_jinja(
-            subject, 'stats/contribution-thankyou-email.ltxt',
-            {'thankyou_note': bleach.clean(unicode(self.addon.thankyou_note),
-                                           strip=True),
-             'addon_name': self.addon.name,
-             'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
-                                                 '/'.join(url_parts)),
-             'domain': settings.DOMAIN},
-            from_email, [to_email], fail_silently=True,
-            perm_setting='dev_thanks')
-
     def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):
         """Keep track of a contribution's refund status."""
@@ -313,11 +200,6 @@ class Contribution(amo.models.ModelBase):
             refund.rejection_reason = rejection_reason
         refund.save()
         return refund
-
-    @staticmethod
-    def post_save(sender, instance, **kwargs):
-        from . import tasks
-        tasks.addon_total_contributions.delay(instance.addon_id)
 
     def get_amount_locale(self, locale=None):
         """Localise the amount paid into the current locale."""
@@ -356,22 +238,6 @@ class Contribution(amo.models.ModelBase):
                                             type__in=[amo.CONTRIB_REFUND,
                                                       amo.CONTRIB_CHARGEBACK])
                                     .exists())
-
-
-models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
-
-
-class GlobalStat(caching.base.CachingMixin, models.Model):
-    name = models.CharField(max_length=255)
-    count = models.IntegerField()
-    date = models.DateField()
-
-    objects = caching.base.CachingManager()
-
-    class Meta:
-        db_table = 'global_stats'
-        unique_together = ('name', 'date')
-        get_latest_by = 'date'
 
 
 class ClientData(models.Model):
@@ -415,13 +281,3 @@ class ClientData(models.Model):
         db_table = 'client_data'
         unique_together = ('download_source', 'device_type', 'user_agent',
                            'is_chromeless', 'language', 'region')
-
-
-class ThemeUserCount(SearchMixin, models.Model):
-    """Theme active daily users."""
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'theme_user_counts'

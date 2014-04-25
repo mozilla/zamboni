@@ -288,12 +288,6 @@ def paypal_completed(request, transaction_id, serialize=None, amount=None):
         update['amount'] = _parse_currency(amount)['amount']
 
     original.update(**update)
-    # Send thankyou email.
-    try:
-        original.mail_thankyou(request)
-    except ContributionError as e:
-        # A failed thankyou email is not a show stopper, but is good to know.
-        paypal_log.error('Thankyou note email failed with error: %s' % e)
 
     paypal_log_cef(request, original.addon, transaction_id,
                    'Purchase', 'PURCHASE',

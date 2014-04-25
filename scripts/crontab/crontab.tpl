@@ -11,10 +11,8 @@ HOME=/tmp
 */30 * * * * %(z_cron)s update_addons_current_version
 
 # Once per hour.
-# 5 * * * * %(z_cron)s update_collections_subscribers
 # 10 * * * * %(z_cron)s update_blog_posts
 20 * * * * %(z_cron)s addon_last_updated
-# 25 * * * * %(z_cron)s update_collections_votes
 # 45 * * * * %(z_cron)s update_addon_appsupport
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
@@ -30,7 +28,6 @@ HOME=/tmp
 # 25 10,22 * * * %(z_cron)s addons_add_slugs
 # commented out 2013-03-28, clouserw
 # 45 2,14 * * * %(z_cron)s give_personas_versions
-# 25 16,4 * * * %(z_cron)s update_collections_total
 25 17,5 * * * %(z_cron)s hide_disabled_files
 
 # Once per day.
@@ -53,20 +50,7 @@ HOME=/tmp
 # 30 16 * * * %(z_cron)s personas_adu
 # 30 17 * * * %(z_cron)s share_count_totals
 # 30 18 * * * %(z_cron)s recs
-# 30 6 * * * %(z_cron)s deliver_hotness
 45 7 * * * %(django)s dump_apps
-
-# Collect visitor stats from Google Analytics once per day.
-# 50 10 * * * %(z_cron)s update_google_analytics --settings=settings_local_mkt
-
-# Once per day after 2100 PST (after metrics is done).
-# 35 5 * * * %(z_cron)s update_addon_download_totals
-# 40 5 * * * %(z_cron)s weekly_downloads
-# 35 6 * * * %(z_cron)s update_global_totals
-# 40 6 * * * %(z_cron)s update_addon_average_daily_users
-# 30 7 * * * %(z_cron)s index_latest_stats
-# 45 7 * * * %(z_cron)s update_addons_collections_downloads
-# 50 7 * * * %(z_cron)s update_daily_theme_user_counts
 
 # Once per week.
 # 45 7 * * 4 %(z_cron)s unconfirmed

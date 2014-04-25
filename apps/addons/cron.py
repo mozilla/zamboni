@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections, transaction
-from django.db.models import Q, F, Avg
+from django.db.models import Q, F
 
 import cronjobs
 import multidb
@@ -23,10 +23,9 @@ import amo
 from amo.decorators import write
 from amo.utils import chunked
 from addons import search
-from addons.models import Addon, AppSupport, FrozenAddon, Persona
+from addons.models import Addon, AppSupport, FrozenAddon
 from files.models import File
-from lib.es.utils import raise_if_reindex_in_progress
-from stats.models import ThemeUserCount, UpdateCount
+
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
@@ -91,118 +90,6 @@ def _update_addons_current_version(data, **kw):
             m = "Failed to update current_version. Missing add-on: %d" % (pk)
             task_log.debug(m)
     transaction.commit_unless_managed()
-
-
-@cronjobs.register
-def update_addon_average_daily_users():
-    """Update add-ons ADU totals."""
-    raise_if_reindex_in_progress('amo')
-    cursor = connections[multidb.get_slave()].cursor()
-    q = """SELECT addon_id, AVG(`count`)
-           FROM update_counts
-           WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-           GROUP BY addon_id
-           ORDER BY addon_id"""
-    cursor.execute(q)
-    d = cursor.fetchall()
-    cursor.close()
-
-    ts = [_update_addon_average_daily_users.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
-
-
-@task
-def _update_addon_average_daily_users(data, **kw):
-    task_log.info("[%s] Updating add-ons ADU totals." % (len(data)))
-
-    for pk, count in data:
-        try:
-            addon = Addon.objects.get(pk=pk)
-        except Addon.DoesNotExist:
-            # The processing input comes from metrics which might be out of
-            # date in regards to currently existing add-ons
-            m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
-            task_log.debug(m % (count, pk))
-            continue
-
-        if (count - addon.total_downloads) > 10000:
-            # Adjust ADU to equal total downloads so bundled add-ons don't
-            # skew the results when sorting by users.
-            task_log.info('Readjusted ADU count for addon %s' % addon.slug)
-            addon.update(average_daily_users=addon.total_downloads)
-        else:
-            #task_log.debug('Updating "%s" :: ADU %s -> %s' %
-            #               (addon.slug, addon.average_daily_users, count))
-            addon.update(average_daily_users=count)
-
-
-@cronjobs.register
-def update_daily_theme_user_counts():
-    """Store the day's theme popularity counts into ThemeUserCount."""
-    raise_if_reindex_in_progress('amo')
-    d = Persona.objects.values_list('addon', 'popularity').order_by('id')
-
-    date = datetime.now().strftime('%M-%d-%y')
-    ts = [_update_daily_theme_user_counts.subtask(args=[chunk],
-                                                  kwargs={'date': date})
-          for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
-
-
-@task
-def _update_daily_theme_user_counts(data, **kw):
-    task_log.info("[%s] Updating daily theme user counts for %s."
-                  % (len(data), kw['date']))
-
-    for pk, count in data:
-        ThemeUserCount.objects.create(addon_id=pk, count=count,
-                                      date=datetime.now())
-
-
-@cronjobs.register
-def update_addon_download_totals():
-    """Update add-on total and average downloads."""
-    cursor = connections[multidb.get_slave()].cursor()
-    # We need to use SQL for this until
-    # http://code.djangoproject.com/ticket/11003 is resolved
-    q = """SELECT addon_id, AVG(count), SUM(count)
-           FROM download_counts
-           USE KEY (`addon_and_count`)
-           JOIN addons ON download_counts.addon_id=addons.id
-           WHERE addons.addontype_id != %s AND
-                 addons.status != %s
-           GROUP BY addon_id
-           ORDER BY addon_id"""
-    cursor.execute(q, [amo.ADDON_WEBAPP, amo.STATUS_DELETED])
-    d = cursor.fetchall()
-    cursor.close()
-
-    ts = [_update_addon_download_totals.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
-
-
-@task
-def _update_addon_download_totals(data, **kw):
-    task_log.info("[%s] Updating add-ons download+average totals." %
-                   (len(data)))
-
-    for pk, avg, sum in data:
-        try:
-            addon = Addon.objects.get(pk=pk)
-            # Don't trigger a save unless we have to. Since the query that
-            # sends us data doesn't filter out deleted addons, or the addon may
-            # be unpopular, this can reduce a lot of unnecessary save queries.
-            if (addon.average_daily_downloads != avg or
-                addon.total_downloads != sum):
-                addon.update(average_daily_downloads=avg, total_downloads=sum)
-        except Addon.DoesNotExist:
-            # The processing input comes from metrics which might be out of
-            # date in regards to currently existing add-ons.
-            m = ("Got new download totals (total=%s,avg=%s) but the add-on"
-                 "doesn't exist (%s)" % (sum, avg, pk))
-            task_log.debug(m)
 
 
 def _change_last_updated(next):
@@ -334,39 +221,6 @@ def unhide_disabled_files():
             except Exception:
                 log.error('Could not unhide file: %s.' % filepath,
                           exc_info=True)
-
-
-@cronjobs.register
-def deliver_hotness():
-    """
-    Calculate hotness of all add-ons.
-
-    a = avg(users this week)
-    b = avg(users three weeks before this week)
-    hotness = (a-b) / b if a > 1000 and b > 1 else 0
-    """
-    frozen = set(f.id for f in FrozenAddon.objects.all())
-    all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
-                   .exclude(type=amo.ADDON_WEBAPP)
-                   .values_list('id', flat=True)))
-    now = datetime.now()
-    one_week = now - timedelta(days=7)
-    four_weeks = now - timedelta(days=28)
-    for ids in chunked(all_ids, 300):
-        addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
-        ids = [a.id for a in addons if a.id not in frozen]
-        qs = (UpdateCount.objects.filter(addon__in=ids)
-              .values_list('addon').annotate(Avg('count')))
-        thisweek = dict(qs.filter(date__gte=one_week))
-        threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
-        for addon in addons:
-            this, three = thisweek.get(addon.id, 0), threeweek.get(addon.id, 0)
-            if this > 1000 and three > 1:
-                addon.update(hotness=(this - three) / float(three))
-            else:
-                addon.update(hotness=0)
-        # Let the database catch its breath.
-        time.sleep(10)
 
 
 @cronjobs.register

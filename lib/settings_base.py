@@ -569,9 +569,6 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
         ),
-        'zamboni/stats': (
-            'css/impala/stats.less',
-        ),
         'zamboni/devhub': (
             'css/impala/tooltips.less',
             'css/zamboni/developers.css',
@@ -851,20 +848,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/mobile/general.js',
             'js/common/ratingwidget.js',
             'js/zamboni/browserid_support.js',
-        ),
-        'zamboni/stats': (
-            'js/lib/jquery-datepicker.js',
-            'js/lib/highcharts.src.js',
-            'js/impala/stats/csv_keys.js',
-            'js/impala/stats/helpers.js',
-            'js/impala/stats/dateutils.js',
-            'js/impala/stats/manager.js',
-            'js/impala/stats/controls.js',
-            'js/impala/stats/overview.js',
-            'js/impala/stats/topchart.js',
-            'js/impala/stats/chart.js',
-            'js/impala/stats/table.js',
-            'js/impala/stats/stats.js',
         ),
         'zamboni/admin': (
             'js/zamboni/admin.js',
@@ -1335,12 +1318,7 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {'default': 'addons',
-              'webapp': 'apps',
-              'update_counts': 'addons_stats',
-              'download_counts': 'addons_stats',
-              'stats_contributions': 'addons_stats',
-              'stats_collections_counts': 'addons_stats',
-              'users_install': 'addons_stats'}
+              'webapp': 'apps'}
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5

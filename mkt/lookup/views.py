@@ -20,7 +20,7 @@ from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.search import TempS as S
 from amo.urlresolvers import reverse
-from amo.utils import days_ago, paginate
+from amo.utils import paginate
 from apps.access import acl
 from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
@@ -37,7 +37,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
 from mkt.webapps.models import WebappIndexer
-from stats.models import Contribution, DownloadCount
+from stats.models import Contribution
 from users.models import UserProfile
 
 log = commonware.log.getLogger('z.lookup')
@@ -412,22 +412,10 @@ def _app_downloads(app):
              'last_24_hours': 0,
              'alltime': 0}
 
-    if app.is_webapp():
-        # Webapps populate these fields via Monolith.
-        stats['last_24_hours'] = 'N/A'
-        stats['last_7_days'] = app.weekly_downloads
-        stats['alltime'] = app.total_downloads
-        return stats
-
-    qs = DownloadCount.objects.filter(addon=app)
-
-    def sum_(qs):
-        return qs.aggregate(total=Sum('count'))['total'] or 0
-
-    stats['last_24_hours'] = sum_(qs.filter(date__gt=days_ago(1).date()))
-    stats['last_7_days'] = sum_(qs.filter(date__gte=days_ago(7).date()))
-    stats['alltime'] = sum_(qs)
-
+    # Webapps populate these fields via Monolith.
+    stats['last_24_hours'] = 'N/A'
+    stats['last_7_days'] = app.weekly_downloads
+    stats['alltime'] = app.total_downloads
     return stats
 
 

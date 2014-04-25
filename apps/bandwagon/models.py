@@ -227,10 +227,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return reverse('collections.detail.rss',
                        args=[self.author_username, self.slug])
 
-    def stats_url(self):
-        return reverse('collections.stats',
-                       args=[self.author_username, self.slug])
-
     @property
     def author_username(self):
         return self.author.username if self.author else 'anonymous'
@@ -329,12 +325,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
     def owned_by(self, user):
         return (user.id == self.author_id)
 
-    def can_view_stats(self, request):
-        if request and request.amo_user:
-            return (self.publishable_by(request.amo_user) or
-                    acl.action_allowed(request, 'CollectionStats', 'View'))
-        return False
-
     @caching.cached_method
     def publishable_by(self, user):
         return bool(self.owned_by(user) or self.users.filter(pk=user.id))
@@ -370,7 +360,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
         Used by acl.check_ownership to see if request.user has permissions for
         the collection.
         """
-        from access import acl
         return acl.check_collection_ownership(request, self, require_owner)
 
 

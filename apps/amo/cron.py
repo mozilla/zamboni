@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
-from django.utils import translation
 from django.db import connection, transaction
 
 import cronjobs
@@ -14,7 +13,6 @@ from amo.utils import chunked
 from bandwagon.models import Collection
 from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog
-from lib.es.utils import raise_if_reindex_in_progress
 from stats.models import Contribution
 
 from . import tasks
@@ -196,44 +194,6 @@ def unconfirmed():
         AND addons_collections.user_id IS NULL
         AND collections_users.user_id IS NULL
     """)
-    transaction.commit_unless_managed()
-
-
-@cronjobs.register
-def weekly_downloads():
-    """
-    Update 7-day add-on download counts.
-    """
-    raise_if_reindex_in_progress('amo')
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT addon_id, SUM(count) AS weekly_count
-        FROM download_counts
-        WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-        GROUP BY addon_id
-        ORDER BY addon_id""")
-    counts = cursor.fetchall()
-    addon_ids = [r[0] for r in counts]
-    if not addon_ids:
-        return
-    cursor.execute("""
-        SELECT id, 0
-        FROM addons
-        WHERE id NOT IN %s""", (addon_ids,))
-    counts += cursor.fetchall()
-
-    cursor.execute("""
-        CREATE TEMPORARY TABLE tmp_wd
-        (addon_id INT PRIMARY KEY, count INT)""")
-    cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                   ','.join(['(%s,%s)'] * len(counts)),
-                   list(itertools.chain(*counts)))
-
-    cursor.execute("""
-        UPDATE addons INNER JOIN tmp_wd
-            ON addons.id = tmp_wd.addon_id
-        SET weeklydownloads = tmp_wd.count""")
-    cursor.execute("DROP TABLE IF EXISTS tmp_wd")
     transaction.commit_unless_managed()
 
 

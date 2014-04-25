@@ -7,7 +7,6 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from access.models import Group
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
                               CollectionWatcher, RecommendedCollection)
@@ -126,7 +125,7 @@ class TestCollections(amo.tests.TestCase):
         addons = list(Addon.objects.values_list('id', flat=True))
         c = Collection.objects.create(author=self.user)
 
-        c.set_addons(addons, {addons[0]: 'This is a comment.'});
+        c.set_addons(addons, {addons[0]: 'This is a comment.'})
         collection_addon = CollectionAddon.objects.get(collection=c,
                                                        addon=addons[0])
         eq_(collection_addon.comments, 'This is a comment.')
@@ -171,33 +170,6 @@ class TestCollections(amo.tests.TestCase):
         check(0)
         CollectionWatcher.objects.create(collection_id=512, user=self.user)
         check(1)
-
-    def test_can_view_stats(self):
-        c = Collection.objects.create(author=self.user, slug='boom')
-
-        fake_request = mock.Mock()
-        fake_request.groups = ()
-        fake_request.user.is_authenticated.return_value = True
-
-        # Owner.
-        fake_request.amo_user = self.user
-        eq_(c.can_view_stats(fake_request), True)
-
-        # Bad user.
-        fake_request.amo_user = UserProfile.objects.create(
-                                    username='scrub', email='ez@dee')
-        eq_(c.can_view_stats(fake_request), False)
-
-        # Member of group with Collections:Edit permission.
-        fake_request.groups = (Group(name='Collections Agency',
-                                     rules='CollectionStats:View'),)
-        eq_(c.can_view_stats(fake_request), True)
-
-        # Developer.
-        CollectionUser.objects.create(collection=c, user=self.user)
-        fake_request.groups = ()
-        fake_request.amo_user = self.user
-        eq_(c.can_view_stats(fake_request), True)
 
 
 class TestRecommendations(amo.tests.TestCase):

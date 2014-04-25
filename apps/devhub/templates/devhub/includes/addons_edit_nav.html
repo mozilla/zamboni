@@ -30,10 +30,6 @@
         {{ _('View Listing') }}</a></li>
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      {% if not theme %}
-        <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
-          {{ _('View Statistics Dashboard') }}</a></li>
-      {% endif %}
     </ul>
   </div>
 </section>

@@ -2,7 +2,6 @@ from django.conf.urls import include, patterns, url
 
 from . import views, feeds
 
-from stats.urls import collection_stats_urls
 
 edit_urls = patterns('',
     url('^$', views.edit, name='collections.edit'),
@@ -56,8 +55,6 @@ urlpatterns = patterns('',
         name='collections.user'),
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',
         include(detail_urls)),
-    url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/statistics/',
-        include(collection_stats_urls)),
     url('^collections/add$', views.add, name='collections.add'),
     url('^collections/ajax/', include(ajax_urls)),
 

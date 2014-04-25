@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
 
-from django.conf import settings
 from django.core import mail
-from django.db import models
 from django.test.client import RequestFactory
-from django.utils import translation
 
 import phpserialize as php
 from nose.tools import eq_
@@ -19,6 +15,8 @@ from stats.db import StatsDictField
 from users.models import UserProfile
 from market.models import Refund
 from zadmin.models import DownloadSource
+
+import mkt.regions
 
 
 class TestStatsDictField(amo.tests.TestCase):
@@ -36,46 +34,6 @@ class TestStatsDictField(amo.tests.TestCase):
     def test_to_python_json(self):
         val = {'a': 1}
         eq_(StatsDictField().to_python(json.dumps(val)), val)
-
-
-class TestContributionModel(amo.tests.TestCase):
-    fixtures = ['stats/test_models.json']
-
-    def setUp(self):
-        user = UserProfile.objects.create(username='t@t.com')
-        self.con = Contribution.objects.get(pk=1)
-        self.con.update(type=amo.CONTRIB_PURCHASE, user=user)
-
-    def test_related_protected(self):
-        user = UserProfile.objects.create(username='foo@bar.com')
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        payment = Contribution.objects.create(user=user, addon=addon)
-        Contribution.objects.create(user=user, addon=addon, related=payment)
-        self.assertRaises(models.ProtectedError, payment.delete)
-
-    def test_locale(self):
-        translation.activate('en_US')
-        eq_(Contribution.objects.all()[0].get_amount_locale(), u'$1.99')
-        translation.activate('fr')
-        eq_(Contribution.objects.all()[0].get_amount_locale(), u'1,99\xa0$US')
-
-    def test_instant_refund(self):
-        self.con.update(created=datetime.now())
-        assert self.con.is_instant_refund(), 'Refund should be instant'
-
-    def test_not_instant_refund(self):
-        diff = timedelta(seconds=settings.PAYPAL_REFUND_INSTANT + 10)
-        self.con.update(created=datetime.now() - diff)
-        assert not self.con.is_instant_refund(), "Refund shouldn't be instant"
-
-    def test_refunded(self):
-        user = UserProfile.objects.create(username='foo@bar.com')
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-
-        assert not self.con.is_refunded()
-        Contribution.objects.create(user=user, addon=addon, related=self.con,
-                                    type=amo.CONTRIB_REFUND)
-        assert self.con.is_refunded()
 
 
 class TestEmail(amo.tests.TestCase):
@@ -172,24 +130,6 @@ class TestEmail(amo.tests.TestCase):
         eq_(devmail.to, [self.addon.support_email])
         assert msg in devmail.body
 
-    def test_thankyou_note(self):
-        self.addon.enable_thankyou = True
-        self.addon.thankyou_note = u'Thank "quoted". <script>'
-        self.addon.name = u'Test'
-        self.addon.save()
-        cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
-        cont.update(transaction_id='yo',
-                    post_data={'payer_email': 'test@tester.com'})
-
-        cont.mail_thankyou()
-        eq_(len(mail.outbox), 1)
-        email = mail.outbox[0]
-        eq_(email.to, ['test@tester.com'])
-        assert '&quot;' not in email.body
-        assert u'Thank "quoted".' in email.body
-        assert '<script>' not in email.body
-        assert '&lt;script&gt;' not in email.body
-
 
 class TestClientData(amo.tests.TestCase):
 
@@ -210,4 +150,4 @@ class TestClientData(amo.tests.TestCase):
         eq_(cli.user_agent, user_agent)
         eq_(cli.is_chromeless, False)
         eq_(cli.language, 'en-us')
-        eq_(cli.region, None)
+        eq_(cli.region, mkt.regions.RESTOFWORLD.id)

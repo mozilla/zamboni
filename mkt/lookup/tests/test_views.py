@@ -27,7 +27,7 @@ from amo.tests import (addon_factory, app_factory, ESTestCase,
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, Refund
-from stats.models import Contribution, DownloadCount
+from stats.models import Contribution
 from users.cron import reindex_users
 from users.models import Group, GroupUser, UserProfile
 
@@ -941,74 +941,6 @@ class TestAppSummaryRefunds(AppSummaryTest):
                      (self.contrib3, amo.REFUND_FAILED)))
         res = self.summary()
         eq_(res.context['refunds']['rejected'], 2)
-
-
-class TestAddonDownloadSummary(AppSummaryTest):
-    fixtures = fixture('user_admin', 'group_admin', 'user_admin_group',
-                       'user_999')
-
-    def setUp(self):
-        super(TestAddonDownloadSummary, self).setUp()
-        self.users = [UserProfile.objects.get(username='regularuser'),
-                      UserProfile.objects.get(username='admin')]
-        self.addon = addon_factory()
-        self.url = reverse('lookup.app_summary', args=[self.addon.pk])
-        self.login(self.users[1])
-
-    def test_7_days(self):
-        for user in self.users:
-            DownloadCount.objects.create(addon=self.addon, count=2,
-                                         date=datetime.now().date())
-        res = self.summary()
-        eq_(res.context['downloads']['last_7_days'], 4)
-
-    def test_ignore_older_than_7_days(self):
-        _8_days_ago = datetime.now() - timedelta(days=8)
-        for user in self.users:
-            c = DownloadCount.objects.create(addon=self.addon, count=2,
-                                             date=datetime.now().date())
-            c.date = _8_days_ago.date()
-            c.save()
-        res = self.summary()
-        eq_(res.context['downloads']['last_7_days'], 0)
-
-    def test_24_hours(self):
-        for user in self.users:
-            DownloadCount.objects.create(addon=self.addon, count=2,
-                                         date=datetime.now().date())
-        res = self.summary()
-        eq_(res.context['downloads']['last_24_hours'], 4)
-
-    def test_ignore_older_than_24_hours(self):
-        yesterday = datetime.now().date() - timedelta(days=1)
-        for user in self.users:
-            c = DownloadCount.objects.create(addon=self.addon, count=2,
-                                             date=datetime.now().date())
-            c.date = yesterday
-            c.save()
-        res = self.summary()
-        eq_(res.context['downloads']['last_24_hours'], 0)
-
-    def test_alltime_dl(self):
-        for i in range(2):
-            DownloadCount.objects.create(addon=self.addon, count=2,
-                                         date=datetime.now().date())
-        # Downloads for some other addon that shouldn't be counted.
-        addon = addon_factory()
-        for user in self.users:
-            DownloadCount.objects.create(addon=addon, count=2,
-                                         date=datetime.now().date())
-        res = self.summary()
-        eq_(res.context['downloads']['alltime'], 4)
-
-    def test_zero_alltime_dl(self):
-        # Downloads for some other addon that shouldn't be counted.
-        addon = addon_factory()
-        for user in self.users:
-            DownloadCount.objects.create(addon=addon, count=2,
-                                         date=datetime.now().date())
-        res = self.summary()
-        eq_(res.context['downloads']['alltime'], 0)
 
 
 class TestPurchases(amo.tests.TestCase):

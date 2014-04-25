@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 
 from reviews.urls import review_patterns
-from stats.urls import stats_patterns
 from . import views
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
@@ -35,7 +34,6 @@ detail_patterns = patterns('',
                    name='addons.about'),
 
     ('^reviews/', include(review_patterns('addons'))),
-    ('^statistics/', include(stats_patterns)),
     ('^versions/', include('versions.urls')),
 )
 

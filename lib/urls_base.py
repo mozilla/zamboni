@@ -67,16 +67,6 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
-    # Site events data.
-    url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
-        'stats.views.site_events', name='amo.site_events'),
-
-    # Site statistics that we are going to catch, the rest will fall through.
-    url('^statistics/', include('stats.urls')),
-
-    # Fall through for any URLs not matched above stats dashboard.
-    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
-
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
 
