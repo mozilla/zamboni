@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-27 00:51+0200\n"
+"PO-Revision-Date: 2014-04-27 19:56+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1196,7 +1196,7 @@ msgstr "Kodi QR për shtesën"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr "E doni {0} te Firefox-i në celularin tuaj? Skanoni këtë kod QR që të instalohet drejt e te telefoni juaj. (Do t'ju duhet një lexues QR-sh. Nëse nuk keni një të tillë, kërkoni në tregun e telefonit tuaj.)"
+msgstr "E doni {0} te Firefox-i në celularin tuaj? Skanoni këtë kod QR që të instalohet drejt e te telefoni juaj. (Do t'ju duhet një lexues QR-sh. Nëse nuk keni një të tillë, kërkoni në tregtoren e telefonit tuaj.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
@@ -2006,7 +2006,7 @@ msgstr "Firefox Marketplace"
 
 #: apps/amo/helpers.py:321
 msgid "Apps Marketplace"
-msgstr "Tregu i Zbatimeve"
+msgstr "Tregtore Zbatimesh"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:440
@@ -14046,7 +14046,7 @@ msgstr "Mozilla ka nevojë të më kontaktojë lidhur me lajme dhe pyetësorë t
 
 #: apps/users/notifications.py:152
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr "Mozilla dëshiron të më kontaktojë lidhur me rajone të reja të shtuara te"
+msgstr "Mozilla dëshiron të më kontaktojë lidhur me rajone të reja të shtuara te Marketplace-i"
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
@@ -17003,7 +17003,7 @@ msgstr "Kodimi i manifestit nuk përputhet me kodin e shenja të dhënë te HTTP
 
 #: mkt/developers/tasks.py:503
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "Rajoni {region} u shtua te Firefox Marketplace"
+msgstr "Rajoni {region} u shtua te Firefox Marketplace-i"
 
 #: mkt/developers/tasks.py:507
 msgid "New regions added to the Firefox Marketplace"
@@ -18725,7 +18725,7 @@ msgstr "Do të donim veçanërisht <a href=\"%(mdn_hackingfxos_url)s\" target=\"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "Zhvilloni Zbatime Web HTML5 për një treg të hapur."
+msgstr "Zhvilloni Zbatime Web HTML5 për një tregtore të hapur."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
@@ -18737,7 +18737,7 @@ msgstr "Krejt mjetet, dokumentet dhe referencat që do t'ju duhen për zhvillimi
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Mësoni se si t'i shpërndani zbatimet tuaja në një treg të hapur që vendos mbi të gjitha përdoruesit dhe zhvilluesit"
+msgstr "Mësoni se si t'i shpërndani zbatimet tuaja në një tregtore të hapur që vendos mbi të gjitha përdoruesit dhe zhvilluesit"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -18835,7 +18835,7 @@ msgstr "Hyrje në Firefox OS"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
 msgid "Chrono"
-msgstr ""
+msgstr "Chrono"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:79
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6
@@ -18939,7 +18939,7 @@ msgstr "Shihini!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "Bëhuni partner me Mozilla-n që të shpërndani zbatimet tuaja, përmes një tregu të hapur, te mbi 450 milion përdorues"
+msgstr "Bëhuni partner me Mozilla-n që të shpërndani zbatimet tuaja, përmes një tregtoreje të hapur, te mbi 450 milion përdorues"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -18947,19 +18947,19 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">Parashtrojeni tani</a> <span
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr ""
+msgstr "Me një platformë të fuqishme për web-in, një tregtore të hapur të zbatimeve, dhe partnerë si ju, jemi gati të mirëpresim 2 miliard përdoruesit e ardhshëm të Internetit"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
-msgstr ""
+msgstr "<strong>Web-i është Platforma</strong> &ndash;shkruajeni zbatimin tuaj në HTML5, vetëm një herë, dhe shpërndajeni në të gjithë web-in."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr ""
+msgstr "<strong>Pagesa të Rrjedhshme</strong> &ndash; me modele të shumta pagesash dhe faturim të integruar te operatori, ju sjellim monetarizim të pacen për zbatimet tuaja."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr ""
+msgstr "<strong>Një Publik Masiv</strong> &ndash; mbi 450 milionë përdorues e kanë Firefox-in vatrën e tyre, ofrojuni zbatimin tuaj që sot."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -18967,11 +18967,11 @@ msgstr "Bëhuni pjesë e më të madhes dhe më të mirës"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr ""
+msgstr "Markat më popullore të botës dhe krejt zbatimet tuaja të parapëlqyera po bëhen të pranishme në Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr ""
+msgstr "Një vatër e vërtetë ndërplatformëshe, për çfarëdo pajisje, jopronësore, për zbatimet HTML5 globale dhe vendore më të mira në botë."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -19011,7 +19011,7 @@ msgstr "Stema, parulla dhe ikona"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
-msgstr ""
+msgstr "\"Merreni te Firefox Marketplace\" janë stema që mund t'i përdorni në sajtin tuaj web dhe materiale promocionale për të treguar produktet tuaja te Firefox Marketplace-i."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -19023,7 +19023,7 @@ msgstr "Nuk mund ta ndryshoni në asnjë mënyrë stemën"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
-msgstr ""
+msgstr "Kur përdoret në krah logosh për tregtore të tjera (\"Merreni te Google Play\", \"Shkarkojeni nga the App Store\"), stema Firefox Marketplace duhet të jetë me të njëjtën madhësi ose më e madhe"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -20001,7 +20001,7 @@ msgstr "Ky është faqe e ruajtur për hollësitë e dëftesës. Nëse keni inst
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
-msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te Marketplace-i. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshëm dëftesash."
+msgstr "Provoni instalimin e zbatimit tuaj para se ta ngarkoni te tregtorja. Që të provoni se si trajtohen dëftesat, mund të zgjidhni lloje të ndryshëm dëftesash."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
