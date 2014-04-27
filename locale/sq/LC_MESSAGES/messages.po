@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-27 19:56+0200\n"
+"PO-Revision-Date: 2014-04-27 23:31+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -19027,7 +19027,7 @@ msgstr "Kur përdoret në krah logosh për tregtore të tjera (\"Merreni te Goog
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
-msgstr ""
+msgstr "Stema duhet të jetë e lidhur te një faqe hollësish zbatimi brenda Firefox Marketplace-it<br> Për shembull: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -19047,19 +19047,19 @@ msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
-msgstr ""
+msgstr "Që të shihni dhe shkarkoni stemën e Firefox Marketplace-it, ju lutemi vizitoni <a href=\"%(style_guide_url)s\">udhërrëfyesin Mozilla për stilet</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
-msgstr ""
+msgstr "Pasi ta keni përfunduar zbatimin tuaj, lypset ta përhapni. Nëse e botoni përmes Firefox Marketplace-it, keni disa mundësi rreth se si ta përhapni zbatimin tuaj."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:27
 msgid "You can host your app on a publicly accessible Web server, just like any other website."
-msgstr ""
+msgstr "Mund ta strehoni zbatimin tuaj në një shërbyes Web ku mund të hyhet publikisht, njësoj si çfarëdo sajti web."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:38
 msgid "You can package your app as a zip file, instead of hosting it on a web server."
-msgstr ""
+msgstr "Mund ta paketoni zbatimin tuaj si kartelë zip, në vend se ta strehoni në një shërbyes web."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -19095,16 +19095,16 @@ msgstr "Keni ende pyetje?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:57
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
-msgstr ""
+msgstr "Ndërkohë që punojmë për krijimin e një grupi kanalesh, për t'ju ndihmuar kur keni probleme, mund të vizitoni StackOverflow për të parë për zgjidhje për krejt pyetjet tuaja lidhur me zhvillimin e zbatimeve Web."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:65
 #: mkt/ecosystem/templates/ecosystem/support.html:67
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
-msgstr ""
+msgstr "Nëse doni të ndërveproni me zhvillues të tjerë, merrni pjesë te bashkësitë tona përmes këtyre listave të postimeve:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:78
 msgid "Mozilla Web apps (English)"
@@ -19131,7 +19131,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:35
 msgid "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr ""
+msgstr "Chrono është një kohëmatës i thjeshtë me numërues xhirosh, i krijuar për të vënë në pah aspekte të ndryshme të procesit të zhvillimit në Firefox OS. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Lexoni materialin e plotë njohës për zhvilluesit </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:47
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:71
@@ -19148,7 +19148,7 @@ msgstr "Chrono nuk lyp ndonjë lidhje rrjeti që të xhirojë."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:60
 msgid "Uses the Open Web Apps installation API to allow installation on the device independently on Marketplace."
-msgstr ""
+msgstr "Përdor API-n për instalime Zbatimesh Web të Hapura për të lejuar te pajisja instalime në mënyrë të pavarur në Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:181
@@ -19157,7 +19157,7 @@ msgstr "Elementë të Personalizuar"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:77
 msgid "Chrono uses the same UI components as the built-in apps."
-msgstr ""
+msgstr "Chrono përdor të njëjtit përbërës UI si zbatimet e brendshme."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:88
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:97
@@ -19170,20 +19170,20 @@ msgstr "Librari Palësh të Treta"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
-msgstr ""
+msgstr "Përdor një volo.js script për të optimizuar zbatimin para hedhjes në qarkullim, duke prodhuar një manifest appcache."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:102
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:93
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:70
 msgid "Uses jQuery to simplify common tasks such as DOM manipulation."
-msgstr ""
+msgstr "Përdor jQuery për të thjeshtuar akte të zakonshëm, të tillë si manipulime DOM."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:110
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:101
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:78
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:84
 msgid "Uses RequireJS to split JavaScript code into more easily maintainable modules."
-msgstr ""
+msgstr "Përdor RequireJS për ndarje kodi JavaScript në module që mirëmbahen më lehtë."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:122
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:124
@@ -19248,8 +19248,9 @@ msgid "Conversion Selector"
 msgstr "Përzgjedhës Shndërrimi"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:35
+#, fuzzy
 msgid "Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think in your home currency even with a foreign currency in your pocket. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr ""
+msgstr "Face Value është një zbatim konvertimi monedhash që i bën gjërat ndryshe: në vend se konvertim sasish arbitrare, ju shfaq prerjet faktike të vendit që po vizitoni. Ju lejon t'i bëni llogaritë në mendje me monedhën e atdheut, edhe pse me para të huaj në xhepa. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Lexoni materialin e plotë njohës për zhvilluesit </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:50
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:48
@@ -19277,15 +19278,15 @@ msgstr "Gjedhe EJS/HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:59
 msgid "The <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code>face-value.xcodeproj</code>, and <code>face-value</code> folders contain Cordova files used to create a packaged iOS web app that can be submitted to the iOS App Store."
-msgstr ""
+msgstr "Dosjet <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code>face-value.xcodeproj</code>, dhe <code>face-value</code> përmbajnë kartela Cordova të përdorura për të krijuar një zbatim web iOS të paketuar që mund të parashtrohet te iOS App Store."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:76
 msgid "Remembers user preferences and saves exchange rates for offline use."
-msgstr ""
+msgstr "Mban mend parapëlqimet e përdoruesit dhe ruan kursin e këmbimit për përdorim jashtë linje."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:85
 msgid "Works great offline, only requires online connection when updated exchange rates are desired."
-msgstr ""
+msgstr "Punon shumë mirë jashtë linje, lyp lidhje në linjë vetëm kur dëshirohen përditësime kursi."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:102
 msgid "By using backbone's data bindings, Face Value ensures that changes to the backend (such as exchange rate updates) are automatically reflected on the frontend."
@@ -19294,7 +19295,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:112
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:112
 msgid "The lightweight jQuery-like library simplifies common tasks such as DOM manipulation."
-msgstr ""
+msgstr "Libraria jo e rëndë në stil jQuery i thjeshtëson veprimet e zakonshme, të tilla si manipulime DOM."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121
