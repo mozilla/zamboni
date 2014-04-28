@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-14 14:24+0000\n"
+"PO-Revision-Date: 2014-04-28 12:11+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397485475.0\n"
+"X-POOTLE-MTIME: 1398687071.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -15640,15 +15640,15 @@ msgstr "L’app richiede di accedere alle informazioni sulle multiconnessioni al
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "Immagine di testata"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "Citazione"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "Screenshot"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -17680,11 +17680,12 @@ msgstr "Attualmente l’app è incompleta. Seleziona un conto pagamenti e un pre
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "Paesi"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
 msgstr ""
+"Aggiungi, gestisci o visualizza le transazioni dei tuoi account pagamenti"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -17785,7 +17786,7 @@ msgstr "Visualizza transazioni"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Aggiungi un account {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:48
 msgid "Accept Terms of Service"
@@ -17806,6 +17807,8 @@ msgstr "L’attuale conto pagamenti è stato associato a questa app da un propri
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"L’account pagamenti non è completo. Completalo o configura un nuovo account "
+"qui sotto."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -17851,6 +17854,9 @@ msgstr "Aggiungi account Boku"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"Per registrare un account su Boku è necessario un ID servizio Boku. "
+"L'account Boku deve essere creato attraverso la <a href=\"%"
+"(boku_url)s\">procedura di registrazione Mozilla</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -17869,6 +17875,7 @@ msgstr "Modifica account Boku"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
 msgstr ""
+"Al momento non è possibile modificare le informazioni dell’account Boku."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -19787,7 +19794,7 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "Tutte le categorie"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
