@@ -34,6 +34,7 @@ from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
 from mkt.api.fields import SlugChoiceField
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
+from mkt.regions import REGIONS_DICT
 from mkt.regions.utils import parse_region
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.webapps.tasks import _update_manifest
@@ -127,6 +128,7 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = RegionSerializer
+    paginate_by = len(REGIONS_DICT)
 
     def get_queryset(self, *args, **kwargs):
         return REGIONS_DICT.values()
