@@ -1958,7 +1958,19 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     if not new_status:
         return
     addon = instance
-    if new_status == amo.STATUS_PENDING and old_attr['status'] != new_status:
+    old_status = old_attr['status']
+
+    # Log all status changes.
+    if old_status != new_status:
+        log.info(
+            '[Webapp:{id}] Status changed from {old_status}:{old_status_name} '
+            'to {new_status}:{new_status_name}'.format(
+                id=addon.id, old_status=old_status,
+                old_status_name=amo.STATUS_CHOICES_API[old_status],
+                new_status=new_status,
+                new_status_name=amo.STATUS_CHOICES_API[new_status]))
+
+    if new_status == amo.STATUS_PENDING and old_status != new_status:
         # We always set nomination date when app switches to PENDING, even if
         # previously rejected.
         try:
@@ -1968,7 +1980,6 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
         except Version.DoesNotExist:
             log.debug('[Webapp:%s] Missing version, no nomination set.'
                       % addon.id)
-            pass
 
 
 @receiver(dbsignals.post_save, sender=Webapp,
