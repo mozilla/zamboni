@@ -77,3 +77,10 @@ class TestAppcacheManifest(amo.tests.TestCase):
         assert '# BUILD_ID p00p' in res.content
         img = img.replace('/media/', '/media/fireplace/')
         assert img + '\n' in res.content
+
+
+class TestIFrameInstall(amo.tests.TestCase):
+
+    def test_basic(self):
+        res = self.client.get(reverse('commonplace.iframe-install'))
+        eq_(res.status_code, 200)

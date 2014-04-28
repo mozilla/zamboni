@@ -39,6 +39,8 @@ urlpatterns = patterns('',
     url('^server.html$', views.commonplace, {'repo': 'fireplace'},
         name='commonplace.fireplace'),
     ('^app/%s/' % amo.APP_SLUG, include(fireplace_app_patterns)),
+    url(r'^iframe-install.html/$', views.iframe_install,
+        name='commonplace.iframe-install'),
 
     # Commbadge:
     url('^comm/app/%s$' % amo.APP_SLUG, views.commonplace,
@@ -63,7 +65,6 @@ urlpatterns = patterns('',
 
     url('^manifest.appcache$', views.appcache_manifest,
         name='commonplace.appcache'),
-
 )
 
 if settings.DEBUG:
