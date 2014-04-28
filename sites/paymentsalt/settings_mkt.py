@@ -192,3 +192,7 @@ IARC_ALLOW_CERT_REUSE = True
 
 PRE_GENERATE_APK_URL = \
     'https://apk-controller.stage.mozaws.net/application.apk'
+
+# Bug 1002569.
+PAYMENT_PROVIDERS = ['boku']
+DEFAULT_PAYMENT_PROVIDER = 'boku'
