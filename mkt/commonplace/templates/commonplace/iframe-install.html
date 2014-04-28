@@ -7,7 +7,6 @@ var origin_whitelist = [
     'app://marketplace.firefox.com',
     'http://marketplace.firefox.com',
     'https://marketplace.firefox.com',
-    'http://localhost:8675',
 ];
 
 window.addEventListener('message', function(e) {
@@ -45,7 +44,6 @@ window.addEventListener('message', function(e) {
                     clearInterval(isInstalled);
                     window.top.postMessage({
                         'appId': product.id,
-                        'result': installRequest.result,
                         'product': product
                     }, '*');
                 }
