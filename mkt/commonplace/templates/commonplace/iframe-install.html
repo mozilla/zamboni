@@ -1,0 +1,81 @@
+<html><body>
+<script type="text/javascript">
+var origin_whitelist = [
+    'app://packaged.marketplace-dev.allizom.org',
+    'app://packaged.marketplace.allizom.org',
+    'app://packaged.marketplace.firefox.com',
+    'app://marketplace.firefox.com',
+    'http://marketplace.firefox.com',
+    'https://marketplace.firefox.com',
+    'http://localhost:8675',
+];
+
+window.addEventListener('message', function(e) {
+    if (origin_whitelist.indexOf(e.origin) === -1) {
+        console.log('[iframe-install] message from ' + e.origin + ' not allowed');
+        return;
+    }
+
+    // Receive postMessage from the packaged app and do something with it.
+    if (e.data && e.data.name && e.data.data) {
+        console.log('[iframe-install] Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+
+        var product = e.data.data.product;
+        var opt = e.data.data.opt || {};
+        opt.data = opt.data || {};
+
+        var manifest_url;
+        if (product.manifest_url) {
+            manifest_url = product.manifest_url;
+        }
+
+        var mozApps = (opt.navigator || window.navigator).mozApps;
+        var installer = product.is_packaged ? 'installPackage' : 'install';
+
+        var installRequest = mozApps[installer](manifest_url, opt.data);
+
+        console.log('[iframe-install] packaged: ' + product.is_packaged);
+        installRequest.onsuccess = function() {
+            console.log('[iframe-install] App install request for ' + product.name);
+            var status;
+            var isInstalled = setInterval(function() {
+                status = installRequest.result.installState;
+                if (status == 'installed') {
+                    console.log('[iframe-install] App reported as installed for ' + product.name);
+                    clearInterval(isInstalled);
+                    window.top.postMessage({
+                        'appId': product.id,
+                        'result': installRequest.result,
+                        'product': product
+                    }, '*');
+                }
+            }, 250);
+
+            installRequest.result.ondownloaderror = function(e) {
+                console.log('[iframe-install] App download error: ' + e.application.downloadError.name + ' ' + e.application.downloadError.message);
+                window.top.postMessage({
+                    'appId': product.id,
+                    'error': {error: e.application.downloadError.name}
+                }, '*');
+                clearInterval(isInstalled);
+            };
+        };
+        installRequest.onerror = function() {
+            console.log('[iframe-install] App installation failed for ' + product.name);
+            var error = this.error.name || this.error;
+            if (this.error.name === 'DENIED') {
+                window.top.postMessage({
+                    'appId': product.id,
+                    'error': {error: error}
+                }, '*');
+            } else {
+                window.top.postMessage({
+                    'appId': product.id,
+                    'error': {error: error}
+                }, '*');
+            }
+        };
+    }
+});
+</script>
+</body></html>

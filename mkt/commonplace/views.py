@@ -104,3 +104,7 @@ def appcache_manifest_template(repo):
     }
     t = jingo.env.get_template('commonplace/manifest.appcache').render(ctx)
     return unicode(jinja2.Markup(t))
+
+
+def iframe_install(request):
+    return render(request, 'commonplace/iframe-install.html')
