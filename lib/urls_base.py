@@ -22,9 +22,6 @@ urlpatterns = patterns('',
     # Tags.
     ('', include('tags.urls')),
 
-    # Collections.
-    ('', include('bandwagon.urls')),
-
     # Files
     ('^files/', include('files.urls')),
 

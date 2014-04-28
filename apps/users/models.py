@@ -353,7 +353,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         g = Group.objects.get(rules='Restricted:UGC')
         GroupUser.objects.create(user=self, group=g)
         self.reviews.all().delete()
-        self.collections.all().delete()
 
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
@@ -452,15 +451,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         return self.special_collection(amo.COLLECTION_FAVORITES,
             defaults={'slug': 'favorites', 'listed': False,
                       'name': _('My Favorite Add-ons')})
-
-    def special_collection(self, type_, defaults):
-        from bandwagon.models import Collection
-        c, new = Collection.objects.get_or_create(
-            author=self, type=type_, defaults=defaults)
-        if new:
-            # Do an extra query to make sure this gets transformed.
-            c = Collection.objects.using('default').get(id=c.id)
-        return c
 
     def purchase_ids(self):
         """

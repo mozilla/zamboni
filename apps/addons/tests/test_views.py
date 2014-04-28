@@ -22,7 +22,6 @@ from amo.helpers import absolutify, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonUser, Charity
-from bandwagon.models import Collection
 from files.models import File
 from paypal.tests.test import other_error
 from stats.models import Contribution
@@ -100,8 +99,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'base/collections',
                 'base/global-stats',
                 'base/featured',
-                'addons/featured',
-                'bandwagon/featured_collections']
+                'addons/featured']
 
     def setUp(self):
         self.url = reverse('home')
@@ -114,7 +112,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 assert addon.status != amo.STATUS_UNREVIEWED
 
     def test_seeall(self):
-        Collection.objects.update(type=amo.COLLECTION_FEATURED)
+        # What is this testing and does it make sense without bandwagon (or AMO)?
         doc = pq(self.client.get(self.url).content)
         browse_collections = reverse('collections.list')
         sections = {
@@ -1214,8 +1212,7 @@ class TestReportAbuse(amo.tests.TestCase):
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/users',
-                'base/addon_3615', 'base/featured',
-                'bandwagon/featured_collections']
+                'base/addon_3615', 'base/featured']
 
 
 class TestMobileHome(TestMobile):

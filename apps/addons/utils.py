@@ -66,36 +66,3 @@ def get_featured_ids(app, lang=None, type=None):
     return map(int, ids)
 
 
-@memoize('addons:creatured', time=60 * 10)
-def get_creatured_ids(category, lang):
-    from addons.models import Addon
-    from bandwagon.models import FeaturedCollection
-    if lang:
-        lang = lang.lower()
-    per_locale = set()
-
-    others = (Addon.objects
-              .filter(
-                  Q(collections__featuredcollection__locale__isnull=True) |
-                  Q(collections__featuredcollection__locale=''),
-                  collections__featuredcollection__isnull=False,
-                  category=category)
-              .distinct()
-              .values_list('id', flat=True))
-
-    if lang is not None and lang != '':
-        possible_lang_match = FeaturedCollection.objects.filter(
-            locale__icontains=lang,
-            collection__addons__category=category).distinct()
-        for fc in possible_lang_match:
-            if lang in fc.locale.lower().split(','):
-                per_locale.update(
-                    fc.collection.addons
-                    .filter(category=category)
-                    .values_list('id', flat=True))
-
-    others = list(others)
-    per_locale = list(per_locale)
-    random.shuffle(others)
-    random.shuffle(per_locale)
-    return map(int, filter(None, per_locale + others))

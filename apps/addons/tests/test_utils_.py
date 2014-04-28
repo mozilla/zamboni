@@ -1,12 +1,12 @@
 from nose.tools import eq_
 
-from addons.utils import get_featured_ids, get_creatured_ids
+from addons.utils import get_featured_ids
 
 import amo.tests
 
 
 class TestGetFeaturedIds(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
+    fixtures = ['addons/featured', 
                 'base/addon_3615', 'base/collections', 'base/featured',
                 'base/users']
 
@@ -40,26 +40,3 @@ class TestGetFeaturedIds(amo.tests.TestCase):
         eq_((ids[0],), self.en_us_locale)
 
 
-class TestGetCreaturedIds(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured',
-                'base/users']
-    category = 22
-
-    no_locale = (1001,)
-    en_us_locale = (3481,)
-
-    def setUp(self):
-        super(TestGetCreaturedIds, self).setUp()
-
-    def test_by_category(self):
-        eq_(set(get_creatured_ids(self.category, None)),
-            set(self.no_locale))
-
-    def test_by_locale(self):
-        eq_(set(get_creatured_ids(self.category, 'en-US')),
-            set(self.no_locale + self.en_us_locale))
-
-    def test_shuffle(self):
-        ids = get_creatured_ids(self.category, 'en-US')
-        eq_((ids[0],), self.en_us_locale)

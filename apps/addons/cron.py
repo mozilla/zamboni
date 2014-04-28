@@ -14,7 +14,6 @@ from django.db.models import Q, F
 import cronjobs
 import multidb
 import path
-from lib import recommend
 from celery.task.sets import TaskSet
 from celeryutils import task
 import waffle
@@ -221,94 +220,3 @@ def unhide_disabled_files():
                 log.error('Could not unhide file: %s.' % filepath,
                           exc_info=True)
 
-
-@cronjobs.register
-def recs():
-    start = time.time()
-    cursor = connections[multidb.get_slave()].cursor()
-    cursor.execute("""
-        SELECT addon_id, collection_id
-        FROM synced_addons_collections ac
-        INNER JOIN addons ON
-            (ac.addon_id=addons.id AND inactive=0 AND status=4
-             AND addontype_id <> 9 AND current_version IS NOT NULL)
-        ORDER BY addon_id, collection_id
-    """)
-    qs = cursor.fetchall()
-    recs_log.info('%.2fs (query) : %s rows' % (time.time() - start, len(qs)))
-    addons = _group_addons(qs)
-    recs_log.info('%.2fs (groupby) : %s addons' %
-                  ((time.time() - start), len(addons)))
-
-    if not len(addons):
-        return
-
-    # Check our memory usage.
-    try:
-        p = subprocess.Popen('%s -p%s -o rss' % (settings.PS_BIN, os.getpid()),
-                             shell=True, stdout=subprocess.PIPE)
-        recs_log.info('%s bytes' % ' '.join(p.communicate()[0].split()))
-    except Exception:
-        log.error('Could not call ps', exc_info=True)
-
-    sim = recommend.similarity  # Locals are faster.
-    sims, start, timers = {}, [time.time()], {'calc': [], 'sql': []}
-
-    def write_recs():
-        calc = time.time()
-        timers['calc'].append(calc - start[0])
-        try:
-            _dump_recs(sims)
-        except Exception:
-            recs_log.error('Error dumping recommendations. SQL issue.',
-                           exc_info=True)
-        sims.clear()
-        timers['sql'].append(time.time() - calc)
-        start[0] = time.time()
-
-    for idx, (addon, collections) in enumerate(addons.iteritems(), 1):
-        xs = [(other, sim(collections, cs))
-              for other, cs in addons.iteritems()]
-        # Sort by similarity and keep the top N.
-        others = sorted(xs, key=operator.itemgetter(1), reverse=True)
-        sims[addon] = [(k, v) for k, v in others[:11] if k != addon]
-
-        if idx % 50 == 0:
-            write_recs()
-    else:
-        write_recs()
-
-    avg_len = sum(len(v) for v in addons.itervalues()) / float(len(addons))
-    recs_log.info('%s addons: average length: %.2f' % (len(addons), avg_len))
-    recs_log.info('Processing time: %.2fs' % sum(timers['calc']))
-    recs_log.info('SQL time: %.2fs' % sum(timers['sql']))
-
-
-def _dump_recs(sims):
-    # Dump a dictionary of {addon: (other_addon, score)} into the
-    # addon_recommendations table.
-    cursor = connections['default'].cursor()
-    addons = sims.keys()
-    vals = [(addon, other, score) for addon, others in sims.items()
-                                  for other, score in others]
-    cursor.execute('BEGIN')
-    cursor.execute('DELETE FROM addon_recommendations WHERE addon_id IN %s',
-                   [addons])
-    cursor.executemany("""
-        INSERT INTO addon_recommendations (addon_id, other_addon_id, score)
-        VALUES (%s, %s, %s)""", vals)
-    cursor.execute('COMMIT')
-
-
-def _group_addons(qs):
-    # qs is a list of (addon_id, collection_id) order by addon_id.
-    # Return a dict of {addon_id: [collection_id]}.
-    addons = {}
-    for addon, collections in itertools.groupby(qs, operator.itemgetter(0)):
-        # Skip addons in < 3 collections since we'll be overfitting
-        # recommendations to exactly what's in those collections.
-        cs = [c[1] for c in collections]
-        if len(cs) > 3:
-            # array.array() lets us calculate similarities much faster.
-            addons[addon] = array.array('l', cs)
-    return addons
