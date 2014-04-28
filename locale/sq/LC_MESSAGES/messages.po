@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-27 23:31+0200\n"
+"PO-Revision-Date: 2014-04-28 13:56+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -19330,7 +19330,7 @@ msgstr "Shënime Vendore"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
-msgstr ""
+msgstr "General Notes është një zbatim i thjeshtë për mbajtje shënimesh, që lejon njëkohësim lënde vendore dhe të largët. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Lexoni materialin e plotë njohës për zhvilluesit </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
@@ -19343,7 +19343,7 @@ msgstr "Aktivizon funksionimin jashtë linje të faqes dhe punueshmërisë."
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
 msgid "Both server and client code are written in JavaScript."
-msgstr ""
+msgstr "Si për shërbyesin, ashtu edhe për klientin, kodi është shkruajtur në  JavaScript."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:85
 msgid "A key-value store that contains all the server notes."
@@ -19402,7 +19402,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:96
 msgid "Allows cross-domain requests on Firefox OS without CORS."
-msgstr ""
+msgstr "Lejon në Firefox OS kërkesa cross-domain, pa CORS."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:121
 msgid "Backbone lets us do data-binding and MVC-style coding, making the app a lot easier to develop."
@@ -19745,7 +19745,7 @@ msgstr "E pakërkuar"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
-msgstr ""
+msgstr "Nëse nga mundësuesi i pagesave është filluar një rimbursim dorazi, i vini shenjë kësaj kutize. Kjo do të bëjë të mundur rimbursimin në shërbyesit e Mozilla-s , por mundësuesi i pagesës nuk do të kontaktohet."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
@@ -20136,7 +20136,7 @@ msgstr "Hiqja Kërkesën Për Shqyrtim të Mëtejshëm"
 
 #: mkt/reviewers/utils.py:455
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
-msgstr ""
+msgstr "Hiqeni këtë zbatim nga radha e shqyrtimeve të mëtejshme. Autori nuk do të marrë email, as do të shohë komente këtu."
 
 #: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
@@ -20144,7 +20144,7 @@ msgstr "Hiqja Kërkesën Për Rishqyrtim"
 
 #: mkt/reviewers/utils.py:462
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
-msgstr ""
+msgstr "Hiqeni këtë zbatim nga radha e rishqyrtimeve. Autori nuk do të marrë email, as do të shohë komente këtu."
 
 #: mkt/reviewers/utils.py:467
 msgid "Disable app"
