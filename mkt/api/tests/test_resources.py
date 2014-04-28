@@ -79,7 +79,7 @@ class TestConfig(RestOAuth):
 class TestRegion(RestOAuth):
 
     def test_list(self):
-        res = self.anon.get(urlparams(reverse('regions-list'), limit=100))
+        res = self.anon.get(urlparams(reverse('regions-list')))
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         for row in data['objects']:
