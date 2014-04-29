@@ -4,39 +4,18 @@ import uuid
 from urllib import urlencode
 
 from django.conf import settings
+from django.utils.functional import cached_property
 
-import bleach
 import commonware.log
 
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from lib.crypto.webpay import sign_webpay_jwt
+from mkt.webpay.utils import strip_tags, make_external_id
 from stats.models import Contribution
 
 log = commonware.log.getLogger('z.purchase')
-
-
-def strip_tags(text):
-    # Until atob() supports encoded HTML we are stripping all tags.
-    # See bug 83152422
-    return bleach.clean(unicode(text), strip=True, tags=[])
-
-
-def make_external_id(product):
-    """
-    Generates a webpay/solitude external ID given an addon's primary key.
-    """
-    # This namespace is currently necessary because app products
-    # are mixed into an application's own in-app products.
-    # Maybe we can fix that.
-    # Also, we may use various dev/stage servers with the same
-    # Bango test API.
-    domain = getattr(settings, 'DOMAIN', None)
-    if not domain:
-        domain = 'marketplace-dev'
-    external_id = domain.split('.')[0]
-    return '{0}:{1}'.format(external_id, product.pk)
 
 
 def get_product_jwt(product, user=None, region=None,
@@ -136,12 +115,17 @@ class WebAppProduct(object):
     def application_size(self):
         return self.webapp.current_version.all_files[0].size
 
-    def seller_uuid(self):
+    @cached_property
+    def payment_account(self):
         return (self.webapp
                     .single_pay_account()
-                    .payment_account
-                    .solitude_seller
-                    .uuid)
+                    .payment_account)
+
+    def seller_uuid(self):
+        return self.payment_account.solitude_seller.uuid
+
+    def public_id(self):
+        return self.webapp.get_or_create_public_id()
 
     def product_data(self, contribution):
         return {
@@ -149,6 +133,7 @@ class WebAppProduct(object):
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
             'seller_uuid': self.seller_uuid(),
+            'public_id': self.public_id(),
         }
 
 

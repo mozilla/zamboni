@@ -380,6 +380,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Note: for currently PUBLIC apps only.
     iarc_purged = models.BooleanField(default=False)
 
+    # This is the public_id to a Generic Solitude Product
+    solitude_public_id = models.CharField(max_length=255, null=True, blank=True)
+
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
 

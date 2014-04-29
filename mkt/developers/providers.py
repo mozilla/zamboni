@@ -20,7 +20,7 @@ from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
-from mkt.webpay.webpay_jwt import WebAppProduct
+from mkt.webpay.utils import make_external_id
 
 root = 'developers/payments/includes/'
 
@@ -35,7 +35,7 @@ def account_check(f):
     def wrapper(self, *args, **kwargs):
         for arg in args:
             if (isinstance(arg, PaymentAccount)
-                and arg.provider != self.provider):
+                    and arg.provider != self.provider):
                 raise ValueError('Wrong account {0} != {1}'
                                  .format(arg.provider, self.provider))
         return f(self, *args, **kwargs)
@@ -57,21 +57,40 @@ class Provider(object):
         raise NotImplementedError
 
     @account_check
-    def generic_create(self, account, app, secret):
-        # This sets the product up in solitude.
-        external_id = WebAppProduct(app).external_id()
-        data = {'seller': uri_to_pk(account.seller_uri),
-                'external_id': external_id}
+    def get_or_create_generic_product(self, app, secret=None):
+        product_data = {
+            'public_id': app.get_or_create_public_id(),
+        }
 
-        # Create the generic product.
         try:
-            generic = self.generic.product.get_object_or_404(**data)
+            generic = self.generic.product.get_object_or_404(**product_data)
         except ObjectDoesNotExist:
-            generic = self.generic.product.post(data={
-                'seller': account.seller_uri, 'secret': secret,
-                'external_id': external_id, 'public_id': str(uuid.uuid4()),
+            seller_uuid = str(uuid.uuid4())
+            seller = self.generic.seller.post(data={'uuid': seller_uuid})
+
+            log.info(
+                'Creating a new Generic Solitude '
+                'Seller {seller_uuid} for app {app}'.format(
+                    seller_uuid=seller_uuid,
+                    app=app,
+                )
+            )
+
+            product_data.update({
+                'external_id': make_external_id(app),
+                'seller': seller['resource_uri'],
+                'secret': secret or generate_key(48),
                 'access': ACCESS_PURCHASE,
             })
+            generic = self.generic.product.post(data=product_data)
+
+            log.info(
+                'Creating a new Generic Solitude Product '
+                '{public_id} for app {app}'.format(
+                    public_id=product_data['public_id'],
+                    app=app,
+                )
+            )
 
         return generic
 
@@ -178,7 +197,7 @@ class Bango(Provider):
     @account_check
     def product_create(self, account, app):
         secret = generate_key(48)
-        generic = self.generic_create(account, app, secret)
+        generic = self.get_or_create_generic_product(app, secret=secret)
         product_uri = generic['resource_uri']
         data = {'seller_product': uri_to_pk(product_uri)}
 
@@ -267,7 +286,7 @@ class Reference(Provider):
     @account_check
     def product_create(self, account, app):
         secret = generate_key(48)
-        generic = self.generic_create(account, app, secret)
+        generic = self.get_or_create_generic_product(app, secret=secret)
 
         # These just pass straight through to zippy to create the product
         # and don't create any intermediate objects in solitude.
@@ -356,11 +375,14 @@ class Boku(Provider):
 
     @account_check
     def product_create(self, account, app):
-        secret = generate_key(48)
-        created = self.generic_create(account, app, secret)
-        # Note this is setting the generic product account,
-        # not the specific product uri.
-        return created['resource_uri']
+        generic_product = self.get_or_create_generic_product(app)
+
+        boku_product = self.client.product.post(data={
+            'seller_boku': account.uri,
+            'seller_product': generic_product['resource_uri'],
+        })
+
+        return boku_product['resource_uri']
 
     def get_portal_url(self, app_slug):
         return settings.BOKU_PORTAL

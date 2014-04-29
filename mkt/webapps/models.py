@@ -467,6 +467,14 @@ class Webapp(Addon):
         """Checks for waffle."""
         return not waffle.switch_is_active('iarc') or self.is_rated()
 
+    def get_or_create_public_id(self):
+        """Returns the Solitude public_id if set otherwise creates one"""
+        if self.solitude_public_id is None:
+            self.solitude_public_id = str(uuid.uuid4())
+            self.save()
+
+        return self.solitude_public_id
+
     def all_payment_accounts(self):
         # TODO: cache this somehow. Using @cached_property was hard because
         # there's no easy way to invalidate something that should be
