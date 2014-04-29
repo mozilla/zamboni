@@ -50,7 +50,7 @@ from bandwagon.models import Collection
 from constants.applications import DEVICE_TYPES
 from files.helpers import copyfileobj
 from files.models import File, Platform
-from lib.es.signals import process, reset
+from lib.post_request_task import task as post_request_task
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from users.models import RequestUser, UserProfile
@@ -258,7 +258,6 @@ class MockEsMixin(object):
         if cls.mock_es:
             start_es_mock()
         try:
-            reset.send(None)  # Reset all the ES tasks on hold.
             super(MockEsMixin, cls).setUpClass()
         except Exception:
             # We need to unpatch here because tearDownClass will not be
@@ -928,19 +927,17 @@ class ESTestCase(TestCase):
             # 960598.
             super(ESTestCase, cls).tearDownClass()
 
+    def tearDown(self):
+        post_request_task._send_tasks()
+
     @classmethod
     def setUpIndex(cls):
         cls.add_addons()
         cls.refresh()
 
     @classmethod
-    def send(cls):
-        # Send all the ES tasks on hold.
-        process.send(None)
-
-    @classmethod
     def refresh(cls, index='default', timesleep=0):
-        process.send(None)
+        post_request_task._send_tasks()
         cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
     @classmethod

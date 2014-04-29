@@ -1120,6 +1120,7 @@ class TestRocketbarApi(ESTestCase):
         self.app2.name.save()
         self.app2.default_locale = 'es'
         self.app2.save()
+        self.refresh()
         with self.assertNumQueries(0):
             response = self.client.get(self.url, data={'q': 'Something Second',
                                                        'lang': 'en-US'})

@@ -33,6 +33,7 @@ from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.es.utils import get_indices
 from lib.metrics import get_monolith_client
+from lib.post_request_task.task import task as post_request_task
 from users.models import UserProfile
 from users.utils import get_task_user
 
@@ -294,7 +295,7 @@ def update_supported_locales(ids, **kw):
                 _log(app, u'Updating supported locales failed.', exc_info=True)
 
 
-@task(acks_late=True)
+@post_request_task(acks_late=True)
 @write
 def index_webapps(ids, **kw):
     task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
@@ -313,7 +314,7 @@ def index_webapps(ids, **kw):
             WebappIndexer.index(doc, id_=obj.id, es=es, index=idx)
 
 
-@task(acks_late=True)
+@post_request_task(acks_late=True)
 @write
 def unindex_webapps(ids, **kw):
     if not ids:
