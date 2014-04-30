@@ -1,6 +1,4 @@
-import hashlib
 import logging
-import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -9,12 +7,9 @@ from django.db import connection, transaction
 from celeryutils import task
 from PIL import Image
 
-from addons.models import Persona
-from editors.models import RereviewQueueTheme
 import amo
 from amo.decorators import set_modified_on, write
-from amo.storage_utils import rm_stored_dir
-from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
+from amo.utils import cache_ns_key, ImageCheck
 from lib.es.utils import index_objects
 from versions.models import Version
 
@@ -264,111 +259,3 @@ def update_incompatible_appversions(data, **kw):
     # Increment namespace cache of compat versions.
     for addon_id in addon_ids:
         cache_ns_key('d2c-versions:%s' % addon_id, increment=True)
-
-
-def make_checksum(header_path, footer_path):
-    ls = LocalFileStorage()
-    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
-    return hashlib.sha224(raw_checksum).hexdigest()
-
-
-def theme_checksum(theme, **kw):
-    theme.checksum = make_checksum(theme.header_path, theme.footer_path)
-    dupe_personas = Persona.objects.filter(checksum=theme.checksum)
-    if dupe_personas.exists():
-        theme.dupe_persona = dupe_personas[0]
-    theme.save()
-
-
-def rereviewqueuetheme_checksum(rqt, **kw):
-    """Check for possible duplicate theme images."""
-    dupe_personas = Persona.objects.filter(
-        checksum=make_checksum(rqt.header_path or rqt.theme.header_path,
-                               rqt.footer_path or rqt.theme.footer_path))
-    if dupe_personas.exists():
-        rqt.dupe_persona = dupe_personas[0]
-        rqt.save()
-
-
-@task
-@write
-def save_theme(header, footer, addon, **kw):
-    """Save theme image and calculates checksum after theme save."""
-    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
-    header = os.path.join(settings.TMP_PATH, 'persona_header', header)
-    footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-    header_dst = os.path.join(dst_root, 'header.png')
-    footer_dst = os.path.join(dst_root, 'footer.png')
-
-    try:
-        save_persona_image(src=header, full_dst=header_dst)
-        save_persona_image(src=footer, full_dst=footer_dst)
-        create_persona_preview_images(
-            src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
-                                  os.path.join(dst_root, 'icon.png')],
-            set_modified_on=[addon])
-        theme_checksum(addon.persona)
-    except IOError:
-        addon.delete()
-        raise
-
-
-@task
-@write
-def save_theme_reupload(header, footer, addon, **kw):
-    header_dst = None
-    footer_dst = None
-    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
-
-    try:
-        if header:
-            header = os.path.join(settings.TMP_PATH, 'persona_header', header)
-            header_dst = os.path.join(dst_root, 'pending_header.png')
-            save_persona_image(src=header, full_dst=header_dst)
-        if footer:
-            footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
-            footer_dst = os.path.join(dst_root, 'pending_footer.png')
-            save_persona_image(src=footer, full_dst=footer_dst)
-    except IOError as e:
-        log.error(str(e))
-        raise
-
-    if header_dst or footer_dst:
-        theme = addon.persona
-        header = 'pending_header.png' if header_dst else theme.header
-        footer = 'pending_footer.png' if footer_dst else theme.footer
-
-        # Store pending header and/or footer file paths for review.
-        RereviewQueueTheme.objects.filter(theme=theme).delete()
-        rqt = RereviewQueueTheme(theme=theme, header=header, footer=footer)
-        rereviewqueuetheme_checksum(rqt=rqt)
-        rqt.save()
-
-
-@task
-@write
-def calc_checksum(theme_id, **kw):
-    """For migration 596."""
-    lfs = LocalFileStorage()
-    theme = Persona.objects.get(id=theme_id)
-    header = theme.header_path
-    footer = theme.footer_path
-
-    # Delete invalid themes that are not images (e.g. PDF, EXE).
-    try:
-        Image.open(header)
-        Image.open(footer)
-    except IOError:
-        log.info('Deleting invalid theme [%s] (header: %s) (footer: %s)' %
-                 (theme.addon.id, header, footer))
-        theme.addon.delete()
-        theme.delete()
-        rm_stored_dir(header.replace('header.png', ''), storage=lfs)
-        return
-
-    # Calculate checksum and save.
-    try:
-        theme.checksum = make_checksum(header, footer)
-        theme.save()
-    except IOError as e:
-        log.error(str(e))

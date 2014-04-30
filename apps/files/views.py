@@ -41,14 +41,9 @@ def setup_viewer(request, file_obj):
                                        args=[file_obj.version.addon.slug,
                                              file_obj.id])
 
-    if acl.check_reviewer(request):
-        data['file_link'] = {'text': _('Back to review'),
-                             'url': reverse('editors.review',
-                                            args=[data['addon'].slug])}
-    else:
-        data['file_link'] = {'text': _('Back to addon'),
-                             'url': reverse('addons.detail',
-                                            args=[data['addon'].pk])}
+    data['file_link'] = {'text': _('Back to addon'),
+                         'url': reverse('addons.detail',
+                                        args=[data['addon'].pk])}
     return data
 
 

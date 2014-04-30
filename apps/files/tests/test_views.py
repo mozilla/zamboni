@@ -183,12 +183,6 @@ class FilesBase:
                               HTTP_IF_MODIFIED_SINCE=date)
         eq_(res.status_code, 304)
 
-    def test_file_header(self):
-        self.file_viewer.extract()
-        res = self.client.get(self.file_url(not_binary))
-        url = res.context['file_link']['url']
-        eq_(url, reverse('editors.review', args=[self.addon.slug]))
-
     def test_file_header_anon(self):
         self.client.logout()
         self.file_viewer.extract()

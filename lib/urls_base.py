@@ -45,9 +45,6 @@ urlpatterns = patterns('',
     # Developer Hub.
     ('^developers/', include('devhub.urls')),
 
-    # Developer Hub.
-    ('editors/', include('editors.urls')),
-
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 

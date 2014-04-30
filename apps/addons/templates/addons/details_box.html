@@ -89,13 +89,6 @@
                   </td>
                 </tr>
               {% endif %}
-              <tr class="meta-abuse">
-                <th>{{ _('Abuse Reports') }}</th>
-                <td>
-                  <a href="{{ url('editors.abuse_reports', addon.slug) }}">
-                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong></a>
-                </td>
-              </tr>
               {% if not show_actions %}
                 {# Show privacy policy / eula if the button isn't shown #}
                 {# (Basically, on the editor review page) #}

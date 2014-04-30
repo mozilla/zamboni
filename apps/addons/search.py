@@ -8,7 +8,6 @@ import pyes.exceptions as pyes
 
 import amo
 import amo.search
-from addons.models import Persona
 from amo.utils import create_es_index_if_missing
 from bandwagon.models import Collection
 from users.models import UserProfile
@@ -58,21 +57,10 @@ def extract(addon):
         d['has_version'] = None
     d['app'] = [app.id for app in addon.compatible_apps.keys()]
 
-    if addon.type == amo.ADDON_PERSONA:
-        try:
-            # This would otherwise get attached when by the transformer.
-            d['weekly_downloads'] = addon.persona.popularity
-            # Boost on popularity.
-            d['_boost'] = addon.persona.popularity ** .2
-            d['has_theme_rereview'] = (
-                addon.persona.rereviewqueuetheme_set.exists())
-        except Persona.DoesNotExist:
-            # The addon won't have a persona while it's being created.
-            pass
-    else:
-        # Boost by the number of users on a logarithmic scale. The maximum
-        # boost (11,000,000 users for adblock) is about 5x.
-        d['_boost'] = addon.average_daily_users ** .2
+    # Boost by the number of users on a logarithmic scale. The maximum
+    # boost (11,000,000 users for adblock) is about 5x.
+    d['_boost'] = addon.average_daily_users ** .2
+
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC and 'boost' in d:
         d['_boost'] = max(d['_boost'], 1) * 4

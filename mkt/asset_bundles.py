@@ -81,7 +81,6 @@ CSS = {
         'css/devreg/reviewers.styl',
         'css/devreg/reviewers-header.styl',
         'css/devreg/reviewers-mobile.styl',
-        'css/devreg/themes_review.styl',
         'css/devreg/legacy-paginator.styl',
         'css/devreg/files.styl',
     ),
@@ -183,14 +182,10 @@ JS = {
         'js/devreg/devreg_init.js',
     ),
     'mkt/reviewers': (
-        'js/lib/highcharts.src.js',  # Used by editors.js
         'js/lib/moment-with-langs.min.js',  # JS date lib.
         'js/zamboni/storage.js',  # Used by editors.js
         'js/common/buckets.js',
         'js/devreg/reviewers/editors.js',
-        'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox
-        'js/lib/jquery.zoomBox.js',  # Used by themes_review
-        'js/devreg/reviewers/themes_review.js',
         'js/devreg/apps.js',  # Used by install.js
         'js/devreg/reviewers/payments.js',
         'js/devreg/reviewers/install.js',
