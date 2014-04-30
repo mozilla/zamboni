@@ -10,14 +10,30 @@ var origin_whitelist = [
 ];
 
 window.addEventListener('message', function(e) {
+    console.log('[iframe-install] Received message: ' + JSON.stringify(e.data));
+
     if (origin_whitelist.indexOf(e.origin) === -1) {
         console.log('[iframe-install] message from ' + e.origin + ' not allowed');
         return;
     }
 
-    // Receive postMessage from the packaged app and do something with it.
-    if (e.data && e.data.name && e.data.data) {
-        console.log('[iframe-install] Received post message from ' + e.origin + ': ' + JSON.stringify(e.data));
+    if (e.data && e.data.name == 'getInstalled') {
+        // navigator.mozApps.getInstalled for parent to keep track of installed apps.
+        console.log('[iframe-install] Received post message to getInstalled from ' + e.origin + ': ' + JSON.stringify(e.data));
+
+        var r = navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            window.top.postMessage({
+                'name': 'getInstalled',
+                'result': r.result
+            }, '*');
+        };
+        return;
+    }
+
+    else if (e.data && e.data.name == 'install-package' && e.data.data) {
+        // Receive postMessage from the packaged app and do something with it.
+        console.log('[iframe-install] Received post message to install-package from ' + e.origin + ': ' + JSON.stringify(e.data));
 
         var product = e.data.data.product;
         var opt = e.data.data.opt || {};
@@ -44,7 +60,8 @@ window.addEventListener('message', function(e) {
                     clearInterval(isInstalled);
                     window.top.postMessage({
                         'appId': product.id,
-                        'product': product
+                        'product': product,
+                        'name': 'install-package'
                     }, '*');
                 }
             }, 250);
@@ -53,7 +70,8 @@ window.addEventListener('message', function(e) {
                 console.log('[iframe-install] App download error: ' + e.application.downloadError.name + ' ' + e.application.downloadError.message);
                 window.top.postMessage({
                     'appId': product.id,
-                    'error': {error: e.application.downloadError.name}
+                    'error': {error: e.application.downloadError.name},
+                    'name': 'install-package'
                 }, '*');
                 clearInterval(isInstalled);
             };
@@ -64,12 +82,14 @@ window.addEventListener('message', function(e) {
             if (this.error.name === 'DENIED') {
                 window.top.postMessage({
                     'appId': product.id,
-                    'error': {error: error}
+                    'error': {error: error},
+                    'name': 'install-package'
                 }, '*');
             } else {
                 window.top.postMessage({
                     'appId': product.id,
-                    'error': {error: error}
+                    'error': {error: error},
+                    'name': 'install-package'
                 }, '*');
             }
         };
