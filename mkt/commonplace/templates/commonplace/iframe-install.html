@@ -25,7 +25,7 @@ window.addEventListener('message', function(e) {
         r.onsuccess = function() {
             var installed = [];
             for (var i = 0; i < r.result.length; r++) {
-                installed.push(r[i].manifestURL);
+                installed.push(r.result[i].manifestURL);
             }
             window.top.postMessage({
                 'name': 'getInstalled',
