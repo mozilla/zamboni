@@ -84,6 +84,7 @@ class BR(REGION):
     default_language = 'pt-BR'
     mcc = 724
     ratingsbody = ratingsbodies.CLASSIND
+    adolescent = False
 
 
 class SPAIN(REGION):
@@ -104,6 +105,7 @@ class CO(REGION):
     default_language = 'es'
     mcc = 732
     ratingsbody = ratingsbodies.ESRB
+    adolescent = False
 
 
 class VE(REGION):
@@ -134,6 +136,7 @@ class MX(REGION):
     default_language = 'es'
     mcc = 334
     ratingsbody = ratingsbodies.ESRB
+    adolescent = False
 
 
 class HU(REGION):
