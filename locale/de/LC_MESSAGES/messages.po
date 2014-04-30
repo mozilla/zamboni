@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 09:07-0700\n"
-"PO-Revision-Date: 2014-04-23 16:48+0000\n"
+"PO-Revision-Date: 2014-04-30 18:30+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398271683.0\n"
+"X-POOTLE-MTIME: 1398882616.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -12614,7 +12614,7 @@ msgstr "Dienst-ID"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "Dienst-ID ist ungültig"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -14075,11 +14075,11 @@ msgstr "Nutzungsbedingungen akzeptieren"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Bestätigen Sie die Löschung Ihres Zahlungskontos"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Zahlungskonto löschen"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
