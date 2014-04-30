@@ -23,9 +23,13 @@ window.addEventListener('message', function(e) {
 
         var r = navigator.mozApps.getInstalled();
         r.onsuccess = function() {
+            var installed = [];
+            for (var i = 0; i < r.result.length; r++) {
+                installed.push(r[i].manifestURL);
+            }
             window.top.postMessage({
                 'name': 'getInstalled',
-                'result': r.result
+                'result': installed
             }, '*');
         };
         return;
