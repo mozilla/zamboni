@@ -118,10 +118,9 @@ def process_iarc_changes(date=None):
 
             # Log change reason.
             reason = row.get('change_reason')
-            if reason:
-                amo.log(amo.LOG.CONTENT_RATING_CHANGED, app,
-                        details={'comments': '%s:%s, %s' %
-                                 (ratings_body.name, rating.name, reason)})
+            amo.log(amo.LOG.CONTENT_RATING_CHANGED, app,
+                    details={'comments': '%s:%s, %s' %
+                             (ratings_body.name, rating.name, reason)})
 
         except Exception as e:
             log.debug('Exception: %s' % e)
