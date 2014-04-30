@@ -187,28 +187,6 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         r = route_reviewer(req)
         self.assert3xx(r, reverse('reviewers.home'))
 
-        # App + theme reviewers go to apps home.
-        group = Group.objects.get(name='App Reviewers')
-        group.rules = 'Apps:Review,Personas:Review'
-        group.save()
-
-        req = amo.tests.req_factory_factory(
-            reverse('reviewers'),
-            user=UserProfile.objects.get(username='editor'))
-        r = route_reviewer(req)
-        self.assert3xx(r, reverse('reviewers.home'))
-
-        # Theme reviewers go to themes home.
-        group = Group.objects.get(name='App Reviewers')
-        group.rules = 'Personas:Review'
-        group.save()
-
-        req = amo.tests.req_factory_factory(
-            reverse('reviewers'),
-            user=UserProfile.objects.get(username='editor'))
-        r = route_reviewer(req)
-        self.assert3xx(r, reverse('reviewers.themes.home'))
-
     def test_progress_pending(self):
         self.apps[0].latest_version.update(nomination=self.days_ago(1))
         self.apps[1].latest_version.update(nomination=self.days_ago(8))
@@ -2605,27 +2583,6 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         # Test attachments.
         note = self._get_note()
         eq_(note.attachments.count(), 2)
-
-
-class TestAbuseReports(amo.tests.TestCase):
-    fixtures = fixture('user_999', 'user_admin', 'group_admin',
-                       'user_admin_group')
-
-    def setUp(self):
-        self.app = app_factory()
-        self.app.abuse_reports.create(message='eff')
-        self.app.abuse_reports.create(message='yeah', reporter_id=999)
-        # Make a user abuse report to make sure it doesn't show up.
-        AbuseReport.objects.create(message='hey now', user_id=999)
-
-    def test_abuse_reports_list(self):
-        self.login('admin@mozilla.com')
-        res = self.client.get(reverse('reviewers.apps.review.abuse',
-                                      args=[self.app.app_slug]))
-        eq_(res.status_code, 200)
-        # We see the two abuse reports created in setUp.
-        reports = res.context['reports']
-        self.assertSetEqual([r.message for r in reports], [u'eff', u'yeah'])
 
 
 class TestModeratedQueue(AppReviewerTest, AccessMixin):

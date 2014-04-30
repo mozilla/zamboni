@@ -1,4 +1,3 @@
-import datetime
 import urlparse
 
 from django.utils.encoding import smart_str
@@ -40,11 +39,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'moderated': _('Moderated Reviews'),
                   'reviewing': _('Reviewing'),
 
-                  'region': _('Regional Queues'),
-
-                  'pending_themes': _('Pending Themes'),
-                  'flagged_themes': _('Flagged Themes'),
-                  'rereview_themes': _('Update Themes')}
+                  'region': _('Regional Queues')}
 
         if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
@@ -139,62 +134,6 @@ def logs_tabnav(context):
 
 @register.function
 @jinja2.contextfunction
-def logs_tabnav_themes(context):
-    """
-    Returns tuple of tab navigation for the log pages.
-
-    Each tuple contains three elements: (named url, tab_code, tab_text)
-    """
-    rv = [
-        ('reviewers.themes.logs', 'themes', _('Reviews'))
-    ]
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
-        rv.append(('reviewers.themes.deleted', 'deleted', _('Deleted')))
-
-    return rv
-
-
-@register.function
-@jinja2.contextfunction
-def queue_tabnav_themes(context):
-    """Similar to queue_tabnav, but for themes."""
-    tabs = []
-    if acl.action_allowed(context['request'], 'Personas', 'Review'):
-        tabs.append((
-            'reviewers.themes.list', 'pending_themes', _('Pending'),
-        ))
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
-        tabs.append((
-            'reviewers.themes.list_flagged', 'flagged_themes', _('Flagged'),
-        ))
-        tabs.append((
-            'reviewers.themes.list_rereview', 'rereview_themes',
-            _('Updates'),
-        ))
-    return tabs
-
-
-@register.function
-@jinja2.contextfunction
-def queue_tabnav_themes_interactive(context):
-    """Tabnav for the interactive shiny theme queues."""
-    tabs = []
-    if acl.action_allowed(context['request'], 'Personas', 'Review'):
-        tabs.append((
-            'reviewers.themes.queue_themes', 'pending', _('Pending'),
-        ))
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
-        tabs.append((
-            'reviewers.themes.queue_flagged', 'flagged', _('Flagged'),
-        ))
-        tabs.append((
-            'reviewers.themes.queue_rereview', 'rereview', _('Updates'),
-        ))
-    return tabs
-
-
-@register.function
-@jinja2.contextfunction
 def sort_link(context, pretty_name, sort_field):
     """Get table header sort links.
 
@@ -211,9 +150,3 @@ def sort_link(context, pretty_name, sort_field):
 
     return create_sort_link(pretty_name, sort_field, get_params,
                             sort, order)
-
-
-@register.function
-@jinja2.contextfunction
-def is_expired_lock(context, lock):
-    return lock.expiry < datetime.datetime.now()

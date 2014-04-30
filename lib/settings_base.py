@@ -597,14 +597,6 @@ MINIFY_BUNDLES = {
             'css/devhub/search.less',
             'css/devhub/refunds.less',
         ),
-        'zamboni/editors': (
-            'css/zamboni/editors.styl',
-        ),
-        'zamboni/themes_review': (
-            'css/zamboni/developers.css',
-            'css/zamboni/editors.styl',
-            'css/zamboni/themes_review.styl',
-        ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',
             'css/zamboni/files.css',
@@ -796,13 +788,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/zamboni/packager.js',
-        ),
-        'zamboni/editors': (
-            'js/lib/highcharts.src.js',
-            'js/zamboni/editors.js',
-            'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
-            'js/lib/jquery.zoomBox.js',  # Used by themes_review.
-            'js/zamboni/themes_review.js',
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
@@ -1018,8 +1003,6 @@ CELERY_ROUTES = {
     # are routed to the priority queue.
     'addons.tasks.index_addons': {'queue': 'priority'},
     'addons.tasks.unindex_addons': {'queue': 'priority'},
-    'addons.tasks.save_theme': {'queue': 'priority'},
-    'addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'bandwagon.tasks.index_collections': {'queue': 'priority'},
     'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'lib.crypto.packaged.sign': {'queue': 'priority'},

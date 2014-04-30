@@ -1,28 +1,19 @@
-import copy
 import datetime
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Sum
-from django.template import Context, loader
-from django.utils.datastructures import SortedDict
 
 import commonware.log
-from tower import ugettext_lazy as _lazy
 
 import amo
 import amo.models
 from access.models import Group
-from addons.models import Addon, Persona
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from amo.utils import cache_ns_key, send_mail
+from addons.models import Addon
+from amo.utils import cache_ns_key
 from devhub.models import ActivityLog
-from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
-from users.models import UserForeignKey, UserProfile
-from versions.models import version_uploaded
+from users.models import UserProfile
 
 
 user_log = commonware.log.getLogger('z.users')
@@ -42,21 +33,9 @@ class CannedResponse(amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
+
 models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
-
-
-class AddonCannedResponseManager(amo.models.ManagerBase):
-    def get_query_set(self):
-        qs = super(AddonCannedResponseManager, self).get_query_set()
-        return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
-
-
-class AddonCannedResponse(CannedResponse):
-    objects = AddonCannedResponseManager()
-
-    class Meta:
-        proxy = True
 
 
 class EventLog(models.Model):
@@ -86,250 +65,12 @@ class EventLog(models.Model):
                 for i in items]
 
 
-class ViewQueue(RawSQLModel):
-    id = models.IntegerField()
-    addon_name = models.CharField(max_length=255)
-    addon_slug = models.CharField(max_length=30)
-    addon_status = models.IntegerField()
-    addon_type_id = models.IntegerField()
-    admin_review = models.BooleanField()
-    is_site_specific = models.BooleanField()
-    external_software = models.BooleanField()
-    binary = models.BooleanField()
-    binary_components = models.BooleanField()
-    premium_type = models.IntegerField()
-    is_restartless = models.BooleanField()
-    is_jetpack = models.BooleanField()
-    latest_version = models.CharField(max_length=255)
-    _file_platform_ids = models.CharField(max_length=255)
-    has_info_request = models.BooleanField()
-    has_editor_comment = models.BooleanField()
-    _application_ids = models.CharField(max_length=255)
-    waiting_time_days = models.IntegerField()
-    waiting_time_hours = models.IntegerField()
-    waiting_time_min = models.IntegerField()
-    is_version_specific = False
-
-    def base_query(self):
-        return {
-            'select': SortedDict([
-                ('id', 'addons.id'),
-                ('addon_name', 'tr.localized_string'),
-                ('addon_status', 'addons.status'),
-                ('addon_type_id', 'addons.addontype_id'),
-                ('addon_slug', 'addons.slug'),
-                ('admin_review', 'addons.adminreview'),
-                ('is_site_specific', 'addons.sitespecific'),
-                ('external_software', 'addons.externalsoftware'),
-                ('binary', 'files.binary'),
-                ('binary_components', 'files.binary_components'),
-                ('premium_type', 'addons.premium_type'),
-                ('latest_version', 'versions.version'),
-                ('has_editor_comment', 'versions.has_editor_comment'),
-                ('has_info_request', 'versions.has_info_request'),
-                ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
-                                          files.platform_id)"""),
-                ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
-                ('is_restartless', 'MAX(files.no_restart)'),
-                ('_application_ids', """GROUP_CONCAT(DISTINCT
-                                        apps.application_id)"""),
-            ]),
-            'from': [
-                'addons',
-                'JOIN versions ON (versions.id = addons.latest_version)',
-                'JOIN files ON (files.version_id = versions.id)',
-                """LEFT JOIN applications_versions as apps
-                            ON versions.id = apps.version_id""",
-
-                #  Translations
-                """JOIN translations AS tr ON (
-                            tr.id = addons.name
-                            AND tr.locale = addons.defaultlocale)"""
-            ],
-            'where': [
-                'NOT addons.inactive',  # disabled_by_user
-                'addons.addontype_id <> 11',  # No webapps for AMO.
-            ],
-            'group_by': 'id'}
-
-    @property
-    def is_premium(self):
-        return self.premium_type in amo.ADDON_PREMIUMS
-
-    @property
-    def file_platform_ids(self):
-        return self._explode_concat(self._file_platform_ids)
-
-    @property
-    def application_ids(self):
-        return self._explode_concat(self._application_ids)
-
-    @property
-    def is_traditional_restartless(self):
-        return self.is_restartless and not self.is_jetpack
-
-    @property
-    def flags(self):
-        props = (
-            ('admin_review', 'admin-review', _lazy('Admin Review')),
-            ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
-            ('is_traditional_restartless', 'restartless',
-             _lazy('Restartless Add-on')),
-            ('is_premium', 'premium', _lazy('Premium Add-on')),
-            ('has_info_request', 'info', _lazy('More Information Requested')),
-            ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
-        )
-
-        return [(cls, title) for (prop, cls, title) in props
-                if getattr(self, prop)]
-
-
-class ViewFullReviewQueue(ViewQueue):
-
-    def base_query(self):
-        q = super(ViewFullReviewQueue, self).base_query()
-        q['select'].update({
-            'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())',
-            'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(versions.nomination), NOW())',
-            'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(versions.nomination), NOW())',
-        })
-        q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
-                           'addons.status IN (%s, %s)' % (
-                               amo.STATUS_NOMINATED,
-                               amo.STATUS_LITE_AND_NOMINATED)])
-        return q
-
-
-class VersionSpecificQueue(ViewQueue):
-    is_version_specific = True
-
-    def base_query(self):
-        q = copy.deepcopy(super(VersionSpecificQueue, self).base_query())
-        q['select'].update({
-            'waiting_time_days':
-                'TIMESTAMPDIFF(DAY, MAX(files.created), NOW())',
-            'waiting_time_hours':
-                'TIMESTAMPDIFF(HOUR, MAX(files.created), NOW())',
-            'waiting_time_min':
-                'TIMESTAMPDIFF(MINUTE, MAX(files.created), NOW())',
-        })
-        return q
-
-
-class ViewPendingQueue(VersionSpecificQueue):
-
-    def base_query(self):
-        q = super(ViewPendingQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status = %s' % amo.STATUS_PUBLIC])
-        return q
-
-
-class ViewPreliminaryQueue(VersionSpecificQueue):
-
-    def base_query(self):
-        q = super(ViewPreliminaryQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status IN (%s, %s)' % (
-                               amo.STATUS_LITE,
-                               amo.STATUS_UNREVIEWED)])
-        return q
-
-
-class ViewFastTrackQueue(VersionSpecificQueue):
-
-    def base_query(self):
-        q = super(ViewFastTrackQueue, self).base_query()
-        # Fast track includes jetpack-based addons that do not require chrome.
-        q['where'].extend(['files.no_restart = 1',
-                           'files.jetpack_version IS NOT NULL',
-                           'files.requires_chrome = 0',
-                           'files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status IN (%s, %s, %s, %s)' % (
-                               amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                               amo.STATUS_NOMINATED,
-                               amo.STATUS_LITE_AND_NOMINATED)])
-        return q
-
-
-class PerformanceGraph(ViewQueue):
-    id = models.IntegerField()
-    yearmonth = models.CharField(max_length=7)
-    approval_created = models.DateTimeField()
-    user_id = models.IntegerField()
-    total = models.IntegerField()
-
-    def base_query(self):
-        request_ver = amo.LOG.REQUEST_VERSION.id
-        review_ids = [str(r) for r in amo.LOG_REVIEW_QUEUE if r != request_ver]
-
-        return {
-            'select': SortedDict([
-                ('yearmonth',
-                 "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
-                ('approval_created', '`log_activity`.`created`'),
-                ('user_id', '`users`.`id`'),
-                ('total', 'COUNT(*)')]),
-            'from': [
-                'log_activity',
-                'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)'],
-            'where': ['log_activity.action in (%s)' % ','.join(review_ids)],
-            'group_by': 'yearmonth, user_id'
-        }
-
-
 class EditorSubscription(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Addon)
 
     class Meta:
         db_table = 'editor_subscriptions'
-
-    def send_notification(self, version):
-        user_log.info('Sending addon update notice to %s for %s' %
-                      (self.user.email, self.addon.pk))
-        context = Context({
-            'name': self.addon.name,
-            'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
-                                      add_prefix=False)),
-            'number': version.version,
-            'review': absolutify(reverse('editors.review',
-                                         args=[self.addon.pk],
-                                         add_prefix=False)),
-            'SITE_URL': settings.SITE_URL,
-        })
-        # Not being localised because we don't know the editors locale.
-        subject = 'Mozilla Add-ons: %s Updated' % self.addon.name
-        template = loader.get_template('editors/emails/notify_update.ltxt')
-        send_mail(subject, template.render(Context(context)),
-                  recipient_list=[self.user.email],
-                  from_email=settings.EDITORS_EMAIL,
-                  use_blacklist=False)
-
-
-def send_notifications(signal=None, sender=None, **kw):
-    # See bug 741679 for implementing this in Marketplace. This is deactivated
-    # in the meantime because EditorSubscription.send_notification() uses
-    # AMO-specific code.
-    return
-
-    if sender.is_beta:
-        return
-
-    subscribers = sender.addon.editorsubscription_set.all()
-
-    if not subscribers:
-        return
-
-    for subscriber in subscribers:
-        subscriber.send_notification(sender)
-        subscriber.delete()
-
-
-version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 
 class ReviewerScore(amo.models.ModelBase):
@@ -667,61 +408,3 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
-
-
-class RereviewQueueThemeManager(amo.models.ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        amo.models.ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-
-    def get_query_set(self):
-        qs = super(RereviewQueueThemeManager, self).get_query_set()
-        if self.include_deleted:
-            return qs
-        else:
-            return qs.exclude(theme__addon__status=amo.STATUS_DELETED)
-
-
-class RereviewQueueTheme(amo.models.ModelBase):
-    theme = models.ForeignKey(Persona)
-    header = models.CharField(max_length=72, blank=True, default='')
-    footer = models.CharField(max_length=72, blank=True, default='')
-
-    # Holds whether this reuploaded theme is a duplicate.
-    dupe_persona = models.ForeignKey(Persona, null=True,
-                                     related_name='dupepersona')
-
-    objects = RereviewQueueThemeManager()
-    with_deleted = RereviewQueueThemeManager(include_deleted=True)
-
-    class Meta:
-        db_table = 'rereview_queue_theme'
-
-    def __str__(self):
-        return str(self.id)
-
-    @property
-    def header_path(self):
-        return self.theme._image_path(self.header or self.theme.header)
-
-    @property
-    def footer_path(self):
-        return self.theme._image_path(self.footer or self.theme.footer)
-
-    @property
-    def header_url(self):
-        return self.theme._image_url(self.header or self.theme.header)
-
-    @property
-    def footer_url(self):
-        return self.theme._image_url(self.footer or self.theme.footer)
-
-
-class ThemeLock(amo.models.ModelBase):
-    theme = models.OneToOneField('addons.Persona')
-    reviewer = UserForeignKey()
-    expiry = models.DateTimeField()
-
-    class Meta:
-        db_table = 'theme_locks'

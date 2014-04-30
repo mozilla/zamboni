@@ -4,7 +4,7 @@ import amo
 from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
 from mkt.reviewers.api import ReviewersSearchView
-from . import api, views, views_themes
+from . import api, views
 
 
 # All URLs under /reviewers/.
@@ -39,37 +39,6 @@ url_patterns = patterns('',
     url(r'^review_viewing$', review_viewing, name='editors.review_viewing'),
     url(r'^apps/reviewing$', views.apps_reviewing,
         name='reviewers.apps.apps_reviewing'),
-
-    url('^themes$', views_themes.home,
-        name='reviewers.themes.home'),
-    url('^themes/pending$', views_themes.themes_list,
-        name='reviewers.themes.list'),
-    url('^themes/flagged$', views_themes.themes_list,
-        name='reviewers.themes.list_flagged',
-        kwargs={'flagged': True}),
-    url('^themes/updates$', views_themes.themes_list,
-        name='reviewers.themes.list_rereview',
-        kwargs={'rereview': True}),
-    url('^themes/queue/$', views_themes.themes_queue,
-        name='reviewers.themes.queue_themes'),
-        url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
-        name='reviewers.themes.queue_flagged'),
-    url('^themes/queue/updates$', views_themes.themes_queue_rereview,
-        name='reviewers.themes.queue_rereview'),
-    url('^themes/queue/commit$', views_themes.themes_commit,
-        name='reviewers.themes.commit'),
-    url('^themes/queue/single/(?P<slug>[^ /]+)$', views_themes.themes_single,
-        name='reviewers.themes.single'),
-    url('^themes/history/(?P<username>[^ /]+)?$',
-        views_themes.themes_history, name='reviewers.themes.history'),
-    url(r'^themes/logs$', views_themes.themes_logs,
-        name='reviewers.themes.logs'),
-    url('^themes/release$', views_themes.release_locks,
-        name='reviewers.themes.release_locks'),
-    url('^themes/logs/deleted/$', views_themes.deleted_themes,
-        name='reviewers.themes.deleted'),
-    url('^themes/search/$', views_themes.themes_search,
-        name='reviewers.themes.search'),
 
     url(r'^receipt/', include(receipt_patterns)),
     url(r'^%s/(?P<version_id>\d+)/mini-manifest$' % amo.APP_SLUG,

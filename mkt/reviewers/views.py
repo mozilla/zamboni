@@ -26,7 +26,7 @@ import amo
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
-from addons.models import AddonDeviceType, Persona, Version
+from addons.models import AddonDeviceType, Version
 from addons.signals import version_changed
 from amo.decorators import (any_permission_required, json_view,
                             permission_required)
@@ -38,7 +38,7 @@ from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
 from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
-                            RereviewQueueTheme, ReviewerScore)
+                            ReviewerScore)
 from editors.views import reviewer_required
 from files.models import File
 from lib.crypto.packaged import SigningError
@@ -72,11 +72,8 @@ log = commonware.log.getLogger('z.reviewers')
 def route_reviewer(request):
     """
     Redirect to apps home page if app reviewer.
-    Redirect to themes home page if only a theme reviewer.
     """
-    if acl.action_allowed(request, 'Apps', 'Review'):
-        return http.HttpResponseRedirect(reverse('reviewers.home'))
-    return http.HttpResponseRedirect(reverse('reviewers.themes.home'))
+    return http.HttpResponseRedirect(reverse('reviewers.home'))
 
 
 @reviewer_required(only='app')
@@ -136,20 +133,8 @@ def queue_counts(request):
                                             editorreview=True)
                                     .count(),
 
-        'themes': Persona.objects.no_cache()
-                                 .filter(addon__status=amo.STATUS_PENDING)
-                                 .count(),
-
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
     }
-
-    if acl.action_allowed(request, 'SeniorPersonasTools', 'View'):
-        counts.update({
-            'flagged_themes': (Persona.objects.no_cache()
-                               .filter(addon__status=amo.STATUS_REVIEW_PENDING)
-                               .count()),
-            'rereview_themes': RereviewQueueTheme.objects.count()
-        })
 
     if 'pro' in request.GET:
         counts.update({'device': device_queue_search(request).count()})
@@ -336,6 +321,7 @@ def _review(request, addon, version):
         score = form.helper.process()
 
         if form.cleaned_data.get('notify'):
+            # TODO: bug 741679 for implementing notifications in Marketplace.
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
 
@@ -928,17 +914,14 @@ def performance(request, username=None):
         'month': {
             'addons': _sum(months, amo.GROUP_TYPE_ADDON),
             'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
-            'themes': _sum(months, amo.GROUP_TYPE_THEME),
         },
         'year': {
             'addons': _sum(years, amo.GROUP_TYPE_ADDON),
             'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
-            'themes': _sum(years, amo.GROUP_TYPE_THEME),
         },
         'total': {
             'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
             'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
-            'themes': _sum(totals, amo.GROUP_TYPE_THEME),
         }
     }
 
@@ -951,7 +934,7 @@ def performance(request, username=None):
     return render(request, 'reviewers/performance.html', ctx)
 
 
-@any_permission_required([('Apps', 'Review'), ('Personas', 'Review')])
+@any_permission_required([('Apps', 'Review')])
 def leaderboard(request):
     return render(request, 'reviewers/leaderboard.html',
                   context(request,

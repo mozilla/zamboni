@@ -20,7 +20,6 @@ from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
                            Persona)
-from addons.tasks import save_theme, save_theme_reupload
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
@@ -548,9 +547,6 @@ class ThemeForm(ThemeFormBase):
         p.display_username = user.name
         p.save()
 
-        # Save header, footer, and preview images.
-        save_theme.delay(data['header_hash'], data['footer_hash'], addon)
-
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
 
@@ -686,12 +682,6 @@ class EditThemeForm(AddonFormBase):
             addon_cat = addon.addoncategory_set.all()[0]
             addon_cat.category = data['category']
             addon_cat.save()
-
-        # Theme reupload.
-        if not addon.is_pending():
-            if data['header_hash'] or data['footer_hash']:
-                save_theme_reupload.delay(
-                    data['header_hash'], data['footer_hash'], addon)
 
         return data
 

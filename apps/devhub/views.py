@@ -42,7 +42,7 @@ from addons.views import BaseFilter
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from editors.helpers import ReviewHelper, get_position
+from editors.helpers import get_position
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon
 from market.models import Refund
@@ -1291,14 +1291,9 @@ def version_delete(request, addon_id, addon):
 
 
 def check_validation_override(request, form, addon, version):
-    if version and form.cleaned_data.get('admin_override_validation'):
-        helper = ReviewHelper(request=request, addon=addon, version=version)
-        helper.set_data(
-            dict(operating_systems='', applications='',
-                 comments=_(u'This upload has failed validation, and may '
-                            u'lack complete validation results. Please '
-                            u'take due care when reviewing it.')))
-        helper.actions['super']['method']()
+    # Method body removed with apps/editors/ cleanup.
+    # TODO: Remove when we do apps/devhub/ cleanup.
+    pass
 
 
 @json_view

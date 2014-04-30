@@ -212,11 +212,6 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-        res = self.client.get(self.url, {'type': 'theme'})
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
         res = self.client.get(self.url, {'type': 'vindaloo'})
         eq_(res.status_code, 400)
         error = res.json['detail']
