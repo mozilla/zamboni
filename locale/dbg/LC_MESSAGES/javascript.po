@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:14-0700\n"
+"POT-Creation-Date: 2014-04-30 09:07-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 #: media/js/common/upload-packaged-app.js:197
 #: media/js/common/upload-packaged-app.js:323
 #: media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:160
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -139,7 +139,7 @@ msgstr "Ẏǿŭř ƥȧƈķȧɠḗḓ ȧƥƥ şħǿŭŀḓ ḗƞḓ ẇīŧħ <co
 
 #: media/js/common/upload-packaged-app.js:169
 #: media/js/devreg/devhub.js:181
-#: media/js/zamboni/devhub.js:169
+#: media/js/zamboni/devhub.js:167
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř."
@@ -198,19 +198,19 @@ msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} 
 msgstr[1] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿřş ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
 
 #: media/js/devreg/devhub.js:200
-#: media/js/zamboni/devhub.js:183
+#: media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
 #: media/js/devreg/devhub.js:205
-#: media/js/zamboni/devhub.js:188
+#: media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ḿḗşşȧɠḗş."
 
 #: media/js/devreg/devhub.js:419
-#: media/js/zamboni/devhub.js:487
+#: media/js/zamboni/devhub.js:485
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
@@ -223,22 +223,22 @@ msgid "Refreshed"
 msgstr "Řḗƒřḗşħḗḓ"
 
 #: media/js/devreg/devhub.js:616
-#: media/js/zamboni/devhub.js:650
+#: media/js/zamboni/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
 #: media/js/devreg/devhub.js:886
-#: media/js/zamboni/devhub.js:925
+#: media/js/zamboni/devhub.js:923
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
 #: media/js/devreg/devhub.js:890
-#: media/js/zamboni/devhub.js:929
+#: media/js/zamboni/devhub.js:927
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
 #: media/js/devreg/devhub.js:1192
-#: media/js/zamboni/devhub.js:1285
+#: media/js/zamboni/devhub.js:1283
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
@@ -288,23 +288,23 @@ msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
 msgid "Over {0} results found, consider refining your search."
 msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
 
-#: media/js/devreg/manifest.js:46
+#: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
 msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
 
-#: media/js/devreg/manifest.js:54
+#: media/js/devreg/manifest.js:55
 msgid "Certified"
 msgstr "Ƈḗřŧīƒīḗḓ"
 
-#: media/js/devreg/manifest.js:57
+#: media/js/devreg/manifest.js:58
 msgid "Privileged"
 msgstr "Ƥřīṽīŀḗɠḗḓ"
 
-#: media/js/devreg/manifest.js:60
+#: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
 msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
 
-#: media/js/devreg/manifest.js:66
+#: media/js/devreg/manifest.js:67
 msgid "No reason given"
 msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
 
@@ -372,20 +372,28 @@ msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
 msgid ""
-"Warning: deleting payment account \"{0}\" will move that associated app to an "
-"incomplete status and it will no longer be available for sale:"
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
 msgid_plural ""
-"Warning: deleting payment account \"{0}\" will move those associated apps to "
-"an incomplete status and they will no longer be available for sale:"
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
-"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħȧŧ ȧşşǿƈīȧŧḗḓ ȧƥƥ ŧǿ ȧƞ "
-"īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ īŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
+"Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ "
+"ƒǿŀŀǿẇīƞɠ ȧƥƥş. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ "
+"ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
 msgstr[1] ""
-"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħǿşḗ ȧşşǿƈīȧŧḗḓ ȧƥƥş ŧǿ "
-"ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ ŧħḗẏ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
+"Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ "
+"ƒǿŀŀǿẇīƞɠ ȧƥƥ. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ "
+"ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
 
-#: media/js/devreg/payments-manage.js:72
-#: media/js/devreg/payments-manage.js:133
+#: media/js/devreg/payments-manage.js:44
+msgid "{appName} payment accounts:"
+msgstr "{ȧƥƥȠȧḿḗ} ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş:"
+
+#: media/js/devreg/payments-manage.js:96
+#: media/js/devreg/payments-manage.js:157
 #: media/js/devreg/validator.js:191
 #: media/js/devreg/validator.js:437
 #: media/js/devreg/validator.js:456
@@ -397,16 +405,16 @@ msgstr[1] ""
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:73
-#: media/js/devreg/payments-manage.js:134
+#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
-#: media/js/devreg/payments-manage.js:103
+#: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
 msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/payments-manage.js:181
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
@@ -508,54 +516,44 @@ msgid "Launch"
 msgstr "Ŀȧŭƞƈħ"
 
 #: media/js/devreg/reviewers/editors.js:141
-#: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
 #: media/js/devreg/reviewers/editors.js:191
-#: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
 #: media/js/devreg/reviewers/editors.js:193
-#: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
 #: media/js/devreg/reviewers/editors.js:264
-#: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
 #: media/js/devreg/reviewers/editors.js:275
-#: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:280
-#: media/js/zamboni/editors.js:301
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #: media/js/devreg/reviewers/editors.js:285
-#: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
 #: media/js/devreg/reviewers/editors.js:290
-#: media/js/zamboni/editors.js:311
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
 #: media/js/devreg/reviewers/editors.js:315
 #: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub.js:1438
-#: media/js/zamboni/editors.js:336
+#: media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
 #: media/js/devreg/reviewers/editors.js:379
-#: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
 msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
@@ -636,31 +634,6 @@ msgstr "Ḗřřǿř řḗĵḗƈŧīƞɠ ȧƥƥ: {ȧƥƥ}"
 msgid "By {0} on {1}"
 msgstr "Ɓẏ {0} ǿƞ {1}"
 
-#: media/js/devreg/reviewers/themes_review.js:174
-#: media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
-
-#: media/js/devreg/reviewers/themes_review.js:175
-#: media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Ƒŀȧɠɠḗḓ"
-
-#: media/js/devreg/reviewers/themes_review.js:176
-#: media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Ḓŭƥŀīƈȧŧḗ"
-
-#: media/js/devreg/reviewers/themes_review.js:177
-#: media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Řḗĵḗƈŧḗḓ"
-
-#: media/js/devreg/reviewers/themes_review.js:178
-#: media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Ȧƥƥřǿṽḗḓ"
-
 #: media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -675,7 +648,7 @@ msgid "Following"
 msgstr "Ƒǿŀŀǿẇīƞɠ"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17
+#: media/js/impala/listing.js:11
 #: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
@@ -739,551 +712,6 @@ msgstr "Ƈȧŧḗɠǿřẏ"
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr "ŭşḗ ǿřīɠīƞȧŀ"
-
-#: media/js/impala/stats/chart.js:267
-msgid "Week of {0}"
-msgstr "Ẇḗḗķ ǿƒ {0}"
-
-#: media/js/impala/stats/chart.js:269
-msgid "downloads"
-msgstr "ḓǿẇƞŀǿȧḓş"
-
-#: media/js/impala/stats/chart.js:270
-msgid "{0} users"
-msgstr "{0} ŭşḗřş"
-
-#: media/js/impala/stats/chart.js:271
-msgid "{0} add-ons"
-msgstr "{0} ȧḓḓ-ǿƞş"
-
-#: media/js/impala/stats/chart.js:272
-msgid "{0} collections"
-msgstr "{0} ƈǿŀŀḗƈŧīǿƞş"
-
-#: media/js/impala/stats/chart.js:273
-msgid "{0} reviews"
-msgstr "{0} řḗṽīḗẇş"
-
-#: media/js/impala/stats/chart.js:275
-msgid "{0} sales"
-msgstr "{0} şȧŀḗş"
-
-#: media/js/impala/stats/chart.js:276
-msgid "{0} refunds"
-msgstr "{0} řḗƒŭƞḓş"
-
-#: media/js/impala/stats/chart.js:277
-msgid "{0} installs"
-msgstr "{0} īƞşŧȧŀŀş"
-
-#: media/js/impala/stats/chart.js:369
-#: media/js/impala/stats/csv_keys.js:3
-#: media/js/impala/stats/csv_keys.js:102
-msgid "Downloads"
-msgstr "Ḓǿẇƞŀǿȧḓş"
-
-#: media/js/impala/stats/chart.js:379
-#: media/js/impala/stats/csv_keys.js:6
-#: media/js/impala/stats/csv_keys.js:103
-msgid "Daily Users"
-msgstr "Ḓȧīŀẏ Ŭşḗřş"
-
-#: media/js/impala/stats/chart.js:410
-msgid "Amount, in USD"
-msgstr "Ȧḿǿŭƞŧ, īƞ ŬŞḒ"
-
-#: media/js/impala/stats/chart.js:421
-#: media/js/impala/stats/csv_keys.js:97
-msgid "Number of Contributions"
-msgstr "Ƞŭḿƀḗř ǿƒ Ƈǿƞŧřīƀŭŧīǿƞş"
-
-#: media/js/impala/stats/chart.js:447
-msgid "More Info..."
-msgstr "Ḿǿřḗ Īƞƒǿ..."
-
-#. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451
-msgid "Details for {0}"
-msgstr "Ḓḗŧȧīŀş ƒǿř {0}"
-
-#: media/js/impala/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ"
-
-#: media/js/impala/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ"
-
-#: media/js/impala/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "Ŭşḗř Şīɠƞŭƥş"
-
-#: media/js/impala/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "Şŭƀşƈřīƀḗřş"
-
-#: media/js/impala/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "Řȧŧīƞɠş"
-
-#: media/js/impala/stats/csv_keys.js:36
-#: media/js/impala/stats/csv_keys.js:107
-msgid "Sales"
-msgstr "Şȧŀḗş"
-
-#: media/js/impala/stats/csv_keys.js:39
-#: media/js/impala/stats/csv_keys.js:106
-msgid "Installs"
-msgstr "Īƞşŧȧŀŀş"
-
-#: media/js/impala/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "Ŭƞķƞǿẇƞ"
-
-#: media/js/impala/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř"
-
-#: media/js/impala/stats/csv_keys.js:44
-msgid "Search Results"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
-
-#: media/js/impala/stats/csv_keys.js:45
-#: media/js/impala/stats/csv_keys.js:46
-#: media/js/impala/stats/csv_keys.js:47
-msgid "Homepage Promo"
-msgstr "Ħǿḿḗƥȧɠḗ Ƥřǿḿǿ"
-
-#: media/js/impala/stats/csv_keys.js:48
-#: media/js/impala/stats/csv_keys.js:49
-msgid "Homepage Featured"
-msgstr "Ħǿḿḗƥȧɠḗ Ƒḗȧŧŭřḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:50
-#: media/js/impala/stats/csv_keys.js:51
-msgid "Homepage Up and Coming"
-msgstr "Ħǿḿḗƥȧɠḗ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ"
-
-#: media/js/impala/stats/csv_keys.js:52
-msgid "Homepage Most Popular"
-msgstr "Ħǿḿḗƥȧɠḗ Ḿǿşŧ Ƥǿƥŭŀȧř"
-
-#: media/js/impala/stats/csv_keys.js:53
-#: media/js/impala/stats/csv_keys.js:55
-msgid "Detail Page"
-msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ"
-
-#: media/js/impala/stats/csv_keys.js:54
-#: media/js/impala/stats/csv_keys.js:56
-msgid "Detail Page (bottom)"
-msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
-
-#: media/js/impala/stats/csv_keys.js:57
-msgid "Detail Page (Development Channel)"
-msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ)"
-
-#: media/js/impala/stats/csv_keys.js:58
-#: media/js/impala/stats/csv_keys.js:59
-#: media/js/impala/stats/csv_keys.js:60
-msgid "Often Used With"
-msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
-
-#: media/js/impala/stats/csv_keys.js:61
-#: media/js/impala/stats/csv_keys.js:62
-msgid "Others By Author"
-msgstr "Ǿŧħḗřş Ɓẏ Ȧŭŧħǿř"
-
-#: media/js/impala/stats/csv_keys.js:63
-#: media/js/impala/stats/csv_keys.js:64
-msgid "Dependencies"
-msgstr "Ḓḗƥḗƞḓḗƞƈīḗş"
-
-#: media/js/impala/stats/csv_keys.js:65
-#: media/js/impala/stats/csv_keys.js:66
-msgid "Upsell"
-msgstr "Ŭƥşḗŀŀ"
-
-#: media/js/impala/stats/csv_keys.js:68
-msgid "Sharing"
-msgstr "Şħȧřīƞɠ"
-
-#: media/js/impala/stats/csv_keys.js:69
-msgid "Category Pages"
-msgstr "Ƈȧŧḗɠǿřẏ Ƥȧɠḗş"
-
-#: media/js/impala/stats/csv_keys.js:70
-msgid "Collections"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş"
-
-#: media/js/impala/stats/csv_keys.js:71
-#: media/js/impala/stats/csv_keys.js:72
-msgid "Category Landing Featured Carousel"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ƒḗȧŧŭřḗḓ Ƈȧřǿŭşḗŀ"
-
-#: media/js/impala/stats/csv_keys.js:73
-#: media/js/impala/stats/csv_keys.js:74
-msgid "Category Landing Top Rated"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ŧǿƥ Řȧŧḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:75
-#: media/js/impala/stats/csv_keys.js:76
-msgid "Category Landing Most Popular"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ḿǿşŧ Ƥǿƥŭŀȧř"
-
-#: media/js/impala/stats/csv_keys.js:77
-#: media/js/impala/stats/csv_keys.js:78
-msgid "Category Landing Recently Added"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:79
-#: media/js/impala/stats/csv_keys.js:80
-msgid "Browse Listing Featured Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƒḗȧŧŭřḗḓ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:81
-#: media/js/impala/stats/csv_keys.js:82
-msgid "Browse Listing Users Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭşḗřş Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:83
-#: media/js/impala/stats/csv_keys.js:84
-msgid "Browse Listing Rating Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Řȧŧīƞɠ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:85
-#: media/js/impala/stats/csv_keys.js:86
-msgid "Browse Listing Created Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƈřḗȧŧḗḓ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:87
-#: media/js/impala/stats/csv_keys.js:88
-msgid "Browse Listing Name Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƞȧḿḗ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:89
-#: media/js/impala/stats/csv_keys.js:90
-msgid "Browse Listing Popular Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƥǿƥŭŀȧř Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:91
-#: media/js/impala/stats/csv_keys.js:92
-msgid "Browse Listing Updated Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥḓȧŧḗḓ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:93
-#: media/js/impala/stats/csv_keys.js:94
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ Şǿřŧ"
-
-#: media/js/impala/stats/csv_keys.js:98
-msgid "Total Amount Contributed"
-msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
-
-#: media/js/impala/stats/csv_keys.js:99
-msgid "Average Contribution"
-msgstr "Ȧṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
-
-#: media/js/impala/stats/csv_keys.js:108
-msgid "Usage"
-msgstr "Ŭşȧɠḗ"
-
-#: media/js/impala/stats/csv_keys.js:111
-msgid "Firefox"
-msgstr "Ƒīřḗƒǿẋ"
-
-#: media/js/impala/stats/csv_keys.js:112
-msgid "Mozilla"
-msgstr "Ḿǿzīŀŀȧ"
-
-#: media/js/impala/stats/csv_keys.js:113
-msgid "Thunderbird"
-msgstr "Ŧħŭƞḓḗřƀīřḓ"
-
-#: media/js/impala/stats/csv_keys.js:114
-msgid "Sunbird"
-msgstr "Şŭƞƀīřḓ"
-
-#: media/js/impala/stats/csv_keys.js:115
-msgid "SeaMonkey"
-msgstr "ŞḗȧḾǿƞķḗẏ"
-
-#: media/js/impala/stats/csv_keys.js:116
-msgid "Fennec"
-msgstr "Ƒḗƞƞḗƈ"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:121
-msgid "Downloads and Daily Users, last {0} days"
-msgstr "Ḓǿẇƞŀǿȧḓş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:123
-msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Ḓǿẇƞŀǿȧḓş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:127
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Īƞşŧȧŀŀş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:129
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Īƞşŧȧŀŀş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:133
-msgid "Downloads, last {0} days"
-msgstr "Ḓǿẇƞŀǿȧḓş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:135
-msgid "Downloads from {0} to {1}"
-msgstr "Ḓǿẇƞŀǿȧḓş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139
-msgid "Daily Users, last {0} days"
-msgstr "Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141
-msgid "Daily Users from {0} to {1}"
-msgstr "Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:145
-msgid "Applications, last {0} days"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:147
-msgid "Applications from {0} to {1}"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:151
-msgid "Platforms, last {0} days"
-msgstr "Ƥŀȧŧƒǿřḿş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:153
-msgid "Platforms from {0} to {1}"
-msgstr "Ƥŀȧŧƒǿřḿş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:157
-msgid "Languages, last {0} days"
-msgstr "Ŀȧƞɠŭȧɠḗş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:159
-msgid "Languages from {0} to {1}"
-msgstr "Ŀȧƞɠŭȧɠḗş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:163
-msgid "Add-on Versions, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:165
-msgid "Add-on Versions from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:169
-msgid "Add-on Status, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:171
-msgid "Add-on Status from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:175
-msgid "Download Sources, last {0} days"
-msgstr "Ḓǿẇƞŀǿȧḓ Şǿŭřƈḗş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:177
-msgid "Download Sources from {0} to {1}"
-msgstr "Ḓǿẇƞŀǿȧḓ Şǿŭřƈḗş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:181
-msgid "Contributions, last {0} days"
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:183
-msgid "Contributions from {0} to {1}"
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:187
-msgid "Site Metrics, last {0} days"
-msgstr "Şīŧḗ Ḿḗŧřīƈş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:189
-msgid "Site Metrics from {0} to {1}"
-msgstr "Şīŧḗ Ḿḗŧřīƈş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:193
-msgid "Add-ons in Use, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:195
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:199
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:201
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:205
-msgid "Add-ons Created, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:207
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:211
-msgid "Add-ons Updated, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:213
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:217
-msgid "Reviews Written, last {0} days"
-msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:219
-msgid "Reviews Written from {0} to {1}"
-msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:223
-msgid "User Signups, last {0} days"
-msgstr "Ŭşḗř Şīɠƞŭƥş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:225
-msgid "User Signups from {0} to {1}"
-msgstr "Ŭşḗř Şīɠƞŭƥş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:229
-msgid "Collections Created, last {0} days"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:231
-msgid "Collections Created from {0} to {1}"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:235
-msgid "Subscribers, last {0} days"
-msgstr "Şŭƀşƈřīƀḗřş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:237
-msgid "Subscribers from {0} to {1}"
-msgstr "Şŭƀşƈřīƀḗřş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:241
-msgid "Ratings, last {0} days"
-msgstr "Řȧŧīƞɠş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:243
-msgid "Ratings from {0} to {1}"
-msgstr "Řȧŧīƞɠş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:247
-msgid "Sales, last {0} days"
-msgstr "Şȧŀḗş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:249
-msgid "Sales from {0} to {1}"
-msgstr "Şȧŀḗş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253
-msgid "Installs, last {0} days"
-msgstr "Īƞşŧȧŀŀş, ŀȧşŧ {0} ḓȧẏş"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255
-msgid "Installs from {0} to {1}"
-msgstr "Īƞşŧȧŀŀş ƒřǿḿ {0} ŧǿ {1}"
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261
-msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> īƞ ŀȧşŧ {1} ḓȧẏş"
-
-#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263
-#: media/js/impala/stats/csv_keys.js:269
-msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> ƒřǿḿ {1} ŧǿ {2}"
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267
-msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b> ȧṽḗřȧɠḗ īƞ ŀȧşŧ {1} ḓȧẏş"
-
-#: media/js/impala/stats/overview.js:19
-msgid "No data available."
-msgstr "Ƞǿ ḓȧŧȧ ȧṽȧīŀȧƀŀḗ."
-
-#: media/js/impala/stats/table.js:74
-msgid "Date"
-msgstr "Ḓȧŧḗ"
-
-#: media/js/impala/stats/topchart.js:96
-msgid "Other"
-msgstr "Ǿŧħḗř"
 
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1461,70 +889,33 @@ msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 msgid "Install App"
 msgstr "Īƞşŧȧŀŀ Ȧƥƥ"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:240
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:501
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:791
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:794
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{řḗṽīḗẇş} řḗṽīḗẇ"
 msgstr[1] "{řḗṽīḗẇş} řḗṽīḗẇş"
 
-#: media/js/zamboni/devhub.js:1466
-msgid "Starting tests..."
-msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
-
-#: media/js/zamboni/devhub.js:1473
-msgid "Waiting for test results..."
-msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
-
-#: media/js/zamboni/devhub.js:1475
-#: media/js/zamboni/devhub.js:1480
-msgid "Internal Server Error"
-msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
-
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
-
-#: media/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Şǿřřẏ, ẇḗ ƈǿŭŀḓƞ'ŧ ƒīƞḓ ȧƞẏ řḗƈǿḿḿḗƞḓȧŧīǿƞş ƒǿř ẏǿŭ.<br>Ƥŀḗȧşḗ ṽīşīŧ ŧħḗ <a "
-"href=\"{0}\">ȧḓḓ-ǿƞş şīŧḗ</a> ŧǿ ƒīƞḓ ȧƞ ȧḓḓ-ǿƞ ŧħȧŧ'ş řīɠħŧ ƒǿř ẏǿŭ."
-
-#: media/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Ƒīƞḓīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
-
-#: media/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Ŭƥḓȧŧīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
-
-#: media/js/zamboni/editors.js:371
-msgid "Average Reviews"
-msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
-
-#: media/js/zamboni/editors.js:427
-msgid "Number of Reviews"
-msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1551,11 +942,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
 msgstr[1] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
-
-#: media/js/zamboni/perf.js:29
-#: media/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Ȧŀŀ"
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."

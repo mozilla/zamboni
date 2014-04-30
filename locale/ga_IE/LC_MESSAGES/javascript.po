@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:14-0700\n"
+"POT-Creation-Date: 2014-04-30 09:07-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -74,7 +74,7 @@ msgstr[3] "&hellip;agus {0} gcinn eile"
 msgstr[4] "&hellip;agus {0} ceann eile"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:160
 msgid "See full validation report"
 msgstr "Tuairisc iomlán ón bhailíochtóir"
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ba chóir duit d'aip phacáistithe a chur i gcomhad <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
@@ -195,7 +195,7 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] ""
@@ -204,11 +204,11 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
 msgstr ""
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
@@ -220,19 +220,19 @@ msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 msgid "Refreshed"
 msgstr "Athnuaite"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:923
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:927
 msgid "Example"
 msgstr "Sampla"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1283
 msgid "Image changes being processed"
 msgstr ""
 
@@ -272,23 +272,23 @@ msgstr ""
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
 
-#: media/js/devreg/manifest.js:46
+#: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
 msgstr ""
 
-#: media/js/devreg/manifest.js:54
+#: media/js/devreg/manifest.js:55
 msgid "Certified"
 msgstr ""
 
-#: media/js/devreg/manifest.js:57
+#: media/js/devreg/manifest.js:58
 msgid "Privileged"
 msgstr ""
 
-#: media/js/devreg/manifest.js:60
+#: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
 msgstr ""
 
-#: media/js/devreg/manifest.js:66
+#: media/js/devreg/manifest.js:67
 msgid "No reason given"
 msgstr ""
 
@@ -355,28 +355,32 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: media/js/devreg/payments-manage.js:72 media/js/devreg/payments-manage.js:133 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:44
+msgid "{appName} payment accounts:"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Earráid"
 
-#: media/js/devreg/payments-manage.js:73 media/js/devreg/payments-manage.js:134
+#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:103
+#: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/payments-manage.js:181
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
@@ -468,43 +472,43 @@ msgstr ""
 msgid "Launch"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141
 msgid "{name} was viewing this page first."
 msgstr "Bhí {name} ag féachaint ar an leathanach seo ar dtús."
 
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191
 msgid "Receipt checked by app."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275
 msgid "Loading&hellip;"
 msgstr "Á luchtú&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
 
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290
 msgid "No version notes found"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
 msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
 msgstr ""
 
@@ -585,26 +589,6 @@ msgstr ""
 msgid "By {0} on {1}"
 msgstr ""
 
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr ""
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr ""
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr ""
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Diúltaithe"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Ceadaithe"
-
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "Lean an Bailiúchán seo"
@@ -618,7 +602,7 @@ msgid "Following"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
 
@@ -677,520 +661,6 @@ msgstr "Catagóir"
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr ""
-
-#: media/js/impala/stats/chart.js:267
-msgid "Week of {0}"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:269
-msgid "downloads"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:270
-msgid "{0} users"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:271
-msgid "{0} add-ons"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:272
-msgid "{0} collections"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:273
-msgid "{0} reviews"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:275
-msgid "{0} sales"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:276
-msgid "{0} refunds"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:277
-msgid "{0} installs"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
-msgid "Downloads"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
-msgid "Daily Users"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:410
-msgid "Amount, in USD"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
-msgid "Number of Contributions"
-msgstr ""
-
-#: media/js/impala/stats/chart.js:447
-msgid "More Info..."
-msgstr "Tuilleadh Eolais..."
-
-#. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451
-msgid "Details for {0}"
-msgstr "Mionsonraí: {0}"
-
-#: media/js/impala/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "Bailiúcháin Cruthaithe"
-
-#: media/js/impala/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "Breiseáin in Úsáid"
-
-#: media/js/impala/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "Breiseáin Cruthaithe"
-
-#: media/js/impala/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "Breiseáin Íosluchtaithe"
-
-#: media/js/impala/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "Breiseáin Nuashonraithe"
-
-#: media/js/impala/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "Léirmheasanna Scríofa"
-
-#: media/js/impala/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "Úsáideoirí Cláraithe"
-
-#: media/js/impala/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "Síntiúsóirí"
-
-#: media/js/impala/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "Rátálacha"
-
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
-msgid "Sales"
-msgstr "Díolacháin"
-
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
-msgid "Installs"
-msgstr "Suiteáilte"
-
-#: media/js/impala/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "Anaithnid"
-
-#: media/js/impala/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "Bainisteoir na mBreiseán"
-
-#: media/js/impala/stats/csv_keys.js:44
-msgid "Search Results"
-msgstr "Torthaí an Chuardaigh"
-
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
-msgid "Homepage Promo"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
-msgid "Homepage Featured"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
-msgid "Homepage Up and Coming"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:52
-msgid "Homepage Most Popular"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
-msgid "Detail Page"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
-msgid "Detail Page (bottom)"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:57
-msgid "Detail Page (Development Channel)"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
-msgid "Often Used With"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
-msgid "Others By Author"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
-msgid "Dependencies"
-msgstr "Spleáchóga"
-
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
-msgid "Upsell"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:68
-msgid "Sharing"
-msgstr "Comhroinnt"
-
-#: media/js/impala/stats/csv_keys.js:69
-msgid "Category Pages"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:70
-msgid "Collections"
-msgstr "Bailiúcháin"
-
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
-msgid "Category Landing Featured Carousel"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
-msgid "Category Landing Top Rated"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
-msgid "Category Landing Most Popular"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
-msgid "Category Landing Recently Added"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
-msgid "Browse Listing Featured Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
-msgid "Browse Listing Users Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
-msgid "Browse Listing Rating Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
-msgid "Browse Listing Created Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
-msgid "Browse Listing Name Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
-msgid "Browse Listing Popular Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
-msgid "Browse Listing Updated Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
-msgid "Browse Listing Up and Coming Sort"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:98
-msgid "Total Amount Contributed"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:99
-msgid "Average Contribution"
-msgstr ""
-
-#: media/js/impala/stats/csv_keys.js:108
-msgid "Usage"
-msgstr "Úsáid"
-
-#: media/js/impala/stats/csv_keys.js:111
-msgid "Firefox"
-msgstr "Firefox"
-
-#: media/js/impala/stats/csv_keys.js:112
-msgid "Mozilla"
-msgstr "Mozilla"
-
-#: media/js/impala/stats/csv_keys.js:113
-msgid "Thunderbird"
-msgstr "Thunderbird"
-
-#: media/js/impala/stats/csv_keys.js:114
-msgid "Sunbird"
-msgstr "Sunbird"
-
-#: media/js/impala/stats/csv_keys.js:115
-msgid "SeaMonkey"
-msgstr "SeaMonkey"
-
-#: media/js/impala/stats/csv_keys.js:116
-msgid "Fennec"
-msgstr "Fennec"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:121
-msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:123
-msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:127
-msgid "Installs and Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:129
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:133
-msgid "Downloads, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:135
-msgid "Downloads from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139
-msgid "Daily Users, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141
-msgid "Daily Users from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:145
-msgid "Applications, last {0} days"
-msgstr "Feidhmchláir, {0} lá is déanaí"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:147
-msgid "Applications from {0} to {1}"
-msgstr "Feidhmchláir ó {0} go {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:151
-msgid "Platforms, last {0} days"
-msgstr "Ardáin, {0} lá is déanaí"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:153
-msgid "Platforms from {0} to {1}"
-msgstr "Ardáin ó {0} go {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:157
-msgid "Languages, last {0} days"
-msgstr "Teangacha, {0} lá is déanaí"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:159
-msgid "Languages from {0} to {1}"
-msgstr "Teangacha ó {0} go {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:163
-msgid "Add-on Versions, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:165
-msgid "Add-on Versions from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:169
-msgid "Add-on Status, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:171
-msgid "Add-on Status from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:175
-msgid "Download Sources, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:177
-msgid "Download Sources from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:181
-msgid "Contributions, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:183
-msgid "Contributions from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:187
-msgid "Site Metrics, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:189
-msgid "Site Metrics from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:193
-msgid "Add-ons in Use, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:195
-msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:199
-msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:201
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:205
-msgid "Add-ons Created, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:207
-msgid "Add-ons Created from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:211
-msgid "Add-ons Updated, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:213
-msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:217
-msgid "Reviews Written, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:219
-msgid "Reviews Written from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:223
-msgid "User Signups, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:225
-msgid "User Signups from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:229
-msgid "Collections Created, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:231
-msgid "Collections Created from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:235
-msgid "Subscribers, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:237
-msgid "Subscribers from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:241
-msgid "Ratings, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:243
-msgid "Ratings from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:247
-msgid "Sales, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:249
-msgid "Sales from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253
-msgid "Installs, last {0} days"
-msgstr ""
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255
-msgid "Installs from {0} to {1}"
-msgstr ""
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261
-msgid "<b>{0}</b> in last {1} days"
-msgstr ""
-
-#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
-msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267
-msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
-
-#: media/js/impala/stats/overview.js:19
-msgid "No data available."
-msgstr ""
-
-#: media/js/impala/stats/table.js:74
-msgid "Date"
-msgstr "Dáta"
-
-#: media/js/impala/stats/topchart.js:96
-msgid "Other"
-msgstr "Eile"
 
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1361,15 +831,15 @@ msgstr "Ná bí dá leanúint"
 msgid "Install App"
 msgstr "Suiteáil an Aip"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:240
 msgid "Your browser does not support the video tag"
 msgstr "Ní thacaíonn do bhrabhsálaí leis an gclib 'video'"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:501
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:791
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} chomhad"
@@ -1378,7 +848,7 @@ msgstr[2] "{files} chomhad"
 msgstr[3] "{files} gcomhad"
 msgstr[4] "{files} comhad"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:794
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} léirmheas"
@@ -1387,44 +857,12 @@ msgstr[2] "{reviews} léirmheas"
 msgstr[3] "{reviews} léirmheas"
 msgstr[4] "{reviews} léirmheas"
 
-#: media/js/zamboni/devhub.js:1466
-msgid "Starting tests..."
-msgstr "Tástálacha á dtosú..."
-
-#: media/js/zamboni/devhub.js:1473
-msgid "Waiting for test results..."
-msgstr "Ag fanacht leis na torthaí..."
-
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
-msgid "Internal Server Error"
-msgstr ""
-
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
 msgstr ""
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
-
-#: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-
-#: media/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Moltaí á n-aimsiú&hellip;"
-
-#: media/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Moltaí á nuashonrú&hellip;"
-
-#: media/js/zamboni/editors.js:371
-msgid "Average Reviews"
-msgstr ""
-
-#: media/js/zamboni/editors.js:427
-msgid "Number of Reviews"
 msgstr ""
 
 #: media/js/zamboni/global.js:416
@@ -1458,10 +896,6 @@ msgstr[1] "{0} charachtar fágtha ar a laghad."
 msgstr[2] "{0} charachtar fágtha ar a laghad."
 msgstr[3] "{0} gcarachtar fágtha ar a laghad."
 msgstr[4] "{0} carachtar fágtha ar a laghad."
-
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Uile"
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
