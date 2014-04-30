@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-28 13:56+0200\n"
+"PO-Revision-Date: 2014-04-30 12:29+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -18757,7 +18757,7 @@ msgstr "Shihni kush është tashmë këtu"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "Jeni një Kompani Web, Shërbim Palë e Tretë, ose OEM që kërkon partneritet me Mozilla-n? <a href=\"%(partner_url)s\">Për më tepër të dhëna shihni te faqja jonë Partnerë.</a>"
+msgstr "Jeni kompani web, shërbim palë e tretë, ose OEM në kërkim të partneritetit me Mozilla-n? <a href=\"%(partner_url)s\">Për më tepër të dhëna, shihni faqen tonë Partnerë.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -18769,15 +18769,15 @@ msgstr "Ndërtimi i zbatimeve për Web u furnizon zhvilluesve kontroll të plot�
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native apps for the first time."
-msgstr "Duke përdorur standarde të hapura Web dhe API të hartuara nga Mozilla, mund të ofrohet punim i shkëlqyer nëpër shumë platforma, pajisje dhe sisteme operative &mdash; duke ngushtuar kështu për herë të parë hendekun mes Web-it  dhe zbatimeve të ndërtuara për platforma të veçanta."
+msgstr "Duke përdorur standarde të hapura Web dhe API të hartuara nga Mozilla, mund të ofrohen zbatime të shkëlqyera në një shumicë platformash, pajisjesh dhe sistemesh operative &mdash; duke ngushtuar kështu për herë të parë hendekun mes zbatimeve Web dhe atyre të shkruar për një platformë të caktuar."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets across all categories that users can use to get the most out of their daily lives."
-msgstr "Firefox Marketplace-i u jep përdoruesve mundësi të gjejnë, provojnë dhe blejnë zbatime dhe lëndë që ka më tepër rëndësi për ta. Kjo do të thotë Zbatime mbresëlënëse, të dobishme dhe me cilësi të lartë, që vlejnë për një treg të dhënë vendor, në të gjitha kategoritë,  të cilat përdoruesit mund t'i përdorin për të përfituar sa më shumë në jetën e përditshme."
+msgstr "Firefox Marketplace-i u jep përdoruesve mundësi të gjejnë, provojnë dhe blejnë zbatime dhe lëndë që ka më tepër rëndësi për ta. Kjo nënkupton zbatime mbresëlënëse, të dobishme dhe me cilësi të lartë, që kanë kuptim për një treg të dhënë vendor, në të gjitha kategoritë, të cilat përdoruesit mund t'i shfrytëzojnë për të përfituar sa më shumë në jetën e përditshme."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help developers can get their app into the hands of their target users around the world."
-msgstr "Shtrirja mbarëbotërore e Mozilla-s prek qindra milionë përdorues të Firefox-it kudo. Përmes përkujdesjes inteligjente për Marketplace-in dhe përdorimin me efektshmëri të kanaleve Mozilla të marketingut, Mozilla mund t'i ndihmojë përdoruesit t'i shpien zbatimet në duart e përdoruesve të synuar, anembanë botës."
+msgstr "Shtrirja mbarëbotërore e Mozilla-s shkon në qindra milionë përdorues të Firefox-it kudo në botë. Përmes përkujdesjes me mençuri për Marketplace-in dhe përdorimin me efektshmëri të kanaleve të marketingut të Mozilla-s, ajo mund t'i ndihmojë zhvilluesit që zbatimet e tyre të mbërrijnë në duart e përdoruesve të synuar, anembanë botës."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
@@ -18801,7 +18801,7 @@ msgstr "Zbatime &amp; Trike për Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr "Regjistrohuni për buletinin tonë të përmuajshëm mbi Firefox OS-in, Marketplace-in dhe ekosistemin e zbatimeve. <a href=\"%(dev_phone_url)s\">Hidhini një sy paraparjes së telefonit të zhvilluesve</a>"
+msgstr "Pajtohuni te buletini ynë i përmuajshëm mbi Firefox OS-in, Marketplace-in dhe ekosistemin e zbatimeve. <a href=\"%(dev_phone_url)s\">Hidhini një sy paraparjes së telefonit të zhvilluesve</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -18939,7 +18939,7 @@ msgstr "Shihini!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "Bëhuni partner me Mozilla-n që të shpërndani zbatimet tuaja, përmes një tregtoreje të hapur, te mbi 450 milion përdorues"
+msgstr "Bëhuni partner me Mozilla-n që t'i shpërndani zbatimet tuaja përmes një tregtoreje të hapur, drej më shumë 450 milionë përdoruesve"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -18947,7 +18947,7 @@ msgstr "<a href=\"%(submit_url)s\" class=\"button\">Parashtrojeni tani</a> <span
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
-msgstr "Me një platformë të fuqishme për web-in, një tregtore të hapur të zbatimeve, dhe partnerë si ju, jemi gati të mirëpresim 2 miliard përdoruesit e ardhshëm të Internetit"
+msgstr "Me një platformë web të fuqishme, një tregtore të hapur zbatimesh, dhe partnerë si ju, jemi gati të mirëpresim 2 miliardë përdoruesit e ardhshëm të Internetit"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
@@ -18959,7 +18959,7 @@ msgstr "<strong>Pagesa të Rrjedhshme</strong> &ndash; me modele të shumta page
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr "<strong>Një Publik Masiv</strong> &ndash; mbi 450 milionë përdorues e kanë Firefox-in vatrën e tyre, ofrojuni zbatimin tuaj që sot."
+msgstr "<strong>Publik Masiv</strong> &ndash; mbi 450 milionë përdorues e kanë Firefox-in vatrën e tyre, ofrojuni zbatimin tuaj që sot."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -18967,11 +18967,11 @@ msgstr "Bëhuni pjesë e më të madhes dhe më të mirës"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
-msgstr "Markat më popullore të botës dhe krejt zbatimet tuaja të parapëlqyera po bëhen të pranishme në Firefox Marketplace."
+msgstr "Markat më popullore të botës dhe krej zbatimet tuaja të parapëlqyera po e pasqyrojnë përvojën e tyre te Firefox Marketplace-i."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr "Një vatër e vërtetë ndërplatformëshe, për çfarëdo pajisje, jopronësore, për zbatimet HTML5 globale dhe vendore më të mira në botë."
+msgstr "Një vatër vërtet ndërplatformëshe, për shumë pajisje, jopronësore, e zbatimeve HTML5 vendore dhe globale më të mira në botë."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -19269,7 +19269,7 @@ msgstr "stile/kod klienti"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "kartela bazë HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
@@ -19509,7 +19509,7 @@ msgstr "E përdorur për përpunim të shpejtë dhe të efektshëm të të dhën
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
-msgstr ""
+msgstr "E përdorur për të hyrë në pajisje kamera dhe për të marrë rrjedhë video nga e cila të përftohen kuadro."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
