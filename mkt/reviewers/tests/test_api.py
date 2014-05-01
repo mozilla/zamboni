@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
@@ -73,8 +72,8 @@ class TestApiReviewer(RestOAuth, ESTestCase):
 
     def setUp(self):
         super(TestApiReviewer, self).setUp()
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.profile = self.user
         self.profile.update(read_dev_agreement=datetime.now())
         self.grant_permission(self.profile, 'Apps:Review')
 
@@ -109,7 +108,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(res.status_code, 403)
 
     def test_owner_still_non_reviewer_access(self):
-        user = Webapp.objects.get(pk=337141).authors.all()[0].user
+        user = Webapp.objects.get(pk=337141).authors.all()[0]
         access = Access.objects.create(
             key='test_oauth_key_owner', secret=generate(), user=user)
         client = RestOAuthClient(access)

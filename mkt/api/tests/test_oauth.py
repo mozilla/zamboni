@@ -5,7 +5,6 @@ import urllib
 import urlparse
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.test.client import Client, FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
 
@@ -18,6 +17,7 @@ from test_utils import RequestFactory
 from amo.tests import TestCase
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
+from users.models import UserProfile
 
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
@@ -142,8 +142,7 @@ class BaseOAuth(BaseAPI):
                        'group_support')
 
     def setUp(self, api_name='apps'):
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
+        self.profile = self.user = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',
                                             secret=generate(),
@@ -167,8 +166,7 @@ class RestOAuth(BaseOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
+        self.profile = self.user = UserProfile.objects.get(pk=2519)
         self.profile.update(read_dev_agreement=datetime.now())
         self.access = Access.objects.create(key='oauthClientKeyForTests',
                                             secret=generate(),
@@ -181,9 +179,8 @@ class Test3LeggedOAuthFlow(TestCase):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self, api_name='apps'):
-        self.user = User.objects.get(pk=2519)
-        self.user2 = User.objects.get(pk=999)
-        self.profile = self.user.get_profile()
+        self.profile = self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=999)
         self.profile.update(read_dev_agreement=datetime.now())
         self.app_name = 'Mkt Test App'
         self.redirect_uri = 'https://example.com/redirect_target'

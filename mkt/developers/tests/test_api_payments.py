@@ -260,7 +260,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         eq_(data['account_name'], 'new')
         new_account = PaymentAccount.objects.get(name='new')
         ok_(new_account.pk != self.account.pk)
-        eq_(new_account.user, self.user.get_profile())
+        eq_(new_account.user, self.user)
         data = self.bango_patcher.package.post.call_args[1]['data']
         expected = package_data.copy()
         expected.pop('account_name')

@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.auth.models import AnonymousUser
 
 from rest_framework.permissions import AllowAny, BasePermission
 from mock import Mock
@@ -43,7 +43,7 @@ class TestAllowSelfAuthorization(TestCase):
     def setUp(self):
         self.permission = AllowSelf()
         self.anonymous = AnonymousUser()
-        self.user = User.objects.get(pk=2519)
+        self.user = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
         self.request.user = self.anonymous
         self.request.amo_user = None
@@ -52,8 +52,7 @@ class TestAllowSelfAuthorization(TestCase):
         eq_(self.permission.has_permission(self.request, 'myview'), False)
 
     def test_has_permission_user(self):
-        self.request.user = self.user
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.amo_user = self.request.user = self.user
         eq_(self.permission.has_permission(self.request, 'myview'), True)
 
     def test_has_object_permission_anonymous(self):
@@ -61,15 +60,14 @@ class TestAllowSelfAuthorization(TestCase):
             self.request, 'myview', self.user), False)
 
     def test_has_object_permission_user(self):
-        self.request.user = self.user
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.amo_user = self.request.user = self.user
         obj = self.user
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             True)
 
     def test_has_object_permission_different_user(self):
-        self.request.user = User.objects.get(pk=999)
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.user = UserProfile.objects.get(pk=999)
+        self.request.amo_user = self.request.user
         obj = self.user
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
@@ -81,7 +79,7 @@ class TestAllowOwner(TestCase):
     def setUp(self):
         self.permission = AllowOwner()
         self.anonymous = AnonymousUser()
-        self.user = User.objects.get(pk=2519)
+        self.user = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
         self.request.user = self.anonymous
         self.request.amo_user = None
@@ -91,22 +89,22 @@ class TestAllowOwner(TestCase):
 
     def test_has_permission_user(self):
         self.request.user = self.user
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.amo_user = self.request.user
         eq_(self.permission.has_permission(self.request, 'myview'), True)
 
     def test_has_object_permission_user(self):
         self.request.user = self.user
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.amo_user = self.request.user
         obj = Mock()
         obj.user = self.user
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             True)
 
     def test_has_object_permission_different_user(self):
-        self.request.user = User.objects.get(pk=999)
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.user = UserProfile.objects.get(pk=999)
+        self.request.amo_user = self.request.user
         obj = Mock()
-        obj.user = self.user
+        obj.pk = self.user.pk
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
 
@@ -156,7 +154,7 @@ class TestAllowNone(TestCase):
     def setUp(self):
         self.permission = AllowNone()
         self.anonymous = AnonymousUser()
-        self.user = User()
+        self.user = UserProfile()
         self.request = RequestFactory().get('/')
         self.request.user = self.anonymous
         self.request.amo_user = None
@@ -198,20 +196,20 @@ class TestAllowAppOwner(TestCase):
         eq_(self.permission.has_permission(self.request, 'myview'), False)
 
     def test_has_permission_user(self):
-        self.request.user = self.owner.user
+        self.request.user = self.owner
         self.request.amo_user = self.owner
         eq_(self.permission.has_permission(self.request, 'myview'), True)
 
     def test_has_object_permission_user(self):
-        self.request.user = self.owner.user
+        self.request.user = self.owner
         self.request.amo_user = self.owner
         obj = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             True)
 
     def test_has_object_permission_different_user(self):
-        self.request.user = User.objects.get(pk=2519)
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.user = UserProfile.objects.get(pk=2519)
+        self.request.amo_user = self.request.user
         obj = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
@@ -238,12 +236,12 @@ class TestAllowRelatedAppOwner(TestCase):
         eq_(self.permission.has_permission(self.request, 'myview'), False)
 
     def test_has_permission_user(self):
-        self.request.user = self.owner.user
+        self.request.user = self.owner
         self.request.amo_user = self.owner
         eq_(self.permission.has_permission(self.request, 'myview'), True)
 
     def test_has_object_permission_user(self):
-        self.request.user = self.owner.user
+        self.request.user = self.owner
         self.request.amo_user = self.owner
         obj = Mock()
         obj.addon = self.app
@@ -251,8 +249,8 @@ class TestAllowRelatedAppOwner(TestCase):
             True)
 
     def test_has_object_permission_different_user(self):
-        self.request.user = User.objects.get(pk=2519)
-        self.request.amo_user = self.request.user.get_profile()
+        self.request.user = UserProfile.objects.get(pk=2519)
+        self.request.amo_user = self.request.user
         obj = Mock()
         obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
@@ -347,14 +345,14 @@ class TestGroupPermission(TestCase):
         self.request.user = self.anonymous
 
     def test_has_permission_user_without(self):
-        self.request.user = self.profile.user
+        self.request.user = self.profile
         self.request.amo_user = self.profile
         self.request.groups = self.profile.groups.all()
         self.grant_permission(self.profile, 'Drinkers:Scotch')
         eq_(self.permission.has_permission(self.request, 'myview'), False)
 
     def test_has_permission_user_with(self):
-        self.request.user = self.profile.user
+        self.request.user = self.profile
         self.request.amo_user = self.profile
         self.request.groups = self.profile.groups.all()
         self.grant_permission(self.profile, 'Drinkers:Beer')
@@ -364,7 +362,7 @@ class TestGroupPermission(TestCase):
         eq_(self.permission.has_permission(self.request, 'myview'), False)
 
     def test_has_object_permission_user_without(self):
-        self.request.user = self.profile.user
+        self.request.user = self.profile
         self.request.amo_user = self.profile
         self.request.groups = self.profile.groups.all()
         self.grant_permission(self.profile, 'Drinkers:Scotch')
@@ -373,7 +371,7 @@ class TestGroupPermission(TestCase):
             False)
 
     def test_has_object_permission_user_with(self):
-        self.request.user = self.profile.user
+        self.request.user = self.profile
         self.request.amo_user = self.profile
         self.request.groups = self.profile.groups.all()
         self.grant_permission(self.profile, 'Drinkers:Beer')

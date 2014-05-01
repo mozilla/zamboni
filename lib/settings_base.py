@@ -406,7 +406,7 @@ AUTHENTICATION_BACKENDS = (
     'users.backends.AmoUserBackend',
     'django_browserid.auth.BrowserIDBackend'
 )
-AUTH_PROFILE_MODULE = 'users.UserProfile'
+AUTH_USER_MODEL = 'users.UserProfile'
 
 # Override this in the site settings.
 ROOT_URLCONF = 'lib.urls_base'

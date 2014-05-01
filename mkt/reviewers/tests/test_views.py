@@ -3177,7 +3177,7 @@ class TestAttachmentDownload(amo.tests.TestCase):
         return self.client.get(url, params, **kwargs)
 
     def setUp(self):
-        editor = UserProfile.objects.get(user__pk=5497308)
+        editor = UserProfile.objects.get(pk=5497308)
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.latest_version
         self.al = amo.log(amo.LOG.COMMENT_VERSION, self.app,

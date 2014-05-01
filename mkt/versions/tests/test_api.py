@@ -111,7 +111,7 @@ class TestVersionViewSet(RestOAuth):
 
     def test_get_owner_non_public(self):
         self.app.update(status=amo.STATUS_PENDING)
-        self.app.addonuser_set.create(user=self.user.get_profile())
+        self.app.addonuser_set.create(user=self.user)
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.get(url)
         eq_(res.status_code, 200)
@@ -138,14 +138,14 @@ class TestVersionViewSet(RestOAuth):
         return data, res
 
     def test_patch(self):
-        self.app.addonuser_set.create(user=self.user.get_profile())
+        self.app.addonuser_set.create(user=self.user)
         data, res = self.patch()
         eq_(res.status_code, 200)
         self.assertSetEqual(self.version.features.to_keys(),
                             ['has_' + f for f in data['features']])
 
     def test_patch_bad_features(self):
-        self.app.addonuser_set.create(user=self.user.get_profile())
+        self.app.addonuser_set.create(user=self.user)
         data, res = self.patch(features=['bad'])
         eq_(res.status_code, 400)
 

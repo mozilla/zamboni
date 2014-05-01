@@ -192,8 +192,8 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}),
             data=json.dumps({'is_read': True}))
         eq_(res.status_code, 204)
-        assert note1.read_by_users.filter(user=self.profile).exists()
-        assert note2.read_by_users.filter(user=self.profile).exists()
+        assert note1.read_by_users.filter(pk=self.profile.pk).exists()
+        assert note2.read_by_users.filter(pk=self.profile.pk).exists()
 
     def test_review_url(self):
         thread = self._thread_factory(note=True)
@@ -256,7 +256,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
     def test_addon_filter(self):
         self._thread_factory(note=True)
 
-        self.grant_permission(self.user.get_profile(), 'Apps:Review')
+        self.grant_permission(self.user, 'Apps:Review')
         res = self.client.get(self.list_url, {'app': '337141'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
@@ -270,7 +270,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
         CommunicationNote.objects.create(author=self.profile, thread=thread,
             note_type=0, body='something')
 
-        self.grant_permission(self.user.get_profile(), 'Apps:Review')
+        self.grant_permission(self.user, 'Apps:Review')
         res = self.client.get(self.list_url, {'app': self.addon.app_slug})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['addon_meta']['app_slug'],
@@ -287,7 +287,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
             addon=self.addon, version=version2, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread2)
 
-        self.grant_permission(self.user.get_profile(), 'Apps:Review')
+        self.grant_permission(self.user, 'Apps:Review')
         res = self.client.get(self.list_url, {'app': self.addon.app_slug})
         eq_(res.status_code, 200)
         eq_(res.json['app_threads'],
@@ -303,7 +303,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
             'note_type': '0',
             'body': 'flylikebee'
         }
-        self.addon.addonuser_set.create(user=self.user.get_profile())
+        self.addon.addonuser_set.create(user=self.user)
         res = self.client.post(self.list_url, data=json.dumps(data))
         eq_(res.status_code, 201)
         assert self.addon.threads.count()
@@ -318,7 +318,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
             'note_type': '0',
             'body': 'flylikebee'
         }
-        self.addon.addonuser_set.create(user=self.user.get_profile())
+        self.addon.addonuser_set.create(user=self.user)
         res = self.client.post(self.list_url, data=json.dumps(data))
         eq_(res.status_code, 403)
 
@@ -442,7 +442,7 @@ class TestNote(NoteSetupMixin):
                             'pk': note.id}),
                     data=json.dumps({'is_read': True}))
         eq_(res.status_code, 204)
-        assert note.read_by_users.filter(user=self.profile).exists()
+        assert note.read_by_users.filter(pk=self.profile.pk).exists()
 
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)

@@ -349,7 +349,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
                                  user=user, role=amo.AUTHOR_ROLE_OWNER)
 
     def is_owner(self, user):
-        return (self.addon.authors.filter(user=user,
+        return (self.addon.authors.filter(pk=user.pk,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
 
     def associate_owner_account(self):

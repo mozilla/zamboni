@@ -167,13 +167,13 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
             log.info('No profile: %s' % (msg or ''))
             raise AuthenticationFailed('No profile.')
 
-        request.user, request.amo_user = profile.user, profile
+        request.user, request.amo_user = profile, profile
         request.groups = profile.groups.all()
 
-        auth.login(request, profile.user)
+        auth.login(request, profile)
         profile.log_login_attempt(True)  # TODO: move this to the signal.
-        user_logged_in.send(sender=profile.user.__class__, request=request,
-                            user=profile.user)
+        user_logged_in.send(sender=profile.__class__, request=request,
+                            user=profile)
 
         # We want to return completely custom data, not the serializer's.
         data = {

@@ -80,7 +80,7 @@ class RestOAuthMiddleware(object):
                     'user_id', flat=True)[0]
             request.amo_user = UserProfile.objects.select_related(
                 'user').get(pk=uid)
-            request.user = request.amo_user.user
+            request.user = request.amo_user
         else:
             # This is 2-legged OAuth.
             log.info('Trying 2 legged OAuth')
@@ -101,7 +101,7 @@ class RestOAuthMiddleware(object):
                     'user_id', flat=True)[0]
             request.amo_user = UserProfile.objects.select_related(
                 'user').get(pk=uid)
-            request.user = request.amo_user.user
+            request.user = request.amo_user
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])
@@ -126,7 +126,6 @@ class RestSharedSecretMiddleware(object):
         # This attribute is set in RedirectPrefixedURIMiddleware.
         if not getattr(request, 'API', False):
             return
-
         # Set up authed_from attribute.
         if not hasattr(request, 'authed_from'):
             request.authed_from = []
@@ -147,9 +146,8 @@ class RestSharedSecretMiddleware(object):
                                consumer_id, hashlib.sha512).hexdigest() == hm
             if matches:
                 try:
-                    request.amo_user = UserProfile.objects.select_related(
-                        'user').get(email=email)
-                    request.user = request.amo_user.user
+                    request.amo_user = UserProfile.objects.get(email=email)
+                    request.user = request.amo_user
                     request.authed_from.append('RestSharedSecret')
                 except UserProfile.DoesNotExist:
                     log.info('Auth token matches absent user (%s)' % email)
@@ -206,13 +204,13 @@ class APIPinningMiddleware(PinningRouterMiddleware):
 
     def cache_key(self, request):
         """Returns cache key based on user ID."""
-        return u'api-pinning:%s' % request.amo_user.id
+        return u'api-pinning:%s' % request.user.id
 
     def process_request(self, request):
         if not getattr(request, 'API', False):
             return super(APIPinningMiddleware, self).process_request(request)
 
-        if (request.amo_user and not request.amo_user.is_anonymous() and
+        if (request.user and not request.user.is_anonymous() and
                 (cache.get(self.cache_key(request)) or
                  request.method in ['DELETE', 'PATCH', 'POST', 'PUT'])):
             statsd.incr('api.db.pinned')
@@ -229,7 +227,7 @@ class APIPinningMiddleware(PinningRouterMiddleware):
 
         response['API-Pinned'] = str(this_thread_is_pinned())
 
-        if (request.amo_user and not request.amo_user.is_anonymous() and (
+        if (request.user and not request.user.is_anonymous() and (
                 request.method in ['DELETE', 'PATCH', 'POST', 'PUT'] or
                 getattr(response, '_db_write', False))):
             cache.set(self.cache_key(request), 1, PINNING_SECONDS)

@@ -26,7 +26,7 @@ class TestAPI(RestOAuth):
         self.addon = Addon.objects.get(pk=337141)
         self.url = reverse('receipt.install')
         self.data = json.dumps({'app': self.addon.pk})
-        self.profile = self.user.get_profile()
+        self.profile = self.user
 
     def test_has_cors(self):
         self.assertCORS(self.client.post(self.url), 'post')

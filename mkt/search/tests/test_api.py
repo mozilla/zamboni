@@ -48,7 +48,7 @@ class TestGetRegion(TestCase):
         self.resource = SearchView()
         self.factory = RequestFactory()
         self.profile = UserProfile.objects.get(pk=2519)
-        self.user = self.profile.user
+        self.user = self.profile
 
     def region_for(self, region):
         req = self.factory.get('/', ({} if region is None else
@@ -194,7 +194,7 @@ class TestApi(RestOAuth, ESTestCase):
         user = UserProfile.objects.all()[0]
 
         def fakeauth(auth, req, **kw):
-            req.user = user.user
+            req.user = user
             req.amo_user = user
 
         with patch('mkt.api.middleware.RestSharedSecretMiddleware'
