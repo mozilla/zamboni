@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 09:07-0700\n"
-"PO-Revision-Date: 2014-04-28 12:11+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-05-01 19:07+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398687071.0\n"
+"X-POOTLE-MTIME: 1398971263.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -2804,7 +2804,7 @@ msgstr "Rimuovi questo componente aggiuntivo dalla raccolta"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
-msgstr "Raccolte"
+msgstr "RACCOLTE"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
@@ -11960,7 +11960,7 @@ msgstr "Sesso esplicito"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Impacting Content"
-msgstr "Contenuto  a effetto"
+msgstr "Contenuto a effetto"
 
 #: mkt/constants/ratingdescriptors.py:22 mkt/constants/ratingdescriptors.py:64 mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:87 mkt/constants/ratingdescriptors.py:101
 msgid "Violence"
@@ -12592,11 +12592,11 @@ msgstr "Nome account"
 
 #: mkt/developers/forms_payments.py:466
 msgid "Payment Account"
-msgstr "Conto pagamenti"
+msgstr "Account pagamenti"
 
 #: mkt/developers/forms_payments.py:536
 msgid "You cannot remove a payment account from an app."
-msgstr "Non è possibile rimuovere un conto pagamenti da un’app."
+msgstr "Non è possibile rimuovere un account pagamenti da un’app."
 
 #: mkt/developers/forms_payments.py:540
 msgid "You are not permitted to change payment accounts."
@@ -12612,11 +12612,11 @@ msgstr "ID servizio"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "ID servizio non valido"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
-msgstr "Non è stato impostato alcun conto pagamenti per questa app."
+msgstr "Non è stato impostato alcun account pagamenti per questa app."
 
 #: mkt/developers/helpers.py:37 mkt/developers/helpers.py:66
 msgid "Developers"
@@ -12795,7 +12795,7 @@ msgstr "L’app non è stata configurata per i pagamenti in-app."
 
 #: mkt/developers/views_payments.py:396
 msgid "No payment account for this app."
-msgstr "A questa app non è associato nessun conto pagamenti."
+msgstr "A questa app non è associato nessun account pagamenti."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:29
 msgid "API"
@@ -13283,7 +13283,10 @@ msgstr "Carica una nuova versione di questa app locale. Prima di essere rese dis
 
 #: mkt/developers/templates/developers/apps/status.html:282
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
-msgstr "Ricordati di aggiornare <a href=\"%(ratings_url)s\">la valutazione dei contenuti</a> nel caso in cui ci siano delle modifiche sostanziali ai contenuti offerti dall’app."
+msgstr ""
+"Ricordati di aggiornare <a href=\"%(ratings_url)s\">la classificazione dei "
+"contenuti</a> nel caso in cui ci siano delle modifiche sostanziali ai "
+"contenuti offerti dall’app."
 
 #: mkt/developers/templates/developers/apps/status.html:307
 msgid "Blocklist App"
@@ -13700,7 +13703,7 @@ msgstr "Prezzo:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr "Configurazione conto pagamenti"
+msgstr "Configurazione account pagamenti"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
@@ -13953,11 +13956,13 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:114 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr "Conto pagamenti"
+msgstr "Account pagamenti"
 
 #: mkt/developers/templates/developers/payments/premium.html:119
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Attualmente l’app è incompleta. Seleziona un conto pagamenti e un prezzo di vendita per renderla disponibile al pubblico."
+msgstr ""
+"Attualmente l’app è incompleta. Seleziona un account pagamenti e un prezzo "
+"di vendita per renderla disponibile al pubblico."
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
@@ -14074,15 +14079,17 @@ msgstr "Accetta i termini di servizio"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Conferma l’eliminazione dell’account pagamenti"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Elimina account pagamenti"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
-msgstr "L’attuale conto pagamenti è stato associato a questa app da un proprietario."
+msgstr ""
+"L’attuale account pagamenti è stato associato a questa app da un "
+"proprietario."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
@@ -14090,7 +14097,7 @@ msgstr "L’account pagamenti non è completo. Completalo o configura un nuovo a
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr "Non è stato configurato un conto pagamenti."
+msgstr "Non è stato configurato un account pagamenti."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
@@ -14111,7 +14118,7 @@ msgstr "Facoltativo"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:29
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
-msgstr "Registrare conto pagamenti"
+msgstr "Registrazione account pagamenti"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:40
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
@@ -16640,8 +16647,10 @@ msgstr ""
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
 msgstr ""
-"Prima che l’app possa essere presentata al pubblico, è necessario che tu fornisca le informazioni per i pagamenti. Appena avrai inserito i dati relativi al tuo conto pagamenti e il prezzo, l’app "
-"sarà sottoposta al processo di revisione."
+" Prima di poter presentare l’app al pubblico, è necessario che tu fornisca "
+"le informazioni per i pagamenti. Non appena avrai inserito i dati relativi "
+"al tuo account pagamenti e il prezzo, l’app sarà sottoposta al processo di "
+"revisione."
 
 #: mkt/submit/templates/submit/done.html:37
 msgid ""
@@ -16846,7 +16855,7 @@ msgstr "È necessario impostare la classificazione dei contenuti."
 
 #: mkt/webapps/models.py:538
 msgid "You must set up a payment account."
-msgstr "È necessario impostare un conto pagamenti."
+msgstr "È necessario impostare un account pagamenti."
 
 #: mkt/webapps/models.py:563
 msgid "This app's submission process has not been fully completed."
@@ -16858,7 +16867,7 @@ msgstr "Quest’app deve ricevere una classificazione dei contenuti."
 
 #: mkt/webapps/models.py:576
 msgid "This app needs a payment account set up."
-msgstr "È necessario configurare un conto pagamenti per l’app."
+msgstr "È necessario configurare un account pagamenti per l’app."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2385

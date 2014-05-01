@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 09:07-0700\n"
-"PO-Revision-Date: 2014-03-28 12:49+0000\n"
+"PO-Revision-Date: 2014-05-01 19:04+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,13 +13,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1396010966.0\n"
+"X-POOTLE-MTIME: 1398971060.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} stella"
-msgstr[1] "{0} stelle "
+msgstr[1] "{0} stelle"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -337,11 +337,17 @@ msgstr "Rilevati: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalle "
+"seguenti app. Le applicazioni prive di un account pagamenti non sono "
+"disponibili per l’acquisto."
 msgstr[1] ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Account pagamenti per {appName}:"
 
 #: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -358,7 +364,7 @@ msgstr "Errore durante l'autenticazione"
 
 #: media/js/devreg/payments-manage.js:181
 msgid "You do not currently have any payment accounts."
-msgstr "Al momento non disponi di un conto pagamenti."
+msgstr "Al momento non disponi di un account pagamenti."
 
 #: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
@@ -405,7 +411,7 @@ msgstr "L'App non ha superato la convalida."
 
 #: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
 msgid "App passed validation."
-msgstr "L'App è stata convalidata con successo."
+msgstr "L’App è stata convalidata con successo."
 
 #: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
 msgid "{0} error"
@@ -473,7 +479,7 @@ msgstr "Note di versione non disponibili"
 
 #: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
-msgstr "Selezionare un'applicazione"
+msgstr "Selezionare un’applicazione"
 
 #: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
@@ -517,7 +523,7 @@ msgstr "Richieste ulteriori informazioni"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr "Sono presenti dei commenti da parte dell'editore"
+msgstr "Sono presenti dei commenti da parte dell’editore"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
@@ -545,11 +551,14 @@ msgstr "App rifiutata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr "Si è verificato un errore durante il processo di approvazione dell'app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di approvazione dell’app: "
+"{app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr "Si è verificato un errore durante il processo di rifiuto dell'app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
@@ -798,7 +807,7 @@ msgstr "Il browser in uso non supporta il tag video"
 
 #: media/js/zamboni/devhub.js:501
 msgid "Enter a new author's email address"
-msgstr "Inserire l'indirizzo email di un nuovo autore"
+msgstr "Inserire l’indirizzo email di un nuovo autore"
 
 #: media/js/zamboni/devhub.js:791
 msgid "{files} file"
@@ -814,7 +823,7 @@ msgstr[1] "{reviews} recensioni"
 
 #: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
-msgstr "L'indirizzo email deve essere valido."
+msgstr "L’indirizzo email deve essere valido."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
