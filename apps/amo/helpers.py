@@ -180,18 +180,6 @@ def sidebar(app):
     base = urlresolvers.reverse('home')
     types = [Type(99, _('Collections'), base + 'collections/')]
 
-    shown_types = {
-        amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
-        amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
-        amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
-        amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
-    }
-    titles = dict(amo.ADDON_TYPES,
-                  **{amo.ADDON_DICT: _('Dictionaries & Language Packs')})
-    for type_, url in shown_types.items():
-        if type_ in app.types:
-            types.append(Type(type_, titles[type_], url))
-
     return categories, sorted(types, key=lambda x: x.name)
 
 

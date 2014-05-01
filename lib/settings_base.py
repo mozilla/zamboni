@@ -418,7 +418,6 @@ INSTALLED_APPS = (
     'addons',
     'applications',
     'bandwagon',
-    'browse',
     'cronjobs',
     'csp',
     'devhub',

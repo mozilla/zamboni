@@ -46,7 +46,7 @@ from versions.models import ApplicationsVersions, License, Version
 
 
 class HubTest(amo.tests.TestCase):
-    fixtures = ['browse/nameless-addon', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         self.url = reverse('devhub.index')

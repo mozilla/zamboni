@@ -17,8 +17,6 @@ import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
-from addons.tasks import unindex_addons
-from mkt.webapps.tasks import unindex_webapps
 from search import views
 from search.utils import floor_version
 from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
@@ -48,17 +46,9 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
     def test_addons_is_default(self):
         self.check(reverse('home'), 'search for add-ons')
 
-    def test_themes(self):
-        self.check(reverse('browse.themes'), 'search for add-ons',
-                   '%s,0' % amo.ADDON_THEME)
-
     def test_collections(self):
         self.check(reverse('collections.list'), 'search for collections',
                    'collections')
-
-    def test_personas(self):
-        self.check(reverse('browse.personas'), 'search for themes',
-                   'themes')
 
     def test_addons_search(self):
         self.check(reverse('search.search'), 'search for add-ons')

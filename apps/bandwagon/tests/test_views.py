@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
-import urlparse
 
 from django.core.cache import cache
 from django.forms import ValidationError
-from django.shortcuts import render
 import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
@@ -24,8 +22,6 @@ from amo.tests.test_helpers import get_uploaded_file
 from bandwagon import forms
 from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
                               CollectionVote, CollectionWatcher)
-from bandwagon.views import CollectionFilter
-from browse.tests import TestFeeds
 from devhub.models import ActivityLog
 from users.models import UserProfile
 
@@ -968,16 +964,6 @@ class TestWatching(amo.tests.TestCase):
         r = self.client.post_ajax(self.url, follow=True)
         eq_(r.status_code, 200)
         eq_(json.loads(r.content), {'watching': True})
-
-
-class TestCollectionFeed(TestFeeds):
-    fixtures = TestFeeds.fixtures
-
-    def setUp(self):
-        super(TestCollectionFeed, self).setUp()
-        self.url = reverse('collections.list')
-        self.rss_url = reverse('collections.rss')
-        self.filter = CollectionFilter
 
 
 class TestCollectionListing(amo.tests.TestCase):
