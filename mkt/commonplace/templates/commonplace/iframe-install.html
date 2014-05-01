@@ -19,12 +19,12 @@ window.addEventListener('message', function(e) {
 
     if (e.data && e.data.name == 'getInstalled') {
         // navigator.mozApps.getInstalled for parent to keep track of installed apps.
-        console.log('[iframe-install] Received post message to getInstalled from ' + e.origin + ': ' + JSON.stringify(e.data));
+        console.log('[iframe-install] Received post message to getInstalled from ' + e.origin);
 
         var r = navigator.mozApps.getInstalled();
         r.onsuccess = function() {
             var installed = [];
-            for (var i = 0; i < r.result.length; r++) {
+            for (var i = 0; i < r.result.length; i++) {
                 installed.push(r.result[i].manifestURL);
             }
             window.top.postMessage({
