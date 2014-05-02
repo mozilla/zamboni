@@ -1,6 +1,5 @@
 import functools
 
-from django import http
 from django.core.exceptions import PermissionDenied
 
 from amo.decorators import login_required
@@ -9,8 +8,7 @@ from addons.decorators import addon_view
 from devhub.models import SubmitStep
 
 
-def dev_required(owner_for_post=False, allow_editors=False, webapp=False,
-                 theme=False):
+def dev_required(owner_for_post=False, allow_editors=False, webapp=False):
     """Requires user to be add-on owner or admin.
 
     When allow_editors is True, an editor can view the page.
@@ -21,11 +19,6 @@ def dev_required(owner_for_post=False, allow_editors=False, webapp=False,
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
             from devhub.views import _resume
-            if theme:
-                kw['theme'] = addon.is_persona()
-            elif addon.is_persona():
-                # Don't allow theme views if theme not passed in.
-                raise http.Http404
             if webapp:
                 kw['webapp'] = addon.is_webapp()
             fun = lambda: f(request, addon_id=addon.id, addon=addon,

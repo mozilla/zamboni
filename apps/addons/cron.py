@@ -321,16 +321,6 @@ def _group_addons(qs):
 
 
 @cronjobs.register
-@transaction.commit_on_success
-def give_personas_versions():
-    cursor = connections['default'].cursor()
-    path = os.path.join(settings.ROOT, 'migrations/149-personas-versions.sql')
-    with open(path) as f:
-        cursor.execute(f.read())
-        log.info('Gave versions to %s personas.' % cursor.rowcount)
-
-
-@cronjobs.register
 def reindex_addons(index=None, aliased=True, addon_type=None):
     from . import tasks
     # Make sure our mapping is up to date.

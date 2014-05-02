@@ -29,19 +29,7 @@ class CurrentVersionTestCase(amo.tests.TestCase):
 
 class TestLastUpdated(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'addons/listed', 'base/apps',
-                'addons/persona', 'base/seamonkey', 'base/thunderbird']
-
-    def test_personas(self):
-        Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
-
-        cron.addon_last_updated()
-        for addon in Addon.objects.all():
-            eq_(addon.last_updated, addon.created)
-
-        # Make sure it's stable.
-        cron.addon_last_updated()
-        for addon in Addon.objects.all():
-            eq_(addon.last_updated, addon.created)
+                'base/seamonkey', 'base/thunderbird']
 
     def test_catchall(self):
         """Make sure the catch-all last_updated is stable and accurate."""

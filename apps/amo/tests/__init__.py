@@ -42,7 +42,7 @@ import amo.search
 from access.acl import check_ownership
 from access.models import Group, GroupUser
 from addons.models import update_search_index as addon_update_search_index
-from addons.models import Addon, Category, Persona
+from addons.models import Addon, Category
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
@@ -708,18 +708,10 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     kwargs.update(kw)
 
     # Save 1.
-    if type_ == amo.ADDON_PERSONA:
-        # Personas need to start life as an extension for versioning.
-        a = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
-    else:
-        a = Addon.objects.create(type=type_, **kwargs)
+    a = Addon.objects.create(type=type_, **kwargs)
     version = version_factory(file_kw, addon=a, **version_kw)  # Save 2.
     a.update_version()
     a.status = status
-    if type_ == amo.ADDON_PERSONA:
-        a.type = type_
-        Persona.objects.create(addon=a, persona_id=a.id,
-                               popularity=a.weekly_downloads)  # Save 3.
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -840,7 +832,7 @@ def version_factory(file_kw={}, **kw):
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
-    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
+    if kw.get('addon').type is not amo.ADDON_WEBAPP:
         a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
         av_min, _ = AppVersion.objects.get_or_create(application=a,
                                                      version=min_app_version)

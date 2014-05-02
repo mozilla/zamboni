@@ -15,14 +15,13 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests import addon_factory, formset, initial, req_factory_factory
+from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from addons.forms import AddonFormBasic
 from addons.models import Addon, AddonCategory, AddonDependency, Category
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from devhub.models import ActivityLog
-from devhub.views import edit_theme
 from tags.models import Tag, AddonTag
 from users.models import UserProfile
 
@@ -695,13 +694,6 @@ class TestEditMedia(TestEdit):
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
-    def test_image_status_persona(self):
-        self.setup_image_status()
-        storage.delete(self.icon_dest)
-        self.get_addon().update(type=amo.ADDON_PERSONA)
-        result = json.loads(self.client.get(self.url).content)
-        assert result['icons']
-
     def test_image_status_default(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
@@ -970,7 +962,7 @@ class TestEditSupport(TestEdit):
 
 
 class TestEditTechnical(TestEdit):
-    fixtures = TestEdit.fixtures + ['addons/persona', 'base/addon_40',
+    fixtures = TestEdit.fixtures + ['base/addon_40',
                                     'base/addon_1833_yoono',
                                     'base/addon_4664_twitterbar.json',
                                     'base/addon_5299_gcal', 'base/addon_6113']
@@ -1110,8 +1102,7 @@ class TestEditTechnical(TestEdit):
 
     def test_dependencies_limit(self):
         deps = Addon.objects.reviewed().exclude(
-            Q(id__in=[self.addon.id, self.dependent_addon.id]) |
-            Q(type=amo.ADDON_PERSONA))
+            Q(id__in=[self.addon.id, self.dependent_addon.id]))
         args = []
         assert deps.count() > 3  # The limit is 3.
         for dep in deps:
@@ -1123,8 +1114,7 @@ class TestEditTechnical(TestEdit):
 
     def test_dependencies_limit_with_deleted_form(self):
         deps = Addon.objects.reviewed().exclude(
-            Q(id__in=[self.addon.id, self.dependent_addon.id]) |
-            Q(type=amo.ADDON_PERSONA))[:3]
+            Q(id__in=[self.addon.id, self.dependent_addon.id]))[:3]
         args = []
         for dep in deps:
             args.append({'dependent_addon': dep.id})
@@ -1172,25 +1162,6 @@ class TestEditTechnical(TestEdit):
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
             self.check_bad_dep(r)
-
-    def test_dependencies_no_add_reviewed_persona(self):
-        """Ensure that reviewed Personas cannot be made as dependencies."""
-        addon = Addon.objects.get(id=15663)
-        eq_(addon.type, amo.ADDON_PERSONA)
-        eq_(addon in list(Addon.objects.reviewed()), True)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
-
-    def test_dependencies_no_add_unreviewed_persona(self):
-        """Ensure that unreviewed Personas cannot be made as dependencies."""
-        addon = Addon.objects.get(id=15663)
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        eq_(addon.status, amo.STATUS_UNREVIEWED)
-        eq_(addon in list(Addon.objects.reviewed()), False)
-        d = self.dep_formset({'dependent_addon': addon.id})
-        r = self.client.post(self.technical_edit_url, d)
-        self.check_bad_dep(r)
 
     def test_edit_addon_dependencies_no_add_apps(self):
         """Add-ons should not be able to add app dependencies."""
@@ -1275,37 +1246,3 @@ class TestAdmin(amo.tests.TestCase):
         url = reverse('devhub.addons.admin', args=['a3615'])
         r = self.client.post(url)
         eq_(r.status_code, 403)
-
-
-class TestThemeEdit(amo.tests.TestCase):
-    fixtures = ['base/user_999']
-
-    def setUp(self):
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        self.user = UserProfile.objects.get()
-        self.addon.addonuser_set.create(user=self.user)
-
-    @mock.patch('amo.messages.error')
-    def test_desc_too_long_error(self, message_mock):
-        data = {'description': 'a' * 501}
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'),
-            user=self.user, post=True, data=data)
-        r = edit_theme(req, self.addon.slug, self.addon)
-        doc = pq(r.content)
-        assert 'characters' in doc('#trans-description + ul li').text()
-
-    def test_no_reupload_on_pending(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'), user=self.user)
-        r = edit_theme(req, self.addon.slug, self.addon)
-        doc = pq(r.content)
-        assert not doc('a.reupload')
-
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'), user=self.user)
-        r = edit_theme(req, self.addon.slug, self.addon)
-        doc = pq(r.content)
-        assert doc('a.reupload')

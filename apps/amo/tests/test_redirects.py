@@ -7,18 +7,9 @@ import amo.tests
 from addons.models import Category
 from applications.models import Application
 
-from django.db import connection
-
 
 class TestRedirects(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models',
-                'addons/persona', 'base/global-stats']
-
-    def test_persona_category(self):
-        """`/personas/film and tv` should go to /themes/film-and-tv"""
-        r = self.client.get('/personas/film and tv', follow=True)
-        assert r.redirect_chain[-1][0].endswith(
-                '/en-US/firefox/themes/film-and-tv')
+    fixtures = ['base/apps', 'reviews/test_models', 'base/global-stats']
 
     def test_top_tags(self):
         """`/top-tags/?` should 301 to `/tags/top`."""
@@ -62,15 +53,6 @@ class TestRedirects(amo.tests.TestCase):
     def test_browse(self):
         response = self.client.get('/browse/type:3', follow=True)
         self.assert3xx(response, '/en-US/firefox/language-tools/',
-                       status_code=301)
-
-        response = self.client.get('/browse/type:2', follow=True)
-        self.assert3xx(response, '/en-US/firefox/complete-themes/',
-                       status_code=301)
-
-        # Drop the category.
-        response = self.client.get('/browse/type:2/cat:all', follow=True)
-        self.assert3xx(response, '/en-US/firefox/complete-themes/',
                        status_code=301)
 
     def test_accept_language(self):
@@ -180,23 +162,3 @@ class TestRedirects(amo.tests.TestCase):
 
         res = self.client.get('/mobile/extensions/', follow=True)
         self.assert3xx(res, '/en-US/mobile/extensions/', status_code=301)
-
-
-class TestPersonaRedirect(amo.tests.TestCase):
-    fixtures = ['addons/persona']
-
-    def test_persona_redirect(self):
-        """`/persona/\d+` should go to `/addon/\d+`."""
-        r = self.client.get('/persona/813', follow=True)
-        self.assert3xx(r, '/en-US/firefox/addon/a15663/', status_code=301)
-
-    def test_persona_redirect_addon_no_exist(self):
-        """When the persona exists but not its addon, throw a 404."""
-        # Got get shady to separate Persona/Addons.
-        connection.cursor().execute("""
-            SET FOREIGN_KEY_CHECKS = 0;
-            TRUNCATE addons;
-            SET FOREIGN_KEY_CHECKS = 1;
-        """)
-        r = self.client.get('/persona/813', follow=True)
-        eq_(r.status_code, 404)

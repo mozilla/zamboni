@@ -592,10 +592,6 @@ class TestApi(RestOAuth, ESTestCase):
         error = res.json['detail']
         eq_(error.keys(), ['type'])
 
-        res = self.client.get(self.url, data={'type': 'theme'})
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 0)
-
     def test_adolescent_popularity(self):
         """
         Adolescent regions use global popularity.

@@ -265,64 +265,6 @@ def new_context(context, **kw):
     return c
 
 
-@register.inclusion_tag('addons/persona_preview.html')
-@jinja2.contextfunction
-def persona_preview(context, persona, size='large', linked=True, extra=None,
-                    details=False, title=False, caption=False, url=None):
-    preview_map = {'large': persona.preview_url,
-                   'small': persona.thumb_url}
-    addon = persona.addon
-    c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon, 'linked': linked,
-              'size': size, 'preview': preview_map[size], 'extra': extra,
-              'details': details, 'title': title, 'caption': caption,
-              'url_': url})
-    return c
-
-
-@register.inclusion_tag('addons/mobile/persona_preview.html')
-@jinja2.contextfunction
-def mobile_persona_preview(context, persona):
-    addon = persona.addon
-    c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon})
-    return c
-
-
-@register.inclusion_tag('addons/mobile/persona_confirm.html')
-@jinja2.contextfunction
-def mobile_persona_confirm(context, persona, size='large'):
-    addon = persona.addon
-    c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon, 'size': size})
-    return c
-
-
-@register.inclusion_tag('addons/persona_grid.html')
-@jinja2.contextfunction
-def persona_grid(context, addons):
-    return new_context(**locals())
-
-
-@register.filter
-@jinja2.contextfilter
-@register.inclusion_tag('addons/impala/persona_grid.html')
-def impala_persona_grid(context, personas, src=None, pagesize=6, cols=3):
-    c = dict(context.items())
-    return dict(pages=chunked(personas, pagesize),
-                columns='cols-%d' % cols, **c)
-
-
-@register.filter
-@jinja2.contextfilter
-@register.inclusion_tag('addons/impala/theme_grid.html')
-def theme_grid(context, themes, src=None, dl_src=None):
-    src = context.get('src', src)
-    if not dl_src:
-        dl_src = context.get('dl_src', src)
-    return new_context(**locals())
-
-
 @register.inclusion_tag('addons/report_abuse.html')
 @jinja2.contextfunction
 def addon_report_abuse(context, hide, addon):

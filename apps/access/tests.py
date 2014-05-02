@@ -211,7 +211,6 @@ class TestCheckReviewer(TestCase):
         assert not check_reviewer(req)
         assert not check_reviewer(req, only='app')
         assert not check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
 
     def test_perm_apps(self):
         self.grant_permission(self.user, 'Apps:Review')
@@ -219,7 +218,6 @@ class TestCheckReviewer(TestCase):
         assert check_reviewer(req)
         assert check_reviewer(req, only='app')
         assert not check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
@@ -227,12 +225,3 @@ class TestCheckReviewer(TestCase):
         assert check_reviewer(req)
         assert not check_reviewer(req, only='app')
         assert check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
-
-    def test_perm_themes(self):
-        self.grant_permission(self.user, 'Personas:Review')
-        req = req_factory_factory('noop', user=self.user)
-        assert check_reviewer(req)
-        assert not check_reviewer(req, only='app')
-        assert not check_reviewer(req, only='addon')
-        assert check_reviewer(req, only='persona')

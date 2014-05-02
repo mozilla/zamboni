@@ -216,7 +216,7 @@ ADDON_SEARCH_TYPES = [
 
 ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
 
-MARKETPLACE_TYPES = [ADDON_PERSONA, ADDON_WEBAPP]
+MARKETPLACE_TYPES = [ADDON_WEBAPP]
 
 # ADDON_WEBAPP Types
 ADDON_WEBAPP_HOSTED = 1
@@ -274,7 +274,6 @@ ADDON_SEARCH_SLUGS = {
 
 # Marketplace search API addon types.
 MKT_ADDON_TYPES_API = {
-    'theme': ADDON_PERSONA,
     'app': ADDON_WEBAPP,
 }
 
@@ -323,13 +322,6 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 
-# Persona image sizes [preview, full]
-PERSONA_IMAGE_SIZES = {
-    'header': [(680, 100), (3000, 200)],
-    'footer': [None, (3000, 100)],
-    'icon': [None, (32, 32)],
-}
-
 # Accepted image MIME-types
 IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
 VIDEO_TYPES = ('video/webm',)
@@ -351,11 +343,6 @@ CONTRIB_CHOICES = (
     (CONTRIB_AFTER, _(u"Ask after users start downloading this add-on")),
     (CONTRIB_ROADBLOCK, _(u"Ask before users can download this add-on")),
 )
-
-# Personas
-PERSONAS_ADDON_ID = 10900  # Add-on ID of the Personas Plus Add-on
-PERSONAS_FIREFOX_MIN = '3.6'  # First Firefox version to support Personas
-PERSONAS_THUNDERBIRD_MIN = '3.1'  # Ditto for Thunderbird
 
 # Collections.
 COLLECTION_NORMAL = 0
@@ -424,12 +411,10 @@ SITE_EVENT_CHOICES = {
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_ADDON = 1
 CANNED_RESPONSE_APP = 2
-CANNED_RESPONSE_PERSONA = 3
 
 CANNED_RESPONSE_CHOICES = {
     CANNED_RESPONSE_ADDON: _('Add-on'),
     CANNED_RESPONSE_APP: _('App'),
-    CANNED_RESPONSE_PERSONA: _('Persona'),
 }
 
 # For use in urls.

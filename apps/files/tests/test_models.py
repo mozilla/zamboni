@@ -395,10 +395,6 @@ class TestParseXpi(amo.tests.TestCase):
             self.parse(addon, filename='search.xml')
         eq_(e.exception.messages, ["<em:type> doesn't match add-on"])
 
-    def test_unknown_app(self):
-        data = self.parse(filename='theme-invalid-app.jar')
-        eq_(data['apps'], [])
-
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
             parse_addon('baxmldzip.xpi', None)
@@ -415,18 +411,6 @@ class TestParseXpi(amo.tests.TestCase):
     def test_parse_dictionary_extension(self):
         result = self.parse(filename='dictionary-extension-test.xpi')
         eq_(result['type'], amo.ADDON_EXTENSION)
-
-    def test_parse_jar(self):
-        result = self.parse(filename='theme.jar')
-        eq_(result['type'], amo.ADDON_THEME)
-
-    def test_parse_theme_by_type(self):
-        result = self.parse(filename='theme-type.xpi')
-        eq_(result['type'], amo.ADDON_THEME)
-
-    def test_parse_theme_with_internal_name(self):
-        result = self.parse(filename='theme-internal-name.xpi')
-        eq_(result['type'], amo.ADDON_THEME)
 
     def test_parse_no_type(self):
         result = self.parse(filename='no-type.xpi')
@@ -836,11 +820,6 @@ class TestFileFromUpload(UploadTest):
         data = parse_addon(upload.path)
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.strict_compatibility, True)
-
-    def test_theme_extension(self):
-        upload = self.upload('theme.jar')
-        f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename.endswith('.xpi'), True)
 
     def test_extension_extension(self):
         upload = self.upload('extension.xpi')

@@ -24,7 +24,6 @@ PER_PAGE = 20
 SEARCH_CHOICES = (
     ('all', _lazy(u'search for add-ons')),
     ('collections', _lazy(u'search for collections')),
-    ('themes', _lazy(u'search for themes')),
     ('apps', _lazy(u'search for apps'))
 )
 

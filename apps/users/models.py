@@ -278,12 +278,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.addonuser_set.filter(addon__type=amo.ADDON_WEBAPP).exists()
 
     @amo.cached_property
-    def is_artist(self):
-        """Is this user a Personas Artist?"""
-        return self.addonuser_set.filter(
-            addon__type=amo.ADDON_PERSONA).exists()
-
-    @amo.cached_property
     def needs_tougher_password(user):
         if user.source in amo.LOGIN_SOURCE_BROWSERIDS:
             return False
@@ -292,7 +286,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
                 acl.action_allowed_user(user, 'Addons', 'Edit') or
                 acl.action_allowed_user(user, 'Addons', 'Review') or
                 acl.action_allowed_user(user, 'Apps', 'Review') or
-                acl.action_allowed_user(user, 'Personas', 'Review') or
                 acl.action_allowed_user(user, 'Users', 'Edit'))
 
     @property

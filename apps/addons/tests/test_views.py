@@ -15,12 +15,10 @@ from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams
-from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser, Charity
@@ -50,7 +48,7 @@ def add_addon_author(original, copy):
 def check_cat_sidebar(url, addon):
     """Ensures that the sidebar shows the categories for the correct type."""
     cache.clear()
-    for type_ in [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_SEARCH]:
+    for type_ in [amo.ADDON_EXTENSION, amo.ADDON_SEARCH]:
         addon.update(type=type_)
         r = Client().get(url)
         eq_(pq(r.content)('#side-nav').attr('data-addontype'), str(type_))
@@ -110,7 +108,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
 
     def test_no_unreviewed(self):
         response = self.client.get(self.url)
-        addon_lists = 'popular featured hotness personas'.split()
+        addon_lists = 'popular featured hotness'.split()
         for key in addon_lists:
             for addon in response.context[key]:
                 assert addon.status != amo.STATUS_UNREVIEWED
@@ -481,8 +479,7 @@ class TestDetailPage(amo.tests.TestCase):
                 'base/users',
                 'base/addon_59',
                 'base/addon_4594_a9',
-                'addons/listed',
-                'addons/persona']
+                'addons/listed']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -502,26 +499,6 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
         eq_(response.context['addon'].id, 3615)
-
-    def test_anonymous_persona(self):
-        response = self.client.get(reverse('addons.detail', args=['a15663']))
-        eq_(response.status_code, 200)
-        eq_(response.context['addon'].id, 15663)
-
-    def test_review_microdata_personas(self):
-        a = Addon.objects.get(id=15663)
-        a.name = '<script>alert("fff")</script>'
-        a.save()
-        response = self.client.get(reverse('addons.detail', args=['a15663']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
-        assert '<script>' not in html
-
-    def test_personas_context(self):
-        response = self.client.get(reverse('addons.detail', args=['a15663']))
-        assert 'review_form' in response.context
-        assert 'reviews' in response.context
-        assert 'get_replies' in response.context
 
     def test_unreviewed_robots(self):
         """Check that unreviewed add-ons do not get indexed."""
@@ -966,94 +943,8 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         amo.tests.check_links(expected, links)
 
 
-class TestPersonas(object):
-    fixtures = ['addons/persona', 'base/users']
-
-    def create_addon_user(self, addon):
-        if waffle.switch_is_active('personas-migration-completed'):
-            return AddonUser.objects.create(addon=addon, user_id=999)
-
-        if addon.type == amo.ADDON_PERSONA:
-            addon.persona.author = self.persona.author
-            addon.persona.save()
-
-
-class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.url = self.addon.get_url_path()
-        self.create_switch('personas-migration-completed', db=True)
-        self.create_addon_user(self.addon)
-
-    def test_persona_images(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        eq_(doc('h2.addon img').attr('src'), self.persona.icon_url)
-        style = doc('#persona div[data-browsertheme]').attr('style')
-        assert self.persona.preview_url in style, (
-            'style attribute %s does not link to %s' % (
-            style, self.persona.preview_url))
-
-    def test_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 1)
-
-    def test_not_personas(self):
-        other = addon_factory(type=amo.ADDON_EXTENSION)
-        self.create_addon_user(other)
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#more-artist .more-link').length, 0)
-
-    def test_new_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        self.persona.persona_id = 0
-        self.persona.save()
-        r = self.client.get(self.url)
-        profile = UserProfile.objects.get(id=999).get_url_path()
-        eq_(pq(r.content)('#more-artist .more-link').attr('href'),
-            profile + '?src=addon-detail')
-
-    def test_other_personas(self):
-        """Ensure listed personas by the same author show up."""
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_NULL)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_LITE)
-        addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
-
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        eq_(other.status, amo.STATUS_PUBLIC)
-        eq_(other.disabled_by_user, False)
-
-        # TODO(cvan): Uncomment this once Personas detail page is impalacized.
-        #doc = self.get_more_pq()('#author-addons')
-        #test_hovercards(self, doc, [other], src='dp-dl-othersby')
-
-        r = self.client.get(self.url)
-        eq_(list(r.context['author_personas']), [other])
-        a = pq(r.content)('#more-artist a[data-browsertheme]')
-        eq_(a.length, 1)
-        eq_(a.attr('href'), other.get_url_path())
-
-    def _test_by(self):
-        """Test that the by... bit works."""
-        r = self.client.get(self.url)
-        assert pq(r.content)('h4.author').text().startswith('by regularuser')
-
-    def test_by(self):
-        self._test_by()
-
-    @amo.tests.mobile_test
-    def test_mobile_by(self):
-        self._test_by()
-
-
 class TestStatus(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'addons/persona']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -1061,10 +952,6 @@ class TestStatus(amo.tests.TestCase):
         self.file = self.version.all_files[0]
         assert self.addon.status == amo.STATUS_PUBLIC
         self.url = self.addon.get_url_path()
-
-        self.persona = Addon.objects.get(id=15663)
-        assert self.persona.status == amo.STATUS_PUBLIC
-        self.persona_url = self.persona.get_url_path()
 
     def test_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -1174,25 +1061,6 @@ class TestStatus(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_PUBLIC)
         eq_(self.addon.get_version(), v)
-
-    def test_persona(self):
-        for status in amo.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.save()
-            eq_(self.client.head(self.persona_url).status_code,
-                200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
-                else 404)
-
-    def test_persona_disabled(self):
-        for status in amo.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.disabled_by_user = True
-            self.persona.save()
-            eq_(self.client.head(self.persona_url).status_code, 404)
 
 
 class TestTagsBox(amo.tests.TestCase):
@@ -1318,7 +1186,7 @@ class TestPrivacyPolicy(amo.tests.TestCase):
 
 
 class TestReportAbuse(amo.tests.TestCase):
-    fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         settings.RECAPTCHA_PRIVATE_KEY = 'something'
@@ -1357,21 +1225,6 @@ class TestReportAbuse(amo.tests.TestCase):
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=addon)
 
-    def test_abuse_persona(self):
-        shared_url = reverse('addons.detail', args=['a15663'])
-        r = self.client.get(shared_url)
-        doc = pq(r.content)
-        assert doc("fieldset.abuse")
-
-        # and now just test it works
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.post(reverse('addons.abuse', args=['a15663']),
-                             {'text': 'spammy'})
-        self.assertRedirects(r, shared_url)
-        eq_(len(mail.outbox), 1)
-        assert 'spammy' in mail.outbox[0].body
-        assert AbuseReport.objects.get(addon=15663)
-
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/users',
@@ -1397,50 +1250,18 @@ class TestMobileHome(TestMobile):
                                   reverse=True)])
 
 
-class TestMobileDetails(TestPersonas, TestMobile):
+class TestMobileDetails(TestMobile):
     fixtures = TestMobile.fixtures + ['base/featured', 'base/users']
 
     def setUp(self):
         super(TestMobileDetails, self).setUp()
         self.ext = Addon.objects.get(id=3615)
         self.url = reverse('addons.detail', args=[self.ext.slug])
-        self.persona = Addon.objects.get(id=15679)
-        self.persona_url = self.persona.get_url_path()
-        self.create_switch('personas-migration-completed')
-        self.create_addon_user(self.persona)
 
     def test_extension(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
-
-    def test_persona(self):
-        r = self.client.get(self.persona_url, follow=True)
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
-        assert 'review_form' not in r.context
-        assert 'reviews' not in r.context
-        assert 'get_replies' not in r.context
-
-    def test_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        r = self.client.get(self.persona_url, follow=True)
-        eq_(pq(r.content)('#more-artist .more-link').length, 1)
-
-    def test_new_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        self.persona.persona.persona_id = 0
-        self.persona.persona.save()
-        r = self.client.get(self.persona_url, follow=True)
-        profile = UserProfile.objects.get(id=999).get_url_path()
-        eq_(pq(r.content)('#more-artist .more-link').attr('href'),
-            profile + '?src=addon-detail')
-
-    def test_persona_mobile_url(self):
-        r = self.client.get('/en-US/mobile/addon/15679/')
-        eq_(r.status_code, 200)
 
     def test_extension_release_notes(self):
         r = self.client.get(self.url)

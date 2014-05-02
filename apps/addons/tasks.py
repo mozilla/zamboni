@@ -1,15 +1,13 @@
 import logging
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import connection, transaction
 
 from celeryutils import task
-from PIL import Image
 
 import amo
-from amo.decorators import set_modified_on, write
-from amo.utils import cache_ns_key, ImageCheck
+from amo.decorators import write
+from amo.utils import cache_ns_key
 from lib.es.utils import index_objects
 from versions.models import Version
 
@@ -41,9 +39,7 @@ def update_last_updated(addon_id):
 
     log.info('[1@None] Updating last updated for %s.' % addon_id)
 
-    if addon.is_persona():
-        q = 'personas'
-    elif addon.is_webapp():
+    if addon.is_webapp():
         q = 'webapps'
     elif addon.status == amo.STATUS_PUBLIC:
         q = 'public'
@@ -112,69 +108,6 @@ def unindex_addons(ids, **kw):
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)
-
-
-@task
-def delete_persona_image(dst, **kw):
-    log.info('[1@None] Deleting persona image: %s.' % dst)
-    if not dst.startswith(settings.ADDONS_PATH):
-        log.error("Someone tried deleting something they shouldn't: %s" % dst)
-        return
-    try:
-        storage.delete(dst)
-    except Exception, e:
-        log.error('Error deleting persona image: %s' % e)
-
-
-@set_modified_on
-def create_persona_preview_images(src, full_dst, **kw):
-    """
-    Creates a 680x100 thumbnail used for the Persona preview and
-    a 32x32 thumbnail used for search suggestions/detail pages.
-    """
-    log.info('[1@None] Resizing persona images: %s' % full_dst)
-    preview, full = amo.PERSONA_IMAGE_SIZES['header']
-    preview_w, preview_h = preview
-    orig_w, orig_h = full
-    with storage.open(src) as fp:
-        i_orig = i = Image.open(fp)
-
-        # Crop image from the right.
-        i = i.crop((orig_w - (preview_w * 2), 0, orig_w, orig_h))
-
-        # Resize preview.
-        i = i.resize(preview, Image.ANTIALIAS)
-        i.load()
-        with storage.open(full_dst[0], 'wb') as fp:
-            i.save(fp, 'png')
-
-        _, icon_size = amo.PERSONA_IMAGE_SIZES['icon']
-        icon_w, icon_h = icon_size
-
-        # Resize icon.
-        i = i_orig
-        i.load()
-        i = i.crop((orig_w - (preview_h * 2), 0, orig_w, orig_h))
-        i = i.resize(icon_size, Image.ANTIALIAS)
-        i.load()
-        with storage.open(full_dst[1], 'wb') as fp:
-            i.save(fp, 'png')
-    return True
-
-
-@set_modified_on
-def save_persona_image(src, full_dst, **kw):
-    """Creates a PNG of a Persona header/footer image."""
-    log.info('[1@None] Saving persona image: %s' % full_dst)
-    img = ImageCheck(storage.open(src))
-    if not img.is_image():
-        log.error('Not an image: %s' % src, exc_info=True)
-        return
-    with storage.open(src, 'rb') as fp:
-        i = Image.open(fp)
-        with storage.open(full_dst, 'wb') as fp:
-            i.save(fp, 'png')
-    return True
 
 
 @task

@@ -1,6 +1,4 @@
-from datetime import datetime
 import os
-import re
 
 from django import forms
 from django.conf import settings
@@ -10,16 +8,13 @@ from django.forms.formsets import formset_factory
 import commonware.log
 import happyforms
 from quieter_formset.formset import BaseFormSet
-from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
+from tower import ugettext as _, ungettext as ngettext
 
 from access import acl
 import amo
 import captcha.fields
-from amo.fields import ColorField
-from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
-from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
-                           Persona)
+from addons.models import Addon, AddonCategory, BlacklistedSlug, Category
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from applications.models import Application
@@ -28,10 +23,8 @@ from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
-from translations.utils import transfield_changed
 from translations.widgets import TranslationTextInput
-from users.models import UserEmailField
-from versions.models import Version
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -468,272 +461,6 @@ class AbuseForm(happyforms.Form):
         if (not self.request.user.is_anonymous() or
             not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
-
-
-class ThemeFormBase(AddonFormBase):
-
-    def __init__(self, *args, **kwargs):
-        super(ThemeFormBase, self).__init__(*args, **kwargs)
-        cats = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0)
-        cats = sorted(cats, key=lambda x: x.name)
-        self.fields['category'].choices = [(c.id, c.name) for c in cats]
-
-        for field in ('header', 'footer'):
-            self.fields[field].widget.attrs = {
-                'data-upload-url': reverse('devhub.personas.upload_persona',
-                                           args=['persona_%s' % field]),
-                'data-allowed-types': 'image/jpeg|image/png'
-            }
-
-    def clean_name(self):
-        return clean_name(self.cleaned_data['name'])
-
-    def clean_slug(self):
-        return clean_slug(self.cleaned_data['slug'], self.instance)
-
-
-class ThemeForm(ThemeFormBase):
-    name = forms.CharField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                      widget=forms.widgets.RadioSelect)
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
-                                  max_length=500, required=False)
-    tags = forms.CharField(required=False)
-
-    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
-        coerce=int, empty_value=None, widget=forms.HiddenInput,
-        error_messages={'required': _lazy(u'A license must be selected.')})
-    header = forms.FileField(required=False)
-    header_hash = forms.CharField(widget=forms.HiddenInput)
-    footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput)
-    accentcolor = ColorField(required=False)
-    textcolor = ColorField(required=False)
-    agreed = forms.BooleanField()
-    # This lets us POST the data URIs of the unsaved previews so we can still
-    # show them if there were form errors. It's really clever.
-    unsaved_data = forms.CharField(required=False, widget=forms.HiddenInput)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'description', 'tags')
-
-    def save(self, commit=False):
-        data = self.cleaned_data
-        addon = Addon.objects.create(slug=data.get('slug'),
-            status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
-        addon.name = {'en-US': data['name']}
-        if data.get('description'):
-            addon.description = data['description']
-        addon._current_version = Version.objects.create(addon=addon,
-                                                        version='0')
-        addon.save()
-
-        # Create Persona instance.
-        p = Persona()
-        p.persona_id = 0
-        p.addon = addon
-        p.header = 'header.png'
-        p.footer = 'footer.png'
-        if data['accentcolor']:
-            p.accentcolor = data['accentcolor'].lstrip('#')
-        if data['textcolor']:
-            p.textcolor = data['textcolor'].lstrip('#')
-        p.license = data['license']
-        p.submit = datetime.now()
-        user = self.request.amo_user
-        p.author = user.username
-        p.display_username = user.name
-        p.save()
-
-        # Save user info.
-        addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
-
-        # Save tags.
-        for t in data['tags']:
-            Tag(tag_text=t).save_tag(addon)
-
-        # Save categories.
-        AddonCategory(addon=addon, category=data['category']).save()
-
-        return addon
-
-
-class EditThemeForm(AddonFormBase):
-    name = TransField(max_length=50, label=_lazy('Give Your Theme a Name.'))
-    slug = forms.CharField(max_length=30)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                      widget=forms.widgets.RadioSelect)
-    description = TransField(
-        widget=TransTextarea(attrs={'rows': 4}),
-        max_length=500, required=False, label=_lazy('Describe your Theme.'))
-    tags = forms.CharField(required=False)
-    accentcolor = ColorField(required=False)
-    textcolor = ColorField(required=False)
-    license = forms.TypedChoiceField(
-        choices=amo.PERSONA_LICENSES_CHOICES, coerce=int, empty_value=None,
-        widget=forms.HiddenInput,
-        error_messages={'required': _lazy(u'A license must be selected.')})
-
-    # Theme re-upload.
-    header = forms.FileField(required=False)
-    header_hash = forms.CharField(widget=forms.HiddenInput, required=False)
-    footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'description', 'tags')
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-
-        super(AddonFormBase, self).__init__(*args, **kw)
-
-        addon = Addon.objects.no_cache().get(id=self.instance.id)
-        persona = addon.persona
-
-        # Do not simply append validators, as validators will persist between
-        # instances.
-        self.fields['name'].validators = list(self.fields['name'].validators)
-        self.fields['name'].validators.append(lambda x: clean_name(x, addon))
-
-        # Allow theme artists to localize Name and Description.
-        for trans in Translation.objects.filter(id=self.initial['name']):
-            self.initial['name_' + trans.locale.lower()] = trans
-        for trans in Translation.objects.filter(
-            id=self.initial['description']):
-            self.initial['description_' + trans.locale.lower()] = trans
-
-        self.old_tags = self.get_tags(addon)
-        self.initial['tags'] = ', '.join(self.old_tags)
-        if persona.accentcolor:
-            self.initial['accentcolor'] = '#' + persona.accentcolor
-        if persona.textcolor:
-            self.initial['textcolor'] = '#' + persona.textcolor
-        self.initial['license'] = persona.license
-
-        cats = sorted(Category.objects.filter(type=amo.ADDON_PERSONA,
-                                              weight__gte=0),
-                      key=lambda x: x.name)
-        self.fields['category'].choices = [(c.id, c.name) for c in cats]
-        try:
-            self.initial['category'] = addon.categories.values_list(
-                'id', flat=True)[0]
-        except IndexError:
-            pass
-
-        for field in ('header', 'footer'):
-            self.fields[field].widget.attrs = {
-                'data-upload-url': reverse('devhub.personas.reupload_persona',
-                                           args=[addon.slug,
-                                                 'persona_%s' % field]),
-                'data-allowed-types': 'image/jpeg|image/png'
-            }
-
-    def save(self):
-        addon = self.instance
-        persona = addon.persona
-        data = self.cleaned_data
-
-        # Update Persona-specific data.
-        persona_data = {
-            'license': int(data['license']),
-            'accentcolor': data['accentcolor'].lstrip('#'),
-            'textcolor': data['textcolor'].lstrip('#'),
-            'author': self.request.amo_user.username,
-            'display_username': self.request.amo_user.name
-        }
-        changed = False
-        for k, v in persona_data.iteritems():
-            if v != getattr(persona, k):
-                changed = True
-                setattr(persona, k, v)
-        if changed:
-            persona.save()
-
-        if self.changed_data:
-            amo.log(amo.LOG.EDIT_PROPERTIES, addon)
-        self.instance.modified = datetime.now()
-
-        # Update Addon-specific data.
-        changed = (
-            set(self.old_tags) != data['tags'] or  # Check if tags changed.
-            self.initial['slug'] != data['slug'] or  # Check if slug changed.
-            transfield_changed('description', self.initial, data) or
-            transfield_changed('name', self.initial, data))
-        if changed:
-            # Only save if addon data changed.
-            super(EditThemeForm, self).save()
-
-        # Update tags.
-        tags_new = data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.old_tags]
-        # Add new tags.
-        for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon)
-        # Remove old tags.
-        for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon)
-
-        # Update category.
-        if data['category'].id != self.initial['category']:
-            addon_cat = addon.addoncategory_set.all()[0]
-            addon_cat.category = data['category']
-            addon_cat.save()
-
-        return data
-
-
-class EditThemeOwnerForm(happyforms.Form):
-    owner = UserEmailField()
-
-    def __init__(self, *args, **kw):
-        self.instance = kw.pop('instance')
-
-        super(EditThemeOwnerForm, self).__init__(*args, **kw)
-
-        addon = self.instance
-
-        self.fields['owner'].widget.attrs['placeholder'] = _(
-            "Enter a new author's email address")
-
-        try:
-            self.instance_addonuser = addon.addonuser_set.all()[0]
-            self.initial['owner'] = self.instance_addonuser.user.email
-        except IndexError:
-            # If there was never an author before, then don't require one now.
-            self.instance_addonuser = None
-            self.fields['owner'].required = False
-
-    def save(self):
-        data = self.cleaned_data
-
-        if data.get('owner'):
-            changed = (not self.instance_addonuser or
-                       self.instance_addonuser != data['owner'])
-            if changed:
-                # Update Persona-specific data.
-                persona = self.instance.persona
-                persona.author = data['owner'].username
-                persona.display_username = data['owner'].name
-                persona.save()
-
-            if not self.instance_addonuser:
-                # If there previously never another owner, create one.
-                self.instance.addonuser_set.create(user=data['owner'],
-                                                   role=amo.AUTHOR_ROLE_OWNER)
-            elif self.instance_addonuser != data['owner']:
-                # If the owner has changed, update the `AddonUser` object.
-                self.instance_addonuser.user = data['owner']
-                self.instance_addonuser.role = amo.AUTHOR_ROLE_OWNER
-                self.instance_addonuser.save()
-
-            self.instance.modified = datetime.now()
-            self.instance.save()
-
-        return data
 
 
 class ContributionForm(happyforms.Form):

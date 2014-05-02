@@ -23,7 +23,6 @@ from .forms import ESSearchForm, SecondarySearchForm
 
 
 DEFAULT_NUM_COLLECTIONS = 20
-DEFAULT_NUM_PERSONAS = 21  # Results appear in a grid of 3 personas x 7 rows.
 
 log = commonware.log.getLogger('z.search')
 
@@ -175,20 +174,15 @@ class SearchSuggestionsAjax(BaseAjaxSearch):
 
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
-    # No personas. No webapps.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
-
-
-class PersonaSuggestionsAjax(SearchSuggestionsAjax):
-    types = [amo.ADDON_PERSONA]
+    # No webapps.
+    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 @json_view
 def ajax_search(request):
     """This is currently used only to return add-ons for populating a
-    new collection. Themes (formerly Personas) are included by default, so
-    this can be used elsewhere.
+    new collection.
 
     """
     search_obj = BaseAjaxSearch(request)
@@ -202,7 +196,6 @@ def ajax_search_suggestions(request):
     cat = 'apps'
     suggesterClass = {
         'all': AddonSuggestionsAjax,
-        'themes': PersonaSuggestionsAjax,
     }.get(cat, AddonSuggestionsAjax)
     suggester = suggesterClass(request, ratings=False)
     return _build_suggestions(
@@ -237,11 +230,7 @@ def _build_suggestions(request, cat, suggester):
         else:
             cats = cats.filter(Q(application=request.APP.id) |
                                Q(type=amo.ADDON_SEARCH))
-            if cat == 'themes':
-                cats = cats.filter(type=amo.ADDON_PERSONA)
-            else:
-                cats = cats.exclude(type__in=[amo.ADDON_PERSONA,
-                                              amo.ADDON_WEBAPP])
+            cats = cats.exclude(type__in=[amo.ADDON_WEBAPP])
 
         for c in cats:
             if not c.name:
@@ -368,8 +357,8 @@ def _filter_search(request, qs, query, filters, sorting,
 @vary_on_headers('X-PJAX')
 def search(request, tag_name=None, template=None):
     APP = request.APP
-    types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-             amo.ADDON_SEARCH, amo.ADDON_LPAPP)
+    types = (amo.ADDON_EXTENSION, amo.ADDON_DICT, amo.ADDON_SEARCH,
+             amo.ADDON_LPAPP)
 
     category = request.GET.get('cat')
 

@@ -71,8 +71,8 @@ def make_xpi(files):
 
 class Extractor(object):
     """Extract add-on info from an install.rdf."""
-    TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT}
+    TYPES = {'2': amo.ADDON_EXTENSION, '8': amo.ADDON_LPAPP,
+             '64': amo.ADDON_DICT}
     App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
@@ -105,10 +105,6 @@ class Extractor(object):
         declared_type = self.find('type')
         if declared_type and declared_type in self.TYPES:
             return self.TYPES[declared_type]
-
-        # Look for Complete Themes.
-        if self.path.endswith('.jar') or self.find('internalName'):
-            return amo.ADDON_THEME
 
         # Look for dictionaries.
         dic = os.path.join(self.path, 'dictionaries')
