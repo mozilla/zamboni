@@ -370,6 +370,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     mozilla_contact = models.EmailField(blank=True)
 
     vip_app = models.BooleanField(default=False)
+    priority_review = models.BooleanField(default=False)
 
     # Whether the app is packaged or not (aka hosted).
     is_packaged = models.BooleanField(default=False, db_index=True)

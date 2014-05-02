@@ -63,7 +63,17 @@
         <dt>{{ _('Submitted') }}</dt>
         <dd>{{ app.created|babel_datetime }}</dd>
         <dt>{{ _('Status') }}</dt>
-        <dd>{{ amo.MKT_STATUS_CHOICES[app.status] }}</dd>
+        <dd>
+            <form method="post">
+            {{ amo.MKT_STATUS_CHOICES[app.status] }} -
+            {{ csrf() }}
+            {% if app.priority_review %}
+              <button class="button disabled" name="prioritize">{{ _('Review Prioritized') }}</button>
+            {% else %}
+              <button class="button" type="submit" name="prioritize" value="true">{{ _('Prioritize Review?') }}</button>
+            {% endif %}
+            </form>
+        </dd>
         <dt>{{ _('Abuse Reports') }}</dt>
         <dd>{{ abuse_reports }}</dd>
         <dt>{{ _('Permissions') }}</dt>

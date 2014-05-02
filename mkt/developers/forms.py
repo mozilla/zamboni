@@ -288,6 +288,7 @@ class AdminSettingsForm(PreviewForm):
     mozilla_contact = SeparatedValuesField(forms.EmailField, separator=',',
                                            required=False)
     vip_app = forms.BooleanField(required=False)
+    priority_review = forms.BooleanField(required=False)
     tags = forms.CharField(required=False)
     banner_regions = JSONMultipleChoiceField(
         required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
@@ -311,6 +312,7 @@ class AdminSettingsForm(PreviewForm):
         super(AdminSettingsForm, self).__init__(*args, **kw)
 
         self.initial['vip_app'] = addon.vip_app
+        self.initial['priority_review'] = addon.priority_review
 
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
@@ -361,11 +363,10 @@ class AdminSettingsForm(PreviewForm):
             super(AdminSettingsForm, self).save(addon, True)
 
         contact = self.cleaned_data.get('mozilla_contact')
-        if contact is not None:
-            addon.update(mozilla_contact=contact)
-
-        vip = self.cleaned_data.get('vip_app')
-        addon.update(vip_app=bool(vip))
+        updates = {} if contact is None else {'mozilla_contact': contact}
+        updates.update({'vip_app': self.cleaned_data.get('vip_app')})
+        updates.update({'priority_review': self.cleaned_data.get('priority_review')})
+        addon.update(**updates)
 
         tags = self.cleaned_data.get('tags')
         if tags:

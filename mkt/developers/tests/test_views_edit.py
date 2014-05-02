@@ -1353,6 +1353,21 @@ class TestAdminSettings(TestAdmin):
         r = self.client.post(self.edit_url, data)
         self.compare({'vip_app': False})
 
+    def test_priority_review_toggle(self):
+        # Turn on.
+        data = {
+            'position': 1,  # Required, useless in this test.
+            'priority_review': 'on'
+        }
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+        self.compare({'priority_review': True})
+
+        # And off.
+        data = {'position': 1}
+        r = self.client.post(self.edit_url, data)
+        self.compare({'priority_review': False})
+
     def test_staff(self):
         # Staff and Support Staff should have Apps:Configure.
         self.log_in_with('Apps:Configure')

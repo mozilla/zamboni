@@ -34,8 +34,8 @@ from users.models import Group, GroupUser, UserProfile
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
-from mkt.lookup.views import (_transaction_summary, transaction_refund,
-                              user_delete, user_summary)
+from mkt.lookup.views import (app_summary, _transaction_summary,
+                              transaction_refund, user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -812,6 +812,29 @@ class TestAppSummary(AppSummaryTest):
                                  password='password')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+
+    def test_priority_button_available(self):
+        res = self.summary()
+        eq_(pq(res.content)('section.column-b button.button').attr('name'),
+            'prioritize')
+        eq_(pq(res.content)('section.column-b button.button').text(),
+            'Prioritize Review?')
+
+    def test_priority_button_already_prioritized(self):
+        self.app.update(priority_review=True)
+        res = self.summary()
+        eq_(pq(res.content)('section.column-b button.button,disabled')
+            .attr('name'),'prioritize')
+        eq_(pq(res.content)('section.column-b button.button,disabled').text(),
+            'Review Prioritized')
+
+    def test_priority_button_works(self):
+        staff = UserProfile.objects.get(username='support_staff')
+        req = req_factory_factory(self.url, post=True, user=staff,
+                                  data={'prioritize': 'true'})
+        res = app_summary(req, self.app.id)
+        self.app.reload()
+        eq_(self.app.priority_review, True);
 
 
 class TestAppSummaryPurchases(AppSummaryTest):
