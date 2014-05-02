@@ -1314,7 +1314,8 @@ class Webapp(Addon):
         rd, created = RatingDescriptors.objects.get_or_create(
             addon=self, defaults=create_kwargs)
         if not created:
-            rd.update(**create_kwargs)
+            rd.update(modified=datetime.datetime.now(),
+                      **create_kwargs)
 
         log.info('IARC descriptors set for app:%s:%s' %
                  (self.id, self.app_slug))

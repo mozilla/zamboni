@@ -12,7 +12,6 @@ from tower import ugettext as _
 
 import amo
 import bandwagon.views
-import browse.views
 from addons.models import Addon, Category
 from amo.decorators import json_view
 from amo.helpers import locale_url, urlparams
@@ -27,45 +26,6 @@ DEFAULT_NUM_COLLECTIONS = 20
 DEFAULT_NUM_PERSONAS = 21  # Results appear in a grid of 3 personas x 7 rows.
 
 log = commonware.log.getLogger('z.search')
-
-
-def _personas(request):
-    """Handle the request for persona searches."""
-
-    initial = dict(request.GET.items())
-
-    # Ignore these filters since return the same results for Firefox
-    # as for Thunderbird, etc.
-    initial.update(appver=None, platform=None)
-
-    form = ESSearchForm(initial, type=amo.ADDON_PERSONA)
-    form.is_valid()
-
-    qs = Addon.search().filter(status__in=amo.REVIEWED_STATUSES,
-                               is_disabled=False)
-    filters = ['sort']
-    mapping = {'downloads': '-weekly_downloads',
-               'users': '-average_daily_users',
-               'rating': '-bayesian_rating',
-               'created': '-created',
-               'name': 'name_sort',
-               'updated': '-last_updated',
-               'hotness': '-hotness'}
-    results = _filter_search(request, qs, form.cleaned_data, filters,
-                             sorting=mapping, types=[amo.ADDON_PERSONA])
-
-    form_data = form.cleaned_data.get('q', '')
-
-    search_opts = {}
-    search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_PERSONAS)
-    page = form.cleaned_data.get('page') or 1
-    search_opts['offset'] = (page - 1) * search_opts['limit']
-
-    pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
-    categories, filter, base, category = browse.views.personas_listing(request)
-    c = dict(pager=pager, form=form, categories=categories, query=form_data,
-             filter=filter, search_placeholder='themes')
-    return render(request, 'search/personas.html', c)
 
 
 def _collections(request):
@@ -438,8 +398,6 @@ def search(request, tag_name=None, template=None):
 
     if category == 'collections':
         return _collections(request)
-    elif category == 'themes' or form_data.get('atype') == amo.ADDON_PERSONA:
-        return _personas(request)
 
     sort, extra_sort = split_choices(form.sort_choices, 'created')
     if form_data.get('atype') == amo.ADDON_SEARCH:

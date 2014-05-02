@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% from "browse/macros.html" import secondary_categories %}
 
 {% set query_term = query %}
 
@@ -34,8 +33,5 @@
       {% include 'search/no_results.html' %}
     {% endif %}
   </div>
-</div>
-<div class="secondary" role="complementary">
-  {{ secondary_categories(_('Themes'), 'browse.personas', categories, filter) }}
 </div>
 {% endblock %}

@@ -25,7 +25,6 @@ from amo.tests import (app_factory, assert_no_validation_errors,
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from browse.tests import test_default_sort, test_listing_sort
 from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
@@ -240,11 +239,29 @@ class TestAppDashboardSorting(AppHubTest):
         eq_(doc('#sorter').length, 1)
         eq_(doc('.paginator').length, 1)
 
+    def _test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
+        r = self.client.get(self.url, dict(sort=sort))
+        eq_(r.status_code, 200)
+        sel = pq(r.content)('#sorter ul > li.selected')
+        eq_(sel.find('a').attr('class'), sel_class)
+        eq_(r.context['sorting'], sort)
+        a = list(r.context['addons'].object_list)
+        if key:
+            eq_(a, sorted(a, key=lambda x: getattr(x, key), reverse=reverse))
+        return a
+
     def test_default_sort(self):
-        test_default_sort(self, 'name', 'name', reverse=False)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        eq_(r.context['sorting'], 'name')
+
+        r = self.client.get(self.url, dict(name='xxx'))
+        eq_(r.status_code, 200)
+        eq_(r.context['sorting'], 'name')
+        self._test_listing_sort('name', 'name', False)
 
     def test_newest_sort(self):
-        test_listing_sort(self, 'created', 'created')
+        self._test_listing_sort('created', 'created')
 
 
 class TestDevRequired(AppHubTest):

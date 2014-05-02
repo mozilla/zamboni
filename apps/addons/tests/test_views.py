@@ -118,14 +118,8 @@ class TestHomepageFeatures(amo.tests.TestCase):
     def test_seeall(self):
         Collection.objects.update(type=amo.COLLECTION_FEATURED)
         doc = pq(self.client.get(self.url).content)
-        browse_extensions = reverse('browse.extensions')
-        browse_personas = reverse('browse.personas')
         browse_collections = reverse('collections.list')
         sections = {
-            '#popular-extensions': browse_extensions + '?sort=users',
-            '#featured-extensions': browse_extensions + '?sort=featured',
-            '#upandcoming': browse_extensions + '?sort=hotness',
-            '#featured-themes': browse_personas,
             '#featured-collections': browse_collections + '?sort=featured',
         }
         for id_, url in sections.iteritems():

@@ -38,23 +38,10 @@
       <li class="selected"><a href="#listing-featured">{{ _('Featured') }}</a></li>
       {#<li><a href="#listing-popular">{{ _('Popular') }}</a></li>#}
       <li><a href="#listing-categories">{{ _('Categories') }}</a></li>
-      <li><a href="{{ url('browse.personas') }}">{{ _('Themes') }}</a></li>
     </ul>
   </nav>
   <div id="addon-lists" class="slider">
-    <div id="listing-featured" class="tab-pane selected">
-      <ul id="list-featured" class="listview">
-        {{ addon_listing_items_mobile(featured, src='homepagebrowse') }}
-        <li><a href="{{ url('browse.extensions')|urlparams(sort='featured') }}">
-          {{ _('View all Featured add-ons') }}</a></li>
-      </ul>
-    </div><div id="listing-popular" class="tab-pane">
-      <ul id="list-popular" class="listview">
-        {{ addon_listing_items_mobile(popular, sort='popular', src='homepagebrowse') }}
-        <li><a href="{{ url('browse.extensions')|urlparams(sort='popular') }}">
-          {{ _('View all Popular add-ons') }}</a></li>
-      </ul>
-    </div><div id="listing-categories" class="tab-pane">
+    <div id="listing-categories" class="tab-pane">
       {% set categories, types = sidebar(request.APP or amo.FIREFOX) %}
       <ul id="list-popular" class="listview">
         {% for c in categories %}
@@ -64,13 +51,4 @@
       </ul>
     </div>
   </div>
-  <h2>{{ _('More Add-ons') }}</h2>
-  <ul id="more-addons" class="listview">
-    <li class="rating"><a href="{{ url('browse.extensions')|urlparams(sort='rating') }}">
-      {{ _('Highest Rated') }}</a></li>
-    <li class="created"><a href="{{ url('browse.extensions')|urlparams(sort='created') }}">
-      {{ _('Newest') }}</a></li>
-    {# <li><a href="{{ url('collections.list') }}">
-      {{ _('Collections') }}</a></li> #}
-  </ul>
 {% endblock page %}

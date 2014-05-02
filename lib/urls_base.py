@@ -24,9 +24,6 @@ urlpatterns = patterns('',
     # Add-ons.
     ('', include('addons.urls')),
 
-    # Browse pages.
-    ('', include('browse.urls')),
-
     # Tags.
     ('', include('tags.urls')),
 
@@ -67,10 +64,6 @@ urlpatterns = patterns('',
     # Review spam.
     url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
 
-    # Redirect patterns.
-    ('^bookmarks/?$',
-      lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
-
     ('^reviews/display/(\d+)',
       lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
 
@@ -92,9 +85,6 @@ urlpatterns = patterns('',
     ('^top-tags/?',
      lambda r: redirect('tags.top_cloud', permanent=True)),
 
-    ('^personas/film and tv/?$',
-     lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
-
     ('^addons/versions/(\d+)/?$',
      lambda r, id: redirect('addons.versions', id, permanent=True)),
 
@@ -114,13 +104,6 @@ urlpatterns = patterns('',
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
-
-    ('^recommended$',
-     lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
-                        permanent=True)),
-
-    ('^recommended/format:rss$',
-     lambda r: redirect('browse.featured.rss', permanent=True)),
 
 )
 

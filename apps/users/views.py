@@ -7,8 +7,7 @@ from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.db import IntegrityError, transaction
-from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
-                              render)
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
@@ -28,7 +27,7 @@ from abuse.models import send_abuse_report
 from access import acl
 from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
-from addons.models import Addon, Category
+from addons.models import Addon
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
@@ -37,8 +36,6 @@ from amo.helpers import loc
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
 from bandwagon.models import Collection
-from browse.views import PersonasFilter
-from translations.query import order_by_translation
 from users.models import UserNotification
 
 from lib.metrics import record_action
@@ -604,43 +601,6 @@ def profile(request, user):
         data['abuse_form'] = AbuseForm(request=request)
 
     return render(request, 'users/profile.html', data)
-
-
-@user_view
-def themes(request, user, category=None):
-    cats = Category.objects.filter(type=amo.ADDON_PERSONA)
-
-    ctx = {
-        'profile': user,
-        'categories': order_by_translation(cats, 'name'),
-        'search_cat': 'themes'
-    }
-
-    if user.is_artist:
-        base = user.addons.reviewed().filter(type=amo.ADDON_PERSONA,
-            addonuser__user=user, addonuser__listed=True)
-
-        if category:
-            qs = cats.filter(slug=category)
-            ctx['category'] = cat = get_list_or_404(qs)[0]
-            base = base.filter(categories__id=cat.id)
-
-    else:
-        base = Addon.objects.none()
-
-    filter_ = PersonasFilter(request, base, key='sort',
-                             default='popular')
-    addons = amo.utils.paginate(request, filter_.qs, 30,
-                                count=base.count())
-
-    ctx.update({
-        'addons': addons,
-        'filter': filter_,
-        'sorting': filter_.field,
-        'sort_opts': filter_.opts
-    })
-
-    return render(request, 'browse/personas/grid.html', ctx)
 
 
 @anonymous_csrf

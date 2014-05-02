@@ -275,11 +275,6 @@ class TestOtherStuff(amo.tests.TestCase):
         expires = datetime.strptime(response['Expires'], fmt)
         assert (expires - datetime.now()).days >= 365
 
-    def test_dictionaries_link(self):
-        doc = pq(test.Client().get('/', follow=True).content)
-        eq_(doc('#site-nav #more .more-lang a').attr('href'),
-            reverse('browse.language-tools'))
-
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)
         eq_(doc('#site-nav #more .more-mobile a').length, 1)

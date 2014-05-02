@@ -41,7 +41,6 @@ WEBAPP_MANIFEST_NAME = 'Marketplace'
 ROOT_URLCONF = 'mkt.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS)
-INSTALLED_APPS.remove('browse')
 INSTALLED_APPS.remove('devhub')
 INSTALLED_APPS.remove('search')
 INSTALLED_APPS = tuple(INSTALLED_APPS)
@@ -129,10 +128,6 @@ NO_ADDONS_MODULES = (
     'addons.views',
     'devhub.views.dashboard',  # The apps dashboard is a different view.
     'devhub.views.submit',  # Addon submit not ok, app submit a-ok.
-    'browse.views.personas',
-    'browse.views.extensions',
-    'browse.views.language_tools',
-    'browse.views.themes',
 )
 
 # Extend AMO's bundles. Sorry, folks. One day when admin goes away this
