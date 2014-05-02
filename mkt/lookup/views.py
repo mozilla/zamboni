@@ -26,9 +26,11 @@ from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
+from mkt.comm.utils import create_comm_note
 import mkt.constants.lookup as lkp
 from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
                                     REFUND_STATUSES)
+from mkt.constants import comm
 from mkt.account.utils import purchase_list
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
@@ -236,6 +238,16 @@ def transaction_refund(request, tx_uuid):
 @permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
     app = get_object_or_404(Addon.with_deleted, pk=addon_id)
+
+    if 'prioritize' in request.POST and not app.priority_review:
+        app.update(priority_review=True)
+        msg = u'Priority Review Requested'
+        # Create notes and log entries.
+        create_comm_note(app, app.latest_version, request.amo_user, msg,
+                         note_type=comm.NO_ACTION)
+        amo.log(amo.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
+                created=datetime.now(), details={'comments': msg})
+
     authors = (app.authors.filter(addonuser__role__in=(amo.AUTHOR_ROLE_DEV,
                                                        amo.AUTHOR_ROLE_OWNER))
                           .order_by('display_name'))

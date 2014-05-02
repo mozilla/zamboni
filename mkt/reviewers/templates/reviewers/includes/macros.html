@@ -66,6 +66,9 @@
 {% endmacro %}
 
 {% macro app_flags(app) %}
+  {% if app.priority_review %}
+    <div class="sprite-reviewer sprite-reviewer-priority" title="{{ _('Priority Review Needed') }}"></div>
+  {% endif %}
   {% if app.is_packaged %}
     <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
     {% if app.latest_version.is_privileged %}

@@ -2140,6 +2140,22 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         response = self.client.get(self.url)
         assert 'IDN domain!' in response.content
 
+    def test_priority_flag_cleared_for_public(self):
+        self.get_app().update(priority_review=True)
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        eq_(self.get_app().priority_review, False)
+
+    def test_priority_flag_uncleared_for_reject(self):
+        self.get_app().update(priority_review=True)
+        data = {'action': 'reject', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        eq_(self.get_app().priority_review, True)
+
 
 class TestCannedResponses(AppReviewerTest):
 
@@ -3057,6 +3073,81 @@ class TestQueueSort(AppReviewerTest):
         request = rf.get(url, {'sort': 'name', 'order': 'desc'})
         apps = _do_sort(request, RereviewQueue.objects.all())
         eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
+
+    def test_sort_with_priority_review(self):
+        """Tests the sorts are correct with a priority review flagged app."""
+
+        # Set up the priority review flagged app.
+        self.apps.append(app_factory(name='Foxkeh',
+                                     status=amo.STATUS_PENDING,
+                                     is_packaged=False,
+                                     version_kw={'version': '1.0'},
+                                     file_kw={'status': amo.STATUS_PENDING},
+                                     premium_type=amo.ADDON_FREE,
+                                     priority_review=True))
+
+        # Set up app attributes.
+        self.apps[2].update(created=self.days_ago(1))
+        self.apps[2].addonuser_set.create(
+            user=UserProfile.objects.create(username='redpanda',
+                                            email='redpanda@mozilla.com'))
+        self.apps[2].addondevicetype_set.create(
+            device_type=amo.DEVICE_DESKTOP.id)
+
+        # And check it also comes out top of waiting time with Webapp model.
+        rf = RequestFactory()
+        qs = Webapp.objects.no_cache().all()
+
+        # Test apps are sorted by created/asc by default.
+        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[2], self.apps[1], self.apps[0]])
+
+        # Test sorting by created, descending.
+        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs)
+        eq_(list(sorted_qs), [self.apps[2], self.apps[0], self.apps[1]])
+
+        # And with Version model.
+        version_0 = self.apps[0].versions.get()
+        version_0.update(nomination=days_ago(1))
+        version_1 = self.apps[1].versions.get()
+        version_1.update(nomination=days_ago(2))
+
+        qs = (Version.objects.no_cache().filter(
+              files__status=amo.STATUS_PENDING, addon__type=amo.ADDON_WEBAPP,
+              addon__disabled_by_user=False,
+              addon__status=amo.STATUS_PENDING)
+              .order_by('nomination', 'created')
+              .select_related('addon', 'files').no_transforms())
+
+        r = rf.get(self.url, {'sort': 'nomination'})
+        sorted_qs = _do_sort(r, qs, date_sort='nomination')
+        eq_(list(sorted_qs), [self.apps[2], self.apps[1], self.apps[0]])
+
+        r = rf.get(self.url, {'sort': 'nomination', 'order': 'desc'})
+        sorted_qs = _do_sort(r, qs, date_sort='nomination')
+        eq_(list(sorted_qs), [self.apps[2], self.apps[0], self.apps[1]])
+
+        # And with Rereview model.
+        url = reverse('reviewers.apps.queue_rereview')
+
+        earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
+        earlier_rrq.created += datetime.timedelta(days=1)
+        earlier_rrq.save()
+        later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
+        later_rrq.created += datetime.timedelta(days=2)
+        later_rrq.save()
+        pri_rrq = RereviewQueue.objects.create(addon=self.apps[2])
+        pri_rrq.save()
+
+        request = rf.get(url, {'sort': 'created'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
+        eq_([pri_rrq.addon, earlier_rrq.addon, later_rrq.addon], list(apps))
+
+        request = rf.get(url, {'sort': 'created', 'order': 'desc'})
+        apps = _do_sort(request, RereviewQueue.objects.all())
+        eq_([pri_rrq.addon, later_rrq.addon, earlier_rrq.addon], list(apps))
 
 
 class TestAppsReviewing(AppReviewerTest, AccessMixin):

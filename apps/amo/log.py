@@ -657,6 +657,14 @@ class CONTENT_RATING_CHANGED(_LOG):
     format = _('{addon} content rating changed.')
 
 
+class PRIORITY_REVIEW_REQUESTED(_LOG):
+    id = 128
+    format = _(u'Priority review requested for {addon}.')
+    short = _(u'Priority Review')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

@@ -104,6 +104,24 @@
         </tr>
         <tr>
           <th>
+            <label for="id_priority_review">
+              {{ _('Priority review needed') }}
+              {{ tip(None,
+                _("The app will be treated as a priority and placed the top of the review queue")) }}
+                   <span class="hint">{{ _('This will persist until first approval') }}</span>
+            </label>
+          </th>
+          <td>
+            {% if editable and form %}
+              {{ form.priority_review }}
+              {{ form.priority_review.errors }}
+            {% else %}
+              <input type="checkbox" disabled{{ ' checked' if addon.priority_review }}>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th>
             <label for="id_banner_message">
               {{ _('Banner message') }}
               {{ tip(None,

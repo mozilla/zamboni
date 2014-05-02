@@ -499,7 +499,7 @@ def _do_sort_webapp(request, qs, date_sort):
                 .order_by(order_by))
 
     else:
-        return qs.order_by(order_by)
+        return qs.order_by('-priority_review', order_by)
 
 
 def _do_sort_queue_obj(request, qs, date_sort):
@@ -530,7 +530,7 @@ def _do_sort_queue_obj(request, qs, date_sort):
         qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
 
     # Convert sorted queue object queryset to sorted app queryset.
-    sorted_app_ids = qs.order_by(order_by).values_list('addon', flat=True)
+    sorted_app_ids = qs.order_by('-addon__priority_review', order_by).values_list('addon', flat=True)
     qs = Webapp.objects.filter(id__in=sorted_app_ids)
     return manual_order(qs, sorted_app_ids, 'addons.id')
 
