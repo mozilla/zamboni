@@ -37,6 +37,7 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         self.list_url = reverse('webpay-prepare')
         self.setup_base()
         self.setup_package()
+        self.setup_mock_generic_product()
 
     def _post(self, client=None, extra_headers=None):
         if client is None:
