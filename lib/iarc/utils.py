@@ -351,12 +351,24 @@ DESC_MAPPING = {
     },
 
     ratingsbodies.USK: {
+        u'Alkoholkonsum': 'alcohol',
+        u'Abstrakte Gewalt': 'abstract_violence',
+        u'Andeutungen Sexueller Gewalt': 'sex_violence_ref',
         u'\xC4ngstigende Inhalte': 'scary',
         u'Diskriminierung': 'discrimination',
         u'Drogen': 'drugs',
+        u'Drogenkonsum': 'drug_use',
         u'Erotik/Sexuelle Inhalte': 'sex_content',
         u'Explizite Sprache': 'lang',
+        u'Explizite Gewalt': 'explicit_violence',
+        u'Gelegentliches Fluchen': 'some_swearing',
         u'Gewalt': 'violence',
+        u'Grusel/Horror': 'horror',
+        u'Nacktheit/Erotik': 'nudity',
+        u'Seltene Schreckmomente': 'some_scares',
+        u'Sexuelle Gewalt': 'sex_violence',
+        u'Sexuelle Andeutungen': 'sex_ref',
+        u'Tabakkonsum': 'tobacco',
     },
 }
 
