@@ -301,7 +301,7 @@ class TestBoku(Patcher, TestCase):
         assert response['accepted']
 
     def test_product_create_exists(self):
-        self.generic_patcher.product.get_object_or_404.return_value = {
+        self.boku_patcher.product.post.return_value = {
             'resource_uri': '/f'}
         account = self.make_account()
         app = app_factory()
