@@ -72,7 +72,7 @@ fi
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
 LOG_LEVEL = logging.ERROR
-DATABASES['default']['NAME'] = 'zamboni_$1'
+DATABASES['default']['NAME'] = 'zamboni_mkt'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
