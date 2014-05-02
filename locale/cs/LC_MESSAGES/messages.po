@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-05-02 08:49+0000\n"
+"PO-Revision-Date: 2014-05-02 09:29+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399020584.0\n"
+"X-POOTLE-MTIME: 1399022944.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -1984,6 +1984,7 @@ msgstr "Video bylo odebráno."
 #: apps/amo/log.py:509
 msgid "{addon} re-review because of new device(s) added."
 msgstr ""
+"Doplněk {addon} bude znovu zkontrolován, protože byla přidána nová zařízení."
 
 #: apps/amo/log.py:510
 msgid "Device(s) Added"
@@ -2008,11 +2009,11 @@ msgstr "Opětovné zkontrolování aplikace"
 
 #: apps/amo/log.py:533
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "Doplňku {addon} byla zvýšena priorita, protože se jedná o VIP aplikaci."
 
 #: apps/amo/log.py:534
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP priorita"
 
 #: apps/amo/log.py:551
 msgid "Created: {0}."
@@ -4472,13 +4473,17 @@ msgstr "Add-on SDK"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>Add-on SDK:</strong> Vytvářejte doplňky rychleji a snadněji"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"Add-on SDK poskytuje mocné API, které umožňuje vývojářům vytvářet doplňky "
+"pro Firefox pomocí HTML, CSS a JavaScriptu. Jakmile je váš doplněk dokončen, "
+"umožníme vám jej snadno sdílet s více než 400 milióny uživateli Firefoxu po "
+"celém světě."
 
 #: apps/devhub/templates/devhub/builder.html:32 mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
@@ -4589,12 +4594,12 @@ msgstr "Zobrazit všechny doplňky ►"
 
 #: apps/devhub/templates/devhub/index.html:93 apps/devhub/templates/devhub/addons/submit/sidebar.html:52
 msgid "Create Add-ons for Australis"
-msgstr ""
+msgstr "Vytvořte doplňky pro Australis"
 
 #: apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/addons/submit/done.html:69 apps/devhub/templates/devhub/addons/submit/sidebar.html:53
 #: apps/discovery/templates/discovery/modules/australis-contest.html:8
 msgid "Win a Firefox OS phone and Mozilla gear!"
-msgstr ""
+msgstr "Vyhrajte telefon s Firefox OS a oblečení s designem Mozilly!"
 
 #: apps/devhub/templates/devhub/index.html:103
 msgid "Firefox Add-ons Made Easy"
@@ -4605,6 +4610,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Doplňky pomáhají miliónům uživatelů Firefoxu vylepšovat a přizpůsobovat si "
+"své prohlížení. Pokud jste webový vývojář a znáte HTML, JavaScript a CSS, "
+"máte již to, co potřebujete k vytváření skvělých doplňků pomocí Add-on SDK. "
+"Navíc instalace doplňků vytvářených pomocí SDK nevyžaduje restart "
+"prohlížeče."
 
 #: apps/devhub/templates/devhub/index.html:113
 msgid "Start Making Add-ons"
@@ -5538,7 +5548,7 @@ msgstr "Pokud nebude proces přidání doplňku dokončen během několika dní,
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Poslední verze:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:41 mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:241
 #: mkt/developers/templates/developers/apps/listing/items.html:24
@@ -5665,7 +5675,7 @@ msgstr "Podívejte se na přibližný <a href=\"{0}\">čas čekání</a> ve fron
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:67
 msgid "Submit your add-on for the Add-ons for Australis contest"
-msgstr ""
+msgstr "Přihlaste svůj doplněk do soutěže Add-ons for Australis"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -9350,11 +9360,11 @@ msgstr "Přerušit instalaci"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:4
 msgid "Create add-ons for Firefox's new look"
-msgstr ""
+msgstr "Vytvořte doplněk pro nový vzhled Firefoxu"
 
 #: apps/discovery/templates/discovery/modules/australis-contest.html:9
 msgid "Contest details"
-msgstr ""
+msgstr "Detaily soutěže"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -13335,15 +13345,15 @@ msgstr "ostatní"
 
 #: apps/users/models.py:64
 msgid "algorithm"
-msgstr ""
+msgstr "algorithm"
 
 #: apps/users/models.py:65
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -13665,7 +13675,7 @@ msgstr "Poskytněte o sobě více informací. Všechna tato pole jsou volitelná
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Tato URL je viditelná pouze tehdy, když jste vývojář."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -15570,7 +15580,7 @@ msgstr "Telefony s Androidem"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tablety"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -15612,7 +15622,7 @@ msgstr "Explicitní sex"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Impacting Content"
-msgstr ""
+msgstr "Vlivný obsah"
 
 #: mkt/constants/ratingdescriptors.py:22 mkt/constants/ratingdescriptors.py:64 mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:87 mkt/constants/ratingdescriptors.py:101
 msgid "Violence"
@@ -16250,7 +16260,7 @@ msgstr "Název účtu"
 
 #: mkt/developers/forms_payments.py:639
 msgid "Service ID"
-msgstr ""
+msgstr "ID služby"
 
 #: mkt/developers/forms_payments.py:651
 msgid "No payment account set up for that app"
@@ -16271,7 +16281,7 @@ msgstr "Referenční implementace"
 
 #: mkt/developers/providers.py:324
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -16413,7 +16423,7 @@ msgstr "Operátor"
 
 #: mkt/developers/views_payments.py:319
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Při získávání klíče aplikace nastala chyba serveru."
 
 #: mkt/developers/views_payments.py:326
 msgid "Secret was reset successfully."
@@ -16696,6 +16706,11 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"Validátor je nástroje, který umožňuje otestovat vaši aplikaci na chyby, "
+"nevhodná použití a věci, které odporují zásadám na Marketplace dříve, než "
+"odešlete svou aplikaci na kontrolu. Pokud vás zajímá, jak nástroje funguje "
+"nebo byste si rádi spustili svou vlastní kopii, můžete se podívat na "
+"zdrojový kód <a href=\"%(repo)s\">na Githubu</a>."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
@@ -16772,7 +16787,7 @@ msgstr "Aplikace je <b>veřejná</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
-msgstr ""
+msgstr "Poslední verze <b>čeká na kontrolu</b> redaktorem Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -16781,6 +16796,9 @@ msgstr "Aplikace byla <b>Mozillou zakázána</b>."
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Vaše aplikace byla zakázána, protože jí chybí hodnocení obsahu. Aplikace "
+"bude automaticky znovu povolena po <a href=\"%(ratings_url)s\">získání "
+"hodnocení obsahu</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -17025,11 +17043,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "Regiony pro zobrazení banneru v"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:130
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regiony, v kterých bude zobrazen banner se zprávou."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:153
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -17082,7 +17100,7 @@ msgstr "Vysvětlení vlastností, funkcionality a jiné relevantní informace. T
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:127
 msgid "Release Notes"
-msgstr ""
+msgstr "Poznámky k vydání"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
