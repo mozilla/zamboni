@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-23 09:14-0700\n"
-"PO-Revision-Date: 2014-04-20 22:39+0100\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2014-05-03 04:47+0000\n"
+"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-POOTLE-MTIME: 1380916461.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1399092455.0\n"
 
 #: apps/addons/buttons.py:189
 msgid "Download Now"
@@ -6952,6 +6952,13 @@ msgid ""
 "for improvement. Common reasons for rejection include lacking wide appeal to consumers, a suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured "
 "add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"As nomeações para extensões são revistas mensalmente (ou  uma vez por cada "
+"três meses para nomeações de temas completos) pelo Conselho Consultivo e "
+"receberá um email com a decisão e quaisquer sugestões de melhoria. As razões "
+"mais comuns de rejeição incluem falta de apelo para os consumidores, "
+"experiência de utilização não ideal, qualidade ou problemas de segurança, "
+"incompatibilidade e semelhanças com outro extra destacado. Os extras "
+"rejeitados não podem ser novamente nomeados durante 3 meses."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -6966,6 +6973,10 @@ msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
 msgstr ""
+"Pouco crescimento &mdash; Extras que são destacados apresentam tipicamente "
+"um crescimento substancial em número de transferências e utilizadores. Se um "
+"extra não demonstra crescimento de nenhum modo substancial, este é um bom "
+"indicador que o extra pode não ser muito útil para os nossos utilizadores."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -6986,6 +6997,8 @@ msgstr "Juntar-se ao conselho consultivo dos extras"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
 msgstr ""
+"Todos os seis meses um novo Conselho Consultivo é escolhido a partir de "
+"candidaturas da comunidade de extras. Os membros devem:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
@@ -6994,10 +7007,15 @@ msgstr "ser membros ativos da comunidade dos extras, seja como desenvolvedor, ev
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 msgstr ""
+"comprometer-se em experimentar todos os meses todas as nomeações submetidas, "
+"dando o seu feedback e emitindo os seus votos"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "join a monthly conference call to go through the votes and select the next month's featured add-ons (featured complete themes will be discussed on every third call)"
 msgstr ""
+"participar numa áudio-conferência mensal para analisar todos os votos e "
+"selecionar os extras em destaque do próximo mês (temas completos em destaque "
+"serão discutidos a cada três reuniões)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:111
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
@@ -7008,6 +7026,10 @@ msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
+"Os membros da equipa de extras da Mozilla podem vetar qualquer seleção de "
+"extras devido a questões de segurança, privacidade, compatibilidade ou "
+"qualquer outro motivo mas, em geral, cabe ao conselho geral selecionar os "
+"extras a destacar."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:121
 msgid ""
@@ -7015,14 +7037,25 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
+"Esta política de destaques apenas se aplica aos extras da lista global de "
+"extras destacados de addons.mozilla.org. Extras destacados em outras regiões "
+"são por muitas vezes baseados nesta lista, mas a Mozilla pode destacar "
+"qualquer outro extra em outras localizações sem o consentimento do Conselho. "
+"Adicionalmente, destaques específicos de locais podem sobrepor-se aos "
+"globais pelo que se um determinado idioma optou por selecionar os seus "
+"próprios destaques, alguns ou todos os destaques globais podem não ser "
+"apresentados nessa região."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:127
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 msgstr ""
+"Siga o <a href=\"%(link_blog)s\">blogue de extras</a> ou a <a href=\"%"
+"(link_twitter)s\">@mozamo</a> no Twitter para saber quando o próximo período "
+"de inscrição será aberto."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:132
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Última vez atualizado: 31 de Janeiro de 2013"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:3 apps/devhub/templates/devhub/docs/policies-reviews.html:7 apps/devhub/templates/devhub/docs/policies-reviews.html:8
 #: apps/devhub/templates/devhub/docs/policies.html:15 apps/devhub/templates/devhub/docs/policies.html:64
@@ -7464,6 +7497,12 @@ msgid ""
 "We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
 "Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
+"Estamos constantemente à procura de maneiras de melhorar a organização do "
+"site para melhor acomodar extras que são exemplares de outras formas, mas "
+"direcionados a uma pequena comunidade potencial de utilizadores. Categorizar "
+"corretamente e manter os meta-dados do seu extra irá ajudar-nos a perceber "
+"como podemos encontrar mais deste tipo de extras para pessoas que deles "
+"poderão beneficiar."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:61
 msgid ""
@@ -7779,55 +7818,59 @@ msgstr "Perguntas frequentes"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:4
 msgid "Frequently Asked Questions | Themes"
-msgstr ""
+msgstr "Questões frequentes | Temas"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
 msgid "Introducing Background Themes"
-msgstr ""
+msgstr "Introdução aos temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:16
 msgid "What Are Background Themes?"
-msgstr ""
+msgstr "O que são temas de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
 msgid "What kind of computers and operating systems do Background Themes work with?"
 msgstr ""
+"Com que tipos de computadores e sistemas operativos os temas de fundo "
+"funcionam?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
 msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr ""
+msgstr "Qual é a diferença entre temas de fundo e temas completos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
 msgid "Installing Background Themes"
-msgstr ""
+msgstr "Instalação de temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
 msgid "How do I add Background Themes to my Firefox?"
-msgstr ""
+msgstr "Como adiciono um tema de fundo ao meu Firefox?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
 msgid "Are Background Themes free?"
-msgstr ""
+msgstr "Os temas de fundo são gratuitos?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
 msgid "Using Background Themes"
-msgstr ""
+msgstr "Utilização de temas de fundo"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
-msgstr ""
+msgstr "Como altero o meu tema de fundo atual?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid "If I have a Complete Theme installed, will Background Themes still work?"
 msgstr ""
+"Se eu tiver um tema completo instalado, os temas de fundo ainda irão "
+"funcionar?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
-msgstr ""
+msgstr "Como remover um tema de fundo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
 msgid "How do I provide feedback?"
-msgstr ""
+msgstr "Como posso enviar minha opinião?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
@@ -7870,10 +7913,15 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
 msgstr ""
+"Os temas completos modificam a aparência do seu navegador com estilos para a "
+"moldura da janela, barra de endereço, botões, separadores e menus."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
 msgstr ""
+"Os temas de fundo modificam apenas as áreas de cabeçalho e rodapé do seu "
+"navegador. Pode pré-visualizar de forma instantânea um design e instalá-lo "
+"com um clique sem necessidade de reiniciar o navegador."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
