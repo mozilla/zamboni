@@ -162,7 +162,7 @@ def test_url_src():
 
 
 def test_urlparams():
-    url = '/en-US/firefox/themes/category'
+    url = '/en-US/firefox/search-tools/category'
     c = {'base': url,
          'base_frag': url + '#hash',
          'base_query': url + '?x=y',
@@ -356,30 +356,6 @@ class TestLicenseLink(amo.tests.TestCase):
             s = render('{{ license_link(lic) }}', {'lic': lic})
             s = ''.join([s.strip() for s in s.split('\n')])
             eq_(s, ex)
-
-    def test_theme_license_link(self):
-        s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
-
-        ul = PyQuery(s)('.license')
-        eq_(ul.find('.icon').length, 1)
-        eq_(ul.find('.icon.copyr').length, 1)
-
-        text = ul.find('.text')
-        eq_(text.find('a').length, 0)
-        eq_(text.text(), 'All Rights Reserved')
-
-        s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_CC_BY_NC_SA})
-
-        ul = PyQuery(s)('.license')
-        eq_(ul.find('.icon').length, 3)
-        eq_(ul.find('.icon.cc-attrib').length, 1)
-        eq_(ul.find('.icon.cc-noncom').length, 1)
-        eq_(ul.find('.icon.cc-share').length, 1)
-
-        link = ul.find('.text a')
-        eq_(link.find('a').length, 0)
-        eq_(link.text(), 'Some rights reserved')
-        eq_(link.attr('href'), amo.LICENSE_CC_BY_NC_SA.url)
 
     def test_license_link_xss(self):
         mit = License.objects.create(

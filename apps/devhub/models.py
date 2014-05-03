@@ -103,8 +103,7 @@ class AddonLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        # This table is addons only and not in use by the marketplace (except
-        # for Themes).
+        # This table is addons only and not in use by the marketplace.
         db_table = table_name('log_activity_addon')
         ordering = ('-created',)
 
@@ -222,25 +221,23 @@ class ActivityLogManager(amo.models.ManagerBase):
         return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
-    def total_reviews(self, webapp=False, theme=False):
+    def total_reviews(self, webapp=False):
         qs = self._by_type(webapp)
         """Return the top users, and their # of reviews."""
         return (qs.values('user', 'user__display_name', 'user__username')
-                  .filter(action__in=([amo.LOG.THEME_REVIEW.id] if theme
-                                      else amo.LOG_REVIEW_QUEUE))
+                  .filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
-    def monthly_reviews(self, webapp=False, theme=False):
+    def monthly_reviews(self, webapp=False):
         """Return the top users for the month, and their # of reviews."""
         qs = self._by_type(webapp)
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
-                          action__in=([amo.LOG.THEME_REVIEW.id] if theme
-                                      else amo.LOG_REVIEW_QUEUE))
+                          action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -252,11 +249,11 @@ class ActivityLogManager(amo.models.ManagerBase):
         except StopIteration:
             return None
 
-    def total_reviews_user_position(self, user, webapp=False, theme=False):
-        return self.user_position(self.total_reviews(webapp, theme), user)
+    def total_reviews_user_position(self, user, webapp=False):
+        return self.user_position(self.total_reviews(webapp), user)
 
-    def monthly_reviews_user_position(self, user, webapp=False, theme=False):
-        return self.user_position(self.monthly_reviews(webapp, theme), user)
+    def monthly_reviews_user_position(self, user, webapp=False):
+        return self.user_position(self.monthly_reviews(webapp), user)
 
     def _by_type(self, webapp=False):
         qs = super(ActivityLogManager, self).get_query_set()

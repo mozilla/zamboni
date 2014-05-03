@@ -78,9 +78,7 @@
         'lite': gettext("Experimental <span>(Learn More)</span>"),
         'badApp': format(gettext("Not Available for {0}"), z.appName),
         'badPlatform': format(gettext("Not Available for {0}"), z.platformName),
-        'experimental': gettext("Experimental"),
-        'personasTooOld': format(gettext("Themes Require Newer Version of {0}"), z.appName),
-        'personasLearnMore': format(gettext("Themes Require {0}"), z.appName)
+        'experimental': gettext("Experimental")
     };
 
     function Button(el) {
@@ -119,9 +117,6 @@
             versionPlatformCheck();
 
             this.actionQueue.push([0, function() {
-                if (self.classes.persona) {
-                    return;
-                }
                 var href = activeInstaller[0].href,
                     hash = hashes[href],
                     attr = self.attr,
@@ -224,7 +219,6 @@
                 'beta'        : b.hasClass('beta'),
                 'lite'        : b.hasClass('lite'),
                 'unreviewed'  : b.hasClass('unreviewed'), // && !beta,
-                'persona'     : b.hasClass('persona'),
                 'contrib'     : b.hasClass('contrib'),
                 'search'      : b.hasattr('data-search'),
                 'eula'        : b.hasClass('eula'),
@@ -292,24 +286,6 @@
                     z.eula.acceptButton.click(_pd(self.resumeInstall));
                 }
 
-                if (classes.persona) {
-                    dom.buttons.removeClass("download").addClass("add");
-                    var persona = new MobilePersona(b);
-                    if ($.hasPersonas()) {
-                        dom.buttons.text(gettext("Keep it"));
-                        dom.buttons.personasButton("click",
-                            persona.states().installed);
-                    } else {
-                        persona.buttons().disable();
-                        dom.buttons.addClass("disabled");
-                        if (z.appMatchesUserAgent) {
-                            // Need upgrade.
-                            errors.push("personasTooOld");
-                        } else {
-                            errors.push("personasLearnMore");
-                        }
-                    }
-                }
             }
 
             if (z.badBrowser && !(z.capabilities.webApps && self.classes.webapp)) {

@@ -977,12 +977,6 @@ class TestApplicationsVersions(amo.tests.TestCase):
         version = addon.current_version
         eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
 
-    def test_repr_when_not_extension(self):
-        addon = addon_factory(type=amo.ADDON_THEME,
-                              version_kw=self.version_kw)
-        version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
-
     def test_repr_when_low_app_support(self):
         addon = addon_factory(version_kw=dict(min_app_version='3.0',
                                               max_app_version='3.5'))

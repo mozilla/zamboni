@@ -111,11 +111,8 @@ def check_reviewer(request, only=None, region=None):
 
     addon = action_allowed(request, 'Addons', 'Review')
     app = action_allowed(request, 'Apps', 'Review')
-    persona = action_allowed(request, 'Personas', 'Review')
     if only == 'addon':
         return addon
     elif only == 'app':
         return app
-    elif only == 'persona':
-        return persona
-    return addon or app or persona
+    return addon or app

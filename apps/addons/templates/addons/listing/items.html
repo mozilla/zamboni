@@ -16,10 +16,7 @@
       {% endif %}
     </div>
     <blockquote>
-      {% if addon.is_persona() %}
-        {{ persona_preview(addon.persona, linked=False) }}
-      {% else %}
-        <div>{{ addon.summary|truncate(250)|nl2br }}</div>
+      <div>{{ addon.summary|truncate(250)|nl2br }}</div>
       {% endif %}
     </blockquote>
     {% if notes and notes[addon.id] %}

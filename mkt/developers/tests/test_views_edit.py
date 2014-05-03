@@ -828,13 +828,6 @@ class TestEditMedia(TestEdit):
         result = json.loads(self.client.get(self.url).content)
         assert not result['previews']
 
-    def test_image_status_persona(self):
-        self.setup_image_status()
-        os.remove(self.icon_dest)
-        self.webapp.update(type=amo.ADDON_PERSONA)
-        result = json.loads(self.client.get(self.url).content)
-        assert result['icons']
-
     def test_image_status_default(self):
         self.setup_image_status()
         os.remove(self.icon_dest)
@@ -1352,6 +1345,21 @@ class TestAdminSettings(TestAdmin):
         data.update({'vip_app': ''})
         r = self.client.post(self.edit_url, data)
         self.compare({'vip_app': False})
+
+    def test_priority_review_toggle(self):
+        # Turn on.
+        data = {
+            'position': 1,  # Required, useless in this test.
+            'priority_review': 'on'
+        }
+        r = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(r)
+        self.compare({'priority_review': True})
+
+        # And off.
+        data = {'position': 1}
+        r = self.client.post(self.edit_url, data)
+        self.compare({'priority_review': False})
 
     def test_staff(self):
         # Staff and Support Staff should have Apps:Configure.

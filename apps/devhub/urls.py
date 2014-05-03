@@ -31,19 +31,6 @@ submit_apps_patterns = patterns('',
 )
 
 
-# These will all start with /theme/<slug>/
-theme_detail_patterns = patterns('',
-    url('^$', lambda r,
-        addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
-    url('^delete$', views.delete, name='devhub.themes.delete'),
-    # Upload url here to satisfy CSRF.
-    url('^edit/upload/'
-        '(?P<upload_type>persona_header|persona_footer)$',
-        views.ajax_upload_image, name='devhub.personas.reupload_persona'),
-    url('^edit$', views.edit_theme, name='devhub.themes.edit'),
-    url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
-)
-
 # These will all start with /app/<app_slug>/
 app_detail_patterns = patterns('',
     url('^edit$', views.edit, name='devhub.apps.edit'),
@@ -192,8 +179,6 @@ urlpatterns = decorate(write, patterns('',
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
-    url('^themes$', views.dashboard, name='devhub.themes',
-        kwargs={'theme': True}),
     url('^apps$', views.dashboard, name='devhub.apps'),
     url('^feed$', views.feed, name='devhub.feed_all'),
     # TODO: not necessary when devhub homepage is moved out of remora
@@ -216,15 +201,6 @@ urlpatterns = decorate(write, patterns('',
     url('^app/%s/submit/' % ADDON_ID, include(submit_apps_patterns)),
 
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
-
-    # Themes submission.
-    url('^theme/submit/?$', views.submit_theme, name='devhub.themes.submit'),
-    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
-        name='devhub.themes.submit.done'),
-    url('^theme/submit/upload/'
-        '(?P<upload_type>persona_header|persona_footer)$',
-        views.ajax_upload_image, name='devhub.personas.upload_persona'),
-    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
     url('builder$', views.builder, name='devhub.builder'),

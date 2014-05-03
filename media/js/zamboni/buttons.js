@@ -390,7 +390,6 @@ var installButton = function() {
     // What kind of button are we dealing with?
     var beta = $this.hasClass('beta');
         unreviewed = $this.hasClass('unreviewed') && !beta,
-        persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
@@ -406,20 +405,6 @@ var installButton = function() {
     } else if (premium) {
         premiumButton.call($this);
         versionsAndPlatforms({addPopup: false});
-    } else if (persona) {
-        $button.removeClass('download').addClass('add').find('span').text(addto);
-        if ($.hasPersonas()) {
-            $button.personasButton();
-        } else {
-            $button.addClass('concealed');
-            if (z.appMatchesUserAgent) {
-                // Need upgrade
-                params['old_version'] = z.browserVersion;
-                $button.addPopup(message('personas_need_upgrade'));
-            } else {
-                $button.addPopup(message('learn_more_personas'));
-            }
-        }
     } else if (z.appMatchesUserAgent) {
         clickHijack();
         addToApp();

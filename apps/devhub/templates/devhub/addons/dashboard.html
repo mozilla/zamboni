@@ -57,10 +57,6 @@
       <a href="{{ url('devhub.submit.1') }}"
          class="button prominent">{{ _('Submit a New Add-on') }}</a>
     </p>
-    <p class="submit-theme submit-cta">
-      <a href="{{ url('devhub.themes.submit') }}"
-         class="button prominent">{{ _('Submit a New Theme') }}</a>
-    </p>
     <div class="item recent-activity">
       <h3>
         {{ _('Recent Activity') }}
@@ -104,24 +100,6 @@
           {{ dev_addon_listing_items(addons.object_list) }}
         </div>
         {{ addons|impala_paginator }}
-      </div>
-    </section>
-  {% endif %}
-
-  {% if theme %}
-    {# L10n: {0} is an integer. #}
-    <section class="dashboard primary theme-dashboard">
-      {% set cnt = themes.paginator.count %}
-      <h2 class="submission-count">
-        {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|f(cnt|numberfmt)|safe }}
-      </h2>
-      {% include "addons/includes/dashboard_tabs.html" %}
-      <div class="listing island hero c">
-        {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
-        <div class="items">
-          {{ dev_addon_listing_items(themes.object_list) }}
-        </div>
-        {{ themes|impala_paginator }}
       </div>
     </section>
   {% endif %}

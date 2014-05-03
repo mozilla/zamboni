@@ -20,7 +20,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-from PIL import Image
 from session_csrf import anonymous_csrf
 from tower import ugettext_lazy as _lazy, ugettext as _
 import waffle
@@ -80,19 +79,15 @@ class AppFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
-def addon_listing(request, default='name', webapp=False, theme=False):
+def addon_listing(request, default='name', webapp=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     Filter = AppFilter if webapp else AddonFilter
     if webapp:
         qs = Webapp.objects.filter(
             id__in=request.amo_user.addons.filter(type=amo.ADDON_WEBAPP))
         model = Webapp
-    elif theme:
-        qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
-        model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
-                                                       amo.ADDON_PERSONA])
+        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP])
         model = Addon
     filter = Filter(request, qs, 'sort', default, model=model)
     return filter.qs, filter
@@ -116,21 +111,17 @@ def index(request):
 
 
 @login_required
-def dashboard(request, webapp=False, theme=False):
+def dashboard(request, webapp=False):
     addon_items = _get_items(
         None, request.amo_user.addons.exclude(type=amo.ADDON_WEBAPP))[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
-                timestamp=int(time.time()), addon_tab=not webapp and not theme,
-                webapp=webapp, theme=theme, addon_items=addon_items)
+                timestamp=int(time.time()), addon_tab=True,
+                webapp=webapp, addon_items=addon_items)
 
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request, webapp=webapp)
         data['addons'] = amo.utils.paginate(request, addons, per_page=10)
-
-    if theme:
-        themes, data['filter'] = addon_listing(request, theme=True)
-        data['themes'] = amo.utils.paginate(request, themes, per_page=10)
 
     if 'filter' in data:
         data['sorting'] = data['filter'].field
@@ -316,34 +307,9 @@ def edit(request, addon_id, addon, webapp=False):
     return render(request, 'devhub/addons/edit.html', data)
 
 
-@dev_required(theme=True)
-def edit_theme(request, addon_id, addon, theme=False):
-    form = addon_forms.EditThemeForm(data=request.POST or None,
-                                     request=request, instance=addon)
-    owner_form = addon_forms.EditThemeOwnerForm(data=request.POST or None,
-                                                instance=addon)
-
-    if request.method == 'POST':
-        if 'owner_submit' in request.POST:
-            if owner_form.is_valid():
-                owner_form.save()
-                messages.success(request, _('Changes successfully saved.'))
-                return redirect('devhub.themes.edit', addon.slug)
-        elif form.is_valid():
-            form.save()
-            messages.success(request, _('Changes successfully saved.'))
-            return redirect('devhub.themes.edit', addon.reload().slug)
-        else:
-            messages.error(request, _('Please check the form for errors.'))
-
-    return render(request, 'devhub/personas/edit.html', {
-        'addon': addon, 'persona': addon.persona, 'form': form,
-        'owner_form': owner_form})
-
-
-@dev_required(owner_for_post=True, webapp=True, theme=True)
+@dev_required(owner_for_post=True, webapp=True)
 @post_required
-def delete(request, addon_id, addon, webapp=False, theme=False):
+def delete(request, addon_id, addon, webapp=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         if webapp:
@@ -357,19 +323,12 @@ def delete(request, addon_id, addon, webapp=False, theme=False):
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
         addon.delete(msg='Removed via devhub', reason=reason)
-        messages.success(request,
-            _('Theme deleted.') if theme else _('Add-on deleted.'))
-        return redirect('devhub.%s' % ('apps' if webapp else
-                                       'themes' if theme else 'addons'))
+        messages.success(request, _('Add-on deleted.'))
+        return redirect('devhub.%s' % ('apps' if webapp else 'addons'))
     else:
-        if theme:
-            messages.error(request,
-                _('Password was incorrect. Theme was not deleted.'))
-            return redirect(addon.get_dev_url())
-        else:
-            messages.error(request,
-                _('Password was incorrect. Add-on was not deleted.'))
-            return redirect(addon.get_dev_url('versions'))
+        messages.error(request,
+            _('Password was incorrect. Add-on was not deleted.'))
+        return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required
@@ -1001,9 +960,9 @@ def upload_detail(request, uuid, format='html'):
 
 
 class AddonDependencySearch(BaseAjaxSearch):
-    # No personas. No webapps.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    # No webapps.
+    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 class AppDependencySearch(BaseAjaxSearch):
@@ -1112,14 +1071,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
 
 
 @never_cache
-@dev_required(theme=True)
+@dev_required
 @json_view
-def image_status(request, addon_id, addon, theme=False):
+def image_status(request, addon_id, addon):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
-        icons = True
-    # Persona icon is handled differently.
-    elif addon.type == amo.ADDON_PERSONA:
         icons = True
     else:
         icons = storage.exists(os.path.join(addon.get_icon_dir(),
@@ -1147,7 +1103,6 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 fd.write(chunk)
 
         is_icon = upload_type == 'icon'
-        is_persona = upload_type.startswith('persona_')
 
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or
@@ -1166,27 +1121,12 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         max_size = None
         if is_icon:
             max_size = settings.MAX_ICON_UPLOAD_SIZE
-        if is_persona:
-            max_size = settings.MAX_PERSONA_UPLOAD_SIZE
 
         if max_size and upload_preview.size > max_size:
             if is_icon:
                 errors.append(_('Please use images smaller than %dMB.') % (
                     max_size / 1024 / 1024 - 1))
-            if is_persona:
-                errors.append(_('Images cannot be larger than %dKB.') % (
-                    max_size / 1024))
 
-        if check.is_image() and is_persona:
-            persona, img_type = upload_type.split('_')  # 'header' or 'footer'
-            expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            with storage.open(loc, 'rb') as fp:
-                actual_size = Image.open(fp).size
-            if actual_size != expected_size:
-                # L10n: {0} is an image width (in pixels), {1} is a height.
-                errors.append(_('Image must be exactly {0} pixels wide '
-                                'and {1} pixels tall.')
-                              .format(expected_size[0], expected_size[1]))
     else:
         errors.append(_('There was an error uploading your preview.'))
 
@@ -1624,43 +1564,9 @@ def submit_bump(request, addon_id, addon, webapp=False):
                   dict(addon=addon, step=step))
 
 
-@login_required
-def submit_theme(request):
-    data = {}
-    if request.method == 'POST':
-        data = request.POST.dict()
-        if 'unsaved_data' in request.session and data['unsaved_data'] == '{}':
-            # Restore unsaved data on second invalid POST..
-            data['unsaved_data'] = request.session['unsaved_data']
-
-    form = addon_forms.ThemeForm(data=data or None,
-                                 files=request.FILES or None,
-                                 request=request)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            addon = form.save()
-            return redirect('devhub.themes.submit.done', addon.slug)
-        else:
-            # Stored unsaved data in request.session since it gets lost on
-            # second invalid POST.
-            messages.error(request, _('Please check the form for errors.'))
-            request.session['unsaved_data'] = data['unsaved_data']
-
-    return render(request, 'devhub/personas/submit.html', dict(form=form))
-
-
-@dev_required(theme=True)
-def submit_theme_done(request, addon_id, addon, theme):
-    if addon.is_public():
-        return redirect(addon.get_url_path())
-    return render(request, 'devhub/personas/submit_done.html',
-                  dict(addon=addon))
-
-
-@dev_required(theme=True)
+@dev_required
 @post_required
-def remove_locale(request, addon_id, addon, theme):
+def remove_locale(request, addon_id, addon):
     POST = request.POST
     if 'locale' in POST and POST['locale'] != addon.default_locale:
         addon.remove_locale(POST['locale'])
@@ -1724,9 +1630,7 @@ def docs(request, doc_name=None, doc_page=None):
                 'case-studies': ['cooliris', 'stumbleupon',
                                  'download-statusbar'],
                 'how-to': ['getting-started', 'extension-development',
-                           'thunderbird-mobile', 'theme-development',
-                           'other-addons'],
-                'themes': ['faq']}
+                           'thunderbird-mobile', 'other-addons']}
 
     if doc_name and doc_name in all_docs:
         filename = '%s.html' % doc_name

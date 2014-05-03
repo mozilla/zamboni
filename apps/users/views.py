@@ -50,8 +50,6 @@ log = commonware.log.getLogger('z.users')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
-THEMES_LIMIT = 20
-
 
 def user_view(f):
     @functools.wraps(f)
@@ -572,17 +570,9 @@ def profile(request, user):
                    request.amo_user.id == user.id)
 
     addons = []
-    personas = []
-    limited_personas = False
     if user.is_developer:
         addons = user.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
             addonuser__user=user, addonuser__listed=True)
-
-        personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
-            '-persona__popularity')
-        if personas.count() > THEMES_LIMIT:
-            limited_personas = True
-            personas = personas[:THEMES_LIMIT]
 
         addons = addons.exclude(type=amo.ADDON_PERSONA).order_by(
             '-weekly_downloads')
@@ -594,9 +584,7 @@ def profile(request, user):
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
-            'addons': addons, 'own_profile': own_profile,
-            'personas': personas, 'limited_personas': limited_personas,
-            'THEMES_LIMIT': THEMES_LIMIT}
+            'addons': addons, 'own_profile': own_profile}
     if not own_profile:
         data['abuse_form'] = AbuseForm(request=request)
 

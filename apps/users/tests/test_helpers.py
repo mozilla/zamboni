@@ -3,10 +3,8 @@ import re
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 from addons.models import Addon
-from addons.tests.test_views import TestPersonas
 import amo
 import amo.tests
 from users.helpers import (addon_users_list, emaillink, user_data, user_link,
@@ -82,13 +80,10 @@ def test_user_link_unicode():
         u'<a href="%s">%s</a>' % (u.get_url_path(), u.username))
 
 
-class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
+class TestAddonUsersList(amo.tests.TestCase):
 
     def setUp(self):
         self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        waffle.models.Switch.objects.create(
-            name='personas-migration-completed', active=True)
         self.create_addon_user(self.addon)
 
     def test_by(self):

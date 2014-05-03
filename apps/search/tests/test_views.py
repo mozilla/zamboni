@@ -6,7 +6,6 @@ import urlparse
 from django.http import QueryDict
 
 from jingo.helpers import datetime as datetime_filter
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from test_utils import RequestFactory
@@ -16,10 +15,10 @@ import amo
 import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
+from addons.models import Addon, AddonCategory, AddonUser, Category
 from search import views
 from search.utils import floor_version
-from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
+from search.views import version_sidebar
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
@@ -33,7 +32,7 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
         cls.setUpIndex()
 
     def check(self, url, placeholder, cat=None, action=None, q=None):
-        # Checks that we search within addons, personas, collections, etc.
+        # Checks that we search within addons, collections, etc.
         form = pq(self.client.get(url).content)('.header-search form')
         eq_(form.attr('action'), action or reverse('search.search'))
         if cat:
@@ -506,15 +505,6 @@ class TestESSearch(SearchBase):
         return sorted(int(pq(a).attr('data-addon')) for a in pks)
 
     def test_results_filtered_atype(self):
-        theme = self.addons[0]
-        theme.type = amo.ADDON_THEME
-        theme.save()
-        self.refresh_addons()
-
-        themes = sorted(self.addons.filter(type=amo.ADDON_THEME)
-                        .values_list('id', flat=True))
-        eq_(themes, [theme.id])
-
         extensions = sorted(self.addons.filter(type=amo.ADDON_EXTENSION)
                             .values_list('id', flat=True))
         eq_(extensions, sorted(a.id for a in self.addons[1:]))
@@ -524,24 +514,12 @@ class TestESSearch(SearchBase):
         eq_(r.status_code, 200)
         eq_(self.get_results(r), extensions)
 
-        # Themes should show only themes.
-        r = self.client.get(self.url, dict(atype=amo.ADDON_THEME))
-        eq_(r.status_code, 200)
-        eq_(self.get_results(r), themes)
-
     def test_results_respect_appver_filtering(self):
         r = self.client.get(self.url, dict(appver='9.00'))
         eq_(self.get_results(r), [])
 
     def test_results_skip_appver_filtering_for_d2c(self):
         r = self.client.get(self.url, dict(appver='10.0a1'))
-        eq_(self.get_results(r),
-            sorted(self.addons.values_list('id', flat=True)))
-
-    def test_results_respect_appver_filtering_for_non_extensions(self):
-        self.addons.update(type=amo.ADDON_THEME)
-        r = self.client.get(self.url, dict(appver='10.0a1',
-                                           type=amo.ADDON_THEME))
         eq_(self.get_results(r),
             sorted(self.addons.values_list('id', flat=True)))
 
@@ -604,168 +582,6 @@ class TestESSearch(SearchBase):
         self.refresh(timesleep=1)
         r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
         eq_(self.get_results(r), [a.id])
-
-
-class TestPersonaSearch(SearchBase):
-    fixtures = ['base/apps']
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestPersonaSearch, cls).setUpClass()
-        cls.setUpIndex()
-
-    def setUp(self):
-        self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
-
-    def _generate_personas(self):
-        # Add some public personas.
-        self.personas = []
-        for status in amo.REVIEWED_STATUSES:
-            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                            status=status)
-            self.personas.append(addon)
-            self._addons.append(addon)
-
-        # Add some unreviewed personas.
-        for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
-            self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                                        status=status))
-
-        # Add a disabled persona.
-        self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                                    disabled_by_user=True))
-
-        # NOTE: There are also some add-ons in `setUpIndex` for good measure.
-
-        self.refresh()
-
-    def test_sort_order_default(self):
-        self._generate_personas()
-        self.check_sort_links(None, sort_by='weekly_downloads')
-
-    def test_sort_order_unknown(self):
-        self._generate_personas()
-        self.check_sort_links('xxx')
-
-    def test_sort_order_users(self):
-        self._generate_personas()
-        self.check_sort_links('users', sort_by='average_daily_users')
-
-    def test_sort_order_rating(self):
-        self._generate_personas()
-        self.check_sort_links('rating', sort_by='bayesian_rating')
-
-    def test_sort_order_newest(self):
-        self._generate_personas()
-        self.check_sort_links('created', sort_by='created')
-
-    def test_heading(self):
-        self.check_heading()
-
-    def test_results_blank_query(self):
-        self._generate_personas()
-        personas_ids = sorted(p.id for p in self.personas)  # Not PersonaID ;)
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(self.get_results(r), personas_ids)
-        doc = pq(r.content)
-        eq_(doc('.personas-grid li').length, len(personas_ids))
-        eq_(doc('.listing-footer').length, 0)
-
-    def test_results_name_query(self):
-        raise SkipTest
-        self._generate_personas()
-
-        p1 = self.personas[0]
-        p1.name = 'Harry Potter'
-        p1.save()
-
-        p2 = self.personas[1]
-        p2.name = 'The Life Aquatic with SeaVan'
-        p2.save()
-        self.refresh()
-
-        # Empty search term should return everything.
-        self.check_name_results({'q': ''}, sorted(p.id for p in self.personas))
-
-        # Garbage search terms should return nothing.
-        for term in ('xxx', 'garbage', '£'):
-            self.check_name_results({'q': term}, [])
-
-        # Try to match 'Harry Potter'.
-        for term in ('harry', 'potter', 'har', 'pot', 'harry pooper'):
-            self.check_name_results({'q': term}, [p1.pk])
-
-        # Try to match 'The Life Aquatic with SeaVan'.
-        for term in ('life', 'aquatic', 'seavan', 'sea van'):
-            self.check_name_results({'q': term}, [p2.pk])
-
-    def test_results_popularity(self):
-        personas = [
-            ('Harry Potter', 2000),
-            ('Japanese Koi Tattoo', 67),
-            ('Japanese Tattoo', 250),
-            ('Japanese Tattoo boop', 50),
-            ('Japanese Tattoo ballin', 200),
-            ('The Japanese Tattooed Girl', 242),
-        ]
-        for name, popularity in personas:
-            self._addons.append(amo.tests.addon_factory(name=name,
-                                                        type=amo.ADDON_PERSONA,
-                                                        popularity=popularity))
-        self.refresh()
-
-        # Japanese Tattoo should be the #1 most relevant result. Obviously.
-        expected_name, expected_popularity = personas[2]
-        for sort in ('downloads', 'popularity', 'users'):
-            r = self.client.get(urlparams(self.url, q='japanese tattoo',
-                                          sort=sort), follow=True)
-            eq_(r.status_code, 200)
-            results = list(r.context['pager'].object_list)
-            first = results[0]
-            eq_(unicode(first.name), expected_name,
-                'Was not first result for %r. Results: %s' % (sort, results))
-            eq_(first.persona.popularity, expected_popularity,
-                'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                sort, first.persona.popularity, results))
-            eq_(first.average_daily_users, expected_popularity,
-                'Incorrect users for %r. Got %r. Expected %r.' % (
-                sort, first.average_daily_users, results))
-            eq_(first.weekly_downloads, expected_popularity,
-                'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
-                sort, first.weekly_downloads, results))
-
-    def test_results_appver_platform(self):
-        self._generate_personas()
-        self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
-
-    def test_results_other_applications(self):
-        self._generate_personas()
-        # Now ensure we get the same results for Firefox as for Thunderbird.
-        self.url = self.url.replace('firefox', 'thunderbird')
-        self.check_name_results({}, sorted(p.id for p in self.personas))
-
-    def test_pagination(self):
-        # TODO: Figure out why ES wonks out when we index a plethora of junk.
-        raise SkipTest
-
-        # Generate some (22) personas to get us to two pages.
-        left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
-        for x in xrange(left_to_add):
-            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-            self.personas.append(addon)
-            self._addons.append(addon)
-        self.refresh()
-
-        # Page one should show 21 personas.
-        r = self.client.get(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.personas-grid li').length, DEFAULT_NUM_PERSONAS)
-
-        # Page two should show 1 persona.
-        r = self.client.get(self.url + '&page=2', follow=True)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.personas-grid li').length, 1)
 
 
 class TestCollectionSearch(SearchBase):
@@ -1127,13 +943,6 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         addon = Addon.with_deleted.filter(status=amo.STATUS_DELETED)[0]
         self.search_addons('q=%s' % addon.id, [])
 
-    def test_ajax_search_personas_by_id(self):
-        addon = Addon.objects.all()[3]
-        addon.update(type=amo.ADDON_PERSONA)
-        addon.update(status=amo.STATUS_LITE)
-        Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
-        self.search_addons('q=%s' % addon.id, [addon])
-
     @mock.patch('mkt.webapps.tasks.index_webapps')
     def test_ajax_search_webapp_by_id(self, index_webapps_mock):
         """Webapps should not appear in ajax search results."""
@@ -1163,12 +972,6 @@ class TestSearchSuggestions(TestAjaxSearch):
         self._addons += [
             amo.tests.addon_factory(name='addon webapp',
                                     type=amo.ADDON_WEBAPP),
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA),
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA,
-                                    disabled_by_user=True,
-                                    status=amo.STATUS_NULL),
         ]
         self.refresh(timesleep=1)
 
@@ -1205,15 +1008,6 @@ class TestSearchSuggestions(TestAjaxSearch):
 
     def test_unicode(self):
         self.search_addons('q=%C2%B2%C2%B2', [])
-
-    def test_personas(self):
-        personas = (Addon.objects.reviewed()
-                    .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
-        personas, types = list(personas), [amo.ADDON_PERSONA]
-        self.search_addons('q=add&cat=themes', personas, types)
-        self.search_addons('q=persona&cat=themes', personas, types)
-        self.search_addons('q=PERSONA&cat=themes', personas, types)
-        self.search_addons('q=persona&cat=all', [])
 
     def test_applications(self):
         self.search_applications('', [])

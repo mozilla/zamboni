@@ -1,5 +1,5 @@
 {% from 'includes/forms.html' import optional %}
-{% set title = _('Delete Theme') if addon.is_persona() else _('Delete Add-on') %}
+{% set title = _('Delete Add-on') %}
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
   {{ csrf() }}
   <h3>
@@ -9,8 +9,6 @@
     <p class="warning">
       {% if webapp %}
         {{ loc('Deleting your app will permanently remove it from the site.') }}
-      {% elif addon.is_persona() %}
-        {{ _('Deleting your theme will permanently remove it from the site.') }}
       {% else %}
         {% trans %}
           Deleting your add-on will permanently remove it from the site and
@@ -31,11 +29,7 @@
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
   <p>
     <label for="id_reason">
-      {% if addon.is_persona() %}
-        {{ _('Please tell us why you are deleting your theme:') }}
-      {% else %}
-        {{ _('Please tell us why you are deleting your add-on:') }}
-      {% endif %}
+      {{ _('Please tell us why you are deleting your add-on:') }}
       {{ optional() -}}
     </label>
     <textarea name="reason" id="id_reason"></textarea>

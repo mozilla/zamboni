@@ -1,5 +1,7 @@
 from decimal import Decimal
 
+import mock
+
 import amo.tests
 from addons.models import Addon
 from market.models import AddonPremium, Price, PriceCurrency
@@ -22,6 +24,7 @@ class PurchaseTest(amo.tests.TestCase):
                                                 price=Decimal('0.5'),
                                                 tier_id=1)
         self.setup_package()
+        self.setup_mock_generic_product()
 
     def setup_base(self):
         self.addon = Addon.objects.get(pk=337141)
@@ -41,6 +44,12 @@ class PurchaseTest(amo.tests.TestCase):
         AddonPaymentAccount.objects.create(
             addon=self.addon, account_uri='foo',
             payment_account=self.account, product_uri='bpruri')
+
+    def setup_mock_generic_product(self):
+        patched_product = mock.patch(
+            'mkt.developers.providers.Provider.generic')
+        self.mock_product = patched_product.start()
+        self.addCleanup(patched_product.stop)
 
 
 class InAppPurchaseTest(PurchaseTest):

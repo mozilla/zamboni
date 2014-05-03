@@ -214,6 +214,10 @@ class ReviewApp(ReviewBase):
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
 
+        # Clear priority_review flag on approval - its not persistant.
+        if self.addon.priority_review:
+            self.addon.update(priority_review=False)
+
         # Assign reviewer incentive scores.
         return ReviewerScore.award_points(self.request.amo_user, self.addon,
                                           status)

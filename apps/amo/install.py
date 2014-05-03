@@ -10,7 +10,6 @@ REGEX = dict(
     mozilla='/^https?:\/\/([^\/]+\.)?mozilla\.(com|org)(\/.*)?$/',
     momo='/^https?:\/\/([^\/]+\.)?mozillamessaging\.com(\/.*)?$/',
     localhost='/^https?:\/\/([^\/]+\.)?localhost(\/.*)?$/',
-    personas='/^https?:\/\/([^\/]+\.)?getpersonas\.com(\/.*)?$/',
     labs='/^https?:\/\/([^\/]+\.)?mozillalabs\.com(\/.*)?$/',
     stumbleupon='/^https?:\/\/([^\/]+\.)?stumbleupon\.com(\/.*)?$/',
     getfirebug='/^https?:\/\/([^\/]+\.)?getfirebug\.com(\/.*)?$/',
@@ -98,12 +97,6 @@ addons = {
     # Foxytunes (see above)
 
     # Labs
-    'personas': {
-        'name': 'Personas for Firefox',
-        'xpi': 'https://addons.mozilla.org/en-US/firefox/downloads/latest/10900',
-        'icon': 'https://addons.mozilla.org/en-US/firefox/images/addon_icon/10900/1236031798',
-        'referrers': default_referrers + [referrer('personas'), referrer('labs')]
-        },
     'weave': {
         'name': 'Weave',
         'xpi': 'https://addons.mozilla.org/en-US/firefox/downloads/latest/10868',

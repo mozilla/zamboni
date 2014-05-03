@@ -17,7 +17,7 @@ from django.db import IntegrityError
 from django.utils import translation
 
 from mock import Mock, patch
-from nose.tools import assert_not_equal, eq_, ok_, raises
+from nose.tools import assert_not_equal, eq_, raises
 
 import amo
 import amo.tests
@@ -26,7 +26,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
-                           IncompatibleVersions, Persona, Preview)
+                           IncompatibleVersions, Preview)
 from addons.search import setup_mapping
 from amo import set_user
 from amo.helpers import absolutify
@@ -256,42 +256,6 @@ class TestAddonManager(amo.tests.TestCase):
         for addon in objs:
             assert addon.status in amo.LISTED_STATUSES
             assert not addon.disabled_by_user
-
-    def test_valid_disabled_by_user(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
-
-    def test_valid_disabled_by_admin(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
-
-    def test_invalid_deleted(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DELETED)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before - 1)
-
-    def test_valid_disabled_pending(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        amo.tests.addon_factory(status=amo.STATUS_PENDING)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
-
-    def test_valid_disabled_version(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-
-        # Add-on, no version. Doesn't count.
-        addon = amo.tests.addon_factory()
-        addon.update(_current_version=None, _signal=False)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
-
-        # Theme, no version. Counts.
-        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        addon.update(_current_version=None, _signal=False)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
 
     def test_top_free_public(self):
         addons = list(Addon.objects.listed(amo.FIREFOX))
@@ -593,19 +557,11 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_icon_url(self):
         """
-        Tests for various icons.
-        1. Test for an icon that exists.
-        2. Test for default THEME icon.
-        3. Test for default non-THEME icon.
+        Test for an icon that exists.
         """
         a = Addon.objects.get(pk=3615)
         expected = (settings.ADDON_ICON_URL % (3, 3615, 32, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
-
-        a = Addon.objects.get(pk=6704)
-        a.icon_type = None
-        assert a.icon_url.endswith('/icons/default-theme.png'), (
-            'No match for %s' % a.icon_url)
 
         a = Addon.objects.get(pk=3615)
         a.icon_type = None
@@ -1476,7 +1432,6 @@ class TestAddonDelete(amo.tests.TestCase):
             app=Application.objects.create())
         CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
-        Persona.objects.create(addon=addon, persona_id=0)
         Preview.objects.create(addon=addon)
 
         AddonLog.objects.create(addon=addon,
@@ -1568,20 +1523,6 @@ class TestBackupVersion(amo.tests.TestCase):
         version.save()
         assert Addon.objects.get(pk=1865).backup_version
 
-    def test_update_version_theme(self):
-        # Test versions do not get deleted when calling with theme.
-        self.addon.update(type=amo.ADDON_PERSONA)
-        assert not self.addon.update_version()
-        assert self.addon._current_version
-
-        # Test latest version copied to current version if no current version.
-        self.addon.update(_current_version=None,
-                          _latest_version=Version.objects.create(
-                              addon=self.addon, version='0'),
-                          _signal=False)
-        assert self.addon.update_version()
-        assert self.addon._current_version == self.addon._latest_version
-
 
 class TestCategoryModel(amo.tests.TestCase):
 
@@ -1595,99 +1536,12 @@ class TestCategoryModel(amo.tests.TestCase):
 
     @patch('mkt.webapps.tasks.index_webapps')
     def test_reindex_on_change(self, index_mock):
-        c = Category.objects.create(type=amo.ADDON_PERSONA, slug='keyboardcat')
-        c.update(slug='ceilingcat')
-        assert not index_mock.called
-        index_mock.reset_mock()
-
         c = Category.objects.create(type=amo.ADDON_WEBAPP, slug='keyboardcat')
         app = amo.tests.app_factory()
         AddonCategory.objects.create(addon=app, category=c)
         c.update(slug='nyancat')
         assert index_mock.called
         eq_(index_mock.call_args[0][0], [app.id])
-
-
-class TestPersonaModel(amo.tests.TestCase):
-    fixtures = ['addons/persona']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.persona.header = 'header.png'
-        self.persona.footer = 'footer.png'
-        self.persona.save()
-        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
-        self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
-
-    def test_image_urls(self):
-        # AMO-uploaded themes have `persona_id=0`.
-        self.persona.persona_id = 0
-        self.persona.save()
-        ok_(self.persona.thumb_url.endswith(self.p('preview.png')),
-            self.persona.thumb_url)
-        ok_(self.persona.icon_url.endswith(self.p('icon.png')),
-            self.persona.icon_url)
-        ok_(self.persona.preview_url.endswith(self.p('preview.png')),
-            self.persona.preview_url)
-        ok_(self.persona.header_url.endswith(self.p('header.png')),
-            self.persona.header_url)
-        ok_(self.persona.footer_url.endswith(self.p('footer.png')),
-            self.persona.footer_url)
-
-    def test_old_image_urls(self):
-        ok_(self.persona.thumb_url.endswith(self.p('preview.jpg')),
-            self.persona.thumb_url)
-        ok_(self.persona.icon_url.endswith(self.p('preview_small.jpg')),
-            self.persona.icon_url)
-        ok_(self.persona.preview_url.endswith(self.p('preview_large.jpg')),
-            self.persona.preview_url)
-        ok_(self.persona.header_url.endswith(self.p('header.png')),
-            self.persona.header_url)
-        ok_(self.persona.footer_url.endswith(self.p('footer.png')),
-            self.persona.footer_url)
-
-    def test_update_url(self):
-        with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):
-            url_ = self.persona.update_url
-            ok_(url_.endswith('/fr/themes/update-check/15663'), url_)
-
-    def test_json_data(self):
-        self.persona.addon.all_categories = [Category(name='Yolo Art')]
-
-        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
-
-        with self.settings(LANGUAGE_CODE='fr',
-                           LANGUAGE_URL_MAP={},
-                           LOCAL_MIRROR_URL='https://staticsh.it/_files',
-                           NEW_PERSONAS_UPDATE_URL=VAMO,
-                           SITE_URL='https://omgsh.it'):
-            data = self.persona.theme_data
-
-            id_ = str(self.persona.addon.id)
-
-            eq_(data['id'], id_)
-            eq_(data['name'], unicode(self.persona.addon.name))
-            eq_(data['accentcolor'], '#8d8d97')
-            eq_(data['textcolor'], '#ffffff')
-            eq_(data['category'], 'Yolo Art')
-            eq_(data['author'], 'persona_author')
-            eq_(data['description'], unicode(self.addon.description))
-
-            assert data['headerURL'].startswith(
-                '%s/%s/header.png?' % (settings.LOCAL_MIRROR_URL, id_))
-            assert data['footerURL'].startswith(
-                '%s/%s/footer.png?' % (settings.LOCAL_MIRROR_URL, id_))
-            assert data['previewURL'].startswith(
-                '%s/%s/preview.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
-            assert data['iconURL'].startswith(
-                '%s/%s/preview_small.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
-
-            eq_(data['detailURL'],
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            eq_(data['updateURL'],
-                'https://vamo/fr/themes/update-check/' + id_)
-            eq_(data['version'], '1.0')
 
 
 class TestPreviewModel(amo.tests.TestCase):
@@ -1772,8 +1626,7 @@ class TestFlushURLs(amo.tests.TestCase):
                 'base/users',
                 'base/addon_5579',
                 'base/previews',
-                'base/addon_4664_twitterbar',
-                'addons/persona']
+                'base/addon_4664_twitterbar']
 
     def setUp(self):
         settings.ADDON_ICON_URL = (
@@ -1998,7 +1851,7 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])
 
     def test_remove_version_locale(self):
-        addon = Addon.objects.create(type=amo.ADDON_THEME)
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon)
         version.releasenotes = {'fr': 'oui'}
         version.save()
@@ -2098,7 +1951,7 @@ class TestUpdateNames(amo.tests.TestCase):
 class TestAddonWatchDisabled(amo.tests.TestCase):
 
     def setUp(self):
-        self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
+        self.addon = Addon(type=amo.ADDON_EXTENSION, disabled_by_user=False,
                            status=amo.STATUS_PUBLIC)
         self.addon.save()
 
@@ -2268,7 +2121,7 @@ class TestMarketplace(amo.tests.TestCase):
         for type in amo.ADDON_TYPES.keys():
             self.addon.update(type=type)
             if type in [amo.ADDON_EXTENSION, amo.ADDON_WEBAPP,
-                        amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_THEME]:
+                        amo.ADDON_LPAPP, amo.ADDON_DICT]:
                 assert self.addon.can_become_premium()
             else:
                 assert not self.addon.can_become_premium()

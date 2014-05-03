@@ -526,7 +526,6 @@ MINIFY_BUNDLES = {
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
             'css/impala/collection-stats.less',
-            'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -561,7 +560,6 @@ MINIFY_BUNDLES = {
             'css/impala/search.less',
             'css/impala/suggestions.less',
             'css/impala/colorpicker.less',
-            'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
             'css/impala/apps.less',
@@ -573,7 +571,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',
-            'css/impala/personas.less',
             'css/devhub/packager.less',
             'css/devhub/listing.less',
             'css/devhub/popups.less',
@@ -661,11 +658,6 @@ MINIFY_BUNDLES = {
             'js/impala/abuse.js',
             'js/zamboni/reviews.js',
 
-            # Personas
-            'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
-
             # Collections
             'js/zamboni/collections.js',
 
@@ -747,16 +739,6 @@ MINIFY_BUNDLES = {
             # Browse listing pages
             'js/impala/listing.js',
 
-            # Personas
-            'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
-
-            # Persona creation
-            'js/common/upload-image.js',
-            'js/lib/jquery.minicolors.js',
-            'js/impala/persona_creation.js',
-
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
@@ -826,8 +808,6 @@ MINIFY_BUNDLES = {
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
             'js/impala/footer.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/mobile/personas.js',
             'js/zamboni/helpers.js',
             'js/zamboni/mobile/general.js',
             'js/common/ratingwidget.js',

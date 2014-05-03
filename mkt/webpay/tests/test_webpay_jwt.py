@@ -10,8 +10,8 @@ from nose.tools import eq_
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from mkt.webpay.webpay_jwt import (get_product_jwt, WebAppProduct,
-                                     InAppProduct)
+from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
+                                   WebAppProduct)
 from mkt import regions
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from stats.models import Contribution
@@ -119,6 +119,7 @@ class TestWebAppProduct(PurchaseTest):
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
         eq_(product_data['seller_uuid'], self.product.seller_uuid())
+        eq_(product_data['public_id'], self.product.public_id())
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'], self.product.application_size())
 

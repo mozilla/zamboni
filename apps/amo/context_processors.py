@@ -62,9 +62,6 @@ def global_settings(request):
 
         account_links.append({'text': _('My Profile'),
                               'href': profile.get_url_path()})
-        if amo_user.is_artist:
-            account_links.append({'text': _('My Themes'),
-                                  'href': profile.get_user_url('themes')})
 
         account_links.append({'text': _('Account Settings'),
                               'href': reverse('users.edit')})
@@ -90,8 +87,6 @@ def global_settings(request):
         tools_links += [
             {'text': _('Submit a New Add-on'),
              'href': reverse('devhub.submit.1')},
-            {'text': _('Submit a New Theme'),
-             'href': reverse('devhub.themes.submit')},
             {'text': _('Developer Hub'),
              'href': reverse('devhub.index')},
         ]

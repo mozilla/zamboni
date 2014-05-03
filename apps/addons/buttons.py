@@ -89,8 +89,7 @@ def install_button_factory(*args, **kwargs):
     button = InstallButton(*args, **kwargs)
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
-    classes = (('is_persona', PersonaInstallButton),
-               ('lite', LiteInstallButton),
+    classes = (('lite', LiteInstallButton),
                ('unreviewed', UnreviewedInstallButton),
                ('featured', FeaturedInstallButton))
     for pred, cls in classes:
@@ -127,7 +126,6 @@ class InstallButton(object):
                          and not self.lite
                          and not self.is_beta
                          and addon.is_featured(app, lang))
-        self.is_persona = addon.type == amo.ADDON_PERSONA
 
         self.is_premium = addon.is_premium()
         self.is_webapp = addon.is_webapp()
@@ -224,19 +222,6 @@ class LiteInstallButton(InstallButton):
     install_class = ['lite']
     button_class = ['caution']
     install_text = _lazy(u'Experimental', 'install_button')
-
-
-class PersonaInstallButton(InstallButton):
-    install_class = ['persona']
-
-    def links(self):
-        return [Link(_(u'Add to {0}').format(unicode(self.app.pretty)),
-                     reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID]))]
-
-    def attrs(self):
-        rv = super(PersonaInstallButton, self).attrs()
-        rv['data-browsertheme'] = self.addon.persona.json_data
-        return rv
 
 
 class Link(object):
@@ -343,12 +328,6 @@ def smorgasbord(request):
     # Beta Version
     beta = normal.filter(versions__files__status=amo.STATUS_BETA)[0]
     beta.tag = 'beta version'
-
-    # Theme.
-
-    # Persona.
-    addons.append(Addon.objects.filter(type=amo.ADDON_PERSONA)[0])
-    addons[-1].tag = 'persona'
 
     # Future Version.
     # No versions.

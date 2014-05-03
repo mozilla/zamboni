@@ -11,23 +11,20 @@ from django.db.models import Q
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.utils.translation import trans_real as translation
-from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
-import caching.base as caching
 import jinja2
 import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
-import waffle
-from mobility.decorators import mobilized, mobile_template
+from mobility.decorators import mobilized
 
 import amo
 from amo import messages
 from amo.decorators import post_required
 from amo.forms import AbuseForm
-from amo.utils import randslice, sorted_groupby
+from amo.utils import sorted_groupby
 from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
@@ -41,15 +38,14 @@ from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
 from .forms import ContributionForm
-from .models import Addon, Persona, FrozenAddon
+from .models import Addon, FrozenAddon
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
-addon_valid_disabled_pending_view = addon_view_factory(
-    qs=Addon.objects.valid_and_disabled_and_pending)
+addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
 
 
 def author_addon_clicked(f):
@@ -68,11 +64,10 @@ def author_addon_clicked(f):
     return decorated
 
 
-@addon_valid_disabled_pending_view
+@addon_disabled_view
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
-    if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
-        # Allow pending themes to be listed.
+    if addon.is_deleted:
         raise http.Http404
     if addon.is_disabled:
         return render(request, 'addons/impala/disabled.html',
@@ -83,13 +78,10 @@ def addon_detail(request, addon):
 
     # addon needs to have a version and be valid for this app.
     if addon.type in request.APP.types:
-        if addon.type == amo.ADDON_PERSONA:
-            return persona_detail(request, addon)
-        else:
-            if not addon.current_version:
-                raise http.Http404
+        if not addon.current_version:
+            raise http.Http404
 
-            return extension_detail(request, addon)
+        return extension_detail(request, addon)
     else:
         # Redirect to an app that supports this type.
         try:
@@ -151,60 +143,6 @@ def extension_detail(request, addon):
 @mobilized(extension_detail)
 def extension_detail(request, addon):
     return render(request, 'addons/mobile/details.html', {'addon': addon})
-
-
-def _category_personas(qs, limit):
-    f = lambda: randslice(qs, limit=limit)
-    key = 'cat-personas:' + qs.query_key()
-    return caching.cached(f, key)
-
-
-@mobile_template('addons/{mobile/}persona_detail.html')
-def persona_detail(request, addon, template=None):
-    """Details page for Personas."""
-    if not (addon.is_public() or addon.is_pending()):
-        raise http.Http404
-
-    persona = addon.persona
-
-    # This persona's categories.
-    categories = addon.categories.all()
-    category_personas = None
-    if categories.exists():
-        qs = Addon.objects.public().filter(categories=categories[0])
-        category_personas = _category_personas(qs, limit=6)
-
-    data = {
-        'addon': addon,
-        'persona': persona,
-        'categories': categories,
-        'author_personas': persona.authors_other_addons()[:3],
-        'category_personas': category_personas,
-    }
-
-    try:
-        author = addon.authors.all()[0]
-    except IndexError:
-        author = None
-    else:
-        author = author.get_url_path(src='addon-detail')
-    data['author_gallery'] = author
-
-    if not request.MOBILE:
-        # tags
-        dev_tags, user_tags = addon.tags_partitioned_by_developer
-        data.update({
-            'dev_tags': dev_tags,
-            'user_tags': user_tags,
-            'review_form': ReviewForm(),
-            'reviews': Review.objects.valid().filter(addon=addon,
-                                                     is_latest=True),
-            'get_replies': Review.get_replies,
-            'search_cat': 'themes',
-            'abuse_form': AbuseForm(request=request),
-        })
-
-    return render(request, template, data)
 
 
 class BaseFilter(object):
@@ -346,12 +284,10 @@ def home(request):
                                       amo.ADDON_EXTENSION)[:18]
     popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
     hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
-    personas = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_PERSONA)[:18]
+
     return render(request, 'addons/home.html',
-                  {'popular': popular, 'featured': featured,
-                   'hotness': hotness, 'personas': personas,
-                   'src': 'homepage', 'collections': collections})
+                  {'popular': popular, 'featured': featured, 'hotness':
+                   hotness, 'src': 'homepage', 'collections': collections})
 
 
 @mobilized(home)
@@ -443,8 +379,6 @@ def privacy(request, addon):
 
 @addon_view
 def developers(request, addon, page):
-    if addon.is_persona():
-        raise http.Http404()
     if 'version' in request.GET:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
         version = get_list_or_404(qs, version=request.GET['version'])[0]
@@ -589,20 +523,3 @@ def report_abuse(request, addon):
     else:
         return render(request, 'addons/report_abuse_full.html',
                       {'addon': addon, 'abuse_form': form})
-
-
-@cache_control(max_age=60 * 60 * 24)
-def persona_redirect(request, persona_id):
-    if persona_id == 0:
-        # Newer themes have persona_id == 0, doesn't mean anything.
-        return http.HttpResponseNotFound()
-
-    persona = get_object_or_404(Persona, persona_id=persona_id)
-    try:
-        to = reverse('addons.detail', args=[persona.addon.slug])
-    except Addon.DoesNotExist:
-        # Would otherwise throw 500. Something funky happened during GP
-        # migration which caused some Personas to be without Addons (problem
-        # with cascading deletes?). Tell GoogleBot these are dead with a 404.
-        return http.HttpResponseNotFound()
-    return http.HttpResponsePermanentRedirect(to)

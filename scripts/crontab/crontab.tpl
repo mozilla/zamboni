@@ -23,11 +23,8 @@ HOME=/tmp
 
 # Twice per day.
 # Use system python to use an older version of sqlalchemy than what is in our venv
-# Add slugs after we get all the new personas.
 # commented out 2013-03-28, clouserw
 # 25 10,22 * * * %(z_cron)s addons_add_slugs
-# commented out 2013-03-28, clouserw
-# 45 2,14 * * * %(z_cron)s give_personas_versions
 25 17,5 * * * %(z_cron)s hide_disabled_files
 
 # Once per day.
@@ -46,8 +43,6 @@ HOME=/tmp
 # 30 13 * * * %(z_cron)s expired_resetcode
 # 30 14 * * * %(z_cron)s category_totals
 # 30 15 * * * %(z_cron)s collection_subscribers
-# commented out 2013-03-28, clouserw
-# 30 16 * * * %(z_cron)s personas_adu
 # 30 17 * * * %(z_cron)s share_count_totals
 # 30 18 * * * %(z_cron)s recs
 45 7 * * * %(django)s dump_apps

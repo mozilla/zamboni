@@ -1,5 +1,8 @@
 # This script should be called from within Jenkins
 
+if [ -z SET_PY_27 ]; then
+    source /opt/rh/python27/enable
+fi
 
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
@@ -30,7 +33,7 @@ find . -name '*.pyc' | xargs rm
 
 if [ ! -d "$VENV/bin" ]; then
   echo "No virtualenv found.  Making one..."
-  virtualenv $VENV --system-site-packages
+  virtualenv $VENV --system-site-packages --python=python
 fi
 
 source $VENV/bin/activate
@@ -69,7 +72,7 @@ fi
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
 LOG_LEVEL = logging.ERROR
-DATABASES['default']['NAME'] = 'zamboni_$1'
+DATABASES['default']['NAME'] = 'zamboni_mkt'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'

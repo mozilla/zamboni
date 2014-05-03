@@ -80,7 +80,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -100,7 +99,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -115,7 +113,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -135,7 +132,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
         ]
@@ -153,7 +149,6 @@ class TestCommon(amo.tests.TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
@@ -176,7 +171,6 @@ class TestCommon(amo.tests.TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Editor Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),

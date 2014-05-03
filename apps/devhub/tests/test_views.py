@@ -128,7 +128,6 @@ class TestDashboard(HubTest):
         super(TestDashboard, self).setUp()
         self.url = reverse('devhub.addons')
         self.apps_url = reverse('devhub.apps')
-        self.themes_url = reverse('devhub.themes')
         eq_(self.client.get(self.url).status_code, 200)
 
     def test_addons_layout(self):
@@ -172,16 +171,6 @@ class TestDashboard(HubTest):
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 5)
         eq_(doc('nav.paginator').length, 1)
-
-    def test_themes(self):
-        """Check themes show on dashboard."""
-        # Create 2 themes.
-        for x in range(2):
-            addon = addon_factory(type=amo.ADDON_PERSONA)
-            addon.addonuser_set.create(user=self.user_profile)
-        r = self.client.get(self.themes_url)
-        doc = pq(r.content)
-        eq_(len(doc('.item .item-info')), 2)
 
     def test_show_hide_statistics(self):
         a_pk = self.clone_addon(1)[0]
@@ -899,13 +888,6 @@ class TestDelete(amo.tests.TestCase):
         r = self.client.post(self.get_url(), {'password': 'password'},
                              follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
-        eq_(self.get_addon().exists(), False)
-
-    def test_post_theme(self):
-        Addon.objects.get(id=3615).update(type=amo.ADDON_PERSONA)
-        r = self.client.post(self.get_url(), {'password': 'password'},
-                             follow=True)
-        eq_(pq(r.content)('.notification-box').text(), 'Theme deleted.')
         eq_(self.get_addon().exists(), False)
 
 

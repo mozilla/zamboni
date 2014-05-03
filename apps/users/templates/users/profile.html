@@ -32,11 +32,6 @@
         {{ _('Add-ons Developer') }}
       </p></div>
     {% endif %}
-    {% if profile.is_artist %}
-      <div class="user-role"><p class="personas">
-        {{ _('Themes Artist') }}
-      </p></div>
-    {% endif %}
   </aside>
   <section class="primary">
     <h2>{{ _('About me') }}</h2>
@@ -53,7 +48,7 @@
 </div>
 
 {# For anchors. #}
-{% if addons.object_list or personas %}
+{% if addons.object_list %}
   <div id="my-submissions"></div>
 {% endif %}
 
@@ -64,19 +59,6 @@
       {{ impala_addon_listing_items(addons.object_list, field=sorting, src='userprofile') }}
     </div>
     {{ addons|impala_paginator }}
-  </div>
-{% endif %}
-
-{% if personas %}
-  <div id="my-themes" class="island c">
-    <a href="{{ profile.get_user_url('themes') }}" class="button view-all">
-      {{ _('View all') }}</a>
-    {% if limited_personas %}
-      <h2>{{ _("My Most Popular Themes") }}</h2>
-    {% else %}
-      <h2>{{ _("Themes I've created") }}</h2>
-    {% endif %}
-    {{ personas|impala_persona_grid(cols=5, pagesize=THEMES_LIMIT) }}
   </div>
 {% endif %}
 

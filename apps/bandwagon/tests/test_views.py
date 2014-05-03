@@ -1070,22 +1070,6 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
         self.collection.update(listed=False)
         eq_(self.client.get(self.feed_url).status_code, 404)
 
-    def test_feed_json(self):
-        theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        CollectionAddon.objects.create(addon=theme, collection=self.collection)
-        res = self.client.get(self.collection.get_url_path() + 'format:json')
-        data = json.loads(res.content)
-
-        eq_(len(data['addons']), 1)
-        eq_(data['addons'][0]['id'], theme.id)
-
-        eq_(data['addons'][0]['type'], 'background-theme')
-        eq_(data['addons'][0]['theme']['id'],
-            unicode(theme.persona.persona_id))
-
-        assert data['addons'][0]['theme']['header']
-        assert data['addons'][0]['theme']['footer']
-
 
 class TestMobileCollections(TestMobile):
 
