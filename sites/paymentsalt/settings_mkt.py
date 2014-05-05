@@ -6,7 +6,6 @@ from settings_base import *
 
 import private_mkt
 
-DOMAIN = 'marketplace.allizom.org'
 SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 DOMAIN = "payments-alt.allizom.org"
