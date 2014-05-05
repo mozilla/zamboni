@@ -474,7 +474,7 @@ class AccountListForm(happyforms.Form):
 
         self.is_owner = None
         if self.addon:
-            self.is_owner = self.addon.authors.filter(user=self.user,
+            self.is_owner = self.addon.authors.filter(pk=self.user.pk,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists()
 
         self.fields['accounts'].queryset = self.agreed_payment_accounts

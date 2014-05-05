@@ -535,7 +535,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         return acct, user
 
     def is_owner(self, user):
-        return (self.webapp.authors.filter(user=user,
+        return (self.webapp.authors.filter(pk=user.pk,
                 addonuser__role=amo.AUTHOR_ROLE_OWNER).exists())
 
     def test_associate_acct_to_app_free_inapp(self):

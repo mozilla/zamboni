@@ -6,6 +6,7 @@ from django.db import models
 from aesfield.field import AESField
 
 from amo.models import ModelBase
+from users.models import UserProfile
 
 
 REQUEST_TOKEN = 0
@@ -16,7 +17,7 @@ TOKEN_TYPES = ((REQUEST_TOKEN, u'Request'), (ACCESS_TOKEN, u'Access'))
 class Access(ModelBase):
     key = models.CharField(max_length=255, unique=True)
     secret = AESField(max_length=255, aes_key='api:access:secret')
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(UserProfile)
     redirect_uri = models.CharField(max_length=255)
     app_name = models.CharField(max_length=255)
 
@@ -30,7 +31,7 @@ class Token(ModelBase):
     key = models.CharField(max_length=255)
     secret = models.CharField(max_length=255)
     timestamp = models.IntegerField()
-    user = models.ForeignKey('auth.User', null=True)
+    user = models.ForeignKey(UserProfile, null=True)
     verifier = models.CharField(max_length=255, null=True)
 
     class Meta:

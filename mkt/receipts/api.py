@@ -65,7 +65,7 @@ def install(request):
 def install_record(obj, request, install_type):
     # Generate or re-use an existing install record.
     installed, created = Installed.objects.get_or_create(
-        addon=obj, user=request.user.get_profile(),
+        addon=obj, user=request.user,
         install_type=install_type)
 
     log.info('Installed record %s: %s' % (

@@ -35,7 +35,7 @@ class CuratorAuthorization(BasePermission):
     def is_curator_for(self, request, obj):
         if isinstance(request.user, AnonymousUser):
             return False
-        return (obj.has_curator(request.user.get_profile()) and request.method
+        return (obj.has_curator(request.user) and request.method
                 in self.curator_verbs)
 
     def has_curate_permission(self, request):

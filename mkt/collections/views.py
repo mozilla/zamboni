@@ -104,7 +104,7 @@ class CollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         if self.request.user.is_authenticated():
             if auth.has_curate_permission(self.request):
                 return qs
-            profile = self.request.user.get_profile()
+            profile = self.request.user
             return qs.filter(Q(curators__id=profile.id) |
                              Q(is_public=True)).distinct()
         return qs.filter(is_public=True)

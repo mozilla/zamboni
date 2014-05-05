@@ -124,7 +124,7 @@ class ReviewBase(object):
             attachments=self.attachment_formset)
 
         # ActivityLog (ye olde).
-        amo.log(action, self.addon, self.version, user=self.user.get_profile(),
+        amo.log(action, self.addon, self.version, user=self.user,
                 created=datetime.now(), details=details,
                 attachments=self.attachment_formset)
 
@@ -165,7 +165,7 @@ class ReviewBase(object):
         else:
             app = self.addon
         return {'name': app.name,
-                'reviewer': self.request.user.get_profile().name,
+                'reviewer': self.request.user.name,
                 'detail_url': absolutify(
                     app.get_url_path(add_prefix=False)),
                 'review_url': absolutify(reverse('reviewers.apps.review',

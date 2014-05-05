@@ -2,7 +2,6 @@
 from decimal import Decimal
 import json
 
-from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
 from django.test import TestCase
 from django.utils.http import urlencode
@@ -13,6 +12,7 @@ from rest_framework.serializers import Serializer, ValidationError
 from simplejson import JSONDecodeError
 from test_utils import RequestFactory
 
+from users.models import UserProfile 
 from mkt.api.serializers import PotatoCaptchaSerializer, URLSerializerMixin
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_forms import PotatoCaptchaTestCase
@@ -22,7 +22,7 @@ class TestPotatoCaptchaSerializer(PotatoCaptchaTestCase):
     fixtures = fixture('user_999')
 
     def test_success_authenticated(self):
-        self.request.user = User.objects.get(id=999)
+        self.request.user = UserProfile.objects.get(id=999)
         self.request.user.is_authenticated = lambda: True
         serializer = PotatoCaptchaSerializer(data={}, context=self.context)
         eq_(serializer.is_valid(), True)
@@ -60,7 +60,7 @@ class TestURLSerializerMixin(TestCase):
 
     def setUp(self):
         self.SerializerClass.Meta = type('Meta', (self.Struct,),
-                                        {'model': User,
+                                        {'model': UserProfile,
                                          'url_basename': self.url_basename})
         self.request = RequestFactory().get('/')
         self.request.API_VERSION = 1

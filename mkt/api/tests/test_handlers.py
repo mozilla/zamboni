@@ -505,7 +505,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         g = Group.objects.create(rules='Apps:Review,Reviews:Edit')
         GroupUser.objects.create(group=g, user=editor)
         ac = Access.objects.create(key='adminOauthKey', secret=generate(),
-                                   user=editor.user)
+                                   user=editor)
         client = RestOAuthClient(ac)
         r = client.get(self.get_url)
         eq_(r.status_code, 200)
@@ -524,7 +524,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         g = Group.objects.create(rules='*:*')
         GroupUser.objects.create(group=g, user=admin)
         ac = Access.objects.create(key='adminOauthKey', secret=generate(),
-                                   user=admin.user)
+                                   user=admin)
         client = RestOAuthClient(ac)
         r = client.get(self.get_url)
         eq_(r.status_code, 200)

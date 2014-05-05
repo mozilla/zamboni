@@ -368,8 +368,6 @@ class TestLoginHandler(TestCase):
 
     def test_login_existing_user_success(self):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
-        profile.create_django_user(
-            backend='django_browserid.auth.BrowserIDBackend')
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
@@ -390,8 +388,6 @@ class TestLoginHandler(TestCase):
     @patch('users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
-        profile.create_django_user(
-            backend='django_browserid.auth.BrowserIDBackend')
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()
@@ -414,17 +410,6 @@ class TestLoginHandler(TestCase):
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 403)
 
-    def test_login_old_user_new_email(self):
-        """
-        Login is based on (and reports) the email in UserProfile.
-        """
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
-        profile.create_django_user(
-            backend='django_browserid.auth.BrowserIDBackend')
-        profile.user.email = 'old_email@example.com'
-        profile.user.save()
-        self._test_login()
-
     def test_login_empty(self):
         res = self.post({})
         data = json.loads(res.content)
@@ -434,8 +419,6 @@ class TestLoginHandler(TestCase):
 
     def test_logout(self):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
-        profile.create_django_user(
-            backend='django_browserid.auth.BrowserIDBackend')
         data = self._test_login()
 
         r = self.client.delete(

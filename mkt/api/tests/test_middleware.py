@@ -93,7 +93,7 @@ class TestPinningMiddleware(amo.tests.TestCase):
         self.key = 'api-pinning:42'
 
     def attach_user(self, anon=True):
-        self.req.amo_user = mock.Mock(id=42, is_anonymous=lambda: anon)
+        self.req.user = mock.Mock(id=42, is_anonymous=lambda: anon)
 
     def test_pinned_request_method(self):
         self.attach_user(anon=False)

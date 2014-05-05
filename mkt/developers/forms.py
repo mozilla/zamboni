@@ -174,7 +174,7 @@ class DeleteForm(happyforms.Form):
 
 def trap_duplicate(request, manifest_url):
     # See if this user has any other apps with the same manifest.
-    owned = (request.user.get_profile().addonuser_set
+    owned = (request.user.addonuser_set
              .filter(addon__manifest_url=manifest_url))
     if not owned:
         return

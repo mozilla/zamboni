@@ -65,7 +65,7 @@ class FeedAppMixin(object):
 class BaseTestFeedItemViewSet(RestOAuth):
     def setUp(self):
         super(BaseTestFeedItemViewSet, self).setUp()
-        self.profile = self.user.get_profile()
+        self.profile = self.user
 
     def feed_permission(self):
         """
@@ -248,7 +248,7 @@ class BaseTestFeedAppViewSet(FeedAppMixin, RestOAuth):
     def setUp(self):
         super(BaseTestFeedAppViewSet, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
-        self.profile = self.user.get_profile()
+        self.profile = self.user
 
     def feed_permission(self):
         """

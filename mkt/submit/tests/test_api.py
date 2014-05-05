@@ -213,7 +213,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
     def setUp(self):
         super(TestAppStatusHandler, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
-        AddonUser.objects.create(addon=self.app, user=self.user.get_profile())
+        AddonUser.objects.create(addon=self.app, user=self.user)
         self.get_url = reverse('app-status-detail', kwargs={'pk': self.app.pk})
 
     def get(self, expected_status=200):
@@ -251,7 +251,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(data['disabled_by_user'], True)
 
     def test_status_not_mine(self):
-        AddonUser.objects.get(user=self.user.get_profile()).delete()
+        AddonUser.objects.get(user=self.user).delete()
         res = self.client.get(self.get_url)
         eq_(res.status_code, 403)
 
@@ -265,7 +265,7 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(self.app.status, amo.STATUS_PUBLIC)  # Unchanged, doesn't matter.
 
     def test_disable_not_mine(self):
-        AddonUser.objects.get(user=self.user.get_profile()).delete()
+        AddonUser.objects.get(user=self.user).delete()
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'disabled_by_user': True}))
         eq_(res.status_code, 403)

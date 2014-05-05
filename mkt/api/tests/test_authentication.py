@@ -31,7 +31,7 @@ class TestRestOAuthAuthentication(TestCase):
         self.profile.update(read_dev_agreement=datetime.today())
         self.access = Access.objects.create(key='test_oauth_key',
                                             secret=generate(),
-                                            user=self.profile.user)
+                                            user=self.profile)
         self.auth = authentication.RestOAuthAuthentication()
         self.middlewares = [RedirectPrefixedURIMiddleware, RestOAuthMiddleware]
         unpin_this_thread()
@@ -55,7 +55,7 @@ class TestRestOAuthAuthentication(TestCase):
 
     def test_accepted(self):
         req = Request(self.call())
-        eq_(self.auth.authenticate(req), (self.profile.user, None))
+        eq_(self.auth.authenticate(req), (self.profile, None))
 
     def test_request_token_fake(self):
         c = Mock()
@@ -95,7 +95,7 @@ class TestSharedSecretAuthentication(TestCase):
     def setUp(self):
         self.auth = authentication.RestSharedSecretAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
-        self.profile.update(email=self.profile.user.email)
+        self.profile.update(email=self.profile.email)
         self.middlewares = [RedirectPrefixedURIMiddleware,
                             RestSharedSecretMiddleware]
         unpin_this_thread()
@@ -108,7 +108,7 @@ class TestSharedSecretAuthentication(TestCase):
         for m in self.middlewares:
             m().process_request(req)
         ok_(self.auth.authenticate(Request(req)))
-        eq_(self.profile.user.pk, req.amo_user.pk)
+        eq_(self.profile.pk, req.amo_user.pk)
 
     def test_failed_session_auth_query(self):
         req = RequestFactory().post('/api/?_user=bogus')
@@ -129,7 +129,7 @@ class TestSharedSecretAuthentication(TestCase):
         for m in self.middlewares:
             m().process_request(req)
         ok_(self.auth.authenticate(Request(req)))
-        eq_(self.profile.user.pk, req.amo_user.pk)
+        eq_(self.profile.pk, req.amo_user.pk)
 
     def test_failed_session_auth(self):
         req = RequestFactory().post(
@@ -144,7 +144,7 @@ class TestSharedSecretAuthentication(TestCase):
         req = RequestFactory().post('/api/')
         for m in self.middlewares:
             m().process_request(req)
-        req.user = self.profile.user
+        req.user = self.profile
         assert not self.auth.authenticate(Request(req))
 
 
@@ -154,7 +154,6 @@ class TestMultipleAuthenticationDRF(TestCase):
 
     def setUp(self):
         self.profile = UserProfile.objects.get(pk=2519)
-        self.profile.update(email=self.profile.user.email)
 
     def test_multiple_shared_works(self):
         request = RequestFactory().post(
@@ -182,8 +181,8 @@ class TestMultipleAuthenticationDRF(TestCase):
                 authentication.RestSharedSecretAuthentication(),
                 authentication.RestOAuthAuthentication())
 
-        eq_(drf_request.user, self.profile.user)
-        eq_(drf_request._request.user, self.profile.user)
+        eq_(drf_request.user, self.profile)
+        eq_(drf_request._request.user, self.profile)
         eq_(drf_request.user.is_authenticated(), True)
         eq_(drf_request._request.user.is_authenticated(), True)
         eq_(drf_request.amo_user.pk, self.profile.pk)

@@ -1,6 +1,5 @@
 import json
 
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
@@ -8,6 +7,8 @@ from rest_framework import status
 
 import amo.tests
 from market.models import Price
+from users.models import UserProfile
+
 from mkt.api.tests.test_oauth import RestOAuthClient
 from mkt.api.models import Access, generate
 from mkt.inapp.models import InAppProduct
@@ -64,7 +65,7 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
 
     def setUp(self):
         super(TestInAppProductViewSetAuthorized, self).setUp()
-        user = self.webapp.authors.all()[0].user
+        user = self.webapp.authors.all()[0]
         self.client = self.setup_client(user)
 
     def test_create(self):
@@ -106,7 +107,7 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
 
     def setUp(self):
         super(TestInAppProductViewSetUnauthorized, self).setUp()
-        user = User.objects.get(id=999)
+        user = UserProfile.objects.get(id=999)
         self.client = self.setup_client(user)
 
     def test_create(self):

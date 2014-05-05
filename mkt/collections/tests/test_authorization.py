@@ -1,8 +1,6 @@
 import json
 from urllib import urlencode
 
-from django.contrib.auth.models import User
-
 from nose.tools import ok_
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
@@ -10,12 +8,14 @@ from rest_framework.settings import api_settings
 
 from access.middleware import ACLMiddleware
 from amo.tests import TestCase
+from users.models import UserProfile
 from mkt.collections.authorization import (CanBeHeroAuthorization,
                                            CuratorAuthorization,
                                            StrictCuratorAuthorization)
 from mkt.collections.tests import CollectionTestMixin
 from mkt.site.fixtures import fixture
 from test_utils import RequestFactory
+
 
 
 class TestCuratorAuthorization(CollectionTestMixin, TestCase):
@@ -26,8 +26,8 @@ class TestCuratorAuthorization(CollectionTestMixin, TestCase):
         super(TestCuratorAuthorization, self).setUp()
         self.collection = self.make_collection()
         self.auth = self.auth_class()
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.profile = self.user
         self.view = GenericAPIView()
 
     def give_permission(self):
@@ -137,8 +137,8 @@ class TestCanBeHeroAuthorization(CollectionTestMixin, TestCase):
         super(TestCanBeHeroAuthorization, self).setUp()
         self.collection = self.make_collection()
         self.auth = CanBeHeroAuthorization()
-        self.user = User.objects.get(pk=2519)
-        self.profile = self.user.get_profile()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.profile = self.user
         self.view = GenericAPIView()
 
     def give_permission(self):

@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
-
 import mock
 from nose.tools import eq_
 
 import amo.tests
+from users.models import UserProfile
 
 from mkt.site.fixtures import fixture
 from mkt.site.forms import AbuseForm, PotatoCaptchaForm
@@ -24,7 +23,7 @@ class TestPotatoCaptchaForm(PotatoCaptchaTestCase):
     fixtures = fixture('user_999')
 
     def test_success_authenticated(self):
-        self.request.user = User.objects.get(id=999)
+        self.request.user = UserProfile.objects.get(id=999)
         self.request.user.is_authenticated = lambda: True
         form = PotatoCaptchaForm({}, request=self.request)
         eq_(form.is_valid(), True)

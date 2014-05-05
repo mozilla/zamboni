@@ -13,7 +13,7 @@ class TestAPI(amo.tests.TestCase):
 
     def setUp(self):
         self.profile = UserProfile.objects.get(pk=999)
-        self.user = self.profile.user
+        self.user = self.profile
         self.login(self.profile)
         self.url = reverse('mkt.developers.apps.api')
 
