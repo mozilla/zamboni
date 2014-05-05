@@ -17,10 +17,6 @@ HOME=/tmp
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
-
-# Every 4 hours.
-40 */4 * * * %(django)s clean_redis
-
 # Twice per day.
 # Use system python to use an older version of sqlalchemy than what is in our venv
 # commented out 2013-03-28, clouserw
