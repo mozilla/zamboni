@@ -161,7 +161,7 @@ USE_HEKA_FOR_CEF = True
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
-APP_PURCHASE_TYP = 'mozilla-stage/payments/pay/v1'
+APP_PURCHASE_TYP = 'mozilla-alt/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 
 MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
