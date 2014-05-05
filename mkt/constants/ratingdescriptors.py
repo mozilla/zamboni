@@ -99,4 +99,17 @@ RATING_DESCS = {
     'USK_SCARY': {'name': _lazy('Frightening Content')},
     'USK_SEX_CONTENT': {'name': _lazy('Sexual Content')},
     'USK_VIOLENCE': {'name': _lazy('Violence')},
+    # New USK.
+    'USK_ABSTRACT_VIOLENCE': {'name': _lazy('Abstract Violence')},
+    'USK_ALCOHOL': {'name': _lazy('Alcohol Use')},
+    'USK_DRUG_USE': {'name': _lazy('Drug Use')},
+    'USK_EXPLICIT_VIOLENCE': {'name': _lazy('Explicit Violence')},
+    'USK_HORROR': {'name': _lazy('Horror')},
+    'USK_NUDITY': {'name': _lazy('Nudity')},
+    'USK_SEX_VIOLENCE': {'name': _lazy('Sexual Violence')},
+    'USK_SEX_VIOLENCE_REF': {'name': _lazy('Sexual Violence Reference')},
+    'USK_SEX_REF': {'name': _lazy('Sexual References')},
+    'USK_SOME_SCARES': {'name': _lazy('Rare Scares')},
+    'USK_SOME_SWEARING': {'name': _lazy('Occasional Swearing')},
+    'USK_TOBACCO': {'name': _lazy('Tobacco Use')},
 }
