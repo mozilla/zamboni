@@ -8,6 +8,7 @@ from django.db import transaction
 import commonware.log
 
 import amo
+from amo.decorators import use_master
 from files.models import FileUpload
 from mkt.webapps.models import Webapp
 from versions.models import Version
@@ -61,6 +62,7 @@ class Command(BaseCommand):
         addon.update_version()
         self.info('Set version %s as the current version.' % version)
 
+    @use_master
     def handle(self, *args, **options):
         try:
             path = args[0]
