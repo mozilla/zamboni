@@ -529,8 +529,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Oprez:</strong> Razvojna verzija ovog dodatka nije pregledana od strane Mozilla fondacije. Kada isntalirate razvojnu verziju, nastavićete da dobijate razvojne nadogradnje od ovog "
-"programera. Da biste zaustavili primanje razvojnih nadogradnji, ponovo instalirajte podrazumevanu verziju sa gore navedene veze."
+"<strong>Oprez:</strong> Razvojna verzija ovog dodatka nije pregledana od strane Mozilla fondacije. Kada isntalirate razvojnu verziju, nastavićete da dobijate razvojne nadogradnje od ovog programera. "
+"Da biste zaustavili primanje razvojnih nadogradnji, ponovo instalirajte podrazumevanu verziju sa gore navedene veze."
 
 #: apps/addons/templates/addons/details_box.html:195 apps/addons/templates/addons/impala/details.html:276
 msgid "Version {0}:"
@@ -1418,8 +1418,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Dodaci su aplikacije koje Vam pružaju prilagođavanje Firefox-a sa dodatnim opcijama i stilom. Bilo da pogrešno ukucate naziv veb sajta ili ne možete da očitate zauzetu stranicu, postoji dodatak "
-"koji može da poboljša Vaše pregledanje."
+"Dodaci su aplikacije koje Vam pružaju prilagođavanje Firefox-a sa dodatnim opcijama i stilom. Bilo da pogrešno ukucate naziv veb sajta ili ne možete da očitate zauzetu stranicu, postoji dodatak koji "
+"može da poboljša Vaše pregledanje."
 
 #: apps/addons/templates/addons/mobile/home.html:49
 msgid "View all Featured add-ons"
@@ -2040,8 +2040,8 @@ msgstr ""
 "</p> <ul> <li>Ako ste ukucali adresu u svoj veb pregledač, molimo proverite da li ste je pravilno uneli.</li> <li> Ako ste do ovog sajta došli prateći vezu sa nekog drugog sajta, molimo da nas o "
 "tome obavestite tako što ćete poslati poruku na <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Recite nam odakle ste došli i šta ste tražili, a mi ćemo uraditi sve što je u "
 "našoj mogućnosti da Vam pomognemo. </li> </ul> <p>A možete i skočiti na neku od naših popularnih veb strana.</p> <ul> <li>Da li Vas interesuje <a href=\"%(rec)s\">lista preporučenih dodataka</a>?</"
-"li> <li> Da li želite da <a href=\"%(search)s\">pretražite dodatke</a>? Možete otvoriti <a href=\"%(search)s\">stranu za pretraživanje</a> a možete i koristiti polje za pretragu iznad ovog teksta. "
-"</li> <li> Ako biste ipak želeli da počnete ponovo, samo otvorite <a href=\"%(home)s\">početnu stranu dodataka</a>. </li> </ul>"
+"li> <li> Da li želite da <a href=\"%(search)s\">pretražite dodatke</a>? Možete otvoriti <a href=\"%(search)s\">stranu za pretraživanje</a> a možete i koristiti polje za pretragu iznad ovog teksta. </"
+"li> <li> Ako biste ipak želeli da počnete ponovo, samo otvorite <a href=\"%(home)s\">početnu stranu dodataka</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -2674,8 +2674,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Možete dodati više saradnika ovoj kolekciji. Saradnik može da doda ili ukloni dodatke iz ove kolekcije, ali ne može da izmeni njegov naziv ili opis. Da biste dodali saradnika, unesite njihovu "
-"adresu e-pošte u polje ispod. Saradnici moraju da imaju Mozilla Add-ons nalog."
+"Možete dodati više saradnika ovoj kolekciji. Saradnik može da doda ili ukloni dodatke iz ove kolekcije, ali ne može da izmeni njegov naziv ili opis. Da biste dodali saradnika, unesite njihovu adresu "
+"e-pošte u polje ispod. Saradnici moraju da imaju Mozilla Add-ons nalog."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40 apps/devhub/templates/devhub/payments/refunds.html:13 mkt/constants/apps.py:9
 msgid "User"
@@ -2794,8 +2794,8 @@ msgstr "Dodaci u Vašoj kolekciji"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
-"Da biste stavili dodatak u ovu kolekciju, unesite njegov naziv u polju ispod i pritisnite Enter. Možete koristiti i veze <strong>Dodaj u kolekciju</strong> na čitavom sajtu kako biste dodali "
-"dodatke kasnije."
+"Da biste stavili dodatak u ovu kolekciju, unesite njegov naziv u polju ispod i pritisnite Enter. Možete koristiti i veze <strong>Dodaj u kolekciju</strong> na čitavom sajtu kako biste dodali dodatke "
+"kasnije."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:430 apps/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
@@ -4590,8 +4590,8 @@ msgid ""
 "<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
 "<li>Read the documentation and ask for help when you need it!</li> </ol>"
 msgstr ""
-"<ol> <li> Sledite uputstva u zapakovanom izvornom kodu da biste kreirali sopstvena podešavanja i napravite sopstvena prilagođavanja. </li> <li>Uklonite izvorni kod koji na kraju ne iskoristite.</"
-"li> <li>Pročitajte dokumentaciju i zatražite pomoć kada Vam je potrebna.!</li> </ol>"
+"<ol> <li> Sledite uputstva u zapakovanom izvornom kodu da biste kreirali sopstvena podešavanja i napravite sopstvena prilagođavanja. </li> <li>Uklonite izvorni kod koji na kraju ne iskoristite.</li> "
+"<li>Pročitajte dokumentaciju i zatražite pomoć kada Vam je potrebna.!</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
@@ -4671,8 +4671,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje informacija kompatibilnosti Vašeg dodatka, ili "
-"otpremite noviju verziju."
+"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje informacija kompatibilnosti Vašeg dodatka, ili otpremite "
+"noviju verziju."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -4781,8 +4781,8 @@ msgid ""
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 "<p>Dodaci mogu imati bilo koji broj autora sa 3 moguće uloge:</p> <ul> <li><b>Vlasnik:</b> Može upravljati svim aspektima listinga dodatka, uključujući i dodavanje i uklanjanje drugih autora</li> "
-"<li><b>Programer:</b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> Može videti podešavanja dodatka "
-"i statistike, ali ne može da menja</li> </ul>"
+"<li><b>Programer:</b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> Može videti podešavanja dodatka i "
+"statistike, ali ne može da menja</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:46 apps/devhub/templates/devhub/includes/addons_edit_nav.html:5
 msgid "Manage Developer Profile"
@@ -4847,8 +4847,7 @@ msgstr "Kategorije su primarni način na koji korisnici pronalaze dodatke. Izabe
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji razlog za izmenjivanje Vaših "
-"kategorija."
+"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji razlog za izmenjivanje Vaših kategorija."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:160 mkt/developers/templates/developers/apps/edit/admin.html:151 mkt/search/forms.py:155
 msgid "Tags"
@@ -4947,8 +4946,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the app summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc."
 msgstr ""
-"Sve informacije koje bi krajnji korisnici voleli da imaju a koje nisu isključivo vezane za opis aplikacije. Najčešće su to informacije o poznatim greškama, uputstvo za prijavljivanje grešaka, "
-"najava sledećeg ažuriranja, itd."
+"Sve informacije koje bi krajnji korisnici voleli da imaju a koje nisu isključivo vezane za opis aplikacije. Najčešće su to informacije o poznatim greškama, uputstvo za prijavljivanje grešaka, najava "
+"sledećeg ažuriranja, itd."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:31
 msgid ""
@@ -5419,8 +5418,8 @@ msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
-"Prilagođene ikonice i slike ekrana skreću pažnju i pomažu korisnicima da razumeju šta to radi. Mi strogo preporučujemo postavljanje prilagođenih ikonica na internet, i u nekim delovima veb sajta, "
-"samo će se ikonica i ime pojaviti."
+"Prilagođene ikonice i slike ekrana skreću pažnju i pomažu korisnicima da razumeju šta to radi. Mi strogo preporučujemo postavljanje prilagođenih ikonica na internet, i u nekim delovima veb sajta, samo "
+"će se ikonica i ime pojaviti."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
@@ -5435,8 +5434,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Svi dodaci smešteni u našu galeriju moraju biti pregledani od strane urednika pre nego što se pojave među kategorijama ili u rezultatima pregleda. Dok čekate na pregled, možete i dalje da "
-"pristupite dodatku direktno preko URL adrese. Molimo Vas da odaberete proces pregleda koji najviše odgovara Vašem dodatku."
+"Svi dodaci smešteni u našu galeriju moraju biti pregledani od strane urednika pre nego što se pojave među kategorijama ili u rezultatima pregleda. Dok čekate na pregled, možete i dalje da pristupite "
+"dodatku direktno preko URL adrese. Molimo Vas da odaberete proces pregleda koji najviše odgovara Vašem dodatku."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
@@ -5529,8 +5528,7 @@ msgstr "Korak 1. Početak"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
-msgstr ""
-"Postavljanje Vašeg dodatka u našu galeriju je najbolji način da pokažete Vaš rad milionima Firefox korisnika. Mi ćemo Vam omogućiti sve što Vam treba da delite i ažurirate Vaš dodatak besplatno."
+msgstr "Postavljanje Vašeg dodatka u našu galeriju je najbolji način da pokažete Vaš rad milionima Firefox korisnika. Mi ćemo Vam omogućiti sve što Vam treba da delite i ažurirate Vaš dodatak besplatno."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
@@ -5671,8 +5669,8 @@ msgid ""
 "The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
 "technologies used in extensions and walks through the creation of several basic extensions."
 msgstr ""
-"Najlakši način za to je da pratite zajedno sa <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Vodič za programere Firefox dodataka</a> koji detaljno objašnjava "
-"tehnologije korištene u nastavcima i vodi Vas kroz nastanak nekoliko osnovnih nastavaka."
+"Najlakši način za to je da pratite zajedno sa <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Vodič za programere Firefox dodataka</a> koji detaljno objašnjava tehnologije "
+"korištene u nastavcima i vodi Vas kroz nastanak nekoliko osnovnih nastavaka."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:32
 msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
@@ -12573,8 +12571,8 @@ msgid ""
 "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy "
 "to share it with over 400 million Firefox users world wide."
 msgstr ""
-"Builder dodataka i SDK za dodatke pružaju moćne API-e i alate koji dozvoljavaju programerima da naprave dodatke za Firefox koristeći HTML, CSS i JavaScript. Kada napravite dodatak, olakšavamo Vam "
-"da ga podelite sa preko 400 miliona Firefox korisnika širom sveta."
+"Builder dodataka i SDK za dodatke pružaju moćne API-e i alate koji dozvoljavaju programerima da naprave dodatke za Firefox koristeći HTML, CSS i JavaScript. Kada napravite dodatak, olakšavamo Vam da "
+"ga podelite sa preko 400 miliona Firefox korisnika širom sveta."
 
 #: mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -16335,8 +16333,7 @@ msgstr "Naplate aplikacija"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
-msgstr ""
-"Da biste prodali Vašu aplikaciju u Marketplace-u, moraćete prvo ispod da odredite njegovu selektivnu cenu. Selektivne cene su bazirane na američkim dolarima i fiksne su za sve podržane valute."
+msgstr "Da biste prodali Vašu aplikaciju u Marketplace-u, moraćete prvo ispod da odredite njegovu selektivnu cenu. Selektivne cene su bazirane na američkim dolarima i fiksne su za sve podržane valute."
 
 #: mkt/submit/templates/submit/payments-upsell.html:24
 msgid "Learn more about price tiers"
@@ -16345,8 +16342,8 @@ msgstr "Saznajte više o selektivnim cenama"
 #: mkt/submit/templates/submit/payments-upsell.html:28
 msgid "Linking this app with its free counterpart allows you to promote your premium app next to the free version. Would you like to link the apps? You can always change your mind later."
 msgstr ""
-"Povezivanjem ove aplikacije sa njenom besplatnom verzijom omogućava Vam da promovišete Vašu premijum aplikaciju pored besplatne verzije. Da li biste želeli da ih povežete? Ukoliko promenite "
-"mišljenje, možete ovo promeniti kada god želite."
+"Povezivanjem ove aplikacije sa njenom besplatnom verzijom omogućava Vam da promovišete Vašu premijum aplikaciju pored besplatne verzije. Da li biste želeli da ih povežete? Ukoliko promenite mišljenje, "
+"možete ovo promeniti kada god želite."
 
 #: mkt/submit/templates/submit/payments.html:23
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>. Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts in your app</a>."

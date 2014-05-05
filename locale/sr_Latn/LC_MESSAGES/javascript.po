@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-30 09:07-0700\n"
-"PO-Revision-Date: 2013-09-24 12:31+0000\n"
-"Last-Translator: Milos <mdinic@mozilla.com>\n"
+"PO-Revision-Date: 2014-03-16 09:32+0000\n"
+"Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1380025907.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1394962359.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -58,9 +58,9 @@ msgstr "Greška sa {0}"
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Vaš dodatak nije prošao proveru - {0} greška."
-msgstr[1] "Vaš dodatak nije prošao proveru - {0} greške."
-msgstr[2] "Vaš dodatak nije prošao proveru - {0} grešaka."
+msgstr[0] "Vaš dodatak nije prošao proveru sa {0} greška."
+msgstr[1] "Vaš dodatak nije prošao proveru sa {0} greške."
+msgstr[2] "Vaš dodatak nije prošao proveru sa {0} grešaka."
 
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
@@ -179,16 +179,16 @@ msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Vaša aplikacija nije prošla proveru - {0} greška i {1} poruka."
-msgstr[1] "Vaša aplikacija nije prošla proveru - {0} greške i {1} poruke."
-msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} poruka."
+msgstr[0] "Vaša aplikacija nije prošla proveru - {0} greška i {1} message(s)."
+msgstr[1] "Vaša aplikacija nije prošla proveru - {0} greške i {1} message(s)."
+msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} message(s)."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} porukom."
-msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruke."
-msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruka."
+msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
+msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
+msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
@@ -224,7 +224,7 @@ msgstr "Izmene na slici se obrađuju"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke "
+msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke"
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -236,7 +236,7 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
+msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo Vas probajte malo kasnije."
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -244,7 +244,7 @@ msgstr "Ukloni ovu lokalizaciju"
 
 #: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom adresom e-pošte? "
+msgstr "Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom adresom e-pošte?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -256,7 +256,7 @@ msgstr "Prikaži sve rezultate"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr "Preko {0} rezultata je nađeno, tačnije definišite Bašu pretragu."
+msgstr "Preko {0} rezultata je nađeno, tačnije definišite Vašu pretragu."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -304,7 +304,7 @@ msgstr "Kod banke Holandije/SAD"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr "Tranzitni broj Kanade/Ruting kod (kod usmeravanja) Nemačke"
+msgstr "Tranzitni broj Kanade/Ruting kod Nemačke"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
@@ -370,15 +370,15 @@ msgstr "Trenutno nemate ni jedan nalog za plaćanje."
 
 #: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr "Pretraži teme za termin <b>{0}</b>"
+msgstr "Pretraži teme za <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr "Pretraži aplikacije za termin <b>{0}</b>"
+msgstr "Pretraži aplikacije za <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Pretraži dodatke za termin <b>{0}</b>"
+msgstr "Pretraži dodatke za <b>{0}</b>"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -560,12 +560,12 @@ msgstr "Greška prilikom odobravanja aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr "Greška prilikom odbijanja aplikacije: {app} "
+msgstr "Greška prilikom odbijanja aplikacije: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Po {0} na {1}"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -697,7 +697,7 @@ msgstr "Dodatak nije ažuriran da podržava default-to-compatible."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Morate koristiti Firefox 10.0 ili novije."
+msgstr "Morate koristiti Firefox 10.0 ili noviji."
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
@@ -791,11 +791,11 @@ msgstr "Već ste dodali tog korisnika."
 
 #: media/js/zamboni/collections.js:703
 msgid "Add to favorites"
-msgstr "Dodaj u Omiljene"
+msgstr "Dodaj u omiljene"
 
 #: media/js/zamboni/collections.js:707
 msgid "Remove from favorites"
-msgstr "Izbriši iz Omiljenih"
+msgstr "Izbriši iz omiljenih"
 
 #: media/js/zamboni/collections.js:734
 msgid "Stop following"
@@ -920,7 +920,7 @@ msgstr "Kupujem..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Ovaj dodatak je preliminarno pregledan od  Mozilla-e."
+msgstr "Ovaj dodatak je preliminarno pregledan od Mozilla-e."
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
