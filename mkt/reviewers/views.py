@@ -45,6 +45,7 @@ from lib.crypto.packaged import SigningError
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from reviews.views import translate_review
+from tags.models import Tag
 from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
@@ -325,6 +326,12 @@ def _review(request, addon, version):
             EditorSubscription.objects.get_or_create(user=request.amo_user,
                                                      addon=addon)
 
+        is_tarako = form.cleaned_data.get('is_tarako', False)
+        if is_tarako:
+            Tag(tag_text='tarako').save_tag(addon)
+        else:
+            Tag(tag_text='tarako').remove_tag(addon)
+
         # Success message.
         if score:
             score = ReviewerScore.objects.filter(user=request.amo_user)[0]
@@ -333,7 +340,8 @@ def _review(request, addon, version):
             success = _(
                u'"{0}" successfully processed (+{1} points, {2} total).'
                 .format(unicode(amo.REVIEWED_CHOICES[score.note_key]),
-                        score.score, ReviewerScore.get_total(request.amo_user)))
+                        score.score,
+                        ReviewerScore.get_total(request.amo_user)))
         else:
             success = _('Review successfully processed.')
         messages.success(request, success)
@@ -516,7 +524,8 @@ def _do_sort_queue_obj(request, qs, date_sort):
         qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
 
     # Convert sorted queue object queryset to sorted app queryset.
-    sorted_app_ids = qs.order_by('-addon__priority_review', order_by).values_list('addon', flat=True)
+    sorted_app_ids = (qs.order_by('-addon__priority_review', order_by)
+                        .values_list('addon', flat=True))
     qs = Webapp.objects.filter(id__in=sorted_app_ids)
     return manual_order(qs, sorted_app_ids, 'addons.id')
 

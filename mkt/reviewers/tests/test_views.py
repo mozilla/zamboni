@@ -40,6 +40,7 @@ from files.models import File
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from reviews.models import Review, ReviewFlag
+from tags.models import Tag
 from users.models import UserProfile
 from versions.models import Version
 from zadmin.models import get_config, set_config
@@ -1243,7 +1244,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
         moz_contacts = [u'']
         if with_mozilla_contact and self.mozilla_contact:
-            moz_contacts = [x.strip() for x in self.mozilla_contact.split(u',')]
+            moz_contacts = [x.strip()
+                            for x in self.mozilla_contact.split(u',')]
         eq_(msg.cc, moz_contacts)
         eq_(msg.subject, '%s: %s' % (subject, self.app.name))
         eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
@@ -2140,6 +2142,31 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         eq_(self.get_app().priority_review, True)
+
+    def test_is_tarako_checkbox(self):
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#id_is_tarako:checked').length, 0)
+        app = self.get_app()
+        Tag(tag_text='tarako').save_tag(app)
+        res = self.client.get(self.url)
+        eq_(pq(res.content)('#id_is_tarako:checked').length, 1)
+
+    def test_is_tarako_on(self):
+        # Note: Using action=comment b/c it does less and keeps test faster.
+        data = {'action': 'comment', 'comments': 'blah', 'is_tarako': 'on'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        tags = self.get_app().tags.values_list('tag_text', flat=True)
+        assert 'tarako' in tags
+
+    def test_is_tarako_off(self):
+        # Note: Using action=comment b/c it does less and keeps test faster.
+        # Note: `is_tarako` isn't passed b/c checkboxes.
+        data = {'action': 'comment', 'comments': 'blah'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        tags = self.get_app().tags.values_list('tag_text', flat=True)
+        assert 'tarako' not in tags
 
 
 class TestCannedResponses(AppReviewerTest):
@@ -3164,8 +3191,8 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachmentDownload(amo.tests.TestCase):
     fixtures = ['data/user_editor', 'data/user_editor_group',
-                'data/group_editor', 'data/user_999'
-    ] + fixture('webapp_337141')
+                'data/group_editor',
+                'data/user_999'] + fixture('webapp_337141')
 
     def _attachment(self, log):
         return ActivityLogAttachment.objects.create(activity_log=log,
