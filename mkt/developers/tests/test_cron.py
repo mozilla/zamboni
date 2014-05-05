@@ -10,7 +10,7 @@ import mkt
 import mkt.constants
 from mkt.developers.cron import (_flag_rereview_adult, exclude_new_region,
                                  process_iarc_changes, send_new_region_emails)
-from mkt.webapps.models import IARCInfo
+from mkt.webapps.models import IARCInfo, RatingDescriptors, RatingInteractives
 
 
 class TestSendNewRegionEmails(amo.tests.WebappTestCase):
@@ -86,34 +86,44 @@ class TestIARCChangesCron(amo.tests.TestCase):
         app = amo.tests.app_factory()
         IARCInfo.objects.create(addon=app, submission_id=52,
                                 security_code='FZ32CU8')
+        app.set_descriptors([
+            'has_classind_violence',
+            'has_esrb_strong_lang',
+            'has_pegi_language', 'has_pegi_online',
+            'has_usk_lang',
+        ])
         app.set_content_ratings({
-            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L,
-            mkt.ratingsbodies.ESRB: mkt.ratingsbodies.ESRB_E
+            mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
         })
 
         process_iarc_changes()
         app = app.reload()
 
-        # Check ratings.
-        # CLASSIND should get updated. ESRB should stay the same.
+        # Check ratings. CLASSIND should get updated.
         cr = app.content_ratings.get(
             ratings_body=mkt.ratingsbodies.CLASSIND.id)
-        eq_(cr.rating, mkt.ratingsbodies.CLASSIND_18.id)
+        eq_(cr.rating, mkt.ratingsbodies.CLASSIND_14.id)
         cr = app.content_ratings.get(ratings_body=mkt.ratingsbodies.ESRB.id)
-        eq_(cr.rating, mkt.ratingsbodies.ESRB_E.id)
+        eq_(cr.rating, mkt.ratingsbodies.ESRB_M.id)
 
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONTENT_RATING_CHANGED.id).count()
 
         # Check descriptors.
-        self.assertSetEqual(
-            app.rating_descriptors.to_keys(),
-            ['has_classind_shocking', 'has_classind_sex_content',
-             'has_classind_drugs', 'has_classind_lang', 'has_classind_nudity',
-             'has_classind_violence_extreme'])
-        self.assertSetEqual(
-            app.rating_interactives.to_keys(),
-            ['has_shares_location', 'has_shares_info'])
+        rd = RatingDescriptors.objects.get(addon=app)
+        self.assertSetEqual(rd.to_keys(), [
+            'has_esrb_strong_lang',
+            'has_classind_lang', 'has_classind_sex_content',
+            'has_pegi_lang', 'has_pegi_online',
+            'has_usk_lang',
+        ])
+
+        # Check interactives.
+        ri = RatingInteractives.objects.get(addon=app)
+        self.assertSetEqual(ri.to_keys(), [
+            'has_shares_info', 'has_shares_location', 'has_digital_purchases',
+            'has_users_interact'
+        ])
 
     def test_rereview_flag_adult(self):
         amo.set_user(amo.tests.user_factory())

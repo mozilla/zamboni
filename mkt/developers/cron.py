@@ -11,8 +11,9 @@ from editors.models import RereviewQueue
 
 import lib.iarc
 
-from lib.iarc.utils import DESC_MAPPING, INTERACTIVES_MAPPING, RATINGS_MAPPING
-from mkt.developers.tasks import region_email, region_exclude
+from lib.iarc.utils import RATINGS_MAPPING
+from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
+                                  region_exclude)
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 
@@ -64,6 +65,9 @@ def process_iarc_changes(date=None):
 
     If date provided use it. It should be in the form YYYY-MM-DD.
 
+    NOTE: Get_Rating_Changes only sends the diff of the changes
+    by rating body. They only send data for the ratings bodies that
+    changed.
     """
     if not date:
         date = datetime.date.today()
@@ -91,30 +95,14 @@ def process_iarc_changes(date=None):
                       '%s' % iarc_id)
             continue
 
-        try:  # Any exceptions we catch, log, and keep going.
-            # Process 'new_rating'.
+        try:
+            # Fetch and save all IARC info.
+            refresh_iarc_ratings([app.id])
+
+            # Flag for rereview if it changed to adult.
             ratings_body = row.get('rating_system')
             rating = RATINGS_MAPPING[ratings_body].get(row['new_rating'])
-
             _flag_rereview_adult(app, ratings_body, rating)
-
-            # Process 'new_descriptors'.
-            native_descs = filter(None, [
-                s.strip() for s in row.get('new_descriptors', '').split(',')])
-            descriptors = filter(None, [DESC_MAPPING[ratings_body].get(desc)
-                                        for desc in native_descs])
-            app.set_descriptors(descriptors)
-
-            # Process 'new_interactiveelements'.
-            native_interactives = filter(None, [
-                s.strip() for s in
-                row.get('new_interactiveelements', '').split(',')])
-            interactives = filter(None, [INTERACTIVES_MAPPING.get(desc)
-                                         for desc in native_interactives])
-            app.set_interactives(interactives)
-
-            # Save new rating.
-            app.set_content_ratings({ratings_body: rating})
 
             # Log change reason.
             reason = row.get('change_reason')
@@ -123,6 +111,7 @@ def process_iarc_changes(date=None):
                              (ratings_body.name, rating.name, reason)})
 
         except Exception as e:
+            # Any exceptions we catch, log, and keep going.
             log.debug('Exception: %s' % e)
             continue
 
