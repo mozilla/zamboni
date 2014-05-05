@@ -140,9 +140,8 @@ MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="title" TYPE="string" VALUE="Twitter" />
     <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
     <FIELD NAME="email" TYPE="string" VALUE="nobody@mozilla.com" />
-    <FIELD NAME="new_rating" TYPE="string" VALUE="18+" />
-    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Conteúdo Impactante, Contéudo Sexual, Drogas, Linguagem Imprópria, Nudez, Violência Extrema" />
-    <FIELD NAME="new_interactiveelements" TYPE="string" VALUE="Shares Location, Shares Info" />
+    <FIELD NAME="new_rating" TYPE="string" VALUE="14+" />
+    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Cont\xc3\xa9udo Sexual, Linguagem Impr\xc3\xb3pria" />
     <FIELD NAME="rating_system" TYPE="string" VALUE="CLASSIND" />
     <FIELD NAME="change_reason" TYPE="string" VALUE="Significant issues found in special mission cut scenes." />
   </ROW>
@@ -154,9 +153,8 @@ MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="title" TYPE="string" VALUE="Other App" />
     <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
     <FIELD NAME="email" TYPE="string" VALUE="nobody@mozilla.com" />
-    <FIELD NAME="new_rating" TYPE="string" VALUE="12+" />
-    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Gewalt" />
-    <FIELD NAME="new_interactiveelements" TYPE="string" VALUE="Users Interact" />
+    <FIELD NAME="new_rating" TYPE="string" VALUE="Rating Refused" />
+    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Explizite Sprache" />
     <FIELD NAME="rating_system" TYPE="string" VALUE="USK" />
     <FIELD NAME="change_reason" TYPE="string" VALUE="Discrimination found to be within German law." />
   </ROW>
