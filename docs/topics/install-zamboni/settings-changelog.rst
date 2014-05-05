@@ -1,9 +1,12 @@
 Settings Changelog
 ==================
 
+2014-02-28
+----------
+* Added ``PRE_GENERATE_APKS`` to enable or disable APK generation.
+
 2014-01-22
 ----------
-
 * Changed ``CACHES['default']['BACKEND']`` from
   ``django.core.cache.backends.locmem.LocMemCache`` to 
   ``caching.backends.locmem.LocMemCache``.
