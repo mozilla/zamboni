@@ -1,14 +1,14 @@
 from django.db import connections
 
 import commonware.log
+import cronjobs
 import multidb
 from celery.task.sets import TaskSet
 
-import cronjobs
 from amo import VALID_STATUSES
 from amo.utils import chunked
-from .models import UserProfile
 from .tasks import update_user_ratings_task
+
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -44,12 +44,3 @@ def update_user_ratings():
     ts = [update_user_ratings_task.subtask(args=[chunk])
           for chunk in chunked(d, 1000)]
     TaskSet(ts).apply_async()
-
-
-@cronjobs.register
-def reindex_users(index=None, aliased=True):
-    from . import tasks
-    ids = UserProfile.objects.values_list('id', flat=True)
-    taskset = [tasks.index_users.subtask(args=[chunk], kwargs=dict(index=index))
-               for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(taskset).apply_async()

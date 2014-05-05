@@ -17,6 +17,8 @@ from django.test.utils import override_settings
 from django.utils.translation import ugettext_lazy as _
 
 import mock
+import pyelasticsearch
+from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_, raises
 
 import amo
@@ -1012,7 +1014,7 @@ class TestWebappContentRatings(amo.tests.TestCase):
         assert app.is_fully_complete(ignore_ratings=True)
 
 
-class DeletedAppTests(amo.tests.ESTestCase):
+class DeletedAppTests(amo.tests.TestCase):
 
     def test_soft_deleted_no_current_version(self):
         webapp = amo.tests.app_factory()
@@ -2150,3 +2152,37 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
             self.app.save()
         assert not pre_gen_task.delay.called, (
             'task should not be called if PRE_GENERATE_APKS is False')
+
+
+class TestSearchSignals(amo.tests.ESTestCase):
+
+    def setUp(self):
+        super(TestSearchSignals, self).setUp()
+        self.addCleanup(self.cleanup)
+
+    def cleanup(self):
+        for index in settings.ES_INDEXES.values():
+            try:
+                self.es.delete_index(index)
+            except pyelasticsearch.ElasticHttpNotFoundError:
+                pass
+
+    def test_create(self):
+        eq_(S(WebappIndexer).count(), 0)
+        app = amo.tests.app_factory()
+        self.refresh()
+        eq_(S(WebappIndexer).count(), 1)
+
+    def test_update(self):
+        app = amo.tests.app_factory()
+        self.refresh()
+        eq_(S(WebappIndexer).count(), 1)
+
+        prev_name = unicode(app.name)
+        app.name = 'yolo'
+        app.save()
+        self.refresh()
+
+        eq_(S(WebappIndexer).count(), 1)
+        eq_(S(WebappIndexer).query(name=prev_name).count(), 0)
+        eq_(S(WebappIndexer).query(name='yolo').count(), 1)

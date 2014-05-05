@@ -24,7 +24,6 @@ import caching
 import elasticutils.contrib.django as elasticutils
 import mock
 import pyelasticsearch.exceptions as pyelasticsearch
-import pyes.exceptions as pyes
 import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
@@ -36,14 +35,10 @@ from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
-import addons.search
 import amo
-import amo.search
 from access.acl import check_ownership
 from access.models import Group, GroupUser
-from addons.models import update_search_index as addon_update_search_index
 from addons.models import Addon, Category
-from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
@@ -211,8 +206,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-ES_patchers = [mock.patch('amo.search.get_es', spec=True),
-               mock.patch('elasticutils.contrib.django', spec=True),
+ES_patchers = [mock.patch('elasticutils.contrib.django', spec=True),
                mock.patch('mkt.webapps.tasks.WebappIndexer', spec=True),
                mock.patch('mkt.webapps.tasks.get_indices', spec=True,
                           side_effect=lambda i: [i])]
@@ -679,8 +673,6 @@ def _get_created(created):
 
 def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     # Disconnect signals until the last save.
-    post_save.disconnect(addon_update_search_index, sender=Addon,
-                         dispatch_uid='addons.search.index')
     post_save.disconnect(app_update_search_index, sender=Webapp,
                          dispatch_uid='webapp.search.index')
 
@@ -714,8 +706,6 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     a.status = status
 
     # Put signals back.
-    post_save.connect(addon_update_search_index, sender=Addon,
-                      dispatch_uid='addons.search.index')
     post_save.connect(app_update_search_index, sender=Webapp,
                       dispatch_uid='webapp.search.index')
 
@@ -856,7 +846,7 @@ class ESTestCase(TestCase):
     def setUpClass(cls):
         if not settings.RUN_ES_TESTS:
             raise SkipTest('ES disabled')
-        cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
+        cls.es = elasticutils.get_es(timeout=settings.ES_TIMEOUT)
 
         # The ES setting are set before we call super()
         # because we may have indexation occuring in upper classes.
@@ -866,7 +856,7 @@ class ESTestCase(TestCase):
 
         super(ESTestCase, cls).setUpClass()
         try:
-            cls.es.cluster_health()
+            cls.es.health()
         except Exception, e:
             e.args = tuple([u'%s (it looks like ES is not running, '
                             'try starting it or set RUN_ES_TESTS=False)'
@@ -882,24 +872,20 @@ class ESTestCase(TestCase):
         for index in set(settings.ES_INDEXES.values()):
             # Get the index that's pointed to by the alias.
             try:
-                indices = cls.es.get_alias(index)
-                index = indices[0]
-            except IndexError:
+                indices = cls.es.aliases(index)
+                assert indices[index]['aliases']
+            except (KeyError, AssertionError):
                 # There's no alias, just use the index.
                 print 'Found no alias for %s.' % index
-                index = index
-            except (pyes.IndexMissingException,
-                    pyelasticsearch.ElasticHttpNotFoundError):
+            except pyelasticsearch.ElasticHttpNotFoundError:
                 pass
 
             # Remove any alias as well.
             try:
                 cls.es.delete_index(index)
-            except (pyes.IndexMissingException,
-                    pyelasticsearch.ElasticHttpNotFoundError) as exc:
+            except pyelasticsearch.ElasticHttpNotFoundError as exc:
                 print 'Could not delete index %r: %s' % (index, exc)
 
-        addons.search.setup_mapping()
         WebappIndexer.setup_mapping()
 
     @classmethod
@@ -910,8 +896,6 @@ class ESTestCase(TestCase):
                     pk__in=[a.id for a in cls._addons]).delete()
                 unindex_webapps([a.id for a in cls._addons
                                  if a.type == amo.ADDON_WEBAPP])
-                unindex_addons([a.id for a in cls._addons
-                                if a.type != amo.ADDON_WEBAPP])
             amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
             # Make sure we're calling super's tearDownClass even if something
@@ -924,30 +908,18 @@ class ESTestCase(TestCase):
 
     @classmethod
     def setUpIndex(cls):
-        cls.add_addons()
         cls.refresh()
 
     @classmethod
-    def refresh(cls, index='default', timesleep=0):
+    def refresh(cls, index='webapp', timesleep=0):
         post_request_task._send_tasks()
-        cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
+        cls.es.refresh(settings.ES_INDEXES[index])
 
     @classmethod
     def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
         [o.save() for o in model.objects.all()]
         cls.refresh(index)
-
-    @classmethod
-    def add_addons(cls):
-        cls._addons = [
-            addon_factory(name='user-disabled', disabled_by_user=True),
-            addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED),
-            addon_factory(status=amo.STATUS_UNREVIEWED),
-            addon_factory(),
-            addon_factory(),
-            addon_factory(),
-        ]
 
 
 class WebappTestCase(TestCase):

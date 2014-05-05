@@ -11,14 +11,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware.log
 from babel import numbers
+from elasticutils.contrib.django import S
 from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
 import amo
-from addons.models import Addon
+import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
-from amo.search import TempS as S
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
@@ -26,21 +26,20 @@ from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
-from mkt.comm.utils import create_comm_note
-import mkt.constants.lookup as lkp
-from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
-                                    REFUND_STATUSES)
-from mkt.constants import comm
 from mkt.account.utils import purchase_list
+from mkt.comm.utils import create_comm_note
+from mkt.constants import comm
+from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.models import Webapp, WebappIndexer
 from stats.models import Contribution
 from users.models import UserProfile
+
 
 log = commonware.log.getLogger('z.lookup')
 
@@ -237,7 +236,7 @@ def transaction_refund(request, tx_uuid):
 @login_required
 @permission_required('AppLookup', 'View')
 def app_summary(request, addon_id):
-    app = get_object_or_404(Addon.with_deleted, pk=addon_id)
+    app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
 
     if 'prioritize' in request.POST and not app.priority_review:
         app.update(priority_review=True)
@@ -342,23 +341,21 @@ def _expand_query(q, fields):
 def user_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    fields = ('username', 'display_name', 'email')
+    search_fields = ('username', 'display_name', 'email')
+    fields = ('id',) + search_fields
 
     if q.isnumeric():
         # id is added implictly by the ES filter. Add it explicitly:
-        fields = ['id'] + list(fields)
         qs = UserProfile.objects.filter(pk=q).values(*fields)
-        db = True
     else:
-        qs = (UserProfile.search().query(or_=_expand_query(q, fields))
-                                  .values_dict(*fields))
+        qs = UserProfile.objects.all()
+        filters = Q()
+        for field in search_fields:
+            filters = filters | Q(**{'%s__icontains' % field: q})
+        qs = qs.filter(filters)
+        qs = qs.values(*fields)
         qs = _slice_results(request, qs)
-        db = False
     for user in qs:
-        if not db:
-            for field in ('id',) + fields:
-                if field in user:
-                    user[field] = user[field][0]
         user['url'] = reverse('lookup.user_summary', args=[user['id']])
         user['name'] = user['username']
         results.append(user)
@@ -382,24 +379,19 @@ def transaction_search(request):
 def app_search(request):
     results = []
     q = request.GET.get('q', u'').lower().strip()
-    addon_type = int(request.GET.get('type', amo.ADDON_WEBAPP))
     fields = ('name', 'app_slug')
     non_es_fields = ['id', 'name__localized_string'] + list(fields)
     if q.isnumeric():
-        qs = (Addon.objects.filter(type=addon_type, pk=q)
-                           .values(*non_es_fields))
+        qs = (Webapp.objects.filter(pk=q)
+                            .values(*non_es_fields))
     else:
         # Try to load by GUID:
-        qs = (Addon.objects.filter(type=addon_type, guid=q)
-                           .values(*non_es_fields))
+        qs = (Webapp.objects.filter(guid=q)
+                            .values(*non_es_fields))
         if not qs.count():
-            if addon_type == amo.ADDON_WEBAPP:
-                qs = S(WebappIndexer)
-            else:
-                qs = S(Addon)
-            qs = (qs.filter(type=addon_type)
-                    .query(should=True, **_expand_query(q, fields))
-                    .values_dict(*fields))
+            qs = (S(WebappIndexer)
+                  .query(should=True, **_expand_query(q, fields))
+                  .values_dict(*['id'] + list(fields)))
         qs = _slice_results(request, qs)
     for app in qs:
         if 'name__localized_string' in app:
@@ -408,10 +400,10 @@ def app_search(request):
             app['name'] = app['name__localized_string']
             results.append(app)
         else:
-            # This is a result from elasticsearch which returns lists.
-            app['url'] = reverse('lookup.app_summary', args=[app['id'][0]])
+            # This is a result from elasticsearch which returns name as a list.
+            app['url'] = reverse('lookup.app_summary', args=[app['id']])
             for field in ('id', 'app_slug'):
-                app[field] = app.get(field, [None])[0]
+                app[field] = app.get(field)
             for name in app['name']:
                 dd = app.copy()
                 dd['name'] = name

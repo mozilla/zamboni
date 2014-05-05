@@ -1645,14 +1645,6 @@ def version_changed(sender, **kw):
     tasks.version_changed.delay(sender.id)
 
 
-@receiver(dbsignals.post_save, sender=Addon,
-          dispatch_uid='addons.search.index')
-def update_search_index(sender, instance, **kw):
-    from . import tasks
-    if not kw.get('raw'):
-        tasks.index_addons.delay([instance.id])
-
-
 @Addon.on_change
 def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):

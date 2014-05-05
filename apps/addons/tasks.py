@@ -8,14 +8,11 @@ from celeryutils import task
 import amo
 from amo.decorators import write
 from amo.utils import cache_ns_key
-from lib.es.utils import index_objects
 from versions.models import Version
 
 # pulling tasks from cron
-from . import cron, search  # NOQA
-from .models import (Addon, attach_categories, attach_devices, attach_prices,
-                     attach_tags, attach_translations, CompatOverride,
-                     IncompatibleVersions, Preview)
+from . import cron  # NOQA
+from .models import Addon, CompatOverride, IncompatibleVersions, Preview
 
 
 log = logging.getLogger('z.task')
@@ -93,21 +90,6 @@ def delete_preview_files(id, **kw):
             storage.delete(f)
         except Exception, e:
             log.error('Error deleting preview file (%s): %s' % (f, e))
-
-
-@task(acks_late=True)
-def index_addons(ids, **kw):
-    log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    transforms = (attach_categories, attach_devices, attach_prices,
-                  attach_tags, attach_translations)
-    index_objects(ids, Addon, search, kw.pop('index', None), transforms)
-
-
-@task
-def unindex_addons(ids, **kw):
-    for addon in ids:
-        log.info('Removing addon [%s] from search index.' % addon)
-        Addon.unindex(addon)
 
 
 @task

@@ -18,9 +18,8 @@ from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import flush_urls, get_hera
 
 import amo
-import amo.search
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
+from addons.models import AddonUser
 from amo import messages
 from amo.decorators import any_permission_required, json_view, post_required
 from amo.mail import FakeEmailBackend
@@ -131,23 +130,6 @@ def email_preview_csv(request, topic):
 
 
 @admin.site.admin_view
-def elastic(request):
-    INDEX = settings.ES_INDEXES['default']
-    es = amo.search.get_es()
-
-    indexes = set(settings.ES_INDEXES.values())
-    es_mappings = es.get_mapping(None, indexes)
-    ctx = {
-        'index': INDEX,
-        'nodes': es.cluster_nodes(),
-        'health': es.cluster_health(),
-        'state': es.cluster_state(),
-        'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
-    }
-    return render(request, 'zadmin/elastic.html', ctx)
-
-
-@admin.site.admin_view
 def mail(request):
     backend = FakeEmailBackend()
     if request.method == 'POST':
@@ -231,23 +213,6 @@ def email_devs(request):
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
-
-
-@admin_required(reviewers=True)
-def addon_search(request):
-    ctx = {}
-    if 'q' in request.GET:
-        q = ctx['q'] = request.GET['q']
-        if q.isdigit():
-            qs = Addon.objects.filter(id=int(q))
-        else:
-            qs = (Addon.search()
-                       .query(name__match=q.lower())
-                       .filter(type__in=amo.MARKETPLACE_TYPES)[:100])
-        if len(qs) == 1:
-            return redirect('zadmin.addon_manage', qs[0].id)
-        ctx['addons'] = qs
-    return render(request, 'zadmin/addon-search.html', ctx)
 
 
 @never_cache

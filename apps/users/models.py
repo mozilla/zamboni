@@ -8,7 +8,7 @@ from base64 import decodestring
 from contextlib import contextmanager
 from datetime import datetime
 
-from django import dispatch, forms
+from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import User as DjangoUser
@@ -522,22 +522,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase):
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')
-
-
-@dispatch.receiver(models.signals.post_save, sender=UserProfile,
-                   dispatch_uid='user.post_save')
-def user_post_save(sender, instance, **kw):
-    if not kw.get('raw'):
-        from . import tasks
-        tasks.index_users.delay([instance.id])
-
-
-@dispatch.receiver(models.signals.post_delete, sender=UserProfile,
-                   dispatch_uid='user.post_delete')
-def user_post_delete(sender, instance, **kw):
-    if not kw.get('raw'):
-        from . import tasks
-        tasks.unindex_users.delay([instance.id])
 
 
 class UserNotification(amo.models.ModelBase):

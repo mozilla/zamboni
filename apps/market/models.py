@@ -285,8 +285,8 @@ def update_price_currency(sender, instance, **kw):
                  .format(len(ids)))
 
         # Circular import sad face.
-        from addons.tasks import index_addons
-        index_addons.delay(ids)
+        from mkt.webapps.tasks import index_webapps
+        index_webapps.delay(ids)
 
 
 class AddonPurchase(amo.models.ModelBase):

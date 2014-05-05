@@ -345,14 +345,6 @@ class Collection(CollectionBase, amo.models.ModelBase):
         if kwargs.get('raw'):
             return
         tasks.collection_meta.delay(instance.id, using='default')
-        tasks.index_collections.delay([instance.id])
-
-    @staticmethod
-    def post_delete(sender, instance, **kwargs):
-        from . import tasks
-        if kwargs.get('raw'):
-            return
-        tasks.unindex_collections.delay([instance.id])
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -367,8 +359,6 @@ models.signals.post_save.connect(Collection.post_save, sender=Collection,
                                  dispatch_uid='coll.post_save')
 models.signals.pre_save.connect(save_signal, sender=Collection,
                                 dispatch_uid='coll_translations')
-models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
-                                   dispatch_uid='coll.post_delete')
 
 
 class CollectionAddon(amo.models.ModelBase):

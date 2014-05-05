@@ -24,10 +24,8 @@ urlpatterns = patterns('',
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
 
-    url('^elastic$', views.elastic, name='zadmin.elastic'),
     url('^mail$', views.mail, name='zadmin.mail'),
     url('^email-devs$', views.email_devs, name='zadmin.email_devs'),
-    url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
     url('^generate-error$', views.generate_error,
         name='zadmin.generate-error'),
 

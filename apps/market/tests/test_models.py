@@ -178,15 +178,15 @@ class TestPriceCurrencyChanges(amo.tests.TestCase):
         self.make_premium(self.addon)
         self.currency = self.addon.premium.price.pricecurrency_set.all()[0]
 
-    @mock.patch('addons.tasks.index_objects')
-    def test_save(self, index_objects):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_save(self, index_webapps):
         self.currency.save()
-        eq_(index_objects.call_args[0][0], [self.addon.pk])
+        eq_(index_webapps.delay.call_args[0][0], [self.addon.pk])
 
-    @mock.patch('addons.tasks.index_objects')
-    def test_delete(self, index_objects):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_delete(self, index_webapps):
         self.currency.delete()
-        eq_(index_objects.call_args[0][0], [self.addon.pk])
+        eq_(index_webapps.delay.call_args[0][0], [self.addon.pk])
 
 
 class ContributionMixin(object):

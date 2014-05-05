@@ -20,7 +20,6 @@ from slumber import exceptions
 import amo
 import amo.tests
 from abuse.models import AbuseReport
-from addons.cron import reindex_addons
 from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
@@ -28,7 +27,6 @@ from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, Refund
 from stats.models import Contribution
-from users.cron import reindex_users
 from users.models import Group, GroupUser, UserProfile
 
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
@@ -272,13 +270,8 @@ class SearchTestMixin(object):
         self.assertLoginRedirects(res, self.url)
 
 
-class TestAcctSearch(ESTestCase, SearchTestMixin):
+class TestAcctSearch(TestCase, SearchTestMixin):
     fixtures = fixture('user_10482', 'user_support_staff', 'user_operator')
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestAcctSearch, cls).setUpClass()
-        reindex_users()
 
     def setUp(self):
         super(TestAcctSearch, self).setUp()
@@ -296,19 +289,16 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
 
     def test_by_username(self):
         self.user.update(username='newusername')
-        self.refresh()
         data = self.search(q='newus')
         self.verify_result(data)
 
     def test_by_username_with_dashes(self):
         self.user.update(username='kr-raj')
-        self.refresh()
         data = self.search(q='kr-raj')
         self.verify_result(data)
 
     def test_by_display_name(self):
         self.user.update(display_name='Kumar McMillan')
-        self.refresh()
         data = self.search(q='mcmill')
         self.verify_result(data)
 
@@ -318,8 +308,7 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
 
     def test_by_email(self):
         self.user.update(email='fonzi@happydays.com')
-        self.refresh()
-        data = self.search(q='fonzih')
+        data = self.search(q='fonzi')
         self.verify_result(data)
 
     @mock.patch('mkt.constants.lookup.SEARCH_LIMIT', 2)
@@ -329,7 +318,6 @@ class TestAcctSearch(ESTestCase, SearchTestMixin):
             name = 'chr' + str(x)
             UserProfile.objects.create(username=name, name=name,
                                        email=name + '@gmail.com')
-        self.refresh()
 
         # Test not at search limit.
         data = self.search(q='clouserw')
@@ -615,11 +603,6 @@ class TestTransactionRefund(TestCase):
 class TestAppSearch(ESTestCase, SearchTestMixin):
     fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
                        'user_operator')
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestAppSearch, cls).setUpClass()
-        reindex_addons()
 
     def setUp(self):
         super(TestAppSearch, self).setUp()

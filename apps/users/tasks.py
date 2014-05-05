@@ -3,13 +3,12 @@ from django.core.files.storage import default_storage as storage
 
 import commonware.log
 from celeryutils import task
-from lib.es.utils import index_objects
 
 from amo.decorators import set_modified_on
 from amo.utils import resize_image
 
 from .models import UserProfile
-from . import search
+
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -40,20 +39,6 @@ def resize_photo(src, dst, locally=False, **kw):
         return True
     except Exception, e:
         task_log.error("Error saving userpic: %s" % e)
-
-
-@task
-def index_users(ids, **kw):
-    task_log.debug('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
-    index = kw.pop('index', None)
-    index_objects(ids, UserProfile, search, index)
-
-
-@task
-def unindex_users(ids, **kw):
-    for id in ids:
-        task_log.debug('Removing user [%s] from search index.' % id)
-        UserProfile.unindex(id)
 
 
 @task(rate_limit='15/m')

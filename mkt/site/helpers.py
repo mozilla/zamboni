@@ -239,7 +239,6 @@ def timelabel(context, time):
 def mkt_admin_site_links():
     return {
         'addons': [
-            ('Search for apps by name or id', reverse('zadmin.addon-search')),
             ('Fake mail', reverse('zadmin.mail')),
         ],
         'users': [
@@ -252,7 +251,7 @@ def mkt_admin_site_links():
         ],
         'tools': [
             ('View request environment', reverse('amo.env')),
-            ('Manage elasticsearch', reverse('zadmin.elastic')),
+            ('View elasticsearch settings', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Purge pages from zeus', reverse('zadmin.hera')),
             ('Generate error', reverse('zadmin.generate-error')),

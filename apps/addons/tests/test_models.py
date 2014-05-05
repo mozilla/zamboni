@@ -27,7 +27,6 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Preview)
-from addons.search import setup_mapping
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1988,50 +1987,6 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
-
-
-class TestSearchSignals(amo.tests.ESTestCase):
-    test_es = True
-
-    def setUp(self):
-        super(TestSearchSignals, self).setUp()
-        setup_mapping()
-        self.addCleanup(self.cleanup)
-
-    def cleanup(self):
-        for index in settings.ES_INDEXES.values():
-            self.es.delete_index_if_exists(index)
-
-    def test_no_addons(self):
-        eq_(Addon.search().count(), 0)
-
-    def test_create(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
-        self.refresh()
-        eq_(Addon.search().count(), 1)
-        eq_(Addon.search().query(name='woo')[0].id, addon.id)
-
-    def test_update(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
-        self.refresh()
-        eq_(Addon.search().count(), 1)
-
-        addon.name = 'yeah'
-        addon.save()
-        self.refresh()
-
-        eq_(Addon.search().count(), 1)
-        eq_(Addon.search().query(name='woo').count(), 0)
-        eq_(Addon.search().query(name='yeah')[0].id, addon.id)
-
-    def test_delete(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
-        self.refresh()
-        eq_(Addon.search().count(), 1)
-
-        addon.delete('woo')
-        self.refresh()
-        eq_(Addon.search().count(), 0)
 
 
 class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):

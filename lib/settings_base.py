@@ -980,17 +980,11 @@ CELERY_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
-    'addons.tasks.index_addons': {'queue': 'priority'},
-    'addons.tasks.unindex_addons': {'queue': 'priority'},
-    'bandwagon.tasks.index_collections': {'queue': 'priority'},
-    'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'lib.crypto.packaged.sign': {'queue': 'priority'},
     'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
     'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
     'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
-    'users.tasks.index_users': {'queue': 'priority'},
-    'users.tasks.unindex_users': {'queue': 'priority'},
     'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
 
     # Other queues we prioritize below.
@@ -1086,7 +1080,6 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
-        'pyes': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
@@ -1276,8 +1269,7 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {'default': 'addons',
-              'webapp': 'apps'}
+ES_INDEXES = {'webapp': 'apps'}
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5

@@ -15,7 +15,7 @@ import mkt
 from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
-from amo.tests import app_factory, ESTestCase, TestCase
+from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from amo.urlresolvers import reverse
 from stats.models import ClientData
 from tags.models import AddonTag, Tag
@@ -721,6 +721,18 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         self.assertSetEqual(obj['tags'], ['tagtagtag', 'tarako'])
+
+    def test_ratings_sort(self):
+        app1 = self.webapp
+        app2 = app_factory()
+        user = user_factory()
+        app1._reviews.create(user=user, rating=1)
+        app2._reviews.create(user=user, rating=5)
+        self.refresh()
+        res = self.client.get(self.url, {'sort': 'rating'})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0]['id'], app2.id)
+        eq_(res.json['objects'][1]['id'], app1.id)
 
 
 class TestApiFeatures(RestOAuth, ESTestCase):

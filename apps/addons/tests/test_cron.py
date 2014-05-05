@@ -184,24 +184,3 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         # It should have been removed from mirror stagins.
         m_storage.delete.assert_called_with(f1.mirror_file_path)
         eq_(m_storage.delete.call_count, 1)
-
-
-class TestReindex(amo.tests.ESTestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestReindex, cls).setUpClass()
-
-    @mock.patch('addons.models.update_search_index', new=mock.Mock)
-    def setUp(self):
-        self.addons = []
-        self.apps = []
-        for x in xrange(3):
-            self.addons.append(amo.tests.addon_factory())
-            self.apps.append(amo.tests.app_factory())
-
-    def test_job(self):
-        cron.reindex_addons()
-        self.refresh()
-        eq_(sorted(a.id for a in Addon.search()),
-            sorted(a.id for a in self.apps + self.addons))

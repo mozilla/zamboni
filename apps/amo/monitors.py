@@ -8,11 +8,11 @@ import traceback
 from django.conf import settings
 
 import commonware.log
+import elasticutils
 import requests
 from cache_nuggets.lib import memoize
 from PIL import Image
 
-import amo.search
 from applications.management.commands import dump_apps
 from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError
@@ -100,7 +100,7 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        health = amo.search.get_es().cluster_health()
+        health = elasticutils.get_es().cluster_health()
         if health['status'] == 'red':
             status = 'ES is red'
         elastic_results = health

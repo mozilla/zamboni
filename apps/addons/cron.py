@@ -22,7 +22,6 @@ import waffle
 import amo
 from amo.decorators import write
 from amo.utils import chunked
-from addons import search
 from addons.models import Addon, AppSupport, FrozenAddon
 from files.models import File
 
@@ -318,19 +317,3 @@ def _group_addons(qs):
             recs_log.info('Skipping frozen addon %s.' % addon)
             del addons[addon]
     return addons
-
-
-@cronjobs.register
-def reindex_addons(index=None, aliased=True, addon_type=None):
-    from . import tasks
-    # Make sure our mapping is up to date.
-    search.setup_mapping(index, aliased)
-    ids = (Addon.objects.values_list('id', flat=True)
-           .filter(_current_version__isnull=False,
-                   status__in=amo.VALID_STATUSES,
-                   disabled_by_user=False))
-    if addon_type:
-        ids = ids.filter(type=addon_type)
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(ts).apply_async()

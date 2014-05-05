@@ -73,7 +73,6 @@ protobuf==2.5.0
 pyasn1==0.1.7
 PyBrowserID==0.6
 pyelasticsearch==0.6.1
-pyes==0.16.0
 PyJWT-mozilla==0.1.4.2
 PyMySQL==0.5
 pymemcache==1.2
