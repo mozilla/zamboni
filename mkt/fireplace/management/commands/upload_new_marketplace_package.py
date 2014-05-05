@@ -59,7 +59,7 @@ class Command(BaseCommand):
         self.info('File for version %s set to public.' % version)
         self.info('Setting version %s as the current version...' % version)
         version.update(_signal=False, reviewed=datetime.now())
-        addon.update_version()
+        addon.update_version(_signal=False)
         self.info('Set version %s as the current version.' % version)
 
     @use_master
