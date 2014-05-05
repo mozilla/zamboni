@@ -650,8 +650,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         self.verify_result(data)
 
     def test_by_guid(self):
-        self.app.update(guid='abcdef', type=amo.ADDON_EXTENSION)
-        data = self.search(q=self.app.guid, type=amo.ADDON_EXTENSION)
+        self.app.update(guid='abcdef')
+        data = self.search(q=self.app.guid)
         self.verify_result(data)
 
     def test_by_id(self):
@@ -682,8 +682,8 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
 class AppSummaryTest(TestCase):
     # TODO: Override in subclasses to convert to new fixture style.
-    fixtures = ['base/users', 'base/addon_3615', 'market/prices'
-    ] + fixture('webapp_337141')
+    fixtures = ['base/users', 'base/addon_3615',
+                'market/prices'] + fixture('webapp_337141')
 
     def _setUp(self):
         self.app = Addon.objects.get(pk=337141)
@@ -717,11 +717,6 @@ class TestAppSummary(AppSummaryTest):
         amo.tests.file_factory(version=ver)
         self.app.delete()
         self.summary()
-
-    def test_search_matches_type(self):
-        res = self.summary()
-        eq_(pq(res.content)('#app-search-form select option[selected]').val(),
-            str(amo.ADDON_WEBAPP))
 
     def test_authors(self):
         user = UserProfile.objects.get(username='31337')
@@ -807,7 +802,7 @@ class TestAppSummary(AppSummaryTest):
         self.app.update(priority_review=True)
         res = self.summary()
         eq_(pq(res.content)('section.column-b button.button,disabled')
-            .attr('name'),'prioritize')
+            .attr('name'), 'prioritize')
         eq_(pq(res.content)('section.column-b button.button,disabled').text(),
             'Review Prioritized')
 
@@ -815,9 +810,9 @@ class TestAppSummary(AppSummaryTest):
         staff = UserProfile.objects.get(username='support_staff')
         req = req_factory_factory(self.url, post=True, user=staff,
                                   data={'prioritize': 'true'})
-        res = app_summary(req, self.app.id)
+        app_summary(req, self.app.id)
         self.app.reload()
-        eq_(self.app.priority_review, True);
+        eq_(self.app.priority_review, True)
 
 
 class TestAppSummaryPurchases(AppSummaryTest):
