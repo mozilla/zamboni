@@ -3,7 +3,7 @@ import os.path
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db import transaction
+from django.db import transaction, connections
 
 import commonware.log
 
@@ -78,7 +78,10 @@ class Command(BaseCommand):
         addon = Webapp.objects.get(app_slug='marketplace-package')
 
         # Wrap everything we're doing in a transaction, if there is an uncaught
-        # exception everything will be rolled back.
+        # exception everything will be rolled back. We force a connect() call
+        # first to work around django-mysql-pool problems (autocommit state is
+        # not properly reset, messing up transaction.atomic() blocks).
+        connections['default'].connect()
         with transaction.atomic():
             upload = self.upload(addon, path)
             version = self.create_version(addon, upload)
