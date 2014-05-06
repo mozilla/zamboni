@@ -12,7 +12,6 @@ ALLOWED_HOSTS += ['.firefox.com', '.firefox.com.cn']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
-WAFFLE_TABLE_SUFFIX = 'mkt'
 LOG_TABLE_SUFFIX = '_mkt'
 EVENT_TABLE_SUFFIX = '_mkt'
 
