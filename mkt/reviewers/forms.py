@@ -121,6 +121,10 @@ class ApiReviewersSearchForm(ApiSearchForm):
         required=False,
         label=_lazy(u'Escalated'),
         widget=CustomNullBooleanSelect)
+    is_tarako = forms.NullBooleanField(
+        required=False,
+        label=_lazy(u'Tarako-ready'),
+        widget=CustomNullBooleanSelect)
 
     def __init__(self, *args, **kwargs):
         super(ApiReviewersSearchForm, self).__init__(*args, **kwargs)

@@ -1,5 +1,6 @@
 import commonware.log
 from cache_nuggets.lib import Token
+from elasticutils import F
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView
@@ -73,6 +74,12 @@ def apply_reviewer_filters(request, qs, data=None):
             })
     if data.get('is_escalated', None) is not None:
         qs = qs.filter(is_escalated=data['is_escalated'])
+    is_tarako = data.get('is_tarako')
+    if is_tarako is not None:
+        if is_tarako:
+            qs = qs.filter(tags='tarako')
+        else:
+            qs = qs.filter(~F(tags='tarako'))
     return qs
 
 

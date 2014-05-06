@@ -14,6 +14,7 @@ import mkt.regions
 from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
+from tags.models import Tag
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
@@ -169,6 +170,26 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url, {'is_escalated': None})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_is_tarako(self):
+        Tag(tag_text='tarako').save_tag(self.webapp)
+        self.webapp.save()
+        self.refresh()
+
+        res = self.client.get(self.url, {'is_tarako': True})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+        res = self.client.get(self.url, {'is_tarako': False})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 0)
+
+        res = self.client.get(self.url, {'is_tarako': None})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
