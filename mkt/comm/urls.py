@@ -2,7 +2,7 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import DefaultRouter
 
-from mkt.comm.api import (AttachmentViewSet, NoteViewSet, post_email,
+from mkt.comm.views import (AttachmentViewSet, NoteViewSet, post_email,
                           ThreadCCViewSet, ThreadViewSet)
 
 

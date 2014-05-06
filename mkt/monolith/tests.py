@@ -14,7 +14,7 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 
 from .models import MonolithRecord, record_stat
-from .resources import daterange
+from .views import daterange
 
 
 class RequestFactory(client.RequestFactory):
@@ -132,7 +132,7 @@ class TestMonolithResource(RestOAuth):
         data = json.loads(res.content)
         eq_(len(data['objects']), 1)
 
-    @mock.patch('mkt.monolith.resources._get_query_result')
+    @mock.patch('mkt.monolith.views._get_query_result')
     def test_on_the_fly_query(self, _get_query):
         key = 'apps_ratings'
         _get_query.return_value = [{
@@ -159,7 +159,7 @@ class TestMonolithResource(RestOAuth):
         data = json.loads(res.content)
         eq_(data['detail'], '`start` was not provided')
 
-    @mock.patch('mkt.monolith.resources._get_query_result')
+    @mock.patch('mkt.monolith.views._get_query_result')
     def test_on_the_fly_query_pagination(self, _get_query):
         key = 'apps_ratings'
         _get_query.return_value = [

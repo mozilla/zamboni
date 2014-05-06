@@ -9,199 +9,36 @@ from rest_framework import status
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.decorators import (api_view, authentication_classes,
                                        permission_classes)
-from rest_framework.exceptions import ParseError, PermissionDenied
-from rest_framework.fields import BooleanField, CharField
+from rest_framework.exceptions import ParseError
+from rest_framework.fields import BooleanField
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.parsers import FormParser, JSONParser
-from rest_framework.permissions import BasePermission
+
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.viewsets import GenericViewSet
 
-from addons.models import Addon
+
 from amo.decorators import skip_cache
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile
-from users.models import UserProfile
-from versions.models import Version
 
 import mkt.comm.forms as forms
 import mkt.constants.comm as comm
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
+from mkt.comm.authorization import (AttachmentPermission,
+                                    EmailCreationPermission, NotePermission,
+                                    ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationNoteRead, CommunicationThread,
-                             CommunicationThreadCC, user_has_perm_app,
-                             user_has_perm_note, user_has_perm_thread)
+                             CommunicationThreadCC)
+from mkt.comm.serializers import NoteSerializer, ThreadSerializer
+from mkt.comm.models import user_has_perm_app
 from mkt.comm.tasks import consume_email, mark_thread_read
 from mkt.comm.utils import (create_attachments, create_comm_note,
                             filter_notes_by_read_status)
-
-
-class AuthorSerializer(ModelSerializer):
-    name = CharField()
-
-    class Meta:
-        model = UserProfile
-        fields = ('name',)
-
-
-class AttachmentSerializer(ModelSerializer):
-    url = SerializerMethodField('get_absolute_url')
-    display_name = CharField(source='display_name')
-    is_image = BooleanField(source='is_image')
-
-    def get_absolute_url(self, obj):
-        return absolutify(obj.get_absolute_url())
-
-    class Meta:
-        model = CommAttachment
-        fields = ('id', 'created', 'url', 'display_name', 'is_image')
-
-
-class NoteSerializer(ModelSerializer):
-    body = CharField()
-    author_meta = AuthorSerializer(source='author', read_only=True)
-    is_read = SerializerMethodField('is_read_by_user')
-    attachments = AttachmentSerializer(source='attachments', read_only=True)
-
-    def is_read_by_user(self, obj):
-        return obj.read_by_users.filter(
-            pk=self.context['request'].amo_user.id).exists()
-
-    class Meta:
-        model = CommunicationNote
-        fields = ('id', 'created', 'attachments', 'author', 'author_meta',
-                  'body', 'is_read', 'note_type', 'thread')
-
-
-class AddonSerializer(ModelSerializer):
-    name = CharField()
-    thumbnail_url = SerializerMethodField('get_icon')
-    url = CharField(source='get_absolute_url')
-    review_url = SerializerMethodField('get_review_url')
-
-    class Meta:
-        model = Addon
-        fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug', 'slug',
-                  'review_url')
-
-    def get_icon(self, app):
-        return app.get_icon_url(64)
-
-    def get_review_url(self, obj):
-        return reverse('reviewers.apps.review', args=[obj.app_slug])
-
-
-class ThreadSerializer(ModelSerializer):
-    addon_meta = AddonSerializer(source='addon', read_only=True)
-    recent_notes = SerializerMethodField('get_recent_notes')
-    notes_count = SerializerMethodField('get_notes_count')
-    version_number = SerializerMethodField('get_version_number')
-    version_is_obsolete = SerializerMethodField('get_version_is_obsolete')
-
-    class Meta:
-        model = CommunicationThread
-        fields = ('id', 'addon', 'addon_meta', 'version', 'notes_count',
-                  'recent_notes', 'created', 'modified', 'version_number',
-                  'version_is_obsolete')
-        view_name = 'comm-thread-detail'
-
-    def get_recent_notes(self, obj):
-        notes = (obj.notes.with_perms(self.get_request().amo_user, obj)
-                          .order_by('-created')[:5])
-        return NoteSerializer(
-            notes, many=True, context={'request': self.get_request()}).data
-
-    def get_notes_count(self, obj):
-        return obj.notes.count()
-
-    def get_version_number(self, obj):
-        try:
-            return Version.with_deleted.get(id=obj.version_id).version
-        except Version.DoesNotExist:
-            return ''
-
-    def get_version_is_obsolete(self, obj):
-        try:
-            return Version.with_deleted.get(id=obj.version_id).deleted
-        except Version.DoesNotExist:
-            return True
-
-
-class ThreadPermission(BasePermission):
-    """
-    Permission wrapper for checking if the authenticated user has the
-    permission to view the thread.
-    """
-
-    def has_permission(self, request, view):
-        # Let `has_object_permission` handle the permissions when we retrieve
-        # an object.
-        if view.action == 'retrieve':
-            return True
-        if not request.user.is_authenticated():
-            raise PermissionDenied()
-
-        return True
-
-    def has_object_permission(self, request, view, obj):
-        """
-        Make sure we give correct permissions to read/write the thread.
-        """
-        if not request.user.is_authenticated() or obj.read_permission_public:
-            return obj.read_permission_public
-
-        return user_has_perm_thread(obj, request.amo_user)
-
-
-class NotePermission(ThreadPermission):
-
-    def has_permission(self, request, view):
-        thread_id = view.kwargs.get('thread_id')
-        if not thread_id and view.kwargs.get('note_id'):
-            note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
-            thread_id = note.thread_id
-
-        # We save the thread in the view object so we can use it later.
-        view.comm_thread = get_object_or_404(CommunicationThread,
-            id=thread_id)
-
-        return ThreadPermission.has_object_permission(self,
-            request, view, view.comm_thread)
-
-    def has_object_permission(self, request, view, obj):
-        # Has thread obj-level permission AND note obj-level permission.
-        return user_has_perm_note(obj, request.amo_user)
-
-
-class AttachmentPermission(NotePermission):
-
-    def has_permission(self, request, view):
-        note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
-        return NotePermission.has_object_permission(self, request, view, note)
-
-    def has_object_permission(self, request, view, obj):
-        # Has thread obj-level permission AND note obj-level permission.
-        note = CommunicationNote.objects.get(id=view.kwargs['note_id'])
-        return NotePermission.has_object_permission(self, request, view, note)
-
-
-class EmailCreationPermission(object):
-    """Permit if client's IP address is whitelisted."""
-
-    def has_permission(self, request, view):
-        auth_token = request.META.get('HTTP_POSTFIX_AUTH_TOKEN')
-        if auth_token and auth_token not in settings.POSTFIX_AUTH_TOKEN:
-            return False
-
-        remote_ip = request.META.get('REMOTE_ADDR')
-        return remote_ip and (
-            remote_ip in settings.WHITELISTED_CLIENTS_EMAIL_API)
 
 
 class NoAuthentication(BaseAuthentication):

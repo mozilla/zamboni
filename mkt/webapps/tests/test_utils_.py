@@ -20,8 +20,8 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.search.serializers import ESAppSerializer
 from mkt.site.fixtures import fixture
-from mkt.webapps.api import AppSerializer
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
+from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import (dehydrate_content_rating,
                                get_supported_locales)
 from users.models import UserProfile

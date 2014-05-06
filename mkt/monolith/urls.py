@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from .resources import MonolithView
+from mkt.monolith.views import MonolithView
 
 
 urlpatterns = patterns('',

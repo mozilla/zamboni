@@ -236,7 +236,7 @@ class CommAttachment(amo.models.ModelBase):
                                 self.filepath)
         except IOError:
             if not settings.DEBUG:
-                raise IOError
+                raise
 
     def display_name(self):
         """
@@ -255,7 +255,7 @@ class CommAttachment(amo.models.ModelBase):
             return imghdr.what(self.full_path()) is not None
         except IOError:
             if not settings.DEBUG:
-                raise IOError
+                raise
 
 
 class CommunicationNoteRead(models.Model):

@@ -33,7 +33,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants.apps import INSTALL_TYPE_USER
-from mkt.webapps.api import SimpleAppSerializer
+from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 
 

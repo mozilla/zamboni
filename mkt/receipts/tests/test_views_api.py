@@ -47,14 +47,14 @@ class TestAPI(RestOAuth):
         res = self.post(anon=True)
         eq_(res.status_code, 403)
 
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_cef_logs(self, cef):
         eq_(self.post().status_code, 201)
         eq_(len(cef.call_args_list), 1)
         eq_([x[0][2] for x in cef.call_args_list], ['sign'])
 
     @mock.patch('mkt.installs.utils.record_action')
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_metrics(self, cef, record_action):
         res = self.post()
         eq_(res.status_code, 201)
@@ -65,7 +65,7 @@ class TestAPI(RestOAuth):
                                   'anonymous': False})
 
     @mock.patch('mkt.installs.utils.record_action')
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_metrics_packaged_app(self, cef, record_action):
         # Mimic packaged app.
         self.addon.update(is_packaged=True, manifest_url=None, app_domain=None)
@@ -102,7 +102,7 @@ class TestDevhubAPI(RestOAuth):
         receipt = Receipt(data['receipt'].encode('ascii')).receipt_decoded()
         eq_(receipt['typ'], u'test-receipt')
 
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_cef_log(self, cef):
         self.anon.post(self.url, data=self.data)
         cef.assert_called_with(mock.ANY, None, 'sign', 'Test receipt signing')
@@ -175,21 +175,21 @@ class TestReceipt(RestOAuth):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         eq_(self.post().status_code, 402)
 
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_install(self, cef):
         self.post()
         installed = self.profile.installed_set.all()
         eq_(len(installed), 1)
         eq_(installed[0].install_type, apps.INSTALL_TYPE_USER)
 
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_multiple_installs(self, cef):
         self.post()
         r = self.post()
         eq_(r.status_code, 201)
         eq_(self.profile.installed_set.count(), 1)
 
-    @mock.patch('mkt.receipts.api.receipt_cef.log')
+    @mock.patch('mkt.receipts.views.receipt_cef.log')
     def test_record_receipt(self, cef):
         r = self.post()
         ok_(Receipt(r.data['receipt']).receipt_decoded())
@@ -203,7 +203,7 @@ class TestReissue(amo.tests.TestCase):
         self.url = reverse('receipt.reissue')
         self.data = json.dumps({'app': self.addon.pk})
 
-        verify = mock.patch('mkt.receipts.api.Verify.check_full')
+        verify = mock.patch('mkt.receipts.views.Verify.check_full')
         self.verify = verify.start()
         self.addCleanup(verify.stop)
 

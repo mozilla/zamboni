@@ -7,7 +7,7 @@ from StringIO import StringIO
 
 from django.core.urlresolvers import reverse
 from mock import patch
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 from rest_framework.request import Request
 from test_utils import RequestFactory
 
@@ -23,9 +23,9 @@ from users.models import UserProfile
 
 import mkt
 from mkt.api.models import Access, generate
+from mkt.api.fields import LargeTextField
 from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
-from mkt.constants import ratingsbodies, regions
-from mkt.webapps.api import LargeTextField
+from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from reviews.models import Review
@@ -118,7 +118,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         eq_(res.status_code, 403)
         eq_(self.count(), 0)
 
-    @patch('mkt.webapps.api.record_action')
+    @patch('mkt.webapps.views.record_action')
     def test_create(self, record_action):
         obj = self.create()
         res = self.client.post(self.list_url,

@@ -4,8 +4,8 @@ from rest_framework.serializers import SerializerMethodField
 
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.collections.models import Collection
-from mkt.fireplace.api import (FireplaceCollectionMembershipField,
-                               FireplaceESAppSerializer)
+from mkt.fireplace.serializers import (FireplaceCollectionMembershipField,
+                                       FireplaceESAppSerializer)
 
 
 class FakeCollection(object):

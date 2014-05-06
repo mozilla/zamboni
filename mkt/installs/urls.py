@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from mkt.installs.api import install
+from mkt.installs.views import install
 
 
 urlpatterns = patterns('',

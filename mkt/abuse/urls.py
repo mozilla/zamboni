@@ -2,7 +2,7 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
 
-from mkt.abuse.api import AppAbuseViewSet, UserAbuseViewSet
+from mkt.abuse.views import AppAbuseViewSet, UserAbuseViewSet
 
 abuse = SimpleRouter()
 abuse.register('user', UserAbuseViewSet, base_name='user-abuse')

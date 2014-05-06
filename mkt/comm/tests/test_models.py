@@ -16,7 +16,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThreadToken,
                              user_has_perm_app, user_has_perm_note,
                              user_has_perm_thread)
-from mkt.comm.tests.test_api import CommTestMixin
+from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 
 

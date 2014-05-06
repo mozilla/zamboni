@@ -10,9 +10,9 @@ from mkt.constants import APP_FEATURES
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
-from mkt.webapps.api import (AppSerializer, AppFeaturesSerializer,
-                             SimpleAppSerializer)
 from mkt.webapps.models import Webapp
+from mkt.webapps.serializers import (AppSerializer, AppFeaturesSerializer,
+                                     SimpleAppSerializer)
 from users.models import UserProfile
 
 

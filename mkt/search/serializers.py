@@ -18,7 +18,7 @@ from mkt.webapps.models import Geodata, Webapp
 from mkt.webapps.utils import (dehydrate_content_rating,
                                dehydrate_descriptors,
                                dehydrate_interactives)
-from mkt.webapps.api import AppSerializer, SimpleAppSerializer
+from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
 
 
 class ESAppSerializer(AppSerializer):
