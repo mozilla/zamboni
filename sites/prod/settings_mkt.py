@@ -110,8 +110,6 @@ MIDDLEWARE_CLASSES = tuple(m for m in MIDDLEWARE_CLASSES if m not in (csp,))
 
 WEBAPPS_UNIQUE_BY_DOMAIN = True
 
-WAFFLE_SUFFIX = WAFFLE_TABLE_SUFFIX = 'mkt'
-
 SENTRY_DSN = private_mkt.SENTRY_DSN
 
 SOLITUDE_HOSTS = ('https://payments.firefox.com',)
