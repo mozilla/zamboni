@@ -2,6 +2,7 @@ import urlparse
 from urllib import urlencode
 
 from django.conf import settings
+from django.test.utils import override_settings
 
 import jwt
 from mozpay.verify import verify_claims, verify_keys
@@ -10,6 +11,8 @@ from nose.tools import eq_
 import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from constants.payments import PROVIDER_BOKU
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    WebAppProduct)
 from mkt import regions
@@ -75,10 +78,9 @@ class TestPurchaseJWT(PurchaseTest):
         eq_(token_product_data, expected_product_data)
 
 
-class TestWebAppProduct(PurchaseTest):
-
+class BaseTestWebAppProduct(PurchaseTest):
     def setUp(self):
-        super(TestWebAppProduct, self).setUp()
+        super(BaseTestWebAppProduct, self).setUp()
         self.product = WebAppProduct(self.addon)
         self.token = get_product_jwt(
             self.product,
@@ -88,6 +90,8 @@ class TestWebAppProduct(PurchaseTest):
 
         self.contribution = Contribution.objects.get()
 
+
+class TestWebAppProduct(BaseTestWebAppProduct):
     def test_external_id_with_no_domain(self):
         with self.settings(DOMAIN=None):
             eq_(self.product.external_id(),
@@ -110,18 +114,33 @@ class TestWebAppProduct(PurchaseTest):
         eq_(self.product.description(), self.addon.description)
         eq_(self.product.application_size(),
             self.addon.current_version.all_files[0].size)
-        eq_(self.product.seller_uuid(), (self.addon
-                                             .single_pay_account()
-                                             .payment_account
-                                             .solitude_seller
-                                             .uuid))
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
-        eq_(product_data['seller_uuid'], self.product.seller_uuid())
         eq_(product_data['public_id'], self.product.public_id())
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'], self.product.application_size())
+
+
+@override_settings(PAYMENT_PROVIDERS=['bango', 'boku'])
+class TestWebAppProductMultipleProviders(BaseTestWebAppProduct):
+    def setUp(self):
+        super(TestWebAppProductMultipleProviders, self).setUp()
+        account = PaymentAccount.objects.create(
+            user=self.user, uri='foo', name='test', inactive=False,
+            solitude_seller=self.seller, account_id=321, seller_uri='abc',
+            provider=PROVIDER_BOKU)
+        AddonPaymentAccount.objects.create(
+            addon=self.addon, account_uri='foo',
+            payment_account=account, product_uri='newuri')
+
+    def test_webapp_product_multiple_providers(self):
+        product_data = self.product.product_data(self.contribution)
+        eq_(product_data['contrib_uuid'], self.contribution.uuid)
+        eq_(product_data['public_id'], self.product.public_id())
+        eq_(product_data['addon_id'], self.product.addon().pk)
+        eq_(product_data['application_size'],
+            self.product.application_size())
 
 
 class TestInAppProduct(InAppPurchaseTest):
@@ -151,16 +170,9 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
         eq_(self.product.description(), self.inapp.webapp.description)
         eq_(self.product.application_size(), None)
-        eq_(self.product.seller_uuid(), (self.inapp
-                                             .webapp
-                                             .single_pay_account()
-                                             .payment_account
-                                             .solitude_seller
-                                             .uuid))
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
-        eq_(product_data['seller_uuid'], self.product.seller_uuid())
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['inapp_id'], self.product.id())
         eq_(product_data['application_size'], self.product.application_size())
