@@ -201,6 +201,13 @@ class TestAPIVersionMiddleware(amo.tests.TestCase):
         eq_(self.header(res, 'API-Version'), '3')
         eq_(self.header(res, 'API-Status'), None)
 
+    def test_no_api_version(self):
+        req = RequestFactory().get('/api/v2/')
+        req.API = True
+        res = self.api_version_middleware.process_response(req, HttpResponse())
+        eq_(self.header(res, 'API-Version'), '2')
+        eq_(self.header(res, 'API-Status'), None)
+
 
 class TestFilterMiddleware(amo.tests.TestCase):
 
