@@ -10,17 +10,6 @@
      data-versions="{{ url('addons.versions', addon.id) }}"
      data-name="{{ addon.name }}"
      {{ b.attrs()|xmlattr }}
-  {% if compat %}
-     data-min="{{ compat.min.version }}"
-     data-max="{{ compat.max.version }}"
-     data-is-compatible="{{ version.is_compatible[0]|json }}"
-     data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
-     data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
-     data-version="{{ version.version }}"
-     data-compatible-apps="{{ version.compatible_apps[request.APP] }}"
-     data-lastupdated-isotime="{{ version.created|isotime }}"
-     data-lastupdated-datetime="{{ version.created|datetime }}"
-  {% endif %}>
   <p class="install-button">
     {% set links = b.links() %}
     {% if not links %}

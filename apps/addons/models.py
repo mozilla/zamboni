@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
 import itertools
 import os
 import re
@@ -7,7 +6,6 @@ import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models, transaction
 from django.db.models import signals as dbsignals
@@ -21,7 +19,6 @@ import json_field
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
-
 import amo
 import amo.models
 from access import acl
@@ -30,9 +27,8 @@ from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
 from amo.urlresolvers import get_outgoing_url, reverse
-from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
-                       send_mail, slugify, sorted_groupby, timer, to_language,
-                       urlparams)
+from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
+                       sorted_groupby, timer, to_language, urlparams)
 from files.models import File
 from market.models import AddonPremium, Price
 from reviews.models import Review
@@ -43,7 +39,6 @@ from translations.query import order_by_translation
 from users.models import UserForeignKey, UserProfile
 from versions.compare import version_int
 from versions.models import Version
-
 
 from . import query, signals
 
@@ -735,138 +730,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                           % tuple(diff + [self, e]))
 
         return bool(updated)
-
-    def compatible_version(self, app_id, app_version=None, platform=None,
-                           compat_mode='strict'):
-        """Returns the newest compatible version given the input."""
-        if not app_id:
-            return None
-
-        if platform:
-            # We include platform_id=1 always in the SQL so we skip it here.
-            platform = platform.lower()
-            if platform != 'all' and platform in amo.PLATFORM_DICT:
-                platform = amo.PLATFORM_DICT[platform].id
-            else:
-                platform = None
-
-        log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                  u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
-                                       compat_mode))
-        valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
-        data = dict(id=self.id, app_id=app_id, platform=platform,
-                    valid_file_statuses=valid_file_statuses)
-        if app_version:
-            data.update(version_int=version_int(app_version))
-        else:
-            # We can't perform the search queries for strict or normal without
-            # an app version.
-            compat_mode = 'ignore'
-
-        ns_key = cache_ns_key('d2c-versions:%s' % self.id)
-        cache_key = '%s:%s:%s:%s:%s' % (ns_key, app_id, app_version, platform,
-                                        compat_mode)
-        version_id = cache.get(cache_key)
-        if version_id is not None:
-            log.debug(u'Found compatible version in cache: %s => %s' % (
-                      cache_key, version_id))
-            if version_id == 0:
-                return None
-            else:
-                try:
-                    return Version.objects.get(pk=version_id)
-                except Version.DoesNotExist:
-                    pass
-
-        raw_sql = ["""
-            SELECT versions.*
-            FROM versions
-            INNER JOIN addons
-                ON addons.id = versions.addon_id AND addons.id = %(id)s
-            INNER JOIN applications_versions
-                ON applications_versions.version_id = versions.id
-            INNER JOIN applications
-                ON applications_versions.application_id = applications.id
-                AND applications.id = %(app_id)s
-            INNER JOIN appversions appmin
-                ON appmin.id = applications_versions.min
-            INNER JOIN appversions appmax
-                ON appmax.id = applications_versions.max
-            INNER JOIN files
-                ON files.version_id = versions.id AND
-                   (files.platform_id = 1"""]
-
-        if platform:
-            raw_sql.append(' OR files.platform_id = %(platform)s')
-
-        raw_sql.append(') WHERE files.status IN (%(valid_file_statuses)s) ')
-
-        if app_version:
-            raw_sql.append('AND appmin.version_int <= %(version_int)s ')
-
-        if compat_mode == 'ignore':
-            pass  # No further SQL modification required.
-
-        elif compat_mode == 'normal':
-            raw_sql.append("""AND
-                CASE WHEN files.strict_compatibility = 1 OR
-                          files.binary_components = 1
-                THEN appmax.version_int >= %(version_int)s ELSE 1 END
-            """)
-            # Filter out versions that don't have the minimum maxVersion
-            # requirement to qualify for default-to-compatible.
-            d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
-            if d2c_max:
-                data['d2c_max_version'] = version_int(d2c_max)
-                raw_sql.append(
-                    "AND appmax.version_int >= %(d2c_max_version)s ")
-
-            # Filter out versions found in compat overrides
-            raw_sql.append("""AND
-                NOT versions.id IN (
-                SELECT version_id FROM incompatible_versions
-                WHERE app_id=%(app_id)s AND
-                  (min_app_version='0' AND
-                       max_app_version_int >= %(version_int)s) OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version='*') OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version_int >= %(version_int)s)) """)
-
-        else:  # Not defined or 'strict'.
-            raw_sql.append('AND appmax.version_int >= %(version_int)s ')
-
-        raw_sql.append('ORDER BY versions.id DESC LIMIT 1;')
-
-        version = Version.objects.raw(''.join(raw_sql) % data)
-        if version:
-            version = version[0]
-            version_id = version.id
-        else:
-            version = None
-            version_id = 0
-
-        log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id, None)
-
-        return version
-
-    def increment_version(self):
-        """Increment version number by 1."""
-        version = self.latest_version or self.current_version
-        version.version = str(float(version.version) + 1)
-        # Set the current version.
-        self.update(_current_version=version.save())
-
-    def invalidate_d2c_versions(self):
-        """Invalidates the cache of compatible versions.
-
-        Call this when there is an event that may change what compatible
-        versions are returned so they are recalculated.
-        """
-        key = cache_ns_key('d2c-versions:%s' % self.id, increment=True)
-        log.info('Incrementing d2c-versions namespace for add-on [%s]: %s' % (
-                 self.id, key))
 
     @property
     def current_version(self):
@@ -2098,154 +1961,6 @@ def cleanup_upsell(sender, instance, **kw):
 
 dbsignals.post_delete.connect(cleanup_upsell, sender=Addon,
                               dispatch_uid='addon_upsell')
-
-
-class CompatOverride(amo.models.ModelBase):
-    """Helps manage compat info for add-ons not hosted on AMO."""
-    name = models.CharField(max_length=255, blank=True, null=True)
-    guid = models.CharField(max_length=255, unique=True)
-    addon = models.ForeignKey(Addon, blank=True, null=True,
-                              help_text='Fill this out to link an override '
-                                        'to a hosted add-on')
-
-    class Meta:
-        db_table = 'compat_override'
-
-    def save(self, *args, **kw):
-        if not self.addon:
-            qs = Addon.objects.filter(guid=self.guid)
-            if qs:
-                self.addon = qs[0]
-        return super(CompatOverride, self).save(*args, **kw)
-
-    def __unicode__(self):
-        if self.addon:
-            return unicode(self.addon)
-        elif self.name:
-            return '%s (%s)' % (self.name, self.guid)
-        else:
-            return self.guid
-
-    def is_hosted(self):
-        """Am I talking about an add-on on AMO?"""
-        return bool(self.addon_id)
-
-    @staticmethod
-    def transformer(overrides):
-        if not overrides:
-            return
-
-        id_map = dict((o.id, o) for o in overrides)
-        qs = CompatOverrideRange.objects.filter(compat__in=id_map)
-
-        for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
-            id_map[compat_id].compat_ranges = list(ranges)
-
-    # May be filled in by a transformer for performance.
-    @amo.cached_property(writable=True)
-    def compat_ranges(self):
-        return list(self._compat_ranges.all())
-
-    def collapsed_ranges(self):
-        """Collapse identical version ranges into one entity."""
-        Range = collections.namedtuple('Range', 'type min max apps')
-        AppRange = collections.namedtuple('AppRange', 'app min max')
-        rv = []
-        sort_key = lambda x: (x.min_version, x.max_version, x.type)
-        for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
-            compats = list(compats)
-            first = compats[0]
-            item = Range(first.override_type(), first.min_version,
-                         first.max_version, [])
-            for compat in compats:
-                app = AppRange(amo.APPS_ALL[compat.app_id],
-                               compat.min_app_version, compat.max_app_version)
-                item.apps.append(app)
-            rv.append(item)
-        return rv
-
-
-OVERRIDE_TYPES = (
-    (0, 'Compatible (not supported)'),
-    (1, 'Incompatible'),
-)
-
-
-class CompatOverrideRange(amo.models.ModelBase):
-    """App compatibility for a certain version range of a RemoteAddon."""
-    compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
-    type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
-    min_version = models.CharField(
-        max_length=255, default='0',
-        help_text=u'If not "0", version is required to exist for the override'
-                  u' to take effect.')
-    max_version = models.CharField(
-        max_length=255, default='*',
-        help_text=u'If not "*", version is required to exist for the override'
-                  u' to take effect.')
-    app = models.ForeignKey('applications.Application')
-    min_app_version = models.CharField(max_length=255, default='0')
-    max_app_version = models.CharField(max_length=255, default='*')
-
-    class Meta:
-        db_table = 'compat_override_range'
-
-    def override_type(self):
-        """This is what Firefox wants to see in the XML output."""
-        return {0: 'compatible', 1: 'incompatible'}[self.type]
-
-
-class IncompatibleVersions(amo.models.ModelBase):
-    """
-    Denormalized table to join against for fast compat override filtering.
-
-    This was created to be able to join against a specific version record since
-    the CompatOverrideRange can be wildcarded (e.g. 0 to *, or 1.0 to 1.*), and
-    addon versioning isn't as consistent as Firefox versioning to trust
-    `version_int` in all cases.  So extra logic needed to be provided for when
-    a particular version falls within the range of a compatibility override.
-    """
-    version = models.ForeignKey(Version, related_name='+')
-    app = models.ForeignKey('applications.Application', related_name='+')
-    min_app_version = models.CharField(max_length=255, blank=True, default='0')
-    max_app_version = models.CharField(max_length=255, blank=True, default='*')
-    min_app_version_int = models.BigIntegerField(blank=True, null=True,
-                                                 editable=False, db_index=True)
-    max_app_version_int = models.BigIntegerField(blank=True, null=True,
-                                                 editable=False, db_index=True)
-
-    class Meta:
-        db_table = 'incompatible_versions'
-
-    def __unicode__(self):
-        return u'<IncompatibleVersion V:%s A:%s %s-%s>' % (
-            self.version.id, self.app.id, self.min_app_version,
-            self.max_app_version)
-
-    def save(self, *args, **kw):
-        self.min_app_version_int = version_int(self.min_app_version)
-        self.max_app_version_int = version_int(self.max_app_version)
-        return super(IncompatibleVersions, self).save(*args, **kw)
-
-
-def update_incompatible_versions(sender, instance, **kw):
-    if not instance.compat.addon_id:
-        return
-    if not instance.compat.addon.type == amo.ADDON_EXTENSION:
-        return
-
-    from . import tasks
-    versions = instance.compat.addon.versions.values_list('id', flat=True)
-    for chunk in chunked(versions, 50):
-        tasks.update_incompatible_appversions.delay(chunk)
-
-
-models.signals.post_save.connect(update_incompatible_versions,
-                                 sender=CompatOverrideRange,
-                                 dispatch_uid='cor_update_incompatible')
-models.signals.post_delete.connect(update_incompatible_versions,
-                                   sender=CompatOverrideRange,
-                                   dispatch_uid='cor_update_incompatible')
 
 
 # webapps.models imports addons.models to get Addon, so we need to keep the

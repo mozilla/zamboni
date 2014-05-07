@@ -3,8 +3,6 @@ import os
 import re
 import socket
 
-from jinja2 import Markup
-
 from django import forms
 from django.conf import settings
 from django.db.models import Q
@@ -12,7 +10,6 @@ from django.forms.models import modelformset_factory
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
-from django.contrib import messages
 
 import commonware
 import happyforms
@@ -20,28 +17,28 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 import waffle
 
-from access import acl
-import amo
 import addons.forms
+import amo
 import paypal
-from addons.models import (Addon, AddonDependency, AddonUpsell, AddonUser,
-                           BlacklistedSlug, Charity, Preview)
-from amo.helpers import loc
+from access import acl
+from addons.models import (Addon, AddonDependency, AddonUser, BlacklistedSlug,
+                           Charity, Preview)
 from amo.forms import AMOModelForm
+from amo.helpers import loc
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
-
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, Platform
 from files.utils import parse_addon, VERSION_RE
-from market.models import AddonPremium, Price
-from translations.widgets import TranslationTextarea, TranslationTextInput
-from translations.fields import TransTextarea, TransField
-from translations.models import delete_translation, Translation
-from translations.forms import TranslationFormMixin
-from versions.models import License, Version, ApplicationsVersions
 from mkt.webapps.models import Webapp
+from translations.fields import TransField, TransTextarea
+from translations.forms import TranslationFormMixin
+from translations.models import delete_translation, Translation
+from translations.widgets import TranslationTextarea, TranslationTextInput
+from versions.models import ApplicationsVersions, License, Version
+
 from . import tasks
+
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -486,6 +483,7 @@ class NewWebappForm(happyforms.Form):
         verify_app_domain(upload.name)  # JS puts manifest URL here
         return upload
 
+
 class AddonUploadForm(happyforms.Form):
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -504,6 +502,7 @@ class AddonUploadForm(happyforms.Form):
                 acl.action_allowed(self.request, 'ReviewerAdminTools', 'View')):
             raise forms.ValidationError(_(u'There was an error with your '
                                           u'upload. Please try again.'))
+
 
 class NewAddonForm(AddonUploadForm):
     desktop_platforms = forms.ModelMultipleChoiceField(

@@ -7,12 +7,10 @@ from celeryutils import task
 
 import amo
 from amo.decorators import write
-from amo.utils import cache_ns_key
-from versions.models import Version
 
 # pulling tasks from cron
 from . import cron  # NOQA
-from .models import Addon, CompatOverride, IncompatibleVersions, Preview
+from .models import Addon, Preview
 
 
 log = logging.getLogger('z.task')
@@ -90,87 +88,3 @@ def delete_preview_files(id, **kw):
             storage.delete(f)
         except Exception, e:
             log.error('Error deleting preview file (%s): %s' % (f, e))
-
-
-@task
-def update_incompatible_appversions(data, **kw):
-    """Updates the incompatible_versions table for this version."""
-    log.info('Updating incompatible_versions for %s versions.' % len(data))
-
-    addon_ids = set()
-
-    for version_id in data:
-        # This is here to handle both post_save and post_delete hooks.
-        IncompatibleVersions.objects.filter(version=version_id).delete()
-
-        try:
-            version = Version.objects.get(pk=version_id)
-        except Version.DoesNotExist:
-            log.info('Version ID [%d] not found. Incompatible versions were '
-                     'cleared.' % version_id)
-            return
-
-        addon_ids.add(version.addon_id)
-
-        try:
-            compat = CompatOverride.objects.get(addon=version.addon)
-        except CompatOverride.DoesNotExist:
-            log.info('Compat override for addon with version ID [%d] not '
-                     'found. Incompatible versions were cleared.' % version_id)
-            return
-
-        app_ranges = []
-        ranges = compat.collapsed_ranges()
-
-        for range in ranges:
-            if range.min == '0' and range.max == '*':
-                # Wildcard range, add all app ranges
-                app_ranges.extend(range.apps)
-            else:
-                # Since we can't rely on add-on version numbers, get the min
-                # and max ID values and find versions whose ID is within those
-                # ranges, being careful with wildcards.
-                min_id = max_id = None
-
-                if range.min == '0':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('id')
-                                .values_list('id', flat=True)[:1])
-                    if versions:
-                        min_id = versions[0]
-                else:
-                    try:
-                        min_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.min).id
-                    except Version.DoesNotExist:
-                        pass
-
-                if range.max == '*':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('-id')
-                                .values_list('id', flat=True)[:1])
-                    if versions:
-                        max_id = versions[0]
-                else:
-                    try:
-                        max_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.max).id
-                    except Version.DoesNotExist:
-                        pass
-
-                if min_id and max_id:
-                    if min_id <= version.id <= max_id:
-                        app_ranges.extend(range.apps)
-
-        for app_range in app_ranges:
-            IncompatibleVersions.objects.create(version=version,
-                                                app_id=app_range.app.id,
-                                                min_app_version=app_range.min,
-                                                max_app_version=app_range.max)
-            log.info('Added incompatible version for version ID [%d]: '
-                     'app:%d, %s -> %s' % (version_id, app_range.app.id,
-                                           app_range.min, app_range.max))
-
-    # Increment namespace cache of compat versions.
-    for addon_id in addon_ids:
-        cache_ns_key('d2c-versions:%s' % addon_id, increment=True)

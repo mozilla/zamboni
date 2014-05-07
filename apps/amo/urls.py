@@ -13,7 +13,6 @@ services_patterns = patterns('',
     url('^csp/policy$', csp.views.policy, name='amo.csp.policy'),
     url('^csp/report$', views.cspreport, name='amo.csp.report'),
     url('^timing/record$', views.record, name='amo.timing.record'),
-    url('^pfs.php$', views.plugin_check_redirect, name='api.plugincheck'),
     url('^install.php$', install.install, name='api.install'),
 )
 

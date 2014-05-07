@@ -5,20 +5,20 @@ from time import gmtime, time
 from urlparse import parse_qsl, urlparse
 from wsgiref.handlers import format_date_time
 
-
 import jwt
 from browserid.errors import ExpiredSignatureError
 from django_statsd.clients import statsd
-from lib.crypto.receipt import sign
-from lib.cef_loggers import receipt_cef
 from receipts import certs
 
+from lib.cef_loggers import receipt_cef
+from lib.crypto.receipt import sign
 
 from services.utils import settings
 
-from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
-                   CONTRIB_PURCHASE, CONTRIB_REFUND,
-                   log_configure, log_exception, log_info, mypool)
+from utils import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE, CONTRIB_PURCHASE,
+                   CONTRIB_REFUND, log_configure, log_exception, log_info,
+                   mypool)
+
 # Go configure the log.
 log_configure()
 

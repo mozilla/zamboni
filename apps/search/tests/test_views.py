@@ -518,11 +518,6 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(appver='9.00'))
         eq_(self.get_results(r), [])
 
-    def test_results_skip_appver_filtering_for_d2c(self):
-        r = self.client.get(self.url, dict(appver='10.0a1'))
-        eq_(self.get_results(r),
-            sorted(self.addons.values_list('id', flat=True)))
-
     def test_results_platform_filter_all(self):
         for platform in ('', 'all'):
             r = self.client.get(self.url, dict(platform=platform))

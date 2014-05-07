@@ -11,7 +11,7 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
-from addons.models import Addon, CompatOverride, CompatOverrideRange
+from addons.models import Addon
 from addons.tests.test_views import TestMobile
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
@@ -361,85 +361,6 @@ class TestVersion(amo.tests.TestCase):
         with mock.patch('addons.models.Addon.is_public') as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
-
-    def test_is_compatible(self):
-        # Base test for fixture before the rest.
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        eq_(version.is_compatible[0], True)
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
-
-    def test_is_compatible_type(self):
-        # Only ADDON_EXTENSIONs should be compatible.
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        addon.update(type=amo.ADDON_PERSONA)
-        eq_(version.is_compatible[0], False)
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
-
-    def test_is_compatible_strict_opt_in(self):
-        # Add-ons opting into strict compatibility should not be compatible.
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        file = version.all_files[0]
-        file.update(strict_compatibility=True)
-        eq_(version.is_compatible[0], False)
-        assert 'strict compatibility' in ''.join(version.is_compatible[1])
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
-
-    def test_is_compatible_binary_components(self):
-        # Add-ons using binary components should not be compatible.
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        file = version.all_files[0]
-        file.update(binary_components=True)
-        eq_(version.is_compatible[0], False)
-        assert 'binary components' in ''.join(version.is_compatible[1])
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
-
-    def test_is_compatible_app_max_version(self):
-        # Add-ons with max app version < 4.0 should not be compatible.
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon, max_app_version='3.5')
-        eq_(version.is_compatible_app(amo.FIREFOX), False)
-        # An app that isn't supported should also be False.
-        eq_(version.is_compatible_app(amo.THUNDERBIRD), False)
-        # An app that can't do d2c should also be False.
-        eq_(version.is_compatible_app(amo.UNKNOWN_APP), False)
-
-    def test_compat_override_app_versions(self):
-        app = Application.objects.get(pk=1)
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
-                                           max_version=version.version,
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
-        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
-
-    def test_compat_override_app_versions_wildcard(self):
-        app = Application.objects.get(pk=1)
-        addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
-        co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
-                                           max_version='*',
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
-        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
-
-    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
-    def test_invalidate_d2c_version_signals_on_delete(self, inv_mock):
-        version = Addon.objects.get(pk=3615).current_version
-        version.delete()
-        assert inv_mock.called
-
-    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
-    def test_invalidate_d2c_version_signals_on_save(self, inv_mock):
-        addon = Addon.objects.get(pk=3615)
-        amo.tests.version_factory(addon=addon)
-        assert inv_mock.called
 
     def test_app_feature_creation_app(self):
         app = Addon.objects.create(type=amo.ADDON_WEBAPP)

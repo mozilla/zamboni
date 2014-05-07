@@ -22,13 +22,13 @@ from amo.urlresolvers import reverse
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import cleanup_file, File, Platform
-from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 from users.models import UserProfile
 from versions.tasks import update_supported_locales_single
 
 from .compare import version_dict, version_int
+
 
 log = commonware.log.getLogger('z.versions')
 
@@ -260,63 +260,6 @@ class Version(amo.models.ModelBase):
             all_plats.update(amo.MOBILE_PLATFORMS)
         return all_plats
 
-    @amo.cached_property
-    def is_compatible(self):
-        """Returns tuple of compatibility and reasons why if not.
-
-        Server side conditions for determining compatibility are:
-            * The add-on is an extension (not a theme, app, etc.)
-            * Has not opted in to strict compatibility.
-            * Does not use binary_components in chrome.manifest.
-
-        Note: The lowest maxVersion compat check needs to be checked
-              separately.
-        Note: This does not take into account the client conditions.
-
-        """
-        compat = True
-        reasons = []
-        if self.addon.type != amo.ADDON_EXTENSION:
-            compat = False
-            # TODO: We may want this. For now we think it may be confusing.
-            # reasons.append(_('Add-on is not an extension.'))
-        if self.files.filter(binary_components=True).exists():
-            compat = False
-            reasons.append(_('Add-on uses binary components.'))
-        if self.files.filter(strict_compatibility=True).exists():
-            compat = False
-            reasons.append(_('Add-on has opted into strict compatibility '
-                             'checking.'))
-        return (compat, reasons)
-
-    def is_compatible_app(self, app):
-        """Returns True if the provided app passes compatibility conditions."""
-        appversion = self.compatible_apps.get(app)
-        if appversion and app.id in amo.D2C_MAX_VERSIONS:
-            return (version_int(appversion.max.version) >=
-                    version_int(amo.D2C_MAX_VERSIONS.get(app.id, '*')))
-        return False
-
-    def compat_override_app_versions(self):
-        """Returns the incompatible app versions range(s).
-
-        If not ranges, returns empty list.  Otherwise, this will return all
-        the app version ranges that this particular version is incompatible
-        with.
-
-        """
-        from addons.models import CompatOverride
-        cos = CompatOverride.objects.filter(addon=self.addon)
-        if not cos:
-            return []
-        app_versions = []
-        for co in cos:
-            for range in co.collapsed_ranges():
-                if (version_int(range.min) <= version_int(self.version)
-                                           <= version_int(range.max)):
-                    app_versions.extend([(a.min, a.max) for a in range.apps])
-        return app_versions
-
     @amo.cached_property(writable=True)
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""
@@ -545,50 +488,12 @@ def inherit_nomination(sender, instance, **kw):
                                 _signal=False)
 
 
-def update_incompatible_versions(sender, instance, **kw):
-    """When a new version is added or deleted, send to task to update if it
-    matches any compat overrides.
-    """
-    try:
-        if not instance.addon.reload().type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    from addons import tasks
-    tasks.update_incompatible_appversions.delay([instance.id])
-
-
 def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
         return
     for file_ in instance.files.all():
         cleanup_file(file_.__class__, file_)
-
-
-def clear_compatversion_cache_on_save(sender, instance, created, **kw):
-    """Clears compatversion cache if new Version created."""
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    if not kw.get('raw') and created:
-        instance.addon.invalidate_d2c_versions()
-
-
-def clear_compatversion_cache_on_delete(sender, instance, **kw):
-    """Clears compatversion cache when Version deleted."""
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    if not kw.get('raw'):
-        instance.addon.invalidate_d2c_versions()
 
 
 version_uploaded = django.dispatch.Signal()
@@ -601,20 +506,8 @@ models.signals.post_save.connect(
     dispatch_uid='version_inherit_nomination')
 models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
-models.signals.post_save.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
-models.signals.post_save.connect(
-    clear_compatversion_cache_on_save, sender=Version,
-    dispatch_uid='clear_compatversion_cache_save')
-models.signals.post_delete.connect(
-    clear_compatversion_cache_on_delete, sender=Version,
-    dispatch_uid='clear_compatversion_cache_del')
 
 
 class LicenseManager(amo.models.ManagerBase):
@@ -678,8 +571,4 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         unique_together = (("application", "version"),)
 
     def __unicode__(self):
-        if (self.version.is_compatible[0] and
-            self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
-            return _(u'{app} {min} and later').format(app=self.application,
-                                                      min=self.min)
         return u'%s %s - %s' % (self.application, self.min, self.max)

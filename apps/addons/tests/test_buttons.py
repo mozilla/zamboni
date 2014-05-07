@@ -1,6 +1,3 @@
-from datetime import datetime
-import json
-
 import jinja2
 
 import jingo
@@ -38,8 +35,6 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.app_slug = 'app_slug'
 
         self.version = v = Mock()
-        v.is_compatible = False
-        v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
         v.is_beta = False
         v.is_lite = False
@@ -439,18 +434,6 @@ class TestButtonHtml(ButtonTest):
             os = doc('.button.%s .os' % platform.shortname).attr('data-os')
             eq_(platform.name, os)
 
-    def test_compatible_apps(self):
-        compat = Mock()
-        compat.min.version = 'min version'
-        compat.max.version = 'max version'
-        self.version.compatible_apps = {amo.FIREFOX: compat}
-        self.version.is_compatible = (True, [])
-        self.version.is_compatible_app.return_value = True
-        self.version.created = datetime.now()
-        install = self.render()('.install')
-        eq_('min version', install.attr('data-min'))
-        eq_('max version', install.attr('data-max'))
-
     def test_contrib_text_with_platform(self):
         self.version.all_files = self.platform_files
         self.addon.takes_contributions = True
@@ -467,63 +450,6 @@ class TestButtonHtml(ButtonTest):
         flags_mock.return_value = xss = '<script src="x.js">'
         s = big_install_button(self.context, self.addon)
         assert xss not in s, s
-
-    def test_d2c_attrs(self):
-        compat = Mock()
-        compat.min.version = '4.0'
-        compat.max.version = '12.0'
-        self.version.compatible_apps = {amo.FIREFOX: compat}
-        self.version.is_compatible = (True, [])
-        self.version.is_compatible_app.return_value = True
-        doc = self.render(impala=True)
-        install_shell = doc('.install-shell')
-        install = doc('.install')
-        eq_(install.attr('data-min'), '4.0')
-        eq_(install.attr('data-max'), '12.0')
-        eq_(install.attr('data-is-compatible'), 'true')
-        eq_(install.attr('data-is-compatible-app'), 'true')
-        eq_(install.attr('data-compat-overrides'), '[]')
-        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 0)
-        # Also test overrides.
-        override = [('10.0a1', '10.*')]
-        self.version.compat_override_app_versions.return_value = override
-        install = self.render(impala=True)('.install')
-        eq_(install.attr('data-is-compatible'), 'true')
-        eq_(install.attr('data-compat-overrides'), json.dumps(override))
-
-    def test_d2c_attrs_binary(self):
-        compat = Mock()
-        compat.min.version = '4.0'
-        compat.max.version = '12.0'
-        self.version.compatible_apps = {amo.FIREFOX: compat}
-        self.version.is_compatible = (False, ['Add-on binary components.'])
-        self.version.is_compatible_app.return_value = True
-        doc = self.render(impala=True)
-        install_shell = doc('.install-shell')
-        install = doc('.install')
-        eq_(install.attr('data-min'), '4.0')
-        eq_(install.attr('data-max'), '12.0')
-        eq_(install.attr('data-is-compatible'), 'false')
-        eq_(install.attr('data-is-compatible-app'), 'true')
-        eq_(install.attr('data-compat-overrides'), '[]')
-        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 1)
-
-    def test_d2c_attrs_strict_and_binary(self):
-        compat = Mock()
-        compat.min.version = '4.0'
-        compat.max.version = '12.0'
-        self.version.compatible_apps = {amo.FIREFOX: compat}
-        self.version.is_compatible = (False, ['strict', 'binary'])
-        self.version.is_compatible_app.return_value = True
-        doc = self.render(impala=True)
-        install_shell = doc('.install-shell')
-        install = doc('.install')
-        eq_(install.attr('data-min'), '4.0')
-        eq_(install.attr('data-max'), '12.0')
-        eq_(install.attr('data-is-compatible'), 'false')
-        eq_(install.attr('data-is-compatible-app'), 'true')
-        eq_(install.attr('data-compat-overrides'), '[]')
-        eq_(install_shell.find('.d2c-reasons-popup ul li').length, 2)
 
 
 class TestBackup(ButtonTest):

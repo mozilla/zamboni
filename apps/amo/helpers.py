@@ -127,13 +127,6 @@ def shared_url(viewname, addon, *args, **kwargs):
     return url(viewname, *([slug] + list(args)), **kwargs)
 
 
-@register.function
-def services_url(viewname, *args, **kwargs):
-    """Helper for ``url`` with host=SERVICES_URL."""
-    kwargs.update({'host': settings.SERVICES_URL})
-    return url(viewname, *args, **kwargs)
-
-
 @register.filter
 def paginator(pager):
     return Paginator(pager).render()

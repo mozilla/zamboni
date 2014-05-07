@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 
 import amo
@@ -65,29 +64,8 @@ class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
 
-class CompatOverrideRangeInline(admin.TabularInline):
-    model = models.CompatOverrideRange
-    # Exclude type since firefox only supports blocking right now.
-    exclude = ('type',)
-
-
-class CompatOverrideAdminForm(forms.ModelForm):
-
-    def clean(self):
-        if '_confirm' in self.data:
-            raise forms.ValidationError('Click "Save" to confirm changes.')
-        return self.cleaned_data
-
-
-class CompatOverrideAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon',)
-    inlines = [CompatOverrideRangeInline]
-    form = CompatOverrideAdminForm
-
-
 admin.site.register(models.BlacklistedGuid)
 admin.site.register(models.Feature, FeatureAdmin)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
-admin.site.register(models.CompatOverride, CompatOverrideAdmin)
