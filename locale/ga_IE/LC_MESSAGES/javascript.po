@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -755,7 +755,7 @@ msgstr "Feidhmíonn sé le {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Féach ar leaganacha eile"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort chun breiseán cuardaigh a shuiteáil."
 
@@ -938,34 +938,14 @@ msgstr ""
 msgid "Experimental"
 msgstr "Turgnamhach"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Á Shuiteáil..."
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr ""
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Coinnigh é"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr ""
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Curtha le Firefox"

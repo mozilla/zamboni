@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -807,7 +807,7 @@ msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
-#: media/js/zamboni/buttons.js:597
+#: media/js/zamboni/buttons.js:582
 #: media/js/zamboni/mobile/buttons.js:39
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
@@ -982,34 +982,14 @@ msgstr "Ƞǿŧ Ȧṽȧīŀȧƀŀḗ ƒǿř {0}"
 msgid "Experimental"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ Ƞḗẇḗř Ṽḗřşīǿƞ ǿƒ {0}"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ {0}"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Īƞşŧȧŀŀīƞɠ..."
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "Ƥŭřƈħȧşīƞɠ..."
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Ķḗḗƥ īŧ"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "Ẏǿŭ'řḗ ŧřẏīƞɠ īŧ ǿƞ!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Ȧḓḓḗḓ ŧǿ Ƒīřḗƒǿẋ"

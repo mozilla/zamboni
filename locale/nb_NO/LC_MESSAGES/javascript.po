@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2013-10-25 19:48+0000\n"
 "Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -715,7 +715,7 @@ msgstr "Virker med {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Vis andre versjoner"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."
 
@@ -883,34 +883,14 @@ msgstr "Ikke tilgjengelig for {0}"
 msgid "Experimental"
 msgstr "Eksperimentell"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "Temaer krever en nyere versjon av {0}"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "Temaer krever {0}"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Installerer ..."
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "Kjøper ..."
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Denne utvidelsen er midlertidig kontrollert av Mozilla."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Behold den"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "Du prøver den ut!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Lagt til i Firefox"

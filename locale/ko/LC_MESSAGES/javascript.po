@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -701,7 +701,7 @@ msgstr "{app} {min} - {max}에서 작동"
 msgid "View other versions"
 msgstr "다른 버전 보기"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
 
@@ -864,34 +864,14 @@ msgstr "{0}용으로 사용 불가"
 msgid "Experimental"
 msgstr "시험용"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "새로운 버전의 {0}이 필요한 테마"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "{0}이 필요한 테마"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "설치 중..."
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "구입 중..."
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "이 부가 기능은 Mozilla의 예비 심사를 통과했습니다."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "받기"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "시도중입니다!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Firefox에 추가"

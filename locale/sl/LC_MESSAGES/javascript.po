@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2014-03-19 20:15+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
@@ -744,7 +744,7 @@ msgstr ""
 msgid "View other versions"
 msgstr ""
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
@@ -922,34 +922,14 @@ msgstr ""
 msgid "Experimental"
 msgstr ""
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Nameščanje v teku …"
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr ""
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr ""
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr ""
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
 msgstr ""

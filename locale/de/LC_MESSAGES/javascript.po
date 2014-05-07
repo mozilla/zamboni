@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2014-04-30 18:29+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,14 +335,8 @@ msgstr "Erkannt: {0}"
 #: media/js/devreg/payments-manage.js:31
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Beim Löschen des Zahlungskontos „{0}“ wird das Zahlungskonto von den "
-"folgenden Apps entfernt. Anwendungen ohne Zahlungskonto werden nicht mehr "
-"zum Verkauf stehen."
-msgstr[1] ""
-"Beim Löschen des Zahlungskontos „{0}“ wird das Zahlungskonto von der "
-"folgenden App entfernt. Anwendungen ohne Zahlungskonto werden nicht mehr zum "
-"Verkauf stehen."
+msgstr[0] "Beim Löschen des Zahlungskontos „{0}“ wird das Zahlungskonto von den folgenden Apps entfernt. Anwendungen ohne Zahlungskonto werden nicht mehr zum Verkauf stehen."
+msgstr[1] "Beim Löschen des Zahlungskontos „{0}“ wird das Zahlungskonto von der folgenden App entfernt. Anwendungen ohne Zahlungskonto werden nicht mehr zum Verkauf stehen."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
@@ -721,7 +715,7 @@ msgstr "Kompatibel mit {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Andere Versionen ansehen"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Es tut uns Leid, Sie benötigen einen Mozilla-basierten Browser (wie Firefox), um ein Such-Plugin zu installieren."
 
@@ -889,34 +883,14 @@ msgstr "Nicht verfügbar für {0}"
 msgid "Experimental"
 msgstr "Experimentell"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "Themes benötigen eine neuere Version von {0}"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "Themes benötigen {0}"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Wird installiert …"
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "Wird gekauft …"
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Dieses Add-on wurde vorläufig von Mozilla freigegeben."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Behalten"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "Sie probieren es an!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Zu Firefox hinzugefügt"

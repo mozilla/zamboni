@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-30 09:07-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2014-05-01 19:04+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -336,14 +336,8 @@ msgstr "Rilevati: {0}"
 #: media/js/devreg/payments-manage.js:31
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalle "
-"seguenti app. Le applicazioni prive di un account pagamenti non sono "
-"disponibili per l’acquisto."
-msgstr[1] ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgstr[0] "Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalle seguenti app. Le applicazioni prive di un account pagamenti non sono disponibili per l’acquisto."
+msgstr[1] "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
@@ -551,14 +545,11 @@ msgstr "App rifiutata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di approvazione dell’app: "
-"{app}"
+msgstr "Si è verificato un errore durante il processo di approvazione dell’app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
-"Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
+msgstr "Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
@@ -725,7 +716,7 @@ msgstr "Compatibile con {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Mostra altre versioni"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bisogna utilizzare un browser, come Firefox, basato su Mozilla per installare un plugin di ricerca."
 
@@ -893,34 +884,14 @@ msgstr "Non disponibile per {0}"
 msgid "Experimental"
 msgstr "Sperimentale"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "Questi temi richiedono una versione più recente di {0}"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "Questi temi richiedono {0}"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Installazione in corso…"
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "Acquisto in corso…"
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Questo componente aggiuntivo è stato sottoposto a una revisione preliminare da Mozilla."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Mantieni"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "La stai già provando!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Aggiunto a Firefox"

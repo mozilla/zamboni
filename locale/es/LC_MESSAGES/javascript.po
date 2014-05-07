@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 09:14-0700\n"
+"POT-Creation-Date: 2014-05-07 09:15-0700\n"
 "PO-Revision-Date: 2014-04-13 11:19+0000\n"
 "Last-Translator: Yunier <yjsosa@estudiantes.uci.cu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr[0] "&hellip;y {0} más"
 msgstr[1] "&hellip;y {0} más"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:162
+#: media/js/zamboni/devhub.js:160
 msgid "See full validation report"
 msgstr "Ver el informe completo de la validación"
 
@@ -122,7 +122,7 @@ msgstr "Los videos deben estar en el formato WebM."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Tu aplicación empaquetada debe finalizar en <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:169
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "La validación de tu aplicación ha fallado con {0} error."
@@ -176,17 +176,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
 msgstr[1] "La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:183
+#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Tu aplicación se ha validado sin errores y con {0} mensaje."
 msgstr[1] "Tu aplicación se ha validado sin errores y con {0} mensajes."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:188
+#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
 msgstr "Tu aplicación se ha validado sin errores ni mensajes."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:487
+#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
 msgid "Changes Saved"
 msgstr "Se han guardado los cambios"
 
@@ -198,19 +198,19 @@ msgstr "Escribe la dirección de correo electrónico de un nuevo miembro del equ
 msgid "Refreshed"
 msgstr "Actualizado"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:650
+#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Ha habido un error al subir tu archivo."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:925
+#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:923
 msgid "Learn more"
 msgstr "Más información"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:929
+#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:927
 msgid "Example"
 msgstr "Ejemplo"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1285
+#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1283
 msgid "Image changes being processed"
 msgstr "Se están procesando los cambios en la imagen"
 
@@ -250,23 +250,23 @@ msgstr "Mostrar todos los resultados"
 msgid "Over {0} results found, consider refining your search."
 msgstr "Más de {0} resultados encontrados, intenta concretar más tu búsqueda."
 
-#: media/js/devreg/manifest.js:46
+#: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
 msgstr "Permisos solicitados:"
 
-#: media/js/devreg/manifest.js:54
+#: media/js/devreg/manifest.js:55
 msgid "Certified"
 msgstr "Con certificado"
 
-#: media/js/devreg/manifest.js:57
+#: media/js/devreg/manifest.js:58
 msgid "Privileged"
 msgstr "Con privilegios"
 
-#: media/js/devreg/manifest.js:60
+#: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
 msgstr "Sin privilegios"
 
-#: media/js/devreg/manifest.js:66
+#: media/js/devreg/manifest.js:67
 msgid "No reason given"
 msgstr "No se ha indicado una razón"
 
@@ -333,25 +333,29 @@ msgstr "Detectado: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "Aviso: eliminar la cuenta de pago \"{0}\" provocará que la aplicación asociada pase a un estado incompleto y ya no esté disponible para la venta:"
-msgstr[1] "Aviso: eliminar la cuenta de pago \"{0}\" provocará que las aplicaciones asociadas pasen a un estado incompleto y ya no estén disponibles para la venta:"
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] ""
+msgstr[1] ""
 
-#: media/js/devreg/payments-manage.js:72 media/js/devreg/payments-manage.js:133 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:44
+msgid "{appName} payment accounts:"
+msgstr ""
+
+#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Error"
 
-#: media/js/devreg/payments-manage.js:73 media/js/devreg/payments-manage.js:134
+#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Hubo un problema al contactar con el servidor de pagos."
 
-#: media/js/devreg/payments-manage.js:103
+#: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
 msgstr "Error de autenticación"
 
-#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/payments-manage.js:181
 msgid "You do not currently have any payment accounts."
 msgstr "Actualmente no dispones de ninguna cuenta de pago."
 
@@ -434,43 +438,43 @@ msgstr "Adquirida"
 msgid "Launch"
 msgstr "Lanzar"
 
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
+#: media/js/devreg/reviewers/editors.js:141
 msgid "{name} was viewing this page first."
 msgstr "{name} estuvo viendo esta página antes."
 
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
+#: media/js/devreg/reviewers/editors.js:191
 msgid "Receipt checked by app."
 msgstr "El recibo fue comprobado por la aplicación."
 
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
+#: media/js/devreg/reviewers/editors.js:193
 msgid "Receipt was not checked by app."
 msgstr "El recibo no fue comprobado por la aplicación."
 
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
+#: media/js/devreg/reviewers/editors.js:264
 msgid "{name} was viewing this add-on first."
 msgstr "{name} fue el primero en ver este complemento."
 
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
+#: media/js/devreg/reviewers/editors.js:275
 msgid "Loading&hellip;"
 msgstr "Cargando &hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
+#: media/js/devreg/reviewers/editors.js:280
 msgid "Version Notes"
 msgstr "Notas de la versión"
 
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
+#: media/js/devreg/reviewers/editors.js:285
 msgid "Notes for Reviewers"
 msgstr "Notas para los revisores"
 
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
+#: media/js/devreg/reviewers/editors.js:290
 msgid "No version notes found"
 msgstr "No se han encontrado las notas de la versión"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1438 media/js/zamboni/editors.js:336
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
 msgstr "Selecciona primero una aplicación"
 
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
+#: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
 msgstr "Error al cargar traducción"
 
@@ -551,26 +555,6 @@ msgstr "Error al rechazar la aplicación: {app}"
 msgid "By {0} on {1}"
 msgstr "Por {0} en {1}"
 
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Información solicitada"
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Marcadas"
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Duplicadas"
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Rechazadas"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Aprobadas"
-
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
 msgstr "Seguir esta colección"
@@ -584,7 +568,7 @@ msgid "Following"
 msgstr "Siguiendo"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:17 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema es incompatible con tu versión de {0}"
 
@@ -643,520 +627,6 @@ msgstr "Categoría"
 #: media/js/impala/users.js:33
 msgid "use original"
 msgstr "usar originales"
-
-#: media/js/impala/stats/chart.js:267
-msgid "Week of {0}"
-msgstr "Semana de {0}"
-
-#: media/js/impala/stats/chart.js:269
-msgid "downloads"
-msgstr "descargas"
-
-#: media/js/impala/stats/chart.js:270
-msgid "{0} users"
-msgstr "{0} usuarios"
-
-#: media/js/impala/stats/chart.js:271
-msgid "{0} add-ons"
-msgstr "{0} complementos"
-
-#: media/js/impala/stats/chart.js:272
-msgid "{0} collections"
-msgstr "{0} colecciones"
-
-#: media/js/impala/stats/chart.js:273
-msgid "{0} reviews"
-msgstr "{0} valoraciones"
-
-#: media/js/impala/stats/chart.js:275
-msgid "{0} sales"
-msgstr "{0} ventas"
-
-#: media/js/impala/stats/chart.js:276
-msgid "{0} refunds"
-msgstr "{0} reembolsos"
-
-#: media/js/impala/stats/chart.js:277
-msgid "{0} installs"
-msgstr "{0} instalaciones"
-
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
-msgid "Downloads"
-msgstr "Descargas"
-
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
-msgid "Daily Users"
-msgstr "Usuarios diarios"
-
-#: media/js/impala/stats/chart.js:410
-msgid "Amount, in USD"
-msgstr "Cantidad, en USD"
-
-#: media/js/impala/stats/chart.js:421 media/js/impala/stats/csv_keys.js:97
-msgid "Number of Contributions"
-msgstr "Número de colaboraciones"
-
-#: media/js/impala/stats/chart.js:447
-msgid "More Info..."
-msgstr "Más información..."
-
-#. L10n: {0} is an ISO-formatted date.
-#: media/js/impala/stats/chart.js:451
-msgid "Details for {0}"
-msgstr "Detalles para {0}"
-
-#: media/js/impala/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "Colecciones creadas"
-
-#: media/js/impala/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "Complementos en uso"
-
-#: media/js/impala/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "Complementos creados"
-
-#: media/js/impala/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "Complementos descargados"
-
-#: media/js/impala/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "Complementos actualizados"
-
-#: media/js/impala/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "Valoraciones escritas"
-
-#: media/js/impala/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "Registros de usuarios"
-
-#: media/js/impala/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "Suscriptores"
-
-#: media/js/impala/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "Calificaciones"
-
-#: media/js/impala/stats/csv_keys.js:36 media/js/impala/stats/csv_keys.js:107
-msgid "Sales"
-msgstr "Ventas"
-
-#: media/js/impala/stats/csv_keys.js:39 media/js/impala/stats/csv_keys.js:106
-msgid "Installs"
-msgstr "Instalaciones"
-
-#: media/js/impala/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "Desconocidas"
-
-#: media/js/impala/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "Administrador de complementos"
-
-#: media/js/impala/stats/csv_keys.js:44
-msgid "Search Results"
-msgstr "Resultados de la búsqueda"
-
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
-msgid "Homepage Promo"
-msgstr "Promocionadas en la página de inicio"
-
-#: media/js/impala/stats/csv_keys.js:48 media/js/impala/stats/csv_keys.js:49
-msgid "Homepage Featured"
-msgstr "Destacadas en la página de inicio"
-
-#: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
-msgid "Homepage Up and Coming"
-msgstr "Próximamente disponibles en la página de inicio"
-
-#: media/js/impala/stats/csv_keys.js:52
-msgid "Homepage Most Popular"
-msgstr "Más populares en la página de inicio"
-
-#: media/js/impala/stats/csv_keys.js:53 media/js/impala/stats/csv_keys.js:55
-msgid "Detail Page"
-msgstr "Página de detalles"
-
-#: media/js/impala/stats/csv_keys.js:54 media/js/impala/stats/csv_keys.js:56
-msgid "Detail Page (bottom)"
-msgstr "Página de detalles (abajo)"
-
-#: media/js/impala/stats/csv_keys.js:57
-msgid "Detail Page (Development Channel)"
-msgstr "Página de detalles (Canal de desarrollo)"
-
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
-msgid "Often Used With"
-msgstr "Se suele usar con"
-
-#: media/js/impala/stats/csv_keys.js:61 media/js/impala/stats/csv_keys.js:62
-msgid "Others By Author"
-msgstr "Otros por autor"
-
-#: media/js/impala/stats/csv_keys.js:63 media/js/impala/stats/csv_keys.js:64
-msgid "Dependencies"
-msgstr "Dependencias"
-
-#: media/js/impala/stats/csv_keys.js:65 media/js/impala/stats/csv_keys.js:66
-msgid "Upsell"
-msgstr "Promoción"
-
-#: media/js/impala/stats/csv_keys.js:68
-msgid "Sharing"
-msgstr "Compartir"
-
-#: media/js/impala/stats/csv_keys.js:69
-msgid "Category Pages"
-msgstr "Páginas de categorías"
-
-#: media/js/impala/stats/csv_keys.js:70
-msgid "Collections"
-msgstr "Colecciones"
-
-#: media/js/impala/stats/csv_keys.js:71 media/js/impala/stats/csv_keys.js:72
-msgid "Category Landing Featured Carousel"
-msgstr "Página de aterrizaje según la categoría Carrusel de destacados"
-
-#: media/js/impala/stats/csv_keys.js:73 media/js/impala/stats/csv_keys.js:74
-msgid "Category Landing Top Rated"
-msgstr "Páginas de inicio según la categoría Mejor puntuadas"
-
-#: media/js/impala/stats/csv_keys.js:75 media/js/impala/stats/csv_keys.js:76
-msgid "Category Landing Most Popular"
-msgstr "Páginas de inicio según la categoría Más populares"
-
-#: media/js/impala/stats/csv_keys.js:77 media/js/impala/stats/csv_keys.js:78
-msgid "Category Landing Recently Added"
-msgstr "Páginas de inicio según la categoría Agregadas recientemente"
-
-#: media/js/impala/stats/csv_keys.js:79 media/js/impala/stats/csv_keys.js:80
-msgid "Browse Listing Featured Sort"
-msgstr "Explorar la lista ordenada por destacados"
-
-#: media/js/impala/stats/csv_keys.js:81 media/js/impala/stats/csv_keys.js:82
-msgid "Browse Listing Users Sort"
-msgstr "Explorar la lista ordenada por usuarios"
-
-#: media/js/impala/stats/csv_keys.js:83 media/js/impala/stats/csv_keys.js:84
-msgid "Browse Listing Rating Sort"
-msgstr "Explorar la lista ordenada por calificaciones"
-
-#: media/js/impala/stats/csv_keys.js:85 media/js/impala/stats/csv_keys.js:86
-msgid "Browse Listing Created Sort"
-msgstr "Explorar la lista ordenada por fecha de creación"
-
-#: media/js/impala/stats/csv_keys.js:87 media/js/impala/stats/csv_keys.js:88
-msgid "Browse Listing Name Sort"
-msgstr "Explorar la lista ordenada por nombres"
-
-#: media/js/impala/stats/csv_keys.js:89 media/js/impala/stats/csv_keys.js:90
-msgid "Browse Listing Popular Sort"
-msgstr "Explorar la lista ordenada por popularidad"
-
-#: media/js/impala/stats/csv_keys.js:91 media/js/impala/stats/csv_keys.js:92
-msgid "Browse Listing Updated Sort"
-msgstr "Explorar la lista ordenada por actualizaciones"
-
-#: media/js/impala/stats/csv_keys.js:93 media/js/impala/stats/csv_keys.js:94
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Explorar la lista ordenada por disponibles próximamente"
-
-#: media/js/impala/stats/csv_keys.js:98
-msgid "Total Amount Contributed"
-msgstr "Cantidad total de la contribución"
-
-#: media/js/impala/stats/csv_keys.js:99
-msgid "Average Contribution"
-msgstr "Contribución media"
-
-#: media/js/impala/stats/csv_keys.js:108
-msgid "Usage"
-msgstr "Uso"
-
-#: media/js/impala/stats/csv_keys.js:111
-msgid "Firefox"
-msgstr "Firefox"
-
-#: media/js/impala/stats/csv_keys.js:112
-msgid "Mozilla"
-msgstr "Mozilla"
-
-#: media/js/impala/stats/csv_keys.js:113
-msgid "Thunderbird"
-msgstr "Thunderbird"
-
-#: media/js/impala/stats/csv_keys.js:114
-msgid "Sunbird"
-msgstr "Sunbird"
-
-#: media/js/impala/stats/csv_keys.js:115
-msgid "SeaMonkey"
-msgstr "SeaMonkey"
-
-#: media/js/impala/stats/csv_keys.js:116
-msgid "Fennec"
-msgstr "Fennec"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:121
-msgid "Downloads and Daily Users, last {0} days"
-msgstr "Descargas y usuarios diarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:123
-msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Descargas y usuarios diarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:127
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Instalaciones y usuarios diarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:129
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalaciones y usuarios diarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:133
-msgid "Downloads, last {0} days"
-msgstr "Descargas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:135
-msgid "Downloads from {0} to {1}"
-msgstr "Descargas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:139
-msgid "Daily Users, last {0} days"
-msgstr "Usuarios diarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:141
-msgid "Daily Users from {0} to {1}"
-msgstr "Usuarios diarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:145
-msgid "Applications, last {0} days"
-msgstr "Aplicaciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:147
-msgid "Applications from {0} to {1}"
-msgstr "Aplicaciones desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:151
-msgid "Platforms, last {0} days"
-msgstr "Plataformas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:153
-msgid "Platforms from {0} to {1}"
-msgstr "Plataformas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:157
-msgid "Languages, last {0} days"
-msgstr "Idiomas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:159
-msgid "Languages from {0} to {1}"
-msgstr "Idiomas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:163
-msgid "Add-on Versions, last {0} days"
-msgstr "Versiones de complementos en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:165
-msgid "Add-on Versions from {0} to {1}"
-msgstr "Versiones de complementos desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:169
-msgid "Add-on Status, last {0} days"
-msgstr "Estados de complementos en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:171
-msgid "Add-on Status from {0} to {1}"
-msgstr "Estados de complementos desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:175
-msgid "Download Sources, last {0} days"
-msgstr "Descarga de fuentes en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:177
-msgid "Download Sources from {0} to {1}"
-msgstr "Descarga de fuentes desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:181
-msgid "Contributions, last {0} days"
-msgstr "Colaboraciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:183
-msgid "Contributions from {0} to {1}"
-msgstr "Colaboraciones desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:187
-msgid "Site Metrics, last {0} days"
-msgstr "Métricas del sitio en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:189
-msgid "Site Metrics from {0} to {1}"
-msgstr "Métricas del sitio desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:193
-msgid "Add-ons in Use, last {0} days"
-msgstr "Complementos en uso en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:195
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Complementos en uso desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:199
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Complementos descargados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:201
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Complementos descargados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:205
-msgid "Add-ons Created, last {0} days"
-msgstr "Complementos creados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:207
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Complementos creados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:211
-msgid "Add-ons Updated, last {0} days"
-msgstr "Complementos actualizados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:213
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Complementos actualizados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:217
-msgid "Reviews Written, last {0} days"
-msgstr "Valoraciones escritas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:219
-msgid "Reviews Written from {0} to {1}"
-msgstr "Valoraciones escritas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:223
-msgid "User Signups, last {0} days"
-msgstr "Registros de usuarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:225
-msgid "User Signups from {0} to {1}"
-msgstr "Registros de usuarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:229
-msgid "Collections Created, last {0} days"
-msgstr "Colecciones creadas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:231
-msgid "Collections Created from {0} to {1}"
-msgstr "Colecciones creadas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:235
-msgid "Subscribers, last {0} days"
-msgstr "Suscriptores en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:237
-msgid "Subscribers from {0} to {1}"
-msgstr "Suscriptores desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:241
-msgid "Ratings, last {0} days"
-msgstr "Calificaciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:243
-msgid "Ratings from {0} to {1}"
-msgstr "Calificaciones desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:247
-msgid "Sales, last {0} days"
-msgstr "Ventas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:249
-msgid "Sales from {0} to {1}"
-msgstr "Ventas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#: media/js/impala/stats/csv_keys.js:253
-msgid "Installs, last {0} days"
-msgstr "Instalaciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:255
-msgid "Installs from {0} to {1}"
-msgstr "Instalaciones desde {0} al {1}"
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:261
-msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> en los últimos {1} días"
-
-#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
-msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> desde {1} al {2}"
-
-#. L10n: {0} and {1} are integers.
-#: media/js/impala/stats/csv_keys.js:267
-msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b> promedio en los últimos {1} días"
-
-#: media/js/impala/stats/overview.js:19
-msgid "No data available."
-msgstr "No existen datos disponibles."
-
-#: media/js/impala/stats/table.js:74
-msgid "Date"
-msgstr "Fecha"
-
-#: media/js/impala/stats/topchart.js:96
-msgid "Other"
-msgstr "Otros"
 
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -1245,7 +715,7 @@ msgstr "Funciona con {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Ver otras versiones"
 
-#: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Lo sentimos, necesitas un navegador basado en Mozilla (como Firefox) para instalar un plugin de búsqueda."
 
@@ -1321,65 +791,33 @@ msgstr "Dejar de seguir"
 msgid "Install App"
 msgstr "Instalar aplicación"
 
-#: media/js/zamboni/devhub.js:242
+#: media/js/zamboni/devhub.js:240
 msgid "Your browser does not support the video tag"
 msgstr "Tu navegador no admite la etiqueta de video"
 
-#: media/js/zamboni/devhub.js:503
+#: media/js/zamboni/devhub.js:501
 msgid "Enter a new author's email address"
 msgstr "Escribe una nueva dirección de correo del autor"
 
-#: media/js/zamboni/devhub.js:793
+#: media/js/zamboni/devhub.js:791
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} archivo"
 msgstr[1] "{files} archivos"
 
-#: media/js/zamboni/devhub.js:796
+#: media/js/zamboni/devhub.js:794
 msgid "{reviews} review"
 msgid_plural "{reviews} reviews"
 msgstr[0] "{reviews} valoración"
 msgstr[1] "{reviews} valoraciones"
 
-#: media/js/zamboni/devhub.js:1466
-msgid "Starting tests..."
-msgstr "Iniciando pruebas..."
-
-#: media/js/zamboni/devhub.js:1473
-msgid "Waiting for test results..."
-msgstr "Esperando resultados de las pruebas..."
-
-#: media/js/zamboni/devhub.js:1475 media/js/zamboni/devhub.js:1480
-msgid "Internal Server Error"
-msgstr "Error interno del servidor"
-
-#: media/js/zamboni/devhub.js:1515
+#: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
 msgstr "Debe ser una dirección de correo válida."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "No se ha encontrado ningún resultado."
-
-#: media/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Lo sentimos, no hemos podido encontrar ninguna recomendación para ti.<br>Por favor, visita el <a href=\"{0}\">sitio de complementos</a> para encontrar un complemento adecuado para ti."
-
-#: media/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Encontrando recomendaciones&hellip;"
-
-#: media/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Actualizando recomendaciones&hellip;"
-
-#: media/js/zamboni/editors.js:371
-msgid "Average Reviews"
-msgstr "Promedio de valoraciones"
-
-#: media/js/zamboni/editors.js:427
-msgid "Number of Reviews"
-msgstr "Número de valoraciones"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1406,10 +844,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Queda al menos {0} carácter."
 msgstr[1] "Quedan al menos {0} caracteres."
-
-#: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Todo"
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
@@ -1449,34 +883,14 @@ msgstr "No está disponible para {0}"
 msgid "Experimental"
 msgstr "Experimental"
 
-#: media/js/zamboni/mobile/buttons.js:82
-msgid "Themes Require Newer Version of {0}"
-msgstr "Los temas requieren una versión reciente de {0}"
-
-#: media/js/zamboni/mobile/buttons.js:83
-msgid "Themes Require {0}"
-msgstr "Los temas requieren {0}"
-
-#: media/js/zamboni/mobile/buttons.js:128
+#: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
 msgstr "Instalando..."
 
-#: media/js/zamboni/mobile/buttons.js:136
+#: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
 msgstr "Adquiriendo..."
 
-#: media/js/zamboni/mobile/buttons.js:165
+#: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Este complemento ha sido revisado preliminarmente por Mozilla."
-
-#: media/js/zamboni/mobile/buttons.js:299
-msgid "Keep it"
-msgstr "Conservarlo"
-
-#: media/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "¡Lo estás probando!"
-
-#: media/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "Agregado a Firefox"
