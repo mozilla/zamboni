@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-04-24 05:55+0000\n"
+"PO-Revision-Date: 2014-05-07 17:38+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398318954.0\n"
+"X-POOTLE-MTIME: 1399484290.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -1780,11 +1780,11 @@ msgstr "Inhoudwaardering {addon} gewijzigd."
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Prioritaire beoordeling gevraagd voor {addon}."
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "Prioritaire beoordeling"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1814,6 +1814,19 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Sorry, maar we kunnen de door u gezochte pagina niet vinden.</h1> <p> De "
+"door u gevraagde pagina of bestand kon niet worden gevonden op onze "
+"website. Mogelijk hebt u op een verouderde koppeling geklikt of het adres "
+"verkeerd ingetypt. </p> <ul> <li>Als u het adres hebt ingetypt, controleer "
+"dan de spelling.</li> <li> Als u een koppeling van elders hebt gevolgd, laat "
+"het ons dan weten via <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Vertel ons "
+"waar u vandaan kwam en wat u zocht, en we zullen proberen het te repareren. "
+"</li> </ul> <p>Of u kunt naar één van de populaire pagina’s op onze website "
+"springen.</p> <ul> <li> Wilt u <a href=\"%(search)s\">zoeken naar add-ons</a>? "
+"U kunt naar de <a href=\"%(search)s\">zoekpagina gaan</a> of gewoon het "
+"zoekveld hierboven gebruiken. </li> <li> Als u liever opnieuw begint, ga dan "
+"naar de <a href=\"%(home)s\">add-ons-startpagina</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -10561,47 +10574,47 @@ msgstr "Angstaanjagende inhoud"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Abstract geweld"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Alcoholgebruik"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Drugsgebruik"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Expliciet geweld"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Horror"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Seksueel geweld"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Verwijzing naar seksueel geweld"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Seksuele verwijzingen"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "Sporadische schrikeffecten"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "Sporadisch vloeken"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Tabaksgebruik"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -11060,7 +11073,7 @@ msgstr "Dienstkenmerk"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "Dienstkenmerk niet geldig"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -11847,15 +11860,17 @@ msgstr "Terughoudend gebruiken"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Prioritaire beoordeling nodig"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"De app wordt met voorrang behandeld en bovenaan de beoordelingswachtrij "
+"geplaatst"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Dit blijft zo tot de eerste goedkeuring"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -12532,11 +12547,11 @@ msgstr "Gebruikersvoorwaarden accepteren"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Bevestig verwijdering van uw betalingsaccount"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Betalingsaccount verwijderen"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -13784,11 +13799,11 @@ msgstr "Gehoste app"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "Beoordeling met voorrang"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "Beoordeling met voorrang?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -14171,7 +14186,7 @@ msgstr "Mij berichten wanneer het manifest weer wordt bijgewerkt. (Volgende upda
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Deze app werkt op Tarako-apparaten."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -14192,7 +14207,7 @@ msgstr "Meer informatie gevraagd"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Klaar voor Tarako"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -14699,7 +14714,7 @@ msgstr "Filteren"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Prioritaire beoordeling nodig"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
