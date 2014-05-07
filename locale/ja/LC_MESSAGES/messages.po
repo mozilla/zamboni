@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-04-15 13:28-0500\n"
+"PO-Revision-Date: 2014-05-07 14:42-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1765,11 +1765,11 @@ msgstr "{addon} のコンテンツレーティングが変更されました。"
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "{addon} の優先審査が求められています。"
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "優先審査"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -7010,7 +7010,7 @@ msgstr "バージョンを削除"
 
 #: apps/devhub/templates/devhub/versions/list.html:271
 msgid "Disable Version"
-msgstr ""
+msgstr "バージョンを無効化"
 
 #: apps/devhub/templates/devhub/versions/list.html:278
 msgid "Add a new Version"
@@ -7251,11 +7251,11 @@ msgstr "タブストップ:"
 
 #: apps/files/templates/files/viewer.html:75 apps/files/templates/files/viewer.html:76 mkt/files/templates/fileviewer/viewer.html:73 mkt/files/templates/fileviewer/viewer.html:74
 msgid "Up file"
-msgstr ""
+msgstr "上のファイル"
 
 #: apps/files/templates/files/viewer.html:80 apps/files/templates/files/viewer.html:81 mkt/files/templates/fileviewer/viewer.html:78 mkt/files/templates/fileviewer/viewer.html:79
 msgid "Down file"
-msgstr ""
+msgstr "下のファイル"
 
 #: apps/files/templates/files/viewer.html:86 apps/files/templates/files/viewer.html:87 mkt/files/templates/fileviewer/viewer.html:84 mkt/files/templates/fileviewer/viewer.html:85
 msgid "Previous diff"
@@ -7475,7 +7475,7 @@ msgstr[0] "このアドオンには <b>{0}</b> 件のレビューがあります
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:40
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "開発者 {0} さんからの返信"
 
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "Review for %(addon)s by %(user)s"
@@ -7718,7 +7718,7 @@ msgstr "%s の返品拒否"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr ""
+msgstr "人気の {0} タグ"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
@@ -8430,11 +8430,11 @@ msgstr "購読解除"
 
 #: apps/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "購読を解除しました。"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "今後、メールアドレス <strong>%(email)s</strong> には、以下の際にメッセージが送信されなくなります。"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
@@ -10009,15 +10009,15 @@ msgstr "このアプリは、複数のネットワーク接続に関する情報
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "ヘッダ画像"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "引用"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "スクリーンショット"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -10285,47 +10285,47 @@ msgstr "恐ろしい内容"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "抽象的暴力"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "アルコールの使用"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "薬物の使用"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "明白な暴力"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "ホラー"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "性的暴力"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "性的暴力の描写"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "性描写"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "まれな恐怖"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "時折の悪態"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "タバコの使用"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -10782,7 +10782,7 @@ msgstr "サービス ID"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "サービス ID が正しくありません"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -11018,7 +11018,7 @@ msgstr ""
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(next_url)s\">%(next_step_name)s</a> を設定してください。"
 
 #: mkt/developers/templates/developers/builder.html:3
 msgid "Builder and SDK"
@@ -11558,7 +11558,7 @@ msgstr "小出しに使用"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "優先審査が必要です"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
@@ -11872,7 +11872,7 @@ msgstr "決済用アカウント設定"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "端末を変更"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -11919,38 +11919,40 @@ msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"アプリを Marketplace へ掲載するには、International Age Rating Coalition (IARC) 証明書を取得する必要があります。以下のボタンをクリックすると新しいウィンドウが開きますので、そこでアプリの内容に関する「はい」「いい"
+"え」形式の短い質問に答えてください。回答が終わると、ウィンドウが閉じて、年齢を基準としたレーティングがアプリに付与されます。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr ""
+msgstr "IARC のレーティング証明書ツールを使用することで、IARC の <a href=\"%(privacy_url)s\">プライバシーポリシー</a> と <a href=\"%(tos_url)s\">サービス利用規約</a> に同意したことになります。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr ""
+msgstr "IARC コンテンツレーティングの処理が完了しました。アプリの <a href=\"%(ratings_url)s\">コンテンツレーティングページ</a> へリダイレクトされます。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr ""
+msgstr "申し訳ありません。コンテンツレーティングの処理中にサイト側で問題が発生しました。再度試すか、また後で設定し直してください。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "IARC レーティング証明書を作成"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "アプリのレーティングを取得済みですか？"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr ""
+msgstr "すでに上記の IARC Global Ratings Tool を通じてアプリのレーティングを取得し、IARC セキュリティコードをお持ちの場合は、ここに入力してください。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "登録 ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr ""
+msgstr "登録 ID はあなたのメールアドレス宛に送信された証明書に書かれています。「14」のような数字の形式です。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -11958,7 +11960,7 @@ msgstr "セキュリティコード"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
+msgstr "セキュリティコードはあなたのメールアドレス宛に送信された証明書に書かれています。「AB12CD3」のような英数字が混在した形式です。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
@@ -11985,6 +11987,8 @@ msgid ""
 "Sorry, <b>payments are currently disabled</b> but are coming soon. If you would like users to be able to install your app, please, for the time being, <a href=\"%(payments_url)s\">make your app "
 "free</a>. You will be notified via email when payments are re-enabled. Thanks for your patience."
 msgstr ""
+"申し訳ありません。<b>決済は現在のところ無効化されています</b> が、まもなく有効になる予定です。ユーザがアプリをインストールできるようにしたい場合は、お手数ですが、当分の間、<a href=\"%(payments_url)s\">アプリを無料"
+"化してください</a>。決済が再度有効になった時点でメールでお知らせします。お待たせして申し訳ありません。"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -12029,7 +12033,7 @@ msgstr "アプリ内課金をテスト"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
-msgstr ""
+msgstr "Firefox Marketplace ではアプリ内課金を許容しています。以下のパラメータでアプリの決済を設定する方法については <a href=\"{guide}\">アプリ内課金ガイド</a> の説明を参照してください。"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:53 mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Reset secret"
@@ -12044,6 +12048,8 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
+"以下のキーと秘密鍵は、アプリの開発中にアプリ内課金をシミュレーションする目的に限って使用できるものです。実際のアプリ内課金向けにキーを生成するには、アプリの <a href=\"%(submit)s\">登録</a> を完了させ、決済情報を入力"
+"した上で、そのアプリ専用のキーを新たに生成してください。"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Generate Keys"
@@ -12111,11 +12117,11 @@ msgstr "このアプリは現在不完全です。決済用アカウントと価
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "対象地域"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "決済用アカウントのトランザクションを追加、管理、表示"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -12143,7 +12149,7 @@ msgstr "利用可能な地域"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr ""
+msgstr "現在販売が可能な国を確認するには <a href=\"%(status_url)s\" target=\"_blank\">ステータスページ</a> を参照してください。"
 
 #: mkt/developers/templates/developers/payments/premium.html:220
 msgid "Your app will be available in the following selected regions:"
@@ -12169,7 +12175,7 @@ msgstr "その他の地域"
 msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
-msgstr ""
+msgstr "このアプリは、選択された価格帯に基づく決済が可能になり次第、以下の選択された地域で公開されます。特定の地域でアプリを非公開とするには、保存する前にその地域のチェックを外してください。"
 
 #: mkt/developers/templates/developers/payments/premium.html:263
 msgid "Regions and Listings"
@@ -12214,7 +12220,7 @@ msgstr "トランザクションを見る"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "{provider} アカウントを追加"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -12222,11 +12228,11 @@ msgstr "利用規約に同意"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "決済用アカウントの削除を確認"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "決済用アカウントを削除"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -12234,7 +12240,7 @@ msgstr "現在の決済用アカウントは、アプリの所有者によって
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
-msgstr ""
+msgstr "未完成の決済用アカウントがあります。それを完成させるか、以下で新しいアカウントを設定してください。"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -12279,7 +12285,7 @@ msgstr "Boku アカウントを追加"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
-msgstr ""
+msgstr "Boku アカウントに登録するには Boku サービス ID が必要となります。Boku アカウントは <a href=\"%(boku_url)s\">Mozilla の登録プロセス</a> を通じて作成する必要があります。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -12297,7 +12303,7 @@ msgstr "Boku アカウントを編集"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "現在 Boku アカウントの編集はできません。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -12313,15 +12319,15 @@ msgstr "一部の地域が制限されている理由"
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
-msgstr ""
+msgstr "今後あなたのアプリは決済に対応していない特定の地域では公開されなくなります。あなたの地域の選択は変更されましたので、変更を保存する前に確認してください。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
-msgstr ""
+msgstr "あなたのアプリは今後追加されるすべての地域 Marketplace で公開されます。"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
-msgstr ""
+msgstr "(選択された価格帯で、この地域で使用可能な支払い方法の対象となります)"
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -12439,12 +12445,16 @@ msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"Firefox OS はオープンな Web 標準を全面的に用いて開発された新しいモバイル向けオペレーティングシステムです。Firefox OS では、バイブレーションを起こしたり、電話を掛けたり、テキストメッセージを送信したりするなど、電話"
+"機のハードウェアや主要機能を HTML5 アプリから直接操作できます。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"私たちは、開発者の皆さんの協力があってこそ Web の力をモバイルへもたらすことができると考えており、アプリの開発とテスト、そして Firefox OS 自体のカスタマイズに関する理解促進に利用できる端末を提供するため、様々なパート"
+"ナーと協力してきました。このページでは、開発者向けドキュメントへのリンク、利用可能な端末、それらの入手先など、開発者に役立つ情報を提供します。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
@@ -12467,10 +12477,12 @@ msgid ""
 "After a lot of hard work alongside ZTE we are proud to announce the release of the ZTE OPEN Firefox OS phone, a powerful device aimed at developers and early adopters worldwide. These devices are "
 "available through ZTE's US, UK, and HK eBay stores, priced at $79.99/£59.99, and will be unlocked and open for testing and experimentation. <a href=\"%(zte_url)s\">Read more details.</a>"
 msgstr ""
+"ZTE との膨大な共同作業の結果、世界中の開発者とアーリーアダプター向けのパワフルな端末として、Firefox OS 搭載の電話機「ZTE OPEN」が公開されたことを喜んで発表します。この端末は、ZTE が運営する、アメリカ、イギリスおよび"
+"香港の eBay ストアを通じて入手可能で、価格は 79.99 ドルもしくは 59.99 ポンド、SIM ロックは掛かっておらず、テストや実験に利用できます。<a href=\"%(zte_url)s\">詳細はこちら</a>。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:67
 msgid "NOTE: New devices have been made available from Hong Kong to cut down on postage costs for Asian and Oceanian users."
-msgstr ""
+msgstr "注: 新端末は、アジアおよびオセアニア地域在住ユーザの配送料負担を抑えるため、香港からも入手可能となっています。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:77
 msgid "Peak"
@@ -12486,12 +12498,16 @@ msgid ""
 "Firefox OS devices. Note that no more phones are being produced at this moment in time, although another run is planned for the future. A number will remain in circulation however, and these "
 "devices are still very valid for developer testing, having full updates available to them."
 msgstr ""
+"Mozilla と Geeksphone、Telefónica は、Geeksphone の Keon と Peak を共同開発しました。これらは、Firefox OS の実機上でアプリの開発を始めたいという開発者向けの、それぞれローエンドとハイエンドのプレビュー機です。"
+"なお、今後再開の予定はありますが、現時点で端末の製造は中止されています。ただしまだ多少の在庫は流通しており、これらの端末は現在でも開発者のテストに大変有効です。完全な新バージョンの更新も提供されています。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:92
 msgid ""
 "<strong>If you have just received a Geeksphone Keon or Peak, it is probably still running the out-of-date Firefox OS version 1.0.1. Before doing anything else with it, you should flash it to an up-"
 "to-date version of Firefox OS, as described in our <a href=\"%(geeksphone_update_url)s\">guide to Flashing your Geeksphone</a>.</strong>"
 msgstr ""
+"<strong>Geeksphone の Keon もしくは Peak を受け取ったばかりの場合、おそらくまだ Firefox OS のバージョンは古い 1.0.1 のままでしょう。その上で何か始める前に、<a href=\"%(geeksphone_update_url)s\">Geeksphone "
+"更新ガイド</a> に従って、Firefox OS の最新版へ更新してください。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
@@ -12502,12 +12518,16 @@ msgid ""
 "If you already have a Firefox OS device and want some guidance and direction, you can <a href=\"%(devhub_url)s\">get started at the Firefox Marketplace Developer Hub</a>. The <a href=\"%(mdn_url)s"
 "\">Mozilla Developer Network</a> also provides a wealth of useful resources such as API documentation and further information on Open Web App development."
 msgstr ""
+"すでに Firefox OS を持っていて、何らかのガイドや説明書が欲しい場合は、<a href=\"%(devhub_url)s\">Firefox Marketplace Developer Hub から情報収集を始める</a> ことができます。<a href=\"%(mdn_url)s\">Mozilla "
+"Developer Network</a> にも、API ドキュメントから Open Web App 開発の詳細情報に至るまで、有益な情報が豊富に揃っています。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:112
 msgid ""
 "If you don't have a Firefox OS device, explore the other tabs to find out how to obtain one. You don't have to wait however — you can start developing and testing Firefox OS Apps right away using "
 "the <a href=\"%(simulator_url)s\">Firefox OS simulator</a>."
 msgstr ""
+"Firefox OS をお持ちでない場合は、上記の端末入手方法を参照してください。しかし実機が届くのを待つ必要はありません。<a href=\"%(simulator_url)s\">Firefox OS シミュレータ</a> を使えば、今すぐに Firefox OS アプリの"
+"開発とテストを始められます。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
@@ -12519,6 +12539,9 @@ msgid ""
 "we'd like you to get involved with the effort! We would like to invite you to add any useful information you have to the <a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a>. You "
 "can edit pages after creating a Mozilla Persona user account and logging in."
 msgstr ""
+"登場したばかりのプラットフォーム向けに開発を行う場合、すでに定番となっているプラットフォームと比較して、有益な情報源を見つけるのは常に難しいことです。Firefox OS アプリの開発者にできる限りの支援を行うため、開発者の皆"
+"さんにもこの取り組みに参加してもらえればと思います。何か有益な情報をお持ちであれば、<a href=\"%(mdn_url)s\" target=\"_blank\">Mozilla Developer Network</a> に情報を追加してください。Mozilla Persona のユーザア"
+"カウントを作成してログインすればページを編集できるようになります。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:133
 msgid ""
@@ -12527,6 +12550,9 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"特に、<a href=\"%(mdn_hackingfxos_url)s\" target=\"_blank\">Firefox OS 自体のハッキングに関するヒント</a>、<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">Firefox OS アプリの開発に関するヒント</a>、"
+"<a href=\"%(mdn_devphone_url)s\" target=\"_blank\">Firefox OS を別の端末上で動作させる方法</a> といった情報をお待ちしています。また、<a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> や <a href=\""
+"%(b2g_mail_url)s\" target=\"_blank\">メール</a> による質問、フィードバック、情報提供も歓迎します。"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -13428,11 +13454,11 @@ msgstr "ホスト型アプリ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "審査が優先されました"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "審査を優先しますか？"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -13812,7 +13838,7 @@ msgstr "次回マニフェストが更新されたときメールで通知を受
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "このアプリは Tarako 端末上で動作します。"
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -13833,7 +13859,7 @@ msgstr "詳しい情報が求められています"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Tarako 対応"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -13970,11 +13996,11 @@ msgstr "新着アプリ (5 日以内)"
 
 #: mkt/reviewers/views.py:83
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "次第点 (5 日以上 10 日未満)"
 
 #: mkt/reviewers/views.py:84
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "延滞 (10 日以上)"
 
 #: mkt/reviewers/views.py:236
 msgid "Self-reviews are not allowed."
@@ -14011,11 +14037,11 @@ msgstr "{addon} の不正報告 ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:15
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s / %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:19
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>匿名</i> / %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -14118,7 +14144,7 @@ msgstr "今月の審査回数"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:19
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "まだレビューポイントは付与されていません。"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
@@ -14166,7 +14192,7 @@ msgstr "{0} の審査担当者スコア"
 
 #: mkt/reviewers/templates/reviewers/performance.html:21
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "種類別の全期間ポイント内訳"
 
 #: mkt/reviewers/templates/reviewers/performance.html:28
 msgid "Total"
@@ -14274,7 +14300,7 @@ msgstr "最低要件の上書き:"
 
 #: mkt/reviewers/templates/reviewers/review.html:202
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>警告！</strong> 他のユーザがあなたより前にこのページを開いています。"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
@@ -14335,7 +14361,7 @@ msgstr "フィルタ"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "優先審査が必要"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
@@ -14364,15 +14390,15 @@ msgstr "管理アクション:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "投稿者: %(user)s / 投稿日時 %(date)s %(stars)s (%(locale)s)"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s によるフラグ指定 / %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "すべてのレビューがモデレートされました。頑張りましたね！"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
@@ -14400,7 +14426,7 @@ msgstr "比較"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:72
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>担当: %(user)s / %(date)s</div>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
@@ -14448,75 +14474,75 @@ msgstr "タブレット"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "すべてのカテゴリ"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
-msgstr ""
+msgstr "ゲーム"
 
 #: mkt/search/forms.py:66
 msgid "Business"
-msgstr ""
+msgstr "ビジネス"
 
 #: mkt/search/forms.py:67
 msgid "Education"
-msgstr ""
+msgstr "教育"
 
 #: mkt/search/forms.py:68
 msgid "Entertainment"
-msgstr ""
+msgstr "エンタテインメント"
 
 #: mkt/search/forms.py:69
 msgid "Health & Fitness"
-msgstr ""
+msgstr "健康 & フィットネス"
 
 #: mkt/search/forms.py:70 mkt/search/forms.py:97
 msgid "Lifestyle"
-msgstr ""
+msgstr "ライフスタイル"
 
 #: mkt/search/forms.py:71
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "地図 & ナビゲーション"
 
 #: mkt/search/forms.py:72
 msgid "Music"
-msgstr ""
+msgstr "音楽"
 
 #: mkt/search/forms.py:73
 msgid "News & Weather"
-msgstr ""
+msgstr "ニュース & 天気"
 
 #: mkt/search/forms.py:74
 msgid "Photo & Video"
-msgstr ""
+msgstr "写真 & 動画"
 
 #: mkt/search/forms.py:75
 msgid "Productivity"
-msgstr ""
+msgstr "仕事効率化"
 
 #: mkt/search/forms.py:76
 msgid "Reference"
-msgstr ""
+msgstr "リファレンス"
 
 #: mkt/search/forms.py:77
 msgid "Shopping"
-msgstr ""
+msgstr "ショッピング"
 
 #: mkt/search/forms.py:78
 msgid "Social"
-msgstr ""
+msgstr "ソーシャル"
 
 #: mkt/search/forms.py:79
 msgid "Sports"
-msgstr ""
+msgstr "スポーツ"
 
 #: mkt/search/forms.py:80
 msgid "Travel"
-msgstr ""
+msgstr "旅行"
 
 #: mkt/search/forms.py:81
 msgid "Utilities"
-msgstr ""
+msgstr "ユーティリティ"
 
 #: mkt/search/forms.py:113
 msgid "Search for apps"
