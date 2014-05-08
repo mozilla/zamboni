@@ -219,8 +219,12 @@ class Version(amo.models.ModelBase):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
         self.update(deleted=True)
+        # Set file status to disabled.
+        f = self.all_files[0]
+        f.update(status=amo.STATUS_DISABLED, _signal=False)
+        f.hide_disabled_file()
+
         if self.addon.is_packaged:
-            f = self.all_files[0]
             # Unlink signed packages if packaged app.
             storage.delete(f.signed_file_path)
             log.info(u'Unlinked file: %s' % f.signed_file_path)

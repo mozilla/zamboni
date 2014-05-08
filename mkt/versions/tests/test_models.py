@@ -79,3 +79,15 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         addon = Addon.objects.get(pk=337141)
         addon.update(is_packaged=True)
         eq_(addon.current_version.is_privileged, False)
+
+    def test_delete(self):
+        version = Version.objects.all()[0]
+        eq_(Version.objects.count(), 1)
+
+        version.delete()
+
+        eq_(Version.objects.count(), 0)
+        eq_(Version.with_deleted.count(), 1)
+
+        # Ensure deleted version's files get disabled.
+        eq_(version.all_files[0].status, amo.STATUS_DISABLED)
