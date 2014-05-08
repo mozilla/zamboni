@@ -1240,10 +1240,10 @@ class TestPackagedModel(amo.tests.TestCase):
 
         eq_(app.status, amo.STATUS_BLOCKED)
         eq_(app.versions.count(), 2)
-        eq_(v.version, 'blocklisted-1.0')
+        eq_(v.version, 'blocklisted')
 
         eq_(app._current_version, v)
-        assert 'blocklisted-1.0' in f.filename
+        assert 'blocklisted' in f.filename
         eq_(f.status, amo.STATUS_BLOCKED)
 
         # Check manifest.
@@ -1254,7 +1254,7 @@ class TestPackagedModel(amo.tests.TestCase):
         assert 'etag' in res._headers
         data = json.loads(res.content)
         eq_(data['name'], 'Blocked by Mozilla')
-        eq_(data['version'], 'blocklisted-1.0')
+        eq_(data['version'], 'blocklisted')
         eq_(data['package_path'], 'http://hy.fr/downloads/file/%s/%s' % (
             f.id, f.filename))
 

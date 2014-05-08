@@ -987,9 +987,7 @@ class Webapp(Addon):
         """
         blocklisted_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
                                         'blocklisted.zip')
-        last_version = self.current_version.version
-        v = Version.objects.create(
-            addon=self, version='blocklisted-%s' % last_version)
+        v = Version.objects.create(addon=self, version='blocklisted')
         f = File(version=v, status=amo.STATUS_BLOCKED,
                  platform=Platform.objects.get(id=amo.PLATFORM_ALL.id))
         f.filename = f.generate_filename()
