@@ -609,11 +609,15 @@ class AccountListBaseFormSet(BaseFormSet):
             form.save()
 
 
-provider_count = len(settings.PAYMENT_PROVIDERS)
-AccountListFormSet = formset_factory(AccountListForm,
-                                     formset=AccountListBaseFormSet,
-                                     extra=provider_count,
-                                     max_num=provider_count)
+# Wrap the formset_factory call in a function so that extra/max_num works with
+# different values of settings.PAYMENT_PROVIDERS in the tests.
+def AccountListFormSet(*args, **kwargs):
+    provider_count = len(settings.PAYMENT_PROVIDERS)
+    current_form_set = formset_factory(AccountListForm,
+                                       formset=AccountListBaseFormSet,
+                                       extra=provider_count,
+                                       max_num=provider_count)
+    return current_form_set(*args, **kwargs)
 
 
 class ReferenceAccountForm(happyforms.Form):
