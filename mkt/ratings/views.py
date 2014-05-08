@@ -17,11 +17,11 @@ from reviews.models import Review, ReviewFlag
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AnyOf, AllowOwner, AllowRelatedAppOwner,
+from mkt.api.authorization import (AllowOwner, AllowRelatedAppOwner, AnyOf,
                                    ByHttpMethod, GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
-from mkt.regions import REGIONS_DICT, get_region
+from mkt.regions import get_region
 from mkt.webapps.models import Webapp
 
 
@@ -62,15 +62,6 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     paginator_class = RatingPaginator
 
     # FIXME: Add throttling ? Original tastypie version didn't have it...
-
-    def get_queryset(self):
-        qs = super(RatingViewSet, self).get_queryset()
-        # Mature regions show only reviews from within that region.
-        # FIXME: what is client_data, how is it filled ? There was no tests
-        # for this.
-        if not self.request.REGION.adolescent:
-            qs = qs.filter(client_data__region=self.request.REGION.id)
-        return qs
 
     def filter_queryset(self, queryset):
         """
