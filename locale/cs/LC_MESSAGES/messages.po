@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-02 09:29+0000\n"
+"PO-Revision-Date: 2014-05-08 08:38+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399022944.0\n"
+"X-POOTLE-MTIME: 1399538333.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -1802,11 +1802,11 @@ msgstr "Hodnocení doplňku {addon} bylo změněno."
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "U doplňku {addon} bylo požádáno o prioritní kontrolu."
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "Prioritní kontrola"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1836,6 +1836,19 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Omlouváme se, ale nemůžeme nalézt to, co hledáte.</h1> <p>Stránka nebo "
+"soubor, který hledáte, nebyl na serveru nalezen. Je možné, že jste klepli na "
+"odkaz, který je zastaralý nebo jste zadali chybnou adresu. </p> <ul> "
+"<li>Pokud jste zadali adresu, zkontrolujte ji prosím.</li> <li>Pokud jste "
+"klepli odněkud na odkaz, dejte nám vědět na <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Řekněte nám, "
+"odkud přicházíte a co hledáte. My uděláme co je v našich silách, abychom to "
+"opravili.</li> </ul> <p>Nebo to jednoduše nemusíte řešit a přejít na "
+"některou z populárních stránek na našem webu.</p> <ul> <li>Chcete a href=\"%"
+"(search)s\">najít některý doplněk</a>? Můžete využít <a href=\"%"
+"(search)s\">stránku vyhledávání</a> nebo jednoduše pole pro vyhledávání "
+"výše.</li> <li>Pokud preferujete začít od začátku, můžete jednoduše přejít "
+"na <a href=\"%(home)s\">domovskou stránku/a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -5084,6 +5097,12 @@ msgid ""
 "If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
+"Pokud váš doplněk potřebuje více funkcionality než je prázdná postranní "
+"lišta, kterou pro vás Packager vytvoří, existuje několik cest, jak přidat "
+"funkcionalitu, kterou chcete. Jedním z nejčastějších cest, jak se něco "
+"naučit, je podívat se na kód jiných rozšíření, která již existují. Mějte jen "
+"prosím na paměti, že pokud licence jiného rozšíření nedovoluje kopírování "
+"kódu, tak byste tak neměli činit."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -8443,7 +8462,7 @@ msgstr "Pokud chcete, představte se komunitě! Tento text bude zobrazen veřejn
 
 #: apps/users/templates/users/edit.html:141
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Povolené HTML: {0}. Odkazy jsou zakázány."
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
@@ -8840,7 +8859,7 @@ msgstr "Zvolte platnou volbu. Hodnota %(value)s není jednou z platných voleb."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Délka hodnoty v poli musí být alespoň {num} znaků."
 
 #: mkt/api/forms.py:120 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:134 mkt/submit/forms.py:377
 msgid "Yes"
@@ -9916,15 +9935,15 @@ msgstr "Zimbabwe"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
-msgstr ""
+msgstr "Žádná akce"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
-msgstr ""
+msgstr "Znovu přidat aplikaci"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "Schválena, ale čeká na zveřejnění"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
@@ -10276,15 +10295,15 @@ msgstr "Aplikace vyžaduje dostupnost informací o více síťových připojení
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "Grafika hlavičky"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "Citace"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "Náhled"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
@@ -10552,19 +10571,19 @@ msgstr "Děsivý obsah"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Abstraktní násilí"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Konzumace alkoholu"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Konzumace drog"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Explicitní násilí"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
@@ -11640,6 +11659,8 @@ msgstr "Znovu odeslat aplikaci"
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr ""
+"Před přidáním aplikace musíte <a href=\"%(ratings_url)s\">získat její "
+"hodnocení</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -11719,6 +11740,8 @@ msgstr "Nahrání nové verze této zabalené aplikace. Nové verze musí být z
 #: mkt/developers/templates/developers/apps/status.html:282
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Pokud se větší část obsahu aplikace změní, nezapomeňte aktualizovat <a "
+"href=\"%(ratings_url)s\">hodnocení obsahu aplikace</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:307
 msgid "Blocklist App"
@@ -11820,11 +11843,13 @@ msgstr "Vložte e-mailové adresy, které budou oddělené čárkami"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "VIP aplikace Mozilly"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"Jedná se o velmi důležitou aplikaci, na kterou by měl dohlížet zaměstnanec "
+"Mozilly nebo zkušený redaktor aplikací?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
@@ -11832,19 +11857,21 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Je vyžadována prioritní kontrola"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Aplikaci bude zvýšena priorita a bude umístěna na začátek fronty pro "
+"kontrolu"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Zůstane zachováno do prvního schválení"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
-msgstr ""
+msgstr "Zpráva banneru"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
@@ -12350,11 +12377,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
-msgstr ""
+msgstr "URL pro koupi"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:46
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Přidat produkt"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -12398,11 +12425,11 @@ msgstr "Vaše aplikace je aktuálně nekompletní. Pro obnovu zvolte účet pro 
 
 #: mkt/developers/templates/developers/payments/premium.html:140
 msgid "Countries"
-msgstr ""
+msgstr "Země"
 
 #: mkt/developers/templates/developers/payments/premium.html:155
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Přidání, správa nebo zobrazování transakcí pro vaše účty plateb"
 
 #: mkt/developers/templates/developers/payments/premium.html:165
 msgid "Prices and Countries"
@@ -12431,6 +12458,9 @@ msgstr "Dostupné regiony"
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Pro zobrazení seznamu zemí, kde jsou nyní povoleny prodeje, se podívejte na "
+"<a href=\"%(status_url)s\" target=\"_blank\">stránku s aktuálním "
+"informacemi</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:220
 msgid "Your app will be available in the following selected regions:"
@@ -12503,7 +12533,7 @@ msgstr "Zobrazit transakce"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Přidat účet pro {provider} "
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -12511,11 +12541,11 @@ msgstr "Odsouhlasit podmínky použití služby"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Potvrzení smazání účtu pro platby"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Smazat účet pro platby"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -12524,6 +12554,7 @@ msgstr "Aktuální účet pro platby byl přiřazen spolu s aplikací vlastníke
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"Máte neúplně nastavený účet pro platby. Doplňte jej nebo níže nastavte nový."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
@@ -12564,7 +12595,7 @@ msgstr "Probíhá kontaktování platebního serveru, vyčkejte prosím."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Přidat účet pro Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
@@ -14138,7 +14169,7 @@ msgstr "Upozornit mě až bude příště manifest aktualizován. (Informace o n
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Tato aplikace funguje na zařízeních Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -14159,7 +14190,7 @@ msgstr "Vyžadováno více informací"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Tarako-ready"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -14314,7 +14345,7 @@ msgstr "Zablokované aplikace může kontrolovat pouze zkušený redaktor."
 
 #: mkt/reviewers/views.py:292
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Zařízení byla změněna redaktorem: {0}"
 
 #: mkt/reviewers/views.py:296 mkt/reviewers/views.py:316 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
@@ -14357,7 +14388,7 @@ msgstr "Atributy"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Zařízení"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:72
 msgid "Packaged App"
@@ -14618,11 +14649,11 @@ msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Přílohy"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Tato verze dosud nebyla zkontrolována"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
@@ -14658,7 +14689,7 @@ msgstr "Zobrazit statistiky"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Typy zařízení"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:146
 msgid "Requirements"
@@ -14675,7 +14706,7 @@ msgstr "Filtr"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Je vyžadována prioritní kontrola"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
@@ -14744,11 +14775,11 @@ msgstr "<div>Od %(user)s dne %(date)s</div>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Další stránka"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Předchozí stránka"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
@@ -14788,7 +14819,7 @@ msgstr "Tablet"
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "Všechny kategorie"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
@@ -14968,7 +14999,7 @@ msgstr "Čtvrtletí"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Zařízení změněna: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
@@ -14981,7 +15012,7 @@ msgstr "Nemůže být zdarma a zároveň placená."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Zvolte prosím zařízení."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -15123,7 +15154,7 @@ msgstr "Přidat další aplikaci"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Typ zařízení"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
@@ -15294,7 +15325,7 @@ msgstr "Musíte zadat jméno aplikace."
 
 #: mkt/webapps/models.py:448
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Musíte zvolit alespoň jeden typ zařízení."
 
 #: mkt/webapps/models.py:451
 msgid "You must provide at least one category."
