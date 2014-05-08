@@ -18,7 +18,5 @@ ALTER TABLE log_activity_version_mkt RENAME TO log_activity_version;
 ALTER TABLE log_activity_mkt RENAME TO log_activity;
 
 -- Remove the log_activity_addon table and associated records in log_activity.
-DELETE from log_activity_user where activity_log_id in (SELECT activity_log_id FROM log_activity_addon);
-DELETE from log_activity_comment where activity_log_id in (SELECT activity_log_id FROM log_activity_addon);
 DELETE FROM log_activity WHERE id IN (SELECT activity_log_id FROM log_activity_addon);
 DROP TABLE IF EXISTS log_activity_addon;
