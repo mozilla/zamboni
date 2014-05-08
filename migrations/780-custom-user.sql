@@ -1,3 +1,4 @@
+SET session wait_timeout=3600;
 ALTER TABLE api_access DROP FOREIGN KEY user_id_api;
 ALTER TABLE api_access
     CHANGE COLUMN user_id user_id int(11) unsigned NOT NULL,
