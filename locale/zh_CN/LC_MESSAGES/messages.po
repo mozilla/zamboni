@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-04-25 05:35+0000\n"
+"PO-Revision-Date: 2014-05-08 01:38+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398404116.0\n"
+"X-POOTLE-MTIME: 1399513114.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -1742,11 +1742,11 @@ msgstr "{addon} 内容分级已更改。"
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "已请求对 {addon} 进行优先审核。"
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "优先审核"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1776,6 +1776,13 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>抱歉，没有找到您要的内容。</h1><p>您请求的页面或者文件我们没有找到。可能是您点击了过期的链接，或者输入了不正确的地址。</p><ul><"
+"li>如果您在地址栏直接输入地址，请再次检查拼写。</li><li>如果您是点击其他地方的链接进入的，请通过<a href=\"mailto:webmas"
+"ter@mozilla.com\">webmaster@mozilla.com</a>告诉我们，并告知您从何处点击链接以及您认为应该看到的内容，我们会尽力"
+"修复。</li></ul><p>或者您也可以转去本站一些比较热门的页面。</p><ul><li>您是否想<a href=\"%"
+"(search)s\">搜索附加组件</a>？可以进入<a href=\"%"
+"(search)s\">搜索页面</a>或者使用上面的搜索框。</li><li>如果您希望从头开始，只需转到<a href=\"%"
+"(home)s\">附加组件首页</a>。</li></ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -10307,47 +10314,47 @@ msgstr "恐怖内容"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "暴力想像"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "饮酒"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "使用药物"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "明显的暴力"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "恐怖"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "性暴力"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "涉及性暴力"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "涉及性行为"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "轻度惊恐"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "偶尔的粗话"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "吸烟"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -10804,7 +10811,7 @@ msgstr "服务 ID"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "服务 ID 无效"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -11580,15 +11587,15 @@ msgstr "请珍惜使用"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "需要优先审核"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
-msgstr ""
+msgstr "此应用受到特别重视并置于审核队列的顶端"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "将会持续到首次审核"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -12247,11 +12254,11 @@ msgstr "接受服务条款"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "确认删除付款账号"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "删除付款账户"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -13462,11 +13469,11 @@ msgstr "已托管的应用"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "已优先审核"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "优先审核？"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -13846,7 +13853,7 @@ msgstr "下次更新资源配置文件时通知我。（随后的更新将不再
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "此应用运行于 Tarako 设备。"
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -13867,7 +13874,7 @@ msgstr "请求更多信息"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "可用于 Tarako"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -14369,7 +14376,7 @@ msgstr "过滤器"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "需要优先审核"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
