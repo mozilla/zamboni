@@ -14,12 +14,13 @@ from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
 
 from test_providers import Patcher
 
 
 class TestActivityLogCount(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
         now = datetime.now()
@@ -29,11 +30,11 @@ class TestActivityLogCount(amo.tests.TestCase):
         amo.set_user(self.user)
 
     def test_not_review_count(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.monthly_reviews()), 0)
 
     def test_review_count(self):
-        amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.monthly_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 1)
@@ -41,29 +42,29 @@ class TestActivityLogCount(amo.tests.TestCase):
 
     def test_review_count_few(self):
         for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+            amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.monthly_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
 
     def test_review_last_month(self):
-        log = amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        log = amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
         log.update(created=self.lm)
         eq_(len(ActivityLog.objects.monthly_reviews()), 0)
 
     def test_not_total(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.total_reviews()), 0)
 
     def test_total_few(self):
         for x in range(0, 5):
-            amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+            amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
         result = ActivityLog.objects.total_reviews()
         eq_(len(result), 1)
         eq_(result[0]['approval_count'], 5)
 
     def test_total_last_month(self):
-        log = amo.log(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        log = amo.log(amo.LOG['APPROVE_VERSION'], Webapp.objects.get())
         log.update(created=self.lm)
         result = ActivityLog.objects.total_reviews()
         eq_(len(result), 1)
@@ -71,12 +72,12 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result[0]['user'], self.user.pk)
 
     def test_log_admin(self):
-        amo.log(amo.LOG['OBJECT_EDITED'], Addon.objects.get())
+        amo.log(amo.LOG['OBJECT_EDITED'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.admin_events()), 1)
         eq_(len(ActivityLog.objects.for_developer()), 0)
 
     def test_log_not_admin(self):
-        amo.log(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        amo.log(amo.LOG['EDIT_VERSION'], Webapp.objects.get())
         eq_(len(ActivityLog.objects.admin_events()), 0)
         eq_(len(ActivityLog.objects.for_developer()), 1)
 
