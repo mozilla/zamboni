@@ -12,7 +12,6 @@ ALLOWED_HOSTS += ['.firefox.com', '.firefox.com.cn']
 # We'll soon need a `settings_test_mkt` to override this.
 APP_PREVIEW = True
 
-LOG_TABLE_SUFFIX = '_mkt'
 EVENT_TABLE_SUFFIX = '_mkt'
 
 # 403 view to render for CSRF failures.
