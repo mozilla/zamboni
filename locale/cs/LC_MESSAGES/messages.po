@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-08 08:38+0000\n"
+"PO-Revision-Date: 2014-05-08 08:45+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399538333.0\n"
+"X-POOTLE-MTIME: 1399538715.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -10587,31 +10587,31 @@ msgstr "Explicitní násilí"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Horor"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Sexuální násilí"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Odkazování na sexuální násilí"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Odkazování na sexuální tématiku"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "Děsení"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "Příležitostné proklínání"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Konzumace tabáku"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -10905,6 +10905,8 @@ msgstr "Vložte prosím platné ID odeslání."
 #: mkt/developers/forms.py:1087
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"IARC certifikát je již použit pro jinou aplikaci. Vytvořte prosím nový "
+"certifikát hodnocení IARC."
 
 #: mkt/developers/forms.py:1115 mkt/developers/forms.py:1127
 msgid "Invalid submission ID or security code."
@@ -11068,7 +11070,7 @@ msgstr "ID služby"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "ID služby je neplatné"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -11876,6 +11878,7 @@ msgstr "Zpráva banneru"
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Exkluzivní zpráva, která je zobrazena na stránce pouze pro zvolené regiony."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
@@ -11941,6 +11944,8 @@ msgstr "Poznámky k vydání"
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr ""
+"Informace o změnách v posledním vydání, nové funkce, známé chyby a další "
+"užitečné informace pro konkrétní vydání/verzi."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:149
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
@@ -12177,11 +12182,14 @@ msgstr "Nastavení účtu pro platby"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Změna zařízení"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
+"<strong class=\"rating-notice alert-notice\">Tato aplikace bude zakázána, "
+"pokud k ní do %(pretty_date)s nepřiřadíte hodnocení obsahu:</strong> <a "
+"href=\"%(rating_url)s\">Nastavení hodnocení obsahu</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -13783,11 +13791,11 @@ msgstr "Hostovaná aplikace"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "Kontrola bude s vyšší prioritou"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "Prioritní kontrola?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -14153,7 +14161,7 @@ msgstr "Komentář:"
 
 #: mkt/reviewers/forms.py:36 mkt/reviewers/templates/reviewers/review.html:131
 msgid "Device Types:"
-msgstr ""
+msgstr "Typy zařízení:"
 
 #: mkt/reviewers/forms.py:38 mkt/reviewers/templates/reviewers/review.html:135
 msgid "Browsers:"
