@@ -1,3 +1,4 @@
+import functools
 import json
 import urllib
 
@@ -26,12 +27,10 @@ from lib.pay_server import client
 
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
-from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
 from mkt.developers.providers import get_provider, get_providers
-from mkt.developers.utils import uri_to_pk
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.webapps.models import Webapp
@@ -315,6 +314,11 @@ def payments_accounts_delete(request, id):
 
 @login_required
 def in_app_keys(request):
+    """
+    Allows developers to get a simulation-only key for in-app payments.
+
+    This key cannot be used for real payments.
+    """
     keys = UserInappKey.objects.no_cache().filter(
         solitude_seller__user=request.amo_user
     )
@@ -361,16 +365,21 @@ def in_app_key_secret(request, pk):
 
 
 def require_in_app_payments(render_view):
+    @functools.wraps(render_view)
     def inner(request, addon_id, addon, *args, **kwargs):
-        inapp = addon.premium_type in amo.ADDON_INAPPS
-        if not inapp:
+        setup_url = reverse('mkt.developers.apps.payments',
+                            args=[addon.app_slug])
+        if addon.premium_type not in amo.ADDON_INAPPS:
             messages.error(
                     request,
                     _('Your app is not configured for in-app payments.'))
-            return redirect(reverse('mkt.developers.apps.payments',
-                                    args=[addon.app_slug]))
-        else:
-            return render_view(request, addon_id, addon, *args, **kwargs)
+            return redirect(setup_url)
+        if not addon.has_payment_account():
+            messages.error(request, _('No payment account for this app.'))
+            return redirect(setup_url)
+
+        # App is set up for payments; render the view.
+        return render_view(request, addon_id, addon, *args, **kwargs)
     return inner
 
 
@@ -392,20 +401,16 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
 @dev_required(owner_for_post=True, webapp=True)
 @require_in_app_payments
 def in_app_config(request, addon_id, addon, webapp=True):
-    if not addon.has_payment_account():
-        messages.error(request, _('No payment account for this app.'))
-        return redirect(reverse('mkt.developers.apps.payments',
-                                args=[addon.app_slug]))
-
-    # TODO: support multiple accounts.
-    account = addon.single_pay_account()
-    seller_config = get_seller_product(account)
+    """
+    Allows developers to get a key/secret for doing in-app payments.
+    """
+    config = get_inapp_config(addon)
 
     owner = acl.check_addon_ownership(request, addon)
     if request.method == 'POST':
         # Reset the in-app secret for the app.
         (client.api.generic
-               .product(seller_config['resource_pk'])
+               .product(config['resource_pk'])
                .patch(data={'secret': generate_key(48)}))
         messages.success(request, _('Changes successfully saved.'))
         return redirect(reverse('mkt.developers.apps.in_app_config',
@@ -413,14 +418,31 @@ def in_app_config(request, addon_id, addon, webapp=True):
 
     return render(request, 'developers/payments/in-app-config.html',
                   {'addon': addon, 'owner': owner,
-                   'seller_config': seller_config})
+                   'seller_config': config})
 
 
 @login_required
 @dev_required(webapp=True)
+@require_in_app_payments
 def in_app_secret(request, addon_id, addon, webapp=True):
-    seller_config = get_seller_product(addon.single_pay_account())
-    return http.HttpResponse(seller_config['secret'])
+    config = get_inapp_config(addon)
+    return http.HttpResponse(config['secret'])
+
+
+def get_inapp_config(addon):
+    """
+    Returns a generic Solitude product, the app's in-app configuration.
+
+    We use generic products in Solitude to represent an "app" that is
+    enabled for in-app purchases.
+    """
+    if not addon.solitude_public_id:
+        # If the view accessing this method uses all the right
+        # decorators then this error won't be raised.
+        raise ValueError('The app {a} has not yet been configured '
+                         'for payments'.format(a=addon))
+    return client.api.generic.product.get_object(
+        public_id=addon.solitude_public_id)
 
 
 @dev_required(webapp=True)
@@ -468,21 +490,6 @@ def _redirect_to_bango_portal(package_id, source):
     response = http.HttpResponse(status=204)
     response['Location'] = bango_url
     return response
-
-
-def get_seller_product(account):
-    """
-    Get the solitude seller_product for a payment account object.
-    """
-    bango_product = (client.api.bango
-                           .product(uri_to_pk(account.product_uri))
-                           .get_object_or_404())
-    # TODO(Kumar): we can optimize this by storing the seller_product
-    # when we create it in developers/models.py or allowing solitude
-    # to filter on both fields.
-    return (client.api.generic
-                  .product(uri_to_pk(bango_product['seller_product']))
-                  .get_object_or_404())
 
 
 # TODO(andym): move these into a DRF API.

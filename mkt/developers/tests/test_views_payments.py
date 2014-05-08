@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import mock
 from curling.lib import HttpClientError
 from mock import ANY
-from nose.tools import eq_, ok_, raises
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from waffle.models import Switch
 
@@ -29,8 +29,8 @@ from mkt.constants.regions import ALL_REGION_IDS, SPAIN, US, UK
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
-from mkt.developers.utils import uri_to_pk
-from mkt.developers.views_payments import require_in_app_payments
+from mkt.developers.views_payments import (get_inapp_config,
+                                           require_in_app_payments)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from users.models import UserProfile
@@ -52,60 +52,55 @@ def setup_payment_account(app, user, uid='uid', package_id=TEST_PACKAGE_ID):
 
 
 class InappTest(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
+        self.public_id = 'app-public-id'
+        self.pay_key_secret = 'hex-secret-for-in-app-payments'
+        self.generic_product_id = '1'
         self.app = Addon.objects.get(pk=337141)
-        self.app.update(premium_type=amo.ADDON_FREE_INAPP)
+        self.app.update(premium_type=amo.ADDON_FREE_INAPP,
+                        solitude_public_id=self.public_id)
         self.user = UserProfile.objects.get(pk=31337)
         self.other = UserProfile.objects.get(pk=999)
         self.login(self.user)
         self.account = setup_payment_account(self.app, self.user)
         self.url = reverse('mkt.developers.apps.in_app_config',
                            args=[self.app.app_slug])
+        p = mock.patch('mkt.developers.views_payments.client.api')
+        self.api = p.start()
+        self.addCleanup(p.stop)
 
-    def set_mocks(self, solitude):
-        get = mock.Mock()
-        get.get_object_or_404.return_value = {
-            'seller_product': '/path/to/prod-pk/'
+    def set_mocks(self):
+        """
+        Set up mocks to allow in-app payment configuration.
+        """
+        product = {
+            'resource_pk': self.generic_product_id,
+            'secret': self.pay_key_secret
         }
-        post = mock.Mock()
-        post.return_value = get
-        solitude.api.bango.product = post
-
-        get = mock.Mock()
-        get.get_object_or_404.return_value = {'resource_pk': 'some-key',
-                                              'secret': 'shhh!'}
-        post = mock.Mock()
-        post.return_value = get
-        solitude.api.generic.product = post
+        self.api.generic.product.get_object.return_value = product
+        self.api.generic.product.get_object_or_404.return_value = product
 
 
-@mock.patch('mkt.developers.views_payments.client')
 class TestInappConfig(InappTest):
-    fixtures = fixture('webapp_337141', 'user_999')
 
-    @raises(ObjectDoesNotExist)
-    def test_not_seller(self, solitude):
-        post = mock.Mock()
-        post.side_effect = ObjectDoesNotExist
-        solitude.api.generic.product = post
-        eq_(self.client.get(self.url).status_code, 404)
-
-    def test_key_generation(self, solitude):
-        self.set_mocks(solitude)
+    def test_key_generation(self):
+        self.set_mocks()
         self.client.post(self.url, {})
-        args = solitude.api.generic.product().patch.call_args
+        self.api.generic.product.assert_called_with(self.generic_product_id)
+        args = self.api.generic.product().patch.call_args
         assert 'secret' in args[1]['data']
 
-    def test_logged_out(self, solitude):
+    def test_when_logged_out(self):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_different(self, solitude):
+    def test_non_team_member_cannot_get_config(self):
         self.login(self.other)
         eq_(self.client.get(self.url).status_code, 403)
 
-    def test_developer(self, solitude):
+    def test_other_developer_can_get_config(self):
         self.login(self.other)
         AddonUser.objects.create(addon=self.app, user=self.other,
                                  role=amo.AUTHOR_ROLE_DEV)
@@ -113,11 +108,11 @@ class TestInappConfig(InappTest):
         eq_(self.client.get(self.url).status_code, 200)
         eq_(self.client.post(self.url).status_code, 403)
 
-    def test_not_inapp(self, solitude):
+    def test_not_inapp(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         eq_(self.client.get(self.url).status_code, 302)
 
-    def test_no_account(self, solitude):
+    def test_no_pay_account(self):
         self.app.app_payment_accounts.all().delete()
         eq_(self.client.get(self.url).status_code, 302)
 
@@ -128,20 +123,52 @@ def render_in_app_view(request, addon_id, addon, *args, **kwargs):
 
 
 class TestRequireInAppPayments(amo.tests.TestCase):
+
+    def good_app(self):
+        addon = mock.Mock(premium_type=amo.ADDON_INAPPS[0], app_slug='foo')
+        addon.has_payment_account.return_value = True
+        return addon
+
     def test_inapp(self):
-        addon = mock.Mock(premium_type=amo.ADDON_INAPPS[0])
-        response = render_in_app_view(addon=addon, request=None, addon_id=None)
+        response = render_in_app_view(addon=self.good_app(), request=None,
+                                      addon_id=None)
         eq_(response, 'The view was rendered')
 
     @mock.patch('amo.messages.error')
     def test_not_inapp(self, error):
-        addon = mock.Mock(premium_type=amo.ADDON_FREE, app_slug='foo')
+        addon = self.good_app()
+        addon.premium_type = amo.ADDON_FREE
+        response = render_in_app_view(addon=addon, request=None, addon_id=None)
+        eq_(response.status_code, 302)
+
+    @mock.patch('amo.messages.error')
+    def test_no_pay_account(self, error):
+        addon = self.good_app()
+        addon.has_payment_account.return_value = False
         response = render_in_app_view(addon=addon, request=None, addon_id=None)
         eq_(response.status_code, 302)
 
 
+class TestGetInappConfig(InappTest):
+
+    def setUp(self):
+        super(TestGetInappConfig, self).setUp()
+        self.api.generic.product.get_object.return_value = {
+            'secret': self.pay_key_secret,
+            'public_id': self.public_id,
+        }
+
+    def test_ok(self):
+        conf = get_inapp_config(self.app)
+        eq_(conf['public_id'], self.app.solitude_public_id)
+
+    def test_not_configured(self):
+        self.app.update(solitude_public_id=None)
+        with self.assertRaises(ValueError):
+            get_inapp_config(self.app)
+
+
 class TestInAppProductsView(InappTest):
-    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         super(TestInAppProductsView, self).setUp()
@@ -166,42 +193,38 @@ class TestInAppProductsView(InappTest):
         eq_(self.get().status_code, 404)
 
 
-@mock.patch('mkt.developers.views_payments.client')
 class TestInappSecret(InappTest):
-    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         super(TestInappSecret, self).setUp()
         self.url = reverse('mkt.developers.apps.in_app_secret',
                            args=[self.app.app_slug])
 
-    def test_show_secret(self, solitude):
-        self.set_mocks(solitude)
+    def test_show_secret(self):
+        self.set_mocks()
         resp = self.client.get(self.url)
-        eq_(resp.content, 'shhh!')
-        pk = uri_to_pk(self.account.product_uri)
-        solitude.api.bango.product.assert_called_with(pk)
-        solitude.api.generic.product.assert_called_with('prod-pk')
+        eq_(resp.content, self.pay_key_secret)
+        self.api.generic.product.get_object.assert_called_with(
+            public_id=self.public_id)
 
-    def test_logged_out(self, solitude):
+    def test_when_logged_out(self):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_different(self, solitude):
+    def test_non_team_member_cannot_get_secret(self):
         self.client.login(username='regular@mozilla.com', password='password')
         eq_(self.client.get(self.url).status_code, 403)
 
-    def test_developer(self, solitude):
-        self.set_mocks(solitude)
+    def test_other_developers_can_access_secret(self):
+        self.set_mocks()
         self.login(self.other)
         AddonUser.objects.create(addon=self.app, user=self.other,
                                  role=amo.AUTHOR_ROLE_DEV)
         resp = self.client.get(self.url)
-        eq_(resp.content, 'shhh!')
+        eq_(resp.content, self.pay_key_secret)
 
 
 class InappKeysTest(InappTest):
-    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         super(InappKeysTest, self).setUp()
@@ -209,52 +232,51 @@ class InappKeysTest(InappTest):
         self.seller_uri = '/seller/1/'
         self.product_pk = 2
 
-    def setup_solitude(self, solitude):
-        solitude.api.generic.seller.post.return_value = {
+    def setup_solitude(self):
+        self.api.generic.seller.post.return_value = {
             'resource_uri': self.seller_uri}
-        solitude.api.generic.product.post.return_value = {
+        self.api.generic.product.post.return_value = {
             'resource_pk': self.product_pk}
 
 
-@mock.patch('mkt.developers.models.client')
 class TestInappKeys(InappKeysTest):
 
-    def test_logged_out(self, solitude):
+    def test_logged_out(self):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_no_key(self, solitude):
+    def test_no_key(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(res.context['key'], None)
 
-    def test_key_generation(self, solitude):
-        self.setup_solitude(solitude)
+    def test_key_generation(self):
+        self.setup_solitude()
         res = self.client.post(self.url)
 
         ok_(res['Location'].endswith(self.url), res)
-        ok_(solitude.api.generic.seller.post.called)
-        ok_(solitude.api.generic.product.post.called)
+        ok_(self.api.generic.seller.post.called)
+        ok_(self.api.generic.product.post.called)
         key = UserInappKey.objects.get()
         eq_(key.solitude_seller.resource_uri, self.seller_uri)
         eq_(key.seller_product_pk, self.product_pk)
-        m = solitude.api.generic.product.post.mock_calls
+        m = self.api.generic.product.post.mock_calls
         eq_(m[0][2]['data']['access'], ACCESS_SIMULATE)
 
     @mock.patch('mkt.developers.models.UserInappKey.public_id')
-    def test_reset(self, mock_public_id, solitude):
-        self.setup_solitude(solitude)
+    def test_reset(self, mock_public_id):
+        self.setup_solitude()
         key = UserInappKey.create(self.user)
         product = mock.Mock()
-        solitude.api.generic.product.return_value = product
+        self.api.generic.product.return_value = product
 
         self.client.post(self.url)
         product.patch.assert_called_with(data={'secret': ANY})
-        solitude.api.generic.product.assert_called_with(key.seller_product_pk)
+        self.api.generic.product.assert_called_with(key.seller_product_pk)
 
-    def test_keys_page_renders_when_solitude_raises_404(self, solitude):
+    def test_keys_page_renders_when_solitude_raises_404(self):
         UserInappKey.create(self.user)
-        solitude.api.generic.product.side_effect = HttpClientError()
+        self.api.generic.product.side_effect = HttpClientError()
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -263,34 +285,30 @@ class TestInappKeys(InappKeysTest):
         eq_(len(res.context['messages']), 1)
 
 
-@mock.patch('mkt.developers.models.client')
 class TestInappKeySecret(InappKeysTest):
 
-    def setUp(self):
-        super(TestInappKeySecret, self).setUp()
-
-    def setup_objects(self, solitude):
-        self.setup_solitude(solitude)
+    def setup_objects(self):
+        self.setup_solitude()
         key = UserInappKey.create(self.user)
         self.url = reverse('mkt.developers.apps.in_app_key_secret',
                            args=[key.pk])
 
-    def test_logged_out(self, solitude):
-        self.setup_objects(solitude)
+    def test_logged_out(self):
+        self.setup_objects()
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_different(self, solitude):
-        self.setup_objects(solitude)
+    def test_different(self):
+        self.setup_objects()
         self.login(self.other)
         eq_(self.client.get(self.url).status_code, 403)
 
-    def test_secret(self, solitude):
-        self.setup_objects(solitude)
+    def test_secret(self):
+        self.setup_objects()
         secret = 'not telling'
         product = mock.Mock()
         product.get.return_value = {'secret': secret}
-        solitude.api.generic.product.return_value = product
+        self.api.generic.product.return_value = product
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -682,7 +700,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
         assert current_account().pk == owner_acct.pk
 
-
     def test_one_owner_and_a_second_one_sees_selected_plus_own_accounts(self):
         self.make_premium(self.webapp, price=self.price.price)
         owner_acct, owner = self.setup_payment_acct(make_owner=True)
@@ -721,7 +738,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.assertNoFormErrors(res)
         pqr = pq(res.content)
         eq_(len(pqr('.current-account')), 0)
-        eq_(pqr('#id_form-0-accounts option[selected]').text(), unicode(owner_acct2))
+        eq_(pqr('#id_form-0-accounts option[selected]').text(),
+            unicode(owner_acct2))
         # Now there should just be our account.
         eq_(len(pqr('#id_form-0-accounts option')), 1)
 
