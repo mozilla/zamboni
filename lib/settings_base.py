@@ -15,6 +15,7 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
+LOG_TABLE_SUFFIX = ''
 EVENT_TABLE_SUFFIX = ''
 
 # jingo-minify settings

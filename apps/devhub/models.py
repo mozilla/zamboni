@@ -32,6 +32,9 @@ from versions.models import Version
 log = commonware.log.getLogger('devhub')
 
 
+table_name = lambda n: n + settings.LOG_TABLE_SUFFIX
+
+
 class RssKey(models.Model):
     key = UUIDField(db_column='rsskey', auto=True, unique=True)
     addon = models.ForeignKey(Addon, null=True, unique=True)
@@ -92,6 +95,19 @@ class HubEvent(amo.models.ModelBase):
         return ['*/developers*']
 
 
+class AddonLog(amo.models.ModelBase):
+    """
+    This table is for indexing the activity log by addon.
+    """
+    addon = models.ForeignKey(Addon)
+    activity_log = models.ForeignKey('ActivityLog')
+
+    class Meta:
+        # This table is addons only and not in use by the marketplace.
+        db_table = table_name('log_activity_addon')
+        ordering = ('-created',)
+
+
 class AppLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by app.
@@ -100,7 +116,7 @@ class AppLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        db_table = 'log_activity_app'
+        db_table = table_name('log_activity_app')
         ordering = ('-created',)
 
 
@@ -112,7 +128,7 @@ class CommentLog(amo.models.ModelBase):
     comments = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'log_activity_comment'
+        db_table = table_name('log_activity_comment')
         ordering = ('-created',)
 
 
@@ -124,7 +140,7 @@ class VersionLog(amo.models.ModelBase):
     version = models.ForeignKey(Version)
 
     class Meta:
-        db_table = 'log_activity_version'
+        db_table = table_name('log_activity_version')
         ordering = ('-created',)
 
 
@@ -137,7 +153,7 @@ class UserLog(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
 
     class Meta:
-        db_table = 'log_activity_user'
+        db_table = table_name('log_activity_user')
         ordering = ('-created',)
 
 
@@ -149,11 +165,23 @@ class GroupLog(amo.models.ModelBase):
     group = models.ForeignKey(Group)
 
     class Meta:
-        db_table = 'log_activity_group'
+        db_table = table_name('log_activity_group')
         ordering = ('-created',)
 
 
 class ActivityLogManager(amo.models.ManagerBase):
+    def for_addons(self, addons):
+        if isinstance(addons, Addon):
+            addons = (addons,)
+
+        vals = (AddonLog.objects.filter(addon__in=addons)
+                .values_list('activity_log', flat=True))
+
+        if vals:
+            return self.filter(pk__in=list(vals))
+        else:
+            return self.none()
+
     def for_apps(self, apps):
         if isinstance(apps, Webapp):
             apps = (apps,)
@@ -229,9 +257,12 @@ class ActivityLogManager(amo.models.ManagerBase):
 
     def _by_type(self, webapp=False):
         qs = super(ActivityLogManager, self).get_query_set()
+        table = (table_name('log_activity_app') if webapp
+                 else table_name('log_activity_addon'))
         return qs.extra(
-            tables=['log_activity_app'],
-            where=['log_activity_app.activity_log_id=log_activity.id'])
+            tables=[table],
+            where=['%s.activity_log_id=%s.id'
+                   % (table, table_name('log_activity'))])
 
 
 class SafeFormatter(string.Formatter):
@@ -254,7 +285,7 @@ class ActivityLog(amo.models.ModelBase):
     formatter = SafeFormatter()
 
     class Meta:
-        db_table = 'log_activity'
+        db_table = table_name('log_activity')
         ordering = ('-created',)
 
     def f(self, *args, **kw):
@@ -405,7 +436,7 @@ class ActivityLogAttachment(amo.models.ModelBase):
     mimetype = models.CharField(max_length=255, blank=True)
 
     class Meta:
-        db_table = 'log_activity_attachment'
+        db_table = 'log_activity_attachment_mkt'
         ordering = ('id',)
 
     def get_absolute_url(self):

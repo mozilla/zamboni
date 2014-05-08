@@ -31,7 +31,7 @@ from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
 from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
-from devhub.models import ActivityLog, RssKey, SubmitStep
+from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
@@ -1409,6 +1409,8 @@ class TestAddonDelete(amo.tests.TestCase):
         FrozenAddon.objects.create(addon=addon)
         Preview.objects.create(addon=addon)
 
+        AddonLog.objects.create(addon=addon,
+            activity_log=ActivityLog.objects.create(action=0))
         RssKey.objects.create(addon=addon)
         SubmitStep.objects.create(addon=addon, step=0)
 

@@ -691,8 +691,9 @@ def log(action, *args, **kw):
     from access.models import Group
     from addons.models import Addon
     from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, ActivityLogAttachment, AppLog,
-                               CommentLog, GroupLog, UserLog, VersionLog)
+    from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
+                               AppLog, CommentLog, GroupLog, UserLog,
+                               VersionLog)
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
     from versions.models import Version
@@ -736,6 +737,8 @@ def log(action, *args, **kw):
         if isinstance(arg, tuple):
             if arg[0] == Webapp:
                 AppLog(addon_id=arg[1], activity_log=al).save()
+            elif arg[0] == Addon:
+                AddonLog(addon_id=arg[1], activity_log=al).save()
             elif arg[0] == Version:
                 VersionLog(version_id=arg[1], activity_log=al).save()
             elif arg[0] == UserProfile:
@@ -746,6 +749,8 @@ def log(action, *args, **kw):
         # Webapp first since Webapp subclasses Addon.
         if isinstance(arg, Webapp):
             AppLog(addon=arg, activity_log=al).save()
+        elif isinstance(arg, Addon):
+            AddonLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, Version):
             VersionLog(version=arg, activity_log=al).save()
         elif isinstance(arg, UserProfile):

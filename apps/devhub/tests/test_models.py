@@ -13,7 +13,8 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from bandwagon.models import Collection
-from devhub.models import ActivityLog, ActivityLogAttachment, BlogPost
+from devhub.models import (ActivityLog, ActivityLogAttachment, AddonLog,
+                           BlogPost)
 from files.models import File
 from reviews.models import Review
 from tags.models import Tag
@@ -60,6 +61,14 @@ class TestActivityLog(amo.tests.TestCase):
         a = ActivityLog()
         a.arguments = [(Addon, 3615)]
         eq_(a.arguments[0], Addon.objects.get(pk=3615))
+
+    def test_addon_logging_pseudo(self):
+        """
+        If we are given (Addon, 3615) it should log in the AddonLog as well.
+        """
+        a = Addon.objects.get()
+        amo.log(amo.LOG.CREATE_ADDON, (Addon, a.id))
+        eq_(AddonLog.objects.count(), 1)
 
     def test_fancy_rendering(self):
         """HTML for Review, and Collection."""
