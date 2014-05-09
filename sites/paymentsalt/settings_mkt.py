@@ -171,7 +171,7 @@ WEBAPP_MANIFEST_NAME = 'Marketplace Stage'
 
 ENABLE_API_ERROR_SERVICE = True
 
-NEWRELIC_INI = '/etc/newrelic.d/marketplace.allizom.org.ini'
+NEWRELIC_INI = None
 
 ES_USE_PLUGINS = True
 

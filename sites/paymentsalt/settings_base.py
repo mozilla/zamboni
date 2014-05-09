@@ -183,9 +183,6 @@ GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
 
-NEWRELIC_WHITELIST = ['web19.stage.addons.phx1.mozilla.com',
-                      'web20.stage.addons.phx1.mozilla.com']
-
-NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
+NEWRELIC_ENABLE = False
 
 AES_KEYS = private.AES_KEYS
