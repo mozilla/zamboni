@@ -1902,24 +1902,6 @@ class BlacklistedSlug(amo.models.ModelBase):
         return slug.isdigit() or cls.objects.filter(name=slug).exists()
 
 
-class FrozenAddon(models.Model):
-    """Add-ons in this table never get a hotness score."""
-    addon = models.ForeignKey(Addon)
-
-    class Meta:
-        db_table = 'frozen_addons'
-
-    def __unicode__(self):
-        return 'Frozen: %s' % self.addon_id
-
-
-@receiver(dbsignals.post_save, sender=FrozenAddon)
-def freezer(sender, instance, **kw):
-    # Adjust the hotness of the FrozenAddon.
-    if instance.addon_id:
-        Addon.objects.get(id=instance.addon_id).update(hotness=0)
-
-
 class AddonUpsell(amo.models.ModelBase):
     free = models.ForeignKey(Addon, related_name='_upsell_from')
     premium = models.ForeignKey(Addon, related_name='_upsell_to')
