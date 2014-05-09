@@ -436,9 +436,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
 
-        if self.guid:
-            log.debug('Adding guid to blacklist: %s' % self.guid)
-            BlacklistedGuid(guid=self.guid, comments=msg).save()
         log.debug('Deleting add-on: %s' % self.id)
 
         to = [settings.FLIGTAR]
@@ -1683,17 +1680,6 @@ class AddonDependency(models.Model):
     class Meta:
         db_table = 'addons_dependencies'
         unique_together = ('addon', 'dependent_addon')
-
-
-class BlacklistedGuid(amo.models.ModelBase):
-    guid = models.CharField(max_length=255, unique=True)
-    comments = models.TextField(default='', blank=True)
-
-    class Meta:
-        db_table = 'blacklisted_guids'
-
-    def __unicode__(self):
-        return self.guid
 
 
 class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
