@@ -383,10 +383,28 @@ class Boku(Provider):
     def product_create(self, account, app):
         generic_product = self.get_or_create_generic_product(app)
 
-        boku_product = self.client.product.post(data={
-            'seller_boku': account.uri,
-            'seller_product': generic_product['resource_uri'],
-        })
+        existing_boku_products = self.client.product.get(
+            seller_product=generic_product['resource_pk'])
+
+        existing_count = existing_boku_products['meta']['total_count']
+        if existing_count == 0:
+            boku_product = self.client.product.post(data={
+                'seller_boku': account.uri,
+                'seller_product': generic_product['resource_uri']})
+        elif existing_count == 1:
+            existing_boku_product = existing_boku_products['objects'][0]
+            boku_product = self.client.by_url(
+                existing_boku_product['resource_uri'],
+            ).patch(
+                data={
+                    'seller_boku': account.uri,
+                    'seller_product': generic_product['resource_uri']})
+
+        else:
+            raise ValueError((
+                'More than one existing Boku Product found when '
+                'creating a new Boku Product in Solitude: {products}'
+            ).format(products=existing_boku_products['objects']))
 
         return boku_product['resource_uri']
 
