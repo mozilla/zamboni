@@ -31,11 +31,10 @@ from mkt.collections.models import Collection
 from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
-from mkt.search.api import SearchView
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.utils import S
-from mkt.search.views import DEFAULT_SORTING
+from mkt.search.views import SearchView, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
@@ -960,8 +959,8 @@ class TestFeaturedCollections(BaseFeaturedTests):
         ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
         eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
 
-    @patch('mkt.search.api.SearchView.get_region_from_request')
-    @patch('mkt.search.api.CollectionFilterSetWithFallback')
+    @patch('mkt.search.views.SearchView.get_region_from_request')
+    @patch('mkt.search.views.CollectionFilterSetWithFallback')
     def test_collection_filterset_called(self, mock_fallback, mock_region):
         """
         CollectionFilterSetWithFallback should be called 3 times, one for each
@@ -997,7 +996,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         ok_(header in res)
         eq_(res[header], 'region,carrier')
 
-    @patch('mkt.search.api.FeaturedSearchView.get_region_from_request')
+    @patch('mkt.search.views.FeaturedSearchView.get_region_from_request')
     def test_region_None(self, get_region_from_request):
         get_region_from_request.return_value = None
         self.test_added_to_results()

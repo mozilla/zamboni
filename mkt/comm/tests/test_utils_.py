@@ -12,7 +12,7 @@ from users.models import UserProfile
 
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
-from mkt.comm.tests.test_api import AttachmentManagementMixin
+from mkt.comm.tests.test_views import AttachmentManagementMixin
 from mkt.comm.utils import (CommEmailParser, create_comm_note,
                             save_from_email_reply)
 from mkt.constants import comm

@@ -12,7 +12,7 @@ from stats.models import Contribution
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
-from mkt.stats.api import APP_STATS, STATS, _get_monolith_data
+from mkt.stats.views import APP_STATS, STATS, _get_monolith_data
 
 
 class StatsAPITestMixin(object):

@@ -3,8 +3,7 @@ from django.conf.urls import include, patterns, url
 import amo
 from apps.editors.views import queue_viewing, review_viewing
 from mkt.receipts.urls import receipt_patterns
-from mkt.reviewers.api import ReviewersSearchView
-from . import api, views
+from mkt.reviewers import views
 
 
 # All URLs under /reviewers/.
@@ -52,16 +51,16 @@ url_patterns = patterns('',
 )
 
 api_patterns = patterns('',
-    url('^reviewers/search', ReviewersSearchView.as_view(),
+    url('^reviewers/search', views.ReviewersSearchView.as_view(),
         name='reviewers-search-api'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)?$',
-        api.ApproveRegion.as_view(), name='approve-region'),
-    url(r'^reviewers/reviewing', api.ReviewingView.as_view(),
+        views.ApproveRegion.as_view(), name='approve-region'),
+    url(r'^reviewers/reviewing', views.ReviewingView.as_view(),
         name='reviewing-list'),
     url('^reviewers/(?P<addon_slug>[\w-]+)/review/(?P<review_pk>\d+)/translate'
         '/(?P<language>[a-z]{2}(-[A-Z]{2})?)$',
         views.review_translate,
         name='reviewers.review_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
-        api.GenerateToken.as_view(), name='generate-reviewer-token'),
+        views.GenerateToken.as_view(), name='generate-reviewer-token'),
 )

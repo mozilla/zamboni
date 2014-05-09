@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 
 import amo
-from . import api, views
+from . import views
 
 
 # Note: this URL is embedded in receipts, if you change the URL, make sure
@@ -21,9 +21,9 @@ receipt_patterns = patterns('',
 )
 
 receipt_api_patterns = patterns('',
-    url(r'^receipts/install/', api.install, name='receipt.install'),
-    url(r'^receipts/test/', api.test_receipt, name='receipt.test'),
-    url(r'^receipts/reissue/', api.reissue, name='receipt.reissue')
+    url(r'^receipts/install/', views.install, name='receipt.install'),
+    url(r'^receipts/test/', views.test_receipt, name='receipt.test'),
+    url(r'^receipts/reissue/', views.reissue, name='receipt.reissue')
 )
 
 test_patterns = patterns('',

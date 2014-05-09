@@ -35,7 +35,7 @@ class ValidationHandler(RestOAuth):
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.list_url), 'post', 'get')
 
-    @patch('mkt.submit.api.tasks')
+    @patch('mkt.submit.views.tasks')
     def create(self, tasks_mock, client=None):
         tasks_mock.fetch_manifest.side_effect = fake_fetch_manifest
         manifest_url = u'http://foo.com/'
@@ -100,7 +100,7 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         self.data = {'data': self.file, 'name': name,
                      'type': 'application/zip'}
 
-    @patch('mkt.submit.api.tasks')
+    @patch('mkt.submit.views.tasks')
     def create(self, tasks_mock, client=None):
         if client is None:
             client = self.client

@@ -6,21 +6,21 @@ from rest_framework.routers import SimpleRouter
 from mkt.abuse.urls import api_patterns as abuse_api_patterns
 from mkt.account.urls import api_patterns as account_api_patterns
 from mkt.api.base import SubRouter, SubRouterWithFormat
-from mkt.api.resources import (CarrierViewSet, CategoryViewSet,
-                               error_reporter, ErrorViewSet, PriceTierViewSet,
-                               PriceCurrencyViewSet, RefreshManifestViewSet,
-                               RegionViewSet, site_config)
+from mkt.api.views import (CarrierViewSet, CategoryViewSet,
+                           error_reporter, ErrorViewSet, PriceTierViewSet,
+                           PriceCurrencyViewSet, RefreshManifestViewSet,
+                           RegionViewSet, site_config)
 from mkt.collections.views import CollectionImageViewSet, CollectionViewSet
 from mkt.comm.urls import api_patterns as comm_api_patterns
 from mkt.developers.urls import dev_api_patterns, payments_api_patterns
 from mkt.features.views import AppFeaturesList
 from mkt.receipts.urls import receipt_api_patterns
 from mkt.reviewers.urls import api_patterns as reviewer_api_patterns
-from mkt.search.api import (FeaturedSearchView, RocketbarView, SearchView,
+from mkt.search.views import (FeaturedSearchView, RocketbarView, SearchView,
                             SuggestionsView)
 from mkt.stats.urls import stats_api_patterns, txn_api_patterns
-from mkt.submit.api import PreviewViewSet, StatusViewSet, ValidationViewSet
-from mkt.webapps.api import AppViewSet, PrivacyPolicyViewSet
+from mkt.submit.views import PreviewViewSet, StatusViewSet, ValidationViewSet
+from mkt.webapps.views import AppViewSet, PrivacyPolicyViewSet
 
 rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,

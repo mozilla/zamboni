@@ -10,7 +10,7 @@ from amo.decorators import write
 from amo.urlresolvers import reverse
 
 from mkt.api.base import SubRouter
-from mkt.developers.api import ContentRatingList, ContentRatingsPingback
+from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, UpsellViewSet)
