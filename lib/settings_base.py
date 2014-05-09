@@ -388,7 +388,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'commonware.log.ThreadRequestMiddleware',
-    'apps.search.middleware.ElasticsearchExceptionMiddleware',
+    'mkt.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
     # This should come after authentication middleware
@@ -424,7 +424,6 @@ INSTALLED_APPS = (
     'lib.es',
     'product_details',
     'reviews',
-    'search',
     'stats',
     'tags',
     'tower',  # for ./manage.py extract

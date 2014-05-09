@@ -1,7 +1,9 @@
 from __future__ import absolute_import
 import json
 
+from django.conf import settings
 from django.http import HttpResponse
+from django.utils import translation
 
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -9,10 +11,9 @@ from rest_framework.generics import GenericAPIView
 
 import amo
 from translations.helpers import truncate
-from search.views import _get_locale_analyzer
 
-from mkt.api.authentication import (RestSharedSecretAuthentication,
-                                    RestOAuthAuthentication)
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
@@ -40,6 +41,13 @@ DEFAULT_SORTING = {
     'reviewed': '-reviewed',
     'name': 'name_sort',
 }
+
+
+def _get_locale_analyzer():
+    analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
+    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
+        return None
+    return analyzer
 
 
 def get_custom_analyzer(language):
@@ -247,12 +255,12 @@ class FeaturedSearchView(SearchView):
             qs = Collection.public.all()
         qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
         preview_mode = filters.get('preview', False)
-        serializer = self.collections_serializer_class(qs[:limit], many=True,
-            context={
+        serializer = self.collections_serializer_class(
+            qs[:limit], many=True, context={
                 'request': request,
                 'view': self,
-                'use-es-for-apps': not preview_mode
-        })
+                'use-es-for-apps': not preview_mode}
+        )
         return serializer.data, getattr(qs, 'filter_fallback', None)
 
     def get(self, request, *args, **kwargs):

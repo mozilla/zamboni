@@ -1,6 +1,7 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
+import re
 import threading
 
 import commonware.log
@@ -8,13 +9,14 @@ from caching.base import CachingQuerySet
 
 from product_details import product_details
 
-from apps.search.utils import floor_version
 from constants.applications import *
 from constants.base import *
 from constants.licenses import *
 from constants.payments import *
 from constants.platforms import *
 from constants.search import *
+from versions.compare import version_re
+
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
@@ -92,6 +94,18 @@ class CachedProperty(object):
 FIREFOX.latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 THUNDERBIRD.latest_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
 MOBILE.latest_version = FIREFOX.latest_version
+
+
+def floor_version(s):
+    result = s
+    if result:
+        s = s.replace('.x', '.0').replace('.*', '.0').replace('*', '.0')
+        match = re.match(version_re, s)
+        if match:
+            major, minor = match.groups()[:2]
+            major, minor = int(major), int(minor or 0)
+            result = '%s.%s' % (major, minor)
+    return result
 
 
 # This is a list of dictionaries that we should generate compat info for.
