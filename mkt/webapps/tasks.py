@@ -340,7 +340,7 @@ def unindex_webapps(ids, **kw):
 
 @task
 def dump_app(id, **kw):
-    from mkt.webapps.api import AppSerializer
+    from mkt.webapps.serializers import AppSerializer
     # Because @robhudson told me to.
     # Note: not using storage because all these operations should be local.
     target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'apps',

@@ -1,54 +1,18 @@
-from rest_framework import generics, serializers, viewsets
+from rest_framework import generics, viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.throttling import UserRateThrottle
 
-from abuse.models import AbuseReport
-
-from mkt.account.serializers import UserSerializer
+from mkt.abuse.serializers import AppAbuseSerializer, UserAbuseSerializer
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import check_potatocaptcha, CORSMixin
-from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
-from mkt.webapps.api import SimpleAppSerializer
-from mkt.webapps.models import Webapp
 
 
 class AbuseThrottle(UserRateThrottle):
     THROTTLE_RATES = {
         'user': '30/hour',
     }
-
-
-class BaseAbuseSerializer(serializers.ModelSerializer):
-    text = serializers.CharField(source='message')
-    ip_address = serializers.CharField(required=False)
-    reporter = SplitField(serializers.PrimaryKeyRelatedField(required=False),
-                          UserSerializer())
-
-    def save(self, force_insert=False):
-        serializers.ModelSerializer.save(self)
-        del self.data['ip_address']
-        return self.object
-
-
-class UserAbuseSerializer(BaseAbuseSerializer):
-    user = SplitField(serializers.PrimaryKeyRelatedField(), UserSerializer())
-
-    class Meta:
-        model = AbuseReport
-        fields = ('text', 'ip_address', 'reporter', 'user')
-
-
-class AppAbuseSerializer(BaseAbuseSerializer):
-    app = SplitField(
-        SlugOrPrimaryKeyRelatedField(source='addon', slug_field='app_slug',
-                                     queryset=Webapp.objects.all()),
-        SimpleAppSerializer(source='addon'))
-
-    class Meta:
-        model = AbuseReport
-        fields = ('text', 'ip_address', 'reporter', 'app')
 
 
 class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,

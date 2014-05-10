@@ -1,5 +1,5 @@
 import amo.tests
-from mkt.features.api import AppFeaturesSerializer
+from mkt.features.serializers import AppFeaturesSerializer
 
 
 class TestAppFeaturesSerializer(amo.tests.TestCase):

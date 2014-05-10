@@ -4,34 +4,58 @@
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Add Boku Account') }}</h2>
     </header>
-    <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
-      {{ csrf() }}
-      <input type="hidden" name="provider" value="boku">
-      <p>
-        {% trans boku_url=account_form.signup_url %}
-        You will need a Boku service id to sign up for
-        a Boku account. Boku accounts must be created through the
-        <a href="{{ boku_url }}">Mozilla sign up process</a>.
-        {% endtrans %}
-      </p>
-      <div id="payment-account-errors"></div>
-      <div>
-        <div class="field">
-          {{ account_form.account_name.label_tag() }}
-          {{ account_form.account_name }}
+    {% with boku_docs_url='https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku' %}
+      <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
+        {{ csrf() }}
+        <input type="hidden" name="provider" value="boku">
+        <p>
+          {% trans %}
+            To add a Boku payment account you must sign up for a new Mozilla specific account on
+            Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You
+            can find documentation and access to the Boku site on the Mozilla Developer Network.
+          {% endtrans %}
+          <div class="call-to-action">
+            <a href="{{ boku_docs_url }}" class="button" target="_blank">
+              {{ _('Go to Boku documentation on MDN') }}
+            </a>
+          </div>
+        </p>
+        <div id="payment-account-errors"></div>
+        <div class="listing">
+          {% trans %}
+            Have you signed up for a Boku account and had your account approved?
+            Please create an account name and your Boku service id below.
+          {% endtrans %}
+          <div class="field no-border">
+            {{ account_form.account_name.label_tag() }}
+            {{ account_form.account_name }}
+            <div class="faux-input">
+              <div class="payment-account-note">
+                {{ _('Create a name for this account.') }}
+              </div>
+            </div>
+          </div>
+          <div class="field no-border">
+            {{ account_form.service_id.label_tag() }}
+            {{ account_form.service_id }}
+            <div class="faux-input">
+              <div class="payment-account-note">
+                {% trans %}
+                  Alpha-numeric id listed under Service Name on Boku website.
+                  Learn more on the <a href="{{ boku_docs_url }}" target="_blank">MDN Boku page</a>.
+                {% endtrans %}
+              </div>
+            </div>
+          </div>
+          <div class="field actions no-border">
+            <button type="submit">{{ _('Register Payment Account') }}</button>
+          </div>
         </div>
-        <div class="field no-border">
-          {{ account_form.service_id.label_tag() }}
-          {{ account_form.service_id }}
+        <div class="listing-footer">
+          <a href="#" class="close">{{ _('Close') }}</a>
         </div>
-      </div>
-      <div class="listing-footer">
-        <button type="submit">{{ _('Register Payment Account') }}</button>
-        {# L10n: This 'or' goes between two choices in a dialog. #}
-        {{ _('or') }}
-        <a href="#" class="close">{{ _('Cancel') }}</a>
-      </div>
-    </form>
+      </form>
+    {% endwith %}
   </section>
 </script>
 

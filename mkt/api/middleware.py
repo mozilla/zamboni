@@ -267,6 +267,12 @@ class CORSMiddleware(object):
 
 v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')
 
+def detect_api_version(request):
+    url = request.META.get('PATH_INFO', '')
+    version = v_re.match(url).group('version')
+    if not version:
+        version = 1
+    return version
 
 class APIVersionMiddleware(object):
     """
@@ -276,18 +282,17 @@ class APIVersionMiddleware(object):
 
     def process_request(self, request):
         if getattr(request, 'API', False):
-            url = request.META.get('PATH_INFO', '')
-            version = v_re.match(url).group('version')
-            if not version:
-                version = 1
+            version = detect_api_version(request)
             request.API_VERSION = int(version)
 
     def process_response(self, request, response):
         if not getattr(request, 'API', False):
             return response
-
-        response['API-Version'] = request.API_VERSION
-        if request.API_VERSION < settings.API_CURRENT_VERSION:
+        version = getattr(request, 'API_VERSION', None)
+        if version is None:
+            version = detect_api_version(request)
+        response['API-Version'] = version
+        if version < settings.API_CURRENT_VERSION:
             response['API-Status'] = 'Deprecated'
         return response
 

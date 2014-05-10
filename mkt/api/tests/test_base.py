@@ -17,7 +17,7 @@ from amo.urlresolvers import reverse
 
 from mkt.api.base import cors_api_view, SubRouterWithFormat
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.webapps.api import AppViewSet
+from mkt.webapps.views import AppViewSet
 
 
 class URLRequestFactory(RequestFactory):

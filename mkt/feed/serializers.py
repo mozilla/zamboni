@@ -10,7 +10,7 @@ from mkt.collections.serializers import (CollectionImageField,
                                          CollectionSerializer, SlugChoiceField,
                                          SlugModelChoiceField)
 from mkt.submit.serializers import PreviewSerializer
-from mkt.webapps.api import AppSerializer
+from mkt.webapps.serializers import AppSerializer
 
 from .models import FeedApp, FeedItem
 

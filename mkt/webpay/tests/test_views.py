@@ -22,7 +22,7 @@ from mkt.constants import regions
 from mkt.purchase.tests.utils import PurchaseTest, InAppPurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.resources import PricesViewSet
+from mkt.webpay.views import PricesViewSet
 from stats.models import Contribution
 
 
@@ -320,7 +320,7 @@ class TestProductIconResource(RestOAuth):
     def setUp(self):
         super(TestProductIconResource, self).setUp()
         self.list_url = reverse('producticon-list')
-        p = patch('mkt.webpay.resources.tasks.fetch_product_icon')
+        p = patch('mkt.webpay.tasks.fetch_product_icon')
         self.fetch_product_icon = p.start()
         self.addCleanup(p.stop)
         self.data = {

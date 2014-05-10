@@ -21,9 +21,9 @@ from mkt.collections.serializers import (CollectionMembershipField,
                                          CollectionSerializer,
                                          DataURLImageField)
 from mkt.constants.features import FeatureProfile
-from mkt.search.api import FeaturedSearchView
+from mkt.search.views import FeaturedSearchView
 from mkt.site.fixtures import fixture
-from mkt.webapps.api import SimpleAppSerializer
+from mkt.webapps.serializers import SimpleAppSerializer
 
 
 class CollectionDataMixin(object):

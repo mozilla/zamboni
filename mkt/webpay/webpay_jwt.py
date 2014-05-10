@@ -4,7 +4,6 @@ import uuid
 from urllib import urlencode
 
 from django.conf import settings
-from django.utils.functional import cached_property
 
 import commonware.log
 
@@ -115,15 +114,6 @@ class WebAppProduct(object):
     def application_size(self):
         return self.webapp.current_version.all_files[0].size
 
-    @cached_property
-    def payment_account(self):
-        return (self.webapp
-                    .single_pay_account()
-                    .payment_account)
-
-    def seller_uuid(self):
-        return self.payment_account.solitude_seller.uuid
-
     def public_id(self):
         return self.webapp.get_or_create_public_id()
 
@@ -132,7 +122,6 @@ class WebAppProduct(object):
             'addon_id': self.webapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
-            'seller_uuid': self.seller_uuid(),
             'public_id': self.public_id(),
         }
 
@@ -176,19 +165,10 @@ class InAppProduct(object):
         # How do we determine the size of an in app object?
         return None
 
-    def seller_uuid(self):
-        return (self.inapp
-                    .webapp
-                    .single_pay_account()
-                    .payment_account
-                    .solitude_seller
-                    .uuid)
-
     def product_data(self, contribution):
         return {
             'addon_id': self.inapp.webapp.pk,
             'inapp_id': self.inapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
-            'seller_uuid': self.seller_uuid(),
         }

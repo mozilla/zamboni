@@ -17,7 +17,7 @@ from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
-from mkt.fireplace.api import FireplaceAppSerializer
+from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.webapps.models import Webapp
 from mkt.search.utils import S
 from mkt.site.fixtures import fixture

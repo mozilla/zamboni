@@ -1,9 +1,8 @@
 import datetime
-import json
 import logging
 
 from django.db.models import Avg, Count
-from rest_framework import serializers, status
+from rest_framework import status
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -18,7 +17,7 @@ from mkt.api.base import CORSMixin, MarketplaceView
 
 from .forms import MonolithForm
 from .models import MonolithRecord
-
+from .serializers import MonolithSerializer
 
 log = logging.getLogger('z.monolith')
 
@@ -62,17 +61,6 @@ STATS = {
 def daterange(start, end):
     for n in range((end - start).days):
         yield start + datetime.timedelta(n)
-
-
-class MonolithSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MonolithRecord
-        fields = ('key', 'recorded', 'user_hash', 'value')
-
-    def transform_value(self, obj, value):
-        if not isinstance(value, basestring):
-            return value
-        return json.loads(value)
 
 
 def _get_query_result(key, start, end):

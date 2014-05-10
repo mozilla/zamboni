@@ -17,7 +17,7 @@ from users.models import UserProfile
 
 import mkt.constants.comm
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.comm.api import EmailCreationPermission, post_email, ThreadPermission
+from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
 from mkt.site.fixtures import fixture
@@ -347,7 +347,7 @@ class TestNote(NoteSetupMixin):
     @override_settings(REVIEWER_ATTACHMENTS_PATH=TESTS_DIR)
     def test_response(self):
         note = self._note_factory(self.thread)
-        attach = note.attachments.create(filepath='test_api.py',
+        attach = note.attachments.create(filepath='test_views.py',
                                          description='desc')
 
         res = self.client.get(reverse(

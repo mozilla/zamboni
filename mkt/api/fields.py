@@ -398,3 +398,12 @@ class LargeTextField(serializers.HyperlinkedRelatedField):
 
     def from_native(self, value):
         return value
+
+
+class SemiSerializerMethodField(serializers.SerializerMethodField):
+    """
+    Used for fields serialized with a method on the serializer but who
+    need to handle unserialization manually.
+    """
+    def field_from_native(self, data, files, field_name, into):
+        into[field_name] = data.get(field_name, None)
