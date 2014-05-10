@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-08 08:45+0000\n"
+"PO-Revision-Date: 2014-05-10 16:56+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399538715.0\n"
+"X-POOTLE-MTIME: 1399741002.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -12237,6 +12237,9 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Použitím certifikačního nástroje pro IARC hodnocení souhlasíte s jejich <a "
+"href=\"%(privacy_url)s\">zásadami ochrany soukromí</a> a <a href=\"%"
+"(tos_url)s\">podmínkami použití služby</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
@@ -12381,7 +12384,7 @@ msgstr "Uložit"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Price Point"
-msgstr ""
+msgstr "Cena"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Buy URL"
@@ -12608,6 +12611,9 @@ msgstr "Přidat účet pro Boku"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:11
 msgid "You will need a Boku service id to sign up for a Boku account. Boku accounts must be created through the <a href=\"%(boku_url)s\">Mozilla sign up process</a>."
 msgstr ""
+"Pro přihlášení k účtu na Boku budete potřebovat id služby Boku. Účty Boku "
+"musí být vytvořeny skrze <a href=\"%(boku_url)s\">proces pro přihlášení u "
+"Mozilly</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -12620,12 +12626,12 @@ msgstr "Úprava účtu Bango"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Úprava účtu Boku"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "Úprava účtu Boku není aktuálně možná."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -13056,7 +13062,7 @@ msgstr "Validátor aplikace"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
-msgstr ""
+msgstr "Správce aplikací"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Firefox Developer Tools"
