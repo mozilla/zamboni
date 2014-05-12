@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-04 15:18+0000\n"
+"PO-Revision-Date: 2014-05-12 18:42+0000\n"
 "Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399216720.0\n"
+"X-POOTLE-MTIME: 1399920172.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -1787,11 +1787,11 @@ msgstr "{addon} calificación de contenido cambiada."
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Revisión prioritaria solicitada para {addon}."
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "Revisión prioritaria"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1821,6 +1821,20 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Lo sentimos, no encontramos lo que buscas.</h1> <p> La página o el "
+"archivo que buscas no se encuentra. Es posible que el enlace esté "
+"desactualizado o que hayas escrito mal la dirección. </p> <ul> <li>Si "
+"escribiste la dirección, echa un vistazo a ver si hay algun error "
+"ortotipográfico.<li> <li> Si accediste al enlace desde otro sitio, háznoslo "
+"saber escribiéndonos a <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dinos desde "
+"dónde accediste y qué estabas buscando. Haremos todo lo posible por "
+"solucionar el error. </li> </ul> <p>También puedes echarle un vistazo a "
+"nuestras páginas más populares.</p> <ul> <li> ¿Quieres <a href=\"%"
+"(search)s\">buscar un complemento</a>? Puedes acceder a la <a href=\"%"
+"(search)s\">página de búsqueda</a> o utilizar el campo de búsqueda de más "
+"abajo. </li> <li> Si prefieres empezar de nuevo, ve a la <a href=\"%"
+"(home)s\">página principal de los complementos</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -10585,47 +10599,47 @@ msgstr "Contenido aterrador"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Violencia abstracta"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Consumo de alcohol"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Consumo de drogas"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Violencia explícita"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Terror"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Violencia sexual"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Referencias a la violencia sexual"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Referencias sexuales"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "Miedos raros"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "Blasfemias ocasionales"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Consumo de tabaco"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -11084,7 +11098,7 @@ msgstr "ID del servicio"
 
 #: mkt/developers/forms_payments.py:648
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "ID de servicio no es válido"
 
 #: mkt/developers/forms_payments.py:662
 msgid "No payment account set up for that app"
@@ -11873,15 +11887,17 @@ msgstr "Usar con moderación"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Se requiere revisión prioritaria"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"La app será tratada como prioritaria y ocupará los primeros lugares de la "
+"cola de revisión"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Continuará así hasta que se otorgue una aprobación inicial"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -12588,11 +12604,11 @@ msgstr "Aceptar los términos del servicio"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Confirma la eliminación de la cuenta de pago"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Eliminar cuenta de pago"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -13853,11 +13869,11 @@ msgstr "Aplicación alojada"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "Se ha dado prioridad a la revisión"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "¿Dar prioridad a la revisión?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -14240,7 +14256,7 @@ msgstr "Enviarme un aviso la próxima vez que se actualice el archivo manifest (
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Esta aplicación es compatible con los dispositivos Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -14261,7 +14277,7 @@ msgstr "Se necesita más información"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Aprobada para Tarako"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -14772,7 +14788,7 @@ msgstr "Filtrar"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Se necesita revisión prioritaria"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"

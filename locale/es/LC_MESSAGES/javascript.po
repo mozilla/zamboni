@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-04-13 11:19+0000\n"
-"Last-Translator: Yunier <yjsosa@estudiantes.uci.cu>\n"
+"PO-Revision-Date: 2014-05-12 18:35+0000\n"
+"Last-Translator: Angela <angelavelop@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1397387946.0\n"
+"X-POOTLE-MTIME: 1399919752.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -336,11 +336,17 @@ msgstr "Detectado: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"Si eliminas la cuenta de pago \"{0}\", se eliminará también de las siguientes "
+"aplicaciones. Las aplicaciones que no tengan una cuenta de pago asociada no "
+"estarán disponibles para su venta."
 msgstr[1] ""
+"Si eliminas la cuenta de pago \"{0}\", se eliminará también de la siguiente "
+"aplicación. Las aplicaciones que no tengan una cuenta de pago asociada no "
+"estarán disponibles para su venta."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Cuentas de pago de {appName}:"
 
 #: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
