@@ -1,5 +1,3 @@
-import json
-
 from django.conf import settings
 
 from nose.tools import eq_
@@ -12,6 +10,20 @@ from editors.models import RereviewQueue
 from users.models import UserProfile
 
 from mkt.site.fixtures import fixture
+
+
+class TestHome(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def test_home(self):
+        # Test that the admin home page (which is AMO) can still be loaded
+        # from Marketplace without exceptions.
+        res = self.client.get(reverse('zadmin.index'))
+        eq_(res.status_code, 200)
+
 
 class TestGenerateError(amo.tests.TestCase):
     fixtures = ['base/users']
