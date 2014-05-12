@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import mail
 from django.test.client import RequestFactory
@@ -24,12 +23,16 @@ from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from amo.urlresolvers import reverse
+from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, Refund
 from stats.models import Contribution
 from users.models import Group, GroupUser, UserProfile
 
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
+from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
 from mkt.lookup.views import (app_summary, _transaction_summary,
@@ -38,8 +41,45 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
 
+class SummaryTest(TestCase):
+
+    def add_payment_accounts(self, providers, app=None):
+        if not app:
+            app = self.app
+        user = self.user
+        seller = SolitudeSeller.objects.create(user=user, uuid='seller-uid')
+        for provider in providers:
+            uri = 'seller-{p}'.format(p=provider)
+            payment = PaymentAccount.objects.create(
+                user=user, solitude_seller=seller,
+                provider=provider,
+                seller_uri=uri, uri=uri,
+                agreed_tos=True, account_id='not-important')
+            AddonPaymentAccount.objects.create(addon=app,
+                product_uri='product-{p}'.format(p=provider),
+                account_uri=payment.uri,
+                payment_account=payment)
+
+        app.save()
+
+    def verify_bango_boku_portals(self, app, response):
+        bango = pq(response.content)('[data-provider-name=bango]')
+        heading = pq('dt', bango).text()
+        assert 'Bango' in heading, heading
+        assert unicode(app.name) in heading, heading
+        eq_(pq('dd a', bango).attr('href'),
+            get_provider(name='bango').get_portal_url(app.app_slug))
+
+        boku = pq(response.content)('[data-provider-name=boku]')
+        heading = pq('dt', boku).text()
+        assert 'Boku' in heading, heading
+        assert unicode(app.name) in heading, heading
+        eq_(pq('dd a', boku).attr('href'),
+            get_provider(name='boku').get_portal_url(app.app_slug))
+
+
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
-class TestAcctSummary(TestCase):
+class TestAcctSummary(SummaryTest):
     fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
                        'user_operator')
 
@@ -99,6 +139,14 @@ class TestAcctSummary(TestCase):
     def test_basic_summary(self):
         res = self.summary()
         eq_(res.context['account'].pk, self.user.pk)
+
+    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'boku'])
+    def test_multiple_payment_accounts(self):
+        app = self.steamcube
+        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_BOKU],
+                                  app=app)
+        res = self.summary()
+        self.verify_bango_boku_portals(app, res)
 
     def test_app_counts(self):
         self.buy_stuff(amo.CONTRIB_PURCHASE)
@@ -680,7 +728,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         eq_(len(data['results']), 3)
 
 
-class AppSummaryTest(TestCase):
+class AppSummaryTest(SummaryTest):
     # TODO: Override in subclasses to convert to new fixture style.
     fixtures = ['base/users', 'base/addon_3615',
                 'market/prices'] + fixture('webapp_337141')
@@ -813,6 +861,12 @@ class TestAppSummary(AppSummaryTest):
         app_summary(req, self.app.id)
         self.app.reload()
         eq_(self.app.priority_review, True)
+
+    @mock.patch.object(settings, 'PAYMENT_PROVIDERS', ['bango', 'boku'])
+    def test_multiple_payment_accounts(self):
+        self.add_payment_accounts([PROVIDER_BANGO, PROVIDER_BOKU])
+        res = self.summary()
+        self.verify_bango_boku_portals(self.app, res)
 
 
 class TestAppSummaryPurchases(AppSummaryTest):

@@ -30,6 +30,8 @@ from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
+from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
@@ -84,14 +86,14 @@ def user_summary(request, user_id):
     except IndexError:
         delete_log = None
 
-    payment_accounts = user.paymentaccount_set.all()
+    provider_portals = get_payment_provider_portals(user=user)
     return render(request, 'lookup/user_summary.html',
                   {'account': user, 'app_summary': app_summary,
                    'delete_form': DeleteUserForm(), 'delete_log': delete_log,
                    'is_admin': is_admin, 'refund_summary': refund_summary,
                    'user_addons': user_addons, 'payment_data': payment_data,
                    'paypal_ids': paypal_ids,
-                   'payment_accounts': payment_accounts})
+                   'provider_portals': provider_portals})
 
 
 @login_required
@@ -257,18 +259,13 @@ def app_summary(request, addon_id):
         price = None
 
     purchases, refunds = _app_purchases_and_refunds(app)
-    payment_account = False
-    # TODO: fixme for multiple accounts
-    if hasattr(app, 'single_pay_account'):
-        try:
-            payment_account = app.single_pay_account().payment_account
-        except ValueError:
-            pass
+    provider_portals = get_payment_provider_portals(app=app)
+
     return render(request, 'lookup/app_summary.html',
                   {'abuse_reports': app.abuse_reports.count(), 'app': app,
                    'authors': authors, 'downloads': _app_downloads(app),
                    'purchases': purchases, 'refunds': refunds, 'price': price,
-                   'payment_account': payment_account})
+                   'provider_portals': provider_portals})
 
 
 @login_required
@@ -497,3 +494,31 @@ def _slice_results(request, qs):
         return qs[:lkp.MAX_RESULTS]
     else:
         return qs[:lkp.SEARCH_LIMIT]
+
+
+def get_payment_provider_portals(app=None, user=None):
+    """
+    Get a list of dicts describing the payment portals for this app or user.
+
+    Either app or user is required.
+    """
+    provider_portals = []
+    if app:
+        q = dict(addon=app)
+    elif user:
+        q = dict(payment_account__user=user)
+    else:
+        raise ValueError('user or app is required')
+
+    for acct in (AddonPaymentAccount.objects.filter(**q)
+                 .select_related('payment_account')):
+        provider = get_provider(id=acct.payment_account.provider)
+        portal_url = provider.get_portal_url(acct.addon.app_slug)
+        if portal_url:
+            provider_portals.append({
+                'provider': provider,
+                'app': acct.addon,
+                'portal_url': portal_url,
+                'payment_account': acct.payment_account
+            })
+    return provider_portals
