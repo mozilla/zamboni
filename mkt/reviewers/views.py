@@ -628,6 +628,7 @@ def queue_updates(request):
 
     apps = [QueuedApp(app, app.all_versions[0].nomination or app.created)
             for app in Webapp.version_and_file_transformer(apps)]
+    apps = sorted(apps, key=lambda a: a.created)
     return _queue(request, apps, 'updates')
 
 
