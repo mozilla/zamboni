@@ -36,12 +36,6 @@ urlpatterns = patterns('',
 
     url('^price-tiers$', views.price_tiers, name='zadmin.price_tiers'),
 
-    # Site Event admin.
-    url('^events/(?P<event_id>\d+)?$', views.site_events,
-        name='zadmin.site_events'),
-    url('^events/(?P<event_id>\d+)/delete$', views.delete_site_event,
-        name='zadmin.site_events.delete'),
-
     # The Django admin.
     url('^models/', include(admin.site.urls)),
     url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search.json$',
