@@ -4,7 +4,7 @@
       <a class="close" title="{{ _('close') }}">&times;</a>
       <h2>{{ _('Add Boku Account') }}</h2>
     </header>
-    {% with boku_docs_url='https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku' %}
+    {% with boku_docs_url=provider.signup_url%}
       <form action="{{ url('mkt.developers.provider.add_payment_account') }}" method="post" class="island">
         {{ csrf() }}
         <input type="hidden" name="provider" value="boku">
