@@ -145,7 +145,7 @@ class Collection(amo.models.ModelBase):
         on this collection.
 
         ID comparison used instead of directly checking objects to ensure that
-        RequestUser or UserProfile objects could be passed.
+        UserProfile objects could be passed.
         """
         return userprofile.id in self.curators.values_list('id', flat=True)
 

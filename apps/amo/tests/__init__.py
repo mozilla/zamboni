@@ -48,7 +48,7 @@ from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
-from users.models import RequestUser, UserProfile
+from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
 import mkt
@@ -792,7 +792,7 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = RequestUser.objects.get(id=user.id)
+        req.amo_user = UserProfile.objects.get(id=user.id)
         req.user = user
         req.groups = user.groups.all()
     req.APP = None

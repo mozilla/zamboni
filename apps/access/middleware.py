@@ -8,7 +8,7 @@ import commonware.log
 
 import amo
 from access import acl
-from users.models import RequestUser
+
 
 log = commonware.log.getLogger('z.access')
 

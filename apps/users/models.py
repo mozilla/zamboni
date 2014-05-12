@@ -131,7 +131,10 @@ class UserEmailField(forms.EmailField):
 
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
-class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUser):
+
+
+class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
+                  AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
     username = models.CharField(max_length=255, default='', unique=True)
@@ -373,7 +376,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
         # we have to fix stupid things that we defined poorly in remora
         if not self.resetcode_expires:
             self.resetcode_expires = datetime.now()
-        super(UserProfile, self).save(force_insert, force_update, using, **kwargs)
+        super(UserProfile, self).save(force_insert, force_update, using,
+                                      **kwargs)
 
     def check_password(self, raw_password):
         # BrowserID does not store a password.
@@ -514,62 +518,6 @@ class UserNotification(amo.models.ModelBase):
         if not rows:
             update.update(dict(**kwargs))
             UserNotification.objects.create(**update)
-
-
-class RequestUserManager(amo.models.ManagerBase):
-
-    def get_query_set(self):
-        qs = super(RequestUserManager, self).get_query_set()
-        return qs.transform(RequestUser.transformer)
-
-
-class RequestUser(UserProfile):
-    """
-    A RequestUser has extra attributes we don't care about for normal users.
-    """
-
-    objects = RequestUserManager()
-
-    def __init__(self, *args, **kw):
-        super(RequestUser, self).__init__(*args, **kw)
-        self.mobile_addons = []
-        self.favorite_addons = []
-        self.watching = []
-
-    class Meta:
-        proxy = True
-
-    @staticmethod
-    def transformer(users):
-        # Until the Marketplace gets collections, these lookups are pointless.
-        return
-
-        # We don't want to cache these things on every UserProfile; they're
-        # only used by a user attached to a request.
-        if not users:
-            return
-
-        # Touch this @cached_property so the answer is cached with the object.
-        user = users[0]
-        user.is_developer
-
-        from bandwagon.models import CollectionAddon, CollectionWatcher
-        SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
-        qs = CollectionAddon.objects.filter(
-            collection__author=user, collection__type__in=SPECIAL)
-        addons = dict((type_, []) for type_ in SPECIAL)
-        for addon, ctype in qs.values_list('addon', 'collection__type'):
-            addons[ctype].append(addon)
-        user.mobile_addons = addons[amo.COLLECTION_MOBILE]
-        user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
-        user.watching = list((CollectionWatcher.objects.filter(user=user)
-                             .values_list('collection', flat=True)))
-
-    def _cache_keys(self):
-        # Add UserProfile.cache_key so RequestUser gets invalidated when the
-        # UserProfile is changed.
-        keys = super(RequestUser, self)._cache_keys()
-        return keys + (UserProfile._cache_key(self.id, 'default'),)
 
 
 class BlacklistedUsername(amo.models.ModelBase):
