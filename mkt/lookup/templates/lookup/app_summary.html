@@ -112,10 +112,7 @@
           {# L10n: number of refunds. #}
           <div>{{ _('{0} rejected')|f(refunds['rejected']) }}</div>
         </dd>
-        {% if payment_account %}
-          <dt>{{ _('Bango portal') }}:</dt>
-          <dd><a href="{{ payment_account.get_lookup_portal_url() }}">{{ _('View transactions') }}</a></dd>
-        {% endif %}
+        {% include 'lookup/includes/provider_portals.html' %}
       </dl>
     </section>
 

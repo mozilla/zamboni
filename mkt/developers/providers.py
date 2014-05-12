@@ -117,7 +117,13 @@ class Provider(object):
     def terms_retrieve(self, account):
         raise NotImplementedError
 
-    def get_portal_url(self, app_slug):
+    def get_portal_url(self, app_slug=None):
+        """
+        Return a URL to the payment provider's portal.
+
+        The URL can be an empty string if the provider
+        doesn't have a portal.
+        """
         return ''
 
 
@@ -238,7 +244,7 @@ class Bango(Provider):
                                                           'p', 'hr'])
         return res
 
-    def get_portal_url(self, app_slug):
+    def get_portal_url(self, app_slug=None):
         url = 'mkt.developers.apps.payments.bango_portal_from_addon'
         return reverse(url, args=[app_slug]) if app_slug else ''
 
@@ -384,7 +390,7 @@ class Boku(Provider):
 
         return boku_product['resource_uri']
 
-    def get_portal_url(self, app_slug):
+    def get_portal_url(self, app_slug=None):
         return settings.BOKU_PORTAL
 
 
@@ -397,14 +403,16 @@ for p in (Bango, Reference, Boku):
 
 def get_provider(name=None, id=None):
     """
-    This returns the default provider so we can provide backwards capability
-    for API's that expect get_provider to return 'bango'. This is something
-    we'll have to clean out.
+    Get a provider implementation instance by name or id.
     """
     if id is not None:
         provider = ALL_PROVIDERS_BY_ID[id]()
     else:
         if name is None:
+            # This returns the default provider so we can provide backwards
+            # capability for API's that expect get_provider to return 'bango'.
+            # TODO: This should raise an exception after we clean up Bango
+            # code.
             name = settings.DEFAULT_PAYMENT_PROVIDER
         provider = ALL_PROVIDERS[name]()
     if provider.name not in settings.PAYMENT_PROVIDERS:
