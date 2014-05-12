@@ -247,7 +247,6 @@ def mkt_admin_site_links():
         'settings': [
             ('View site settings', reverse('zadmin.settings')),
             ('Django admin pages', reverse('zadmin.home')),
-            ('Site Events', reverse('zadmin.site_events')),
         ],
         'tools': [
             ('View request environment', reverse('amo.env')),
