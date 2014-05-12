@@ -15,8 +15,6 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
-EVENT_TABLE_SUFFIX = ''
-
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
