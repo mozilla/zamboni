@@ -395,19 +395,6 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 
-# Types of SiteEvent
-SITE_EVENT_OTHER = 1
-SITE_EVENT_EXCEPTION = 2
-SITE_EVENT_RELEASE = 3
-SITE_EVENT_CHANGE = 4
-
-SITE_EVENT_CHOICES = {
-    SITE_EVENT_OTHER: _('Other'),
-    SITE_EVENT_EXCEPTION: _('Exception'),
-    SITE_EVENT_RELEASE: _('Release'),
-    SITE_EVENT_CHANGE: _('Change'),
-}
-
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_ADDON = 1
 CANNED_RESPONSE_APP = 2

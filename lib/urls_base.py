@@ -1,14 +1,15 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
-from django.shortcuts import redirect, render
-from django.views.i18n import javascript_catalog
+from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
+from django.views.i18n import javascript_catalog
 
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
 import versions.urls
+
 
 admin.autodiscover()
 
@@ -106,45 +107,6 @@ urlpatterns = patterns('',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),
 
 )
-
-if 'django_qunit' in settings.INSTALLED_APPS:
-
-    def _zamboni_qunit(request, path, template):
-        from time import time
-        import django_qunit.views
-        import jingo
-        import mock
-
-        # Patch `js` so that CI gets cache-busted JS with TEMPLATE_DEBUG=True.
-        # (This will be fixed in `jingo-minify` with bug 717094.)
-        from jingo_minify.helpers import _build_html
-        import jinja2
-
-        def js(bundle, defer=False, async=False):
-            items = settings.MINIFY_BUNDLES['js'][bundle]
-            attrs = ['src="%s?v=%s"' % ('%s', time())]
-            if defer:
-                attrs.append('defer')
-            if async:
-                attrs.append('async')
-            string = '<script %s></script>' % ' '.join(attrs)
-            return _build_html(items, string)
-
-        ctx = django_qunit.views.get_suite_context(request, path)
-        ctx.update(timestamp=time(), Mock=mock.Mock, js=js)
-        response = render(request, template, ctx)
-        # This allows another site to embed the QUnit suite
-        # in an iframe (for CI).
-        response['x-frame-options'] = ''
-        return response
-
-    def zamboni_qunit(request, path):
-        return _zamboni_qunit(request, path, 'qunit/qunit.html')
-
-    urlpatterns += patterns('',
-        url(r'^qunit/(?P<path>.*)', zamboni_qunit),
-        url(r'^_qunit/', include('django_qunit.urls')),
-    )
 
 if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.

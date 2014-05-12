@@ -29,8 +29,7 @@ from devhub.models import ActivityLog
 from files.models import File
 from market.utils import update_from_csv
 from users.models import UserProfile
-from zadmin.forms import GenerateErrorForm, PriceTiersForm, SiteEventForm
-from zadmin.models import SiteEvent
+from zadmin.forms import GenerateErrorForm, PriceTiersForm
 
 from . import tasks
 from .decorators import admin_required
@@ -317,32 +316,6 @@ def memcache(request):
         stats = []
     return render(request, 'zadmin/memcache.html',
                   {'form': form, 'stats': stats})
-
-
-@admin.site.admin_view
-def site_events(request, event_id=None):
-    event = get_object_or_404(SiteEvent, pk=event_id) if event_id else None
-    data = request.POST or None
-
-    if event:
-        form = SiteEventForm(data, instance=event)
-    else:
-        form = SiteEventForm(data)
-
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('zadmin.site_events')
-    pager = amo.utils.paginate(request, SiteEvent.objects.all(), 30)
-    events = pager.object_list
-    return render(request, 'zadmin/site_events.html', {
-        'form': form, 'events': events})
-
-
-@admin.site.admin_view
-def delete_site_event(request, event_id):
-    event = get_object_or_404(SiteEvent, pk=event_id)
-    event.delete()
-    return redirect('zadmin.site_events')
 
 
 @admin_required

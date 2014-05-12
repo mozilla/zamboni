@@ -38,7 +38,7 @@ from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
 from .forms import ContributionForm
-from .models import Addon, FrozenAddon
+from .models import Addon
 from .decorators import addon_view_factory
 
 log = commonware.log.getLogger('z.addons')
@@ -273,8 +273,6 @@ class HomepageFilter(BaseFilter):
 def home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-    # This is lame for performance. Kill it with ES.
-    frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
     # Collections.
     collections = Collection.objects.filter(listed=True,
@@ -282,8 +280,8 @@ def home(request):
                                             type=amo.COLLECTION_FEATURED)
     featured = Addon.objects.featured(request.APP, request.LANG,
                                       amo.ADDON_EXTENSION)[:18]
-    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
-    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
+    popular = base.order_by('-average_daily_users')[:10]
+    hotness = base.order_by('-hotness')[:18]
 
     return render(request, 'addons/home.html',
                   {'popular': popular, 'featured': featured, 'hotness':

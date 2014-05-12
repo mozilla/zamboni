@@ -24,8 +24,7 @@ import amo.tests
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
-                           BlacklistedSlug, Category, Charity, FrozenAddon,
-                           Preview)
+                           BlacklistedSlug, Category, Charity, Preview)
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1406,7 +1405,6 @@ class TestAddonDelete(amo.tests.TestCase):
             user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon,
             app=Application.objects.create())
-        FrozenAddon.objects.create(addon=addon)
         Preview.objects.create(addon=addon)
 
         RssKey.objects.create(addon=addon)
@@ -1799,15 +1797,6 @@ class TestCharity(amo.tests.TestCase):
     def test_url_foundation(self):
         foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
-
-
-class TestFrozenAddons(amo.tests.TestCase):
-
-    def test_immediate_freeze(self):
-        # Adding a FrozenAddon should immediately drop the addon's hotness.
-        a = Addon.objects.create(type=1, hotness=22)
-        FrozenAddon.objects.create(addon=a)
-        eq_(Addon.objects.get(id=a.id).hotness, 0)
 
 
 class TestRemoveLocale(amo.tests.TestCase):

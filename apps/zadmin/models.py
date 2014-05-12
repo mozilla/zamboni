@@ -92,27 +92,6 @@ class EmailPreview(amo.models.ModelBase):
         db_table = 'email_preview'
 
 
-class SiteEvent(models.Model):
-    """Information records about downtime, releases, and other pertinent
-       events on the site."""
-
-    SITE_EVENT_CHOICES = amo.SITE_EVENT_CHOICES.items()
-
-    start = models.DateField(db_index=True,
-                             help_text='The time at which the event began.')
-    end = models.DateField(db_index=True, null=True, blank=True,
-        help_text='If the event was a range, the time at which it ended.')
-    event_type = models.PositiveIntegerField(choices=SITE_EVENT_CHOICES,
-                                             db_index=True, default=0)
-    description = models.CharField(max_length=255, blank=True, null=True)
-    # An outbound link to an explanatory blog post or bug.
-    more_info_url = models.URLField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        db_table = ('zadmin_siteevent' +
-                    settings.EVENT_TABLE_SUFFIX)
-
-
 class DownloadSource(models.Model):
     # e.g., `mkt-search` or `mkt-detail-`.
     name = models.CharField(max_length=255)
