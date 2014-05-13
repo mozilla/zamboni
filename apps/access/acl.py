@@ -48,22 +48,6 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
     return False
 
 
-def check_collection_ownership(request, collection, require_owner=False):
-    if not request.user.is_authenticated():
-        return False
-
-    if action_allowed(request, 'Admin', '%'):
-        return True
-    elif action_allowed(request, 'Collections', 'Edit'):
-        return True
-    elif request.amo_user.id == collection.author_id:
-        return True
-    elif not require_owner:
-        return collection.publishable_by(request.amo_user)
-    else:
-        return False
-
-
 def check_addon_ownership(request, addon, viewer=False, dev=False,
                           support=False, admin=True, ignore_disabled=False):
     """

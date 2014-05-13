@@ -19,7 +19,6 @@ import amo
 import amo.models
 from access.models import Group
 from addons.models import Addon
-from bandwagon.models import Collection
 from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag
@@ -299,10 +298,6 @@ class ActivityLog(amo.models.ModelBase):
             if isinstance(arg, Version) and not version:
                 text = _('Version {0}')
                 version = self.f(text, arg.version)
-                arguments.remove(arg)
-            if isinstance(arg, Collection) and not collection:
-                collection = self.f(u'<a href="{0}">{1}</a>',
-                                    arg.get_url_path(), arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():

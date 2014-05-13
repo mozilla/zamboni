@@ -29,7 +29,6 @@ from amo.models import manual_order
 from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
-from bandwagon.models import Collection, CollectionFeature, CollectionPromo
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -110,9 +109,6 @@ def extension_detail(request, addon):
     recommended = Addon.objects.listed(request.APP).filter(
         recommended_for__addon=addon)[:6]
 
-    # Popular collections this addon is part of.
-    collections = Collection.objects.listed().filter(
-        addons=addon, application__id=request.APP.id)
 
     ctx = {
         'addon': addon,
@@ -124,7 +120,6 @@ def extension_detail(request, addon):
         'review_form': ReviewForm(),
         'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
         'get_replies': Review.get_replies,
-        'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
     }
 
@@ -269,91 +264,10 @@ class HomepageFilter(BaseFilter):
 
     filter_new = BaseFilter.filter_created
 
-
+# Define a placeholder home response until we can hunt down all the places 
+# it is called from and remove them
 def home(request):
-    # Add-ons.
-    base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-
-    # Collections.
-    collections = Collection.objects.filter(listed=True,
-                                            application=request.APP.id,
-                                            type=amo.COLLECTION_FEATURED)
-    featured = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_EXTENSION)[:18]
-    popular = base.order_by('-average_daily_users')[:10]
-    hotness = base.order_by('-hotness')[:18]
-
-    return render(request, 'addons/home.html',
-                  {'popular': popular, 'featured': featured, 'hotness':
-                   hotness, 'src': 'homepage', 'collections': collections})
-
-
-@mobilized(home)
-def home(request):
-    # Shuffle the list and get 3 items.
-    rand = lambda xs: random.shuffle(xs) or xs[:3]
-    # Get some featured add-ons with randomness.
-    featured = Addon.featured_random(request.APP, request.LANG)[:3]
-    # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP)
-                   .filter(type=amo.ADDON_EXTENSION)
-                   .order_by('-average_daily_users')
-                   .values_list('id', flat=True)[:10])
-    popular = rand(qs)
-    # Do one query and split up the add-ons.
-    addons = (Addon.objects.filter(id__in=featured + popular)
-              .filter(type=amo.ADDON_EXTENSION))
-    featured = [a for a in addons if a.id in featured]
-    popular = sorted([a for a in addons if a.id in popular],
-                     key=attrgetter('average_daily_users'), reverse=True)
-    return render(request, 'addons/mobile/home.html',
-                  {'featured': featured, 'popular': popular})
-
-
-class CollectionPromoBox(object):
-
-    def __init__(self, request):
-        self.request = request
-
-    def features(self):
-        return CollectionFeature.objects.all()
-
-    def collections(self):
-        features = self.features()
-        lang = translation.to_language(translation.get_language())
-        locale = Q(locale='') | Q(locale=lang)
-        promos = (CollectionPromo.objects.filter(locale)
-                  .filter(collection_feature__in=features)
-                  .transform(CollectionPromo.transformer))
-        groups = sorted_groupby(promos, 'collection_feature_id')
-
-        # We key by feature_id and locale, so we can favor locale specific
-        # promos.
-        promo_dict = {}
-        for feature_id, v in groups:
-            promo = v.next()
-            key = (feature_id, translation.to_language(promo.locale))
-            promo_dict[key] = promo
-
-        rv = {}
-        # If we can, we favor locale specific collections.
-        for feature in features:
-            key = (feature.id, lang)
-            if key not in promo_dict:
-                key = (feature.id, '')
-                if key not in promo_dict:
-                    continue
-
-            # We only want to see public add-ons on the front page.
-            c = promo_dict[key].collection
-            c.public_addons = c.addons.all() & Addon.objects.public()
-            rv[feature] = c
-
-        return rv
-
-    def __nonzero__(self):
-        return self.request.APP == amo.FIREFOX
-
+    return HttpResponse('home')
 
 @addon_view
 def eula(request, addon, file_id=None):

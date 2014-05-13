@@ -29,6 +29,7 @@ class ReviewsRss(Feed):
 
     def link(self, addon):
         """Link for the feed"""
+        # FIXME: Remove this function and all references to it
         return absolutify(url('home'))
 
     def description(self, addon):

@@ -22,7 +22,7 @@ from tower import ugettext_lazy as _
 import amo
 import amo.models
 from access import acl
-from addons.utils import get_creatured_ids, get_featured_ids
+from addons.utils import get_featured_ids
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, shared_url
@@ -50,7 +50,7 @@ def clean_slug(instance, slug_field='slug'):
     """Cleans a model instance slug.
 
     This strives to be as generic as possible as it's used by Addons, Webapps
-    and Collections, and maybe more in the future.
+    and maybe less in the future. :-D
 
     """
     slug = getattr(instance, slug_field, None) or instance.name
@@ -1596,10 +1596,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
         urls = ['*/addon/%d/' % self.addon_id,
                 '*%s' % self.category.get_url_path(), ]
         return urls
-
-    @classmethod
-    def creatured_random(cls, category, lang):
-        return get_creatured_ids(category, lang)
 
 
 class AddonRecommendation(models.Model):

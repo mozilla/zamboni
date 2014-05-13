@@ -186,7 +186,7 @@ class TestAddonManager(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',
                 'base/addon_3615', 'addons/featured', 'addons/test_manager',
                 'base/collections', 'base/featured',
-                'bandwagon/featured_collections', 'base/addon_5299_gcal']
+                'base/addon_5299_gcal']
 
     def setUp(self):
         set_user(None)
@@ -344,8 +344,7 @@ class TestAddonModels(amo.tests.TestCase):
                 'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/blacklisted',
-                'bandwagon/featured_collections']
+                'addons/blacklisted']
 
     def setUp(self):
         TranslationSequence.objects.create(id=99243)
@@ -1410,7 +1409,7 @@ class TestAddonDelete(amo.tests.TestCase):
 
 class TestAddonModelsFeatured(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',
-                'addons/featured', 'bandwagon/featured_collections',
+                'addons/featured', 
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):

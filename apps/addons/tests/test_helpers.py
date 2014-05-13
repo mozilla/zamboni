@@ -11,7 +11,7 @@ from addons.models import Addon
 class TestHelpers(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users',
                 'addons/featured', 'base/collections',
-                'base/featured', 'bandwagon/featured_collections']
+                'base/featured']
 
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}

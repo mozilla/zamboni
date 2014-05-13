@@ -115,7 +115,6 @@ suds==0.4
 
 
 ## Out of date or not sure on pypi.
--e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
 
 ## moved for 2014/04/02 deployment expediency
