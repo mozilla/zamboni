@@ -214,3 +214,76 @@ fieldset.module {
 #changelist-form #result_list td img[alt=True] {
     background: url(../../img/admin/icon-yes.gif) no-repeat center center;
 }
+
+#navbar a, #navbar a:active, #navbar a:hover, #navbar a:focus, #navbar a:visited {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+#navbar {
+    display: block;
+    border:  1px solid #021437;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0 0 1.5em 0;
+    color: white;
+    font-size: 1.231em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#navbar ul.top {
+    overflow: visible;
+}
+#navbar li.top {
+    float: left;
+    border-right: 1px solid #455c87;
+    list-style: none;
+}
+#navbar li.top a.controller {
+    display: block;
+    padding: .5em 1.3em;
+    margin: 0;
+}
+#navbar li.top a.controller {
+    border-right: 1px solid #1e2e4c;
+}
+#navbar li.top:hover,
+#navbar li.top.selected {
+    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
+}
+#navbar li.top ul {
+    display: none;
+    position: absolute;
+    z-index: 1001;
+    top: auto;
+    margin-left: -1px;
+}
+#navbar li.top ul,
+#navbar li.top ul li:last-child {
+    -moz-border-radius-bottomleft: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+#navbar li.top:hover ul {
+    display: block;
+}
+#navbar li ul li {
+    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    background-color: #305083;
+    border-bottom: 1px solid #5a7297;
+}
+#navbar li ul li a {
+    display: block;
+    padding: .5em 1.3em;
+    border-bottom: 1px solid #3f4f6a;
+}
+#navbar li.top ul li:last-child,
+#navbar li.top ul li:last-child a {
+    border: none;
+}

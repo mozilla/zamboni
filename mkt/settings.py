@@ -36,10 +36,6 @@ WEBAPP_MANIFEST_NAME = 'Marketplace'
 
 ROOT_URLCONF = 'mkt.urls'
 
-INSTALLED_APPS = list(INSTALLED_APPS)
-INSTALLED_APPS.remove('devhub')
-INSTALLED_APPS = tuple(INSTALLED_APPS)
-
 INSTALLED_APPS += (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
     'mkt.site',
@@ -121,8 +117,6 @@ NOSE_ARGS = [
 
 NO_ADDONS_MODULES = (
     'addons.views',
-    'devhub.views.dashboard',  # The apps dashboard is a different view.
-    'devhub.views.submit',  # Addon submit not ok, app submit a-ok.
 )
 
 # Extend AMO's bundles. Sorry, folks. One day when admin goes away this

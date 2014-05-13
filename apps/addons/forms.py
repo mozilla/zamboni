@@ -1,24 +1,21 @@
-import os
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms.formsets import formset_factory
 
+import captcha.fields
 import commonware.log
 import happyforms
 from quieter_formset.formset import BaseFormSet
 from tower import ugettext as _, ungettext as ngettext
 
-from access import acl
 import amo
-import captcha.fields
-from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
+from access import acl
 from addons.models import Addon, AddonCategory, BlacklistedSlug, Category
 from addons.utils import reverse_name_lookup
-from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
+from addons.widgets import CategoriesSelectMultiple
+from amo.utils import slug_validator, slugify, sorted_groupby
 from applications.models import Application
-from devhub import tasks as devhub_tasks
 from tags.models import Tag
 from translations.fields import TransField, TransTextarea
 from translations.forms import TranslationFormMixin
@@ -322,38 +319,6 @@ def icons():
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons
-
-
-class AddonFormMedia(AddonFormBase):
-    icon_type = forms.CharField(widget=forms.RadioSelect(
-            renderer=IconWidgetRenderer, choices=[]), required=False)
-    icon_upload_hash = forms.CharField(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('icon_upload_hash', 'icon_type')
-
-    def __init__(self, *args, **kwargs):
-        super(AddonFormMedia, self).__init__(*args, **kwargs)
-
-        # Add icons here so we only read the directory when
-        # AddonFormMedia is actually being used.
-        self.fields['icon_type'].widget.choices = icons()
-
-    def save(self, addon, commit=True):
-        if self.cleaned_data['icon_upload_hash']:
-            upload_hash = self.cleaned_data['icon_upload_hash']
-            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
-
-            dirname = addon.get_icon_dir()
-            destination = os.path.join(dirname, '%s' % addon.id)
-
-            remove_icons(destination)
-            devhub_tasks.resize_icon.delay(upload_path, destination,
-                                           amo.ADDON_ICON_SIZES,
-                                           set_modified_on=[addon])
-
-        return super(AddonFormMedia, self).save(commit)
 
 
 class AddonFormDetails(AddonFormBase):

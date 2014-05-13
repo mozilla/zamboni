@@ -73,7 +73,6 @@ def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
     original_size = (339, 128)
 
-
     for rsize, fsize in zip(resize_size, final_size):
         dest_name = os.path.join(settings.ADDON_ICONS_PATH, '1234')
         src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix='.png',
@@ -254,6 +253,7 @@ class TestResizePreview(amo.tests.TestCase):
             im = Image.open(fp)
             eq_(list(im.size), [100, 133])
         assert not os.path.exists(preview.image_path), preview.image_path
+
 
 class TestFetchManifest(amo.tests.TestCase):
 
@@ -437,8 +437,8 @@ class TestFetchIcon(BaseWebAppTest):
     def setUp(self):
         super(TestFetchIcon, self).setUp()
         self.content_type = 'image/png'
-        self.apps_path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                                      'addons')
+        self.apps_path = os.path.join(settings.ROOT, 'mkt', 'developers',
+                                      'tests', 'addons')
         patcher = mock.patch('mkt.developers.tasks.requests.get')
         self.requests_mock = patcher.start()
         self.requests_mock.return_value = StringIO('mozballin')

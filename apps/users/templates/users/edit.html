@@ -1,6 +1,5 @@
 {% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required %}
-{% from 'devhub/includes/macros.html' import some_html_tip %}
 
 {% block title %}{{ page_title(_('Account Settings')) }}{% endblock %}
 
@@ -137,10 +136,6 @@ data-default-locale="{{ request.LANG|lower }}"
           {{ l10n_menu(remove_locale_url=amouser.get_user_url('remove-locale')) }}
           <div class="formfields">
           {{ form.bio }}
-          {{ some_html_tip(title=
-              _('Allowed HTML: {0}. Links are forbidden.')|f(
-                  '<abbr title> <acronym title> <b> <blockquote> <code> <em>
-                   <i> <li> <ol> <strong> <ul>')|e) }}
           {{ form.bio.errors }}
           </div>
         </fieldset> {# /.profile-detail #}

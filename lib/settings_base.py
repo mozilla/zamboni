@@ -416,7 +416,6 @@ INSTALLED_APPS = (
     'bandwagon',
     'cronjobs',
     'csp',
-    'devhub',
     'editors',
     'files',
     'jingo_minify',
@@ -560,33 +559,6 @@ MINIFY_BUNDLES = {
             'css/impala/apps.less',
             'css/impala/formset.less',
             'css/impala/tables.less',
-        ),
-        'zamboni/devhub': (
-            'css/impala/tooltips.less',
-            'css/zamboni/developers.css',
-            'css/zamboni/docs.less',
-            'css/impala/developers.less',
-            'css/devhub/packager.less',
-            'css/devhub/listing.less',
-            'css/devhub/popups.less',
-            'css/impala/formset.less',
-            'css/devhub/forms.less',
-            'css/common/invisible-upload.less',
-            'css/devhub/submission.less',
-            'css/devhub/refunds.less',
-            'css/devhub/buttons.less',
-            'css/devhub/in-app-config.less',
-        ),
-        'zamboni/devhub_impala': (
-            'css/impala/developers.less',
-            'css/devhub/listing.less',
-            'css/devhub/popups.less',
-            'css/devhub/dashboard.less',
-            'css/devhub/forms.less',
-            'css/common/invisible-upload.less',
-            'css/devhub/submission.less',
-            'css/devhub/search.less',
-            'css/devhub/refunds.less',
         ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',
@@ -754,17 +726,6 @@ MINIFY_BUNDLES = {
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
-        'zamboni/devhub': (
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/common/upload-base.js',
-            'js/common/upload-addon.js',
-            'js/common/upload-image.js',
-            'js/impala/formset.js',
-            'js/zamboni/devhub.js',
-            'js/zamboni/validator.js',
-            'js/zamboni/packager.js',
-        ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
             'js/lib/syntaxhighlighter/xregexp-min.js',
@@ -853,7 +814,6 @@ PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
 USERPICS_PATH = UPLOADS_PATH + '/userpics'
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
 CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
 
@@ -984,13 +944,6 @@ CELERY_ROUTES = {
 
     # Other queues we prioritize below.
 
-    # AMO Devhub.
-    'devhub.tasks.validator': {'queue': 'devhub'},
-    'devhub.tasks.compatibility_check': {'queue': 'devhub'},
-    'devhub.tasks.fetch_manifest': {'queue': 'devhub'},
-    'devhub.tasks.fetch_icon': {'queue': 'devhub'},
-    'devhub.tasks.file_validator': {'queue': 'devhub'},
-    'devhub.tasks.packager': {'queue': 'devhub'},
     # MKT Devhub.
     'mkt.developers.tasks.validator': {'queue': 'devhub'},
     'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
@@ -1006,8 +959,6 @@ CELERY_ROUTES = {
     'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
-    'devhub.tasks.resize_icon': {'queue': 'images'},
-    'devhub.tasks.resize_preview': {'queue': 'images'},
     'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},
 
     # Comm.

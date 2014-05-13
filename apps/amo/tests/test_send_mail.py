@@ -1,10 +1,6 @@
-import mimetypes
-import os.path
-
 from django import test
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.template import Context as TemplateContext
 from django.utils import translation
@@ -12,11 +8,10 @@ from django.utils import translation
 import mock
 from nose.tools import eq_
 
-from amo.models import FakeEmail
-from amo.utils import send_mail, send_html_mail_jinja
-from devhub.tests.test_models import ATTACHMENTS_DIR
-from users.models import UserProfile, UserNotification
 import users.notifications
+from amo.models import FakeEmail
+from amo.utils import send_html_mail_jinja, send_mail
+from users.models import UserNotification, UserProfile
 
 
 class TestSendMail(test.TestCase):
@@ -165,9 +160,9 @@ class TestSendMail(test.TestCase):
 
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
-        subject = u'Mozilla Add-ons: Thank you for your submission!'
-        html_template = 'devhub/email/submission.html'
-        text_template = 'devhub/email/submission.txt'
+        subject = u'Test'
+        html_template = 'tests/email/test.html'
+        text_template = 'tests/email/test.txt'
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
                              from_email=settings.NOBODY_EMAIL,
@@ -201,14 +196,6 @@ class TestSendMail(test.TestCase):
         assert unsubscribe_msg in message1
         assert unsubscribe_msg in message2
 
-    def test_send_attachment(self):
-        path = os.path.join(ATTACHMENTS_DIR, 'bacon.txt')
-        attachments = [(os.path.basename(path), storage.open(path).read(),
-                        mimetypes.guess_type(path)[0])]
-        send_mail('test subject', 'test body', from_email='a@example.com',
-                  recipient_list=['b@example.com'], attachments=attachments)
-        eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')
-
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'])
@@ -216,6 +203,7 @@ class TestSendMail(test.TestCase):
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
+
         def make_backend(*args, **kwargs):
             if next(throw_error):
                 class BrokenMessage(object):

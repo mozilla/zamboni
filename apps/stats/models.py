@@ -150,7 +150,7 @@ class Contribution(amo.models.ModelBase):
                    _(u'%s refund failed' % self.addon.name),
                    {'name': self.addon.name})
         send_mail_jinja(
-            'Refund failed', 'devhub/email/refund-failed.txt',
+            'Refund failed', 'stats/email/refund-failed.txt',
             {'name': self.user.email,
              'error': str(e)},
             settings.MARKETPLACE_EMAIL,

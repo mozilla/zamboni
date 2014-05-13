@@ -59,12 +59,12 @@ heka-py-cef==0.3.1
 heka-py-raven==0.6
 mock==1.0.1
 monolith.client==0.9
-moz-addon-packager==1.0.1
 mozilla-logger==0.2
 mozpay==2.0.0
 m2secret==0.1.1
 ndg-httpsclient==0.3.2
 newrelic==2.16.0.12
+nose==1.3.3
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
@@ -117,9 +117,6 @@ suds==0.4
 ## Out of date or not sure on pypi.
 -e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
-
-# Fix bug 963188. Once a version above 1.3.0 is available, move back to a PyPI release.
--e git+https://github.com/nose-devs/nose.git@79102e33fda8a67292e7c79aafea85ea74334288#egg=nose-dev
 
 ## moved for 2014/04/02 deployment expediency
 MySQL-python==1.2.5
