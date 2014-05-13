@@ -135,15 +135,6 @@ class TestRedirects(amo.tests.TestCase):
         eq_(code, 301)
         assert url.endswith('/en-US/firefox/extensions/woo/?sort=rating')
 
-    def test_addons_versions(self):
-        r = self.client.get('/addons/versions/4', follow=True)
-        self.assert3xx(r, '/en-US/firefox/addon/a4/versions/', status_code=301)
-
-    def test_addons_versions_rss(self):
-        r = self.client.get('/addons/versions/4/format:rss', follow=True)
-        self.assert3xx(r, '/en-US/firefox/addon/4/versions/format:rss',
-                       status_code=301)
-
     def test_addons_reviews_rss(self):
         r = self.client.get('/addons/reviews/4/format:rss', follow=True)
         self.assert3xx(r, '/en-US/firefox/addon/4/reviews/format:rss',

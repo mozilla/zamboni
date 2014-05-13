@@ -1263,16 +1263,6 @@ class TestMobileDetails(TestMobile):
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
 
-    def test_extension_release_notes(self):
-        r = self.client.get(self.url)
-        relnotes = pq(r.content)('.versions li:first-child > a')
-        assert relnotes.text().startswith(self.ext.current_version.version), (
-            'Version number missing')
-        version_url = self.ext.current_version.get_url_path()
-        eq_(relnotes.attr('href'), version_url)
-        self.client.get(version_url, follow=True)
-        eq_(r.status_code, 200)
-
     def test_extension_adu(self):
         doc = pq(self.client.get(self.url).content)('table')
         eq_(doc('.adu td').text(), numberfmt(self.ext.average_daily_users))

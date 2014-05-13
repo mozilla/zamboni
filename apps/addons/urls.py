@@ -34,7 +34,6 @@ detail_patterns = patterns('',
                    name='addons.about'),
 
     ('^reviews/', include(review_patterns('addons'))),
-    ('^versions/', include('versions.urls')),
 )
 
 
@@ -56,6 +55,4 @@ urlpatterns = patterns('',
     ('^addons/policy/0/(?P<addon_id>\d+)/',
      lambda r, addon_id: redirect('addons.privacy',
                                   addon_id, permanent=True)),
-
-    ('^versions/license/(\d+)$', views.license_redirect),
 )

@@ -254,14 +254,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
                              m.group('suffix'))
 
-    def latest_xpi_url(self):
-        addon = self.version.addon
-        kw = {'addon_id': addon.pk}
-        if self.platform_id != amo.PLATFORM_ALL.id:
-            kw['platform'] = self.platform_id
-        return os.path.join(reverse('downloads.latest', kwargs=kw),
-                            'addon-%s-latest%s' % (addon.pk, self.extension))
-
     def eula_url(self):
         return reverse('addons.eula', args=[self.version.addon_id, self.id])
 

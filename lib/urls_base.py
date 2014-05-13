@@ -5,9 +5,6 @@ from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
-import versions.urls
-
-
 admin.autodiscover()
 
 handler403 = 'amo.views.handler403'
@@ -30,9 +27,6 @@ urlpatterns = patterns('',
 
     # Files
     ('^files/', include('files.urls')),
-
-    # Downloads.
-    ('^downloads/', include(versions.urls.download_patterns)),
 
     # Users
     ('', include('users.urls')),
@@ -76,16 +70,6 @@ urlpatterns = patterns('',
     # Redirect top-tags to tags/top
     ('^top-tags/?',
      lambda r: redirect('tags.top_cloud', permanent=True)),
-
-    ('^addons/versions/(\d+)/?$',
-     lambda r, id: redirect('addons.versions', id, permanent=True)),
-
-    ('^addons/versions/(\d+)/format:rss$',
-     lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
-
-    # Legacy redirect. Requires a view to get extra data not provided in URL.
-    ('^versions/updateInfo/(?P<version_id>\d+)',
-     'versions.views.update_info_redirect'),
 
     ('^addons/reviews/(\d+)/format:rss$',
      lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),

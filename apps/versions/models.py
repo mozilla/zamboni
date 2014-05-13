@@ -24,7 +24,6 @@ from files import utils
 from files.models import cleanup_file, File, Platform
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
-from users.models import UserProfile
 from versions.tasks import update_supported_locales_single
 
 from .compare import version_dict, version_int
@@ -99,8 +98,7 @@ class Version(amo.models.ModelBase):
         if creating:
             # To avoid circular import.
             from mkt.webapps.models import AppFeatures
-            if self.addon.type == amo.ADDON_WEBAPP:
-                AppFeatures.objects.create(version=self)
+            AppFeatures.objects.create(version=self)
         return self
 
     @classmethod
@@ -120,31 +118,25 @@ class Version(amo.models.ModelBase):
         for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
                application_id=app.id).save()
-        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_WEBAPP]:
-            # Search extensions and webapps are always for all platforms.
-            platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-        else:
-            platforms = cls._make_safe_platform_files(platforms)
+        platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
-        if addon.is_webapp():
-            from mkt.webapps.models import AppManifest
+        # To avoid circular import.
+        from mkt.webapps.models import AppManifest
 
-            # Create AppManifest if we're a Webapp.
-            # Note: This must happen before we call `File.from_upload`.
-            manifest = utils.WebAppParser().get_json_data(upload)
-            AppManifest.objects.create(
-                version=v, manifest=json.dumps(manifest))
+        # Note: This must happen before we call `File.from_upload`.
+        manifest = utils.WebAppParser().get_json_data(upload)
+        AppManifest.objects.create(
+            version=v, manifest=json.dumps(manifest))
 
         for platform in platforms:
             File.from_upload(upload, v, platform, parse_data=data)
 
-        if addon.is_webapp():
-            # Update supported locales from manifest.
-            # Note: This needs to happen after we call `File.from_upload`.
-            update_supported_locales_single.apply_async(
-                args=[addon.id], kwargs={'latest': True},
-                eta=datetime.datetime.now() +
-                    datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+        # Update supported locales from manifest.
+        # Note: This needs to happen after we call `File.from_upload`.
+        update_supported_locales_single.apply_async(
+            args=[addon.id], kwargs={'latest': True},
+            eta=datetime.datetime.now() +
+                datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
 
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
@@ -153,50 +145,12 @@ class Version(amo.models.ModelBase):
             version_uploaded.send(sender=v)
 
         # If packaged app and app is blocked, put in escalation queue.
-        if (addon.is_webapp() and addon.is_packaged and
-            addon.status == amo.STATUS_BLOCKED):
+        if addon.is_packaged and addon.status == amo.STATUS_BLOCKED:
             # To avoid circular import.
             from editors.models import EscalationQueue
             EscalationQueue.objects.create(addon=addon)
 
         return v
-
-    @classmethod
-    def _make_safe_platform_files(cls, platforms):
-        """Make file platform translations until all download pages
-        support desktop ALL + mobile ALL. See bug 646268.
-        """
-        pl_set = set([p.id for p in platforms])
-
-        if pl_set == set([amo.PLATFORM_ALL_MOBILE.id, amo.PLATFORM_ALL.id]):
-            # Make it really ALL:
-            return [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-
-        has_mobile = any(p in amo.MOBILE_PLATFORMS for p in pl_set)
-        has_desktop = any(p in amo.DESKTOP_PLATFORMS for p in pl_set)
-        has_all = any(p in (amo.PLATFORM_ALL_MOBILE.id,
-                            amo.PLATFORM_ALL.id) for p in pl_set)
-        is_mixed = has_mobile and has_desktop
-        if (is_mixed and has_all) or has_mobile:
-            # Mixing desktop and mobile w/ ALL is not safe;
-            # we have to split the files into exact platforms.
-            # Additionally, it is not safe to use all-mobile.
-            new_plats = []
-            for p in platforms:
-                if p.id == amo.PLATFORM_ALL_MOBILE.id:
-                    new_plats.extend(list(Platform.objects
-                                     .filter(id__in=amo.MOBILE_PLATFORMS)
-                                     .exclude(id=amo.PLATFORM_ALL_MOBILE.id)))
-                elif p.id == amo.PLATFORM_ALL.id:
-                    new_plats.extend(list(Platform.objects
-                                     .filter(id__in=amo.DESKTOP_PLATFORMS)
-                                     .exclude(id=amo.PLATFORM_ALL.id)))
-                else:
-                    new_plats.append(p)
-            return new_plats
-
-        # Platforms are safe as is
-        return platforms
 
     @property
     def path_prefix(self):
@@ -211,9 +165,6 @@ class Version(amo.models.ModelBase):
 
     def flush_urls(self):
         return self.addon.flush_urls()
-
-    def get_url_path(self):
-        return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
@@ -244,26 +195,6 @@ class Version(amo.models.ModelBase):
         avs = self.apps.select_related(depth=1)
         return self._compat_map(avs)
 
-    @amo.cached_property
-    def compatible_apps_ordered(self):
-        apps = self.compatible_apps.items()
-        return sorted(apps, key=lambda v: v[0].short)
-
-    def compatible_platforms(self):
-        """Returns a dict of compatible file platforms for this version.
-
-        The result is based on which app(s) the version targets.
-        """
-        apps = set([a.application.id for a in self.apps.all()])
-        targets_mobile = amo.MOBILE.id in apps
-        targets_other = any((a != amo.MOBILE.id) for a in apps)
-        all_plats = {}
-        if targets_other:
-            all_plats.update(amo.DESKTOP_PLATFORMS)
-        if targets_mobile:
-            all_plats.update(amo.MOBILE_PLATFORMS)
-        return all_plats
-
     @amo.cached_property(writable=True)
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""
@@ -288,25 +219,6 @@ class Version(amo.models.ModelBase):
         """Unadulterated statuses, good for an API."""
         return [(f.id, f.status) for f in self.all_files]
 
-    def is_allowed_upload(self):
-        """Check that a file can be uploaded based on the files
-        per platform for that type of addon."""
-
-        num_files = len(self.all_files)
-        if self.addon.type == amo.ADDON_SEARCH:
-            return num_files == 0
-        elif num_files == 0:
-            return True
-        elif amo.PLATFORM_ALL in self.supported_platforms:
-            return False
-        elif amo.PLATFORM_ALL_MOBILE in self.supported_platforms:
-            return False
-        else:
-            compatible = (v for k, v in self.compatible_platforms().items()
-                          if k not in (amo.PLATFORM_ALL.id,
-                                       amo.PLATFORM_ALL_MOBILE.id))
-            return bool(set(compatible) - set(self.supported_platforms))
-
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public
         # addon, and all its attached files must have public status.
@@ -319,28 +231,6 @@ class Version(amo.models.ModelBase):
     @property
     def has_files(self):
         return bool(self.all_files)
-
-    @property
-    def is_unreviewed(self):
-        return filter(lambda f: f.status in amo.UNREVIEWED_STATUSES,
-                      self.all_files)
-
-    @property
-    def is_all_unreviewed(self):
-        return not bool([f for f in self.all_files if f.status not in
-                         amo.UNREVIEWED_STATUSES])
-
-    @property
-    def is_beta(self):
-        return filter(lambda f: f.status == amo.STATUS_BETA, self.all_files)
-
-    @property
-    def is_lite(self):
-        return filter(lambda f: f.status in amo.LITE_STATUSES, self.all_files)
-
-    @property
-    def is_jetpack(self):
-        return all(f.jetpack_version for f in self.all_files)
 
     @classmethod
     def _compat_map(cls, avs):
@@ -425,8 +315,7 @@ class Version(amo.models.ModelBase):
         not already and want to pass the instance to some code that will use
         that property.
         """
-        if (self.addon.type != amo.ADDON_WEBAPP or
-            not self.addon.is_packaged or not self.all_files):
+        if not self.addon.is_packaged or not self.all_files:
             return False
         data = self.addon.get_manifest_json(file_obj=self.all_files[0])
         return data.get('type') == 'privileged'
@@ -458,13 +347,11 @@ def update_status(sender, instance, **kw):
 
 
 def inherit_nomination(sender, instance, **kw):
-    """For new versions pending review, ensure nomination date
-    is inherited from last nominated version.
-    """
+    """Inherit nomination date for new packaged app versions."""
     if kw.get('raw'):
         return
     addon = instance.addon
-    if (addon.type == amo.ADDON_WEBAPP and addon.is_packaged):
+    if addon.is_packaged:
         # If prior version's file is pending, inherit nomination. Otherwise,
         # set nomination to now.
         last_ver = (Version.objects.filter(addon=addon)
@@ -480,16 +367,6 @@ def inherit_nomination(sender, instance, **kw):
             log.debug('[Webapp:%s] Setting nomination date to now for new '
                       'version.' % addon.id)
             instance.update(nomination=datetime.datetime.now(), _signal=False)
-    else:
-        if (instance.nomination is None
-            and addon.status in (amo.STATUS_NOMINATED,
-                                 amo.STATUS_LITE_AND_NOMINATED)
-            and not instance.is_beta):
-            last_ver = (Version.objects.filter(addon=addon)
-                        .exclude(nomination=None).order_by('-nomination'))
-            if last_ver.exists():
-                instance.update(nomination=last_ver[0].nomination,
-                                _signal=False)
 
 
 def cleanup_version(sender, instance, **kw):
@@ -546,19 +423,6 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='version_translations')
 
 
-class VersionComment(amo.models.ModelBase):
-    """Editor comments for version discussion threads."""
-    version = models.ForeignKey(Version)
-    user = models.ForeignKey(UserProfile)
-    reply_to = models.ForeignKey(Version, related_name="reply_to",
-                                 db_column='reply_to', null=True)
-    subject = models.CharField(max_length=1000)
-    comment = models.TextField()
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'versioncomments'
-
-
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.ForeignKey(Application)
@@ -572,7 +436,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     class Meta:
         db_table = u'applications_versions'
-        unique_together = (("application", "version"),)
+        unique_together = (('application', 'version'),)
 
     def __unicode__(self):
         return u'%s %s - %s' % (self.application, self.min, self.max)
