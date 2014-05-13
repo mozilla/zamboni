@@ -80,6 +80,7 @@ class TestBase(TestCase):
 
     def test_check(self):
         provider = Reference()
+
         @account_check
         def test(self, account):
             pass
@@ -300,9 +301,80 @@ class TestBoku(Patcher, TestCase):
         assert account.agreed_tos
         assert response['accepted']
 
-    def test_product_create_exists(self):
-        self.boku_patcher.product.post.return_value = {
-            'resource_uri': '/f'}
+    def test_create_new_product(self):
         account = self.make_account()
         app = app_factory()
-        eq_(self.boku.product_create(account, app), '/f')
+
+        generic_product_uri = '/generic/product/1/'
+        boku_product_uri = '/boku/product/1/'
+        self.generic_patcher.product.get_object_or_404.return_value = {
+            'resource_pk': 1,
+            'resource_uri': generic_product_uri,
+        }
+
+        self.boku_patcher.product.get.return_value = {
+            'meta': {'total_count': 0},
+            'objects': [],
+        }
+        self.boku_patcher.product.post.return_value = {
+            'resource_uri': boku_product_uri,
+            'seller_product': generic_product_uri,
+            'seller_boku': account.uri,
+        }
+
+        product = self.boku.product_create(account, app)
+        eq_(product, boku_product_uri)
+        self.boku_patcher.product.post.assert_called_with(data={
+            'seller_boku': account.uri,
+            'seller_product': generic_product_uri,
+        })
+
+    def test_update_existing_product(self):
+        account = self.make_account()
+        app = app_factory()
+
+        generic_product_uri = '/generic/product/1/'
+        self.generic_patcher.product.get_object_or_404.return_value = {
+            'resource_pk': 1,
+            'resource_uri': generic_product_uri,
+        }
+
+        existing_boku_product_uri = '/boku/product/1/'
+        self.boku_patcher.product.get.return_value = {
+            'meta': {'total_count': 1},
+            'objects': [{
+                'resource_uri': existing_boku_product_uri,
+            }],
+        }
+        patch_mock = Mock()
+        patch_mock.patch.return_value = {
+            'resource_uri': existing_boku_product_uri,
+            'seller_product': generic_product_uri,
+            'seller_boku': account.uri,
+        }
+        self.boku_patcher.by_url.return_value = patch_mock
+
+        product = self.boku.product_create(account, app)
+        eq_(product, existing_boku_product_uri)
+        self.boku_patcher.by_url.assert_called_with(existing_boku_product_uri)
+        patch_mock.patch.assert_called_with(data={
+            'seller_boku': account.uri,
+            'seller_product': generic_product_uri,
+        })
+
+    def test_multiple_existing_products_raises_exception(self):
+        account = self.make_account()
+        app = app_factory()
+
+        generic_product_uri = '/generic/product/1/'
+        self.generic_patcher.product.get_object_or_404.return_value = {
+            'resource_pk': 1,
+            'resource_uri': generic_product_uri,
+        }
+
+        self.boku_patcher.product.get.return_value = {
+            'meta': {'total_count': 2},
+            'objects': [],
+        }
+        with self.assertRaises(ValueError):
+            self.boku.product_create(account, app)
