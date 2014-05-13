@@ -338,9 +338,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = models.ManyToManyField('Category', through='AddonCategory')
-    dependencies = models.ManyToManyField('self', symmetrical=False,
-                                          through='AddonDependency',
-                                          related_name='addons')
     premium_type = models.PositiveIntegerField(
         choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
@@ -1671,15 +1668,6 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     def flush_urls(self):
         return self.addon.flush_urls() + self.user.flush_urls()
-
-
-class AddonDependency(models.Model):
-    addon = models.ForeignKey(Addon, related_name='addons_dependencies')
-    dependent_addon = models.ForeignKey(Addon, related_name='dependent_on')
-
-    class Meta:
-        db_table = 'addons_dependencies'
-        unique_together = ('addon', 'dependent_addon')
 
 
 class Category(amo.models.OnChangeMixin, amo.models.ModelBase):

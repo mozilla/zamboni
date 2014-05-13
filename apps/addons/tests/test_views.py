@@ -21,7 +21,7 @@ import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons.models import Addon, AddonDependency, AddonUser, Charity
+from addons.models import Addon, AddonUser, Charity
 from bandwagon.models import Collection
 from files.models import File
 from paypal.tests.test import other_error
@@ -858,20 +858,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def test_downloads_stats_admin(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         self.client.login(username='del@icio.us', password='password')
-
-    def test_dependencies(self):
-        eq_(self.get_pq()('.dependencies').length, 0)
-        req = Addon.objects.get(id=592)
-        AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
-        eq_(self.addon.all_dependencies, [req])
-        cache.clear()
-        d = self.get_pq()('.dependencies .hovercard')
-        eq_(d.length, 1)
-        eq_(d.find('h3').text(), unicode(req.name))
-        eq_(d.find('a').attr('href')
-            .endswith('?src=dp-dl-dependencies'), True)
-        eq_(d.find('.install-button a').attr('href')
-            .endswith('?src=dp-hc-dependencies'), True)
 
     def test_no_restart(self):
         f = self.addon.current_version.all_files[0]

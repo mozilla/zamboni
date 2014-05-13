@@ -13,7 +13,6 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError
 from django.utils import translation
 
 from mock import Mock, patch
@@ -21,10 +20,10 @@ from nose.tools import assert_not_equal, eq_, raises
 
 import amo
 import amo.tests
-from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonRecommendation, AddonType,
-                           AddonUpsell, AddonUser, AppSupport, BlacklistedSlug,
-                           Category, Charity, Preview)
+from addons.models import (Addon, AddonCategory, AddonDeviceType,
+                           AddonRecommendation, AddonType, AddonUpsell,
+                           AddonUser, AppSupport, BlacklistedSlug, Category,
+                           Charity, Preview)
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1391,8 +1390,6 @@ class TestAddonDelete(amo.tests.TestCase):
 
         AddonCategory.objects.create(addon=addon,
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
-        AddonDependency.objects.create(addon=addon,
-            dependent_addon=addon)
         AddonDeviceType.objects.create(addon=addon,
             device_type=DEVICE_TYPES.keys()[0])
         AddonRecommendation.objects.create(addon=addon,
@@ -1542,39 +1539,6 @@ class TestAddonRecommendations(amo.tests.TestCase):
         for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
             for rec in recs:
                 eq_(scores[addon][rec.other_addon_id], rec.score)
-
-
-class TestAddonDependencies(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/appversion',
-                'base/platforms',
-                'base/users',
-                'base/addon_5299_gcal',
-                'base/addon_3615',
-                'base/addon_3723_listed',
-                'base/addon_6704_grapple',
-                'base/addon_4664_twitterbar']
-
-    def test_dependencies(self):
-        ids = [3615, 3723, 4664, 6704]
-        addon = Addon.objects.get(id=5299)
-
-        for dependent_id in ids:
-            AddonDependency(addon=addon,
-                dependent_addon=Addon.objects.get(id=dependent_id)).save()
-
-        eq_(sorted([a.id for a in addon.dependencies.all()]), sorted(ids))
-        eq_(list(a.dependencies.all()), a.all_dependencies)
-
-    def test_unique_dependencies(self):
-        a = Addon.objects.get(id=5299)
-        b = Addon.objects.get(id=3615)
-        AddonDependency.objects.create(addon=a, dependent_addon=b)
-        try:
-            AddonDependency.objects.create(addon=a, dependent_addon=b)
-        except IntegrityError:
-            pass
-        eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):
