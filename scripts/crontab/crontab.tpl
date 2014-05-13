@@ -11,7 +11,6 @@ HOME=/tmp
 */30 * * * * %(z_cron)s update_addons_current_version
 
 # Once per hour.
-# 10 * * * * %(z_cron)s update_blog_posts
 20 * * * * %(z_cron)s addon_last_updated
 # 45 * * * * %(z_cron)s update_addon_appsupport
 50 * * * * %(z_cron)s cleanup_extracted_file

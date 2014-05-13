@@ -22,26 +22,26 @@ import addons.forms
 import amo
 import lib.iarc
 from access import acl
-from addons.forms import clean_tags, icons, IconWidgetRenderer, slug_validator
+from addons.forms import clean_tags, icons, slug_validator
 from addons.models import Addon, AddonUser, BlacklistedSlug, Category, Preview
-from addons.widgets import CategoriesSelectMultiple
+from addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from amo import get_user
 from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons, slugify
-from devhub.forms import VersionForm
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.video import tasks as vtasks
 from tags.models import Tag
 from translations.fields import TransField
 from translations.models import Translation
-from translations.widgets import TransTextarea
+from translations.widgets import TranslationTextarea, TransTextarea
+from versions.models import Version
 
 import mkt
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
-from mkt.regions.utils import parse_region
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
+from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import index_webapps
@@ -991,8 +991,15 @@ class APIConsumerForm(happyforms.ModelForm):
         fields = ('app_name', 'redirect_uri')
 
 
-class AppVersionForm(VersionForm):
+class AppVersionForm(happyforms.ModelForm):
+    releasenotes = TransField(widget=TransTextarea(), required=False)
+    approvalnotes = forms.CharField(
+        widget=TranslationTextarea(attrs={'rows': 4}), required=False)
     publish_immediately = forms.BooleanField(required=False)
+
+    class Meta:
+        model = Version
+        fields = ('releasenotes', 'approvalnotes')
 
     def __init__(self, *args, **kwargs):
         super(AppVersionForm, self).__init__(*args, **kwargs)

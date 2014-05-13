@@ -14,7 +14,6 @@ import bleach
 import commonware.log
 import jinja2
 from tower import ugettext as _
-from uuidfield.fields import UUIDField
 
 import amo
 import amo.models
@@ -24,72 +23,12 @@ from bandwagon.models import Collection
 from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag
-from translations.fields import save_signal, TranslatedField
 from users.helpers import user_link
 from users.models import UserProfile
 from versions.models import Version
 
+
 log = commonware.log.getLogger('devhub')
-
-
-class RssKey(models.Model):
-    key = UUIDField(db_column='rsskey', auto=True, unique=True)
-    addon = models.ForeignKey(Addon, null=True, unique=True)
-    user = models.ForeignKey(UserProfile, null=True, unique=True)
-    created = models.DateField(default=datetime.now)
-
-    class Meta:
-        db_table = 'hubrsskeys'
-
-
-class BlogPost(amo.models.ModelBase):
-    title = models.CharField(max_length=255)
-    date_posted = models.DateField(default=datetime.now)
-    permalink = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'blogposts'
-
-
-class HubPromo(amo.models.ModelBase):
-    VISIBILITY_CHOICES = (
-        (0, 'Nobody'),
-        (1, 'Visitors'),
-        (2, 'Developers'),
-        (3, 'Visitors and Developers'),
-    )
-
-    heading = TranslatedField()
-    body = TranslatedField()
-    visibility = models.SmallIntegerField(choices=VISIBILITY_CHOICES)
-
-    class Meta:
-        db_table = 'hubpromos'
-
-    def __unicode__(self):
-        return unicode(self.heading)
-
-    def flush_urls(self):
-        return ['*/developers*']
-
-models.signals.pre_save.connect(save_signal, sender=HubPromo,
-                                dispatch_uid='hubpromo_translations')
-
-
-class HubEvent(amo.models.ModelBase):
-    name = models.CharField(max_length=255, default='')
-    url = models.URLField(max_length=255, default='')
-    location = models.CharField(max_length=255, default='')
-    date = models.DateField(default=datetime.now)
-
-    class Meta:
-        db_table = 'hubevents'
-
-    def __unicode__(self):
-        return self.name
-
-    def flush_urls(self):
-        return ['*/developers*']
 
 
 class AppLog(amo.models.ModelBase):
@@ -437,11 +376,3 @@ class ActivityLogAttachment(amo.models.ModelBase):
         format recognizable by the stdlib imghdr module.
         """
         return imghdr.what(self.full_path()) is not None
-
-
-class SubmitStep(models.Model):
-    addon = models.ForeignKey(Addon)
-    step = models.IntegerField()
-
-    class Meta:
-        db_table = 'submit_step'

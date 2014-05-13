@@ -235,12 +235,7 @@ class TestEditBasic(TestEdit):
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
             '&lt;/script&gt;')
 
-    @mock.patch('devhub.tasks.urllib2.urlopen')
-    @mock.patch('devhub.tasks.validator')
-    def test_view_manifest_url_default(self, mock_urlopen, validator):
-        mock_urlopen.return_value = response_mock
-        validator.return_value = '{}'
-
+    def test_view_manifest_url_default(self):
         # Should be able to see manifest URL listed.
         r = self.client.get(self.url)
         eq_(pq(r.content)('#manifest-url a').attr('href'),
@@ -267,12 +262,7 @@ class TestEditBasic(TestEdit):
         assert 'manifest_url' in form.errors
         assert 'This field is required' in form.errors['manifest_url'][0]
 
-    @mock.patch('devhub.tasks.urllib2.urlopen')
-    @mock.patch('devhub.tasks.validator')
-    def test_view_admin_edit_manifest_url(self, mock_urlopen, validator):
-        mock_urlopen.return_value = response_mock
-        validator.return_value = '{}'
-
+    def test_view_admin_edit_manifest_url(self):
         self.client.login(username='admin@mozilla.com', password='password')
         # Should be able to see manifest URL listed.
         r = self.client.get(self.url)
@@ -296,9 +286,7 @@ class TestEditBasic(TestEdit):
         eq_(self.webapp.current_version.version, '1.0')
         eq_(self.webapp.versions.count(), 1)
 
-    @mock.patch('devhub.tasks.urllib2.urlopen')
-    def test_view_manifest_changed_dupe_app_domain(self, mock_urlopen):
-        mock_urlopen.return_value = response_mock
+    def test_view_manifest_changed_dupe_app_domain(self):
         Switch.objects.create(name='webapps-unique-by-domain', active=True)
         amo.tests.app_factory(name='Super Duper',
                               app_domain='https://ballin.com')
@@ -314,12 +302,7 @@ class TestEditBasic(TestEdit):
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url,
             'Manifest URL should not have been changed!')
 
-    @mock.patch('devhub.tasks.urllib2.urlopen')
-    @mock.patch('devhub.tasks.validator')
-    def test_view_manifest_changed_same_domain_diff_path(self, mock_urlopen,
-                                                         validator):
-        mock_urlopen.return_value = response_mock
-        validator.return_value = ''
+    def test_view_manifest_changed_same_domain_diff_path(self):
         Switch.objects.create(name='webapps-unique-by-domain', active=True)
         self.client.login(username='admin@mozilla.com', password='password')
         # POST with the new manifest URL for same domain but w/ different path.
@@ -751,7 +734,7 @@ class TestEditMedia(TestEdit):
             'image/jpeg|image/png|video/webm')
 
     def check_image_type(self, url, msg):
-        img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
+        img = '%s/js/devreg/devhub.js' % settings.MEDIA_ROOT
         self.check_image_type_path(img, url, msg)
 
     def check_image_type_path(self, img, url, msg):

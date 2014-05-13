@@ -120,7 +120,6 @@ def path():
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
           settings.COLLECTIONS_ICON_PATH,
-          settings.PACKAGER_PATH,
           settings.PREVIEWS_PATH,
           settings.USERPICS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,
