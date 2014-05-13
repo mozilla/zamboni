@@ -32,8 +32,8 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         addon = Addon.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                                       'addons', 'mozball.webapp')
+        path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
+                            'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path, is_webapp=True)
         platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
         version = Version.from_upload(upload, addon, [platform])
@@ -51,8 +51,8 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         addon = Addon.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        path = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                                       'addons', 'mozball.webapp')
+        path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
+                            'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path, is_webapp=True)
         platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
         version = Version.from_upload(upload, addon, [platform])

@@ -2,9 +2,9 @@
 import datetime
 import json
 import os
-import os.path
 import time
 from itertools import cycle
+from os import path
 
 from django.conf import settings
 from django.core import mail
@@ -33,7 +33,6 @@ from amo.tests import (app_factory, check_links, days_ago, formset, initial,
 from amo.urlresolvers import reverse
 from amo.utils import isotime
 from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
-from devhub.tests.test_models import ATTACHMENTS_DIR
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from files.models import File
@@ -57,6 +56,11 @@ from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 
 
+TEST_PATH = path.dirname(path.abspath(__file__))
+ATTACHMENTS_DIR = path.abspath(path.join(TEST_PATH, '..', '..', 'comm',
+                                         'tests', 'attachments'))
+
+
 class AttachmentManagementMixin(object):
 
     def _attachment_management_form(self, num=1):
@@ -75,8 +79,7 @@ class AttachmentManagementMixin(object):
         if num > 0:
             for n in xrange(num):
                 i = 0 if n % 2 else 1
-                path = os.path.join(ATTACHMENTS_DIR, files[i])
-                attachment = open(path, 'r+')
+                attachment = open(path.join(ATTACHMENTS_DIR, files[i]), 'r+')
                 data.update({
                     'attachment-%d-attachment' % n: attachment,
                     'attachment-%d-description' % n: descriptions[i]
@@ -2062,7 +2065,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         """ Test addition of an attachment """
         self._attachment_post(1)
         eq_(save_mock.call_args_list[0],
-            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
+            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2077,7 +2080,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         for attachment in mail.outbox[0].attachments:
             self.assertNotEqual(len(attachment), 0, '0-length attachment')
         eq_(save_mock.call_args_list[0],
-            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
+            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2090,7 +2093,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox[0].attachments), 2,
             'Review attachments not added to email')
         eq_(save_mock.call_args_list[0],
-            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
+            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2104,7 +2107,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
         eq_(save_mock.call_args_list[0],
-            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
+            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
     @mock.patch('amo.utils.LocalFileStorage.save')
@@ -2117,7 +2120,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox[0].attachments), 1,
             'Review attachment not added to email')
         eq_(save_mock.call_args_list[0],
-            mock.call(os.path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
+            mock.call(path.join(ATTACHMENTS_DIR, 'bacon.txt'), mock.ANY))
 
     def test_idn_app_domain(self):
         response = self.client.get(self.url)
