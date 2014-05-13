@@ -614,22 +614,20 @@ def queue_escalated(request):
 def queue_updates(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
-    pub_statuses = amo.WEBAPPS_APPROVED_STATUSES
-    addon_ids = (File.objects.filter(status=amo.STATUS_PENDING,
-                                     version__addon__is_packaged=True,
-                                     version__addon__status__in=pub_statuses,
-                                     version__addon__type=amo.ADDON_WEBAPP,
-                                     version__addon__disabled_by_user=False,
-                                     version__deleted=False)
-                             .values_list('version__addon_id', flat=True))
+    qs = (Version.objects.no_cache().filter(
+          files__status=amo.STATUS_PENDING,
+          addon__type=amo.ADDON_WEBAPP,
+          addon__disabled_by_user=False,
+          addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
+          .exclude(addon__id__in=excluded_ids)
+          .order_by('nomination', 'created')
+          .select_related('addon', 'files').no_transforms())
 
-    apps = _do_sort(request, Webapp.objects.no_cache().exclude(
-        id__in=excluded_ids).filter(id__in=addon_ids))
-
-    apps = [QueuedApp(app, app.all_versions[0].nomination or app.created)
+    apps = _do_sort(request, qs, date_sort='nomination')
+    apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(apps)]
-    apps = sorted(apps, key=lambda a: a.created)
-    return _queue(request, apps, 'updates')
+
+    return _queue(request, apps, 'updates', date_sort='nomination')
 
 
 @reviewer_required(only='app')
