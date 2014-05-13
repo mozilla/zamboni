@@ -5,9 +5,6 @@ from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
-
 import versions.urls
 
 
@@ -55,9 +52,6 @@ urlpatterns = patterns('',
     # Paypal
     ('^services/', include('paypal.urls')),
 
-    # Search
-    ('^search/', include('search.urls')),
-
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
@@ -98,10 +92,6 @@ urlpatterns = patterns('',
 
     ('^addons/reviews/(\d+)/format:rss$',
      lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
-
-    ('^search-engines.*$',
-     lambda r: redirect(urlparams(reverse('search.search'), atype=4),
-                        permanent=True)),
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),

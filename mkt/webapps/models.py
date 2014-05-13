@@ -509,22 +509,6 @@ class Webapp(Addon):
         """True if the app has more than one payment account."""
         return self.all_payment_accounts().count() > 1
 
-    def single_pay_account(self):
-        """
-        Assuming the app has only one payment account, return it.
-
-        Don't use this unless you have to.
-        """
-        # This is a fast hack to get multiple accounts up and going without
-        # breaking too much. All code that calls this method should be
-        # updated to support multiple accounts.
-        accts = list(self.all_payment_accounts())
-        if len(accts) != 1:
-            raise ValueError('App {app} has zero or multiple payment '
-                             'accounts: {accts}'
-                             .format(app=self, accts=accts))
-        return accts[0]
-
     def payments_complete(self):
         """Also returns True if the app doesn't needs payments."""
         return not self.needs_payment() or self.has_payment_account()

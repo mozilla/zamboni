@@ -60,7 +60,6 @@ class CategoryAdmin(admin.ModelAdmin):
     exclude = ('count',)
 
 
-admin.site.register(models.BlacklistedGuid)
 admin.site.register(models.Feature, FeatureAdmin)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.Category, CategoryAdmin)

@@ -23,8 +23,8 @@ import amo
 import amo.tests
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
-                           AddonUpsell, AddonUser, AppSupport, BlacklistedGuid,
-                           BlacklistedSlug, Category, Charity, Preview)
+                           AddonUpsell, AddonUser, AppSupport, BlacklistedSlug,
+                           Category, Charity, Preview)
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -437,7 +437,6 @@ class TestAddonModels(amo.tests.TestCase):
         a.name = u'é'
         a.delete('bye')
         eq_(len(mail.outbox), 1)
-        assert BlacklistedGuid.objects.filter(guid=a.guid)
 
     def test_delete(self):
         deleted_count = Addon.with_deleted.count()
@@ -482,7 +481,6 @@ class TestAddonModels(amo.tests.TestCase):
         a.highest_status = 0
         a.delete('bye')
         eq_(len(mail.outbox), 1)
-        assert BlacklistedGuid.objects.filter(guid=a.guid)
         eq_(count, Addon.with_deleted.count())
 
     def test_delete_incomplete(self):
@@ -494,7 +492,6 @@ class TestAddonModels(amo.tests.TestCase):
         a.save()
         a.delete(None)
         eq_(len(mail.outbox), 0)
-        assert not BlacklistedGuid.objects.filter(guid=a.guid)
         eq_(Addon.with_deleted.count(), count - 1)
 
     def test_delete_searchengine(self):
@@ -1652,13 +1649,6 @@ class TestAddonFromUpload(UploadTest):
     def manifest(self, basename):
         return os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
                             'addons', basename)
-
-    def test_blacklisted_guid(self):
-        BlacklistedGuid.objects.create(guid='guid@xpi')
-        with self.assertRaises(forms.ValidationError) as e:
-            Addon.from_upload(self.get_upload('extension.xpi'),
-                              [self.platform])
-        eq_(e.exception.messages, ['Duplicate UUID found.'])
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),

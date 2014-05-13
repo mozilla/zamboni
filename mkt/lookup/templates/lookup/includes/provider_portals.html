@@ -1,0 +1,9 @@
+{% for data in provider_portals %}
+  <div data-provider-name="{{ data.provider.name }}">
+    <dt>{{ data.provider.full }}: {{ data.payment_account.name }}
+      ({{ _('App: {0}').format(data.app.name) }})</dt>
+    <dd>
+      <a href="{{ data.portal_url }}">{{ _('View transactions') }}</a>
+    </dd>
+  </div>
+{% endfor %}
