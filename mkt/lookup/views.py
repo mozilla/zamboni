@@ -22,7 +22,6 @@ from amo.decorators import (json_view, login_required, permission_required,
 from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
-from apps.bandwagon.models import Collection
 from devhub.models import ActivityLog
 from lib.pay_server import client
 from market.models import AddonPaymentData, Refund
@@ -303,7 +302,6 @@ def user_activity(request, user_id):
     products, contributions, listing = purchase_list(request, user, None)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
 
-    collections = Collection.objects.filter(author=user_id)
     user_items = ActivityLog.objects.for_user(user).exclude(
         action__in=amo.LOG_HIDE_DEVELOPER)
     admin_items = ActivityLog.objects.for_user(user).filter(
@@ -311,7 +309,7 @@ def user_activity(request, user_id):
     amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.amo_user, user=user)
     return render(request, 'lookup/user_activity.html',
                   {'pager': products, 'account': user, 'is_admin': is_admin,
-                   'listing_filter': listing, 'collections': collections,
+                   'listing_filter': listing,
                    'contributions': contributions, 'single': bool(None),
                    'user_items': user_items, 'admin_items': admin_items,
                    'show_link': False})

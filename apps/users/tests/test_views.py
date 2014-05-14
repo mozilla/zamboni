@@ -24,7 +24,6 @@ from addons.models import Addon, AddonPremium, AddonUser
 from amo.helpers import urlparams
 from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
-from bandwagon.models import Collection, CollectionWatcher
 from devhub.models import ActivityLog
 from market.models import Price
 from reviews.models import Review
@@ -260,13 +259,6 @@ class TestEdit(UserViewBase):
         self.data['notifications'] = [2, 4, 6]
         r = self.client.post(self.url, self.data)
         assert r.context['form'].errors['notifications']
-
-    def test_collections_toggles(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        eq_(doc('#profile-misc').length, 1,
-            'Collections options should be visible.')
 
     def test_remove_locale_bad_request(self):
         r = self.client.post(self.user.get_user_url('remove-locale'))
@@ -1029,56 +1021,6 @@ class TestProfileSections(amo.tests.TestCase):
             'This user should have way more than 10 add-ons.')
         r = self.client.get(self.url)
         eq_(pq(r.content)('#my-addons .paginator').length, 1)
-
-    def test_my_collections_followed(self):
-        coll = Collection.objects.all()[0]
-        CollectionWatcher.objects.create(collection=coll, user=self.user)
-        mine = Collection.objects.listed().filter(following__user=self.user)
-        eq_(list(mine), [coll])
-
-        r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        eq_(list(r.context['fav_coll']), [coll])
-
-        doc = pq(r.content)
-        eq_(doc('#reviews.full').length, 0)
-        ul = doc('#my-collections #my-favorite')
-        eq_(ul.length, 1)
-
-        li = ul.find('li')
-        eq_(li.length, 1)
-
-        a = li.find('a')
-        eq_(a.attr('href'), coll.get_url_path())
-        eq_(a.text(), unicode(coll.name))
-
-    def test_my_collections_created(self):
-        coll = Collection.objects.listed().filter(author=self.user)
-        eq_(len(coll), 1)
-
-        r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        self.assertSetEqual(r.context['own_coll'], coll)
-
-        doc = pq(r.content)
-        eq_(doc('#reviews.full').length, 0)
-        ul = doc('#my-collections #my-created')
-        eq_(ul.length, 1)
-
-        li = ul.find('li')
-        eq_(li.length, 1)
-
-        a = li.find('a')
-        eq_(a.attr('href'), coll[0].get_url_path())
-        eq_(a.text(), unicode(coll[0].name))
-
-    def test_no_my_collections(self):
-        Collection.objects.filter(author=self.user).delete()
-        r = self.client.get(self.url)
-        self.assertTemplateNotUsed(r, 'bandwagon/users/collection_list.html')
-        doc = pq(r.content)
-        eq_(doc('#my-collections').length, 0)
-        eq_(doc('#reviews.full').length, 1)
 
     def test_review_abuse_form(self):
         r = self.client.get(self.url)

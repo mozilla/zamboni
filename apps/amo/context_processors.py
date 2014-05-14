@@ -70,12 +70,6 @@ def global_settings(request):
                 'text': _('My Collections'),
                 'href': reverse('collections.user', args=[amo_user.username])})
 
-            if amo_user.favorite_addons:
-                account_links.append(
-                    {'text': _('My Favorites'),
-                     'href': reverse('collections.detail',
-                                     args=[amo_user.username, 'favorites'])})
-
         account_links.append({
             'text': _('Log out'),
             'href': remora_url('/users/logout?to=' + urlquote(request.path)),

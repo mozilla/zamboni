@@ -114,7 +114,7 @@ suds==0.4
 -e git+https://github.com/washort/django-mysql-pool.git@47b7bc35a7b00a9798d4fe4792764ab00bfcb5b6#egg=django-mysql-pool
 
 
-## Out of date or not sure on pypi.
+## Out of date or not sure on pypi. Not sure why I pulled this earlier, putting it back.
 -e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 -e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
 

@@ -413,7 +413,6 @@ INSTALLED_APPS = (
     'access',
     'addons',
     'applications',
-    'bandwagon',
     'cronjobs',
     'csp',
     'editors',
@@ -491,7 +490,6 @@ DOMAIN_METHODS = {
         # and all the other baggage we're carrying.  Timeplot, in particular,
         # crashes the extractor with bad unicode data.
         ('media/js/*.js', 'javascript'),
-        ('media/js/amo2009/**.js', 'javascript'),
         ('media/js/common/**.js', 'javascript'),
         ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
@@ -587,7 +585,6 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-1.6.4.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
-            'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
@@ -609,7 +606,6 @@ MINIFY_BUNDLES = {
 
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
-            'js/amo2009/global.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
             'js/zamboni/l10n.js',
@@ -624,9 +620,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/reviews.js',
-
-            # Collections
-            'js/zamboni/collections.js',
 
             # Users
             'js/zamboni/users.js',
@@ -657,7 +650,6 @@ MINIFY_BUNDLES = {
         'impala': (
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
-            'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
@@ -707,7 +699,6 @@ MINIFY_BUNDLES = {
             'js/impala/listing.js',
 
             # Collections
-            'js/zamboni/collections.js',
             'js/impala/collections.js',
 
             # Users
@@ -956,7 +947,6 @@ CELERY_ROUTES = {
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
-    'bandwagon.tasks.resize_icon': {'queue': 'images'},
     'users.tasks.resize_photo': {'queue': 'images'},
     'users.tasks.delete_photo': {'queue': 'images'},
     'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},

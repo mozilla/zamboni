@@ -41,14 +41,13 @@ from access.models import Group, GroupUser
 from addons.models import Addon, Category
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
-from bandwagon.models import Collection
 from constants.applications import DEVICE_TYPES
 from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
 from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
-from users.models import RequestUser, UserProfile
+from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
 import mkt
@@ -752,28 +751,6 @@ def app_factory(**kw):
     return app
 
 
-def collection_factory(**kw):
-    data = {
-        'type': amo.COLLECTION_NORMAL,
-        'application_id': amo.FIREFOX.id,
-        'name': 'Collection %s' % abs(hash(datetime.now())),
-        'addon_count': random.randint(200, 2000),
-        'subscribers': random.randint(1000, 5000),
-        'monthly_subscribers': random.randint(100, 500),
-        'weekly_subscribers': random.randint(10, 50),
-        'upvotes': random.randint(100, 500),
-        'downvotes': random.randint(100, 500),
-        'listed': True,
-    }
-    data.update(kw)
-    c = Collection(**data)
-    c.slug = data['name'].replace(' ', '-').lower()
-    c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
-    c.created = c.modified = datetime(2011, 11, 11, random.randint(0, 23),
-                                      random.randint(0, 59))
-    c.save()
-    return c
-
 
 def file_factory(**kw):
     v = kw['version']
@@ -792,7 +769,7 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = RequestUser.objects.get(id=user.id)
+        req.amo_user = UserProfile.objects.get(id=user.id)
         req.user = user
         req.groups = user.groups.all()
     req.APP = None

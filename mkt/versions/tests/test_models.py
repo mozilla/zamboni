@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-import mock
 import os.path
+
+import mock
+import path
+from nose import SkipTest
 from nose.tools import eq_
 
 from django.conf import settings
@@ -8,14 +11,72 @@ from django.conf import settings
 import amo
 import amo.tests
 from addons.models import Addon
-from files.models import Platform
+from amo.tests import addon_factory
+from files.models import File, Platform
 from files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
+from versions.compare import (dict_from_int, MAXVERSION, version_dict,
+                              version_int)
 from versions.models import Version
+
+
+def test_version_int():
+    """Tests that version_int. Corrects our versions."""
+    eq_(version_int('3.5.0a1pre2'), 3050000001002)
+    eq_(version_int(''), 200100)
+    eq_(version_int('0'), 200100)
+    eq_(version_int('*'), 99000000200100)
+    eq_(version_int(MAXVERSION), MAXVERSION)
+    eq_(version_int(MAXVERSION + 1), MAXVERSION)
+    eq_(version_int('9999999'), MAXVERSION)
+
+
+def test_version_int_compare():
+    eq_(version_int('3.6.*'), version_int('3.6.99'))
+    assert version_int('3.6.*') > version_int('3.6.8')
+
+
+def test_version_asterix_compare():
+    eq_(version_int('*'), version_int('99'))
+    assert version_int('98.*') < version_int('*')
+    eq_(version_int('5.*'), version_int('5.99'))
+    assert version_int('5.*') > version_int('5.0.*')
+
+
+def test_version_dict():
+    eq_(version_dict('5.0'),
+        {'major': 5,
+         'minor1': 0,
+         'minor2': None,
+         'minor3': None,
+         'alpha': None,
+         'alpha_ver': None,
+         'pre': None,
+         'pre_ver': None})
+
+
+def test_version_int_unicode():
+    eq_(version_int(u'\u2322 ugh stephend'), 200100)
+
+
+def test_dict_from_int():
+    d = dict_from_int(3050000001002)
+    eq_(d['major'], 3)
+    eq_(d['minor1'], 5)
+    eq_(d['minor2'], 0)
+    eq_(d['minor3'], 0)
+    eq_(d['alpha'], 'a')
+    eq_(d['alpha_ver'], 1)
+    eq_(d['pre'], 'pre')
+    eq_(d['pre_ver'], 2)
 
 
 class TestVersion(BaseUploadTest, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'platform_all')
+
+    def setUp(self):
+        self._rename = path.path.rename
+        self.version = Version.objects.latest('id')
 
     def test_developer_name(self):
         version = Version.objects.latest('id')
@@ -91,3 +152,152 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
         # Ensure deleted version's files get disabled.
         eq_(version.all_files[0].status, amo.STATUS_DISABLED)
+
+    def test_compatible_apps(self):
+        # TODO: Do apps have compatible_apps?
+        raise SkipTest('Figure out if we need `compatible_apps` or remove.')
+        assert amo.FIREFOX in self.version.compatible_apps, (
+            'Missing compatible apps: %s' % self.version.compatible_apps)
+
+    def test_supported_platforms(self):
+        assert amo.PLATFORM_ALL in self.version.supported_platforms, (
+            'Missing PLATFORM_ALL')
+
+    def test_major_minor(self):
+        """Check that major/minor/alpha is getting set."""
+        v = Version(version='3.0.12b2')
+        eq_(v.major, 3)
+        eq_(v.minor1, 0)
+        eq_(v.minor2, 12)
+        eq_(v.minor3, None)
+        eq_(v.alpha, 'b')
+        eq_(v.alpha_ver, 2)
+
+        v = Version(version='3.6.1apre2+')
+        eq_(v.major, 3)
+        eq_(v.minor1, 6)
+        eq_(v.minor2, 1)
+        eq_(v.alpha, 'a')
+        eq_(v.pre, 'pre')
+        eq_(v.pre_ver, 2)
+
+        v = Version(version='')
+        eq_(v.major, None)
+        eq_(v.minor1, None)
+        eq_(v.minor2, None)
+        eq_(v.minor3, None)
+
+    def test_has_files(self):
+        assert self.version.has_files, 'Version with files not recognized.'
+
+        self.version.files.all().delete()
+        self.version = Version.objects.latest('id')
+        assert not self.version.has_files, (
+            'Version without files not recognized.')
+
+    def _get_version(self, status):
+        v = Version()
+        v.all_files = [mock.Mock()]
+        v.all_files[0].status = status
+        return v
+
+    @mock.patch('versions.models.storage')
+    def test_version_delete(self, storage_mock):
+        self.version.delete()
+        addon = Addon.objects.get(pk=337141)
+        assert addon
+
+        assert not Version.objects.filter(addon=addon).exists()
+        assert Version.with_deleted.filter(addon=addon).exists()
+
+        assert not storage_mock.delete.called
+
+    @mock.patch('versions.models.storage')
+    def test_packaged_version_delete(self, storage_mock):
+        addon = Addon.objects.get(pk=337141)
+        addon.update(is_packaged=True)
+        version = addon.current_version
+        version.delete()
+
+        assert not Version.objects.filter(addon=addon).exists()
+        assert Version.with_deleted.filter(addon=addon).exists()
+
+        assert storage_mock.delete.called
+
+    def test_version_delete_files(self):
+        eq_(self.version.files.all()[0].status, amo.STATUS_PUBLIC)
+        self.version.delete()
+        eq_(self.version.files.all()[0].status, amo.STATUS_DISABLED)
+
+    @mock.patch('files.models.File.hide_disabled_file')
+    def test_new_version_disable_old_unreviewed(self, hide_mock):
+        addon = Addon.objects.get(pk=337141)
+        # The status doesn't change for public files.
+        qs = File.objects.filter(version=addon.current_version)
+        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        Version.objects.create(addon=addon)
+        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        assert not hide_mock.called
+
+        qs.update(status=amo.STATUS_PENDING)
+        version = Version.objects.create(addon=addon)
+        version.disable_old_files()
+        eq_(qs.all()[0].status, amo.STATUS_DISABLED)
+        assert hide_mock.called
+
+    def test_large_version_int(self):
+        # This version will fail to be written to the version_int
+        # table because the resulting int is bigger than mysql bigint.
+        version = Version(addon=Addon.objects.get(pk=337141))
+        version.version = '9223372036854775807'
+        version.save()
+        eq_(version.version_int, None)
+
+    def _reset_version(self, version):
+        version.all_files[0].status = amo.STATUS_PUBLIC
+        version.deleted = False
+
+    def test_version_is_public(self):
+        addon = Addon.objects.get(id=337141)
+        version = amo.tests.version_factory(addon=addon)
+
+        # Base test. Everything is in order, the version should be public.
+        eq_(version.is_public(), True)
+
+        # Non-public file.
+        self._reset_version(version)
+        version.all_files[0].status = amo.STATUS_DISABLED
+        eq_(version.is_public(), False)
+
+        # Deleted version.
+        self._reset_version(version)
+        version.deleted = True
+        eq_(version.is_public(), False)
+
+        # Non-public addon.
+        self._reset_version(version)
+        with mock.patch('addons.models.Addon.is_public') as is_addon_public:
+            is_addon_public.return_value = False
+            eq_(version.is_public(), False)
+
+    def test_app_feature_creation_app(self):
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        ver = Version.objects.create(addon=app)
+        assert ver.features, 'AppFeatures was not created with version.'
+
+
+class TestApplicationsVersions(amo.tests.TestCase):
+
+    def setUp(self):
+        self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
+
+    def test_repr_when_compatible(self):
+        addon = addon_factory(version_kw=self.version_kw)
+        version = addon.current_version
+        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+
+    def test_repr_when_unicode(self):
+        addon = addon_factory(version_kw=dict(min_app_version=u'ك',
+                                              max_app_version=u'ك'))
+        version = addon.current_version
+        eq_(unicode(version.apps.all()[0]), u'Firefox ك - ك')

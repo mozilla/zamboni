@@ -19,7 +19,6 @@ import amo.tests
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.signals import _connect, _disconnect
-from bandwagon.models import Collection
 from reviews.models import Review
 from translations.models import Translation
 from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
@@ -187,7 +186,6 @@ class TestUserProfile(amo.tests.TestCase):
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
-        assert not Collection.objects.filter(author=u)
 
         c = u.mobile_collection()
         eq_(c.type, amo.COLLECTION_MOBILE)
@@ -195,7 +193,6 @@ class TestUserProfile(amo.tests.TestCase):
 
     def test_favorites_collection(self):
         u = UserProfile.objects.get(id='4043307')
-        assert not Collection.objects.filter(author=u)
 
         c = u.favorites_collection()
         eq_(c.type, amo.COLLECTION_FAVORITES)

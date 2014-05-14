@@ -128,7 +128,7 @@ msgid "Not Reviewed"
 msgstr "Nie nagegaan nie"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:265 apps/addons/templates/addons/impala/details.html:111 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:10
-#: apps/amo/templates/amo/site_nav.html:2 apps/amo/templates/amo/site_nav.html:24 apps/bandwagon/views.py:84
+#: apps/amo/templates/amo/site_nav.html:2 apps/amo/templates/amo/site_nav.html:24 
 msgid "Featured"
 msgstr "Uitgesoek"
 
@@ -157,7 +157,7 @@ msgstr "Onlangs bygevoeg"
 # 100%
 # 100%
 # 100%
-#: apps/addons/views.py:268 apps/bandwagon/views.py:88 apps/search/forms.py:18 apps/search/forms.py:95
+#: apps/addons/views.py:268 apps/search/forms.py:18 apps/search/forms.py:95
 msgid "Recently Updated"
 msgstr "Onlangs bygewerk"
 
@@ -211,7 +211,6 @@ msgid "View End-User License Agreement"
 msgstr ""
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:31
 msgid "by %(users)s"
 msgstr "deur %(users)s"
 
@@ -383,7 +382,7 @@ msgstr "'n Eenmalige bydrae van {0}{1}"
 msgid "Leave a comment or request with your contribution."
 msgstr "Skryf 'n opmerking of versoek saam met die bydrae."
 
-#: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
+#: apps/addons/templates/addons/contributions_lightbox.html:74
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
 msgid "(optional)"
 msgstr "(opsioneel)"
@@ -561,14 +560,6 @@ msgstr "Terug na {0}…"
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:242
 msgid "Add-ons for {0}"
 msgstr "Byvoegings vir {0}"
-
-# 80%
-# 100%
-# 100%
-# 100%
-#: apps/addons/templates/addons/home.html:21 apps/bandwagon/templates/bandwagon/collection_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
-msgid "Featured Collections"
-msgstr "Uitgesoekte versamelings"
 
 #: apps/addons/templates/addons/home.html:22
 msgid "See all »"

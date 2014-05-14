@@ -102,13 +102,10 @@
           <td>
             <ul class="versions">
               <li>
-                <a href="{{ version.get_url_path() }}">
-                  {# L10n: {0} is a version number. #}
-                  {{ _('{0} (Version Notes)')|f(version.version) }}</a>
+                  {{ _('{0} (Version Notes)')|f(version.version) }}
               </li>
               <li>
-                <a href="{{ url('addons.versions', addon.slug) }}">
-                  {{ _('View All Versions') }}</a>
+                  {{ _('View All Versions') }}
               </li>
               {% if addon.current_beta_version %}
                 <li><a href="#beta" class="expando">{{ _('View Development Version') }}</a></li>

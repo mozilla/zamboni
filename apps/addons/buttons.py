@@ -5,11 +5,10 @@ from django.views.decorators.cache import cache_page
 
 import jingo
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
 from addons.models import Addon
 from translations.models import Translation
 
@@ -117,14 +116,8 @@ class InstallButton(object):
         self.detailed = detailed
         self.impala = impala
 
-        self.is_beta = self.version and self.version.is_beta
-        version_unreviewed = self.version and self.version.is_unreviewed
-        self.lite = self.version and self.version.is_lite
-        self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
-                           self.is_beta)
+        self.unreviewed = addon.is_unreviewed()
         self.featured = (not self.unreviewed
-                         and not self.lite
-                         and not self.is_beta
                          and addon.is_featured(app, lang))
 
         self.is_premium = addon.is_premium()
@@ -149,8 +142,6 @@ class InstallButton(object):
 
         if self.size:
             self.button_class.append(self.size)
-        if self.is_beta:
-            self.install_class.append('beta')
         if self.is_webapp:
             self.install_class.append('webapp')
 
@@ -165,39 +156,7 @@ class InstallButton(object):
         return rv
 
     def links(self):
-        if not self.version:
-            return []
-        rv = []
-        files = [f for f in self.version.all_files
-                 if f.status in amo.VALID_STATUSES]
-        for file in files:
-            text, url, os = self.file_details(file)
-            rv.append(Link(text, self.fix_link(url), os, file))
-        return rv
-
-    def file_details(self, file):
-        platform = file.platform_id
-        if self.latest and (
-            self.addon.status == file.status == amo.STATUS_PUBLIC):
-            url = file.latest_xpi_url()
-        else:
-            url = file.get_url_path(self.src)
-
-        if platform == amo.PLATFORM_ALL.id:
-            text, os = _('Download Now'), None
-        else:
-            text, os = _('Download'), amo.PLATFORMS[platform]
-
-        if self.show_contrib:
-            # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
-            roadblock = reverse('addons.roadblock', args=[self.addon.id])
-            url = urlparams(roadblock, version=self.version.version)
-
-        if self.addon.is_webapp():
-            text = _(u'Install App')
-
-        return text, url, os
+        return []
 
     def fix_link(self, url):
         if self.src:

@@ -35,7 +35,6 @@ from amo.forms import AbuseForm
 from amo.helpers import loc
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
-from bandwagon.models import Collection
 from users.models import UserNotification
 
 from lib.metrics import record_action
@@ -543,15 +542,6 @@ def profile(request, user):
 
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
-    if not webapp:
-        if user.display_collections:
-            own_coll = (Collection.objects.listed().filter(author=user)
-                        .order_by('-created'))[:10]
-        if user.display_collections_fav:
-            fav_coll = (Collection.objects.listed()
-                        .filter(following__user=user)
-                        .order_by('-following__created'))[:10]
-
     edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
                    request.amo_user.id == user.id)

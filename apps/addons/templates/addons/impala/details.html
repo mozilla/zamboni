@@ -72,12 +72,6 @@
     </div>
   {% endif %}
 
-  <div class="widgets">
-    {% if not settings.APP_PREVIEW %}
-      {{ favorites_widget(addon) }}
-      {% include 'addons/includes/collection_add_widget.html' %}
-    {% endif %}
-  </div>
   {% if is_author %}
     <p><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
   {% endif %}
@@ -243,11 +237,6 @@
         <div class="items">
           {{ version_detail(addon, version, src=version_src, impala=True) }}
         </div>
-        <p class="more c">
-          <a class="more-info" href="{{ url('addons.versions', addon.slug) }}">
-            {{ _('See complete version history') }}
-          </a>
-        </p>
       </div>
     </section>
   {% endif %}

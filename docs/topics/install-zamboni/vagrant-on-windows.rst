@@ -22,33 +22,13 @@ In Git Setup you need to choose the following options:
  * On "Choosing the SSH executable" dialog choose "Use OpenSSH".
  * **IMPORTANT**: On "Configuring the line ending conversions" dialog choose "Checkout as-is, commit Unix-style line ending".
 
-Install Ruby
-============
-
-Download and install RubyInstaller from: http://rubyinstaller.org/downloads/
-Make sure to select option to add ruby path executable paths.
-
-Download and extract Development Kit from above URL. Probably easiest to extract to ``C:\DevKit``
-
-Then follow developer kit installation instructions at:  https://github.com/oneclick/rubyinstaller/wiki/Development-Kit
-
-Summary of instructions:
-
- * Using command prompt cd folder development kit was extracted into (e.g. cd ``c:\DevKit``)
- * Run the command ``ruby dk.rb init``. Then run the command ``ruby dk.rb install`` to install rubygems.
- * Confirm installation by running the following commands:
-
-   * ``gem install rdiscount --platform=ruby``
-   * ``ruby -rubygems -e "require 'rdiscount'; puts RDiscount.new('**Hello RubyInstaller**').to_html"`` command prompt should echo out ``<p><strong>Helo RubyInstaller </strong></p>``
 
 Install Vagrant
 ===============
 
-Run the command ``gem install vagrant``
+Use the installer from http://www.vagrantup.com/downloads.html.
 
-.. note::
 
-    If you are running 64bit Windows you MUST use v0.9.6 or above otherwise Virtual Box will not be detected properly.
 
 Get Zamboni Code
 ================

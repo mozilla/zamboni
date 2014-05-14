@@ -196,18 +196,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
             f.save()
             copy_mock.reset_mock()
 
-    def test_latest_url(self):
-        # With platform.
-        f = File.objects.get(id=74797)
-        base = '/firefox/downloads/latest/'
-        expected = base + '{0}/platform:3/addon-{0}-latest.xpi'
-        eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
-
-        # No platform.
-        f = File.objects.get(id=67442)
-        expected = base + '{0}/addon-{0}-latest.xpi'
-        eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
-
     def test_eula_url(self):
         f = File.objects.get(id=67442)
         eq_(f.eula_url(), '/en-US/firefox/addon/3615/eula/67442')

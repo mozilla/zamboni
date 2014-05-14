@@ -21,8 +21,7 @@ import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons.models import Addon, AddonDependency, AddonUser, Charity
-from bandwagon.models import Collection
+from addons.models import Addon, AddonUser, Charity
 from files.models import File
 from paypal.tests.test import other_error
 from stats.models import Contribution
@@ -100,8 +99,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'base/collections',
                 'base/global-stats',
                 'base/featured',
-                'addons/featured',
-                'bandwagon/featured_collections']
+                'addons/featured']
 
     def setUp(self):
         self.url = reverse('home')
@@ -114,7 +112,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 assert addon.status != amo.STATUS_UNREVIEWED
 
     def test_seeall(self):
-        Collection.objects.update(type=amo.COLLECTION_FEATURED)
+        # What is this testing and does it make sense without bandwagon (or AMO)?
         doc = pq(self.client.get(self.url).content)
         browse_collections = reverse('collections.list')
         sections = {
@@ -859,20 +857,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         self.client.login(username='del@icio.us', password='password')
 
-    def test_dependencies(self):
-        eq_(self.get_pq()('.dependencies').length, 0)
-        req = Addon.objects.get(id=592)
-        AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
-        eq_(self.addon.all_dependencies, [req])
-        cache.clear()
-        d = self.get_pq()('.dependencies .hovercard')
-        eq_(d.length, 1)
-        eq_(d.find('h3').text(), unicode(req.name))
-        eq_(d.find('a').attr('href')
-            .endswith('?src=dp-dl-dependencies'), True)
-        eq_(d.find('.install-button a').attr('href')
-            .endswith('?src=dp-hc-dependencies'), True)
-
     def test_no_restart(self):
         f = self.addon.current_version.all_files[0]
         eq_(f.no_restart, False)
@@ -1228,8 +1212,7 @@ class TestReportAbuse(amo.tests.TestCase):
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/apps', 'base/users',
-                'base/addon_3615', 'base/featured',
-                'bandwagon/featured_collections']
+                'base/addon_3615', 'base/featured']
 
 
 class TestMobileHome(TestMobile):
@@ -1262,16 +1245,6 @@ class TestMobileDetails(TestMobile):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
-
-    def test_extension_release_notes(self):
-        r = self.client.get(self.url)
-        relnotes = pq(r.content)('.versions li:first-child > a')
-        assert relnotes.text().startswith(self.ext.current_version.version), (
-            'Version number missing')
-        version_url = self.ext.current_version.get_url_path()
-        eq_(relnotes.attr('href'), version_url)
-        self.client.get(version_url, follow=True)
-        eq_(r.status_code, 200)
 
     def test_extension_adu(self):
         doc = pq(self.client.get(self.url).content)('table')

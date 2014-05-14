@@ -13,7 +13,6 @@ from abuse.models import AbuseReport
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
-from bandwagon.models import Collection
 from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
 from market.models import Refund
@@ -99,13 +98,6 @@ def delete_stale_contributions(items, **kw):
     Contribution.objects.filter(
         transaction_id__isnull=True, pk__in=items).delete()
 
-
-@task
-def delete_anonymous_collections(items, **kw):
-    log.info('[%s@%s] Deleting anonymous collections' %
-             (len(items), delete_anonymous_collections.rate_limit))
-    Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
-                              pk__in=items).delete()
 
 
 @task

@@ -21,12 +21,11 @@ def test_match_rules():
     rules = (
         '*:*',
         'Editors:*,Admin:EditAnyAddon,Admin:flagged,Admin:addons,'
-        'Admin:EditAnyCollection',
         'Tests:*,Admin:serverstatus,Admin:users',
         'Admin:EditAnyAddon,Admin:EditAnyLocale,Editors:*,'
         'Admin:lists,Admin:applications,Admin:addons,Localizers:*',
         'Admin:EditAnyAddon',
-        'Admin:ViewAnyStats,Admin:ViewAnyCollectionStats',
+        'Admin:ViewAnyStats,',
         'Admin:ViewAnyStats',
         'Editors:*,Admin:features',
         'Admin:Statistics',
@@ -43,7 +42,6 @@ def test_match_rules():
     rules = (
         'Doctors:*',
         'Stats:View',
-        'CollectionStats:View',
         'Addons:Review',
         'Apps:Review',
         'Personas:Review',
