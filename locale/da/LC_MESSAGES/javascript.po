@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2013-06-05 13:28+0100\n"
+"PO-Revision-Date: 2014-05-07 23:54+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -19,11 +19,13 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} stjerne"
 msgstr[1] "{0} stjerner"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
 
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52
+#: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Vælg en fil..."
 
@@ -32,24 +34,29 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87
+#: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% fuldført"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90
+#: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} af {1}"
 
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120
+#: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Annuller"
 
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142
+#: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "Uploader {0}"
 
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169
+#: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr ""
 
@@ -59,31 +66,38 @@ msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188
+#: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:160
 msgid "See full validation report"
 msgstr ""
 
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214
+#: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr ""
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252
+#: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263
+#: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301
+#: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr ""
 
@@ -121,7 +135,8 @@ msgstr ""
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr ""
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/zamboni/devhub.js:167
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] ""
@@ -226,16 +241,24 @@ msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse "
+"af webstedet. Prøv igen lidt senere."
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr ""
 
 #: media/js/devreg/login.js:75
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Log ind med Pesona mislykkedes. Måske har du ikke en konto under den mailadresse?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Log ind med Persona mislykkedes. Måske har du ikke en konto under den "
+"mailadresse?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -332,8 +355,14 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -341,12 +370,17 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:96
+#: media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Fejl"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
@@ -381,11 +415,13 @@ msgstr[1] "{0} tegn tilbage."
 msgid "All tests passed successfully."
 msgstr ""
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
 msgstr ""
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
 msgstr "Tests"
 
@@ -469,7 +505,8 @@ msgstr ""
 msgid "No version notes found"
 msgstr "Ingen versionsbemærkninger fundet"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
 msgstr "Vælg et program først"
 
@@ -619,7 +656,8 @@ msgstr "Markeret til sletning"
 msgid "Updating results&hellip;"
 msgstr "Opdaterer resultater&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
+#: media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
 msgstr "Kategori"
 
@@ -657,11 +695,16 @@ msgstr "Dette system understøtter ikke installation af apps."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "Administratorer og redaktører skal angive en adgangskode for at logge ind."
+msgstr ""
+"Administratorer og redaktører skal angive en adgangskode for at logge ind."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Log ind med BrowserID mislykkedes. Måske har du ikke en konto under denne mailadresse?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Log ind med BrowserID mislykkedes. Måske har du ikke en konto under denne "
+"mailadresse?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -685,8 +728,11 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Du nødt til at bruge Firefox 10.0 eller højere."
 
 #: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markeret denne version som værende inkompatibel med din Firefox-version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla har markeret denne version som værende inkompatibel med din Firefox-"
+"version."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -715,8 +761,12 @@ msgid "View other versions"
 msgstr "Vis andre versioner"
 
 #: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at "
+"installere et søge-plugin."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
