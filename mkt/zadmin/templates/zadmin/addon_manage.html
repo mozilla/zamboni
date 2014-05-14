@@ -31,7 +31,6 @@
           <th>File ID</th>
           <th>Status</th>
           <th>Hash</th>
-          <th>Copied</th>
         </tr>
       </thead>
       <tbody>
@@ -51,11 +50,6 @@
                   {% endfor %}
                 </td>
                 <td><span title="{{ file.hash }}">{{ file.hash[:13] }}...{{ file.hash[-6:] }}</td>
-                <td>
-                  {% if file.is_mirrorable() %}
-                    {{ "Copied" if file.has_been_copied() else "Not Copied" }}
-                  {% endif %}
-                </td>
               {% endfor %}
             {% else %}
               <td colspan="4"></td>

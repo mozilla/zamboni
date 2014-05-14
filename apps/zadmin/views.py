@@ -179,8 +179,6 @@ def email_devs(request):
         elif data['recipients'] == 'desktop_apps':
             qs = (qs.filter(addon__type=amo.ADDON_WEBAPP,
                 addon__addondevicetype__device_type=amo.DEVICE_DESKTOP.id))
-        elif data['recipients'] == 'sdk':
-            qs = qs.exclude(addon__versions__files__jetpack_version=None)
         elif data['recipients'] == 'all_extensions':
             qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
         else:

@@ -88,15 +88,11 @@ class ReviewBase(object):
         """Sets reviewed timestamp on version."""
         self.version.update(_signal=False, reviewed=datetime.now())
 
-    def set_files(self, status, files, copy_to_mirror=False,
-                  hide_disabled_file=False):
-        """Change the files to be the new status
-        and copy, remove from the mirror as appropriate."""
+    def set_files(self, status, files, hide_disabled_file=False):
+        """Change the files to be the new status and hide as appropriate."""
         for file in files:
             file.update(_signal=False, datestatuschanged=datetime.now(),
                         reviewed=datetime.now(), status=status)
-            if copy_to_mirror:
-                file.copy_to_mirror()
             if hide_disabled_file:
                 file.hide_disabled_file()
 

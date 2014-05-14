@@ -742,19 +742,6 @@ class TestDetailPage(amo.tests.TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_no_restart(self):
-        no_restart = '<span class="no-restart">No Restart</span>'
-        f = self.addon.current_version.all_files[0]
-
-        eq_(f.no_restart, False)
-        r = self.client.get(self.url)
-        assert no_restart not in r.content
-
-        f.no_restart = True
-        f.save()
-        r = self.client.get(self.url)
-        self.assertContains(r, no_restart)
-
     def test_no_backup(self):
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('.backup-button')), 0)
@@ -856,13 +843,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     def test_downloads_stats_admin(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
         self.client.login(username='del@icio.us', password='password')
-
-    def test_no_restart(self):
-        f = self.addon.current_version.all_files[0]
-        eq_(f.no_restart, False)
-        eq_(self.get_pq()('.no-restart').length, 0)
-        f.update(no_restart=True)
-        eq_(self.get_pq()('.no-restart').length, 1)
 
     def test_license_link_builtin(self):
         g = 'http://google.com'

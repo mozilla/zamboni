@@ -14,8 +14,9 @@ from amo.tests.test_helpers import get_image_path
 from amo.utils import rm_local_tmp_dir
 from addons import forms
 from addons.models import Addon, Category
-from files.helpers import copyfileobj
 from tags.models import Tag, AddonTag
+
+from mkt.files.helpers import copyfileobj
 
 
 class FormsTest(amo.tests.TestCase):

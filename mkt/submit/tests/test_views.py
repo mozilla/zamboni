@@ -21,16 +21,16 @@ from amo.urlresolvers import reverse
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
-from files.tests.test_models import UploadTest as BaseUploadTest
 from translations.models import Translation
 from users.models import UserProfile
 
 import mkt
+from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AddonExcludedRegion as AER, AppFeatures, Webapp
+from mkt.webapps.models import AppFeatures, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):

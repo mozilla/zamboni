@@ -16,12 +16,12 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from files.helpers import copyfileobj
 from files.models import FileUpload
-from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 
 from mkt.developers.views import standalone_hosted_upload
+from mkt.files.helpers import copyfileobj
+from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 
 
 class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):

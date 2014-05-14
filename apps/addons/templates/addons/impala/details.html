@@ -90,9 +90,6 @@
         {% if version %}
           <span class="version-number" itemprop="version">{{ version.version }}</span>
         {% endif %}
-        {% if addon.is_no_restart() %}
-          &nbsp;<span class="no-restart">{{ _('No Restart') }}</span>
-        {% endif %}
       </h1>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>

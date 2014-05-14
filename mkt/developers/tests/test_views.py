@@ -26,7 +26,6 @@ from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from files.models import File, FileUpload
-from files.tests.test_models import UploadTest as BaseUploadTest
 from market.models import AddonPremium, Price
 from stats.models import Contribution
 from translations.models import Translation
@@ -41,6 +40,7 @@ from mkt.developers import tasks
 from mkt.developers.views import (_filter_transactions, _get_transactions,
                                   _ratings_success_msg, _submission_msgs,
                                   content_ratings, content_ratings_edit)
+from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
@@ -769,13 +769,13 @@ class TestUpload(BaseUploadTest):
         eq_(FileUpload.objects.get().user, user)
 
     def test_fileupload_ascii_post(self):
-        path = u'apps/files/fixtures/files/jetpack.xpi'
+        path = self.packaged_app_path('mozball.zip')
         data = storage.open(os.path.join(settings.ROOT, path))
-        replaced = path.replace('e', u'é')
+        replaced = path.replace('o', u'ö')
         r = self.client.post(self.url, {'upload':
                                         SimpleUploadedFile(replaced,
                                                            data.read())})
-        # If this is broke, we'll get a traceback.
+        # If this is broken, we'll get a traceback.
         eq_(r.status_code, 302)
 
     @mock.patch('mkt.constants.MAX_PACKAGED_APP_SIZE', 1024)

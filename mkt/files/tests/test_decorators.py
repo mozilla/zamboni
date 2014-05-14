@@ -1,5 +1,5 @@
 from django import http
-from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
 from mock import Mock, patch
 

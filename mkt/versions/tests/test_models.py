@@ -13,11 +13,12 @@ import amo.tests
 from addons.models import Addon
 from amo.tests import addon_factory
 from files.models import File, Platform
-from files.tests.test_models import UploadTest as BaseUploadTest
-from mkt.site.fixtures import fixture
 from versions.compare import (dict_from_int, MAXVERSION, version_dict,
                               version_int)
 from versions.models import Version
+
+from mkt.files.tests.test_models import UploadTest as BaseUploadTest
+from mkt.site.fixtures import fixture
 
 
 def test_version_int():

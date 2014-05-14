@@ -90,8 +90,7 @@ def browse(request, viewer, key=None, type_='file'):
     data['poll_url'] = reverse('mkt.files.poll', args=[viewer.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer') and
-        not viewer.is_extracted()):
+    if not viewer.is_extracted():
         extract_file(viewer)
 
     if viewer.is_extracted():
@@ -145,8 +144,7 @@ def compare(request, diff, key=None, type_='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer')
-        and not diff.is_extracted()):
+    if not diff.is_extracted():
         extract_file(diff.left)
         extract_file(diff.right)
 

@@ -289,19 +289,6 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
-    def test_sdk_devs(self):
-        (File.objects.filter(version__addon=self.addon)
-                     .update(jetpack_version='1.5'))
-        res = self.post(recipients='sdk')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].to, ['del@icio.us'])
-
-    def test_only_sdk_devs(self):
-        res = self.post(recipients='sdk')
-        self.assertNoFormErrors(res)
-        eq_(len(mail.outbox), 0)
-
     def test_only_apps_with_payments(self):
         self.addon.update(type=amo.ADDON_WEBAPP,
                           premium_type=amo.ADDON_PREMIUM)

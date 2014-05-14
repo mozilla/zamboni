@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import mimetypes
-import shutil
 import zipfile
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django import forms
 
 from mock import Mock, patch
@@ -14,9 +12,10 @@ from nose.tools import eq_
 
 import amo.tests
 from amo.urlresolvers import reverse
-from files.helpers import FileViewer, DiffHelper
-from files.models import File
 from files.utils import SafeUnzip
+
+from mkt.files.helpers import FileViewer, DiffHelper
+
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 get_file = lambda x: '%s/%s' % (root, x)
@@ -34,6 +33,8 @@ def make_file(pk, file_path, **kwargs):
     return obj
 
 
+# TODO: It'd be nice if these used packaged app examples but these addons still
+# flex the code so it wasn't converted.
 class TestFileHelper(amo.tests.TestCase):
 
     def setUp(self):
@@ -69,30 +70,6 @@ class TestFileHelper(amo.tests.TestCase):
         self.viewer.cleanup()
         eq_(self.viewer.is_extracted(), False)
 
-    def test_isbinary(self):
-        binary = self.viewer._is_binary
-        for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
-                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul', 'foo.sh',
-                  'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
-            m, encoding = mimetypes.guess_type(f)
-            assert not binary(m, f), '%s should not be binary' % f
-
-        for f in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
-            m, encoding = mimetypes.guess_type(f)
-            assert binary(m, f), '%s should be binary' % f
-
-        filename = os.path.join(settings.TMP_PATH, 'test_isbinary')
-        for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
-            open(filename, 'w').write(txt)
-            m, encoding = mimetypes.guess_type(filename)
-            assert not binary(m, filename), '%s should not be binary' % txt
-
-        for txt in ['MZ']:
-            open(filename, 'w').write(txt)
-            m, encoding = mimetypes.guess_type(filename)
-            assert binary(m, filename), '%s should be binary' % txt
-        os.remove(filename)
-
     def test_truncate(self):
         truncate = self.viewer.truncate
         for x, y in (['foo.rdf', 'foo.rdf'],
@@ -122,8 +99,8 @@ class TestFileHelper(amo.tests.TestCase):
     def test_url_file(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        url = reverse('files.list', args=[self.viewer.file.id,
-                                          'file', 'install.js'])
+        url = reverse('mkt.files.list', args=[self.viewer.file.id, 'file',
+                                              'install.js'])
         assert files['install.js']['url'].endswith(url)
 
     def test_get_files_depth(self):
@@ -144,6 +121,10 @@ class TestFileHelper(amo.tests.TestCase):
                                  ('foo.xul', 'xml'),
                                  ('foo.json', 'js'),
                                  ('foo.jsm', 'js'),
+                                 ('foo.js', 'js'),
+                                 ('manifest.webapp', 'js'),
+                                 ('foo.html', 'html'),
+                                 ('foo.css', 'css'),
                                  ('foo.bar', 'plain')]:
             eq_(self.viewer.get_syntax(filename), syntax)
 
@@ -183,7 +164,7 @@ class TestFileHelper(amo.tests.TestCase):
         self.assertRaises(forms.ValidationError, self.viewer.extract)
 
     def test_default(self):
-        eq_(self.viewer.get_default(None), 'install.rdf')
+        eq_(self.viewer.get_default(None), 'manifest.webapp')
 
     def test_delete_mid_read(self):
         self.viewer.extract()
@@ -193,66 +174,11 @@ class TestFileHelper(amo.tests.TestCase):
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('files.helpers.get_md5')
+    @patch('mkt.files.helpers.get_md5')
     def test_delete_mid_tree(self, get_md5):
         get_md5.side_effect = IOError('ow')
         self.viewer.extract()
         eq_({}, self.viewer.get_files())
-
-
-class TestSearchEngineHelper(amo.tests.TestCase):
-    fixtures = ['base/addon_4594_a9', 'base/apps']
-
-    def setUp(self):
-        self.left = File.objects.get(pk=25753)
-        self.viewer = FileViewer(self.left)
-
-        if not os.path.exists(os.path.dirname(self.viewer.src)):
-            os.makedirs(os.path.dirname(self.viewer.src))
-            with storage.open(self.viewer.src, 'w') as f:
-                f.write('some data\n')
-
-    def tearDown(self):
-        self.viewer.cleanup()
-
-    def test_is_search_engine(self):
-        assert self.viewer.is_search_engine()
-
-    def test_extract_search_engine(self):
-        self.viewer.extract()
-        assert os.path.exists(self.viewer.dest)
-
-    def test_default(self):
-        self.viewer.extract()
-        eq_(self.viewer.get_default(None), 'a9.xml')
-
-    def test_default_no_files(self):
-        self.viewer.extract()
-        os.remove(os.path.join(self.viewer.dest, 'a9.xml'))
-        eq_(self.viewer.get_default(None), None)
-
-
-class TestDiffSearchEngine(amo.tests.TestCase):
-
-    def setUp(self):
-        src = os.path.join(settings.ROOT, get_file('search.xml'))
-        if not storage.exists(src):
-            with storage.open(src, 'w') as f:
-                f.write(open(src).read())
-        self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
-                                 make_file(2, src, filename='search.xml'))
-
-    def tearDown(self):
-        self.helper.cleanup()
-
-    @patch('files.helpers.FileViewer.is_search_engine')
-    def test_diff_search(self, is_search_engine):
-        is_search_engine.return_value = True
-        self.helper.extract()
-        shutil.copyfile(os.path.join(self.helper.left.dest, 'search.xml'),
-                        os.path.join(self.helper.right.dest, 's-20010101.xml'))
-        assert self.helper.select('search.xml')
-        eq_(len(self.helper.get_deleted_files()), 0)
 
 
 class TestDiffHelper(amo.tests.TestCase):

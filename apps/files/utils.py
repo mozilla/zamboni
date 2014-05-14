@@ -1,5 +1,3 @@
-import collections
-import glob
 import hashlib
 import json
 import logging
@@ -11,36 +9,23 @@ import StringIO
 import tempfile
 import zipfile
 
-from cStringIO import StringIO as cStringIO
-from datetime import datetime
-from xml.dom import minidom
-from zipfile import BadZipfile, ZipFile
+from zipfile import BadZipfile
 
 from django import forms
 from django.conf import settings
-from django.utils.translation import trans_real as translation
 from django.core.files.storage import default_storage as storage
+from django.utils.translation import trans_real as translation
 
-import rdflib
 from tower import ugettext as _
 
 import amo
 from amo.utils import rm_local_tmp_dir, strip_bom, to_language
-from applications.models import AppVersion
 
 
 log = logging.getLogger('files.utils')
 
 
-VERSION_RE = re.compile('^[-+*.\w]{,32}$')
 SIGNED_RE = re.compile('^META\-INF/(\w+)\.(rsa|sf)$')
-# The default update URL.
-default = ('https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
-    'reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&'
-    'maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&'
-    'appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&'
-    'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
-    'updateType=%UPDATE_TYPE%')
 
 
 def get_filepath(fileorpath):
@@ -57,128 +42,6 @@ def get_file(fileorpath):
     if hasattr(fileorpath, 'name'):
         return fileorpath
     return storage.open(fileorpath)
-
-
-def make_xpi(files):
-    f = cStringIO()
-    z = ZipFile(f, 'w')
-    for path, data in files.items():
-        z.writestr(path, data)
-    z.close()
-    f.seek(0)
-    return f
-
-
-class Extractor(object):
-    """Extract add-on info from an install.rdf."""
-    TYPES = {'2': amo.ADDON_EXTENSION, '8': amo.ADDON_LPAPP,
-             '64': amo.ADDON_DICT}
-    App = collections.namedtuple('App', 'appdata id min max')
-    manifest = u'urn:mozilla:install-manifest'
-
-    def __init__(self, path):
-        self.path = path
-        self.rdf = rdflib.Graph().parse(open(os.path.join(path,
-                                                          'install.rdf')))
-        self.find_root()
-        self.data = {
-            'guid': self.find('id'),
-            'type': self.find_type(),
-            'name': self.find('name'),
-            'version': self.find('version'),
-            'homepage': self.find('homepageURL'),
-            'summary': self.find('description'),
-            'no_restart': self.find('bootstrap') == 'true' or
-                          self.find('type') == '64',
-            'strict_compatibility': self.find('strictCompatibility') == 'true',
-            'apps': self.apps(),
-        }
-
-    @classmethod
-    def parse(cls, install_rdf):
-        return cls(install_rdf).data
-
-    def find_type(self):
-        # If the extension declares a type that we know about, use
-        # that.
-        # FIXME: Fail if it declares a type we don't know about.
-        declared_type = self.find('type')
-        if declared_type and declared_type in self.TYPES:
-            return self.TYPES[declared_type]
-
-        # Look for dictionaries.
-        dic = os.path.join(self.path, 'dictionaries')
-        if os.path.exists(dic) and glob.glob('%s/*.dic' % dic):
-            return amo.ADDON_DICT
-
-        # Consult <em:type>.
-        return self.TYPES.get(declared_type, amo.ADDON_EXTENSION)
-
-    def uri(self, name):
-        namespace = 'http://www.mozilla.org/2004/em-rdf'
-        return rdflib.term.URIRef('%s#%s' % (namespace, name))
-
-    def find_root(self):
-        # If the install-manifest root is well-defined, it'll show up when we
-        # search for triples with it.  If not, we have to find the context that
-        # defines the manifest and use that as our root.
-        # http://www.w3.org/TR/rdf-concepts/#section-triples
-        manifest = rdflib.term.URIRef(self.manifest)
-        if list(self.rdf.triples((manifest, None, None))):
-            self.root = manifest
-        else:
-            self.root = self.rdf.subjects(None, self.manifest).next()
-
-    def find(self, name, ctx=None):
-        """Like $() for install.rdf, where name is the selector."""
-        if ctx is None:
-            ctx = self.root
-        # predicate it maps to <em:{name}>.
-        match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
-        # These come back as rdflib.Literal, which subclasses unicode.
-        if match:
-            return unicode(match[0])
-
-    def apps(self):
-        rv = []
-        for ctx in self.rdf.objects(None, self.uri('targetApplication')):
-            app = amo.APP_GUIDS.get(self.find('id', ctx))
-            if not app:
-                continue
-            try:
-                qs = AppVersion.objects.filter(application=app.id)
-                min = qs.get(version=self.find('minVersion', ctx))
-                max = qs.get(version=self.find('maxVersion', ctx))
-            except AppVersion.DoesNotExist:
-                continue
-            rv.append(self.App(appdata=app, id=app.id, min=min, max=max))
-        return rv
-
-
-def extract_search(content):
-    rv = {}
-    dom = minidom.parse(content)
-    text = lambda x: dom.getElementsByTagName(x)[0].childNodes[0].wholeText
-    rv['name'] = text('ShortName')
-    rv['description'] = text('Description')
-    return rv
-
-
-def parse_search(fileorpath, addon=None):
-    try:
-        f = get_file(fileorpath)
-        data = extract_search(f)
-    except forms.ValidationError:
-        raise
-    except Exception:
-        log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse uploaded file.'))
-
-    return {'guid': None,
-            'type': amo.ADDON_SEARCH,
-            'name': data['name'],
-            'summary': data['description'],
-            'version': datetime.now().strftime('%Y%m%d')}
 
 
 class WebAppParser(object):
@@ -447,67 +310,12 @@ def extract_xpi(xpi, path, expand=False):
     copy_over(tempdir, path)
 
 
-def parse_xpi(xpi, addon=None):
-    """Extract and parse an XPI."""
-    # Extract to /tmp
-    path = tempfile.mkdtemp()
-    try:
-        xpi = get_file(xpi)
-        extract_xpi(xpi, path)
-        rdf = Extractor.parse(path)
-    except forms.ValidationError:
-        raise
-    except IOError as e:
-        if len(e.args) < 2:
-            errno, strerror = None, e[0]
-        else:
-            errno, strerror = e
-        log.error('I/O error({0}): {1}'.format(errno, strerror))
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
-    except Exception:
-        log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
-    finally:
-        rm_local_tmp_dir(path)
-
-    return check_rdf(rdf, addon)
-
-
-def check_rdf(rdf, addon=None):
-    from addons.models import Addon
-    if not rdf['guid']:
-        raise forms.ValidationError(_("Could not find a UUID."))
-    if addon and addon.guid != rdf['guid']:
-        raise forms.ValidationError(_("UUID doesn't match add-on."))
-    if not addon and Addon.objects.filter(guid=rdf['guid']).exists():
-        raise forms.ValidationError(_('Duplicate UUID found.'))
-    if len(rdf['version']) > 32:
-        raise forms.ValidationError(
-            _('Version numbers should have fewer than 32 characters.'))
-    if not VERSION_RE.match(rdf['version']):
-        raise forms.ValidationError(
-            _('Version numbers should only contain letters, numbers, '
-              'and these punctuation characters: +*.-_.'))
-    return rdf
-
-
 def parse_addon(pkg, addon=None):
     """
     pkg is a filepath or a django.core.files.UploadedFile
     or files.models.FileUpload.
     """
-    name = getattr(pkg, 'name', pkg)
-    if (getattr(pkg, 'is_webapp', False) or
-        name.endswith(('.webapp', '.json', '.zip'))):
-        parsed = WebAppParser().parse(pkg)
-    elif name.endswith('.xml'):
-        parsed = parse_search(pkg, addon)
-    else:
-        parsed = parse_xpi(pkg, addon)
-
-    if addon and addon.type != parsed['type']:
-        raise forms.ValidationError(_("<em:type> doesn't match add-on"))
-    return parsed
+    return WebAppParser().parse(pkg)
 
 
 def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
@@ -524,7 +332,3 @@ def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
 
 def get_md5(filename, **kw):
     return _get_hash(filename, **kw)
-
-
-def get_sha256(filename, **kw):
-    return _get_hash(filename, hash=hashlib.sha256, **kw)
