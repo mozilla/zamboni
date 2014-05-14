@@ -12,12 +12,31 @@ from mkt.webpay.utils import make_external_id
 
 def get_generic_product(app):
     if app.app_payment_accounts.exists():
-        account = app.app_payment_accounts.all()[:1].get()
-        generic_product = Provider.generic.product.get_object(
-            seller=uri_to_pk(account.payment_account.seller_uri),
-            external_id=make_external_id(app),
-        )
-        return generic_product
+        for account in app.app_payment_accounts.all():
+            print (
+                'Looking up public_id for app '
+                '{app} using account {account}'
+            ).format(
+                app=app,
+                account=account.payment_account.seller_uri)
+            try:
+                generic_product = Provider.generic.product.get_object(
+                    seller=uri_to_pk(account.payment_account.seller_uri),
+                    external_id=make_external_id(app))
+                print (
+                    'Found generic product {product} for '
+                    'app {app} using account {account}'
+                ).format(
+                    product=generic_product['public_id'],
+                    app=app,
+                    account=account)
+                return generic_product
+            except ObjectDoesNotExist:
+                pass
+            except MultipleObjectsReturned:
+                print 'Found multiple generic products for app {app}'.format(
+                    app=app)
+        print 'Unable to find a generic product for app {app}'.format(app=app)
 
 
 class Command(BaseCommand):
@@ -29,8 +48,7 @@ class Command(BaseCommand):
             default=False,
             action='store_true',
             dest='dry_run',
-            help='Look up the public_ids in Solitude without saving'),
-        )
+            help='Look up the public_ids in Solitude without saving'),)
 
     def handle(self, *args, **options):
         webapps = (Webapp.objects.filter(app_payment_accounts__isnull=False)
@@ -38,17 +56,12 @@ class Command(BaseCommand):
                                  .select_related('app_payment_accounts'))
         for chunk in chunked(webapps, 50):
             for app in chunk:
-                try:
-                    print 'Looking up public_id for', app
-                    generic_product = get_generic_product(app)
-                    if not generic_product:
-                        continue
-                    print 'Found public_id', generic_product['public_id']
-
-                    if not options['dry_run']:
-                        print 'Saving', app
-                        app.solitude_public_id = generic_product['public_id']
-                        app.save()
-                except (ObjectDoesNotExist, MultipleObjectsReturned), e:
-                    print 'Error', e.__class__.__name__, e
+                generic_product = get_generic_product(app)
+                if not generic_product:
                     continue
+                print 'Found public_id', generic_product['public_id']
+
+                if not options['dry_run']:
+                    print 'Saving app', app
+                    app.solitude_public_id = generic_product['public_id']
+                    app.save()
