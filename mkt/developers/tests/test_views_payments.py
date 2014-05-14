@@ -510,6 +510,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
         eq_(AddonPremium.objects.all().count(), 0)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-island-incomplete:not(.hidden)')), 1)
 
     def test_paid_app_without_account_has_incomplete_status(self):
         self.webapp.update(premium_type=amo.ADDON_FREE)
@@ -522,6 +525,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                          'regions': ALL_REGION_IDS}))
         self.assert3xx(res, self.url)
         eq_(self.get_webapp().status, amo.STATUS_NULL)
+        res = self.client.get(self.url)
+        pqr = pq(res.content)
+        eq_(len(pqr('#paid-island-incomplete:not(.hidden)')), 1)
 
     def setup_payment_acct(self, make_owner, user=None, bango_id=123):
         # Set up Solitude return values.
@@ -574,6 +580,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(self.webapp.payment_account(PROVIDER_BANGO).payment_account.pk,
             acct.pk)
         eq_(AddonPremium.objects.all().count(), 0)
+        eq_(len(pq(res.content)('#paid-island-incomplete.hidden')), 1)
 
     def test_associate_acct_to_app(self):
         self.make_premium(self.webapp, price=self.price.price)
@@ -592,6 +599,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
                                          follow=True)
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
+        eq_(len(pq(res.content)('#paid-island-incomplete.hidden')), 1)
         eq_(self.webapp.payment_account(PROVIDER_BANGO).payment_account.pk,
             acct.pk)
         kw = self.generic_patcher.product.post.call_args[1]['data']
