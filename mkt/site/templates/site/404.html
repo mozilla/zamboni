@@ -15,6 +15,12 @@
       <ul>
         <li>{{ _("If you typed in the address, please double check the
                  spelling.") }}</li>
+        <li>
+            {% trans home=url('home') %}
+              Visit the <a class="sync" href="{{ home }}">Firefox Marketplace
+              front page</a>.
+            {% endtrans %}
+        </li>
       </ul>
     </div>
   </section>
