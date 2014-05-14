@@ -25,6 +25,7 @@ def get_url(name, pk, **kw):
     kw.update({'resource_name': name, 'pk': pk})
     return ('api_dispatch_detail', kw)
 
+
 def _collect_form_errors(forms):
     errors = {}
     if not isinstance(forms, list):
@@ -44,6 +45,7 @@ def _collect_form_errors(forms):
 def form_errors(forms):
     errors = _collect_form_errors(forms)
     raise ParseError(errors)
+
 
 def check_potatocaptcha(data):
         if data.get('tuber', False):
@@ -91,9 +93,9 @@ class SubRouterWithFormat(SubRouter):
     """
     SubRouter that also adds the optional format to generated URL patterns.
 
-    This is similar to DRF's DefaultRouter, except it's a SubRouter and we don't
-    respect the trailing_slash parameter with the URLs containing the format
-    parameter, because that'd make ugly, weird URLs.
+    This is similar to DRF's DefaultRouter, except it's a SubRouter and we
+    don't respect the trailing_slash parameter with the URLs containing the
+    format parameter, because that'd make ugly, weird URLs.
     """
     def get_urls(self):
         # Keep trailing slash value...
@@ -184,8 +186,8 @@ def cors_api_view(methods):
 
 class SlugOrIdMixin(object):
     """
-    Mixin that allows you to pass slugs instead of pk in your URLs. Use with any
-    router or urlpattern that relies on a relaxed regexp for pks, like
+    Mixin that allows you to pass slugs instead of pk in your URLs. Use with
+    any router or urlpattern that relies on a relaxed regexp for pks, like
     (?P<pk>[^/]+) (DRF does this by default).
 
     If the name of your `slug` is called something else, override
