@@ -17,7 +17,6 @@ import amo.tests
 from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category
-from files.helpers import copyfileobj
 from tags.models import Tag
 from translations.models import Translation
 from users.models import UserProfile
@@ -25,6 +24,7 @@ from users.models import UserProfile
 import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
+from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Geodata, IARCInfo, Webapp
 

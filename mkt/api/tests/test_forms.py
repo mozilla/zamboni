@@ -23,7 +23,8 @@ class TestPreviewForm(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(form.errors['file'], ['Images must be either PNG or JPG.'])
 
     def test_bad_file(self):
-        file_ = base64.b64encode(open(self.xpi_path('langpack'), 'r').read())
+        file_ = base64.b64encode(
+            open(self.packaged_app_path('mozball.zip'), 'r').read())
         form = PreviewJSONForm({'file': {'data': file_, 'type': 'image/png'},
                                 'position': 1})
         assert not form.is_valid()

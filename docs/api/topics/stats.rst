@@ -12,6 +12,9 @@ Global Statistics
 
 Statistics across the Marketplace as a whole.
 
+.. note:: Authentication is required and the authenticated user must have the
+          Stats:View permission.
+
 Metrics
 -------
 
@@ -495,6 +498,9 @@ Per-app Statistics
 ==================
 
 Statistics per public app in the Marketplace.
+
+.. note:: Authentication is required and the authenticated user must be the
+          app owner or have the Stats:View permission.
 
 Metrics
 -------

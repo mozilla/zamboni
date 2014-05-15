@@ -42,7 +42,6 @@ from addons.models import Addon, Category
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
-from files.helpers import copyfileobj
 from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
 from market.models import AddonPremium, Price, PriceCurrency
@@ -52,6 +51,7 @@ from versions.models import ApplicationsVersions, Version
 
 import mkt
 from mkt.constants import regions
+from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Webapp, WebappIndexer

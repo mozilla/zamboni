@@ -12,6 +12,7 @@ import amo
 from files.models import File
 from versions.models import Version
 
+
 log = commonware.log.getLogger('z.files')
 
 
@@ -30,8 +31,7 @@ class FileSelectWidget(widgets.Select):
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if files[0].status == amo.STATUS_DISABLED:
                 # Disabled files can be diffed on Marketplace.
-                if addon.type != amo.ADDON_WEBAPP:
-                    output.append(u' disabled')
+                output.append(u' disabled')
             if selected in files:
                 output.append(u' selected="true"')
 
@@ -39,9 +39,9 @@ class FileSelectWidget(widgets.Select):
                          for f in files)
             output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
 
-            if addon.type == amo.ADDON_WEBAPP:
-                # Extend apps to show file status in selects.
-                label += ' (%s)' % amo.STATUS_CHOICES_API[f.status]
+            # Extend apps to show file status in selects.
+            label += ' (%s)' % amo.STATUS_CHOICES_API[f.status]
+
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
 
@@ -84,8 +84,7 @@ class FileCompareForm(happyforms.Form):
         self.addon = kw.pop('addon')
         super(FileCompareForm, self).__init__(*args, **kw)
 
-        queryset = (File.objects.filter(version__addon=self.addon)
-                        .exclude(status=amo.STATUS_BETA))
+        queryset = File.objects.filter(version__addon=self.addon)
         self.fields['left'].queryset = queryset
         self.fields['right'].queryset = queryset
 

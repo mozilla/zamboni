@@ -16,11 +16,13 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
-from files.helpers import FileViewer, DiffHelper
 from files.models import File
-from mkt.webapps.models import Webapp
-from mkt.site.fixtures import fixture
 from users.models import UserProfile
+
+from mkt.files.helpers import DiffHelper, FileViewer
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
+
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'
 not_binary = 'manifest.webapp'
@@ -59,11 +61,7 @@ class FilesBase(object):
                 pass
             shutil.copyfile(src, file_obj.file_path)
 
-        self.file_viewer = FileViewer(self.file, is_webapp=True)
-        # Setting this to True, so we are delaying the extraction of files,
-        # in the tests, the files won't be extracted.
-        # Most of these tests extract as needed to.
-        self.create_switch(name='delay-file-viewer')
+        self.file_viewer = FileViewer(self.file)
 
     def tearDown(self):
         self.file_viewer.cleanup()
@@ -203,16 +201,7 @@ class FilesBase(object):
         eq_(len(doc('#content')), 0)
 
     def test_no_files(self):
-        res = self.client.get(self.file_url())
-        eq_(res.status_code, 200)
-        assert 'files' not in res.context
-
-    @patch('waffle.switch_is_active')
-    def test_no_files_switch(self, switch_is_active):
-        switch_is_active.side_effect = lambda x: x != 'delay-file-viewer'
-        # By setting the switch to False, we are not delaying the file
-        # extraction. The files will be extracted and there will be
-        # files in context.
+        self.file_viewer.cleanup()
         res = self.client.get(self.file_url())
         eq_(res.status_code, 200)
         assert 'files' in res.context
@@ -436,8 +425,7 @@ class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()
-        self.file_viewer = DiffHelper(self.files[0], self.files[1],
-                                      is_webapp=True)
+        self.file_viewer = DiffHelper(self.files[0], self.files[1])
 
     def poll_url(self):
         return reverse('mkt.files.compare.poll', args=[self.files[0].pk,

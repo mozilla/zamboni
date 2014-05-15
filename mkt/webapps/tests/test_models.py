@@ -33,7 +33,6 @@ from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from editors.models import EscalationQueue, RereviewQueue
 from files.models import File
-from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
@@ -47,6 +46,7 @@ import mkt
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest

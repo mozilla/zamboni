@@ -749,22 +749,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             pass
         return None
 
-    @amo.cached_property
-    def binary(self):
-        """Returns if the current version has binary files."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary=True).exists()
-        return False
-
-    @amo.cached_property
-    def binary_components(self):
-        """Returns if the current version has files with binary_components."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary_components=True).exists()
-        return False
-
     @property
     def backup_version(self):
         """Returns the backup version."""
@@ -1131,11 +1115,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def featured_random(cls, app, lang):
         return get_featured_ids(app, lang)
-
-    def is_no_restart(self):
-        """Is this a no-restart add-on?"""
-        files = self.current_version and self.current_version.all_files
-        return bool(files and files[0].no_restart)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""

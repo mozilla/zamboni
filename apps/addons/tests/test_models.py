@@ -605,19 +605,6 @@ class TestAddonModels(amo.tests.TestCase):
         assert not a.is_public(), (
             'unreviewed, disabled add-on should not be is_public()')
 
-    def test_is_no_restart(self):
-        a = Addon.objects.get(pk=3615)
-        f = a.current_version.all_files[0]
-        eq_(f.no_restart, False)
-        eq_(a.is_no_restart(), False)
-
-        f.update(no_restart=True)
-        eq_(Addon.objects.get(pk=3615).is_no_restart(), True)
-
-        a.versions.all().delete()
-        a._current_version = None
-        eq_(a.is_no_restart(), False)
-
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
@@ -1368,18 +1355,6 @@ class TestAddonModels(amo.tests.TestCase):
         cats = addon.categories.filter(application=amo.FIREFOX.id)
         names = [c.name for c in cats]
         assert addon.get_category(amo.FIREFOX.id).name in names
-
-    def test_binary_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary=True)
-        eq_(addon.binary, True)
-
-    def test_binary_components_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary_components=True)
-        eq_(addon.binary_components, True)
 
 
 class TestAddonDelete(amo.tests.TestCase):

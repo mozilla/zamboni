@@ -1,27 +1,20 @@
-import array
-import itertools
 import logging
-import operator
-import os
-import subprocess
-import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.db import connections, transaction
-from django.db.models import Q, F
+from django.db import transaction
+from django.db.models import F, Q
 
 import cronjobs
-import multidb
 import path
+import waffle
 from celery.task.sets import TaskSet
 from celeryutils import task
-import waffle
 
 import amo
+from addons.models import Addon, AppSupport
 from amo.decorators import write
 from amo.utils import chunked
-from addons.models import Addon, AppSupport
 from files.models import File
 
 
@@ -211,9 +204,6 @@ def unhide_disabled_files():
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
-                if (file_.version.addon.status in amo.MIRROR_STATUSES
-                    and file_.status in amo.MIRROR_STATUSES):
-                    file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning('File object does not exist for: %s.' % filepath)
             except Exception:

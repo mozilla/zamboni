@@ -6,28 +6,29 @@ import stat
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
-from django.template.defaultfilters import filesizeformat
 
-import jinja2
 import commonware.log
+import jinja2
 from cache_nuggets.lib import memoize, Message
-from jingo import register, env
+from jingo import env, register
 from tower import ugettext as _
 
 import amo
-from amo.utils import rm_local_tmp_dir
 from amo.urlresolvers import reverse
+from amo.utils import rm_local_tmp_dir
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,
                                                blacklisted_magic_numbers)
 
+
 # Allow files with a shebang through.
-blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)
-                               if b != (0x23, 0x21)]
-blacklisted_extensions = [b for b in list(blacklisted_extensions)
-                            if b != 'sh']
+blacklisted_magic_numbers = [
+    b for b in list(blacklisted_magic_numbers) if b != (0x23, 0x21)]
+blacklisted_extensions = [
+    b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
 
@@ -49,7 +50,7 @@ def file_viewer_class(value, key):
 def file_tree(files, selected):
     depth = 0
     output = ['<ul class="root">']
-    t = env.get_template('files/node.html')
+    t = env.get_template('fileviewer/node.html')
     for k, v in files.items():
         if v['depth'] > depth:
             output.append('<ul class="js-hidden">')
@@ -68,10 +69,9 @@ class FileViewer(object):
     local temp path.
     """
 
-    def __init__(self, file_obj, is_webapp=False):
+    def __init__(self, file_obj):
         self.file = file_obj
         self.addon = self.file.version.addon
-        self.is_webapp = is_webapp
         self.src = (file_obj.guarded_file_path
                     if file_obj.status == amo.STATUS_DISABLED
                     else file_obj.file_path)
@@ -96,28 +96,16 @@ class FileViewer(object):
         except OSError, err:
             pass
 
-        if self.is_search_engine() and self.src.endswith('.xml'):
-            try:
-                os.makedirs(self.dest)
-            except OSError, err:
-                pass
-            copyfileobj(storage.open(self.src),
-                        open(os.path.join(self.dest,
-                                          self.file.filename), 'w'))
-        else:
-            try:
-                extract_xpi(self.src, self.dest, expand=True)
-            except Exception, err:
-                task_log.error('Error (%s) extracting %s' % (err, self.src))
-                raise
+        # This is called `extract_xpi` but it unzips like a zip file.
+        try:
+            extract_xpi(self.src, self.dest, expand=True)
+        except Exception, err:
+            task_log.error('Error (%s) extracting %s' % (err, self.src))
+            raise
 
     def cleanup(self):
         if os.path.exists(self.dest):
             rm_local_tmp_dir(self.dest)
-
-    def is_search_engine(self):
-        """Is our file for a search engine?"""
-        return self.file.version.addon.type == amo.ADDON_SEARCH
 
     def is_extracted(self):
         """If the file has been extracted or not."""
@@ -188,14 +176,8 @@ class FileViewer(object):
 
     def _process_manifest(self, data):
         """
-        If we're dealing with a webapp manifest, this will format it nicely for
-        maximum diff-ability.
+        This will format the manifest nicely for maximum diff-ability.
         """
-
-        # If this isn't a webapp, don't reformat it.
-        if not self.is_webapp:
-            return data
-
         try:
             json_data = json.loads(data)
         except Exception:
@@ -211,7 +193,7 @@ class FileViewer(object):
 
             # We want everything sorted, but we always want these few nodes
             # right at the top.
-            prefix_nodes = ["name", "description", "version"]
+            prefix_nodes = ['name', 'description', 'version']
             prefix_nodes = [(k, data.pop(k)) for k in prefix_nodes if
                             k in data]
 
@@ -226,7 +208,7 @@ class FileViewer(object):
     def is_binary(self):
         if self.selected:
             binary = self.selected['binary']
-            if binary and (binary != 'image' or not self.is_webapp):
+            if binary and binary != 'image':
                 self.selected['msg'] = _('This file is not viewable online. '
                                          'Please download the file to view '
                                          'the contents.')
@@ -240,14 +222,10 @@ class FileViewer(object):
 
     def get_default(self, key=None):
         """Gets the default file and copes with search engines."""
-        if self.is_search_engine() and not key:
-            files = self.get_files()
-            return files.keys()[0] if files else None
-
         if key:
             return key
 
-        return 'manifest.webapp' if self.is_webapp else 'install.rdf'
+        return 'manifest.webapp'
 
     def get_files(self):
         """
@@ -268,8 +246,8 @@ class FileViewer(object):
         except (OSError, IOError):
             return {}
 
-    def truncate(self, filename, pre_length=15,
-                 post_length=10, ellipsis=u'..'):
+    def truncate(self, filename, pre_length=15, post_length=10,
+                 ellipsis=u'..'):
         """
         Truncates a filename so that
            somelongfilename.htm
@@ -323,7 +301,6 @@ class FileViewer(object):
 
         iterate(self.dest)
 
-        url_prefix = 'mkt.%s' if self.is_webapp else '%s'
         for path in all_files:
             filename = smart_unicode(os.path.basename(path), errors='replace')
             short = smart_unicode(path[len(self.dest) + 1:], errors='replace')
@@ -345,9 +322,9 @@ class FileViewer(object):
                 'short': short,
                 'size': os.stat(path)[stat.ST_SIZE],
                 'truncated': self.truncate(filename),
-                'url': reverse(url_prefix % 'files.list',
+                'url': reverse('mkt.files.list',
                                args=[self.file.id, 'file', short]),
-                'url_serve': reverse(url_prefix % 'files.redirect',
+                'url_serve': reverse('mkt.files.redirect',
                                      args=[self.file.id, short]),
                 'version': self.file.version.version,
             }
@@ -357,13 +334,11 @@ class FileViewer(object):
 
 class DiffHelper(object):
 
-    def __init__(self, left, right, is_webapp=False):
-        self.left = FileViewer(left, is_webapp=is_webapp)
-        self.right = FileViewer(right, is_webapp=is_webapp)
+    def __init__(self, left, right):
+        self.left = FileViewer(left)
+        self.right = FileViewer(right)
         self.addon = self.left.addon
         self.key = None
-
-        self.is_webapp = is_webapp
 
     def __str__(self):
         return '%s:%s' % (self.left, self.right)
@@ -378,7 +353,7 @@ class DiffHelper(object):
         return self.left.is_extracted() and self.right.is_extracted()
 
     def get_url(self, short):
-        url_name = 'mkt.files.compare' if self.is_webapp else 'files.compare'
+        url_name = 'mkt.files.compare'
         return reverse(url_name,
                        args=[self.left.file.id, self.right.file.id,
                              'file', short])
@@ -417,8 +392,6 @@ class DiffHelper(object):
         Every element will be marked as a diff.
         """
         different = SortedDict()
-        if self.right.is_search_engine():
-            return different
 
         left_files = self.left.get_files()
         right_files = self.right.get_files()
@@ -438,21 +411,16 @@ class DiffHelper(object):
     def select(self, key):
         """
         Select a file and adds the file object to self.one and self.two
-        for later fetching. Does special work for search engines.
+        for later fetching.
         """
         self.key = key
         self.left.select(key)
-        if key and self.right.is_search_engine():
-            # There's only one file in a search engine.
-            key = self.right.get_default()
-
         self.right.select(key)
         return self.left.selected and self.right.selected
 
     def is_binary(self):
         """Tells you if both selected files are binary."""
-        return (self.left.is_binary() or
-                self.right.is_binary())
+        return self.left.is_binary() or self.right.is_binary()
 
     def is_diffable(self):
         """Tells you if the selected files are diffable."""

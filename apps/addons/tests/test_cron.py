@@ -134,14 +134,12 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
         m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
         eq_(m_storage.delete.call_count, 2)
@@ -157,14 +155,12 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
         m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         eq_(mv_mock.call_count, 2)
         eq_(m_storage.delete.call_count, 2)
@@ -181,6 +177,3 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
         eq_(mv_mock.call_count, 1)
-        # It should have been removed from mirror stagins.
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
-        eq_(m_storage.delete.call_count, 1)

@@ -558,10 +558,6 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
         ),
-        'zamboni/files': (
-            'css/lib/syntaxhighlighter/shCoreDefault.css',
-            'css/zamboni/files.css',
-        ),
         'zamboni/mobile': (
             'css/zamboni/mobile.css',
             'css/mobile/typography.less',
@@ -792,7 +788,6 @@ PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
 JAVA_BIN = '/usr/bin/java'
 
 # Add-on download settings.
-MIRROR_DELAY = 30  # Minutes before we serve downloads from mirrors.
 MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
 LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
 PRIVATE_MIRROR_URL = '/_privatefiles'
@@ -1016,7 +1011,6 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
-        'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
