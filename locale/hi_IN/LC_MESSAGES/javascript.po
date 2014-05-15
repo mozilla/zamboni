@@ -1,105 +1,106 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-05-15 09:27+0000\n"
+"Last-Translator: Umesh <umesh.agarwal1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1400146031.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} स्टार"
+msgstr[1] "{0} स्टार्स"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "सर्वर से संपर्क करने में त्रुटि थी."
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "एक फ़ाइल चुनें..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "आपका एड़-ऑन .xpi, .jar या .xml से खतम होना चाहिए"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% खतम"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} में से {0}"
 
 #: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 #: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "अपलोड हो रहा है {0}"
 
 #: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} के साथ त्रुटि"
 
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका आड़-ऑन {0} त्रुटि के साथ मान्यकरण असफल हुआ हैं."
+msgstr[1] "आपका आड़-ऑन {0} त्रुटियों के साथ मान्यकरण असफल हुआ हैं."
 
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;और {0} ज्यादा"
+msgstr[1] "&hellip;और {0} ज्यादा"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 #: media/js/zamboni/devhub.js:160
 msgid "See full validation report"
-msgstr ""
+msgstr "पूर्ण मान्यकरण रिपोर्ट देखे"
 
 #: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
-msgstr ""
+msgstr "मान्य कर रहा है {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "सर्वर से एक खाली उत्तर मिली; स्थति: {0}"
 
 #: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "मान्य करते समय अप्रत्याशित त्रुटि."
 
 #: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "मान्य क्रिया समाप्त {0}"
 
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका आड़-ऑन शून्य त्रुटियों और {0} संदेश के साथ मान्यकरण पारित किया."
+msgstr[1] "आपका आड़-ऑन शून्य त्रुटियों और {0} संदेशों के साथ मान्यकरण पारित किया."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "आपका आड़-ऑन बिना कोई त्रुटियों और चेतावनियों के साथ मान्यकरण पारित किया."
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "कुछ मंच इस तरह के एड़-ऑन का लिए उपलब्ध नहीं है."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -143,43 +144,43 @@ msgstr ""
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "एप्प मेजबान पहुंचा नहीं जा सका."
 
 #: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "एप्प मेनिफ़ेस्ट उंपार्सेबल हैं."
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "एप्प मेनिफ़ेस्ट अमान्य हैं."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "एप्प पहले से स्थापित है."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "आंतरिक सर्वर त्रुटि."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "एप्प स्थापना पर आंतरिक सर्वर त्रुटि."
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "स्थापना विफल रहा. बाद में पुन: प्रयास करें."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका एप्प {0} त्रुटि और {1} सन्देश के साथ मान्यकरण असफल रहा."
+msgstr[1] "आपका एप्प {0} त्रुटियों और {1} संदेशो के साथ मान्यकरण असफल रहा."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका एप्प शुन्य त्रुटियों और {0} सन्देश के साथ मान्यकरण पारित किया."
+msgstr[1] "आपका एप्प शुन्य त्रुटियों और {0} संदेशो के साथ मान्यकरण पारित किया."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
@@ -223,7 +224,7 @@ msgstr ""
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "फ़्लैश प्लेयर</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -231,7 +232,7 @@ msgstr ""
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "इस स्थानीयकरण को निकालें"
 
 #: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
@@ -243,7 +244,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "सभी परिणाम दिखाए"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
