@@ -7,26 +7,9 @@
 {% set reviews = reviews[:3] %}
 
 <aside class="secondary addon-reviews c">
-  {% if reviews %}
-    <div>
-      {{ addon.average_rating|stars }}
-      {{ _('Average') }}
-    </div>
-  {% endif %}
-  {% include "reviews/grouped_ratings.html" %}
-  {% if addon.can_review(amo_user) %}
-    <div>
-      <a class="button" id="add-review" href="{{ shared_url('reviews.add', addon) }}">{{ _('Write a review') }}</a>
-    </div>
-  {% endif %}
   <a id="report-abuse" href="{{ url('devhub.docs', 'policies', 'contact') }}"
      class="abuse-image">{{ _('Report Abuse') }}</a>
 </aside>
-
-<section id="reviews" class="primary island c">
-  <h2>{{ _('Reviews') }}</h2>
-  {{ impala_review_list_box(addon=addon, reviews=reviews) }}
-</section>
 
 {# Cache all of this against the addon because the data doesn't change much
    and it all depends on the addon in some way. #}

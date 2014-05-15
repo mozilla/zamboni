@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import logging
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 
@@ -10,9 +9,9 @@ from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
-from amo.helpers import shared_url
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
+
 
 log = logging.getLogger('z.review')
 
@@ -59,9 +58,7 @@ class Review(amo.models.ModelBase):
         ordering = ('-created',)
 
     def get_url_path(self):
-        if 'mkt.ratings' in settings.INSTALLED_APPS:
-            return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
-        return shared_url('reviews.detail', self.addon, self.id)
+        return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
@@ -145,43 +142,6 @@ class ReviewFlag(amo.models.ModelBase):
 
     def flush_urls(self):
         return self.review.flush_urls()
-
-
-class GroupedRating(object):
-    """
-    Group an add-on's ratings so we can have a graph of rating counts.
-
-    SELECT rating, COUNT(rating) FROM reviews where addon=:id
-    """
-    # Non-critical data, so we always leave it in memcache. Numbers are updated
-    # when a new review comes in.
-    prefix = 'addons:grouped:rating'
-
-    @classmethod
-    def key(cls, addon):
-        return '%s:%s' % (cls.prefix, addon)
-
-    @classmethod
-    def get(cls, addon, update_none=True):
-        try:
-            grouped_ratings = cache.get(cls.key(addon))
-            if update_none and grouped_ratings is None:
-                return cls.set(addon)
-            return grouped_ratings
-        except Exception:
-            # Don't worry about failures, especially timeouts.
-            return
-
-    @classmethod
-    def set(cls, addon, using=None):
-        q = (Review.objects.valid().using(using)
-             .filter(addon=addon, is_latest=True)
-             .values_list('rating')
-             .annotate(models.Count('rating')))
-        counts = dict(q)
-        ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
-        cache.set(cls.key(addon), ratings)
-        return ratings
 
 
 class Spam(object):

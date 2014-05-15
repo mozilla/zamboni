@@ -3,7 +3,6 @@ from django.conf.urls import include, patterns, url
 
 import amo
 from . import views
-from mkt.ratings.urls import detail_patterns as reviews_detail_patterns
 
 
 def fireplace_route(path, name=None):
@@ -29,8 +28,6 @@ fireplace_app_patterns = patterns('',
     fireplace_route('reviews/', 'ratings.list'),
     fireplace_route('reviews/add', 'ratings.add'),
     url('^(?P<review_id>\d+)/', include(fireplace_reviews_patterns)),
-    # Load actual Zamboni views. (ratings RSS, helpers for reviewer tools)
-    url('^(?P<review_id>\d+)/', include(reviews_detail_patterns)),
 )
 
 urlpatterns = patterns('',

@@ -2,7 +2,6 @@ import collections
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.core.cache import cache
@@ -26,7 +25,6 @@ from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from market.models import Price
-from reviews.models import Review
 from users.models import BlacklistedPassword, UserNotification, UserProfile
 from users.utils import EmailResetCode, UnsubscribeCode
 
@@ -959,73 +957,6 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(items('.install[data-addon=3615]').length, 1)
         eq_(items('.install[data-addon=5299]').length, 1)
 
-    def test_my_reviews(self):
-        r = Review.objects.filter(reply_to=None)[0]
-        r.update(user=self.user)
-        cache.clear()
-        self.assertSetEqual(self.user.reviews, [r])
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)('#reviews')
-        assert not doc.hasClass('full'), (
-            'reviews should not have "full" class when there are collections')
-        eq_(doc('.item').length, 1)
-        eq_(doc('#review-218207').length, 1)
-
-        # Edit Review form should be present.
-        self.assertTemplateUsed(r, 'reviews/edit_review.html')
-
-    def test_my_reviews_delete_link(self):
-        review = Review.objects.filter(reply_to=None)[0]
-        review.user_id = 999
-        review.save()
-        cache.clear()
-        slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
-
-        def _get_reviews(username, password):
-            self.client.login(username=username, password=password)
-            r = self.client.get(reverse('users.profile', args=[999]))
-            doc = pq(r.content)('#reviews')
-            return doc('#review-218207 .item-actions a.delete-review')
-
-        # Admins get the Delete Review link.
-        r = _get_reviews(username='admin@mozilla.com', password='password')
-        eq_(r.length, 1)
-        eq_(r.attr('href'), delete_url)
-
-        # Editors get the Delete Review link.
-        r = _get_reviews(username='editor@mozilla.com', password='password')
-        eq_(r.length, 1)
-        eq_(r.attr('href'), delete_url)
-
-        # Author gets the Delete Review link.
-        r = _get_reviews(username='regular@mozilla.com', password='password')
-        eq_(r.length, 1)
-        eq_(r.attr('href'), delete_url)
-
-        # Other user does not get the Delete Review link.
-        r = _get_reviews(username='clouserw@gmail.com', password='password')
-        eq_(r.length, 0)
-
-    def test_my_reviews_no_pagination(self):
-        r = self.client.get(self.url)
-        assert len(self.user.addons_listed) <= 10, (
-            'This user should have fewer than 10 add-ons.')
-        eq_(pq(r.content)('#my-addons .paginator').length, 0)
-
-    def test_my_reviews_pagination(self):
-        for i in xrange(20):
-            AddonUser.objects.create(user=self.user, addon_id=3615)
-        assert len(self.user.addons_listed) > 10, (
-            'This user should have way more than 10 add-ons.')
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#my-addons .paginator').length, 1)
-
-    def test_review_abuse_form(self):
-        r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
-
     def test_user_abuse_form(self):
         abuse_url = reverse('users.abuse', args=[self.user.id])
         r = self.client.get(self.url)
@@ -1046,15 +977,6 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(doc('#profile-actions #report-user-abuse').length, 0)
         eq_(doc('#popup-staging #report-user-modal.modal').length, 0)
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
-
-    def test_with_mkt_reviews(self):
-        # Test Marketplace reviews don't break profiles on AMO.
-        app = amo.tests.app_factory(type=amo.ADDON_WEBAPP, app_slug='1abcxyz1')
-        app.addonuser_set.create(user=self.user)
-        Review.objects.create(user_id=self.user.id, addon=app, rating=1)
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(app.app_slug in r.content, False)
 
 
 class TestReportAbuse(amo.tests.TestCase):

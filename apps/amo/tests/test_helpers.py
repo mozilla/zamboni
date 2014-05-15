@@ -225,9 +225,6 @@ class TestSharedURL(amo.tests.TestCase):
         eq_(helpers.shared_url('detail', self.addon), expected)
         eq_(helpers.shared_url('detail', self.addon, add_prefix=False),
             '/addon/addon/')
-        eq_(helpers.shared_url('reviews.detail', self.addon, 1,
-                               add_prefix=False),
-            '/addon/addon/reviews/1/')
 
 
 def test_isotime():

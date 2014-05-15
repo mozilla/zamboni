@@ -23,8 +23,6 @@ from requests.structures import CaseInsensitiveDict
 
 import amo
 import amo.tests
-import mkt
-import reviews
 from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import AddonDeviceType
@@ -39,6 +37,14 @@ from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
 from files.models import File
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
+from reviews.models import Review, ReviewFlag
+from tags.models import Tag
+from users.models import UserProfile
+from versions.models import Version
+from zadmin.models import get_config, set_config
+
+import mkt
+import mkt.ratings
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
@@ -48,11 +54,6 @@ from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
-from reviews.models import Review, ReviewFlag
-from tags.models import Tag
-from users.models import UserProfile
-from versions.models import Version
-from zadmin.models import get_config, set_config
 
 
 TEST_PATH = path.dirname(path.abspath(__file__))
@@ -1851,7 +1852,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data, queue='rereview')
         eq_(RereviewQueue.objects.count(), 0)
         self._check_log(amo.LOG.REREVIEW_CLEARED)
-        # Ensure we don't send email on clearing re-reviews..
+        # Ensure we don't send email on clearing re-reviews.
         eq_(len(mail.outbox), 0)
         self._check_score(amo.REVIEWED_WEBAPP_REREVIEW)
 
@@ -2682,20 +2683,20 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
 
     def test_skip(self):
         # Skip the first review, which still leaves two.
-        self._post(reviews.REVIEW_MODERATE_SKIP)
+        self._post(mkt.ratings.REVIEW_MODERATE_SKIP)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 2)
 
     def test_delete(self):
         # Delete the first review, which leaves one.
-        self._post(reviews.REVIEW_MODERATE_DELETE)
+        self._post(mkt.ratings.REVIEW_MODERATE_DELETE)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 1)
         eq_(self._get_logs(amo.LOG.DELETE_REVIEW).count(), 1)
 
     def test_keep(self):
         # Keep the first review, which leaves one.
-        self._post(reviews.REVIEW_MODERATE_KEEP)
+        self._post(mkt.ratings.REVIEW_MODERATE_KEEP)
         res = self.client.get(self.url)
         eq_(len(res.context['page'].object_list), 1)
         eq_(self._get_logs(amo.LOG.APPROVE_REVIEW).count(), 1)
@@ -3343,7 +3344,7 @@ class TestReviewTranslate(AppReviewerTest):
                                             self.review.id, 'fr']))
         self.assert3xx(res, 'https://translate.google.com/#auto/fr/oui', 302)
 
-    @mock.patch('reviews.views.requests')
+    @mock.patch('mkt.reviewers.views.requests')
     def test_ajax_call(self, requests):
         # Mock requests.
         response = mock.Mock(status_code=200)
@@ -3364,3 +3365,27 @@ class TestReviewTranslate(AppReviewerTest):
                                                  'fr']),)
         eq_(res.status_code, 200)
         eq_(res.content, '{"body": "oui", "title": "oui"}')
+
+    @mock.patch('mkt.reviewers.views.requests')
+    def test_invalid_api_key(self, requests):
+        # Mock requests.
+        response = mock.Mock(status_code=400)
+        response.json.return_value = {
+            'error': {
+                'code': 400,
+                'errors': [
+                    {'domain': 'usageLimits',
+                     'message': 'Bad Request',
+                     'reason': 'keyInvalid'}
+                ],
+                'message': 'Bad Request'
+            }
+        }
+        requests.get.return_value = response
+
+        # Call translation.
+        review = self.review
+        res = self.client.get_ajax(reverse('reviewers.review_translate',
+                                           args=[review.addon.slug, review.id,
+                                                 'fr']),)
+        eq_(res.status_code, 400)

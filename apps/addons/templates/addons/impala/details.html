@@ -34,21 +34,6 @@
     <link itemprop="availability" href="http://schema.org/InStock" />
   </span>
 
-  <div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-    <meta content="{{ addon.average_rating }}" itemprop="ratingValue">
-    {{ addon.average_rating|stars(large=True) }}
-
-    <div>
-      <a id="reviews-link" href="{{ addon.reviews_url }}">
-      {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
-        <span itemprop="ratingCount">{{ num }}</span> user review
-      {% pluralize %}
-        <span itemprop="ratingCount">{{ num }}</span> user reviews
-      {% endtrans %}
-      </a>
-    </div>
-  </div>
-
   {% if addon.show_adu() %}
     {% set cnt = addon.average_daily_users %}
     {% if cnt %}

@@ -16,7 +16,6 @@
 {% endmacro %}
 
 {% macro item_info(addon, amo, show_date, show_downloads=False) %}
-  {{ reviews_link(addon) }}
   <p class="downloads">
     {% if show_downloads or addon.type == amo.ADDON_SEARCH %}
       {% with num=addon.weekly_downloads %}

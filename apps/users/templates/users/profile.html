@@ -62,30 +62,9 @@
   </div>
 {% endif %}
 
-<div class="island primary{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
-  <h2>{{ _('My Reviews') }}</h2>
-  <div class="items">
-    {% if reviews %}
-      {% for review in reviews %}
-        {% if hasOneToOne(review, 'addon') %}
-          {% set addon = review.addon %}
-          {% with show_addon = True %}
-            {% include "reviews/review.html" %}
-          {% endwith %}
-        {% endif %}
-      {% endfor %}
-      {{ edit_review_form() }}
-    {% else %}
-      <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
-    {% endif %}
-  </div>
-  {{ reviews|impala_paginator }}
-</div>
-
 {% endblock %}
 
 {% block popups %}
-  {{ report_review_popup() }}
   {% if abuse_form %}
     <div id="report-user-modal" class="modal hidden">
       <a href="#" class="close">{{ _('close') }}</a>

@@ -17,7 +17,7 @@
         </div>
         <h3>
           <a href="{{ review.instance.addon.get_url_path() }}">{{ review.instance.addon.name }}</a>
-          {%- if review.instance.title %}: {{ review.instance.title }}{% endif %}
+          <span>{%- if review.instance.title %}: {{ review.instance.title }}{% endif %}</span>
         </h3>
         <p>
           {% trans user=review.instance.user|user_link,

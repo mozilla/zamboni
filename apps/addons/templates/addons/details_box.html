@@ -62,10 +62,6 @@
                 </tr>
               {% endif %}
               {# XXX future feature: 'Localizations' ... #}
-              <tr>
-                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
-                <td>{{ reviews_link(addon) }}</td>
-              </tr>
               <tr class="meta-stats">
                 <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
                 <td>
@@ -197,17 +193,6 @@
         </em>
       </div>
     {% endif %}
-
-  {% if reviews is defined %}
-    {{ review_list_box(addon=addon, reviews=reviews) }}
-  {% endif %}
-
-  {% if review_form: %}
-    {% if request.user.is_authenticated() %}
-      {{ review_add_box(addon=addon) }}
-    {% endif %}
-  {% endif %}
-
 
   {% if version and show_actions %}
   <h3 id="releasenotes">{{ _('Version Notes', 'addons_display_release_notes') }}</h3>
