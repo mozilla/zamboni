@@ -228,6 +228,8 @@ In-app products are used for setting up in-app payments without the need to
 host your own JWT signer. This API is for managing your in-app products for use
 with the in-app payment service.
 
+.. note:: Feature not complete.
+
 .. note:: Authentication is required.
 
 .. http:post:: /api/v1/payments/(string:app_slug)/in-app/
@@ -367,6 +369,8 @@ Produces the JWT for purchasing an app that is passed to `navigator.mozPay`_.
 
 
 Produces the JWT for purchasing an in-app product that is passed to `navigator.mozPay`_.
+
+.. note:: Feature not complete.
 
 .. note:: Authentication is not required or supported.
 
