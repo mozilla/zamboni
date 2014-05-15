@@ -14,7 +14,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import waffle
 from django_browserid import get_audience, verify
 from django_statsd.clients import statsd
 from mobility.decorators import mobile_template
@@ -371,25 +370,22 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request, browserid_audience=None):
     msg = ''
-    if waffle.switch_is_active('browserid-login'):
-        if request.user.is_authenticated():
-            # If username is different, maybe sign in as new user?
-            return http.HttpResponse(status=200)
-        try:
-            is_mobile = bool(int(request.POST.get('is_mobile', 0)))
-        except ValueError:
-            is_mobile = False
-        with statsd.timer('auth.browserid.verify'):
-            profile, msg = browserid_authenticate(
-                request, request.POST.get('assertion'),
-                is_mobile=is_mobile,
-                browserid_audience=browserid_audience or get_audience(request))
-        if profile is not None:
-            auth.login(request, profile)
-            profile.log_login_attempt(True)
-            return http.HttpResponse(status=200)
-    else:
-        msg = 'browserid-login waffle switch is not enabled'
+    if request.user.is_authenticated():
+        # If username is different, maybe sign in as new user?
+        return http.HttpResponse(status=200)
+    try:
+        is_mobile = bool(int(request.POST.get('is_mobile', 0)))
+    except ValueError:
+        is_mobile = False
+    with statsd.timer('auth.browserid.verify'):
+        profile, msg = browserid_authenticate(
+            request, request.POST.get('assertion'),
+            is_mobile=is_mobile,
+            browserid_audience=browserid_audience or get_audience(request))
+    if profile is not None:
+        auth.login(request, profile)
+        profile.log_login_attempt(True)
+        return http.HttpResponse(status=200)
     return http.HttpResponse(msg, status=401)
 
 
@@ -571,7 +567,7 @@ def profile(request, user):
 @anonymous_csrf
 def register(request):
 
-    if settings.APP_PREVIEW and waffle.switch_is_active('browserid-login'):
+    if settings.APP_PREVIEW:
         messages.error(request,
                        loc('Registrations must be through browserid.'))
         form = None

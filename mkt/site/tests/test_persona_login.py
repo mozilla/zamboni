@@ -4,7 +4,6 @@ from datetime import datetime
 from urlparse import urlparse
 
 from django.conf import settings
-from django.contrib.auth.models import User
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_
@@ -28,6 +27,7 @@ def fake_request():
 
 FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
 
+
 class TestPersonaLogin(amo.tests.TestCase):
     fixtures = ('users/test_backends',)
 
@@ -38,7 +38,6 @@ class TestPersonaLogin(amo.tests.TestCase):
         self.user = UserProfile.objects.get(id='4043307')
         self.url = reverse('users.browserid_login')
         self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
-        self.create_switch('browserid-login')
 
     @patch('requests.post')
     def test_browserid_login_success(self, http_request):
@@ -142,7 +141,6 @@ class TestPersonaLogin(amo.tests.TestCase):
         Login still works even after the user has changed his email
         address on AMO.
         """
-        self.create_switch('browserid-login')
         url = reverse('users.browserid_login')
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
@@ -162,7 +160,6 @@ class TestPersonaLogin(amo.tests.TestCase):
         Login still works after a new UserProfile has been created for an
         email address another UserProfile formerly used.
         """
-        self.create_switch('browserid-login')
         url = reverse('users.browserid_login')
         UserProfile.objects.get(email="jbalogh@mozilla.com").update(
             email="badnews@example.com")
