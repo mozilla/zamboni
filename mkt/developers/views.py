@@ -17,7 +17,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jinja2
 import waffle
 from rest_framework import status as http_status
 from rest_framework.generics import CreateAPIView, ListAPIView
@@ -393,13 +392,10 @@ def content_ratings_edit(request, addon_id, addon):
     request.session.modified = True
 
     return render(request, 'developers/apps/ratings/ratings_edit.html',
-                  {'addon': addon, 'app_name': get_iarc_app_title(addon),
+                  {'addon': addon,
+                   'app_name': get_iarc_app_title(addon),
                    'form': form,
-                   # Force double escaping of developer name. If this has HTML
-                   # entities we want the escaped version to be passed to IARC.
-                   # See bug 962362.
-                   'company': jinja2.escape(unicode(
-                       jinja2.escape(addon.latest_version.developer_name))),
+                   'company': addon.latest_version.developer_name,
                    'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
 
 

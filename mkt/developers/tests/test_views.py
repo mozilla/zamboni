@@ -1240,7 +1240,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['storefront'], '1')
         # Note: The HTML is actually double escaped but pyquery shows it how it
         # will be send to IARC, which is singly escaped.
-        eq_(values['company'], 'Lex Luthor &lt;lex@kryptonite.org&gt;')
+        eq_(values['company'], 'Lex Luthor <lex@kryptonite.org>')
         eq_(values['email'], self.user.email)
         eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')
