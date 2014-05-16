@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import connection
 from django.db.models import Count, Q, Sum
 from django.http import Http404, HttpResponseRedirect
@@ -19,7 +20,6 @@ import amo
 import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
-from amo.urlresolvers import reverse
 from amo.utils import paginate
 from apps.access import acl
 from devhub.models import ActivityLog

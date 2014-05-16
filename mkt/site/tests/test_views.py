@@ -3,6 +3,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
@@ -13,11 +14,9 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
-from mkt.site.fixtures import fixture
 
 class Test403(amo.tests.TestCase):
     fixtures = ['base/users'] + fixture('webapp_337141')

@@ -8,6 +8,7 @@ from contextlib import contextmanager
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -18,23 +19,16 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+import mkt
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
 from amo.helpers import absolutify
 from amo.tests import (app_factory, assert_no_validation_errors,
                        version_factory)
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from files.models import File, FileUpload
-from market.models import AddonPremium, Price
-from stats.models import Contribution
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import Version
-
 from lib.iarc.utils import get_iarc_app_title
-
-import mkt
+from market.models import AddonPremium, Price
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.views import (_filter_transactions, _get_transactions,
@@ -44,6 +38,10 @@ from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
+from stats.models import Contribution
+from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -239,7 +237,8 @@ class TestAppDashboardSorting(AppHubTest):
         eq_(doc('#sorter').length, 1)
         eq_(doc('.paginator').length, 1)
 
-    def _test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
+    def _test_listing_sort(self, sort, key=None, reverse=True,
+                           sel_class='opt'):
         r = self.client.get(self.url, dict(sort=sort))
         eq_(r.status_code, 200)
         sel = pq(r.content)('#sorter ul > li.selected')

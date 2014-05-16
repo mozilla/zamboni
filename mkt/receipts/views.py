@@ -2,34 +2,32 @@ import json
 
 from django import http
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
 
+import commonware.log
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-
-import commonware.log
 from session_csrf import anonymous_csrf_exempt
 from tower import ugettext as _
 
-
+import amo
+import amo.log
+import mkt
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
-from constants.payments import CONTRIB_NO_CHARGE
-import amo
-import amo.log
 from amo.decorators import json_view, post_required, write
-from amo.urlresolvers import reverse
+from constants.payments import CONTRIB_NO_CHARGE
 from devhub.models import AppLog
 from editors.views import reviewer_required
-from lib.metrics import record_action
-from lib.crypto.receipt import SigningError
 from lib.cef_loggers import receipt_cef
+from lib.crypto.receipt import SigningError
+from lib.metrics import record_action
 from market.models import AddonPurchase
-import mkt
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import cors_api_view
@@ -43,6 +41,7 @@ from services.verify import get_headers, Verify
 from stats.models import ClientData
 from users.models import UserProfile
 from zadmin.models import DownloadSource
+
 
 log = commonware.log.getLogger('z.receipts')
 addon_view = addon_view_factory(qs=Webapp.objects.valid)

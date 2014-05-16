@@ -1,24 +1,23 @@
 from datetime import datetime
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from rest_framework import serializers
 
 import amo
+import mkt
 from addons.models import Category, Preview
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from constants.applications import DEVICE_TYPES
-from versions.models import Version
-
-import mkt
 from mkt.api.fields import ESTranslationSerializerField
 from mkt.submit.serializers import SimplePreviewSerializer
 from mkt.webapps.models import Geodata, Webapp
+from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
 from mkt.webapps.utils import (dehydrate_content_rating,
                                dehydrate_descriptors,
                                dehydrate_interactives)
-from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
+from versions.models import Version
 
 
 class ESAppSerializer(AppSerializer):

@@ -2,15 +2,15 @@ import calendar
 import time
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_
 
-from addons.models import AddonUser
 import amo
 import amo.tests
+from addons.models import AddonUser
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from amo.tests import addon_factory
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.webapps.models import Installed, Webapp

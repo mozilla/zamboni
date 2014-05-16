@@ -1,20 +1,17 @@
 import urllib
 
 from django import forms
+from django.core.urlresolvers import reverse
 
 from mock import patch
 from nose.tools import eq_
-
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
-from amo.urlresolvers import reverse
-
 from mkt.api.base import cors_api_view, SubRouterWithFormat
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.webapps.views import AppViewSet

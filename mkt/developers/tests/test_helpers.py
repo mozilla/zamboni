@@ -2,6 +2,7 @@
 import unittest
 import urllib
 
+from django.core.urlresolvers import reverse
 from django.utils import translation
 
 from mock import Mock
@@ -10,14 +11,12 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
-from amo.tests.test_helpers import render
 from addons.models import Addon
+from amo.tests.test_helpers import render
 from files.models import File, Platform
+from mkt.developers import helpers
 from users.models import UserProfile
 from versions.models import Version
-
-from mkt.developers import helpers
 
 
 def test_hub_page_title():

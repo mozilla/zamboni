@@ -1,27 +1,26 @@
 import json
 from urlparse import urlparse
 
+from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
 
 from mock import patch
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
+import mkt
 from addons.models import AddonUser
 from amo.tests import app_factory, ESTestCase, TestCase
-from amo.urlresolvers import reverse
-from users.models import UserProfile
-
-import mkt
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.fireplace.serializers import FireplaceAppSerializer
-from mkt.webapps.models import Webapp
 from mkt.search.utils import S
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
+from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.

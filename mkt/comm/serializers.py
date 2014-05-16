@@ -1,14 +1,14 @@
+from django.core.urlresolvers import reverse
+
 from rest_framework.fields import BooleanField, CharField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from addons.models import Addon
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from users.models import UserProfile
-from versions.models import Version
-
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
+from users.models import UserProfile
+from versions.models import Version
 
 
 class AuthorSerializer(ModelSerializer):

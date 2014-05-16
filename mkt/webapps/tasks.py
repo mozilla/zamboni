@@ -10,6 +10,7 @@ import time
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.template import Context, loader
 
 import pytz
@@ -23,10 +24,10 @@ from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
+import mkt
 from addons.models import Addon
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
 from editors.models import RereviewQueue
 from files.models import FileUpload
@@ -34,15 +35,14 @@ from files.utils import WebAppParser
 from lib.es.utils import get_indices
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
-from users.models import UserProfile
-from users.utils import get_task_user
-
-import mkt
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, validator)
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
+from users.models import UserProfile
+from users.utils import get_task_user
+
 
 
 task_log = logging.getLogger('z.task')

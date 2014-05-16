@@ -5,12 +5,13 @@ import shutil
 import socket
 import tempfile
 import urllib2
-from contextlib import contextmanager
 from cStringIO import StringIO
+from contextlib import contextmanager
 
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
@@ -20,13 +21,11 @@ from requests import RequestException
 
 import amo
 import amo.tests
+import mkt
 from addons.models import Preview
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from amo.utils import ImageCheck
 from files.models import FileUpload
-
-import mkt
 from mkt.developers import tasks
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest

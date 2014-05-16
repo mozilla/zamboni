@@ -1,15 +1,16 @@
+from django.conf import settings
+from django.core.urlresolvers import reverse
+
 import mock
 from nose import SkipTest
 from nose.tools import eq_
 
-from django.conf import settings
-
 import amo
-from amo.urlresolvers import reverse
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.site.fixtures import fixture
+from mkt.submit.tests.test_views import BasePackagedAppTest
+
 
 class TestDownload(BasePackagedAppTest):
     fixtures = ['base/apps', 'base/users', 'base/platforms'

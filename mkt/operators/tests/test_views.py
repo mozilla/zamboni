@@ -1,15 +1,15 @@
+from django.core.urlresolvers import reverse
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
 from amo.tests import app_factory
-from amo.urlresolvers import reverse
-from users.models import UserProfile
-
 from mkt.developers.models import PreloadTestPlan
 from mkt.operators.views import preloads
 from mkt.site.fixtures import fixture
+from users.models import UserProfile
 
 
 class TestPreloadCandidates(amo.tests.TestCase):

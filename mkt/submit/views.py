@@ -1,8 +1,11 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils.translation.trans_real import to_language
 
+import commonware.log
+import waffle
 from rest_framework import mixins
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny
@@ -11,17 +14,12 @@ from rest_framework.status import (HTTP_201_CREATED, HTTP_202_ACCEPTED,
                                    HTTP_400_BAD_REQUEST)
 from rest_framework.viewsets import GenericViewSet
 
-import commonware.log
-import waffle
-
 import amo
-from amo.decorators import login_required, write
-from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser, Preview
+from amo.decorators import login_required, write
+from .decorators import read_dev_agreement_required, submit_step
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
-from users.models import UserProfile
-
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -34,10 +32,11 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
 from mkt.submit.forms import AppDetailsBasicForm
+from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
-from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step

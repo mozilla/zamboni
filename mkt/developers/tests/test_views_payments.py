@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-
 import json
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 
 import mock
 from curling.lib import HttpClientError
@@ -14,21 +14,18 @@ from waffle.models import Switch
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
+import mkt
 from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
                            AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
                                 PROVIDER_BOKU, PROVIDER_REFERENCE)
-
 from market.models import Price
-
-import mkt
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.constants.regions import ALL_REGION_IDS, SPAIN, US, UK
-from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
+from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.views_payments import (get_inapp_config,
                                            require_in_app_payments)
 from mkt.site.fixtures import fixture

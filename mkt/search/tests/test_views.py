@@ -3,6 +3,7 @@ import json
 from urlparse import urlparse
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
 from django.http import QueryDict
 from django.test.client import RequestFactory
@@ -12,17 +13,11 @@ from nose.tools import eq_, ok_
 
 import amo
 import mkt
+import mkt.regions
 from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
-from amo.urlresolvers import reverse
-from stats.models import ClientData
-from tags.models import AddonTag, Tag
-from translations.helpers import truncate
-from users.models import UserProfile
-
-import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -31,13 +26,17 @@ from mkt.collections.models import Collection
 from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
-from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.forms import DEVICE_CHOICES_IDS
+from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.utils import S
 from mkt.search.views import SearchView, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
+from stats.models import ClientData
+from tags.models import AddonTag, Tag
+from translations.helpers import truncate
+from users.models import UserProfile
 
 
 class TestGetRegion(TestCase):

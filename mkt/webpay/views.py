@@ -2,37 +2,36 @@ import calendar
 import time
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware.log
 import django_filters
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import amo
 from amo.helpers import absolutify, urlparams
-from amo.urlresolvers import reverse
 from amo.utils import send_mail_jinja
 from lib.cef_loggers import app_pay_cef
 from market.models import Price
-from stats.models import ClientData, Contribution
-
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.webpay.forms import FailureForm, PrepareWebAppForm, PrepareInAppForm
+from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, WebAppProduct)
+from stats.models import ClientData, Contribution
 
 from . import tasks
 

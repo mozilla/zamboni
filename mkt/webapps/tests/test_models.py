@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.db.models.signals import post_delete, post_save
 from django.test.utils import override_settings
 from django.utils.translation import ugettext_lazy as _
@@ -22,12 +23,12 @@ from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_, raises
 
 import amo
+import mkt
 from addons.models import (Addon, AddonCategory, AddonDeviceType,
                            BlacklistedSlug, Category, Preview, version_changed)
 from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
-from amo.urlresolvers import reverse
 from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
@@ -39,10 +40,6 @@ from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from market.models import AddonPremium, Price
-from users.models import UserProfile
-from versions.models import update_status, Version
-
-import mkt
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -54,6 +51,8 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
+from users.models import UserProfile
+from versions.models import update_status, Version
 
 
 class TestWebapp(amo.tests.TestCase):

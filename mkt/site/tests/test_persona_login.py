@@ -4,12 +4,12 @@ from datetime import datetime
 from urlparse import urlparse
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from mock import ANY, Mock, patch
 from nose.tools import eq_
 
 import amo
-from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
 from users.models import UserProfile
 from users.views import browserid_authenticate

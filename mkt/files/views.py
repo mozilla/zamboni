@@ -2,25 +2,23 @@ from urlparse import urljoin
 
 from django import http, shortcuts
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 
 import commonware.log
-import waffle
 from cache_nuggets.lib import Message, Token
+from tower import ugettext as _
 
 from access import acl
 from amo.decorators import json_view
-from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile, urlparams
 from files import forms
 from files.decorators import (etag, webapp_file_view, compare_webapp_file_view,
                               webapp_file_view_token, last_modified)
 from files.tasks import extract_file
-
-from tower import ugettext as _
 
 
 log = commonware.log.getLogger('z.addons')
