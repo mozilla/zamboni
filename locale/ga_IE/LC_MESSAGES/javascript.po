@@ -23,7 +23,7 @@ msgstr[4] "{0} réiltín"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -98,23 +98,23 @@ msgstr "Bailíochtú {0} críochnaithe"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
+msgstr[1] "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí ach le {0} theachtaireacht."
+msgstr[2] "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí ach le {0} theachtaireacht."
+msgstr[3] "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí ach le {0} dteachtaireacht."
+msgstr[4] "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh."
 
 #: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Níl gach ardán ar fáil don chineál seo breiseáin."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Ní aithnítear cineál an comhaid a d'uasluchtaigh tú."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
@@ -122,11 +122,11 @@ msgstr "Chealaigh tú an t-uasluchtú."
 
 #: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Níl cead agat ach íomhá PNG nó JPG a úsáid."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Níl cead agat ach físeán WebM a úsáid."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
@@ -135,56 +135,56 @@ msgstr "Ba chóir duit d'aip phacáistithe a chur i gcomhad <code>.zip</code>."
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
-msgstr[1] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
-msgstr[2] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
-msgstr[3] "Níor éirigh le bailíochtú d'aip; bhí {0} n-earráid ann."
-msgstr[4] "Níor éirigh le bailíochtú d'aip; bhí {0} earráid ann."
+msgstr[0] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
+msgstr[1] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
+msgstr[2] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
+msgstr[3] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} n-earráid ann."
+msgstr[4] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} rabhadh."
+msgstr[1] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} rabhadh."
+msgstr[2] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} rabhadh."
+msgstr[3] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} rabhadh."
+msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} rabhadh."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Níorbh fhéidir an lastliosta a aimsiú san áit sin."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire na haipe."
 
 #: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Ní féidir lastliosta na haipe a pharsáil."
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Tá lastliosta na haipe neamhbhailí."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Tá an aip suiteáilte cheana."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Earráid inmheánach fhreastalaí."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Earráid inmheánach fhreastalaí agus an aip á suiteáil."
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Theip ar shuiteáil. Bain triail eile as ar ball."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
@@ -198,15 +198,15 @@ msgstr[4] ""
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
+msgstr[1] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} theachtaireacht."
+msgstr[2] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} theachtaireacht."
+msgstr[3] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} dteachtaireacht."
+msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "D'éirigh le d'aip sa bhailíochtú gan earráidí gan rabhaidh."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
 msgid "Changes Saved"
@@ -234,19 +234,19 @@ msgstr "Sampla"
 
 #: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1283
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Athruithe san íomhá á bpróiseáil"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Chun an físeán seo a sheinm, caithfidh tú brabhsálaí a úsáid a thacaíonn le físeáin oscailte "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "nó a úsáideann <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -254,43 +254,43 @@ msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an 
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr "Bain an logánú seo"
+msgstr "Bain an t-aistriúchán seo"
 
 #: media/js/devreg/login.js:75
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "Níorbh fhéidir logáil isteach i bPersona. B'fhéidir nach bhfuil do chuntas cláraithe leis an seoladh ríomhphoist sin?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Níorbh fhéidir logáil isteach i bPersona. Tharla fadhb leis an bhfreastalaí."
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "Taispeáin na torthaí go léir"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Aimsíodh níos mó ná {0} toradh; ba chóir duit cuardach níos cúinge a dhéanamh."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Ceadanna Iarrtha:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Deimhnithe"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Faoi Phribhléid"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Gan Pribhléid"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Gan fáth"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
@@ -298,60 +298,60 @@ msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Cód Bainc Spáinneach"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Cód Sórtála Éireannach"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Cód Sórtála Beilgeach"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Cód Bainc Spáinneach/Francach/Iodálach/Ollannach"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Cód Sórtála Ollannach"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Uimhir Idirthurais Cheanadach/Cód Ródaithe Gearmánach"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Banc agus Brainse Cóiréach/Cód Bainc Indinéiseach"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Cód Bainc Gréagach HEBIC/Indinéiseach"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
+msgstr "Cód Sórtála RA/Éireannach nó Réimír Chuntais Nua-Shéalannach nó Cód BSB Astrálach"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Cód Bainc Astrálach/Eilvéiseach"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Cód Bainc Danmhargach/Eilvéiseach"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Cód Bainc Iarácach/Eilvéiseach"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Cód Bainc Iarácach"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Braite: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
@@ -365,7 +365,7 @@ msgstr[4] ""
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Cuntais íocaíochta {appName}:"
 
 #: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
@@ -374,27 +374,27 @@ msgstr "Earráid"
 
 #: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Tharla earráid agus dul i dteagmháil leis an freastalaí íocaíochta."
 
 #: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
-msgstr ""
+msgstr "Earráid fíordheimhnithe"
 
 #: media/js/devreg/payments-manage.js:181
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Níl aon chuntais íocaíochta agat faoi láthair."
 
 #: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Déan cuardach ar <b>{0}</b> sna téamaí"
 
 #: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Déan cuardach ar <b>{0}</b> sna haipeanna"
 
 #: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Déan cuardach ar <b>{0}</b> sna breiseáin"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -412,7 +412,7 @@ msgstr "D'éirigh le gach tástáil."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
-msgstr ""
+msgstr "Níor ritheadh na tástálacha seo."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
@@ -462,15 +462,15 @@ msgstr "Earráid inmheánach leis an bhfreastalaí"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Á Cheannach"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Ceannaithe"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Tosaigh"
 
 #: media/js/devreg/reviewers/editors.js:141
 msgid "{name} was viewing this page first."
@@ -478,15 +478,15 @@ msgstr "Bhí {name} ag féachaint ar an leathanach seo ar dtús."
 
 #: media/js/devreg/reviewers/editors.js:191
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Sheiceáil an aip an admháil."
 
 #: media/js/devreg/reviewers/editors.js:193
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Níor sheiceáil an aip an admháil."
 
 #: media/js/devreg/reviewers/editors.js:264
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "Bhí {name} ag féachaint ar an mbreiseán seo romhat."
 
 #: media/js/devreg/reviewers/editors.js:275
 msgid "Loading&hellip;"
@@ -498,11 +498,11 @@ msgstr "Nótaí Eisiúna"
 
 #: media/js/devreg/reviewers/editors.js:285
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Nótaí d'Eagarthóirí"
 
 #: media/js/devreg/reviewers/editors.js:290
 msgid "No version notes found"
-msgstr ""
+msgstr "Níor aimsíodh aon nótaí eisiúna"
 
 #: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
 msgid "Select an application first"
@@ -510,7 +510,7 @@ msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
 #: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
-msgstr ""
+msgstr "Earráid agus aistriúchán á luchtú"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -522,7 +522,7 @@ msgstr "níos lú..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:6
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Coinnigh an léirmheas; bain na brataí"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -534,7 +534,7 @@ msgstr "Ná bac leis anois"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Theip ar íocaíocht. Bain triail eile as ar ball."
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "Packaged App"
@@ -542,23 +542,23 @@ msgstr "Aip Phacáistithe"
 
 #: media/js/devreg/reviewers/reviewers.js:108
 msgid "Privileged App"
-msgstr ""
+msgstr "Aip Faoi Phribhléid"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
-msgstr ""
+msgstr "Tuilleadh Eolais Iarrtha"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Nóta ó Eagarthóir Aige"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
-msgstr ""
+msgstr "Scoth-Aip"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
-msgstr ""
+msgstr "Ardaigh"
 
 #: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
@@ -566,28 +566,28 @@ msgstr "Saor in Aisce"
 
 #: media/js/devreg/reviewers/reviewers.js:234
 msgid "Any"
-msgstr ""
+msgstr "Ar Bith"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Aip deimhnithe: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Aip diúltaithe: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Earráid agus an aip á deimhniú: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:271
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Earráid agus an aip á diúltú: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Le {0} ar {1}"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
 msgid "Follow this Collection"
@@ -595,11 +595,11 @@ msgstr "Lean an Bailiúchán seo"
 
 #: media/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Ná Lean a Thuilleadh"
 
 #: media/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Á Leanúint"
 
 #. L10n: {0} is an app name.
 #: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
@@ -608,7 +608,7 @@ msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
 
 #: media/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Gach Ceart Ar Cosaint"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
@@ -652,7 +652,7 @@ msgstr ""
 
 #: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Torthaí á nuashonrú&hellip;"
 
 #: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
 msgid "Category"
@@ -660,7 +660,7 @@ msgstr "Catagóir"
 
 #: media/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "úsáid bunleagan"
 
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -674,11 +674,11 @@ msgstr[4] ""
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Seol ríomhphost chuig údar breiseáin amháin nár éirigh leis sa bhailíochtú."
+msgstr[1] "Seol ríomhphost chuig údair {2} bhreiseán nár éirigh leo sa bhailíochtú."
+msgstr[2] "Seol ríomhphost chuig údair {2} bhreiseán nár éirigh leo sa bhailíochtú."
+msgstr[3] "Seol ríomhphost chuig údair {2} mbreiseán nár éirigh leo sa bhailíochtú."
+msgstr[4] "Seol ríomhphost chuig údair {2} breiseán nár éirigh leo sa bhailíochtú."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -686,7 +686,7 @@ msgstr "Níl cead agat aipeanna a shuiteáil."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Lastliosta míchumtha."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -723,11 +723,11 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Ní mór duit Firefox 10.0 nó leagan níos nuaí a úsáid."
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Deir Mozilla nach bhfuil an leagan seo comhoiriúnach leis an leagan Firefox atá agat."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -761,7 +761,7 @@ msgstr "Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort ch
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr ""
+msgstr "bánaigh na cinn is déanaí"
 
 #: media/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
@@ -805,11 +805,11 @@ msgstr "Bain an t-úsáideoir seo ó na rannpháirtithe"
 
 #: media/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr ""
+msgstr "Caithfidh tú seoladh ríomhphoist a thabhairt."
 
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ní féidir tusa féin a chur leis mar rannpháirtí."
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -859,11 +859,11 @@ msgstr[4] "{reviews} léirmheas"
 
 #: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Ní mór duit seoladh bailí a úsáid."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Gan torthaí."
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -908,11 +908,11 @@ msgstr "D'éirigh le bailíochtú an bhreiseáin."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "{0} fhógra"
+msgstr[1] "{0} fhógra"
+msgstr[2] "{0} fhógra"
+msgstr[3] "{0} bhfógra"
+msgstr[4] "{0} fógra"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
@@ -920,7 +920,7 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Leagan níos nuaí de {0} de dhíth"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
@@ -932,7 +932,7 @@ msgstr "Turgnamhach <span>(Tuilleadh Eolais)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Níl sé ar fáil ar {0}"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
@@ -944,8 +944,8 @@ msgstr "Á Shuiteáil..."
 
 #: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
-msgstr ""
+msgstr "Á Cheannach..."
 
 #: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Rinne Mozilla réamhscrúdú ar an mbreiseán seo."
