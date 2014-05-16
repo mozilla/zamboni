@@ -56,7 +56,6 @@ from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives, get_locale_properties,
                                get_supported_locales)
-from stats.models import ClientData
 from translations.fields import PurifiedField, save_signal
 from versions.models import Version
 
@@ -1834,19 +1833,8 @@ class WebappIndexer(MappingType, Indexable):
             for lang, string
             in geodata.translations[geodata.banner_message_id]]
 
-        # Calculate regional popularity for "mature regions"
-        # (installs + reviews/installs from that region).
-        installs = dict(ClientData.objects.filter(installed__in=installed_ids)
-                        .annotate(region_counts=models.Count('region'))
-                        .values_list('region', 'region_counts').distinct())
         for region in mkt.regions.ALL_REGION_IDS:
-            cnt = installs.get(region, 0)
-            if cnt:
-                # Magic number (like all other scores up in this piece).
-                d['popularity_%s' % region] = d['popularity'] + cnt * 10
-            else:
-                d['popularity_%s' % region] = len(installed_ids)
-            d['_boost'] += cnt * 10
+            d['popularity_%s' % region] = d['popularity']
 
         # Bump the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC:
@@ -1993,7 +1981,6 @@ class Installed(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='installed')
     user = models.ForeignKey('users.UserProfile')
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
-    client_data = models.ForeignKey('stats.ClientData', null=True)
     # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
@@ -2004,7 +1991,7 @@ class Installed(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_install'
-        unique_together = ('addon', 'user', 'install_type', 'client_data')
+        unique_together = ('addon', 'user', 'install_type')
 
 
 @receiver(models.signals.post_save, sender=Installed)

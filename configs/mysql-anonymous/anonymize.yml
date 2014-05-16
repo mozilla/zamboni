@@ -22,7 +22,6 @@ database:
         - auth_user_user_permissions
         - auth_user
         - bluevia
-        - client_data
         - django_admin_log
         - django_session
         - django_site

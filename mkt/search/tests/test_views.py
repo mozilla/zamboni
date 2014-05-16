@@ -33,7 +33,6 @@ from mkt.search.views import SearchView, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
-from stats.models import ClientData
 from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
@@ -600,10 +599,8 @@ class TestApi(RestOAuth, ESTestCase):
 
         """
         user = UserProfile.objects.all()[0]
-        cd = ClientData.objects.create(region=mkt.regions.BR.id)
-
         unknown1 = amo.tests.app_factory()
-        Installed.objects.create(addon=unknown1, user=user, client_data=cd)
+        Installed.objects.create(addon=unknown1, user=user)
 
         unknown2 = amo.tests.app_factory()
         Installed.objects.create(addon=unknown2, user=user)

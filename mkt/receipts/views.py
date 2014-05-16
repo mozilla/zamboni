@@ -16,7 +16,6 @@ from tower import ugettext as _
 
 import amo
 import amo.log
-import mkt
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -38,9 +37,7 @@ from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.webapps.models import Installed, Webapp
 from services.verify import get_headers, Verify
-from stats.models import ClientData
 from users.models import UserProfile
-from zadmin.models import DownloadSource
 
 
 log = commonware.log.getLogger('z.receipts')
@@ -80,25 +77,6 @@ def _record(request, addon):
         # Log the install.
         installed, c = Installed.objects.get_or_create(addon=addon,
             user=request.amo_user, install_type=install_type)
-
-        # Get download source from GET if it exists, if so get the download
-        # source object if it exists. Then grab a client data object to hook up
-        # with the Installed object.
-        download_source = DownloadSource.objects.filter(
-            name=request.REQUEST.get('src', None))
-        download_source = download_source[0] if download_source else None
-        try:
-            region = request.REGION.id
-        except AttributeError:
-            region = mkt.regions.RESTOFWORLD.id
-        client_data, c = ClientData.objects.get_or_create(
-            download_source=download_source,
-            device_type=request.POST.get('device_type', ''),
-            user_agent=request.META.get('HTTP_USER_AGENT', ''),
-            is_chromeless=request.POST.get('chromeless', False),
-            language=request.LANG,
-            region=region)
-        installed.update(client_data=client_data)
 
         # Get a suitable uuid for this receipt.
         uuid = get_uuid(addon, request.amo_user)
