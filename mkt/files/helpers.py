@@ -6,6 +6,7 @@ import stat
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import filesizeformat
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
@@ -17,7 +18,6 @@ from jingo import env, register
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 from amo.utils import rm_local_tmp_dir
 from files.utils import extract_xpi, get_md5
 from validator.testcases.packagelayout import (blacklisted_extensions,

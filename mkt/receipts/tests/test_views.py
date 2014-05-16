@@ -5,27 +5,26 @@ import time
 import uuid
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
-from addons.models import AddonUser
 import amo
 import amo.tests
+from addons.models import AddonUser
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from devhub.models import AppLog
 from mkt.constants import apps
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.receipts.tests.test_models import TEST_LEEWAY
 from mkt.receipts.utils import create_test_receipt
 from mkt.receipts.views import devhub_verify
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
 from services.verify import decode_receipt, settings as verify_settings
 from users.models import UserProfile
 from zadmin.models import DownloadSource
-
-from .test_models import TEST_LEEWAY
 
 
 class TestInstall(amo.tests.TestCase):

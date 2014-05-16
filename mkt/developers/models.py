@@ -2,18 +2,19 @@ import posixpath
 import uuid
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 import commonware.log
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.constants.payments import ACCESS_SIMULATE
 from users.models import UserForeignKey
+
 
 log = commonware.log.getLogger('z.devhub')
 

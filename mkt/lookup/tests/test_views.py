@@ -5,6 +5,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import mail
+from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.utils.encoding import smart_str
 
@@ -22,13 +23,9 @@ from abuse.models import AbuseReport
 from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
-from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from devhub.models import ActivityLog
 from market.models import AddonPaymentData, Refund
-from stats.models import Contribution
-from users.models import Group, GroupUser, UserProfile
-
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -39,6 +36,8 @@ from mkt.lookup.views import (app_summary, _transaction_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from stats.models import Contribution
+from users.models import Group, GroupUser, UserProfile
 
 
 class SummaryTest(TestCase):

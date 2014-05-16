@@ -1,15 +1,14 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.core.urlresolvers import reverse
 
 from tower import ugettext as _
 
 import amo
+import mkt
 from access import acl
 from amo.context_processors import get_collect_timings
-from amo.urlresolvers import reverse
 from zadmin.models import get_config
-
-import mkt
 
 
 def global_settings(request):

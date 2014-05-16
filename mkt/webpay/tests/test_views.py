@@ -1,29 +1,28 @@
 import json
 from decimal import Decimal
-import jwt
 
 from django.conf import settings
 from django.core import mail
+from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 
+import jwt
 from mock import patch
 from nose.tools import eq_, ok_
 
+import mkt
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
-from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BANGO
 from market.models import Price, PriceCurrency
-from users.models import UserProfile, GroupUser
-
-import mkt
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
-from mkt.purchase.tests.utils import PurchaseTest, InAppPurchaseTest
+from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.views import PricesViewSet
 from stats.models import Contribution
+from users.models import GroupUser, UserProfile
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
@@ -295,7 +294,7 @@ class TestNotification(RestOAuth):
 
     def test_no_permission(self):
         GroupUser.objects.filter(user=self.profile).delete()
-        res = self.client.patch(self.get_url,  data=json.dumps(self.data))
+        res = self.client.patch(self.get_url, data=json.dumps(self.data))
         eq_(res.status_code, 403)
 
     def test_missing(self):

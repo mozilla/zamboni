@@ -5,9 +5,9 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.utils.http import http_date
 
-from cache_nuggets.lib import Message
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
@@ -15,13 +15,12 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
+from cache_nuggets.lib import Message
 from files.models import File
-from users.models import UserProfile
-
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'

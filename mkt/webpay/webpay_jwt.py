@@ -4,15 +4,16 @@ import uuid
 from urllib import urlencode
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 import commonware.log
 
 import amo
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from lib.crypto.webpay import sign_webpay_jwt
-from mkt.webpay.utils import strip_tags, make_external_id
+from mkt.webpay.utils import make_external_id, strip_tags
 from stats.models import Contribution
+
 
 log = commonware.log.getLogger('z.purchase')
 

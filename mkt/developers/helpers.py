@@ -3,6 +3,7 @@ import urllib
 from collections import defaultdict
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
 
 import chardet
@@ -12,11 +13,10 @@ from jingo.helpers import datetime as jingo_datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from amo.urlresolvers import reverse
 from access import acl
 from addons.helpers import new_context
-
 from mkt.site.helpers import mkt_breadcrumbs
+
 
 register.function(acl.check_addon_ownership)
 

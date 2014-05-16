@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
+
 import mock
 from nose.tools import eq_
 
-from django.core.urlresolvers import NoReverseMatch
-from django.test.utils import override_settings
-
 import amo.tests
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
-from users.models import UserProfile
-
 import mkt
-from mkt.api.tests.test_oauth import RestOAuth
+from amo.utils import urlparams
 from mkt.api.models import Access
+from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, Geodata
+from users.models import UserProfile
 
 
 class TestAPI(amo.tests.TestCase):
@@ -36,7 +35,8 @@ class TestAPI(amo.tests.TestCase):
         res = self.client.post(
             self.url,
             {'app_name': 'test', 'redirect_uri': 'mailto:cvan@example.com'})
-        self.assertFormError(res, 'form', 'redirect_uri', ['Enter a valid URL.'])
+        self.assertFormError(res, 'form', 'redirect_uri',
+                             ['Enter a valid URL.'])
 
     def test_create(self):
         Access.objects.create(user=self.user, key='foo', secret='bar')

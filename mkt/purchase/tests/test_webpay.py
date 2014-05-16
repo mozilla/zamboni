@@ -4,6 +4,7 @@ import time
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 import fudge
 import jwt
@@ -13,11 +14,9 @@ from mozpay.exc import RequestExpired
 from nose.tools import eq_, raises
 
 import amo
-from amo.urlresolvers import reverse
 from market.models import AddonPurchase
 from mkt.api.exceptions import AlreadyPurchased
 from stats.models import Contribution
-
 from utils import PurchaseTest
 
 

@@ -1,16 +1,15 @@
 import urlparse
 
+from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_str
 
 import jinja2
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy
 
+import mkt
 from access import acl
 from amo.helpers import impala_breadcrumbs
-from amo.urlresolvers import reverse
-
-import mkt
 from mkt.developers.helpers import mkt_page_title
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
