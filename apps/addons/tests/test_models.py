@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import itertools
 import json
 import os
 import tempfile
@@ -20,10 +19,9 @@ from nose.tools import assert_not_equal, eq_, raises
 
 import amo
 import amo.tests
-from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           AddonRecommendation, AddonType, AddonUpsell,
-                           AddonUser, AppSupport, BlacklistedSlug, Category,
-                           Charity, Preview)
+from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonType,
+                           AddonUpsell, AddonUser, AppSupport, BlacklistedSlug,
+                           Category, Charity, Preview)
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1366,8 +1364,6 @@ class TestAddonDelete(amo.tests.TestCase):
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
         AddonDeviceType.objects.create(addon=addon,
             device_type=DEVICE_TYPES.keys()[0])
-        AddonRecommendation.objects.create(addon=addon,
-            other_addon=addon, score=0)
         AddonUpsell.objects.create(free=addon, premium=addon)
         AddonUser.objects.create(addon=addon,
             user=UserProfile.objects.create())
@@ -1384,8 +1380,8 @@ class TestAddonDelete(amo.tests.TestCase):
 
 class TestAddonModelsFeatured(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/appversion', 'base/users',
-                'addons/featured', 
-                'base/addon_3615', 'base/collections', 'base/featured']
+                'addons/featured', 'base/addon_3615', 'base/collections',
+                'base/featured']
 
     def setUp(self):
         # Addon._featured keeps an in-process cache we need to clear.
@@ -1501,18 +1497,6 @@ class TestPreviewModel(amo.tests.TestCase):
         preview.update(filetype='video/webm')
         assert 'png' in preview.thumbnail_path
         assert 'webm' in preview.image_path
-
-
-class TestAddonRecommendations(amo.tests.TestCase):
-    fixtures = ['base/addon-recs']
-
-    def test_scores(self):
-        ids = [5299, 1843, 2464, 7661, 5369]
-        scores = AddonRecommendation.scores(ids)
-        q = AddonRecommendation.objects.filter(addon__in=ids)
-        for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
-            for rec in recs:
-                eq_(scores[addon][rec.other_addon_id], rec.score)
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):

@@ -26,7 +26,6 @@ import commonware.log
 import tower
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
-import waffle
 
 import amo
 import amo.models
@@ -206,10 +205,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         return self.is_superuser
 
     def get_backend(self):
-        if waffle.switch_is_active('browserid-login'):
-            return 'django_browserid.auth.BrowserIDBackend'
-        else:
-            return 'users.backends.AmoUserBackend'
+        return 'django_browserid.auth.BrowserIDBackend'
 
     def set_backend(self, val):
         pass

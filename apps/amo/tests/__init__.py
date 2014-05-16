@@ -27,6 +27,7 @@ import pyelasticsearch.exceptions as pyelasticsearch
 import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
+from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -286,6 +287,12 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         # Override django-cache-machine caching.base.TIMEOUT because it's
         # computed too early, before settings_test.py is imported.
         caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+        real_login = self.client.login
+        def fake_login(username, password):
+            with mock_browserid(email=username):
+                return real_login(username=username, password=password)
+        self.client.login = fake_login
+
 
     @contextmanager
     def activate(self, locale=None, app=None):
