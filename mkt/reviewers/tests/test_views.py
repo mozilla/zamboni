@@ -1099,9 +1099,14 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
 
 
 class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
+                            amo.tests.MockBrowserIdMixin,
                             amo.tests.test_utils.TransactionTestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
                        'webapp_337141')
+
+    def setUp(self):
+        super(TestReviewTransaction, self).setUp()
+        self.mock_browser_id()
 
     def get_app(self):
         return Webapp.objects.no_cache().get(id=337141)
