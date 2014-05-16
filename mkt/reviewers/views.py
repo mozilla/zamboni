@@ -10,25 +10,24 @@ import urllib
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.db.models import Count, Q
 from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404, redirect, render
 
-from rest_framework.exceptions import ParseError
-from rest_framework.generics import CreateAPIView, ListAPIView
-from rest_framework.response import Response
-
-
 import commonware.log
 import jinja2
 import requests
-from cache_nuggets.lib import Token
 from elasticutils import F
+from rest_framework.exceptions import ParseError
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
+import mkt
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
@@ -38,9 +37,9 @@ from amo.decorators import (any_permission_required, json_view,
                             permission_required)
 from amo.helpers import absolutify, urlparams
 from amo.models import manual_order
-from amo.urlresolvers import reverse
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
+from cache_nuggets.lib import Token
 from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
@@ -48,6 +47,23 @@ from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
 from editors.views import reviewer_required
 from files.models import File
 from lib.crypto.packaged import SigningError
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
+from mkt.api.authorization import GroupPermission
+from mkt.api.base import SlugOrIdMixin
+from mkt.comm.forms import CommAttachmentFormSet
+from mkt.regions.utils import parse_region
+from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
+from mkt.reviewers.serializers import (ReviewingSerializer,
+                                       ReviewersESAppSerializer)
+from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
+                                 device_queue_search)
+from mkt.search.utils import S
+from mkt.search.views import SearchView
+from mkt.site import messages
+from mkt.site.helpers import product_as_dict
+from mkt.submit.forms import AppFeaturesForm
+from mkt.webapps.models import Webapp, WebappIndexer
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from reviews.views import translate_review
@@ -55,28 +71,6 @@ from tags.models import Tag
 from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
-
-import mkt
-
-from mkt.api.authentication import (RestOAuthAuthentication,
-                                    RestSharedSecretAuthentication)
-from mkt.api.authorization import GroupPermission
-from mkt.api.base import SlugOrIdMixin
-from mkt.regions.utils import parse_region
-from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
-from mkt.reviewers.serializers import (ReviewingSerializer,
-                                       ReviewersESAppSerializer)
-from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
-                                 device_queue_search)
-from mkt.search.views import SearchView
-from mkt.search.utils import S
-from mkt.webapps.models import Webapp, WebappIndexer
-
-from mkt.comm.forms import CommAttachmentFormSet
-
-from mkt.site import messages
-from mkt.site.helpers import product_as_dict
-from mkt.submit.forms import AppFeaturesForm
 
 from . import forms
 from .models import AppCannedResponse

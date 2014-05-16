@@ -1,5 +1,6 @@
-"""Tests related to the ``mkt.developers.addons.owner`` view."""
 import datetime
+
+from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -8,7 +9,6 @@ import waffle
 import amo
 import amo.tests
 from amo.tests import formset
-from amo.urlresolvers import reverse
 from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog
 from mkt.site.fixtures import fixture

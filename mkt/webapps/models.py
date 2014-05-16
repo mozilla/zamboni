@@ -14,6 +14,7 @@ from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Max, Min, Q, signals as dbsignals
 from django.dispatch import receiver
@@ -27,6 +28,7 @@ from tower import ugettext as _
 
 import amo
 import amo.models
+import mkt
 from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, AddonUpsell,
@@ -36,23 +38,16 @@ from addons.signals import version_changed
 from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, smart_path, to_language, urlparams
 from constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from files.models import File, nfd_str, Platform
 from files.utils import parse_addon, WebAppParser
-from market.models import AddonPremium
-from stats.models import ClientData
-from translations.fields import PurifiedField, save_signal
-from versions.models import Version
-
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
-
-import mkt
+from market.models import AddonPremium
 from mkt.constants import APP_FEATURES, apps
 from mkt.developers.models import AddonPaymentAccount
 from mkt.regions.utils import parse_region
@@ -61,6 +56,9 @@ from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives, get_locale_properties,
                                get_supported_locales)
+from stats.models import ClientData
+from translations.fields import PurifiedField, save_signal
+from versions.models import Version
 
 
 log = commonware.log.getLogger('z.addons')

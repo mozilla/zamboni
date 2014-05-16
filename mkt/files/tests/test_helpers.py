@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 import os
-import mimetypes
 import zipfile
 
+from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django import forms
+from django.core.urlresolvers import reverse
 
 from mock import Mock, patch
 from nose.tools import eq_
 
 import amo.tests
-from amo.urlresolvers import reverse
 from files.utils import SafeUnzip
-
 from mkt.files.helpers import FileViewer, DiffHelper
 
 

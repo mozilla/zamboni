@@ -1,10 +1,11 @@
-from datetime import datetime
-from functools import partial
 import json
 import urllib
 import urlparse
+from datetime import datetime
+from functools import partial
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.test.client import Client, FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
 
@@ -15,16 +16,14 @@ from pyquery import PyQuery as pq
 from rest_framework.request import Request
 from test_utils import RequestFactory
 
-from amo.tests import TestCase
 from amo.helpers import absolutify, urlparams
-from amo.urlresolvers import reverse
-from users.models import UserProfile
-
+from amo.tests import TestCase
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
+from users.models import UserProfile
 
 
 def get_absolute_url(url, api_name='apps', absolute=True):

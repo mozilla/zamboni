@@ -5,6 +5,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
 
 import mock
@@ -17,25 +18,23 @@ from waffle.models import Switch
 
 import amo
 import amo.tests
+import mkt
 from access.models import Group, GroupUser
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import Version
-
-import mkt
 from mkt.comm.models import CommunicationNote
 from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
+from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
 
 
 response_mock = mock.Mock()

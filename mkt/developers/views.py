@@ -10,18 +10,19 @@ from django import forms as django_forms
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import status as http_status
-from rest_framework.generics import CreateAPIView, ListAPIView
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
 
 import commonware.log
 import jinja2
 import waffle
+from rest_framework import status as http_status
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _, ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
@@ -29,7 +30,6 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-
 from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
@@ -38,18 +38,11 @@ from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required, skip_cache, write)
-from amo.urlresolvers import reverse
 from amo.utils import escape_all
 from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
-from stats.models import ClientData, Contribution
-from users.models import UserProfile
-from users.views import _login
-from versions.models import Version
-
 from lib.iarc.utils import get_iarc_app_title
-
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.models import Access, generate
 from mkt.comm.utils import create_comm_note
@@ -70,6 +63,10 @@ from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
+from stats.models import ClientData, Contribution
+from users.models import UserProfile
+from users.views import _login
+from versions.models import Version
 
 from . import forms, tasks
 

@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import filesizeformat
 
 import commonware.log
@@ -12,15 +13,13 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-from mkt.constants import APP_PREVIEW_MINIMUMS
-from lib.video import library as video_library
-
+from amo.helpers import absolutify
 from editors.models import EscalationQueue
+from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
+from mkt.constants import APP_PREVIEW_MINIMUMS
 from mkt.constants import comm
 from mkt.reviewers.utils import send_mail
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 
 log = commonware.log.getLogger('z.devhub')
 

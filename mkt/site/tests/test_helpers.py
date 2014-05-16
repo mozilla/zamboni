@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 import fudge
 import mock
@@ -9,8 +9,6 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
-
 from mkt.site.helpers import css, get_login_link, js
 
 

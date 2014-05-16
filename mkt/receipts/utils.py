@@ -4,6 +4,7 @@ from urllib import urlencode
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 
 import jwt
 from nose.tools import nottest
@@ -11,7 +12,6 @@ from receipts.receipts import Receipt
 
 from access import acl
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from lib.crypto import receipt
 
 

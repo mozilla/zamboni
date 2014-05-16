@@ -6,6 +6,7 @@ import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 
 import mock
 from nose.tools import eq_, ok_
@@ -13,24 +14,22 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+import mkt
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
-from translations.models import Translation
-from users.models import UserProfile
-
-import mkt
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import AppFeatures, Webapp
+from translations.models import Translation
+from users.models import UserProfile
 
 
 class TestSubmit(amo.tests.TestCase):

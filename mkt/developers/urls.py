@@ -1,20 +1,18 @@
 from django import http
 from django.conf.urls import include, patterns, url
+from django.core.urlresolvers import reverse
 
 from rest_framework.routers import SimpleRouter
 
-from lib.misc.urlconf_decorator import decorate
-
 import amo
 from amo.decorators import write
-from amo.urlresolvers import reverse
-
+from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
-from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, UpsellViewSet)
 from mkt.developers.decorators import use_apps
+from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.inapp.views import InAppProductViewSet
 from mkt.receipts.urls import test_patterns
 

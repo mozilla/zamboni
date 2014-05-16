@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.utils.datastructures import SortedDict
 
@@ -14,11 +15,9 @@ from tower import ugettext_lazy as _lazy
 import amo
 from access import acl
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
-
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
@@ -300,7 +299,8 @@ class ReviewApp(ReviewBase):
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
         self.create_note(amo.LOG.REJECT_VERSION)
-        self.notify_email('pending_to_sandbox', u'Your submission has been rejected: %s')
+        self.notify_email('pending_to_sandbox',
+                          u'Your submission has been rejected: %s')
 
         log.info(u'Making %s disabled' % self.addon)
 

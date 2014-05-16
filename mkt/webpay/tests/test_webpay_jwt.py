@@ -2,6 +2,7 @@ import urlparse
 from urllib import urlencode
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import jwt
@@ -10,13 +11,12 @@ from nose.tools import eq_
 
 import amo
 from amo.helpers import absolutify
-from amo.urlresolvers import reverse
 from constants.payments import PROVIDER_BOKU
+from mkt import regions
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
+from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    WebAppProduct)
-from mkt import regions
-from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from stats.models import Contribution
 
 

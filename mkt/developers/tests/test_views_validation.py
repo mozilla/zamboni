@@ -7,6 +7,7 @@ import tempfile
 
 from django import forms
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 
 from mock import Mock, patch
 from nose.tools import eq_
@@ -15,10 +16,8 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
 from files.models import FileUpload
 from files.utils import WebAppParser
-
 from mkt.developers.views import standalone_hosted_upload
 from mkt.files.helpers import copyfileobj
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest

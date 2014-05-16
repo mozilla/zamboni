@@ -1,15 +1,14 @@
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from editors.models import RereviewQueue
-from users.models import UserProfile
-
 from mkt.site.fixtures import fixture
+from users.models import UserProfile
 
 
 class TestHome(amo.tests.TestCase):

@@ -110,7 +110,7 @@ suds==0.4
 -e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git+https://github.com/washort/django-mysql-pool.git@3c2e353a3d504d9e6092db524f748ccb13c6dea3#egg=django-mysql-pool
+-e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
 
 
 ## Out of date or not sure on pypi. Not sure why I pulled this earlier, putting it back.

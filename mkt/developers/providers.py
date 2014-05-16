@@ -4,13 +4,13 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 
 import bleach
 import commonware
 from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
 
-from amo.urlresolvers import reverse
 from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
                                 PROVIDER_REFERENCE)
 from lib.crypto import generate_key
@@ -21,6 +21,7 @@ from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
 from mkt.webpay.utils import make_external_id
+
 
 root = 'developers/payments/includes/'
 

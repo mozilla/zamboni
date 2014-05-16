@@ -4,12 +4,12 @@ import urllib
 
 from django import http
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 
 import commonware
 import jinja2
 import waffle
-
 from curling.lib import HttpClientError
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
@@ -18,13 +18,11 @@ import amo
 from access import acl
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from amo.urlresolvers import reverse
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
                                 PROVIDER_CHOICES)
 from lib.crypto import generate_key
 from lib.pay_server import client
-
 from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers import forms, forms_payments
@@ -34,6 +32,7 @@ from mkt.developers.providers import get_provider, get_providers
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.webapps.models import Webapp
+
 
 log = commonware.log.getLogger('z.devhub')
 
