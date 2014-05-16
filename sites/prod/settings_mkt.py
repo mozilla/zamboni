@@ -89,9 +89,6 @@ PAYPAL_CHAINS = (
     (30, private_mkt.PAYPAL_CHAINS_EMAIL),
 )
 
-
-CRONJOB_LOCK_PREFIX = 'addons'
-
 STATSD_PREFIX = 'marketplace'
 
 GRAPHITE_PREFIX = STATSD_PREFIX
