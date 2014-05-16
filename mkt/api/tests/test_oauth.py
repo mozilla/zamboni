@@ -8,6 +8,7 @@ from django.conf import settings
 from django.test.client import Client, FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
 
+from django_browserid.tests import mock_browserid
 from nose.tools import eq_
 from oauthlib import oauth1
 from pyquery import PyQuery as pq
@@ -64,6 +65,11 @@ class OAuthClient(Client):
         self.access = access
         self.get_absolute_url = partial(get_absolute_url,
                                         api_name=api_name)
+
+    def login(self, username, password):
+        with mock_browserid(email=username):
+            return super(OAuthClient, self).login(username=username,
+                                                  password=password)
 
     def sign(self, method, url):
         if not self.access:
