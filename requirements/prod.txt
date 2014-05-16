@@ -16,7 +16,7 @@ cssutils==0.9.7b3
 curling==0.3.9.4
 defusedxml==0.4.1
 dennis==0.3.10
-Django==1.6.2
+Django==1.6.5
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-browserid==0.8
@@ -110,7 +110,7 @@ suds==0.4
 -e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git+https://github.com/washort/django-mysql-pool.git@47b7bc35a7b00a9798d4fe4792764ab00bfcb5b6#egg=django-mysql-pool
+-e git+https://github.com/washort/django-mysql-pool.git@3c2e353a3d504d9e6092db524f748ccb13c6dea3#egg=django-mysql-pool
 
 
 ## Out of date or not sure on pypi. Not sure why I pulled this earlier, putting it back.
