@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-01 19:04+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-05-16 17:39+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398971060.0\n"
+"X-POOTLE-MTIME: 1400261970.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -174,18 +174,21 @@ msgstr "Installazione non riuscita. Riprovare più tardi."
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "È fallito il processo di validazione dell'app con {0} errore e {1} messaggio."
-msgstr[1] "È fallito il processo di validazione dell'app con {0} errori e {1} messaggi."
+msgstr[0] ""
+"È fallito il processo di validazione dell’app con {0} errore e {1} "
+"messaggio."
+msgstr[1] ""
+"È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "L'app ha superato i controlli senza errori e con {0} messaggio."
-msgstr[1] "L'app ha superato i controlli senza errori e con {0} messaggi."
+msgstr[0] "L’app ha superato i controlli senza errori e con {0} messaggio."
+msgstr[1] "L’app ha superato i controlli senza errori e con {0} messaggi."
 
 #: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
 msgid "Your app passed validation with no errors or messages."
-msgstr "L'app ha superato i controlli senza errori e senza avvisi."
+msgstr "L’app ha superato i controlli senza errori e senza avvisi."
 
 #: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
 msgid "Changes Saved"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-01 19:07+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-05-16 17:37+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398971263.0\n"
+"X-POOTLE-MTIME: 1400261845.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -1787,11 +1787,11 @@ msgstr "La classificazione del contenuto di {addon} è stata modificata."
 
 #: apps/amo/log.py:662
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "È stata richiesta una revisione prioritaria per {addon}."
 
 #: apps/amo/log.py:663
 msgid "Priority Review"
-msgstr ""
+msgstr "Revisione prioritaria"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1821,6 +1821,20 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Siamo spiacenti ma non riusciamo a trovare quello che stavi "
+"cercando.</h1> <p> La pagina o il file richiesti non si trovano sul nostro "
+"sito. È possibile che tu abbia utilizzato un link scaduto o commesso un "
+"errore nel digitare l’indirizzo. </p> <ul> <li>Verifica di non aver commesso "
+"errori se hai digitato l’indirizzo manualmente.</li> <li> Se hai utilizzato "
+"un link, invia una email a <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Spiegaci da "
+"dove provenivi e cosa stavi cercando, faremo del nostro meglio per "
+"correggere l’errore. </li> </ul> <p>In alternativa puoi visitare alcune "
+"delle pagine più popolari sul nostro sito web.</p> <ul><li> Vuoi <a href=\"%"
+"(search)s\">cercare tra i componenti aggiuntivi</a>? Puoi andare alla <a "
+"href=\"%(search)s\">pagina di ricerca</a> o utilizzare il campo di ricerca in "
+"alto. </li> <li> Se preferisci ripartire dall’inizio, puoi tornare alla <a "
+"href=\"%(home)s\">pagina principale del sito</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -10587,47 +10601,47 @@ msgstr "Contenuti che incutono paura"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Violenza astratta"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Utilizzo di bevande alcoliche"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Utilizzo di sostanze stupefacenti"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Violenza esplicita"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Horror"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Violenza sessuale"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Riferimento a una violenza sessuale"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Riferimenti a sesso"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "Paura sporadica"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "Linguaggio scurrile sporadico"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Utilizzo di tabacco"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -11872,15 +11886,17 @@ msgstr "Usa con moderazione"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Revisione prioritaria richiesta"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Questa app riceverà un trattamento prioritario e verrà inserita in cima alla "
+"coda di revisione"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Questo durerà fino alla sua approvazione"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -13823,11 +13839,11 @@ msgstr "App remota"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "A questa revisione è stata assegnata la priorità"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "Assegnare la priorità a questa revisione?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -14209,7 +14225,7 @@ msgstr "Avvisami quando il file manifesto sarà aggiornato (ulteriori aggiorname
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Questa app è compatibile con i dispositivi Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -14230,7 +14246,7 @@ msgstr "Richiesta di ulteriori informazioni"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Pronta per Tarako"
 
 #: mkt/reviewers/helpers.py:31 mkt/reviewers/helpers.py:62 mkt/site/context_processors.py:44
 msgid "Reviewer Tools"
@@ -14737,7 +14753,7 @@ msgstr "Filtro"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Revisione prioritaria richiesta"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
