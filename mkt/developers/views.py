@@ -62,7 +62,7 @@ from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import ClientData, Contribution
+from stats.models import Contribution
 from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
@@ -1109,8 +1109,7 @@ def debug(request, addon):
             user=request.amo_user,
             region=request.REGION,
             source=request.REQUEST.get('src', ''),
-            lang=request.LANG,
-            client_data=ClientData.get_or_create(request),
+            lang=request.LANG
         )['webpayJWT']
 
     return render(request, 'developers/debug.html',

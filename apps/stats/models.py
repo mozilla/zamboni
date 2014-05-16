@@ -39,7 +39,6 @@ class Contribution(amo.models.ModelBase):
                                 choices=do_dictsort(amo.PAYPAL_CURRENCIES),
                                 default=amo.CURRENCY_DEFAULT)
     source = models.CharField(max_length=255, null=True)
-    client_data = models.ForeignKey('stats.ClientData', null=True)
     source_locale = models.CharField(max_length=10, null=True)
     # This is the external id that you can communicate to the world.
     uuid = models.CharField(max_length=255, null=True, db_index=True)
@@ -238,46 +237,3 @@ class Contribution(amo.models.ModelBase):
                                             type__in=[amo.CONTRIB_REFUND,
                                                       amo.CONTRIB_CHARGEBACK])
                                     .exists())
-
-
-class ClientData(models.Model):
-    """
-    Helps tracks user agent and download source data of installs and purchases.
-    """
-    download_source = models.ForeignKey('zadmin.DownloadSource', null=True)
-    device_type = models.CharField(max_length=255)
-    user_agent = models.CharField(max_length=255)
-    is_chromeless = models.BooleanField(default=False)
-    language = models.CharField(max_length=7)
-    region = models.IntegerField(null=True)
-
-    @classmethod
-    def get_or_create(cls, request):
-        """Get or create a client data object based on the current request."""
-        download_source = request.REQUEST.get('src', '')
-        try:
-            download_source = DownloadSource.objects.get(name=download_source)
-        except DownloadSource.DoesNotExist:
-            download_source = None
-        region = None
-        if hasattr(request, 'REGION') and request.REGION:
-            region = request.REGION.id
-        else:
-            region = mkt.regions.RESTOFWORLD.id
-        if hasattr(request, 'LANG'):
-            lang = request.LANG
-        else:
-            lang = translation.get_language()
-        client_data, c = cls.objects.get_or_create(
-            download_source=download_source,
-            device_type=request.POST.get('device_type', ''),
-            user_agent=request.META.get('HTTP_USER_AGENT', ''),
-            is_chromeless=request.POST.get('chromeless', False),
-            language=lang,
-            region=region)
-        return client_data
-
-    class Meta:
-        db_table = 'client_data'
-        unique_together = ('download_source', 'device_type', 'user_agent',
-                           'is_chromeless', 'language', 'region')

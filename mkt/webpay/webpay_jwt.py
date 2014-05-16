@@ -19,14 +19,13 @@ log = commonware.log.getLogger('z.purchase')
 
 
 def get_product_jwt(product, user=None, region=None,
-                    source=None, lang=None, client_data=None):
+                    source=None, lang=None):
     """Prepare a JWT for paid products to pass into navigator.pay()"""
 
     # TODO: Contribution should be created outside of the JWT producer
     contribution = Contribution.objects.create(
         addon_id=product.addon().pk,
         amount=product.amount(region),
-        client_data=client_data,
         paykey=None,
         price_tier=product.price(),
         source=source,

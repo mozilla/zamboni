@@ -31,7 +31,7 @@ from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, WebAppProduct)
-from stats.models import ClientData, Contribution
+from stats.models import Contribution
 
 from . import tasks
 
@@ -68,7 +68,6 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
 
         token = get_product_jwt(
             WebAppProduct(app),
-            client_data=ClientData.get_or_create(request._request),
             lang=request._request.LANG,
             region=request._request.REGION,
             source=request._request.REQUEST.get('src', ''),
@@ -106,7 +105,6 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
 
         token = get_product_jwt(
             InAppProduct(inapp),
-            client_data=ClientData.get_or_create(request._request),
             lang=request._request.LANG,
             source=request._request.REQUEST.get('src', ''),
         )
