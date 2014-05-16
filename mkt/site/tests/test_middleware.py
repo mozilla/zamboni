@@ -255,6 +255,7 @@ class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
 
 
 class TestVaryMiddleware(amo.tests.TestCase):
+    fixtures = fixture('user_999')
 
     def test_vary_headers(self):
         vary = lambda res: [x.strip() for x in res.get('Vary', '').split(',')]
@@ -290,7 +291,7 @@ class TestVaryMiddleware(amo.tests.TestCase):
     def test_no_user_agent(self):
         # We've toggled the middleware to not rewrite the application and also
         # not vary headers based on User-Agent.
-        self.client.login(username='31337', password='password')
+        self.client.login(username='regular@mozilla.com', password='password')
 
         r = self.client.get('/robots.txt', follow=True)
         eq_(r.status_code, 200)
