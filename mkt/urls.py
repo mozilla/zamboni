@@ -8,8 +8,7 @@ from django.views.i18n import javascript_catalog
 
 import amo
 from apps.users.views import logout
-from apps.users.urls import (detail_patterns as user_detail_patterns,
-                             users_patterns as users_users_patterns)
+from mkt.account.urls import user_patterns
 from mkt.api import oauth
 from mkt.detail.views import manifest as mini_manifest
 from mkt.developers.views import login
@@ -44,9 +43,8 @@ urlpatterns = patterns('',
     # Submission.
     ('^developers/submit/', include('mkt.submit.urls')),
 
-    # Users (Legacy).
-    ('^user/(?P<user_id>\d+)/', include(user_detail_patterns)),
-    ('^users/', include(users_users_patterns)),
+    # Users.
+    ('^users/', include(user_patterns)),
 
     # Reviewer tools.
     ('^reviewers/', include(reviewer_url_patterns)),

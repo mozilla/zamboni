@@ -1,5 +1,7 @@
 from django.conf.urls import include, patterns, url
 
+from users import views
+
 from mkt.account.views import (AccountView, FeedbackView, InstalledView,
                                LoginView, LogoutView, NewsletterView,
                                PermissionsView)
@@ -19,4 +21,10 @@ drf_patterns = patterns('',
 
 api_patterns = patterns('',
     url('^account/', include(drf_patterns)),
+)
+
+user_patterns = patterns('',
+    url('^ajax$', views.ajax, name='users.ajax'),
+    url('^browserid-login', views.browserid_login,
+        name='users.browserid_login'),
 )

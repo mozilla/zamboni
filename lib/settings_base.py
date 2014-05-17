@@ -114,9 +114,7 @@ DATABASE_POOL_ARGS = {
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
 
-PASSWORD_HASHERS = (
-    'users.models.SHA512PasswordHasher',
-)
+PASSWORD_HASHERS = ()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -399,8 +397,7 @@ MIDDLEWARE_CLASSES = (
 
 # Auth
 AUTHENTICATION_BACKENDS = (
-    'users.backends.AmoUserBackend',
-    'django_browserid.auth.BrowserIDBackend'
+    'django_browserid.auth.BrowserIDBackend',
 )
 AUTH_USER_MODEL = 'users.UserProfile'
 
@@ -942,8 +939,6 @@ CELERY_ROUTES = {
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
-    'users.tasks.resize_photo': {'queue': 'images'},
-    'users.tasks.delete_photo': {'queue': 'images'},
     'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},
 
     # Comm.
@@ -1104,9 +1099,6 @@ def read_only_mode(env):
         raise Exception("We need at least one slave database.")
     slave = env['SLAVE_DATABASES'][0]
     env['DATABASES']['default'] = env['DATABASES'][slave]
-
-    # No sessions without the database, so disable auth.
-    env['AUTHENTICATION_BACKENDS'] = ('users.backends.NoAuthForYou',)
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'amo.middleware.ReadOnlyMiddleware'

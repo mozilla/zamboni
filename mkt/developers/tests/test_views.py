@@ -74,11 +74,6 @@ class TestHome(amo.tests.TestCase):
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
 
-    def test_legacy_login_redirect(self):
-        r = self.client.get('/users/login')
-        got, exp = r['Location'], '/login'
-        assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
-
     def test_login_redirect(self):
         r = self.client.get(self.url)
         self.assertLoginRedirects(r, '/developers/submissions', 302)

@@ -2,7 +2,7 @@
   <div class="pad">
     <nav class="menu-nav app-nav no-img" role="navigation">
       <ul class="c">
-        {% if request.user.is_authenticated() and request.amo_user.is_app_developer %}
+        {% if request.user.is_authenticated() and request.amo_user.is_developer %}
           <li id="submissions" class="top">
             <a href="{{ url('mkt.developers.apps')|urlparams(src='nav') }}">
               {{ _('My Submissions') }}</a>

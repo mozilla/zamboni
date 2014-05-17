@@ -25,9 +25,6 @@ urlpatterns = patterns('',
     # Files
     ('^files/', include('files.urls')),
 
-    # Users
-    ('', include('users.urls')),
-
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
@@ -43,9 +40,6 @@ urlpatterns = patterns('',
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
-
-    ('^users/info/(\d+)',
-     lambda r, id: redirect('users.profile', id, permanent=True)),
 
     # Redirect persona/xxx
     ('^getpersonas$',

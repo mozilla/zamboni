@@ -1,35 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.core.urlresolvers import reverse
 
 import fudge
 import mock
-from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.helpers import urlparams
-from mkt.site.helpers import css, get_login_link, js
-
-
-def test_login_link():
-    request = mock.Mock()
-    request.user = mock.Mock()
-    request.user.is_authenticated.return_value = False
-    request.GET = {}
-    eq_(reverse('users.login'), get_login_link({'request': request}))
-
-    request.GET = {'to': '/login'}
-    eq_(reverse('users.login'), get_login_link({'request': request}))
-
-    request.GET = {'to': 'foo'}
-    eq_(urlparams(reverse('users.login'), to='foo'),
-        get_login_link({'request': request}))
-    eq_(urlparams(reverse('users.login'), to='bar'),
-        get_login_link({'request': request}, 'bar'))
-
-    request.user.is_authenticated.return_value = True
-    eq_(get_login_link({'request': request}, to='foo'), 'foo')
+from mkt.site.helpers import css, js
 
 
 class TestCSS(amo.tests.TestCase):

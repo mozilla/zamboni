@@ -27,7 +27,6 @@ from django.core.serializers import json
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.http import HttpRequest
-from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
@@ -51,7 +50,6 @@ from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import linkify_with_outgoing, reverse
 from translations.models import Translation
 from users.models import UserNotification
-from users.utils import UnsubscribeCode
 
 from . import logger_log as log
 
@@ -153,7 +151,6 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     Adds blacklist checking and error logging.
     """
-    from amo.helpers import absolutify
     from amo.tasks import send_email
     import users.notifications as notifications
 
@@ -219,51 +216,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             return send_email(*args, **kwargs)
 
     if white_list:
-        if perm_setting:
-            html_template = loader.get_template('amo/emails/unsubscribe.html')
-            text_template = loader.get_template('amo/emails/unsubscribe.ltxt')
-            if not manage_url:
-                manage_url = urlparams(absolutify(
-                    reverse('users.edit', add_prefix=False)),
-                    'acct-notify')
-            for recipient in white_list:
-                # Add unsubscribe link to footer.
-                token, hash = UnsubscribeCode.create(recipient)
-                unsubscribe_url = absolutify(reverse('users.unsubscribe',
-                    args=[token, hash, perm_setting.short],
-                    add_prefix=False))
-
-                context_options = {
-                    'message': message,
-                    'manage_url': manage_url,
-                    'unsubscribe_url': unsubscribe_url,
-                    'perm_setting': perm_setting.label,
-                    'SITE_URL': settings.SITE_URL,
-                    'mandatory': perm_setting.mandatory,
-                    # Hide "Unsubscribe" links in Marketplace emails
-                    # (bug 802379).
-                    'show_unsubscribe': False,
-                }
-                # Render this template in the default locale until
-                # bug 635840 is fixed.
-                with no_translation():
-                    context = Context(context_options, autoescape=False)
-                    message_with_unsubscribe = text_template.render(context)
-
-                if html_message:
-                    context_options['message'] = html_message
-                    with no_translation():
-                        context = Context(context_options, autoescape=False)
-                        html_with_unsubscribe = html_template.render(context)
-                        result = send([recipient], message_with_unsubscribe,
-                                      html_message=html_with_unsubscribe,
-                                      attachments=attachments)
-                else:
-                    result = send([recipient], message_with_unsubscribe,
-                                  attachments=attachments)
-        else:
-            result = send(recipient_list, message=message,
-                          html_message=html_message, attachments=attachments)
+        result = send(recipient_list, message=message,
+                      html_message=html_message, attachments=attachments)
     else:
         result = True
 

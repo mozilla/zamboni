@@ -100,11 +100,7 @@
             <table>
               {% for editors in new_editors %}
               <tr>
-                <td>
-                  <a href="{{ url('users.profile', editors['added']) }}">
-                    {{ editors['display_name'] }}
-                  </a>
-                </td>
+                <td>{{ editors['display_name'] }}</td>
                 <td class="date" title="{{ editors['created']|babel_datetime }}">
                   {{ editors['created']|timesince }}
                 </td>

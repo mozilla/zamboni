@@ -63,8 +63,6 @@ def global_settings(request):
         account_links.append({'text': _('My Profile'),
                               'href': profile.get_url_path()})
 
-        account_links.append({'text': _('Account Settings'),
-                              'href': reverse('users.edit')})
         if not settings.APP_PREVIEW:
             account_links.append({
                 'text': _('My Collections'),

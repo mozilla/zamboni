@@ -267,24 +267,6 @@ def external_href(url):
     return jinja2.Markup(t)
 
 
-@register.function
-@jinja2.contextfunction
-def get_login_link(context, to=None):
-    request = context['request']
-    # If to is given use that, otherwise get from request.
-    to = to or request.GET.get('to')
-
-    # If logged in, just return the URL.
-    if request.user.is_authenticated():
-        return to
-
-    url = reverse('users.login')
-    # Don't allow loop backs to login.
-    if to == url:
-        to = None
-    return urlparams(url, to=to)
-
-
 @register.filter
 def more_button(pager):
     t = env.get_template('site/paginator.html')

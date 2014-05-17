@@ -1,44 +1,10 @@
-from django.conf import settings
-from django.core.files.storage import default_storage as storage
-
 import commonware.log
 from celeryutils import task
-
-from amo.decorators import set_modified_on
-from amo.utils import resize_image
 
 from .models import UserProfile
 
 
 task_log = commonware.log.getLogger('z.task')
-
-
-@task
-def delete_photo(dst, **kw):
-    task_log.debug('[1@None] Deleting photo: %s.' % dst)
-
-    if not dst.startswith(settings.USERPICS_PATH):
-        task_log.error("Someone tried deleting something they shouldn't: %s"
-                       % dst)
-        return
-
-    try:
-        storage.delete(dst)
-    except Exception, e:
-        task_log.error("Error deleting userpic: %s" % e)
-
-
-@task
-@set_modified_on
-def resize_photo(src, dst, locally=False, **kw):
-    """Resizes userpics to 200x200"""
-    task_log.debug('[1@None] Resizing photo: %s' % dst)
-
-    try:
-        resize_image(src, dst, (200, 200), locally=locally)
-        return True
-    except Exception, e:
-        task_log.error("Error saving userpic: %s" % e)
 
 
 @task(rate_limit='15/m')

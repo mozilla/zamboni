@@ -61,7 +61,7 @@ class PermissionsSerializer(serializers.Serializer):
         allowed = partial(acl.action_allowed, request)
         permissions = {
             'admin': allowed('Admin', '%'),
-            'developer': request.amo_user.is_app_developer,
+            'developer': request.amo_user.is_developer,
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
             'curator': allowed('Collections', 'Curate'),
