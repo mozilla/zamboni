@@ -25,9 +25,6 @@ urlpatterns = patterns('',
     # Files
     ('^files/', include('files.urls')),
 
-    # Users
-    ('', include('users.urls')),
-
     # AMO admin (not django admin).
     ('^admin/', include('zadmin.urls')),
 
@@ -44,18 +41,6 @@ urlpatterns = patterns('',
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
 
-    # Review spam.
-    url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
-
-    ('^reviews/display/(\d+)',
-      lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
-
-    ('^reviews/add/(\d+)',
-      lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
-
-    ('^users/info/(\d+)',
-     lambda r, id: redirect('users.profile', id, permanent=True)),
-
     # Redirect persona/xxx
     ('^getpersonas$',
      lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',
@@ -67,9 +52,6 @@ urlpatterns = patterns('',
     # Redirect top-tags to tags/top
     ('^top-tags/?',
      lambda r: redirect('tags.top_cloud', permanent=True)),
-
-    ('^addons/reviews/(\d+)/format:rss$',
-     lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
 
     ('^addons/contribute/(\d+)/?$',
      lambda r, id: redirect('addons.contribute', id, permanent=True)),

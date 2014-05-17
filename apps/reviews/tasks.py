@@ -6,7 +6,8 @@ import caching.base as caching
 from celeryutils import task
 
 from addons.models import Addon
-from .models import Review, GroupedRating
+from .models import Review
+
 
 log = logging.getLogger('z.task')
 
@@ -52,7 +53,6 @@ def addon_review_aggregates(*addons, **kw):
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
-    addon_grouped_rating.apply_async(args=addons, kwargs={'using': using})
 
 
 @task
@@ -78,14 +78,3 @@ def addon_bayesian_rating(*addons, **kw):
             q.update(bayesian_rating=num / denom)
         else:
             q.update(bayesian_rating=0)
-
-
-@task
-def addon_grouped_rating(*addons, **kw):
-    """Roll up add-on ratings for the bar chart."""
-    # We stick this all in memcached since it's not critical.
-    log.info('[%s@%s] Updating addon grouped ratings.' %
-             (len(addons), addon_grouped_rating.rate_limit))
-    using = kw.get('using')
-    for addon in addons:
-        GroupedRating.set(addon, using=using)

@@ -16,7 +16,7 @@ from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.decorators import can_be_purchased
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import ClientData, Contribution
+from stats.models import Contribution
 
 from . import tasks
 
@@ -43,8 +43,7 @@ def prepare_pay(request, addon):
         user=request.amo_user,
         region=request.REGION,
         source=request.REQUEST.get('src', ''),
-        lang=request.LANG,
-        client_data=ClientData.get_or_create(request),
+        lang=request.LANG
     )
 
 

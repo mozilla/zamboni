@@ -39,7 +39,4 @@ HOME=/tmp
 # 30 17 * * * %(z_cron)s share_count_totals
 45 7 * * * %(django)s dump_apps
 
-# Once per week.
-# 45 7 * * 4 %(z_cron)s unconfirmed
-
 MAILTO=root

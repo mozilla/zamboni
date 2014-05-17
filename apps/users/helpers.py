@@ -3,10 +3,8 @@ import random
 from django.utils.encoding import smart_unicode
 
 import jinja2
-from jingo import env, register
+from jingo import register
 from tower import ugettext as _
-
-import amo
 
 
 @register.function
@@ -33,6 +31,13 @@ def emaillink(email, title=None, klass=None):
     return jinja2.Markup(node)
 
 
+def _user_link(user):
+    if isinstance(user, basestring):
+        return user
+    # Marketplace doesn't have user profile pages.
+    return jinja2.escape(smart_unicode(user.name))
+
+
 @register.filter
 def user_link(user):
     if not user:
@@ -51,48 +56,6 @@ def users_list(users, size=None):
         tail = [_('others', 'user_list_others')]
 
     return jinja2.Markup(', '.join(map(_user_link, users) + tail))
-
-
-@register.inclusion_tag('users/helpers/addon_users_list.html')
-@jinja2.contextfunction
-def addon_users_list(context, addon):
-    ctx = dict(context.items())
-    ctx.update(addon=addon, amo=amo)
-    return ctx
-
-
-def _user_link(user):
-    if isinstance(user, basestring):
-        return user
-    # Marketplace doesn't have user profile pages.
-    return jinja2.escape(smart_unicode(user.name))
-
-
-@register.filter
-@jinja2.contextfilter
-def user_vcard(context, user, table_class='person-info', is_profile=False):
-    c = dict(context.items())
-    c.update({
-        'profile': user,
-        'table_class': table_class,
-        'is_profile': is_profile
-    })
-    t = env.get_template('users/vcard.html').render(c)
-    return jinja2.Markup(t)
-
-
-@register.inclusion_tag('users/report_abuse.html')
-@jinja2.contextfunction
-def user_report_abuse(context, hide, profile):
-    new = dict(context.items())
-    new.update({'hide': hide, 'profile': profile,
-                'abuse_form': context['abuse_form']})
-    return new
-
-
-@register.filter
-def contribution_type(type):
-    return amo.CONTRIB_TYPES[type]
 
 
 @register.function

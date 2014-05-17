@@ -1,44 +1,39 @@
 import functools
 import hashlib
 import json
-import random
 import uuid
-from operator import attrgetter
 
 from django import http
 from django.conf import settings
-from django.db.models import Q
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
-from django.utils.translation import trans_real as translation
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import jinja2
 import commonware.log
 import session_csrf
-from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from amo import messages
+import paypal
+from abuse.models import send_abuse_report
+from amo import messages, urlresolvers
 from amo.decorators import post_required
 from amo.forms import AbuseForm
-from amo.utils import sorted_groupby
 from amo.models import manual_order
-from amo import urlresolvers
 from amo.urlresolvers import reverse
-from abuse.models import send_abuse_report
-import paypal
-from reviews.forms import ReviewForm
-from reviews.models import Review, GroupedRating
+from reviews.models import Review
 from session_csrf import anonymous_csrf_exempt
 from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
+
+from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .models import Addon
-from .decorators import addon_view_factory
+
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -109,15 +104,12 @@ def extension_detail(request, addon):
     recommended = Addon.objects.listed(request.APP).filter(
         recommended_for__addon=addon)[:6]
 
-
     ctx = {
         'addon': addon,
         'src': request.GET.get('src', 'dp-btn-primary'),
         'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_blacklisted(),
-        'grouped_ratings': GroupedRating.get(addon.id),
         'recommendations': recommended,
-        'review_form': ReviewForm(),
         'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
         'get_replies': Review.get_replies,
         'abuse_form': AbuseForm(request=request),
@@ -264,10 +256,12 @@ class HomepageFilter(BaseFilter):
 
     filter_new = BaseFilter.filter_created
 
-# Define a placeholder home response until we can hunt down all the places 
-# it is called from and remove them
+
+# Define a placeholder home response until we can hunt down all the places
+# it is called from and remove them.
 def home(request):
-    return HttpResponse('home')
+    return http.HttpResponse('home')
+
 
 @addon_view
 def eula(request, addon, file_id=None):

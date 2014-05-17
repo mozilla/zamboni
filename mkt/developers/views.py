@@ -17,7 +17,6 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import jinja2
 import waffle
 from rest_framework import status as http_status
 from rest_framework.generics import CreateAPIView, ListAPIView
@@ -63,7 +62,7 @@ from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import ClientData, Contribution
+from stats.models import Contribution
 from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
@@ -393,13 +392,10 @@ def content_ratings_edit(request, addon_id, addon):
     request.session.modified = True
 
     return render(request, 'developers/apps/ratings/ratings_edit.html',
-                  {'addon': addon, 'app_name': get_iarc_app_title(addon),
+                  {'addon': addon,
+                   'app_name': get_iarc_app_title(addon),
                    'form': form,
-                   # Force double escaping of developer name. If this has HTML
-                   # entities we want the escaped version to be passed to IARC.
-                   # See bug 962362.
-                   'company': jinja2.escape(unicode(
-                       jinja2.escape(addon.latest_version.developer_name))),
+                   'company': addon.latest_version.developer_name,
                    'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
 
 
@@ -1113,8 +1109,7 @@ def debug(request, addon):
             user=request.amo_user,
             region=request.REGION,
             source=request.REQUEST.get('src', ''),
-            lang=request.LANG,
-            client_data=ClientData.get_or_create(request),
+            lang=request.LANG
         )['webpayJWT']
 
     return render(request, 'developers/debug.html',

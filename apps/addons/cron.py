@@ -176,9 +176,14 @@ def addons_add_slugs():
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
-    ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
+    #
+    # We ignore deleted versions since we hide those files when deleted and
+    # also due to bug 980916.
+    ids = (File.objects
+           .filter(version__deleted=False)
+           .filter(Q(status=amo.STATUS_DISABLED) |
+                   Q(version__addon__status=amo.STATUS_DISABLED) |
+                   Q(version__addon__disabled_by_user=True))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
         qs = File.objects.no_cache().filter(id__in=chunk)
@@ -209,4 +214,3 @@ def unhide_disabled_files():
             except Exception:
                 log.error('Could not unhide file: %s.' % filepath,
                           exc_info=True)
-

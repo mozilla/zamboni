@@ -74,11 +74,6 @@ class TestHome(amo.tests.TestCase):
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
 
-    def test_legacy_login_redirect(self):
-        r = self.client.get('/users/login')
-        got, exp = r['Location'], '/login'
-        assert got.endswith(exp), 'Expected %s. Got %s.' % (exp, got)
-
     def test_login_redirect(self):
         r = self.client.get(self.url)
         self.assertLoginRedirects(r, '/developers/submissions', 302)
@@ -1240,7 +1235,7 @@ class TestContentRatings(amo.tests.TestCase):
         eq_(values['storefront'], '1')
         # Note: The HTML is actually double escaped but pyquery shows it how it
         # will be send to IARC, which is singly escaped.
-        eq_(values['company'], 'Lex Luthor &lt;lex@kryptonite.org&gt;')
+        eq_(values['company'], 'Lex Luthor <lex@kryptonite.org>')
         eq_(values['email'], self.user.email)
         eq_(values['appname'], get_iarc_app_title(self.app))
         eq_(values['platform'], 'Firefox')

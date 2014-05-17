@@ -4,12 +4,3 @@
 ===================================================================
 You received this email because you're subscribed to:
    * email me when {{ perm_setting }}
-
-{% if mandatory %}
-You can't unsubscribe from this type of email.
-
-Manage email notifications: {{ manage_url }}
-{% else %}
-Unsubscribe: {{ unsubscribe_url }}
-{% endif %}
-{% endif %}

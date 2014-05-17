@@ -2,7 +2,6 @@ from django.conf.urls import include, patterns, url
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 
-from reviews.urls import review_patterns
 from . import views
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
@@ -32,8 +31,6 @@ detail_patterns = patterns('',
     url('^about$', lambda r, addon_id: redirect('addons.installed',
                                                  addon_id, permanent=True),
                    name='addons.about'),
-
-    ('^reviews/', include(review_patterns('addons'))),
 )
 
 

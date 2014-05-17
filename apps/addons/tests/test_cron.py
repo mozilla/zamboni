@@ -98,13 +98,13 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
-        p = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        self.p = Platform.objects.create(id=amo.PLATFORM_ALL.id)
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.f1 = File.objects.create(version=self.version, platform=p,
+        self.f1 = File.objects.create(version=self.version, platform=self.p,
                                       filename='f1')
         self.f2 = File.objects.create(version=self.version, filename='f2',
-                                      platform=p)
+                                      platform=self.p)
 
     @mock.patch('files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
@@ -177,3 +177,17 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
         eq_(mv_mock.call_count, 1)
+
+    @mock.patch('files.models.File.mv')
+    @mock.patch('files.models.storage')
+    def test_ignore_deleted_versions(self, m_storage, mv_mock):
+        # Apps only have 1 file and version delete only deletes one.
+        self.f1.delete()
+        self.version.delete()
+        mv_mock.reset_mock()
+        # Create a new version/file just like the one we deleted.
+        version = Version.objects.create(addon=self.addon)
+        File.objects.create(version=version, platform=self.p, filename='f2')
+        cron.hide_disabled_files()
+        # Mock shouldn't have been called.
+        assert not mv_mock.called, mv_mock.call_args

@@ -1,6 +1,7 @@
 import collections
 import datetime
 import functools
+import HTMLParser
 import json
 import os
 import sys
@@ -27,7 +28,6 @@ from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
-import mkt
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
@@ -47,15 +47,23 @@ from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
 from editors.views import reviewer_required
 from files.models import File
 from lib.crypto.packaged import SigningError
+from reviews.models import Review, ReviewFlag
+from tags.models import Tag
+from translations.query import order_by_translation
+from users.models import UserProfile
+from zadmin.models import set_config, unmemoized_get_config
+
+import mkt
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
+from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
-from mkt.reviewers.serializers import (ReviewingSerializer,
-                                       ReviewersESAppSerializer)
+from mkt.reviewers.serializers import (ReviewersESAppSerializer,
+                                       ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
 from mkt.search.utils import S
@@ -64,13 +72,6 @@ from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.webapps.models import Webapp, WebappIndexer
-from reviews.forms import ReviewFlagFormSet
-from reviews.models import Review, ReviewFlag
-from reviews.views import translate_review
-from tags.models import Tag
-from translations.query import order_by_translation
-from users.models import UserProfile
-from zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
 from .models import AppCannedResponse
@@ -989,11 +990,51 @@ def attachment(request, attachment):
     return response
 
 
+def _retrieve_translation(text, language):
+    try:
+        r = requests.get(
+            settings.GOOGLE_TRANSLATE_API_URL, params={
+                'key': getattr(settings, 'GOOGLE_API_CREDENTIALS', ''),
+                'q': text, 'target': language})
+    except Exception, e:
+        log.error(e)
+        raise
+    try:
+        translated = (HTMLParser.HTMLParser().unescape(r.json()['data']
+                      ['translations'][0]['translatedText']))
+    except (KeyError, IndexError):
+        translated = ''
+    return translated, r
+
+
 @waffle_switch('reviews-translate')
 @permission_required('Apps', 'Review')
 def review_translate(request, addon_slug, review_pk, language):
     review = get_object_or_404(Review, addon__slug=addon_slug, pk=review_pk)
-    return translate_review(request, review, language)
+
+    if '-' in language:
+        language = language.split('-')[0]
+
+    if request.is_ajax():
+        title = ''
+        body = ''
+        status = 200
+
+        if review.title is not None:
+            title, r = _retrieve_translation(review.title, language)
+            if r.status_code != 200:
+                status = r.status_code
+
+        if review.body is not None:
+            body, r = _retrieve_translation(review.body, language)
+            if r.status_code != 200:
+                status = r.status_code
+
+        return http.HttpResponse(json.dumps({'title': title, 'body': body}),
+                                 status=status)
+    else:
+        return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
+            lang=language, text=review.body))
 
 
 class ReviewingView(ListAPIView):

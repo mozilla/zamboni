@@ -9,14 +9,10 @@
     <a href="{{ addon.get_url_path() + collection_path }}">
       <img class="icon" width="32" height="32" src="{{ addon.icon_url }}">
       {{ addon.name }}</a>
-    <span>
-      {{ addon_users_list(addon) }}
-    </span>
   </h3>
 {% endmacro %}
 
 {% macro item_info(addon, amo, show_date, show_downloads=False) %}
-  {{ reviews_link(addon) }}
   <p class="downloads">
     {% if show_downloads or addon.type == amo.ADDON_SEARCH %}
       {% with num=addon.weekly_downloads %}

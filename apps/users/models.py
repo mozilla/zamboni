@@ -1,27 +1,17 @@
-import hashlib
-import os
-import random
 import re
-import string
 import time
-from base64 import decodestring
 from contextlib import contextmanager
 from datetime import datetime
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import AbstractBaseUser
 from django.core import validators
-from django.db import models, transaction
-from django.template import Context, loader
+from django.db import models
 from django.utils import translation
-from django.utils.crypto import constant_time_compare
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_unicode
 from django.utils.functional import lazy
 
-import caching.base as caching
 import commonware.log
 import tower
 from cache_nuggets.lib import memoize
@@ -29,68 +19,12 @@ from tower import ugettext as _
 
 import amo
 import amo.models
-from access.models import Group, GroupUser
 from amo.urlresolvers import reverse
 from translations.fields import NoLinksField, save_signal
-from translations.models import Translation
 from translations.query import order_by_translation
 
 
 log = commonware.log.getLogger('z.users')
-
-
-class SHA512PasswordHasher(BasePasswordHasher):
-    """
-    The SHA2 password hashing algorithm, 512 bits.
-    """
-    algorithm = 'sha512'
-
-    def encode(self, password, salt):
-        assert password is not None
-        assert salt and '$' not in salt
-        hash = hashlib.new('sha512', smart_str(salt + password)).hexdigest()
-        return "%s$%s$%s" % (self.algorithm, salt, hash)
-
-    def verify(self, password, encoded):
-        algorithm, salt, hash = encoded.split('$', 2)
-        assert algorithm == self.algorithm
-        encoded_2 = self.encode(password, salt)
-        return constant_time_compare(encoded, encoded_2)
-
-    def safe_summary(self, encoded):
-        algorithm, salt, hash = encoded.split('$', 2)
-        assert algorithm == self.algorithm
-        return SortedDict([
-            (_('algorithm'), algorithm),
-            (_('salt'), mask_hash(salt, show=2)),
-            (_('hash'), mask_hash(hash)),
-        ])
-
-
-def get_hexdigest(algorithm, salt, raw_password):
-    if 'base64' in algorithm:
-        # These are getpersonas passwords with base64 encoded salts.
-        salt = decodestring(salt)
-        algorithm = algorithm.replace('+base64', '')
-
-    if algorithm.startswith('sha512+MD5'):
-        # These are persona specific passwords when we imported
-        # users from getpersonas.com. The password is md5 hashed
-        # and then sha512'd.
-        md5 = hashlib.new('md5', raw_password).hexdigest()
-        return hashlib.new('sha512', smart_str(salt + md5)).hexdigest()
-
-    return hashlib.new(algorithm, smart_str(salt + raw_password)).hexdigest()
-
-
-def rand_string(length):
-    return ''.join(random.choice(string.letters) for i in xrange(length))
-
-
-def create_password(algorithm, raw_password):
-    salt = get_hexdigest(algorithm, rand_string(12), rand_string(12))[:64]
-    hsh = get_hexdigest(algorithm, salt, raw_password)
-    return '$'.join([algorithm, salt, hsh])
 
 
 class UserForeignKey(models.ForeignKey):
@@ -189,6 +123,13 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
 
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        # we have to fix stupid things that we defined poorly in remora
+        if not self.resetcode_expires:
+            self.resetcode_expires = datetime.now()
+        super(UserProfile, self).save(force_insert, force_update, using,
+                                      **kwargs)
+
     @property
     def is_superuser(self):
         return self.groups.filter(rules='*:*').exists()
@@ -215,72 +156,15 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def is_anonymous(self):
         return False
 
-    def get_user_url(self, name='profile', src=None, args=None):
-        """
-        We use <username> as the slug, unless it contains gross
-        characters - in which case use <id> as the slug.
-        """
-        # TODO: Remove this ASAP (bug 880767).
-        if name == 'profile':
-            return '#'
-        from amo.utils import urlparams
-        chars = '/<>"\''
-        slug = self.username
-        if not self.username or any(x in chars for x in self.username):
-            slug = self.id
-        args = args or []
-        url = reverse('users.%s' % name, args=[slug] + args)
-        return urlparams(url, src=src)
-
     def get_url_path(self, src=None):
-        return self.get_user_url('profile', src=src)
-
-    def flush_urls(self):
-        urls = ['*/user/%d/' % self.id,
-                self.picture_url,
-                ]
-
-        return urls
-
-    @amo.cached_property
-    def addons_listed(self):
-        """Public add-ons this user is listed as author of."""
-        return self.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
-            addonuser__user=self, addonuser__listed=True)
-
-    @property
-    def num_addons_listed(self):
-        """Number of public add-ons this user is listed as author of."""
-        return self.addons.reviewed().exclude(type=amo.ADDON_WEBAPP).filter(
-            addonuser__user=self, addonuser__listed=True).count()
-
-    @amo.cached_property
-    def apps_listed(self):
-        """Public apps this user is listed as author of."""
-        return self.addons.reviewed().filter(type=amo.ADDON_WEBAPP,
-            addonuser__user=self, addonuser__listed=True)
-
-    def my_addons(self, n=8):
-        """Returns n addons (anything not a webapp)"""
-        qs = self.addons.exclude(type=amo.ADDON_WEBAPP)
-        qs = order_by_translation(qs, 'name')
-        return qs[:n]
+        # See: bug 880767.
+        return '#'
 
     def my_apps(self, n=8):
         """Returns n apps"""
         qs = self.addons.filter(type=amo.ADDON_WEBAPP)
         qs = order_by_translation(qs, 'name')
         return qs[:n]
-
-    @property
-    def picture_dir(self):
-        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(settings.USERPICS_PATH, split_id.group(2) or '0',
-                            split_id.group(1) or '0')
-
-    @property
-    def picture_path(self):
-        return os.path.join(self.picture_dir, str(self.id) + '.png')
 
     @property
     def picture_url(self):
@@ -296,31 +180,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def is_developer(self):
         return self.addonuser_set.exists()
 
-    @amo.cached_property
-    def is_addon_developer(self):
-        return self.addonuser_set.exclude(
-            addon__type=amo.ADDON_PERSONA).exists()
-
-    @amo.cached_property
-    def is_app_developer(self):
-        return self.addonuser_set.filter(addon__type=amo.ADDON_WEBAPP).exists()
-
-    @amo.cached_property
-    def needs_tougher_password(user):
-        if user.source in amo.LOGIN_SOURCE_BROWSERIDS:
-            return False
-        from access import acl
-        return (acl.action_allowed_user(user, 'Admin', '%') or
-                acl.action_allowed_user(user, 'Addons', 'Edit') or
-                acl.action_allowed_user(user, 'Addons', 'Review') or
-                acl.action_allowed_user(user, 'Apps', 'Review') or
-                acl.action_allowed_user(user, 'Users', 'Edit'))
-
     @property
     def name(self):
         return smart_unicode(self.display_name or self.username)
-
-    welcome_name = name
 
     @amo.cached_property
     def reviews(self):
@@ -341,86 +203,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         self.picture_type = ""
         self.save()
 
-    @transaction.commit_on_success
-    def restrict(self):
-        from amo.utils import send_mail
-        log.info(u'User (%s: <%s>) is being restricted and '
-                 'its user-generated content removed.' % (self, self.email))
-        g = Group.objects.get(rules='Restricted:UGC')
-        GroupUser.objects.create(user=self, group=g)
-        self.reviews.all().delete()
-
-        t = loader.get_template('users/email/restricted.ltxt')
-        send_mail(_('Your account has been restricted'),
-                  t.render(Context({})), None, [self.email],
-                  use_blacklist=False, real_email=True)
-
-    def unrestrict(self):
-        log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
-                                                              self.email))
-        GroupUser.objects.filter(user=self,
-                                 group__rules='Restricted:UGC').delete()
-
-    def generate_confirmationcode(self):
-        if not self.confirmationcode:
-            self.confirmationcode = ''.join(random.sample(string.letters +
-                                                          string.digits, 60))
-        return self.confirmationcode
-
-    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
-        # we have to fix stupid things that we defined poorly in remora
-        if not self.resetcode_expires:
-            self.resetcode_expires = datetime.now()
-        super(UserProfile, self).save(force_insert, force_update, using,
-                                      **kwargs)
-
     def check_password(self, raw_password):
         # BrowserID does not store a password.
-        if self.source in amo.LOGIN_SOURCE_BROWSERIDS:
-            return True
-
-        if '$' not in self.password:
-            valid = (get_hexdigest('md5', '', raw_password) == self.password)
-            if valid:
-                # Upgrade an old password.
-                self.set_password(raw_password)
-                self.save()
-            return valid
-
-        algo, salt, hsh = self.password.split('$')
-        #Complication due to getpersonas account migration; we don't
-        #know if passwords were utf-8 or latin-1 when hashed. If you
-        #can prove that they are one or the other, you can delete one
-        #of these branches.
-        if '+base64' in algo and isinstance(raw_password, unicode):
-            if hsh == get_hexdigest(algo, salt, raw_password.encode('utf-8')):
-                return True
-            else:
-                try:
-                    return hsh == get_hexdigest(algo, salt,
-                                                raw_password.encode('latin1'))
-                except UnicodeEncodeError:
-                    return False
-        else:
-            return hsh == get_hexdigest(algo, salt, raw_password)
-
-    def set_password(self, raw_password, algorithm='sha512'):
-        self.password = create_password(algorithm, raw_password)
-        # Can't do CEF logging here because we don't have a request object.
-
-    def email_confirmation_code(self):
-        from amo.utils import send_mail
-        log.debug("Sending account confirmation code for user (%s)", self)
-
-        url = "%s%s" % (settings.SITE_URL,
-                        reverse('users.confirm',
-                                args=[self.id, self.confirmationcode]))
-        domain = settings.DOMAIN
-        t = loader.get_template('users/email/confirm.ltxt')
-        c = {'domain': domain, 'url': url, }
-        send_mail(_("Please confirm your email address"),
-                  t.render(Context(c)), None, [self.email],
-                  use_blacklist=False, real_email=True)
+        return True
 
     def log_login_attempt(self, successful):
         """Log a user's login attempt"""
@@ -437,16 +222,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                 self.failed_login_attempts += 1
 
         self.save()
-
-    def mobile_collection(self):
-        return self.special_collection(amo.COLLECTION_MOBILE,
-            defaults={'slug': 'mobile', 'listed': False,
-                      'name': _('My Mobile Add-ons')})
-
-    def favorites_collection(self):
-        return self.special_collection(amo.COLLECTION_FAVORITES,
-            defaults={'slug': 'favorites', 'listed': False,
-                      'name': _('My Favorite Add-ons')})
 
     def purchase_ids(self):
         """
@@ -481,10 +256,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         yield
         tower.activate(old)
 
-    def remove_locale(self, locale):
-        """Remove the given locale for the user."""
-        Translation.objects.remove_for(self, locale)
-
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')
@@ -504,75 +275,3 @@ class UserNotification(amo.models.ModelBase):
         if not rows:
             update.update(dict(**kwargs))
             UserNotification.objects.create(**update)
-
-
-class BlacklistedUsername(amo.models.ModelBase):
-    """Blacklisted user usernames."""
-    username = models.CharField(max_length=255, unique=True, default='')
-
-    class Meta:
-        db_table = 'users_blacklistedusername'
-
-    def __unicode__(self):
-        return self.username
-
-    @classmethod
-    def blocked(cls, username):
-        """Check to see if a username is in the (cached) blacklist."""
-        qs = cls.objects.all()
-        f = lambda: [u.lower() for u in qs.values_list('username', flat=True)]
-        blacklist = caching.cached_with(qs, f, 'blocked')
-        return username.lower() in blacklist
-
-
-class BlacklistedEmailDomain(amo.models.ModelBase):
-    """Blacklisted user e-mail domains."""
-    domain = models.CharField(max_length=255, unique=True, default='',
-                              blank=False)
-
-    def __unicode__(self):
-        return self.domain
-
-    @classmethod
-    def blocked(cls, domain):
-        qs = cls.objects.all()
-        f = lambda: list(qs.values_list('domain', flat=True))
-        blacklist = caching.cached_with(qs, f, 'blocked')
-        # because there isn't a good way to know if the domain is
-        # "example.com" or "example.co.jp", we'll re-construct it...
-        # so if it's "bad.example.co.jp", the following check the
-        # values in ['bad.example.co.jp', 'example.co.jp', 'co.jp']
-        x = domain.lower().split('.')
-        for d in ['.'.join(x[y:]) for y in range(len(x) - 1)]:
-            if d in blacklist:
-                return True
-
-
-class BlacklistedPassword(amo.models.ModelBase):
-    """Blacklisted passwords"""
-    password = models.CharField(max_length=255, unique=True, blank=False)
-
-    def __unicode__(self):
-        return self.password
-
-    @classmethod
-    def blocked(cls, password):
-        return cls.objects.filter(password=password)
-
-
-class UserHistory(amo.models.ModelBase):
-    email = models.EmailField()
-    user = models.ForeignKey(UserProfile, related_name='history')
-
-    class Meta:
-        db_table = 'users_history'
-        ordering = ('-created',)
-
-
-@UserProfile.on_change
-def watch_email(old_attr={}, new_attr={}, instance=None,
-                sender=None, **kw):
-    new_email, old_email = new_attr.get('email'), old_attr.get('email')
-    if old_email and new_email != old_email:
-        log.debug('Creating user history for user: %s' % instance.pk)
-        UserHistory.objects.create(email=old_email, user_id=instance.pk)

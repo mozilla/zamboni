@@ -34,7 +34,7 @@
 <p class="context">
   {% if user.is_authenticated() %}
     <span class="greeting">
-      {{ _('Welcome, {0}')|f(amo_user.welcome_name) }}
+      {{ _('Welcome, {0}')|f(amo_user.name) }}
     </span>
   {% else %}
     {# TODO(jbalogh): reverse #}

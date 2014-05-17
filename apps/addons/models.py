@@ -25,7 +25,7 @@ from access import acl
 from addons.utils import get_featured_ids
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify, shared_url
+from amo.helpers import absolutify
 from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
                        sorted_groupby, timer, to_language, urlparams)
@@ -563,10 +563,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def meet_the_dev_url(self):
         return reverse('addons.meet', args=[self.slug])
-
-    @property
-    def reviews_url(self):
-        return shared_url('reviews.list', self)
 
     def type_url(self):
         """The url for this add-on's AddonType."""

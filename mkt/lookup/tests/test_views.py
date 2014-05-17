@@ -20,6 +20,7 @@ from slumber import exceptions
 import amo
 import amo.tests
 from abuse.models import AbuseReport
+from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
@@ -32,12 +33,12 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
-from mkt.lookup.views import (app_summary, _transaction_summary,
+from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from stats.models import Contribution
-from users.models import Group, GroupUser, UserProfile
+from users.models import UserProfile
 
 
 class SummaryTest(TestCase):

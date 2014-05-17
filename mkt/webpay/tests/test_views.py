@@ -11,6 +11,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import mkt
+from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
@@ -22,7 +23,7 @@ from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.views import PricesViewSet
 from stats.models import Contribution
-from users.models import GroupUser, UserProfile
+from users.models import UserProfile
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',

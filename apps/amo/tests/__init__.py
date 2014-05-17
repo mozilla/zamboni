@@ -269,7 +269,25 @@ class MockEsMixin(object):
                 stop_es_mock()
 
 
-class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
+class MockBrowserIdMixin(object):
+
+    def mock_browser_id(self):
+        cache.clear()
+        # Override django-cache-machine caching.base.TIMEOUT because it's
+        # computed too early, before settings_test.py is imported.
+        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+        real_login = self.client.login
+
+        def fake_login(username, password):
+            with mock_browserid(email=username):
+                return real_login(username=username, password=password)
+
+        self.client.login = fake_login
+
+
+class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
+               test_utils.TestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -283,16 +301,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
-        cache.clear()
-        # Override django-cache-machine caching.base.TIMEOUT because it's
-        # computed too early, before settings_test.py is imported.
-        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
-        real_login = self.client.login
-        def fake_login(username, password):
-            with mock_browserid(email=username):
-                return real_login(username=username, password=password)
-        self.client.login = fake_login
-
+        self.mock_browser_id()
 
     @contextmanager
     def activate(self, locale=None, app=None):

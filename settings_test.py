@@ -132,7 +132,6 @@ TASK_USER_ID = '4043307'
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
-    'users.models.SHA512PasswordHasher',
 )
 
 SQL_RESET_SEQUENCES = False

@@ -96,9 +96,6 @@
              {% if not author.picture_type %}alt="{{ _('No Photo') }}"{% endif %}>
       </aside>
       <section class="primary">
-        <div class="vcard">
-          {{ author|user_vcard }}
-        </div>
         <div class="prose">
           {% if author.bio %}
             <h3>{{ _('Who is {0}?')|f(author.name) }}</h3>

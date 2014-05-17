@@ -2,13 +2,8 @@
 import re
 
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 
-from addons.models import Addon
-import amo
-import amo.tests
-from users.helpers import (addon_users_list, emaillink, user_data, user_link,
-                           users_list)
+from users.helpers import emaillink, user_data, user_link, users_list
 from users.models import UserProfile
 
 
@@ -78,18 +73,6 @@ def test_user_link_unicode():
     u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
     eq_(user_link(u),
         u'<a href="%s">%s</a>' % (u.get_url_path(), u.username))
-
-
-class TestAddonUsersList(amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=15663)
-        self.create_addon_user(self.addon)
-
-    def test_by(self):
-        """Test that the by... bit works."""
-        content = addon_users_list({'amo': amo}, self.addon)
-        eq_(pq(content).text(), 'by %s' % self.addon.authors.all()[0].name)
 
 
 def test_user_data():

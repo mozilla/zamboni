@@ -13,14 +13,6 @@
       </p>
     {% endif %}
 
-    <form method="post" action="{{ shared_url('reviews.add', addon) }}">
-      {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
-      {{ csrf() }}
-      {{ field(review_form.body, _('Review:'), **attrs) }}
-      {{ field(review_form.rating, _('Rating:'), **attrs) }}
-      <p><input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}></p>
-    </form>
-
     <div>
       <p>
         {% if webapp %}
@@ -51,10 +43,6 @@
           {% endwith %}
         </p>
       {% endif %}
-      <p>
-        <a href="{{ shared_url('reviews.add', addon) }}"
-           id="detail-review-link">{{ _('Detailed Review') }}</a>
-      </p>
     </div>
 
   </div>{# /#review-box #}

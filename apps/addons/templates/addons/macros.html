@@ -10,8 +10,6 @@
           {{ _('Added {0}')|f(addon.created|datetime) }}
         {% endif %}
       </span>
-    {% elif type == 'rating' %}
-      {{ impala_reviews_link(addon) }}
     {% elif type in ('downloads', 'adu') %}
       {% if type == 'downloads' %}
         <span class="downloads adu">
