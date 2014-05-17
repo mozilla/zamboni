@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2013-11-07 07:24+0000\n"
-"Last-Translator: Julen <julenx@gmail.com>\n"
+"PO-Revision-Date: 2014-05-17 19:02+0000\n"
+"Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1383809095.0\n"
+"X-POOTLE-MTIME: 1400353370.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -59,7 +59,7 @@ msgstr "Esperimentala"
 
 #: apps/addons/forms.py:42
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "Izen hau hartuta dago. Mesedez aukeratu beste bat."
 
 #: apps/addons/forms.py:54 mkt/developers/forms.py:570 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
@@ -73,26 +73,27 @@ msgstr ""
 #: apps/addons/forms.py:76
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Etiketa baliogabea: {0}"
+msgstr[1] "Etiketa baliogabeak: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:86
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" erreserbatutako etiketa bat da, eta ezin da erabili."
+msgstr[1] "\"{0}\" erreserbatutako etiketak dira, eta ezin dira erabili."
 
 #: apps/addons/forms.py:94
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Behar baino etiketa {0} gehiago duzu."
+msgstr[1] "Behar baino {0} etiketa gehiago dituzu."
 
 #: apps/addons/forms.py:99
-#, fuzzy
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Etiketa guztiek gutxienez karaktere bat izan behar dute."
+msgstr ""
+"Etiketa guztiek %s karaktere edo gutxiago izan behar dituzte karaktere "
+"baliogabeak kendu ondoren."
 
 #: apps/addons/forms.py:103
 msgid "All tags must be at least {0} character."
@@ -103,10 +104,14 @@ msgstr[1] "Etiketa guztiek gutxienez {0} karaktere izan behar dituzte."
 #: apps/addons/forms.py:241
 msgid "Categories cannot be changed while your app is featured for this application."
 msgstr ""
+"Kategoriak ezin dira aldatu zure aplikazioa aplikazio honentzat nabarmenduta "
+"egon bitartean."
 
 #: apps/addons/forms.py:244
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
+"Kategoriak ezin dira aldatu zure gehigarria aplikazio honentzat nabarmenduta "
+"egon bitartean."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:248 mkt/developers/forms.py:875 mkt/webapps/api.py:276
@@ -117,7 +122,7 @@ msgstr[1] "{0} kategoria izan ditzakezu soilik."
 
 #: apps/addons/forms.py:256
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Askotarikoa kategoria ezin da beste kategoriekin konbinatu."
 
 #: apps/addons/forms.py:384
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -8222,7 +8227,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:148
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Askotarikoa"
 
 #: apps/users/templates/users/edit.html:150
 msgid "Decide what collections should be shown in your profile."
