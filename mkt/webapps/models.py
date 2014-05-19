@@ -1972,8 +1972,16 @@ def pre_generate_apk(sender=None, instance=None, **kw):
                  .format(a=instance.id))
         return
     from . import tasks
+    generated = False
     if instance.status in amo.WEBAPPS_APPROVED_STATUSES:
-        tasks.pre_generate_apk.delay(instance.id)
+        app_devs = set(d.id for d in instance.device_types)
+        if (amo.DEVICE_MOBILE.id in app_devs or
+                amo.DEVICE_TABLET.id in app_devs):
+            tasks.pre_generate_apk.delay(instance.id)
+            generated = True
+
+    log.info('[Webapp:{a}] APK pre-generated? {result}'
+             .format(a=instance.id, result='YES' if generated else 'NO'))
 
 
 class Installed(amo.models.ModelBase):
