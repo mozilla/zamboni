@@ -83,6 +83,7 @@ define('payments', [], function() {
                 } catch(err) {
                     // There was a JSON parse error, just stick the error
                     // message on the form.
+                    console.error('Got', err, 'when parsing', error_data.responseText);
                     $old_overlay.find('#payment-account-errors')
                                 .append($('<p class="error"></p>').text(apiErrorMsg));
                 }
