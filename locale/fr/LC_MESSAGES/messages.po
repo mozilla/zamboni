@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-04-27 08:22+0000\n"
-"Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
+"PO-Revision-Date: 2014-05-19 15:27+0000\n"
+"Last-Translator: Théo <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1398586920.0\n"
+"X-POOTLE-MTIME: 1400513237.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -10584,35 +10584,35 @@ msgstr "Contenu effrayant"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Violence abstraite"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Consommation d'alcool"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Consommation de drogue"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Violence explicite"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Horreur"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Violence sexuelle"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Référence à de la violence sexuelle"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Références sexuelles"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
@@ -10624,7 +10624,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Consommation de tabac"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -12558,11 +12558,11 @@ msgstr "Accepter les conditions de service"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Confirmer la suppression du compte de payement"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Suppression du compte de payement"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -13254,7 +13254,7 @@ msgstr "Comment puis-je créer une application installable ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr "Comment fonctionnent les paiements ?s"
+msgstr "Comment fonctionnent les paiements ?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:44
 msgid "How do I manage the taxes of my sales?"
@@ -14204,7 +14204,7 @@ msgstr "Me notifier les prochaines mises à jour du manifest (les mises à jours
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Cette application fonctionne sur les appareils Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
