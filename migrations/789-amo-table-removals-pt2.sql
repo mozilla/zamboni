@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `versioncomments`;
 -- See: https://bugzilla.mozilla.org/show_bug.cgi?id=1006905
 DROP TABLE IF EXISTS `addons_dependencies`;
 
---See: https://bugzilla.mozilla.org/show_bug.cgi?id=1009926
+-- See: https://bugzilla.mozilla.org/show_bug.cgi?id=1009926
 DROP TABLE IF EXISTS `approvals`;
 
 SET FOREIGN_KEY_CHECKS = 1;
