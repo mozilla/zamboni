@@ -682,7 +682,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/jquery-ui/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/reviews.js',
