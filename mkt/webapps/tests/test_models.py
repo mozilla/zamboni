@@ -2135,6 +2135,12 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
         self.manifest_url = 'http://some-app.com/manifest.webapp'
         self.app.update(status=amo.STATUS_PUBLIC,
                         manifest_url=self.manifest_url)
+        # Set up the app to support Android.
+        self.app.addondevicetype_set.create(device_type=amo.DEVICE_MOBILE.id)
+
+    def switch_device(self, device_id):
+        self.app.addondevicetype_set.all().delete()
+        self.app.addondevicetype_set.create(device_type=device_id)
 
     def test_approved_apps(self, pre_gen_task):
         assert not pre_gen_task.delay.called
@@ -2152,6 +2158,18 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
         assert not pre_gen_task.delay.called, (
             'task should not be called if PRE_GENERATE_APKS is False')
 
+    def test_ignore_firefox_os_apps(self, pre_gen_task):
+        self.switch_device(amo.DEVICE_GAIA.id)
+        self.app.save()
+        assert not pre_gen_task.delay.called, (
+            'task should not be called for Firefox OS apps')
+
+    def test_treat_tablet_as_android(self, pre_gen_task):
+        self.switch_device(amo.DEVICE_TABLET.id)
+        self.app.save()
+        assert pre_gen_task.delay.called, (
+            'task should be called for tablet apps')
+
 
 class TestSearchSignals(amo.tests.ESTestCase):
 
@@ -2168,7 +2186,7 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
     def test_create(self):
         eq_(S(WebappIndexer).count(), 0)
-        app = amo.tests.app_factory()
+        amo.tests.app_factory()
         self.refresh()
         eq_(S(WebappIndexer).count(), 1)
 
