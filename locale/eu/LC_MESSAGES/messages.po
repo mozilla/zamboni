@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-17 19:02+0000\n"
+"PO-Revision-Date: 2014-05-18 23:15+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1400353370.0\n"
+"X-POOTLE-MTIME: 1400454935.0\n"
 
 #: apps/addons/buttons.py:187
 msgid "Download Now"
@@ -40,7 +40,7 @@ msgstr "Jarraitu deskargara&nbsp;&rarr;"
 
 #: apps/addons/buttons.py:198
 msgid "Install App"
-msgstr ""
+msgstr "Instalatu aplikazioa"
 
 #: apps/addons/buttons.py:212
 msgctxt "install_button"
@@ -63,11 +63,11 @@ msgstr "Izen hau hartuta dago. Mesedez aukeratu beste bat."
 
 #: apps/addons/forms.py:54 mkt/developers/forms.py:570 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Slug hau dagoeneko erabiltzen ari da. Aukeratu beste bat."
 
 #: apps/addons/forms.py:57 mkt/developers/forms.py:573 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Slug-a ezin da \"%s\" izan. Aukeratu beste bat."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:76
@@ -127,6 +127,8 @@ msgstr "Askotarikoa kategoria ezin da beste kategoriekin konbinatu."
 #: apps/addons/forms.py:384
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr ""
+"Zure hizkuntza lehenetsia aldatu baino lehen, hizkuntza horretan izena, "
+"laburpena eta deskribapena izan behar dituzu. %s falta zaizu."
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -140,6 +142,8 @@ msgstr "Nabarmenduak"
 #: apps/addons/models.py:327
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
+"Erabiltzaileek kopuru hau baino gehiago edo gutxiago emanez laguntzeko "
+"aukera dute."
 
 #: apps/addons/models.py:336
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
@@ -169,7 +173,7 @@ msgstr "Ekarpena {0} gehigarriarentzat"
 
 #: apps/addons/views.py:521
 msgid "Abuse reported."
-msgstr ""
+msgstr "Abusua salatuta."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
@@ -201,7 +205,7 @@ msgstr "Gehitu mugikorrera"
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:68 apps/addons/templates/addons/includes/install_button.html:29
 msgid "for {0}"
-msgstr ""
+msgstr "{0}(e)rako"
 
 #: apps/addons/templates/addons/button.html:84 apps/addons/templates/addons/mobile/button.html:23
 msgid "View privacy policy"
@@ -209,7 +213,7 @@ msgstr "Ikusi pribatutasun-politika"
 
 #: apps/addons/templates/addons/button.html:89 apps/addons/templates/addons/details_box.html:109 apps/addons/templates/addons/mobile/button.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Ikusi azken erabiltzailearen lizentzia-kontratua"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31
@@ -279,10 +283,14 @@ msgstr "Ekarpen txiki bat eginda garapenerako laguntza eskatzen dizu gehigarri h
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Gehigarri honen garatzaileak sostengua eskatzen dizu, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a>(e)ri dohaintza bat eginez."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Gehigarri honen garatzaileak sostengua emateko eskatzen dizu, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a>(e)ri laguntza txiki bat emanez."
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:24
 msgid "Contribute"
@@ -312,7 +320,7 @@ msgstr "edo"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Iradokitako laguntza: {0}"
 
 #: apps/addons/templates/addons/contribution.html:48 apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
@@ -321,18 +329,27 @@ msgstr "Zer da hau?"
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Gehigarri honen garatzaileak, gehigarria gogoko baduzu, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a>(e)ri dohaintza bat egitea eskatzen "
+"dizu."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Gehigarri honen garatzaileak, gehigarria gogoko baduzu, <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a>(e)ri laguntza txiki bat ematea eskatzen "
+"dizu."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
 msgstr ""
+"Mozilla garatzaileen ekosistema bizi eta osasuntsu bati sostengua ematera "
+"konprometituta dago. Zure laguntzak sostengua ematen dio gehigarri honen "
+"garapenari."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Eman laguntza"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."

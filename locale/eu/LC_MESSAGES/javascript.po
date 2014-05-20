@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-07 09:15-0700\n"
-"PO-Revision-Date: 2014-05-18 11:19+0000\n"
+"PO-Revision-Date: 2014-05-18 22:55+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1400411993.0\n"
+"X-POOTLE-MTIME: 1400453738.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -318,7 +318,7 @@ msgstr ""
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Greziako HEBICa/Indonesiako banku-kodea"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
@@ -668,15 +668,15 @@ msgstr "Aplikazioaren instalazioa ez dago baimendua."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Aplikazioaren manifestua gaizki osatua dago."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Aplikazioaren instalazioak huts egin du."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Sistemak ez du aplikazioak instalatzea onartzen."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
@@ -813,7 +813,7 @@ msgstr "Utzi jarraitzeari"
 
 #: media/js/zamboni/contributions.js:134
 msgid "Install App"
-msgstr ""
+msgstr "Instalatu aplikazioa"
 
 #: media/js/zamboni/devhub.js:240
 msgid "Your browser does not support the video tag"
@@ -837,11 +837,11 @@ msgstr[1] "{reviews} berrikuspen"
 
 #: media/js/zamboni/devhub.js:1487
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Helbide elektronikoa baliozkoa izan behar da."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Ez da emaitzarik aurkitu."
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -880,8 +880,8 @@ msgstr "Gehigarriak balidazioa pasa du."
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ohar {0}"
+msgstr[1] "{0} ohar"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
@@ -909,11 +909,11 @@ msgstr "Esperimentala"
 
 #: media/js/zamboni/mobile/buttons.js:123
 msgid "Installing..."
-msgstr ""
+msgstr "Instalatzen..."
 
 #: media/js/zamboni/mobile/buttons.js:131
 msgid "Purchasing..."
-msgstr ""
+msgstr "Erosten..."
 
 #: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
