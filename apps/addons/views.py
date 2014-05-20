@@ -1,42 +1,30 @@
 import functools
-import hashlib
-import json
-import uuid
 
 from django import http
-from django.conf import settings
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
-import jinja2
 import commonware.log
 import session_csrf
 from mobility.decorators import mobilized
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-import paypal
 from abuse.models import send_abuse_report
 from amo import messages, urlresolvers
-from amo.decorators import post_required
 from amo.forms import AbuseForm
 from amo.models import manual_order
 from amo.urlresolvers import reverse
 from reviews.models import Review
-from session_csrf import anonymous_csrf_exempt
-from stats.models import Contribution
 from translations.query import order_by_translation
 from versions.models import Version
 
 from .decorators import addon_view_factory
-from .forms import ContributionForm
 from .models import Addon
 
 
 log = commonware.log.getLogger('z.addons')
-paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
 addon_disabled_view = addon_view_factory(qs=Addon.objects.valid_and_disabled)
@@ -305,99 +293,6 @@ def developers(request, addon, page):
                   {'addon': addon, 'page': page, 'src': src,
                    'contribution_src': contribution_src,
                    'version': version})
-
-
-@addon_view
-@anonymous_csrf_exempt
-@post_required
-def contribute(request, addon):
-    webapp = addon.is_webapp()
-    contrib_type = request.POST.get('type', 'suggested')
-    is_suggested = contrib_type == 'suggested'
-    source = request.POST.get('source', '')
-    comment = request.POST.get('comment', '')
-
-    amount = {
-        'suggested': addon.suggested_amount,
-        'onetime': request.POST.get('onetime-amount', '')
-    }.get(contrib_type, '')
-    if not amount:
-        amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
-
-    # This is all going to get shoved into solitude. Temporary.
-    form = ContributionForm({'amount': amount})
-    if not form.is_valid():
-        return http.HttpResponse(json.dumps({'error': 'Invalid data.',
-                                             'status': '', 'url': '',
-                                             'paykey': ''}),
-                                 content_type='application/json')
-
-    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
-
-    if addon.charity:
-        # TODO(andym): Figure out how to get this in the addon authors
-        # locale, rather than the contributors locale.
-        name, paypal_id = (u'%s: %s' % (addon.name, addon.charity.name),
-                           addon.charity.paypal)
-    else:
-        name, paypal_id = addon.name, addon.paypal_id
-    # l10n: {0} is the addon name
-    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
-
-    paykey, error, status = '', '', ''
-    try:
-        paykey, status = paypal.get_paykey(
-            dict(amount=amount,
-                 email=paypal_id,
-                 ip=request.META.get('REMOTE_ADDR'),
-                 memo=contrib_for,
-                 pattern='%s.paypal' % ('apps' if webapp else 'addons'),
-                 slug=addon.slug,
-                 uuid=contribution_uuid))
-    except paypal.PaypalError as error:
-        paypal.paypal_log_cef(request, addon, contribution_uuid,
-                              'PayKey Failure', 'PAYKEYFAIL',
-                              'There was an error getting the paykey')
-        log.error('Error getting paykey, contribution for addon: %s'
-                  % addon.pk, exc_info=True)
-
-    if paykey:
-        contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,
-                               amount=amount, source=source,
-                               source_locale=request.LANG,
-                               annoying=addon.annoying,
-                               uuid=str(contribution_uuid),
-                               is_suggested=is_suggested,
-                               suggested_amount=addon.suggested_amount,
-                               comment=comment, paykey=paykey)
-        contrib.save()
-
-    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
-    if request.GET.get('result_type') == 'json' or request.is_ajax():
-        # If there was an error getting the paykey, then JSON will
-        # not have a paykey and the JS can cope appropriately.
-        return http.HttpResponse(json.dumps({'url': url,
-                                             'paykey': paykey,
-                                             'error': str(error),
-                                             'status': status}),
-                                 content_type='application/json')
-    return http.HttpResponseRedirect(url)
-
-
-@csrf_exempt
-@addon_view
-def paypal_result(request, addon, status):
-    uuid = request.GET.get('uuid')
-    if not uuid:
-        raise http.Http404()
-    if status == 'cancel':
-        log.info('User cancelled contribution: %s' % uuid)
-    else:
-        log.info('User completed contribution: %s' % uuid)
-    response = render(request, 'addons/paypal_result.html',
-                      {'addon': addon, 'status': status})
-    response['x-frame-options'] = 'allow'
-    return response
 
 
 @addon_view

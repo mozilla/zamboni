@@ -1,17 +1,6 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 from tower import ugettext_lazy as _
 from lib.constants import ALL_CURRENCIES
-
-# Paypal is an awful place that doesn't understand locales.  Instead they have
-# country codes.  This maps our locales to their codes.
-PAYPAL_COUNTRYMAP = {
-    'af': 'ZA', 'ar': 'EG', 'ca': 'ES', 'cs': 'CZ', 'cy': 'GB', 'da': 'DK',
-    'de': 'DE', 'de-AT': 'AT', 'de-CH': 'CH', 'el': 'GR', 'en-GB': 'GB',
-    'eu': 'BS', 'fa': 'IR', 'fi': 'FI', 'fr': 'FR', 'he': 'IL', 'hu': 'HU',
-    'id': 'ID', 'it': 'IT', 'ja': 'JP', 'ko': 'KR', 'mn': 'MN', 'nl': 'NL',
-    'pl': 'PL', 'ro': 'RO', 'ru': 'RU', 'sk': 'SK', 'sl': 'SI', 'sq': 'AL',
-    'sr': 'CS', 'tr': 'TR', 'uk': 'UA', 'vi': 'VI',
-}
 
 # Source, PayPal docs, PP_AdaptivePayments.PDF
 PAYPAL_CURRENCIES = ['AUD', 'BRL', 'CAD', 'CHF', 'CZK', 'DKK', 'EUR', 'GBP',
@@ -62,24 +51,6 @@ MKT_TRANSACTION_CONTRIB_TYPES = {
 }
 
 CONTRIB_TYPE_DEFAULT = CONTRIB_VOLUNTARY
-
-PAYPAL_PERSONAL = {
-    'first_name': 'http://axschema.org/namePerson/first',
-    'last_name': 'http://axschema.org/namePerson/last',
-    'email': 'http://axschema.org/contact/email',
-    'full_name': 'http://schema.openid.net/contact/fullname',
-    'company': 'http://openid.net/schema/company/name',
-    'country': 'http://axschema.org/contact/country/home',
-    'payerID': 'https://www.paypal.com/webapps/auth/schema/payerID',
-    'post_code': 'http://axschema.org/contact/postalCode/home',
-    'address_one': 'http://schema.openid.net/contact/street1',
-    'address_two': 'http://schema.openid.net/contact/street2',
-    'city': 'http://axschema.org/contact/city/home',
-    'state': 'http://axschema.org/contact/state/home',
-    'phone': 'http://axschema.org/contact/phone/default'
-}
-PAYPAL_PERSONAL_LOOKUP = dict([(v, k) for k, v
-                                      in PAYPAL_PERSONAL.iteritems()])
 
 REFUND_PENDING = 0  # Just to irritate you I didn't call this REFUND_REQUESTED.
 REFUND_APPROVED = 1

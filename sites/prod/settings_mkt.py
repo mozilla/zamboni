@@ -77,18 +77,6 @@ LOGGING['loggers'].update({
     'caching': {'level': logging.ERROR },
 })
 
-PAYPAL_APP_ID = private_mkt.PAYPAL_APP_ID
-PAYPAL_EMBEDDED_AUTH = {
-    'USER': private_mkt.PAYPAL_EMBEDDED_AUTH_USER,
-    'PASSWORD': private_mkt.PAYPAL_EMBEDDED_PASSWORD,
-    'SIGNATURE': private_mkt.PAYPAL_EMBEDDED_SIGNATURE,
-}
-
-PAYPAL_CGI_AUTH = PAYPAL_EMBEDDED_AUTH
-PAYPAL_CHAINS = (
-    (30, private_mkt.PAYPAL_CHAINS_EMAIL),
-)
-
 STATSD_PREFIX = 'marketplace'
 
 GRAPHITE_PREFIX = STATSD_PREFIX

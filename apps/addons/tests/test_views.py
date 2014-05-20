@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-from decimal import Decimal
-import json
 import re
 
 from django import test
@@ -10,7 +8,6 @@ from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
 
-import fudge
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_, nottest
@@ -21,10 +18,8 @@ import amo.tests
 from amo.helpers import absolutify, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons.models import Addon, AddonUser, Charity
+from addons.models import Addon, AddonUser
 from files.models import File
-from paypal.tests.test import other_error
-from stats.models import Contribution
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
@@ -152,179 +147,6 @@ class TestPromobox(amo.tests.TestCase):
         # bug 564355, we were trying to match pt-BR and pt-br
         response = self.client.get('/pt-BR/firefox/', follow=True)
         eq_(response.status_code, 200)
-
-
-class TestContributeInstalled(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/addon_592']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=592)
-        self.url = reverse('addons.installed', args=['a592'])
-
-    def test_no_header_block(self):
-        # bug 565493, Port post-install contributions page
-        response = self.client.get(self.url, follow=True)
-        doc = pq(response.content)
-        header = doc('#header')
-        aux_header = doc('#aux-nav')
-        # assert that header and aux_header are empty (don't exist)
-        eq_(header, [])
-        eq_(aux_header, [])
-
-    def test_num_addons_link(self):
-        r = self.client.get(self.url)
-        a = pq(r.content)('.num-addons a')
-        eq_(a.length, 1)
-        author = self.addon.authors.all()[0]
-        eq_(a.attr('href'), author.get_url_path())
-
-    def test_title(self):
-        r = self.client.get(self.url)
-        title = pq(r.content)('title').text()
-        eq_(title.startswith('Thank you for installing Gmail S/MIME'), True)
-
-
-class TestContributeEmbedded(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=592)
-        self.detail_url = self.addon.get_url_path()
-
-    @patch('paypal.get_paykey')
-    def client_post(self, get_paykey, **kwargs):
-        get_paykey.return_value = ['abc', '']
-        url = reverse('addons.contribute', args=kwargs.pop('rev'))
-        if 'qs' in kwargs:
-            url = url + kwargs.pop('qs')
-        return self.client.post(url, kwargs.get('data', {}))
-
-    def test_client_get(self):
-        url = reverse('addons.contribute', args=[self.addon.slug])
-        eq_(self.client.get(url, {}).status_code, 405)
-
-    def test_invalid_is_404(self):
-        """we get a 404 in case of invalid addon id"""
-        response = self.client_post(rev=[1])
-        eq_(response.status_code, 404)
-
-    @fudge.patch('paypal.get_paykey')
-    def test_charity_name(self, get_paykey):
-        (get_paykey.expects_call()
-                   .with_matching_args(memo=u'Contribution for foë: foë')
-                   .returns(('payKey', 'paymentExecStatus')))
-        self.addon.charity = Charity.objects.create(name=u'foë')
-        self.addon.name = u'foë'
-        self.addon.save()
-        url = reverse('addons.contribute', args=['a592'])
-        self.client.post(url)
-
-    def test_params_common(self):
-        """Test for the some of the common values"""
-        response = self.client_post(rev=['a592'])
-        eq_(response.status_code, 302)
-        con = Contribution.objects.all()[0]
-        eq_(con.charity_id, None)
-        eq_(con.addon_id, 592)
-        eq_(con.amount, Decimal('20.00'))
-
-    def test_custom_amount(self):
-        """Test that we have the custom amount when given."""
-        response = self.client_post(rev=['a592'], data={'onetime-amount': 42,
-                                                        'type': 'onetime'})
-        eq_(response.status_code, 302)
-        eq_(Contribution.objects.all()[0].amount, Decimal('42.00'))
-
-    def test_invalid_amount(self):
-        response = self.client_post(rev=['a592'], data={'onetime-amount': 'f',
-                                                        'type': 'onetime'})
-        data = json.loads(response.content)
-        eq_(data['paykey'], '')
-        eq_(data['error'], 'Invalid data.')
-
-    def test_ppal_json_switch(self):
-        response = self.client_post(rev=['a592'], qs='?result_type=json')
-        eq_(response.status_code, 200)
-        response = self.client_post(rev=['a592'])
-        eq_(response.status_code, 302)
-
-    def test_ppal_return_url_not_relative(self):
-        response = self.client_post(rev=['a592'], qs='?result_type=json')
-        assert json.loads(response.content)['url'].startswith('http')
-
-    def test_unicode_comment(self):
-        res = self.client_post(rev=['a592'],
-                            data={'comment': u'版本历史记录'})
-        eq_(res.status_code, 302)
-        assert settings.PAYPAL_FLOW_URL in res._headers['location'][1]
-        eq_(Contribution.objects.all()[0].comment, u'版本历史记录')
-
-    def test_organization(self):
-        c = Charity.objects.create(name='moz', url='moz.com',
-                                   paypal='test@moz.com')
-        self.addon.update(charity=c)
-
-        r = self.client_post(rev=['a592'])
-        eq_(r.status_code, 302)
-        eq_(self.addon.charity_id,
-            self.addon.contribution_set.all()[0].charity_id)
-
-    def test_no_org(self):
-        r = self.client_post(rev=['a592'])
-        eq_(r.status_code, 302)
-        eq_(self.addon.contribution_set.all()[0].charity_id, None)
-
-    def test_no_suggested_amount(self):
-        self.addon.update(suggested_amount=None)
-        res = self.client_post(rev=['a592'])
-        eq_(res.status_code, 302)
-        eq_(settings.DEFAULT_SUGGESTED_CONTRIBUTION,
-            self.addon.contribution_set.all()[0].amount)
-
-    def test_form_suggested_amount(self):
-        res = self.client.get(self.detail_url)
-        doc = pq(res.content)
-        eq_(len(doc('#contribute-box input[type=radio]')), 2)
-
-    def test_form_no_suggested_amount(self):
-        self.addon.update(suggested_amount=None)
-        res = self.client.get(self.detail_url)
-        doc = pq(res.content)
-        eq_(len(doc('#contribute-box input[type=radio]')), 1)
-
-    @fudge.patch('paypal.get_paykey')
-    def test_paypal_error_json(self, get_paykey, **kwargs):
-        get_paykey.expects_call().returns((None, None))
-        res = self.contribute()
-        assert not json.loads(res.content)['paykey']
-
-    @patch('paypal.requests.post')
-    def test_paypal_other_error_json(self, post, **kwargs):
-        post.return_value.text = other_error
-        res = self.contribute()
-        assert not json.loads(res.content)['paykey']
-
-    def _test_result_page(self):
-        url = self.addon.get_detail_url('paypal', ['complete'])
-        doc = pq(self.client.get(url, {'uuid': 'ballin'}).content)
-        eq_(doc('#paypal-result').length, 1)
-        eq_(doc('#paypal-thanks').length, 0)
-
-    def test_addons_result_page(self):
-        self._test_result_page()
-
-    @fudge.patch('paypal.get_paykey')
-    def test_not_split(self, get_paykey):
-        def check_call(*args, **kw):
-            assert 'chains' not in kw
-        (get_paykey.expects_call()
-                   .calls(check_call)
-                   .returns(('payKey', 'paymentExecStatus')))
-        self.contribute()
-
-    def contribute(self):
-        url = reverse('addons.contribute', args=[self.addon.slug])
-        return self.client.post(urlparams(url, result_type='json'))
 
 
 class TestDeveloperPages(amo.tests.TestCase):
