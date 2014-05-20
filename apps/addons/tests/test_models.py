@@ -21,7 +21,7 @@ import amo
 import amo.tests
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonType,
                            AddonUpsell, AddonUser, AppSupport, BlacklistedSlug,
-                           Category, Charity, Preview)
+                           Category, Preview)
 from amo import set_user
 from amo.helpers import absolutify
 from amo.signals import _connect, _disconnect
@@ -1024,25 +1024,6 @@ class TestAddonModels(amo.tests.TestCase):
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
 
-    def test_takes_contributions(self):
-        a = Addon(status=amo.STATUS_PUBLIC, wants_contributions=True,
-                  paypal_id='$$')
-        assert a.takes_contributions
-
-        a.status = amo.STATUS_UNREVIEWED
-        assert not a.takes_contributions
-        a.status = amo.STATUS_PUBLIC
-
-        a.wants_contributions = False
-        assert not a.takes_contributions
-        a.wants_contributions = True
-
-        a.paypal_id = None
-        assert not a.takes_contributions
-
-        a.charity_id = 12
-        assert a.takes_contributions
-
     def test_show_beta(self):
         # Addon.current_beta_version will be empty, so show_beta is False.
         a = Addon(status=amo.STATUS_PUBLIC)
@@ -1691,21 +1672,6 @@ class TestAddonFromUpload(UploadTest):
 
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
-
-
-class TestCharity(amo.tests.TestCase):
-    fixtures = ['base/charity.json']
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url(self):
-        charity = Charity(name="a", paypal="b", url="http://foo.com")
-        charity.save()
-        assert charity.outgoing_url.startswith(REDIRECT_URL)
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url_foundation(self):
-        foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
-        assert not foundation.outgoing_url.startswith(REDIRECT_URL)
 
 
 class TestRemoveLocale(amo.tests.TestCase):

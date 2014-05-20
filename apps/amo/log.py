@@ -372,11 +372,6 @@ class MAKE_PREMIUM(_LOG):
     format = _(u'{addon} changed to premium.')
 
 
-class PAYPAL_FAILED(_LOG):
-    id = 51
-    format = _(u'{addon} failed checks with PayPal.')
-
-
 class MANIFEST_UPDATED(_LOG):
     id = 52
     format = _(u'{addon} manifest updated.')

@@ -426,7 +426,3 @@ class AbuseForm(happyforms.Form):
         if (not self.request.user.is_anonymous() or
             not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
-
-
-class ContributionForm(happyforms.Form):
-    amount = forms.DecimalField(required=True)

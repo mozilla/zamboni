@@ -100,22 +100,6 @@ class Contribution(amo.models.ModelBase):
             # post_data may be None or missing a key
             return None
 
-    def handle_chargeback(self, reason):
-        """
-        Hook to handle a payment chargeback.
-
-        When a chargeback is received from a PayPal IPN
-        for this contribution, the hook is called.
-
-        reason is either 'reversal' or 'refund'
-        """
-        # Sigh. AMO does not have inapp_pay installed and it does not have
-        # the database tables. Since both mkt and AMO share this code we
-        # need to hide it from AMO.
-        if ('mkt.inapp_pay' in settings.INSTALLED_APPS
-            and self.inapp_payment.count()):
-            self.inapp_payment.get().handle_chargeback(reason)
-
     def _switch_locale(self):
         if self.source_locale:
             lang = self.source_locale
@@ -129,16 +113,6 @@ class Contribution(amo.models.ModelBase):
         body = template.render(context)
         send_mail(subject, body, settings.MARKETPLACE_EMAIL,
                   [self.user.email], fail_silently=True)
-
-    def mail_chargeback(self):
-        """Send to the purchaser of an add-on about reversal from Paypal."""
-        locale = self._switch_locale()
-        amt = numbers.format_currency(abs(self.amount), self.currency,
-                                      locale=locale)
-        self._mail('users/support/emails/chargeback.txt',
-                   # L10n: the adddon name.
-                   _(u'%s payment reversal' % self.addon.name),
-                   {'name': self.addon.name, 'amount': amt})
 
     def record_failed_refund(self, e, user):
         self.enqueue_refund(amo.REFUND_FAILED, user,
@@ -215,12 +189,6 @@ class Contribution(amo.models.ModelBase):
 
     def get_absolute_refund_url(self):
         return absolutify(self.get_refund_url())
-
-    def is_instant_refund(self, period=settings.PAYPAL_REFUND_INSTANT):
-        if self.type != amo.CONTRIB_PURCHASE:
-            return False
-        limit = datetime.timedelta(seconds=period)
-        return datetime.datetime.now() < (self.created + limit)
 
     def get_refund_contribs(self):
         """Get related set of refund contributions."""

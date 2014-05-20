@@ -8,7 +8,6 @@ from celery import chord, group
 import amo
 from addons.models import Addon
 from amo.utils import chunked
-from market.tasks import check_paypal, check_paypal_multiple
 
 from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
                                fix_missing_icons, import_manifests,
@@ -18,11 +17,6 @@ from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
 
 
 tasks = {
-    'check_paypal': {'pre': check_paypal_multiple,
-                     'method': check_paypal,
-                     'qs': [Q(premium_type=amo.ADDON_PREMIUM,
-                              disabled_by_user=False),
-                            ~Q(status=amo.STATUS_DISABLED)]},
     'update_manifests': {'method': update_manifests,
                          'qs': [Q(type=amo.ADDON_WEBAPP, is_packaged=False,
                                   status__in=[amo.STATUS_PENDING,

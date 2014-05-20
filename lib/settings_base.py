@@ -609,7 +609,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/jquery-ui/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/reviews.js',
@@ -855,35 +854,6 @@ LOGOUT_REDIRECT_URL = "/"
 # of times.
 MAX_GEN_USERNAME_TRIES = 50
 
-# PayPal Settings
-PAYPAL_API_VERSION = '78'
-PAYPAL_APP_ID = ''
-
-# URLs for various calls.
-PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
-PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
-PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
-PAYPAL_PERMISSIONS_URL = 'https://svcs.paypal.com/Permissions/'
-PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
-
-# Permissions for the live or sandbox servers
-PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
-
-# PayPal split for Adaptive Payments.
-# A tuple of lists of % and destination.
-PAYPAL_CHAINS = ()
-
-# If the refund request is under this amount of seconds, it will be instant.
-PAYPAL_REFUND_INSTANT = 30 * 60
-
-# The PayPal cert that we'll use for checking.
-# When None, the Mozilla CA bundle is used to look it up.
-PAYPAL_CERT = None
-
-# Contribution limit, one time and monthly
-MAX_CONTRIBUTION = 1000
-
 # Email settings
 ADDONS_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
 DEFAULT_FROM_EMAIL = ADDONS_EMAIL
@@ -1075,9 +1045,6 @@ CSP_FRAME_SRC = ("https://s3.amazonaws.com",
                  "https://www.youtube.com",
                 )
 CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
-# self is needed for paypal which sends x-frame-options:allow when needed.
-# x-frame-options:DENY is sent the rest of the time.
-CSP_FRAME_ANCESTORS = ("'self'",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we

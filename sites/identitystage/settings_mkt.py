@@ -75,29 +75,6 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
-# sandbox
-PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay'
-PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
-PAYPAL_EMAIL = private_mkt.PAYPAL_EMAIL
-PAYPAL_APP_ID = private_mkt.PAYPAL_APP_ID
-PAYPAL_PERMISSIONS_URL = 'https://svcs.sandbox.paypal.com/Permissions/'
-PAYPAL_CGI_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
-PAYPAL_EMBEDDED_AUTH = {
-    'USER': private_mkt.PAYPAL_EMBEDDED_AUTH_USER,
-    'PASSWORD': private_mkt.PAYPAL_EMBEDDED_AUTH_PASSWORD,
-    'SIGNATURE': private_mkt.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
-}
-
-PAYPAL_CGI_AUTH = { 'USER': private_mkt.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_mkt.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_mkt.PAYPAL_CGI_AUTH_SIGNATURE,
-}
-
-PAYPAL_CHAINS = (
-    (30, private_mkt.PAYPAL_CHAINS_EMAIL),
-)
-
 WEBAPPS_RECEIPT_KEY = private_mkt.WEBAPPS_RECEIPT_KEY
 WEBAPPS_RECEIPT_URL = private_mkt.WEBAPPS_RECEIPT_URL
 
