@@ -354,6 +354,7 @@ class Boku(Provider):
         'add': os.path.join(root, 'add_payment_account_boku.html'),
         'edit': os.path.join(root, 'edit_payment_account_boku.html'),
     }
+    signup_url = settings.BOKU_SIGNUP_URL
 
     def account_create(self, user, form_data):
         user_seller = self.setup_seller(user)
