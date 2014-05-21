@@ -1,12 +1,7 @@
 import csv
-
-import commonware.log
-
 from decimal import Decimal
-from market.models import Price, PriceCurrency
 
-log = commonware.log.getLogger('z.market')
-
+from mkt.prices.models import Price, PriceCurrency
 
 def update(tiers):
     """

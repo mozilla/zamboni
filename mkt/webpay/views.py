@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware.log
-import django_filters
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import GenericAPIView
@@ -20,7 +19,6 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.utils import send_mail_jinja
 from lib.cef_loggers import app_pay_cef
-from market.models import Price
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -29,7 +27,7 @@ from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
+from mkt.webpay.serializers import ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, WebAppProduct)
 from stats.models import Contribution
@@ -166,24 +164,6 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
         self.object = self.get_object()
         data = {'status': 'complete' if self.object else 'incomplete'}
         return Response(data)
-
-
-class PriceFilter(django_filters.FilterSet):
-    pricePoint = django_filters.CharFilter(name="name")
-
-    class Meta:
-        model = Price
-        fields = ['pricePoint']
-
-
-class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
-                    RetrieveModelMixin, GenericViewSet):
-    queryset = Price.objects.filter(active=True).order_by('price')
-    serializer_class = PriceSerializer
-    cors_allowed_methods = ['get']
-    authentication_classes = [RestAnonymousAuthentication]
-    permission_classes = [AllowAny]
-    filter_class = PriceFilter
 
 
 class FailureNotificationView(MarketplaceView, GenericAPIView):

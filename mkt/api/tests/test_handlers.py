@@ -17,7 +17,7 @@ from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            AddonUser, Category, Preview)
 from amo.tests import AMOPaths, app_factory, TestCase
 from files.models import FileUpload
-from market.models import Price, PriceCurrency
+from reviews.models import Review
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
 
@@ -28,7 +28,8 @@ from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
 from mkt.constants import regions
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
-from reviews.models import Review
+from mkt.prices.models import Price, PriceCurrency
+
 
 
 class CreateHandler(RestOAuth):
@@ -837,7 +838,7 @@ class TestRefreshManifest(RestOAuth):
 
 
 class TestPriceTier(RestOAuth):
-    fixtures = ['data/user_2519', 'data/admin', 'market/prices']
+    fixtures = ['data/user_2519', 'data/admin'] + fixture('prices2')
 
     def setUp(self):
         self.permission = 'Prices:Edit'
@@ -920,7 +921,7 @@ class TestPriceTier(RestOAuth):
 
 
 class TestPriceCurrency(RestOAuth):
-    fixtures = ['data/user_2519', 'data/admin', 'market/prices']
+    fixtures = ['data/user_2519', 'data/admin'] + fixture('prices2')
 
     def setUp(self):
         self.permission = 'Prices:Edit'

@@ -18,7 +18,6 @@ from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
 from lib.pay_server import client
-from market.models import AddonPremium, Price
 
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
@@ -26,6 +25,7 @@ from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
+from mkt.prices.models import AddonPremium, Price
 
 
 log = commonware.log.getLogger('z.devhub')

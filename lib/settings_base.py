@@ -415,7 +415,6 @@ INSTALLED_APPS = (
     'editors',
     'files',
     'jingo_minify',
-    'market',
     'lib.es',
     'product_details',
     'reviews',
@@ -428,6 +427,7 @@ INSTALLED_APPS = (
     'mkt.webapps',
     'mkt.collections',
     'mkt.comm',
+    'mkt.prices',
     'zadmin',
 
     # Third party apps

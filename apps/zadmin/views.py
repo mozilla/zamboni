@@ -27,14 +27,14 @@ from amo.urlresolvers import reverse
 from amo.utils import chunked
 from devhub.models import ActivityLog
 from files.models import File
-from market.utils import update_from_csv
 from users.models import UserProfile
 from zadmin.forms import GenerateErrorForm, PriceTiersForm
-
 from . import tasks
 from .decorators import admin_required
 from .forms import AddonStatusForm, DevMailerForm, FileFormSet, YesImSure
 from .models import EmailPreviewTopic
+
+from mkt.prices.utils import update_from_csv
 
 
 log = commonware.log.getLogger('z.zadmin')

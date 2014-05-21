@@ -23,7 +23,6 @@ from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PROVIDER_CHOICES)
 from lib.crypto import generate_key
 from lib.pay_server import client
-from market.models import Price
 from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
@@ -32,6 +31,7 @@ from mkt.developers.providers import get_provider, get_providers
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.webapps.models import Webapp
+from mkt.prices.models import Price
 
 
 log = commonware.log.getLogger('z.devhub')

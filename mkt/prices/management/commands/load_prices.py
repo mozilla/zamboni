@@ -5,7 +5,7 @@ import requests
 
 from django.core.management.base import BaseCommand
 
-from market.models import Price, PriceCurrency
+from mkt.prices.models import Price, PriceCurrency
 
 
 domains = {

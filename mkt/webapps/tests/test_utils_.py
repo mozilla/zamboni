@@ -12,7 +12,6 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category, Preview
-from market.models import PriceCurrency
 
 import mkt
 from mkt.constants import ratingsbodies, regions
@@ -24,6 +23,7 @@ from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import (dehydrate_content_rating,
                                get_supported_locales)
+from mkt.prices.models import PriceCurrency
 from users.models import UserProfile
 from versions.models import Version
 

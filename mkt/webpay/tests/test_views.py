@@ -15,13 +15,14 @@ from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
-from market.models import Price, PriceCurrency
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
+from mkt.prices.models import Price, PriceCurrency
+from mkt.prices.views import PricesViewSet
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.views import PricesViewSet
+
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -233,7 +234,7 @@ class TestPrices(RestOAuth):
         self.assertCORS(self.client.get(self.get_url), 'get')
 
     @patch('mkt.api.exceptions.got_request_exception')
-    @patch('market.models.Price.prices')
+    @patch('mkt.prices.models.Price.prices')
     def test_other_cors(self, prices, got_request_exception):
         prices.side_effect = ValueError('The Price Is Not Right.')
         res = self.client.get(self.get_url)

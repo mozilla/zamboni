@@ -28,7 +28,6 @@ from amo.tests.test_helpers import get_image_path
 from amo.utils import urlparams
 from files.models import File, FileUpload
 from lib.iarc.utils import get_iarc_app_title
-from market.models import AddonPremium, Price
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.views import (_filter_transactions, _get_transactions,
@@ -38,6 +37,7 @@ from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
+from mkt.prices.models import AddonPremium, Price
 from stats.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile

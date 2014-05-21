@@ -15,8 +15,9 @@ from amo.decorators import set_task_user
 from amo.utils import get_email_backend
 from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
-from market.models import Refund
 from reviews.models import Review
+
+from mkt.prices.models import Refund
 
 
 log = commonware.log.getLogger('z.task')

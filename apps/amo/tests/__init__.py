@@ -45,7 +45,6 @@ from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
 from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
-from market.models import AddonPremium, Price, PriceCurrency
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
@@ -57,6 +56,8 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
+from mkt.prices.models import AddonPremium, Price, PriceCurrency
+
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.

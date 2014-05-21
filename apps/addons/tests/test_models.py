@@ -31,7 +31,6 @@ from devhub.models import ActivityLog
 from editors.models import EscalationQueue
 from files.models import File, Platform
 from files.tests.test_models import UploadTest
-from market.models import AddonPaymentData, AddonPremium, Price
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
@@ -39,6 +38,7 @@ from versions.compare import version_int
 from versions.models import ApplicationsVersions, Version
 
 from mkt.webapps.models import Webapp
+from mkt.prices.models import AddonPaymentData, AddonPremium, Price
 
 
 class TestCleanSlug(amo.tests.TestCase):

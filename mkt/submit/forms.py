@@ -18,7 +18,6 @@ from apps.users.notifications import app_surveys
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import parse_addon
-from market.models import AddonPremium, Price
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea
@@ -26,6 +25,7 @@ from translations.widgets import TransInput, TransTextarea
 from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
+from mkt.prices.models import AddonPremium, Price
 from mkt.developers.forms import verify_app_domain
 
 

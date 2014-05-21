@@ -20,7 +20,6 @@ from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
                                 PROVIDER_BOKU, PROVIDER_REFERENCE)
-from market.models import Price
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
 from mkt.constants.regions import ALL_REGION_IDS, SPAIN, US, UK
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
@@ -30,6 +29,7 @@ from mkt.developers.views_payments import (get_inapp_config,
                                            require_in_app_payments)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.prices.models import Price
 from users.models import UserProfile
 
 
