@@ -11,7 +11,8 @@ from market.models import Price, PriceCurrency
 domains = {
     'prod': 'https://marketplace.firefox.com',
     'stage': 'https://marketplace.allizom.org',
-    'dev': 'https://marketplace-dev.allizom.org'
+    'dev': 'https://marketplace-dev.allizom.org',
+    'altpay': 'https://payments-alt.allizom.org'
 }
 
 endpoint = '/api/v1/webpay/prices/'
@@ -39,6 +40,11 @@ class Command(BaseCommand):
                     const=domains['dev'],
                     dest='domain',
                     help='Use use dev as source of data.'),
+        make_option('--altpay',
+                    action='store_const',
+                    const=domains['altpay'],
+                    dest='domain',
+                    help='Use use payments-alt as source of data.'),
         make_option('--delete',
                     action='store_true',
                     dest='delete',
