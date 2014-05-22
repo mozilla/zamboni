@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-08 14:02+0000\n"
+"PO-Revision-Date: 2014-05-22 02:24+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399557752.0\n"
+"X-POOTLE-MTIME: 1400725445.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6592,22 +6592,26 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"要新增 Boku 付款帳號，您必須在 Boku 網站上註冊新的 Mozilla 帳號。註冊後 Boku 將會需要 24-48 小時來進行審核。您可以在 "
+"Mozilla Developer Network 上找到相關文件，以及使用 Boku 網站的方式。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "前往 MDN 上的 Boku 相關文件"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr ""
+msgstr "您已註冊 Boku 帳號，並已通過審核了嗎？請註冊帳號，並在下方新增您的 Boku 服務 ID。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "為此帳號設定名稱。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"Boku 網站上，服務名稱下方的一組純英數組合 ID。請到 <a href=\"%(boku_docs_url)s\" "
+"target=\"_blank\">MDN 上的 Boku 頁面</a> 了解更多資訊。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72 templates/impala/base.html:118
 #: templates/impala/base.html:133 templates/impala/base.html:151 templates/impala/base.html:161
@@ -8131,7 +8135,7 @@ msgstr "找尋應用程式"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "App: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
