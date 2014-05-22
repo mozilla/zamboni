@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-03-16 10:41+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2014-05-22 20:16+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1394966474.0\n"
+"X-POOTLE-MTIME: 1400789792.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -502,6 +503,9 @@ msgstr "Молимо Вас, <a href=\"%(login)s\">пријавите се</a> �
 #: apps/addons/templates/addons/review_add_box.html:16 apps/addons/templates/addons/impala/review_add_box.html:23
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
+"Молимо не шаљите извештаје о грешкама у рецензијама. Ваша адреса е-поште "
+"није доступна програмерима додатка и они можда буду имали потребу да Вас "
+"контактирају како би решили Ваш проблем."
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:38
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
@@ -1262,11 +1266,11 @@ msgstr "Видео уклоњен"
 
 #: apps/amo/log.py:504
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Поновни преглед {addon} због додатог новог или нових уређаја."
 
 #: apps/amo/log.py:505
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Уређај(и) додати"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
@@ -1274,7 +1278,7 @@ msgstr ""
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Уређај(и) измењен од стране рецензента"
 
 #: apps/amo/log.py:520
 msgid "{addon} resubmitted for review."
@@ -1372,11 +1376,11 @@ msgstr "{addon} оцена садржаја промењена."
 
 #: apps/amo/log.py:657
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Приоритетна рецензија захтевана за {addon}."
 
 #: apps/amo/log.py:658
 msgid "Priority Review"
-msgstr ""
+msgstr "Приоритетна рецензија"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1406,6 +1410,19 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Жао нам је, али нисмо могли да нађемо то што сте тражили.</h1> <p> "
+"Страница или датотека коју сте тражили није нађена на нашем сајту. Могуће да "
+"сте кликнули на застарелу везу, или нисте унели добру адресу. </p> <ul> "
+"<li>Ако сте укуцали адресу, погледајте правопис.</li> <li>Ако сте пратили "
+"везу однекуд, молимо да нам јавите на <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Реците нам "
+"одакле сте дошли и шта сте тражили, и ми ћемо дати све од себе да то "
+"поправимо. </li> </ul> <p>Или можете да пређете на неке од популарних "
+"страница на нашем веб сајту.</p> <ul> <li> Да ли желите да <a href=\"%"
+"(search)s\">претражите додатке</a>? Можете отићи на <a href=\"%"
+"(search)s\">страницу за претрагу</a> или само користите поље за претрагу "
+"горе. </li> <li> Ако преферирате да почнете из почетка, идите на <a href=\"%"
+"(home)s\">страницу са додацима</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
