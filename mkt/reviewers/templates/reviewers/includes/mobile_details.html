@@ -24,7 +24,7 @@
       <li class="expandable c">
         <div class="expandcontent short">
           {% if product.description %}
-            <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
+            <pre{{ product.description|locale_html }}>{{ product.description|escape }}</pre>
           {% endif %}
         </div>
         <a href="#" class="showmore">{{ _('more...') }}</a>
