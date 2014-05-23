@@ -567,6 +567,19 @@ class TestAdminSettingsForm(TestAdmin):
             self.webapp.tags.values_list('tag_text', flat=True),
             ['tag two', 'tag three'])
 
+    def test_removing_all_tags(self):
+        Tag(tag_text='tag one').save_tag(self.webapp)
+        eq_(self.webapp.tags.count(), 1)
+
+        self.data.update({'tags': ''})
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        eq_(self.webapp.tags.count(), 0)
+        self.assertSetEqual(
+            self.webapp.tags.values_list('tag_text', flat=True), [])
+
     def test_banner_message(self):
         self.data.update({
             'banner_message_en-us': u'Oh Hai.',

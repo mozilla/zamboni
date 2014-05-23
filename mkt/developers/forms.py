@@ -368,21 +368,19 @@ class AdminSettingsForm(PreviewForm):
         updates.update({'priority_review': self.cleaned_data.get('priority_review')})
         addon.update(**updates)
 
-        tags = self.cleaned_data.get('tags')
-        if tags:
-            tags_new = self.cleaned_data['tags']
-            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+        tags_new = self.cleaned_data['tags']
+        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
-            add_tags = set(tags_new) - set(tags_old)
-            del_tags = set(tags_old) - set(tags_new)
+        add_tags = set(tags_new) - set(tags_old)
+        del_tags = set(tags_old) - set(tags_new)
 
-            # Add new tags.
-            for t in add_tags:
-                Tag(tag_text=t).save_tag(addon)
+        # Add new tags.
+        for t in add_tags:
+            Tag(tag_text=t).save_tag(addon)
 
-            # Remove old tags.
-            for t in del_tags:
-                Tag(tag_text=t).remove_tag(addon)
+        # Remove old tags.
+        for t in del_tags:
+            Tag(tag_text=t).remove_tag(addon)
 
         geodata = addon.geodata
         geodata.banner_regions = self.cleaned_data.get('banner_regions')
