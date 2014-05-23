@@ -5,7 +5,8 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, CSP_SCRIPT_SRC, CSP_FRAME_SRC
+from lib.settings_base import (ALLOWED_HOSTS, CACHE_PREFIX, ES_INDEXES,
+                               KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private
@@ -44,9 +45,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.CacheClass',
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
@@ -81,10 +80,10 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -169,7 +168,7 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
 

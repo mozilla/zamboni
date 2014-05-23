@@ -137,8 +137,6 @@ HEKA_CONF = {
                         'syslog_ident': CEF_PRODUCT,
                         'syslog_priority': 'INFO'
                         }),
-                'raven': (
-                    'heka_raven.raven_plugin:config_plugin', {'dsn': SENTRY_DSN}),
         },
     'stream': {
         'class': 'heka.streams.UdpStream',
@@ -149,7 +147,6 @@ HEKA_CONF = {
 }
 HEKA = client_from_dict_config(HEKA_CONF)
 USE_HEKA_FOR_CEF = True
-SENTRY_CLIENT = 'djangoraven.heka.HekaDjangoClient'
 
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
