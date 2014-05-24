@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-16 17:37+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-05-24 11:07+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400261845.0\n"
+"X-POOTLE-MTIME: 1400929640.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6647,22 +6647,31 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Per aggiungere un account pagamenti Boku è necessario registrare un nuovo "
+"account specifico per Mozilla sul sito di Boku. La registrazione verrà "
+"approvata in 24-48 ore. La documentazione e il link per l’accesso al sito di "
+"Boku sono disponibili su Mozilla Developer Network."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "Vai alla documentazione riguardante Boku su MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"L’account che hai registrato su Boku è stato anche approvato? Allora crea un "
+"nome e un “service id” per l’account Boku qui sotto."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "Crea un nome per questo account."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"L’ID alfanumerico mostrato sul sito di Boku alla voce “Service Name”. "
+"Ulteriori informazioni sulla <a href=\"%(boku_docs_url)s\" "
+"target=\"_blank\">pagina su MDN dedicata a Boku</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72 templates/impala/base.html:118
 #: templates/impala/base.html:133 templates/impala/base.html:151 templates/impala/base.html:161
@@ -8214,7 +8223,7 @@ msgstr "Ricerca app"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "App: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
