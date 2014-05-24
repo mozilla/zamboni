@@ -61,7 +61,6 @@ CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 LOG_LEVEL = logging.DEBUG
 # The django statsd client to use, see django-statsd for more.
-STATSD_CLIENT = 'django_statsd.clients.moz_heka'
 
 SYSLOG_TAG = "http_app_marketplace_identity_stage"
 SYSLOG_TAG2 = "http_app_marketplace_identity_stage_timer"
