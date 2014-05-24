@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-24 03:04+0000\n"
+"PO-Revision-Date: 2014-05-24 06:33+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400900686.0\n"
+"X-POOTLE-MTIME: 1400913220.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -2624,27 +2624,27 @@ msgstr "Território Britânico do Oceano Índico"
 
 #: mkt/constants/bango.py:50
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei"
 
 #: mkt/constants/bango.py:51
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgária"
 
 #: mkt/constants/bango.py:52
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burquina Faso"
 
 #: mkt/constants/bango.py:53
 msgid "Burundi"
-msgstr ""
+msgstr "Burúndi"
 
 #: mkt/constants/bango.py:54
 msgid "Cambodia"
-msgstr ""
+msgstr "República dos Camarões"
 
 #: mkt/constants/bango.py:55
 msgid "Cameroon"
-msgstr ""
+msgstr "República dos Camarões"
 
 #: mkt/constants/bango.py:56
 msgid "Canada"
@@ -2652,15 +2652,15 @@ msgstr "Canadá"
 
 #: mkt/constants/bango.py:57
 msgid "Cape Verde"
-msgstr ""
+msgstr "Cabo Verde"
 
 #: mkt/constants/bango.py:58
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Ilhas Caimão"
 
 #: mkt/constants/bango.py:59
 msgid "Central African Republic"
-msgstr ""
+msgstr "República Centro-Africana"
 
 #: mkt/constants/bango.py:60
 msgid "Chad"
@@ -2700,7 +2700,7 @@ msgstr "República Democrática do Congo"
 
 #: mkt/constants/bango.py:69
 msgid "Cook Islands"
-msgstr ""
+msgstr "Ilhas Cook"
 
 #: mkt/constants/bango.py:70 mkt/constants/regions.py:282
 msgid "Costa Rica"
@@ -2772,39 +2772,39 @@ msgstr "Estónia"
 
 #: mkt/constants/bango.py:87
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiópia"
 
 #: mkt/constants/bango.py:88
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Ilhas Malvinas"
 
 #: mkt/constants/bango.py:89
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Ilhas Faroé"
 
 #: mkt/constants/bango.py:90
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: mkt/constants/bango.py:91
 msgid "Finland"
-msgstr ""
+msgstr "Finlândia"
 
 #: mkt/constants/bango.py:92
 msgid "France"
-msgstr ""
+msgstr "França"
 
 #: mkt/constants/bango.py:93
 msgid "French Guiana"
-msgstr ""
+msgstr "Guiana Francesa"
 
 #: mkt/constants/bango.py:94
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinésia Francesa"
 
 #: mkt/constants/bango.py:95
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Terras Austrais e Antárticas Francesas"
 
 #: mkt/constants/bango.py:96
 msgid "Gabon"
@@ -2844,35 +2844,35 @@ msgstr "Granada"
 
 #: mkt/constants/bango.py:105
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 #: mkt/constants/bango.py:106
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:262
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:108
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: mkt/constants/bango.py:109
 msgid "Guinea"
-msgstr ""
+msgstr "Guiné"
 
 #: mkt/constants/bango.py:110
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guiné-Bissau"
 
 #: mkt/constants/bango.py:111
 msgid "Guyana"
-msgstr ""
+msgstr "Guiana"
 
 #: mkt/constants/bango.py:112
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: mkt/constants/bango.py:113
 msgid "Heard and McDonald Islands"
@@ -2912,43 +2912,43 @@ msgstr "República Islâmica do Irão"
 
 #: mkt/constants/bango.py:122
 msgid "Iraq"
-msgstr ""
+msgstr "Iraque"
 
 #: mkt/constants/bango.py:123
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 #: mkt/constants/bango.py:124
 msgid "Isle of Man"
-msgstr ""
+msgstr "Ilha de Man"
 
 #: mkt/constants/bango.py:125
 msgid "Israel"
-msgstr ""
+msgstr "Israel"
 
 #: mkt/constants/bango.py:126 mkt/constants/regions.py:232
 msgid "Italy"
-msgstr ""
+msgstr "Itália"
 
 #: mkt/constants/bango.py:127
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 #: mkt/constants/bango.py:128
 msgid "Japan"
-msgstr ""
+msgstr "Japão"
 
 #: mkt/constants/bango.py:129
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: mkt/constants/bango.py:130
 msgid "Jordan"
-msgstr ""
+msgstr "Jordânia"
 
 #: mkt/constants/bango.py:131
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Cazaquistão"
 
 #: mkt/constants/bango.py:132
 msgid "Kenya"
@@ -2988,35 +2988,35 @@ msgstr "Letónia"
 
 #: mkt/constants/bango.py:141
 msgid "Lebanon"
-msgstr ""
+msgstr "Líbano"
 
 #: mkt/constants/bango.py:142
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesoto"
 
 #: mkt/constants/bango.py:143
 msgid "Liberia"
-msgstr ""
+msgstr "Libéria"
 
 #: mkt/constants/bango.py:144
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Líbia"
 
 #: mkt/constants/bango.py:145
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/bango.py:146
 msgid "Lithuania"
-msgstr ""
+msgstr "Lituânia"
 
 #: mkt/constants/bango.py:147
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburgo"
 
 #: mkt/constants/bango.py:148
 msgid "Macao"
-msgstr ""
+msgstr "Macau"
 
 #: mkt/constants/bango.py:149
 msgid "Macedonia, Former Yugoslav Rep"
@@ -3056,43 +3056,43 @@ msgstr "Martinica"
 
 #: mkt/constants/bango.py:158
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritânia"
 
 #: mkt/constants/bango.py:159
 msgid "Mauritius"
-msgstr ""
+msgstr "Maurício"
 
 #: mkt/constants/bango.py:160
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:133
 msgid "Mexico"
-msgstr ""
+msgstr "México"
 
 #: mkt/constants/bango.py:162
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Micronésia, Estados Federados da"
 
 #: mkt/constants/bango.py:163
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldávia, República da"
 
 #: mkt/constants/bango.py:164
 msgid "Monaco"
-msgstr ""
+msgstr "Mónaco"
 
 #: mkt/constants/bango.py:165
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongólia"
 
 #: mkt/constants/bango.py:166 mkt/constants/regions.py:164
 msgid "Montenegro"
-msgstr ""
+msgstr "Montenegro"
 
 #: mkt/constants/bango.py:167
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: mkt/constants/bango.py:168
 msgid "Morocco"
@@ -3136,39 +3136,39 @@ msgstr "Nicarágua"
 
 #: mkt/constants/bango.py:178
 msgid "Niger"
-msgstr ""
+msgstr "Níger"
 
 #: mkt/constants/bango.py:179
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigéria"
 
 #: mkt/constants/bango.py:180
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: mkt/constants/bango.py:181
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Ilha Norfolk"
 
 #: mkt/constants/bango.py:182
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "Ilhas Marianas do Norte"
 
 #: mkt/constants/bango.py:183
 msgid "Norway"
-msgstr ""
+msgstr "Noruega"
 
 #: mkt/constants/bango.py:184
 msgid "Oman"
-msgstr ""
+msgstr "Omã"
 
 #: mkt/constants/bango.py:185
 msgid "Pakistan"
-msgstr ""
+msgstr "Paquistão"
 
 #: mkt/constants/bango.py:186
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: mkt/constants/bango.py:187
 msgid "Palestinian Territory, Occupied"
@@ -3208,39 +3208,39 @@ msgstr "Portugal"
 
 #: mkt/constants/bango.py:196
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Porto Rico"
 
 #: mkt/constants/bango.py:197
 msgid "Qatar"
-msgstr ""
+msgstr "Catar"
 
 #: mkt/constants/bango.py:198
 msgid "Réunion"
-msgstr ""
+msgstr "Reunião"
 
 #: mkt/constants/bango.py:199
 msgid "Romania"
-msgstr ""
+msgstr "Roménia"
 
 #: mkt/constants/bango.py:200
 msgid "Russian Federation"
-msgstr ""
+msgstr "Federação Russa"
 
 #: mkt/constants/bango.py:201
 msgid "Rwanda"
-msgstr ""
+msgstr "Ruanda"
 
 #: mkt/constants/bango.py:202
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "São Bartolomeu"
 
 #: mkt/constants/bango.py:203
 msgid "Saint Helena"
-msgstr ""
+msgstr "Santa Helena"
 
 #: mkt/constants/bango.py:204
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "São Cristóvão e Névis"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Lucia"
@@ -3280,39 +3280,39 @@ msgstr "Senegal"
 
 #: mkt/constants/bango.py:214 mkt/constants/regions.py:173
 msgid "Serbia"
-msgstr ""
+msgstr "Sérvia"
 
 #: mkt/constants/bango.py:215
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Sérvia e Montenegro"
 
 #: mkt/constants/bango.py:216
 msgid "Seychelles"
-msgstr ""
+msgstr "Seicheles"
 
 #: mkt/constants/bango.py:217
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Serra Leoa"
 
 #: mkt/constants/bango.py:218
 msgid "Singapore"
-msgstr ""
+msgstr "Singapura"
 
 #: mkt/constants/bango.py:219
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "São Martinho (parte neerlandesa)"
 
 #: mkt/constants/bango.py:220
 msgid "Slovakia"
-msgstr ""
+msgstr "Eslováquia"
 
 #: mkt/constants/bango.py:221
 msgid "Slovenia"
-msgstr ""
+msgstr "Eslovénia"
 
 #: mkt/constants/bango.py:222
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Ilhas Salomão"
 
 #: mkt/constants/bango.py:223
 msgid "Somalia"
@@ -3352,39 +3352,39 @@ msgstr "Svalbard e Jan Mayen"
 
 #: mkt/constants/bango.py:232
 msgid "Swaziland"
-msgstr ""
+msgstr "Suazilândia"
 
 #: mkt/constants/bango.py:233
 msgid "Sweden"
-msgstr ""
+msgstr "Suécia"
 
 #: mkt/constants/bango.py:234
 msgid "Switzerland"
-msgstr ""
+msgstr "Suíça"
 
 #: mkt/constants/bango.py:235
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Síria, República Árabe"
 
 #: mkt/constants/bango.py:236
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Taiwan, Província da China"
 
 #: mkt/constants/bango.py:237
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tajiquistão"
 
 #: mkt/constants/bango.py:238
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tanzânia, República Unida da"
 
 #: mkt/constants/bango.py:239
 msgid "Thailand"
-msgstr ""
+msgstr "Tailândia"
 
 #: mkt/constants/bango.py:240
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Timor-Leste"
 
 #: mkt/constants/bango.py:241
 msgid "Togo"
@@ -3424,15 +3424,15 @@ msgstr "Tuvalu"
 
 #: mkt/constants/bango.py:250
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: mkt/constants/bango.py:251
 msgid "Ukraine"
-msgstr ""
+msgstr "Ucrânia"
 
 #: mkt/constants/bango.py:252
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Emirados Árabes Unidos"
 
 #: mkt/constants/bango.py:253 mkt/constants/regions.py:72
 msgid "United Kingdom"
@@ -3444,27 +3444,27 @@ msgstr "Estados Unidos"
 
 #: mkt/constants/bango.py:255
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "Ilhas Menores Distantes dos Estados Unidos"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:202
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguai"
 
 #: mkt/constants/bango.py:257
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Usbequistão"
 
 #: mkt/constants/bango.py:258
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: mkt/constants/bango.py:259
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Venezuela, República Bolivariana da"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietname"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
@@ -3508,39 +3508,43 @@ msgstr "Reenvio da aplicação"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "Aprovado mas à espera de ser tornado público"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Escalado devido ao número elevado de relatos de abuso"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Escalado devido ao número elevado de pedidos de devolução"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API de gestão de aplicações"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"A aplicação requer a API `navigator.mozApps` para instalar e gerir outras "
+"aplicações."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API de instalação de aplicações empacotadas"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
+"A aplicação requer a API `navigator.mozApps.installPackage` para instalar "
+"outras aplicações empacotadas."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Pagamentos web"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozApps`."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
@@ -3581,35 +3585,38 @@ msgstr "Contactos"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozContacts`."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Armazenamento no dispositivo"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"A aplicação requer a API de armazenamento no dispositivo para aceder a "
+"ficheiros no sistema de ficheiros."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "A aplicação requer que a plataforma suporte o IndexedDB."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolocalização"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"A aplicação requer que a plataforma suporte a API `navigator.geolocation`."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Inativo"
 
 #: mkt/constants/features.py:92
 msgid "Network Information"
-msgstr ""
+msgstr "Informações da rede"
 
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
@@ -3653,35 +3660,39 @@ msgstr ""
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
-msgstr ""
+msgstr "Tempo/Relógio"
 
 #: mkt/constants/features.py:123
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozTime`."
 
 #: mkt/constants/features.py:127
 msgid "Vibration"
-msgstr ""
+msgstr "Vibração"
 
 #: mkt/constants/features.py:128
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"A aplicação requer que o dispositivo suporte vibração (a API "
+"`navigator.vibrate`)."
 
 #: mkt/constants/features.py:134
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "A aplicação requer as APIs `navigator.mozFM` ou `navigator.mozFMRadio`."
 
 #: mkt/constants/features.py:140
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozSms`."
 
 #: mkt/constants/features.py:144
 msgid "Touch"
-msgstr ""
+msgstr "Toque"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"A aplicação requer que a plataforma suporte eventos de toque. Esta opção "
+"indica que a aplicação não irá funcionar quando utilizada com um rato."
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
