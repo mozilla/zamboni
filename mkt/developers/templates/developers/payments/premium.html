@@ -114,7 +114,6 @@
       <h2>{{ _('Payment Accounts') }}</h2>
 
       <div id="paid-island">
-        {{ disabled_payments_notice() }}
         <div id="paid-island-incomplete" class="island warning{% if addon.has_payment_account() %} hidden{% endif %}">
           {%- trans %}
             Your app is currently incomplete. Select a payment account and
@@ -278,7 +277,6 @@
       <h2>{{ _('Promote as upgrade to free version') }}</h2>
 
       <div id="paid-upsell-island">
-        {{ disabled_payments_notice() }}
         <section class="island upsell">
           <table>
             <tbody>
