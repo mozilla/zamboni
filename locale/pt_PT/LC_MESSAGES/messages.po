@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-05 04:00+0000\n"
+"PO-Revision-Date: 2014-05-24 01:21+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399262411.0\n"
+"X-POOTLE-MTIME: 1400894461.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1354,11 +1354,11 @@ msgstr "Classificação de conteúdo de {addon} modificada."
 
 #: apps/amo/log.py:657
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Pedido de revisão de prioridade solicitado para {addon}."
 
 #: apps/amo/log.py:658
 msgid "Priority Review"
-msgstr ""
+msgstr "Revisão de prioridade"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1388,6 +1388,20 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Lamentamos, mas não conseguimos encontrar o que procurava.</h1> <p> A "
+"página ou ficheiro que solicitou não foi encontrada no nosso site. É "
+"possível que tenha clicado numa ligação desatualizada ou o endereço "
+"introduzido foi digitado incorretamente. </p> <ul> <li>Se escreveu na barra "
+"de endereço, por favor verifique a ortografia.</li> <li> Se seguiu uma "
+"ligação de algum lado, informe-nos através de <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Diga-nos de "
+"onde veio, o que procurava e nós faremos os possíveis para corrigir a "
+"situação. </li> </ul> <p>Ou pode ir para algumas das páginas mais populares "
+"no nosso site web.</p> <ul> <li> Quer <a href=\"%(search)s\">procurar por "
+"extras</a>? Pode ir para a <a href=\"%(search)s\">página de pesquisa</a> ou "
+"simplesmente utilizar o campo de pesquisa em cima. </li> <li> Se preferir "
+"começar novamente, vá à <a href=\"%(home)s\">página inicial dos extras</a>. "
+"</li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -2187,7 +2201,7 @@ msgstr "Avaliado em {0} de 5 estrelas"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Avaliado em %(rating)s de 5 estrelas"
 
 #. L10n: the addon name.
 #: apps/stats/models.py:123
@@ -2234,7 +2248,7 @@ msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Idiomas existentes"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
@@ -2285,6 +2299,8 @@ msgstr "um desenvolvedor do extra respondeu ao meu comentário"
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
 msgstr ""
+"A Mozilla que contactar-me para notícias e inquéritos relevantes para "
+"programadores de aplicações"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -2340,6 +2356,8 @@ msgstr "Mozilla precisa entrar em contato sobre meu aplicativo"
 #: apps/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"A Mozilla quer contactar-me para notícias e inquéritos relevantes para "
+"programadores de aplicações"
 
 #: apps/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
