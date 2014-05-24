@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-24 16:59+0000\n"
+"PO-Revision-Date: 2014-05-24 17:14+0000\n"
 "Last-Translator: Mihovil <mihovil.stanic@gmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400950797.0\n"
+"X-POOTLE-MTIME: 1400951670.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -224,11 +224,11 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:270 mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:124
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145 mkt/templates/mkt/footer.html:15 templates/mobile/base_addons.html:79 templates/mobile/base_apps.html:68
 msgid "Privacy Policy"
-msgstr "Zaštita Privatnosti"
+msgstr "Politika privatnosti"
 
 #: apps/addons/templates/addons/details_box.html:89 mkt/reviewers/templates/reviewers/includes/details.html:127 mkt/reviewers/templates/reviewers/includes/mobile_details.html:148
 msgid "View Privacy Policy"
-msgstr "Pogledajte Zaštitu Privatnosti"
+msgstr "Prikaži politiku privatnosti"
 
 #: apps/addons/templates/addons/details_box.html:95
 msgid "EULA"
@@ -428,7 +428,7 @@ msgstr ""
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr "Zaštta Privatnosti za {0}"
+msgstr "Politika privatnosti za {0}"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
@@ -755,7 +755,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/details.html:106
 msgid "View All Versions"
-msgstr ""
+msgstr "Prikaži sve inačice"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View Development Version"
@@ -4381,7 +4381,7 @@ msgstr ""
 # 86%
 #: mkt/developers/forms.py:602
 msgid "Please specify your app's Privacy Policy"
-msgstr "Molimo Vas, odredite Policu Privatnosti za vaš dodatak"
+msgstr "Molimo Vas, odredite politiku privatnosti za vašu aplikaciju"
 
 #: mkt/developers/forms.py:623
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
@@ -4429,7 +4429,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:928
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Morate se složiti s politikom privatnosti."
 
 #: mkt/developers/forms.py:929 mkt/developers/forms_payments.py:408 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -5070,15 +5070,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Prijavi se"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Morate se prijaviti kako biste nastavili."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Prijavi se / Registriraj se"
 
 #: mkt/developers/templates/developers/nav.html:14
 msgid "more apps..."
@@ -5141,7 +5141,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:77 mkt/templates/mkt/header.html:28
 msgid "Sign In"
-msgstr ""
+msgstr "Prijavi se"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:84 mkt/templates/mkt/header.html:21
 msgid "Settings"
@@ -5157,7 +5157,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:134
 msgid "Please sign in"
-msgstr ""
+msgstr "Prijavite se"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:136
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
@@ -6309,7 +6309,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:129
 msgid "View all"
-msgstr ""
+msgstr "Prikaži sve"
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
@@ -7471,7 +7471,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:28
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultati pretraživanja"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:35
 msgid ""
@@ -7562,7 +7562,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Prikaz galerije"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
@@ -8839,11 +8839,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
-msgstr ""
+msgstr "Napredna pretraga"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Očisti pretraživanje"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -9000,39 +9000,40 @@ msgstr "Pomagala"
 
 #: mkt/search/forms.py:113
 msgid "Search for apps"
-msgstr ""
+msgstr "Pretraži aplikacije"
 
 #: mkt/search/forms.py:134
 msgid "Add-on type"
-msgstr ""
+msgstr "Vrsta dodatka"
 
 #: mkt/search/forms.py:138
 msgid "Device type"
-msgstr ""
+msgstr "Vrsta uređaja"
 
 #: mkt/search/forms.py:141
 msgid "Premium types"
-msgstr ""
+msgstr "Premium vrsta"
 
 #: mkt/search/forms.py:145
 msgid "App type"
-msgstr ""
+msgstr "Vrsta aplikacije"
 
 #: mkt/search/forms.py:148
 msgid "Works offline"
-msgstr ""
+msgstr "Radi izvanmrežno"
 
 #: mkt/search/forms.py:150
 msgid "Supported languages"
-msgstr ""
+msgstr "Podržani jezici"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pretraživanje nije dostupno"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Pretraživanje trenutno nije dostupno. Pokušajte ponovno za nekoliko minuta."
 
 #: mkt/site/context_processors.py:30
 msgid "Account Settings"
@@ -9175,7 +9176,7 @@ msgstr ""
 # 93%
 #: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
-msgstr "Zaštita Privatnosti:"
+msgstr "Politika privatnosti:"
 
 #: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
@@ -9428,7 +9429,7 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Uvjeti korištenja"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
