@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-24 02:15+0000\n"
+"PO-Revision-Date: 2014-05-24 03:04+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400897713.0\n"
+"X-POOTLE-MTIME: 1400900686.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -3548,8 +3548,7 @@ msgstr "Atividades web"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
-"Esta aplicação necessita da API de Atividades Web (a API `MozActivity`)."
+msgstr "Esta aplicação requer a API de Atividades Web (a API `MozActivity`)."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -3558,8 +3557,7 @@ msgstr "Sensor de luz ambiente"
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr ""
-"Esta aplicação necessita de uma sensor de luz ambiente (a API "
-"`ondevicelight`)."
+"Esta aplicação requer um sensor de luz ambiente (a API `ondevicelight`)."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -3571,15 +3569,15 @@ msgstr "Bateria"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr "A aplicação necessita da API `navigator.battery`."
+msgstr "A aplicação requer a API `navigator.battery`."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozBluetooth`."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Contactos"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
@@ -3616,38 +3614,42 @@ msgstr ""
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Esta aplicação requer a capacidade para obter informações sobre a ligação à "
+"rede (a API `navigator.mozConnection`)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
-msgstr ""
+msgstr "Estatísticas da rede"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
-msgstr ""
+msgstr "Proximidade"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr ""
+"A aplicação requer um sensor de proximidade (a API `ondeviceproximity`)."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
-msgstr ""
+msgstr "Simple Push"
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "A aplicação requer a API `navigator.mozPush`."
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Orientação do ecrã"
 
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr ""
+"A aplicação requer o suporte da plataforma para a API `ondeviceorientation`."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
@@ -3690,38 +3692,50 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"A aplicação requer que a plataforma tenha um ecrã com o tamanho de um "
+"smartphone (com uma resolução qHD). Esta opção indica que a aplicação será "
+"inutilizável em ecrãs maiores (como tablets, computadores, telemóveis "
+"grandes ou com uma DPI elevada)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
+"A aplicação requer que a plataforma possa descodificar e reproduzir "
+"ficheiros MP3."
 
 #: mkt/constants/features.py:167
 msgid "Audio"
-msgstr ""
+msgstr "Áudio"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "A aplicação requer que a plataforma suporte a API áudio do HTML5."
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
-msgstr ""
+msgstr "Áudio Web"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"A aplicação requer que a plataforma suporte a API áudio "
+"(`window.AudioContext`)."
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"A aplicação requer que a plataforma possa descodificar e reproduzir "
+"ficheiros vídeo H.264."
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"A aplicação requer que a plataforma possa descodificar e reproduzir "
+"ficheiros vídeo WebM (VP8)."
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
-msgstr ""
+msgstr "Ecrã completo"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
@@ -3761,39 +3775,47 @@ msgstr ""
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Captura de ecrã"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"A aplicação requer que a plataforma permita o acesso ao ecrã do dispositivo "
+"para captura de ecrã."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "MediaStream WebRTC"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"A aplicação requer que a plataforma permita comunicação em tempo real "
+"baseada na web entre navegadores através de fluxos de media de entrada."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "DataChannel WebRTC"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"A aplicação requer que a plataforma permita a troca de outros dados ponto a "
+"ponto para além de áudio e vídeo."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "PeerConnection WebRTC"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"A aplicação requer que a plataforma permita a comunicação de dados em "
+"transmissão entre pares."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Sintetizador de discurso web"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
@@ -3838,30 +3860,36 @@ msgstr ""
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"A aplicação requer que a plataforma permita o envio de pedidos HTTP "
+"assíncronos sem política de restrições de mesma origem."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "Sockets TCP"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
 msgstr ""
+"A aplicação requer que a plataforma permita a abertura de sockets TCP em "
+"bruto."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Suporte a teclado de terceiros"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "A aplicação requer que a plataforma suporte teclados de terceiros."
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Informações sobre múltiplas redes"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
+"A aplicação requer a capacidade para obter informações sobre múltiplas "
+"ligações de rede."
 
 #: mkt/constants/feed.py:11 mkt/developers/templates/developers/payments/in-app-products.html:33
 msgid "Icon"
@@ -3869,7 +3897,7 @@ msgstr "Ícone"
 
 #: mkt/constants/feed.py:12
 msgid "Header Graphic"
-msgstr ""
+msgstr "Gráfico de cabeçalho"
 
 #: mkt/constants/feed.py:13 mkt/developers/templates/developers/apps/edit/basic.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/app.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:154
@@ -3878,7 +3906,7 @@ msgstr "Descrição"
 
 #: mkt/constants/feed.py:14
 msgid "Quote"
-msgstr ""
+msgstr "Citação"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
@@ -3927,40 +3955,40 @@ msgstr ""
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "Linguagem imprópria"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:52 mkt/constants/ratingdescriptors.py:108
 msgid "Nudity"
-msgstr ""
+msgstr "Nudez"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:18 mkt/constants/ratingdescriptors.py:75 mkt/constants/ratingdescriptors.py:86
 msgid "Sex"
-msgstr ""
+msgstr "Sexo"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:56 mkt/constants/ratingdescriptors.py:100
 msgid "Sexual Content"
-msgstr ""
+msgstr "Conteúdo sexual"
 
 #: mkt/constants/ratingdescriptors.py:20
 msgid "Explicit Sex"
-msgstr ""
+msgstr "Sexo explícito"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Impacting Content"
-msgstr ""
+msgstr "Conteúdo chocante"
 
 #: mkt/constants/ratingdescriptors.py:22 mkt/constants/ratingdescriptors.py:64 mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:87 mkt/constants/ratingdescriptors.py:101
 msgid "Violence"
-msgstr ""
+msgstr "Violência"
 
 #: mkt/constants/ratingdescriptors.py:23
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Violência extrema"
 
 #: mkt/constants/ratingdescriptors.py:25
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "Referência a álcool"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Alcohol and Tobacco Reference"
@@ -4004,39 +4032,39 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:36
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "Referência a drogas, álcool e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:37
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "Utilização de drogas, álcool e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:38
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Utilização de drogas e álcool"
 
 #: mkt/constants/ratingdescriptors.py:39
 msgid "Drug Reference"
-msgstr ""
+msgstr "Referência a drogas"
 
 #: mkt/constants/ratingdescriptors.py:40
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "Referência a drogas e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:41
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "Utilização de drogas e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Utilização de drogas"
 
 #: mkt/constants/ratingdescriptors.py:43
 msgid "Fantasy Violence"
-msgstr ""
+msgstr "Violência de fantasia"
 
 #: mkt/constants/ratingdescriptors.py:44
 msgid "Hate Speech"
-msgstr ""
+msgstr "Incitação ao ódio"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Intense Violence"
@@ -4077,39 +4105,39 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Sexual Themes"
-msgstr ""
+msgstr "Temas sexuais"
 
 #: mkt/constants/ratingdescriptors.py:58
 msgid "Simulated Gambling"
-msgstr ""
+msgstr "Jogo simulado"
 
 #: mkt/constants/ratingdescriptors.py:59
 msgid "Strong Language"
-msgstr ""
+msgstr "Linguagem forte"
 
 #: mkt/constants/ratingdescriptors.py:60
 msgid "Strong Sexual Content"
-msgstr ""
+msgstr "Conteúdo sexual forte"
 
 #: mkt/constants/ratingdescriptors.py:61
 msgid "Suggestive Themes"
-msgstr ""
+msgstr "Temas sugestivos"
 
 #: mkt/constants/ratingdescriptors.py:62
 msgid "Tobacco Reference"
-msgstr ""
+msgstr "Referência ao tabaco"
 
 #: mkt/constants/ratingdescriptors.py:63
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "Utilização de tabaco"
 
 #: mkt/constants/ratingdescriptors.py:65
 msgid "Violence References"
-msgstr ""
+msgstr "Referências a violência"
 
 #: mkt/constants/ratingdescriptors.py:67 mkt/constants/ratingdescriptors.py:78 mkt/constants/ratingdescriptors.py:95
 msgid "Discrimination"
-msgstr ""
+msgstr "Discriminação"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:80
 msgid "Gambling"
@@ -4150,39 +4178,39 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
-msgstr ""
+msgstr "Violência abstrata"
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Utilização de álcool"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Utilização de droga"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Violência explícita"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
-msgstr ""
+msgstr "Horror"
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Violência sexual"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Referência a violência sexual"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Referências sexuais"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
-msgstr ""
+msgstr "Sustos raros"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
@@ -4231,41 +4259,41 @@ msgstr "Departamento de Justiça, Classificação, Títulos e Qualificação"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
-msgstr ""
+msgstr "Genérico"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Corpo de auto-regulação de software de entretenimento"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Para todos"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Maiores de 10 anos"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Adolescente"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Maiores de 17 anos"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Apenas adultos, acima de 18 anos"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Todas as Américas, exceto Brasil"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Órgão de classificação de software de entretenimento"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
@@ -4338,7 +4366,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:56
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Não pode selecionar {region}."
 
 #: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
