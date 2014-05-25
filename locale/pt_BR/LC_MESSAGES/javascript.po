@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:15-0700\n"
+"POT-Creation-Date: 2014-05-21 09:40-0700\n"
 "PO-Revision-Date: 2014-05-21 17:39+0000\n"
 "Last-Translator: Marcelo <mlcaraldi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1400693977.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -19,88 +19,6 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} estrela"
 msgstr[1] "{0} estrelas"
-
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
-msgid "There was a problem contacting the server."
-msgstr "Houve um problema ao contatar o servidor."
-
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
-msgid "Select a file..."
-msgstr "Selecione um arquivo..."
-
-#: media/js/common/upload-addon.js:53
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Seu complemento deve terminar com .xpi, .jar ou .xml"
-
-#. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
-msgid "{0}% complete"
-msgstr "{0}% completo"
-
-#. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
-msgid "{0} of {1}"
-msgstr "{0} de {1}"
-
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
-msgid "Uploading {0}"
-msgstr "Enviando {0}"
-
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
-msgid "Error with {0}"
-msgstr "Erro com {0}"
-
-#: media/js/common/upload-addon.js:174
-msgid "Your add-on failed validation with {0} error."
-msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Seu complemento apresentou {0} erro na validação."
-msgstr[1] "Seu complemento apresentou {0} erros na validação."
-
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
-msgid "&hellip;and {0} more"
-msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;e mais {0}"
-msgstr[1] "&hellip;e mais {0}"
-
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:160
-msgid "See full validation report"
-msgstr "Ver o relatório de validação completo"
-
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
-msgid "Validating {0}"
-msgstr "Validando {0}"
-
-#. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
-msgid "Received an empty response from the server; status: {0}"
-msgstr "Uma resposta vazia foi recebida do servidor: {0}"
-
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
-msgid "Unexpected server error while validating."
-msgstr "Erro inesperado do servidor durante a validação."
-
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
-msgid "Finished validating {0}"
-msgstr "Validação de {0} concluída"
-
-#: media/js/common/upload-addon.js:307
-msgid "Your add-on passed validation with no errors and {0} message."
-msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] "Seu complemento passou na validação sem erros e {0} mensagem"
-msgstr[1] "Seu complemento passou na validação sem erros e {0} mensagens"
-
-#: media/js/common/upload-addon.js:312
-msgid "Your add-on passed validation with no errors or warnings."
-msgstr "Seu complemento passou pela validação sem erros ou alertas."
-
-#: media/js/common/upload-addon.js:363
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Algumas plataformas não estão disponíveis para esse tipo de complemento."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -110,7 +28,8 @@ msgstr "O tipo de arquivo que você enviou não foi reconhecido."
 msgid "You cancelled the upload."
 msgstr "Você cancelou o envio."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
 
@@ -118,15 +37,76 @@ msgstr "As imagens devem ser PNG ou JPG."
 msgid "Videos must be in WebM."
 msgstr "Os vídeos devem estar no formato WebM."
 
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
+msgid "There was a problem contacting the server."
+msgstr "Houve um problema ao contatar o servidor."
+
+#: media/js/common/upload-packaged-app.js:52
+msgid "Select a file..."
+msgstr "Selecione um arquivo..."
+
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Seu aplicativo empacotado deve terminar com <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: media/js/common/upload-packaged-app.js:89
+msgid "{0}% complete"
+msgstr "{0}% completo"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: media/js/common/upload-packaged-app.js:92
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
+
+#: media/js/common/upload-packaged-app.js:120
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: media/js/common/upload-packaged-app.js:142
+msgid "Uploading {0}"
+msgstr "Enviando {0}"
+
+#: media/js/common/upload-packaged-app.js:164
+msgid "Error with {0}"
+msgstr "Erro com {0}"
+
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Seu aplicativo falhou na validação com {0} erro."
 msgstr[1] "Seu aplicativo falhou na validação com {0} erros."
+
+#: media/js/common/upload-packaged-app.js:183
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;e mais {0}"
+msgstr[1] "&hellip;e mais {0}"
+
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
+msgid "See full validation report"
+msgstr "Ver o relatório de validação completo"
+
+#: media/js/common/upload-packaged-app.js:209
+msgid "Validating {0}"
+msgstr "Validando {0}"
+
+#. L10n: first argument is an HTTP status code
+#: media/js/common/upload-packaged-app.js:245
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Uma resposta vazia foi recebida do servidor: {0}"
+
+#: media/js/common/upload-packaged-app.js:255
+msgid "Unexpected server error while validating."
+msgstr "Erro inesperado do servidor durante a validação."
+
+#: media/js/common/upload-packaged-app.js:292
+msgid "Finished validating {0}"
+msgstr "Validação de {0} concluída"
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
@@ -142,15 +122,18 @@ msgstr "Seu aplicativo passou na validação sem erros ou avisos."
 msgid "The manifest could not be found at the given location."
 msgstr "O manifesto não pôde ser encontrado no local informado."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "O servidor que hospeda o aplicativo não está acessível."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "O manifesto do aplicativo não é processável."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "O manifesto do aplicativo é inválido."
 
@@ -166,7 +149,8 @@ msgstr "Erro interno do servidor."
 msgid "Internal server error on app installation."
 msgstr "Erro interno do servidor durante a instalação do aplicativo."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "A instalação falhou. Por favor, tente mais tarde."
 
@@ -176,17 +160,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
 msgstr[1] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
+#: media/js/devreg/devhub.js:200
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Seu aplicativo passou pela validação sem erros e com {0} alerta."
 msgstr[1] "Seu aplicativo passou pela validação sem erros e com {0} alertas."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
+#: media/js/devreg/devhub.js:205
 msgid "Your app passed validation with no errors or messages."
 msgstr "Seu aplicativo passou pela validação sem erros ou alertas."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
+#: media/js/devreg/devhub.js:419
 msgid "Changes Saved"
 msgstr "Alterações salvas"
 
@@ -198,19 +182,19 @@ msgstr "Digite o endereço de e-mail de um novo membro da equipe"
 msgid "Refreshed"
 msgstr "Atualizado"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:648
+#: media/js/devreg/devhub.js:616
 msgid "There was an error uploading your file."
 msgstr "Ocorreu um erro ao enviar seu arquivo."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:923
+#: media/js/devreg/devhub.js:886
 msgid "Learn more"
 msgstr "Saiba mais"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:927
+#: media/js/devreg/devhub.js:890
 msgid "Example"
 msgstr "Exemplo"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1283
+#: media/js/devreg/devhub.js:1192
 msgid "Image changes being processed"
 msgstr "Processando alterações na imagem"
 
@@ -226,17 +210,26 @@ msgstr "ou <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esse recurso está desativado temporariamente enquanto realizamos a manutenção do site. Por favor, volte mais tarde."
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Esse recurso está desativado temporariamente enquanto realizamos a "
+"manutenção do site. Por favor, volte mais tarde."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Remover essa tradução"
 
 #: media/js/devreg/login.js:75
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "O login com Persona falhou. Será que você tem uma conta com este e-mail?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"O login com Persona falhou. Será que você tem uma conta com este e-mail?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -308,7 +301,9 @@ msgstr "HEBIC Grego/Code Bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código BSB australiano"
+msgstr ""
+"Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código "
+"BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -333,8 +328,14 @@ msgstr "Detectado: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
 "Apagar a conta para pagamentos \"{0}\" vai causar a remoção da conta de "
 "pagamentos dos aplicativos abaixo. Aplicativos sem uma conta para pagamentos "
@@ -348,12 +349,18 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr "Contas para pagamentos de {appName}:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/payments-manage.js:96
+#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Erro"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Ocorreu um problema ao contactar o servidor de pagamento."
 
@@ -365,15 +372,18 @@ msgstr "Erro de autenticação"
 msgid "You do not currently have any payment accounts."
 msgstr "Você ainda não tem nenhuma conta de pagamento."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Procurar nos temas por <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Aplicativos com <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pesquisar complementos com <b>{0}</b>"
 
@@ -384,51 +394,53 @@ msgid_plural "{0} characters left."
 msgstr[0] "{0} caractere restante."
 msgstr[1] "{0} caracteres restantes."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Todos os testes foram aprovados com sucesso."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Esses testes não foram executados."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Testes"
 
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192
 msgid "Warning"
 msgstr "Alerta"
 
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
 msgstr "Testes de compatibilidade"
 
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327
 msgid "App failed validation."
 msgstr "O aplicativo não passou na validação."
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329
 msgid "App passed validation."
 msgstr "O aplicativo passou na validação."
 
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erro"
 msgstr[1] "{0} erros"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
 msgstr "A validação não pôde ser completada ou foi completada com erros"
 
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
@@ -476,7 +488,8 @@ msgstr "Comentários ao editor"
 msgid "No version notes found"
 msgstr "Não foram encontradas notas de versão"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr "Selecione uma aplicação antes"
 
@@ -561,7 +574,7 @@ msgstr "Erro ao rejeitar o aplicativo"
 msgid "By {0} on {1}"
 msgstr "Por {0} em {1}"
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
 msgid "Follow this Collection"
 msgstr "Seguir essa coleção"
 
@@ -574,7 +587,8 @@ msgid "Following"
 msgstr "Seguindo"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Esse tema não é compatível com a sua versão do {0}"
 
@@ -592,11 +606,15 @@ msgstr "Creative Commons Atribuição-Uso não-comercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Vedada a criação de obras derivadas 3.0"
+msgstr ""
+"Creative Commons Atribuição-Uso não-comercial-Vedada a criação de obras "
+"derivadas 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Compartilhamento pela mesma licença 3.0"
+msgstr ""
+"Creative Commons Atribuição-Uso não-comercial-Compartilhamento pela mesma "
+"licença 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
@@ -610,15 +628,18 @@ msgstr "Creative Commons Atribuição-Compartilhamento pela mesma licença 3.0"
 msgid "Your Theme's Name"
 msgstr "Nome do seu tema"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Marcado para análise"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Seu preenchimento é necessário"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Marcado para exclusão"
 
@@ -626,7 +647,7 @@ msgstr "Marcado para exclusão"
 msgid "Updating results&hellip;"
 msgstr "Atualizando resultados&hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Categoria"
 
@@ -637,13 +658,19 @@ msgstr "usar original"
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Definir a versão máxima do complemento {0} para {1} e notificar o autor."
-msgstr[1] "Definir a versão máxima dos complementos {0} para {1} e notificar os autores."
+msgstr[0] ""
+"Definir a versão máxima do complemento {0} para {1} e notificar o autor."
+msgstr[1] ""
+"Definir a versão máxima dos complementos {0} para {1} e notificar os "
+"autores."
 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Enviar e-mail para o autor do {2} complemento que não passou na validação.Enviar e-mail para os autores dos {2} complementos que não passaram na validação."
+msgstr[0] ""
+"Enviar e-mail para o autor do {2} complemento que não passou na "
+"validação.Enviar e-mail para os autores dos {2} complementos que não "
+"passaram na validação."
 msgstr[1] ""
 
 #: media/js/zamboni/apps.js:54
@@ -664,162 +691,81 @@ msgstr "O seu sistema não suporta a instalação de aplicativos."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "Administradores e editores devem fornecer uma senha para se identificar."
+msgstr ""
+"Administradores e editores devem fornecer uma senha para se identificar."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "A identificação usando o Persona falhou. Talvez você não possua uma conta com esse endereço de e-mail."
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"A identificação usando o Persona falhou. Talvez você não possua uma conta "
+"com esse endereço de e-mail."
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:108
+#: media/js/zamboni/buttons.js:100
 msgid "Accept and Install"
 msgstr "Aceitar e Instalar"
 
-#: media/js/zamboni/buttons.js:108
+#: media/js/zamboni/buttons.js:100
 msgid "Add to {0}"
 msgstr "Adicionar ao {0}"
 
-#: media/js/zamboni/buttons.js:113
+#: media/js/zamboni/buttons.js:105
 msgid "Download Now"
 msgstr "Baixar agora"
 
-#: media/js/zamboni/buttons.js:154
+#: media/js/zamboni/buttons.js:135
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "O complemento não foi atualizado para suportar a compatibilidade por padrão."
+msgstr ""
+"O complemento não foi atualizado para suportar a compatibilidade por padrão."
 
-#: media/js/zamboni/buttons.js:159
+#: media/js/zamboni/buttons.js:140
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Você precisa usar o Firefox 10.0 ou superior."
 
-#: media/js/zamboni/buttons.js:171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla marcou essa versão como sendo incompatível com a sua versão do Firefox."
+#: media/js/zamboni/buttons.js:152
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"A Mozilla marcou essa versão como sendo incompatível com a sua versão do "
+"Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:249
+#: media/js/zamboni/buttons.js:230
 msgid "Install for {0} anyway"
 msgstr "Instalar no {0} mesmo assim"
 
-#: media/js/zamboni/buttons.js:249
+#: media/js/zamboni/buttons.js:230
 msgid "Download for {0} anyway"
 msgstr "Baixar para o {0} mesmo assim"
 
-#: media/js/zamboni/buttons.js:306
+#: media/js/zamboni/buttons.js:287
 msgid "Not available for your platform"
 msgstr "Indisponível para a sua plataforma"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:298
+#: media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
 msgstr "Indisponível para o {0} {1}"
 
-#: media/js/zamboni/buttons.js:380
+#: media/js/zamboni/buttons.js:361
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona com o {app} {min} - {max}"
 
-#: media/js/zamboni/buttons.js:382
+#: media/js/zamboni/buttons.js:363
 msgid "View other versions"
 msgstr "Ver outras versões"
 
-#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Sentimos, mas você precisa de um navegador baseado no Mozilla (como o Firefox) para instalar um plug-in de pesquisa."
-
-#: media/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "limpar visualizados recentemente"
-
-#: media/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "Adicionando aos favoritos&hellip;"
-
-#: media/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "Removendo favorito&hellip;"
-
-#: media/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "Adicionar aos favoritos"
-
-#: media/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "Remover dos favoritos"
-
-#: media/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "Em espera"
-
-#: media/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "Adicionar um comentário"
-
-#: media/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "Comentário"
-
-#: media/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "Remover esse complemento da coleção"
-
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "Remover"
-
-#: media/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "Remover esse usuário dos colaboradores"
-
-#: media/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "Um endereço de e-mail é requerido."
-
-#: media/js/zamboni/collections.js:498
-msgid "You cannot add yourself as a contributor."
-msgstr "Você não pode adicionar a si mesmo como um colaborador."
-
-#: media/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "Você já adicionou esse usuário."
-
-#: media/js/zamboni/collections.js:703
-msgid "Add to favorites"
-msgstr "Adicionar aos favoritos"
-
-#: media/js/zamboni/collections.js:707
-msgid "Remove from favorites"
-msgstr "Remover dos favoritos"
-
-#: media/js/zamboni/collections.js:734
-msgid "Stop following"
-msgstr "Deixar de seguir"
-
-#: media/js/zamboni/contributions.js:134
-msgid "Install App"
-msgstr "Instalar Aplicativo"
-
-#: media/js/zamboni/devhub.js:240
-msgid "Your browser does not support the video tag"
-msgstr "O seu navegador não suporta o elemento &lt;video&gt;"
-
-#: media/js/zamboni/devhub.js:501
-msgid "Enter a new author's email address"
-msgstr "Insira o e-mail de um novo autor"
-
-#: media/js/zamboni/devhub.js:791
-msgid "{files} file"
-msgid_plural "{files} files"
-msgstr[0] "{files} arquivo"
-msgstr[1] "{files} arquivos"
-
-#: media/js/zamboni/devhub.js:794
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} análise"
-msgstr[1] "{reviews} análises"
-
-#: media/js/zamboni/devhub.js:1487
-msgid "Must be a valid e-mail address."
-msgstr "Deve ser um endereço de e-mail válido."
+#: media/js/zamboni/buttons.js:563
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Sentimos, mas você precisa de um navegador baseado no Mozilla (como o "
+"Firefox) para instalar um plug-in de pesquisa."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -836,11 +782,6 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> caractere restante."
 msgstr[1] "<b>{0}</b> caracteres restantes."
 
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: media/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Baixar {0}"
-
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
 msgstr "Qualidade da senha:"
@@ -850,20 +791,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Pelo menos {0} caractere restante."
 msgstr[1] "Pelo menos {0} caracteres restantes."
-
-#: media/js/zamboni/validator.js:337
-msgid "Add-on failed validation."
-msgstr "A validação do complemento falhou."
-
-#: media/js/zamboni/validator.js:339
-msgid "Add-on passed validation."
-msgstr "O complemento foi aprovado na validação."
-
-#: media/js/zamboni/validator.js:374
-msgid "{0} notice"
-msgid_plural "{0} notices"
-msgstr[0] "{0} notícia"
-msgstr[1] "{0} notícias"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
@@ -881,7 +808,8 @@ msgstr "Não analisado"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimental <span>(Saiba mais)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Não disponível para o {0}"
 
@@ -900,3 +828,109 @@ msgstr "Adquirindo..."
 #: media/js/zamboni/mobile/buttons.js:160
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Esse complemento foi analisado preliminarmente pela Mozilla."
+
+#~ msgid "Your add-on should end with .xpi, .jar or .xml"
+#~ msgstr "Seu complemento deve terminar com .xpi, .jar ou .xml"
+
+#~ msgid "Your add-on failed validation with {0} error."
+#~ msgid_plural "Your add-on failed validation with {0} errors."
+#~ msgstr[0] "Seu complemento apresentou {0} erro na validação."
+#~ msgstr[1] "Seu complemento apresentou {0} erros na validação."
+
+#~ msgid "Your add-on passed validation with no errors and {0} message."
+#~ msgid_plural "Your add-on passed validation with no errors and {0} messages."
+#~ msgstr[0] "Seu complemento passou na validação sem erros e {0} mensagem"
+#~ msgstr[1] "Seu complemento passou na validação sem erros e {0} mensagens"
+
+#~ msgid "Your add-on passed validation with no errors or warnings."
+#~ msgstr "Seu complemento passou pela validação sem erros ou alertas."
+
+#~ msgid "Some platforms are not available for this type of add-on."
+#~ msgstr "Algumas plataformas não estão disponíveis para esse tipo de complemento."
+
+#~ msgid "clear recently viewed"
+#~ msgstr "limpar visualizados recentemente"
+
+#~ msgid "Adding to Favorites&hellip;"
+#~ msgstr "Adicionando aos favoritos&hellip;"
+
+#~ msgid "Removing Favorite&hellip;"
+#~ msgstr "Removendo favorito&hellip;"
+
+#~ msgid "Add to Favorites"
+#~ msgstr "Adicionar aos favoritos"
+
+#~ msgid "Remove from Favorites"
+#~ msgstr "Remover dos favoritos"
+
+#~ msgid "Pending"
+#~ msgstr "Em espera"
+
+#~ msgid "Add a comment"
+#~ msgstr "Adicionar um comentário"
+
+#~ msgid "Comment"
+#~ msgstr "Comentário"
+
+#~ msgid "Remove this add-on from the collection"
+#~ msgstr "Remover esse complemento da coleção"
+
+#~ msgid "Remove"
+#~ msgstr "Remover"
+
+#~ msgid "Remove this user as a contributor"
+#~ msgstr "Remover esse usuário dos colaboradores"
+
+#~ msgid "An email address is required."
+#~ msgstr "Um endereço de e-mail é requerido."
+
+#~ msgid "You cannot add yourself as a contributor."
+#~ msgstr "Você não pode adicionar a si mesmo como um colaborador."
+
+#~ msgid "You have already added that user."
+#~ msgstr "Você já adicionou esse usuário."
+
+#~ msgid "Add to favorites"
+#~ msgstr "Adicionar aos favoritos"
+
+#~ msgid "Remove from favorites"
+#~ msgstr "Remover dos favoritos"
+
+#~ msgid "Stop following"
+#~ msgstr "Deixar de seguir"
+
+#~ msgid "Install App"
+#~ msgstr "Instalar Aplicativo"
+
+#~ msgid "Your browser does not support the video tag"
+#~ msgstr "O seu navegador não suporta o elemento &lt;video&gt;"
+
+#~ msgid "Enter a new author's email address"
+#~ msgstr "Insira o e-mail de um novo autor"
+
+#~ msgid "{files} file"
+#~ msgid_plural "{files} files"
+#~ msgstr[0] "{files} arquivo"
+#~ msgstr[1] "{files} arquivos"
+
+#~ msgid "{reviews} review"
+#~ msgid_plural "{reviews} reviews"
+#~ msgstr[0] "{reviews} análise"
+#~ msgstr[1] "{reviews} análises"
+
+#~ msgid "Must be a valid e-mail address."
+#~ msgstr "Deve ser um endereço de e-mail válido."
+
+#~ msgid "Download {0}"
+#~ msgstr "Baixar {0}"
+
+#~ msgid "Add-on failed validation."
+#~ msgstr "A validação do complemento falhou."
+
+#~ msgid "Add-on passed validation."
+#~ msgstr "O complemento foi aprovado na validação."
+
+#~ msgid "{0} notice"
+#~ msgid_plural "{0} notices"
+#~ msgstr[0] "{0} notícia"
+#~ msgstr[1] "{0} notícias"
