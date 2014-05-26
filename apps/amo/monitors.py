@@ -100,7 +100,7 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        health = elasticutils.get_es().cluster_health()
+        health = elasticutils.get_es().health()
         if health['status'] == 'red':
             status = 'ES is red'
         elastic_results = health
