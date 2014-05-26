@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-26 23:12+0000\n"
+"PO-Revision-Date: 2014-05-26 23:18+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401145932.0\n"
+"X-POOTLE-MTIME: 1401146335.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -340,13 +340,13 @@ msgstr "Noiz gehitua: {0}"
 #: apps/addons/templates/addons/macros.html:16
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "Deskarga bat astero"
+msgstr[0] "Deskarga %(num)s astero"
 msgstr[1] "%(num)s deskarga astero"
 
 #: apps/addons/templates/addons/macros.html:26
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "Erabiltzaile bat"
+msgstr[0] "Erabiltzaile %(num)s"
 msgstr[1] "%(num)s erabiltzaile"
 
 #. {0} is the number of downloads.
@@ -2083,9 +2083,8 @@ msgstr "Berrikusi"
 
 # {0} and {1} are full <input> tags for dates
 #: apps/editors/forms.py:16
-#, fuzzy
 msgid "View entries between"
-msgstr "Ikusi %s eta %s arteko sarrerak"
+msgstr "Ikusi data-tarte honetako sarrerak"
 
 #: apps/editors/forms.py:17 mkt/developers/tasks.py:483 mkt/developers/tasks.py:489
 msgid "and"
@@ -6305,11 +6304,11 @@ msgstr ""
 #. {0} is the maximum number of add-on categories allowed.
 #.                  {1} is the application name.
 #: mkt/developers/templates/developers/includes/macros.html:72
-#, fuzzy
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
-msgstr[1] "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
+msgstr[0] ""
+"Hautatu <b>gehienez ere</b> {1} kategoria <b>{0}</b> gehigarri honentzat:"
+msgstr[1] "Hautatu <b>gehienez ere {0}</b> {1} kategoria gehigarri honentzat:"
 
 #: mkt/developers/templates/developers/includes/macros.html:86
 msgid "Categories:"
