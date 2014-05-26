@@ -321,8 +321,8 @@ CACHE_MIDDLEWARE_SECONDS = 60 * 3
 # Set Etag headers.
 USE_ETAGS = True
 
-# When True, pre-generate APKs for apps.
-PRE_GENERATE_APKS = True
+# When True, pre-generate APKs for apps, turn off by default.
+PRE_GENERATE_APKS = False
 
 # URL to the APK Factory service.
 # See https://github.com/mozilla/apk-factory-service
