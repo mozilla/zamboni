@@ -2,11 +2,12 @@
     // This is mobile-only.
     if (!$('body').hasClass('mobile')) return;
 
-    var $actions = $('.review-flagged-actions'),
-        newbtns = '<div class="keep">' + gettext('Keep review; remove flags') + '</div>';
-
+    var $actions = $('.review-flagged-actions');
+    var newbtns = '<div class="mobile-button-group">';
+    newbtns += '<div class="keep">' + gettext('Keep review / Remove flags') + '</div>';
     newbtns += '<div class="nuke">' + gettext('Delete review') + '</div>';
     newbtns += '<div class="skip active">' + gettext('Skip for now') + '</div>';
+    newbtns += '</div>';  // mobile-button-group.
 
     var $newbtns = $(newbtns);
 
