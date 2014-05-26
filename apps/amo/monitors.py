@@ -105,7 +105,9 @@ def elastic():
             status = 'ES is red'
         elastic_results = health
     except Exception:
-        elastic_results = traceback.format_exc()
+        monitor_log.exception('Failed to communicate with ES')
+        elastic_results = {'error': traceback.format_exc()}
+        status = 'traceback'
 
     return status, elastic_results
 
