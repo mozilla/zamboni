@@ -209,4 +209,5 @@ PAYMENT_PROVIDERS = ['reference']
 # reference implementation anyway.
 DEFAULT_PAYMENT_PROVIDER = 'reference'
 
+PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'

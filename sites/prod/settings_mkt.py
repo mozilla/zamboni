@@ -175,4 +175,5 @@ IARC_ALLOW_CERT_REUSE = False
 
 BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pricing/Providers/Boku'
 
+PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'
