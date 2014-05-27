@@ -70,11 +70,11 @@
     </li>
   {% endif %}
 
-  {% if not waffle.switch('disabled-payments') or addon.is_premium() %}
-    <li>
+  {% if addon.is_premium() %}
+    <li/>
       {% set has_payments = addon.is_pending() and addon.is_premium() and addon.has_payment_account() %}
       {% set no_payments = addon.is_premium() and not addon.has_payment_account() %}
-      <a class="action-link{{ ' alert' if waffle.switch('disabled-payments') and addon.is_premium() }}{% if has_payments %} done{% elif no_payments %} not-done{% endif %}"
+      <a class="action-link{{ ' alert' if addon.is_premium() }}{% if has_payments %} done{% elif no_payments %} not-done{% endif %}"
          href="{{ addon.get_dev_url('payments') }}">
         {{ _('Compatibility & Payments') }}</a>
     </li>
