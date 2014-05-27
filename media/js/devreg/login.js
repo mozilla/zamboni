@@ -143,6 +143,10 @@ define('login', ['notification'], function(notification) {
         localStorage.removeItem(_prefix('user_apps'));
     }
 
+    function userToken() {
+        return localStorage.getItem(_prefix('user'));
+    }
+
     // Load `include.js` from persona.org, and drop login hotness like it's hot.
     var s = document.createElement('script');
     s.onload = init_persona;
@@ -157,4 +161,7 @@ define('login', ['notification'], function(notification) {
     document.body.appendChild(s);
     $('.browserid').css('cursor', 'wait');
 
+    return {
+        userToken: userToken,
+    };
 });

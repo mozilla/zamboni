@@ -1,4 +1,4 @@
-(function () {
+(function (login) {
     function PricePointFormatter() {
         // A mapping from PricePointId to FormattedPriceDeferred.
         var pricePoints = {};
@@ -139,11 +139,6 @@
             } else {
                 url = this.listUrl;
             }
-            // FIXME: This is bad.
-            var user = localStorage.getItem('0::user');
-            if (user) {
-                url += '?_user=' + user;
-            }
             return url;
         };
 
@@ -156,6 +151,9 @@
                 method: method,
                 url: this.url(),
                 data: this.product,
+                headers: {
+                    Authorization: login.userToken(),
+                },
             }).always((function () {
                 this.saveButton.attr('disabled', false);
             }).bind(this)).done((function (product) {
@@ -238,4 +236,4 @@
         component: InAppProductComponent,
         componentAttrs: {startEditing: true},
     });
-})();
+})(require('login'));
