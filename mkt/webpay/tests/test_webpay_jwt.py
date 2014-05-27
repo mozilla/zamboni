@@ -2,18 +2,16 @@ import urlparse
 from urllib import urlencode
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import jwt
 from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_
 
-import amo
 from amo.helpers import absolutify
 from constants.payments import PROVIDER_BOKU
-from mkt import regions
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
+from amo.urlresolvers import reverse
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    WebAppProduct)
@@ -25,16 +23,13 @@ class TestPurchaseJWT(PurchaseTest):
     def setUp(self):
         super(TestPurchaseJWT, self).setUp()
         self.product = WebAppProduct(self.addon)
-        self.token = get_product_jwt(
-            self.product,
-            region=regions.US,
+        self.contribution = Contribution.objects.create(
             user=self.user,
+            addon=self.addon,
         )
-
+        self.token = get_product_jwt(self.product, self.contribution)
         self.token_data = jwt.decode(
             str(self.token['webpayJWT']), verify=False)
-
-        self.contribution = Contribution.objects.get()
 
     def test_claims(self):
         verify_claims(self.token_data)
@@ -58,11 +53,6 @@ class TestPurchaseJWT(PurchaseTest):
         eq_(self.token_data['typ'], settings.APP_PURCHASE_TYP)
         eq_(self.token_data['aud'], settings.APP_PURCHASE_AUD)
 
-        contribution = Contribution.objects.get()
-        eq_(contribution.type, amo.CONTRIB_PENDING)
-        eq_(contribution.price_tier, self.addon.premium.price)
-        eq_(contribution.user, self.user)
-
         request = self.token_data['request']
         eq_(request['id'], self.product.external_id())
         eq_(request['name'], self.product.name())
@@ -82,10 +72,13 @@ class BaseTestWebAppProduct(PurchaseTest):
     def setUp(self):
         super(BaseTestWebAppProduct, self).setUp()
         self.product = WebAppProduct(self.addon)
+        self.contribution = Contribution.objects.create(
+            user=self.user,
+            addon=self.addon,
+        )
         self.token = get_product_jwt(
             self.product,
-            region=regions.US,
-            user=self.user,
+            self.contribution,
         )
 
         self.contribution = Contribution.objects.get()
@@ -106,8 +99,6 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(self.product.id(), self.addon.pk)
         eq_(self.product.name(), unicode(self.addon.name))
         eq_(self.product.addon(), self.addon)
-        eq_(self.product.amount(regions.US),
-            self.addon.get_price(region=regions.US.id))
         eq_(self.product.price(), self.addon.premium.price)
         eq_(self.product.icons()['512'],
             absolutify(self.addon.get_icon_url(512)))
@@ -147,9 +138,12 @@ class TestInAppProduct(InAppPurchaseTest):
 
     def setUp(self):
         super(TestInAppProduct, self).setUp()
+        self.contribution = Contribution.objects.create(
+            user=self.user,
+            addon=self.addon,
+        )
         self.product = InAppProduct(self.inapp)
-        self.token = get_product_jwt(self.product)
-        self.contribution = Contribution.objects.get()
+        self.token = get_product_jwt(self.product, self.contribution)
 
     def test_external_id_with_no_domain(self):
         with self.settings(DOMAIN=None):
@@ -165,7 +159,6 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(self.product.id(), self.inapp.pk)
         eq_(self.product.name(), unicode(self.inapp.name))
         eq_(self.product.addon(), self.inapp.webapp)
-        eq_(self.product.amount(regions.US), None)
         eq_(self.product.price(), self.inapp.price)
         eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
         eq_(self.product.description(), self.inapp.webapp.description)

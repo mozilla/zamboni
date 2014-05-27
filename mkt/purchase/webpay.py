@@ -1,5 +1,6 @@
 import sys
 import urlparse
+import uuid
 from decimal import Decimal
 
 from django import http
@@ -38,13 +39,24 @@ def prepare_pay(request, addon):
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
 
-    return get_product_jwt(
-        WebAppProduct(addon),
-        user=request.amo_user,
-        region=request.REGION,
+    log.debug('Starting purchase of app: {0} by user: {1}'.format(
+        addon.pk, request.amo_user))
+
+    contribution = Contribution.objects.create(
+        addon_id=addon.pk,
+        amount=addon.get_price(region=request.REGION.id),
+        paykey=None,
+        price_tier=addon.premium.price,
         source=request.REQUEST.get('src', ''),
-        lang=request.LANG
+        source_locale=request.LANG,
+        type=amo.CONTRIB_PENDING,
+        user=request.amo_user,
+        uuid=str(uuid.uuid4()),
     )
+
+    log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+    return get_product_jwt(WebAppProduct(addon), contribution)
 
 
 @login_required
