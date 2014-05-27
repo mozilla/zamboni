@@ -94,6 +94,7 @@ def _get_monolith_jobs(date=None):
         # New developers.
         'mmo_developer_count_total': [{
             'count': AddonUser.objects.filter(
+                user__created__lt=next_date,
                 addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
         }],
 
@@ -118,9 +119,10 @@ def _get_monolith_jobs(date=None):
         # Apps added by package type and region.
         for package_type in package_types.values():
             package_counts.append({
-                'count': apps.filter(
-                    is_packaged=package_type == 'packaged').exclude(
-                        addonexcludedregion__region=region.id).count,
+                'count': (apps
+                          .filter(is_packaged=package_type == 'packaged')
+                          .exclude(addonexcludedregion__region=region.id)
+                          .count),
                 'dimensions': {'region': region_slug,
                                'package_type': package_type},
             })
@@ -128,9 +130,10 @@ def _get_monolith_jobs(date=None):
         # Apps added by premium type and region.
         for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
             premium_counts.append({
-                'count': apps.filter(
-                    premium_type=premium_type).exclude(
-                        addonexcludedregion__region=region.id).count,
+                'count': (apps
+                          .filter(premium_type=premium_type)
+                          .exclude(addonexcludedregion__region=region.id)
+                          .count),
                 'dimensions': {'region': region_slug,
                                'premium_type': pt_name},
             })
@@ -139,7 +142,8 @@ def _get_monolith_jobs(date=None):
     stats.update({'apps_added_by_premium_type': premium_counts})
 
     # Add various "Apps Available" for all the dimensions we need.
-    apps = Webapp.objects.filter(status=amo.STATUS_PUBLIC,
+    apps = Webapp.objects.filter(_current_version__reviewed__lt=next_date,
+                                 status=amo.STATUS_PUBLIC,
                                  disabled_by_user=False)
     package_counts = []
     premium_counts = []
@@ -148,9 +152,10 @@ def _get_monolith_jobs(date=None):
         # Apps available by package type and region.
         for package_type in package_types.values():
             package_counts.append({
-                'count': apps.filter(
-                    is_packaged=package_type == 'packaged').exclude(
-                        addonexcludedregion__region=region.id).count,
+                'count': (apps
+                          .filter(is_packaged=package_type == 'packaged')
+                          .exclude(addonexcludedregion__region=region.id)
+                          .count),
                 'dimensions': {'region': region_slug,
                                'package_type': package_type},
             })
@@ -158,9 +163,10 @@ def _get_monolith_jobs(date=None):
         # Apps available by premium type and region.
         for premium_type, pt_name in amo.ADDON_PREMIUM_API.items():
             premium_counts.append({
-                'count': apps.filter(
-                    premium_type=premium_type).exclude(
-                        addonexcludedregion__region=region.id).count,
+                'count': (apps
+                          .filter(premium_type=premium_type)
+                          .exclude(addonexcludedregion__region=region.id)
+                          .count),
                 'dimensions': {'region': region_slug,
                                'premium_type': pt_name},
             })
