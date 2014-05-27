@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-27 18:49+0000\n"
+"PO-Revision-Date: 2014-05-27 21:21+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401216551.0\n"
+"X-POOTLE-MTIME: 1401225683.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -448,6 +448,9 @@ msgstr "Gehigarriaren QR kodea"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
+"{0} zure mugikorreko Firefoxen eduki nahi duzu? Eskaneatu QR kode hau, "
+"zuzenean mugikorrean instalatzeko. (QR irakurgailu bat beharko duzu. Ez "
+"baduzu halakorik, bilatu zure gailuko dendan.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:11
 #: apps/addons/templates/addons/impala/details.html:291
@@ -459,6 +462,10 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"Gehigarri honek <a href=\"%(url)s\">gure politikak</a> urratzen dituela uste "
+"baduzu, edo segurtasun edo pribatutasun arazoak dituela, erabili beheko "
+"inprimakia zure kezka deskribatzeko. Ez erabili inprimaki hau beste "
+"ezertarako, mesedez."
 
 #: apps/addons/templates/addons/report_abuse.html:33
 msgid "Send Report"
@@ -542,6 +549,7 @@ msgstr ""
 #: apps/addons/templates/addons/impala/dependencies_note.html:7
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
+"Gehigarriak, behar bezala funtzionatzeko, ondorengo gehigarrien beharra du:"
 
 #: apps/addons/templates/addons/impala/details-more.html:21
 msgid "Related Categories"
@@ -814,6 +822,8 @@ msgstr "{0}(e)rako gehigarriak"
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:49
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"Firefox eduki behar duzu gehigarriak instalatu ahal izateko. <a "
+"href=\"http://mozilla.com/mobile\">Ikasi gehiago&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:17
 msgid "Easy ways to personalize."
@@ -828,6 +838,10 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"Gehigarriak, Firefox funtzionalitate eta estilo berriekin pertsonalizatzeko "
+"aukera ematen dizuten aplikazioak dira. Webgune baten izena gaizki idazten "
+"duzunean, edo lanpetutako orri bat ezin duzunean irakurri, beti dago "
+"gehigarri bat nabigazioa hobetzen laguntzeko."
 
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:22 mkt/developers/templates/developers/apps/edit/basic.html:148
 #: mkt/reviewers/templates/reviewers/includes/details.html:137 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/search/forms.py:135 templates/categories.html:7
@@ -873,10 +887,11 @@ msgstr "Kudeaketa-tresnak"
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
+"Hau baliozko kolore-kode hamaseitar bat izan behar da, esaterako #000000."
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Idatzi gutxienez balio bat."
 
 #: apps/amo/helpers.py:174 apps/amo/templates/amo/site_nav.html:30 templates/menu_links.html:11
 msgid "Collections"
@@ -891,11 +906,11 @@ msgstr "Gehigarriak"
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Marketplace"
 
 #: apps/amo/helpers.py:302
 msgid "Apps Marketplace"
-msgstr ""
+msgstr "Aplikazioen merkatua"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:421
@@ -920,7 +935,7 @@ msgstr "{addon}: kategoriak editatuta."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) gehituta {addon}(e)ra."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
@@ -1011,11 +1026,11 @@ msgstr "Baztertuta"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} geldiarazita."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Geldiarazita"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
@@ -1149,7 +1164,7 @@ msgstr ""
 
 #: apps/amo/log.py:367
 msgid "Password changed."
-msgstr ""
+msgstr "Pasahitza aldatuta."
 
 #: apps/amo/log.py:372
 msgid "{addon} changed to premium."
@@ -1165,7 +1180,7 @@ msgstr ""
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Onartuta baina zain"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -1225,7 +1240,7 @@ msgstr ""
 
 #: apps/amo/log.py:457
 msgid "High Refund Requests"
-msgstr ""
+msgstr "Dirua itzultzeko eskaera ugari"
 
 #: apps/amo/log.py:464
 msgid "{addon} re-reviewed because of manifest change."
@@ -1233,7 +1248,7 @@ msgstr ""
 
 #: apps/amo/log.py:465
 msgid "Manifest Change"
-msgstr ""
+msgstr "Manifestuaren aldaketa"
 
 #: apps/amo/log.py:472
 msgid "{addon} re-reviewed because app upgraded premium type."
@@ -1265,7 +1280,7 @@ msgstr ""
 
 #: apps/amo/log.py:499
 msgid "Video removed"
-msgstr ""
+msgstr "Bideoa kenduta"
 
 #: apps/amo/log.py:504
 msgid "{addon} re-review because of new device(s) added."
@@ -1273,7 +1288,7 @@ msgstr ""
 
 #: apps/amo/log.py:505
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Gailua(k) gehituta"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
@@ -1281,7 +1296,7 @@ msgstr ""
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Gailua(k) berrikusleak aldatuta"
 
 #: apps/amo/log.py:520
 msgid "{addon} resubmitted for review."
@@ -1313,11 +1328,11 @@ msgstr ""
 
 #: apps/amo/log.py:564
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "{user} erabiltzailea editatuta; arrazoia: {1}"
 
 #: apps/amo/log.py:570
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "{user} erabiltzailea anonimotuta."
 
 #: apps/amo/log.py:576
 msgid "User {user} restricted."
@@ -1329,11 +1344,11 @@ msgstr ""
 
 #: apps/amo/log.py:589
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{addon}(r)entzako {review} eguneratuta."
 
 #: apps/amo/log.py:595
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} berrikusita."
 
 #: apps/amo/log.py:601
 msgid "User {0.name} added to {group}."
@@ -1357,12 +1372,12 @@ msgstr ""
 
 #: apps/amo/log.py:625
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Eskakizunak aldatuta"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:633
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version}(r)en egoera {0}(e)ra aldatuta."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
@@ -1371,11 +1386,11 @@ msgstr ""
 
 #: apps/amo/log.py:646
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "{addon}(r)en edukien sailkapena \"Helduentzako\"ra aldatuta."
 
 #: apps/amo/log.py:652
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon}(r)en edukien sailkapena aldatuta."
 
 #: apps/amo/log.py:657
 msgid "Priority review requested for {addon}."
@@ -1387,11 +1402,13 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Ez duzu baimenik"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
 msgstr ""
+"<h1>Hara! Ez duzu horretarako baimenik.</h1> <p>Zerbait egiten saiatu zara, "
+"baina ez duzu horretarako baimenik.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
