@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-10 16:56+0000\n"
+"PO-Revision-Date: 2014-05-27 15:24+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399741002.0\n"
+"X-POOTLE-MTIME: 1401204241.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -3511,11 +3511,11 @@ msgstr "Schválena, ale čeká na zveřejnění"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Vyeskalována díky častému hlášení o zneužití"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Vystupňováno díky častým žádostem o vrácení peněz"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -4483,6 +4483,10 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Prosím, považujte mou aplikaci za kandidáta k předinstalování na zařízení s "
+"Firefox OS. Souhlasím s podmínkami napsanými níže. Jsem srozuměn s tím, že "
+"tento dokument neznamená jistotu předinstalace mé aplikace do systému "
+"Firefox OS."
 
 #: mkt/developers/forms.py:1032
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -5687,7 +5691,7 @@ msgstr "Jedná se o velmi důležitou aplikaci, na kterou by měl dohlížet zam
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Použít samostatně"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
@@ -6413,7 +6417,7 @@ msgstr "Vygenerovat klíče"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Zkopíruj mne"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:23 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:206
 msgid "Save"
@@ -6646,18 +6650,23 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Pro přidání účtu plateb pro Boku si musíte vytvořit speciální účet pro "
+"Mozillu na webové stránce Boku. Schválení vytvořeného účtu trvá 24-48 hodin. "
+"Dokumentaci a přístup na web Boku naleznete na Mozilla Developer Network."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "Přejít na dokumentaci k Boku na MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"Vytvořili jste si účet na Boku a byl schválen? Vytvořte si níže název účtu a "
+"ID služby Boku."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "Vytvořit název pro tento účet"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
@@ -8195,7 +8204,7 @@ msgstr "Hledání aplikací"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Aplikace: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
