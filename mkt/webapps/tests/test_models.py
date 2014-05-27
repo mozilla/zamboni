@@ -1326,6 +1326,14 @@ class TestPackagedManifest(BasePackagedAppTest):
         with self.assertNumQueries(0):
             webapp.get_cached_manifest()
 
+    @mock.patch('mkt.webapps.models.cache')
+    def test_cached_manifest_no_version_not_cached(self, cache_mock):
+        webapp = self.post_addon(
+            data={'packaged': True, 'free_platforms': 'free-firefoxos'})
+        webapp._current_version = None
+        eq_(webapp.get_cached_manifest(force=True), '{}')
+        assert not cache_mock.called
+
     def test_cached_manifest_contents(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})

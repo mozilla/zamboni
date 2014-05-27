@@ -897,7 +897,10 @@ class Webapp(Addon):
 
         version = self.current_version
         if not version:
-            data = {}
+            # There's no valid version so we return an empty mini-manifest.
+            # Note: We want to avoid caching this so when a version does become
+            # available it can get picked up correctly.
+            return '{}'
         else:
             file_obj = version.all_files[0]
             manifest = self.get_manifest_json(file_obj)
