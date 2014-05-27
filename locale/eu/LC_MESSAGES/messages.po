@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-26 23:24+0000\n"
+"PO-Revision-Date: 2014-05-27 18:49+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401146649.0\n"
+"X-POOTLE-MTIME: 1401216551.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -537,6 +537,7 @@ msgstr "egilea: %(users)s"
 #: apps/addons/templates/addons/impala/dependencies_note.html:5
 msgid "This app requires the following apps to work properly:"
 msgstr ""
+"Aplikazioak, behar bezala funtzionatzeko, ondorengo aplikazioen beharra du:"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:7
 msgid "This add-on requires the following add-ons to work properly:"
