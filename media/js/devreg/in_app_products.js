@@ -133,9 +133,11 @@
         });
 
         this.url = function () {
-            var url = this.baseUrl;
+            var url;
             if (this.product.id) {
-                url += this.product.id + '/';
+                url = format(this.detailUrlFormat, {id: this.product.id});
+            } else {
+                url = this.listUrl;
             }
             // FIXME: This is bad.
             var user = localStorage.getItem('0::user');
@@ -167,8 +169,9 @@
         };
 
         this.after('initialize', function () {
-            this.baseUrl = format('/api/v1/payments/{app_slug}/in-app/',
-                {app_slug: 'carrier-info-2'});
+            this.$rootData = $('#in-app-products').data();
+            this.listUrl = this.$rootData.listUrl;
+            this.detailUrlFormat = decodeURIComponent(this.$rootData.detailUrlFormat);
             this.name = this.select('nameSelector');
             this.price = this.select('priceSelector');
             this.logoUrl = this.select('logoUrlSelector');
