@@ -523,6 +523,16 @@ class TestEditBasic(TestEdit):
         releasenotes = self.webapp.current_version.reload().releasenotes
         eq_(res.status_code, 200)
         eq_(releasenotes, data['releasenotes'])
+        # Make sure make_public wasn't reset by accident.
+        eq_(self.webapp.reload().make_public, None)
+
+    def test_edit_release_notes_pending(self):
+        # Like test_edit_release_notes, but with a pending app.
+        file_ = self.webapp.current_version.all_files[0]
+        file_.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=amo.STATUS_PENDING)
+        self.test_edit_release_notes()
+        eq_(self.webapp.reload().status, amo.STATUS_PENDING)
 
     def test_edit_release_notes_packaged(self):
         # You are not supposed to edit release notes from the basic edit

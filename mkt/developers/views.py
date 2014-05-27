@@ -865,6 +865,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     appfeatures_form.save()
 
                 if version_form:
+                    # We are re-using version_form without displaying all its
+                    # fields, so we need to override the boolean fields,
+                    # otherwise they'd be considered empty and therefore False.
+                    version_form.cleaned_data['publish_immediately'] = (
+                        version_form.fields['publish_immediately'].initial)
                     version_form.save()
 
                 if 'manifest_url' in form.changed_data:
