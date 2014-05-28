@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-27 21:21+0000\n"
+"PO-Revision-Date: 2014-05-28 08:59+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401225683.0\n"
+"X-POOTLE-MTIME: 1401267591.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1046,7 +1046,7 @@ msgstr ""
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "Berrikuspena eskatuta"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
