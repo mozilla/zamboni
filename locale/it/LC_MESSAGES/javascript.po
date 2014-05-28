@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2014-05-16 17:39+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -462,9 +462,9 @@ msgstr "Più dettagli…"
 msgid "less..."
 msgstr "Meno dettagli…"
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Mantieni la revisione e rimuovi le segnalazioni"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
+msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"

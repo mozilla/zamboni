@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2011-06-09 17:05+0200\n"
 "Last-Translator: thanhhuong116 <thanhhuong116@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -450,8 +450,8 @@ msgstr ""
 msgid "less..."
 msgstr ""
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
 msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8

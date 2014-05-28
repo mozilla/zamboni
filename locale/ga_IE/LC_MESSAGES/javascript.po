@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -489,9 +489,9 @@ msgstr "níos mó..."
 msgid "less..."
 msgstr "níos lú..."
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Coinnigh an léirmheas; bain na brataí"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
+msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"

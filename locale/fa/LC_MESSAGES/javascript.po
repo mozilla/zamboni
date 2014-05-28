@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2013-12-04 18:56+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,8 +451,8 @@ msgstr "بیشتر..."
 msgid "less..."
 msgstr "این ویژگی بطور موقّت هنگامی که ما کارهای نگه‌داری وب سایت را انجام میدهیم غیر فعّال شده است. لطفاً کمی بعد مراجعه فرمایید."
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
 msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8

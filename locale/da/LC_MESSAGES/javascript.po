@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2014-05-27 17:56+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -35,8 +35,7 @@ msgstr "Billeder skal enten være PNG eller JPG."
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
 
@@ -82,8 +81,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 msgid "See full validation report"
 msgstr ""
 
@@ -203,24 +201,16 @@ msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse "
-"af webstedet. Prøv igen lidt senere."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr ""
 
 #: media/js/devreg/login.js:75
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Log ind med Persona mislykkedes. Måske har du ikke en konto under den "
-"mailadresse?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Log ind med Persona mislykkedes. Måske har du ikke en konto under den mailadresse?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -317,14 +307,8 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -332,16 +316,12 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:96
-#: media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fejl"
 
-#: media/js/devreg/payments-manage.js:97
-#: media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Der var et problem med at kontakte betalingsserveren."
 
@@ -464,8 +444,7 @@ msgstr ""
 msgid "No version notes found"
 msgstr "Ingen versionsbemærkninger fundet"
 
-#: media/js/devreg/reviewers/editors.js:315
-#: media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr "Vælg et program først"
 
@@ -481,8 +460,8 @@ msgstr ""
 msgid "less..."
 msgstr ""
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
 msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
@@ -653,16 +632,11 @@ msgstr "Dette system understøtter ikke installation af apps."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
-"Administratorer og redaktører skal angive en adgangskode for at logge ind."
+msgstr "Administratorer og redaktører skal angive en adgangskode for at logge ind."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Log ind med BrowserID mislykkedes. Måske har du ikke en konto under denne "
-"mailadresse?"
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Log ind med BrowserID mislykkedes. Måske har du ikke en konto under denne mailadresse?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:100
@@ -686,11 +660,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Du nødt til at bruge Firefox 10.0 eller højere."
 
 #: media/js/zamboni/buttons.js:152
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Mozilla har markeret denne version som værende inkompatibel med din Firefox-"
-"version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla har markeret denne version som værende inkompatibel med din Firefox-version."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:230
@@ -719,12 +690,8 @@ msgid "View other versions"
 msgstr "Vis andre versioner"
 
 #: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at "
-"installere et søge-plugin."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2014-05-24 01:05+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
@@ -310,14 +310,8 @@ msgstr "Detetado: {0}"
 #: media/js/devreg/payments-manage.js:31
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Eliminar a conta de pagamento \"{0}\" irá remover a conta de pagamento das "
-"seguintes aplicações. Aplicações sem uma conta de pagamento não estarão mais "
-"disponíveis para venda."
-msgstr[1] ""
-"Eliminar a conta de pagamento \"{0}\" irá remover a conta de pagamento da "
-"seguinte aplicação. Aplicações sem uma conta de pagamento não estarão mais "
-"disponíveis para venda."
+msgstr[0] "Eliminar a conta de pagamento \"{0}\" irá remover a conta de pagamento das seguintes aplicações. Aplicações sem uma conta de pagamento não estarão mais disponíveis para venda."
+msgstr[1] "Eliminar a conta de pagamento \"{0}\" irá remover a conta de pagamento da seguinte aplicação. Aplicações sem uma conta de pagamento não estarão mais disponíveis para venda."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
@@ -467,9 +461,9 @@ msgstr "mais..."
 msgid "less..."
 msgstr "menos..."
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Manter análise; remover etiquetas"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
+msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"

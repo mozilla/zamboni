@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 09:40-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,8 +26,7 @@ msgstr ""
 msgid "You cancelled the upload."
 msgstr ""
 
-#: media/js/common/upload-image.js:98
-#: media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
@@ -35,8 +34,7 @@ msgstr ""
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr ""
 
@@ -70,8 +68,7 @@ msgstr ""
 msgid "Error with {0}"
 msgstr ""
 
-#: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] ""
@@ -83,9 +80,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323
-#: media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 msgid "See full validation report"
 msgstr ""
 
@@ -120,18 +115,15 @@ msgstr ""
 msgid "The manifest could not be found at the given location."
 msgstr ""
 
-#: media/js/devreg/apps.js:87
-#: media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr ""
 
-#: media/js/devreg/apps.js:90
-#: media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr ""
 
-#: media/js/devreg/apps.js:93
-#: media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr ""
 
@@ -147,8 +139,7 @@ msgstr ""
 msgid "Internal server error on app installation."
 msgstr ""
 
-#: media/js/devreg/apps.js:106
-#: media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr ""
 
@@ -208,22 +199,16 @@ msgstr ""
 msgid "Flash Player</a>."
 msgstr ""
 
-#: media/js/devreg/init.js:35
-#: media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
 
-#: media/js/devreg/l10n.js:45
-#: media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr ""
 
 #: media/js/devreg/login.js:75
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
 #: media/js/devreg/login.js:80
@@ -321,14 +306,8 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -336,18 +315,12 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:96
-#: media/js/devreg/payments-manage.js:157
-#: media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437
-#: media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:97
-#: media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr ""
 
@@ -359,18 +332,15 @@ msgstr ""
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
-#: media/js/devreg/suggestions.js:66
-#: media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
-#: media/js/devreg/suggestions.js:68
-#: media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr ""
 
-#: media/js/devreg/suggestions.js:70
-#: media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr ""
 
@@ -385,13 +355,11 @@ msgstr[1] ""
 msgid "All tests passed successfully."
 msgstr ""
 
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr ""
 
-#: media/js/devreg/validator.js:117
-#: media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr ""
 
@@ -475,8 +443,7 @@ msgstr ""
 msgid "No version notes found"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:315
-#: media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr ""
 
@@ -492,8 +459,8 @@ msgstr ""
 msgid "less..."
 msgstr ""
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
 msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
@@ -574,8 +541,7 @@ msgid "Following"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11
-#: media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr ""
 
@@ -611,18 +577,15 @@ msgstr ""
 msgid "Your Theme's Name"
 msgstr ""
 
-#: media/js/impala/reviews.js:23
-#: media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr ""
 
-#: media/js/impala/reviews.js:40
-#: media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr ""
 
-#: media/js/impala/reviews.js:133
-#: media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr ""
 
@@ -671,9 +634,7 @@ msgid "Admins and editors must provide a password to log in."
 msgstr ""
 
 #: media/js/zamboni/browserid_support.js:42
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
 #. L10n: {0} is an app name like Firefox.
@@ -698,8 +659,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr ""
 
 #: media/js/zamboni/buttons.js:152
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -716,8 +676,7 @@ msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298
-#: media/js/zamboni/buttons.js:335
+#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
 msgstr ""
 
@@ -729,11 +688,8 @@ msgstr ""
 msgid "View other versions"
 msgstr ""
 
-#: media/js/zamboni/buttons.js:563
-#: media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
 #: media/js/zamboni/devhub_search.js:8
@@ -777,8 +733,7 @@ msgstr ""
 msgid "Experimental <span>(Learn More)</span>"
 msgstr ""
 
-#: media/js/zamboni/mobile/buttons.js:79
-#: media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr ""
 
