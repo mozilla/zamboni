@@ -8,24 +8,27 @@ from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
+from addons.models import AddonUser
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from market.models import AddonPremium, Price, PriceCurrency, Refund
 from mkt.constants import apps
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
                                    SPAIN, UK, US, RESTOFWORLD)
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
+from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
 from stats.models import Contribution
 from users.models import UserProfile
 
 
 class TestPremium(amo.tests.TestCase):
-    fixtures = ['market/prices.json', 'base/addon_3615.json']
+    fixtures = fixture('prices2', 'webapp_337141')
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = Webapp.objects.get(pk=337141)
 
     def test_is_complete(self):
+        self.addon.support_email = 'foo@example.com'
         ap = AddonPremium(addon=self.addon)
         assert not ap.is_complete()
         ap.price = self.tier_one
@@ -35,7 +38,7 @@ class TestPremium(amo.tests.TestCase):
 
 
 class TestPrice(amo.tests.TestCase):
-    fixtures = ['market/prices.json']
+    fixtures = fixture('prices2')
 
     def setUp(self):
         self.tier_one = Price.objects.get(pk=1)
@@ -192,7 +195,7 @@ class TestPriceCurrencyChanges(amo.tests.TestCase):
 class ContributionMixin(object):
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=999)
 
     def create(self, type):
@@ -209,7 +212,7 @@ class ContributionMixin(object):
 
 
 class TestContribution(ContributionMixin, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def test_purchase(self):
         self.create(amo.CONTRIB_PURCHASE)
@@ -279,7 +282,7 @@ class TestContribution(ContributionMixin, amo.tests.TestCase):
     def test_user_purchased(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.addon.addonpurchase_set.create(user=self.user)
-        eq_(list(self.user.purchase_ids()), [3615L])
+        eq_(list(self.user.purchase_ids()), [337141L])
 
     def test_user_refunded(self):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
@@ -292,15 +295,15 @@ class TestContribution(ContributionMixin, amo.tests.TestCase):
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         eq_(list(self.user.purchase_ids()), [])
         self.create(amo.CONTRIB_PURCHASE)
-        eq_(list(self.user.purchase_ids()), [3615L])
+        eq_(list(self.user.purchase_ids()), [337141L])
         # This caches.
-        eq_(list(self.user.purchase_ids()), [3615L])
+        eq_(list(self.user.purchase_ids()), [337141L])
         self.create(amo.CONTRIB_REFUND)
         eq_(list(self.user.purchase_ids()), [])
 
 
 class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def setUp(self):
         super(TestRefundContribution, self).setUp()
@@ -388,11 +391,11 @@ class TestRefundContribution(ContributionMixin, amo.tests.TestCase):
 
 
 class TestRefundManager(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = fixture('webapp_337141', 'user_999', 'user_admin')
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.addon = Webapp.objects.get(id=337141)
+        self.user = UserProfile.objects.get(id=999)
         self.expected = {}
         for status in amo.REFUND_STATUSES.keys():
             c = Contribution.objects.create(addon=self.addon, user=self.user,
@@ -422,7 +425,7 @@ class TestRefundManager(amo.tests.TestCase):
             [self.expected[amo.REFUND_DECLINED]])
 
     def test_by_addon(self):
-        other = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        other = Webapp.objects.create()
         c = Contribution.objects.create(addon=other, user=self.user,
                                         type=amo.CONTRIB_PURCHASE)
         ref = Refund.objects.create(contribution=c, status=amo.REFUND_DECLINED,

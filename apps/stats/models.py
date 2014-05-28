@@ -62,7 +62,7 @@ class Contribution(amo.models.ModelBase):
     user = models.ForeignKey('users.UserProfile', blank=True, null=True)
     type = models.PositiveIntegerField(default=amo.CONTRIB_TYPE_DEFAULT,
                                        choices=do_dictsort(amo.CONTRIB_TYPES))
-    price_tier = models.ForeignKey('market.Price', blank=True, null=True,
+    price_tier = models.ForeignKey('prices.Price', blank=True, null=True,
                                    on_delete=models.PROTECT)
     # If this is a refund or a chargeback, which charge did it relate to.
     related = models.ForeignKey('self', blank=True, null=True,
@@ -150,7 +150,7 @@ class Contribution(amo.models.ModelBase):
     def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):
         """Keep track of a contribution's refund status."""
-        from market.models import Refund
+        from mkt.prices.models import Refund
         refund, c = Refund.objects.safer_get_or_create(contribution=self,
                                                        user=user)
         refund.status = status

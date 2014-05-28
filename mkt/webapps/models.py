@@ -47,7 +47,6 @@ from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
-from market.models import AddonPremium
 from mkt.constants import APP_FEATURES, apps
 from mkt.developers.models import AddonPaymentAccount
 from mkt.regions.utils import parse_region
@@ -56,6 +55,7 @@ from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives, get_locale_properties,
                                get_supported_locales)
+from mkt.prices.models import AddonPremium
 from translations.fields import PurifiedField, save_signal
 from versions.models import Version
 

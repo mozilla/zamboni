@@ -4,8 +4,8 @@ from nose.tools import eq_
 
 import amo.tests
 
-from market.models import Price, PriceCurrency
-from market.utils import update, update_from_csv
+from mkt.prices.models import Price, PriceCurrency
+from mkt.prices.utils import update, update_from_csv
 
 tiers = [
     {'USD': '0.99', 'BRL': '1.99'},

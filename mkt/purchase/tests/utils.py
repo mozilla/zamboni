@@ -4,11 +4,11 @@ import mock
 
 import amo.tests
 from addons.models import Addon
-from market.models import AddonPremium, Price, PriceCurrency
 from mkt.inapp.models import InAppProduct
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
+from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from users.models import UserProfile
 
 

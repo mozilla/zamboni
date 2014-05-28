@@ -22,6 +22,7 @@ from tower import ugettext_lazy as _
 import amo
 import amo.models
 from access import acl
+from addons import query, signals
 from addons.utils import get_featured_ids
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
@@ -30,7 +31,6 @@ from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
                        sorted_groupby, timer, to_language, urlparams)
 from files.models import File
-from market.models import AddonPremium, Price
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
@@ -40,7 +40,8 @@ from users.models import UserForeignKey, UserProfile
 from versions.compare import version_int
 from versions.models import Version
 
-from . import query, signals
+
+from mkt.prices.models import AddonPremium, Price
 
 
 log = commonware.log.getLogger('z.addons')

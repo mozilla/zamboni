@@ -234,7 +234,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         cache empty queries on an as need basis.
         """
         # Circular import
-        from market.models import AddonPurchase
+        from mkt.prices.models import AddonPurchase
 
         @memoize(prefix='users:purchase-ids')
         def ids(pk):

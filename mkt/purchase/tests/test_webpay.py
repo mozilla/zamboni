@@ -14,8 +14,8 @@ from mozpay.exc import RequestExpired
 from nose.tools import eq_, raises
 
 import amo
-from market.models import AddonPurchase
 from mkt.api.exceptions import AlreadyPurchased
+from mkt.prices.models import AddonPurchase
 from stats.models import Contribution
 from utils import PurchaseTest
 

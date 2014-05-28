@@ -4,12 +4,10 @@ from rest_framework import routers
 
 from mkt.webpay.views import (FailureNotificationView,
                               PreparePayWebAppView, PreparePayInAppView,
-                              PricesViewSet, ProductIconViewSet,
-                              sig_check, StatusPayView)
+                              ProductIconViewSet, sig_check, StatusPayView)
 
 
 api = routers.SimpleRouter()
-api.register(r'prices', PricesViewSet)
 api.register(r'product/icon', ProductIconViewSet)
 
 urlpatterns = patterns(

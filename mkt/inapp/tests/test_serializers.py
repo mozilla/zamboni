@@ -1,10 +1,10 @@
 from nose.tools import eq_, ok_
 
 import amo.tests
-from market.models import Price
 from mkt.inapp.serializers import InAppProductSerializer
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from mkt.prices.models import Price
 
 
 class TestInAppProductSerializer(amo.tests.TestCase):

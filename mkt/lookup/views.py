@@ -24,7 +24,6 @@ from amo.utils import paginate
 from apps.access import acl
 from devhub.models import ActivityLog
 from lib.pay_server import client
-from market.models import AddonPaymentData, Refund
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -38,6 +37,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.site import messages
 from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.prices.models import AddonPaymentData, Refund
 from stats.models import Contribution
 from users.models import UserProfile
 
