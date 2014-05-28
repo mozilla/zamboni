@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-07 14:42-0400\n"
+"PO-Revision-Date: 2014-05-28 18:28-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2083,11 +2083,11 @@ msgstr "まだポイントは与えられていません。"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "上位審査担当者 (過去 7 日間)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "まだ上位審査担当者はいません。"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -2096,7 +2096,7 @@ msgstr "全期間"
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "あなたは <span>{0}</span> ポイントを獲得しています。"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56 mkt/reviewers/templates/reviewers/leaderboard.html:3
 msgid "Reviewer Leaderboard"
@@ -4904,6 +4904,8 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p> キーペアを作成し、それを Marketplace API で使う方法については <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">ドキュメント</a> を読んでください。"
+"テストを行う場合は、公開サーバではなく、必ず開発サーバ上で実施してください。 </p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -4938,12 +4940,12 @@ msgstr "あなたはまだ API キーを生成していません。"
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
-msgstr ""
+msgstr "アプリの審査と公開へ進むには、先に <a href=\"%(next_url)s\">%(next_step_name)s</a> を設定する必要があります。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
-msgstr ""
+msgstr "<a href=\"%(next_url)s\">%(next_step_name)s</a> を設定する必要があります。設定されない場合、このアプリは %(pretty_date)s に無効化されます。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
@@ -6219,15 +6221,15 @@ msgstr "開発者プロフィールを作成"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:12
 msgid "Your developer profile will tell users about you, why you made this app, and what's next for the app. This profile can be useful for any developer interested in connecting with users."
-msgstr ""
+msgstr "開発者プロフィールは、あなたについて、あなたがこのアプリを作ったきっかけ、そしてアプリの今後の予定をユーザに伝えることができます。このプロフィールはユーザとの関わりに興味のある開発者に役立つでしょう。"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:23
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "このアプリは、スーパーマーケットのレジ待ち中に思い浮かんだアイデアかもしれませんし、何か生活上の大きな問題に対する解決策かもしれませんが、開発に至った経緯を教えてください。"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:37
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "今後予定している新機能などをユーザに伝えることで、彼らに期待を持たせることができます。"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48
 msgid "Create Profile"
@@ -6576,22 +6578,24 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Bock の決済用アカウントを追加するには、Bock のサイト上で Mozilla 専用の新しいアカウントを作成する必要があります。登録後 Bock がアカウントを承認するまで 24 時間から 48 時間掛かります。詳しい手順と Bock サイトへの"
+"アクセス方法については Mozilla Developer Network のドキュメントを参照してください。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "Bock に関する MDN のドキュメントを見る"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr ""
+msgstr "Bock アカウントを既に作成していて、そのアカウントは承認されていますか？ それなら、アカウント名と Boku サービス ID を以下で作成してください。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "このアカウント用の名前を作成します。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
-msgstr ""
+msgstr "Boku サイト上の Service Name の下に表示されている英数字の ID です。詳しくは <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN の Boku ページ</a> を参照してください。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72 templates/impala/base.html:118
 #: templates/impala/base.html:133 templates/impala/base.html:151 templates/impala/base.html:161
@@ -8110,7 +8114,7 @@ msgstr "アプリ検索"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "アプリ: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"

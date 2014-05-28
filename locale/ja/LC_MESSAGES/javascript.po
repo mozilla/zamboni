@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-07 14:56-4000\n"
+"PO-Revision-Date: 2014-05-28 18:30-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -454,7 +454,7 @@ msgstr "たたむ..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "レビューを残す / フラグを削除"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
