@@ -25,6 +25,8 @@ class PurchaseTest(amo.tests.TestCase):
                                                 tier_id=1)
         self.setup_package()
         self.setup_mock_generic_product()
+        self.public_id = 'public-id-set-in-devhub'
+        self.addon.update(solitude_public_id=self.public_id)
 
     def setup_base(self):
         self.addon = Addon.objects.get(pk=337141)

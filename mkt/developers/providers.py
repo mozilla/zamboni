@@ -58,9 +58,21 @@ class Provider(object):
         raise NotImplementedError
 
     @account_check
+    def get_or_create_public_id(self, app):
+        """
+        Returns the Solitude public_id for this app if set
+        otherwise creates one
+        """
+        if app.solitude_public_id is None:
+            app.solitude_public_id = str(uuid.uuid4())
+            app.save()
+
+        return app.solitude_public_id
+
+    @account_check
     def get_or_create_generic_product(self, app, secret=None):
         product_data = {
-            'public_id': app.get_or_create_public_id(),
+            'public_id': self.get_or_create_public_id(app),
         }
 
         try:
