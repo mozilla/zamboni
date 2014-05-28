@@ -463,7 +463,7 @@ msgstr "menos..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Conservar revisión / Quitar marcas"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
