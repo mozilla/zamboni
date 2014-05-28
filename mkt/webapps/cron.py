@@ -1,8 +1,8 @@
-from datetime import datetime, timedelta
 import os
 import shutil
 import stat
 import time
+from datetime import datetime, timedelta
 
 from django.conf import settings
 
@@ -13,6 +13,8 @@ from celery import chord
 import amo
 from amo.utils import chunked
 from devhub.models import ActivityLog
+
+from mkt.api.models import Nonce
 
 from .models import Installed, Webapp
 from .tasks import (dump_user_installs, update_downloads, update_trending,
@@ -114,6 +116,10 @@ def mkt_gc(**kw):
         chunk.sort()
         log.debug('Deleting log entries: %s' % str(chunk))
         amo.tasks.delete_logs.delay(chunk)
+
+    # Clear oauth nonce rows. These expire after 10 minutes but we're just
+    # clearing those that are more than 1 day old.
+    Nonce.objects.filter(created__lt=days_ago(1)).delete()
 
     # Delete the dump apps over 30 days.
     for app in os.listdir(settings.DUMPED_APPS_PATH):

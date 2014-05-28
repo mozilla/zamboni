@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from datetime import date, datetime, timedelta
 import time
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -17,6 +17,7 @@ from devhub.models import ActivityLog
 from users.models import UserProfile
 
 import mkt
+from mkt.api.models import Nonce
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
@@ -207,6 +208,9 @@ class TestUpdateTrending(amo.tests.TestCase):
         eq_(_get_trending(self.app.id), 0.0)
 
 
+@mock.patch('os.stat')
+@mock.patch('os.listdir')
+@mock.patch('os.remove')
 class TestGarbage(amo.tests.TestCase):
 
     def setUp(self):
@@ -215,17 +219,18 @@ class TestGarbage(amo.tests.TestCase):
         amo.log(amo.LOG.CUSTOM_TEXT, 'testing', user=self.user,
                 created=datetime(2001, 1, 1))
 
-    @mock.patch('os.stat')
-    @mock.patch('os.listdir')
-    @mock.patch('os.remove')
     def test_garbage_collection(self, rm_mock, ls_mock, stat_mock):
         eq_(ActivityLog.objects.all().count(), 1)
         mkt_gc()
         eq_(ActivityLog.objects.all().count(), 0)
 
-    @mock.patch('os.stat')
-    @mock.patch('os.listdir')
-    @mock.patch('os.remove')
+    def test_nonce(self, rm_mock, ls_mock, stat_mock):
+        nonce = Nonce.objects.create(nonce='a', timestamp=1, client_key='b')
+        nonce.update(created=self.days_ago(2))
+        eq_(Nonce.objects.count(), 1)
+        mkt_gc()
+        eq_(Nonce.objects.count(), 0)
+
     def test_dump_delete(self, rm_mock, ls_mock, stat_mock):
         ls_mock.return_value = ['lol']
         stat_mock.return_value = StatMock(days_ago=1000)
@@ -233,9 +238,6 @@ class TestGarbage(amo.tests.TestCase):
         mkt_gc()
         assert rm_mock.call_args_list[0][0][0].endswith('lol')
 
-    @mock.patch('os.stat')
-    @mock.patch('os.listdir')
-    @mock.patch('os.remove')
     def test_new_no_delete(self, rm_mock, ls_mock, stat_mock):
         ls_mock.return_value = ['lol']
         stat_mock.return_value = StatMock(days_ago=1)
