@@ -25,8 +25,7 @@ class PurchaseTest(amo.tests.TestCase):
                                                 tier_id=1)
         self.setup_package()
         self.setup_mock_generic_product()
-        self.public_id = 'public-id-set-in-devhub'
-        self.addon.update(solitude_public_id=self.public_id)
+        self.setup_public_id()
 
     def setup_base(self):
         self.addon = Addon.objects.get(pk=337141)
@@ -52,6 +51,10 @@ class PurchaseTest(amo.tests.TestCase):
             'mkt.developers.providers.Provider.generic')
         self.mock_product = patched_product.start()
         self.addCleanup(patched_product.stop)
+
+    def setup_public_id(self):
+        self.public_id = 'public-id-set-in-devhub'
+        self.addon.update(solitude_public_id=self.public_id)
 
 
 class InAppPurchaseTest(PurchaseTest):

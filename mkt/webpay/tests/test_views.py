@@ -39,6 +39,7 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         self.setup_base()
         self.setup_package()
         self.setup_mock_generic_product()
+        self.setup_public_id()
 
     def _post(self, client=None, extra_headers=None):
         if client is None:
@@ -96,6 +97,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.setup_base()
         self.setup_package()
+        self.setup_public_id()
         self.list_url = reverse('webpay-prepare-inapp')
 
     def _post(self, inapp_id=None, extra_headers=None):
