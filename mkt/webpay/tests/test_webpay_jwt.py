@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 
 import jwt
 from mozpay.verify import verify_claims, verify_keys
-from nose.tools import eq_
+from nose.tools import eq_, raises
 
 from amo.helpers import absolutify
 from constants.payments import PROVIDER_BOKU
@@ -27,15 +27,16 @@ class TestPurchaseJWT(PurchaseTest):
             user=self.user,
             addon=self.addon,
         )
-        self.token = get_product_jwt(self.product, self.contribution)
-        self.token_data = jwt.decode(
-            str(self.token['webpayJWT']), verify=False)
+
+    def decode_token(self):
+        token = get_product_jwt(self.product, self.contribution)
+        return jwt.decode(str(token['webpayJWT']), verify=False)
 
     def test_claims(self):
-        verify_claims(self.token_data)
+        verify_claims(self.decode_token())
 
     def test_keys(self):
-        verify_keys(self.token_data,
+        verify_keys(self.decode_token(),
                     ('iss',
                      'typ',
                      'aud',
@@ -49,11 +50,12 @@ class TestPurchaseJWT(PurchaseTest):
                      'request.productData'))
 
     def test_valid_jwt(self):
-        eq_(self.token_data['iss'], settings.APP_PURCHASE_KEY)
-        eq_(self.token_data['typ'], settings.APP_PURCHASE_TYP)
-        eq_(self.token_data['aud'], settings.APP_PURCHASE_AUD)
+        token_data = self.decode_token()
+        eq_(token_data['iss'], settings.APP_PURCHASE_KEY)
+        eq_(token_data['typ'], settings.APP_PURCHASE_TYP)
+        eq_(token_data['aud'], settings.APP_PURCHASE_AUD)
 
-        request = self.token_data['request']
+        request = token_data['request']
         eq_(request['id'], self.product.external_id())
         eq_(request['name'], self.product.name())
         eq_(request['icons'], self.product.icons())
@@ -67,6 +69,11 @@ class TestPurchaseJWT(PurchaseTest):
             urlencode(self.product.product_data(self.contribution)))
         eq_(token_product_data, expected_product_data)
 
+    @raises(ValueError)
+    def test_empty_public_id(self):
+        self.addon.update(solitude_public_id=None)
+        self.decode_token()
+
 
 class BaseTestWebAppProduct(PurchaseTest):
     def setUp(self):
@@ -76,11 +83,6 @@ class BaseTestWebAppProduct(PurchaseTest):
             user=self.user,
             addon=self.addon,
         )
-        self.token = get_product_jwt(
-            self.product,
-            self.contribution,
-        )
-
         self.contribution = Contribution.objects.get()
 
 
@@ -108,7 +110,7 @@ class TestWebAppProduct(BaseTestWebAppProduct):
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
-        eq_(product_data['public_id'], self.product.public_id())
+        eq_(product_data['public_id'], self.public_id)
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'], self.product.application_size())
 
@@ -128,7 +130,7 @@ class TestWebAppProductMultipleProviders(BaseTestWebAppProduct):
     def test_webapp_product_multiple_providers(self):
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
-        eq_(product_data['public_id'], self.product.public_id())
+        eq_(product_data['public_id'], self.public_id)
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'],
             self.product.application_size())
@@ -143,7 +145,6 @@ class TestInAppProduct(InAppPurchaseTest):
             addon=self.addon,
         )
         self.product = InAppProduct(self.inapp)
-        self.token = get_product_jwt(self.product, self.contribution)
 
     def test_external_id_with_no_domain(self):
         with self.settings(DOMAIN=None):
@@ -169,3 +170,4 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['inapp_id'], self.product.id())
         eq_(product_data['application_size'], self.product.application_size())
+        eq_(product_data['public_id'], self.public_id)

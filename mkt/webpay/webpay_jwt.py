@@ -20,6 +20,11 @@ def get_product_jwt(product, contribution):
     """Prepare a JWT for paid products to pass into navigator.pay()"""
 
     issued_at = calendar.timegm(time.gmtime())
+    product_data = product.product_data(contribution)
+    if not product_data.get('public_id'):
+        raise ValueError(
+            'Cannot create JWT without a cached public_id for '
+            'app {a}'.format(a=product.addon()))
 
     token_data = {
         'iss': settings.APP_PURCHASE_KEY,
@@ -33,7 +38,7 @@ def get_product_jwt(product, contribution):
             'icons': product.icons(),
             'description': strip_tags(product.description()),
             'pricePoint': product.price().name,
-            'productData': urlencode(product.product_data(contribution)),
+            'productData': urlencode(product_data),
             'chargebackURL': absolutify(reverse('webpay.chargeback')),
             'postbackURL': absolutify(reverse('webpay.postback')),
         }
@@ -87,15 +92,12 @@ class WebAppProduct(object):
     def application_size(self):
         return self.webapp.current_version.all_files[0].size
 
-    def public_id(self):
-        return self.webapp.get_or_create_public_id()
-
     def product_data(self, contribution):
         return {
             'addon_id': self.webapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
-            'public_id': self.public_id(),
+            'public_id': self.addon().solitude_public_id,
         }
 
 
@@ -139,4 +141,5 @@ class InAppProduct(object):
             'inapp_id': self.inapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
+            'public_id': self.addon().solitude_public_id,
         }
