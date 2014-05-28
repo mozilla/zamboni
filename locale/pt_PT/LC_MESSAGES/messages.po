@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-21 09:40-0700\n"
-"PO-Revision-Date: 2014-05-24 06:33+0000\n"
+"PO-Revision-Date: 2014-05-28 04:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400913220.0\n"
+"X-POOTLE-MTIME: 1401253125.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -3696,7 +3696,7 @@ msgstr ""
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Ecrãs com o tamanho de smartphones (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
@@ -3751,38 +3751,49 @@ msgstr "Ecrã completo"
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"A aplicação requer a API de ecrã completo (`requestFullScreen` ou "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
-msgstr ""
+msgstr "Controladores de jogo"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"A aplicação requer que a plataforma suporte a API de controladores de jogo "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
-msgstr ""
+msgstr "Gestão de quota"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"A aplicação requer que a plataforma permita o aumento do limite de "
+"armazenamento persistente acima dos limites normalmente permitidos para uma "
+"aplicação (`window.StorageInfo` ou `window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Câmara"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"A aplicação requer que a plataforma permita o acesso ao vídeo da câmara do "
+"dispositivo através do objeto LocalMediaStream."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Microfone"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"A aplicação requer que a plataforma permita o acesso ao áudio do microfone "
+"do dispositivo."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -3831,22 +3842,28 @@ msgstr "Sintetizador de discurso web"
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
 msgstr ""
+"A aplicação requer que a plataforma permita o acesso à utilização da leitura "
+"de texto."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Reconhecimento de discurso na web"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
 msgstr ""
+"A aplicação requer que a plataforma permita a utilização do reconhecimento "
+"de discurso."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Bloqueio do ponteiro"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"A aplicação requer que a plataforma forneça informação adicional e controlo "
+"do ponteiro."
 
 #: mkt/constants/features.py:273
 msgid "Notifications"
@@ -3855,18 +3872,22 @@ msgstr "Notificações"
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"A aplicação requer que a plataforma permita a apresentação de notificações "
+"no telemóvel e computador ao utilizador."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmes"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"A aplicação requer que a plataforma forneça acesso às definições de alarme "
+"do dispositivo para agendar notificações e eventos a uma hora específica."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -3921,19 +3942,19 @@ msgstr "Citação"
 
 #: mkt/constants/feed.py:15
 msgid "Screenshot"
-msgstr ""
+msgstr "Captura de ecrã"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
-msgstr ""
+msgstr "Concluído"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox para computador"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Ecossistema móvel completamente aberto"
 
 #: mkt/constants/platforms.py:78
 msgid "Windows, Mac and Linux"
@@ -3945,23 +3966,23 @@ msgstr "Telemoveis android"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tablets"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
-msgstr ""
+msgstr "Atos criminosos"
 
 #: mkt/constants/ratingdescriptors.py:11 mkt/constants/ratingdescriptors.py:68 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:96
 msgid "Drugs"
-msgstr ""
+msgstr "Drogas"
 
 #: mkt/constants/ratingdescriptors.py:12
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Drogas ilegais"
 
 #: mkt/constants/ratingdescriptors.py:13
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Drogas legais"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
@@ -4003,43 +4024,43 @@ msgstr "Referência a álcool"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "Referência a álcool e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:27
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "Utilização de álcool e tabaco"
 
 #: mkt/constants/ratingdescriptors.py:28
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Utilização de álcool"
 
 #: mkt/constants/ratingdescriptors.py:29
 msgid "Blood"
-msgstr ""
+msgstr "Sangue"
 
 #: mkt/constants/ratingdescriptors.py:30
 msgid "Blood and Gore"
-msgstr ""
+msgstr "Sangue e violência"
 
 #: mkt/constants/ratingdescriptors.py:31
 msgid "Comic Mischief"
-msgstr ""
+msgstr "Malícia em banda desenhada"
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Crime"
-msgstr ""
+msgstr "Crime"
 
 #: mkt/constants/ratingdescriptors.py:33
 msgid "Criminal Instruction"
-msgstr ""
+msgstr "Instrução criminal"
 
 #: mkt/constants/ratingdescriptors.py:34
 msgid "Crude Humor"
-msgstr ""
+msgstr "Humor crude"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "Referência a drogas e álcool"
 
 #: mkt/constants/ratingdescriptors.py:36
 msgid "Drug, Alcohol, and Tobacco Reference"
@@ -4079,7 +4100,7 @@ msgstr "Incitação ao ódio"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Intense Violence"
-msgstr ""
+msgstr "Violência intensa"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:47 mkt/constants/ratingdescriptors.py:71 mkt/constants/ratingdescriptors.py:82 mkt/developers/templates/developers/apps/edit/language.html:24
@@ -4088,31 +4109,31 @@ msgstr "Idioma"
 
 #: mkt/constants/ratingdescriptors.py:48
 msgid "Mild Blood"
-msgstr ""
+msgstr "Presença de sangue"
 
 #: mkt/constants/ratingdescriptors.py:49
 msgid "Mild Fantasy Violence"
-msgstr ""
+msgstr "Violência ligeira de fantasia"
 
 #: mkt/constants/ratingdescriptors.py:50
 msgid "Mild Language"
-msgstr ""
+msgstr "Linguagem ligeira"
 
 #: mkt/constants/ratingdescriptors.py:51
 msgid "Mild Violence"
-msgstr ""
+msgstr "Violência ligeira"
 
 #: mkt/constants/ratingdescriptors.py:53
 msgid "Partial Nudity"
-msgstr ""
+msgstr "Nudez parcial"
 
 #: mkt/constants/ratingdescriptors.py:54
 msgid "Real Gambling"
-msgstr ""
+msgstr "Apostas reais"
 
 #: mkt/constants/ratingdescriptors.py:55
 msgid "Scary Themes"
-msgstr ""
+msgstr "Temas assustadores"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Sexual Themes"
@@ -4152,40 +4173,40 @@ msgstr "Discriminação"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:80
 msgid "Gambling"
-msgstr ""
+msgstr "Jogos de azar"
 
 #: mkt/constants/ratingdescriptors.py:72 mkt/constants/ratingdescriptors.py:83
 msgid "Online"
-msgstr ""
+msgstr "Em rede"
 
 #: mkt/constants/ratingdescriptors.py:73 mkt/constants/ratingdescriptors.py:84
 msgid "Fear"
-msgstr ""
+msgstr "Terror"
 
 #: mkt/constants/ratingdescriptors.py:90
 msgid "Social Interaction Functionality"
-msgstr ""
+msgstr "Funcionalidade de interação social"
 
 #: mkt/constants/ratingdescriptors.py:91
 msgid "Personal Data Sharing"
-msgstr ""
+msgstr "Partilha de dados pessoais"
 
 #: mkt/constants/ratingdescriptors.py:92
 msgid "In-app Purchase Option"
-msgstr ""
+msgstr "Opção de compras na aplicação"
 
 #: mkt/constants/ratingdescriptors.py:93
 msgid "Location Data Sharing"
-msgstr ""
+msgstr "Partilha de dados de localização"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:98
 msgid "Explicit Language"
-msgstr ""
+msgstr "Linguagem explícita"
 
 #: mkt/constants/ratingdescriptors.py:99
 msgid "Frightening Content"
-msgstr ""
+msgstr "Conteúdo assustador"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
@@ -4225,44 +4246,44 @@ msgstr "Sustos raros"
 
 #: mkt/constants/ratingdescriptors.py:113
 msgid "Occasional Swearing"
-msgstr ""
+msgstr "Palavrões ocasionais"
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Utilização de tabaco"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
-msgstr ""
+msgstr "Interação de utilizadores"
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "Partilha informação"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "Partilha de localização"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
-msgstr ""
+msgstr "Compras digitais"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Para todas as idades"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "Para idades superiores a %d"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Classificação rejeitada"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Classificação pendente"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -4308,27 +4329,27 @@ msgstr "Órgão de classificação de software de entretenimento"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Informação pan-europeia de jogo"
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "Resto do Mundo"
 
 #: mkt/constants/regions.py:113
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:56
 msgid "Hosted"
-msgstr ""
+msgstr "Alojado"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_addon.html:54 mkt/search/forms.py:35 mkt/submit/templates/submit/manifest.html:90
 msgid "Packaged"
-msgstr ""
+msgstr "Empacotado"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
@@ -4365,15 +4386,15 @@ msgstr "(Não suportado)"
 
 #: mkt/developers/api_payments.py:105
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Não foi possível estabelecer ligação ao servidor de pagamentos."
 
 #: mkt/developers/api_payments.py:129
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Não é possível eliminar uma conta partilhada"
 
 #: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Classificação de conteúdo alterada para Adulto."
 
 #: mkt/developers/forms.py:56
 msgid "You cannot select {region}."
@@ -4382,6 +4403,8 @@ msgstr "Não pode selecionar {region}."
 #: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
+"Todos os membros da equipa devem ler e concordar com o acordo de "
+"programador."
 
 #: mkt/developers/forms.py:154
 msgid "Must have at least one owner."
@@ -4389,11 +4412,11 @@ msgstr "Tem de ter pelo menos um proprietário."
 
 #: mkt/developers/forms.py:157
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Pelo menos um membro da equipa deve ser listado."
 
 #: mkt/developers/forms.py:161
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "Cada membro da equipa apenas pode ser listado uma vez."
 
 #: mkt/developers/forms.py:188
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
@@ -4425,7 +4448,7 @@ msgstr "Já existe um aplicativo nesse domínio; somente um aplicativo por domí
 
 #: mkt/developers/forms.py:336
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Região(ões) selecionada(s) inválida(s) ."
 
 #: mkt/developers/forms.py:414 mkt/webapps/models.py:450
 msgid "You must upload at least one screenshot or video."
@@ -4434,14 +4457,16 @@ msgstr "Você deve enviar pelo menos uma captura de tela ou vídeo."
 #: mkt/developers/forms.py:455
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
+"A aplicação empacotada é demasiado grande para submissão. Os pacotes devem "
+"ser menores que %s."
 
 #: mkt/developers/forms.py:470
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Erro ao extrair o manifesto do ficheiro zip."
 
 #: mkt/developers/forms.py:529
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Forneça uma descrição detalhada da sua aplicação"
 
 #: mkt/developers/forms.py:530 mkt/submit/forms.py:348
 msgid "This description will appear on the details page."
@@ -4455,10 +4480,12 @@ msgstr "Por favor, especifique a Política de privacidade do seu aplicativo"
 #: mkt/developers/forms.py:623
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Antes de alterar o seu idioma por omissão deve ter um nome e descrição nesse "
+"idioma. Está a faltar %s."
 
 #: mkt/developers/forms.py:678
 msgid "Your comments"
-msgstr ""
+msgstr "Os seus comentários"
 
 #: mkt/developers/forms.py:701
 msgid "Choose the regions your app will be listed in:"
@@ -4470,15 +4497,15 @@ msgstr "Você deve selecionar pelo menos uma região."
 
 #: mkt/developers/forms.py:710
 msgid "Enable new regions"
-msgstr ""
+msgstr "Ativar novas regiões"
 
 #: mkt/developers/forms.py:712
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Disponibilize a minha aplicação na maioria das regiões"
 
 #: mkt/developers/forms.py:713
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Escolher onde a minha aplicação estará disponível"
 
 #: mkt/developers/forms.py:901
 msgid "Agree"
@@ -4486,27 +4513,27 @@ msgstr "Concordo"
 
 #: mkt/developers/forms.py:918
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Por favor, insira um endereço de e-mail válido."
 
 #: mkt/developers/forms.py:921
 msgid "Your email address"
-msgstr ""
+msgstr "O seu endereço de e-mail"
 
 #: mkt/developers/forms.py:924
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: mkt/developers/forms.py:928
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Deve concordar com a política de privacidade."
 
 #: mkt/developers/forms.py:929 mkt/developers/forms_payments.py:408 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: mkt/developers/forms.py:964
 msgid "Transaction Type"
-msgstr ""
+msgstr "Tipo de transação"
 
 #: mkt/developers/forms.py:967 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
@@ -4525,34 +4552,42 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Por favor, considere a minha aplicação como um candidato a ser pré-instalado "
+"num dispositivo com Firefox OS. Eu concordo com os termos e condições acima "
+"descritos. Eu compreendo que este documento não é um compromisso de "
+"pré-instalação da minha aplicação."
 
 #: mkt/developers/forms.py:1032
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Envie o seu plano de testes (.pdf, .xls abaixo de 2.5MB)"
 
 #: mkt/developers/forms.py:1041
 msgid "Test plan required."
-msgstr ""
+msgstr "Plano de testes necessário."
 
 #: mkt/developers/forms.py:1048
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr ""
+"O ficheiro é demasiado grande. Mantenha o tamanho abaixo de %s. O tamanho "
+"atual é de %s."
 
 #: mkt/developers/forms.py:1054
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "Tipo de ficheiro inválido. Apenas ficheiros %s são suportados."
 
 #: mkt/developers/forms.py:1078
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Por favor, introduza um ID de submissão válido."
 
 #: mkt/developers/forms.py:1094
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Este certificado IARC já está a ser utilizado por outra aplicação. Por favor "
+"crie um novo certificado de classificações IARC."
 
 #: mkt/developers/forms.py:1122 mkt/developers/forms.py:1134
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "ID de submissão ou código de segurança inválido."
 
 #: mkt/developers/forms_payments.py:59 mkt/submit/forms.py:272
 msgid "App Price"
@@ -4560,31 +4595,31 @@ msgstr "Preço do aplicativo"
 
 #: mkt/developers/forms_payments.py:117
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Gratuito (com compras na aplicação)"
 
 #: mkt/developers/forms_payments.py:128
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Preço promocional"
 
 #: mkt/developers/forms_payments.py:141
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Apenas suporta pagamentos através da operadora"
 
 #: mkt/developers/forms_payments.py:144
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Apenas suporta pagamentos através de cartão de crédito"
 
 #: mkt/developers/forms_payments.py:148
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Suporta todos os métodos de pagamento"
 
 #: mkt/developers/forms_payments.py:225
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Se a aplicação é gratuita, as compras na aplicação devem estar ativas"
 
 #: mkt/developers/forms_payments.py:232
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Não é uma escolha válida"
 
 # 75%
 #: mkt/developers/forms_payments.py:336 mkt/developers/templates/developers/payments/premium.html:287
@@ -4597,15 +4632,15 @@ msgstr "Não é uma atualização"
 
 #: mkt/developers/forms_payments.py:380
 msgid "Account Holder Name"
-msgstr ""
+msgstr "Nome do titular da conta"
 
 #: mkt/developers/forms_payments.py:382
 msgid "Company Name"
-msgstr ""
+msgstr "Nome da empresa"
 
 #: mkt/developers/forms_payments.py:384
 msgid "Vendor Name"
-msgstr ""
+msgstr "Nome do fornecedor"
 
 #: mkt/developers/forms_payments.py:386
 msgid "Financial Email"
@@ -4645,39 +4680,39 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:411
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Eu prefiro ser pago em"
 
 #: mkt/developers/forms_payments.py:414
 msgid "VAT Number"
-msgstr ""
+msgstr "Número do IVA"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Número da conta bancária"
 
 #: mkt/developers/forms_payments.py:420
 msgid "SWIFT code"
-msgstr ""
+msgstr "Código SWIFT"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Name"
-msgstr ""
+msgstr "Nome do banco"
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Address"
-msgstr ""
+msgstr "Endereço do banco"
 
 #: mkt/developers/forms_payments.py:426
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Endereço do banco 2"
 
 #: mkt/developers/forms_payments.py:428
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Cidade/município do banco"
 
 #: mkt/developers/forms_payments.py:431
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Estado/província/região do banco"
 
 #: mkt/developers/forms_payments.py:433
 msgid "Bank Zip/Postal Code"
@@ -4750,15 +4785,15 @@ msgstr[1] "{0} avisos"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:121
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "Conta compartilhada: {0}"
 
 #: mkt/developers/providers.py:263
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Implementação de referência"
 
 #: mkt/developers/providers.py:350
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -4767,6 +4802,8 @@ msgstr "Nenhum manifesto foi encontrado nessa URL. Verifique o endereço e tente
 #: mkt/developers/tasks.py:396
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
+"Os manifestos devem ser servidos com o cabeçalho HTTP \"Content-Type: "
+"application/x-web-app-manifest+json\". Consulte %s para mais informações."
 
 #: mkt/developers/tasks.py:405
 msgid "Your manifest must be less than %s bytes."
@@ -4834,6 +4871,8 @@ msgstr "Os ícones devem ser quadrados."
 #: mkt/developers/utils.py:122
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Pré-visualizações de aplicações devem ter pelo menos {0}px por {1}px ou "
+"{1}px por {0}px."
 
 #: mkt/developers/views.py:82 mkt/developers/views.py:89
 msgid "Created"
@@ -4858,7 +4897,7 @@ msgstr "Aplicativo excluído."
 
 #: mkt/developers/views.py:171
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "A senha estava incorreta. A aplicação não foi eliminada."
 
 #: mkt/developers/views.py:234
 msgid "App successfully resubmitted."
@@ -4871,14 +4910,16 @@ msgstr "Nova versão adicionada com sucesso."
 #: mkt/developers/views.py:313
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
+"Parabéns, a sua submissão da aplicação está agora concluída e será revista "
+"em breve."
 
 #: mkt/developers/views.py:315
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "As classificações de conteúdo foram guardadas com sucesso."
 
 #: mkt/developers/views.py:437
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "A aplicação para pré-carregamento foi submetida com sucesso."
 
 #: mkt/developers/views.py:440
 msgid "There was an error with the form."
@@ -4936,6 +4977,7 @@ msgstr ""
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
 msgstr ""
+"Encontrámos um problema ao estabelecer ligação com o servidor de pagamentos."
 
 #: mkt/developers/views_payments.py:185 mkt/search/forms.py:27
 msgid "All"
@@ -4943,11 +4985,11 @@ msgstr "Tudo"
 
 #: mkt/developers/views_payments.py:186
 msgid "Credit card"
-msgstr ""
+msgstr "Cartão de crédito"
 
 #: mkt/developers/views_payments.py:187
 msgid "Carrier"
-msgstr ""
+msgstr "Operador"
 
 #: mkt/developers/views_payments.py:336
 msgid "A server error occurred when retrieving the application key."
