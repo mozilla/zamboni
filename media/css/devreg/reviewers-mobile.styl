@@ -334,34 +334,33 @@ $mobileborder = #d7d2c3;
                 width: 100%;
             }
         }
+        .mobile-button-group {
+            background-color: $border-gray;
+            border-radius: 7px;
+            padding: 5px;
+        }
         .skip, .nuke, .keep {
             background: rgba(225, 225, 215, .5);
             border: 1px solid $mobileborder;
             box-shadow: inset 0 13px 15px #fff;
             color: $dumpy-brown;
+            overflow: hidden;
             padding: 15px;
             text-align: center;
 
             &.active {
-                box-shadow: inset 0 0 4px #D7D2C3;
-                color: rgba(0, 0, 0, .35);
+                background: $dumpy-brown;
+                box-shadow: none;
+                color: rgba(225, 225, 215, 1);
             }
         }
-        .keep, .nuke {
-            float: left;
-            border-radius: 5px 0 0 0;
-            overflow: hidden;
-            height: 75px;
-            width: 50%;
+        .keep{
+            border-radius: 5px 5px 0 0;
         }
         .nuke {
-            border-left: 0;
-            border-radius: 0 5px 0 0;
-            line-height: 40px;
         }
         .skip {
-            border-top: 0;
-            clear: both;
+            border-radius: 0 0 5px 5px;
         }
     }
     .device-list {
