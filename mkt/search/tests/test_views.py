@@ -1051,7 +1051,8 @@ class TestRocketbarApi(ESTestCase):
         self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         # Add 2 installed records so this app is boosted higher than app1.
         Installed.objects.create(user=self.profile, addon=self.app2)
-        Installed.objects.create(user=self.profile, addon=self.app2)
+        Installed.objects.create(user=amo.tests.user_factory(),
+                                 addon=self.app2)
         self.app2.save()
         self.refresh('webapp')
 
