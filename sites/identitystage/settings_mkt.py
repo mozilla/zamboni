@@ -9,6 +9,7 @@ DOMAIN = 'identity-stage-marketplace.allizom.org'
 SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 SITE_URL = 'https://identity-stage-marketplace.allizom.org'
+BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = 'https://identity-stage-marketplace-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL

@@ -348,9 +348,9 @@ class TestLoginHandler(TestCase):
     @patch('requests.post')
     def _test_login(self, http_request):
         FakeResponse = collections.namedtuple('FakeResponse',
-                                              'status_code content')
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'email': 'cvan@mozilla.com'}))
+                                              'status_code json')
+        http_request.return_value = FakeResponse(
+            200, lambda: {'status': 'okay', 'email': 'cvan@mozilla.com'})
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 201)
@@ -403,9 +403,9 @@ class TestLoginHandler(TestCase):
     @patch('requests.post')
     def test_login_failure(self, http_request):
         FakeResponse = collections.namedtuple('FakeResponse',
-                                              'status_code content')
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'busted'}))
+                                              'status_code json')
+        http_request.return_value = FakeResponse(
+            200, lambda: {'status': 'busted'})
         res = self.post({'assertion': 'fake-assertion',
                          'audience': 'fakeamo.org'})
         eq_(res.status_code, 403)

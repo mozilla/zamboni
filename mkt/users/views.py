@@ -10,7 +10,7 @@ from django.utils.http import is_safe_url
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-from django_browserid import get_audience, verify
+from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
@@ -121,16 +121,17 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 
     log.debug('Verifying Persona at %s, audience: %s, '
               'extra_params: %s' % (url, browserid_audience, extra_params))
-    result = verify(assertion, browserid_audience,
-                    url=url, extra_params=extra_params)
+    v = BrowserIDBackend().get_verifier()
+    v.verification_service_url = url
+    result = v.verify(assertion, browserid_audience, url=url, **extra_params)
     if not result:
         return None, _('Persona authentication failure.')
 
-    if 'unverified-email' in result:
-        email = result['unverified-email']
+    if 'unverified-email' in result._response:
+        email = result._response['unverified-email']
         verified = False
     else:
-        email = result['email']
+        email = result.email
         verified = True
 
     try:

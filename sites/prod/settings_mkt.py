@@ -9,6 +9,7 @@ SECRET_KEY = private_mkt.SECRET_KEY
 
 DOMAIN = getattr(private_mkt, 'DOMAIN', 'marketplace.firefox.com')
 SITE_URL = getattr(private_mkt, 'SITE_URL', 'https://' + DOMAIN)
+BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace.cdn.mozilla.net/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL

@@ -9,6 +9,7 @@ SERVER_EMAIL = 'zmktlandfill@addons.mozilla.org'
 
 DOMAIN = "landfill-mkt.allizom.org"
 SITE_URL = 'https://landfill-mkt.allizom.org'
+BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = 'https://landfill-mkt-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL

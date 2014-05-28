@@ -25,8 +25,13 @@ def fake_request():
     return request
 
 
-FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
+class FakeResponse(object):
+    def __init__(self, status_code, data):
+        self.status_code = status_code
+        self.data = data
 
+    def json(self):
+        return self.data
 
 class TestPersonaLogin(amo.tests.TestCase):
     fixtures = ('users/test_backends',)
@@ -45,9 +50,10 @@ class TestPersonaLogin(amo.tests.TestCase):
         A success response from BrowserID results in successful login.
         """
         url = reverse('users.browserid_login')
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            {'status': 'okay',
+             'email': 'jbalogh@mozilla.com'})
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -61,8 +67,9 @@ class TestPersonaLogin(amo.tests.TestCase):
 
         # Preverified accounts should not be accessible to unverified
         # logins.
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'unverified-email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            {'status': 'okay', 'unverified-email': 'jbalogh@mozilla.com'})
         res = self.client.post(self.url, {'assertion': 'fake-assertion',
                                           'audience': 'fakeamo.org'})
         eq_(res.status_code, 401)
@@ -70,8 +77,9 @@ class TestPersonaLogin(amo.tests.TestCase):
 
         # A completely unverified address should be able to log in.
         self.user.update(is_verified=False)
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'unverified-email': 'unverified@example.org'}))
+        http_request.return_value = FakeResponse(
+            200,
+            {'status': 'okay', 'unverified-email': 'unverified@example.org'})
         res = self.client.post(self.url, {'assertion': 'fake-assertion',
                                           'audience': 'fakeamo.org'})
         eq_(res.status_code, 200)
@@ -84,8 +92,9 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch('requests.post')
     def test_browserid_login_logged(self, http_request, log_login_attempt):
         url = reverse('users.browserid_login')
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         self.client.post(url, data=dict(assertion='fake-assertion',
                                         audience='fakeamo.org'))
         log_login_attempt.assert_called_once_with(True)
@@ -102,7 +111,7 @@ class TestPersonaLogin(amo.tests.TestCase):
 
     def _browserid_login(self, email, http_request):
         http_request.return_value = FakeResponse(
-                200, json.dumps({'status': 'okay', 'email': email}))
+                200, {'status': 'okay', 'email': email})
         return self.client.post(reverse('users.browserid_login'),
                                 data=dict(assertion='fake-assertion',
                                           audience='fakeamo.org'))
@@ -146,9 +155,9 @@ class TestPersonaLogin(amo.tests.TestCase):
                                              email='bob@example.com')
         profile.email = 'charlie@example.com'
         profile.save()
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'charlie@example.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            {'status': 'okay', 'email': 'charlie@example.com'})
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -164,9 +173,8 @@ class TestPersonaLogin(amo.tests.TestCase):
         UserProfile.objects.get(email="jbalogh@mozilla.com").update(
             email="badnews@example.com")
         UserProfile.objects.create(email="jbalogh@mozilla.com")
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -184,8 +192,8 @@ class TestPersonaLogin(amo.tests.TestCase):
         """
         A failure response from BrowserID results in login failure.
         """
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'busted'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'busted'})
         res = self.client.post(reverse('users.browserid_login'),
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
@@ -196,8 +204,8 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch('mkt.users.views.record_action')
     def test_browserid_duplicate_username(self, record_action, post):
         email = 'jbalogh@example.com'  # existing
-        post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
-                                                          'email': email}))
+        post.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': email})
         res = self.client.post(reverse('users.browserid_login'),
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
@@ -211,9 +219,8 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch('requests.post')
     def create_profile(self, http_request):
         email = 'user@example.com'
-        http_request.return_value = FakeResponse(200,
-                                                 json.dumps({'status': 'okay',
-                                                             'email': email}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': email})
         request = fake_request()
         browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
@@ -230,17 +237,15 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
     def test_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
                                    is_mobile='1'))
         http_request.assert_called_with(
-                settings.NATIVE_BROWSERID_VERIFICATION_URL,
-                verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
-                headers=ANY)
+            settings.NATIVE_BROWSERID_VERIFICATION_URL,
+            data=ANY, timeout=ANY)
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
         eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
@@ -250,9 +255,8 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
     def test_non_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org'))
@@ -269,9 +273,8 @@ class TestPersonaLogin(amo.tests.TestCase):
     @patch.object(settings, 'UNVERIFIED_ISSUER', None)
     @patch('requests.post')
     def test_mobile_persona_login_without_issuer(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
@@ -283,9 +286,8 @@ class TestPersonaLogin(amo.tests.TestCase):
 
     @patch('requests.post')
     def test_mobile_persona_login_ignores_garbage(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200, {'status': 'okay', 'email': 'jbalogh@mozilla.com'})
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',

@@ -244,9 +244,10 @@ class MockBrowserIdMixin(object):
 
         real_login = self.client.login
 
-        def fake_login(username, password):
+        def fake_login(username, password=None):
             with mock_browserid(email=username):
-                return real_login(username=username, password=password)
+                return real_login(username=username, assertion='test',
+                                  audience='test')
 
         self.client.login = fake_login
 
