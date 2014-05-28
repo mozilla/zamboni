@@ -26,7 +26,6 @@ from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from devhub.models import ActivityLog
-from market.models import AddonPaymentData, Refund
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -37,6 +36,7 @@ from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from mkt.prices.models import AddonPaymentData, Refund
 from stats.models import Contribution
 from users.models import UserProfile
 
@@ -729,9 +729,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
 
 class AppSummaryTest(SummaryTest):
-    # TODO: Override in subclasses to convert to new fixture style.
-    fixtures = ['base/users', 'base/addon_3615',
-                'market/prices'] + fixture('webapp_337141')
+    fixtures = fixture('prices', 'webapp_337141', 'user_support_staff')
 
     def _setUp(self):
         self.app = Addon.objects.get(pk=337141)
@@ -937,7 +935,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
 
 
 class TestAppSummaryRefunds(AppSummaryTest):
-
+    fixtures = AppSummaryTest.fixtures + fixture('user_999', 'user_admin')
     def setUp(self):
         super(TestAppSummaryRefunds, self).setUp()
         self._setUp()

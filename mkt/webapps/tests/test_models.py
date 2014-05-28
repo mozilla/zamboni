@@ -39,7 +39,6 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
-from market.models import AddonPremium, Price
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -51,6 +50,7 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
+from mkt.prices.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
 

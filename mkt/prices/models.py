@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import uuid
 
 from django.conf import settings
@@ -15,7 +14,7 @@ from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
-import amo.models
+from amo.models import ManagerBase, ModelBase
 from amo.decorators import write
 from amo.utils import get_locale_from_lang
 from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
@@ -27,7 +26,6 @@ from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.regions.utils import remove_accents
 from stats.models import Contribution
 from users.models import UserProfile
-
 
 log = commonware.log.getLogger('z.market')
 
@@ -61,7 +59,7 @@ def price_key(data):
             .format(**data))
 
 
-class PriceManager(amo.models.ManagerBase):
+class PriceManager(ManagerBase):
 
     def get_query_set(self):
         qs = super(PriceManager, self).get_query_set()
@@ -378,7 +376,7 @@ class AddonPremium(amo.models.ModelBase):
                     self.addon.paypal_id and self.addon.support_email)
 
 
-class RefundManager(amo.models.ManagerBase):
+class RefundManager(ManagerBase):
 
     def by_addon(self, addon):
         return self.filter(contribution__addon=addon)
@@ -399,7 +397,7 @@ class RefundManager(amo.models.ManagerBase):
         return self.by_addon(addon).filter(status=amo.REFUND_FAILED)
 
 
-class Refund(amo.models.ModelBase):
+class Refund(ModelBase):
     # This refers to the original object with `type=amo.CONTRIB_PURCHASE`.
     contribution = models.OneToOneField('stats.Contribution')
 
@@ -468,7 +466,7 @@ class Refund(amo.models.ModelBase):
 models.signals.post_save.connect(Refund.post_save, sender=Refund)
 
 
-class AddonPaymentData(amo.models.ModelBase):
+class AddonPaymentData(ModelBase):
     # Store information about the app. This can be entered manually
     # or got from PayPal. At the moment, I'm just capturing absolutely
     # everything from PayPal and that's what these fields are.
@@ -504,11 +502,3 @@ class AddonPaymentData(amo.models.ModelBase):
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.addon)
-
-
-class PaypalCheckStatus(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon')
-    failure_data = models.TextField(null=True, blank=True)
-
-    class Meta:
-        db_table = 'paypal_checkstatus'

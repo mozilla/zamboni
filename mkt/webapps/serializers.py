@@ -11,7 +11,6 @@ import amo
 from addons.models import AddonCategory, AddonUpsell, Category
 from amo.utils import no_translation
 from constants.payments import PROVIDER_BANGO
-from market.models import AddonPremium, Price
 
 import mkt
 from mkt.api.fields import (LargeTextField, SemiSerializerMethodField,
@@ -20,6 +19,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.webapps.models import AppFeatures, Webapp
+from mkt.prices.models import AddonPremium, Price
 
 class AppFeaturesSerializer(serializers.ModelSerializer):
     class Meta:

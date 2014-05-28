@@ -26,7 +26,6 @@ from editors.views import reviewer_required
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
 from lib.metrics import record_action
-from market.models import AddonPurchase
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import cors_api_view
@@ -36,6 +35,7 @@ from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.webapps.models import Installed, Webapp
+from mkt.prices.models import AddonPurchase
 from services.verify import get_headers, Verify
 from users.models import UserProfile
 

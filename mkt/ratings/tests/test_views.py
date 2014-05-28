@@ -12,7 +12,6 @@ from nose.tools import eq_, ok_
 import amo
 from addons.models import AddonUser
 from devhub.models import ActivityLog
-from market.models import AddonPurchase
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 
@@ -20,6 +19,7 @@ import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.prices.models import AddonPurchase
 
 
 class TestRatingResource(RestOAuth, amo.tests.AMOPaths):

@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 import calendar
 import time
 from urllib import urlencode
@@ -19,7 +19,7 @@ from addons.models import Addon
 from services import utils, verify
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
-from market.models import AddonPurchase
+from mkt.prices.models import AddonPurchase
 from users.models import UserProfile
 from stats.models import Contribution
 

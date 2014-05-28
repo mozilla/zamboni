@@ -13,10 +13,10 @@ from addons.models import Addon
 from stats.models import Contribution
 from stats.db import StatsDictField
 from users.models import UserProfile
-from market.models import Refund
 from zadmin.models import DownloadSource
 
 import mkt.regions
+from mkt.prices.models import Refund
 
 
 class TestStatsDictField(amo.tests.TestCase):
