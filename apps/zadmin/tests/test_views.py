@@ -3,7 +3,6 @@ import csv
 import json
 from cStringIO import StringIO
 
-from django.conf import settings
 from django.core import mail, management
 from django.core.cache import cache
 
@@ -156,7 +155,6 @@ class TestAddonManagement(amo.tests.TestCase):
         initial_data = {
             'status': '4',
             'highest_status': '4',
-            'outstanding': '0',
             'form-0-status': '4',
             'form-0-id': '67442',
             'form-TOTAL_FORMS': '1',
@@ -172,13 +170,6 @@ class TestAddonManagement(amo.tests.TestCase):
         eq_(r.status_code, 200)
         addon = Addon.objects.get(pk=3615)
         eq_(addon.status, 2)
-
-    def test_outstanding_change(self):
-        data = self._form_data({'outstanding': '1'})
-        r = self.client.post(self.url, data, follow=True)
-        eq_(r.status_code, 200)
-        addon = Addon.objects.get(pk=3615)
-        eq_(addon.outstanding, 1)
 
     def test_addon_file_status_change(self):
         data = self._form_data({'form-0-status': '2'})
@@ -257,7 +248,7 @@ class TestEmailDevs(amo.tests.TestCase):
         self.login('admin')
         self.addon = Addon.objects.get(pk=3615)
 
-    def post(self, recipients='eula', subject='subject', message='msg',
+    def post(self, recipients='payments', subject='subject', message='msg',
              preview_only=False):
         return self.client.post(reverse('zadmin.email_devs'),
                                 dict(recipients=recipients, subject=subject,
@@ -269,24 +260,6 @@ class TestEmailDevs(amo.tests.TestCase):
         self.assertNoFormErrors(res)
         preview = EmailPreviewTopic(topic='email-devs')
         eq_([e.recipient_list for e in preview.filter()], ['del@icio.us'])
-        eq_(len(mail.outbox), 0)
-
-    def test_actual(self):
-        subject = 'about eulas'
-        message = 'message about eulas'
-        res = self.post(subject=subject, message=message)
-        self.assertNoFormErrors(res)
-        self.assertRedirects(res, reverse('zadmin.email_devs'))
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, subject)
-        eq_(mail.outbox[0].body, message)
-        eq_(mail.outbox[0].to, ['del@icio.us'])
-        eq_(mail.outbox[0].from_email, settings.DEFAULT_FROM_EMAIL)
-
-    def test_only_eulas(self):
-        self.addon.update(eula=None)
-        res = self.post()
-        self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
 
     def test_only_apps_with_payments(self):

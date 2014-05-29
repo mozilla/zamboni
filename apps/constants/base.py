@@ -135,15 +135,6 @@ MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
 # These apps shouldn't be considered anymore in mass-emailing etc.
 WEBAPPS_EXCLUDED_STATUSES = (STATUS_DISABLED, STATUS_DELETED, STATUS_REJECTED)
 
-# Types of administrative review queues for an add-on:
-ADMIN_REVIEW_FULL = 1
-ADMIN_REVIEW_PRELIM = 2
-
-ADMIN_REVIEW_TYPES = {
-    ADMIN_REVIEW_FULL: _(u'Full'),
-    ADMIN_REVIEW_PRELIM: _(u'Preliminary'),
-}
-
 # Add-on author roles.
 AUTHOR_ROLE_VIEWER = 1
 AUTHOR_ROLE_DEV = 4

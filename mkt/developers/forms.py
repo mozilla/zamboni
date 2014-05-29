@@ -18,21 +18,21 @@ from product_details import product_details
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
-import addons.forms
 import amo
 import lib.iarc
 from access import acl
-from addons.forms import clean_tags, icons, slug_validator
+from addons.forms import clean_slug, clean_tags, icons
 from addons.models import Addon, AddonUser, BlacklistedSlug, Category, Preview
 from addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from amo import get_user
 from amo.fields import SeparatedValuesField
-from amo.utils import remove_icons, slugify
+from amo.utils import remove_icons, slug_validator, slugify
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.video import tasks as vtasks
 from tags.models import Tag
 from translations.fields import TransField
+from translations.forms import TranslationFormMixin
 from translations.models import Translation
 from translations.widgets import TranslationTextarea, TransTextarea
 from versions.models import Version
@@ -519,7 +519,31 @@ class NewPackagedAppForm(happyforms.Form):
         return forms.ValidationError(' '.join(e['message'] for e in errors))
 
 
-class AppFormBasic(addons.forms.AddonFormBase):
+class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+
+    def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
+        super(AddonFormBase, self).__init__(*args, **kw)
+
+    class Meta:
+        models = Addon
+        fields = ('name', 'slug', 'tags')
+
+    def clean_slug(self):
+        return clean_slug(self.cleaned_data['slug'], self.instance)
+
+    def clean_tags(self):
+        return clean_tags(self.request, self.cleaned_data['tags'])
+
+    def get_tags(self, addon):
+        if acl.action_allowed(self.request, 'Addons', 'Edit'):
+            return list(addon.tags.values_list('tag_text', flat=True))
+        else:
+            return list(addon.tags.filter(restricted=False)
+                        .values_list('tag_text', flat=True))
+
+
+class AppFormBasic(AddonFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField()
@@ -592,7 +616,7 @@ class AppFormBasic(addons.forms.AddonFormBase):
         return addonform
 
 
-class AppFormDetails(addons.forms.AddonFormBase):
+class AppFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(required=False,
                                             choices=Addon.LOCALES)
     homepage = TransField.adapt(forms.URLField)(required=False)
@@ -624,7 +648,7 @@ class AppFormDetails(addons.forms.AddonFormBase):
         return data
 
 
-class AppFormMedia(addons.forms.AddonFormBase):
+class AppFormMedia(AddonFormBase):
     icon_type = forms.CharField(required=False,
         widget=forms.RadioSelect(renderer=IconWidgetRenderer, choices=[]))
     icon_upload_hash = forms.CharField(required=False)
@@ -658,7 +682,7 @@ class AppFormMedia(addons.forms.AddonFormBase):
         return super(AppFormMedia, self).save(commit)
 
 
-class AppFormSupport(addons.forms.AddonFormBase):
+class AppFormSupport(AddonFormBase):
     support_url = TransField.adapt(forms.URLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)()
 
@@ -936,7 +960,7 @@ class DevNewsletterForm(happyforms.Form):
         self.fields['country'].initial = 'us'
 
 
-class AppFormTechnical(addons.forms.AddonFormBase):
+class AppFormTechnical(AddonFormBase):
     flash = forms.BooleanField(required=False)
 
     class Meta:

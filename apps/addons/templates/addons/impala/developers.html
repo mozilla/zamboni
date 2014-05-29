@@ -42,11 +42,9 @@
 {% endif %}
 
 {% block content %}
-  {% if not addon.takes_contributions %}
-    <aside id="addon-side" class="secondary c">
-      {{ addon|sidebar_listing }}
-    </aside>
-  {% endif %}
+  <aside id="addon-side" class="secondary c">
+    {{ addon|sidebar_listing }}
+  </aside>
   <header class="hero c">
     {% if page == 'installed' %}
       <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
@@ -57,33 +55,6 @@
       <h1>{{ title }}</h1>
     {% endif %}
   </header>
-
-  {% if addon.takes_contributions %}
-    <aside class="secondary c">
-      {{ addon|sidebar_listing }}
-    </aside>
-    <section class="primary c">
-      {{ impala_contribution(addon=addon, src=src, text=msg,
-                             show_install=(page != 'installed'),
-                             contribution_src=contribution_src) }}
-    </section>
-  {% endif %}
-
-  {% if addon.the_reason or addon.the_future %}
-    <section class="primary full">
-      <div id="about-addon" class="island prose">
-        {% if addon.the_reason %}
-          <h3>{{ _('Why was {0} created?')|f(addon.name) }}</h3>
-          <p>{{ addon.the_reason|nl2br }}</p>
-        {% endif %}
-        {% if addon.the_future %}
-          <h3>{{ _("What's next for {0}")|f(addon.name) }}</h3>
-          <p>{{ addon.the_future|nl2br }}</p>
-        {% endif %}
-      </div>
-    </section>
-    <h1>{{ ngettext('About the Developer', 'About the Developers', authors|length) }}</h1>
-  {% endif %}
 
   {% for author in authors %}
     <section class="island c">

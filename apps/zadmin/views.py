@@ -82,7 +82,7 @@ def show_settings(request):
     for i in settings.HERA:
         settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
 
-    for i in ['GOOGLE_ANALYTICS_CREDENTIALS',]:
+    for i in ['GOOGLE_ANALYTICS_CREDENTIALS']:
         settings_dict[i] = debug.cleanse_setting(i,
                                                  getattr(settings, i, {}))
 
@@ -154,11 +154,8 @@ def email_devs(request):
         else:
             qs = qs.filter(addon__status__in=amo.LISTED_STATUSES)
 
-        if data['recipients'] == 'eula':
-            qs = qs.exclude(addon__eula=None)
-        elif data['recipients'] in ('payments',
-                                    'payments_region_enabled',
-                                    'payments_region_disabled'):
+        if data['recipients'] in ('payments', 'payments_region_enabled',
+                                  'payments_region_disabled'):
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
             qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
                                                      amo.ADDON_OTHER_INAPP))
@@ -256,11 +253,6 @@ def addon_manage(request, addon):
         if 'highest_status' in form.changed_data:
             log.info('Addon "%s" highest status changed to: %s' % (
                 addon.slug, form.cleaned_data['highest_status']))
-            form.save()
-
-        if 'outstanding' in form.changed_data:
-            log.info('Addon "%s" changed to%s outstanding' % (addon.slug,
-                     '' if form.cleaned_data['outstanding'] else ' not'))
             form.save()
 
         for form in formset:

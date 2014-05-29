@@ -33,21 +33,12 @@
     <link itemprop="availability" href="http://schema.org/InStock" />
   </span>
 
-  {% if addon.show_adu() %}
-    {% set cnt = addon.average_daily_users %}
-    {% if cnt %}
-      {% set cnt_id = 'daily-users' %}
-      {% set cnt_pretty = ngettext('{0} user', '{0} users',
-                                   cnt)|f(cnt|numberfmt) %}
-    {% endif %}
-  {% else %}
-    {% set cnt = addon.weekly_downloads %}
-    {% if cnt %}
-      {% set cnt_id = 'weekly-downloads' %}
-      {% set cnt_pretty = ngettext('{0} weekly download',
-                                   '{0} weekly downloads',
-                                   cnt)|f(cnt|numberfmt) %}
-    {% endif %}
+  {% set cnt = addon.weekly_downloads %}
+  {% if cnt %}
+    {% set cnt_id = 'weekly-downloads' %}
+    {% set cnt_pretty = ngettext('{0} weekly download',
+                                 '{0} weekly downloads',
+                                 cnt)|f(cnt|numberfmt) %}
   {% endif %}
   {% if cnt %}
     <div id="{{ cnt_id }}">
@@ -77,7 +68,6 @@
       </h1>
       <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
     </hgroup>
-    <p id="addon-summary" itemprop="description" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
     {% if version %}
       {{ big_install_button(addon, show_warning=False, impala=True) }}
     {% endif %}
@@ -92,9 +82,7 @@
 
   {{ upsell_note(addon) }}
 
-  {% if addon.takes_contributions %}
-    {{ impala_contribution(addon=addon, src='dp-btn-primary') }}
-  {% elif addon.has_profile() and addon.listed_authors %}
+  {% if addon.listed_authors %}
     <div class="notice c author">
       {% with single_dev = addon.listed_authors|random %}
         <h3>
@@ -191,26 +179,14 @@
   <div class="prose">
   {% if addon.description %}
     <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</div>
-  {% else %}
-    <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</div>
   {% endif %}
   </div>
 </section>
 
 <div id="more-webpage" class="primary c" data-more-url="{{ addon.get_url_path(more=True) }}"></div>
 
-{% if version or addon.developer_comments or addon.show_beta %}
+{% if version or addon.show_beta %}
 <section class="primary island more-island">
-  {% if addon.developer_comments %}
-    <section class="expando" id="developer-comments">
-      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
-      <div class="content prose">
-        <p{{ addon.developer_comments|locale_html }}>
-          {{ addon.developer_comments|nl2br }}</p>
-      </div>
-    </section>
-  {% endif %}
-
   {% if version %}
     <section id="detail-relnotes" class="expando">
       <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
@@ -270,15 +246,6 @@
       <h2>{{ _('Privacy Policy') }}</h2>
       <div class="prose">
         {{ addon.privacy_policy|nl2br }}
-      </div>
-    </div>
-  {% endif %}
-  {% if addon.eula %}
-    <div class="modal" id="eula">
-      <a href="#" class="close">{{ _('close') }}</a>
-      <h2>{{ _('End-User License Agreement') }}</h2>
-      <div class="prose">
-        {{ addon.eula|nl2br }}
       </div>
     </div>
   {% endif %}

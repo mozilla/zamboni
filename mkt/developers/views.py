@@ -30,7 +30,6 @@ import amo
 import amo.utils
 import lib.iarc
 from access import acl
-from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
 from addons.views import BaseFilter
@@ -788,7 +787,7 @@ def upload_detail(request, uuid, format='html'):
 @dev_required(webapp=True, staff=True)
 def addons_section(request, addon_id, addon, section, editable=False,
                    webapp=False):
-    basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
+    basic = AppFormBasic
     models = {'basic': basic,
               'media': AppFormMedia,
               'details': AppFormDetails,
@@ -922,12 +921,8 @@ def image_status(request, addon_id, addon, icon_size=64):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
-    # Persona icon is handled differently.
-    elif addon.type == amo.ADDON_PERSONA:
-        icons = True
     else:
-        icons = os.path.exists(os.path.join(addon.get_icon_dir(),
-                                            '%s-%s.png' %
+        icons = os.path.exists(os.path.join(addon.get_icon_dir(), '%s-%s.png' %
                                             (addon.id, icon_size)))
     previews = all(os.path.exists(p.thumbnail_path)
                    for p in addon.get_previews())

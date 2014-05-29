@@ -11,9 +11,8 @@ class TestExtract(amo.tests.TestCase):
 
     def setUp(self):
         self.attrs = ('id', 'slug', 'app_slug', 'created', 'last_updated',
-                      'weekly_downloads', 'average_daily_users', 'status',
-                      'type', 'hotness', 'is_disabled', 'premium_type',
-                      'uses_flash')
+                      'weekly_downloads', 'status', 'type', 'is_disabled',
+                      'premium_type', 'uses_flash')
         self.transforms = (attach_categories, attach_devices, attach_prices,
                            attach_tags, attach_translations)
 

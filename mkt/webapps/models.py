@@ -1527,7 +1527,6 @@ class WebappIndexer(MappingType, Indexable):
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string'},
-                    'average_daily_users': {'type': 'long'},
                     'banner_regions': {
                         'type': 'string',
                         'index': 'not_analyzed'
@@ -1709,10 +1708,9 @@ class WebappIndexer(MappingType, Indexable):
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
 
-        attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
-                 'created', 'id', 'is_disabled', 'last_updated', 'modified',
-                 'premium_type', 'status', 'type', 'uses_flash',
-                 'weekly_downloads')
+        attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
+                 'last_updated', 'modified', 'premium_type', 'status', 'type',
+                 'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id

@@ -1,17 +1,5 @@
 [
     {
-        "pk": 602710,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044e\u044e \u0432\u0435\u0440\u0441\u0438\u044e <b>1.32.3 \u043e\u0442 19.02.2010 \u0433.</b> \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c <a href=\"http://outgoing.mozilla.org/v1/cc080f3c21281baed85f65e4c6615c307f2528b9/http%3A//forum.sape.ru/showthread.php%3Ft%3D17226\">\u0432 \u0442\u0435\u043c\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438</a> \u043d\u0430 \u0444\u043e\u0440\u0443\u043c\u0435 \u0431\u0438\u0440\u0436\u0438.",
-            "created": "2009-09-16 04:58:49",
-            "locale": "ru",
-            "modified": "2010-02-19 07:36:18",
-            "id": 558043,
-            "localized_string": "\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044e\u044e \u0432\u0435\u0440\u0441\u0438\u044e <b>1.32.3 \u043e\u0442 19.02.2010 \u0433.</b> \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c <a href=\"http://forum.sape.ru/showthread.php?t=17226\">\u0432 \u0442\u0435\u043c\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438</a> \u043d\u0430 \u0444\u043e\u0440\u0443\u043c\u0435 \u0431\u0438\u0440\u0436\u0438."
-        }
-    },
-    {
         "pk": 259942,
         "model": "translations.translation",
         "fields": {
@@ -64,49 +52,27 @@
         "model": "addons.addon",
         "fields": {
             "slug": "8680",
-            "dev_agreement": 1,
-            "eula": null,
             "_current_version": 86740,
             "last_updated": "2010-01-14 14:15:28",
-            "view_source": 0,
-            "enable_thankyou": 0,
             "total_downloads": 86000,
-            "developer_comments": 558043,
             "disabled_by_user": 0,
-            "average_daily_downloads": 158,
             "guid": "toolbar@sape.ru",
-            "trusted": 0,
-            "locale_disambiguation": null,
-            "the_future": null,
             "weekly_downloads": 1252,
-            "paypal_id": "",
             "average_rating": "4.93",
-            "wants_contributions": 0,
-            "average_daily_users": 5587,
             "bayesian_rating": 4.7745699999999998,
-            "share_count": 0,
             "homepage": null,
             "support_email": null,
             "public_stats": 1,
             "status": 4,
             "privacy_policy": null,
             "default_locale": "ru",
-            "target_locale": null,
-            "prerelease": 0,
-            "thankyou_note": null,
-            "admin_review": 0,
-            "external_software": 0,
             "highest_status": 4,
             "name": 222546,
             "created": "2008-08-29 07:02:08",
             "type": 1,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-12-06 03:06:48",
-            "suggested_amount": null,
-            "site_specific": 1,
-            "total_reviews": 97,
-            "the_reason": null
+            "total_reviews": 97
         }
     },
     {

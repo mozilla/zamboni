@@ -16,9 +16,7 @@ log = commonware.log.getLogger(LOGGER_NAME)
 
 
 class DevMailerForm(happyforms.Form):
-    _choices = [('eula',
-                 'Developers who have set up EULAs for active add-ons'),
-                ('sdk', 'Developers of active SDK add-ons'),
+    _choices = [('sdk', 'Developers of active SDK add-ons'),
                 ('apps', 'Developers of active apps (not add-ons)'),
                 ('free_apps_region_enabled',
                  'Developers of free apps and new region enabled'),
@@ -44,7 +42,7 @@ class DevMailerForm(happyforms.Form):
 class AddonStatusForm(ModelForm):
     class Meta:
         model = Addon
-        fields = ('status', 'highest_status', 'outstanding')
+        fields = ('status', 'highest_status')
 
 
 class FileStatusForm(ModelForm):
