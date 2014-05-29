@@ -10,7 +10,6 @@ SERVER_EMAIL = 'zmktlandfill@addons.mozilla.org'
 
 DOMAIN = "landfill-mkt.allizom.org"
 SITE_URL = 'https://landfill-mkt.allizom.org'
-SERVICES_URL = SITE_URL
 STATIC_URL = 'https://landfill-mkt-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
@@ -80,8 +79,6 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER

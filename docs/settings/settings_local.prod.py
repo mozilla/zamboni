@@ -45,9 +45,6 @@ LOG_LEVEL = logging.WARNING
 DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 
 
-# Sample heka configuration. Uncommented, this would override what is in
-# lib/settings_base.py.
-
 # HEKA_CONF = {
 #     'logger': 'zamboni',
 #     'stream': {

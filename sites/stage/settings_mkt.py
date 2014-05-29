@@ -11,7 +11,6 @@ SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 DOMAIN = "marketplace.allizom.org"
 SITE_URL = 'https://marketplace.allizom.org'
-SERVICES_URL = SITE_URL
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
@@ -102,8 +101,6 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER

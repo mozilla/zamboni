@@ -1,9 +1,5 @@
 from default.settings import *
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
-
 # These apps are great during development.
 INSTALLED_APPS += (
     'debug_toolbar',

@@ -856,11 +856,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                   .distinct())
 
     @property
-    def contribution_url(self, lang=settings.LANGUAGE_CODE,
-                         app=settings.DEFAULT_APP):
-        return reverse('addons.contribute', args=[self.slug])
-
-    @property
     def thumbnail_url(self):
         """
         Returns the addon's thumbnail url or a default.
