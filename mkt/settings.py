@@ -214,6 +214,8 @@ PASSWORD_HASHERS = ()
 
 ROOT_URLCONF = 'mkt.urls'
 
+SECRET_KEY = 'please change this'
+
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
