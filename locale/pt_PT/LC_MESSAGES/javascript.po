@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-24 01:05+0000\n"
+"PO-Revision-Date: 2014-05-29 00:38+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400893524.0\n"
+"X-POOTLE-MTIME: 1401323906.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -463,7 +463,7 @@ msgstr "menos..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Manter revisão / Remover etiquetas"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"

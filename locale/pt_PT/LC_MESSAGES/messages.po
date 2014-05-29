@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-28 04:58+0000\n"
+"PO-Revision-Date: 2014-05-29 01:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401253125.0\n"
+"X-POOTLE-MTIME: 1401328688.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -4555,39 +4555,39 @@ msgstr "Nome do fornecedor"
 
 #: mkt/developers/forms_payments.py:386
 msgid "Financial Email"
-msgstr ""
+msgstr "E-mail financeiro"
 
 #: mkt/developers/forms_payments.py:389
 msgid "Administrative Email"
-msgstr ""
+msgstr "E-mail administrativo"
 
 #: mkt/developers/forms_payments.py:392
 msgid "Support Email"
-msgstr ""
+msgstr "E-mail de suporte"
 
 #: mkt/developers/forms_payments.py:396
 msgid "Address"
-msgstr ""
+msgstr "Endereço"
 
 #: mkt/developers/forms_payments.py:398
 msgid "Address 2"
-msgstr ""
+msgstr "Endereço 2"
 
 #: mkt/developers/forms_payments.py:400
 msgid "City/Municipality"
-msgstr ""
+msgstr "Cidade/Município"
 
 #: mkt/developers/forms_payments.py:402
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Estado/Província/Região"
 
 #: mkt/developers/forms_payments.py:404
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "Código postal"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Phone"
-msgstr ""
+msgstr "Telefone"
 
 #: mkt/developers/forms_payments.py:411
 msgid "I prefer to be paid in"
@@ -4627,31 +4627,31 @@ msgstr "Estado/província/região do banco"
 
 #: mkt/developers/forms_payments.py:433
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Código postal do banco"
 
 #: mkt/developers/forms_payments.py:435
 msgid "Bank Country"
-msgstr ""
+msgstr "País do banco"
 
 #: mkt/developers/forms_payments.py:437 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Nome da conta"
 
 #: mkt/developers/forms_payments.py:466
 msgid "Payment Account"
-msgstr ""
+msgstr "Conta de pagamento"
 
 #: mkt/developers/forms_payments.py:536
 msgid "You cannot remove a payment account from an app."
-msgstr ""
+msgstr "Não pode remover uma conta de pagamento de uma aplicação."
 
 #: mkt/developers/forms_payments.py:540
 msgid "You are not permitted to change payment accounts."
-msgstr ""
+msgstr "Não tem permissão para alterar contas de pagamento."
 
 #: mkt/developers/forms_payments.py:626 mkt/developers/forms_payments.py:642
 msgid "Account name"
-msgstr ""
+msgstr "Nome da conta"
 
 #: mkt/developers/forms_payments.py:628 mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
@@ -4660,15 +4660,15 @@ msgstr "Correio electrónico"
 
 #: mkt/developers/forms_payments.py:645
 msgid "Service ID"
-msgstr ""
+msgstr "ID do serviço"
 
 #: mkt/developers/forms_payments.py:652
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "O ID do serviço não é válido"
 
 #: mkt/developers/forms_payments.py:666
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Nenhuma conta de pagamento definida para essa aplicação"
 
 # 90%
 #: mkt/developers/helpers.py:37 mkt/developers/helpers.py:66
@@ -4828,15 +4828,15 @@ msgstr "A aplicação para pré-carregamento foi submetida com sucesso."
 
 #: mkt/developers/views.py:440
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Houve um erro com o formulário."
 
 #: mkt/developers/views.py:471
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Versão editada com sucesso."
 
 #: mkt/developers/views.py:512
 msgid "Version successfully made public."
-msgstr ""
+msgstr "A versão foi publicada com sucesso."
 
 # 77%
 #: mkt/developers/views.py:527
@@ -4861,23 +4861,23 @@ msgstr "Os termos de serviço foram aceitos."
 
 #: mkt/developers/views.py:1015
 msgid "Users with the admin role cannot use the API."
-msgstr ""
+msgstr "Utilizadores com o papel de administradores não podem utilizar a API."
 
 #: mkt/developers/views.py:1023
 msgid "No such API key."
-msgstr ""
+msgstr "Essa chave de API não existe."
 
 #: mkt/developers/views.py:1035
 msgid "New API key generated."
-msgstr ""
+msgstr "Nova chave de API gerada."
 
 #: mkt/developers/views.py:1053
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Versão de lista de bloqueios criada."
 
 #: mkt/developers/views.py:1055
 msgid "App already blocklisted."
-msgstr ""
+msgstr "A aplicação já está na lista de bloqueios."
 
 #: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
@@ -4897,23 +4897,23 @@ msgstr "Operador"
 
 #: mkt/developers/views_payments.py:336
 msgid "A server error occurred when retrieving the application key."
-msgstr ""
+msgstr "Ocorreu um erro no servidor ao obter a chave da aplicação."
 
 #: mkt/developers/views_payments.py:343
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "O segredo foi reposto com sucesso."
 
 #: mkt/developers/views_payments.py:347
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "A chave e segredo foram criados com sucesso."
 
 #: mkt/developers/views_payments.py:373
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "A sua aplicação não está configurada para compras na aplicação."
 
 #: mkt/developers/views_payments.py:376
 msgid "No payment account for this app."
-msgstr ""
+msgstr "Nenhuma conta de pagamento para esta aplicação."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:29
 msgid "API"
@@ -4922,24 +4922,33 @@ msgstr "API"
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Para aceder à API do Marketplace, crie um par de chaves OAuth utilizando o "
+"formulário em baixo."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"Para aceder à API do Marketplace, aceite os <a href=\"%(terms)s\">termos do "
+"serviço</a> e crie um par de chaves OAuth utilizando o formulário em baixo."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p> Por favor leia a <a href=\"https://firefox-marketplace-api.readthedocs.or"
+"g/en/latest/topics/authentication.html#oauth\">documentação</a> sobre como "
+"criar um par de chaves e utilizá-las com a API do Marketplace. Quaisquer "
+"testes devem ocorrer no servidor de desenvolvimento e não no servidor de "
+"produção. </p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
-msgstr ""
+msgstr "Nome da aplicação"
 
 #: mkt/developers/templates/developers/api.html:38 mkt/developers/templates/developers/api.html:62
 msgid "Redirect URI"
-msgstr ""
+msgstr "Endereço de redirecionamento"
 
 #: mkt/developers/templates/developers/api.html:43
 msgid "Create"
@@ -5121,11 +5130,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Atribuir"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Negar"
 
 #: mkt/developers/templates/developers/search.html:7
 msgid "Search Developer Docs"
@@ -5144,11 +5153,11 @@ msgstr "Desenvolvedores do Firefox Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 msgid "API Reference"
-msgstr ""
+msgstr "Referência da API"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:71
 msgid "Submit an app"
-msgstr ""
+msgstr "Submeter uma aplicação"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:73 mkt/ecosystem/templates/ecosystem/partners.html:115
 msgid "Marketplace"
@@ -5156,7 +5165,7 @@ msgstr "Mercado"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:77 mkt/templates/mkt/header.html:28
 msgid "Sign In"
-msgstr ""
+msgstr "Iniciar sessão"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:84 mkt/templates/mkt/header.html:21
 msgid "Settings"
@@ -5197,19 +5206,21 @@ msgstr "Você já aceitou o acordo de desenvolvedor."
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testes"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Utilize estas ferramentas para testar as suas aplicações antes de as "
+"submeter ao Marketplace do Firefox."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Detalhes da transação"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Filtrar transações"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
@@ -5306,35 +5317,42 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:29
 msgid "About team member roles"
-msgstr ""
+msgstr "Sobre os papéis dos membros da equipa"
 
 #: mkt/developers/templates/developers/apps/owner.html:78
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "Sobre os papéis dos membros da equipa"
 
 #: mkt/developers/templates/developers/apps/owner.html:80
 msgid "Apps can have any number of team members with 4 possible roles:"
 msgstr ""
+"As aplicações podem ter um qualquer número de membros na equipa com 4 papéis "
+"possíveis:"
 
 #: mkt/developers/templates/developers/apps/owner.html:83
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
 msgstr ""
+"Pode gerir todos os aspetos da listagem da aplicação, incluindo adicionar ou "
+"remover outros membros da equipa"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
 msgstr ""
+"Pode gerir todos os aspetos da listagem da aplicação, exceto adicionar ou "
+"remover outros membros da equipa e gerir pagamentos"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can view the app's settings but cannot make any changes"
 msgstr ""
+"Pode ver as definições da aplicação mas não pode fazer quaisquer alterações"
 
 #: mkt/developers/templates/developers/apps/owner.html:91
 msgid "Can view the app's settings and manage refund requests"
-msgstr ""
+msgstr "Pode ver definições da aplicação e gerir pedidos de devolução"
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
-msgstr ""
+msgstr "Perfil de programador"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
@@ -5365,7 +5383,7 @@ msgstr "Estado actual"
 
 #: mkt/developers/templates/developers/apps/status.html:27
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "<b>Removeu</b> esta aplicação da listagem."
 
 # 84%
 #: mkt/developers/templates/developers/apps/status.html:31
@@ -5446,39 +5464,41 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
-msgstr ""
+msgstr "Publicar aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Estado da aplicação pré-instalada"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
 msgstr ""
+"<strong class=\"submitted\">Aplicação enviada</strong> a %(last_submission)s"
 
 #: mkt/developers/templates/developers/apps/status.html:145
 msgid "Not Submitted"
-msgstr ""
+msgstr "Não submetido"
 
 #: mkt/developers/templates/developers/apps/status.html:149
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "Nova versão do plano de teste disponível"
 
 #: mkt/developers/templates/developers/apps/status.html:154
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Ver o plano de teste enviado mais recentemente"
 
 #: mkt/developers/templates/developers/apps/status.html:157
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
+"Saiba como ter a sua aplicação pré-instalada em dispositivos com Firefox OS"
 
 #: mkt/developers/templates/developers/apps/status.html:159
 msgid "Update your test plan"
-msgstr ""
+msgstr "Atualize o seu plano de teste"
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:191
 msgid "List App"
-msgstr ""
+msgstr "Listar aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:194 mkt/developers/templates/developers/apps/status.html:342
 #: mkt/developers/templates/developers/apps/status.html:347
@@ -5549,6 +5569,11 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
+"Bloquear uma aplicação irá atualizar os utilizadores para uma versão "
+"especial que tornará a aplicação inutilizável nos seus dispositivos Firefox "
+"OS. Isto irá remover também esta aplicação de páginas públicas até que uma "
+"nova versão seja submetida e aprovada. Estas alterações não podem ser "
+"anuladas. Por favor, proceda com cuidado."
 
 #: mkt/developers/templates/developers/apps/status.html:322
 msgid "Blocklist"
@@ -5556,23 +5581,23 @@ msgstr "Lista de bloqueados"
 
 #: mkt/developers/templates/developers/apps/status.html:344
 msgid "Are you sure you wish to delist your app?"
-msgstr ""
+msgstr "Tem a certeza que pretende remover a sua aplicação da listagem?"
 
 #: mkt/developers/templates/developers/apps/status.html:358
 msgid "Delete Version &quot;{version}&quot;"
-msgstr ""
+msgstr "Eliminar versão &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:359
 msgid "Deleting the only version will result in the following:"
-msgstr ""
+msgstr "Eliminar a única versão irá resultar no seguinte:"
 
 #: mkt/developers/templates/developers/apps/status.html:360
 msgid "Deleting this version will result in the following:"
-msgstr ""
+msgstr "Eliminar esta versão irá resultar no seguinte:"
 
 #: mkt/developers/templates/developers/apps/status.html:362
 msgid "all associated user reviews will be deleted"
-msgstr ""
+msgstr "todas as revisões de utilizadores relacionadas serão eliminadas"
 
 #: mkt/developers/templates/developers/apps/status.html:363
 msgid "the app status will be marked as &quot;incomplete&quot;"
@@ -5584,7 +5609,7 @@ msgstr "o aplicativo será removido da fila de análises"
 
 #: mkt/developers/templates/developers/apps/status.html:365
 msgid "the app will not be listed in our public pages"
-msgstr ""
+msgstr "a aplicação não será listada nas nossas páginas públicas"
 
 #: mkt/developers/templates/developers/apps/status.html:367
 msgid "These changes cannot be undone."
@@ -5618,10 +5643,12 @@ msgstr "Nota para revisores"
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
 msgstr ""
+"Opcionalmente, introduza qualquer informação que possa ser útil ao revisor "
+"desta aplicação, tais como informações da conta de teste."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:52 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
-msgstr ""
+msgstr "Requisitos mínimos"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
@@ -5679,26 +5706,30 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"A aplicação será tratada como uma prioridade e colocada no topo da fila de "
+"revisão"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Isto irá persistir até à primeira aprovação"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
-msgstr ""
+msgstr "Mensagem de cabeçalho"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Mensagem exclusiva apresentada na página da listagem, apenas nas regiões "
+"selecionadas."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "Regiões onde mostrar o cabeçalho"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Regiões onde a mensagem de cabeçalho será apresentada."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:155
 msgid "Tags"
@@ -5707,6 +5738,9 @@ msgstr "Etiquetas"
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"As etiquetas ajudarão os utilizadores a encontrar a sua aplicação e devem "
+"ser descritores curtos tais como separadores, barra de ferramenta ou "
+"twitter. Pode ter um máximo de {0} etiquetas."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
@@ -5735,11 +5769,11 @@ msgstr "Informação básica para {0}"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/developers/templates/developers/apps/edit/basic.html:36
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Este campo apenas pode ser editado se for atualizado no manifesto."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:34 mkt/reviewers/templates/reviewers/includes/details.html:87 mkt/reviewers/templates/reviewers/includes/mobile_details.html:108
 msgid "Developer Name"
-msgstr ""
+msgstr "Nome do programador"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:67
 msgid "App URL"
@@ -5819,24 +5853,24 @@ msgstr "Uma política de privacidade é necessária para explicar que dados são
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "País e idioma"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Detalhes do país e idioma de {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Editar país na Página de Compatibilidade"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "por omissão"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Editar idioma no ficheiro de manifesto da sua aplicação"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
