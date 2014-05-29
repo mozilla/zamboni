@@ -153,15 +153,11 @@ MIDDLEWARE_CLASSES = (
     'mkt.site.middleware.CacheHeadersMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'amo.middleware.RemoveSlashMiddleware',
-
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
-
     'commonware.middleware.StrictTransportMiddleware',
     'waffle.middleware.WaffleMiddleware',
-
     'csp.middleware.CSPMiddleware',
-
     'amo.middleware.CommonMiddleware',
     'amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -169,11 +165,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.log.ThreadRequestMiddleware',
     'mkt.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
-
-
     'commonware.middleware.ScrubRequestOnException',
     'mkt.site.middleware.RequestCookiesMiddleware',
-
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.api.middleware.RestOAuthMiddleware',
     'mkt.api.middleware.RestSharedSecretMiddleware',
@@ -221,8 +214,6 @@ PASSWORD_HASHERS = ()
 
 ROOT_URLCONF = 'mkt.urls'
 
-SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
-# Default to short expiration; check "remember me" to override
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
@@ -239,13 +230,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'session_csrf.context_processor',
-
     'django.contrib.messages.context_processors.messages',
-
     'amo.context_processors.i18n',
     'amo.context_processors.static_url',
     'jingo_minify.helpers.build_ids',
-
     'mkt.site.context_processors.global_settings',
     'mkt.carriers.context_processors.carrier_data',
 )
@@ -371,7 +359,7 @@ PERSONAS_IMAGE_URL = ('http://getpersonas.cdn.mozilla.net/static/'
                       '%(tens)d/%(units)d/%(id)d/%(file)s')
 PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
                           '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_UPDATE_URL =  VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
+PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 PREVIEW_THUMBNAIL_URL = (STATIC_URL +
                          'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
 PREVIEW_FULL_URL = (STATIC_URL +
@@ -381,6 +369,11 @@ PRIVATE_MIRROR_URL = '/_privatefiles'
 # Base URL where webpay product icons are served from.
 PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
+
+# The verification URL, the addon id will be appended to this. This will
+# have to be altered to the right domain for each server, eg:
+# https://receiptcheck.addons.mozilla.org/verify/
+WEBAPPS_RECEIPT_URL = SITE_URL + '/verify/'
 
 ###########################################
 # Celery
@@ -411,25 +404,16 @@ CELERY_ROUTES = {
     'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
     'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
-
-    # MKT Devhub.
+    # And the rest.
     'mkt.developers.tasks.validator': {'queue': 'devhub'},
     'mkt.developers.tasks.file_validator': {'queue': 'devhub'},
     'mkt.developers.tasks.resize_icon': {'queue': 'images'},
     'mkt.developers.tasks.resize_preview': {'queue': 'images'},
     'mkt.developers.tasks.fetch_icon': {'queue': 'devhub'},
     'mkt.developers.tasks.fetch_manifest': {'queue': 'devhub'},
-
-    # Videos.
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
-
-    # Images.
     'mkt.webapps.tasks.regenerate_icons_and_thumbnails': {'queue': 'images'},
-
-    # Comm.
     'mkt.comm.tasks.migrate_activity_log': {'queue': 'limited'},
-
-    # Webapps.
     'mkt.webapps.tasks.pre_generate_apk': {'queue': 'devhub'},
 }
 
@@ -476,6 +460,7 @@ AMO_LANGUAGES = (
     'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pl', 'pt-BR', 'ro',
     'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'tr', 'zh-CN', 'zh-TW',
 )
+
 
 def lazy_langs(languages):
     from product_details import product_details
@@ -590,30 +575,32 @@ CSP_POLICY_URI = '/services/csp/policy?build=%s' % build_id
 CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
-CSP_IMG_SRC = ("'self'", SITE_URL,
-               "https://ssl.google-analytics.com",
-               "https://www.google-analytics.com",
-               "https://*.newrelic.com",
-               "data:"
-              )
-CSP_SCRIPT_SRC = ("'self'", SITE_URL,
-                  "https://login.persona.org",
-                  "https://firefoxos.persona.org",
-                  "https://ssl.google-analytics.com",
-                  "https://www.google-analytics.com",
-                  "https://*.newrelic.com",
-                  )
-CSP_STYLE_SRC = ("'self'", SITE_URL,
-                )
+CSP_IMG_SRC = (
+    "'self'", SITE_URL,
+    'https://ssl.google-analytics.com',
+    'https://www.google-analytics.com',
+    'https://*.newrelic.com',
+    'data:'
+)
+CSP_SCRIPT_SRC = (
+    "'self'", SITE_URL,
+    'https://login.persona.org',
+    'https://firefoxos.persona.org',
+    'https://ssl.google-analytics.com',
+    'https://www.google-analytics.com',
+    'https://*.newrelic.com',
+)
+CSP_STYLE_SRC = ("'self'", SITE_URL,)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://s3.amazonaws.com",
-                 "https://ssl.google-analytics.com",
-                 "https://login.persona.org",
-                 "https://firefoxos.persona.org",
-                 "https://www.youtube.com",
-                )
-CSP_FONT_SRC = ("'self'", "fonts.mozilla.org", "www.mozilla.org",)
+CSP_FRAME_SRC = (
+    'https://s3.amazonaws.com',
+    'https://ssl.google-analytics.com',
+    'https://login.persona.org',
+    'https://firefoxos.persona.org',
+    'https://www.youtube.com',
+)
+CSP_FONT_SRC = ("'self'", 'fonts.mozilla.org', 'www.mozilla.org',)
 
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
@@ -748,8 +735,8 @@ HEKA_CONF = {
         # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
-        'raven': ('heka_raven.raven_plugin:config_plugin',
-            {'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
+        'raven': ('heka_raven.raven_plugin:config_plugin', {
+            'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
         },
     'stream': {
         'class': 'heka.streams.UdpStream',
@@ -790,10 +777,13 @@ IARC_ENV = 'test'
 IARC_MOCK = False
 IARC_PASSWORD = ''
 IARC_PLATFORM = 'Firefox'
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'
+IARC_SERVICE_ENDPOINT = ('https://www.globalratings.com'
+                         '/IARCDEMOService/IARCServices.svc')
 IARC_STOREFRONT_ID = 4
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'
-IARC_PRIVACY_URL = 'https://www.globalratings.com/IARCPRODClient/privacypolicy.aspx'
+IARC_SUBMISSION_ENDPOINT = ('https://www.globalratings.com'
+                            '/IARCDEMORating/Submission.aspx')
+IARC_PRIVACY_URL = ('https://www.globalratings.com'
+                    '/IARCPRODClient/privacypolicy.aspx')
 IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
 
 
@@ -827,6 +817,7 @@ JINGO_EXCLUDE_PATHS = (
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = False
+
 
 def JINJA_CONFIG():
     import jinja2
@@ -1449,11 +1440,6 @@ WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 # The key we'll use to sign webapp receipts.
 WEBAPPS_RECEIPT_KEY = ''
 
-# The verification URL, the addon id will be appended to this. This will
-# have to be altered to the right domain for each server, eg:
-# https://receiptcheck.addons.mozilla.org/verify/
-WEBAPPS_RECEIPT_URL = '%s/verify/' % SITE_URL
-
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
@@ -1463,6 +1449,4 @@ XSENDFILE = True
 XSENDFILE_HEADER = 'X-SENDFILE'
 
 # The UUID for Yogafire (Tarako Marketplace).
-# (`Webapp.objects.get(app_slug='marketplace-package').guid` has been
-#  carefully set on prod, -dev, and stage.)
 YOGAFIRE_GUID = 'f34d3c22-3efe-47ca-803d-6c740da1a851'
