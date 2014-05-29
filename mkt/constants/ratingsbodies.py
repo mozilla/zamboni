@@ -43,7 +43,7 @@ class RATING_BODY(object):
 class CLASSIND_L(RATING):
     id = 0
     age = 0
-    iarc_name = '0+'
+    iarc_name = 'Livre'
 
 
 class CLASSIND_10(RATING):
