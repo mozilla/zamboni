@@ -14,9 +14,6 @@ import amo
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
 from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
-from zadmin.models import DownloadSource
-
-import mkt
 
 from .db import StatsDictField
 
