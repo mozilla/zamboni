@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-29 00:38+0000\n"
+"PO-Revision-Date: 2014-05-29 02:40+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401323906.0\n"
+"X-POOTLE-MTIME: 1401331220.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -154,12 +154,12 @@ msgstr[1] "A validação da sua aplicação falhou com os erros {0} e a(s) mensa
 #: media/js/devreg/devhub.js:200
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "A sua app passou a validação sem erros e com {0} mensagem."
-msgstr[1] "A sua app passou a validação sem erros e com {0} mensagens."
+msgstr[0] "A sua aplicação passou a validação sem erros e com {0} mensagem."
+msgstr[1] "A sua aplicação passou a validação sem erros e com {0} mensagens."
 
 #: media/js/devreg/devhub.js:205
 msgid "Your app passed validation with no errors or messages."
-msgstr "A sua app passou a validação sem nenhum erro ou mensagens."
+msgstr "A sua aplicação passou a validação sem erros ou mensagens."
 
 #: media/js/devreg/devhub.js:419
 msgid "Changes Saved"
@@ -175,7 +175,7 @@ msgstr "Atualizado"
 
 #: media/js/devreg/devhub.js:616
 msgid "There was an error uploading your file."
-msgstr "Houve um erro ao carregar o seu ficheiro."
+msgstr "Ocorreu um erro ao carregar o seu ficheiro."
 
 #: media/js/devreg/devhub.js:886
 msgid "Learn more"
@@ -187,11 +187,12 @@ msgstr "Exemplo"
 
 #: media/js/devreg/devhub.js:1192
 msgid "Image changes being processed"
-msgstr "Alterações de imagens em processamento"
+msgstr "As alterações de imagem estão a ser processadas"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Este vídeo necessita de um navegador que suporte formatos abertos de vídeo"
+msgstr ""
+"Este vídeo necessita de um navegador com suporte a formatos de vídeo aberto "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -203,7 +204,9 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta funcionalidade está desativada temporariamente enquanto procedemos à manutenção do sítio web. Por favor, volte mais tarde."
+msgstr ""
+"Esta funcionalidade está temporariamente desativada enquanto procedemos à "
+"manutenção do sítio web. Por favor, volte mais tarde."
 
 #: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -243,7 +246,7 @@ msgstr "Sem privilégios"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr "Não foi dado um motivo"
+msgstr "Nenhum motivo fornecido"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
@@ -275,7 +278,7 @@ msgstr "Número de trânsito Canadiano/Código de rota Alemão"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Banco e ramo Coreano/Código bancário Indonésio"
+msgstr "Banco e Filial Coreana/Código Bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
@@ -283,23 +286,25 @@ msgstr "HEBIC Grego/Código bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Código de ordenação do Reino Unido/Irlanda ou o prefixo de conta NZ ou o código BSB Australiano"
+msgstr ""
+"Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código "
+"BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr "Código bancário Austríaco/Suíço"
+msgstr "Código Bancário Austríaco/Suíço"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr "Código bancário Dinamarquês/Suíço"
+msgstr "Código Bancário Dinamarquês/Suíço"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr "Código bancário Suíço/Iraquiano"
+msgstr "Código Bancário Suíço/Iraquiano"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr "Código bancário Iraquiano"
+msgstr "Código Bancário Iraquiano"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
@@ -324,7 +329,7 @@ msgstr "Erro"
 
 #: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
-msgstr "Existe um problema ao contactar o servidor de pagamentos."
+msgstr "Ocorreu um problema ao contactar o servidor de pagamento."
 
 #: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
@@ -340,18 +345,18 @@ msgstr "Procurar temas para <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr "Procurar apps para o <b>{0}</b>"
+msgstr "Procurar aplicações para <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Procurar extras para o <b>{0}</b>"
+msgstr "Procurar extras para <b>{0}</b>"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] "Faltam {0} caractere. "
-msgstr[1] "Faltam {0} caracteres. "
+msgstr[0] "Faltam {0} carácter."
+msgstr[1] "Faltam {0} caracteres."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
@@ -371,7 +376,7 @@ msgstr "Aviso"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr "testes de compatibilidade"
+msgstr "Testes de compatibilidade"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
@@ -407,7 +412,7 @@ msgstr "A comprar"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr "Comprado"
+msgstr "Adquirido"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
@@ -431,7 +436,7 @@ msgstr "{name} estava a ver primeiro este extra."
 
 #: media/js/devreg/reviewers/editors.js:275
 msgid "Loading&hellip;"
-msgstr "A carregar"
+msgstr "A carregar&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:280
 msgid "Version Notes"
@@ -443,15 +448,15 @@ msgstr "Notas para os revisores"
 
 #: media/js/devreg/reviewers/editors.js:290
 msgid "No version notes found"
-msgstr "Nenhumas notas de versão encontradas"
+msgstr "Não foram encontradas notas de versão"
 
 #: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
-msgstr "Primeiro seleccione uma aplicação"
+msgstr "Selecione uma aplicação primeiro"
 
 #: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
-msgstr "Erro ao carregar a transação"
+msgstr "Erro ao carregar a tradução"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -491,7 +496,7 @@ msgstr "Mais informação solicitada"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr "Contém comentário do editor"
+msgstr "Contém comentários do editor"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
@@ -528,7 +533,7 @@ msgstr "Erro ao rejeitar a aplicação: {app}"
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:63
 msgid "By {0} on {1}"
-msgstr "Por {0} a {1}"
+msgstr "Por {0} em {1}"
 
 #: media/js/impala/collections.js:10
 msgid "Follow this Collection"
@@ -553,47 +558,47 @@ msgstr "Todos os direitos reservados"
 
 #: media/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Atribuição 3.0"
 
 #: media/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Atribuição Uso não comercial 3.0"
 
 #: media/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Atribuição-Não Comercial-Sem Derivações 3.0"
 
 #: media/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Atribuição-Não Comercial-Compartilha Igual 3.0"
 
 #: media/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Atribuição-Sem Derivações 3.0"
 
 #: media/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Atribuição-Compartilha Igual 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr "O nome do seu tema"
+msgstr "Nome do seu tema"
 
 #: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr "Marcada para análise"
+msgstr "Marcado para análise"
 
 #: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr "É necessária a sua entrada"
+msgstr "O seu preenchimento é necessário"
 
 #: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr "Marcado para eliminar"
+msgstr "Marcado para exclusão"
 
 #: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr "A atualizar resultados:"
+msgstr "A atualizar resultados&hellip;"
 
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
@@ -606,14 +611,17 @@ msgstr "usar original"
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
-msgstr[1] "Definir os extras {0} para a versão máxima {1} e enviar mensagens aos autores."
+msgstr[0] ""
+"Definir a versão máxima do extra {0} para {1} e enviar mensagem ao autor."
+msgstr[1] ""
+"Definir a versão máxima dos extras {0} para {1} e enviar mensagem aos "
+"autores."
 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Email de autor do extra {2} que falhou a validação."
-msgstr[1] "Email de autores dos extras {2} que falharam a validação."
+msgstr[0] "Email do autor do extra {2} que falhou a validação."
+msgstr[1] "Email dos autores dos extras {2} que falharam a validação."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -633,20 +641,23 @@ msgstr "Este sistema não suporta a instalação de aplicações."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "Admins e editores têm de fornecer uma senha para iniciar sessão."
+msgstr ""
+"Administradores e editores devem fornecer uma senha para iniciar sessão."
 
 #: media/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Início de sessão do BrowserID falhou. Possivelmente não tem uma conta com esse endereço de correio?"
+msgstr ""
+"O início de sessão do BrowserID falhou. Possivelmente não tem uma conta com "
+"esse endereço de correio?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:100
 msgid "Accept and Install"
-msgstr "Aceitar e instalar"
+msgstr "Aceitar e Instalar"
 
 #: media/js/zamboni/buttons.js:100
 msgid "Add to {0}"
-msgstr "Adicionar a {0}"
+msgstr "Adicionar ao {0}"
 
 #: media/js/zamboni/buttons.js:105
 msgid "Download Now"
@@ -654,7 +665,7 @@ msgstr "Transferir agora"
 
 #: media/js/zamboni/buttons.js:135
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "O extra não foi atualizado para suportar por-omissão-compatível"
+msgstr "O extra não foi atualizado para suportar a compatibilidade por omissão."
 
 #: media/js/zamboni/buttons.js:140
 msgid "You need to be using Firefox 10.0 or higher."
@@ -667,11 +678,11 @@ msgstr "A Mozilla marcou esta versão como incompatível com a sua versão do Fi
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:230
 msgid "Install for {0} anyway"
-msgstr "Instalar para o {0} de qualquer maneira"
+msgstr "Instalar no {0} mesmo assim"
 
 #: media/js/zamboni/buttons.js:230
 msgid "Download for {0} anyway"
-msgstr "Transferir para o {0} de qualquer maneira"
+msgstr "Transferir para o {0} mesmo assim"
 
 #: media/js/zamboni/buttons.js:287
 msgid "Not available for your platform"
@@ -684,7 +695,7 @@ msgstr "Não está disponível para {0} {1}"
 
 #: media/js/zamboni/buttons.js:361
 msgid "Works with {app} {min} - {max}"
-msgstr "Funciona com {app} {min} - {max}"
+msgstr "Funciona com o {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:363
 msgid "View other versions"
@@ -692,7 +703,9 @@ msgstr "Ver outras versões"
 
 #: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
+msgstr ""
+"Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) "
+"para instalar uma extensão de pesquisa."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -706,26 +719,26 @@ msgstr "A carregar..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Falta <b>{0}</b> caractere."
+msgstr[0] "Falta <b>{0}</b> carácter."
 msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr "Força da senha:"
+msgstr "Qualidade da senha:"
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Falta pelo menos {0} caractere."
+msgstr[0] "Falta pelo menos {0} carácter."
 msgstr[1] "Faltam pelo menos {0} caracteres."
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr "Não actualizado para {0} {1}"
+msgstr "Não atualizado para {0} {1}"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr "Necessita da versão mais recente do {0}"
+msgstr "Requer uma versão mais recente de {0}"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
@@ -733,11 +746,11 @@ msgstr "Não revisto"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr "Experimental <span>(Saber mais)</span>"
+msgstr "Experimental <span>(Saiba mais)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr "Não disponível para {0}"
+msgstr "Não disponível para o {0}"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
