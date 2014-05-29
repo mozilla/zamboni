@@ -5,15 +5,16 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon, AddonUser
-from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from reviews.models import Review
-from stats import tasks
 from users.models import UserProfile
+
+from mkt.constants.regions import REGIONS_CHOICES_SLUG
+from mkt.purchase import tasks
 
 
 class TestMonolithStats(amo.tests.TestCase):
 
-    @mock.patch('stats.tasks.MonolithRecord')
+    @mock.patch('mkt.purchase.tasks.MonolithRecord')
     def test_mmo_user_total_count_updates_monolith(self, record):
         UserProfile.objects.create(source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         metric = 'mmo_user_count_total'

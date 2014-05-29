@@ -12,10 +12,10 @@ from amo.helpers import absolutify
 from constants.payments import PROVIDER_BOKU
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from amo.urlresolvers import reverse
+from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    WebAppProduct)
-from stats.models import Contribution
 
 
 class TestPurchaseJWT(PurchaseTest):

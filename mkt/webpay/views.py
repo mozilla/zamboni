@@ -24,12 +24,12 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.purchase.models import Contribution
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, WebAppProduct)
-from stats.models import Contribution
 
 from . import tasks
 

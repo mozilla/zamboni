@@ -1,12 +1,13 @@
 import logging
 
+import jingo.helpers
 from celeryutils import task
-from jingo.helpers import datetime
 from tower import ugettext as _
 
 from amo.helpers import absolutify
 from amo.utils import get_locale_from_lang, send_html_mail_jinja
-from stats.models import Contribution
+
+from mkt.purchase.models import Contribution
 
 log = logging.getLogger('z.purchase.webpay')
 notify_kw = dict(default_retry_delay=15,  # seconds
@@ -30,7 +31,7 @@ def send_purchase_receipt(contrib_id, **kw):
             'developer_name': version.developer_name if version else '',
             'price': contrib.get_amount_locale(get_locale_from_lang(
                 contrib.source_locale)),
-            'date': datetime(contrib.created.date()),
+            'date': jingo.helpers.datetime(contrib.created.date()),
             'purchaser_email': contrib.user.email,
             #'purchaser_phone': '',  # TODO: See bug 894614.
             #'purchaser_last_four': '',

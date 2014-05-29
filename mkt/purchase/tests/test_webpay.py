@@ -16,7 +16,7 @@ from nose.tools import eq_, raises
 import amo
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.prices.models import AddonPurchase
-from stats.models import Contribution
+from mkt.purchase.models import Contribution
 from utils import PurchaseTest
 
 

@@ -2,7 +2,6 @@
 import json
 
 from django.core import mail
-from django.test.client import RequestFactory
 
 import phpserialize as php
 from nose.tools import eq_
@@ -10,13 +9,10 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from stats.models import Contribution
-from stats.db import StatsDictField
 from users.models import UserProfile
-from zadmin.models import DownloadSource
 
-import mkt.regions
 from mkt.prices.models import Refund
+from mkt.purchase.models import Contribution, StatsDictField
 
 
 class TestStatsDictField(amo.tests.TestCase):
@@ -47,39 +43,6 @@ class TestEmail(amo.tests.TestCase):
         return Contribution.objects.create(type=type, addon=self.addon,
                                            user=self.user, amount=amount,
                                            source_locale=locale)
-
-    def chargeback_email(self, amount, locale):
-        cont = self.make_contribution(amount, locale, amo.CONTRIB_CHARGEBACK)
-        cont.mail_chargeback()
-        eq_(len(mail.outbox), 1)
-        return mail.outbox[0]
-
-    def test_chargeback_email(self):
-        email = self.chargeback_email('10', 'en-US')
-        eq_(email.subject, u'%s payment reversal' % self.addon.name)
-        assert str(self.addon.name) in email.body
-
-    def test_chargeback_negative(self):
-        email = self.chargeback_email('-10', 'en-US')
-        assert '$10.00' in email.body
-
-    def test_chargeback_positive(self):
-        email = self.chargeback_email('10', 'en-US')
-        assert '$10.00' in email.body
-
-    def test_chargeback_unicode(self):
-        self.addon.name = u'Азәрбајҹан'
-        self.addon.save()
-        email = self.chargeback_email('-10', 'en-US')
-        assert '$10.00' in email.body
-
-    def test_chargeback_locale(self):
-        self.addon.name = {'fr': u'België'}
-        self.addon.locale = 'fr'
-        self.addon.save()
-        email = self.chargeback_email('-10', 'fr')
-        assert u'België' in email.body
-        assert u'10,00\xa0$US' in email.body
 
     def notification_email(self, amount, locale, method):
         cont = self.make_contribution(amount, locale, amo.CONTRIB_REFUND)

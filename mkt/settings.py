@@ -93,7 +93,6 @@ INSTALLED_APPS = (
     'lib.es',
     'product_details',
     'reviews',
-    'stats',
     'tags',
     'tower',  # for ./manage.py extract
     'translations',
