@@ -1,29 +1,9 @@
 import contextlib
 
 from django import http
-from django.conf import settings
 from django.db import models
 
 from . import urlresolvers
-
-
-def flush_front_end_cache(sender, instance, **kwargs):
-    from . import tasks
-    furls = getattr(instance, 'flush_urls', None)
-
-    urls = furls() if hasattr(furls, '__call__') else furls
-    if urls:
-        tasks.flush_front_end_cache_urls.apply_async(args=[urls])
-
-
-def _connect():
-    models.signals.post_save.connect(flush_front_end_cache)
-    models.signals.post_delete.connect(flush_front_end_cache)
-
-
-def _disconnect():
-    models.signals.post_save.disconnect(flush_front_end_cache)
-    models.signals.post_delete.disconnect(flush_front_end_cache)
 
 
 @contextlib.contextmanager
@@ -47,8 +27,6 @@ def default_prefixer(sender, **kwargs):
     request = http.HttpRequest()
     request.META['SCRIPT_NAME'] = ''
     prefixer = urlresolvers.Prefixer(request)
-    prefixer.app = settings.DEFAULT_APP
-    prefixer.locale = settings.LANGUAGE_CODE
     urlresolvers.set_url_prefix(prefixer)
 
 

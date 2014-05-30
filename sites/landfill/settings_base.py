@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from mkt.settings import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
 
 from .. import splitstrip
 import private_base as private
@@ -99,10 +99,6 @@ REDIS_BACKENDS = {
 }
 CACHE_MACHINE_USE_REDIS = True
 
-RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
-RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
-
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 
 ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/files'
@@ -118,23 +114,13 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'mkt-landfill'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
-
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_landfill' % v) for k, v in ES_INDEXES.items())
 
-BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
-
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
 STATSD_PREFIX = private.STATSD_PREFIX
-
-GRAPHITE_HOST = private.GRAPHITE_HOST
-GRAPHITE_PORT = private.GRAPHITE_PORT
-GRAPHITE_PREFIX = private.GRAPHITE_PREFIX
 
 CEF_PRODUCT = STATSD_PREFIX
 
@@ -173,18 +159,6 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 LESS_PREPROCESS = True
 
 XSENDFILE_HEADER  = 'X-Accel-Redirect'
-
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {})},
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
-    },
-}
-
-USE_HEKA_FOR_CEF = True
-USE_HEKA_FOR_TASTYPIE = True
 
 ALLOW_SELF_REVIEWS = True
 

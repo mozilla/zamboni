@@ -1,6 +1,5 @@
 """private_mkt will be populated from puppet and placed in this directory"""
 
-from lib.settings_base import *
 from mkt.settings import *
 from settings_base import *
 
@@ -11,7 +10,6 @@ SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 DOMAIN = "marketplace.allizom.org"
 SITE_URL = 'https://marketplace.allizom.org'
-SERVICES_URL = SITE_URL
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
@@ -103,8 +101,6 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
-
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
@@ -116,24 +112,6 @@ SIGNED_APPS_SERVER_ACTIVE = True
 SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
 SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
 SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
-
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {
-                        'syslog_facility': 'LOCAL4',
-                        # CEF_PRODUCT is defined in settings_base
-                        'syslog_ident': CEF_PRODUCT,
-                        'syslog_priority': 'INFO'
-                        }),
-                },
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
-    },
-    'logger': 'addons-marketplace-stage',
-}
-HEKA = client_from_dict_config(HEKA_CONF)
-USE_HEKA_FOR_CEF = True
 
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN

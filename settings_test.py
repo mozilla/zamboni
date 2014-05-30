@@ -2,7 +2,7 @@ import atexit
 import os
 import tempfile
 
-from lib.settings_base import ROOT
+from mkt.settings import ROOT
 from django.utils.functional import lazy
 
 

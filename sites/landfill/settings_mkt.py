@@ -1,6 +1,5 @@
 """private_mkt will be populated from puppet and placed in this directory"""
 
-from lib.settings_base import *
 from mkt.settings import *
 from settings_base import *
 
@@ -10,7 +9,6 @@ SERVER_EMAIL = 'zmktlandfill@addons.mozilla.org'
 
 DOMAIN = "landfill-mkt.allizom.org"
 SITE_URL = 'https://landfill-mkt.allizom.org'
-SERVICES_URL = SITE_URL
 STATIC_URL = 'https://landfill-mkt-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL
@@ -81,8 +79,6 @@ AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
-
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER
 SIGNING_SERVER_ACTIVE = True
@@ -91,7 +87,3 @@ SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
 #Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = False
-
-HEKA_CONF['logger'] = 'addons-marketplace-landfill'
-HEKA_CONF['plugins']['raven'] = ('heka_raven.raven_plugin:config_plugin', {'dsn': private_mkt.SENTRY_DSN})
-HEKA = client_from_dict_config(HEKA_CONF)

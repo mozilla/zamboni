@@ -11,6 +11,7 @@
 {% block content %}
   <header>
     {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    {{ l10n_menu(addon.default_locale) }}
     <h1>{{ title }}</h1>
   </header>
 

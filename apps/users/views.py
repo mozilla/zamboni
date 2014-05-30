@@ -96,10 +96,6 @@ def _clean_next_url(request):
         log.info(u'Unsafe redirect to %s' % url)
         url = settings.LOGIN_REDIRECT_URL
 
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
     gets['to'] = url
     request.GET = gets
     return request

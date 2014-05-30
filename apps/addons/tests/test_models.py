@@ -1398,25 +1398,6 @@ class TestFlushURLs(amo.tests.TestCase):
     def is_url_hashed(self, url):
         return urlparse(url).query.find('modified') > -1
 
-    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
-    def test_addon_flush(self, flush):
-        addon = Addon.objects.get(pk=159)
-        addon.icon_type = "image/png"
-        addon.save()
-
-        for url in (addon.thumbnail_url, addon.icon_url):
-            assert url in flush.call_args[1]['args'][0]
-            assert self.is_url_hashed(url), url
-
-    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
-    def test_preview_flush(self, flush):
-        addon = Addon.objects.get(pk=4664)
-        preview = addon.previews.all()[0]
-        preview.save()
-        for url in (preview.thumbnail_url, preview.image_url):
-            assert url in flush.call_args[1]['args'][0]
-            assert self.is_url_hashed(url), url
-
 
 class TestAddonFromUpload(UploadTest):
     fixtures = ('base/apps', 'base/users')

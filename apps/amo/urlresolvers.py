@@ -113,19 +113,6 @@ class Prefixer(object):
             else:
                 return '', '', path
 
-    def get_app(self):
-        """
-        Return a valid application string using the User Agent to guess.  Falls
-        back to settings.DEFAULT_APP.
-        """
-        ua = self.request.META.get('HTTP_USER_AGENT')
-        if ua:
-            for app in amo.APP_DETECT:
-                if app.matches_user_agent(ua):
-                    return app.short
-
-        return settings.DEFAULT_APP
-
     def get_language(self):
         """
         Return a locale code that we support on the site using the
@@ -238,8 +225,6 @@ def remora_url(url, lang=None, app=None, prefix=''):
     prefixer = get_url_prefix()
     if lang is None:
         lang = getattr(prefixer, 'locale', settings.LANGUAGE_CODE)
-    if app is None:
-        app = getattr(prefixer, 'app', settings.DEFAULT_APP)
 
     url_parts = [p for p in (prefix.strip('/'), lang, app, url.lstrip('/'))
                  if p]
