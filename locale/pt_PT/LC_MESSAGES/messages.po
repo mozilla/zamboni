@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-30 01:41+0000\n"
+"PO-Revision-Date: 2014-05-30 01:55+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401414108.0\n"
+"X-POOTLE-MTIME: 1401414951.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -5470,14 +5470,16 @@ msgstr "Revisado por <b>%(reviewer)s</b>"
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
 msgstr ""
+"Depois de resolver estes problemas, pode <a href=\"%(resubmit_url)s\">enviar "
+"novamente a sua aplicação em baixo</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Once you have addressed these concerns, you may resubmit your app below."
-msgstr "Assim que você corrigir o que foi apontado, você poderá reenviar seu aplicativo abaixo."
+msgstr "Submeter aplicação novamente"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Resubmit App"
-msgstr ""
+msgstr "Submeter novamente a aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
@@ -5548,6 +5550,8 @@ msgstr "Eliminar Aplicativo"
 #: mkt/developers/templates/developers/apps/status.html:207
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
+"Ao eliminar a sua aplicação esta será removida permanentemente do site. "
+"<strong>Esta ação não pode ser anulada.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:222
 msgid "Packaged Versions"
@@ -5555,7 +5559,7 @@ msgstr "Versões empacotadas"
 
 #: mkt/developers/templates/developers/apps/status.html:231
 msgid "Submission date"
-msgstr ""
+msgstr "Data de submissão"
 
 #: mkt/developers/templates/developers/apps/status.html:250 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115
@@ -5567,7 +5571,7 @@ msgstr "Transferir"
 #: mkt/developers/templates/developers/apps/status.html:255 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:176 mkt/submit/templates/submit/next_steps.html:43
 msgid "Publish"
-msgstr ""
+msgstr "Publicar"
 
 # 90%
 #: mkt/developers/templates/developers/apps/status.html:270
@@ -5581,6 +5585,9 @@ msgstr "Envie uma versão nova deste aplicativo empacotado. Novas versões devem
 #: mkt/developers/templates/developers/apps/status.html:282
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Lembre-se de atualizar as <a href=\"%(ratings_url)s\">classificações de "
+"conteúdo</a> da aplicação se uma parte significativa do conteúdo da "
+"aplicação foi alterado."
 
 #: mkt/developers/templates/developers/apps/status.html:298 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:177
 #: mkt/submit/templates/submit/manifest.html:117 mkt/submit/templates/submit/next_steps.html:99 mkt/submit/templates/submit/payments-upsell.html:36 mkt/submit/templates/submit/payments.html:31
@@ -5589,7 +5596,7 @@ msgstr "Continuar"
 
 #: mkt/developers/templates/developers/apps/status.html:307
 msgid "Blocklist App"
-msgstr ""
+msgstr "Bloquear aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:313
 msgid ""
@@ -5680,16 +5687,21 @@ msgstr "Requisitos mínimos"
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Device features required for this app to function."
 msgstr ""
+"Funcionalidades do dispositivo necessárias para que esta aplicação funcione."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:65
 msgid "Auto-publish when approved"
-msgstr ""
+msgstr "Publicar automaticamente ao ser aprovado"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:66
 msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
 msgstr ""
+"Se esta opção estiver selecionada, esta versão será publicada assim que "
+"aprovada pelos revisores. Se não selecionar esta opção, será notificado via "
+"e-mail sobre a aprovação desta versão e terá de iniciar sessão e publicá-la "
+"manualmente."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10 mkt/developers/templates/developers/apps/edit/details.html:8
 #: mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7 mkt/developers/templates/developers/apps/edit/technical.html:8
