@@ -104,10 +104,9 @@ if settings.TEMPLATE_DEBUG:
          {'document_root': settings.MEDIA_ROOT}),
     )
 
-
 if settings.SERVE_TMP_PATH and settings.DEBUG:
     # Serves any URL like /tmp/* from your local ./tmp/ dir
     urlpatterns += patterns('',
-        (r'^tmp/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^tmp/img/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.TMP_PATH}),
     )

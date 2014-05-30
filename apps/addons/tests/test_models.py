@@ -23,6 +23,7 @@ from editors.models import EscalationQueue
 from files.models import File
 from mkt.prices.models import AddonPaymentData, AddonPremium, Price
 from mkt.webapps.models import Webapp
+from lib.utils import static_url
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
@@ -468,7 +469,8 @@ class TestAddonModels(amo.tests.TestCase):
         Test for an icon that exists.
         """
         a = Addon.objects.get(pk=3615)
-        expected = (settings.ADDON_ICON_URL % (3, 3615, 32, 0)).rstrip('/0')
+        expected = (static_url('ADDON_ICON_URL')
+                    % (3, 3615, 32, 0)).rstrip('/0')
         assert a.icon_url.startswith(expected)
 
         a = Addon.objects.get(pk=3615)

@@ -30,26 +30,17 @@ NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
 NATIVE_BROWSERID_JS_URL = ('https://%s/include.js'
                                    % NATIVE_BROWSERID_DOMAIN)
 
+ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
+PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 
-ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.%s?modified=%d')
-# paths for uploaded extensions
-FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
-
+SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
 
 MEDIA_URL = STATIC_URL + 'media/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
 
 CACHE_PREFIX = 'identity.stage.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
@@ -68,6 +59,7 @@ STATSD_PREFIX = 'marketplace-identity-stage'
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
@@ -91,6 +83,8 @@ DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
 DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
+
+VALIDATOR_TIMEOUT = 110
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://identity-stage-marketplace.allizom.org',
@@ -138,4 +132,5 @@ WEBAPP_MANIFEST_NAME = 'Marketplace Identity Stage'
 
 ENABLE_API_ERROR_SERVICE = True
 
+ES_DEFAULT_NUM_REPLICAS = 2
 ES_USE_PLUGINS = True

@@ -5,13 +5,13 @@ import os
 
 import dj_database_url
 
-from mkt.settings import (ALLOWED_HOSTS, CACHE_PREFIX, ES_INDEXES,
+from mkt.settings import (CACHE_PREFIX, ES_INDEXES,
                           KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private
 
-ALLOWED_HOSTS += ['.mozflare.net']
+ALLOWED_HOSTS = ['.allizom.org', '.mozflare.net']
 
 ENGAGE_ROBOTS = False
 
@@ -62,6 +62,7 @@ LOG_LEVEL = logging.DEBUG
 ## Celery
 BROKER_URL = private.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
@@ -115,6 +116,7 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'mkt-dev'
 
+ES_DEFAULT_NUM_REPLICAS = 2
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_dev' % v) for k, v in ES_INDEXES.items())
@@ -156,6 +158,7 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 
 CELERYD_TASK_SOFT_TIME_LIMIT = 240
+VALIDATOR_TIMEOUT = 110
 
 LESS_PREPROCESS = True
 

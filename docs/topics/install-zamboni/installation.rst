@@ -229,21 +229,37 @@ Settings
     There is a :doc:`settings-changelog`, this can be useful for people who are already
     setup but want to know what has recently changed.
 
-Most of zamboni is already configured in ``settings.py``, but there's some
-things you need to configure locally.  All your local settings go into
-``settings_local.py``.  The settings template for
-developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
+Most of zamboni is already configured in ``settings.py``, but there's one thing
+you'll need to configure locally, the database. The easiest way to do that
+is by setting an environment variable (see next section).
 
-.. literalinclude:: /settings/settings_local.dev.py
-
-I'm overriding the database parameters from ``settings.py`` and then extending
-``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
-Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
-you want it.
+Optionally you can create a local settings file and place anything custom
+into ``settings_local.py``.
 
 Any file that looks like ``settings_local*`` is for local use only; it will be
 ignored by git.
 
+Environment settings
+--------------------
+
+Out of the box, zamboni should work without any need for settings changes.
+A few settings are configurable from the environment, they are:
+
+* ``DATABASE``: from the ``ZAMBONI_DATABASE`` environment variable, configured
+  using https://github.com/kennethreitz/dj-database-url. Example::
+
+    export ZAMBONI_DATABASE=mysql://root:@localhostyy:3306/zamboni
+
+* ``HOSTNAME``: from the ``ZAMBONI_HOSTNAME`` environment variable. Set this
+  if you'd like to access the site somewhere other than your current hostname.
+  Example::
+
+    export ZAMBONI_HOSTNAME=marketplace.local
+
+* ``SOLITUDE_HOSTS``: from the ``SOLITUDE_URL`` environment variable. Set this
+  if you are connecting zamboni to solitude. Example::
+
+    export SOLITUDE_HOSTS=http://localhost:8001
 
 Database
 --------

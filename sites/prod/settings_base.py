@@ -8,6 +8,8 @@ from mkt.settings import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
 from .. import splitstrip
 import private_base as private
 
+ALLOWED_HOSTS = ['.firefox.com', '.firefox.com.cn']
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = private.EMAIL_HOST
 
@@ -54,6 +56,7 @@ CACHES = {
 ## Celery
 BROKER_URL = private.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 BROKER_CONNECTION_TIMEOUT = 0.1
@@ -122,6 +125,7 @@ STATSD_PREFIX = private.STATSD_PREFIX
 CEF_PRODUCT = STATSD_PREFIX
 
 ES_TIMEOUT = 60
+VALIDATOR_TIMEOUT = 110
 
 EXPOSE_VALIDATOR_TRACEBACKS = True
 
@@ -152,3 +156,5 @@ NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',
 NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
 
 AES_KEYS = private.AES_KEYS
+
+ALLOW_SELF_REVIEWS = False

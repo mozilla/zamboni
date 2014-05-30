@@ -13,6 +13,7 @@ from receipts.receipts import Receipt
 from access import acl
 from amo.helpers import absolutify
 from lib.crypto import receipt
+from lib.utils import static_url
 
 
 def get_uuid(app, user):
@@ -75,7 +76,7 @@ def create_receipt(webapp, user, uuid, flavour=None):
         typ = flavour + '-receipt'
         verify = absolutify(reverse('receipt.verify', args=[webapp.guid]))
     else:
-        verify = settings.WEBAPPS_RECEIPT_URL
+        verify = static_url('WEBAPPS_RECEIPT_URL')
 
     reissue = absolutify(reverse('receipt.reissue'))
     receipt = dict(exp=expiry, iat=time_,
