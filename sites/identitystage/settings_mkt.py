@@ -129,24 +129,6 @@ SIGNED_APPS_SERVER = private_mkt.SIGNED_APPS_SERVER
 SIGNED_APPS_REVIEWER_SERVER_ACTIVE = True
 SIGNED_APPS_REVIEWER_SERVER = private_mkt.SIGNED_APPS_REVIEWER_SERVER
 
-HEKA_CONF = {
-    'plugins': {'cef': ('heka_cef.cef_plugin:config_plugin', {
-                        'syslog_facility': 'LOCAL4',
-                        # CEF_PRODUCT is defined in settings_base
-                        'syslog_ident': CEF_PRODUCT,
-                        'syslog_priority': 'INFO'
-                        }),
-        },
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': splitstrip(private.HEKA_CONF_SENDER_HOST),
-        'port': private.HEKA_CONF_SENDER_PORT,
-    },
-    'logger': 'marketplace-identity-stage',
-}
-HEKA = client_from_dict_config(HEKA_CONF)
-USE_HEKA_FOR_CEF = True
-
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
