@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-30 01:55+0000\n"
-"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2014-05-30 02:20+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401414951.0\n"
+"X-POOTLE-MTIME: 1401416405.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -5721,26 +5721,31 @@ msgstr "Contato da Mozilla"
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
 msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
 msgstr ""
+"Um endereço de e-mail (ou endereços separados por vírgulas) do contacto "
+"Mozilla para esta aplicação para o qual será enviada uma cópia de quaisquer "
+"mensagens do revisor."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr ""
+msgstr "Insira os endereços de e-mail, separados por vírgulas"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Aplicação VIP da Mozilla"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr ""
+"Esta é uma aplicação muito importante que deve ser sempre tratada pelos "
+"funcionários da Mozilla ou revisores sénior de aplicações?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Use sparingly"
-msgstr ""
+msgstr "Utilizar com moderação"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
-msgstr ""
+msgstr "Revisão prioritária necessária"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
@@ -5816,7 +5821,7 @@ msgstr "Nome do programador"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:67
 msgid "App URL"
-msgstr ""
+msgstr "URL da aplicação"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47 mkt/submit/templates/submit/details.html:69
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
@@ -5829,15 +5834,15 @@ msgstr "Ver listagem pública"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:66
 msgid "API URL"
-msgstr ""
+msgstr "URL da API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:67
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "A URL para aceder a esta aplicação utilizando a API do Marketplace"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:72
 msgid "View API documentation"
-msgstr ""
+msgstr "Ver documentação da API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:146
@@ -5857,10 +5862,12 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:105
 msgid "An explanation of features, functionality, and other relevant information. This field is displayed on the app's details page."
 msgstr ""
+"Uma explicação sobre características, funcionalidades e outras informações "
+"relevantes. Este campo é apresentado na página de detalhes da aplicação."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:127
 msgid "Release Notes"
-msgstr ""
+msgstr "Notas de Lançamento"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:128
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
