@@ -184,16 +184,6 @@ class TestAcctSummary(SummaryTest):
         # Number of apps/add-ons belonging to this user.
         eq_(len(res.context['user_addons']), 1)
 
-    def test_paypal_ids(self):
-        self.user.addons.update(paypal_id='somedev@app.com')
-        res = self.summary()
-        eq_(list(res.context['paypal_ids']), [u'somedev@app.com'])
-
-    def test_no_paypal(self):
-        self.user.addons.update(paypal_id='')
-        res = self.summary()
-        eq_(list(res.context['paypal_ids']), [])
-
     def test_payment_data(self):
         payment_data = self.payment_data()
         AddonPaymentData.objects.create(addon=self.steamcube,

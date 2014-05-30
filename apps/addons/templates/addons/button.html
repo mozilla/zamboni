@@ -69,11 +69,6 @@
       <strong>{{ _('View privacy policy') }}</strong>
     </a>
   {% endif %}
-  {% if addon.eula %}
-    <a class="eula" href="{{ url('addons.eula', addon.slug) }}">
-      <strong>{{ _('View End-User License Agreement') }}</strong>
-    </a>
-  {% endif %}
 
   {% if addon.is_unreviewed() %}
     <p class="warning">This add-on has not been reviewed by Mozilla.</p>

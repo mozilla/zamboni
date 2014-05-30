@@ -11,7 +11,6 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 detail_patterns = patterns('',
     url('^$', views.addon_detail, name='addons.detail'),
     url('^more$', views.addon_detail, name='addons.detail_more'),
-    url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
     url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^abuse/', views.report_abuse, name='addons.abuse'),
@@ -38,13 +37,6 @@ urlpatterns = patterns('',
     # Accept extra junk at the end for a cache-busting build id.
     url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
 
-    # For happy install button debugging.
-    url('^addons/smorgasbord$', 'addons.buttons.smorgasbord'),
-
-    # Remora EULA and Privacy policy URLS
-    ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
-     lambda r, addon_id, file_id: redirect('addons.eula',
-                                  addon_id, file_id, permanent=True)),
     ('^addons/policy/0/(?P<addon_id>\d+)/',
      lambda r, addon_id: redirect('addons.privacy',
                                   addon_id, permanent=True)),

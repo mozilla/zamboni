@@ -3,14 +3,8 @@
 
       <div id="addon-summary-wrapper">
         <div id="addon-summary" class="primary">
-          <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-
           {% if show_actions %}
             {{ big_install_button(addon, show_warning=False) }}
-          {% endif %}
-
-          {% if addon.takes_contributions %}
-            {{ contribution(addon=addon, src='addon-detail') }}
           {% endif %}
 
           <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
@@ -69,17 +63,8 @@
                     addon.total_downloads|numberfmt }}</strong>
                 </td>
               </tr>
-              {% if addon.average_daily_users %}
-                <tr class="meta-stats">
-                  <th>{{ _('Average Daily Users') }}</th>
-                  <td>
-                    <strong class="downloads">{{
-                      addon.average_daily_users|numberfmt }}</strong>
-                  </td>
-                </tr>
-              {% endif %}
               {% if not show_actions %}
-                {# Show privacy policy / eula if the button isn't shown #}
+                {# Show privacy policy if the button isn't shown #}
                 {# (Basically, on the editor review page) #}
                 {% if addon.privacy_policy %}
                 <tr>
@@ -87,15 +72,6 @@
                   <td>
                     <a href="{{ addon.get_detail_url('privacy') }}">
                       {{ _('View Privacy Policy') }}</a>
-                  </td>
-                </tr>
-                {% endif %}
-                {% if addon.has_eula %}
-                <tr>
-                  <th>{{ _('EULA') }}</th>
-                  <td>
-                    <a href="{{ url('addons.eula', addon.slug) }}">
-                      {{ _('View End-User License Agreement') }}</a>
                   </td>
                 </tr>
                 {% endif %}
@@ -124,8 +100,7 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-   {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
-         addon.show_beta  %}
+   {% if addon.description or addon.all_previews|length > 1 or addon.show_beta %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
       {% if addon.id == 4664 or addon.id == 144983 %}
@@ -142,14 +117,6 @@
             <img src="{{ preview.thumbnail_url }}" alt="" />
         </a>
         {% endfor %}
-      {% endif %}
-
-      {% if addon.developer_comments %}
-      <h4>{{ _('Developer Comments', 'addons_display_developer_comments') }}</h4>
-        <div class="prose userinput">
-          <p{{ addon.developer_comments|locale_html }}>{{
-            addon.developer_comments|nl2br }}</p>
-        </div>
       {% endif %}
 
       {# beta channel #}

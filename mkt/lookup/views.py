@@ -71,8 +71,6 @@ def user_summary(request, user_id):
     user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
                               .order_by('-created'))
     user_addons = paginate(request, user_addons, per_page=15)
-    paypal_ids = set(user.addons.exclude(paypal_id='')
-                                .values_list('paypal_id', flat=True))
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
                     .values(*AddonPaymentData.address_fields())
@@ -91,7 +89,6 @@ def user_summary(request, user_id):
                    'delete_form': DeleteUserForm(), 'delete_log': delete_log,
                    'is_admin': is_admin, 'refund_summary': refund_summary,
                    'user_addons': user_addons, 'payment_data': payment_data,
-                   'paypal_ids': paypal_ids,
                    'provider_portals': provider_portals})
 
 

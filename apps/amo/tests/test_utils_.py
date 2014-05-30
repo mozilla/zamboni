@@ -19,8 +19,7 @@ class TestAttachTransDict(amo.tests.TestCase):
     def test_basic(self):
         addon = amo.tests.addon_factory(
             name='Name', description='Description <script>alert(42)</script>!',
-            eula='', summary='Summary', homepage='http://home.pa.ge',
-            developer_comments='Developer Comments', privacy_policy='Policy',
+            homepage='http://home.pa.ge', privacy_policy='Policy',
             support_email='sup@example.com', support_url='http://su.pport.url')
         addon.save()
 
@@ -40,19 +39,14 @@ class TestAttachTransDict(amo.tests.TestCase):
         eq_(addon.translations['whatever'], [])
 
         # No-translated fields should be absent.
-        eq_(addon.thankyou_note_id, None)
         ok_(None not in translations)
 
         # Build expected translations dict.
         expected_translations = {
-            addon.eula_id: [('en-us', unicode(addon.eula))],
             addon.privacy_policy_id:
                 [('en-us', unicode(addon.privacy_policy))],
             addon.description_id: [
                 ('en-us', unicode(addon.description))],
-            addon.developer_comments_id:
-                [('en-us', unicode(addon.developer_comments))],
-            addon.summary_id: [('en-us', unicode(addon.summary))],
             addon.homepage_id: [('en-us', unicode(addon.homepage))],
             addon.name_id: [('en-us', unicode(addon.name))],
             addon.support_email_id: [('en-us', unicode(addon.support_email))],

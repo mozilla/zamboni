@@ -424,7 +424,6 @@ class TestAddonModels(amo.tests.TestCase):
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             addon._current_version
-            addon._backup_version
             addon.latest_version
 
     def _delete(self):
@@ -608,60 +607,6 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
-
-    def test_has_full_profile(self):
-        """Test if an add-on's developer profile is complete (public)."""
-        addon = lambda: Addon.objects.get(pk=3615)
-        assert not addon().has_full_profile()
-
-        a = addon()
-        a.the_reason = 'some reason'
-        a.save()
-        assert not addon().has_full_profile()
-
-        a.the_future = 'some future'
-        a.save()
-        assert addon().has_full_profile()
-
-        a.the_reason = ''
-        a.the_future = ''
-        a.save()
-        assert not addon().has_full_profile()
-
-    def test_has_profile(self):
-        """Test if an add-on's developer profile is (partially or entirely)
-        completed.
-
-        """
-        addon = lambda: Addon.objects.get(pk=3615)
-        assert not addon().has_profile()
-
-        a = addon()
-        a.the_reason = 'some reason'
-        a.save()
-        assert addon().has_profile()
-
-        a.the_future = 'some future'
-        a.save()
-        assert addon().has_profile()
-
-        a.the_reason = ''
-        a.the_future = ''
-        a.save()
-        assert not addon().has_profile()
-
-    def test_has_eula(self):
-        addon = lambda: Addon.objects.get(pk=3615)
-        assert addon().has_eula
-
-        a = addon()
-        a.eula = ''
-        a.save()
-        assert not addon().has_eula
-
-        a.eula = 'eula'
-        a.save()
-        assert addon().has_eula
 
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
@@ -1242,11 +1187,6 @@ class TestAddonModels(amo.tests.TestCase):
         self.delete()
         assert 'DELETED BY: Unknown' in mail.outbox[0].body
 
-    def test_view_source(self):
-        # view_source should default to True.
-        a = Addon.objects.create(type=1)
-        assert a.view_source
-
     @patch('files.models.File.hide_disabled_file')
     def test_admin_disabled_file_hidden(self, hide_mock):
         a = Addon.objects.get(id=3615)
@@ -1381,62 +1321,6 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
         self._test_featured_random()
 
 
-class TestBackupVersion(amo.tests.TestCase):
-    fixtures = ['addons/update', 'base/apps', 'base/appversion',
-                'base/platforms']
-
-    def setUp(self):
-        self.version_1_2_0 = 105387
-        self.addon = Addon.objects.get(pk=1865)
-        set_user(None)
-
-    def setup_new_version(self):
-        for version in Version.objects.filter(pk__gte=self.version_1_2_0):
-            appversion = version.apps.all()[0]
-            appversion.min = AppVersion.objects.get(version='4.0b1')
-            appversion.save()
-
-    def test_no_backup_version(self):
-        self.addon.update_version()
-        eq_(self.addon.backup_version, None)
-        eq_(self.addon.current_version.version, '1.2.2')
-
-    def test_no_current_version(self):
-        for v in Version.objects.all():
-            v.delete()
-        self.addon.update(_current_version=None)
-        eq_(self.addon.backup_version, None)
-        eq_(self.addon.current_version, None)
-
-    def test_has_backup_version(self):
-        self.setup_new_version()
-        assert self.addon.update_version()
-        eq_(self.addon.backup_version.version, '1.1.3')
-        eq_(self.addon.current_version.version, '1.2.2')
-
-    def test_backup_version(self):
-        self.setup_new_version()
-        assert self.addon.update_version()
-        eq_(self.addon.backup_version.version, '1.1.3')
-
-    def test_firefox_versions(self):
-        self.setup_new_version()
-        assert self.addon.update_version()
-        backup = self.addon.backup_version.compatible_apps[amo.FIREFOX]
-        eq_(backup.max.version, '3.7a5pre')
-        eq_(backup.min.version, '3.0.12')
-        current = self.addon.current_version.compatible_apps[amo.FIREFOX]
-        eq_(current.max.version, '4.0b8pre')
-        eq_(current.min.version, '3.0.12')
-
-    def test_version_signals(self):
-        self.setup_new_version()
-        version = self.addon.versions.all()[0]
-        assert not self.addon.backup_version
-        version.save()
-        assert Addon.objects.get(pk=1865).backup_version
-
-
 class TestCategoryModel(amo.tests.TestCase):
 
     def test_category_url(self):
@@ -1558,7 +1442,6 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.type, amo.ADDON_EXTENSION)
         eq_(addon.status, amo.STATUS_NULL)
         eq_(addon.homepage, 'http://homepage.com')
-        eq_(addon.summary, 'xpi description')
         eq_(addon.description, None)
         eq_(addon.slug, 'xpi-name')
 
@@ -1609,7 +1492,6 @@ class TestAddonFromUpload(UploadTest):
         eq_(addon.homepage, None)
         eq_(addon.description, None)
         eq_(addon.slug, 'search-tool')
-        eq_(addon.summary, 'Search Engine for Firefox')
 
     def test_search_version(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),

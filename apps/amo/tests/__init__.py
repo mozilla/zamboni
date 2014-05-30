@@ -1,4 +1,3 @@
-import math
 import os
 import random
 import shutil
@@ -708,7 +707,6 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
         'bayesian_rating': random.uniform(1, 5),
-        'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
@@ -766,7 +764,6 @@ def app_factory(**kw):
         app.previews.create()
 
     return app
-
 
 
 def file_factory(**kw):

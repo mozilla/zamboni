@@ -594,8 +594,7 @@ class TestWebapp(amo.tests.TestCase):
     def test_meta_translated_fields(self):
         """Test that we don't load translations for all the translated fields
         that live on Addon but we don't need in Webapp."""
-        useless_fields = ('eula', 'thankyou_note', 'summary',
-                          'developer_comments', 'the_future', 'the_reason')
+        useless_fields = ()
         useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
                          'support_email', 'support_url')
 

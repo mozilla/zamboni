@@ -2948,7 +2948,6 @@ class TestQueueSort(AppReviewerTest):
                                  is_packaged=False,
                                  version_kw={'version': '1.0'},
                                  file_kw={'status': amo.STATUS_PENDING},
-                                 admin_review=True,
                                  premium_type=amo.ADDON_FREE),
                      app_factory(name='Batum',
                                  status=amo.STATUS_PENDING,
@@ -2957,7 +2956,6 @@ class TestQueueSort(AppReviewerTest):
                                              'has_editor_comment': True,
                                              'has_info_request': True},
                                  file_kw={'status': amo.STATUS_PENDING},
-                                 admin_review=False,
                                  premium_type=amo.ADDON_PREMIUM)]
 
         # Set up app attributes.

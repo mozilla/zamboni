@@ -1,6 +1,4 @@
-from django.db.models import Q
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -9,8 +7,6 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import urlparams
-from addons.models import Addon
-from translations.models import Translation
 
 
 def _install_button(context, addon, version=None, show_contrib=True,
@@ -45,32 +41,17 @@ def _install_button(context, addon, version=None, show_contrib=True,
 
 @jinja2.contextfunction
 def install_button(context, addon, **kwargs):
-    backup = kwargs.pop('show_backup', True)
-    base = _install_button(context, addon, **kwargs)
-    if backup and addon.backup_version:
-        kwargs['version'] = addon.backup_version
-        backup = _install_button(context, addon, **kwargs)
-        return mark_safe('%s\n<div class="backup-button hidden '
-                         'install-wrapper">%s</div>' % (base, backup))
-    return base
+    return _install_button(context, addon, **kwargs)
 
 
 @jinja2.contextfunction
 def big_install_button(context, addon, **kwargs):
     from addons.helpers import statusflags
-    backup = kwargs.pop('show_backup', True)
     flags = jinja2.escape(statusflags(context, addon))
     base = _install_button(context, addon, detailed=True, size='prominent',
                            **kwargs)
     params = [flags, base]
     wrap = u'<div class="install-wrapper %s">%s</div>'
-    if backup and addon.backup_version:
-        params.append(flags)
-        params.append(_install_button(context, addon,
-                                      version=addon.backup_version,
-                                      detailed=True, size='prominent',
-                                      **kwargs))
-        wrap += '<div class="backup-button hidden install-wrapper %s">%s</div>'
     return jinja2.Markup(wrap % (tuple(params)))
 
 
@@ -123,8 +104,7 @@ class InstallButton(object):
         self.is_premium = addon.is_premium()
         self.is_webapp = addon.is_webapp()
         self._show_contrib = show_contrib
-        self.show_contrib = (show_contrib and addon.takes_contributions
-                             and addon.annoying == amo.CONTRIB_ROADBLOCK)
+        self.show_contrib = show_contrib
         self.show_warning = show_warning and self.unreviewed
 
     def prepare(self):
@@ -148,8 +128,7 @@ class InstallButton(object):
     def attrs(self):
         rv = {}
         addon = self.addon
-        if (self._show_contrib and addon.takes_contributions
-            and addon.annoying == amo.CONTRIB_AFTER):
+        if self._show_contrib:
             rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
@@ -194,102 +173,3 @@ class Link(object):
 def js(request):
     return render(request, 'addons/popups.html',
                   content_type='text/javascript')
-
-
-def smorgasbord(request):
-    """
-    Gather many different kinds of tasty add-ons together.
-
-    Great for testing install buttons.
-    """
-    def _compat(min, max):
-        # Helper for faking compatible_apps.
-        return {'min': {'version': min}, 'max': {'version': max}}
-
-    addons = []
-    normal_version = _compat('1.0', '10.0')
-    older_version = _compat('1.0', '2.0')
-    newer_version = _compat('9.0', '10.0')
-
-    def all_versions(addon, base_tag):
-        x = (('', normal_version),
-             (' + older version', older_version),
-             (' + newer version', newer_version))
-        for extra, version in x:
-            a = addon()
-            a.tag = base_tag + extra
-            a.compatible_apps[request.APP] = version
-            addons.append(a)
-
-    # Featured.
-    featured = Addon.objects.featured(request.APP)
-    addons.append(featured[0])
-    addons[-1].tag = 'featured'
-
-    normal = Addon.objects.listed(request.APP).exclude(id__in=featured)
-
-    # Normal, Older Version, Newer Version.
-    all_versions(lambda: normal[0], 'normal')
-
-    # Unreviewed.
-    exp = Addon.objects.unreviewed()
-    all_versions(lambda: exp[0], 'unreviewed')
-
-    # Multiple Platforms.
-    addons.append(Addon.objects.get(id=2313))
-    addons[-1].tag = 'platformer'
-
-    # Multiple Platforms + EULA.
-    addons.append(Addon.objects.get(id=2313))
-    addons[-1].eula = Translation(localized_string='xxx')
-    addons[-1].tag = 'platformer + eula'
-
-    # Incompatible Platform + EULa.
-    addons.append(Addon.objects.get(id=5308))
-    addons[-1].eula = Translation(localized_string='xxx')
-    addons[-1].tag = 'windows/linux-only + eula'
-
-    # Incompatible Platform.
-    all_versions(lambda: Addon.objects.get(id=5308), 'windows/linux-only')
-
-    # EULA.
-    eula = (Q(eula__isnull=False, eula__localized_string__isnull=False)
-            & ~Q(eula__localized_string=''))
-    addons.append(normal.filter(eula)[0])
-    addons[-1].tag = 'eula'
-    addons.append(exp.filter(eula)[0])
-    addons[-1].tag = 'eula + unreviewed'
-
-    # Contributions.
-    addons.append(normal.filter(annoying=1)[0])
-    addons[-1].tag = 'contrib: passive'
-    addons.append(normal.filter(annoying=2)[0])
-    addons[-1].tag = 'contrib: after'
-    addons.append(normal.filter(annoying=3)[0])
-    addons[-1].tag = 'contrib: roadblock'
-    addons.append(Addon.objects.get(id=2608))
-    addons[-1].tag = 'after + eula'
-    addons.append(Addon.objects.get(id=8442))
-    addons[-1].tag = 'roadblock + eula'
-
-    # Other App.
-    addons.append(Addon.objects.get(id=5326))
-    addons[-1].tag = 'tbird'
-
-    # Mobile.
-    addons.append(Addon.objects.get(id=53476))
-    addons[-1].tag = 'mobile'
-
-    # Search Engine.
-    addons.append(Addon.objects.filter(type=amo.ADDON_SEARCH)[0])
-    addons[-1].tag = 'search engine'
-
-    # Beta Version
-    beta = normal.filter(versions__files__status=amo.STATUS_BETA)[0]
-    beta.tag = 'beta version'
-
-    # Future Version.
-    # No versions.
-
-    return render(request, 'addons/smorgasbord.html',
-                  {'addons': addons, 'beta': beta})

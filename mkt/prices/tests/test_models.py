@@ -32,8 +32,6 @@ class TestPremium(amo.tests.TestCase):
         ap = AddonPremium(addon=self.addon)
         assert not ap.is_complete()
         ap.price = self.tier_one
-        assert not ap.is_complete()
-        ap.addon.paypal_id = 'asd'
         assert ap.is_complete()
 
 

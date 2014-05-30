@@ -20,15 +20,6 @@
             {{ num }} weekly downloads
           {% endtrans %}
         </span>
-      {% else %}
-        <span class="adu">
-          {% set adu=addon.average_daily_users %}
-          {% trans cnt=adu, num=adu|numberfmt %}
-            {{ num }} user
-          {% pluralize %}
-            {{ num }} users
-          {% endtrans %}
-        </span>
       {% endif %}
     {% endif %}
   </div>
@@ -44,19 +35,12 @@
 {% endmacro %}
 
 {% macro sort_vital(addon, field) %}
-  {% if field in ('popular', 'downloads') or not addon.show_adu() %}
+  {% if field in ('popular', 'downloads') %}
     <div class="adu downloads">
       {% with num=addon.weekly_downloads %}
         {# L10n: {0} is the number of downloads. #}
         {{ ngettext('{0} weekly download', '{0} weekly downloads',
                     num)|f(num|numberfmt) }}
-      {% endwith %}
-    </div>
-  {% else %}
-    <div class="adu">
-      {% with num=addon.average_daily_users %}
-        {# L10n: {0} is the number of users. #}
-        {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
       {% endwith %}
     </div>
   {% endif %}

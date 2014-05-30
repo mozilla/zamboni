@@ -25,7 +25,6 @@ from access import acl
 from addons import query, signals
 from addons.utils import get_featured_ids
 from amo.decorators import use_master, write
-from amo.fields import DecimalCharField
 from amo.helpers import absolutify
 from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
@@ -33,8 +32,8 @@ from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
 from files.models import File
 from reviews.models import Review
 from tags.models import Tag
-from translations.fields import (LinkifiedField, PurifiedField, save_signal,
-                                 TranslatedField, Translation)
+from translations.fields import (PurifiedField, save_signal, TranslatedField,
+                                 Translation)
 from translations.query import order_by_translation
 from users.models import UserForeignKey, UserProfile
 from versions.compare import version_int
@@ -254,12 +253,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     support_url = TranslatedField(db_column='supporturl')
     description = PurifiedField(short=False)
 
-    summary = LinkifiedField()
-    developer_comments = PurifiedField(db_column='developercomments')
-    eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    the_reason = PurifiedField()
-    the_future = PurifiedField()
 
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')
@@ -271,70 +265,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
         default=0, db_column='totaldownloads')
-    hotness = models.FloatField(default=0, db_index=True)
 
-    average_daily_downloads = models.PositiveIntegerField(default=0)
-    average_daily_users = models.PositiveIntegerField(default=0)
-    share_count = models.PositiveIntegerField(default=0, db_index=True,
-                                              db_column='sharecount')
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
-    ts_slowness = models.FloatField(
-        db_index=True, null=True,
-        help_text='How much slower this add-on makes browser ts tests. '
-                  'Read as {addon.ts_slowness}% slower.')
 
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
-    trusted = models.BooleanField(default=False)
-    view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    prerelease = models.BooleanField(default=False)
-    admin_review = models.BooleanField(default=False, db_column='adminreview')
-    admin_review_type = models.PositiveIntegerField(
-        choices=amo.ADMIN_REVIEW_TYPES.items(), default=amo.ADMIN_REVIEW_FULL)
-    site_specific = models.BooleanField(default=False,
-                                        db_column='sitespecific')
-    external_software = models.BooleanField(default=False,
-                                            db_column='externalsoftware')
-    dev_agreement = models.BooleanField(
-        default=False, help_text='Has the dev agreement been signed?')
-    auto_repackage = models.BooleanField(
-        default=True, help_text='Automatically upgrade jetpack add-on to a '
-                                'new sdk version?')
-    outstanding = models.BooleanField(default=False)
 
-    nomination_message = models.TextField(null=True,
-                                          db_column='nominationmessage')
-    target_locale = models.CharField(
-        max_length=255, db_index=True, blank=True, null=True,
-        help_text='For dictionaries and language packs')
-    locale_disambiguation = models.CharField(
-        max_length=255, blank=True, null=True,
-        help_text='For dictionaries and language packs')
-
-    wants_contributions = models.BooleanField(default=False)
-    paypal_id = models.CharField(max_length=255, blank=True)
     charity = models.ForeignKey('Charity', null=True)
-    # TODO(jbalogh): remove nullify_invalid once remora dies.
-    suggested_amount = DecimalCharField(
-        max_digits=8, decimal_places=2, nullify_invalid=True, blank=True,
-        null=True, help_text=_(u'Users have the option of contributing more '
-                               u'or less than this amount.'))
-
-    total_contributions = DecimalCharField(max_digits=8, decimal_places=2,
-                                           nullify_invalid=True, blank=True,
-                                           null=True)
-
-    annoying = models.PositiveIntegerField(
-        choices=amo.CONTRIB_CHOICES, default=0,
-        help_text=_(u'Users will always be asked in the Add-ons'
-                    u' Manager (Firefox 4 and above)'))
-    enable_thankyou = models.BooleanField(
-        default=False, help_text='Should the thank you note be sent to '
-                                 'contributors?')
-    thankyou_note = TranslatedField()
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
@@ -348,10 +288,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
-    # This is for Firefox only.
-    _backup_version = models.ForeignKey(
-        Version, related_name='___backup', db_column='backup_version',
-        null=True, on_delete=models.SET_NULL)
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
@@ -442,7 +378,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         context = {
             'atype': amo.ADDON_TYPE.get(self.type).upper(),
             'authors': [u.email for u in self.authors.all()],
-            'adu': self.average_daily_users,
             'guid': self.guid,
             'id': self.id,
             'msg': msg,
@@ -465,7 +400,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         GUID: %(guid)s
         AUTHORS: %(authors)s
         TOTAL DOWNLOADS: %(total_downloads)s
-        AVERAGE DAILY USERS: %(adu)s
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s
         """ % context
@@ -515,20 +449,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         log.debug('New addon %r from %r' % (addon, upload))
 
         return addon
-
-    def flush_urls(self):
-        urls = ['*/addon/%s/' % self.slug,  # Doesn't take care of api
-                '*/addon/%s/developers/' % self.slug,
-                '*/addon/%s/eula/*' % self.slug,
-                '*/addon/%s/privacy/' % self.slug,
-                '*/addon/%s/versions/*' % self.slug,
-                '*/api/*/addon/%s' % self.slug,
-                self.icon_url,
-                self.thumbnail_url,
-                ]
-        urls.extend('*/user/%d/' % u.id for u in self.listed_authors)
-
-        return urls
 
     def get_url_path(self, more=False, add_prefix=True):
         # If more=True you get the link to the ajax'd middle chunk of the
@@ -612,20 +532,13 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return amo.VALID_STATUSES
 
-    def get_version(self, backup_version=False):
-        """
-        Retrieves the latest public version of an addon.
-        backup_version: if specified the highest file up to but *not* including
-                        this version will be found.
-        """
+    def get_version(self):
+        """Retrieves the latest public version of an addon."""
         try:
             status = self.valid_file_statuses
 
             status_list = ','.join(map(str, status))
             fltr = {'files__status__in': status}
-            if backup_version:
-                fltr['apps__application__id'] = amo.FIREFOX.id
-                fltr['apps__min__version_int__lt'] = amo.FIREFOX.backup_version
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
@@ -650,13 +563,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        backup = None
         current = self.get_version()
-        if current:
-            firefox_min = current.compatible_apps.get(amo.FIREFOX)
-            if (firefox_min and
-                firefox_min.min.version_int > amo.FIREFOX.backup_version):
-                backup = self.get_version(backup_version=True)
 
         try:
             latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
@@ -667,7 +574,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             latest = None
         latest_id = latest and latest.id
 
-        diff = [self._backup_version, backup, self._current_version, current]
+        diff = [self._current_version, current]
 
         # Sometimes the DB is in an inconsistent state when this
         # signal is dispatched.
@@ -683,9 +590,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         updated = {}
         send_signal = False
-        if self._backup_version != backup:
-            updated.update({'_backup_version': backup})
-            send_signal = True
         if self._current_version != current:
             updated.update({'_current_version': current})
             send_signal = True
@@ -711,11 +615,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self.update(**updated)
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
-                log.info(u'Version changed from backup: %s to %s, '
-                         u'current: %s to %s, latest: %s to %s for addon %s'
+                log.info(u'Version changed from current: %s to %s, '
+                         u'latest: %s to %s for addon %s'
                          % tuple(diff + [self]))
             except Exception, e:
-                log.error(u'Could not save version changes backup: %s to %s, '
+                log.error(u'Could not save version changes '
                           u'current: %s to %s, latest: %s to %s '
                           u'for addon %s (%s)'
                           % tuple(diff + [self, e]))
@@ -746,55 +650,38 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             pass
         return None
 
-    @property
-    def backup_version(self):
-        """Returns the backup version."""
-        if not self.current_version:
-            return
-        return self._backup_version
-
     def get_icon_dir(self):
         return os.path.join(settings.ADDON_ICONS_PATH,
                             '%s' % (self.id / 1000))
 
-    def get_icon_url(self, size, use_default=True):
+    def get_icon_url(self, size):
         """
-        Returns either the addon's icon url.
-        If there is no icon for the addon then if:
-            use_default is True, will return a default icon
-            use_default is False, will return None
+        Returns either the icon URL or a default icon.
         """
         icon_type_split = []
         if self.icon_type:
             icon_type_split = self.icon_type.split('/')
 
-        # Get the closest allowed size without going over
+        # Get the closest allowed size without going over.
         if (size not in amo.ADDON_ICON_SIZES
                 and size >= amo.ADDON_ICON_SIZES[0]):
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
         elif size < amo.ADDON_ICON_SIZES[0]:
             size = amo.ADDON_ICON_SIZES[0]
 
-        # Figure out what to return for an image URL
+        # Figure out what to return for an image URL.
         if not self.icon_type:
-            if not use_default:
-                return None
             return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                      'default', size)
         elif icon_type_split[0] == 'icon':
             return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
                                      icon_type_split[1], size)
         else:
-            # [1] is the whole ID, [2] is the directory
+            # [1] is the whole ID, [2] is the directory.
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            # If we don't have the icon_hash, and we are dealing with a Webapp,
-            # it's fine, set to a dummy string ("never"), when the icon is
-            # eventually changed, icon_hash will be updated. For regular Addons
-            # we rely on the modified instead like we always have.
-            if self.type == amo.ADDON_WEBAPP:
-                suffix = getattr(self, 'icon_hash', None) or 'never'
-            else:
-                suffix = int(time.mktime(self.modified.timetuple()))
+            # If we don't have the icon_hash set to a dummy string ("never"), when
+            # the icon is eventually changed, icon_hash will be updated.
+            suffix = getattr(self, 'icon_hash', None) or 'never'
             return settings.ADDON_ICON_URL % (
                 split_id.group(2) or 0, self.id, size, suffix)
 
@@ -832,8 +719,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         current_ids = filter(None, (a._current_version_id for a in addons))
         latest_ids = filter(None, (a._latest_version_id for a in addons))
-        backup_ids = filter(None, (a._backup_version_id for a in addons))
-        all_ids = set(current_ids) | set(backup_ids) | set(latest_ids)
+        all_ids = set(current_ids) | set(latest_ids)
 
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
@@ -844,8 +730,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
-            if addon._backup_version_id == version.id:
-                addon._backup_version = version
             if addon._latest_version_id == version.id:
                 addon._latest_version = version
 
@@ -916,7 +800,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon_dict = dict((a.id, a) for a in addons)
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # Set _backup_version, _latest_version, _current_version
+        # Set _latest_version and _current_version.
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
 
         # Attach listed authors.
@@ -943,9 +827,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def show_beta(self):
         return self.status == amo.STATUS_PUBLIC and self.current_beta_version
-
-    def show_adu(self):
-        return self.type not in (amo.ADDON_SEARCH, amo.ADDON_WEBAPP)
 
     @amo.cached_property
     def current_beta_version(self):
@@ -1118,14 +999,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if app:
             return self.id in get_featured_ids(app, lang)
 
-    def has_full_profile(self):
-        """Is developer profile public (completed)?"""
-        return self.the_reason and self.the_future
-
-    def has_profile(self):
-        """Is developer profile (partially or entirely) completed?"""
-        return self.the_reason or self.the_future
-
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
@@ -1170,15 +1043,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             roles = dict(amo.AUTHOR_CHOICES).keys()
         return AddonUser.objects.filter(addon=self, user=user,
                                         role__in=roles).exists()
-
-    @property
-    def takes_contributions(self):
-        return (self.status == amo.STATUS_PUBLIC and self.wants_contributions
-                and (self.paypal_id or self.charity_id))
-
-    @property
-    def has_eula(self):
-        return self.eula
 
     @classmethod
     def _last_updated_queries(cls):

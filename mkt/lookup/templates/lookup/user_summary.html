@@ -34,14 +34,6 @@
     <section id="payment-info">
       <h2>{{ _('Payments') }}</h2>
       <dl>
-        <dt>{{ _('PayPal linked') }}:</dt>
-        <dd class="pretty-list">
-          {% for email in paypal_ids %}
-            <div>{{ email }}</div>
-          {% else %}
-            <div>{{ _('None') }}</div>
-          {% endfor %}
-        </dd>
         <dt>{{ _('Marketplace Credit') }}:</dt>
         <dd>TODO</dd>
         <dt>{{ _('Payments') }}:</dt>

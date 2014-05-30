@@ -372,8 +372,7 @@ class AddonPremium(amo.models.ModelBase):
         return u'Premium %s: %s' % (self.addon, self.price)
 
     def is_complete(self):
-        return bool(self.addon and self.price and
-                    self.addon.paypal_id and self.addon.support_email)
+        return bool(self.addon and self.price and self.addon.support_email)
 
 
 class RefundManager(ManagerBase):

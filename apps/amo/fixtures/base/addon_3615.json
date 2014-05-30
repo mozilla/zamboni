@@ -33,40 +33,6 @@
         }
     },
     {
-        "pk": 72740,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "legal bullshit",
-            "created": "2007-04-05 08:08:48",
-            "locale": "en-US",
-            "modified": "2009-03-26 07:41:10",
-            "id": 42021,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 29035,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Thanks everyone",
-            "created": "2007-03-05 13:10:42",
-            "locale": "en-US",
-            "modified": "2009-08-04 05:31:11",
-            "id": 15003
-        }
-    },
-    {
-        "pk": 29036,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Delicious Bookmarks is the official",
-            "created": "2007-03-05 13:10:42",
-            "locale": "en-US",
-            "modified": "2009-03-26 07:41:10",
-            "id": 15004
-        }
-    },
-    {
         "pk": 29034,
         "model": "translations.translation",
         "fields": {
@@ -171,52 +137,28 @@
             "slug": "a3615",
             "_current_version": 81551,
             "_latest_version": 81551,
-            "dev_agreement": true,
-            "eula": 42021,
             "last_updated": "2009-10-21 09:58:40",
-            "view_source": false,
-            "enable_thankyou": false,
             "total_downloads": 5546532,
-            "developer_comments": 15003,
             "disabled_by_user": false,
-            "average_daily_downloads": 5242,
             "guid": "{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}",
-            "trusted": true,
             "description": 15002,
-            "locale_disambiguation": null,
-            "the_future": null,
             "weekly_downloads": 13053,
             "support_url": 149594,
-            "paypal_id": "",
             "average_rating": "3.03",
-            "wants_contributions": false,
-            "average_daily_users": 6000000,
             "bayesian_rating": 3.0784799999999999,
-            "share_count": 8,
             "homepage": 15001,
             "support_email": 149593,
             "public_stats": false,
             "status": 4,
             "privacy_policy": 42022,
-            "total_contributions": "0.00",
             "default_locale": "en-US",
-            "target_locale": null,
-            "prerelease": false,
-            "thankyou_note": null,
-            "admin_review": false,
-            "external_software": false,
             "highest_status": 4,
             "name": 15000,
             "created": "2006-10-23 12:57:41",
             "type": 1,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2010-05-28 09:01:57",
-            "summary": 15004,
-            "suggested_amount": null,
-            "site_specific": true,
-            "total_reviews": 413,
-            "the_reason": null
+            "total_reviews": 413
         }
     },
     {

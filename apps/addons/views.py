@@ -197,10 +197,6 @@ class BaseFilter(object):
     def filter_downloads(self):
         return self.filter_popular()
 
-    def filter_users(self):
-        return (self.model.objects.order_by('-average_daily_users')
-                .with_index(addons='adus_type_idx'))
-
     def filter_created(self):
         return (self.model.objects.order_by('-created')
                 .with_index(addons='created_type_idx'))
@@ -212,9 +208,6 @@ class BaseFilter(object):
     def filter_rating(self):
         return (self.model.objects.order_by('-bayesian_rating')
                 .with_index(addons='rating_type_idx'))
-
-    def filter_hotness(self):
-        return self.model.objects.order_by('-hotness')
 
     def filter_name(self):
         return order_by_translation(self.model.objects.all(), 'name')
@@ -231,7 +224,6 @@ class ESBaseFilter(BaseFilter):
                  'created': '-created',
                  'updated': '-last_updated',
                  'popular': '-weekly_downloads',
-                 'users': '-average_daily_users',
                  'rating': '-bayesian_rating'}
         return self.base_queryset.order_by(sorts[field])
 
@@ -249,18 +241,6 @@ class HomepageFilter(BaseFilter):
 # it is called from and remove them.
 def home(request):
     return http.HttpResponse('home')
-
-
-@addon_view
-def eula(request, addon, file_id=None):
-    if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path())
-    if file_id:
-        version = get_object_or_404(addon.versions, files__id=file_id)
-    else:
-        version = addon.current_version
-    return render(request, 'addons/eula.html',
-                  {'addon': addon, 'version': version})
 
 
 @addon_view
