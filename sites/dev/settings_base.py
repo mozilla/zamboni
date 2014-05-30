@@ -5,8 +5,8 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import (ALLOWED_HOSTS, CACHE_PREFIX, ES_INDEXES,
-                               KNOWN_PROXIES, LOGGING, HOSTNAME)
+from mkt.settings import (ALLOWED_HOSTS, CACHE_PREFIX, ES_INDEXES,
+                          KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private

@@ -346,6 +346,9 @@ SITE_URL = 'http://%s' % DOMAIN
 STATIC_URL = SITE_URL + '/'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'
 
+# TODO: Remove me when ADDON_ICON_URL goes away.
+DEFAULT_APP = 'firefox'
+
 ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
 ADDON_ICON_URL = (STATIC_URL +
                   'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')

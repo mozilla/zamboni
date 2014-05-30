@@ -3,7 +3,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
+from mkt.settings import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
 
 from .. import splitstrip
 import private_base as private

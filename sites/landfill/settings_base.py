@@ -5,7 +5,7 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
+from mkt.settings import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
 
 from .. import splitstrip
 import private_base as private
