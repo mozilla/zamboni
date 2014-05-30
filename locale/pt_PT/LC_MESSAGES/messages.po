@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-29 02:17+0000\n"
+"PO-Revision-Date: 2014-05-30 01:41+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401329863.0\n"
+"X-POOTLE-MTIME: 1401414108.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -2146,7 +2146,9 @@ msgstr "Os idiomas especificados no seu aplicativo não estão no formato corret
 
 #: apps/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
-msgstr "É obrigatório definir o nome do programador no manifesto pois este é apresentado na listagem da aplicação."
+msgstr ""
+"É obrigatório definir o nome do programador no manifesto pois este é "
+"apresentado na listagem pública da aplicação."
 
 #: apps/files/utils.py:181
 msgid "Invalid file name in archive: {0}"
@@ -4976,16 +4978,20 @@ msgstr "Atualmente você não possui uma chave da API."
 #: mkt/developers/templates/developers/base_impala.html:30 mkt/developers/templates/developers/apps/status.html:34
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr ""
+"Deve configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> antes da "
+"revisão ou publicação da sua aplicação."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:37
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> or else your app will be disabled on %(pretty_date)s."
 msgstr ""
+"Deve configurar <a href=\"%(next_url)s\">%(next_step_name)s</a> caso contrário "
+"a sua aplicação será desativada a %(pretty_date)s."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:42
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Deve configurar <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/builder.html:3
 msgid "Builder and SDK"
@@ -5094,15 +5100,15 @@ msgstr "Interessado em tornar o SDK dos extras ainda melhor? Obtenha o código-f
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Iniciar sessão"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Deve iniciar sessão para continuar."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Iniciar sessão / Registo"
 
 #: mkt/developers/templates/developers/nav.html:14
 msgid "more apps..."
@@ -5118,15 +5124,15 @@ msgstr "Documentação"
 
 #: mkt/developers/templates/developers/nav.html:32 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Teste de aplicações"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Autorizar acesso"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s gostaria de aceder à sua conta do Marketplace."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -5225,12 +5231,12 @@ msgstr "Filtrar transações"
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} transação encontrada"
+msgstr[1] "{num} transações encontradas"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "Atualmente, as suas aplicações não têm transações."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
@@ -5244,15 +5250,15 @@ msgstr "Tipo"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Quantia"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Teste de validação de aplicação"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
@@ -5272,13 +5278,18 @@ msgstr "URLs de manifestos devem começar com um protocolo (por exemplo, <code>h
 
 #: mkt/developers/templates/developers/validate_addon.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Saiba mais sobre submeter uma aplicação."
 
 #: mkt/developers/templates/developers/validate_addon.html:69
 msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"O validador é uma ferramenta que pode ajudar a testar a sua aplicação em "
+"busca de erros, melhores práticas e conformidade com as diretrizes do "
+"Marketplace antes de enviar a sua aplicação para revisão. Se estiver "
+"interessado em saber como ele funciona ou se quiser executar uma cópia por "
+"si, o código fonte está disponível <a href=\"%(repo)s\">no Github</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -5300,20 +5311,23 @@ msgstr "Bem vindo ao quadro do desenvolvedor"
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Ainda não submeteu uma aplicação para o Marketplace do Firefox. Após ter <a "
+"href=\"%(app_url)s\">criado a sua aplicação</a>, clique em Submeter uma "
+"aplicação em baixo."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:24
 msgid "Submit An App"
-msgstr ""
+msgstr "Submeter uma aplicação"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:39 mkt/reviewers/templates/reviewers/review.html:54
 msgid "Edit Listing"
-msgstr "Editar listagem"
+msgstr "Editar listagem pública"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:35 mkt/reviewers/templates/reviewers/includes/details.html:130 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
 msgid "Team Members"
-msgstr ""
+msgstr "Membros da equipa"
 
 #: mkt/developers/templates/developers/apps/owner.html:29
 msgid "About team member roles"
@@ -5332,14 +5346,14 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/owner.html:83
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
 msgstr ""
-"Pode gerir todos os aspetos da listagem da aplicação, incluindo adicionar ou "
-"remover outros membros da equipa"
+"Pode gerir todos os aspetos da listagem pública da aplicação, incluindo "
+"adicionar ou remover outros membros da equipa"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
 msgstr ""
-"Pode gerir todos os aspetos da listagem da aplicação, exceto adicionar ou "
-"remover outros membros da equipa e gerir pagamentos"
+"Pode gerir todos os aspetos da listagem pública da aplicação, exceto "
+"adicionar ou remover outros membros da equipa e gerir pagamentos"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can view the app's settings but cannot make any changes"
@@ -5383,7 +5397,7 @@ msgstr "Estado actual"
 
 #: mkt/developers/templates/developers/apps/status.html:27
 msgid "You have <b>delisted</b> this app."
-msgstr "<b>Removeu</b> esta aplicação da listagem."
+msgstr "<b>Removeu</b> esta aplicação da listagem pública."
 
 # 84%
 #: mkt/developers/templates/developers/apps/status.html:31
@@ -5393,6 +5407,8 @@ msgstr "Este aplicativo está <b>incompleto</b>."
 #: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"Esta aplicação está <b>a aguardar a revisão</b> de um revisor do Marketplace "
+"do Firefox."
 
 #: mkt/developers/templates/developers/apps/status.html:42
 msgid "You will receive an email when the review is complete."
@@ -5405,14 +5421,19 @@ msgstr "Esse aplicativo é <b>público</b>."
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr ""
+"A sua última versão está <b>a aguardar a revisão</b> de um revisor do "
+"Marketplace do Firefox."
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr ""
+msgstr "Esta aplicação foi <b>desativada pela Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"A sua aplicação foi desativada por não ter classificação de conteúdo. Será "
+"automaticamente reativada depois de <a href=\"%(ratings_url)s\">obtidas as "
+"classificações de conteúdo</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -5432,11 +5453,11 @@ msgstr "Esse aplicativo foi <b>rejeitado</b> por um editor do Firefox Marketplac
 
 #: mkt/developers/templates/developers/apps/status.html:74
 msgid "Your app has been <b>approved but not yet published</b>."
-msgstr ""
+msgstr "A sua aplicação foi <b>aprovada mas ainda não foi publicada</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:75
 msgid "This app is waiting for your approval to be published."
-msgstr ""
+msgstr "Esta aplicação está a aguardar a sua aprovação para ser publicada."
 
 #: mkt/developers/templates/developers/apps/status.html:79
 msgid "Learn more"
@@ -5461,6 +5482,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr ""
+"Deve <a href=\"%(ratings_url)s\">obter classificações de conteúdo</a> antes de "
+"voltar a submeter a sua aplicação."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
@@ -5503,15 +5526,19 @@ msgstr "Listar aplicação"
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:194 mkt/developers/templates/developers/apps/status.html:342
 #: mkt/developers/templates/developers/apps/status.html:347
 msgid "Delist App"
-msgstr ""
+msgstr "Remover aplicação da listagem pública"
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
+"A listagem pública da sua aplicação está desativada e não aparecerá no "
+"Marketplace do Firefox. Pode voltar a listar a aplicação a qualquer momento."
 
 #: mkt/developers/templates/developers/apps/status.html:182
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
+"Remover a sua aplicação da listagem pública impedirá que ela apareça em "
+"qualquer lugar no Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
@@ -5581,7 +5608,7 @@ msgstr "Lista de bloqueados"
 
 #: mkt/developers/templates/developers/apps/status.html:344
 msgid "Are you sure you wish to delist your app?"
-msgstr "Tem a certeza que pretende remover a sua aplicação da listagem?"
+msgstr "Tem a certeza que pretende remover a sua aplicação da listagem pública?"
 
 #: mkt/developers/templates/developers/apps/status.html:358
 msgid "Delete Version &quot;{version}&quot;"
@@ -5720,8 +5747,8 @@ msgstr "Mensagem de cabeçalho"
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
-"Mensagem exclusiva apresentada na página da listagem, apenas nas regiões "
-"selecionadas."
+"Mensagem exclusiva apresentada na página da listagem pública, apenas nas "
+"regiões selecionadas."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
@@ -5786,7 +5813,7 @@ msgstr "Selecione uma URL única para a página de detalhes do aplicativo. Por p
 #: mkt/developers/templates/developers/apps/edit/basic.html:60 mkt/developers/templates/developers/apps/listing/item_actions_app.html:96
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:36 mkt/reviewers/templates/reviewers/review.html:51
 msgid "View Listing"
-msgstr "Ver listagem"
+msgstr "Ver listagem pública"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:66
 msgid "API URL"
@@ -6048,7 +6075,7 @@ msgstr "Eliminar este extra."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr "Editar os detalhes da listagem deste extra."
+msgstr "Editar os detalhes da listagem pública deste extra."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
