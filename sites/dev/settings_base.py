@@ -102,11 +102,6 @@ REDIS_BACKENDS = {
 }
 CACHE_MACHINE_USE_REDIS = True
 
-RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
-RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
-
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 
 ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/files'
@@ -122,23 +117,13 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'mkt-dev'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
-
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_dev' % v) for k, v in ES_INDEXES.items())
 
-BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
-
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
 STATSD_PREFIX = private.STATSD_PREFIX
-
-GRAPHITE_HOST = private.GRAPHITE_HOST
-GRAPHITE_PORT = private.GRAPHITE_PORT
-GRAPHITE_PREFIX = private.GRAPHITE_PREFIX
 
 CEF_PRODUCT = STATSD_PREFIX
 

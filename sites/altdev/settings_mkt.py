@@ -10,7 +10,6 @@ DOMAIN = "marketplace-altdev.allizom.org"
 SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
 SITE_URL = 'https://marketplace-altdev.allizom.org'
-SERVICES_URL = SITE_URL
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-altdev-cdn.allizom.org/')
 
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
@@ -110,8 +109,6 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 HIDDEN_LANGUAGES = (
     'cy',
 )
-
-BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
 
 #Bug 748403
 SIGNING_SERVER = private_mkt.SIGNING_SERVER

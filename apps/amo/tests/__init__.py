@@ -163,35 +163,6 @@ class RedisTest(object):
         reset_redis(self._redis)
 
 
-class MobileTest(object):
-    """Mixing for when you want to hit a mobile view."""
-
-    def _pre_setup(self):
-        super(MobileTest, self)._pre_setup()
-        MobileTest._mobile_init(self)
-
-    def mobile_init(self):
-        MobileTest._mobile_init(self)
-
-    # This is a static method so we can call it in @mobile_test.
-    @staticmethod
-    def _mobile_init(self):
-        self.client.cookies['mamo'] = 'on'
-        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
-        self.request = mock.Mock()
-        self.MOBILE = self.request.MOBILE = True
-
-
-@nottest
-def mobile_test(f):
-    """Test decorator for hitting mobile views."""
-    @wraps(f)
-    def wrapper(self, *args, **kw):
-        MobileTest._mobile_init(self)
-        return f(self, *args, **kw)
-    return wrapper
-
-
 class TestClient(Client):
 
     def __getattr__(self, name):
