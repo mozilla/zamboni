@@ -233,8 +233,12 @@ class CuratorSerializer(serializers.ModelSerializer):
 
 class DataURLImageField(serializers.CharField):
     def from_native(self, data):
+        if data.startswith('"') and data.endswith('"'):
+            # Strip quotes if necessary.
+            data = data[1:-1]
         if not data.startswith('data:'):
             raise serializers.ValidationError('Not a data URI.')
+
         metadata, encoded = data.rsplit(',', 1)
         parts = metadata.rsplit(';', 1)
         if parts[-1] == 'base64':
