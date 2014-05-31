@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-28 18:28-0400\n"
+"PO-Revision-Date: 2014-05-31 04:40-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1378,6 +1378,11 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが入力された可能性が"
+"あります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> <li>別の場所のリンクから移動してきた場合は、<a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com"
+"</a> へメールを送り、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> "
+"<li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\""
+"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -4447,7 +4452,7 @@ msgstr "終了日"
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
-msgstr "このアプリを Firefox OS 端末のプレインストール候補として検討してください。私は上記の諸条件に合意します。この文書がアプリのプレインストールを確約するものではないことを理解しています。"
+msgstr "このアプリを Firefox OS 端末のプリインストール候補として検討してください。私は上記の諸条件に合意します。この文書がアプリのプリインストールを確約するものではないことを理解しています。"
 
 #: mkt/developers/forms.py:1030
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -4797,7 +4802,7 @@ msgstr "コンテンツレーティングの保存が完了しました。"
 
 #: mkt/developers/views.py:437
 msgid "Application for preload successfully submitted."
-msgstr "プレインストール用アプリの登録が完了しました。"
+msgstr "プリインストール用アプリの登録が完了しました。"
 
 #: mkt/developers/views.py:440
 msgid "There was an error with the form."
@@ -5247,6 +5252,8 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"バリデータは、アプリを登録して実際に審査を受ける前に、何かエラーがないか、ベストプラクティスに従っているか、Marketplace ガイドラインへ準拠しているかどうかを確認できるツールです。どのような仕組みか興味がある、あるいは"
+"テストをローカルで実行したい場合は、ソースコードを <a href=\"%(repo)s\">Github</a> から入手できます。"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -5428,7 +5435,7 @@ msgstr "アプリを公開"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Pre-Installed App Status"
-msgstr "プレインストールされたアプリのステータス"
+msgstr "プリインストールされたアプリのステータス"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
@@ -5448,7 +5455,7 @@ msgstr "提出された最新のテストプランを見る"
 
 #: mkt/developers/templates/developers/apps/status.html:157
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "Firefox OS 端末にあなたのアプリをプレインストールするには"
+msgstr "Firefox OS 端末にあなたのアプリをプリインストールするには"
 
 #: mkt/developers/templates/developers/apps/status.html:159
 msgid "Update your test plan"
@@ -5526,6 +5533,8 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
+"アプリをブロックリストへ追加すると、そのアプリを Firefox OS 上で使えなくすることを目的とした特別版がユーザの端末へ配信されます。また、新バージョンが登録、承認されるまで、このアプリは公開ページからも削除されます。"
+"これらの変更は取り消せません。慎重に処理を進めてください。"
 
 #: mkt/developers/templates/developers/apps/status.html:322
 msgid "Blocklist"
@@ -5583,7 +5592,7 @@ msgstr "リリースノート"
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
-msgstr ""
+msgstr "このリリースで行われた変更、新機能、既知のバグに関する情報、その他このリリースやバージョン固有の有益な情報を入力してください。この情報は更新時にアプリマネージャにも表示されます。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:39 mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:72
@@ -5592,7 +5601,7 @@ msgstr "審査担当者へのメモ"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr ""
+msgstr "必要に応じて、審査担当者がこのアプリを審査する際に役立つと思われる情報を入力してください。例えばテスト用アカウント情報などです。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:52 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
@@ -5611,6 +5620,8 @@ msgid ""
 "If selected this version will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about this version's approval and you will "
 "need to log in and manually publish it."
 msgstr ""
+"このオプションを選択すると、このバージョンは審査担当者による承認後すぐに公開されます。このオプションを選択しない場合、このバージョンの審査が終わり次第メールでお知らせが届きますので、その後この開発者センターへ再度"
+"ログインし、自分で公開する必要があります。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10 mkt/developers/templates/developers/apps/edit/details.html:8
 #: mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7 mkt/developers/templates/developers/apps/edit/technical.html:8
@@ -5653,11 +5664,11 @@ msgstr "優先審査が必要です"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
-msgstr ""
+msgstr "アプリは優先的に扱われ、審査待ちの順番の最初に置かれます。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "この状態は初回の承認まで続きます"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
 msgid "Banner message"
@@ -5665,15 +5676,15 @@ msgstr "バナーメッセージ"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
-msgstr ""
+msgstr "選択された地域限定で、アプリ一覧ページに掲載する単独のメッセージを入力してください。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
 msgid "Regions to show banner in"
-msgstr ""
+msgstr "バナーを表示する地域"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "このバナーメッセージを表示する地域を選択してください。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:155
 msgid "Tags"
@@ -5681,7 +5692,7 @@ msgstr "タグ"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:171
 msgid "Tags help users find your app and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "タグは、ユーザがアプリを見つけるのに役立つ、「タブ」「ツールバー」「Twitter」といった短いキーワードです。最大 {0} 個のタグを設定できます。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
@@ -6101,11 +6112,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr "プレインストール"
+msgstr "プリインストール"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr "プレインストールアプリ"
+msgstr "プリインストールアプリ"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
@@ -6117,7 +6128,7 @@ msgstr "テストは完了しているようです"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr "アプリのプレインストールを申請"
+msgstr "アプリのプリインストールを申請"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -6125,10 +6136,13 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"あなたのアプリを、携帯電話会社によって <strong>Firefox OS 端末にプリインストールし出荷</strong> してもらえるよう、検討を依頼することができます。プリインストールを申請するには、以下から定型のテストテンプレートを"
+"ダウンロードし、アプリをテストし、テンプレートに必要事項を入力し、その結果を <a href=\"%(submit_url)s\">アプリプリインストール申請フォーム</a> から送信してください。あなたのテスト結果は興味のある携帯電話会社が"
+"審査を行えるよう Mozilla のサーバ上に保存されます。質問がある場合は %(email)s までメールを送ってください。"
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr "プレインストールアプリの利用規約"
+msgstr "プリインストールアプリの利用規約"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
@@ -6749,7 +6763,7 @@ msgstr "Firefox OS ユーザインタフェースガイドライン"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:56
 msgid "Want to make your app look and feel like it's a Firefox OS native? These guidelines will show you how."
-msgstr "Firefox OS プレインストールアプリのようなデザインと操作性を追求したいですか？ その方法がこのガイドラインに書かれています。"
+msgstr "Firefox OS プリインストールアプリのようなデザインと操作性を追求したいですか？ その方法がこのガイドラインに書かれています。"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
@@ -8130,7 +8144,7 @@ msgstr "<small>オペレーター</small> 用ダッシュボード"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr "プレインストール候補"
+msgstr "プリインストール候補"
 
 #: mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
@@ -8138,7 +8152,7 @@ msgstr "カテゴリ"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr "プレインストール申請"
+msgstr "プリインストール申請"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
@@ -8150,7 +8164,7 @@ msgstr "{0}、{1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr "プレインストール候補は見つかりませんでした"
+msgstr "プリインストール候補は見つかりませんでした"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:27
