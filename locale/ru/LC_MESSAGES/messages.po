@@ -10,15 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-02-07 16:49+0400\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2014-05-31 13:56+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1401544561.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -45,7 +47,7 @@ msgstr "Это окончание уже используется. Пожалу�
 
 #: apps/addons/forms.py:54 mkt/developers/forms.py:571 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "\"%s\" не может быть окончанием. Пожалуйста, выберите другое."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:73
@@ -182,7 +184,7 @@ msgstr "Просмотреть политику приватности"
 
 #: apps/addons/templates/addons/button.html:74 apps/addons/templates/addons/details_box.html:98 apps/addons/templates/addons/mobile/button.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Просмотреть пользовательское соглашение"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:19
@@ -421,7 +423,7 @@ msgstr "<strong>Обратите внимание:</strong> Это дополн�
 
 #: apps/addons/templates/addons/popups.html:98
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Это дополнение не совместимо с вашей версией %(app)s из-за:"
 
 #: apps/addons/templates/addons/popups.html:103 apps/addons/templates/addons/popups.html:113
 msgid "View other versions"
@@ -429,7 +431,7 @@ msgstr "Просмотреть другие версии"
 
 #: apps/addons/templates/addons/popups.html:110
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Это дополнение не совместимо с вашей версией %(app)s."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -1142,7 +1144,7 @@ msgstr "Письмо о совместимости с {version} отправле
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Письмо о совместимости дополнения отправлено автору."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1158,7 +1160,7 @@ msgstr "манифест {addon} обновлён."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "Дополнение {addon} {version} одобрено, но ожидает публикации."
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
@@ -1186,7 +1188,7 @@ msgstr "Возмещение за {addon} одобрено для {0}."
 
 #: apps/amo/log.py:417
 msgid "Instant refund granted for {addon}."
-msgstr ""
+msgstr "Получен немедленный возврат за дополнение {addon}."
 
 #: apps/amo/log.py:422
 msgid "Account updated."
@@ -1210,7 +1212,7 @@ msgstr "Приложение отключено"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} эскалировано из-за большого числа жалоб."
 
 #: apps/amo/log.py:449
 msgid "High Abuse Reports"
@@ -1218,7 +1220,7 @@ msgstr "Большое количество жалоб"
 
 #: apps/amo/log.py:456
 msgid "{addon} escalated because of high number of refund requests."
-msgstr ""
+msgstr "{addon} эскалировано из-за большого числа запросов на возврат средств."
 
 #: apps/amo/log.py:457
 #, fuzzy
@@ -1227,7 +1229,7 @@ msgstr "Возмещение уже обработано."
 
 #: apps/amo/log.py:464
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "{addon} был перепроверен из-за изменения манифеста."
 
 #: apps/amo/log.py:465
 msgid "Manifest Change"
