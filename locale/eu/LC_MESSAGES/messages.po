@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-01 21:26+0000\n"
+"PO-Revision-Date: 2014-06-01 21:56+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401657995.0\n"
+"X-POOTLE-MTIME: 1401659798.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6266,15 +6266,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48
 msgid "Create Profile"
-msgstr ""
+msgstr "Sortu profila"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Aplikazio barneko produktuak"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:32
 msgid "Compatibility"
-msgstr ""
+msgstr "Bateragarritasuna"
 
 #. {0} is a list of HTML tags.
 #: mkt/developers/templates/developers/includes/macros.html:6
@@ -6291,7 +6291,7 @@ msgstr "Kendu aplikazio hau"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "Aukeratu kategoria bat edo bi."
 
 # %s is the application name (Firefox, Thunderbird).
 #. {0} is the maximum number of add-on categories allowed.
@@ -6304,62 +6304,72 @@ msgstr[1] "Hautatu <b>gehienez ere {0}</b> {1} kategoria gehigarri honentzat:"
 
 #: mkt/developers/templates/developers/includes/macros.html:86
 msgid "Categories:"
-msgstr ""
+msgstr "Kategoriak:"
 
 #: mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Posizioa ilaran:</b> %(pos)s / %(total)s"
 
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Kalkulatutako itxarote-denbora:</b> lanegun %(num)s"
+msgstr[1] "<b>Kalkulatutako itxarote-denbora:</b> %(num)s lanegun"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"Aplikazio gehienak aste baten buruan berrikusten dira. Zure berrikuspenaren "
+"zain denbora gehiago badaramazu, idatzi mezu bat %(email)s helbidera, egoera "
+"zein den jakiteko."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Markatu aplikazioak behar bezala funtzionatzeko beharrezko dituen "
+"ezaugarrien laukiak. Eskakizunak betetzen ez dituzten gailudun "
+"erabiltzaileei ez zaie zure aplikazioa erakutsiko."
 
 #: mkt/developers/templates/developers/includes/macros.html:129
 msgid "View all"
-msgstr ""
+msgstr "Ikusi dena"
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
-msgstr ""
+msgstr "Ezkutatu dena"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Probatu aplikazioaren instalazioa"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Probatu aplikazio barneko ordainketak"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"Firefox Marketplace-ek zure aplikazioari ordainketak egitea ahalbidetzen "
+"dio. <a href=\"{guide}\">Aplikazio barneko ordainketen gida</a>n azaltzen da "
+"aplikazioa nola konfiguratu ordainketak egin ahal izateko, ondorengo "
+"parametroekin."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:30
 msgid "Application Key"
-msgstr ""
+msgstr "Aplikazioaren gakoa"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:34 mkt/developers/templates/developers/payments/in-app-config.html:46
 #: mkt/developers/templates/developers/payments/in-app-keys.html:34 mkt/developers/templates/developers/payments/in-app-keys.html:47
 msgid "Not yet generated."
-msgstr ""
+msgstr "Oraindik sortu gabe."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:38 mkt/developers/templates/developers/payments/in-app-keys.html:38
 msgid "Application Secret"
-msgstr ""
+msgstr "Aplikazioaren sekretua"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:42 mkt/developers/templates/developers/payments/in-app-keys.html:43
 msgid "Show secret"
-msgstr ""
+msgstr "Erakutsi sekretua"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:52 mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Reset secret"
