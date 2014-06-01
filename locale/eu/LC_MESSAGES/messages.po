@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-28 08:59+0000\n"
+"PO-Revision-Date: 2014-06-01 21:25+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401267591.0\n"
+"X-POOTLE-MTIME: 1401657945.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -137,7 +137,7 @@ msgstr "Eguneraketak"
 
 #: apps/addons/views.py:322
 msgid "Abuse reported."
-msgstr "Abusua salatuta."
+msgstr "Abusua salatu da."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
@@ -413,6 +413,8 @@ msgstr "<strong>Oharra:</strong> gehigarri hau ez da bateragarria zure sistema e
 #: apps/addons/templates/addons/popups.html:98
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr ""
+"Gehigarri hau ez da zure %(app)s bertsioarekin bateragarria, arrazoi "
+"honengatik:"
 
 #: apps/addons/templates/addons/popups.html:103 apps/addons/templates/addons/popups.html:113
 msgid "View other versions"
@@ -420,7 +422,7 @@ msgstr "Ikusi beste bertsioak"
 
 #: apps/addons/templates/addons/popups.html:110
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Gehigarri hau ez da zure %(app)s bertsioarekin bateragarria."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -836,7 +838,7 @@ msgstr "Amaitu saioa"
 
 #: apps/amo/context_processors.py:77 mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Kudeatu nire bidalketak"
 
 #: apps/amo/context_processors.py:80
 msgid "Submit a New Add-on"
@@ -888,19 +890,19 @@ msgstr "duela {0}"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr "{addon}: sortuta."
+msgstr "{addon} sortu da."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr "{addon}: propietateak editatuta."
+msgstr "{addon}(r)en propietateak editatu dira."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr "{addon}: deskribapena editatuta."
+msgstr "{addon}(r)en deskribapena editatu da."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr "{addon}: kategoriak editatuta."
+msgstr "{addon}(r)en kategoriak editatu dira."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
@@ -917,11 +919,11 @@ msgstr "{addon}: ekarpenak."
 
 #: apps/amo/log.py:65 apps/amo/log.py:440
 msgid "{addon} disabled."
-msgstr "{addon} desgaituta."
+msgstr "{addon} desgaitu da."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr "{addon} gaituta."
+msgstr "{addon} gaitu da."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
@@ -934,32 +936,32 @@ msgstr "{addon}: estatistikak pribatu eginak."
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr "{addon}: {0} egoerara aldatuta."
+msgstr "{addon} {0} egoerara aldatu da."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr "{addon}: aurrebista gehituta."
+msgstr "{addon}(r)en aurrebista gehitu da."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr "{addon}: aurrebista editatuta."
+msgstr "{addon}(r)en aurrebista editatu da."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr "{addon}: aurrebista ezabatuta."
+msgstr "{addon}(r)en aurrebista ezabatu da."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr "{addon}: {version} bertsioa gehituta."
+msgstr "{addon}(r)i {version} bertsioa gehitu zaio."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr "{addon}: {version} bertsioa editatuta."
+msgstr "{addon}(r)en {version} bertsioa editatuta."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr "{addon}: {0} bertsioa ezabatuta."
+msgstr "{addon}(r)en {0} bertsioa ezabatu da."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
@@ -971,7 +973,7 @@ msgstr "{addon}: {0} fitxategia ezabatuta {version} bertsiotik."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} onartuta."
+msgstr "{addon} {version} onartu da."
 
 #: apps/amo/log.py:157 apps/constants/payments.py:66 mkt/constants/comm.py:29
 msgid "Approved"
@@ -987,7 +989,7 @@ msgstr "Behin-behinean onartuta"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version} baztertuta."
+msgstr "{addon} {version} baztertu da."
 
 #: apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:26 mkt/constants/comm.py:30
 msgid "Rejected"
@@ -995,7 +997,7 @@ msgstr "Baztertuta"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr "{addon} {version} geldiarazita."
+msgstr "{addon} {version} geldiarazi da."
 
 #: apps/amo/log.py:188
 msgid "Retained"
@@ -1003,15 +1005,15 @@ msgstr "Geldiarazita"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {versjon} intzidentziengatik igorri da."
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:33 mkt/reviewers/forms.py:122
 msgid "Escalated"
-msgstr ""
+msgstr "Intzidentziengatik igorrita"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version}(r)en berrikuspena eskatuta."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
@@ -1019,15 +1021,15 @@ msgstr "Berrikuspena eskatuta"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version}(r)en informazio gehiago eskatuta."
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:32
 msgid "More information requested"
-msgstr ""
+msgstr "Informazio gehiago eskatuta"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version}(r)en super berrikuspena eskatuta."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
@@ -1084,7 +1086,7 @@ msgstr "{addon} dagoeneko ez dago nabarmenduta."
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr "{0} {1} gehituta."
+msgstr "{0} {1} gehitu da."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
@@ -1097,15 +1099,15 @@ msgstr "{addon} orain {0.name} lizentziapean dago."
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr "{addon}(r)en politika aldatuta."
+msgstr "{addon}(r)en politika aldatu da."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr "{addon}(r)en ikonoa aldatuta."
+msgstr "{addon}(r)en ikonoa aldatu da."
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr "{addon}: {review} berrikuspena onartuta."
+msgstr "{addon}(r)en {review} berrikuspena onartu da."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
@@ -1113,23 +1115,23 @@ msgstr "{user}(e)k {review} onartu du {addon}(r)entzat."
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "{addon}(r)en {0} berrikuspena ezabatu da."
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "{user}(e)k {0} ezabatu du {addon}(r)entzat."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "{version}(r)entzako aplikazioaren gehienezko bertsioa eguneratu da."
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Egileei {version}(r)en bateragarritasunari buruzko mezua bidali zaie."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Egileari gehigarriaren bateragarritasunari buruzko mezua bidali zaio."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1137,15 +1139,15 @@ msgstr "Pasahitza aldatuta."
 
 #: apps/amo/log.py:372
 msgid "{addon} changed to premium."
-msgstr ""
+msgstr "{addon} premium-era aldatu da."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "{addon}(r)en manifestua eguneratu da."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} onartuta, baina publiko egiteko zain."
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
@@ -1193,7 +1195,7 @@ msgstr ""
 
 #: apps/amo/log.py:441
 msgid "App disabled"
-msgstr ""
+msgstr "Aplikazioa desgaitu da"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -1201,7 +1203,7 @@ msgstr ""
 
 #: apps/amo/log.py:449
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Abusu-salaketa ugari"
 
 #: apps/amo/log.py:456
 msgid "{addon} escalated because of high number of refund requests."
@@ -1285,15 +1287,15 @@ msgstr ""
 
 #: apps/amo/log.py:546
 msgid "Created: {0}."
-msgstr ""
+msgstr "Sortuta: {0}."
 
 #: apps/amo/log.py:552
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Eremua editatu da: {2}(r)en balio berria: {0}."
 
 #: apps/amo/log.py:558
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Ezabatuta: {1}."
 
 #: apps/amo/log.py:564
 msgid "User {user} edited, reason: {1}"
@@ -1333,11 +1335,11 @@ msgstr ""
 
 #: apps/amo/log.py:617
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Berrikusleak eskakizunak aldatu ditu"
 
 #: apps/amo/log.py:624
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} gehigarriaren gutxieneko eskakizunak eskuz aldatu dira."
 
 #: apps/amo/log.py:625
 msgid "Requirements Changed"
@@ -1363,11 +1365,11 @@ msgstr "{addon}(r)en edukien sailkapena aldatuta."
 
 #: apps/amo/log.py:657
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Lehentasunezko berrikuspena eskatu da {addon} gehigarriarentzat."
 
 #: apps/amo/log.py:658
 msgid "Priority Review"
-msgstr ""
+msgstr "Lehentasunezko berrikuspena"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1404,7 +1406,7 @@ msgstr "<h1>Ene! Errorea izan dugu.</h1> <p>Laster saiatuko gara konpontzen.</p>
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -1412,7 +1414,7 @@ msgstr "Eskubide batzuk erreserbatuta"
 
 #: apps/amo/templates/amo/no_results.html:1 mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Ez da emaitzarik aurkitu"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -1430,18 +1432,24 @@ msgstr "Hurrengoa"
 #: apps/amo/templates/amo/paginator.html:32
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr ""
+"<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong>  tarteko emaitzak "
+"<strong>%(count)s</strong>(e)tik"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Mantentze-lanetan"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
+"Ezaugarri hau aldi baterako desgaitu da, webgunearen mantentze-lanak burutu "
+"artean. Erabili nabigatzaileko Atzera botoia eta saiatu berriro geroxeago."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr ""
+"Orri honetako zenbait ezaugarri aldi baterako desgaitu dira, webgunearen "
+"mantentze-lanak burutu artean. Saiatu berriro geroago."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -1521,19 +1529,19 @@ msgstr ""
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Title"
-msgstr ""
+msgstr "Titulua"
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Body"
-msgstr ""
+msgstr "Gorputza"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Title"
-msgstr ""
+msgstr "Beste titulu bat"
 
 #: apps/amo/tests/test_messages.py:54
 msgid "Another Body"
-msgstr ""
+msgstr "Beste gorputz bat"
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
@@ -1541,7 +1549,7 @@ msgstr "Aplikazio-bertsioak"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "AMOko aplikazio guztientzako bertsio onargarriak."
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
@@ -1568,6 +1576,9 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
 msgstr ""
+"Onartutako zure aplikazioak ez badu install.rdf fitxategiaren beharrik ere, "
+"bat gehitu beharra daukazu, beharrezko propietateekin, <a href=\"%"
+"(url)s\">hemen</a> zehazten den bezala."
 
 #: apps/constants/applications.py:18
 msgid "Firefox"
@@ -1591,7 +1602,7 @@ msgstr "Mugikorra"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Androiderako Firefox"
 
 #: apps/constants/applications.py:139
 msgid "Mozilla"
@@ -1599,11 +1610,11 @@ msgstr "Mozilla"
 
 #: apps/constants/applications.py:149 mkt/api/forms.py:119 mkt/reviewers/forms.py:133
 msgid "Unknown"
-msgstr ""
+msgstr "Ezezaguna"
 
 #: apps/constants/applications.py:154 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:49 templates/mobile/header.html:5
 msgid "Desktop"
-msgstr ""
+msgstr "Mahaigainekoa"
 
 #: apps/constants/applications.py:161 mkt/constants/platforms.py:47 mkt/constants/platforms.py:68 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:45
 #: mkt/constants/tests/test_platforms.py:58 mkt/constants/tests/test_platforms.py:75 mkt/constants/tests/test_platforms.py:96
@@ -1671,7 +1682,7 @@ msgstr ""
 
 #: apps/constants/base.py:37
 msgid "Deleted"
-msgstr ""
+msgstr "Ezabatuta"
 
 #: apps/constants/base.py:42
 msgid "Flagged for further review"
@@ -2376,14 +2387,16 @@ msgstr ""
 #: apps/users/views.py:80
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr ""
+"Ez da existitzen helbide elektroniko hori duen erabiltzailerik, edo "
+"erabiltzaileak oraindik ez du sinatu garatzaile-onarpena."
 
 #: apps/users/views.py:135
 msgid "Persona authentication failure."
-msgstr ""
+msgstr "Huts egin du Persona erabiliz autentifikatzeak."
 
 #: apps/users/views.py:155
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Erabili kontu honentzako egiaztatutako helbide elektronikoa."
 
 #: apps/users/views.py:236
 msgid "Wrong email address or password!"
@@ -2391,12 +2404,12 @@ msgstr "Helbide elektroniko edo pasahitz okerrak!"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
-msgstr ""
+msgstr "Erosketa-data"
 
 #: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:171 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:57
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
 msgid "Price"
-msgstr ""
+msgstr "Prezioa"
 
 #: mkt/account/utils.py:18 mkt/developers/forms_payments.py:627 mkt/developers/views.py:80 mkt/developers/views.py:88 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:32 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
@@ -2405,31 +2418,31 @@ msgstr "Izena"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr ""
+msgstr "Hautatu baliozko aukera bat. %(value)s ez da aukera posible bat."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Eremuak gutxienez {num} karaktereko luzera izan behar du."
 
 #: mkt/api/forms.py:120 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:134 mkt/submit/forms.py:377
 msgid "Yes"
-msgstr ""
+msgstr "Bai"
 
 #: mkt/api/forms.py:121 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:65 mkt/reviewers/forms.py:135 mkt/submit/forms.py:378
 msgid "No"
-msgstr ""
+msgstr "Ez"
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Inprimakia ezin izan da bidali."
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "Oinarrizko bilduma"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "Nabarmendutako aplikazioen zerrenda"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
@@ -2437,11 +2450,11 @@ msgstr ""
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Kolore hamaseitarra"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Baliozko kolore-kode hamaseitar bat izan behar da, adib. #FF0035."
 
 #: mkt/collections/serializers.py:221
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -2481,111 +2494,111 @@ msgstr "Erabiltzailea"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
-msgstr ""
+msgstr "Berrikuslea"
 
 #: mkt/constants/bango.py:17
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afganistan"
 
 #: mkt/constants/bango.py:18
 msgid "Åland Islands"
-msgstr ""
+msgstr "Åland uharteak"
 
 #: mkt/constants/bango.py:19
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 #: mkt/constants/bango.py:20
 msgid "Algeria"
-msgstr ""
+msgstr "Aljeria"
 
 #: mkt/constants/bango.py:21
 msgid "American Samoa"
-msgstr ""
+msgstr "Amerikar Samoa"
 
 #: mkt/constants/bango.py:22
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: mkt/constants/bango.py:23
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: mkt/constants/bango.py:24
 msgid "Anguilla"
-msgstr ""
+msgstr "Aingira"
 
 #: mkt/constants/bango.py:25
 msgid "Antarctica"
-msgstr ""
+msgstr "Antartika"
 
 #: mkt/constants/bango.py:26
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Antigua eta Barbuda"
 
 #: mkt/constants/bango.py:27 mkt/constants/regions.py:212
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 #: mkt/constants/bango.py:28
 msgid "Armenia"
-msgstr ""
+msgstr "Armenia"
 
 #: mkt/constants/bango.py:29
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: mkt/constants/bango.py:30
 msgid "Australia"
-msgstr ""
+msgstr "Australia"
 
 #: mkt/constants/bango.py:31
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 #: mkt/constants/bango.py:32
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaijan"
 
 #: mkt/constants/bango.py:33
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamak"
 
 #: mkt/constants/bango.py:34
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrain"
 
 #: mkt/constants/bango.py:35
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladesh"
 
 #: mkt/constants/bango.py:36
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: mkt/constants/bango.py:37
 msgid "Belarus"
-msgstr ""
+msgstr "Bielorrusia"
 
 #: mkt/constants/bango.py:38
 msgid "Belgium"
-msgstr ""
+msgstr "Belgika"
 
 #: mkt/constants/bango.py:39
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: mkt/constants/bango.py:40
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: mkt/constants/bango.py:41
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: mkt/constants/bango.py:42
 msgid "Bhutan"
-msgstr ""
+msgstr "Bhutan"
 
 #: mkt/constants/bango.py:43
 msgid "Bolivia"
@@ -2665,39 +2678,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:62 mkt/constants/regions.py:222
 msgid "China"
-msgstr ""
+msgstr "Txina"
 
 #: mkt/constants/bango.py:63
 msgid "Christmas Island"
-msgstr ""
+msgstr "Christmas uhartea"
 
 #: mkt/constants/bango.py:64
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Cocos (Keeling) uharteak"
 
 #: mkt/constants/bango.py:65 mkt/constants/regions.py:102
 msgid "Colombia"
-msgstr ""
+msgstr "Kolonbia"
 
 #: mkt/constants/bango.py:66
 msgid "Comoros"
-msgstr ""
+msgstr "Komoreak"
 
 #: mkt/constants/bango.py:67
 msgid "Congo"
-msgstr ""
+msgstr "Kongo"
 
 #: mkt/constants/bango.py:68
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "Kongoko Errepublika Demokratikoa"
 
 #: mkt/constants/bango.py:69
 msgid "Cook Islands"
-msgstr ""
+msgstr "Cook uharteak"
 
 #: mkt/constants/bango.py:70 mkt/constants/regions.py:282
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: mkt/constants/bango.py:71
 msgid "Côte d'Ivoire"
@@ -2737,39 +2750,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:80
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominikar Errepublika"
 
 #: mkt/constants/bango.py:81 mkt/constants/regions.py:272
 msgid "Ecuador"
-msgstr ""
+msgstr "Ekuador"
 
 #: mkt/constants/bango.py:82
 msgid "Egypt"
-msgstr ""
+msgstr "Egipto"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:252
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: mkt/constants/bango.py:84
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Ekuatore Ginea"
 
 #: mkt/constants/bango.py:85
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: mkt/constants/bango.py:86
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: mkt/constants/bango.py:87
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopia"
 
 #: mkt/constants/bango.py:88
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Falkland uharteak (Malvinak)"
 
 #: mkt/constants/bango.py:89
 msgid "Faroe Islands"
@@ -2809,39 +2822,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:98
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 #: mkt/constants/bango.py:99 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:154
 msgid "Germany"
-msgstr ""
+msgstr "Alemania"
 
 #: mkt/constants/bango.py:100
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: mkt/constants/bango.py:101
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 #: mkt/constants/bango.py:102 mkt/constants/regions.py:182
 msgid "Greece"
-msgstr ""
+msgstr "Grezia"
 
 #: mkt/constants/bango.py:103
 msgid "Greenland"
-msgstr ""
+msgstr "Groenlandia"
 
 #: mkt/constants/bango.py:104
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: mkt/constants/bango.py:105
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 #: mkt/constants/bango.py:106
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:262
 msgid "Guatemala"
@@ -2877,39 +2890,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:115
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: mkt/constants/bango.py:116
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:144
 msgid "Hungary"
-msgstr ""
+msgstr "Hungaria"
 
 #: mkt/constants/bango.py:118
 msgid "Iceland"
-msgstr ""
+msgstr "Islandia"
 
 #: mkt/constants/bango.py:119
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: mkt/constants/bango.py:120
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 #: mkt/constants/bango.py:121
 msgid "Iran, Islamic Republic of"
-msgstr ""
+msgstr "Irango Islamiar Errepublika"
 
 #: mkt/constants/bango.py:122
 msgid "Iraq"
-msgstr ""
+msgstr "Irak"
 
 #: mkt/constants/bango.py:123
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 #: mkt/constants/bango.py:124
 msgid "Isle of Man"
@@ -2953,39 +2966,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:134
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "Koreako Herri Errepublika Demokratikoa"
 
 #: mkt/constants/bango.py:135
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Koreako Errepublika"
 
 #: mkt/constants/bango.py:136
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #: mkt/constants/bango.py:137
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: mkt/constants/bango.py:138
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirgizistan"
 
 #: mkt/constants/bango.py:139
 msgid "Lao People's Democratic Rep"
-msgstr ""
+msgstr "Laosko Herri Errepublika Demokratikoa"
 
 #: mkt/constants/bango.py:140
 msgid "Latvia"
-msgstr ""
+msgstr "Letonia"
 
 #: mkt/constants/bango.py:141
 msgid "Lebanon"
-msgstr ""
+msgstr "Libano"
 
 #: mkt/constants/bango.py:142
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: mkt/constants/bango.py:143
 msgid "Liberia"
@@ -3025,39 +3038,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:152
 msgid "Malaysia"
-msgstr ""
+msgstr "Malaysia"
 
 #: mkt/constants/bango.py:153
 msgid "Maldives"
-msgstr ""
+msgstr "Maldivak"
 
 #: mkt/constants/bango.py:154
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: mkt/constants/bango.py:155
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: mkt/constants/bango.py:156
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Mashall uharteak"
 
 #: mkt/constants/bango.py:157
 msgid "Martinique"
-msgstr ""
+msgstr "Martinika"
 
 #: mkt/constants/bango.py:158
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 #: mkt/constants/bango.py:159
 msgid "Mauritius"
-msgstr ""
+msgstr "Maurizio"
 
 #: mkt/constants/bango.py:160
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:133
 msgid "Mexico"
@@ -3097,39 +3110,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:170
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: mkt/constants/bango.py:171
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: mkt/constants/bango.py:172
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: mkt/constants/bango.py:173
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: mkt/constants/bango.py:174
 msgid "Netherlands"
-msgstr ""
+msgstr "Herbehereak"
 
 #: mkt/constants/bango.py:175
 msgid "New Caledonia"
-msgstr ""
+msgstr "Kaledonia Berria"
 
 #: mkt/constants/bango.py:176
 msgid "New Zealand"
-msgstr ""
+msgstr "Zeelanda Berria"
 
 #: mkt/constants/bango.py:177 mkt/constants/regions.py:302
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nikaragua"
 
 #: mkt/constants/bango.py:178
 msgid "Niger"
-msgstr ""
+msgstr "Niger"
 
 #: mkt/constants/bango.py:179
 msgid "Nigeria"
@@ -3169,39 +3182,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:188 mkt/constants/regions.py:292
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: mkt/constants/bango.py:189
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua Ginea Berria"
 
 #: mkt/constants/bango.py:190
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguai"
 
 #: mkt/constants/bango.py:191 mkt/constants/regions.py:192
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: mkt/constants/bango.py:192
 msgid "Philippines"
-msgstr ""
+msgstr "Filipinak"
 
 #: mkt/constants/bango.py:193
 msgid "Pitcairn"
-msgstr ""
+msgstr "Pitcairn uharteak"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:123
 msgid "Poland"
-msgstr ""
+msgstr "Polonia"
 
 #: mkt/constants/bango.py:195
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: mkt/constants/bango.py:196
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: mkt/constants/bango.py:197
 msgid "Qatar"
@@ -3241,39 +3254,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:206
 msgid "Saint Martin"
-msgstr ""
+msgstr "San Martin uhartea"
 
 #: mkt/constants/bango.py:207
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Saint-Pierre eta Mikelune"
 
 #: mkt/constants/bango.py:208
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "Saint Vincent eta Grenadinak"
 
 #: mkt/constants/bango.py:209
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: mkt/constants/bango.py:210
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: mkt/constants/bango.py:211
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Sao Tome eta Principe"
 
 #: mkt/constants/bango.py:212
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Saudi Arabia"
 
 #: mkt/constants/bango.py:213
 msgid "Senega"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/bango.py:214 mkt/constants/regions.py:173
 msgid "Serbia"
-msgstr ""
+msgstr "Serbia"
 
 #: mkt/constants/bango.py:215
 msgid "Serbia and Montenegro"
@@ -3313,39 +3326,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:224
 msgid "South Africa"
-msgstr ""
+msgstr "Hegoafrika"
 
 #: mkt/constants/bango.py:225
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Hegoaldeko Georgiak eta Hegoaldeko Sandwichak"
 
 #: mkt/constants/bango.py:226
 msgid "South Sudan"
-msgstr ""
+msgstr "Hego Sudan"
 
 #: mkt/constants/bango.py:227 mkt/constants/regions.py:92
 msgid "Spain"
-msgstr ""
+msgstr "Espainia"
 
 #: mkt/constants/bango.py:228
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: mkt/constants/bango.py:229
 msgid "Sudan"
-msgstr ""
+msgstr "Sudan"
 
 #: mkt/constants/bango.py:230
 msgid "Suriname"
-msgstr ""
+msgstr "Surinam"
 
 #: mkt/constants/bango.py:231
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "Svalbard eta Jan Mayen"
 
 #: mkt/constants/bango.py:232
 msgid "Swaziland"
-msgstr ""
+msgstr "Swazilandia"
 
 #: mkt/constants/bango.py:233
 msgid "Sweden"
@@ -3385,39 +3398,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:242
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: mkt/constants/bango.py:243
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: mkt/constants/bango.py:244
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad eta Tobago"
 
 #: mkt/constants/bango.py:245
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunisia"
 
 #: mkt/constants/bango.py:246
 msgid "Turkey"
-msgstr ""
+msgstr "Turkia"
 
 #: mkt/constants/bango.py:247
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: mkt/constants/bango.py:248
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Turk eta Caico uharteak"
 
 #: mkt/constants/bango.py:249
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: mkt/constants/bango.py:250
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: mkt/constants/bango.py:251
 msgid "Ukraine"
@@ -3457,39 +3470,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Birjina uharte britainiarrak"
 
 #: mkt/constants/bango.py:262
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "Birjina uharte amerikarrak"
 
 #: mkt/constants/bango.py:263
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "Wallis eta Futuna"
 
 #: mkt/constants/bango.py:264
 msgid "Western Sahara"
-msgstr ""
+msgstr "Mendebaldeko Sahara"
 
 #: mkt/constants/bango.py:265
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: mkt/constants/bango.py:266
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: mkt/constants/bango.py:267
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
-msgstr ""
+msgstr "Ekintzarik ez"
 
 #: mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:241 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -5333,23 +5346,23 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
-msgstr ""
+msgstr "Garatzailearen profila"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
-msgstr ""
+msgstr "Zure garatzaile-profila <b>publiko</b> gisa konfiguratuta dago."
 
 #: mkt/developers/templates/developers/apps/profile.html:20 mkt/developers/templates/developers/apps/profile.html:30
 msgid "Remove Profile"
-msgstr ""
+msgstr "Ezabatu profila"
 
 #: mkt/developers/templates/developers/apps/profile.html:28
 msgid "Your developer profile will be <b>public</b> when it is fully completed."
-msgstr ""
+msgstr "Zure garatzaile-profila <b>publikoa</b> izango da guztiz osatzean."
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
-msgstr ""
+msgstr "Egoera eta bertsioak"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:230 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
@@ -5364,11 +5377,11 @@ msgstr "Uneko egoera"
 
 #: mkt/developers/templates/developers/apps/status.html:27
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "Aplikazio hau <b>zerrendatik kendu</b> duzu."
 
 #: mkt/developers/templates/developers/apps/status.html:31
 msgid "This app is <b>incomplete</b>."
-msgstr ""
+msgstr "Aplikazio hau <b>osatu gabe</b> dago."
 
 #: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -5376,11 +5389,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:42
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Mezu bat jasoko duzu berrikuspena burutzen denean."
 
 #: mkt/developers/templates/developers/apps/status.html:45
 msgid "This app is <b>public</b>."
-msgstr ""
+msgstr "Aplikazio hau <b>publikoa</b> da."
 
 #: mkt/developers/templates/developers/apps/status.html:47
 msgid "Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -5388,7 +5401,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr ""
+msgstr "Aplikazio hau <b>Mozillak desgaitu</b> du."
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
@@ -5400,7 +5413,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:66
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr ""
+msgstr "Zure aplikazioa <b>Mozillak blokeatu</b> du."
 
 #: mkt/developers/templates/developers/apps/status.html:67
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
@@ -5436,7 +5449,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Resubmit App"
-msgstr ""
+msgstr "Birbidali aplikazioa"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
@@ -5444,11 +5457,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Publish App"
-msgstr ""
+msgstr "Publikatu aplikazioa"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Aurreinstalatutako aplikazioaren egoera"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
@@ -5456,19 +5469,20 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:145
 msgid "Not Submitted"
-msgstr ""
+msgstr "Bidali gabe"
 
 #: mkt/developers/templates/developers/apps/status.html:149
 msgid "New version of the test plan available"
-msgstr ""
+msgstr "Proben planaren bertsio berria eskuragarri"
 
 #: mkt/developers/templates/developers/apps/status.html:154
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Ikusi bidali duzun azken proben plana"
 
 #: mkt/developers/templates/developers/apps/status.html:157
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr ""
+"Ikasi nola lortu aplikazioa Firefox OS gailuetan aurrez instalatuta banatzea"
 
 #: mkt/developers/templates/developers/apps/status.html:159
 msgid "Update your test plan"

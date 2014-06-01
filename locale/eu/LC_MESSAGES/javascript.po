@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-26 23:13+0000\n"
+"PO-Revision-Date: 2014-05-30 23:10+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401146009.0\n"
+"X-POOTLE-MTIME: 1401491421.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -465,7 +465,7 @@ msgstr "gutxiago..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Mantendu berrikuspena / Kendu markak"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -501,7 +501,7 @@ msgstr "Premium aplikazioa"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
-msgstr ""
+msgstr "Intzidentziengatik igorria"
 
 #: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
