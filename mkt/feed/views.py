@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.filters import OrderingFilter
 
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -17,6 +18,7 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
                               RestAnonymousAuthentication]
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('Feed', 'Curate'))]
+    filter_backends = (OrderingFilter,)
     queryset = FeedItem.objects.all()
     cors_allowed_methods = ('get', 'post')
     serializer_class = FeedItemSerializer
@@ -28,6 +30,7 @@ class FeedAppViewSet(CORSMixin, viewsets.ModelViewSet):
                               RestAnonymousAuthentication]
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('Feed', 'Curate'))]
+    filter_backends = (OrderingFilter,)
     queryset = FeedApp.objects.all()
     cors_allowed_methods = ('get', 'post')
     serializer_class = FeedAppSerializer

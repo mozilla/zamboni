@@ -39,6 +39,8 @@ class FeedApp(amo.models.ModelBase):
     pullquote_text = PurifiedField(null=True)
     pullquote_attribution = PurifiedField(null=True)
 
+    image_hash = models.CharField(default=None, max_length=8, null=True)
+
     class Meta:
         db_table = 'mkt_feed_app'
 
