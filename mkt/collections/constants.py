@@ -1,9 +1,9 @@
 from tower import ugettext_lazy as _lazy
 
 
-COLLECTIONS_TYPE_BASIC = 0
-COLLECTIONS_TYPE_FEATURED = 1
-COLLECTIONS_TYPE_OPERATOR = 2
+COLLECTIONS_TYPE_BASIC = 0  # Header graphic.
+COLLECTIONS_TYPE_FEATURED = 1  # No header graphic.
+COLLECTIONS_TYPE_OPERATOR = 2  # Different graphic.
 
 COLLECTION_TYPES = (
     (COLLECTIONS_TYPE_BASIC, _lazy(u'Basic Collection')),

@@ -31,7 +31,7 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'background_color', 'description', 'feedapp_type',
+        fields = ('app', 'background_color', 'created', 'description', 'feedapp_type',
                   'id', 'image', 'preview', 'pullquote_attribution',
                   'pullquote_rating', 'pullquote_text', 'slug', 'url')
         model = FeedApp
@@ -53,7 +53,7 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                             CollectionSerializer())
 
     class Meta:
-        fields = ('carrier', 'category', 'collection', 'id', 'item_type',
+        fields = ('carrier', 'category', 'created', 'collection', 'id', 'item_type',
                   'region', 'url')
         item_types = ('collection',)
         model = FeedItem
