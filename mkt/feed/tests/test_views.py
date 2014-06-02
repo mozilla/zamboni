@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
+import random
+import string
 
 from nose.tools import eq_, ok_
 
@@ -42,7 +44,7 @@ class FeedAppMixin(object):
                 'en-US': u'pan-fried potatoes'
             },
             'has_image': False,
-            'slug': 'my-feed-app',
+            'slug': self.random_slug()
         }
         self.pullquote_data = {
             'pullquote_text': {'en-US': u'The bést!'},
@@ -52,13 +54,22 @@ class FeedAppMixin(object):
         self.feedapps = []
         super(FeedAppMixin, self).setUp()
 
+    def random_slug(self):
+        return ''.join(random.choice(string.ascii_uppercase + string.digits)
+                       for _ in range(10))
+
     def create_feedapps(self, n=2, **kwargs):
         data = dict(self.feedapp_data)
         data.update(kwargs)
         if not isinstance(data['app'], Webapp):
             data['app'] = Webapp.objects.get(pk=data['app'])
-        feedapps = [FeedApp.objects.create(**data) for idx in xrange(n)]
+
+        feedapps = []
+        for idx in xrange(n):
+            data['slug'] = self.random_slug()
+            feedapps.append(FeedApp.objects.create(**data))
         self.feedapps.extend(feedapps)
+
         return feedapps
 
 
@@ -135,7 +146,7 @@ class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
                                 carrier=mkt.carriers.TELEFONICA.id,
                                 region=mkt.regions.BR.id)
         eq_(res.status_code, 201)
-        self.assertCORS(res, 'get', 'post')
+        self.assertCORS(res, 'get', 'post', 'delete')
         eq_(data['collection']['id'], self.collection.pk)
 
     def test_create_no_data(self):
@@ -325,7 +336,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(data['slug'], self.feedapp_data['slug'])
         eq_(data['feedapp_type'], self.feedapp_data['feedapp_type'])
 
-        self.assertCORS(res, 'get', 'post')
+        self.assertCORS(res, 'get', 'post', 'delete')
         return res, data
 
     def test_create_with_background_color(self):
