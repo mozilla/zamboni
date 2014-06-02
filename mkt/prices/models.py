@@ -327,6 +327,12 @@ def create_addon_purchase(sender, instance, **kw):
         # Whitelist the types we care about. Forget about the rest.
         return
 
+    if not instance.user:
+        # This could be an anonymous serverless in-app purchase.
+        log.info('No user for contribution {c}; '
+                 'not creating purchase record'.format(c=instance))
+        return
+
     log.debug('Processing addon purchase type: %s, addon %s, user %s'
               % (unicode(amo.CONTRIB_TYPES[instance.type]),
                  instance.addon.pk, instance.user.pk))
