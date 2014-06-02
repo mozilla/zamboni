@@ -173,17 +173,3 @@
   </ul>
 
 </div>
-
-{% if reviews is defined %}
-  {{ review_list_box(addon=product, reviews=reviews) }}
-{% endif %}
-
-{% if review_form %}
-  {% if request.user.is_authenticated() %}
-    {{ review_add_box(addon=product) }}
-  {% endif %}
-{% endif %}
-
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=product) }}
-{% endif %}

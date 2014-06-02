@@ -61,18 +61,10 @@
   </tr>
 {% endmacro %}
 
-{% macro select_cats(max, form, webapp=False, req=False) %}
+{% macro select_cats(max, form, req=False) %}
   <div class="addon-app-cats">
     <label>
-      {% if webapp %}
-        <span class="hint-inline">{{ _('Pick one or two categories.') }}</span>
-      {% else %}
-        {# L10n: {0} is the maximum number of add-on categories allowed.
-                 {1} is the application name. #}
-        {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
-                    'Select <b>up to {0}</b> {1} categories for this add-on:',
-                    max)|f(max, form.app.pretty if form.app else '')|safe }}
-      {% endif %}
+      <span class="hint-inline">{{ _('Pick one or two categories.') }}</span>
     </label>
     {{ form.application }}
     {{ form.categories }}

@@ -17,7 +17,6 @@ services_patterns = patterns('',
 )
 
 urlpatterns = patterns('',
-    url('^robots.txt$', views.robots, name='robots.txt'),
     url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
 )
