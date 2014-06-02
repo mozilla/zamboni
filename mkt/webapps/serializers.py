@@ -68,6 +68,7 @@ class AppSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField(required=False)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
+    is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
@@ -112,7 +113,7 @@ class AppSerializer(serializers.ModelSerializer):
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'homepage',
-            'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'icons', 'id', 'is_offline', 'is_packaged', 'manifest_url', 'name',
             'payment_account', 'payment_required', 'premium_type', 'previews',
             'price', 'price_locale', 'privacy_policy', 'public_stats',
             'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',

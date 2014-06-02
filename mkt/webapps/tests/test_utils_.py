@@ -42,6 +42,18 @@ class TestAppSerializer(amo.tests.TestCase):
         a = AppSerializer(instance=app, context={'request': self.request})
         return a.data
 
+    def test_packaged(self):
+        res = self.serialize(self.app)
+        eq_(res['is_packaged'], False)
+        eq_(res['is_offline'], False)
+
+        self.app.update(is_packaged=True)
+        del self.app.is_offline  # cached_property, need to be reset.
+
+        res = self.serialize(self.app)
+        eq_(res['is_packaged'], True)
+        eq_(res['is_offline'], True)
+
     def test_no_previews(self):
         eq_(self.serialize(self.app)['previews'], [])
 
