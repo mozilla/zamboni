@@ -5,7 +5,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
-from mkt.api.base import CORSMixin
+from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.collections.views import CollectionImageViewSet
 
 from .models import FeedApp, FeedItem
@@ -20,11 +20,11 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter,)
     queryset = FeedItem.objects.all()
-    cors_allowed_methods = ('get', 'post')
+    cors_allowed_methods = ('get', 'post', 'delete')
     serializer_class = FeedItemSerializer
 
 
-class FeedAppViewSet(CORSMixin, viewsets.ModelViewSet):
+class FeedAppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -32,7 +32,7 @@ class FeedAppViewSet(CORSMixin, viewsets.ModelViewSet):
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter,)
     queryset = FeedApp.objects.all()
-    cors_allowed_methods = ('get', 'post')
+    cors_allowed_methods = ('get', 'post', 'delete')
     serializer_class = FeedAppSerializer
 
 
