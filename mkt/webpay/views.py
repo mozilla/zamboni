@@ -22,8 +22,7 @@ from lib.cef_loggers import app_pay_cef
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
-                                   GroupPermission)
+from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
@@ -138,9 +137,15 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
 
 
 class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
-    authentication_classes = [RestOAuthAuthentication,
-                              RestSharedSecretAuthentication]
-    permission_classes = [AllowOwner]
+    """
+    Get the status of a contribution (transaction) by UUID.
+
+    This is used by the Marketplace or third party apps to check
+    the fulfillment of a purchase. It does not require authentication
+    so that in-app payments can work from third party apps.
+    """
+    authentication_classes = []
+    permission_classes = []
     cors_allowed_methods = ['get']
     queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
     lookup_field = 'uuid'
@@ -152,10 +157,6 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
             # Anything that's not correct will be raised as a 404 so that it's
             # harder to iterate over contribution values.
             log.info('Contribution not found')
-            return None
-
-        if not obj.addon.has_purchased(self.request.amo_user):
-            log.info('Not in AddonPurchase table')
             return None
 
         return obj
