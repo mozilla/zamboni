@@ -26,7 +26,7 @@ class FeedApp(amo.models.ModelBase):
     app = models.ForeignKey(Webapp)
     feedapp_type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
     description = PurifiedField()
-    slug = SlugField(max_length=30)
+    slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
     has_image = models.BooleanField(default=False)
 
@@ -66,9 +66,9 @@ class FeedItem(amo.models.ModelBase):
     Allows objects from multiple models to be hung off the feed.
     """
     category = models.ForeignKey(Category, null=True, blank=True)
-    region = models.PositiveIntegerField(default=None, null=True, blank=True,
-                                         choices=mkt.regions.REGIONS_CHOICES_ID,
-                                         db_index=True)
+    region = models.PositiveIntegerField(
+        default=None, null=True, blank=True, db_index=True,
+        choices=mkt.regions.REGIONS_CHOICES_ID)
     carrier = models.IntegerField(default=None, null=True, blank=True,
                                   choices=mkt.carriers.CARRIER_CHOICES,
                                   db_index=True)
