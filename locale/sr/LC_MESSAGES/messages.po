@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-28 12:51+0000\n"
+"PO-Revision-Date: 2014-06-02 16:58+0000\n"
 "Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401281473.0\n"
+"X-POOTLE-MTIME: 1401728330.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1270,7 +1271,7 @@ msgstr "Уређај(и) додати"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} подршку за уређај ручно променио рецензент."
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
@@ -2082,55 +2083,55 @@ msgstr ""
 
 #: apps/editors/forms.py:17 mkt/developers/tasks.py:483 mkt/developers/tasks.py:489
 msgid "and"
-msgstr ""
+msgstr "и"
 
 #: apps/editors/forms.py:18
 msgid "containing"
-msgstr ""
+msgstr "садржи"
 
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:24
 msgid "start"
-msgstr ""
+msgstr "почетак"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:28
 msgid "end"
-msgstr ""
+msgstr "крај"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:31
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "додатак, уредник или коментар"
 
 #: apps/editors/helpers.py:30
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Одбијено или није прегледано"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Недавни поени"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "До сада нису додељени поени"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Најбољи уредници(последњих 7 дана)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Још увек нема уредника."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Све време"
 
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Имате <span>{0}</span> поена."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56 mkt/reviewers/templates/reviewers/leaderboard.html:3
 msgid "Reviewer Leaderboard"
@@ -2258,11 +2259,11 @@ msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Постојећи локали"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Нови локали"
 
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -2279,7 +2280,7 @@ msgstr "Сачувај измене"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Занемари измене"
 
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
@@ -2287,16 +2288,16 @@ msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Избриши локал"
 
 #: apps/users/helpers.py:56
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "остали"
 
 #: apps/users/models.py:58
 msgid "No user with that email."
-msgstr ""
+msgstr "Не постоји корисник са том адресом е-поште"
 
 #: apps/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
@@ -2368,15 +2369,15 @@ msgstr ""
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Нотификације корисника"
 
 #: apps/users/views.py:72
 msgid "An email address is required."
-msgstr ""
+msgstr "Потребна је дреса е-поште"
 
 #: apps/users/views.py:79
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Корисник са овом адресом е-поште не постоји."
 
 #: apps/users/views.py:80
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
@@ -2384,19 +2385,19 @@ msgstr ""
 
 #: apps/users/views.py:135
 msgid "Persona authentication failure."
-msgstr ""
+msgstr "Persona аутентификација неуспешна."
 
 #: apps/users/views.py:155
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Молимо Вас користите верификовану адресу е-поште за овај налог."
 
 #: apps/users/views.py:236
 msgid "Wrong email address or password!"
-msgstr ""
+msgstr "Погрешна адреса е-поште или лозинка"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
-msgstr ""
+msgstr "Дан куповине"
 
 #: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:171 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:57
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
@@ -2414,19 +2415,19 @@ msgstr ""
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Поље мора да буде дужине барем {num} карактера."
 
 #: mkt/api/forms.py:120 mkt/developers/forms_payments.py:56 mkt/reviewers/forms.py:134 mkt/submit/forms.py:377
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: mkt/api/forms.py:121 mkt/developers/forms_payments.py:56 mkt/lookup/templates/lookup/user_summary.html:65 mkt/reviewers/forms.py:135 mkt/submit/forms.py:378
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: mkt/api/serializers.py:57 mkt/site/forms.py:50
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Форма није могла да буде послата."
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
@@ -2442,11 +2443,11 @@ msgstr ""
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Хексодецимална боја"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Мора да буде hex код боје, нпр. #FF0035."
 
 #: mkt/collections/serializers.py:221
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
@@ -2490,131 +2491,131 @@ msgstr "Рецензент"
 
 #: mkt/constants/bango.py:17
 msgid "Afghanistan"
-msgstr ""
+msgstr "Авганистан"
 
 #: mkt/constants/bango.py:18
 msgid "Åland Islands"
-msgstr ""
+msgstr "Оландска Острва"
 
 #: mkt/constants/bango.py:19
 msgid "Albania"
-msgstr ""
+msgstr "Албанија"
 
 #: mkt/constants/bango.py:20
 msgid "Algeria"
-msgstr ""
+msgstr "Алжир"
 
 #: mkt/constants/bango.py:21
 msgid "American Samoa"
-msgstr ""
+msgstr "Амреричка самоа"
 
 #: mkt/constants/bango.py:22
 msgid "Andorra"
-msgstr ""
+msgstr "Андора"
 
 #: mkt/constants/bango.py:23
 msgid "Angola"
-msgstr ""
+msgstr "Ангола"
 
 #: mkt/constants/bango.py:24
 msgid "Anguilla"
-msgstr ""
+msgstr "Ангвила"
 
 #: mkt/constants/bango.py:25
 msgid "Antarctica"
-msgstr ""
+msgstr "Антартик"
 
 #: mkt/constants/bango.py:26
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Антигва и Барбуда"
 
 #: mkt/constants/bango.py:27 mkt/constants/regions.py:212
 msgid "Argentina"
-msgstr ""
+msgstr "Аргентина"
 
 #: mkt/constants/bango.py:28
 msgid "Armenia"
-msgstr ""
+msgstr "Јерменија"
 
 #: mkt/constants/bango.py:29
 msgid "Aruba"
-msgstr ""
+msgstr "Аруба"
 
 #: mkt/constants/bango.py:30
 msgid "Australia"
-msgstr ""
+msgstr "Аустралија"
 
 #: mkt/constants/bango.py:31
 msgid "Austria"
-msgstr ""
+msgstr "Аустрија"
 
 #: mkt/constants/bango.py:32
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Азербејџан"
 
 #: mkt/constants/bango.py:33
 msgid "Bahamas"
-msgstr ""
+msgstr "Бахами"
 
 #: mkt/constants/bango.py:34
 msgid "Bahrain"
-msgstr ""
+msgstr "Бахреин"
 
 #: mkt/constants/bango.py:35
 msgid "Bangladesh"
-msgstr ""
+msgstr "Бангладеш"
 
 #: mkt/constants/bango.py:36
 msgid "Barbados"
-msgstr ""
+msgstr "Барбадос"
 
 #: mkt/constants/bango.py:37
 msgid "Belarus"
-msgstr ""
+msgstr "Белорусија"
 
 #: mkt/constants/bango.py:38
 msgid "Belgium"
-msgstr ""
+msgstr "Белгија"
 
 #: mkt/constants/bango.py:39
 msgid "Belize"
-msgstr ""
+msgstr "Белизе"
 
 #: mkt/constants/bango.py:40
 msgid "Benin"
-msgstr ""
+msgstr "Бенин"
 
 #: mkt/constants/bango.py:41
 msgid "Bermuda"
-msgstr ""
+msgstr "Бермуда"
 
 #: mkt/constants/bango.py:42
 msgid "Bhutan"
-msgstr ""
+msgstr "Бутан"
 
 #: mkt/constants/bango.py:43
 msgid "Bolivia"
-msgstr ""
+msgstr "Боливија"
 
 #: mkt/constants/bango.py:44
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "Бонер, Свети Еустахије и Саба"
 
 #: mkt/constants/bango.py:45
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Босна и Херцеговина"
 
 #: mkt/constants/bango.py:46
 msgid "Botswana"
-msgstr ""
+msgstr "Боцвана"
 
 #: mkt/constants/bango.py:47
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Острво Буве"
 
 #: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:81
 msgid "Brazil"
-msgstr ""
+msgstr "Бразил"
 
 #: mkt/constants/bango.py:49
 msgid "British Indian Ocean Territory"
@@ -2626,27 +2627,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:51
 msgid "Bulgaria"
-msgstr ""
+msgstr "Бугарска"
 
 #: mkt/constants/bango.py:52
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Буркина фасо"
 
 #: mkt/constants/bango.py:53
 msgid "Burundi"
-msgstr ""
+msgstr "Бурунди"
 
 #: mkt/constants/bango.py:54
 msgid "Cambodia"
-msgstr ""
+msgstr "Камбоџа"
 
 #: mkt/constants/bango.py:55
 msgid "Cameroon"
-msgstr ""
+msgstr "Камерун"
 
 #: mkt/constants/bango.py:56
 msgid "Canada"
-msgstr ""
+msgstr "Канада"
 
 #: mkt/constants/bango.py:57
 msgid "Cape Verde"
