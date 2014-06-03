@@ -1,8 +1,0 @@
-<ol class="toplist">
-  {% for addon in addons %}
-    <li><a href="{{ addon.get_url_path()|urlparams(src=src) }}">
-      <b>{{ loop.index }}.</b>
-      <span class="name">{{ addon.name }}</span>
-    </a></li>
-  {% endfor %}
-</ol>

@@ -31,7 +31,7 @@ import amo.utils
 import lib.iarc
 from access import acl
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
+from addons.models import AddonUser
 from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
@@ -75,30 +75,17 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
-class AddonFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
-
-
 class AppFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
+    opts = (('name', _lazy(u'Name')),  # order_by_translation(self.model.objects.all(), 'name')
             ('created', _lazy(u'Created')))
 
 
-def addon_listing(request, default='name', webapp=False):
+def addon_listing(request, default='name'):
     """Set up the queryset and filtering for addon listing for Dashboard."""
-    Filter = AppFilter if webapp else AddonFilter
+    Filter = AppFilter
     addons = UserProfile.objects.get(pk=request.user.id).addons
-    if webapp:
-        qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
-        model = Webapp
-    else:
-        qs = addons.exclude(type=amo.ADDON_WEBAPP)
-        model = Addon
-    filter = Filter(request, qs, 'sort', default, model=model)
+    qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
+    filter = Filter(request, qs, 'sort', default, model=Webapp)
     return filter.qs, filter
 
 
@@ -118,20 +105,19 @@ def index(request):
 
 
 @login_required
-def dashboard(request, webapp=False):
-    addons, filter = addon_listing(request, webapp=webapp)
+def dashboard(request):
+    addons, filter = addon_listing(request)
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
-                sort_opts=filter.opts, webapp=webapp)
+                sort_opts=filter.opts)
     return render(request, 'developers/apps/dashboard.html', data)
 
 
-@dev_required(webapp=True, staff=True)
-def edit(request, addon_id, addon, webapp=False):
+@dev_required(staff=True)
+def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
-        'webapp': webapp,
         'valid_slug': addon.app_slug,
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
@@ -147,9 +133,9 @@ def edit(request, addon_id, addon, webapp=False):
     return render(request, 'developers/apps/edit.html', data)
 
 
-@dev_required(owner_for_post=True, webapp=True)
+@dev_required(owner_for_post=True)
 @post_required
-def delete(request, addon_id, addon, webapp=False):
+def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         msg = _('Paid apps cannot be deleted. Disable this app instead.')
@@ -209,8 +195,8 @@ def publicise(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(webapp=True)
-def status(request, addon_id, addon, webapp=False):
+@dev_required
+def status(request, addon_id, addon):
     form = forms.AppAppealForm(request.POST, product=addon)
     upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
                                        addon=addon, request=request)
@@ -270,8 +256,7 @@ def status(request, addon_id, addon, webapp=False):
 
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
 
-    ctx = {'addon': addon, 'webapp': webapp, 'form': form,
-           'upload_form': upload_form}
+    ctx = {'addon': addon, 'form': form, 'upload_form': upload_form}
 
     # Used in the delete version modal.
     if addon.is_packaged:
@@ -409,8 +394,8 @@ def preload_home(request, addon_id, addon):
 
 
 @waffle_switch('preload-apps')
-@dev_required(owner_for_post=True, webapp=True)
-def preload_submit(request, addon_id, addon, webapp):
+@dev_required(owner_for_post=True)
+def preload_submit(request, addon_id, addon):
     if request.method == 'POST':
         form = PreloadTestPlanForm(request.POST, request.FILES)
         if form.is_valid():
@@ -527,8 +512,8 @@ def version_delete(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def ownership(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True)
+def ownership(request, addon_id, addon):
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
@@ -565,7 +550,7 @@ def ownership(request, addon_id, addon, webapp=False):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(redirect_url)
 
-    ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
+    ctx = dict(addon=addon, user_form=user_form)
     return render(request, 'developers/apps/owner.html', ctx)
 
 
@@ -616,7 +601,7 @@ def upload_for_addon(request, addon_id, addon):
 
 
 @dev_required
-def refresh_manifest(request, addon_id, addon, webapp=False):
+def refresh_manifest(request, addon_id, addon):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
     _update_manifest(addon_id, True, {})
     return http.HttpResponse(status=204)
@@ -784,9 +769,8 @@ def upload_detail(request, uuid, format='html'):
                        timestamp=upload.created))
 
 
-@dev_required(webapp=True, staff=True)
-def addons_section(request, addon_id, addon, section, editable=False,
-                   webapp=False):
+@dev_required(staff=True)
+def addons_section(request, addon_id, addon, section, editable=False):
     basic = AppFormBasic
     models = {'basic': basic,
               'media': AppFormMedia,
@@ -893,7 +877,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
         form = False
 
     data = {'addon': addon,
-            'webapp': webapp,
             'version': version,
             'form': form,
             'editable': editable,
@@ -1064,7 +1047,7 @@ def transactions(request):
 
 
 def _get_transactions(request):
-    apps = addon_listing(request, webapp=True)[0]
+    apps = addon_listing(request)[0]
     transactions = Contribution.objects.filter(addon__in=list(apps),
                                                type__in=amo.CONTRIB_TYPES)
 

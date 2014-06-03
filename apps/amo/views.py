@@ -15,16 +15,12 @@ import waffle
 from django_statsd.views import record as django_statsd_record
 from django_statsd.clients import statsd
 
-import amo
-import api
 from amo.decorators import post_required
 from amo.utils import log_cef
 from amo.context_processors import get_collect_timings
 from . import monitors
 
 log = commonware.log.getLogger('z.amo')
-monitor_log = commonware.log.getLogger('z.monitor')
-jp_log = commonware.log.getLogger('z.jp.repack')
 
 
 @never_cache
@@ -58,46 +54,6 @@ def monitor(request, format=None):
     ctx['status_summary'] = status_summary
 
     return render(request, 'services/monitor.html', ctx, status=status_code)
-
-
-def robots(request):
-    """Generate a robots.txt"""
-    _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
-    if _service or not settings.ENGAGE_ROBOTS:
-        template = "User-agent: *\nDisallow: /"
-    else:
-        template = render(request, 'amo/robots.html', {'apps': amo.APP_USAGE})
-
-    return HttpResponse(template, mimetype="text/plain")
-
-
-def handler403(request):
-    if request.path_info.startswith('/api/'):
-        # Pass over to handler403 view in api if api was targeted.
-        return api.views.handler403(request)
-    else:
-        return render(request, 'amo/403.html', status=403)
-
-
-def handler404(request):
-    if request.path_info.startswith('/api/'):
-        # Pass over to handler404 view in api if api was targeted.
-        return api.views.handler404(request)
-    else:
-        return render(request, 'amo/404.html', status=404)
-
-
-def handler500(request):
-    if request.path_info.startswith('/api/'):
-        # Pass over to handler500 view in api if api was targeted.
-        return api.views.handler500(request)
-    else:
-        return render(request, 'amo/500.html', status=500)
-
-
-def csrf_failure(request, reason=''):
-    return render(request, 'amo/403.html',
-                  {'because_csrf': 'CSRF' in reason}, status=403)
 
 
 def loaded(request):

@@ -138,7 +138,6 @@ class TestEditListingWebapp(TestEdit):
     @mock.patch.object(settings, 'APP_PREVIEW', False)
     def test_apps_context(self):
         r = self.client.get(self.url)
-        eq_(r.context['webapp'], True)
         eq_(pq(r.content)('title').text(),
             'Edit Listing | %s | Firefox Marketplace' % self.webapp.name)
 
@@ -190,9 +189,6 @@ class TestEditBasic(TestEdit):
 
     def test_form_url(self):
         self.check_form_url('basic')
-
-    def test_apps_context(self):
-        eq_(self.client.get(self.url).context['webapp'], True)
 
     def test_appslug_visible(self):
         r = self.client.get(self.url)

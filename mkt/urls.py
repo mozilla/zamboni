@@ -68,9 +68,6 @@ urlpatterns = patterns('',
     # AMO Marketplace admin (not django admin).
     ('^admin/', include('mkt.zadmin.urls')),
 
-    # Accept extra junk at the end for a cache-busting build id.
-    url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
-
     # Developer Registration Login.
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),

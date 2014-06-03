@@ -217,7 +217,6 @@ class TestEditWebappAuthors(amo.tests.TestCase):
 
     def test_apps_context(self):
         r = self.client.get(self.url)
-        eq_(r.context['webapp'], True)
         assert 'license_form' not in r.context, 'Unexpected license form'
         assert 'policy_form' not in r.context, 'Unexpected policy form'
         doc = pq(r.content)

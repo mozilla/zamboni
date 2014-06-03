@@ -430,8 +430,6 @@ You can pass the retrieved JWT to the `WebPay`_ API to verify its signature.
 Payment status
 ==============
 
-.. note:: Authentication is required.
-
 .. http:get:: /api/v1/webpay/status/(string:uuid)/
 
     **Request**
@@ -446,8 +444,6 @@ Payment status
     :type status: string
 
     :status 200: request processed, check status for value.
-    :status 401: not authenticated.
-    :status 403: not authorized to view details on that transaction.
 
 Installing
 ==========

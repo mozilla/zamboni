@@ -135,7 +135,11 @@ def postback(request):
                    amount=Decimal(data['response']['price']['amount']),
                    currency=data['response']['price']['currency'])
 
-    tasks.send_purchase_receipt.delay(contrib.pk)
+    if contrib.user:
+        tasks.send_purchase_receipt.delay(contrib.pk)
+    else:
+        log.info('No user for contribution {c}; not sending receipt'
+                 .format(c=contrib))
     return http.HttpResponse(trans_id)
 
 
