@@ -15,6 +15,7 @@ from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
+from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
@@ -123,7 +124,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         ok_(res.json['webpayJWT'])
 
 
-class TestStatus(RestOAuth):
+class TestStatus(BaseAPI):
     fixtures = fixture('webapp_337141', 'user_2519')
 
     def setUp(self):
@@ -133,6 +134,8 @@ class TestStatus(RestOAuth):
             uuid='some:uid')
         self.get_url = reverse('webpay-status',
                                kwargs={'uuid': self.contribution.uuid})
+        # No need to rely on a purchase record.
+        self.contribution.addon.addonpurchase_set.get().delete()
 
     def test_allowed(self):
         self._allowed_verbs(self.get_url, ['get'])
@@ -154,17 +157,13 @@ class TestStatus(RestOAuth):
         eq_(res.status_code, 200, res.content)
         eq_(res.json['status'], 'incomplete', res.content)
 
-    def test_no_purchase(self):
-        self.contribution.addon.addonpurchase_set.get().delete()
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
-
     def test_not_owner(self):
         userprofile2 = UserProfile.objects.get(pk=31337)
         self.contribution.update(user=userprofile2)
         res = self.client.get(self.get_url)
-        eq_(res.status_code, 403, res.content)
+        # Not owning a contribution is okay.
+        eq_(res.status_code, 200, res.content)
+        eq_(res.json['status'], 'complete', res.content)
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
