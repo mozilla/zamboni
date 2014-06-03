@@ -148,42 +148,27 @@
   </dl>
 </div>
 
+{% set previews = product.all_previews %}
+{% if product.description or previews %}
+<h2 id="more-about">{{ _('Description') }}</h2>
+<div class="article userinput">
+  <pre{{ product.description|locale_html }}>{{ product.description|escape }}</pre>
+  {% if previews %}
+    <h2>{{ _('Images') }}</h2>
+    {% for preview in previews %}
+      <a class="screenshot thumbnail" rel="jquery-lightbox"
+         href="{{ preview.image_url }}">
+        <img src="{{ preview.thumbnail_url }}">
+      </a>
+    {% endfor %}
+  {% endif %}
 
-  {% set previews = product.all_previews %}
-  {% if product.description or previews %}
-  <h2 id="more-about">{{ _('Description') }}</h2>
+</div>{# /article #}
+{% else %}
+  <h2 id="more-about">{{ _('More about this app') }}</h2>
   <div class="article userinput">
-    <pre{{ product.description|locale_html }}>{{ product.description|escape }}</pre>
-    {% if previews %}
-      <h2>{{ _('Images') }}</h2>
-      {% for preview in previews %}
-        <a class="screenshot thumbnail" rel="jquery-lightbox"
-           href="{{ preview.image_url }}">
-          <img src="{{ preview.thumbnail_url }}">
-        </a>
-      {% endfor %}
-    {% endif %}
-
-  </div>{# /article #}
-  {% else %}
-    <h2 id="more-about">{{ _('More about this app') }}</h2>
-    <div class="article userinput">
-      <em class="no-results">
-        {{ _('Nothing to see here! The developer did not include any details.') }}
-      </em>
-    </div>
-  {% endif %}
-
-{% if reviews is defined %}
-  {{ review_list_box(addon=product, reviews=reviews) }}
-{% endif %}
-
-{% if review_form %}
-  {% if request.user.is_authenticated() %}
-    {{ review_add_box(addon=product) }}
-  {% endif %}
-{% endif %}
-
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=product) }}
+    <em class="no-results">
+      {{ _('Nothing to see here! The developer did not include any details.') }}
+    </em>
+  </div>
 {% endif %}

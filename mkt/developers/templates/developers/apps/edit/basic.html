@@ -56,7 +56,7 @@
               </div>
               {{ form.slug.errors }}
             {% else %}
-              {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug if webapp else addon.slug }}
+              {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug }}
               <a class="smaller" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
             {% endif %}
           </td>
@@ -154,7 +154,7 @@
           <td id="addon-categories-edit"
               data-max-categories="{{ cat_form.max_categories() if cat_form else amo.MAX_CATEGORIES }}">
             {% if editable %}
-              {{ select_cats(amo.MAX_CATEGORIES, cat_form, webapp) }}
+              {{ select_cats(amo.MAX_CATEGORIES, cat_form) }}
             {% else %}
               {% set categories = addon.categories.all() %}
               {% call empty_unless(categories) %}
