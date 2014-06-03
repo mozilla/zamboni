@@ -33,10 +33,11 @@ class FeedApp(amo.models.ModelBase):
     preview = models.ForeignKey(Preview, null=True, blank=True)
 
     # Optionally linked to a pull quote.
+    pullquote_attribution = models.CharField(max_length=50, null=True,
+                                             blank=True)
     pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
         validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
-    pullquote_attribution = PurifiedField(null=True)
 
     image_hash = models.CharField(default=None, max_length=8, null=True,
                                   blank=True)

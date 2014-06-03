@@ -49,7 +49,7 @@ class FeedAppMixin(object):
         self.pullquote_data = {
             'pullquote_text': {'en-US': u'The bést!'},
             'pullquote_rating': 4,
-            'pullquote_attribution': {'en-US': u'Jamés Bond'}
+            'pullquote_attribution': u'Jamés Bod'
         }
         self.feedapps = []
         super(FeedAppMixin, self).setUp()

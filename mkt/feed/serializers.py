@@ -26,7 +26,6 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
         format='png')
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
                          PreviewSerializer())
-    pullquote_attribution = TranslationSerializerField(required=False)
     pullquote_rating = serializers.IntegerField(required=False)
     pullquote_text = TranslationSerializerField(required=False)
 
