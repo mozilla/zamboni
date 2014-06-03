@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import render
 
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 
 import amo
 from amo.utils import chunked
