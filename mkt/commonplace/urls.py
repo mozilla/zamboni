@@ -53,6 +53,10 @@ urlpatterns = patterns('',
     url('^curation/.*$', views.commonplace, {'repo': 'rocketfuel'},
         name='commonplace.rocketfuel'),
 
+    # Transonic:
+    url('^curate/.*$', views.commonplace, {'repo': 'transonic'},
+        name='commonplace.transonic'),
+
     # Stats:
     url('^statistics/app/%s$' % amo.APP_SLUG, views.commonplace,
         {'repo': 'marketplace-stats'},
