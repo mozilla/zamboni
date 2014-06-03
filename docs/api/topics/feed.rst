@@ -229,7 +229,7 @@ Feed apps are represented thusly:
             "fr": "Une application sélectionnée"
         },
         "feedapp_type": "icon",
-        "image": "http://somecdn.com/someimage.png"
+        "background_image": "http://somecdn.com/someimage.png"
         "id": 1
         "preview": null,
         "pullquote_attribute": null,
