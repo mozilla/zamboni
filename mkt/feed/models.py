@@ -28,16 +28,16 @@ class FeedApp(amo.models.ModelBase):
     description = PurifiedField()
     slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
-    has_image = models.BooleanField(default=False)
 
     # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
 
     # Optionally linked to a pull quote.
+    pullquote_attribution = models.CharField(max_length=50, null=True,
+                                             blank=True)
     pullquote_rating = models.PositiveSmallIntegerField(null=True, blank=True,
         validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
-    pullquote_attribution = PurifiedField(null=True)
 
     image_hash = models.CharField(default=None, max_length=8, null=True,
                                   blank=True)
@@ -60,6 +60,10 @@ class FeedApp(amo.models.ModelBase):
         return os.path.join(settings.FEATURED_APP_BG_PATH,
                             str(self.pk / 1000),
                             'featured_app_%s.png' % (self.pk,))
+
+    @property
+    def has_image(self):
+        return bool(self.image_hash)
 
 
 class FeedItem(amo.models.ModelBase):

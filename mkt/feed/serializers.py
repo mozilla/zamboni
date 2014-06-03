@@ -22,18 +22,18 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     description = TranslationSerializerField(required=False)
     image = CollectionImageField(
         source='*',
-        view_name='feed-app-image-detail',
+        view_name='api-v2:feed-app-image-detail',
         format='png')
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
                          PreviewSerializer())
-    pullquote_attribution = TranslationSerializerField(required=False)
     pullquote_rating = serializers.IntegerField(required=False)
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'background_color', 'created', 'description', 'feedapp_type',
-                  'id', 'image', 'preview', 'pullquote_attribution',
-                  'pullquote_rating', 'pullquote_text', 'slug', 'url')
+        fields = ('app', 'background_color', 'created', 'description',
+                  'feedapp_type', 'id', 'image', 'preview',
+                  'pullquote_attribution', 'pullquote_rating',
+                  'pullquote_text', 'slug', 'url')
         model = FeedApp
         url_basename = 'feedapps'
 
@@ -53,8 +53,8 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                             CollectionSerializer())
 
     class Meta:
-        fields = ('carrier', 'category', 'created', 'collection', 'id', 'item_type',
-                  'region', 'url')
+        fields = ('carrier', 'category', 'created', 'collection', 'id',
+                  'item_type', 'region', 'url')
         item_types = ('collection',)
         model = FeedItem
         url_basename = 'feeditems'
@@ -63,8 +63,10 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         """
         Ensure that at least one object type is specified.
         """
-        item_changed = any(k for k in self.Meta.item_types if k in attrs.keys())
-        num_defined = sum(1 for item in self.Meta.item_types if attrs.get(item))
+        item_changed = any(k for k in self.Meta.item_types
+                           if k in attrs.keys())
+        num_defined = sum(1 for item in self.Meta.item_types
+                          if attrs.get(item))
         if item_changed and num_defined != 1:
             message = ('A valid value for exactly one of the following '
                        'parameters must be defined: %s' % ','.join(

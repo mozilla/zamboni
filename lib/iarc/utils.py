@@ -4,8 +4,6 @@ import StringIO
 from django.conf import settings
 
 from jinja2 import Environment, FileSystemLoader
-from rest_framework.compat import etree, six
-from rest_framework.exceptions import ParseError
 from rest_framework.parsers import JSONParser, XMLParser
 
 import amo.utils
@@ -108,22 +106,12 @@ class IARC_XML_Parser(XMLParser, IARC_Parser):
     a dict using the "NAME" and "VALUE" attributes.
     """
 
-    # TODO: Remove this `parse` method once this PR is merged and released:
-    # https://github.com/tomchristie/django-rest-framework/pull/1211
     def parse(self, stream, media_type=None, parser_context=None):
         """
         Parses the incoming bytestream as XML and returns the resulting data.
         """
-        assert etree, 'XMLParser requires defusedxml to be installed'
-
-        parser_context = parser_context or {}
-        encoding = parser_context.get('encoding', settings.DEFAULT_CHARSET)
-        parser = etree.DefusedXMLParser(encoding=encoding)
-        try:
-            tree = etree.parse(stream, parser=parser, forbid_dtd=True)
-        except (etree.ParseError, ValueError) as exc:
-            raise ParseError('XML parse error - %s' % six.text_type(exc))
-        data = self._xml_convert(tree.getroot())
+        data = super(IARC_XML_Parser, self).parse(stream, media_type,
+                                                  parser_context)
 
         # Process ratings, descriptors, interactives.
         data = self._process_iarc_items(data)
