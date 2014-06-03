@@ -201,6 +201,23 @@ class TestPostback(PurchaseTest):
 
         assert not tasks.send_purchase_receipt.delay.called
 
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_anonymous_purchase(self, decode, tasks):
+        # Create a new anonymous transaction.
+        self.contrib.update(user=None, transaction_id=None)
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+
+        resp = self.post(req=jwt_encoded)
+
+        eq_(resp.status_code, 200)
+        eq_(resp.content, '<webpay-trans-id>')
+        assert not tasks.send_purchase_receipt.delay.called, (
+            'send_purchase_receipt should not be called')
+        # Purchase record should not be created:
+        eq_(list(AddonPurchase.objects.all()), [])
+
     def test_invalid(self, tasks):
         resp = self.post()
         eq_(resp.status_code, 400)
