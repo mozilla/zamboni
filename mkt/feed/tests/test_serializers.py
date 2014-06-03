@@ -6,7 +6,8 @@ import amo.tests
 
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
-from mkt.feed.serializers import FeedItemSerializer
+from mkt.feed.serializers import FeedAppSerializer, FeedItemSerializer
+from mkt.feed.tests.test_views import FeedAppMixin
 from mkt.regions import RESTOFWORLD
 
 
@@ -49,3 +50,10 @@ class TestFeedItemSerializer(CollectionFeedMixin, amo.tests.TestCase):
         serializer = FeedItemSerializer(data=data)
         assert serializer.is_valid()
         assert serializer.object.region == RESTOFWORLD.id
+
+
+class TestFeedAppSerializer(FeedAppMixin, amo.tests.TestCase):
+
+    def test_basic(self):
+        serializer = FeedAppSerializer(data=self.feedapp_data)
+        assert serializer.is_valid()

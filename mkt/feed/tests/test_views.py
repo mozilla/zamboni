@@ -121,7 +121,8 @@ class TestFeedItemViewSetList(CollectionMixin, BaseTestFeedItemViewSet):
 
 class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
     """
-    Tests the handling of POST requests to the list endpoint of FeedItemViewSet.
+    Tests the handling of POST requests to the list endpoint of
+    FeedItemViewSet.
     """
     def setUp(self):
         super(TestFeedItemViewSetCreate, self).setUp()
@@ -189,7 +190,8 @@ class TestFeedItemViewSetDetail(CollectionMixin, BaseTestFeedItemViewSet):
 
 class TestFeedItemViewSetUpdate(CollectionMixin, BaseTestFeedItemViewSet):
     """
-    Tests the handling of PATCH requests to detail endpoints of FeedItemViewSet.
+    Tests the handling of PATCH requests to detail endpoints of
+    FeedItemViewSet.
     """
     def setUp(self):
         super(TestFeedItemViewSetUpdate, self).setUp()
@@ -432,6 +434,12 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         self.feed_permission()
         self._test_detail(self.client)
 
+    def test_with_image(self):
+        self.feedapp = self.create_feedapps(1, has_image=True)[0]
+        self.url = reverse('api-v2:feedapps-detail',
+                           kwargs={'pk': self.feedapp.pk})
+        self._test_detail(self.client)
+
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
     """
@@ -483,7 +491,8 @@ class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
 
 class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
     """
-    Tests the handling of DELETE requests to detail endpoints of FeedAppViewSet.
+    Tests the handling of DELETE requests to detail endpoints of
+    FeedAppViewSet.
     """
     def setUp(self):
         super(TestFeedAppViewSetDelete, self).setUp()
