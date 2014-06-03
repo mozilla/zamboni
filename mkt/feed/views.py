@@ -20,7 +20,7 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter,)
     queryset = FeedItem.objects.all()
-    cors_allowed_methods = ('get', 'post', 'delete')
+    cors_allowed_methods = ('get', 'delete', 'post', 'put')
     serializer_class = FeedItemSerializer
 
 
@@ -32,7 +32,7 @@ class FeedAppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter,)
     queryset = FeedApp.objects.all()
-    cors_allowed_methods = ('get', 'post', 'delete')
+    cors_allowed_methods = ('get', 'delete', 'post', 'put')
     serializer_class = FeedAppSerializer
 
 
