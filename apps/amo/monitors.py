@@ -8,7 +8,7 @@ import traceback
 from django.conf import settings
 
 import commonware.log
-import elasticutils
+import elasticutils.contrib.django as elasticutils
 import requests
 from cache_nuggets.lib import memoize
 from PIL import Image
