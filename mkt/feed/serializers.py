@@ -20,7 +20,7 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     app = SplitField(relations.PrimaryKeyRelatedField(required=True),
                      AppSerializer())
     description = TranslationSerializerField(required=False)
-    image = CollectionImageField(
+    background_image = CollectionImageField(
         source='*',
         view_name='api-v2:feed-app-image-detail',
         format='png')
@@ -31,7 +31,7 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
 
     class Meta:
         fields = ('app', 'background_color', 'created', 'description',
-                  'feedapp_type', 'id', 'image', 'preview',
+                  'feedapp_type', 'id', 'background_image', 'preview',
                   'pullquote_attribution', 'pullquote_rating',
                   'pullquote_text', 'slug', 'url')
         model = FeedApp
