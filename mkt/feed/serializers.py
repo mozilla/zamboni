@@ -6,13 +6,23 @@ import mkt.regions
 from addons.models import Category
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
-from mkt.collections.serializers import (CollectionImageField,
-                                         CollectionSerializer, SlugChoiceField,
+from mkt.collections.serializers import (CollectionImageField, SlugChoiceField,
                                          SlugModelChoiceField)
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.serializers import AppSerializer
 
-from .models import FeedApp, FeedItem
+from . import constants
+from .fields import FeedCollectionMembershipField
+from .models import FeedApp, FeedBrand, FeedItem
+
+
+class BaseFeedCollectionSerializer(URLSerializerMixin,
+                                   serializers.ModelSerializer):
+    apps = FeedCollectionMembershipField(many=True, source='apps')
+    slug = serializers.CharField(required=False)
+
+    class Meta:
+        fields = ('apps', 'slug', 'url')
 
 
 class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
@@ -38,6 +48,18 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
         url_basename = 'feedapps'
 
 
+class FeedBrandSerializer(BaseFeedCollectionSerializer):
+    layout = serializers.ChoiceField(choices=constants.BRAND_LAYOUT_CHOICES,
+                                     required=True)
+    type = serializers.ChoiceField(choices=constants.BRAND_TYPE_CHOICES,
+                                   required=True)
+
+    class Meta:
+        fields = ('apps', 'id', 'layout', 'slug', 'type', 'url')
+        model = FeedBrand
+        url_basename = 'feedbrands'
+
+
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     """Thin wrappers around apps w/ metadata related to its feature in feed."""
     carrier = SlugChoiceField(required=False,
@@ -49,13 +71,15 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     item_type = serializers.SerializerMethodField('get_item_type')
 
     # Types of objects that are allowed to be a feed item.
-    collection = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                            CollectionSerializer())
+    app = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                     FeedAppSerializer())
+    brand = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                       FeedBrandSerializer())
 
     class Meta:
-        fields = ('carrier', 'category', 'created', 'collection', 'id',
-                  'item_type', 'region', 'url')
-        item_types = ('collection',)
+        fields = ('app', 'brand', 'carrier', 'category', 'id', 'item_type',
+                  'region', 'url')
+        item_types = ('app', 'brand',)
         model = FeedItem
         url_basename = 'feeditems'
 
