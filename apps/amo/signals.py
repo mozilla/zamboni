@@ -1,18 +1,6 @@
-import contextlib
-
 from django import http
-from django.db import models
 
 from . import urlresolvers
-
-
-@contextlib.contextmanager
-def hera_disabled():
-    _disconnect()
-    try:
-        yield
-    finally:
-        _connect()
 
 
 ## Hook up test signals here, for lack of a better spot.

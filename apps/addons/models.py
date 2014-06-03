@@ -1427,11 +1427,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
         db_table = 'addons_categories'
         unique_together = ('addon', 'category')
 
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*%s' % self.category.get_url_path(), ]
-        return urls
-
 
 class AddonType(amo.models.ModelBase):
     name = TranslatedField()
@@ -1473,9 +1468,6 @@ class AddonUser(caching.CachingMixin, models.Model):
     class Meta:
         db_table = 'addons_users'
 
-    def flush_urls(self):
-        return self.addon.flush_urls() + self.user.flush_urls()
-
 
 class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
     name = TranslatedField()
@@ -1498,10 +1490,6 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-    def flush_urls(self):
-        urls = ['*%s' % self.get_url_path(), ]
-        return urls
 
     def get_url_path(self):
         return '/search?cat=%s' % self.slug
@@ -1571,12 +1559,6 @@ class Preview(amo.models.ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
-
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                self.thumbnail_url,
-                self.image_url, ]
-        return urls
 
     def _image_url(self, url_template):
         if self.modified is not None:
