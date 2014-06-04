@@ -48,7 +48,6 @@ fudge==1.0.3
 GitPython==0.1.7
 google-api-python-client==1.2
 gunicorn==0.17.4
-hera==0.1.2
 html5lib==0.999
 httplib2==0.8.0
 importlib-no-failure==1.0.2

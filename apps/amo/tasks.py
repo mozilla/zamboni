@@ -1,12 +1,10 @@
 import datetime
 
-from django.conf import settings
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import commonware.log
 import phpserialize
 from celeryutils import task
-from hera.contrib.django_utils import flush_urls
 
 import amo
 from abuse.models import AbuseReport

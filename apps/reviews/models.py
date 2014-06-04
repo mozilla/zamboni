@@ -59,14 +59,6 @@ class Review(amo.models.ModelBase):
     def get_url_path(self):
         return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
 
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*/addon/%d/reviews/' % self.addon_id,
-                '*/addon/%d/reviews/format:rss' % self.addon_id,
-                '*/addon/%d/reviews/%d/' % (self.addon_id, self.id),
-                '*/user/%d/' % self.user_id, ]
-        return urls
-
     @classmethod
     def get_replies(cls, reviews):
         reviews = [r.id for r in reviews]
@@ -138,9 +130,6 @@ class ReviewFlag(amo.models.ModelBase):
     class Meta:
         db_table = 'reviews_moderation_flags'
         unique_together = (('review', 'user'),)
-
-    def flush_urls(self):
-        return self.review.flush_urls()
 
 
 class Spam(object):

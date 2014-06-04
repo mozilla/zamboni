@@ -222,6 +222,7 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             ok_(obj['icons']['128'].endswith('?modified=fakehash'))
             eq_(obj['id'], long(self.webapp.id))
+            eq_(obj['is_offline'], False)
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
             eq_(obj['payment_account'], None)
             self.assertApiUrlEqual(obj['privacy_policy'],
@@ -540,6 +541,8 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['is_packaged'], False)
+        eq_(obj['is_offline'], False)
 
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
@@ -550,6 +553,8 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['is_packaged'], True)
+        eq_(obj['is_offline'], True)
 
     def test_app_type_privileged(self):
         # Override the class-decorated patch.

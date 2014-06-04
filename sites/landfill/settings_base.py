@@ -82,10 +82,8 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
-HERA = []
 LOGGING['loggers'].update({
     'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
     'z.redis': { 'level': logging.DEBUG },
     'z.pool': { 'level': logging.ERROR },
 })

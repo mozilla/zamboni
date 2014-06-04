@@ -159,9 +159,6 @@ class Version(amo.models.ModelBase):
     def license_url(self, impala=False):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 
-    def flush_urls(self):
-        return self.addon.flush_urls()
-
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))

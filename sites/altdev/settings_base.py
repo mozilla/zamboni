@@ -80,14 +80,12 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
-HERA = []
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.DEBUG},
     'z.task': {'level': logging.DEBUG},
-    'z.hera': {'level': logging.INFO},
     'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })

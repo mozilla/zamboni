@@ -752,13 +752,6 @@ HEKA_CONF = {
 
 HEKA = client_from_dict_config(HEKA_CONF)
 
-# Hera (http://github.com/clouserw/hera)
-HERA = [{
-    'USERNAME': '',
-    'PASSWORD': '',
-    'LOCATION': '',
-}]
-
 # Not shown on the site, but .po files exist and these are available on the
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 # This list also enables translation edits.

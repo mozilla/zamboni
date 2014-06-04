@@ -68,7 +68,6 @@ CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
     'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
     'z.redis': { 'level': logging.DEBUG },
     'z.receipt': {'level': logging.ERROR },
     'elasticutils': {'level': logging.INFO },

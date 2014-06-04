@@ -1,5 +1,4 @@
 import csv
-from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -14,8 +13,6 @@ from django.views.decorators.cache import never_cache
 
 import commonware.log
 import jinja2
-from hera.contrib.django_forms import FlushForm
-from hera.contrib.django_utils import flush_urls, get_hera
 
 import amo
 from addons.decorators import addon_view
@@ -29,58 +26,21 @@ from devhub.models import ActivityLog
 from files.models import File
 from users.models import UserProfile
 from zadmin.forms import GenerateErrorForm, PriceTiersForm
+
+from mkt.prices.utils import update_from_csv
+
 from . import tasks
 from .decorators import admin_required
 from .forms import AddonStatusForm, DevMailerForm, FileFormSet, YesImSure
 from .models import EmailPreviewTopic
 
-from mkt.prices.utils import update_from_csv
-
 
 log = commonware.log.getLogger('z.zadmin')
-
-
-@admin.site.admin_view
-def hera(request):
-    form = FlushForm(initial={'flushprefix': settings.SITE_URL})
-
-    boxes = []
-    configured = False  # Default to not showing the form.
-    for i in settings.HERA:
-        hera = get_hera(i)
-        r = {'location': urlparse(i['LOCATION'])[1], 'stats': False}
-        if hera:
-            r['stats'] = hera.getGlobalCacheInfo()
-            configured = True
-        boxes.append(r)
-
-    if not configured:
-        messages.error(request, "Hera is not (or mis-)configured.")
-        form = None
-
-    if request.method == 'POST' and hera:
-        form = FlushForm(request.POST)
-        if form.is_valid():
-            expressions = request.POST['flushlist'].splitlines()
-
-            for url in expressions:
-                num = flush_urls([url], request.POST['flushprefix'], True)
-                msg = ("Flushed %d objects from front end cache for: %s"
-                       % (len(num), url))
-                log.info("[Hera] (user:%s) %s" % (request.user, msg))
-                messages.success(request, msg)
-
-    return render(request, 'zadmin/hera.html', {'form': form, 'boxes': boxes})
 
 
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
-
-    # sigh
-    settings_dict['HERA'] = []
-    for i in settings.HERA:
-        settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
 
     for i in ['GOOGLE_ANALYTICS_CREDENTIALS']:
         settings_dict[i] = debug.cleanse_setting(i,
