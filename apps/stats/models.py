@@ -30,6 +30,9 @@ class ContributionError(Exception):
 class Contribution(amo.models.ModelBase):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
+    # For in-app purchases this links to the product.
+    inapp_product = models.ForeignKey('inapp.InAppProduct',
+                                      blank=True, null=True)
     amount = DecimalCharField(max_digits=9, decimal_places=2,
                               nullify_invalid=True, null=True)
     currency = models.CharField(max_length=3,
