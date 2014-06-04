@@ -17,11 +17,11 @@ import amo
 import amo.tests
 from addons.models import Addon
 from services import utils, verify
+from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from mkt.prices.models import AddonPurchase
 from users.models import UserProfile
-from stats.models import Contribution
 
 
 def get_response(data, status):

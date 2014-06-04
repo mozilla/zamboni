@@ -16,7 +16,7 @@ from mkt.constants.regions import (ALL_REGION_IDS, BR, HU,
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
-from stats.models import Contribution
+from mkt.purchase.models import Contribution
 from users.models import UserProfile
 
 

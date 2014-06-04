@@ -1,9 +1,11 @@
 import datetime
+import json
 
 from django.conf import settings
 from django.db import models
 from django.utils import translation
 
+import phpserialize as php
 import tower
 from babel import Locale, numbers
 from jingo import env
@@ -15,7 +17,52 @@ from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
 from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
 
-from .db import StatsDictField
+
+class StatsDictField(models.TextField):
+
+    description = 'A dictionary of counts stored as serialized php.'
+    __metaclass__ = models.SubfieldBase
+
+    def db_type(self, connection):
+        return 'text'
+
+    def to_python(self, value):
+        # object case
+        if value is None:
+            return None
+        if isinstance(value, dict):
+            return value
+
+        # string case
+        if value and value[0] in '[{':
+            # JSON
+            try:
+                d = json.loads(value)
+            except ValueError:
+                d = None
+        else:
+            # phpserialize data
+            try:
+                if isinstance(value, unicode):
+                    value = value.encode('utf8')
+                d = php.unserialize(value, decode_strings=True)
+            except ValueError:
+                d = None
+        if isinstance(d, dict):
+            return d
+        return None
+
+    def get_db_prep_value(self, value, connection, prepared=False):
+        if value is None or value == '':
+            return value
+        try:
+            value = json.dumps(dict(value))
+        except TypeError:
+            value = None
+        return value
+
+    def value_to_string(self, obj):
+        return str(obj)
 
 
 class ContributionError(Exception):
@@ -28,7 +75,6 @@ class ContributionError(Exception):
 
 
 class Contribution(amo.models.ModelBase):
-    # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
@@ -123,7 +169,7 @@ class Contribution(amo.models.ModelBase):
                    _(u'%s refund failed' % self.addon.name),
                    {'name': self.addon.name})
         send_mail_jinja(
-            'Refund failed', 'stats/email/refund-failed.txt',
+            'Refund failed', 'purchase/email/refund-failed.txt',
             {'name': self.user.email,
              'error': str(e)},
             settings.MARKETPLACE_EMAIL,

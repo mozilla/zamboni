@@ -22,9 +22,9 @@ from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.prices.models import Price, PriceCurrency
 from mkt.prices.views import PricesViewSet
+from mkt.purchase.models import Contribution
 from mkt.webpay.models import ProductIcon
 
-from stats.models import Contribution
 from users.models import UserProfile
 
 

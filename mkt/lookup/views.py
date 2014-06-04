@@ -38,7 +38,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
 from mkt.site import messages
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.prices.models import AddonPaymentData, Refund
-from stats.models import Contribution
+from mkt.purchase.models import Contribution
 from users.models import UserProfile
 
 

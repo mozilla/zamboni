@@ -23,8 +23,8 @@ from constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
+from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
-from stats.models import Contribution
 from users.models import UserProfile
 
 log = commonware.log.getLogger('z.market')
@@ -404,7 +404,7 @@ class RefundManager(ManagerBase):
 
 class Refund(ModelBase):
     # This refers to the original object with `type=amo.CONTRIB_PURCHASE`.
-    contribution = models.OneToOneField('stats.Contribution')
+    contribution = models.OneToOneField(Contribution)
 
     # Pending => 0
     # Approved => 1

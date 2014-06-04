@@ -38,7 +38,7 @@ from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import ContentRating, Webapp
 from mkt.prices.models import AddonPremium, Price
-from stats.models import Contribution
+from mkt.purchase.models import Contribution
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version

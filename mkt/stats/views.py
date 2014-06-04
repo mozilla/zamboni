@@ -10,13 +10,13 @@ from rest_framework.views import APIView
 from lib.metrics import get_monolith_client
 
 import amo
-from stats.models import Contribution
 
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.exceptions import ServiceUnavailable
+from mkt.purchase.models import Contribution
 from mkt.webapps.models import Webapp
 
 from .forms import StatsForm

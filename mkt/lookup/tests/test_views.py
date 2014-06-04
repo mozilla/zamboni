@@ -34,10 +34,10 @@ from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
 from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
+from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.prices.models import AddonPaymentData, Refund
-from stats.models import Contribution
 from users.models import UserProfile
 
 

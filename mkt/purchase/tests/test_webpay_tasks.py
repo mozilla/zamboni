@@ -6,11 +6,10 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import amo
-from stats.models import Contribution
 
 from mkt.purchase import tasks as tasks
-
-from utils import PurchaseTest
+from mkt.purchase.models import Contribution
+from mkt.purchase.tests.utils import PurchaseTest
 
 
 class TestReceiptEmail(PurchaseTest):

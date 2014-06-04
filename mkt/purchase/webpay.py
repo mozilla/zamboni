@@ -14,10 +14,10 @@ from amo.decorators import json_view, login_required, post_required, write
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
 from mkt.api.exceptions import AlreadyPurchased
+from mkt.purchase.models import Contribution
 from mkt.purchase.decorators import can_be_purchased
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import Contribution
 
 from . import tasks
 
