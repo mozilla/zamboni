@@ -155,6 +155,7 @@ NEW_FEATURES = True
 REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
+LESS_BIN = 'lessc'
 STYLUS_BIN = 'stylus'
 UGLIFY_BIN = 'uglifyjs'
 

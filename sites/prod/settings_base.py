@@ -136,6 +136,7 @@ EMAIL_BLACKLIST = private.EMAIL_BLACKLIST
 NEW_FEATURES = True
 
 CLEANCSS_BIN = 'cleancss'
+LESS_BIN = 'lessc'
 STYLUS_BIN = 'stylus'
 UGLIFY_BIN = 'uglifyjs'
 
