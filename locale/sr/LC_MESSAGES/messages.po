@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-04 12:17+0000\n"
+"PO-Revision-Date: 2014-06-04 16:47+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401884272.0\n"
+"X-POOTLE-MTIME: 1401900424.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -3311,23 +3311,23 @@ msgstr "Словенија"
 
 #: mkt/constants/bango.py:222
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Соломонска Острва"
 
 #: mkt/constants/bango.py:223
 msgid "Somalia"
-msgstr ""
+msgstr "Сомалија"
 
 #: mkt/constants/bango.py:224
 msgid "South Africa"
-msgstr ""
+msgstr "Јужна Африка"
 
 #: mkt/constants/bango.py:225
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Јужна Џорџија и Јужна Сендвичка Острва"
 
 #: mkt/constants/bango.py:226
 msgid "South Sudan"
-msgstr ""
+msgstr "Јужни Судан"
 
 #: mkt/constants/bango.py:227 mkt/constants/regions.py:92
 msgid "Spain"
@@ -3367,131 +3367,131 @@ msgstr "Сиријска Арапска Република"
 
 #: mkt/constants/bango.py:236
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Тајван, провинција Кине"
 
 #: mkt/constants/bango.py:237
 msgid "Tajikistan"
-msgstr ""
+msgstr "Таџикистан"
 
 #: mkt/constants/bango.py:238
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Танзанија, Уједињена Република"
 
 #: mkt/constants/bango.py:239
 msgid "Thailand"
-msgstr ""
+msgstr "Тајланд"
 
 #: mkt/constants/bango.py:240
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Источни Тимор"
 
 #: mkt/constants/bango.py:241
 msgid "Togo"
-msgstr ""
+msgstr "Того"
 
 #: mkt/constants/bango.py:242
 msgid "Tokelau"
-msgstr ""
+msgstr "Токелау"
 
 #: mkt/constants/bango.py:243
 msgid "Tonga"
-msgstr ""
+msgstr "Тонга"
 
 #: mkt/constants/bango.py:244
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Тринидад и Тобаго"
 
 #: mkt/constants/bango.py:245
 msgid "Tunisia"
-msgstr ""
+msgstr "Тунис"
 
 #: mkt/constants/bango.py:246
 msgid "Turkey"
-msgstr ""
+msgstr "Турска"
 
 #: mkt/constants/bango.py:247
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Туркменистан"
 
 #: mkt/constants/bango.py:248
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Острва Туркс и Каикос"
 
 #: mkt/constants/bango.py:249
 msgid "Tuvalu"
-msgstr ""
+msgstr "Тувалу"
 
 #: mkt/constants/bango.py:250
 msgid "Uganda"
-msgstr ""
+msgstr "Уганда"
 
 #: mkt/constants/bango.py:251
 msgid "Ukraine"
-msgstr ""
+msgstr "Украјина"
 
 #: mkt/constants/bango.py:252
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Уједињени Арапски Емирати"
 
 #: mkt/constants/bango.py:253 mkt/constants/regions.py:72
 msgid "United Kingdom"
-msgstr ""
+msgstr "Уједињено Краљевство"
 
 #: mkt/constants/bango.py:254 mkt/constants/regions.py:63
 msgid "United States"
-msgstr ""
+msgstr "Сједињене Америчке државе"
 
 #: mkt/constants/bango.py:255
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "Сједињене Државе без осталих острва"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:202
 msgid "Uruguay"
-msgstr ""
+msgstr "Уругвај"
 
 #: mkt/constants/bango.py:257
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Узбекистан"
 
 #: mkt/constants/bango.py:258
 msgid "Vanuatu"
-msgstr ""
+msgstr "Вануату"
 
 #: mkt/constants/bango.py:259
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Венецуела, Боливарска Република"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
-msgstr ""
+msgstr "Вијетнам"
 
 #: mkt/constants/bango.py:261
 msgid "Virgin Islands, British"
-msgstr ""
+msgstr "Британска Девичанска Острва"
 
 #: mkt/constants/bango.py:262
 msgid "Virgin Islands, U.S."
-msgstr ""
+msgstr "Америчка Девичанска Острва"
 
 #: mkt/constants/bango.py:263
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "Валис и Футуна"
 
 #: mkt/constants/bango.py:264
 msgid "Western Sahara"
-msgstr ""
+msgstr "Западна Сахара"
 
 #: mkt/constants/bango.py:265
 msgid "Yemen"
-msgstr ""
+msgstr "Јемен"
 
 #: mkt/constants/bango.py:266
 msgid "Zambia"
-msgstr ""
+msgstr "Замбија"
 
 #: mkt/constants/bango.py:267
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Зимбабве"
 
 #: mkt/constants/comm.py:28
 msgid "No action"
@@ -3583,7 +3583,7 @@ msgstr ""
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Складиште уређаја"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
@@ -3595,7 +3595,7 @@ msgstr ""
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Геолокација"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
@@ -4109,15 +4109,15 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:80
 msgid "Gambling"
-msgstr ""
+msgstr "Коцкање"
 
 #: mkt/constants/ratingdescriptors.py:72 mkt/constants/ratingdescriptors.py:83
 msgid "Online"
-msgstr ""
+msgstr "Онлајн"
 
 #: mkt/constants/ratingdescriptors.py:73 mkt/constants/ratingdescriptors.py:84
 msgid "Fear"
-msgstr ""
+msgstr "Страх"
 
 #: mkt/constants/ratingdescriptors.py:90
 msgid "Social Interaction Functionality"
@@ -4235,11 +4235,11 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Сви"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "Сви 10+"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
@@ -4301,7 +4301,7 @@ msgstr "Информације"
 
 #: mkt/constants/submit.py:8
 msgid "Done!"
-msgstr ""
+msgstr "Готово!"
 
 #: mkt/detail/templates/detail/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:28 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -4426,7 +4426,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:708
 msgid "Enable new regions"
-msgstr ""
+msgstr "Омогући нове регије"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
@@ -4446,7 +4446,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:919
 msgid "Your email address"
-msgstr ""
+msgstr "Ваша адреса е-поште"
 
 #: mkt/developers/forms.py:922
 msgid "Text"
@@ -4458,7 +4458,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:927 mkt/developers/forms_payments.py:408 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Држава"
 
 #: mkt/developers/forms.py:962
 msgid "Transaction Type"
@@ -4512,7 +4512,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:59 mkt/submit/forms.py:272
 msgid "App Price"
-msgstr ""
+msgstr "Цена апликације"
 
 #: mkt/developers/forms_payments.py:117
 msgid "Free (with in-app payments)"
@@ -4576,11 +4576,11 @@ msgstr "Е-пошта подршке"
 
 #: mkt/developers/forms_payments.py:396
 msgid "Address"
-msgstr ""
+msgstr "Адреса"
 
 #: mkt/developers/forms_payments.py:398
 msgid "Address 2"
-msgstr ""
+msgstr "Адреса 2"
 
 #: mkt/developers/forms_payments.py:400
 msgid "City/Municipality"
@@ -4596,7 +4596,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:406
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: mkt/developers/forms_payments.py:411
 msgid "I prefer to be paid in"
@@ -4616,15 +4616,15 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Name"
-msgstr ""
+msgstr "Име банке"
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Address"
-msgstr ""
+msgstr "Адреса банке"
 
 #: mkt/developers/forms_payments.py:426
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Адреса банке 2"
 
 #: mkt/developers/forms_payments.py:428
 msgid "Bank City/Municipality"
@@ -4898,11 +4898,11 @@ msgstr "Све"
 
 #: mkt/developers/views_payments.py:186
 msgid "Credit card"
-msgstr ""
+msgstr "Кредитна картица"
 
 #: mkt/developers/views_payments.py:187
 msgid "Carrier"
-msgstr ""
+msgstr "Оператер"
 
 #: mkt/developers/views_payments.py:336
 msgid "A server error occurred when retrieving the application key."
@@ -4944,7 +4944,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
-msgstr ""
+msgstr "Име апликације"
 
 #: mkt/developers/templates/developers/api.html:38 mkt/developers/templates/developers/api.html:62
 msgid "Redirect URI"
@@ -5094,7 +5094,7 @@ msgstr "Заинтересовани сте за побољшање SDK-а за 
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Пријави се"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
@@ -5118,7 +5118,7 @@ msgstr "Документација"
 
 #: mkt/developers/templates/developers/nav.html:32 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Тестирање апликација"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -5130,11 +5130,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Омогући"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Одби"
 
 #: mkt/developers/templates/developers/search.html:7
 msgid "Search Developer Docs"
@@ -5161,15 +5161,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:73 mkt/ecosystem/templates/ecosystem/partners.html:115
 msgid "Marketplace"
-msgstr ""
+msgstr "Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:77 mkt/templates/mkt/header.html:28
 msgid "Sign In"
-msgstr ""
+msgstr "Пријави се"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:84 mkt/templates/mkt/header.html:21
 msgid "Settings"
-msgstr ""
+msgstr "Поставке"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:101 templates/base.html:57 templates/impala/base.html:101
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
