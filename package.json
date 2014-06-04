@@ -30,6 +30,10 @@
     "git://github.com/mozilla/marketplace-stats.git": {
       "symlinks": {"src/media": "media/marketplace-stats"},
       "name": "marketplace-stats"
+    },
+    "git://github.com/mozilla/transonic.git": {
+      "symlinks": {"src/media": "media/transonic"},
+      "name": "transonic"
     }
   }
 }
