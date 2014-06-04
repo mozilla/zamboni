@@ -12,7 +12,7 @@ def validate_settings():
     # Things that values must not be.
     for key, value in [
             ('SECRET_KEY', 'please change this'),
-            ('SESSION_COOKIE_SECURE', True),
+            ('SESSION_COOKIE_SECURE', False),
             ('APP_PURCHASE_SECRET', 'please change this')]:
         if getattr(settings, key) == value:
             raise ImproperlyConfigured('{0} must be changed from default'
