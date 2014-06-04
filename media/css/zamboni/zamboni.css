@@ -1006,7 +1006,6 @@ div.popup-shim {
     font-size: .875em;
     color: #444;
     text-decoration: none;
-    background: transparent url("../../../media/img/zamboni/icons/suggest-types.png") 8px 2px no-repeat;
 }
 
 .html-rtl #search-suggest li a {
