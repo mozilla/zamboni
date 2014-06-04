@@ -99,17 +99,6 @@
       </div>
 
       {{ form_field(form_basic.privacy_policy, hint=True) }}
-
-      {# TODO: Remove since Privacy Policy is required.
-        <div id="show-privacy" class="{{ 'error' if form_details.form_basic.errors else 'ready' }} brform simple-field">
-          <label class="checkbox">
-            <input type="checkbox" name="show_privacy">
-            This app has a privacy policy
-          </label>
-          {{ form_field(form_basic.privacy_policy) }}
-        </div>
-      #}
-
       {{ form_field(form_basic.homepage, hint=True) }}
 
       <div id="support-fields" class="c">
@@ -170,7 +159,7 @@
           </span>
         </div>
       </div>
-
+      {{ form_field(form_basic.notes, hint=True) }}
       {{ form_field(form_basic.publish, tooltip=True) }}
 
       <button class="prominent continue" type="submit">
