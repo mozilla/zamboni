@@ -650,7 +650,8 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1.id],
             'flash': '1',
-            'publish': '1'
+            'publish': '1',
+            'notes': 'yes'
         }
         # Add the required screenshot.
         data.update(self.preview_formset({
