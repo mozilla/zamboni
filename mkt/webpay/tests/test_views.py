@@ -1,5 +1,6 @@
 import json
 from decimal import Decimal
+from urlparse import parse_qs
 
 from django.conf import settings
 from django.core import mail
@@ -15,8 +16,10 @@ from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
+from lib.crypto.receipt import crack
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.inapp.models import InAppProduct
 from mkt.constants import regions
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
@@ -127,7 +130,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
 
 
 class TestStatus(BaseAPI):
-    fixtures = fixture('webapp_337141', 'user_2519')
+    fixtures = fixture('prices', 'webapp_337141', 'user_2519')
 
     def setUp(self):
         super(TestStatus, self).setUp()
@@ -139,33 +142,54 @@ class TestStatus(BaseAPI):
         # No need to rely on a purchase record.
         self.contribution.addon.addonpurchase_set.get().delete()
 
+    def get(self, expected_status=200):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, expected_status, res)
+        return json.loads(res.content)
+
     def test_allowed(self):
         self._allowed_verbs(self.get_url, ['get'])
 
     def test_get(self):
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        eq_(res.json['status'], 'complete')
+        data = self.get()
+        eq_(data['status'], 'complete')
+        # Normal transactions should not produce receipts.
+        eq_(data['receipt'], None)
+
+    def test_completed_inapp_purchase(self):
+        price = Price.objects.get(pk=1)
+        inapp = InAppProduct.objects.create(
+            logo_url='logo.png', name='Magical Unicorn', price=price,
+            webapp=self.contribution.addon)
+        self.contribution.update(inapp_product=inapp)
+
+        data = self.get()
+        eq_(data['status'], 'complete')
+        receipt = crack(data['receipt'])[0]
+        eq_(receipt['typ'], 'purchase-receipt')
+        eq_(receipt['product']['url'], self.contribution.addon.origin)
+        storedata = parse_qs(receipt['product']['storedata'])
+        eq_(storedata['id'][0], str(self.contribution.addon.pk))
+        eq_(storedata['contrib'][0], str(self.contribution.pk))
+        assert 'user' in receipt, (
+            'The web platform requires a user value')
 
     def test_no_contribution(self):
         self.contribution.delete()
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
+        data = self.get()
+        eq_(data['status'], 'incomplete')
 
     def test_incomplete(self):
         self.contribution.update(type=CONTRIB_PENDING)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
+        data = self.get()
+        eq_(data['status'], 'incomplete')
 
     def test_not_owner(self):
         userprofile2 = UserProfile.objects.get(pk=31337)
         self.contribution.update(user=userprofile2)
-        res = self.client.get(self.get_url)
         # Not owning a contribution is okay.
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'complete', res.content)
+        data = self.get()
+        eq_(data['status'], 'complete')
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',

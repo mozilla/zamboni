@@ -442,8 +442,26 @@ Payment status
 
     :param status: ``complete`` or ``incomplete``
     :type status: string
+    :param receipt: for in-app purchases only, a `Web application receipt`_
+    :type status: string
+
+    Example:
+
+    .. code:: json
+
+        {"status": "complete",
+         "receipt": null}
+
+    In-app purchases will include a receipt:
+
+    .. code:: json
+
+        {"status": "complete",
+         "receipt": "eyJhbGciOiAiUlM1MTI...0Xg0EQfUfH121U7b_tqAYaY"}
 
     :status 200: request processed, check status for value.
+
+.. _`Web application receipt`: https://wiki.mozilla.org/Apps/WebApplicationReceipt
 
 Installing
 ==========

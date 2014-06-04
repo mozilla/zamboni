@@ -25,6 +25,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.purchase.models import Contribution
+from mkt.receipts.utils import create_inapp_receipt
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import ProductIconSerializer
@@ -163,8 +164,11 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
         return obj
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        data = {'status': 'complete' if self.object else 'incomplete'}
+        self.object = contrib = self.get_object()
+        data = {'status': 'complete' if self.object else 'incomplete',
+                'receipt': None}
+        if getattr(contrib, 'inapp_product', None):
+            data['receipt'] = create_inapp_receipt(contrib)
         return Response(data)
 
 
