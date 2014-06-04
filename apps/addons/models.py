@@ -1178,11 +1178,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self._premium = None
         return self._premium
 
-    @property
-    def all_dependencies(self):
-        """Return all the add-ons this add-on depends on."""
-        return list(self.dependencies.all()[:3])
-
     def has_installed(self, user):
         if not user or not isinstance(user, UserProfile):
             return False
