@@ -1,6 +1,7 @@
 import os
 import sys
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from commander.deploy import hostgroups, task
