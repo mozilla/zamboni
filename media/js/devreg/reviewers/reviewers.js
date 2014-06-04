@@ -19,6 +19,8 @@ require(['prefetchManifest']);
 
     initRegionalQueue();
 
+    initMoreAppInfo();
+
     if ($('.theme-search').length) {
         initSearch(true);
     } else {
@@ -272,5 +274,25 @@ function initRegionalQueue() {
             require('notification')({message: msg, timeout: 1000});
             $buttons.removeClass('disabled');
         });
+    }));
+}
+
+function initMoreAppInfo() {
+    var $appinfo = $('.more-app-info');
+    var $show_more = $('.more-app-info-show');
+    var $show_less = $('.less-app-info-show');
+
+    // Initial state.
+    $appinfo.hide();
+
+    // Click events.
+    $show_more.click(_pd(function() {
+        $show_more.hide();
+        $appinfo.show();
+    }));
+
+    $show_less.click(_pd(function() {
+        $appinfo.hide();
+        $show_more.show();
     }));
 }
