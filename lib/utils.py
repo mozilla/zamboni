@@ -6,7 +6,7 @@ def validate_settings():
     """
     Validate that if not in DEBUG mode, key settings have been changed.
     """
-    if settings.DEBUG:
+    if settings.DEBUG or settings.IN_TEST_SUITE:
         return
 
     # Things that values must not be.
