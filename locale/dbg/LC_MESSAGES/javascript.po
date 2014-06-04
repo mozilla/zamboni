@@ -6,8 +6,9 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.9.0\n"
 
@@ -25,8 +26,7 @@ msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗ�
 msgid "You cancelled the upload."
 msgstr "Ẏǿŭ ƈȧƞƈḗŀŀḗḓ ŧħḗ ŭƥŀǿȧḓ."
 
-#: media/js/common/upload-image.js:98
-#: media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
@@ -34,8 +34,7 @@ msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 msgid "Videos must be in WebM."
 msgstr "Ṽīḓḗǿş ḿŭşŧ ƀḗ īƞ ẆḗƀḾ."
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ şḗřṽḗř."
 
@@ -69,8 +68,7 @@ msgstr "Ŭƥŀǿȧḓīƞɠ {0}"
 msgid "Error with {0}"
 msgstr "Ḗřřǿř ẇīŧħ {0}"
 
-#: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř."
@@ -82,9 +80,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323
-#: media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -119,18 +115,15 @@ msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ �
 msgid "The manifest could not be found at the given location."
 msgstr "Ŧħḗ ḿȧƞīƒḗşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƒǿŭƞḓ ȧŧ ŧħḗ ɠīṽḗƞ ŀǿƈȧŧīǿƞ."
 
-#: media/js/devreg/apps.js:87
-#: media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
 
-#: media/js/devreg/apps.js:90
-#: media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
 
-#: media/js/devreg/apps.js:93
-#: media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
 
@@ -146,8 +139,7 @@ msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř."
 msgid "Internal server error on app installation."
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƞ ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ."
 
-#: media/js/devreg/apps.js:106
-#: media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
@@ -207,27 +199,17 @@ msgstr "ǿř ŧħḗ <a href=\"http://www.adobe.com/go/getflashplayer\">Ȧḓǿ�
 msgid "Flash Player</a>."
 msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
 
-#: media/js/devreg/init.js:35
-#: media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. "
-"Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
+#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
 
-#: media/js/devreg/l10n.js:45
-#: media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
 
 #: media/js/devreg/login.js:75
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
-"ȧḓḓřḗşş?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -324,39 +306,21 @@ msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[0] ""
-"Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ "
-"ƒǿŀŀǿẇīƞɠ ȧƥƥş. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ "
-"ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
-msgstr[1] ""
-"Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ "
-"ƒǿŀŀǿẇīƞɠ ȧƥƥ. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ "
-"ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] "Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ ƒǿŀŀǿẇīƞɠ ȧƥƥş. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
+msgstr[1] "Ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ řḗḿǿṽḗ ŧħḗ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ƒřǿḿ ŧħḗ ƒǿŀŀǿẇīƞɠ ȧƥƥ. Ȧƥƥŀīƈȧŧīǿƞş ẇīŧħǿŭŧ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
 msgstr "{ȧƥƥȠȧḿḗ} ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş:"
 
-#: media/js/devreg/payments-manage.js:96
-#: media/js/devreg/payments-manage.js:157
-#: media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437
-#: media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: media/js/devreg/payments-manage.js:97
-#: media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
 
@@ -368,18 +332,15 @@ msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
 msgid "You do not currently have any payment accounts."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
 
-#: media/js/devreg/suggestions.js:66
-#: media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68
-#: media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70
-#: media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
 
@@ -394,13 +355,11 @@ msgstr[1] "{0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 msgid "All tests passed successfully."
 msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
 
-#: media/js/devreg/validator.js:117
-#: media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Ŧḗşŧş"
 
@@ -484,8 +443,7 @@ msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
-#: media/js/devreg/reviewers/editors.js:315
-#: media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -583,8 +541,7 @@ msgid "Following"
 msgstr "Ƒǿŀŀǿẇīƞɠ"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11
-#: media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
 
@@ -620,18 +577,15 @@ msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-Şħȧřḗ�
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 
-#: media/js/impala/reviews.js:23
-#: media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
 
-#: media/js/impala/reviews.js:40
-#: media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Ẏǿŭř īƞƥŭŧ īş řḗɋŭīřḗḓ"
 
-#: media/js/impala/reviews.js:133
-#: media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Ḿȧřķḗḓ ƒǿř ḓḗŀḗŧīǿƞ"
 
@@ -680,12 +634,8 @@ msgid "Admins and editors must provide a password to log in."
 msgstr "Ȧḓḿīƞş ȧƞḓ ḗḓīŧǿřş ḿŭşŧ ƥřǿṽīḓḗ ȧ ƥȧşşẇǿřḓ ŧǿ ŀǿɠ īƞ."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"ƁřǿẇşḗřĪḒ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
-"ȧḓḓřḗşş?"
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "ƁřǿẇşḗřĪḒ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:100
@@ -709,10 +659,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
 #: media/js/zamboni/buttons.js:152
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:230
@@ -728,8 +676,7 @@ msgid "Not available for your platform"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298
-#: media/js/zamboni/buttons.js:335
+#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 
@@ -741,14 +688,9 @@ msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
-#: media/js/zamboni/buttons.js:563
-#: media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ "
-"şḗȧřƈħ ƥŀŭɠīƞ."
+#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -791,8 +733,7 @@ msgstr "Ŭƞřḗṽīḗẇḗḓ"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ <span>(Ŀḗȧřƞ Ḿǿřḗ)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79
-#: media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Ƞǿŧ Ȧṽȧīŀȧƀŀḗ ƒǿř {0}"
 
