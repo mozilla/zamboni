@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-01 21:56+0000\n"
+"PO-Revision-Date: 2014-06-04 22:03+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401659798.0\n"
+"X-POOTLE-MTIME: 1401919406.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6373,11 +6373,11 @@ msgstr "Erakutsi sekretua"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:52 mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Reset secret"
-msgstr ""
+msgstr "Berrezarri sekretua"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:18
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
+msgstr "Ikasi gehiago <b>aplikazio barneko ordainketei buruz</b> MDNn."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:21
 msgid ""
@@ -6387,11 +6387,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Generate Keys"
-msgstr ""
+msgstr "Sortu gakoak"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Kopia nazazu"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:23 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:206
 msgid "Save"
@@ -6403,23 +6403,24 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:34
 msgid "Buy URL"
-msgstr ""
+msgstr "Erosketaren URLa"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:44
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Gehitu produktua"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
-msgstr ""
+msgstr "Aplikazioen bateragarritasuna"
 
 #: mkt/developers/templates/developers/payments/premium.html:65
 msgid "Change to Free"
-msgstr ""
+msgstr "Aldatu doakora"
 
 #: mkt/developers/templates/developers/payments/premium.html:66
 msgid "Changing to Free will put your app back into review."
 msgstr ""
+"Aplikazioa doako izatera aldatzeak berau berriro berrikusi beharra dakar."
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
@@ -8344,39 +8345,39 @@ msgstr ""
 #: mkt/reviewers/helpers.py:83
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Aplikazioak ({0})"
 
 #: mkt/reviewers/helpers.py:86
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Ber-berrikuspenak ({0})"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Eguneratzeak ({0})"
 
 #: mkt/reviewers/helpers.py:94
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Intzidentziengatik igorpenak ({0})"
 
 #: mkt/reviewers/helpers.py:98
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Moderatutako berrikuspenak ({0})"
 
 #: mkt/reviewers/helpers.py:102
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Berrikusten ({0})"
 
 #: mkt/reviewers/helpers.py:108
 msgid "China ({0})"
-msgstr ""
+msgstr "Txina ({0})"
 
 #: mkt/reviewers/helpers.py:115
 msgid "Device ({0})"
-msgstr ""
+msgstr "Gailua ({0})"
 
 #: mkt/reviewers/utils.py:425
 msgid "Push to public"
@@ -9248,21 +9249,21 @@ msgstr ""
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Hurrengo urratsak"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr ""
+msgstr "Editatu aplikazioaren xehetasunak"
 
 #: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:10 mkt/submit/templates/submit/manifest.html:23 mkt/submit/templates/submit/next_steps.html:11
 #: mkt/submit/templates/submit/payments-upsell.html:9 mkt/submit/templates/submit/payments.html:8 mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
-msgstr ""
+msgstr "Bidali aplikazioa"
 
 #: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:7 mkt/submit/templates/submit/manifest.html:25 mkt/submit/templates/submit/payments-upsell.html:10
 #: mkt/submit/templates/submit/payments.html:10 mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "Bidali aplikazio bat"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid "Please review your listing information below. We've pre-filled as much as we can from your manifest."
@@ -9270,33 +9271,41 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Ireki xehetasunen orria"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Screenshot or video of your app:"
-msgstr ""
+msgstr "Aplikazioaren pantaila-argazkia edo bideoa:"
 
 #: mkt/submit/templates/submit/details.html:127
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Gutxienez bat beharrezkoa da."
 
 #: mkt/submit/templates/submit/details.html:167
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
 msgstr ""
+"PNG eta JPG onartzen dira. Pantaila-argazkiek gutxienez 320x480 px izan "
+"behar dituzte. 320x480 px proportzioko pantaila-argazkiak dira egokienak. "
+"WebM onartzen da bideoentzako."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Amaitu duzu!"
 
 #: mkt/submit/templates/submit/done.html:16
 msgid "Success! What happens now?"
-msgstr ""
+msgstr "Dena ondo! Eta orain zer?"
 
 #: mkt/submit/templates/submit/done.html:20
 msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
+"Zure aplikazioa gordeta, eta publikatzeko prest dago! Aplikazioa une honetan "
+"berrikuspenaren zain dago, eta hau gainditzen duenean eskuz gaitu beharko "
+"duzu <a href=\"%(url)s\">\"Kudeatu egoera\" orritik</a>, zerrendetan eta "
+"bilaketetan ager dadin. Ordura arte, aldatu lasai aplikazioaren xehetasunak "
+"eta ezarpenak."
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -9310,19 +9319,19 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:53
 msgid "Manage My App"
-msgstr ""
+msgstr "Kudeatu aplikazioa"
 
 #: mkt/submit/templates/submit/done.html:56
 msgid "Submit Another App"
-msgstr ""
+msgstr "Bidali beste aplikazio bat"
 
 #: mkt/submit/templates/submit/manifest.html:34
 msgid "Device Type"
-msgstr ""
+msgstr "Gailu mota"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Aplikazioaren gutxieneko eskakizunak"
 
 #: mkt/submit/templates/submit/manifest.html:113
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -9395,7 +9404,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
-msgstr ""
+msgstr "Aplikazioen ordainketak"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
@@ -9437,15 +9446,15 @@ msgstr ""
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Editatu kontuaren ezarpenak"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Itzuli Marketplace-era"
 
 #: mkt/templates/mkt/account-links.html:15
 msgid "Sign Out"
-msgstr ""
+msgstr "Amaitu saioa"
 
 #: mkt/templates/mkt/footer.html:5
 msgid ""
@@ -9455,7 +9464,7 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Erabilera-baldintzak"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
@@ -9463,7 +9472,7 @@ msgstr "Salatu markaren erabilera okerra"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Atzera"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
@@ -9471,23 +9480,23 @@ msgstr ""
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Hedatu"
 
 #: mkt/webapps/models.py:441
 msgid "You must provide a support email."
-msgstr ""
+msgstr "Helbide elektroniko bat idatzi behar duzu."
 
 #: mkt/webapps/models.py:443
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Aplikazioaren izena idatzi behar duzu."
 
 #: mkt/webapps/models.py:445
 msgid "You must provide at least one device type."
-msgstr ""
+msgstr "Gutxienez gailu mota bat aukeratu behar duzu."
 
 #: mkt/webapps/models.py:448
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Gutxienez kategoria bat idatzi behar duzu."
 
 #: mkt/webapps/models.py:525
 msgid "You must set up content ratings."
