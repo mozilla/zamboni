@@ -297,7 +297,7 @@ span.emaillink .i {
     border-radius: 6px;
 }
 .graybox .error-message {
-    background: transparent url('../../img/developers/exclamation.png') no-repeat 5px 50%;
+    background: transparent url('../../img/sprites/mkt-reviewer-icons/exclamation.png') no-repeat 5px 50%;
     color: red;
     padding: 5px 0 5px 30px;
 }
@@ -381,10 +381,6 @@ span.emaillink .i {
     padding: 10px;
     _background: #fff; /* declare background color for container to avoid distorted fonts in IE while fading */
 }
-/*.ui-tabs-loading em {
-    padding: 0 0 0 20px;
-    background: url(loading.gif) no-repeat 0 50%;
-}*/
 /* Additional IE specific bug fixes... */
 * html .ui-tabs-nav { /* auto clear @ IE 6 & IE 7 Quirks Mode */
     display: inline-block;
@@ -899,7 +895,7 @@ div.collector-firstrun-favorite {
 
 .review .others-by-user { font-style: italic; display: block; margin-top: 0.5em; font-size: 0.85em }
 .review .others-by-user a { padding-left: 22px;  }
-.review .others-by-user a.loading { background: transparent url(../../img/ajax_loading.gif) no-repeat 2px top }
+.review .others-by-user a.loading { background: transparent url(../../img/zamboni/loading.gif) no-repeat 2px top }
 .review h2 { margin-bottom: 2px;}
 .review h3 { margin-bottom: 2px;}
 
@@ -919,7 +915,7 @@ div.collector-firstrun-favorite {
 .with-js .review form.flag, .with-js .review-reply form.flag { display: inline }
 .with-js .review form.flag label, .with-js .review-reply form.flag label { display: none; }
 
-.review .flag span.loading, .review-reply .flag span.loading { padding-left: 22px; background: transparent url(../../img/ajax_loading.gif) no-repeat 2px top }
+.review .flag span.loading, .review-reply .flag span.loading { padding-left: 22px; background: transparent url(../../img/zamboni/loading.gif) no-repeat 2px top }
 
 /* END =Reviews Page */
 

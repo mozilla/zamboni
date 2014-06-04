@@ -41,7 +41,7 @@
     overflow: hidden;
 }
 .ac_loading {
-    background : url('../img/ajax_loading.gif') right center no-repeat;
+    background : url('../../img/zamboni/loading.gif') right center no-repeat;
 }
 .ac_over {
     background-color: Highlight;
