@@ -117,6 +117,7 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
 
         contribution = Contribution.objects.create(
             addon_id=inapp.webapp.pk,
+            inapp_product=inapp,
             # In-App payments are unauthenticated so we have no user
             # and therefore can't determine a meaningful region.
             amount=None,
