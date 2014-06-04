@@ -66,8 +66,7 @@ def _mock_fetch_content(url):
 
 
 class TestAppCreateHandler(CreateHandler, AMOPaths):
-    fixtures = fixture('app_firefox', 'platform_all', 'user_admin',
-                       'user_2519', 'user_999')
+    fixtures = fixture('platform_all', 'user_admin', 'user_2519', 'user_999')
 
     def count(self):
         return Addon.objects.count()
@@ -354,8 +353,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_put_wrong_category(self):
         self.create_app()
         wrong = Category.objects.create(name='wrong', slug='wrong',
-                                        type=amo.ADDON_EXTENSION,
-                                        application_id=amo.FIREFOX.id)
+                                        type=amo.ADDON_EXTENSION)
         data = self.base_data()
         data['categories'] = [wrong.slug]
         res = self.client.put(self.get_url, data=json.dumps(data))

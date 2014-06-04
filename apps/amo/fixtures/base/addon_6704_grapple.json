@@ -106,28 +106,6 @@
         }
     },
     {
-        "pk": 282,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "3.7a1pre",
-            "version_int": 3070000001000,
-            "created": "2009-08-19 07:35:43",
-            "modified": "2009-08-19 07:35:43"
-        }
-    },
-    {
-        "pk": 279,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "3.6b1pre",
-            "version_int": 3060000101000,
-            "created": "2009-08-19 07:35:43",
-            "modified": "2009-08-19 07:35:43"
-        }
-    },
-    {
         "pk": 5760,
         "model": "addons.addonuser",
         "fields": {
@@ -136,26 +114,6 @@
             "role": 5,
             "listed": true,
             "user": 888
-        }
-    },
-    {
-        "pk": 53601,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "version": 94144,
-            "min": 279,
-            "max": 282
-        }
-    },
-    {
-        "pk": 1078,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 6704,
-            "modified": "2010-10-02 07:03:07",
-            "created": "2010-10-02 07:03:07"
         }
     }
 ]

@@ -13,7 +13,6 @@ import requests
 from cache_nuggets.lib import memoize
 from PIL import Image
 
-from applications.management.commands import dump_apps
 from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError
 from lib.crypto.receipt import SigningError
@@ -124,8 +123,7 @@ def path():
           settings.COLLECTIONS_ICON_PATH,
           settings.PREVIEWS_PATH,
           settings.USERPICS_PATH,
-          settings.REVIEWER_ATTACHMENTS_PATH,
-          dump_apps.Command.JSON_PATH,)
+          settings.REVIEWER_ATTACHMENTS_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
          # We do not want Django to have write access though.

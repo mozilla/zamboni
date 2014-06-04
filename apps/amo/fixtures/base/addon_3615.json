@@ -1,14 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
         "pk": 418039,
         "model": "translations.translation",
         "fields": {
@@ -229,39 +220,6 @@
         }
     },
     {
-        "pk": 282,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "3.7a1pre",
-            "created": "2007-03-05 13:09:26",
-            "version_int": 3070000001000,
-            "modified": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 364,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "4.0",
-            "created": "2007-03-05 13:09:26",
-            "version_int": 4000000200100,
-            "modified": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 97,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "2.0",
-            "created": "2007-03-05 13:09:26",
-            "version_int": 2000000200100,
-            "modified": "2007-03-05 13:09:26"
-        }
-    },
-    {
         "pk": 2818,
         "model": "addons.addonuser",
         "fields": {
@@ -270,16 +228,6 @@
             "role": 5,
             "listed": true,
             "user": 55021
-        }
-    },
-    {
-        "pk": 47881,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "version": 81551,
-            "min": 97,
-            "max": 364
         }
     },
     {
@@ -326,7 +274,6 @@
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
-            "application": 1,
             "type": 1,
             "slug": "bookmarks",
             "name": 2222
@@ -340,7 +287,6 @@
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
-            "application": 1,
             "type": 1,
             "slug": "social",
             "name": 2424
@@ -354,7 +300,6 @@
             "weight": 0,
             "created": "2007-03-05 13:09:27",
             "modified": "2010-02-23 19:17:32",
-            "application": 1,
             "type": 1,
             "slug": "feeds",
             "name": 2323
@@ -385,16 +330,6 @@
             "category": 24,
             "feature": 1,
             "addon": 3615
-        }
-    },
-    {
-        "pk": 1028,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 3615,
-            "modified": "2010-10-01 21:37:07",
-            "created": "2010-10-01 21:37:07"
         }
     }
 ]

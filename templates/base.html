@@ -27,11 +27,7 @@
     {% endif %}
     {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+  <body class="html-{{ DIR }} moz-header-slim {% block bodyclass %}{% endblock %}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
@@ -59,10 +55,7 @@
               </ul>
             </nav>
             <div id="masthead">
-              {% block site_header_title %}
-              {% include "impala/header_title.html" %}
-              {{ site_nav() }}
-              {% endblock %}
+              {% block site_header_title %}{% endblock %}
               {% block navbar %}{% endblock %}
               {% block site_stats %}{% endblock %}
             </div>

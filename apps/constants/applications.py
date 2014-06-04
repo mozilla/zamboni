@@ -10,6 +10,7 @@ class App:
         return cls.user_agent_string in user_agent
 
 
+# TODO: Review these and remove if unused.
 # Applications
 class FIREFOX(App):
     id = 1
@@ -184,19 +185,10 @@ DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
 
 
 # UAs will attempt to match in this order.
-APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
 APPS = dict((app.short, app) for app in _apps)
 
 APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA, SUNBIRD))
-APP_IDS = dict((app.id, app) for app in _apps)
-APP_GUIDS = dict((app.guid, app) for app in _apps)
-APPS_RETIRED = dict([(MOZILLA.short, MOZILLA), (SUNBIRD.short, SUNBIRD)])
-
-APP_TYPE_SUPPORT = {}
-for _app in APP_USAGE:
-    for _type in _app.types:
-        APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
 for _app in APPS_ALL.values():
     _versions = list(getattr(_app, 'exclude_versions', []))
@@ -205,4 +197,4 @@ for _app in APPS_ALL.values():
     _versions.append(99)
     _app.exclude_versions = tuple(_versions)
 
-del _app, _apps, _type, _versions
+del _app, _apps, _versions
