@@ -570,7 +570,7 @@ CLEANCSS_BIN = 'cleancss'
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
-                     'rocketfuel']
+                     'rocketfuel', 'transonic']
 COMMONPLACE_REPOS_APPCACHED = []
 
 # CSP Settings
