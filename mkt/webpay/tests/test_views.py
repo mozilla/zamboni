@@ -119,6 +119,8 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         res = self._post(extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
         contribution = Contribution.objects.get()
+        eq_(contribution.addon, self.inapp.webapp)
+        eq_(contribution.inapp_product, self.inapp)
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])

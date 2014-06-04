@@ -1097,6 +1097,10 @@ def debug(request, addon):
         )['webpayJWT']
 
         for inapp in addon.inappproduct_set.all():
+            contribution = Contribution.objects.create(
+                addon=addon,
+                inapp_product=inapp,
+            )
             context['inapps'].append({
                 'inapp': inapp,
                 'jwt': get_product_jwt(
