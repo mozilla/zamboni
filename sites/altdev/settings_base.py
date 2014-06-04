@@ -152,6 +152,7 @@ NEW_FEATURES = True
 REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
+STYLUS_BIN = 'stylus'
 UGLIFY_BIN = 'uglifyjs'
 
 CELERYD_TASK_SOFT_TIME_LIMIT = 240
