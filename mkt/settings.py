@@ -82,7 +82,6 @@ INSTALLED_APPS = (
     'abuse',
     'access',
     'addons',
-    'applications',
     'cronjobs',
     'csp',
     'editors',

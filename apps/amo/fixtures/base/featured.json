@@ -20,15 +20,6 @@
     },
     {
         "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 1,
         "model": "addons.addontype",
         "fields": {
             "modified": "2009-02-06 08:42:28",
@@ -182,58 +173,6 @@
         }
     },
     {
-        "pk": 327,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2010-03-05 17:00:39",
-            "start": "2009-09-05 17:00:39",
-            "locale": null,
-            "created": "2009-09-05 17:00:39",
-            "modified": "2009-09-05 17:00:39",
-            "application": 1,
-            "addon": 6912
-        }
-    },
-    {
-        "pk": 326,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2020-03-05 17:00:23",
-            "start": "2009-09-05 17:00:23",
-            "locale": null,
-            "created": "2009-09-05 17:00:23",
-            "modified": "2009-09-05 17:00:23",
-            "application": 1,
-            "addon": 7661
-        }
-    },
-    {
-        "pk": 325,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2020-03-05 17:00:10",
-            "start": "2009-09-05 17:00:10",
-            "locale": null,
-            "created": "2009-09-05 17:00:10",
-            "modified": "2009-09-05 17:00:10",
-            "application": 1,
-            "addon": 2464
-        }
-    },
-    {
-        "pk": 302,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2009-12-10 08:39:55",
-            "start": "2009-06-10 08:39:55",
-            "locale": "en-US",
-            "created": "2009-06-10 08:39:55",
-            "modified": "2009-10-20 18:18:52",
-            "application": 1,
-            "addon": 3481
-        }
-    },
-    {
         "pk": 497609,
         "model": "translations.translation",
         "fields": {
@@ -366,16 +305,6 @@
         }
     },
     {
-        "pk": 90952,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "max": 282,
-            "version": 90952,
-            "min": 282
-        }
-    },
-    {
         "pk": 88798,
         "model": "versions.version",
         "fields": {
@@ -386,16 +315,6 @@
             "modified": "2009-12-24 18:31:25",
             "version": "2.0.3",
             "addon": 7661
-        }
-    },
-    {
-        "pk": 88798,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "max": 282,
-            "version": 88798,
-            "min": 282
         }
     },
     {
@@ -473,26 +392,6 @@
             "version": 68019,
             "datestatuschanged": "2009-05-08 05:26:20",
             "size": 3072
-        }
-    },
-    {
-        "pk": 1042,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 7661,
-            "modified": "2010-10-01 22:09:39",
-            "created": "2010-10-01 22:09:39"
-        }
-    },
-    {
-        "pk": 1041,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 2464,
-            "modified": "2010-10-01 22:09:39",
-            "created": "2010-10-01 22:09:39"
         }
     }
 ]

@@ -249,7 +249,7 @@ class UploadAddon(object):
 
 
 class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = fixture('app_firefox', 'platform_all', 'user_999', 'user_10482')
+    fixtures = fixture('platform_all', 'user_999', 'user_10482')
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()

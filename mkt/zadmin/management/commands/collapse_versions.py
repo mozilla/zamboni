@@ -63,7 +63,6 @@ def do_collapsing():
 
                 # Hosted app reviews' version column is always NULL.
                 # `versioncomments` has no data for apps.
-                # `applications_versions` has no data for apps.
 
                 # VersionLogs and ActivityLogs
                 cursor.execute('''

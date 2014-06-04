@@ -7,11 +7,15 @@
   <h1>{{ title }}</h1>
   <section class="primary">
     <div class="island">
-      <p>Go to <a href="{{ app.get_dev_url() }}">developer page</a>.</p>
-      <p>See <a href="{{ app.get_api_url() }}">api entry</a>.</p>
-      <p>See <a href="{{ data['urls']['es'] }}">elastic search entry</a>.</p>
+      <p><a href="{{ app.get_dev_url() }}">Developer page</a></p>
+      <p><a href="{{ app.get_api_url() }}">API Entry</a></p>
+      <p><a href="{{ urls['es'] }}">ElasticSearch Entry</a></p>
       {% if app.is_premium() %}
-        <p>Buy <a href="/mozpay/?req={{ data['pay_request'] }}">without mozPay</a>.</p>
+        <p><a href="/mozpay/?req={{ app_jwt }}">Buy {{ app.name }}</a></p>
+
+        {% for inapp in inapps %}
+            <p><a href="/mozpay/?req={{ inapp['jwt'] }}">Buy {{ inapp['inapp'].name }}</a></p>
+        {% endfor %}
       {% endif %}
     </div>
   </section>

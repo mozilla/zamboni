@@ -60,7 +60,7 @@ from mkt.developers.utils import check_upload, handle_vip
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
-from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
+from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 from stats.models import Contribution
 from users.models import UserProfile
 from users.views import _login
@@ -76,7 +76,8 @@ DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
 class AppFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),  # order_by_translation(self.model.objects.all(), 'name')
+    # order_by_translation(self.model.objects.all(), 'name')
+    opts = (('name', _lazy(u'Name')),
             ('created', _lazy(u'Created')))
 
 
@@ -1082,21 +1083,29 @@ def debug(request, addon):
     if not settings.DEBUG:
         raise http.Http404
 
-    data = {
+    context = {
+        'app': addon,
+        'inapps': [],
         'urls': {'es': '%s/apps/webapp/%s' % (settings.ES_URLS[0], addon.pk)},
-        'pay_request': ''
     }
+
     if addon.is_premium():
-        data['pay_request'] = get_product_jwt(
+        contribution = Contribution.objects.create(addon=addon)
+        context['app_jwt'] = get_product_jwt(
             WebAppProduct(addon),
-            user=request.amo_user,
-            region=request.REGION,
-            source=request.REQUEST.get('src', ''),
-            lang=request.LANG
+            contribution,
         )['webpayJWT']
 
-    return render(request, 'developers/debug.html',
-                  {'app': addon, 'data': data})
+        for inapp in addon.inappproduct_set.all():
+            context['inapps'].append({
+                'inapp': inapp,
+                'jwt': get_product_jwt(
+                    InAppProduct(inapp),
+                    contribution,
+                )['webpayJWT'],
+            })
+
+    return render(request, 'developers/debug.html', context)
 
 
 class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):

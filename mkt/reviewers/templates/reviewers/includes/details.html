@@ -110,10 +110,6 @@
             {{ product.homepage }}</a>
         </dd>
       {% endif %}
-      {% if product.compatible_apps[APP] %}
-        <dt>{{ _('Works with') }}</dt>
-        <dd>{{ product.compatible_apps[APP] }}</dd>
-      {% endif %}
       {% if product.total_reviews %}
         <dt>{{ _('Rating') }}</dt>
         <dd>{{ impala_reviews_link(product) }}</dd>

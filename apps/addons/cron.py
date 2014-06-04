@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import transaction
-from django.db.models import F, Q
+from django.db.models import Q
 
 import cronjobs
 import path
@@ -12,7 +12,7 @@ from celery.task.sets import TaskSet
 from celeryutils import task
 
 import amo
-from addons.models import Addon, AppSupport
+from addons.models import Addon
 from amo.decorators import write
 from amo.utils import chunked
 from files.models import File
@@ -121,42 +121,6 @@ def addon_last_updated():
     other = (Addon.objects.no_cache().filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
-
-
-@cronjobs.register
-def update_addon_appsupport():
-    # Find all the add-ons that need their app support details updated.
-    newish = (Q(last_updated__gte=F('appsupport__created')) |
-              Q(appsupport__created__isnull=True))
-    # Search providers don't list supported apps.
-    has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
-    has_file = Q(versions__files__status__in=amo.VALID_STATUSES)
-    good = Q(has_app, has_file) | Q(type=amo.ADDON_PERSONA)
-    ids = (Addon.objects.valid().distinct()
-           .filter(newish, good).values_list('id', flat=True))
-
-    ts = [_update_appsupport.subtask(args=[chunk])
-          for chunk in chunked(ids, 20)]
-    TaskSet(ts).apply_async()
-
-
-@cronjobs.register
-def update_all_appsupport():
-    from .tasks import update_appsupport
-    ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
-    task_log.info('Updating appsupport for %s addons.' % len(ids))
-    for idx, chunk in enumerate(chunked(ids, 100)):
-        if idx % 10 == 0:
-            task_log.info('[%s/%s] Updating appsupport.'
-                          % (idx * 100, len(ids)))
-        update_appsupport(chunk)
-
-
-@task
-@transaction.commit_manually
-def _update_appsupport(ids, **kw):
-    from .tasks import update_appsupport
-    update_appsupport(ids)
 
 
 @cronjobs.register

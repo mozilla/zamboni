@@ -117,7 +117,6 @@ class _Patch(object):
                 # Ignore some test code.
                 or 'tests/test_views_edit.py:setup_image_status' in file_fn
                 or 'search/tests/__init__.py:setUp' in file_fn
-                or 'amo/tests/__init__.py:xpi_copy_over' in file_fn,
                 ):
                 allow_call = True
             # print filename, fn

@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-import re
 import unicodedata
 import uuid
 
@@ -21,7 +20,6 @@ import amo.utils
 from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
-from applications.models import Application, AppVersion
 
 
 log = commonware.log.getLogger('z.files')
@@ -272,10 +270,6 @@ class FileUpload(amo.models.ModelBase):
     valid = models.BooleanField(default=False)
     is_webapp = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    compat_with_app = models.ForeignKey(Application, null=True,
-                                    related_name='uploads_compat_for_app')
-    compat_with_appver = models.ForeignKey(AppVersion, null=True,
-                                    related_name='uploads_compat_for_appver')
     task_error = models.TextField(null=True)
 
     objects = amo.models.UncachedManagerBase()

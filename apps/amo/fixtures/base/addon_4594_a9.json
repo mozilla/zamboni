@@ -134,15 +134,5 @@
             "listed": true,
             "user": 10482
         }
-    },
-    {
-        "pk": 1233,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 4594,
-            "modified": "2010-10-02 07:51:54",
-            "created": "2010-10-02 07:51:54"
-        }
     }
 ]

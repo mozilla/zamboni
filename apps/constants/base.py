@@ -316,11 +316,6 @@ ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
 VIDEO_TYPES = ('video/webm',)
 
-# These types don't maintain app compatibility in the db.  Instead, we look at
-# APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
-NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)
-HAS_COMPAT = dict((t, t not in NO_COMPAT) for t in ADDON_TYPES)
-
 # Contributions
 CONTRIB_NONE = 0
 CONTRIB_PASSIVE = 1

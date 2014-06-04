@@ -1,7 +1,6 @@
 import logging
 
 from django.core.files.storage import default_storage as storage
-from django.db import connection, transaction
 
 from celeryutils import task
 
@@ -20,7 +19,6 @@ log = logging.getLogger('z.task')
 @write
 def version_changed(addon_id, **kw):
     update_last_updated(addon_id)
-    update_appsupport([addon_id])
 
 
 def update_last_updated(addon_id):
@@ -45,37 +43,6 @@ def update_last_updated(addon_id):
     if res:
         pk, t = res[0]
         Addon.objects.filter(pk=pk).update(last_updated=t)
-
-
-@transaction.commit_on_success
-def update_appsupport(ids):
-    log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
-    delete = 'DELETE FROM appsupport WHERE addon_id IN (%s)'
-    insert = """INSERT INTO appsupport
-                  (addon_id, app_id, min, max, created, modified)
-                VALUES %s"""
-
-    addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
-    apps = []
-    for addon in addons:
-        for app, appver in addon.compatible_apps.items():
-            if appver is None:
-                # Fake support for all version ranges.
-                min_, max_ = 0, 999999999999999999
-            else:
-                min_, max_ = appver.min.version_int, appver.max.version_int
-            apps.append((addon.id, app.id, min_, max_))
-    s = ','.join('(%s, %s, %s, %s, NOW(), NOW())' % x for x in apps)
-
-    if not apps:
-        return
-
-    cursor = connection.cursor()
-    cursor.execute(delete % ','.join(map(str, ids)))
-    cursor.execute(insert % s)
-
-    # All our updates were sql, so invalidate manually.
-    Addon.objects.invalidate(*addons)
 
 
 @task

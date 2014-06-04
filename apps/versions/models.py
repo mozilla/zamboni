@@ -9,7 +9,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
 
-import caching.base
 import commonware.log
 import jinja2
 
@@ -18,8 +17,6 @@ import amo
 import amo.models
 import amo.utils
 from amo.decorators import use_master
-from amo.urlresolvers import reverse
-from applications.models import Application, AppVersion
 from files import utils
 from files.models import cleanup_file, File, Platform
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
@@ -114,10 +111,6 @@ class Version(amo.models.ModelBase):
                                license_id=license, _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
 
-        AV = ApplicationsVersions
-        for app in data.get('apps', []):
-            AV(version=v, min=app.min, max=app.max,
-               application_id=app.id).save()
         platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
         # To avoid circular import.
@@ -156,9 +149,6 @@ class Version(amo.models.ModelBase):
     def path_prefix(self):
         return os.path.join(settings.ADDONS_PATH, str(self.addon_id))
 
-    def license_url(self, impala=False):
-        return reverse('addons.license', args=[self.addon.slug, self.version])
-
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
@@ -181,12 +171,6 @@ class Version(amo.models.ModelBase):
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
               .select_related(depth=1).no_cache())
         return al
-
-    @amo.cached_property(writable=True)
-    def compatible_apps(self):
-        """Get a mapping of {APP: ApplicationVersion}."""
-        avs = self.apps.select_related(depth=1)
-        return self._compat_map(avs)
 
     @amo.cached_property(writable=True)
     def all_files(self):
@@ -226,35 +210,23 @@ class Version(amo.models.ModelBase):
         return bool(self.all_files)
 
     @classmethod
-    def _compat_map(cls, avs):
-        apps = {}
-        for av in avs:
-            app_id = av.application_id
-            if app_id in amo.APP_IDS:
-                apps[amo.APP_IDS[app_id]] = av
-        return apps
-
-    @classmethod
     def transformer(cls, versions):
-        """Attach all the compatible apps and files to the versions."""
+        """Attach all the files to the versions."""
         ids = set(v.id for v in versions)
         if not versions:
             return
 
         # FIXME: find out why we have no_cache() here and try to remove it.
-        avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related(depth=1).no_cache())
         files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
             groups = amo.utils.sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
-        av_dict, file_dict = rollup(avs), rollup(files)
+        file_dict = rollup(files)
 
         for version in versions:
             v_id = version.id
-            version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
             for f in version.all_files:
                 f.version = version
@@ -414,22 +386,3 @@ class License(amo.models.ModelBase):
 
 models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='version_translations')
-
-
-class ApplicationsVersions(caching.base.CachingMixin, models.Model):
-
-    application = models.ForeignKey(Application)
-    version = models.ForeignKey(Version, related_name='apps')
-    min = models.ForeignKey(AppVersion, db_column='min',
-        related_name='min_set')
-    max = models.ForeignKey(AppVersion, db_column='max',
-        related_name='max_set')
-
-    objects = caching.base.CachingManager()
-
-    class Meta:
-        db_table = u'applications_versions'
-        unique_together = (('application', 'version'),)
-
-    def __unicode__(self):
-        return u'%s %s - %s' % (self.application, self.min, self.max)

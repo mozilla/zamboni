@@ -28,7 +28,7 @@ import tower
 from dateutil.parser import parse as dateutil_parser
 from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
-from nose.tools import eq_, nottest
+from nose.tools import eq_
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from test_utils import RequestFactory
@@ -36,27 +36,24 @@ from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
 import amo
+import mkt
 from access.acl import check_ownership
 from access.models import Group, GroupUser
 from addons.models import Addon, Category
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
-from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
 from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import ApplicationsVersions, Version
-
-import mkt
 from mkt.constants import regions
 from mkt.files.helpers import copyfileobj
+from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
-from mkt.prices.models import AddonPremium, Price, PriceCurrency
-
+from translations.models import Translation
+from users.models import UserProfile
+from versions.models import Version
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -145,10 +142,6 @@ def check_links(expected, elements, selected=None, verify=True):
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
             eq_(bool(e.length), text == selected)
-
-
-def check_selected(expected, links, selected):
-    check_links(expected, links, verify=True, selected=selected)
 
 
 class RedisTest(object):
@@ -577,12 +570,6 @@ class AMOPaths(object):
             return self.file_fixture_path(name + '.xpi')
         return self.file_fixture_path(name)
 
-    def xpi_copy_over(self, file, name):
-        """Copies over a file into place for tests."""
-        if not os.path.exists(os.path.dirname(file.file_path)):
-            os.makedirs(os.path.dirname(file.file_path))
-        shutil.copyfile(self.xpi_path(name), file.file_path)
-
     def manifest_path(self, name):
         return os.path.join(settings.ROOT,
                             'mkt/submit/tests/webapps/%s' % name)
@@ -778,20 +765,10 @@ def user_factory(**kw):
 
 
 def version_factory(file_kw={}, **kw):
-    min_app_version = kw.pop('min_app_version', '4.0')
-    max_app_version = kw.pop('max_app_version', '5.0')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
-    if kw.get('addon').type is not amo.ADDON_WEBAPP:
-        a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
-        av_min, _ = AppVersion.objects.get_or_create(application=a,
-                                                     version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=a,
-                                                     version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=a, version=v,
-                                                   min=av_min, max=av_max)
     file_factory(version=v, **file_kw)
     return v
 
