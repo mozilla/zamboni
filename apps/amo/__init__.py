@@ -89,6 +89,12 @@ class CachedProperty(object):
             raise TypeError('read only attribute')
         obj.__dict__[self.__name__] = value
 
+    def __delete__(self, obj):
+        if not self.writable:
+            raise TypeError('read only attribute')
+        del obj.__dict__[self.__name__]
+
+
 # For unproven performance gains put firefox and thunderbird parsing
 # here instead of constants
 FIREFOX.latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
