@@ -78,7 +78,7 @@ def toggle_app_for_special_regions(request, app, enabled_regions=None):
                                  u'special region (%s).' % (app, region.slug))
                         value, changed = app.geodata.set_nominated_date(
                             region, save=True)
-                        log.info(u'[Webapp:%s] Setting nomination date for to '
+                        log.info(u'[Webapp:%s] Setting nomination date to '
                                  u'now for region (%s).' % (app, region.slug))
             else:
                 # Developer cancelled request for approval.

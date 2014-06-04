@@ -133,6 +133,8 @@ class WebappManager(amo.models.ManagerBase):
         region = parse_region(region)
         column_prefix = '_geodata__region_%s' % region.slug
         return self.filter(**{
+            # Only nominated apps should show up.
+            '%s_nominated__isnull' % column_prefix: False,
             'status__in': amo.WEBAPPS_APPROVED_STATUSES,
             'disabled_by_user': False,
             'escalationqueue__isnull': True,
@@ -2416,7 +2418,8 @@ class Geodata(amo.models.ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-        choices=amo.MKT_STATUS_CHOICES.items(), db_index=True, default=0)
+        choices=amo.MKT_STATUS_CHOICES.items(), db_index=True,
+        default=amo.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 
     help_text = _('{region} nomination date').format(region=region.name)
