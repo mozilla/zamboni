@@ -12,6 +12,7 @@ from receipts import certs
 
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import sign
+from lib.utils import static_url
 
 from services.utils import settings
 
@@ -71,7 +72,7 @@ class Verify:
         This is the default that verify will use, this will
         do the entire stack of checks.
         """
-        receipt_domain = urlparse(settings.WEBAPPS_RECEIPT_URL).netloc
+        receipt_domain = urlparse(static_url('WEBAPPS_RECEIPT_URL')).netloc
         try:
             self.decoded = self.decode()
             self.check_type('purchase-receipt')

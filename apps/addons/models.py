@@ -29,6 +29,7 @@ from amo.urlresolvers import get_outgoing_url, reverse
 from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
                        sorted_groupby, timer, to_language, urlparams)
 from files.models import File
+from lib.utils import static_url
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
@@ -635,10 +636,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         # Figure out what to return for an image URL.
         if not self.icon_type:
-            return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
+            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
                                      'default', size)
         elif icon_type_split[0] == 'icon':
-            return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
+            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
                                      icon_type_split[1], size)
         else:
             # [1] is the whole ID, [2] is the directory.
@@ -646,7 +647,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # If we don't have the icon_hash set to a dummy string ("never"), when
             # the icon is eventually changed, icon_hash will be updated.
             suffix = getattr(self, 'icon_hash', None) or 'never'
-            return settings.ADDON_ICON_URL % (
+            return static_url('ADDON_ICON_URL') % (
                 split_id.group(2) or 0, self.id, size, suffix)
 
     @write
@@ -1483,11 +1484,11 @@ class Preview(amo.models.ModelBase):
 
     @property
     def thumbnail_url(self):
-        return self._image_url(settings.PREVIEW_THUMBNAIL_URL)
+        return self._image_url(static_url('PREVIEW_THUMBNAIL_URL'))
 
     @property
     def image_url(self):
-        return self._image_url(settings.PREVIEW_FULL_URL)
+        return self._image_url(static_url('PREVIEW_FULL_URL'))
 
     @property
     def thumbnail_path(self):

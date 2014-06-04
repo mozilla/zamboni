@@ -18,26 +18,18 @@ CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 
-ADDON_ICON_URL = "%s/%s/%s/images/addon_icon/%%d-%%d.png?modified=%%s" % (STATIC_URL, LANGUAGE_CODE, DEFAULT_APP)
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.%s?modified=%d')
-# paths for uploaded extensions
-FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
+ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
+PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 
+SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
+USERPICS_URL = 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 MEDIA_URL = STATIC_URL + 'media/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-
-PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
+ADDON_ICONS_DEFAULT_URL = 'img/hub'
 
 CACHE_PREFIX = 'landfill.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
@@ -52,9 +44,12 @@ STATSD_PREFIX = 'marketplace-landfill'
 ## Celery
 BROKER_URL = private_mkt.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
+
+ES_DEFAULT_NUM_REPLICAS = 2
 
 WEBAPPS_RECEIPT_KEY = private_mkt.WEBAPPS_RECEIPT_KEY
 WEBAPPS_RECEIPT_URL = private_mkt.WEBAPPS_RECEIPT_URL
@@ -87,3 +82,5 @@ SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
 #Bug 793876
 SIGNED_APPS_KEY = private_mkt.SIGNED_APPS_KEY
 SIGNED_APPS_SERVER_ACTIVE = False
+
+VALIDATOR_TIMEOUT = 110

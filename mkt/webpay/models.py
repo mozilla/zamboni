@@ -5,6 +5,7 @@ from django.db import models
 
 from amo.helpers import absolutify
 from amo.models import ModelBase
+from lib.utils import static_url
 
 
 class ProductIcon(ModelBase):
@@ -20,7 +21,7 @@ class ProductIcon(ModelBase):
         return os.path.join(settings.PRODUCT_ICON_PATH, self._base_path())
 
     def url(self):
-        return absolutify(os.path.join(settings.PRODUCT_ICON_URL,
+        return absolutify(os.path.join(static_url('PRODUCT_ICON_URL'),
                                        self._base_path()))
 
     def _base_path(self):

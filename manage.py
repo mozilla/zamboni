@@ -59,15 +59,12 @@ if setting.startswith(('zamboni',  # typical git clone destination
 # for our purposes that means, load the default site, so if nothing is
 # specified by now, use the default.
 if setting in ('settings', ''):
-    setting = 'settings_local'
+    setting = 'mkt.settings'
 
 # Finally load the settings file that was specified.
 from django.utils import importlib
 settings = importlib.import_module(setting)
 os.environ['DJANGO_SETTINGS_MODULE'] = setting
-
-if not settings.DEBUG:
-    warnings.simplefilter('ignore')
 
 import session_csrf
 session_csrf.monkeypatch()

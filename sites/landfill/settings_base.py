@@ -10,6 +10,8 @@ from mkt.settings import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING
 from .. import splitstrip
 import private_base as private
 
+ALLOWED_HOSTS = ['.allizom.org', '.mozflare.net']
+
 ENGAGE_ROBOTS = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -62,7 +64,7 @@ LOG_LEVEL = logging.DEBUG
 ## Celery
 BROKER_URL = private.BROKER_URL
 
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1

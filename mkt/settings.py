@@ -6,6 +6,7 @@ import socket
 
 from django.utils.functional import lazy
 
+import dj_database_url
 from heka.config import client_from_dict_config
 
 from mkt import asset_bundles
@@ -23,7 +24,7 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
-HOSTNAME = socket.gethostname()
+HOSTNAME = os.environ.get('ZAMBONI_HOSTNAME', socket.gethostname())
 
 try:
     # If we have build ids available, we'll grab them here and add them to our
@@ -40,35 +41,37 @@ except ImportError:
 # Please see the Django documentation for information on these
 # variables: https://docs.djangoproject.com/en/dev/ref/settings/
 ADMINS = ()
-ALLOWED_HOSTS = [
-    '.allizom.org',
-    '.mozilla.org',
-    '.mozilla.com',
-    '.mozilla.net',
-    '.firefox.com',
-    '.firefox.com.cn'
-]
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.UserProfile'
 AUTHENTICATION_BACKENDS = ('django_browserid.auth.BrowserIDBackend',)
 
 CACHE_MIDDLEWARE_SECONDS = 60 * 3
+
+# Here we use the LocMemCache backend from cache-machine, as it interprets the
+# "0" timeout parameter of ``cache``  in the same way as the Memcached backend:
+# as infinity. Django's LocMemCache backend interprets it as a "0 seconds"
+# timeout (and thus doesn't cache at all).
+
+# Caching is required for CSRF to work, please do not use the dummy cache.
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'LOCATION': 'zamboni',
+    }
+}
+
 CSRF_FAILURE_VIEW = 'mkt.site.views.csrf_failure'
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
-DATABASES = {
-    'default': {
-        'NAME': 'zamboni',
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'PORT': '',
-        'USER': '',
-        'PASSWORD': '',
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-        'TEST_CHARSET': 'utf8',
-        'TEST_COLLATION': 'utf8_general_ci',
-    },
-}
+
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(
+    default='mysql://root:@localhost:3306/zamboni',
+    env='ZAMBONI_DATABASE')
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['default']['TEST_CHARSET'] = 'utf8'
+DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -218,9 +221,9 @@ SECRET_KEY = 'please change this'
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
+SESSION_COOKIE_DOMAIN = None
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 TEMPLATE_DEBUG = DEBUG
@@ -312,7 +315,6 @@ FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 # not be publicly accessible (like disabled add-ons).
 GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
 IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
-LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
 
 # File path for add-on files that get rsynced to mirrors.
 # /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
@@ -328,7 +330,7 @@ REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
 # When True, create a URL root /tmp that serves files in your temp path.
 # This is useful for development to view upload pics, etc.
 # NOTE: This only works when DEBUG is also True.
-SERVE_TMP_PATH = False
+SERVE_TMP_PATH = True
 
 # Used for storing signed webapps.
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
@@ -345,34 +347,17 @@ SITE_URL = 'http://%s' % DOMAIN
 STATIC_URL = SITE_URL + '/'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'
 
-# TODO: Remove me when ADDON_ICON_URL goes away.
-DEFAULT_APP = 'firefox'
+ADDON_ICONS_DEFAULT_URL = 'img/hub'
+ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/hub'
-ADDON_ICON_URL = (STATIC_URL +
-                  'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-
-COLLECTION_ICON_URL = (STATIC_URL +
-                       'img/uploads/collection_icons/%s/%s.png?m=%s')
-
+LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
 MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
-NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
-NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
-PERSONAS_IMAGE_URL = ('http://getpersonas.cdn.mozilla.net/static/'
-                      '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
-                          '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-                         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-                    'img/uploads/previews/full/%s/%d.%s?modified=%d')
+PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
+PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # Base URL where webpay product icons are served from.
 PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 # The verification URL, the addon id will be appended to this. This will
 # have to be altered to the right domain for each server, eg:
@@ -384,7 +369,9 @@ WEBAPPS_RECEIPT_URL = SITE_URL + '/verify/'
 BROKER_URL = 'amqp://zamboni:zamboni@localhost:5672/zamboni'
 BROKER_CONNECTION_TIMEOUT = 0.1
 
-CEF_PRODUCT = "amo"
+CEF_PRODUCT = 'mkt'
+
+CELERY_ALWAYS_EAGER = True
 
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
@@ -454,9 +441,9 @@ AES_KEYS = {
     'api:access:secret': os.path.join(ROOT, 'mkt/api/sample-aes.key'),
 }
 
-# If you want to allow self-reviews for add-ons/apps, then enable this.
+# If you want to allow self-reviews for apps, then enable this.
 # In production we do not want to allow this.
-ALLOW_SELF_REVIEWS = False
+ALLOW_SELF_REVIEWS = True
 
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
@@ -499,17 +486,17 @@ APP_PREVIEW = True
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the DOMAIN setting and on B2G this must match
 # what's in the provider whitelist.
-APP_PURCHASE_AUD = 'marketplace-dev.allizom.org'
+APP_PURCHASE_AUD = 'localhost'
 
 # This is the iss (issuer) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the ISSUER setting.
-APP_PURCHASE_KEY = 'marketplace-dev.allizom.org'
+APP_PURCHASE_KEY = 'localhost'
 
 # This is the shared secret key for signing app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
-# In webpay this is the SECRET setting.
-APP_PURCHASE_SECRET = ''
+# In webpay this is the SECRET setting and it must match.
+APP_PURCHASE_SECRET = 'please change this'
 
 # This is the typ for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
@@ -596,7 +583,10 @@ CSP_SCRIPT_SRC = (
 )
 CSP_STYLE_SRC = ("'self'", SITE_URL,)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_MEDIA_SRC = ("'none'",)
+CSP_MEDIA_SRC = (
+    "'self'", SITE_URL,
+    "https://videos-cdn.mozilla.net"
+)
 CSP_FRAME_SRC = (
     'https://s3.amazonaws.com',
     'https://ssl.google-analytics.com',
@@ -605,6 +595,18 @@ CSP_FRAME_SRC = (
     'https://www.youtube.com',
 )
 CSP_FONT_SRC = ("'self'", 'fonts.mozilla.org', 'www.mozilla.org',)
+
+# When running in DEBUG mode, we assume you are running locally
+# and are not using SSL. If that's the case, resources might load
+# as http too.
+if DEBUG:
+    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
+        values = locals()[key]
+        new = []
+        for value in values:
+            if value.startswith('https://'):
+                new.append(value.replace('https://', 'http://'))
+        locals()[key] = tuple(list(values) + new)
 
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
@@ -678,7 +680,9 @@ ENABLE_API_ERROR_SERVICE = False
 ENGAGE_ROBOTS = True
 
 # ElasticSearch
-ES_DEFAULT_NUM_REPLICAS = 2
+# Locally we typically don't run more than 1 elasticsearch node. So we set
+# replicas to zero.
+ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
 ES_HOSTS = ['127.0.0.1:9200']
 ES_INDEXES = {'webapp': 'apps'}
@@ -725,7 +729,9 @@ GOOGLE_TRANSLATE_API_URL = 'https://www.googleapis.com/language/translate/v2'
 GOOGLE_TRANSLATE_REDIRECT_URL = (
     'https://translate.google.com/#auto/{lang}/{text}')
 
-HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+# Assume that locally run servers, with DEBUG to True will not want
+# their logs going to syslog.
+HAS_SYSLOG = not DEBUG
 
 HEKA_CONF = {
     'logger': 'zamboni',
@@ -766,7 +772,7 @@ HIDDEN_LANGUAGES = (
 HOME = 'addons.views.home'
 
 # IARC content ratings.
-IARC_ALLOW_CERT_REUSE = False
+IARC_ALLOW_CERT_REUSE = True
 
 # Grace period for apps to attain a content rating before they get disabled.
 IARC_APP_DISABLE_DATE = datetime.datetime(2014, 4, 15)
@@ -851,10 +857,10 @@ LEGAL_XFRAME_ALLOW_FROM = [
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = 'lessc'
+LESS_BIN = path('node_modules/less/bin/lessc')
 
 # Handlers and log levels are set up automatically based on LOG_LEVEL.
-LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.DEBUG if DEBUG else logging.ERROR
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
@@ -1180,7 +1186,6 @@ NFS_LAG_DELAY = 3
 
 NOSE_ARGS = [
     '--with-fixture-bundling',
-    '--where=%s' % os.path.join(ROOT, 'mkt')
 ]
 
 # The payment providers supported.
@@ -1332,7 +1337,7 @@ SLAVE_DATABASES = []
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.
-SOLITUDE_HOSTS = ('',)
+SOLITUDE_HOSTS = (os.environ.get('SOLITUDE_URL', ''),)
 
 # The oAuth key and secret that solitude needs.
 SOLITUDE_KEY = ''
@@ -1371,7 +1376,7 @@ STATSD_RECORD_KEYS = [
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
 # Path to stylus (to compile .styl files).
-STYLUS_BIN = 'stylus'
+STYLUS_BIN = path('node_modules/stylus/bin/stylus')
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
@@ -1419,8 +1424,9 @@ VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com']
 # limit.
 VALIDATOR_MESSAGE_LIMIT = 500
 
-# Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 110
+# Disable timeout code during development because it uses the signal module
+# which can only run in the main thread. Celery uses threads in dev.
+VALIDATOR_TIMEOUT = -1
 
 VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 
@@ -1435,7 +1441,9 @@ WEBAPPS_RECEIPT_EXPIRED_SEND = False
 WEBAPPS_RECEIPT_EXPIRY_SECONDS = 60 * 60 * 24 * 182
 
 # The key we'll use to sign webapp receipts.
-WEBAPPS_RECEIPT_KEY = ''
+WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
+
+WEBAPPS_UNIQUE_BY_DOMAIN = False
 
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.

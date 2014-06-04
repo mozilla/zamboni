@@ -18,27 +18,19 @@ CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
 CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
 
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.%s?modified=%d')
-# paths for uploaded extensions
-FILES_URL = STATIC_URL + "%s/%s/downloads/file/%d/%s?src=%s"
+ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
+PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
+SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + 'img/uploads/collection_icons/%s/%s.png?m=%s'
-
 
 MEDIA_URL = STATIC_URL + 'media/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + 'img/hub'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-PRODUCT_ICON_URL = STATIC_URL + 'product-icons'
 
 CACHE_PREFIX = 'marketplace.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
@@ -64,6 +56,7 @@ REDIS_BACKENDS = {
 
 BROKER_URL = private_mkt.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
@@ -131,6 +124,7 @@ DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/marketplace.firefox.com.ini'
 
+ES_DEFAULT_NUM_REPLICAS = 2
 ES_USE_PLUGINS = True
 
 BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
@@ -156,3 +150,5 @@ BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pr
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'
+
+VALIDATOR_TIMEOUT = 110

@@ -52,7 +52,7 @@ Then run the following commands: ::
 
 Back in safe and happy django-land you should be able to run: ::
 
-  ./manage.py celeryd $OPTIONS
+  ./manage.py celeryd -Q priority,devhub,images,limited  $OPTIONS
 
 Celery understands python and any tasks that you have defined in your app are
 now runnable asynchronously.
