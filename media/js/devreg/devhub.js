@@ -434,14 +434,26 @@ function addonFormSubmit() {
 $("#user-form-template .email-autocomplete")
     .attr("placeholder", gettext("Enter a new team member's email address"));
 
+var notification = require('notification');
+
 function addManifestRefresh() {
     z.page.on('click', '#manifest-url a.button', _pd(function(e) {
-        $('#manifest-url th.label span.hint').remove();
+        var $this = $(this);
+        $this.addClass('disabled');
         $.post(
-            $(e.target).data("url")
-        ).then(function() {
-            var refreshed = gettext('Refreshed');
-            $('#manifest-url th.label').append('<span class="hint">' + refreshed + '</span>');
+            $this.data('url')
+        ).done(function () {
+            notification({
+                message: gettext('Manifest refreshed'),
+                timeout: 2000
+            });
+        }).fail(function () {
+            notification({
+                message: gettext('Could not refresh manifest. Try again later.'),
+                timeout: 2000
+            });
+        }).always(function() {
+            $this.removeClass('disabled');
         });
     }));
 }
