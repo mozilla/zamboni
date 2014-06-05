@@ -54,18 +54,9 @@ class Verify:
     def __init__(self, receipt, environ):
         self.receipt = receipt
         self.environ = environ
-        # These will be extracted from the receipt.
-        self.decoded = None
-        self.addon_id = None
-        self.user_id = None
-        self.uuid = None
+
         # This is so the unit tests can override the connection.
         self.conn, self.cursor = None, None
-
-    def setup_db(self):
-        if not self.cursor:
-            self.conn = mypool.connect()
-            self.cursor = self.conn.cursor()
 
     def check_full(self):
         """
@@ -76,12 +67,7 @@ class Verify:
         try:
             self.decoded = self.decode()
             self.check_type('purchase-receipt')
-            self.check_db()
             self.check_url(receipt_domain)
-        except InvalidReceipt, err:
-            return self.invalid(str(err))
-
-        try:
             self.check_purchase()
         except InvalidReceipt, err:
             return self.invalid(str(err))
@@ -98,7 +84,6 @@ class Verify:
         try:
             self.decoded = self.decode()
             self.check_type('developer-receipt', 'reviewer-receipt')
-            self.check_db()
             self.check_url(settings.DOMAIN)
         except InvalidReceipt, err:
             return self.invalid(str(err))
@@ -133,7 +118,7 @@ class Verify:
             receipt = decode_receipt(self.receipt)
         except:
             log_exception({'receipt': '%s...' % self.receipt[:10],
-                           'addon': self.addon_id})
+                           'app': self.get_app_id(raise_exception=False)})
             log_info('Error decoding receipt')
             raise InvalidReceipt('ERROR_DECODING')
 
@@ -172,52 +157,120 @@ class Verify:
             log_info('Receipt had the wrong path')
             raise InvalidReceipt('WRONG_PATH')
 
-    def check_db(self):
+    def get_user(self):
         """
-        Verifies the decoded receipt against the database.
-
-        Requires that decode is run first.
+        Attempt to retrieve the user information from the receipt.
         """
-        if not self.decoded:
-            raise ValueError('decode not run')
-
-        self.setup_db()
-        # Get the addon and user information from the installed table.
         try:
-            self.uuid = self.decoded['user']['value']
+            return self.decoded['user']['value']
         except KeyError:
             # If somehow we got a valid receipt without a uuid
             # that's a problem. Log here.
             log_info('No user in receipt')
             raise InvalidReceipt('NO_USER')
 
+    def get_storedata(self):
+        """
+        Attempt to retrieve the storedata information from the receipt.
+        """
         try:
             storedata = self.decoded['product']['storedata']
-            self.addon_id = int(dict(parse_qsl(storedata)).get('id', ''))
-        except:
-            # There was some value for storedata but it was invalid.
-            log_info('Invalid store data')
+            return dict(parse_qsl(storedata))
+        except Exception, e:
+            log_info('Invalid store data: {err}'.format(err=str(e)))
             raise InvalidReceipt('WRONG_STOREDATA')
+
+    def get_app_id(self, raise_exception=True):
+        """
+        Attempt to retrieve the app id from the storedata in the receipt.
+        """
+        try:
+            return int(self.get_storedata()['id'])
+        except Exception, e:
+            if raise_exception:
+                # There was some value for storedata but it was invalid.
+                log_info('Invalid store data for app id: {err}'.format(
+                    err=str(e)))
+                raise InvalidReceipt('WRONG_STOREDATA')
+
+    def get_contribution_id(self):
+        """
+        Attempt to retrieve the contribution id
+        from the storedata in the receipt.
+        """
+        try:
+            return int(self.get_storedata()['contrib'])
+        except Exception, e:
+            # There was some value for storedata but it was invalid.
+            log_info('Invalid store data for contrib id: {err}'.format(
+                err=str(e)))
+            raise InvalidReceipt('WRONG_STOREDATA')
+
+    def setup_db(self):
+        """
+        Establish a connection to the database.
+        All database calls are done at a low level and avoid the
+        Django ORM.
+        """
+        if not self.cursor:
+            self.conn = mypool.connect()
+            self.cursor = self.conn.cursor()
 
     def check_purchase(self):
         """
-        Verifies that the app has been purchased.
+        Verifies that the app or inapp has been purchased.
         """
-        sql = """SELECT id, type FROM addon_purchase
-                 WHERE addon_id = %(addon_id)s
-                 AND uuid = %(uuid)s LIMIT 1;"""
-        self.cursor.execute(sql, {'addon_id': self.addon_id,
-                                  'uuid': self.uuid})
+        storedata = self.get_storedata()
+        if 'contrib' in storedata:
+            self.check_purchase_inapp()
+        else:
+            self.check_purchase_app()
+
+    def check_purchase_inapp(self):
+        """
+        Verifies that the inapp has been purchased.
+        """
+        self.setup_db()
+        sql = """SELECT type FROM stats_contributions
+                 WHERE id = %(contribution_id)s LIMIT 1;"""
+        self.cursor.execute(
+            sql,
+            {'contribution_id': self.get_contribution_id()}
+        )
         result = self.cursor.fetchone()
         if not result:
             log_info('Invalid receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
 
-        if result[-1] in (CONTRIB_REFUND, CONTRIB_CHARGEBACK):
+        self.check_purchase_type(result[0])
+
+    def check_purchase_app(self):
+        """
+        Verifies that the app has been purchased by the user.
+        """
+        self.setup_db()
+        sql = """SELECT id, type FROM addon_purchase
+                 WHERE addon_id = %(app_id)s
+                 AND uuid = %(uuid)s LIMIT 1;"""
+        self.cursor.execute(sql, {'app_id': self.get_app_id(),
+                                  'uuid': self.get_user()})
+        result = self.cursor.fetchone()
+        if not result:
+            log_info('Invalid receipt, no purchase')
+            raise InvalidReceipt('NO_PURCHASE')
+
+        purchase_id, purchase_type = result
+        self.check_purchase_type(purchase_type)
+
+    def check_purchase_type(self, purchase_type):
+        """
+        Verifies that the purchase type is of a valid type.
+        """
+        if purchase_type in (CONTRIB_REFUND, CONTRIB_CHARGEBACK):
             log_info('Valid receipt, but refunded')
             raise RefundedReceipt
 
-        elif result[-1] in (CONTRIB_PURCHASE, CONTRIB_NO_CHARGE):
+        elif purchase_type in (CONTRIB_PURCHASE, CONTRIB_NO_CHARGE):
             log_info('Valid receipt')
             return
 
@@ -226,8 +279,12 @@ class Verify:
             raise InvalidReceipt('WRONG_PURCHASE')
 
     def invalid(self, reason=''):
-        receipt_cef.log(self.environ, self.addon_id, 'verify',
-                        'Invalid receipt')
+        receipt_cef.log(
+            self.environ,
+            self.get_app_id(raise_exception=False),
+            'verify',
+            'Invalid receipt'
+        )
         return {'status': 'invalid', 'reason': reason}
 
     def ok_or_expired(self):
@@ -252,19 +309,31 @@ class Verify:
         return {'status': 'ok'}
 
     def refund(self):
-        receipt_cef.log(self.environ, self.addon_id, 'verify',
-                        'Refunded receipt')
+        receipt_cef.log(
+            self.environ,
+            self.get_app_id(raise_exception=False),
+            'verify',
+            'Refunded receipt'
+        )
         return {'status': 'refunded'}
 
     def expired(self):
-        receipt_cef.log(self.environ, self.addon_id, 'verify',
-                        'Expired receipt')
+        receipt_cef.log(
+            self.environ,
+            self.get_app_id(raise_exception=False),
+            'verify',
+            'Expired receipt'
+        )
         if settings.WEBAPPS_RECEIPT_EXPIRED_SEND:
             self.decoded['exp'] = (calendar.timegm(gmtime()) +
                                    settings.WEBAPPS_RECEIPT_EXPIRY_SECONDS)
             # Log that we are signing a new receipt as well.
-            receipt_cef.log(self.environ, self.addon_id, 'sign',
-                            'Expired signing request')
+            receipt_cef.log(
+                self.environ,
+                self.get_app_id(raise_exception=False),
+                'sign',
+                'Expired signing request'
+            )
             return {'status': 'expired',
                     'receipt': sign(self.decoded)}
         return {'status': 'expired'}
