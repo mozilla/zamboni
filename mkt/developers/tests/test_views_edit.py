@@ -135,12 +135,6 @@ class TestEdit(amo.tests.TestCase):
 class TestEditListingWebapp(TestEdit):
     fixtures = fixture('webapp_337141')
 
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
-    def test_apps_context(self):
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('title').text(),
-            'Edit Listing | %s | Firefox Marketplace' % self.webapp.name)
-
     def test_redirect(self):
         r = self.client.get(self.url.replace('edit', ''))
         self.assert3xx(r, self.url)

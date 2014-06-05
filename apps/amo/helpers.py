@@ -231,12 +231,7 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
-    if settings.APP_PREVIEW:
-        base_title = _('Firefox Marketplace')
-    elif context.get('WEBAPPS') or force_webapps:
-        base_title = _('Firefox Marketplace')
-    else:
-        base_title = page_name(context['request'].APP)
+    base_title = _('Firefox Marketplace')
     return u'%s :: %s' % (title, base_title)
 
 
