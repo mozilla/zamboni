@@ -4,7 +4,7 @@ from django.test import TestCase
 from mock import Mock, patch
 from nose.tools import eq_
 
-from .task import task, _get_task_queue, _discard_tasks
+from lib.post_request_task.task import task, _get_task_queue, _discard_tasks
 
 
 task_mock = Mock()
@@ -31,7 +31,9 @@ class TestTask(TestCase):
             'Expected the test task, found %s' % cls.name)
 
     def _verify_task_empty(self):
-        assert len(_get_task_queue()) == 0
+        assert len(_get_task_queue()) == 0, (
+            'Expected empty queue, got %s: %s' % (len(_get_task_queue()),
+                                                  _get_task_queue()))
 
     def test_task(self):
         test_task.delay()
@@ -47,7 +49,8 @@ class TestTask(TestCase):
         self._verify_task_empty()
 
         # Assert the original `apply_async` called.
-        assert _mock.called
+        assert _mock.called, (
+            'Expected PostRequestTask.original_apply_async call')
 
     @patch('lib.post_request_task.task.PostRequestTask.original_apply_async')
     def test_request_failed(self, _mock):
@@ -60,7 +63,8 @@ class TestTask(TestCase):
         self._verify_task_empty()
 
         # Assert the original `apply_async` was not called.
-        assert not _mock.called
+        assert not _mock.called, (
+            'Unexpected PostRequestTask.original_apply_async call')
 
     def test_deduplication(self):
         """Test the same task added multiple times is de-duped."""
