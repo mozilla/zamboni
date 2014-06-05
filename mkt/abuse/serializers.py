@@ -1,11 +1,10 @@
 from rest_framework import serializers
 
-from abuse.models import AbuseReport
-
+from mkt.abuse.models import AbuseReport
 from mkt.account.serializers import UserSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
-from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Webapp
+from mkt.webapps.serializers import SimpleAppSerializer
 
 
 class BaseAbuseSerializer(serializers.ModelSerializer):

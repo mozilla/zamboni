@@ -6,13 +6,13 @@ import mock
 from nose.tools import eq_
 
 import amo
-from abuse.models import AbuseReport
 from amo.tasks import find_abuse_escalations, find_refund_escalations
 from amo.tests import app_factory
 from devhub.models import AppLog
 from editors.models import EscalationQueue
 from users.models import UserProfile
 
+from mkt.abuse.models import AbuseReport
 from mkt.prices.models import AddonPurchase, Refund
 from mkt.purchase.models import Contribution
 

@@ -82,7 +82,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
-    'abuse',
     'access',
     'addons',
     'cronjobs',
@@ -121,6 +120,7 @@ INSTALLED_APPS = (
 
     'devhub',  # Put here so helpers.py doesn't get loaded first.
     'mkt.site',
+    'mkt.abuse',
     'mkt.account',
     'mkt.api',
     'mkt.collections',

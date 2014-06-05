@@ -23,7 +23,6 @@ from requests.structures import CaseInsensitiveDict
 
 import amo
 import amo.tests
-from abuse.models import AbuseReport
 from access.models import Group, GroupUser
 from addons.models import AddonDeviceType
 from amo.helpers import absolutify, urlparams
@@ -45,6 +44,7 @@ from zadmin.models import get_config, set_config
 
 import mkt
 import mkt.ratings
+from mkt.abuse.models import AbuseReport
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile

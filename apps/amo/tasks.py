@@ -7,7 +7,6 @@ import phpserialize
 from celeryutils import task
 
 import amo
-from abuse.models import AbuseReport
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
@@ -15,6 +14,7 @@ from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
 from reviews.models import Review
 
+from mkt.abuse.models import AbuseReport
 from mkt.prices.models import Refund
 
 

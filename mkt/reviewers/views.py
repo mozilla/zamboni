@@ -28,7 +28,6 @@ from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
-from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Version
@@ -54,6 +53,7 @@ from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config
 
 import mkt
+from mkt.abuse.models import AbuseReport
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import GroupPermission
