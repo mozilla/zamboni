@@ -64,7 +64,7 @@ BRAND_TYPES = (
     'lifestyle',
     'lifestyle-culture',
     'live-healthy',
-    'local-community-favorites'
+    'local-community-favorites',
     'local-favorite',
     'maps-navigation',
     'maps-navigation-spotlight',
