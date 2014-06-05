@@ -83,7 +83,6 @@ class TestAPIv1URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
         - v2: /feed/collections/
         """
         self.assertViewName('/rocketfuel/collections/', 'CollectionViewSet')
-        self.assertView404('/feed/collections/')
 
 
 class TestAPIv2URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
@@ -100,4 +99,3 @@ class TestAPIv2URLs(BaseTestAPIVersionURLs, amo.tests.TestCase):
         - v2: /feed/collections/
         """
         self.assertView404('/rocketfuel/collections/')
-        self.assertViewName('/feed/collections/', 'CollectionViewSet')

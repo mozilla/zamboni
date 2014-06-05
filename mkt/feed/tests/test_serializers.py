@@ -5,7 +5,6 @@ from rest_framework import serializers
 import amo
 import amo.tests
 
-from mkt.feed.constants import BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES
 from mkt.feed.models import FeedBrand
 from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
                                   FeedItemSerializer)
@@ -57,9 +56,9 @@ class TestFeedBrandSerializer(amo.tests.TestCase):
 
     def setUp(self):
         self.brand_data = {
-            'slug': 'potato',
-            'type': 1,
-            'layout': 1
+            'layout': 'grid',
+            'type': 'hidden-gem',
+            'slug': 'potato'
         }
         self.brand = FeedBrand.objects.create(**self.brand_data)
         self.apps = [amo.tests.app_factory() for i in range(3)]
@@ -70,17 +69,7 @@ class TestFeedBrandSerializer(amo.tests.TestCase):
     def test_serialization(self):
         data = FeedBrandSerializer(self.brand).data
         eq_(data['slug'], self.brand_data['slug'])
-        eq_(data['layout'], BRAND_LAYOUT_CHOICES[self.brand_data['layout']][1])
-        eq_(data['type'], BRAND_TYPE_CHOICES[self.brand_data['type']][1])
+        eq_(data['layout'], self.brand_data['layout'])
+        eq_(data['type'], self.brand_data['type'])
         self.assertSetEqual([app['id'] for app in data['apps']],
                             [app.pk for app in self.apps])
-
-    def test_serialization_validate_layout(self):
-        FeedBrandSerializer().validate_layout({'layout': 'grid'}, 'layout')
-        with self.assertRaises(serializers.ValidationError):
-            FeedBrandSerializer().validate_layout({'layout': 'grdi'}, 'layout')
-
-    def test_serialization_validate_type(self):
-        FeedBrandSerializer().validate_type({'type': 'hidden-gem'}, 'type')
-        with self.assertRaises(serializers.ValidationError):
-            FeedBrandSerializer().validate_type({'type': 'gem'}, 'type')
