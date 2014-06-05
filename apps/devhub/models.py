@@ -17,8 +17,8 @@ from tower import ugettext as _
 
 import amo
 import amo.models
-from access.models import Group
 from addons.models import Addon
+from mkt.access.models import Group
 from mkt.webapps.models import Webapp
 from reviews.models import Review
 from tags.models import Tag

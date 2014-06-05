@@ -82,7 +82,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
-    'access',
     'addons',
     'cronjobs',
     'csp',
@@ -121,6 +120,7 @@ INSTALLED_APPS = (
     'devhub',  # Put here so helpers.py doesn't get loaded first.
     'mkt.site',
     'mkt.abuse',
+    'mkt.access',
     'mkt.account',
     'mkt.api',
     'mkt.collections',
@@ -171,7 +171,7 @@ MIDDLEWARE_CLASSES = (
     'mkt.site.middleware.RedirectPrefixedURIMiddleware',
     'mkt.api.middleware.RestOAuthMiddleware',
     'mkt.api.middleware.RestSharedSecretMiddleware',
-    'access.middleware.ACLMiddleware',
+    'mkt.access.middleware.ACLMiddleware',
     'mkt.site.middleware.LocaleMiddleware',
     'mkt.regions.middleware.RegionMiddleware',
     'mkt.site.middleware.DeviceDetectionMiddleware',

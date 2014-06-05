@@ -6,8 +6,8 @@ from tower import ugettext as _
 
 import amo
 import mkt
-from access import acl
 from amo.context_processors import get_collect_timings
+from mkt.access import acl
 from zadmin.models import get_config
 
 

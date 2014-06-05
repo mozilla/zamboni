@@ -13,11 +13,11 @@ import waffle
 from tower import ugettext_lazy as _lazy
 
 import amo
-from access import acl
 from amo.helpers import absolutify
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
 from editors.models import EscalationQueue, RereviewQueue, ReviewerScore
 from files.models import File
+from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile

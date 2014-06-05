@@ -54,8 +54,9 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     Check request.amo_user's permissions for the addon.
 
     If user is an admin they can do anything.
-    If the add-on is disabled only admins have permission.
-    If they're an add-on owner they can do anything.
+    If the app is disabled only admins have permission.
+    If they're an app owner they can do anything.
+
     dev=True checks that the user has an owner or developer role.
     viewer=True checks that the user has an owner, developer, or viewer role.
     support=True checks that the user has a support role.
@@ -86,17 +87,11 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
                                 addonuser__role__in=roles).exists()
 
 
-def check_reviewer(request, only=None, region=None):
-    if only == 'app' and region is not None:
+def check_reviewer(request, region=None):
+    if region is not None:
         # This is for reviewers in special regions (e.g., China).
         from mkt.regions.utils import parse_region
         region_slug = parse_region(region).slug.upper()
         return action_allowed(request, 'Apps', 'ReviewRegion%s' % region_slug)
 
-    addon = action_allowed(request, 'Addons', 'Review')
-    app = action_allowed(request, 'Apps', 'Review')
-    if only == 'addon':
-        return addon
-    elif only == 'app':
-        return app
-    return addon or app
+    return action_allowed(request, 'Apps', 'Review')

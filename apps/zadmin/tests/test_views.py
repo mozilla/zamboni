@@ -12,11 +12,11 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from access.models import Group, GroupUser
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from files.models import File
+from mkt.access.models import Group, GroupUser
 from users.models import UserProfile
 from versions.models import Version
 from zadmin.forms import DevMailerForm

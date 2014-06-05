@@ -2,11 +2,11 @@ from nose.exc import SkipTest
 
 import amo.tests
 
-from apps.access.acl import action_allowed_user
-from apps.users.models import UserProfile
+from mkt.access.acl import action_allowed_user
 from mkt.site.fixtures import fixture
 from mkt.zadmin.management.commands.addusertogroup import do_adduser
 from mkt.zadmin.management.commands.removeuserfromgroup import do_removeuser
+from users.models import UserProfile
 
 
 class TestCommand(amo.tests.TestCase):

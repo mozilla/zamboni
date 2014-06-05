@@ -13,8 +13,8 @@ from jingo.helpers import datetime as jingo_datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from access import acl
 from addons.helpers import new_context
+from mkt.access import acl
 from mkt.site.helpers import mkt_breadcrumbs
 
 

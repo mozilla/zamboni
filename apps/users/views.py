@@ -15,7 +15,6 @@ from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
-from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo import messages
@@ -23,6 +22,7 @@ from amo.decorators import json_view, login_required, post_required
 from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
+from mkt.access.middleware import ACLMiddleware
 
 from .models import UserProfile
 from .signals import logged_out

@@ -11,18 +11,17 @@ from test_utils import RequestFactory
 
 import amo
 import mkt.regions
-from access.models import GroupUser
 from addons.models import Category
 from amo.tests import ESTestCase
-from tags.models import Tag
-from users.models import UserProfile
-
-from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
+from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
+from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from tags.models import Tag
+from users.models import UserProfile
 
 
 class TestReviewing(RestOAuth):

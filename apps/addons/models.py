@@ -21,7 +21,6 @@ from tower import ugettext_lazy as _
 
 import amo
 import amo.models
-from access import acl
 from addons import query, signals
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
@@ -37,7 +36,7 @@ from translations.fields import (PurifiedField, save_signal, TranslatedField,
 from users.models import UserForeignKey, UserProfile
 from versions.models import Version
 
-
+from mkt.access import acl
 from mkt.prices.models import AddonPremium, Price
 
 

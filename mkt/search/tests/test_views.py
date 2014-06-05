@@ -14,10 +14,10 @@ from nose.tools import eq_, ok_
 import amo
 import mkt
 import mkt.regions
-from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
+from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -29,7 +29,7 @@ from mkt.regions.middleware import RegionMiddleware
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.utils import S
-from mkt.search.views import SearchView, DEFAULT_SORTING
+from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps

@@ -2,7 +2,7 @@ import jingo
 import jinja2
 from tower import ugettext as _
 
-from access import acl
+from mkt.access import acl
 
 
 @jingo.register.filter

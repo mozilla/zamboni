@@ -6,16 +6,15 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.settings import api_settings
 
-from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from users.models import UserProfile
+from mkt.access.middleware import ACLMiddleware
 from mkt.collections.authorization import (CanBeHeroAuthorization,
                                            CuratorAuthorization,
                                            StrictCuratorAuthorization)
 from mkt.collections.tests import CollectionTestMixin
 from mkt.site.fixtures import fixture
 from test_utils import RequestFactory
-
+from users.models import UserProfile
 
 
 class TestCuratorAuthorization(CollectionTestMixin, TestCase):

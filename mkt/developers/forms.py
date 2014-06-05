@@ -20,7 +20,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 import lib.iarc
-from access import acl
+import mkt
 from addons.forms import clean_slug, clean_tags, icons
 from addons.models import Addon, AddonUser, BlacklistedSlug, Category, Preview
 from addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
@@ -30,14 +30,7 @@ from amo.utils import remove_icons, slug_validator, slugify
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.video import tasks as vtasks
-from tags.models import Tag
-from translations.fields import TransField
-from translations.forms import TranslationFormMixin
-from translations.models import Translation
-from translations.widgets import TranslationTextarea, TransTextarea
-from versions.models import Version
-
-import mkt
+from mkt.access import acl
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
@@ -45,6 +38,12 @@ from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import index_webapps
+from tags.models import Tag
+from translations.fields import TransField
+from translations.forms import TranslationFormMixin
+from translations.models import Translation
+from translations.widgets import TranslationTextarea, TransTextarea
+from versions.models import Version
 
 from . import tasks
 

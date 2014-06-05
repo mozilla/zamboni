@@ -1,7 +1,6 @@
 import amo
-from access.acl import check_ownership
-
 from lib.metrics import record_action
+from mkt.access.acl import check_ownership
 from mkt.constants.apps import INSTALL_TYPE_DEVELOPER, INSTALL_TYPE_USER
 
 

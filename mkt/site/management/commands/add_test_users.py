@@ -7,8 +7,8 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import amo
-from access.models import Group, GroupUser
 from apps.users.models import UserProfile
+from mkt.access.models import Group, GroupUser
 from mkt.api.models import Access
 
 

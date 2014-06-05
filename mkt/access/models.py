@@ -1,13 +1,15 @@
-from django.db import models
 from django import dispatch
+from django.db import models
 from django.db.models import signals
+
+import commonware.log
 
 import amo
 import amo.models
-import commonware.log
 
 
 log = commonware.log.getLogger('z.users')
+
 
 class Group(amo.models.ModelBase):
 
@@ -30,7 +32,7 @@ class GroupUser(models.Model):
     user = models.ForeignKey('users.UserProfile')
 
     class Meta:
-        db_table = u'groups_users'
+        db_table = 'groups_users'
 
 
 @dispatch.receiver(signals.post_save, sender=GroupUser,

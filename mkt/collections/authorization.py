@@ -4,7 +4,8 @@ from django.core.exceptions import ImproperlyConfigured
 import commonware.log
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
-from access import acl
+from mkt.access import acl
+
 
 log = commonware.log.getLogger('mkt.collections')
 

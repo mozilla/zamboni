@@ -10,8 +10,8 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
+from mkt.access.models import Group, GroupUser
 from reviews.models import Review
 from translations.models import Translation
 from users.models import UserEmailField, UserProfile

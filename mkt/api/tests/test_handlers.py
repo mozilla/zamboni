@@ -12,24 +12,22 @@ from rest_framework.request import Request
 from test_utils import RequestFactory
 
 import amo
-from access.models import Group, GroupUser
-from addons.models import (Addon, AddonDeviceType, AddonUpsell,
-                           AddonUser, Category, Preview)
+import mkt
+from addons.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
+                           Category, Preview)
 from amo.tests import AMOPaths, app_factory, TestCase
 from files.models import FileUpload
+from mkt.access.models import Group, GroupUser
+from mkt.api.fields import LargeTextField
+from mkt.api.models import Access, generate
+from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
+from mkt.constants import regions
+from mkt.prices.models import Price, PriceCurrency
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 from reviews.models import Review
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
-
-import mkt
-from mkt.api.models import Access, generate
-from mkt.api.fields import LargeTextField
-from mkt.api.tests.test_oauth import RestOAuthClient, RestOAuth
-from mkt.constants import regions
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion, Webapp
-from mkt.prices.models import Price, PriceCurrency
-
 
 
 class CreateHandler(RestOAuth):
