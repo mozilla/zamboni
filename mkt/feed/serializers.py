@@ -18,6 +18,9 @@ from .models import FeedApp, FeedBrand, FeedItem
 
 class BaseFeedCollectionSerializer(URLSerializerMixin,
                                    serializers.ModelSerializer):
+    """
+    Base serializer for subclasses of BaseFeedCollection.
+    """
     apps = FeedCollectionMembershipField(many=True, source='apps')
     slug = serializers.CharField(required=False)
 
@@ -26,7 +29,10 @@ class BaseFeedCollectionSerializer(URLSerializerMixin,
 
 
 class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
-    """Thin wrappers around apps w/ metadata related to its feature in feed."""
+    """
+    A serializer for the FeedApp class, which highlights a single app and some
+    additional metadata (e.g. a review or a screenshot).
+    """
     app = SplitField(relations.PrimaryKeyRelatedField(required=True),
                      AppSerializer())
     description = TranslationSerializerField(required=False)
@@ -49,6 +55,10 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
 
 
 class FeedBrandSerializer(BaseFeedCollectionSerializer):
+    """
+    A serializer for the FeedBrand class, a type of collection that allows
+    editors to quickly create content without involving localizers.
+    """
     layout = serializers.ChoiceField(choices=constants.BRAND_LAYOUT_CHOICES,
                                      required=True)
     type = serializers.ChoiceField(choices=constants.BRAND_TYPE_CHOICES,
@@ -61,7 +71,10 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
-    """Thin wrappers around apps w/ metadata related to its feature in feed."""
+    """
+    A serializer for the FeedItem class, which wraps all items that live on the
+    feed.
+    """
     carrier = SlugChoiceField(required=False,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,

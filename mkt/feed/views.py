@@ -20,8 +20,11 @@ from .serializers import (FeedAppSerializer, FeedBrandSerializer,
                           FeedItemSerializer)
 
 
-class BaseCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                         viewsets.ModelViewSet):
+    """
+    Base viewset for subclasses of BaseFeedCollection.
+    """
     serializer_class = None
     queryset = None
     cors_allowed_methods = ('get', 'post', 'delete', 'patch', 'put')
@@ -38,7 +41,8 @@ class BaseCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     @action()
     def set_apps(self, request, *args, **kwargs):
         """
-        TODO: this
+        Remove all member apps of this collection, replacing them with the ones
+        specified by via the `apps` POST parameter.
         """
         collection = self.get_object()
         try:
@@ -52,6 +56,10 @@ class BaseCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
 
 class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
+    """
+    A viewset for the FeedItem class, which wraps all items that live on the
+    feed.
+    """
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -65,6 +73,10 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
 
 class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
                      viewsets.ModelViewSet):
+    """
+    A viewset for the FeedApp class, which highlights a single app and some
+    additional metadata (e.g. a review or a screenshot).
+    """
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -86,6 +98,10 @@ class FeedAppImageViewSet(CollectionImageViewSet):
     queryset = FeedApp.objects.all()
 
 
-class FeedBrandViewSet(BaseCollectionViewSet):
+class FeedBrandViewSet(BaseFeedCollectionViewSet):
+    """
+    A viewset for the FeedBrand class, a type of collection that allows editors
+    to quickly create content without involving localizers.
+    """
     serializer_class = FeedBrandSerializer
     queryset = FeedBrand.objects.all()
