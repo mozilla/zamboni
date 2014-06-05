@@ -1,3 +1,5 @@
+from urlparse import urljoin
+
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -26,6 +28,8 @@ def static_url(url):
     it at runtime. This allows MEDIA_URL, STATIC_URL and VAMO_URL to be
     changed in a local settings file, without having to overidde all the
     URLs.
+
+    If the URL starts with https:// or http://, then no changes are made.
     """
     prefix = {
         'ADDON_ICONS_DEFAULT_URL': settings.MEDIA_URL,
@@ -35,6 +39,10 @@ def static_url(url):
         'PRODUCT_ICON_URL': settings.MEDIA_URL,
         'WEBAPPS_RECEIPT_URL': settings.SITE_URL
     }
+
+    value = getattr(settings, url)
+    if value.startswith(('https://', 'http://')):
+        return value
     if settings.DEBUG and settings.SERVE_TMP_PATH:
-        return prefix[url] + 'tmp/' + getattr(settings, url)
-    return prefix[url] + getattr(settings, url)
+        return urljoin(prefix[url], '/tmp' + value)
+    return urljoin(prefix[url], value)
