@@ -1,6 +1,6 @@
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest_framework import status, viewsets
+from rest_framework import response, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import OrderingFilter
@@ -63,7 +63,8 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
     serializer_class = FeedItemSerializer
 
 
-class FeedAppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
+class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
+                     viewsets.ModelViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -73,6 +74,13 @@ class FeedAppViewSet(CORSMixin, SlugOrIdMixin, viewsets.ModelViewSet):
     queryset = FeedApp.objects.all()
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedAppSerializer
+
+    def list(self, request, *args, **kwargs):
+        page = self.paginate_queryset(
+            self.filter_queryset(self.get_queryset()))
+        serializer = self.get_pagination_serializer(page)
+        print serializer.data
+        return response.Response(serializer.data)
 
 
 class FeedAppImageViewSet(CollectionImageViewSet):
