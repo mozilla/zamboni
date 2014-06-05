@@ -1379,8 +1379,9 @@ STYLUS_BIN = path('node_modules/stylus/bin/stylus')
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
-# Default AMO user id to use for tasks.
-TASK_USER_ID = 4757633
+# Default user id to use for tasks. This is the landfill admin user, or more
+# likely the first user if a developer creates a clean database.
+TASK_USER_ID = 1
 
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
@@ -1400,7 +1401,7 @@ TOWER_KEYWORDS = {
 TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
+UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
 
 # Feature flags
 UNLINK_SITE_STATS = True
@@ -1449,8 +1450,8 @@ WEBAPPS_UNIQUE_BY_DOMAIN = False
 WHITELISTED_CLIENTS_EMAIL_API = []
 
 # Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = True
-XSENDFILE_HEADER = 'X-SENDFILE'
+XSENDFILE = False
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 # The UUID for Yogafire (Tarako Marketplace).
 YOGAFIRE_GUID = 'f34d3c22-3efe-47ca-803d-6c740da1a851'

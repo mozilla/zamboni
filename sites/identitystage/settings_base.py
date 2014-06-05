@@ -154,7 +154,7 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER = 'X-Accel-Redirect'
+XSENDFILE = True
 
 ALLOW_SELF_REVIEWS = True
 
@@ -168,3 +168,5 @@ CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("https://firefoxos.anosrep.org",)
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)
 
 AES_KEYS = private.AES_KEYS
+
+TASK_USER_ID = 4757633
