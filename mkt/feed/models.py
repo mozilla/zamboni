@@ -1,5 +1,13 @@
 """
-TODO: this.
+The feed is an assembly of items of different content types.
+For ease of querying, each different content type is housed in the FeedItem
+model, which also houses metadata indicating the conditions under which it
+should be included. So a feed is actually just a listing of FeedItem instances
+that match the user's region and carrier.
+
+Current content types able to be attached to FeedItem:
+- `FeedApp` (via the `app` field)
+- `FeedBrand` (via the `brand` field)
 """
 
 import os
@@ -27,20 +35,6 @@ from mkt.webapps.tasks import index_webapps
 from .constants import BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES
 
 
-class BaseFeedCollectionMembership(amo.models.ModelBase):
-    """
-
-    """
-    app = models.ForeignKey(Webapp)
-    order = models.SmallIntegerField(null=True)
-    obj = None
-
-    class Meta:
-        abstract = True
-        ordering = ('order',)
-        unique_together = ('obj', 'app',)
-
-
 class BaseFeedCollection(amo.models.ModelBase):
     """
     On the feed, there are a number of types of feed items that share a similar
@@ -52,7 +46,14 @@ class BaseFeedCollection(amo.models.ModelBase):
     - Collections (future): `FeedCollection`
     - Operator Shelves (future): `FeedOperatorShelf`
 
-    Subclasses must do  a few things:
+    A series of base classes wraps the common code for these:
+
+    - BaseFeedCollection
+    - BaseFeedCollectionMembership
+    - BaseFeedCollectionSerializer
+    - BaseFeedCollectionViewSet
+
+    Subclasses of BaseFeedCollection must do a few things:
     - Define an M2M field named `_apps` with a custom through model that
       inherits from `BaseFeedCollectionMembership`.
     - Set the `membership_class` class property to the custom through model
@@ -143,6 +144,27 @@ class BaseFeedCollection(amo.models.ModelBase):
             self.add_app(Webapp.objects.get(pk=app))
 
 
+class BaseFeedCollectionMembership(amo.models.ModelBase):
+    """
+    A custom `through` model is required for the M2M field `_apps` on
+    subclasses of `BaseFeedCollection`. This model houses an `order` field that
+    maintains the order of apps in the collection. This model serves as an
+    abstract base class for the custom `through` models.
+
+    Subclasses must:
+    - Define a `ForeignKey` named `obj` that relates the app to the instance
+      being put on the feed.
+    """
+    app = models.ForeignKey(Webapp)
+    order = models.SmallIntegerField(null=True)
+    obj = None
+
+    class Meta:
+        abstract = True
+        ordering = ('order',)
+        unique_together = ('obj', 'app',)
+
+
 class FeedBrandMembership(BaseFeedCollectionMembership):
     """
     An app's membership to a `FeedBrand` class, used as the through model for
@@ -157,7 +179,9 @@ class FeedBrandMembership(BaseFeedCollectionMembership):
 
 class FeedBrand(BaseFeedCollection):
     """
-    TODO: this.
+    Model for "Editorial Brands", a special type of collection that allows
+    editors to quickly create content without involving localizers by choosing
+    from one of a number of predefined, prelocalized titles.
     """
     _apps = models.ManyToManyField(Webapp, through=FeedBrandMembership,
                                    related_name='app_feed_brands')
@@ -174,8 +198,8 @@ class FeedBrand(BaseFeedCollection):
 
 class FeedApp(amo.models.ModelBase):
     """
-    Thin wrapper around the Webapp class that allows single apps to be featured
-    on the feed.
+    Model for "Custom Featured Apps", a feed item highlighting a single app
+    and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
     feedapp_type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
@@ -222,7 +246,9 @@ class FeedApp(amo.models.ModelBase):
 
 class FeedItem(amo.models.ModelBase):
     """
-    Allows objects from multiple models to be hung off the feed.
+    A thin wrapper for all items that live on the feed, including metadata
+    describing the conditions that the feed item should be included in a user's
+    feed.
     """
     category = models.ForeignKey(Category, null=True, blank=True)
     region = models.PositiveIntegerField(

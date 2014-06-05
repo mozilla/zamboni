@@ -14,8 +14,6 @@ class FeedAuthorization(BasePermission):
     Rules:
     - All users may make GET, HEAD, OPTIONS requests.
     - Users with Feed:Curate may make any request.
-    - Users in Collection().curators may make any request using a verb in the
-      curator_verbs property.
     """
     def is_safe(self, request):
         return request.method in SAFE_METHODS
