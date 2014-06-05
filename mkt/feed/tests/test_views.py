@@ -583,8 +583,6 @@ class BaseTestFeedCollection(object):
     def test_get_with_permission(self):
         self.feed_permission()
         res, data = self.get(self.client)
-        import pdb
-        pdb.set_trace()
         eq_(res.status_code, 200)
         eq_(data['id'], self.item.pk)
 

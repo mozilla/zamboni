@@ -9,12 +9,12 @@ from reviews.models import Review
 from users.models import UserProfile
 
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
-from mkt.purchase import tasks
+from mkt.stats import tasks
 
 
 class TestMonolithStats(amo.tests.TestCase):
 
-    @mock.patch('mkt.purchase.tasks.MonolithRecord')
+    @mock.patch('mkt.stats.tasks.MonolithRecord')
     def test_mmo_user_total_count_updates_monolith(self, record):
         UserProfile.objects.create(source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         metric = 'mmo_user_count_total'

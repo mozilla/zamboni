@@ -477,10 +477,6 @@ API_THROTTLE = True
 # features to the `AppFeatures` model.
 APP_FEATURES_VERSION = 4
 
-# Temporary variables for the app-preview server, set this to True
-# if you want to experience app-preview.mozilla.org.
-APP_PREVIEW = True
-
 # This is the aud (audience) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the DOMAIN setting and on B2G this must match
@@ -739,14 +735,15 @@ HEKA_CONF = {
             'syslog_facility': 'LOCAL4',
             'syslog_ident': 'http_app_addons_marketplace',
             'syslog_priority': 'ALERT',
-            }),
+        }),
 
         # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
         'raven': ('heka_raven.raven_plugin:config_plugin', {
-            'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
-        },
+            'dsn': 'udp://username:password@127.0.0.1:9000/2'
+        }),
+    },
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': '127.0.0.1',
@@ -1379,8 +1376,9 @@ STYLUS_BIN = path('node_modules/stylus/bin/stylus')
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
-# Default AMO user id to use for tasks.
-TASK_USER_ID = 4757633
+# Default user id to use for tasks. This is the landfill admin user, or more
+# likely the first user if a developer creates a clean database.
+TASK_USER_ID = 1
 
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
@@ -1400,7 +1398,7 @@ TOWER_KEYWORDS = {
 TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
+UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
 
 # Feature flags
 UNLINK_SITE_STATS = True
@@ -1449,8 +1447,8 @@ WEBAPPS_UNIQUE_BY_DOMAIN = False
 WHITELISTED_CLIENTS_EMAIL_API = []
 
 # Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = True
-XSENDFILE_HEADER = 'X-SENDFILE'
+XSENDFILE = False
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 # The UUID for Yogafire (Tarako Marketplace).
 YOGAFIRE_GUID = 'f34d3c22-3efe-47ca-803d-6c740da1a851'

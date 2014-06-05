@@ -45,6 +45,10 @@ CT_URL = (
     'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests'
 )
 
+REQUESTS_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0'
+}
+
 
 @task
 @write
@@ -248,7 +252,8 @@ def get_preview_sizes(ids, **kw):
 def _fetch_content(url):
     with statsd.timer('developers.tasks.fetch_content'):
         try:
-            res = requests.get(url, timeout=30, stream=True)
+            res = requests.get(url, timeout=30, stream=True,
+                               headers=REQUESTS_HEADERS)
 
             if not 200 <= res.status_code < 300:
                 statsd.incr('developers.tasks.fetch_content.error')

@@ -196,7 +196,7 @@ def browserid_login(request, browserid_audience=None):
 # Used by mkt.developers.views:login.
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
-    data['webapp'] = settings.APP_PREVIEW
+    data['webapp'] = True
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 

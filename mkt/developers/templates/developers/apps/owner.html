@@ -17,6 +17,12 @@
   </header>
 
   <section id="edit-addon" class="primary devhub-form manage" role="main">
+    {% if not can_edit %}
+      <div class="notification-box">
+        <p>{{ _('Only the app owner(s) can edit this page.') }}</p>
+      </div>
+    {% endif %}
+
     <h2>{{ _('Team Members') }}</h2>
 
     <div class="island">
