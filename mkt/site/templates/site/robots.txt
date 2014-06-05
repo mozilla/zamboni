@@ -9,6 +9,7 @@ Disallow: /comm/
 Disallow: /curation/
 Disallow: /downloads/
 Disallow: /lookup/
+Disallow: /mozpay/
 
 # Commonplace URLs
 Disallow: /tests
