@@ -35,6 +35,6 @@ def static_url(url):
         'PRODUCT_ICON_URL': settings.MEDIA_URL,
         'WEBAPPS_RECEIPT_URL': settings.SITE_URL
     }
-    if settings.SERVE_TMP_PATH:
+    if settings.DEBUG and settings.SERVE_TMP_PATH:
         return prefix[url] + 'tmp/' + getattr(settings, url)
     return prefix[url] + getattr(settings, url)
