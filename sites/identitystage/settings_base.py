@@ -170,3 +170,4 @@ CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)
 AES_KEYS = private.AES_KEYS
 
 TASK_USER_ID = 4757633
+SERVE_TMP_PATH = False
