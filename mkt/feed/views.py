@@ -79,7 +79,6 @@ class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
         page = self.paginate_queryset(
             self.filter_queryset(self.get_queryset()))
         serializer = self.get_pagination_serializer(page)
-        print serializer.data
         return response.Response(serializer.data)
 
 
