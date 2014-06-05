@@ -46,6 +46,12 @@
         {{ form.paid_platforms }}
       </div>
 
+      {% if not can_edit %}
+        <div class="notification-box">
+          <p>{{ _('Only the app owner(s) can edit this page.') }}</p>
+        </div>
+      {% endif %}
+
       <section id="submit-payment-type">
         {% if not is_paid %}
           <h2>{{ _('App Compatibility') }}</h2>
