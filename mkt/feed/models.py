@@ -8,6 +8,7 @@ that match the user's region and carrier.
 Current content types able to be attached to FeedItem:
 - `FeedApp` (via the `app` field)
 - `FeedBrand` (via the `brand` field)
+- `FeedCollection` (via the `collection` field)
 """
 
 import os
@@ -32,7 +33,8 @@ from mkt.ratings.validators import validate_rating
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import index_webapps
 
-from .constants import BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES
+from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
+                        COLLECTION_TYPE_CHOICES, FEED_COLOR_CHOICES)
 
 
 class BaseFeedCollection(amo.models.ModelBase):
@@ -43,7 +45,7 @@ class BaseFeedCollection(amo.models.ModelBase):
     is a base class for those feed items, including:
 
     - Editorial Brands: `FeedBrand`
-    - Collections (future): `FeedCollection`
+    - Collections: `FeedCollection`
     - Operator Shelves (future): `FeedOperatorShelf`
 
     A series of base classes wraps the common code for these:
@@ -196,6 +198,40 @@ class FeedBrand(BaseFeedCollection):
         db_table = 'mkt_feed_brand'
 
 
+class FeedCollectionMembership(BaseFeedCollectionMembership):
+    """
+    An app's membership to a `FeedBrand` class, used as the through model for
+    `FeedBrand._apps`.
+    """
+    obj = models.ForeignKey('FeedCollection')
+
+    class Meta(BaseFeedCollectionMembership.Meta):
+        abstract = False
+        db_table = 'mkt_feed_collection_membership'
+
+
+class FeedCollection(BaseFeedCollection):
+    """
+    Model for "Collections", a type of curated collection that allows more
+    complex grouping of apps than an Editorial Brand.
+    """
+    _apps = models.ManyToManyField(Webapp, through=FeedCollectionMembership,
+                                   related_name='app_feed_collections')
+    color = models.CharField(choices=FEED_COLOR_CHOICES, max_length=7,
+                             null=False)
+    name = PurifiedField()
+    description = PurifiedField(blank=True, null=True)
+    type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,
+                            null=True)
+
+    membership_class = FeedCollectionMembership
+    membership_relation = 'feedcollectionmembership'
+
+    class Meta(BaseFeedCollection.Meta):
+        abstract = False
+        db_table = 'mkt_feed_collection'
+
+
 class FeedApp(amo.models.ModelBase):
     """
     Model for "Custom Featured Apps", a feed item highlighting a single app
@@ -261,14 +297,17 @@ class FeedItem(amo.models.ModelBase):
     # Types of objects that may be contained by a feed item.
     app = models.ForeignKey(FeedApp, blank=True, null=True)
     brand = models.ForeignKey(FeedBrand, blank=True, null=True)
+    collection = models.ForeignKey(FeedCollection, blank=True, null=True)
 
     class Meta:
         db_table = 'mkt_feed_item'
 
 
-# Save translations when saving a FeedApp instance.
+# Save translations when saving instance with translated fields.
 models.signals.pre_save.connect(save_signal, sender=FeedApp,
                                 dispatch_uid='feedapp_translations')
+models.signals.pre_save.connect(save_signal, sender=FeedCollection,
+                                dispatch_uid='feedcollection_translations')
 
 
 # Delete membership instances when their apps are deleted.
@@ -278,6 +317,6 @@ def remove_deleted_app_on(cls):
         cls.objects.filter(app_id=instance.pk).delete()
     return inner
 
-for cls in [FeedBrandMembership]:
+for cls in [FeedBrandMembership, FeedCollectionMembership]:
     post_delete.connect(remove_deleted_app_on(cls), sender=Addon,
                         dispatch_uid='apps_collections_cleanup')

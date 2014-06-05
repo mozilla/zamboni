@@ -15,9 +15,9 @@ from mkt.collections.views import CollectionImageViewSet
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
-from .models import FeedApp, FeedBrand, FeedItem
+from .models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from .serializers import (FeedAppSerializer, FeedBrandSerializer,
-                          FeedItemSerializer)
+                          FeedCollectionSerializer, FeedItemSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
@@ -105,3 +105,11 @@ class FeedBrandViewSet(BaseFeedCollectionViewSet):
     """
     serializer_class = FeedBrandSerializer
     queryset = FeedBrand.objects.all()
+
+
+class FeedCollectionViewSet(BaseFeedCollectionViewSet):
+    """
+    A viewset for the FeedCollection class.
+    """
+    serializer_class = FeedCollectionSerializer
+    queryset = FeedCollection.objects.all()

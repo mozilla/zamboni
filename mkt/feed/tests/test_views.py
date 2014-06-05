@@ -3,16 +3,16 @@ import json
 import random
 import string
 
-from nose.tools import eq_, ok_
-
 from django.core.urlresolvers import reverse
+
+from nose.tools import eq_, ok_
 
 import mkt.carriers
 import mkt.regions
 from addons.models import Preview
 from amo.tests import app_factory
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.feed.models import FeedApp, FeedBrand, FeedItem
+from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -520,7 +520,7 @@ class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
 
 
 class BaseTestFeedCollection(object):
-    item_data = None
+    obj_data = None
     model = None
     obj = None
     serializer = None
@@ -528,24 +528,32 @@ class BaseTestFeedCollection(object):
 
     def setUp(self):
         super(BaseTestFeedCollection, self).setUp()
-        self.item = self.make_item()
         self.list_url = reverse('api-v2:%s-list' % self.url_basename)
+
+    def data(self, **kwargs):
+        data = dict(self.obj_data)
+        data.update(kwargs)
+        return data
+
+    def make_item(self, **addtl):
+        obj_data = self.data(slug='sprout')
+        obj_data.update(addtl)
+        self.item = self.model.objects.create(**obj_data)
         self.detail_url = reverse('api-v2:%s-detail' % self.url_basename,
                                   kwargs={'pk': self.item.pk})
         self.set_apps_url = self.detail_url + 'set_apps/'
-
-    def make_item(self):
-        return self.model.objects.create(**self.item_data)
 
     def feed_permission(self):
         self.grant_permission(self.profile, 'Feed:Curate')
 
     def get(self, client):
+        self.make_item()
         res = client.get(self.detail_url)
         data = json.loads(res.content)
         return res, data
 
     def list(self, client):
+        self.make_item()
         res = client.get(self.list_url)
         data = json.loads(res.content)
         return res, data
@@ -556,16 +564,19 @@ class BaseTestFeedCollection(object):
         return res, data
 
     def update(self, client, **kwargs):
+        self.make_item()
         res = client.patch(self.detail_url, json.dumps(kwargs))
         data = json.loads(res.content)
         return res, data
 
     def delete(self, client):
+        self.make_item()
         res = client.delete(self.detail_url)
         data = json.loads(res.content or '{}')
         return res, data
 
     def set_apps(self, client, **kwargs):
+        self.make_item()
         res = client.post(self.set_apps_url, json.dumps(kwargs))
         data = json.loads(res.content)
         return res, data
@@ -606,25 +617,36 @@ class BaseTestFeedCollection(object):
         eq_(data['objects'][0]['id'], self.item.id)
 
     def test_create_anonymous(self):
-        res, data = self.create(self.anon, **self.item_data)
+        res, data = self.create(self.anon, **self.obj_data)
         eq_(res.status_code, 403)
 
     def test_create_no_permission(self):
-        res, data = self.create(self.client, **self.item_data)
+        res, data = self.create(self.client, **self.obj_data)
         eq_(res.status_code, 403)
 
     def test_create_with_permission(self):
         self.feed_permission()
-        self.item_data['slug'] = 'french_fries'
-        res, data = self.create(self.client, **self.item_data)
+        res, data = self.create(self.client, **self.obj_data)
         eq_(res.status_code, 201)
-        for name, value in self.item_data.iteritems():
+        for name, value in self.obj_data.iteritems():
             eq_(value, data[name])
 
     def test_create_no_data(self):
         self.feed_permission()
         res, data = self.create(self.client)
         eq_(res.status_code, 400)
+
+    def test_create_duplicate_slug(self):
+        self.feed_permission()
+        obj_data = self.data()
+
+        res1, data1 = self.create(self.client, **obj_data)
+        eq_(res1.status_code, 201)
+        eq_(obj_data['slug'], data1['slug'])
+
+        res2, data2 = self.create(self.client, **obj_data)
+        eq_(res2.status_code, 400)
+        ok_('slug' in data2)
 
     def test_update_anonymous(self):
         res, data = self.update(self.anon)
@@ -687,10 +709,59 @@ class BaseTestFeedCollection(object):
 
 
 class TestFeedBrandViewSet(BaseTestFeedCollection, RestOAuth):
-    item_data = {
+    obj_data = {
         'layout': 'grid',
         'type': 'hidden-gem',
         'slug': 'potato'
     }
     model = FeedBrand
     url_basename = 'feedbrands'
+
+
+class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
+    obj_data = {
+        'slug': 'potato',
+        'type': 'promo',
+        'color': '#00AACC',
+        'description': {'en-US': 'Potato french fries'},
+        'name': {'en-US': 'Deep Fried'}
+    }
+    model = FeedCollection
+    url_basename = 'feedcollections'
+
+    def make_item(self):
+        """
+        Add additional unique fields: `description` and `name`.
+        """
+        super(TestFeedCollectionViewSet, self).make_item(
+            description={'en-US': 'Baby Potato'}, name={'en-US': 'Sprout'})
+
+    def test_create_missing_color(self):
+        self.feed_permission()
+        obj_data = self.data()
+        del obj_data['color']
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 400)
+        ok_('color' in data)
+
+    def test_create_missing_name(self):
+        self.feed_permission()
+        obj_data = self.data()
+        del obj_data['name']
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 400)
+        ok_('name' in data)
+
+    def test_create_invalid_type(self):
+        self.feed_permission()
+        obj_data = self.data(type='tuber')
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 400)
+        ok_('type' in data)
+
+    def test_create_no_description(self):
+        self.feed_permission()
+        obj_data = self.data()
+        del obj_data['description']
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)

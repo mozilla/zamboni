@@ -13,7 +13,7 @@ from mkt.webapps.serializers import AppSerializer
 
 from . import constants
 from .fields import FeedCollectionMembershipField
-from .models import FeedApp, FeedBrand, FeedItem
+from .models import FeedApp, FeedBrand, FeedCollection, FeedItem
 
 
 class BaseFeedCollectionSerializer(URLSerializerMixin,
@@ -70,6 +70,22 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
         url_basename = 'feedbrands'
 
 
+class FeedCollectionSerializer(BaseFeedCollectionSerializer):
+    """
+    A serializer for the FeedCollection class.
+    """
+    type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
+    color = serializers.CharField(max_length=7)
+    description = TranslationSerializerField(required=False)
+    name = TranslationSerializerField()
+
+    class Meta:
+        fields = ('apps', 'color', 'description', 'id', 'name', 'slug', 'type',
+                  'url')
+        model = FeedCollection
+        url_basename = 'feedcollections'
+
+
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     """
     A serializer for the FeedItem class, which wraps all items that live on the
@@ -88,6 +104,8 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                      FeedAppSerializer())
     brand = SplitField(relations.PrimaryKeyRelatedField(required=False),
                        FeedBrandSerializer())
+    collection = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                            FeedCollectionSerializer())
 
     class Meta:
         fields = ('app', 'brand', 'carrier', 'category', 'id', 'item_type',
