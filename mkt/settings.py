@@ -356,12 +356,12 @@ PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # Base URL where webpay product icons are served from.
-PRODUCT_ICON_URL = MEDIA_URL + '/product-icons'
+PRODUCT_ICON_URL = '/product-icons'
 
 # The verification URL, the addon id will be appended to this. This will
 # have to be altered to the right domain for each server, eg:
 # https://receiptcheck.addons.mozilla.org/verify/
-WEBAPPS_RECEIPT_URL = SITE_URL + '/verify/'
+WEBAPPS_RECEIPT_URL = '/verify/'
 
 ###########################################
 # Celery

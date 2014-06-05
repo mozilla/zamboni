@@ -55,7 +55,8 @@ sample = ('eyJqa3UiOiAiaHR0cHM6Ly9tYXJrZXRwbGFjZS1kZXYtY2RuL'
 # even though they are the same file.
 @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
                    amo.tests.AMOPaths.sample_key())
-@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_URL', 'http://foo.com')
+@mock.patch.object(settings, 'SITE_URL', 'http://foo.com/')
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_URL', '/verifyme/')
 class TestVerify(amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
