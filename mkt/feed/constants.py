@@ -95,3 +95,18 @@ BRAND_LAYOUTS = (
     'list'
 )
 BRAND_LAYOUT_CHOICES = [(c, c) for c in BRAND_LAYOUTS]
+
+FEED_COLOR_CHOICES = (
+    ('#B90000', 'Raring Red'),
+    ('#FF4E00', 'Oneric Orange'),
+    ('#CD6723', 'Breezy Brown'),
+    ('#00AACC', 'Blistering Blue'),
+    ('#5F9B0A', 'Gusty Green'),
+    ('#2C393B', 'Intrepid Indigo'),
+)
+
+COLLECTION_TYPES = (
+    'promo',
+    'listing',
+)
+COLLECTION_TYPE_CHOICES = [(c, c) for c in COLLECTION_TYPES]
