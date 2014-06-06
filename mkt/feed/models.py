@@ -217,8 +217,8 @@ class FeedCollection(BaseFeedCollection):
     """
     _apps = models.ManyToManyField(Webapp, through=FeedCollectionMembership,
                                    related_name='app_feed_collections')
-    color = models.CharField(choices=FEED_COLOR_CHOICES, max_length=7,
-                             null=False)
+    background_color = models.CharField(choices=FEED_COLOR_CHOICES,
+                                        max_length=7, null=True, blank=True)
     name = PurifiedField()
     description = PurifiedField(blank=True, null=True)
     type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,
