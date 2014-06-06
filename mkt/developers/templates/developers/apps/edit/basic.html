@@ -69,25 +69,23 @@
           </th>
           <td>
             <span>{{ settings.SITE_URL }}{{ addon.get_api_url() }}</span>
-            <a class="smaller" href="https://firefox-marketplace-api.readthedocs.org">{{ _('View API documentation') }}</a>
+            <a class="smaller" href="https://firefox-marketplace-api.readthedocs.org" target="_blank">{{ _('View API documentation') }}</a>
           </td>
         </tr>
         <tr id="manifest-url">
           <th class="label">{{ _('Manifest URL') }}</th>
           <td>
             {% if addon.is_packaged %}
-                <a href="{{ addon.get_manifest_url() }}" target="_blank">{{ addon.get_manifest_url() }}</a>
+              <a href="{{ addon.get_manifest_url() }}" target="_blank">{{ addon.get_manifest_url() }}</a>
             {% else %}
               {% if editable %}
-                <input type="text" name="manifest_url"{{ ' readonly' if not action_allowed('Admin', '%') }} value="{{ addon.manifest_url }}">
+                <input type="text" name="manifest_url" value="{{ addon.manifest_url }}">
                 {{ form.manifest_url.errors }}
                 <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
                 <p class="note">
-                  {% trans email='app-reviewers@mozilla.org' %}
-                    Manifest URLs cannot be changed after your app has been
-                    submitted. Please email
-                    <a href="mailto:{{ email }}">{{ email }}</a> if there is a
-                    reason you need to modify your manifest URL.
+                  {% trans doc_url='https://developer.mozilla.org/en-US/Marketplace/Publishing/Updating_apps#Updating_hosted_apps' %}
+                    Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users
+                    won't be upgraded to use the new manifest URL. For more information, read the <a href="{{ doc_url }}" target="_blank">documentation on Updating Apps</a>.
                   {% endtrans %}
                 </p>
               {% else %}

@@ -35,11 +35,12 @@ from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
+from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.tags.models import Tag
 from mkt.versions.models import Version
 from mkt.webapps.models import IARCInfo, Webapp
-from mkt.webapps.tasks import index_webapps
+from mkt.webapps.tasks import index_webapps, update_manifests
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation
@@ -563,9 +564,11 @@ class AppFormBasic(AddonFormBase):
 
         super(AppFormBasic, self).__init__(*args, **kw)
 
+        self.old_manifest_url = self.instance.manifest_url
+
         if self.instance.is_packaged:
-            # Manifest URL field for packaged apps is empty.
-            self.fields['manifest_url'].required = False
+            # Manifest URL cannot be changed for packaged apps.
+            del self.fields['manifest_url']
 
     def _post_clean(self):
         # Switch slug to app_slug in cleaned_data and self._meta.fields so
@@ -600,9 +603,6 @@ class AppFormBasic(AddonFormBase):
         manifest_url = self.cleaned_data['manifest_url']
         # Only verify if manifest changed.
         if 'manifest_url' in self.changed_data:
-            # Only Admins can edit the manifest_url.
-            if not acl.action_allowed(self.request, 'Admin', '%'):
-                return self.instance.manifest_url
             verify_app_domain(manifest_url, exclude=self.instance)
         return manifest_url
 
@@ -611,6 +611,28 @@ class AppFormBasic(AddonFormBase):
         # the ManyToMany fields on our own.
         addonform = super(AppFormBasic, self).save(commit=False)
         addonform.save()
+
+        if 'manifest_url' in self.changed_data:
+            before_url = self.old_manifest_url
+            after_url = self.cleaned_data['manifest_url']
+
+            # If a non-admin edited the manifest URL, add to Re-review Queue.
+            if not acl.action_allowed(self.request, 'Admin', '%'):
+                log.info(u'[Webapp:%s] (Re-review) Manifest URL changed '
+                         u'from %s to %s'
+                         % (self.instance, before_url, after_url))
+
+                msg = (_(u'Manifest URL changed from {before_url} to '
+                         u'{after_url}')
+                       .format(before_url=before_url, after_url=after_url))
+
+                RereviewQueue.flag(self.instance,
+                                   amo.LOG.REREVIEW_MANIFEST_URL_CHANGE, msg)
+
+            # Refetch the new manifest.
+            log.info('Manifest %s refreshed for %s'
+                     % (addon.manifest_url, addon))
+            update_manifests.delay([self.instance.id])
 
         return addonform
 
