@@ -265,7 +265,11 @@ Then you can just run the following command to install the landfill
 database. You can also use it whenever you want to restore back to the
 base landfill database::
 
-    ./manage.py install_landfill
+    ./manage.py install_landfill --site=addons
+
+Or::
+
+    ./manage.py install_landfill --site=mkt
 
 Here are the shell commands to pull down and set up the latest
 snapshot manually (ie without the management command)::

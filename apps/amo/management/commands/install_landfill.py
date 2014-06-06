@@ -39,12 +39,16 @@ class Command(BaseCommand):
                     dest='no_save_file',
                     default=False,
                     help='Do not save the file downloaded from allizom.'),
+        make_option('--site',
+                    dest='site',
+                    default='addons',
+                    help='Site to download landfill from. Either "addons" or "mkt".'),
         )
 
     def handle(self, *args, **kw):
         filename = date.today().strftime('landfill-%Y-%m-%d.sql.gz')
         file_location = '/tmp/%s' % filename
-        file_url = 'https://landfill-addons.allizom.org/db_data/%s' % filename
+        file_url = 'https://landfill-%s.allizom.org/db_data/%s' % (kw['site'], filename)
 
         write_dump = 'mysql -u%(db_user)s %(db_name)s' % {
             'db_user': settings.DATABASES['default']['USER'],
