@@ -12,7 +12,7 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from mkt.access.models import Group, GroupUser
-from reviews.models import Review
+from mkt.ratings.models import Review
 from translations.models import Translation
 from users.models import UserEmailField, UserProfile
 

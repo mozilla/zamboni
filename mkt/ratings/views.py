@@ -21,7 +21,7 @@ from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
 from mkt.regions import get_region
 from mkt.webapps.models import Webapp
-from reviews.models import Review, ReviewFlag
+from mkt.ratings.models import Review, ReviewFlag
 
 
 log = commonware.log.getLogger('z.api')
