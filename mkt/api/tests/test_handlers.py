@@ -24,9 +24,9 @@ from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.prices.models import Price, PriceCurrency
 from mkt.site.fixtures import fixture
+from mkt.tags.models import AddonTag, Tag
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 from reviews.models import Review
-from tags.models import AddonTag, Tag
 from users.models import UserProfile
 
 

@@ -66,9 +66,9 @@ from mkt.search.views import SearchView
 from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp, WebappIndexer
 from reviews.models import Review, ReviewFlag
-from tags.models import Tag
 from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config

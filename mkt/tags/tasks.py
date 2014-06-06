@@ -2,7 +2,7 @@ from celeryutils import task
 import commonware.log
 
 from amo.utils import slugify
-from tags.models import AddonTag, Tag
+from mkt.tags.models import AddonTag, Tag
 
 
 task_log = commonware.log.getLogger('z.task')

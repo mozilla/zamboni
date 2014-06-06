@@ -91,7 +91,6 @@ INSTALLED_APPS = (
     'lib.es',
     'product_details',
     'reviews',
-    'tags',
     'tower',  # for ./manage.py extract
     'translations',
     'users',
@@ -144,6 +143,7 @@ INSTALLED_APPS = (
     'mkt.search',
     'mkt.stats',
     'mkt.submit',
+    'mkt.tags',
     'mkt.zadmin',
     'mkt.webapps',
     'mkt.webpay',

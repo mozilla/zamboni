@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from tags.models import Tag
-from tags.tasks import clean_tag
+from mkt.tags.models import Tag
+from mkt.tags.tasks import clean_tag
 
 
 class Command(BaseCommand):
