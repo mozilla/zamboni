@@ -2,9 +2,9 @@ from datetime import datetime
 from itertools import chain
 
 import amo
-from devhub.models import ActivityLog
 from editors.models import EventLog
 from mkt.access.models import Group
+from mkt.developers.models import ActivityLog
 from users.models import UserProfile
 
 

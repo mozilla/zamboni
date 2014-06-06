@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'django_browserid',
     'django_statsd',
 
-    'devhub',  # Put here so helpers.py doesn't get loaded first.
     'mkt.site',
     'mkt.abuse',
     'mkt.access',

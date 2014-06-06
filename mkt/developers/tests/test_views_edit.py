@@ -24,12 +24,12 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
-from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
 from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
 from mkt.constants import regions
+from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from translations.models import Translation

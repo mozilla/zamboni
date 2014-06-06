@@ -1039,7 +1039,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
 
 class TestRegions(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
+                       'group_admin')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -1158,7 +1159,6 @@ class TestPaymentAccounts(PaymentsBase):
 
 
 class TestPaymentPortal(PaymentsBase):
-
     fixtures = PaymentsBase.fixtures + fixture('webapp_337141')
 
     def setUp(self):

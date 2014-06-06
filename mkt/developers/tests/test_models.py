@@ -11,14 +11,13 @@ import amo
 import amo.tests
 from addons.models import Addon
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from devhub.models import ActivityLog, ActivityLogAttachment
-from users.models import UserProfile
-
-from mkt.developers.models import (AddonPaymentAccount, CantCancel,
+from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
+                                   AddonPaymentAccount, CantCancel,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 from .test_providers import Patcher
 
@@ -224,13 +223,13 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestActivityLogAttachment(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = fixture('webapp_337141')
 
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
 
     def setUp(self):
         self.user = self._user()
-        addon = Addon.objects.get()
+        addon = Addon.objects.get(pk=337141)
         version = addon.latest_version
         al = amo.log(amo.LOG.COMMENT_VERSION, addon, version, user=self.user)
         self.attachment1, self.attachment2 = self._attachments(al)

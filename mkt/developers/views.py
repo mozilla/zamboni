@@ -36,7 +36,6 @@ from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required, skip_cache, write)
 from amo.utils import escape_all
-from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.iarc.utils import get_iarc_app_title
@@ -53,7 +52,7 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
                                   IARCGetAppInfoForm, NewPackagedAppForm,
                                   PreloadTestPlanForm, PreviewFormSet,
                                   TransactionFilterForm, trap_duplicate)
-from mkt.developers.models import PreloadTestPlan
+from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.developers.utils import check_upload, handle_vip

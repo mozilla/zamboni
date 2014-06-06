@@ -684,8 +684,9 @@ def log(action, *args, **kw):
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
     from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, ActivityLogAttachment, AppLog,
-                               CommentLog, GroupLog, UserLog, VersionLog)
+    from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
+                                       AppLog, CommentLog, GroupLog, UserLog,
+                                       VersionLog)
     from mkt.access.models import Group
     from mkt.webapps.models import Webapp
     from users.models import UserProfile

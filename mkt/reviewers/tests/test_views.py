@@ -31,7 +31,6 @@ from amo.helpers import absolutify, urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
 from amo.utils import isotime
-from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from files.models import File
@@ -42,6 +41,7 @@ from mkt.access.models import Group, GroupUser
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
+from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
@@ -2373,7 +2373,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
 
-    @mock.patch('devhub.models.ActivityLog.arguments', new=mock.Mock)
+    @mock.patch('mkt.developers.models.ActivityLog.arguments', new=mock.Mock)
     def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)

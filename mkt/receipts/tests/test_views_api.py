@@ -10,9 +10,9 @@ import amo.tests
 
 from addons.models import Addon, AddonUser
 from constants.payments import CONTRIB_NO_CHARGE
-from devhub.models import AppLog
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
+from mkt.developers.models import AppLog
 from mkt.receipts.tests.test_verify import sample
 from mkt.site.fixtures import fixture
 from users.models import UserProfile

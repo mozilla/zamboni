@@ -45,7 +45,7 @@ from versions.models import Version
 
 
 class AppHubTest(amo.tests.TestCase):
-    fixtures = fixture('prices', 'webapp_337141') + ['base/users']
+    fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
         self.create_flag('allow-b2g-paid-submission')
@@ -69,7 +69,7 @@ class AppHubTest(amo.tests.TestCase):
 
 
 class TestHome(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         self.url = reverse('mkt.developers.apps')
@@ -259,6 +259,8 @@ class TestAppDashboardSorting(AppHubTest):
 
 
 class TestDevRequired(AppHubTest):
+    fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
+                       'group_admin')
 
     def setUp(self):
         self.webapp = Addon.objects.get(id=337141)
@@ -624,7 +626,8 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
 
 class TestStatus(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
+                       'group_admin')
 
     def setUp(self):
         self.webapp = Addon.objects.get(id=337141)
@@ -694,7 +697,7 @@ class TestDelete(amo.tests.TestCase):
 
 
 class TestResumeStep(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = self.get_addon()
@@ -730,7 +733,7 @@ class TestResumeStep(amo.tests.TestCase):
 
 
 class TestUpload(BaseUploadTest):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         super(TestUpload, self).setUp()
@@ -816,7 +819,7 @@ class TestUpload(BaseUploadTest):
 
 
 class TestUploadDetail(BaseUploadTest):
-    fixtures = ['base/apps', 'base/appversion', 'base/platforms', 'base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
@@ -939,7 +942,8 @@ def assert_json_field(request, field, msg):
 
 
 class TestDeleteApp(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_admin', 'user_admin_group',
+                       'group_admin')
 
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
@@ -1020,7 +1024,7 @@ class TestEnableDisable(amo.tests.TestCase):
 
 
 class TestRemoveLocale(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.webapp = Addon.objects.no_cache().get(id=337141)
@@ -1049,7 +1053,7 @@ class TestRemoveLocale(amo.tests.TestCase):
 
 
 class TestTerms(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999')
 
     def setUp(self):
         self.user = self.get_user()

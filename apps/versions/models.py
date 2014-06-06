@@ -167,7 +167,7 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property(writable=True)
     def all_activity(self):
-        from devhub.models import VersionLog  # yucky
+        from mkt.developers.models import VersionLog
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
               .select_related(depth=1).no_cache())
         return al
@@ -234,7 +234,7 @@ class Version(amo.models.ModelBase):
     @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
-        from devhub.models import VersionLog  # yucky
+        from mkt.developers.models import VersionLog
 
         ids = set(v.id for v in versions)
         if not versions:

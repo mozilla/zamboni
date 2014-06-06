@@ -10,12 +10,11 @@ import amo
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
-from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
-from reviews.models import Review
-
 from mkt.abuse.models import AbuseReport
+from mkt.developers.models import ActivityLog, AppLog
 from mkt.prices.models import Refund
+from reviews.models import Review
 
 
 log = commonware.log.getLogger('z.task')

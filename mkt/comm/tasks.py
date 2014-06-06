@@ -1,13 +1,12 @@
 import logging
 from celeryutils import task
 
+import mkt.constants.comm as cmb
 from amo.decorators import write
-from devhub.models import ActivityLog
-
 from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
                              CommunicationThread)
 from mkt.comm.utils import filter_notes_by_read_status, save_from_email_reply
-import mkt.constants.comm as cmb
+from mkt.developers.models import ActivityLog
 
 
 log = logging.getLogger('z.task')

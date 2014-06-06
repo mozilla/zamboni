@@ -40,7 +40,6 @@ from amo.helpers import absolutify, urlparams
 from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
-from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
                             ReviewerScore)
@@ -54,6 +53,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
+from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm

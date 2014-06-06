@@ -12,17 +12,16 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
-from devhub.models import ActivityLog
-from users.models import UserProfile
-
 import mkt
+from addons.models import Addon
 from mkt.api.models import Nonce
+from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _get_trending
+from users.models import UserProfile
 
 
 class TestWeeklyDownloads(amo.tests.TestCase):

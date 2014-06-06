@@ -21,14 +21,13 @@ import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.utils import paginate
-from devhub.models import ActivityLog
 from lib.pay_server import client
 from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
-from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,

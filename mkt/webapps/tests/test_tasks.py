@@ -22,22 +22,17 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser, Preview
 from amo.helpers import absolutify
-from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from files.models import File, FileUpload
-from users.models import UserProfile
-from versions.models import Version
-
+from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import (dump_app, dump_user_installs,
-                               export_data,
-                               notify_developers_of_failure,
-                               pre_generate_apk,
-                               PreGenAPKError,
-                               rm_directory,
-                               update_manifests,
+from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
+                               notify_developers_of_failure, pre_generate_apk,
+                               PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
+from users.models import UserProfile
+from versions.models import Version
 
 
 original = {
@@ -196,11 +191,11 @@ class TestUpdateManifest(amo.tests.TestCase):
     def test_not_log(self):
         self._hash = ohash
         self._run()
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 0)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 0)
 
     def test_log(self):
         self._run()
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 1)
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_ignore_not_webapp(self, mock_):
@@ -370,7 +365,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         ok_(_iarc.called)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -385,7 +380,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -404,7 +399,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -426,7 +421,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
         eq_(self.addon.reload().default_locale, 'es')
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=amo.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -450,7 +445,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 0)
         # Log for manifest update.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 1)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 1)
         ok_(not _iarc.called)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -471,7 +466,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
 
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
 
         ok_(_iarc.called)
 
@@ -503,7 +498,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         # We should get a re-review because of the developer name change.
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps(self.addon).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
 
         ok_(_iarc.called)
 

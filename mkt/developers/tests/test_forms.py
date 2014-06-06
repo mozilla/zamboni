@@ -30,10 +30,10 @@ from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = Addon.objects.get(pk=337141)
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)

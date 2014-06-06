@@ -20,7 +20,6 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo.decorators import json_view, post_required, write
 from constants.payments import CONTRIB_NO_CHARGE
-from devhub.models import AppLog
 from editors.views import reviewer_required
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
@@ -30,6 +29,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import cors_api_view
 from mkt.constants import apps
+from mkt.developers.models import AppLog
 from mkt.installs.utils import record as utils_record
 from mkt.installs.utils import install_type
 from mkt.prices.models import AddonPurchase

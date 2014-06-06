@@ -4,12 +4,11 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from devhub.models import ActivityLog, ActivityLogAttachment
-from users.models import UserProfile
-
 import mkt.constants.comm as cmb
 from mkt.comm.models import CommunicationNote, CommunicationThread
+from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture
+from users.models import UserProfile
 
 
 class TestMigrateActivityLog(amo.tests.TestCase):

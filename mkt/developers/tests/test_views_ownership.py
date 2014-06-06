@@ -8,15 +8,15 @@ import waffle
 
 import amo
 import amo.tests
-from amo.tests import formset
 from addons.models import Addon, AddonUser
-from devhub.models import ActivityLog
+from amo.tests import formset
+from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
 class TestOwnership(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
         self.webapp = self.get_webapp()
@@ -208,7 +208,8 @@ class TestEditAuthor(TestOwnership):
 
 
 class TestEditWebappAuthors(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_999', 'user_admin',
+                       'user_admin_group', 'group_admin')
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')

@@ -23,12 +23,11 @@ from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from devhub.models import ActivityLog
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
+                                   PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)

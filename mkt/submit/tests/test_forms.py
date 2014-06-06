@@ -7,16 +7,15 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from devhub.models import AppLog
 from editors.models import RereviewQueue
 from files.models import FileUpload
-from users.models import UserProfile
-
 from mkt.comm.models import CommunicationNote
 from mkt.constants.features import APP_FEATURES
+from mkt.developers.models import AppLog
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
 from mkt.webapps.models import AppFeatures, Webapp
+from users.models import UserProfile
 
 
 class TestNewWebappForm(amo.tests.TestCase):

@@ -18,12 +18,12 @@ from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonType,
 from amo import set_user
 from amo.helpers import absolutify
 from constants.applications import DEVICE_TYPES
-from devhub.models import ActivityLog
 from editors.models import EscalationQueue
 from files.models import File
+from lib.utils import static_url
+from mkt.developers.models import ActivityLog
 from mkt.prices.models import AddonPaymentData, AddonPremium, Price
 from mkt.webapps.models import Webapp
-from lib.utils import static_url
 from reviews.models import Review
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile

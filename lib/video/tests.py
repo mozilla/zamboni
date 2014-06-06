@@ -12,11 +12,11 @@ from django.conf import settings
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from devhub.models import UserLog
-from lib.video import get_library
-from lib.video import ffmpeg, totem
+from lib.video import ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
+from mkt.developers.models import UserLog
 from users.models import UserProfile
+
 
 files = {
     'good': os.path.join(os.path.dirname(__file__),

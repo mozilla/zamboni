@@ -12,9 +12,8 @@ from celery import chord
 
 import amo
 from amo.utils import chunked
-from devhub.models import ActivityLog
-
 from mkt.api.models import Nonce
+from mkt.developers.models import ActivityLog
 
 from .models import Installed, Webapp
 from .tasks import (dump_user_installs, update_downloads, update_trending,

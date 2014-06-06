@@ -10,16 +10,15 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import amo
-from addons.models import AddonUser
-from devhub.models import ActivityLog
-from reviews.models import Review, ReviewFlag
-from users.models import UserProfile
-
 import mkt.regions
+from addons.models import AddonUser
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.developers.models import ActivityLog
+from mkt.prices.models import AddonPurchase
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, Webapp
-from mkt.prices.models import AddonPurchase
+from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
 
 
 class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
@@ -504,7 +503,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
 
     def test_delete_app_mine(self):
         AddonUser.objects.filter(addon=self.app).update(user=self.user)
-        rev = Review.objects.create(addon=self.app, user=self.user2, 
+        rev = Review.objects.create(addon=self.app, user=self.user2,
                                     body='yes')
         url = reverse('ratings-detail', kwargs={'pk': rev.pk})
         res = self.client.delete(url)

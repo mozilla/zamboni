@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import json
-import urllib
 
 from django import test
 from django.conf import settings
@@ -13,14 +12,8 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from addons.models import Addon, AddonUser
 from amo.helpers import absolutify
-from amo.pyquery_wrapper import PyQuery
-from amo.tests import check_links
 from amo.urlresolvers import reverse
-from mkt.access import acl
-from mkt.access.models import Group, GroupUser
-from users.models import UserProfile
 
 
 class Test403(amo.tests.TestCase):
@@ -59,181 +52,8 @@ class Test404(amo.tests.TestCase):
         eq_(links.length, 4)
 
 
-class TestCommon(amo.tests.TestCase):
-    fixtures = ('base/users', 'base/configs', 'base/addon_3615')
-
-    def setUp(self):
-        self.url = reverse('home')
-
-    def login(self, user=None, get=False):
-        email = '%s@mozilla.com' % user
-        super(TestCommon, self).login(email)
-        if get:
-            return UserProfile.objects.get(email=email)
-
-    def test_tools_regular_user(self):
-        self.login('regular')
-        r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, False)
-
-        expected = [
-            ('Tools', '#'),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-    def test_tools_developer(self):
-        # Make them a developer.
-        user = self.login('regular', get=True)
-        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
-
-        group = Group.objects.create(name='Staff', rules='AdminTools:View')
-        GroupUser.objects.create(group=group, user=user)
-
-        r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, True)
-
-        expected = [
-            ('Tools', '#'),
-            ('Manage My Submissions', reverse('devhub.addons')),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-    def test_tools_editor(self):
-        self.login('editor')
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
-        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
-
-        expected = [
-            ('Tools', '#'),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-            ('Editor Tools', reverse('editors.home')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-    def test_tools_developer_and_editor(self):
-        # Make them a developer.
-        user = self.login('editor', get=True)
-        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
-
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
-
-        expected = [
-            ('Tools', '#'),
-            ('Manage My Submissions', reverse('devhub.addons')),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-            ('Editor Tools', reverse('editors.home')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-    def test_tools_admin(self):
-        self.login('admin')
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
-        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
-        eq_(acl.action_allowed(request, 'Localizer', '%'), True)
-        eq_(acl.action_allowed(request, 'Admin', '%'), True)
-
-        expected = [
-            ('Tools', '#'),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-            ('Editor Tools', reverse('editors.home')),
-            ('Admin Tools', reverse('zadmin.home')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-    def test_tools_developer_and_admin(self):
-        # Make them a developer.
-        user = self.login('admin', get=True)
-        AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
-
-        r = self.client.get(self.url, follow=True)
-        request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
-        eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
-        eq_(acl.action_allowed(request, 'Localizer', '%'), True)
-        eq_(acl.action_allowed(request, 'Admin', '%'), True)
-
-        expected = [
-            ('Tools', '#'),
-            ('Manage My Submissions', reverse('devhub.addons')),
-            ('Submit a New Add-on', reverse('devhub.submit.1')),
-            ('Developer Hub', reverse('devhub.index')),
-            ('Editor Tools', reverse('editors.home')),
-            ('Admin Tools', reverse('zadmin.home')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
-
-
 class TestOtherStuff(amo.tests.TestCase):
     # Tests that don't need fixtures but do need redis mocked.
-
-    @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_balloons_no_readonly(self):
-        response = self.client.get('/en-US/firefox/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 0)
-        eq_(doc('#site-nonfx').length, 1)
-        eq_(doc('#site-welcome').length, 1)
-
-    @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_balloons_readonly(self):
-        response = self.client.get('/en-US/firefox/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 1)
-        eq_(doc('#site-nonfx').length, 1)
-        eq_(doc('#site-welcome').length, 1)
-
-    @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_thunderbird_balloons_no_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 0)
-
-    @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_thunderbird_balloons_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
-        doc = pq(response.content)
-        eq_(doc('#site-notice').length, 1)
-        eq_(doc('#site-nonfx').length, 0,
-            'This balloon should appear for Firefox only')
-        eq_(doc('#site-welcome').length, 1)
-
-    def test_heading(self):
-        def title_eq(url, alt, text):
-            response = self.client.get(url, follow=True)
-            doc = PyQuery(response.content)
-            eq_(alt, doc('.site-title img').attr('alt'))
-            eq_(text, doc('.site-title').text())
-
-        title_eq('/firefox/', 'Firefox', 'Add-ons')
-        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
-        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
-        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
-
-    def test_login_link(self):
-        r = self.client.get(reverse('home'), follow=True)
-        doc = PyQuery(r.content)
-        next = urllib.urlencode({'to': '/en-US/firefox/'})
-        eq_('/en-US/firefox/users/login?%s' % next,
-            doc('.account.anonymous a')[1].attrib['href'])
-
-    def test_tools_loggedout(self):
-        r = self.client.get(reverse('home'), follow=True)
-        eq_(pq(r.content)('#aux-nav .tools').length, 0)
 
     def test_language_selector(self):
         doc = pq(test.Client().get('/en-US/firefox/').content)
@@ -267,28 +87,6 @@ class TestOtherStuff(amo.tests.TestCase):
         fmt = '%a, %d %b %Y %H:%M:%S GMT'
         expires = datetime.strptime(response['Expires'], fmt)
         assert (expires - datetime.now()).days >= 365
-
-    def test_mobile_link_firefox(self):
-        doc = pq(test.Client().get('/firefox', follow=True).content)
-        eq_(doc('#site-nav #more .more-mobile a').length, 1)
-
-    def test_mobile_link_nonfirefox(self):
-        for app in ('thunderbird', 'mobile'):
-            doc = pq(test.Client().get('/' + app, follow=True).content)
-            eq_(doc('#site-nav #more .more-mobile').length, 0)
-
-    def test_login_link(self):
-        # Test that the login link encodes parameters correctly.
-        r = test.Client().get('/?your=mom', follow=True)
-        doc = pq(r.content)
-        assert doc('.account.anonymous a')[1].attrib['href'].endswith(
-                '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
-                doc('.account.anonymous a')[1].attrib['href'])
-
-        r = test.Client().get(u'/ar/firefox/?q=འ')
-        doc = pq(r.content)
-        link = doc('.account.anonymous a')[1].attrib['href']
-        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25E0%25BD%25A0')
 
 
 @mock.patch('amo.views.log_cef')
