@@ -712,7 +712,7 @@ Feed collections are represented thusly:
                 'id': 2
             }
         ],
-        'color': '#00AACC',
+        'background_color': '#00AACC',
         'description': {
             'en-US': 'A description of my collection.'
         },
@@ -727,7 +727,7 @@ Feed collections are represented thusly:
 
 ``apps``
     *array* - a list of serializations of the member :ref:`apps <app>`.
-``color``
+``background_color``
     *string* - a hex color used in display of the collection. Currently must be
     one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
     or ``#2C393B``.
