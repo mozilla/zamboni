@@ -17,7 +17,7 @@ from .serializers import (FeedAppSerializer, FeedBrandSerializer,
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
-                        viewsets.ModelViewSet):
+                                viewsets.ModelViewSet):
     """
     Base viewset for subclasses of BaseFeedCollection.
     """
@@ -32,6 +32,12 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     exceptions = {
         'doesnt_exist': 'One or more of the specified `apps` do not exist.'
     }
+
+    def list(self, request, *args, **kwargs):
+        page = self.paginate_queryset(
+            self.filter_queryset(self.get_queryset()))
+        serializer = self.get_pagination_serializer(page)
+        return response.Response(serializer.data)
 
     def set_apps(self, obj, apps):
         if apps:
