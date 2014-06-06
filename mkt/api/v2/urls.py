@@ -1,13 +1,13 @@
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import Route, SimpleRouter
 
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.feed.views import (FeedAppImageViewSet, FeedAppViewSet,
-                            FeedBrandViewSet, FeedCollectionViewSet,
-                            FeedItemViewSet)
+                            FeedBrandViewSet, FeedBuilderView,
+                            FeedCollectionViewSet, FeedItemViewSet)
 
 
 feed = SimpleRouter()
@@ -23,6 +23,8 @@ subfeedapp.register('image', FeedAppImageViewSet,
 
 urlpatterns = patterns('',
     url(r'^rocketfuel/collections/.*', endpoint_removed),
+    url(r'^feed/builder/$', FeedBuilderView.as_view(),
+        name='feed.builder'),
     url(r'^feed/', include(feed.urls)),
     url(r'^feed/apps/', include(subfeedapp.urls)),
 ) + v1_urls
