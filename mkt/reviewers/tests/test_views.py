@@ -46,10 +46,10 @@ from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 from reviews.models import Review, ReviewFlag
-from tags.models import Tag
 from users.models import UserProfile
 from versions.models import Version
 from zadmin.models import get_config, set_config

@@ -21,7 +21,7 @@ from addons.models import Addon
 from mkt.access.models import Group
 from mkt.webapps.models import Webapp
 from reviews.models import Review
-from tags.models import Tag
+from mkt.tags.models import Tag
 from users.helpers import user_link
 from users.models import UserProfile
 from versions.models import Version

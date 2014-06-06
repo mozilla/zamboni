@@ -36,9 +36,9 @@ from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
 from mkt.site.forms import AddonChoiceField
+from mkt.tags.models import Tag
 from mkt.webapps.models import IARCInfo, Webapp
 from mkt.webapps.tasks import index_webapps
-from tags.models import Tag
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation

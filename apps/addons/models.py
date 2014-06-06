@@ -30,7 +30,7 @@ from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
 from files.models import File
 from lib.utils import static_url
 from reviews.models import Review
-from tags.models import Tag
+from mkt.tags.models import Tag
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
                                  Translation)
 from users.models import UserForeignKey, UserProfile

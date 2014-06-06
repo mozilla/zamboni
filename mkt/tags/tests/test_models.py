@@ -1,9 +1,10 @@
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import Addon
-from tags.models import AddonTag, Tag
-from tags.tasks import clean_tag
+from mkt.site.fixtures import fixture
+from mkt.tags.models import AddonTag, Tag
+from mkt.tags.tasks import clean_tag
+from mkt.webapps.models import Webapp
 
 
 class TestTagManager(amo.tests.TestCase):
@@ -21,15 +22,11 @@ class TestTagManager(amo.tests.TestCase):
 
 
 class TestManagement(amo.tests.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/addon_5369',
-                'tags/tags.json',
-                'base/user_4043307',
-                'base/user_2519']
+    fixtures = fixture('webapp_337141', 'tags')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.another = Addon.objects.get(pk=5369)
+        self.addon = Webapp.objects.get(pk=337141)
+        self.another = amo.tests.app_factory()
 
     def test_clean_tags(self):
         start = Tag.objects.count()
@@ -112,10 +109,7 @@ class TestManagement(amo.tests.TestCase):
 
 
 class TestCount(amo.tests.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/addon_5369',
-                'tags/tags.json']
-    exempt_from_fixture_bundling = True
+    fixtures = fixture('webapp_337141', 'tags')
 
     def setUp(self):
         self.tag = Tag.objects.get(pk=2652)
@@ -126,19 +120,21 @@ class TestCount(amo.tests.TestCase):
 
     def test_blacklisted(self):
         self.tag.update(blacklisted=True, num_addons=0)
-        AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
+        AddonTag.objects.create(addon_id=337141, tag_id=self.tag.pk)
         eq_(self.tag.reload().num_addons, 0)
 
     def test_save_tag(self):
-        self.tag.save_tag(addon=Addon.objects.get(pk=5369))
+        app = amo.tests.app_factory()
+        self.tag.save_tag(addon=app)
         eq_(self.tag.reload().num_addons, 2)
 
     def test_remove_tag(self):
-        self.tag.remove_tag(addon=Addon.objects.get(pk=3615))
+        app = amo.tests.app_factory()
+        self.tag.remove_tag(addon=app)
         eq_(self.tag.reload().num_addons, 0)
 
     def test_add_addontag(self):
-        AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
+        AddonTag.objects.create(addon_id=337141, tag_id=self.tag.pk)
         eq_(self.tag.reload().num_addons, 2)
 
     def test_delete_addontag(self):

@@ -31,9 +31,9 @@ from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
+from mkt.tags.models import AddonTag, Tag
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
-from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 

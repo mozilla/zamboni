@@ -19,8 +19,8 @@ from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp
-from tags.models import Tag
 from users.models import UserProfile
 
 

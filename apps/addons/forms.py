@@ -11,7 +11,7 @@ import amo
 from addons.models import Addon, BlacklistedSlug
 from amo.utils import slug_validator, slugify
 from mkt.access import acl
-from tags.models import Tag
+from mkt.tags.models import Tag
 
 
 log = commonware.log.getLogger('z.addons')
