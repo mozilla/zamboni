@@ -4,10 +4,11 @@ from django.shortcuts import get_object_or_404
 import commonware.log
 
 import amo
-from access import acl
 from amo.utils import HttpResponseSendFile
 from files.models import File
+from mkt.access import acl
 from mkt.webapps.models import Webapp
+
 
 log = commonware.log.getLogger('z.downloads')
 

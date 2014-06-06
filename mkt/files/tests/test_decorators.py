@@ -4,8 +4,8 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from mock import Mock, patch
 
 import amo.tests
-from access import acl
 from files.decorators import allowed
+from mkt.access import acl
 
 
 class AllowedTest(amo.tests.TestCase):

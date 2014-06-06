@@ -683,11 +683,10 @@ def log(action, *args, **kw):
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
-    from access.models import Group
-    from addons.models import Addon
     from amo import get_user, logger_log
     from devhub.models import (ActivityLog, ActivityLogAttachment, AppLog,
                                CommentLog, GroupLog, UserLog, VersionLog)
+    from mkt.access.models import Group
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
     from versions.models import Version

@@ -29,7 +29,6 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-from access import acl
 from addons.decorators import addon_view
 from addons.models import AddonUser
 from addons.views import BaseFilter
@@ -41,13 +40,14 @@ from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.iarc.utils import get_iarc_app_title
+from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.models import Access, generate
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
-                                  AppFormDetails, AppFormMedia, AppFormSupport,
+from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
+                                  AppFormMedia, AppFormSupport,
                                   AppFormTechnical, AppVersionForm,
                                   CategoryForm, ContentRatingForm,
                                   IARCGetAppInfoForm, NewPackagedAppForm,

@@ -248,7 +248,7 @@ A few settings are configurable from the environment, they are:
 * ``DATABASE``: from the ``ZAMBONI_DATABASE`` environment variable, configured
   using https://github.com/kennethreitz/dj-database-url. Example::
 
-    export ZAMBONI_DATABASE=mysql://root:@localhostyy:3306/zamboni
+    export ZAMBONI_DATABASE=mysql://root:@localhost:3306/zamboni
 
 * ``HOSTNAME``: from the ``ZAMBONI_HOSTNAME`` environment variable. Set this
   if you'd like to access the site somewhere other than your current hostname.

@@ -13,13 +13,13 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from access import acl
-from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.helpers import absolutify
 from amo.pyquery_wrapper import PyQuery
 from amo.tests import check_links
 from amo.urlresolvers import reverse
+from mkt.access import acl
+from mkt.access.models import Group, GroupUser
 from users.models import UserProfile
 
 

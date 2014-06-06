@@ -1,7 +1,9 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 
-from lib.utils import validate_settings
+from nose.tools import eq_
+
+from lib.utils import static_url, validate_settings
 
 
 class TestValidate(TestCase):
@@ -21,3 +23,17 @@ class TestValidate(TestCase):
                            SESSION_COOKIE_SECURE=True,
                            APP_PURCHASE_SECRET='so changed'):
             validate_settings()
+
+
+class TestURL(TestCase):
+
+    def test_url(self):
+        with self.settings(WEBAPPS_RECEIPT_URL='/v', SITE_URL='http://f.com'):
+            eq_(static_url('WEBAPPS_RECEIPT_URL'), 'http://f.com/v')
+
+        with self.settings(DEBUG=True, SERVE_TMP_PATH=True):
+            eq_(static_url('WEBAPPS_RECEIPT_URL'),
+                'http://testserver/tmp/verify/')
+
+        with self.settings(WEBAPPS_RECEIPT_URL='http://f.com'):
+            eq_(static_url('WEBAPPS_RECEIPT_URL'), 'http://f.com')

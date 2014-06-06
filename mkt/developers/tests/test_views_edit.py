@@ -19,7 +19,6 @@ from waffle.models import Switch
 import amo
 import amo.tests
 import mkt
-from access.models import Group, GroupUser
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from amo.helpers import absolutify
@@ -28,6 +27,7 @@ from amo.tests.test_helpers import get_image_path
 from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
+from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
 from mkt.constants import regions
 from mkt.site.fixtures import fixture

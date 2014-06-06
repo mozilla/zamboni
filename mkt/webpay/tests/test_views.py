@@ -12,22 +12,21 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import mkt
-from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
 from lib.crypto.receipt import crack
+from mkt.access.models import GroupUser
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.inapp.models import InAppProduct
 from mkt.constants import regions
-from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
-from mkt.site.fixtures import fixture
+from mkt.inapp.models import InAppProduct
 from mkt.prices.models import Price, PriceCurrency
 from mkt.prices.views import PricesViewSet
 from mkt.purchase.models import Contribution
+from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
+from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
-
 from users.models import UserProfile
 
 

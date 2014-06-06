@@ -10,10 +10,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 import amo
-from access.acl import check_addon_ownership
 from lib.metrics import record_action
-from reviews.models import Review, ReviewFlag
-
+from mkt.access.acl import check_addon_ownership
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -23,6 +21,7 @@ from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.ratings.serializers import RatingFlagSerializer, RatingSerializer
 from mkt.regions import get_region
 from mkt.webapps.models import Webapp
+from reviews.models import Review, ReviewFlag
 
 
 log = commonware.log.getLogger('z.api')

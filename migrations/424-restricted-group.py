@@ -1,4 +1,4 @@
-from access.models import Group
+from mkt.access.models import Group
 
 
 def run():

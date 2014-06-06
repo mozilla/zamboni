@@ -2,10 +2,11 @@ from datetime import datetime
 from itertools import chain
 
 import amo
-from access.models import Group
 from devhub.models import ActivityLog
 from editors.models import EventLog
+from mkt.access.models import Group
 from users.models import UserProfile
+
 
 # Are there other group changes we care about here?
 # All of the old group IDs aside from Admins seem to have been deleted.

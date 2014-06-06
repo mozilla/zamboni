@@ -3,13 +3,12 @@ from rest_framework.generics import GenericAPIView
 
 from django.contrib.auth.models import AnonymousUser
 
-from access.middleware import ACLMiddleware
 from amo.tests import TestCase
-from test_utils import RequestFactory
-from users.models import UserProfile
-
+from mkt.access.middleware import ACLMiddleware
 from mkt.feed.authorization import FeedAuthorization
 from mkt.site.fixtures import fixture
+from test_utils import RequestFactory
+from users.models import UserProfile
 
 
 class TestFeedAuthorization(TestCase):

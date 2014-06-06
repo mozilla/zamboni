@@ -10,9 +10,8 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
 import amo
-from access import acl
 from files.models import File
-
+from mkt.access import acl
 from mkt.files.helpers import DiffHelper, FileViewer
 
 

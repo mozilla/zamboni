@@ -7,6 +7,7 @@ import amo.tests
 from addons.models import Addon, AddonUser
 from reviews.models import Review
 from users.models import UserProfile
+from versions.models import Version
 
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.stats import tasks
@@ -70,12 +71,19 @@ class TestMonolithStats(amo.tests.TestCase):
 
     def test_app_avail_counts(self):
         today = datetime.date(2013, 1, 25)
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP,
-                                   status=amo.STATUS_PUBLIC)
+        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app.update(_current_version=Version.objects.create(addon=app,
+                                                           reviewed=today),
+                   status=amo.STATUS_PUBLIC, created=today)
         # Create a couple more to test the counts.
-        Addon.objects.create(type=amo.ADDON_WEBAPP, status=amo.STATUS_PENDING)
-        Addon.objects.create(type=amo.ADDON_WEBAPP, status=amo.STATUS_PUBLIC,
-                             disabled_by_user=True)
+        app2 = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app2.update(_current_version=Version.objects.create(addon=app2,
+                                                            reviewed=today),
+                    status=amo.STATUS_PENDING, created=today)
+        app3 = Addon.objects.create(type=amo.ADDON_WEBAPP, disabled_by_user=True)
+        app3.update(_current_version=Version.objects.create(addon=app3,
+                                                            reviewed=today),
+                    status=amo.STATUS_PUBLIC, created=today)
 
         package_type = 'packaged' if app.is_packaged else 'hosted'
         premium_type = amo.ADDON_PREMIUM_API[app.premium_type]

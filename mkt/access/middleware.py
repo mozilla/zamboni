@@ -7,7 +7,7 @@ from functools import partial
 import commonware.log
 
 import amo
-from access import acl
+from mkt.access import acl
 
 
 log = commonware.log.getLogger('z.access')

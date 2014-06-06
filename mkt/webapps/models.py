@@ -29,7 +29,6 @@ from tower import ugettext as _
 import amo
 import amo.models
 import mkt
-from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            attach_categories, attach_devices, attach_prices,
@@ -47,15 +46,16 @@ from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
+from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps
 from mkt.developers.models import AddonPaymentAccount
+from mkt.prices.models import AddonPremium
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives, get_locale_properties,
                                get_supported_locales)
-from mkt.prices.models import AddonPremium
 from translations.fields import PurifiedField, save_signal
 from versions.models import Version
 
@@ -647,7 +647,7 @@ class Webapp(Addon):
                    action_allowed(request, 'Apps', 'Edit'))
 
         # Let app reviewers see it only when it's pending.
-        if check_reviewer(request, only='app') and self.is_pending():
+        if check_reviewer(request) and self.is_pending():
             can_see = True
 
         visible = False

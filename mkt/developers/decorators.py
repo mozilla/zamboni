@@ -2,9 +2,9 @@ import functools
 
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
-from amo.decorators import login_required
-from access import acl
 from addons.decorators import addon_view
+from amo.decorators import login_required
+from mkt.access import acl
 
 
 def dev_required(owner_for_post=False, allow_editors=False, support=False,

@@ -2,10 +2,9 @@ from functools import partial
 
 from rest_framework import fields, serializers
 
-from access import acl
-from users.models import UserProfile
-
+from mkt.access import acl
 from mkt.api.serializers import PotatoCaptchaSerializer
+from users.models import UserProfile
 
 
 class AccountSerializer(serializers.ModelSerializer):

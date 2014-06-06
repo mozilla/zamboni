@@ -2,8 +2,8 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from access.acl import action_allowed
 from amo.decorators import login_required
+from mkt.access.acl import action_allowed
 
 
 def admin_required(reviewers=False):
@@ -18,7 +18,7 @@ def admin_required(reviewers=False):
         def wrapper(request, *args, **kw):
             admin = (action_allowed(request, 'Admin', '%') or
                      action_allowed(request, 'AdminTools', 'View'))
-            if reviewers == True:
+            if reviewers:
                 admin = (
                     admin or
                     action_allowed(request, 'ReviewerAdminTools', 'View'))

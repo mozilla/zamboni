@@ -10,10 +10,10 @@ import jwt
 from nose.tools import nottest
 from receipts.receipts import Receipt
 
-from access import acl
 from amo.helpers import absolutify
 from lib.crypto import receipt
 from lib.utils import static_url
+from mkt.access import acl
 
 
 def get_uuid(app, user):
