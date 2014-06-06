@@ -293,6 +293,8 @@ class FeedItem(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
                                   choices=mkt.carriers.CARRIER_CHOICES,
                                   db_index=True)
+    order = models.SmallIntegerField(null=True)
+    item_type = models.CharField(max_length=30)
 
     # Types of objects that may be contained by a feed item.
     app = models.ForeignKey(FeedApp, blank=True, null=True)
@@ -301,6 +303,7 @@ class FeedItem(amo.models.ModelBase):
 
     class Meta:
         db_table = 'mkt_feed_item'
+        ordering = ('order',)
 
 
 # Save translations when saving instance with translated fields.

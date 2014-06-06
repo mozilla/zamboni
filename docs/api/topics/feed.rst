@@ -67,7 +67,9 @@ represented thusly:
     *string* - the type of object being represented by this feed item. This
     will always be usable as a key on the feed item instance to fetch that
     object's data (i.e. ``feeditem[feeditem['item_type']]`` will always be
-    non-null).
+    non-null). Can be ``app``, ``collection``, or ``brand``.
+``order``
+    *int* - order/weight at which the feed item is displayed on a feed.
 ``resource_url``
     *string* - the permanent URL for this feed item.
 ``region``
@@ -208,6 +210,52 @@ Delete
     **Response**
 
     :status 204: successfully deleted.
+    :status 403: not authorized.
+
+
+Builder
+=======
+
+.. http:put:: /api/v2/feed/builder/
+
+    Sets feeds by region. For each region passed in, the builder
+    will delete all of the carrier-less :ref:`feed items <feed-items` for
+    that region and then batch create feed items in the order that feed
+    element IDs are passed in for that region.
+
+    **Request**
+
+    .. code-block:: json
+
+        {
+            'us': [
+                ['collection', 52],
+                ['app', 36],
+                ['brand, 123],
+                ['app', 66]
+            ],
+            'cn': [
+                ['app', 36],
+                ['collection', 52],
+                ['brand', 2313]
+                ['brand, 123],
+            ],
+            'hu': [],  // Passing in an empty array will empty that feed.
+        }
+
+    - The keys of the request are region slugs.
+    - The region slugs point to two-element arrays.
+    - The first element of the array is the item type. It can be
+    ``app``, ``collection``, or ``brand``.
+    - The second element of the array is the ID of a feed element.
+    - It can be the ID of a :ref:`FeedApp  <feed-apps>`, or
+      :ref:`FeedBrand <feed-brands>`.
+    - Order matters.
+
+    **Response**
+
+    :status 201: success.
+    :status 400: bad request.
     :status 403: not authorized.
 
 
@@ -505,7 +553,7 @@ Feed brands are represented thusly:
     *string* - a slug to use in URLs for the feed brand
 ``type``
     *string* - a string indicating the title and icon that should be displayed
-    with this feed brand. See a 
+    with this feed brand. See a
     `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
 ``url``
     *string|null* - the permanent URL for this feed brand.
@@ -561,7 +609,7 @@ Create
     :param slug: a slug to use in URLs for the feed brand.
     :type slug: string
     :param type: a string indicating the title and icon that should be displayed
-        with this feed brand. See a 
+        with this feed brand. See a
         `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
     :type type: string
 
@@ -602,7 +650,7 @@ Update
     :param slug:  a slug to use in URLs for the feed brand.
     :type slug: string
     :param type: a string indicating the title and icon that should be displayed
-        with this feed brand. See a 
+        with this feed brand. See a
         `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
     :type type: string
 

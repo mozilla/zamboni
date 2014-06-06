@@ -7,10 +7,11 @@ from django.core.urlresolvers import reverse
 
 from nose.tools import eq_, ok_
 
-import mkt.carriers
-import mkt.regions
 from addons.models import Preview
 from amo.tests import app_factory
+
+import mkt.carriers
+import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from mkt.site.fixtures import fixture
@@ -28,7 +29,6 @@ class FeedAppMixin(object):
             'description': {
                 'en-US': u'pan-fried potatoes'
             },
-            'has_image': False,
             'slug': self.random_slug()
         }
         self.pullquote_data = {
@@ -103,6 +103,22 @@ class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
         self.feed_permission()
         res, data = self.list(self.client)
         eq_(res.status_code, 200)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_filter_region(self):
+        self.item.update(region=2)
+        res, data = self.list(self.client, region='restofworld')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, region='us')
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_filter_carrier(self):
+        self.item.update(carrier=16)
+        res, data = self.list(self.client, carrier='vimpelcom')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, carrier='tmn')
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], self.item.id)
 
@@ -748,3 +764,88 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         del obj_data['description']
         res, data = self.create(self.client, **obj_data)
         eq_(res.status_code, 201)
+
+
+class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
+    def setUp(self):
+        super(TestBuilderView, self).setUp()
+        self.url = reverse('api-v2:feed.builder')
+        self.profile = self.user
+
+        self.feed_apps = self.create_feedapps(n=3)
+        self.brand = FeedBrand.objects.create(slug='brandy')
+        self.collection = FeedCollection.objects.create(slug='cull')
+        self.data = {
+            'us': [
+                ['app', self.feed_apps[1].id],
+                ['collection', self.collection.id],
+                ['brand', self.brand.id],
+                ['app', self.feed_apps[0].id],
+            ],
+            'cn': [
+                ['brand', self.brand.id],
+                ['app', self.feed_apps[2].id],
+                ['collection', self.collection.id],
+            ]
+        }
+
+    def _set_feed_items(self, data):
+        return self.client.put(self.url, data=json.dumps(data))
+
+    def test_create_feed(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 201)
+
+        eq_(FeedItem.objects.count(), 7)
+        us_items = FeedItem.objects.filter(
+            region=mkt.regions.US.id).order_by('order')
+        eq_(us_items.count(), 4)
+
+        # Test order.
+        eq_(us_items[0].app_id, self.feed_apps[1].id)
+        eq_(us_items[1].collection_id, self.collection.id)
+        eq_(us_items[2].brand_id, self.brand.id)
+        eq_(us_items[3].app_id, self.feed_apps[0].id)
+
+    def test_update_feed(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+
+        # Update US.
+        self.data['us'] = self.data['cn']
+        r = self._set_feed_items(self.data)
+
+        us_items = FeedItem.objects.filter(
+            region=mkt.regions.US.id).order_by('order')
+        eq_(us_items[0].brand_id, self.brand.id)
+        eq_(us_items[1].app_id, self.feed_apps[2].id)
+
+    def test_truncate_feed(self):
+        """Fill up China feed, then send an empty array for China."""
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        ok_(FeedItem.objects.filter(region=mkt.regions.CN.id))
+
+        self.data['cn'] = []
+        r = self._set_feed_items(self.data)
+        ok_(FeedItem.objects.filter(region=mkt.regions.US.id))
+        ok_(not FeedItem.objects.filter(region=mkt.regions.CN.id))
+
+    def test_no_perm(self):
+        """Fill up China feed, then send an empty array for China."""
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 403)
+
+    def test_cors(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        self.assertCORS(r, 'put')
+
+    def test_400(self):
+        self.feed_permission()
+        self.data['us'][0] = ['app']
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 400)
