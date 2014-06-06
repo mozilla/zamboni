@@ -12,6 +12,7 @@ feed may include:
 
 - :ref:`Feed Apps <feed-apps>`
 - :ref:`Feed Brands <feed-brands>`
+- :ref:`Feed Collections <feed-collections>`
 
 .. note::
 
@@ -26,14 +27,16 @@ feed may include:
 Feed Items
 ----------
 
-A feed item wraps a :ref:`FeedApp  <feed-apps>` or
-:ref:`FeedBrand <feed-brands>` with additional metadata regarding
-when and where to feature the content. Feed items are represented thusly:
+A feed item wraps a :ref:`feed app  <feed-apps>`, :ref:`feed brand
+<feed-brands>`, or :ref:`feed collection <feed-collections>` with additional
+metadata regarding when and where to feature the content. Feed items are
+represented thusly:
 
 .. code-block:: json
 
     {
         "app": null,
+        "brand": null,
         "carrier": "telefonica",
         "collection": {
             "data": "..."
@@ -46,6 +49,9 @@ when and where to feature the content. Feed items are represented thusly:
 
 ``app``
     *object|null* - the full representation of a :ref:`feed app <feed-apps>`.
+``brand``
+    *object|null* - the full representation of a :ref:`feed brand
+    <feed-brands>`.
 ``carrier``
     *string|null* - the slug of a :ref:`carrier <carriers>`. If
     defined, this feed item will only be available by users of that carrier.
@@ -547,10 +553,12 @@ Create
 
     **Request**
 
-    :param layout:  string indicating the way apps should be laid out in the
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param layout: string indicating the way apps should be laid out in the
         brand's detail page. One of ``'grid'`` or ``'list'``.
     :type layout: string
-    :param slug:  a slug to use in URLs for the feed brand.
+    :param slug: a slug to use in URLs for the feed brand.
     :type slug: string
     :param type: a string indicating the title and icon that should be displayed
         with this feed brand. See a 
@@ -560,6 +568,7 @@ Create
     .. code-block:: json
 
         {
+            "apps": [19, 1, 44],
             "layout": "grid",
             "slug": "facebook-hidden-gem",
             "type": "hidden-gem"
@@ -574,6 +583,7 @@ Create
         for more detail.
     :status 403: not authorized.
 
+
 Update
 ======
 
@@ -583,7 +593,10 @@ Update
 
     **Request**
 
-    :param layout:  string indicating the way apps should be laid out in the
+    :param apps: an ordered array of app IDs. If it is included in PATCH
+        requests, it will delete from the collection all apps not included.
+    :type apps: array
+    :param layout: string indicating the way apps should be laid out in the
         brand's detail page. One of ``'grid'`` or ``'list'``.
     :type layout: string
     :param slug:  a slug to use in URLs for the feed brand.
@@ -599,35 +612,6 @@ Update
             "layout": "grid",
             "slug": "facebook-hidden-gem",
             "type": "hidden-gem"
-        }
-
-    **Response**
-
-    A representation of the updated :ref:`feed brand <feed-brands>`.
-
-    :status 200: successfully updated.
-    :status 400: submission error, see the error message in the response body
-        for more detail.
-    :status 403: not authorized.
-
-
-Set Apps
-========
-
-.. http:post:: /api/v2/feed/brands/(int:id)/set_apps/
-
-    Update the apps on a feed brand.
-
-    **Request**
-
-    :param apps: an ordered array of app IDs to be represented by the feed
-        brand. Any existing apps not in this list will be deleted.
-    :type apps: array
-
-    .. code-block:: json
-
-        {
-            "apps": [118, 181, 19]
         }
 
     **Response**
@@ -650,6 +634,224 @@ Delete
     **Request**
 
     :param id: the ID of the feed brand.
+    :type id: int
+
+    **Response**
+
+    :status 204: successfully deleted.
+    :status 403: not authorized.
+
+
+.. _feed-collections:
+
+----------------
+Feed Collections
+----------------
+
+A feed collection is a complex assemblage of apps with a variety of display
+options.
+
+Feed collections are represented thusly:
+
+.. code-block:: json
+
+    {
+        'apps': [
+            {
+                'id': 1
+            },
+            {
+                'id': 2
+            }
+        ],
+        'color': '#00AACC',
+        'description': {
+            'en-US': 'A description of my collection.'
+        },
+        'id': 19,
+        'name': {
+            'en-US': 'My awesome collection'
+        },
+        'slug': 'potato',
+        'type': 'promo',
+        'url': '/api/v2/feed/collections/1/'
+    }
+
+``apps``
+    *array* - a list of serializations of the member :ref:`apps <app>`.
+``color``
+    *string* - a hex color used in display of the collection. Currently must be
+    one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
+    or ``#2C393B``.
+``description``
+    *object|null* a :ref:`translated <overview-translations>` description of
+    the collection.
+``id``
+    *int* - the ID of this collection.
+``name``
+    *object* a :ref:`translated <overview-translations>` name of the
+    collection.
+``slug``
+    *string* - a slug to use in URLs for the collection
+``type``
+    *string* - a string indicating the display type of the collection. Must be
+    one of ``promo`` or ``listing``.
+``url``
+    *string|null* - the permanent URL for this collection.
+
+
+List
+====
+
+.. http:get:: /api/v2/feed/collections/
+
+    A listing of feed collections.
+
+    **Response**
+
+    :param apps: an ordered array of :ref:`app <app>` serializations.
+    :type apps: array
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of
+        :ref:`feed collections <feed-collections>`.
+    :type objects: array
+
+
+Detail
+======
+
+.. http:get:: /api/v2/feed/collections/(int:id)/
+
+    Detail of a specific feed collection.
+
+    **Request**
+
+    :param id: the ID of the feed collection.
+    :type id: int
+
+    **Response**
+
+    A representation of the :ref:`feed collection <feed-collections>`.
+
+
+Create
+======
+
+.. http:post:: /api/v2/feed/collections/
+
+    Create a feed collection.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param color: a hex color used in display of the collection. Currently must
+        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
+        ``#5F9B0A``, or ``#2C393B``.
+    :type color: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the feed collection.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
+    :param slug: a slug to use in URLs for the collection.
+    :type slug: string
+    :param type: a string indicating the display type of the collection. Must
+        be one of ``promo`` or ``listing``.
+    :type type: string
+
+    .. code-block:: json
+
+        {
+            "apps": [984, 19, 345, 981]
+            "color": "#B90000",
+            "description": {
+                "en-US": "A description of my collection."
+            },
+            "id": 19,
+            "name": {
+                "en-US": "My awesome collection"
+            },
+            "slug": "potato",
+            "type": "promo"
+        }
+
+    **Response**
+
+    A representation of the newly-created :ref:`feed collection
+    <feed-collections>`.
+
+    :status 201: successfully created.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Update
+======
+
+.. http:patch:: /api/v2/feed/collections/(int:id)/
+
+    Update the properties of a collection.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs. If it is included in PATCH
+        requests, it will delete from the collection all apps not included.
+    :type apps: array
+    :param color: a hex color used in display of the collection. Currently must
+        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
+        ``#5F9B0A``, or ``#2C393B``.
+    :type color: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the feed collection.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
+    :param slug: a slug to use in URLs for the collection.
+    :type slug: string
+    :param type: a string indicating the display type of the collection. Must
+        be one of ``promo`` or ``listing``.
+    :type type: string
+
+    .. code-block:: json
+
+        {
+            "apps": [912, 42, 112],
+            "color": "#B90000"
+            "description": {
+                "en-US": "A description of my collection."
+            },
+            "name": {
+                "en-US": "My awesome collection"
+            },
+            "slug": "potato",
+            "type": "promo"
+        }
+
+    **Response**
+
+    A representation of the updated :ref:`feed collection <feed-collections>`.
+
+    :status 200: successfully updated.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Delete
+======
+
+.. http:delete:: /api/v2/feed/collections/(int:id)/
+
+    Delete a feed collection.
+
+    **Request**
+
+    :param id: the ID of the feed collection.
     :type id: int
 
     **Response**
