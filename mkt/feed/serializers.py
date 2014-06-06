@@ -75,13 +75,13 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     A serializer for the FeedCollection class.
     """
     type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
-    color = serializers.CharField(max_length=7)
+    background_color = serializers.CharField(max_length=7, required=False)
     description = TranslationSerializerField(required=False)
     name = TranslationSerializerField()
 
     class Meta:
-        fields = ('apps', 'color', 'description', 'id', 'name', 'slug', 'type',
-                  'url')
+        fields = ('apps', 'background_color', 'description', 'id', 'name',
+                  'slug', 'type', 'url')
         model = FeedCollection
         url_basename = 'feedcollections'
 

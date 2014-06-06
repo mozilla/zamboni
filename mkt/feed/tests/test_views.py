@@ -721,7 +721,7 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
     obj_data = {
         'slug': 'potato',
         'type': 'promo',
-        'color': '#00AACC',
+        'background_color': '#00AACC',
         'description': {'en-US': 'Potato french fries'},
         'name': {'en-US': 'Deep Fried'}
     }
@@ -734,14 +734,6 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         """
         super(TestFeedCollectionViewSet, self).make_item(
             description={'en-US': 'Baby Potato'}, name={'en-US': 'Sprout'})
-
-    def test_create_missing_color(self):
-        self.feed_permission()
-        obj_data = self.data()
-        del obj_data['color']
-        res, data = self.create(self.client, **obj_data)
-        eq_(res.status_code, 400)
-        ok_('color' in data)
 
     def test_create_missing_name(self):
         self.feed_permission()
