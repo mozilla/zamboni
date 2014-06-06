@@ -802,6 +802,12 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(us_items[2].brand_id, self.brand.id)
         eq_(us_items[3].app_id, self.feed_apps[0].id)
 
+        # Test item types.
+        eq_(us_items[0].item_type, 'app')
+        eq_(us_items[1].item_type, 'collection')
+        eq_(us_items[2].item_type, 'brand')
+        eq_(us_items[3].item_type, 'app')
+
     def test_update_feed(self):
         self.feed_permission()
         r = self._set_feed_items(self.data)
