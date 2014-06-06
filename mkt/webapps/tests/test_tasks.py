@@ -46,7 +46,7 @@ original = {
     "name": "MozillaBall",
     "description": "Exciting Open Web development action!",
     "icons": {
-        "16": "http://test.com/icon-16.png",
+        "32": "http://test.com/icon-32.png",
         "48": "http://test.com/icon-48.png",
         "128": "http://test.com/icon-128.png"
     },
@@ -70,7 +70,7 @@ new = {
     "name": "MozillaBall",
     "description": "Exciting Open Web development action!",
     "icons": {
-        "16": "http://test.com/icon-16.png",
+        "32": "http://test.com/icon-32.png",
         "48": "http://test.com/icon-48.png",
         "128": "http://test.com/icon-128.png"
     },

@@ -366,7 +366,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'device_types': [],
             'homepage': None,
             'icons': dict((size, self.app.get_icon_url(size))
-                          for size in (16, 48, 64, 128)),
+                          for size in (32, 48, 64, 128)),
             'id': 337141,
             'is_offline': False,
             'is_packaged': False,

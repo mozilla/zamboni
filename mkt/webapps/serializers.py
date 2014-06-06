@@ -142,7 +142,7 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
-                     for icon_size in (16, 48, 64, 128)])
+                     for icon_size in (32, 48, 64, 128)])
 
     def get_payment_account(self, app):
 
