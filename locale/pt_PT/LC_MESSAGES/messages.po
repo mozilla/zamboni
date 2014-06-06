@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-05 03:12+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-06-06 03:04+0000\n"
+"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401937938.0\n"
+"X-POOTLE-MTIME: 1402023883.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6161,7 +6161,7 @@ msgstr "Configurar classificações de conteúdo"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
-msgstr ""
+msgstr "Forneça informações de pagamento para a aplicação."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:49
 msgid "Set Up Payments"
@@ -6181,27 +6181,27 @@ msgstr "Adicionar uma nova versão empacotada desse aplicativo."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
-msgstr ""
+msgstr "Adicionar nova versão"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Estado e versões"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:69 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:558
 msgid "Content Ratings"
-msgstr ""
+msgstr "Classificações de conteúdo"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:179
 msgid "In-App Payments"
-msgstr ""
+msgstr "Pagamentos na aplicação"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:102 mkt/developers/templates/developers/includes/addons_edit_nav.html:42
 msgid "Messages"
-msgstr ""
+msgstr "Mensagens"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:107 mkt/developers/templates/developers/includes/addons_edit_nav.html:47
 #: mkt/lookup/templates/lookup/helpers/app_header.html:33
@@ -6210,7 +6210,7 @@ msgstr "Estatísticas"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:113 mkt/developers/templates/developers/includes/addons_edit_nav.html:52
 msgid "Transactions"
-msgstr ""
+msgstr "Transações"
 
 # 87%
 #. {0} is a date.
@@ -6237,35 +6237,39 @@ msgstr "Preço:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Configurar conta de pagamento"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Mudar dispositivos"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr ""
+"<strong class=\"rating-notice alert-notice\">Esta aplicação será desativada se "
+"não forem atribuídas classificações de conteúdo até %"
+"(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Definir classificações de "
+"conteúdo</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr ""
+msgstr "Pré-carregado"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
-msgstr ""
+msgstr "Aplicação pré-carregada"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:22
 msgid "Download the test plan"
-msgstr ""
+msgstr "Transferir o plano de teste"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Teste terminado?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Submeter a sua aplicação para pré-carregamento"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -6273,60 +6277,90 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Pode submeter a sua aplicação para ser considerada a ser "
+"<strong>pré-carregada e disponibilizada em dispositivos com Firefox "
+"OS</strong> pelos operadores móveis. Para se candidatar ao pré-carregamento, "
+"pode transferir o modelo de teste que disponibilizamos em baixo, testar a "
+"sua aplicação, preencher o modelo e enviar os seus resultados novamente para "
+"nós através do <a href=\"%(submit_url)s\">formulário de submissão do "
+"pré-carregamento da aplicação</a>. Nós iremos guardar os resultados do seu "
+"teste nos nossos servidores onde serão revistos pelos operadores móveis "
+"interessados. Se tiver mais questões, pode enviar um email para %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr ""
+msgstr "Termos e Condições para aplicações pré-carregadas"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Obter classificação para a minha aplicação"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"Para ter a sua aplicação listada no Marketplace, deve obter um certificado "
+"Internacional da Aliança de Classificação Etária (IARC - International Age "
+"Rating Coalition). Ao clicar no botão abaixo irá abrir uma nova janela onde "
+"pode preencher um questionário curto de sim-ou-não sobre o conteúdo da sua "
+"aplicação. Após a conclusão, a janela será fechada e sua aplicação terá, "
+"então, uma classificação etária."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Ao utilizar a ferramenta certificados de classificação da IARC, concorda com "
+"a <a href=\"%(privacy_url)s\">Política de Privacidade</a> e <a href=\"%"
+"(tos_url)s\">o acordo dos Termos do Serviço</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
+"O processo IARC de classificação de conteúdo está concluído. Será "
+"reencaminhado para a <a href=\"%(ratings_url)s\">página de classificações de "
+"conteúdo</a> da sua aplicação."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Pedimos desculpa, mas houve um erro no nosso processo de classificação de "
+"conteúdo. Pode continuar a tentar ou tentar novamente mais tarde."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "Criar um Certificado de Classificação IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "A sua aplicação já foi classificada?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
+"Se a sua aplicação já foi classificada através da ferramenta de "
+"classificações globais da IARC em cima e já tiver um código de segurança "
+"IARC, pode introduzi-lo manualmente aqui."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "ID de submissão"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"O ID de submissão pode ser encontrado no certificado enviado para si. É um "
+"valor numérico como &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
-msgstr ""
+msgstr "Código de Segurança"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"O código de segurança pode ser encontrada no certificado enviado para si. É "
+"uma mistura de letras e números, como &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
@@ -6334,7 +6368,7 @@ msgstr "Sumário"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr ""
+msgstr "Sistema de Avaliação"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
@@ -6342,15 +6376,15 @@ msgstr "Região"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr ""
+msgstr "Categoria de avaliação"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
-msgstr ""
+msgstr "Descritores"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:57
 msgid "Interactive Elements"
-msgstr ""
+msgstr "Elementos interativos"
 
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
@@ -6385,7 +6419,7 @@ msgstr "Criar perfil"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Produtos na aplicação"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:32
 msgid "Compatibility"
@@ -6418,7 +6452,7 @@ msgstr[1] "Seleccione <b>até {0}</b> categorias do {1} para este extra:"
 
 #: mkt/developers/templates/developers/includes/macros.html:86
 msgid "Categories:"
-msgstr ""
+msgstr "Categorias:"
 
 #: mkt/developers/templates/developers/includes/macros.html:100
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -6427,36 +6461,45 @@ msgstr "<b>Posição na fila:</b> %(pos)s de %(total)s"
 #: mkt/developers/templates/developers/includes/macros.html:107
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Tempo de espera estimado:</b> %(num)s dia de trabalho"
+msgstr[1] "<b>Tempo de espera estimado:</b> %(num)s dias de trabalho"
 
 #: mkt/developers/templates/developers/includes/macros.html:113
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"A maioria das aplicações é revista em cerca de uma semana. Se sua revisão "
+"demorou mais do que isto, pode enviar um e-mail para %(email)s para "
+"confirmar o estado."
 
 #: mkt/developers/templates/developers/includes/macros.html:123
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Marque as opções das funcionalidades que a sua aplicação requer para "
+"funcionar corretamente. A sua aplicação será ocultada dos dispositivos dos "
+"utilizadores que não a suportem."
 
 #: mkt/developers/templates/developers/includes/macros.html:129
 msgid "View all"
-msgstr "Ver todas"
+msgstr "Ver tudo"
 
 #: mkt/developers/templates/developers/includes/macros.html:130
 msgid "Hide all"
-msgstr ""
+msgstr "Esconder tudo"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Testar instalação da aplicação"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Testar pagamentos na aplicação"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"O Firefox Marketplace permite que a sua aplicação aceite pagamentos na "
+"aplicação. O <a href=\"{guide}\">guia de pagamentos na aplicação</a> explica "
+"como configurar a sua aplicação para pagamentos com os parâmetros abaixo."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:30
 msgid "Application Key"
@@ -6477,25 +6520,30 @@ msgstr "Exibir segredo"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:52 mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Reset secret"
-msgstr ""
+msgstr "Repor segredo"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:18
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
+msgstr "Saiba mais sobre <b>pagamentos na aplicação</b> no MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:21
 msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
+"A chave/segredo seguinte apenas lhe permitirá simular pagamentos na "
+"aplicação enquanto desenvolve a sua aplicação. Para gerar uma chave para "
+"pagamentos reais na aplicação deve <a href=\"%(submit)s\">submeter</a> a sua "
+"aplicação, definir as suas credenciais de pagamento e gerar uma nova chave "
+"especialmente para essa aplicação."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:52
 msgid "Generate Keys"
-msgstr ""
+msgstr "Gerar chaves"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:17
 msgid "Copy me"
-msgstr ""
+msgstr "Copiar-me"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:23 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:206
 msgid "Save"
@@ -6503,51 +6551,55 @@ msgstr "Guardar"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:33
 msgid "Price Point"
-msgstr ""
+msgstr "Faixa de preço"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:34
 msgid "Buy URL"
-msgstr ""
+msgstr "URL de compra"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:44
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ Adicionar um produto"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
-msgstr ""
+msgstr "Compatibilidade da aplicação"
 
 #: mkt/developers/templates/developers/payments/premium.html:65
 msgid "Change to Free"
-msgstr ""
+msgstr "Alterar para Gratuita"
 
 #: mkt/developers/templates/developers/payments/premium.html:66
 msgid "Changing to Free will put your app back into review."
 msgstr ""
+"Ao alterar para Gratuita irá colocar a sua aplicação novamente em revisão."
 
 #: mkt/developers/templates/developers/payments/premium.html:82
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "O modo pago requer que a sua aplicação apenas suporte:"
 
 #: mkt/developers/templates/developers/payments/premium.html:83 mkt/developers/templates/developers/payments/premium.html:85 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
-msgstr ""
+msgstr "Pago / Na aplicação"
 
 #: mkt/developers/templates/developers/payments/premium.html:94
 msgid "Change to Paid"
-msgstr ""
+msgstr "Alterar para Pago"
 
 #: mkt/developers/templates/developers/payments/premium.html:95
 msgid "Changing to Paid will put your app back into review."
-msgstr ""
+msgstr "Ao alterar para Pago irá colocar a sua aplicação novamente em revisão."
 
 #: mkt/developers/templates/developers/payments/premium.html:103
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
+"Saiba mais sobre os <a href=\"%(payments_url)s\" target=\"_blank\">diferentes "
+"tipos de pagamento</a>.<br /> Aprenda como <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">validar recibos de compra</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:114 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr ""
+msgstr "Contas de pagamento"
 
 #: mkt/developers/templates/developers/payments/premium.html:118
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
@@ -6591,41 +6643,47 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:219
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "A sua aplicação estará disponível para as seguintes regiões:"
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Retail price"
-msgstr ""
+msgstr "Preço de retalho"
 
 #: mkt/developers/templates/developers/payments/premium.html:226
 msgid "local currency"
-msgstr ""
+msgstr "moeda local"
 
 #: mkt/developers/templates/developers/payments/premium.html:227
 msgid "Billing method"
-msgstr ""
+msgstr "Método de cobrança"
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Other regions"
-msgstr ""
+msgstr "Outras regiões"
 
 #: mkt/developers/templates/developers/payments/premium.html:240
 msgid ""
 "Your app will become available in the following selected regions once payments become available based on your chosen price point. To exclude your app from appearing in a region, you may uncheck "
 "that region before saving."
 msgstr ""
+"A sua aplicação estará disponível nas regiões selecionadas seguintes assim "
+"que os pagamentos estejam disponíveis baseado na faixa de preço selecionada. "
+"Para excluir a sua aplicação de aparecer numa região, pode desmarcar essa "
+"região antes de guardar."
 
 #: mkt/developers/templates/developers/payments/premium.html:262
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Regiões e listagens"
 
 #: mkt/developers/templates/developers/payments/premium.html:277
 msgid "Promote as upgrade to free version"
-msgstr ""
+msgstr "Promover como atualização para uma versão gratuita"
 
 #: mkt/developers/templates/developers/payments/premium.html:286
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr ""
+"Se tem uma aplicação gratuita, pode ligar e promover a sua aplicação premium "
+"perto da versão gratuita aqui."
 
 #: mkt/developers/templates/developers/payments/premium.html:294
 msgid "Linking this app will promote your premium app next to the free version."
@@ -6666,11 +6724,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
-msgstr ""
+msgstr "Confirmar remoção de conta de pagamento"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Remover conta de pagamento"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
