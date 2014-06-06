@@ -389,6 +389,10 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
                          "in and manually publish it."))
     notes = forms.CharField(
         label=_lazy(u'Your comments for reviewers'),
+        help_text=_lazy(u'Your app will be reviewed by Mozilla before it '
+                        u'becomes publicly listed on the Marketplace. Enter '
+                        u'any special instructions for the app reviewers '
+                        u'here.'),
         required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
     class Meta:
