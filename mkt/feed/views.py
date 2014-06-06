@@ -1,10 +1,6 @@
-from django.utils.datastructures import MultiValueDictKeyError
-
-from rest_framework import response, status, viewsets
-from rest_framework.decorators import action
+from rest_framework import status, response, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import OrderingFilter
-from rest_framework.response import Response
 
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -34,25 +30,38 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                               RestAnonymousAuthentication]
 
     exceptions = {
-        'not_provided': '`apps` was not provided.',
-        'doesnt_exist': 'One or more of the specific `apps` do not exist.',
+        'doesnt_exist': 'One or more of the specified `apps` do not exist.'
     }
 
-    @action()
-    def set_apps(self, request, *args, **kwargs):
-        """
-        Remove all member apps of this collection, replacing them with the ones
-        specified by via the `apps` POST parameter.
-        """
-        collection = self.get_object()
-        try:
-            collection.set_apps(request.DATA['apps'])
-        except (KeyError, MultiValueDictKeyError):
-            raise ParseError(detail=self.exceptions['not_provided'])
-        except Webapp.DoesNotExist:
-            raise ParseError(detail=self.exceptions['doesnt_exist'])
-        return Response(self.get_serializer(instance=collection).data,
-                        status=status.HTTP_200_OK)
+    def set_apps(self, obj, apps):
+        if apps:
+            try:
+                obj.set_apps(apps)
+            except Webapp.DoesNotExist:
+                raise ParseError(detail=self.exceptions['doesnt_exist'])
+
+    def create(self, request, *args, **kwargs):
+        apps = request.DATA.pop('apps', [])
+        serializer = self.get_serializer(data=request.DATA,
+                                         files=request.FILES)
+        if serializer.is_valid():
+            self.pre_save(serializer.object)
+            self.object = serializer.save(force_insert=True)
+            self.set_apps(self.object, apps)
+            self.post_save(self.object, created=True)
+            headers = self.get_success_headers(serializer.data)
+            return response.Response(serializer.data,
+                                     status=status.HTTP_201_CREATED,
+                                     headers=headers)
+        return response.Response(serializer.errors,
+                                 status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        apps = request.DATA.pop('apps', [])
+        self.set_apps(self.get_object(), apps)
+        ret = super(BaseFeedCollectionViewSet, self).update(
+            request, *args, **kwargs)
+        return ret
 
 
 class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
