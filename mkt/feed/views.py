@@ -2,7 +2,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from rest_framework import response, serializers, status, viewsets
 from rest_framework.exceptions import ParseError
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
 
 import mkt
@@ -74,6 +74,20 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return ret
 
 
+class RegionCarrierFilter(BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        filters = {}
+        q = request.QUERY_PARAMS
+
+        if q.get('region'):
+            filters['region'] = mkt.regions.REGIONS_DICT[
+                q['region']].id
+        if q.get('carrier'):
+            filters['carrier'] = mkt.carriers.CARRIER_MAP[
+                q['carrier']].id
+        return queryset.filter(**filters)
+
+
 class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
     """
     A viewset for the FeedItem class, which wraps all items that live on the
@@ -84,7 +98,7 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
                               RestAnonymousAuthentication]
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('Feed', 'Curate'))]
-    filter_backends = (OrderingFilter,)
+    filter_backends = (OrderingFilter, RegionCarrierFilter)
     queryset = FeedItem.objects.all()
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedItemSerializer

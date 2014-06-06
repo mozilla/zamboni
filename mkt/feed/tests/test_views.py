@@ -106,6 +106,22 @@ class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], self.item.id)
 
+    def test_filter_region(self):
+        self.item.update(region=2)
+        res, data = self.list(self.client, region='restofworld')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, region='us')
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_filter_carrier(self):
+        self.item.update(carrier=16)
+        res, data = self.list(self.client, carrier='vimpelcom')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, carrier='tmn')
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
 
 class TestFeedItemViewSetCreate(FeedAppMixin, BaseTestFeedItemViewSet):
     """
