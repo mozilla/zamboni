@@ -105,8 +105,10 @@ FEED_COLOR_CHOICES = (
     ('#2C393B', 'Intrepid Indigo'),
 )
 
+COLLECTION_TYPE_PROMO = 'promo'
+COLLECTION_TYPE_LISTING = 'listing'
 COLLECTION_TYPES = (
-    'promo',
-    'listing',
+    COLLECTION_TYPE_PROMO,
+    COLLECTION_TYPE_LISTING,
 )
 COLLECTION_TYPE_CHOICES = [(c, c) for c in COLLECTION_TYPES]

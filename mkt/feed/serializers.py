@@ -85,6 +85,15 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         model = FeedCollection
         url_basename = 'feedcollections'
 
+    def validate_background_color(self, attrs, source):
+        background_color = attrs.get(source, None)
+        if (attrs.get('type') == constants.COLLECTION_TYPE_PROMO and not
+            background_color):
+            raise serializers.ValidationError(
+                '`background_color` is required for `promo` collections.'
+            )
+        return attrs
+
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     """
