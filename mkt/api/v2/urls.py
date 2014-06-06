@@ -1,6 +1,6 @@
 from django.conf.urls import include, patterns, url
 
-from rest_framework.routers import Route, SimpleRouter
+from rest_framework.routers import SimpleRouter
 
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls

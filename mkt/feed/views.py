@@ -3,8 +3,6 @@ from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework import response, serializers, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import OrderingFilter
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import mkt
@@ -12,8 +10,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
-from mkt.api.base import (CORSMixin, cors_api_view, MarketplaceView,
-                          SlugOrIdMixin)
+from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
 from mkt.collections.views import CollectionImageViewSet
 from mkt.webapps.models import Webapp
 
@@ -139,7 +136,7 @@ class FeedBuilderView(CORSMixin, APIView):
                 feed_items.append(FeedItem(**feed_item))
 
         FeedItem.objects.bulk_create(feed_items)
-        return Response(status=status.HTTP_201_CREATED)
+        return response.Response(status=status.HTTP_201_CREATED)
 
 
 class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
