@@ -108,8 +108,8 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                             FeedCollectionSerializer())
 
     class Meta:
-        fields = ('app', 'brand', 'carrier', 'category', 'id', 'item_type',
-                  'region', 'url')
+        fields = ('app', 'brand', 'carrier', 'category', 'collection', 'id',
+                  'item_type', 'region', 'url')
         item_types = ('app', 'brand',)
         model = FeedItem
         url_basename = 'feeditems'
