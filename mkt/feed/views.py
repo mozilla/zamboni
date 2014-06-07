@@ -1,6 +1,4 @@
-from django.utils.datastructures import MultiValueDictKeyError
-
-from rest_framework import response, serializers, status, viewsets
+from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
@@ -178,6 +176,10 @@ class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
 
 class FeedAppImageViewSet(CollectionImageViewSet):
     queryset = FeedApp.objects.all()
+
+
+class FeedCollectionImageViewSet(CollectionImageViewSet):
+    queryset = FeedCollection.objects.all()
 
 
 class FeedBrandViewSet(BaseFeedCollectionViewSet):

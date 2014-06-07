@@ -1,15 +1,18 @@
-from rest_framework import relations, serializers
+from django.conf import settings
 
-import amo
+from rest_framework import relations, serializers
+from rest_framework.reverse import reverse
+
 import mkt.carriers
 import mkt.regions
-from addons.models import Category
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
-from mkt.collections.serializers import (CollectionImageField, SlugChoiceField,
-                                         SlugModelChoiceField)
+from mkt.collections.serializers import (SlugChoiceField, SlugModelChoiceField)
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.serializers import AppSerializer
+
+import amo
+from addons.models import Category
 
 from . import constants
 from .fields import FeedCollectionMembershipField
@@ -28,6 +31,22 @@ class BaseFeedCollectionSerializer(URLSerializerMixin,
         fields = ('apps', 'slug', 'url')
 
 
+class FeedImageField(serializers.HyperlinkedRelatedField):
+    read_only = True
+
+    def get_url(self, obj, view_name, request, format):
+        if obj.has_image:
+            # Always prefix with STATIC_URL to return images from our CDN.
+            prefix = settings.STATIC_URL.strip('/')
+            # Always append image_hash so that we can send far-future expires.
+            suffix = '?%s' % obj.image_hash
+            url = reverse(view_name, kwargs={'pk': obj.pk}, request=request,
+                          format=format)
+            return '%s%s%s' % (prefix, url, suffix)
+        else:
+            return None
+
+
 class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     """
     A serializer for the FeedApp class, which highlights a single app and some
@@ -36,20 +55,18 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
     app = SplitField(relations.PrimaryKeyRelatedField(required=True),
                      AppSerializer())
     description = TranslationSerializerField(required=False)
-    background_image = CollectionImageField(
-        source='*',
-        view_name='api-v2:feed-app-image-detail',
-        format='png')
+    background_image = FeedImageField(
+        source='*', view_name='api-v2:feed-app-image-detail', format='png')
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
                          PreviewSerializer())
     pullquote_rating = serializers.IntegerField(required=False)
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'background_color', 'created', 'description',
-                  'type', 'id', 'background_image', 'preview',
-                  'pullquote_attribution', 'pullquote_rating',
-                  'pullquote_text', 'slug', 'url')
+        fields = ('app', 'background_color', 'background_image', 'created',
+                  'description', 'id', 'preview', 'pullquote_attribution',
+                  'pullquote_rating', 'pullquote_text', 'slug', 'type',
+                  'url')
         model = FeedApp
         url_basename = 'feedapps'
 
@@ -76,12 +93,15 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     """
     type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
     background_color = serializers.CharField(max_length=7, required=False)
+    background_image = FeedImageField(
+        source='*', view_name='api-v2:feed-collection-image-detail',
+        format='png')
     description = TranslationSerializerField(required=False)
     name = TranslationSerializerField()
 
     class Meta:
-        fields = ('apps', 'background_color', 'description', 'id', 'name',
-                  'slug', 'type', 'url')
+        fields = ('apps', 'background_color', 'background_image',
+                  'description', 'id', 'name', 'slug', 'type', 'url')
         model = FeedCollection
         url_basename = 'feedcollections'
 

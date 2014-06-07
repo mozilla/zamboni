@@ -7,7 +7,8 @@ from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.feed.views import (FeedAppImageViewSet, FeedAppViewSet,
                             FeedBrandViewSet, FeedBuilderView,
-                            FeedCollectionViewSet, FeedItemViewSet)
+                            FeedCollectionViewSet, FeedCollectionImageViewSet,
+                            FeedItemViewSet)
 
 
 feed = SimpleRouter()
@@ -21,10 +22,15 @@ subfeedapp = SubRouterWithFormat()
 subfeedapp.register('image', FeedAppImageViewSet,
                     base_name='feed-app-image')
 
+subfeedcollection = SubRouterWithFormat()
+subfeedcollection.register('image', FeedCollectionImageViewSet,
+                    base_name='feed-collection-image')
+
 urlpatterns = patterns('',
     url(r'^rocketfuel/collections/.*', endpoint_removed),
     url(r'^feed/builder/$', FeedBuilderView.as_view(),
         name='feed.builder'),
     url(r'^feed/', include(feed.urls)),
     url(r'^feed/apps/', include(subfeedapp.urls)),
+    url(r'^feed/collections/', include(subfeedcollection.urls)),
 ) + v1_urls
