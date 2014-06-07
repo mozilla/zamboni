@@ -1,3 +1,17 @@
+FEEDAPP_ICON = 'icon'
+FEEDAPP_IMAGE = 'image'
+FEEDAPP_DESC = 'description'
+FEEDAPP_QUOTE = 'quote'
+FEEDAPP_PREVIEW = 'preview'
+FEEDAPP_TYPES = (
+    FEEDAPP_ICON,
+    FEEDAPP_IMAGE,
+    FEEDAPP_DESC,
+    FEEDAPP_QUOTE,
+    FEEDAPP_PREVIEW,
+)
+FEEDAPP_TYPE_CHOICES = [(c, c) for c in FEEDAPP_TYPES]
+
 # Editorial Brand types, represented as a list of slug-like strings. L10n for
 # these are handled on the client side.
 BRAND_TYPES = (
@@ -90,9 +104,11 @@ BRAND_TYPE_CHOICES = [(c, c) for c in BRAND_TYPES]
 
 
 # Editorial Brand layouts
+BRAND_GRID = 'grid'
+BRAND_LIST = 'list'
 BRAND_LAYOUTS = (
-    'grid',
-    'list'
+    BRAND_GRID,
+    BRAND_LIST
 )
 BRAND_LAYOUT_CHOICES = [(c, c) for c in BRAND_LAYOUTS]
 
@@ -105,10 +121,10 @@ FEED_COLOR_CHOICES = (
     ('#2C393B', 'Intrepid Indigo'),
 )
 
-COLLECTION_TYPE_PROMO = 'promo'
-COLLECTION_TYPE_LISTING = 'listing'
+COLLECTION_PROMO = 'promo'
+COLLECTION_LISTING = 'listing'
 COLLECTION_TYPES = (
-    COLLECTION_TYPE_PROMO,
-    COLLECTION_TYPE_LISTING,
+    COLLECTION_PROMO,
+    COLLECTION_LISTING,
 )
 COLLECTION_TYPE_CHOICES = [(c, c) for c in COLLECTION_TYPES]

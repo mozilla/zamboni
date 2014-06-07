@@ -1,62 +1,24 @@
 # -*- coding: utf-8 -*-
 import json
-import random
-import string
 
 from django.core.urlresolvers import reverse
 
 from nose.tools import eq_, ok_
 
+import amo.tests
+from amo.tests import app_factory
+from addons.models import Preview
+
 import mkt.carriers
 import mkt.regions
-from amo.tests import app_factory
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
+from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Preview, Webapp
 
 
-class FeedAppMixin(object):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.feedapp_data = {
-            'app': 337141,
-            'background_color': '#B90000',
-            'type': 'icon',
-            'description': {
-                'en-US': u'pan-fried potatoes'
-            },
-            'slug': self.random_slug()
-        }
-        self.pullquote_data = {
-            'pullquote_text': {'en-US': u'The bést!'},
-            'pullquote_rating': 4,
-            'pullquote_attribution': u'Jamés Bod'
-        }
-        self.feedapps = []
-        super(FeedAppMixin, self).setUp()
-
-    def random_slug(self):
-        return ''.join(random.choice(string.ascii_uppercase + string.digits)
-                       for _ in range(10))
-
-    def create_feedapps(self, n=2, **kwargs):
-        data = dict(self.feedapp_data)
-        data.update(kwargs)
-        if not isinstance(data['app'], Webapp):
-            data['app'] = Webapp.objects.get(pk=data['app'])
-
-        feedapps = []
-        for idx in xrange(n):
-            data['slug'] = self.random_slug()
-            feedapps.append(FeedApp.objects.create(**data))
-        self.feedapps.extend(feedapps)
-
-        return feedapps
-
-
-class BaseTestFeedItemViewSet(RestOAuth):
+class BaseTestFeedItemViewSet(RestOAuth, FeedTestMixin):
     def setUp(self):
         super(BaseTestFeedItemViewSet, self).setUp()
         self.profile = self.user
@@ -926,3 +888,20 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         self.data['us'][0] = ['app']
         r = self._set_feed_items(self.data)
         eq_(r.status_code, 400)
+
+
+class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedElementSearchView, self).setUp()
+        self.app = self.feed_app_factory();
+        self.brand = self.feed_brand_factory();
+        self.collection = self.feed_collection_factory();
+        self.feed_permission()
+        self.url = reverse('api-v2:feed.element-search')
+
+    def test_query(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        print res.content

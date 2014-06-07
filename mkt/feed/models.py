@@ -283,10 +283,10 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
     and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
-    type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
     description = PurifiedField()
     slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
+    type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
 
     # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
@@ -354,7 +354,6 @@ models.signals.pre_save.connect(
 models.signals.pre_save.connect(
     save_signal, sender=FeedCollectionMembership,
     dispatch_uid='feedcollectionmembership_translations')
-
 
 # Delete membership instances when their apps are deleted.
 def remove_deleted_app_on(cls):

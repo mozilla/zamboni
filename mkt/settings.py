@@ -678,7 +678,12 @@ ENGAGE_ROBOTS = True
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
 ES_HOSTS = ['127.0.0.1:9200']
-ES_INDEXES = {'webapp': 'apps'}
+ES_INDEXES = {
+    'webapp': 'apps',
+    'mkt_feed_app': 'feed_apps_index',
+    'mkt_feed_brand': 'feed_brands_index',
+    'mkt_feed_collection': 'feed_collections_index',
+}
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_USE_PLUGINS = False
 ES_TIMEOUT = 30
