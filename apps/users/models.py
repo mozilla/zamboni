@@ -136,7 +136,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     @property
     def is_staff(self):
-        from access import acl
+        from mkt.access import acl
         return acl.action_allowed_user(self, 'Admin', '%')
 
     def has_perm(self, perm, obj=None):
@@ -234,7 +234,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         cache empty queries on an as need basis.
         """
         # Circular import
-        from market.models import AddonPurchase
+        from mkt.prices.models import AddonPurchase
 
         @memoize(prefix='users:purchase-ids')
         def ids(pk):

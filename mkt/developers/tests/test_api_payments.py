@@ -13,7 +13,6 @@ from test_utils import RequestFactory
 import amo
 from addons.models import AddonUpsell, AddonUser
 from amo.tests import app_factory, TestCase
-from market.models import AddonPremium, Price
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
@@ -23,6 +22,7 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.developers.tests.test_providers import Patcher
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from mkt.prices.models import AddonPremium, Price
 
 
 package_data = {

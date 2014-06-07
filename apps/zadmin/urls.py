@@ -3,9 +3,11 @@ from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
-from addons.urls import ADDON_ID
 from amo.urlresolvers import reverse
 from . import views
+
+
+ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 
 urlpatterns = patterns('',
@@ -17,7 +19,6 @@ urlpatterns = patterns('',
     url('^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
     url('^env$', views.env, name='amo.env'),
-    url('^hera', views.hera, name='zadmin.hera'),
     url('^memcache$', views.memcache, name='zadmin.memcache'),
     url('^settings', views.show_settings, name='zadmin.settings'),
     url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),

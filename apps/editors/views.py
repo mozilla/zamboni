@@ -6,11 +6,10 @@ from django.core.exceptions import PermissionDenied
 from django.views.decorators.cache import never_cache
 
 import amo
-from access import acl
 from amo.decorators import json_view, login_required
-from users.models import UserProfile
-
+from mkt.access import acl
 from mkt.reviewers.utils import AppsReviewing
+from users.models import UserProfile
 
 
 def _view_on_get(request):
@@ -23,7 +22,7 @@ def _view_on_get(request):
             acl.action_allowed(request, 'ReviewerTools', 'View'))
 
 
-def reviewer_required(only=None, region=None):
+def reviewer_required(region=None):
     """Requires the user to be logged in as a reviewer or admin, or allows
     someone with rule 'ReviewerTools:View' for GET requests.
 
@@ -34,23 +33,20 @@ def reviewer_required(only=None, region=None):
         Apps:Review
         Personas:Review
 
-    If only is provided, it will only check for a certain type of reviewer.
-    Valid values for only are: addon, app, persona.
-
     """
     def decorator(f):
         @login_required
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            if (acl.check_reviewer(request, only, region=kw.get('region')) or
+            if (acl.check_reviewer(request, region=kw.get('region')) or
                 _view_on_get(request)):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
         return wrapper
     # If decorator has no args, and is "paren-less", it's callable.
-    if callable(only):
-        return decorator(only)
+    if callable(region):
+        return decorator(region)
     else:
         return decorator
 

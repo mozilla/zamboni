@@ -13,8 +13,8 @@ from jingo.helpers import datetime as jingo_datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from access import acl
 from addons.helpers import new_context
+from mkt.access import acl
 from mkt.site.helpers import mkt_breadcrumbs
 
 
@@ -191,17 +191,6 @@ def display_url(url):
     bytes = urllib.unquote(url)
     c = chardet.detect(bytes)
     return bytes.decode(c['encoding'], 'replace')
-
-
-@register.inclusion_tag('developers/helpers/disabled_payments_notice.html')
-@jinja2.contextfunction
-def disabled_payments_notice(context, addon=None):
-    """
-    If payments are disabled, we show a friendly message urging the developer
-    to make his/her app free.
-    """
-    addon = context.get('addon', addon)
-    return {'request': context.get('request'), 'addon': addon}
 
 
 @register.function

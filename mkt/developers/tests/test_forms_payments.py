@@ -11,7 +11,6 @@ from addons.models import Addon, AddonDeviceType, AddonUser
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
 from editors.models import RereviewQueue
-from market.models import AddonPremium, Price
 from users.models import UserProfile
 
 from mkt.developers import forms_payments, models
@@ -19,6 +18,7 @@ from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.tests.test_views_payments import setup_payment_account
 from mkt.site.fixtures import fixture
+from mkt.prices.models import AddonPremium, Price
 
 
 class TestPremiumForm(amo.tests.TestCase):
@@ -490,7 +490,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
 
 
 class TestPaidRereview(Patcher, amo.tests.TestCase):
-    fixtures = fixture('webapp_337141') + ['market/prices']
+    fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):
         super(TestPaidRereview, self).setUp()

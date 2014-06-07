@@ -124,7 +124,7 @@ JS = {
         # tiny module loader
         'js/lib/amd.js',
 
-        'js/lib/jquery-1.9.1.js',
+        'js/lib/jquery-1.11.1.js',
         'js/lib/underscore.js',
         'js/lib/format.js',
         'js/lib/jquery.cookie.js',
@@ -200,7 +200,7 @@ JS = {
         'js/devreg/reviewers/reviewers_init.js',
     ),
     'mkt/in-app-payments': (
-        'js/lib/jquery-1.9.1.js',
+        'js/lib/jquery-1.11.1.js',
         'js/devreg/inapp_payments.js',
         'js/lib/csrf.js',
         'js/impala/serializers.js',

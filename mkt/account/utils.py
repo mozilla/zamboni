@@ -7,8 +7,8 @@ import amo
 from amo.models import manual_order
 from amo.utils import paginate
 from mkt.constants import apps
+from mkt.purchase.models import Contribution
 from mkt.webapps.models import Webapp
-from stats.models import Contribution
 from translations.query import order_by_translation
 
 

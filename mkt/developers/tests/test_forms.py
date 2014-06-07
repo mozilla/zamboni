@@ -17,7 +17,6 @@ import amo.tests
 from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
 from addons.models import Addon, AddonCategory, Category
-from tags.models import Tag
 from translations.models import Translation
 from users.models import UserProfile
 
@@ -26,14 +25,15 @@ from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = Addon.objects.get(pk=337141)
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
@@ -566,6 +566,19 @@ class TestAdminSettingsForm(TestAdmin):
         self.assertSetEqual(
             self.webapp.tags.values_list('tag_text', flat=True),
             ['tag two', 'tag three'])
+
+    def test_removing_all_tags(self):
+        Tag(tag_text='tag one').save_tag(self.webapp)
+        eq_(self.webapp.tags.count(), 1)
+
+        self.data.update({'tags': ''})
+        form = forms.AdminSettingsForm(self.data, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save(self.webapp)
+
+        eq_(self.webapp.tags.count(), 0)
+        self.assertSetEqual(
+            self.webapp.tags.values_list('tag_text', flat=True), [])
 
     def test_banner_message(self):
         self.data.update({

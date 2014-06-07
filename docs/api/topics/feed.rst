@@ -11,7 +11,8 @@ the Marketplace home page. The feed is comprised of a number of :ref:`feed items
 feed may include:
 
 - :ref:`Feed Apps <feed-apps>`
-- :ref:`Collections <feed-collections>`
+- :ref:`Feed Brands <feed-brands>`
+- :ref:`Feed Collections <feed-collections>`
 
 .. note::
 
@@ -26,16 +27,17 @@ feed may include:
 Feed Items
 ----------
 
-A feed item wraps a :ref:`FeedApp  <feed-apps>` or
-:ref:`Collection <feed-collections>` with additional metadata regarding
-when and where to feature the content. Feed items are represented thusly:
+A feed item wraps a :ref:`feed app  <feed-apps>`, :ref:`feed brand
+<feed-brands>`, or :ref:`feed collection <feed-collections>` with additional
+metadata regarding when and where to feature the content. Feed items are
+represented thusly:
 
 .. code-block:: json
 
     {
         "app": null,
+        "brand": null,
         "carrier": "telefonica",
-        "category": null,
         "collection": {
             "data": "..."
         }
@@ -47,26 +49,32 @@ when and where to feature the content. Feed items are represented thusly:
 
 ``app``
     *object|null* - the full representation of a :ref:`feed app <feed-apps>`.
+``brand``
+    *object|null* - the full representation of a :ref:`feed brand
+    <feed-brands>`.
 ``carrier``
     *string|null* - the slug of a :ref:`carrier <carriers>`. If
     defined, this feed item will only be available by users of that carrier.
 ``category``
-    *int|null* - the ID of a :ref:`category <categories>`. If defined, this feed
-    item will only be available to users browsing that category.
+    *int|null* - the ID of a :ref:`category <categories>`. If defined, this
+    feed item will only be available to users browsing that category.
 ``collection``
     *object|null* - the full representation of a  :ref:`collection
     <collections>`.
 ``id``
     *int* the ID of this feed item.
 ``item_type``
-    *string* - the type of object being represented by this feed item. This will
-    always be usable as a key on the feed item instance to fetch that object's
-    data (i.e. ``feeditem[feeditem['item_type']]`` will always be non-null).
+    *string* - the type of object being represented by this feed item. This
+    will always be usable as a key on the feed item instance to fetch that
+    object's data (i.e. ``feeditem[feeditem['item_type']]`` will always be
+    non-null). Can be ``app``, ``collection``, or ``brand``.
+``order``
+    *int* - order/weight at which the feed item is displayed on a feed.
 ``resource_url``
     *string* - the permanent URL for this feed item.
 ``region``
-    *string|null* - the slug of a :ref:`region <regions>`. If defined, this feed
-    item will only be available in that region.
+    *string|null* - the slug of a :ref:`region <regions>`. If defined, this
+    feed item will only be available in that region.
 
 
 List
@@ -205,6 +213,52 @@ Delete
     :status 403: not authorized.
 
 
+Builder
+=======
+
+.. http:put:: /api/v2/feed/builder/
+
+    Sets feeds by region. For each region passed in, the builder
+    will delete all of the carrier-less :ref:`feed items <feed-items` for
+    that region and then batch create feed items in the order that feed
+    element IDs are passed in for that region.
+
+    **Request**
+
+    .. code-block:: json
+
+        {
+            'us': [
+                ['collection', 52],
+                ['app', 36],
+                ['brand, 123],
+                ['app', 66]
+            ],
+            'cn': [
+                ['app', 36],
+                ['collection', 52],
+                ['brand', 2313]
+                ['brand, 123],
+            ],
+            'hu': [],  // Passing in an empty array will empty that feed.
+        }
+
+    - The keys of the request are region slugs.
+    - The region slugs point to two-element arrays.
+    - The first element of the array is the item type. It can be
+    ``app``, ``collection``, or ``brand``.
+    - The second element of the array is the ID of a feed element.
+    - It can be the ID of a :ref:`FeedApp  <feed-apps>`, or
+      :ref:`FeedBrand <feed-brands>`.
+    - Order matters.
+
+    **Response**
+
+    :status 201: success.
+    :status 400: bad request.
+    :status 403: not authorized.
+
+
 .. _feed-apps:
 
 ---------
@@ -229,7 +283,7 @@ Feed apps are represented thusly:
             "fr": "Une application sélectionnée"
         },
         "feedapp_type": "icon",
-        "image": "http://somecdn.com/someimage.png"
+        "background_image": "http://somecdn.com/someimage.png"
         "id": 1
         "preview": null,
         "pullquote_attribute": null,
@@ -321,7 +375,7 @@ Create
         of the app being featured.
     :type description: object|null
     :param feedapp_type: can be ``icon``, ``image``, ``description``,
-        ``quote``, or ``preview.
+        ``quote``, or ``preview``.
     :type feedapp_type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
@@ -383,7 +437,7 @@ Update
         of the app being featured.
     :type description: object|null
     :param feedapp_type: can be ``icon``, ``image``, ``description``,
-       ``quote``, or ``preview.
+       ``quote``, or ``preview``.
     :type feedapp_type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
@@ -458,428 +512,397 @@ feed app.
     .. note:: Authentication and one of the 'Collections:Curate' permission or
         curator-level access to the feed app are required.
 
+.. _feed-brands:
+
+-----------
+Feed Brands
+-----------
+
+A feed brand is a collection-like object that allows editors to quickly create
+content without involving localizers by choosing from one of a number of
+predefined, prelocalized titles.
+
+Feed brands are represented thusly:
+
+.. code-block:: json
+
+    {
+        'apps': [
+            {
+                'id': 1
+            },
+            {
+                'id': 2
+            }
+        ],
+        'id': 1,
+        'layout': 'grid',
+        'slug': 'potato',
+        'type': 'hidden-gem',
+        'url': '/api/v2/feed/brands/1/'
+    }
+
+``apps``
+    *array* - a list of serializations of the member :ref:`apps <app>`.
+``id``
+    *int* - the ID of this feed brand.
+``layout``
+    *string* - a string indicating the way apps should be laid out in the
+    brand's detail page. One of ``'grid'`` or ``'list'``.
+``slug``
+    *string* - a slug to use in URLs for the feed brand
+``type``
+    *string* - a string indicating the title and icon that should be displayed
+    with this feed brand. See a
+    `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
+``url``
+    *string|null* - the permanent URL for this feed brand.
+
+
+List
+====
+
+.. http:get:: /api/v2/feed/brands/
+
+    A listing of feed brands.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of
+        :ref:`feed brands <feed-brands>`.
+    :type objects: array
+
+
+Detail
+======
+
+.. http:get:: /api/v2/feed/brands/(int:id)/
+
+    Detail of a specific feed brand.
+
+    **Request**
+
+    :param id: the ID of the feed brand.
+    :type id: int
+
+    **Response**
+
+    A representation of the :ref:`feed brand <feed-brands>`.
+
+
+Create
+======
+
+.. http:post:: /api/v2/feed/brands/
+
+    Create a feed brand.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param layout: string indicating the way apps should be laid out in the
+        brand's detail page. One of ``'grid'`` or ``'list'``.
+    :type layout: string
+    :param slug: a slug to use in URLs for the feed brand.
+    :type slug: string
+    :param type: a string indicating the title and icon that should be displayed
+        with this feed brand. See a
+        `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
+    :type type: string
+
+    .. code-block:: json
+
+        {
+            "apps": [19, 1, 44],
+            "layout": "grid",
+            "slug": "facebook-hidden-gem",
+            "type": "hidden-gem"
+        }
+
+    **Response**
+
+    A representation of the newly-created :ref:`feed brand <feed-brands>`.
+
+    :status 201: successfully created.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Update
+======
+
+.. http:patch:: /api/v2/feed/brands/(int:id)/
+
+    Update the properties of a feed brand.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs. If it is included in PATCH
+        requests, it will delete from the collection all apps not included.
+    :type apps: array
+    :param layout: string indicating the way apps should be laid out in the
+        brand's detail page. One of ``'grid'`` or ``'list'``.
+    :type layout: string
+    :param slug:  a slug to use in URLs for the feed brand.
+    :type slug: string
+    :param type: a string indicating the title and icon that should be displayed
+        with this feed brand. See a
+        `full list of options <https://github.com/mozilla/zamboni/blob/master/mkt/feed/constants.py>`_.
+    :type type: string
+
+    .. code-block:: json
+
+        {
+            "layout": "grid",
+            "slug": "facebook-hidden-gem",
+            "type": "hidden-gem"
+        }
+
+    **Response**
+
+    A representation of the updated :ref:`feed brand <feed-brands>`.
+
+    :status 200: successfully updated.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Delete
+======
+
+.. http:delete:: /api/v2/feed/brands/(int:id)/
+
+    Delete a feed brand.
+
+    **Request**
+
+    :param id: the ID of the feed brand.
+    :type id: int
+
+    **Response**
+
+    :status 204: successfully deleted.
+    :status 403: not authorized.
+
 
 .. _feed-collections:
 
------------
-Collections
------------
+----------------
+Feed Collections
+----------------
 
-A collection is a group of apps (not to be confused with :ref:`Feed Apps <feed-app>`)
+A feed collection is a complex assemblage of apps with a variety of display
+options.
 
-.. note::
+Feed collections are represented thusly:
 
-    The `name` and `description` fields are user-translated fields and have
-    a dynamic type depending on the query.
-    See :ref:`translations <overview-translations>`.
+.. code-block:: json
+
+    {
+        'apps': [
+            {
+                'id': 1
+            },
+            {
+                'id': 2
+            }
+        ],
+        'background_color': '#00AACC',
+        'description': {
+            'en-US': 'A description of my collection.'
+        },
+        'id': 19,
+        'name': {
+            'en-US': 'My awesome collection'
+        },
+        'slug': 'potato',
+        'type': 'promo',
+        'url': '/api/v2/feed/collections/1/'
+    }
+
+``apps``
+    *array* - a list of serializations of the member :ref:`apps <app>`.
+``background_color``
+    *string* - a hex color used in display of the collection. Currently must be
+    one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
+    or ``#2C393B``.
+``description``
+    *object|null* a :ref:`translated <overview-translations>` description of
+    the collection.
+``id``
+    *int* - the ID of this collection.
+``name``
+    *object* a :ref:`translated <overview-translations>` name of the
+    collection.
+``slug``
+    *string* - a slug to use in URLs for the collection
+``type``
+    *string* - a string indicating the display type of the collection. Must be
+    one of ``promo`` or ``listing``.
+``url``
+    *string|null* - the permanent URL for this collection.
 
 
-Listing
-=======
+List
+====
 
 .. http:get:: /api/v2/feed/collections/
 
-    A listing of all collections.
+    A listing of feed collections.
 
-    .. note:: Authentication is optional.
+    **Response**
 
-    **Request**:
+    :param apps: an ordered array of :ref:`app <app>` serializations.
+    :type apps: array
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of
+        :ref:`feed collections <feed-collections>`.
+    :type objects: array
 
-    The following query string parameters can be used to filter the results:
 
-    :param cat: a category ID/slug.
-    :type cat: int|string
-    :param region: a region ID/slug.
-    :type region: int|string
-    :param carrier: a carrier ID/slug.
-    :type carrier: int|string
+Detail
+======
 
-    Filtering on null values is done by omiting the value for the corresponding
-    parameter in the query string.
+.. http:get:: /api/v2/feed/collections/(int:id)/
 
-.. _rocketfuel-fallback:
+    Detail of a specific feed collection.
 
-    If no results are found with the filters specified, the API will
-    automatically use a fallback mechanism and try to change the values to null
-    in order to try to find some results.
+    **Request**
 
-    The order in which the filters are set to null is:
-        1. `region`
-        2. `carrier`
-        3. `region` and `carrier`.
+    :param id: the ID of the feed collection.
+    :type id: int
 
-    In addition, if that fallback mechanism is used, HTTP responses will have an
-    additional `API-Fallback` header, containing the fields which were set to
-    null to find the returned results, separated by a comma if needed, like this:
+    **Response**
 
-    `API-Fallback: region, carrier`
+    A representation of the :ref:`feed collection <feed-collections>`.
+
 
 Create
 ======
 
 .. http:post:: /api/v2/feed/collections/
 
-    Create a collection.
+    Create a feed collection.
 
-    .. note:: Authentication and the 'Collections:Curate' permission are
-        required.
+    **Request**
 
-    **Request**:
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param color: a hex color used in display of the collection. Currently must
+        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
+        ``#5F9B0A``, or ``#2C393B``.
+    :type color: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the feed collection.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
+    :param slug: a slug to use in URLs for the collection.
+    :type slug: string
+    :param type: a string indicating the display type of the collection. Must
+        be one of ``promo`` or ``listing``.
+    :type type: string
 
-    :param author: the author of the collection.
-    :type author: string
-    :param background_color: the background of the overlay on the image when
-        collection is displayed (hex-formatted, e.g. "#FF00FF"). Only applies to
-        curated collections (i.e. when collection_type is 0).
-    :type background_color: string|null
-    :param can_be_hero: whether the collection may be featured with a hero
-        graphic. This may only be set to ``true`` for operator shelves. Defaults
-        to ``false``.
-    :type can_be_hero: boolean
-    :param carrier: the ID of the carrier to attach this collection to. Defaults
-        to ``null``.
-    :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
-        Defaults to ``null``.
-    :type category: int|null
-    :param collection_type: the type of collection to create.
-    :type collection_type: int
-    :param description: a description of the collection.
-    :type description: string|object
-    :param is_public: an indication of whether the collection should be
-        displayed in consumer-facing pages. Defaults to ``false``.
-    :type is_public: boolean
-    :param name: the name of the collection.
-    :type name: string|object
-    :param region: the ID of the region to attach this collection to. Defaults
-        to ``null``.
-    :type region: int|null
-    :param slug: a slug to use in URLs for the collection. Automatically
-        generated if not specified.
-    :type slug: string|null
-    :param text_color: the color of the text displayed on the overlay on the
-        image when collection is displayed (hex-formatted, e.g. "#FF00FF"). Only
-        applies to curated collections (i.e. when collection_type is 0).
-    :type text_color: string|null
+    .. code-block:: json
 
+        {
+            "apps": [984, 19, 345, 981]
+            "color": "#B90000",
+            "description": {
+                "en-US": "A description of my collection."
+            },
+            "id": 19,
+            "name": {
+                "en-US": "My awesome collection"
+            },
+            "slug": "potato",
+            "type": "promo"
+        }
 
-Detail
-======
+    **Response**
 
-.. http:get:: /api/v2/feed/collections/(int:id|string:slug)/
+    A representation of the newly-created :ref:`feed collection
+    <feed-collections>`.
 
-    Get a single collection.
-
-    .. note:: Authentication is optional.
+    :status 201: successfully created.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
 
 
 Update
 ======
 
-.. http:patch:: /api/v2/feed/collections/(int:id|string:slug)/
+.. http:patch:: /api/v2/feed/collections/(int:id)/
 
-    Update a collection.
+    Update the properties of a collection.
 
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
+    **Request**
 
-    .. note:: The ``can_be_hero`` field may not be modified unless you have the
-        ``Collections:Curate`` permission, even if you have curator-level
-        access to the collection.
-
-    **Request**:
-
-    :param author: the author of the collection.
-    :type author: string
-    :param can_be_hero: whether the collection may be featured with a hero
-        graphic. This may only be set to ``true`` for operator shelves. Defaults
-        to ``false``.
-    :type can_be_hero: boolean
-    :param carrier: the ID of the carrier to attach this collection to.
-    :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
-    :type category: int|null
-    :param collection_type: the type of the collection.
-    :type collection_type: int
-    :param description: a description of the collection.
-    :type description: string|object
-    :param name: the name of the collection.
-    :type name: string|object
-    :param region: the ID of the region to attach this collection to.
-    :type region: int|null
+    :param apps: an ordered array of app IDs. If it is included in PATCH
+        requests, it will delete from the collection all apps not included.
+    :type apps: array
+    :param color: a hex color used in display of the collection. Currently must
+        be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
+        ``#5F9B0A``, or ``#2C393B``.
+    :type color: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the feed collection.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
     :param slug: a slug to use in URLs for the collection.
-    :type slug: string|null
+    :type slug: string
+    :param type: a string indicating the display type of the collection. Must
+        be one of ``promo`` or ``listing``.
+    :type type: string
 
+    .. code-block:: json
 
-    **Response**:
+        {
+            "apps": [912, 42, 112],
+            "color": "#B90000"
+            "description": {
+                "en-US": "A description of my collection."
+            },
+            "name": {
+                "en-US": "My awesome collection"
+            },
+            "slug": "potato",
+            "type": "promo"
+        }
 
-    A representation of the updated collection will be returned in the response
-    body.
+    **Response**
 
-    :status 200: collection successfully updated.
-    :status 400: invalid request; more details provided in the response body.
+    A representation of the updated :ref:`feed collection <feed-collections>`.
 
-
-Duplicate
-=========
-
-.. http:post:: /api/v2/feed/collections/(int:id)/duplicate/
-
-    Duplicate a collection, creating and returning a new one with the same
-    properties and the same apps.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    .. note:: The ``can_be_hero`` field may not be modified unless you have the
-        ``Collections:Curate`` permission, even if you have curator-level
-        access to the collection.
-
-    **Request**:
-
-    Any parameter passed will override the corresponding property from the
-    duplicated object.
-
-    :param author: the author of the collection.
-    :type author: string
-    :param can_be_hero: whether the collection may be featured with a hero
-        graphic. This may only be set to ``true`` for operator shelves. Defaults
-        to ``false``.
-    :type can_be_hero: boolean
-    :param carrier: the ID of the carrier to attach this collection to.
-    :type carrier: int|null
-    :param category: the ID of the category to attach this collection to.
-    :type category: int|null
-    :param collection_type: the type of the collection.
-    :type collection_type: int
-    :param description: a description of the collection.
-    :type description: string|object
-    :param name: the name of the collection.
-    :type name: string|object
-    :param region: the ID of the region to attach this collection to.
-    :type region: int|null
-    :param slug: a slug to use in URLs for the collection.
-    :type slug: string|null
-
-    **Response**:
-
-    A representation of the duplicate collection will be returned in the
-    response body.
-
-    :status 201: collection successfully duplicated.
-    :status 400: invalid request; more details provided in the response body.
+    :status 200: successfully updated.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
 
 
 Delete
 ======
 
-.. http:delete:: /api/v2/feed/collections/(int:id|string:slug)/
+.. http:delete:: /api/v2/feed/collections/(int:id)/
 
-    Delete a single collection.
+    Delete a feed collection.
 
-    .. note:: Authentication and the 'Collections:Curate' permission are
-        required.
+    **Request**
 
-    **Response**:
+    :param id: the ID of the feed collection.
+    :type id: int
 
-    :status 204: collection successfully deleted.
-    :status 400: invalid request; more details provided in the response body.
-    :status 403: not authenticated or authenticated without permission; more
-        details provided in the response body.
+    **Response**
 
-
-Add Apps
-========
-
-.. http:post:: /api/v2/feed/collections/(int:id|string:slug)/add_app/
-
-    Add an application to a single collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Request**:
-
-    :param app: the ID of the application to add to this collection.
-    :type app: int
-
-    **Response**:
-
-    A representation of the updated collection will be returned in the response
-    body.
-
-    :status 200: app successfully added to collection.
-    :status 400: invalid request; more details provided in the response body.
-
-
-Remove Apps
-===========
-
-.. http:post:: /api/v2/feed/collections/(int:id|string:slug)/remove_app/
-
-    Remove an application from a single collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Request**:
-
-    :param app: the ID of the application to remove from this collection.
-    :type app: int
-
-    **Response**:
-
-    A representation of the updated collection will be returned in the response
-    body.
-
-    :status 200: app successfully removed from collection.
-    :status 205: app not a member of the collection.
-    :status 400: invalid request; more details provided in the response body.
-
-
-Reorder Apps
-============
-
-.. http:post:: /api/v2/feed/collections/(int:id|string:slug)/reorder/
-
-    Reorder applications in a collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Request**:
-
-    The body of the request must contain a list of apps in their desired order.
-
-    Example:
-
-    .. code-block:: json
-
-        [18, 24, 9]
-
-    **Response**:
-
-    A representation of the updated collection will be returned in the response
-    body.
-
-    :status 200: collection successfully reordered.
-    :status 400: all apps in the collection not represented in response body.
-        For convenience, a list of all apps in the collection will be included
-        in the response.
-
-Collection Image
-================
-
-One-to-one background image or header graphic used to display with the
-collection.
-
-.. http:get:: /api/v2/feed/collections/(int:id|string:slug)/image/
-
-    Get the image for a collection.
-
-    .. note:: Authentication is optional.
-
-
-.. http:put:: /api/v2/feed/collections/(int:id|string:slug)/image/
-
-    Set the image for a collection. Accepts a data URI as the request
-    body containing the image, rather than a JSON object.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-
-.. http:delete:: /api/v2/feed/collections/(int:id|string:slug)/image/
-
-    Delete the image for a collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-
-Curators
-========
-
-Users can be given object-level access to collections if they are marked as
-`curators`. The following API endpoints allow manipulation of a collection's
-curators:
-
-Listing
--------
-
-.. http:get:: /api/v2/feed/collections/(int:id|string:slug)/curators/
-
-    Get a list of curators for a collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Response**:
-
-    Example:
-
-    .. code-block:: json
-
-        [
-            {
-                'display_name': 'Basta',
-                'email': 'support@bastacorp.biz',
-                'id': 30
-            },
-            {
-                'display_name': 'Cvan',
-                'email': 'chris@vans.com',
-                'id': 31
-            }
-        ]
-
-
-Add Curator
------------
-
-.. http:post:: /api/v2/feed/collections/(int:id|string:slug)/add_curator/
-
-    Add a curator to this collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Request**:
-
-    :param user: the ID or email of the user to add as a curator of this
-        collection.
-    :type user: int|string
-
-    **Response**:
-
-    A representation of the updated list of curators for this collection will be
-    returned in the response body.
-
-    :status 200: user successfully added as a curator of this collection.
-    :status 400: invalid request; more details provided in the response body.
-    :status 403: not authenticated or authenticated without permission; more
-        details provided in the response body.
-
-
-Remove Curator
---------------
-
-.. http:post:: /api/v2/feed/collections/(int:id|string:slug)/remove_curator/
-
-    Remove a curator from this collection.
-
-    .. note:: Authentication and one of the 'Collections:Curate' permission or
-        curator-level access to the collection are required.
-
-    **Request**:
-
-    :param user: the ID or email of the user to remove as a curator of this
-        collection.
-    :type user: int|string
-
-    **Response**:
-
-    :status 205: user successfully removed as a curator of this collection.
-    :status 400: invalid request; more details provided in the response body.
-    :status 403: not authenticated or authenticated without permission; more
-        details provided in the response body.
+    :status 204: successfully deleted.
+    :status 403: not authorized.

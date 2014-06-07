@@ -4,14 +4,16 @@ from django.core.exceptions import ImproperlyConfigured
 import commonware.log
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
-from access import acl
+from mkt.access import acl
+
 
 log = commonware.log.getLogger('mkt.collections')
 
 
 class CuratorAuthorization(BasePermission):
     """
-    Permission class governing ability to interact with Collection-related APIs.
+    Permission class governing ability to interact with Collection-related
+    APIs.
 
     Rules:
     - All users may make GET, HEAD, OPTIONS requests.
@@ -39,7 +41,8 @@ class CuratorAuthorization(BasePermission):
                 in self.curator_verbs)
 
     def has_curate_permission(self, request):
-        return acl.action_allowed(request, 'Collections', 'Curate')
+        return (acl.action_allowed(request, 'Collections', 'Curate') or
+                acl.action_allowed(request, 'Feed', 'Curate'))
 
     def has_permission(self, request, view):
         if self.is_public_safe_request(request):

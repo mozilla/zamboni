@@ -46,6 +46,12 @@
         {{ form.paid_platforms }}
       </div>
 
+      {% if not can_edit %}
+        <div class="notification-box">
+          <p>{{ _('Only the app owner(s) can edit this page.') }}</p>
+        </div>
+      {% endif %}
+
       <section id="submit-payment-type">
         {% if not is_paid %}
           <h2>{{ _('App Compatibility') }}</h2>
@@ -114,7 +120,6 @@
       <h2>{{ _('Payment Accounts') }}</h2>
 
       <div id="paid-island">
-        {{ disabled_payments_notice() }}
         <div id="paid-island-incomplete" class="island warning{% if addon.has_payment_account() %} hidden{% endif %}">
           {%- trans %}
             Your app is currently incomplete. Select a payment account and
@@ -278,7 +283,6 @@
       <h2>{{ _('Promote as upgrade to free version') }}</h2>
 
       <div id="paid-upsell-island">
-        {{ disabled_payments_notice() }}
         <section class="island upsell">
           <table>
             <tbody>

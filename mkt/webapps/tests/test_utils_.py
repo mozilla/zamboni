@@ -12,7 +12,6 @@ from test_utils import RequestFactory
 import amo
 import amo.tests
 from addons.models import AddonCategory, AddonDeviceType, Category, Preview
-from market.models import PriceCurrency
 
 import mkt
 from mkt.constants import ratingsbodies, regions
@@ -24,6 +23,7 @@ from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import (dehydrate_content_rating,
                                get_supported_locales)
+from mkt.prices.models import PriceCurrency
 from users.models import UserProfile
 from versions.models import Version
 
@@ -41,6 +41,18 @@ class TestAppSerializer(amo.tests.TestCase):
         self.request.amo_user = profile
         a = AppSerializer(instance=app, context={'request': self.request})
         return a.data
+
+    def test_packaged(self):
+        res = self.serialize(self.app)
+        eq_(res['is_packaged'], False)
+        eq_(res['is_offline'], False)
+
+        self.app.update(is_packaged=True)
+        del self.app.is_offline  # cached_property, need to be reset.
+
+        res = self.serialize(self.app)
+        eq_(res['is_packaged'], True)
+        eq_(res['is_offline'], True)
 
     def test_no_previews(self):
         eq_(self.serialize(self.app)['previews'], [])
@@ -354,7 +366,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'device_types': [],
             'homepage': None,
             'icons': dict((size, self.app.get_icon_url(size))
-                          for size in (16, 48, 64, 128)),
+                          for size in (32, 48, 64, 128)),
             'id': 337141,
             'is_offline': False,
             'is_packaged': False,

@@ -1,12 +1,12 @@
 import calendar
 import time
+import uuid
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware.log
-import django_filters
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import GenericAPIView
@@ -19,19 +19,18 @@ import amo
 from amo.helpers import absolutify, urlparams
 from amo.utils import send_mail_jinja
 from lib.cef_loggers import app_pay_cef
-from market.models import Price
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import (AllowOwner, AllowReadOnly, AnyOf,
-                                   GroupPermission)
+from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.purchase.models import Contribution
+from mkt.receipts.utils import create_inapp_receipt
 from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.serializers import PriceSerializer, ProductIconSerializer
+from mkt.webpay.serializers import ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    sign_webpay_jwt, WebAppProduct)
-from stats.models import Contribution
 
 from . import tasks
 
@@ -49,6 +48,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
         form = PrepareWebAppForm(request.DATA)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+
         app = form.cleaned_data['app']
 
         region = getattr(request, 'REGION', None)
@@ -66,13 +66,24 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
         app_pay_cef.log(request._request, 'Preparing JWT', 'preparing_jwt',
                         'Preparing JWT for: {0}'.format(app.pk), severity=3)
 
-        token = get_product_jwt(
-            WebAppProduct(app),
-            lang=request._request.LANG,
-            region=request._request.REGION,
+        log.debug('Starting purchase of app: {0} by user: {1}'.format(
+            app.pk, request._request.amo_user))
+
+        contribution = Contribution.objects.create(
+            addon_id=app.pk,
+            amount=app.get_price(region=request._request.REGION.id),
+            paykey=None,
+            price_tier=app.premium.price,
             source=request._request.REQUEST.get('src', ''),
+            source_locale=request._request.LANG,
+            type=amo.CONTRIB_PENDING,
             user=request._request.amo_user,
+            uuid=str(uuid.uuid4()),
         )
+
+        log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+        token = get_product_jwt(WebAppProduct(app), contribution)
 
         return Response(token, status=status.HTTP_201_CREATED)
 
@@ -103,19 +114,40 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
             'Preparing InApp JWT for: {0}'.format(inapp.pk), severity=3
         )
 
-        token = get_product_jwt(
-            InAppProduct(inapp),
-            lang=request._request.LANG,
+        log.debug('Starting purchase of in app: {0}'.format(inapp.pk))
+
+        contribution = Contribution.objects.create(
+            addon_id=inapp.webapp.pk,
+            inapp_product=inapp,
+            # In-App payments are unauthenticated so we have no user
+            # and therefore can't determine a meaningful region.
+            amount=None,
+            paykey=None,
+            price_tier=inapp.price,
             source=request._request.REQUEST.get('src', ''),
+            source_locale=request._request.LANG,
+            type=amo.CONTRIB_PENDING,
+            user=None,
+            uuid=str(uuid.uuid4()),
         )
+
+        log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+        token = get_product_jwt(InAppProduct(inapp), contribution)
 
         return Response(token, status=status.HTTP_201_CREATED)
 
 
 class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
-    authentication_classes = [RestOAuthAuthentication,
-                              RestSharedSecretAuthentication]
-    permission_classes = [AllowOwner]
+    """
+    Get the status of a contribution (transaction) by UUID.
+
+    This is used by the Marketplace or third party apps to check
+    the fulfillment of a purchase. It does not require authentication
+    so that in-app payments can work from third party apps.
+    """
+    authentication_classes = []
+    permission_classes = []
     cors_allowed_methods = ['get']
     queryset = Contribution.objects.filter(type=amo.CONTRIB_PURCHASE)
     lookup_field = 'uuid'
@@ -129,34 +161,15 @@ class StatusPayView(CORSMixin, MarketplaceView, GenericAPIView):
             log.info('Contribution not found')
             return None
 
-        if not obj.addon.has_purchased(self.request.amo_user):
-            log.info('Not in AddonPurchase table')
-            return None
-
         return obj
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        data = {'status': 'complete' if self.object else 'incomplete'}
+        self.object = contrib = self.get_object()
+        data = {'status': 'complete' if self.object else 'incomplete',
+                'receipt': None}
+        if getattr(contrib, 'inapp_product', None):
+            data['receipt'] = create_inapp_receipt(contrib)
         return Response(data)
-
-
-class PriceFilter(django_filters.FilterSet):
-    pricePoint = django_filters.CharFilter(name="name")
-
-    class Meta:
-        model = Price
-        fields = ['pricePoint']
-
-
-class PricesViewSet(MarketplaceView, CORSMixin, ListModelMixin,
-                    RetrieveModelMixin, GenericViewSet):
-    queryset = Price.objects.filter(active=True).order_by('price')
-    serializer_class = PriceSerializer
-    cors_allowed_methods = ['get']
-    authentication_classes = [RestAnonymousAuthentication]
-    permission_classes = [AllowAny]
-    filter_class = PriceFilter
 
 
 class FailureNotificationView(MarketplaceView, GenericAPIView):

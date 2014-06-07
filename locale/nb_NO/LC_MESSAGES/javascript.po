@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 09:15-0700\n"
+"POT-Creation-Date: 2014-05-28 09:40-0700\n"
 "PO-Revision-Date: 2013-10-25 19:48+0000\n"
 "Last-Translator: Håvard <havard.mork@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,88 +20,6 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} stjerne"
 msgstr[1] "{0} stjerner"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
-msgid "There was a problem contacting the server."
-msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
-
-#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
-msgid "Select a file..."
-msgstr "Velg fil ..."
-
-#: media/js/common/upload-addon.js:53
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Utvidelsen må ende på .xpi, .jar eller .xml"
-
-#. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
-msgid "{0}% complete"
-msgstr "{0} % fullført"
-
-#. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
-msgid "{0} of {1}"
-msgstr "{0} av {1}"
-
-#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
-msgid "Uploading {0}"
-msgstr "Laster opp {0}"
-
-#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
-msgid "Error with {0}"
-msgstr "Feil med {0}"
-
-#: media/js/common/upload-addon.js:174
-msgid "Your add-on failed validation with {0} error."
-msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Validering av utvidelsen gav {0} feil."
-msgstr[1] "Validering av utvidelsen gav {0} feil."
-
-#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
-msgid "&hellip;and {0} more"
-msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;og {0} flere"
-msgstr[1] "&hellip;og {0} flere"
-
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:160
-msgid "See full validation report"
-msgstr "Se fullstendig valideringsrapport"
-
-#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
-msgid "Validating {0}"
-msgstr "Validerer {0}"
-
-#. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
-msgid "Received an empty response from the server; status: {0}"
-msgstr "Mottok en tom respons fra serveren; status: {0}"
-
-#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
-msgid "Unexpected server error while validating."
-msgstr "Uventet serverfeil ved validering."
-
-#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
-msgid "Finished validating {0}"
-msgstr "Fullførte validering av {0}"
-
-#: media/js/common/upload-addon.js:307
-msgid "Your add-on passed validation with no errors and {0} message."
-msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-
-#: media/js/common/upload-addon.js:312
-msgid "Your add-on passed validation with no errors or warnings."
-msgstr "Utvidelsen fullførte validering uten feil eller advarsler."
-
-#: media/js/common/upload-addon.js:363
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Noen plattformer er ikke tilgjengelig for denne typen utvidelse."
-
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
@@ -118,15 +36,72 @@ msgstr "Bilder må være enten PNG eller JPG."
 msgid "Videos must be in WebM."
 msgstr "Videoer må være i WebM."
 
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+msgid "There was a problem contacting the server."
+msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
+
+#: media/js/common/upload-packaged-app.js:52
+msgid "Select a file..."
+msgstr "Velg fil ..."
+
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Innpakkede apps må slutte med <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:167
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: media/js/common/upload-packaged-app.js:89
+msgid "{0}% complete"
+msgstr "{0} % fullført"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: media/js/common/upload-packaged-app.js:92
+msgid "{0} of {1}"
+msgstr "{0} av {1}"
+
+#: media/js/common/upload-packaged-app.js:120
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: media/js/common/upload-packaged-app.js:142
+msgid "Uploading {0}"
+msgstr "Laster opp {0}"
+
+#: media/js/common/upload-packaged-app.js:164
+msgid "Error with {0}"
+msgstr "Feil med {0}"
+
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Validering av app mislykket med {0} feil."
 msgstr[1] "Validering av app mislykket med {0} feil."
+
+#: media/js/common/upload-packaged-app.js:183
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;og {0} flere"
+msgstr[1] "&hellip;og {0} flere"
+
+#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+msgid "See full validation report"
+msgstr "Se fullstendig valideringsrapport"
+
+#: media/js/common/upload-packaged-app.js:209
+msgid "Validating {0}"
+msgstr "Validerer {0}"
+
+#. L10n: first argument is an HTTP status code
+#: media/js/common/upload-packaged-app.js:245
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Mottok en tom respons fra serveren; status: {0}"
+
+#: media/js/common/upload-packaged-app.js:255
+msgid "Unexpected server error while validating."
+msgstr "Uventet serverfeil ved validering."
+
+#: media/js/common/upload-packaged-app.js:292
+msgid "Finished validating {0}"
+msgstr "Fullførte validering av {0}"
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
@@ -176,17 +151,17 @@ msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 msgstr[1] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:181
+#: media/js/devreg/devhub.js:200
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Appen fullførte validering uten feil og med {0} melding."
 msgstr[1] "Appen fullførte validering uten feil og med {0} meldinger."
 
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:186
+#: media/js/devreg/devhub.js:205
 msgid "Your app passed validation with no errors or messages."
 msgstr "Appen fullførte validering uten feil eller meldinger."
 
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:485
+#: media/js/devreg/devhub.js:419
 msgid "Changes Saved"
 msgstr "Endringer lagret"
 
@@ -198,19 +173,19 @@ msgstr "Skriv inn e-postadresse til nytt teammedlem"
 msgid "Refreshed"
 msgstr "Oppdatert"
 
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:648
+#: media/js/devreg/devhub.js:616
 msgid "There was an error uploading your file."
 msgstr "En feil oppstod under opplasting av fil."
 
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:923
+#: media/js/devreg/devhub.js:886
 msgid "Learn more"
 msgstr "Les mer"
 
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:927
+#: media/js/devreg/devhub.js:890
 msgid "Example"
 msgstr "Eksempel"
 
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1283
+#: media/js/devreg/devhub.js:1192
 msgid "Image changes being processed"
 msgstr "Endringer på bilde blir behandlet"
 
@@ -343,7 +318,7 @@ msgid "{appName} payment accounts:"
 msgstr ""
 
 #: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Feil"
 
@@ -378,51 +353,51 @@ msgid_plural "{0} characters left."
 msgstr[0] "{0} tegn igjen."
 msgstr[1] "{0} tegn igjen."
 
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
+#: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
 msgstr "Alle tester fullført."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Disse testene ble ikke kjørt."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Tester"
 
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
+#: media/js/devreg/validator.js:192
 msgid "Warning"
 msgstr "Advarsel"
 
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
+#: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
 msgstr "Kompatibilitetstester"
 
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
+#: media/js/devreg/validator.js:327
 msgid "App failed validation."
 msgstr "App-validering feilet."
 
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
+#: media/js/devreg/validator.js:329
 msgid "App passed validation."
 msgstr "App-validering fullført."
 
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
+#: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} feil"
 msgstr[1] "{0} feil"
 
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
+#: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
+#: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
 msgstr "Valideringsoppgave kunne ikke fullføre, eller fullførte med feil"
 
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
+#: media/js/devreg/validator.js:457
 msgid "Internal server error"
 msgstr "Intern serverfeil"
 
@@ -470,7 +445,7 @@ msgstr "Notat for redaktører"
 msgid "No version notes found"
 msgstr "Versjonsnotat ikke funnet"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1436
+#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr "Velg en applikasjon først"
 
@@ -486,9 +461,9 @@ msgstr "mer ..."
 msgid "less..."
 msgstr "mindre ..."
 
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Behold anmeldelse; fjern flagg"
+#: media/js/devreg/reviewers/mobile_review_actions.js:7
+msgid "Keep review / Remove flags"
+msgstr ""
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
@@ -555,7 +530,7 @@ msgstr ""
 msgid "By {0} on {1}"
 msgstr ""
 
-#: media/js/impala/collections.js:10 media/js/zamboni/collections.js:725
+#: media/js/impala/collections.js:10
 msgid "Follow this Collection"
 msgstr "Følg denne samlingen"
 
@@ -620,7 +595,7 @@ msgstr "Markert for sletting"
 msgid "Updating results&hellip;"
 msgstr "Oppdaterer resultater &hellip;"
 
-#: media/js/impala/site_suggestions.js:46 media/js/zamboni/tests/suggestions_tests.js:160
+#: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Kategori"
 
@@ -665,155 +640,59 @@ msgid "BrowserID login failed. Maybe you don't have an account under that email 
 msgstr "BrowserID-innlogging mislykket. Kanskje har du ikke en konto under den e-postadressen?"
 
 #. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:108
+#: media/js/zamboni/buttons.js:100
 msgid "Accept and Install"
 msgstr "Godta og installer"
 
-#: media/js/zamboni/buttons.js:108
+#: media/js/zamboni/buttons.js:100
 msgid "Add to {0}"
 msgstr "Legg til {0}"
 
-#: media/js/zamboni/buttons.js:113
+#: media/js/zamboni/buttons.js:105
 msgid "Download Now"
 msgstr "Last ned nå"
 
-#: media/js/zamboni/buttons.js:154
+#: media/js/zamboni/buttons.js:135
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Utvidelsen har ikke blitt oppdatert til å støtte kompatibel-som-standard."
 
-#: media/js/zamboni/buttons.js:159
+#: media/js/zamboni/buttons.js:140
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Du må bruke Firefox 10.0 eller nyere."
 
-#: media/js/zamboni/buttons.js:171
+#: media/js/zamboni/buttons.js:152
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla har markert denne versjonen som inkompatibel med din Firefox-versjon."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:249
+#: media/js/zamboni/buttons.js:230
 msgid "Install for {0} anyway"
 msgstr "Installer for {0} likevel"
 
-#: media/js/zamboni/buttons.js:249
+#: media/js/zamboni/buttons.js:230
 msgid "Download for {0} anyway"
 msgstr "Last ned for {0} likevel"
 
-#: media/js/zamboni/buttons.js:306
+#: media/js/zamboni/buttons.js:287
 msgid "Not available for your platform"
 msgstr "Ikke tilgjengelig for plattformen din"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:317 media/js/zamboni/buttons.js:354
+#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
 msgstr "Ikke tilgjengelig for {0} {1}"
 
-#: media/js/zamboni/buttons.js:380
+#: media/js/zamboni/buttons.js:361
 msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
 
-#: media/js/zamboni/buttons.js:382
+#: media/js/zamboni/buttons.js:363
 msgid "View other versions"
 msgstr "Vis andre versjoner"
 
-#: media/js/zamboni/buttons.js:582 media/js/zamboni/mobile/buttons.js:39
+#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."
-
-#: media/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "tøm nylig vist"
-
-#: media/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "Legg til i favoritter &hellip;"
-
-#: media/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "Fjerner favoritt &hellip;"
-
-#: media/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "Legg til i favoritter"
-
-#: media/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "Fjern fra favoritter"
-
-#: media/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "Under behandling"
-
-#: media/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "Legg til kommentar"
-
-#: media/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "Kommentar"
-
-#: media/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "Fjern denne utvidelsen fra samlingen"
-
-#: media/js/zamboni/collections.js:439 media/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "Fjern"
-
-#: media/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne brukeren som bidragsyter"
-
-#: media/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "En e-postadresse er påkrevd."
-
-#: media/js/zamboni/collections.js:498
-msgid "You cannot add yourself as a contributor."
-msgstr "Du kan ikke legge til deg selv som bidragsyter."
-
-#: media/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "Du har allerede lagt til denne brukeren."
-
-#: media/js/zamboni/collections.js:703
-msgid "Add to favorites"
-msgstr "Legg til i favoritter"
-
-#: media/js/zamboni/collections.js:707
-msgid "Remove from favorites"
-msgstr "Fjern fra favoritter"
-
-#: media/js/zamboni/collections.js:734
-msgid "Stop following"
-msgstr "Slutt å følge"
-
-#: media/js/zamboni/contributions.js:134
-msgid "Install App"
-msgstr "Installer app"
-
-#: media/js/zamboni/devhub.js:240
-msgid "Your browser does not support the video tag"
-msgstr "Nettleseren din støtter ikke video-taggen"
-
-#: media/js/zamboni/devhub.js:501
-msgid "Enter a new author's email address"
-msgstr "Skriv inn forfatterens nye e-postadresse"
-
-#: media/js/zamboni/devhub.js:791
-msgid "{files} file"
-msgid_plural "{files} files"
-msgstr[0] "{files} fil"
-msgstr[1] "{files} filer"
-
-#: media/js/zamboni/devhub.js:794
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} anmeldelse"
-msgstr[1] "{reviews} anmeldelser"
-
-#: media/js/zamboni/devhub.js:1487
-msgid "Must be a valid e-mail address."
-msgstr "Må være en gyldig e-postadresse"
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -830,11 +709,6 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> tegn igjen."
 msgstr[1] "<b>{0}</b> tegn igjen."
 
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: media/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Last ned {0}"
-
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
 msgstr "Passordstyrke:"
@@ -844,20 +718,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Minst {0} tegn igjen."
 msgstr[1] "Minst {0} tegn igjen."
-
-#: media/js/zamboni/validator.js:337
-msgid "Add-on failed validation."
-msgstr "Validering av utvidelse mislykket."
-
-#: media/js/zamboni/validator.js:339
-msgid "Add-on passed validation."
-msgstr "Utvidelsevalidering fullført."
-
-#: media/js/zamboni/validator.js:374
-msgid "{0} notice"
-msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

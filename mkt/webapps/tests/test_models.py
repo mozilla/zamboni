@@ -4,17 +4,21 @@ import hashlib
 import json
 import os
 import shutil
+import tempfile
 import unittest
 import uuid
 import zipfile
+from contextlib import nested
 from datetime import datetime, timedelta
 
+from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.db.models.signals import post_delete, post_save
 from django.test.utils import override_settings
+from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 import mock
@@ -33,13 +37,12 @@ from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from editors.models import EscalationQueue, RereviewQueue
-from files.models import File
+from files.models import File, Platform
 from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
-from market.models import AddonPremium, Price
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -51,6 +54,7 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
+from mkt.prices.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
 
@@ -594,8 +598,7 @@ class TestWebapp(amo.tests.TestCase):
     def test_meta_translated_fields(self):
         """Test that we don't load translations for all the translated fields
         that live on Addon but we don't need in Webapp."""
-        useless_fields = ('eula', 'thankyou_note', 'summary',
-                          'developer_comments', 'the_future', 'the_reason')
+        useless_fields = ()
         useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
                          'support_email', 'support_url')
 
@@ -1326,6 +1329,14 @@ class TestPackagedManifest(BasePackagedAppTest):
         with self.assertNumQueries(0):
             webapp.get_cached_manifest()
 
+    @mock.patch('mkt.webapps.models.cache')
+    def test_cached_manifest_no_version_not_cached(self, cache_mock):
+        webapp = self.post_addon(
+            data={'packaged': True, 'free_platforms': 'free-firefoxos'})
+        webapp._current_version = None
+        eq_(webapp.get_cached_manifest(force=True), '{}')
+        assert not cache_mock.called
+
     def test_cached_manifest_contents(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
@@ -2047,6 +2058,15 @@ class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
 class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
+    def setUp(self):
+        super(TestManifestUpload, self).setUp()
+        self.platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        self.addCleanup(translation.deactivate)
+
+    def manifest(self, name):
+        return os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
+                            'addons', name)
+
     @mock.patch('mkt.webapps.models.parse_addon')
     def test_manifest_updated_developer_name(self, parse_addon):
         parse_addon.return_value = {
@@ -2055,9 +2075,8 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                            'addons', 'mozball.webapp')
-        upload = self.get_upload(abspath=path, is_webapp=True)
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'),
+                                 is_webapp=True)
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
@@ -2074,14 +2093,68 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                            'addons', 'mozball.webapp')
-        upload = self.get_upload(abspath=path, is_webapp=True)
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'),
+                                 is_webapp=True)
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
         eq_(version.version, '4.1')
         eq_(version.developer_name, truncated_developer_name)
+
+    def test_manifest_url(self):
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
+        addon = Addon.from_upload(upload, [self.platform])
+        assert addon.is_webapp()
+        eq_(addon.manifest_url, upload.name)
+
+    def test_app_domain(self):
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
+        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.app_domain, 'http://mozilla.com')
+
+    def test_non_english_app(self):
+        upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
+        upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'it')
+        eq_(unicode(addon.name), 'ItalianMozBall')
+        eq_(addon.name.locale, 'it')
+
+    def test_webapp_default_locale_override(self):
+        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
+                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
+            mf = json.load(mf)
+            mf['default_locale'] = 'es'
+            tmp.write(json.dumps(mf))
+            tmp.flush()
+            upload = self.get_upload(abspath=tmp.name)
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'es')
+
+    def test_webapp_default_locale_unsupported(self):
+        with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
+                    open(self.manifest('mozball.webapp'))) as (tmp, mf):
+            mf = json.load(mf)
+            mf['default_locale'] = 'gb'
+            tmp.write(json.dumps(mf))
+            tmp.flush()
+            upload = self.get_upload(abspath=tmp.name)
+        addon = Addon.from_upload(upload, [self.platform])
+        eq_(addon.default_locale, 'en-US')
+
+    def test_browsing_locale_does_not_override(self):
+        with translation.override('fr'):
+            # Upload app with en-US as default.
+            upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
+            addon = Addon.from_upload(upload, [self.platform])
+            eq_(addon.default_locale, 'en-US')  # not fr
+
+    @raises(forms.ValidationError)
+    def test_malformed_locales(self):
+        manifest = self.manifest('malformed-locales.webapp')
+        upload = self.get_upload(abspath=manifest)
+        Addon.from_upload(upload, [self.platform])
 
 
 class TestGeodata(amo.tests.WebappTestCase):

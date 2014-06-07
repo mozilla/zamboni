@@ -1,7 +1,3 @@
-{% if webapp or WEBAPPS %}
-  {% set webapp, WEBAPPS = True, True %}
-{% endif %}
-
 {# We're extending from the impala skeleton base template,
    but we're still using legacy styles. One step at a time. #}
 {% extends 'developers/skeleton_impala.html' %}
@@ -9,7 +5,7 @@
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}{{ 'apps' if webapp }} {{ editable }}{% endblock %}
+{% block bodyclass %}apps {{ editable }}{% endblock %}
 
 {# Don't show the amo header on devhub pages #}
 {% set hide_header = True %}

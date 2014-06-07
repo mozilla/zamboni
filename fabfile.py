@@ -9,6 +9,7 @@ from fabdeploytools import helpers
 
 import deploysettings as settings
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local_mkt'
 
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
@@ -158,7 +159,6 @@ def update():
     execute(update_products)
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
-    managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
 
 

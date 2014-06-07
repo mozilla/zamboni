@@ -37,7 +37,6 @@ def category_totals():
      SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
       FROM addons AS Addon
       INNER JOIN versions AS Version ON (Addon.id = Version.addon_id)
-      INNER JOIN applications_versions AS av ON (av.version_id = Version.id)
       INNER JOIN addons_categories AS at ON (at.addon_id = Addon.id)
       INNER JOIN files AS File ON (Version.id = File.version_id
                                    AND File.status IN (%s))

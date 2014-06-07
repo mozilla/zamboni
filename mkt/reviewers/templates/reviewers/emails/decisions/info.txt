@@ -5,6 +5,9 @@ We need additional information to complete review of your application.
 App: {{ name }}
 URL: {{ detail_url }}
 
-{% include 'reviewers/emails/decisions/includes/details.txt' %}
+Reviewer comments {% if waffle.switch('comm-dashboard') %} - {{ ('/comm/thread/' + thread_id)|absolutify }} {% endif %}
+
+Please reply to this email with the following information:
+{{ comments }}
 
 {% endblock %}

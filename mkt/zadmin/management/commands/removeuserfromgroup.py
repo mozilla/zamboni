@@ -1,9 +1,8 @@
 from django.core.management.base import BaseCommand, CommandError
-from django.db import IntegrityError
 
 import commonware.log
 
-from access.models import Group, GroupUser
+from mkt.access.models import Group, GroupUser
 from users.models import UserProfile
 
 

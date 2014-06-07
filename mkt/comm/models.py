@@ -10,11 +10,10 @@ import bleach
 from uuidfield.fields import UUIDField
 
 import amo.models
-from access import acl
 from amo.utils import reverse
-from translations.fields import save_signal
-
+from mkt.access import acl
 from mkt.constants import comm
+from translations.fields import save_signal
 
 
 class CommunicationPermissionModel(amo.models.ModelBase):

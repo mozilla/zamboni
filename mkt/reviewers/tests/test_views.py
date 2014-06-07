@@ -16,6 +16,7 @@ from django.utils import translation
 
 import mock
 import requests
+from cache_nuggets.lib import Token
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -23,37 +24,35 @@ from requests.structures import CaseInsensitiveDict
 
 import amo
 import amo.tests
-from abuse.models import AbuseReport
-from access.models import Group, GroupUser
+import mkt
+import mkt.ratings
 from addons.models import AddonDeviceType
 from amo.helpers import absolutify, urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
 from amo.utils import isotime
-from cache_nuggets.lib import Token
-from devhub.models import ActivityLog, ActivityLogAttachment, AppLog
 from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from files.models import File
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from reviews.models import Review, ReviewFlag
-from tags.models import Tag
-from users.models import UserProfile
-from versions.models import Version
-from zadmin.models import get_config, set_config
-
-import mkt
-import mkt.ratings
+from mkt.abuse.models import AbuseReport
+from mkt.access.models import Group, GroupUser
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
+from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
+from reviews.models import Review, ReviewFlag
+from users.models import UserProfile
+from versions.models import Version
+from zadmin.models import get_config, set_config
 
 
 TEST_PATH = path.dirname(path.abspath(__file__))
@@ -2374,7 +2373,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
 
-    @mock.patch('devhub.models.ActivityLog.arguments', new=mock.Mock)
+    @mock.patch('mkt.developers.models.ActivityLog.arguments', new=mock.Mock)
     def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)
@@ -2948,7 +2947,6 @@ class TestQueueSort(AppReviewerTest):
                                  is_packaged=False,
                                  version_kw={'version': '1.0'},
                                  file_kw={'status': amo.STATUS_PENDING},
-                                 admin_review=True,
                                  premium_type=amo.ADDON_FREE),
                      app_factory(name='Batum',
                                  status=amo.STATUS_PENDING,
@@ -2957,7 +2955,6 @@ class TestQueueSort(AppReviewerTest):
                                              'has_editor_comment': True,
                                              'has_info_request': True},
                                  file_kw={'status': amo.STATUS_PENDING},
-                                 admin_review=False,
                                  premium_type=amo.ADDON_PREMIUM)]
 
         # Set up app attributes.

@@ -76,7 +76,7 @@ App
                 "en-US": "http://www.example.com/"
             },
             "icons": {
-                "16": "/tmp/uploads/addon_icons/0/24-32.png?modified=1362762723",
+                "32": "/tmp/uploads/addon_icons/0/24-32.png?modified=1362762723",
                 "48": "/tmp/uploads/addon_icons/0/24-48.png?modified=1362762723",
                 "64": "/tmp/uploads/addon_icons/0/24-64.png?modified=1362762723",
                 "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723"

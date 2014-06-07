@@ -36,50 +36,27 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a4594",
-            "dev_agreement": false,
-            "eula": null,
             "_current_version": 42352,
             "last_updated": "2008-03-26 21:52:58",
-            "view_source": true,
-            "enable_thankyou": false,
             "total_downloads": 442463,
-            "developer_comments": null,
             "disabled_by_user": false,
-            "average_daily_downloads": 462,
             "guid": null,
-            "trusted": false,
-            "locale_disambiguation": null,
-            "the_future": null,
             "weekly_downloads": 412,
             "support_url": null,
-            "paypal_id": "",
             "average_rating": "2.83",
-            "wants_contributions": false,
-            "average_daily_users": 0,
             "bayesian_rating": 3.5960800000000002,
-            "share_count": 0,
             "support_email": null,
             "public_stats": true,
             "status": 4,
             "privacy_policy": null,
-            "total_contributions": "0.00",
             "default_locale": "en-US",
-            "target_locale": null,
-            "prerelease": false,
-            "thankyou_note": null,
-            "admin_review": false,
-            "external_software": false,
             "highest_status": 4,
             "name": 38146,
             "created": "2007-03-06 13:04:32",
             "type": 4,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2010-05-24 17:32:41",
-            "suggested_amount": null,
-            "site_specific": true,
-            "total_reviews": 12,
-            "the_reason": null
+            "total_reviews": 12
         }
     },
     {
@@ -156,16 +133,6 @@
             "role": 5,
             "listed": true,
             "user": 10482
-        }
-    },
-    {
-        "pk": 1233,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 4594,
-            "modified": "2010-10-02 07:51:54",
-            "created": "2010-10-02 07:51:54"
         }
     }
 ]

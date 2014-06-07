@@ -260,15 +260,10 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
 class JSONEncoder(json.DjangoJSONEncoder):
 
     def default(self, obj):
-        from versions.models import ApplicationsVersions
-
         unicodable = (Translation, Promise)
 
         if isinstance(obj, unicodable):
             return unicode(obj)
-        if isinstance(obj, ApplicationsVersions):
-            return {unicode(obj.application): {'min': unicode(obj.min),
-                                               'max': unicode(obj.max)}}
 
         return super(JSONEncoder, self).default(obj)
 

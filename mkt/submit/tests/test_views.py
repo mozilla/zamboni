@@ -249,7 +249,7 @@ class UploadAddon(object):
 
 
 class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = fixture('app_firefox', 'platform_all', 'user_999', 'user_10482')
+    fixtures = fixture('platform_all', 'user_999', 'user_10482')
 
     def setUp(self):
         super(BaseWebAppTest, self).setUp()
@@ -650,7 +650,8 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1.id],
             'flash': '1',
-            'publish': '1'
+            'publish': '1',
+            'notes': 'yes'
         }
         # Add the required screenshot.
         data.update(self.preview_formset({

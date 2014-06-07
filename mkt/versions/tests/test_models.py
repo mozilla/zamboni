@@ -3,7 +3,6 @@ import os.path
 
 import mock
 import path
-from nose import SkipTest
 from nose.tools import eq_
 
 from django.conf import settings
@@ -11,7 +10,6 @@ from django.conf import settings
 import amo
 import amo.tests
 from addons.models import Addon
-from amo.tests import addon_factory
 from files.models import File, Platform
 from versions.compare import (dict_from_int, MAXVERSION, version_dict,
                               version_int)
@@ -154,12 +152,6 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         # Ensure deleted version's files get disabled.
         eq_(version.all_files[0].status, amo.STATUS_DISABLED)
 
-    def test_compatible_apps(self):
-        # TODO: Do apps have compatible_apps?
-        raise SkipTest('Figure out if we need `compatible_apps` or remove.')
-        assert amo.FIREFOX in self.version.compatible_apps, (
-            'Missing compatible apps: %s' % self.version.compatible_apps)
-
     def test_supported_platforms(self):
         assert amo.PLATFORM_ALL in self.version.supported_platforms, (
             'Missing PLATFORM_ALL')
@@ -285,20 +277,3 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         app = Addon.objects.create(type=amo.ADDON_WEBAPP)
         ver = Version.objects.create(addon=app)
         assert ver.features, 'AppFeatures was not created with version.'
-
-
-class TestApplicationsVersions(amo.tests.TestCase):
-
-    def setUp(self):
-        self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
-
-    def test_repr_when_compatible(self):
-        addon = addon_factory(version_kw=self.version_kw)
-        version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
-
-    def test_repr_when_unicode(self):
-        addon = addon_factory(version_kw=dict(min_app_version=u'ك',
-                                              max_app_version=u'ك'))
-        version = addon.current_version
-        eq_(unicode(version.apps.all()[0]), u'Firefox ك - ك')

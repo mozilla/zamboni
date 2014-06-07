@@ -219,31 +219,23 @@ More info: http://stackoverflow.com/questions/22334776/installing-pillow-pil-on-
 Settings
 --------
 
-.. note::
+Most of zamboni is already configured in ``settings.py``, but there's one thing
+you'll need to configure locally, the database. The easiest way to do that
+is by setting an environment variable (see next section).
 
-    Also see the Multiple Sites section below for using settings files to run
-    the Add-ons and Marketplace sites side by side.
-
-.. note::
-
-    There is a :doc:`settings-changelog`, this can be useful for people who are already
-    setup but want to know what has recently changed.
-
-Most of zamboni is already configured in ``settings.py``, but there's some
-things you need to configure locally.  All your local settings go into
-``settings_local.py``.  The settings template for
-developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
-
-.. literalinclude:: /settings/settings_local.dev.py
-
-I'm overriding the database parameters from ``settings.py`` and then extending
-``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
-Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
-you want it.
+Optionally you can create a local settings file and place anything custom
+into ``settings_local.py``.
 
 Any file that looks like ``settings_local*`` is for local use only; it will be
 ignored by git.
 
+Environment settings
+--------------------
+
+Out of the box, zamboni should work without any need for settings changes.
+Some settings are configurable from the environment. See the
+`marketplace docs`_ for information on the environment variables and how
+they affect zamboni.
 
 Database
 --------
@@ -306,83 +298,19 @@ migrations like this::
 More info on schematic: https://github.com/mozilla/schematic
 
 
-Multiple sites
---------------
-
-We now run multiple sites off the zamboni code base. The current sites are:
-
-- *default* the Add-ons site at https://addons.mozilla.org/
-
-- *mkt* the Firefox Marketplace at https://marketplace.firefox.com/
-
-There are modules in zamboni for each of these base settings to make minor
-modifications to settings, url, templates and so on. Start by copying the
-template from ``docs/settings/settings_local.dev.py`` into a custom file.
-
-To run the Add-ons site, make a ``settings_local_amo.py`` file with this import
-header::
-
-    from default.settings import *
-
-Or to run the Marketplace site, make a ``settings_local_mkt.py`` file with
-these imports::
-
-    from mkt.settings import *
-
-
 Run the Server
 --------------
 
 If you've gotten the system requirements, downloaded ``zamboni`` and
 ``zamboni-lib``, set up your virtualenv with the compiled packages, and
-configured your settings and database, you're good to go.
+configured your settings and database, you're good to go::
 
-To choose which site you want to run, use the `settings` command line
-argument to pass in a local settings file you created above.
-
-
-Run The Add-ons Server
-~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-    ./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000
-
-.. note::
-
-   If you don't have a LESS compiler already installed, opening
-   http://localhost:8000 in your browser will raise a 500 server error.
-   If you don't want to run through the :doc:`./advanced-installation`
-   documentation just right now, you can disable all LESS pre-processing by
-   adding the following line to your settings_local file::
-
-      LESS_PREPROCESS = False
-
-   Be aware, however, that this will make the site VERY slow, as a huge amount
-   of LESS files will be served to your browser on EACH request, and each of
-   those will be compiled on the fly by the LESS javascript compiler.
-
-
-Run The Marketplace Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-    ./manage.py runserver --settings=settings_local_mkt 0.0.0.0:8000
-
-
+    ./manage.py runserver
 
 Persona
 -------
 
 We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
-In order for this to work you need to set ``SITE_URL`` and ``STATIC_URL`` in
-your local settings file based on how you run your dev server. Here is an
-example::
-
-    SITE_URL = 'http://localhost:8000'
-    STATIC_URL = SITE_URL + '/'  # STATIC_URL must have a trailing slash.
-
 
 Create an Admin User
 --------------------
@@ -437,11 +365,7 @@ Testing
 The :ref:`testing` page has more info, but here's the quick way to run
 zamboni's marketplace tests::
 
-    ./manage.py test --settings=settings_local_mkt
-
-Or to run AMO's tests::
-
-    ./manage.py test --settings=settings_local_amo
+    ./manage.py test
 
 There are a few useful makefile targets that you can use, the simplest one
 being::
@@ -516,3 +440,5 @@ elasticsearch, LESS, and Stylus.  Learn more about installing these on the
     Although we make an effort to keep advanced items as optional installs
     you might need to install some components in order to run tests or start
     up the development server.
+
+.. _`marketplace docs`: http://marketplace.readthedocs.org/en/latest/topics/setup.html

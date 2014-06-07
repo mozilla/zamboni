@@ -9,14 +9,11 @@ import urllib
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import (Http404, HttpResponseRedirect,
-                         HttpResponsePermanentRedirect)
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.middleware import common
-from django.shortcuts import render
-from django.utils.cache import patch_vary_headers, patch_cache_control
+from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.encoding import iri_to_uri, smart_str
 
-import MySQLdb as mysql
 import tower
 
 import amo
@@ -166,17 +163,6 @@ class CommonMiddleware(common.CommonMiddleware):
             return super(CommonMiddleware, self).process_request(request)
 
 
-class ReadOnlyMiddleware(object):
-
-    def process_request(self, request):
-        if request.method == 'POST':
-            return render(request, 'amo/read-only.html', status=503)
-
-    def process_exception(self, request, exception):
-        if isinstance(exception, mysql.OperationalError):
-            return render(request, 'amo/read-only.html', status=503)
-
-
 class ViewMiddleware(object):
 
     def get_name(self, view_func):
@@ -186,15 +172,3 @@ class ViewMiddleware(object):
         else:
             name = view_func.__name__
         return '%s.%s' % (view_func.__module__, name)
-
-
-class NoAddonsMiddleware(ViewMiddleware):
-    """
-    If enabled will try and stop any requests to addons by 404'ing them.
-    Here there be dragons. Fortunately this is temporary right?
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        name = self.get_name(view_func)
-        if name.startswith(settings.NO_ADDONS_MODULES):
-            raise Http404

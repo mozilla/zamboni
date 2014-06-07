@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 
-from abuse.models import AbuseReport
+from mkt.abuse.models import AbuseReport
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp

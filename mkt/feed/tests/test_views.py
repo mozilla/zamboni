@@ -1,33 +1,21 @@
 # -*- coding: utf-8 -*-
 import json
-
-from nose.tools import eq_, ok_
+import random
+import string
 
 from django.core.urlresolvers import reverse
 
+from nose.tools import eq_, ok_
+
+from addons.models import Preview
+from amo.tests import app_factory
+
 import mkt.carriers
 import mkt.regions
-from addons.models import Preview
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
-from mkt.collections.models import Collection
-from mkt.feed.models import FeedApp, FeedItem
+from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-
-
-class CollectionMixin(object):
-    collection_data = {
-        'author': u'My Àuthør',
-        'collection_type': COLLECTIONS_TYPE_BASIC,
-        'is_public': True,
-        'name': {'en-US': u'My Favorite Gamés'},
-        'slug': u'my-favourite-gamés',
-    }
-
-    def setUp(self):
-        self.collection = Collection.objects.create(**self.collection_data)
-        super(CollectionMixin, self).setUp()
 
 
 class FeedAppMixin(object):
@@ -41,24 +29,32 @@ class FeedAppMixin(object):
             'description': {
                 'en-US': u'pan-fried potatoes'
             },
-            'has_image': False,
-            'slug': 'my-feed-app',
+            'slug': self.random_slug()
         }
         self.pullquote_data = {
             'pullquote_text': {'en-US': u'The bést!'},
             'pullquote_rating': 4,
-            'pullquote_attribution': {'en-US': u'Jamés Bond'}
+            'pullquote_attribution': u'Jamés Bod'
         }
         self.feedapps = []
         super(FeedAppMixin, self).setUp()
+
+    def random_slug(self):
+        return ''.join(random.choice(string.ascii_uppercase + string.digits)
+                       for _ in range(10))
 
     def create_feedapps(self, n=2, **kwargs):
         data = dict(self.feedapp_data)
         data.update(kwargs)
         if not isinstance(data['app'], Webapp):
             data['app'] = Webapp.objects.get(pk=data['app'])
-        feedapps = [FeedApp.objects.create(**data) for idx in xrange(n)]
+
+        feedapps = []
+        for idx in xrange(n):
+            data['slug'] = self.random_slug()
+            feedapps.append(FeedApp.objects.create(**data))
         self.feedapps.extend(feedapps)
+
         return feedapps
 
 
@@ -74,14 +70,17 @@ class BaseTestFeedItemViewSet(RestOAuth):
         self.grant_permission(self.profile, 'Feed:Curate')
 
 
-class TestFeedItemViewSetList(CollectionMixin, BaseTestFeedItemViewSet):
+class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
     """
     Tests the handling of GET requests to the list endpoint of FeedItemViewSet.
     """
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
     def setUp(self):
         super(TestFeedItemViewSetList, self).setUp()
         self.url = reverse('api-v2:feeditems-list')
-        self.item = FeedItem.objects.create(collection=self.collection)
+        self.create_feedapps()
+        self.item = FeedItem.objects.create(app=self.feedapps[0])
 
     def list(self, client, **kwargs):
         res = client.get(self.url, kwargs)
@@ -107,13 +106,33 @@ class TestFeedItemViewSetList(CollectionMixin, BaseTestFeedItemViewSet):
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], self.item.id)
 
+    def test_filter_region(self):
+        self.item.update(region=2)
+        res, data = self.list(self.client, region='restofworld')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, region='us')
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
 
-class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
+    def test_filter_carrier(self):
+        self.item.update(carrier=16)
+        res, data = self.list(self.client, carrier='vimpelcom')
+        eq_(data['meta']['total_count'], 0)
+        res, data = self.list(self.client, carrier='tmn')
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+
+class TestFeedItemViewSetCreate(FeedAppMixin, BaseTestFeedItemViewSet):
     """
-    Tests the handling of POST requests to the list endpoint of FeedItemViewSet.
+    Tests the handling of POST requests to the list endpoint of
+    FeedItemViewSet.
     """
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
     def setUp(self):
         super(TestFeedItemViewSetCreate, self).setUp()
+        self.create_feedapps()
         self.url = reverse('api-v2:feeditems-list')
 
     def create(self, client, **kwargs):
@@ -122,21 +141,21 @@ class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
         return res, data
 
     def test_create_anonymous(self):
-        res, data = self.create(self.anon, collection=self.collection.pk)
+        res, data = self.create(self.anon, app=self.feedapps[0].pk)
         eq_(res.status_code, 403)
 
     def test_create_no_permission(self):
-        res, data = self.create(self.client, collection=self.collection.pk)
+        res, data = self.create(self.client, app=self.feedapps[0].pk)
         eq_(res.status_code, 403)
 
     def test_create_with_permission(self):
         self.feed_permission()
-        res, data = self.create(self.client, collection=self.collection.pk,
+        res, data = self.create(self.client, app=self.feedapps[0].pk,
                                 carrier=mkt.carriers.TELEFONICA.id,
                                 region=mkt.regions.BR.id)
         eq_(res.status_code, 201)
-        self.assertCORS(res, 'get', 'post')
-        eq_(data['collection']['id'], self.collection.pk)
+        self.assertCORS(res, 'get', 'delete', 'post', 'put', 'patch')
+        eq_(data['app']['id'], self.feedapps[0].pk)
 
     def test_create_no_data(self):
         self.feed_permission()
@@ -144,13 +163,16 @@ class TestFeedItemViewSetCreate(CollectionMixin, BaseTestFeedItemViewSet):
         eq_(res.status_code, 400)
 
 
-class TestFeedItemViewSetDetail(CollectionMixin, BaseTestFeedItemViewSet):
+class TestFeedItemViewSetDetail(FeedAppMixin, BaseTestFeedItemViewSet):
     """
     Tests the handling of GET requests to detail endpoints of FeedItemViewSet.
     """
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
     def setUp(self):
         super(TestFeedItemViewSetDetail, self).setUp()
-        self.item = FeedItem.objects.create(collection=self.collection)
+        self.create_feedapps()
+        self.item = FeedItem.objects.create(app=self.feedapps[0])
         self.url = reverse('api-v2:feeditems-detail',
                            kwargs={'pk': self.item.pk})
 
@@ -176,13 +198,17 @@ class TestFeedItemViewSetDetail(CollectionMixin, BaseTestFeedItemViewSet):
         eq_(data['id'], self.item.pk)
 
 
-class TestFeedItemViewSetUpdate(CollectionMixin, BaseTestFeedItemViewSet):
+class TestFeedItemViewSetUpdate(FeedAppMixin, BaseTestFeedItemViewSet):
     """
-    Tests the handling of PATCH requests to detail endpoints of FeedItemViewSet.
+    Tests the handling of PATCH requests to detail endpoints of
+    FeedItemViewSet.
     """
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
     def setUp(self):
         super(TestFeedItemViewSetUpdate, self).setUp()
-        self.item = FeedItem.objects.create(collection=self.collection)
+        self.create_feedapps()
+        self.item = FeedItem.objects.create(app=self.feedapps[0])
         self.url = reverse('api-v2:feeditems-detail',
                            kwargs={'pk': self.item.pk})
 
@@ -208,18 +234,21 @@ class TestFeedItemViewSetUpdate(CollectionMixin, BaseTestFeedItemViewSet):
 
     def test_update_no_items(self):
         self.feed_permission()
-        res, data = self.update(self.client, collection=None)
+        res, data = self.update(self.client, app=None)
         eq_(res.status_code, 400)
 
 
-class TestFeedItemViewSetDelete(CollectionMixin, BaseTestFeedItemViewSet):
+class TestFeedItemViewSetDelete(FeedAppMixin, BaseTestFeedItemViewSet):
     """
     Tests the handling of DELETE requests to detail endpoints of
     FeedItemViewSet.
     """
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
     def setUp(self):
         super(TestFeedItemViewSetDelete, self).setUp()
-        self.item = FeedItem.objects.create(collection=self.collection)
+        self.create_feedapps()
+        self.item = FeedItem.objects.create(app=self.feedapps[0])
         self.url = reverse('api-v2:feeditems-detail',
                            kwargs={'pk': self.item.pk})
 
@@ -325,7 +354,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(data['slug'], self.feedapp_data['slug'])
         eq_(data['feedapp_type'], self.feedapp_data['feedapp_type'])
 
-        self.assertCORS(res, 'get', 'post')
+        self.assertCORS(res, 'get', 'delete', 'patch', 'post', 'put')
         return res, data
 
     def test_create_with_background_color(self):
@@ -421,6 +450,12 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         self.feed_permission()
         self._test_detail(self.client)
 
+    def test_with_image(self):
+        self.feedapp = self.create_feedapps(1, has_image=True)[0]
+        self.url = reverse('api-v2:feedapps-detail',
+                           kwargs={'pk': self.feedapp.pk})
+        self._test_detail(self.client)
+
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
     """
@@ -472,7 +507,8 @@ class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
 
 class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
     """
-    Tests the handling of DELETE requests to detail endpoints of FeedAppViewSet.
+    Tests the handling of DELETE requests to detail endpoints of
+    FeedAppViewSet.
     """
     def setUp(self):
         super(TestFeedAppViewSetDelete, self).setUp()
@@ -497,3 +533,317 @@ class TestFeedAppViewSetDelete(BaseTestFeedAppViewSet):
         self.feed_permission()
         res, data = self.delete(self.client)
         eq_(res.status_code, 204)
+
+
+class BaseTestFeedCollection(object):
+    obj_data = None
+    model = None
+    obj = None
+    serializer = None
+    url_basename = None
+
+    def setUp(self):
+        super(BaseTestFeedCollection, self).setUp()
+        self.list_url = reverse('api-v2:%s-list' % self.url_basename)
+
+    def data(self, **kwargs):
+        data = dict(self.obj_data)
+        data.update(kwargs)
+        return data
+
+    def make_apps(self):
+        return [app_factory() for i in xrange(3)]
+
+    def make_item(self, **addtl):
+        obj_data = self.data(slug='sprout')
+        obj_data.update(addtl)
+        self.item = self.model.objects.create(**obj_data)
+        self.detail_url = reverse('api-v2:%s-detail' % self.url_basename,
+                                  kwargs={'pk': self.item.pk})
+
+    def feed_permission(self):
+        self.grant_permission(self.profile, 'Feed:Curate')
+
+    def get(self, client):
+        self.make_item()
+        res = client.get(self.detail_url)
+        data = json.loads(res.content)
+        return res, data
+
+    def list(self, client):
+        self.make_item()
+        res = client.get(self.list_url)
+        data = json.loads(res.content)
+        return res, data
+
+    def create(self, client, **kwargs):
+        res = client.post(self.list_url, json.dumps(kwargs))
+        data = json.loads(res.content)
+        return res, data
+
+    def update(self, client, **kwargs):
+        self.make_item()
+        res = client.patch(self.detail_url, json.dumps(kwargs))
+        data = json.loads(res.content)
+        return res, data
+
+    def delete(self, client):
+        self.make_item()
+        res = client.delete(self.detail_url)
+        data = json.loads(res.content or '{}')
+        return res, data
+
+    def test_get_anonymous(self):
+        res, data = self.get(self.anon)
+        eq_(res.status_code, 200)
+        eq_(data['id'], self.item.pk)
+
+    def test_get_no_permission(self):
+        res, data = self.get(self.client)
+        eq_(res.status_code, 200)
+        eq_(data['id'], self.item.pk)
+
+    def test_get_with_permission(self):
+        self.feed_permission()
+        res, data = self.get(self.client)
+        eq_(res.status_code, 200)
+        eq_(data['id'], self.item.pk)
+
+    def test_list_anonymous(self):
+        res, data = self.list(self.anon)
+        eq_(res.status_code, 200)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_list_no_permission(self):
+        res, data = self.list(self.client)
+        eq_(res.status_code, 200)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_list_with_permission(self):
+        self.feed_permission()
+        res, data = self.list(self.client)
+        eq_(res.status_code, 200)
+        eq_(data['meta']['total_count'], 1)
+        eq_(data['objects'][0]['id'], self.item.id)
+
+    def test_create_anonymous(self):
+        res, data = self.create(self.anon, **self.obj_data)
+        eq_(res.status_code, 403)
+
+    def test_create_no_permission(self):
+        res, data = self.create(self.client, **self.obj_data)
+        eq_(res.status_code, 403)
+
+    def test_create_with_permission(self):
+        self.feed_permission()
+        res, data = self.create(self.client, **self.obj_data)
+        eq_(res.status_code, 201)
+        for name, value in self.obj_data.iteritems():
+            eq_(value, data[name])
+
+    def test_create_with_apps(self):
+        self.feed_permission()
+        apps = [app.pk for app in self.make_apps()]
+        data = dict(self.obj_data)
+        data.update({'apps': apps})
+        res, data = self.create(self.client, **data)
+        eq_(res.status_code, 201)
+        eq_(apps, [app['id'] for app in data['apps']])
+
+    def test_create_no_data(self):
+        self.feed_permission()
+        res, data = self.create(self.client)
+        eq_(res.status_code, 400)
+
+    def test_create_duplicate_slug(self):
+        self.feed_permission()
+        obj_data = self.data()
+
+        res1, data1 = self.create(self.client, **obj_data)
+        eq_(res1.status_code, 201)
+        eq_(obj_data['slug'], data1['slug'])
+
+        res2, data2 = self.create(self.client, **obj_data)
+        eq_(res2.status_code, 400)
+        ok_('slug' in data2)
+
+    def test_update_anonymous(self):
+        res, data = self.update(self.anon)
+        eq_(res.status_code, 403)
+
+    def test_update_no_permission(self):
+        res, data = self.update(self.client)
+        eq_(res.status_code, 403)
+
+    def test_update_with_permission(self):
+        self.feed_permission()
+        new_slug = 'french_fries'
+        res, data = self.update(self.client, slug=new_slug)
+        eq_(res.status_code, 200)
+        eq_(data['id'], self.item.pk)
+        eq_(data['slug'], new_slug)
+
+    def test_update_with_apps(self):
+        self.feed_permission()
+        new_apps = [app.pk for app in self.make_apps()]
+        res, data = self.update(self.client, apps=new_apps)
+        eq_(res.status_code, 200)
+        eq_(data['id'], self.item.pk)
+        eq_(new_apps, [app['id'] for app in data['apps']])
+
+    def test_delete_anonymous(self):
+        res, data = self.delete(self.anon)
+        eq_(res.status_code, 403)
+
+    def test_delete_no_permission(self):
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 403)
+
+    def test_delete_with_permission(self):
+        self.feed_permission()
+        res, data = self.delete(self.client)
+        eq_(res.status_code, 204)
+
+
+class TestFeedBrandViewSet(BaseTestFeedCollection, RestOAuth):
+    obj_data = {
+        'layout': 'grid',
+        'type': 'hidden-gem',
+        'slug': 'potato'
+    }
+    model = FeedBrand
+    url_basename = 'feedbrands'
+
+
+class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
+    obj_data = {
+        'slug': 'potato',
+        'type': 'promo',
+        'background_color': '#00AACC',
+        'description': {'en-US': 'Potato french fries'},
+        'name': {'en-US': 'Deep Fried'}
+    }
+    model = FeedCollection
+    url_basename = 'feedcollections'
+
+    def make_item(self):
+        """
+        Add additional unique fields: `description` and `name`.
+        """
+        super(TestFeedCollectionViewSet, self).make_item(
+            description={'en-US': 'Baby Potato'}, name={'en-US': 'Sprout'})
+
+    def test_create_missing_name(self):
+        self.feed_permission()
+        obj_data = self.data()
+        del obj_data['name']
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 400)
+        ok_('name' in data)
+
+    def test_create_invalid_type(self):
+        self.feed_permission()
+        obj_data = self.data(type='tuber')
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 400)
+        ok_('type' in data)
+
+    def test_create_no_description(self):
+        self.feed_permission()
+        obj_data = self.data()
+        del obj_data['description']
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)
+
+
+class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedAppMixin.fixtures
+
+    def setUp(self):
+        super(TestBuilderView, self).setUp()
+        self.url = reverse('api-v2:feed.builder')
+        self.profile = self.user
+
+        self.feed_apps = self.create_feedapps(n=3)
+        self.brand = FeedBrand.objects.create(slug='brandy')
+        self.collection = FeedCollection.objects.create(slug='cull')
+        self.data = {
+            'us': [
+                ['app', self.feed_apps[1].id],
+                ['collection', self.collection.id],
+                ['brand', self.brand.id],
+                ['app', self.feed_apps[0].id],
+            ],
+            'cn': [
+                ['brand', self.brand.id],
+                ['app', self.feed_apps[2].id],
+                ['collection', self.collection.id],
+            ]
+        }
+
+    def _set_feed_items(self, data):
+        return self.client.put(self.url, data=json.dumps(data))
+
+    def test_create_feed(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 201)
+
+        eq_(FeedItem.objects.count(), 7)
+        us_items = FeedItem.objects.filter(
+            region=mkt.regions.US.id).order_by('order')
+        eq_(us_items.count(), 4)
+
+        # Test order.
+        eq_(us_items[0].app_id, self.feed_apps[1].id)
+        eq_(us_items[1].collection_id, self.collection.id)
+        eq_(us_items[2].brand_id, self.brand.id)
+        eq_(us_items[3].app_id, self.feed_apps[0].id)
+
+        # Test item types.
+        eq_(us_items[0].item_type, 'app')
+        eq_(us_items[1].item_type, 'collection')
+        eq_(us_items[2].item_type, 'brand')
+        eq_(us_items[3].item_type, 'app')
+
+    def test_update_feed(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+
+        # Update US.
+        self.data['us'] = self.data['cn']
+        r = self._set_feed_items(self.data)
+
+        us_items = FeedItem.objects.filter(
+            region=mkt.regions.US.id).order_by('order')
+        eq_(us_items[0].brand_id, self.brand.id)
+        eq_(us_items[1].app_id, self.feed_apps[2].id)
+
+    def test_truncate_feed(self):
+        """Fill up China feed, then send an empty array for China."""
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        ok_(FeedItem.objects.filter(region=mkt.regions.CN.id))
+
+        self.data['cn'] = []
+        r = self._set_feed_items(self.data)
+        ok_(FeedItem.objects.filter(region=mkt.regions.US.id))
+        ok_(not FeedItem.objects.filter(region=mkt.regions.CN.id))
+
+    def test_no_perm(self):
+        """Fill up China feed, then send an empty array for China."""
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 403)
+
+    def test_cors(self):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        self.assertCORS(r, 'put')
+
+    def test_400(self):
+        self.feed_permission()
+        self.data['us'][0] = ['app']
+        r = self._set_feed_items(self.data)
+        eq_(r.status_code, 400)

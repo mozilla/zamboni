@@ -149,10 +149,9 @@ class TestXMLParser(amo.tests.TestCase):
         eq_(row['security_code'], 'FZ32CU8')
         eq_(row['email'], 'nobody@mozilla.com')
         eq_(row['rating_system'], ratingsbodies.CLASSIND)
-        eq_(row['new_rating'], '18+')
+        eq_(row['new_rating'], '14+')
         eq_(row['new_descriptors'],
-            u'Conte\xfado Impactante, Cont\xe9udo Sexual, Drogas, Linguagem '
-            u'Impr\xf3pria, Nudez, Viol\xeancia Extrema')
+            u'Cont\xe9udo Sexual, Linguagem Impr\xf3pria')
         eq_(row['change_reason'],
             'Significant issues found in special mission cut scenes.')
 
@@ -164,8 +163,8 @@ class TestXMLParser(amo.tests.TestCase):
         eq_(row['change_date'], '11/12/2013')
         eq_(row['security_code'], 'GZ32CU8')
         eq_(row['email'], 'nobody@mozilla.com')
-        eq_(row['new_rating'], '12+')
-        eq_(row['new_descriptors'], 'Gewalt')
+        eq_(row['new_rating'], 'Rating Refused')
+        eq_(row['new_descriptors'], 'Explizite Sprache')
         eq_(row['rating_system'], ratingsbodies.USK)
         eq_(row['change_reason'],
             'Discrimination found to be within German law.')

@@ -34,82 +34,10 @@
          data-url="{{ url('reviewers.apps.review.manifest', product.app_slug) }}">
         <b>{{ _('View') }}</b></a>
     </dd>
-    {% if product.app_domain %}
-    <dt>{{ _('App domain') }}</dt>
-    <dd>
-      {{ product.app_domain }}
-      {% if product.punycode_app_domain != product.app_domain %}
-        <br>
-        {% trans punycode_app_domain=product.punycode_app_domain %}
-          <strong>IDN domain!</strong> punycode version: {{ punycode_app_domain }}
-        {% endtrans %}
-      {% endif %}
-    </dd>
-    {% endif %}
-    {% if product.is_packaged and product.latest_version %}
-      <dt>{{ _('Signed Zip') }}</dt>
-      {% with package_url=url('reviewers.signed', product.app_slug, product.latest_version.id) %}
-        <dd><a href="{{ package_url|absolutify }}">{{ package_url|absolutify }}</a>
-      {% endwith %}
-    {% endif %}
-    <dt>{{ _('Default Locale') }}</dt>
-    <dd>{{ product.default_locale }}</dd>
-    <dt>{{ _('Price') }}</dt>
-    <dd>{{ price(request, product) }}
-      {% if product.is_premium() %}
-        &middot;
-        <span id="receipt-check-result"
-              data-url="{{ url('receipt.check', product.guid) }}"></span>
-      {% endif %}
-    </dd>
-    <dt>{{ _('Ratings') }}</dt>
-    <dd class="content-ratings">
-      {% for content_rating in product.content_ratings.order_by('ratings_body') %}
-        {% set ratings_body = content_rating.get_body() %}
-        {% set rating = content_rating.get_rating() %}
-        {% include "developers/includes/content_rating_icon.html" %}
-      {% else %}
-        <strong>{{ _('This app has not yet been rated') }}</strong>
-      {% endfor %}
-    </dd>
-    <dt>{{ _('Updated') }}</dt>
-    <dd class="addon-updated">
-      <time datetime="{{ product.last_updated|isotime }}">
-        {{ product.last_updated|datetime }}</time>
-    </dd>
-    {% if product.homepage %}
-      <dt>{{ _('Website') }}</dt>
-      <dd>
-        <a href="{{ product.homepage|external_url }}">
-          {{ product.homepage }}</a>
-      </dd>
-    {% endif %}
     <dt>{{ _('Developer Name') }}</dt>
     <dd>{{ version.developer_name }}</dd>
-    {% if product.compatible_apps[APP] %}
-      <dt>{{ _('Works with') }}</dt>
-      <dd>{{ product.compatible_apps[APP] }}</dd>
-    {% endif %}
-    {% if product.total_reviews %}
-      <dt>{{ _('Rating') }}</dt>
-      <dd>{{ impala_reviews_link(product) }}</dd>
-    {% endif %}
-    <dt>{{ _('Total Downloads') }}</dt>
-    <dd class="meta-stats">
-      <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
-      {% if product.public_stats %}
-        <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
-      {% endif %}
-    </dd>
-    <dt>{{ _('Weekly Downloads') }}</dt>
-    <dd class="meta-stats">
-      <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
-    </dd>
-    <dt>{{ _('Abuse Reports') }}</dt>
-    <dd class="abuse-reports">
-      <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
-        <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
-    </dd>
+    <dt>{{ _('Default Locale') }}</dt>
+    <dd>{{ product.default_locale }}</dd>
     {% with device_types = product.device_types %}
       {% if device_types %}
         <dt>{{ _('Device Types') }}</dt>
@@ -127,34 +55,107 @@
           {{ _('View Privacy Policy') }}</a>
       </dd>
     {% endif %}
-    <dt>{{ _('Team Members') }}</dt>
-    <dd>
-      {% for author in product.authors.all() %}
-        <a href="{{ author.get_url_path() }}">
-          {{ author.name }}</a>{% if not loop.last %}, {% endif %}
-      {% endfor %}
-    </dd>
-    <dt>{{ _('Categories') }}</dt>
-    <dd>
-      {% for category in product.categories.all() %}
-        <a href="{{ category.get_url_path() }}">
-          {{ category.name }}</a>{% if not loop.last %}, {% endif %}
-      {% endfor %}
-    </dd>
-    <dt>{{ _('Flags') }}</dt>
-    <dd>{{ app_flags(product) }}</dd>
     <dt>{{ _('Requirements') }}</dt>
     <dd>{{ feature_list|join(', ') }}</dd>
   </dl>
+
+  <div class="more-app-info-show"><a href="#more">{{ _('Show more') }}</a></div>
+  <div class="more-app-info" class="hide">
+    <dl>
+      {% if product.app_domain %}
+      <dt>{{ _('App domain') }}</dt>
+      <dd>
+        {{ product.app_domain }}
+        {% if product.punycode_app_domain != product.app_domain %}
+          <br>
+          {% trans punycode_app_domain=product.punycode_app_domain %}
+            <strong>IDN domain!</strong> punycode version: {{ punycode_app_domain }}
+          {% endtrans %}
+        {% endif %}
+      </dd>
+      {% endif %}
+      {% if product.is_packaged and product.latest_version %}
+        <dt>{{ _('Signed Zip') }}</dt>
+        {% with package_url=url('reviewers.signed', product.app_slug, product.latest_version.id) %}
+          <dd><a href="{{ package_url|absolutify }}">{{ package_url|absolutify }}</a>
+        {% endwith %}
+      {% endif %}
+      <dt>{{ _('Price') }}</dt>
+      <dd>{{ price(request, product) }}
+        {% if product.is_premium() %}
+          &middot;
+          <span id="receipt-check-result"
+                data-url="{{ url('receipt.check', product.guid) }}"></span>
+        {% endif %}
+      </dd>
+      <dt>{{ _('Ratings') }}</dt>
+      <dd class="content-ratings">
+        {% for content_rating in product.content_ratings.order_by('ratings_body') %}
+          {% set ratings_body = content_rating.get_body() %}
+          {% set rating = content_rating.get_rating() %}
+          {% include "developers/includes/content_rating_icon.html" %}
+        {% else %}
+          <strong>{{ _('This app has not yet been rated') }}</strong>
+        {% endfor %}
+      </dd>
+      <dt>{{ _('Updated') }}</dt>
+      <dd class="addon-updated">
+        <time datetime="{{ product.last_updated|isotime }}">
+          {{ product.last_updated|datetime }}</time>
+      </dd>
+      {% if product.homepage %}
+        <dt>{{ _('Website') }}</dt>
+        <dd>
+          <a href="{{ product.homepage|external_url }}">
+            {{ product.homepage }}</a>
+        </dd>
+      {% endif %}
+      {% if product.total_reviews %}
+        <dt>{{ _('Rating') }}</dt>
+        <dd>{{ impala_reviews_link(product) }}</dd>
+      {% endif %}
+      <dt>{{ _('Total Downloads') }}</dt>
+      <dd class="meta-stats">
+        <b class="total-downloads">{{ product.total_downloads|numberfmt }}</b>
+        {% if product.public_stats %}
+          <a href="{{ product.get_stats_url() }}">{{ _('View Statistics') }}</a>
+        {% endif %}
+      </dd>
+      <dt>{{ _('Weekly Downloads') }}</dt>
+      <dd class="meta-stats">
+        <b class="weekly-downloads">{{ product.weekly_downloads|numberfmt }}</b>
+      </dd>
+      <dt>{{ _('Abuse Reports') }}</dt>
+      <dd class="abuse-reports">
+        <a href="{{ url('reviewers.apps.review.abuse', product.app_slug) }}">
+          <b>{{ product.abuse_reports.count()|numberfmt }}</b></a>
+      </dd>
+      <dt>{{ _('Team Members') }}</dt>
+      <dd>
+        {% for author in product.authors.all() %}
+          <a href="{{ author.get_url_path() }}">
+            {{ author.name }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </dd>
+      <dt>{{ _('Categories') }}</dt>
+      <dd>
+        {% for category in product.categories.all() %}
+          <a href="{{ category.get_url_path() }}">
+            {{ category.name }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </dd>
+      <dt>{{ _('Flags') }}</dt>
+      <dd>{{ app_flags(product) }}</dd>
+    </dl>
+    <div class="less-app-info-show"><a href="#less">{{ _('Show less') }}</a></div>
+  </div>
 </div>
 
-
-  {% set previews = product.all_previews %}
-  {% if product.description or previews %}
+{% set previews = product.all_previews %}
+{% if product.description or previews %}
   <h2 id="more-about">{{ _('Description') }}</h2>
   <div class="article userinput">
-    <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
-
+    <pre{{ product.description|locale_html }}>{{ product.description|escape }}</pre>
     {% if previews %}
       <h2>{{ _('Images') }}</h2>
       {% for preview in previews %}
@@ -164,27 +165,12 @@
         </a>
       {% endfor %}
     {% endif %}
-
   </div>{# /article #}
-  {% else %}
-    <h2 id="more-about">{{ _('More about this app') }}</h2>
-    <div class="article userinput">
-      <em class="no-results">
-        {{ _('Nothing to see here! The developer did not include any details.') }}
-      </em>
-    </div>
-  {% endif %}
-
-{% if reviews is defined %}
-  {{ review_list_box(addon=product, reviews=reviews) }}
-{% endif %}
-
-{% if review_form %}
-  {% if request.user.is_authenticated() %}
-    {{ review_add_box(addon=product) }}
-  {% endif %}
-{% endif %}
-
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=product) }}
+{% else %}
+  <h2 id="more-about">{{ _('More about this app') }}</h2>
+  <div class="article userinput">
+    <em class="no-results">
+      {{ _('Nothing to see here! The developer did not include any details.') }}
+    </em>
+  </div>
 {% endif %}

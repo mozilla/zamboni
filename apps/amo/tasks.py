@@ -1,23 +1,20 @@
 import datetime
 
-from django.conf import settings
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import commonware.log
 import phpserialize
 from celeryutils import task
-from hera.contrib.django_utils import flush_urls
 
 import amo
-from abuse.models import AbuseReport
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
-from devhub.models import ActivityLog, AppLog
 from editors.models import EscalationQueue, EventLog
-from market.models import Refund
+from mkt.abuse.models import AbuseReport
+from mkt.developers.models import ActivityLog, AppLog
+from mkt.prices.models import Refund
 from reviews.models import Review
-from stats.models import Contribution
 
 
 log = commonware.log.getLogger('z.task')
@@ -49,30 +46,6 @@ def send_email(recipient, subject, message, from_email=None,
 
 
 @task
-def flush_front_end_cache_urls(urls, **kw):
-    """Accepts a list of urls which will be sent through Hera to the front end
-    cache.  This does no checking for success or failure or whether the URLs
-    were in the cache to begin with."""
-
-    if not urls:
-        return
-
-    log.info(u"Flushing %d URLs from front end cache: (%s)" % (len(urls),
-                                                               urls))
-
-    # Zeus is only interested in complete URLs.  We can't just pass a
-    # prefix to Hera because some URLs will be on SAMO.
-    for index, url in enumerate(urls):
-        if not url.startswith('http'):
-            if '/api/' in url:
-                urls[index] = u"%s%s" % (settings.SERVICES_URL, url)
-            else:
-                urls[index] = u"%s%s" % (settings.SITE_URL, url)
-
-    flush_urls(urls)
-
-
-@task
 def set_modified_on_object(obj, **kw):
     """Sets modified on one object at a time."""
     try:
@@ -89,15 +62,6 @@ def delete_logs(items, **kw):
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=amo.LOG_KEEP).delete()
-
-
-@task
-def delete_stale_contributions(items, **kw):
-    log.info('[%s@%s] Deleting stale contributions' %
-             (len(items), delete_stale_contributions.rate_limit))
-    Contribution.objects.filter(
-        transaction_id__isnull=True, pk__in=items).delete()
-
 
 
 @task

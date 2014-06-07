@@ -3,7 +3,7 @@ from addons.models import Addon, CompatOverride, CompatOverrideRange
 
 def run():
     addons = (Addon.objects
-        .filter(type=amo.ADDON_EXTENSION, appsupport__app=amo.FIREFOX.id,
+        .filter(type=amo.ADDON_EXTENSION,
                 _current_version__files__jetpack_version__isnull=False)
         .exclude(_current_version__files__jetpack_version='1.14'))
 

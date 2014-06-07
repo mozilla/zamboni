@@ -1,8 +1,6 @@
-import collections
 import json as jsonlib
 import random
 import re
-from operator import attrgetter
 from urlparse import urljoin
 
 from django.conf import settings
@@ -12,7 +10,6 @@ from django.template import defaultfilters
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 
-import caching.base as caching
 import jinja2
 import six
 from babel.support import Format
@@ -25,7 +22,6 @@ import amo
 from amo import urlresolvers, utils
 from constants.licenses import PERSONA_LICENSES_IDS
 from translations.helpers import truncate
-from translations.query import order_by_translation
 from versions.models import License
 
 
@@ -156,26 +152,6 @@ def is_mobile(app):
     return app == amo.MOBILE
 
 
-@register.function
-def sidebar(app):
-    """Populates the sidebar with (categories, types)."""
-    from addons.models import Category
-    if app is None:
-        return [], []
-
-    # We muck with query to make order_by and extra_order_by play nice.
-    q = Category.objects.filter(application=app.id, weight__gte=0,
-                                type=amo.ADDON_EXTENSION)
-    categories = order_by_translation(q, 'name')
-    categories.query.extra_order_by.insert(0, 'weight')
-
-    Type = collections.namedtuple('Type', 'id name url')
-    base = urlresolvers.reverse('home')
-    types = [Type(99, _('Collections'), base + 'collections/')]
-
-    return categories, sorted(types, key=lambda x: x.name)
-
-
 class Paginator(object):
 
     def __init__(self, pager):
@@ -255,12 +231,7 @@ def login_link(context):
 @jinja2.contextfunction
 def page_title(context, title, force_webapps=False):
     title = smart_unicode(title)
-    if settings.APP_PREVIEW:
-        base_title = _('Firefox Marketplace')
-    elif context.get('WEBAPPS') or force_webapps:
-        base_title = _('Firefox Marketplace')
-    else:
-        base_title = page_name(context['request'].APP)
+    base_title = _('Firefox Marketplace')
     return u'%s :: %s' % (title, base_title)
 
 
@@ -483,55 +454,6 @@ def static(context, url):
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
-
-
-@register.function
-@jinja2.contextfunction
-def side_nav(context, addon_type, category=None):
-    app = context['request'].APP.id
-    cat = str(category.id) if category else 'all'
-    return caching.cached(lambda: _side_nav(context, addon_type, category),
-                          'side-nav-%s-%s-%s' % (app, addon_type, cat))
-
-
-def _side_nav(context, addon_type, cat):
-    # Prevent helpers generating circular imports.
-    from addons.models import Category, AddonType
-    request = context['request']
-    qs = Category.objects.filter(weight__gte=0)
-    if addon_type not in (amo.ADDON_PERSONA, amo.ADDON_WEBAPP):
-        qs = qs.filter(application=request.APP.id)
-    sort_key = attrgetter('weight', 'name')
-    categories = sorted(qs.filter(type=addon_type), key=sort_key)
-    if cat:
-        base_url = cat.get_url_path()
-    else:
-        base_url = AddonType(addon_type).get_url_path()
-    ctx = dict(request=request, base_url=base_url, categories=categories,
-               addon_type=addon_type, amo=amo)
-    return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
-
-
-@register.function
-@jinja2.contextfunction
-def site_nav(context):
-    app = context['request'].APP.id
-    return caching.cached(lambda: _site_nav(context), 'site-nav-%s' % app)
-
-
-def _site_nav(context):
-    # Prevent helpers from generating circular imports.
-    from addons.models import Category
-    request = context['request']
-
-    sorted_cats = lambda qs: sorted(qs, key=attrgetter('weight', 'name'))
-
-    extensions = Category.objects.filter(application=request.APP.id,
-        weight__gte=0, type=amo.ADDON_EXTENSION)
-
-    ctx = dict(request=request, amo=amo,
-               extensions=sorted_cats(extensions))
-    return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
 
 
 @register.filter

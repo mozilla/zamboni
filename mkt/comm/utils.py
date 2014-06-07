@@ -10,12 +10,11 @@ import commonware.log
 import waffle
 from email_reply_parser import EmailReplyParser
 
-from access.models import Group
-from users.models import UserProfile
-
+from mkt.access.models import Group
 from mkt.comm.models import (CommunicationNoteRead, CommunicationThreadToken,
                              user_has_perm_thread)
 from mkt.constants import comm
+from users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')

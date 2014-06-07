@@ -19,17 +19,17 @@ from waffle.models import Switch
 import amo
 import amo.tests
 import mkt
-from access.models import Group, GroupUser
 from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
                            Category)
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
-from devhub.models import ActivityLog
 from editors.models import RereviewQueue
 from lib.video.tests import files as video_files
+from mkt.access.models import Group, GroupUser
 from mkt.comm.models import CommunicationNote
 from mkt.constants import regions
+from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from translations.models import Translation
@@ -135,13 +135,6 @@ class TestEdit(amo.tests.TestCase):
 class TestEditListingWebapp(TestEdit):
     fixtures = fixture('webapp_337141')
 
-    @mock.patch.object(settings, 'APP_PREVIEW', False)
-    def test_apps_context(self):
-        r = self.client.get(self.url)
-        eq_(r.context['webapp'], True)
-        eq_(pq(r.content)('title').text(),
-            'Edit Listing | %s | Firefox Marketplace' % self.webapp.name)
-
     def test_redirect(self):
         r = self.client.get(self.url.replace('edit', ''))
         self.assert3xx(r, self.url)
@@ -190,9 +183,6 @@ class TestEditBasic(TestEdit):
 
     def test_form_url(self):
         self.check_form_url('basic')
-
-    def test_apps_context(self):
-        eq_(self.client.get(self.url).context['webapp'], True)
 
     def test_appslug_visible(self):
         r = self.client.get(self.url)
@@ -523,6 +513,16 @@ class TestEditBasic(TestEdit):
         releasenotes = self.webapp.current_version.reload().releasenotes
         eq_(res.status_code, 200)
         eq_(releasenotes, data['releasenotes'])
+        # Make sure make_public wasn't reset by accident.
+        eq_(self.webapp.reload().make_public, None)
+
+    def test_edit_release_notes_pending(self):
+        # Like test_edit_release_notes, but with a pending app.
+        file_ = self.webapp.current_version.all_files[0]
+        file_.update(status=amo.STATUS_PENDING)
+        self.webapp.update(status=amo.STATUS_PENDING)
+        self.test_edit_release_notes()
+        eq_(self.webapp.reload().status, amo.STATUS_PENDING)
 
     def test_edit_release_notes_packaged(self):
         # You are not supposed to edit release notes from the basic edit
@@ -626,8 +626,8 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
-        assert webapp.get_icon_url(128).endswith('icons/default-128.png')
-        assert webapp.get_icon_url(64).endswith('icons/default-64.png')
+        assert webapp.get_icon_url(128).endswith('default-128.png')
+        assert webapp.get_icon_url(64).endswith('default-64.png')
 
         for k in data:
             eq_(unicode(getattr(webapp, k)), data[k])
@@ -641,8 +641,8 @@ class TestEditMedia(TestEdit):
         self.assertNoFormErrors(r)
         webapp = self.get_webapp()
 
-        assert webapp.get_icon_url(64).endswith('icons/appearance-64.png')
-        assert webapp.get_icon_url(128).endswith('icons/appearance-128.png')
+        assert webapp.get_icon_url(64).endswith('appearance-64.png')
+        assert webapp.get_icon_url(128).endswith('appearance-128.png')
 
         for k in data:
             eq_(unicode(getattr(webapp, k)), data[k])

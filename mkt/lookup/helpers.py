@@ -1,7 +1,7 @@
 from jingo import env, register
 import jinja2
 
-from access import acl
+from mkt.access import acl
 
 
 @register.filter

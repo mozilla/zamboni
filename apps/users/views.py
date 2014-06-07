@@ -15,7 +15,6 @@ from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
-from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo import messages
@@ -23,6 +22,7 @@ from amo.decorators import json_view, login_required, post_required
 from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
+from mkt.access.middleware import ACLMiddleware
 
 from .models import UserProfile
 from .signals import logged_out
@@ -95,10 +95,6 @@ def _clean_next_url(request):
     if not is_safe_url(url, host=request.get_host()):
         log.info(u'Unsafe redirect to %s' % url)
         url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
 
     gets['to'] = url
     request.GET = gets
@@ -200,7 +196,7 @@ def browserid_login(request, browserid_audience=None):
 # Used by mkt.developers.views:login.
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
-    data['webapp'] = settings.APP_PREVIEW
+    data['webapp'] = True
     # In case we need it later.  See below.
     get_copy = request.GET.copy()
 

@@ -8,7 +8,7 @@ from rest_framework.reverse import reverse
 from django.conf import settings
 
 import amo
-from stats.models import Contribution
+from mkt.purchase.models import Contribution
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture

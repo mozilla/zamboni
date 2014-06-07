@@ -8,19 +8,17 @@ from django.conf import settings
 
 import amo
 import amo.tests
-from amo.tests import req_factory_factory
 from addons.models import Addon, AddonUser
-from devhub.models import ActivityLog, AppLog
-from editors.models import EscalationQueue, EditorSubscription
+from amo.tests import req_factory_factory
+from editors.models import EditorSubscription, EscalationQueue
 from files.models import File
-from users.models import UserProfile
-from versions.models import Version
-
 from mkt.comm.models import CommunicationNote
-from mkt.developers.models import PreloadTestPlan
+from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
 from mkt.developers.views import preload_submit, status
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from users.models import UserProfile
+from versions.models import Version
 
 
 class TestVersion(amo.tests.TestCase):

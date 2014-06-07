@@ -18,14 +18,15 @@ from apps.users.notifications import app_surveys
 from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import parse_addon
-from market.models import AddonPremium, Price
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea
 
-from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.comm.utils import create_comm_note
+from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS, comm
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.webapps.models import AppFeatures
+from mkt.prices.models import AddonPremium, Price
 from mkt.developers.forms import verify_app_domain
 
 
@@ -386,6 +387,13 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
                          "select this option you will be notified via email "
                          "about your app's approval and you will need to log "
                          "in and manually publish it."))
+    notes = forms.CharField(
+        label=_lazy(u'Your comments for reviewers'),
+        help_text=_lazy(u'Your app will be reviewed by Mozilla before it '
+                        u'becomes publicly listed on the Marketplace. Enter '
+                        u'any special instructions for the app reviewers '
+                        u'here.'),
+        required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
     class Meta:
         model = Addon
@@ -413,6 +421,10 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         return slug.lower()
 
     def save(self, *args, **kw):
+        if self.data['notes']:
+            create_comm_note(self.instance, self.instance.versions.latest(),
+                             self.request.amo_user, self.data['notes'],
+                             note_type=comm.SUBMISSION)
         self.instance = super(AppDetailsBasicForm, self).save(commit=True)
         uses_flash = self.cleaned_data.get('flash')
         af = self.instance.get_latest_file()

@@ -23,6 +23,7 @@ ESCALATION_HIGH_ABUSE = 9
 ESCALATION_HIGH_REFUNDS = 10
 ESCALATION_CLEARED = 11
 REREVIEW_CLEARED = 12
+SUBMISSION = 13
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -37,7 +38,8 @@ NOTE_TYPES = {
     ESCALATION_CLEARED: _('Escalation cleared'),
     ESCALATION_HIGH_ABUSE: _('Escalated due to High Abuse Reports'),
     ESCALATION_HIGH_REFUNDS: _('Escalated due to High Refund Requests'),
-    REREVIEW_CLEARED: _('Re-review cleared')
+    REREVIEW_CLEARED: _('Re-review cleared'),
+    SUBMISSION: _('App submission notes')
 }
 
 # Note types only visible by reviewers and not developers.

@@ -68,9 +68,6 @@ urlpatterns = patterns('',
     # AMO Marketplace admin (not django admin).
     ('^admin/', include('mkt.zadmin.urls')),
 
-    # Accept extra junk at the end for a cache-busting build id.
-    url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
-
     # Developer Registration Login.
     url('^login$', login, name='users.login'),
     url('^logout$', logout, name='users.logout'),
@@ -107,10 +104,9 @@ if settings.TEMPLATE_DEBUG:
          {'document_root': settings.MEDIA_ROOT}),
     )
 
-
 if settings.SERVE_TMP_PATH and settings.DEBUG:
     # Serves any URL like /tmp/* from your local ./tmp/ dir
     urlpatterns += patterns('',
-        (r'^tmp/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^tmp/img/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.TMP_PATH}),
     )

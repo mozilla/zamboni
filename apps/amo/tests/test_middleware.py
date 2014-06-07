@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from django import http, test
-from django.conf import settings
+from django import test
 
 from commonware.middleware import ScrubRequestOnException
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from test_utils import RequestFactory
 
 import amo.tests
-from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
+from amo.middleware import NoVarySessionMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
 
@@ -86,20 +85,3 @@ def test_hide_password_middleware():
     eq_(request.POST['x'], '1')
     eq_(request.POST['password'], '******')
     eq_(request.POST['password2'], '******')
-
-
-class TestNoAddonsMiddleware(amo.tests.TestCase):
-
-    @patch('amo.middleware.ViewMiddleware.get_name')
-    def process(self, name, get_name):
-        get_name.return_value = name
-        request = RequestFactory().get('/')
-        view = Mock()
-        return NoAddonsMiddleware().process_view(request, view, [], {})
-
-    @patch.object(settings, 'NO_ADDONS_MODULES',
-                  ('some.addons',))
-    def test_middleware(self):
-        self.assertRaises(http.Http404, self.process, 'some.addons')
-        self.assertRaises(http.Http404, self.process, 'some.addons.thingy')
-        assert not self.process('something.else')

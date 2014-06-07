@@ -19,25 +19,24 @@ from slumber import exceptions
 
 import amo
 import amo.tests
-from abuse.models import AbuseReport
-from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from devhub.models import ActivityLog
-from market.models import AddonPaymentData, Refund
+from mkt.abuse.models import AbuseReport
+from mkt.access.models import Group, GroupUser
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
-from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
-                                   SolitudeSeller)
+from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
+                                   PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_views_payments import (setup_payment_account,
                                                       TEST_PACKAGE_ID)
 from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
+from mkt.prices.models import AddonPaymentData, Refund
+from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -183,16 +182,6 @@ class TestAcctSummary(SummaryTest):
         res = self.summary()
         # Number of apps/add-ons belonging to this user.
         eq_(len(res.context['user_addons']), 1)
-
-    def test_paypal_ids(self):
-        self.user.addons.update(paypal_id='somedev@app.com')
-        res = self.summary()
-        eq_(list(res.context['paypal_ids']), [u'somedev@app.com'])
-
-    def test_no_paypal(self):
-        self.user.addons.update(paypal_id='')
-        res = self.summary()
-        eq_(list(res.context['paypal_ids']), [])
 
     def test_payment_data(self):
         payment_data = self.payment_data()
@@ -729,9 +718,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
 
 class AppSummaryTest(SummaryTest):
-    # TODO: Override in subclasses to convert to new fixture style.
-    fixtures = ['base/users', 'base/addon_3615',
-                'market/prices'] + fixture('webapp_337141')
+    fixtures = fixture('prices', 'webapp_337141', 'user_support_staff')
 
     def _setUp(self):
         self.app = Addon.objects.get(pk=337141)
@@ -937,6 +924,7 @@ class TestAppSummaryPurchases(AppSummaryTest):
 
 
 class TestAppSummaryRefunds(AppSummaryTest):
+    fixtures = AppSummaryTest.fixtures + fixture('user_999', 'user_admin')
 
     def setUp(self):
         super(TestAppSummaryRefunds, self).setUp()

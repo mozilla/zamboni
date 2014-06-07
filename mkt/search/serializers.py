@@ -23,7 +23,6 @@ from versions.models import Version
 class ESAppSerializer(AppSerializer):
     # Fields specific to search.
     absolute_url = serializers.SerializerMethodField('get_absolute_url')
-    is_offline = serializers.BooleanField()
     reviewed = serializers.DateField()
 
     # Override previews, because we don't need the full PreviewSerializer.
@@ -47,8 +46,7 @@ class ESAppSerializer(AppSerializer):
     support_url = ESTranslationSerializerField()
 
     class Meta(AppSerializer.Meta):
-        fields = AppSerializer.Meta.fields + ['absolute_url', 'is_offline',
-                                              'reviewed']
+        fields = AppSerializer.Meta.fields + ['absolute_url', 'reviewed']
 
     def __init__(self, *args, **kwargs):
         super(ESAppSerializer, self).__init__(*args, **kwargs)

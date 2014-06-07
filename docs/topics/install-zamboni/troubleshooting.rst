@@ -9,38 +9,6 @@ Image processing isn't working
 If adding images to apps or extensions doesn't seem to work then there's a
 couple of settings you should check.
 
-Checking your image settings
-____________________________
-
-First look for the following image serving settings::
-
-    SERVE_TMP_PATH = True  # maps /tmp to zamboni/tmp
-    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%s'
-    PREVIEW_FULL_URL = '/tmp/uploads/previews/full/%s/%d.png?modified=%s'
-    USERPICS_URL = '/tmp/uploads/userpics/%s/%s/%s.png?modified=%s'
-    ADDON_ICON_URL = '/tmp/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-    PREVIEW_THUMBNAIL_URL = '/tmp/uploads/previews/thumbs/%s/%d.png?modified=%s'
-    NEW_PERSONAS_IMAGE_URL = '/tmp/uploads/personas/%(id)d/%(file)s'
-
-Check that ``CELERY_ALWAYS_EAGER`` is set to ``True`` in your settings file. This
-means it will process tasks without celeryd running::
-
-    CELERY_ALWAYS_EAGER = True
-
-If that yields no joy you can try running celeryd in the foreground,
-set ``CELERY_ALWAYS_EAGER = False`` and run::
-
-    ./manage.py celeryd $OPTIONS
-
-
-.. note::
-
-    This requires the rabbit setup as detailed in the
-    :doc:`./celery` instructions.
-
-This may help you to see where the image processing tasks are failing. For
-example it might show that PIL is failing due to missing dependencies.
-
 Checking your PIL installation (Ubuntu)
 _______________________________________
 

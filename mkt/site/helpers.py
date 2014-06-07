@@ -252,7 +252,6 @@ def mkt_admin_site_links():
             ('View request environment', reverse('amo.env')),
             ('View elasticsearch settings', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
-            ('Purge pages from zeus', reverse('zadmin.hera')),
             ('Generate error', reverse('zadmin.generate-error')),
             ('Site Status', reverse('amo.monitor')),
             ('Force Manifest Re-validation',

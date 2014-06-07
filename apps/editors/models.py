@@ -8,10 +8,10 @@ import commonware.log
 
 import amo
 import amo.models
-from access.models import Group
 from addons.models import Addon
 from amo.utils import cache_ns_key
-from devhub.models import ActivityLog
+from mkt.access.models import Group
+from mkt.developers.models import ActivityLog
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 

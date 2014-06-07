@@ -11,7 +11,6 @@ import amo
 from addons.models import AddonCategory, AddonUpsell, Category
 from amo.utils import no_translation
 from constants.payments import PROVIDER_BANGO
-from market.models import AddonPremium, Price
 
 import mkt
 from mkt.api.fields import (LargeTextField, SemiSerializerMethodField,
@@ -20,6 +19,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.webapps.models import AppFeatures, Webapp
+from mkt.prices.models import AddonPremium, Price
 
 class AppFeaturesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,6 +68,7 @@ class AppSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField(required=False)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
+    is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
@@ -112,7 +113,7 @@ class AppSerializer(serializers.ModelSerializer):
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'homepage',
-            'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'icons', 'id', 'is_offline', 'is_packaged', 'manifest_url', 'name',
             'payment_account', 'payment_required', 'premium_type', 'previews',
             'price', 'price_locale', 'privacy_policy', 'public_stats',
             'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
@@ -141,7 +142,7 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
-                     for icon_size in (16, 48, 64, 128)])
+                     for icon_size in (32, 48, 64, 128)])
 
     def get_payment_account(self, app):
 

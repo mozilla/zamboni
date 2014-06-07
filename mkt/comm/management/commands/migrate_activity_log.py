@@ -4,9 +4,8 @@ import commonware.log
 
 import amo
 from amo.utils import chunked
-from devhub.models import ActivityLog, AppLog
-
 from mkt.comm.tasks import _migrate_activity_log
+from mkt.developers.models import ActivityLog, AppLog
 
 
 log = commonware.log.getLogger('comm')

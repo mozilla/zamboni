@@ -29,7 +29,6 @@ from tower import ugettext as _
 import amo
 import amo.models
 import mkt
-from access.acl import action_allowed, check_reviewer
 from addons import query
 from addons.models import (Addon, AddonDeviceType, AddonUpsell,
                            attach_categories, attach_devices, attach_prices,
@@ -47,9 +46,10 @@ from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
-from market.models import AddonPremium
+from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps
 from mkt.developers.models import AddonPaymentAccount
+from mkt.prices.models import AddonPremium
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
@@ -464,14 +464,6 @@ class Webapp(Addon):
         """Checks for waffle."""
         return not waffle.switch_is_active('iarc') or self.is_rated()
 
-    def get_or_create_public_id(self):
-        """Returns the Solitude public_id if set otherwise creates one"""
-        if self.solitude_public_id is None:
-            self.solitude_public_id = str(uuid.uuid4())
-            self.save()
-
-        return self.solitude_public_id
-
     def all_payment_accounts(self):
         # TODO: cache this somehow. Using @cached_property was hard because
         # there's no easy way to invalidate something that should be
@@ -655,7 +647,7 @@ class Webapp(Addon):
                    action_allowed(request, 'Apps', 'Edit'))
 
         # Let app reviewers see it only when it's pending.
-        if check_reviewer(request, only='app') and self.is_pending():
+        if check_reviewer(request) and self.is_pending():
             can_see = True
 
         visible = False
@@ -897,7 +889,10 @@ class Webapp(Addon):
 
         version = self.current_version
         if not version:
-            data = {}
+            # There's no valid version so we return an empty mini-manifest.
+            # Note: We want to avoid caching this so when a version does become
+            # available it can get picked up correctly.
+            return '{}'
         else:
             file_obj = version.all_files[0]
             manifest = self.get_manifest_json(file_obj)
@@ -1532,7 +1527,6 @@ class WebappIndexer(MappingType, Indexable):
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string'},
-                    'average_daily_users': {'type': 'long'},
                     'banner_regions': {
                         'type': 'string',
                         'index': 'not_analyzed'
@@ -1714,10 +1708,9 @@ class WebappIndexer(MappingType, Indexable):
         installed_ids = list(Installed.objects.filter(addon=obj)
                              .values_list('id', flat=True))
 
-        attrs = ('app_slug', 'average_daily_users', 'bayesian_rating',
-                 'created', 'id', 'is_disabled', 'last_updated', 'modified',
-                 'premium_type', 'status', 'type', 'uses_flash',
-                 'weekly_downloads')
+        attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
+                 'last_updated', 'modified', 'premium_type', 'status', 'type',
+                 'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id

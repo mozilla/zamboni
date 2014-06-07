@@ -20,6 +20,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 import commonware.log
 import jinja2
 import requests
+from cache_nuggets.lib import Token
 from elasticutils import F
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView
@@ -27,9 +28,9 @@ from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
+
 import amo
-from abuse.models import AbuseReport
-from access import acl
+import mkt
 from addons.decorators import addon_view
 from addons.models import AddonDeviceType, Version
 from addons.signals import version_changed
@@ -39,26 +40,20 @@ from amo.helpers import absolutify, urlparams
 from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
-from cache_nuggets.lib import Token
-from devhub.models import ActivityLog, ActivityLogAttachment
 from editors.forms import MOTDForm
 from editors.models import (EditorSubscription, EscalationQueue, RereviewQueue,
                             ReviewerScore)
 from editors.views import reviewer_required
 from files.models import File
 from lib.crypto.packaged import SigningError
-from reviews.models import Review, ReviewFlag
-from tags.models import Tag
-from translations.query import order_by_translation
-from users.models import UserProfile
-from zadmin.models import set_config, unmemoized_get_config
-
-import mkt
+from mkt.abuse.models import AbuseReport
+from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
+from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import ApiReviewersSearchForm, ApproveRegionForm
@@ -71,7 +66,12 @@ from mkt.search.views import SearchView
 from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp, WebappIndexer
+from reviews.models import Review, ReviewFlag
+from translations.query import order_by_translation
+from users.models import UserProfile
+from zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
 from .models import AppCannedResponse
@@ -89,7 +89,7 @@ def route_reviewer(request):
     return http.HttpResponseRedirect(reverse('reviewers.home'))
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def home(request):
     durations = (('new', _('New Apps (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
@@ -414,7 +414,7 @@ def _review(request, addon, version):
 
 
 @transaction.commit_manually
-@reviewer_required(only='app')
+@reviewer_required
 @addon_view
 def app_review(request, addon):
     version = addon.latest_version
@@ -542,7 +542,7 @@ def _do_sort_queue_obj(request, qs, date_sort):
     return manual_order(qs, sorted_app_ids, 'addons.id')
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_apps(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
@@ -561,7 +561,7 @@ def queue_apps(request):
     return _queue(request, apps, 'pending', date_sort='nomination')
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_region(request, region=None):
     # TODO: Create a landing page that lists all the special regions.
     if region is None:
@@ -581,7 +581,7 @@ def queue_region(request, region=None):
                   data={'region': region})
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_rereview(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
@@ -605,7 +605,7 @@ def queue_escalated(request):
     return _queue(request, apps, 'escalated')
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_updates(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
@@ -625,7 +625,7 @@ def queue_updates(request):
     return _queue(request, apps, 'updates', date_sort='nomination')
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_device(request):
     """
     A device specific queue matching apps which require features that our
@@ -640,7 +640,7 @@ def queue_device(request):
     return _queue(request, apps, 'device')
 
 
-@reviewer_required(only='app')
+@reviewer_required
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
     rf = (Review.objects.no_cache()

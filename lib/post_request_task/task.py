@@ -68,5 +68,7 @@ task = partial(base_task, base=PostRequestTask)
 
 
 # Hook the signal handlers up.
-request_finished.connect(_send_tasks)
-got_request_exception.connect(_discard_tasks)
+request_finished.connect(_send_tasks,
+                         dispatch_uid='request_finished_tasks')
+got_request_exception.connect(_discard_tasks,
+                              dispatch_uid='request_exception_tasks')

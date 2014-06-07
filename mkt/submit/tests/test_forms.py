@@ -7,15 +7,15 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from devhub.models import AppLog
 from editors.models import RereviewQueue
 from files.models import FileUpload
-from users.models import UserProfile
-
+from mkt.comm.models import CommunicationNote
 from mkt.constants.features import APP_FEATURES
+from mkt.developers.models import AppLog
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
 from mkt.webapps.models import AppFeatures, Webapp
+from users.models import UserProfile
 
 
 class TestNewWebappForm(amo.tests.TestCase):
@@ -182,12 +182,32 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
             'description': '.',
             'privacy_policy': '.',
             'support_email': 'test@example.com',
+            'notes': '',
         }
         form = forms.AppDetailsBasicForm(data, request=self.request,
                                          instance=app)
         assert form.is_valid()
         form.save()
         eq_(app.app_slug, 'thisisaslug')
+
+    def test_comm_thread(self):
+        self.create_switch('comm-dashboard')
+        app = Webapp.objects.get(pk=337141)
+        note_body = 'please approve this app'
+        data = {
+            'app_slug': 'thisIsAslug',
+            'description': '.',
+            'privacy_policy': '.',
+            'support_email': 'test@example.com',
+            'notes': note_body,
+        }
+        form = forms.AppDetailsBasicForm(data, request=self.request,
+                                         instance=app)
+        assert form.is_valid()
+        form.save()
+        notes = CommunicationNote.objects.all()
+        eq_(notes.count(), 1)
+        eq_(notes[0].body, note_body)
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):

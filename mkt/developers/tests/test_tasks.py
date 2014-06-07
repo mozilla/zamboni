@@ -298,6 +298,8 @@ class TestFetchManifest(amo.tests.TestCase):
 
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         assert validator_mock.called
+        assert self.requests_mock.called
+        eq_(self.requests_mock.call_args[1]['headers'], tasks.REQUESTS_HEADERS)
 
     def check_validation(self, msg=''):
         upload = self.get_upload()

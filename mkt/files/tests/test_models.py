@@ -25,8 +25,6 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
-    fixtures = ['applications/all_apps.json', 'base/appversion']
-
     def setUp(self):
         self._rename = path.path.rename
         path.path.rename = path.path.copy
@@ -111,11 +109,10 @@ class TestFileUpload(UploadTest):
 
 
 class TestFileFromUpload(UploadTest):
-    fixtures = ['base/apps']
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        self.platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
+        self.platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
         self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
                                           name='app name')
         self.version = Version.objects.create(addon=self.addon)
@@ -276,7 +273,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_generate_webapp_fn_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.compatible_apps = (amo.FIREFOX,)
         f.version.addon = Addon(app_slug=u' フォクすけ  といっしょ',
                                 type=amo.ADDON_WEBAPP)
         eq_(f.generate_filename(), 'app-0.1.7.webapp')
@@ -284,7 +280,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_generate_webapp_fn_partial_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.compatible_apps = (amo.FIREFOX,)
         f.version.addon = Addon(app_slug=u'myapp フォクすけ  といっしょ',
                                 type=amo.ADDON_WEBAPP)
         eq_(f.generate_filename(), 'myapp-0.1.7.webapp')

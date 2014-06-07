@@ -23,10 +23,8 @@
     <h1>{{ title }}</h1>
   </header>
 
-  {{ disabled_payments_notice() }}
   <section class="primary manage" role="main">
-    <div id="in-app-products" class="devhub-form island">
-      <div id="in-app-products-data"></div>
+    <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', app_slug=addon.app_slug) }}" data-detail-url-format="{{ url('in-app-products-detail', app_slug=addon.app_slug, pk="{id}") }}">
       <table>
         <thead>
           <tr>

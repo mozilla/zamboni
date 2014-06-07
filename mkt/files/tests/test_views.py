@@ -75,24 +75,7 @@ class FilesBase(object):
         self.client.logout()
         self.check_urls(403)
 
-    def test_view_access_anon_view_unreviewed_source(self):
-        self.app.update(view_source=True)
-        self.file_viewer.extract()
-        self.client.logout()
-        self.check_urls(403)
-
-    def test_view_access_anon_view_source(self):
-        self.app.update(view_source=True, status=amo.STATUS_PUBLIC)
-        self.file_viewer.extract()
-        self.client.logout()
-        self.check_urls(200)
-
     def test_view_access_editor(self):
-        self.file_viewer.extract()
-        self.check_urls(200)
-
-    def test_view_access_editor_view_source(self):
-        self.app.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)
 
@@ -102,40 +85,12 @@ class FilesBase(object):
         self.file_viewer.extract()
         self.check_urls(200)
 
-    def test_view_access_reviewed(self):
-        self.app.update(view_source=True)
-        self.file_viewer.extract()
-        self.client.logout()
-
-        for status in amo.UNREVIEWED_STATUSES:
-            self.app.update(status=status)
-            self.check_urls(403)
-
-        for status in amo.REVIEWED_STATUSES:
-            self.app.update(status=status)
-            self.check_urls(200)
-
-    def test_view_access_developer_view_source(self):
-        self.client.logout()
-        assert self.client.login(username=self.dev.email, password='password')
-        self.app.update(view_source=True)
-        self.file_viewer.extract()
-        self.check_urls(200)
-
     def test_view_access_another_developer(self):
         self.client.logout()
         assert self.client.login(username=self.regular.email,
                                  password='password')
         self.file_viewer.extract()
         self.check_urls(403)
-
-    def test_view_access_another_developer_view_source(self):
-        self.client.logout()
-        assert self.client.login(username=self.regular.email,
-                                 password='password')
-        self.app.update(view_source=True, status=amo.STATUS_PUBLIC)
-        self.file_viewer.extract()
-        self.check_urls(200)
 
     def test_poll_extracted(self):
         self.file_viewer.extract()
@@ -184,15 +139,6 @@ class FilesBase(object):
         url = res.context['file_link']['url']
         eq_(url, reverse('reviewers.apps.review', args=[self.app.app_slug]))
 
-    def test_file_header_anon(self):
-        self.client.logout()
-        self.file_viewer.extract()
-        self.app.update(view_source=True, status=amo.STATUS_PUBLIC)
-        res = self.client.get(self.file_url(not_binary))
-        eq_(res.status_code, 200)
-        url = res.context['file_link']['url']
-        eq_(url, reverse('detail', args=[self.app.pk]))
-
     def test_content_no_file(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())
@@ -227,15 +173,6 @@ class FilesBase(object):
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
         eq_(doc('#commands td:last').text(), 'Back to review')
-
-    def test_files_back_link_anon(self):
-        self.file_viewer.extract()
-        self.client.logout()
-        self.app.update(view_source=True, status=amo.STATUS_PUBLIC)
-        res = self.client.get(self.file_url(not_binary))
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('#commands td:last').text(), 'Back to app')
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id

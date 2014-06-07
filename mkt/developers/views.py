@@ -29,40 +29,38 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-from access import acl
-from addons import forms as addon_forms
 from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
+from addons.models import AddonUser
 from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required, skip_cache, write)
 from amo.utils import escape_all
-from devhub.models import AppLog
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from lib.iarc.utils import get_iarc_app_title
+from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.models import Access, generate
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.developers.decorators import dev_required
-from mkt.developers.forms import (APIConsumerForm, AppFormBasic,
-                                  AppFormDetails, AppFormMedia, AppFormSupport,
+from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
+                                  AppFormMedia, AppFormSupport,
                                   AppFormTechnical, AppVersionForm,
                                   CategoryForm, ContentRatingForm,
                                   IARCGetAppInfoForm, NewPackagedAppForm,
                                   PreloadTestPlanForm, PreviewFormSet,
                                   TransactionFilterForm, trap_duplicate)
-from mkt.developers.models import PreloadTestPlan
+from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.developers.utils import check_upload, handle_vip
+from mkt.purchase.models import Contribution
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
-from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import Contribution
+from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 from users.models import UserProfile
 from users.views import _login
 from versions.models import Version
@@ -76,30 +74,18 @@ log = commonware.log.getLogger('z.devhub')
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 
-class AddonFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
-
-
 class AppFilter(BaseFilter):
+    # order_by_translation(self.model.objects.all(), 'name')
     opts = (('name', _lazy(u'Name')),
             ('created', _lazy(u'Created')))
 
 
-def addon_listing(request, default='name', webapp=False):
+def addon_listing(request, default='name'):
     """Set up the queryset and filtering for addon listing for Dashboard."""
-    Filter = AppFilter if webapp else AddonFilter
+    Filter = AppFilter
     addons = UserProfile.objects.get(pk=request.user.id).addons
-    if webapp:
-        qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
-        model = Webapp
-    else:
-        qs = addons.exclude(type=amo.ADDON_WEBAPP)
-        model = Addon
-    filter = Filter(request, qs, 'sort', default, model=model)
+    qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
+    filter = Filter(request, qs, 'sort', default, model=Webapp)
     return filter.qs, filter
 
 
@@ -119,20 +105,19 @@ def index(request):
 
 
 @login_required
-def dashboard(request, webapp=False):
-    addons, filter = addon_listing(request, webapp=webapp)
+def dashboard(request):
+    addons, filter = addon_listing(request)
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
-                sort_opts=filter.opts, webapp=webapp)
+                sort_opts=filter.opts)
     return render(request, 'developers/apps/dashboard.html', data)
 
 
-@dev_required(webapp=True, staff=True)
-def edit(request, addon_id, addon, webapp=False):
+@dev_required(staff=True)
+def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
-        'webapp': webapp,
         'valid_slug': addon.app_slug,
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
@@ -148,9 +133,9 @@ def edit(request, addon_id, addon, webapp=False):
     return render(request, 'developers/apps/edit.html', data)
 
 
-@dev_required(owner_for_post=True, webapp=True)
+@dev_required(owner_for_post=True)
 @post_required
-def delete(request, addon_id, addon, webapp=False):
+def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         msg = _('Paid apps cannot be deleted. Disable this app instead.')
@@ -210,8 +195,8 @@ def publicise(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(webapp=True)
-def status(request, addon_id, addon, webapp=False):
+@dev_required
+def status(request, addon_id, addon):
     form = forms.AppAppealForm(request.POST, product=addon)
     upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
                                        addon=addon, request=request)
@@ -271,8 +256,7 @@ def status(request, addon_id, addon, webapp=False):
 
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
 
-    ctx = {'addon': addon, 'webapp': webapp, 'form': form,
-           'upload_form': upload_form}
+    ctx = {'addon': addon, 'form': form, 'upload_form': upload_form}
 
     # Used in the delete version modal.
     if addon.is_packaged:
@@ -410,8 +394,8 @@ def preload_home(request, addon_id, addon):
 
 
 @waffle_switch('preload-apps')
-@dev_required(owner_for_post=True, webapp=True)
-def preload_submit(request, addon_id, addon, webapp):
+@dev_required(owner_for_post=True)
+def preload_submit(request, addon_id, addon):
     if request.method == 'POST':
         form = PreloadTestPlanForm(request.POST, request.FILES)
         if form.is_valid():
@@ -528,8 +512,8 @@ def version_delete(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required(owner_for_post=True, webapp=True)
-def ownership(request, addon_id, addon, webapp=False):
+@dev_required(owner_for_post=True)
+def ownership(request, addon_id, addon):
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
@@ -566,7 +550,7 @@ def ownership(request, addon_id, addon, webapp=False):
         messages.success(request, _('Changes successfully saved.'))
         return redirect(redirect_url)
 
-    ctx = dict(addon=addon, webapp=webapp, user_form=user_form)
+    ctx = dict(addon=addon, user_form=user_form)
     return render(request, 'developers/apps/owner.html', ctx)
 
 
@@ -617,7 +601,7 @@ def upload_for_addon(request, addon_id, addon):
 
 
 @dev_required
-def refresh_manifest(request, addon_id, addon, webapp=False):
+def refresh_manifest(request, addon_id, addon):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
     _update_manifest(addon_id, True, {})
     return http.HttpResponse(status=204)
@@ -785,10 +769,9 @@ def upload_detail(request, uuid, format='html'):
                        timestamp=upload.created))
 
 
-@dev_required(webapp=True, staff=True)
-def addons_section(request, addon_id, addon, section, editable=False,
-                   webapp=False):
-    basic = AppFormBasic if webapp else addon_forms.AddonFormBasic
+@dev_required(staff=True)
+def addons_section(request, addon_id, addon, section, editable=False):
+    basic = AppFormBasic
     models = {'basic': basic,
               'media': AppFormMedia,
               'details': AppFormDetails,
@@ -865,6 +848,11 @@ def addons_section(request, addon_id, addon, section, editable=False,
                     appfeatures_form.save()
 
                 if version_form:
+                    # We are re-using version_form without displaying all its
+                    # fields, so we need to override the boolean fields,
+                    # otherwise they'd be considered empty and therefore False.
+                    version_form.cleaned_data['publish_immediately'] = (
+                        version_form.fields['publish_immediately'].initial)
                     version_form.save()
 
                 if 'manifest_url' in form.changed_data:
@@ -889,7 +877,6 @@ def addons_section(request, addon_id, addon, section, editable=False,
         form = False
 
     data = {'addon': addon,
-            'webapp': webapp,
             'version': version,
             'form': form,
             'editable': editable,
@@ -917,12 +904,8 @@ def image_status(request, addon_id, addon, icon_size=64):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
         icons = True
-    # Persona icon is handled differently.
-    elif addon.type == amo.ADDON_PERSONA:
-        icons = True
     else:
-        icons = os.path.exists(os.path.join(addon.get_icon_dir(),
-                                            '%s-%s.png' %
+        icons = os.path.exists(os.path.join(addon.get_icon_dir(), '%s-%s.png' %
                                             (addon.id, icon_size)))
     previews = all(os.path.exists(p.thumbnail_path)
                    for p in addon.get_previews())
@@ -1064,7 +1047,7 @@ def transactions(request):
 
 
 def _get_transactions(request):
-    apps = addon_listing(request, webapp=True)[0]
+    apps = addon_listing(request)[0]
     transactions = Contribution.objects.filter(addon__in=list(apps),
                                                type__in=amo.CONTRIB_TYPES)
 
@@ -1099,21 +1082,33 @@ def debug(request, addon):
     if not settings.DEBUG:
         raise http.Http404
 
-    data = {
+    context = {
+        'app': addon,
+        'inapps': [],
         'urls': {'es': '%s/apps/webapp/%s' % (settings.ES_URLS[0], addon.pk)},
-        'pay_request': ''
     }
+
     if addon.is_premium():
-        data['pay_request'] = get_product_jwt(
+        contribution = Contribution.objects.create(addon=addon)
+        context['app_jwt'] = get_product_jwt(
             WebAppProduct(addon),
-            user=request.amo_user,
-            region=request.REGION,
-            source=request.REQUEST.get('src', ''),
-            lang=request.LANG
+            contribution,
         )['webpayJWT']
 
-    return render(request, 'developers/debug.html',
-                  {'app': addon, 'data': data})
+        for inapp in addon.inappproduct_set.all():
+            contribution = Contribution.objects.create(
+                addon=addon,
+                inapp_product=inapp,
+            )
+            context['inapps'].append({
+                'inapp': inapp,
+                'jwt': get_product_jwt(
+                    InAppProduct(inapp),
+                    contribution,
+                )['webpayJWT'],
+            })
+
+    return render(request, 'developers/debug.html', context)
 
 
 class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):

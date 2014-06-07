@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
 
-    <title>{% block title %}{{ loc('Apps Developer Preview') if settings.APP_PREVIEW else loc('Mozilla Apps') }}{% endblock %}</title>
+    <title>{% block title %}{{ loc('Apps Developer Preview') }}{% endblock %}</title>
 
     {% block rss_feed %}{% endblock %}
 
@@ -16,13 +16,8 @@
 
     {% block extrahead %}{% endblock %}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-min-beta-version="{{ settings.MIN_BETA_VERSION }}"
+  <body class="html-{{ DIR }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
-        data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
@@ -58,10 +53,7 @@
       </section>
     </div>
     <footer id="footer">
-      {% if not settings.APP_PREVIEW %}
-        {# TODO(apps): When Marketplace is localized, show language switcher. #}
-        {% include "includes/lang_switcher.html" %}
-      {% endif %}
+      {% include "includes/lang_switcher.html" %}
       {% block footer %}
         <a class="desktop-link" href="#">{{ _('View full site') }}</a>
         <p id="footer-links">
@@ -75,13 +67,9 @@
     {# js #}
     {% block site_js %}
       <script src="{{ static(url('jsi18n')) }}"></script>
-      {% if settings.APP_PREVIEW %}
-        <script src="https://myapps.mozillalabs.com/jsapi/include.js"></script>
-      {% endif %}
       <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {{ js('zamboni/mobile') }}
     {% endblock %}
     {% block js %}{% endblock %}
-    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
   </body>
 </html>

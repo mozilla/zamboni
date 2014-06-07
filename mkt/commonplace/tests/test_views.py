@@ -25,6 +25,11 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
 
+    def test_transonic(self):
+        res = self.client.get('/curate/')
+        self.assertTemplateUsed(res, 'commonplace/index.html')
+        self.assertEquals(res.context['repo'], 'transonic')
+
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
         # Temporarily enabling include.js shim (bug 992334).
         raise SkipTest

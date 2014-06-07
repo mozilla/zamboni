@@ -2,9 +2,9 @@ import functools
 
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
-from amo.decorators import login_required
-from access import acl
 from addons.decorators import addon_view
+from amo.decorators import login_required
+from mkt.access import acl
 
 
 def dev_required(owner_for_post=False, allow_editors=False, support=False,
@@ -22,8 +22,6 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
             from mkt.submit.views import _resume
-            if webapp:
-                kw['webapp'] = addon.is_webapp()
             fun = lambda: f(request, addon_id=addon.id, addon=addon,
                             *args, **kw)
 
@@ -73,10 +71,3 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
         return decorator(f)
     else:
         return decorator
-
-
-# Mark a view as a web app
-def use_apps(f):
-    def wrapper(request, *args, **kwargs):
-        return f(request, *args, webapp=True, **kwargs)
-    return wrapper

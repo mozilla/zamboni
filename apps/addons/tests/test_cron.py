@@ -4,7 +4,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons import cron
-from addons.models import Addon, AppSupport
+from addons.models import Addon
 from files.models import File, Platform
 from versions.models import Version
 
@@ -28,8 +28,7 @@ class CurrentVersionTestCase(amo.tests.TestCase):
 
 
 class TestLastUpdated(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed', 'base/apps',
-                'base/seamonkey', 'base/thunderbird']
+    fixtures = ['base/addon_3615', 'addons/listed']
 
     def test_catchall(self):
         """Make sure the catch-all last_updated is stable and accurate."""
@@ -68,30 +67,6 @@ class TestLastUpdated(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         eq_(addon.last_updated, addon.created)
         assert addon.last_updated
-
-    def test_appsupport(self):
-        ids = Addon.objects.values_list('id', flat=True)
-        cron._update_appsupport(ids)
-        eq_(AppSupport.objects.filter(app=amo.FIREFOX.id).count(), 4)
-
-        # Run it again to test deletes.
-        cron._update_appsupport(ids)
-        eq_(AppSupport.objects.filter(app=amo.FIREFOX.id).count(), 4)
-
-    def test_appsupport_listed(self):
-        AppSupport.objects.all().delete()
-        eq_(AppSupport.objects.filter(addon=3723).count(), 0)
-        cron.update_addon_appsupport()
-        eq_(AppSupport.objects.filter(addon=3723,
-                                      app=amo.FIREFOX.id).count(), 0)
-
-    def test_appsupport_seamonkey(self):
-        addon = Addon.objects.get(pk=15663)
-        addon.update(status=amo.STATUS_PUBLIC)
-        AppSupport.objects.all().delete()
-        cron.update_addon_appsupport()
-        eq_(AppSupport.objects.filter(addon=15663,
-                                      app=amo.SEAMONKEY.id).count(), 1)
 
 
 class TestHideDisabledFiles(amo.tests.TestCase):

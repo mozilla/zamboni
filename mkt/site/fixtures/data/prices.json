@@ -1,7 +1,7 @@
 [
   {
     "pk": 1,
-    "model": "market.price",
+    "model": "prices.price",
     "fields": {
       "active": true,
       "price": "0.99",
@@ -12,7 +12,7 @@
   },
   {
     "pk": 2,
-    "model": "market.price",
+    "model": "prices.price",
     "fields": {
       "active": false,
       "price": "1.99",
@@ -23,7 +23,7 @@
   },
   {
     "pk": 3,
-    "model": "market.price",
+    "model": "prices.price",
     "fields": {
       "active": true,
       "price": "2.99",
@@ -34,7 +34,7 @@
   },
   {
     "pk": 4,
-    "model": "market.price",
+    "model": "prices.price",
     "fields": {
       "active": true,
       "price": "0.00",
@@ -45,7 +45,7 @@
   },
   {
     "pk": 1,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "PLN",
       "tier": 1,
@@ -58,7 +58,7 @@
   },
   {
     "pk": 2,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "DE",
       "tier": 1,
@@ -71,7 +71,7 @@
   },
   {
     "pk": 3,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "BRL",
       "tier": 2,
@@ -83,7 +83,7 @@
   },
   {
     "pk": 4,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "USD",
       "tier": 2,
@@ -96,7 +96,7 @@
   },
   {
     "pk": 5,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "USD",
       "tier": 1,
@@ -109,7 +109,7 @@
   },
   {
     "pk": 6,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "USD",
       "tier": 3,
@@ -122,7 +122,7 @@
   },
   {
     "pk": 7,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "USD",
       "tier": 4,
@@ -135,7 +135,7 @@
   },
   {
     "pk": 8,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "GBP",
       "tier": 4,
@@ -148,7 +148,7 @@
   },
   {
     "pk": 9,
-    "model": "market.pricecurrency",
+    "model": "prices.pricecurrency",
     "fields": {
       "currency": "EUR",
       "tier": 4,

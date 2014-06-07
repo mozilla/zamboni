@@ -10,9 +10,8 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
 import amo
-from access import acl
 from files.models import File
-
+from mkt.access import acl
 from mkt.files.helpers import DiffHelper, FileViewer
 
 
@@ -27,7 +26,7 @@ def allowed(request, file):
         except ObjectDoesNotExist:
             raise http.Http404
 
-        if addon.view_source and addon.status in amo.REVIEWED_STATUSES:
+        if addon.status in amo.REVIEWED_STATUSES:
             allowed = True
         else:
             allowed = acl.check_addon_ownership(request, addon, viewer=True,

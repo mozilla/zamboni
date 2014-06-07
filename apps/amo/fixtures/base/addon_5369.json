@@ -15,48 +15,26 @@
         "pk": 5369,
         "model": "addons.addon",
         "fields": {
-            "dev_agreement": true,
-            "eula": null,
             "_current_version": 98198,
             "last_updated": "2010-03-03 16:15:03",
-            "view_source": false,
-            "enable_thankyou": false,
             "total_downloads": 1861589,
             "disabled_by_user": false,
-            "average_daily_downloads": 1798,
             "guid": "yslow@yahoo-inc.com",
-            "trusted": false,
-            "locale_disambiguation": null,
-            "the_future": null,
             "weekly_downloads": 12628,
-            "paypal_id": "",
             "average_rating": "3.48",
-            "wants_contributions": false,
-            "average_daily_users": 181569,
             "bayesian_rating": 3.5951499999999998,
-            "share_count": 6,
             "support_email": null,
             "public_stats": false,
             "status": 4,
             "privacy_policy": null,
-            "total_contributions": "0.00",
             "default_locale": "en-US",
-            "target_locale": null,
-            "prerelease": false,
-            "thankyou_note": null,
-            "admin_review": false,
-            "external_software": false,
             "highest_status": 4,
             "name": 60895,
             "created": "2007-07-19 21:48:15",
             "type": 1,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2010-05-28 09:01:58",
-            "suggested_amount": null,
-            "site_specific": false,
-            "total_reviews": 80,
-            "the_reason": null
+            "total_reviews": 80
         }
     },
     {
@@ -125,28 +103,6 @@
         }
     },
     {
-        "pk": 291,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "3.6.*",
-            "created": "2010-01-02 12:34:56",
-            "version_int": 3069900200100,
-            "modified": "2010-01-02 12:34:56"
-        }
-    },
-    {
-        "pk": 233,
-        "model": "applications.appversion",
-        "fields": {
-            "application": 1,
-            "version": "3.0",
-            "created": "2010-01-02 12:34:56",
-            "version_int": 3000000200100,
-            "modified": "2010-01-02 12:34:56"
-        }
-    },
-    {
         "pk": 4432,
         "model": "addons.addonuser",
         "fields": {
@@ -155,26 +111,6 @@
             "role": 5,
             "listed": true,
             "user": 55021
-        }
-    },
-    {
-        "pk": 70199,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "version": 98198,
-            "min": 233,
-            "max": 291
-        }
-    },
-    {
-        "pk": 1211,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 5369,
-            "modified": "2010-10-04 13:05:21",
-            "created": "2010-10-04 13:05:21"
         }
     }
 ]

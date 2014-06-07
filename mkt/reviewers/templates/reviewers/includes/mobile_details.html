@@ -24,7 +24,7 @@
       <li class="expandable c">
         <div class="expandcontent short">
           {% if product.description %}
-            <p{{ product.description|locale_html }}>{{ product.description|nl2br }}</p>
+            <pre{{ product.description|locale_html }}>{{ product.description|escape }}</pre>
           {% endif %}
         </div>
         <a href="#" class="showmore">{{ _('more...') }}</a>
@@ -107,10 +107,6 @@
           {% endif %}
           <dt>{{ _('Developer Name') }}</dt>
           <dd>{{ version.developer_name }}</dd>
-          {% if product.compatible_apps[APP] %}
-            <dt>{{ _('Works with') }}</dt>
-            <dd>{{ product.compatible_apps[APP] }}</dd>
-          {% endif %}
           {% if product.total_reviews %}
             <dt>{{ _('Rating') }}</dt>
             <dd>{{ impala_reviews_link(product) }}</dd>
@@ -173,17 +169,3 @@
   </ul>
 
 </div>
-
-{% if reviews is defined %}
-  {{ review_list_box(addon=product, reviews=reviews) }}
-{% endif %}
-
-{% if review_form %}
-  {% if request.user.is_authenticated() %}
-    {{ review_add_box(addon=product) }}
-  {% endif %}
-{% endif %}
-
-{% if abuse_form %}
-  {{ addon_report_abuse(hide=True, addon=product) }}
-{% endif %}

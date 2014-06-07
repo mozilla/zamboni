@@ -10,10 +10,10 @@ import amo.tests
 
 from addons.models import Addon, AddonUser
 from constants.payments import CONTRIB_NO_CHARGE
-from devhub.models import AppLog
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
-from mkt.receipts.tests.test_verify import sample
+from mkt.developers.models import AppLog
+from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
@@ -199,6 +199,7 @@ class TestReissue(amo.tests.TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
+        self.user = UserProfile.objects.get(pk=2519)
         self.addon = Addon.objects.get(pk=337141)
         self.url = reverse('receipt.reissue')
         self.data = json.dumps({'app': self.addon.pk})
@@ -224,8 +225,9 @@ class TestReissue(amo.tests.TestCase):
         ok_(data['status'], 'valid')
 
     def test_expired(self):
+        receipt = create_receipt(self.addon, self.user, 'some-uuid')
         self.verify.return_value = {'status': 'expired'}
-        res = self.client.post(self.url, data=sample,
+        res = self.client.post(self.url, data=receipt,
                                content_type='text/plain')
         eq_(res.status_code, 200)
         data = json.loads(res.content)

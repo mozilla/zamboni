@@ -2,10 +2,10 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework import routers
 
+from mkt.prices.views import PricesViewSet
 from mkt.webpay.views import (FailureNotificationView,
                               PreparePayWebAppView, PreparePayInAppView,
-                              PricesViewSet, ProductIconViewSet,
-                              sig_check, StatusPayView)
+                              ProductIconViewSet, sig_check, StatusPayView)
 
 
 api = routers.SimpleRouter()

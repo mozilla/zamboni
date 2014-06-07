@@ -1,5 +1,4 @@
 import csv
-from urlparse import urlparse
 
 from django import http
 from django.conf import settings
@@ -14,8 +13,6 @@ from django.views.decorators.cache import never_cache
 
 import commonware.log
 import jinja2
-from hera.contrib.django_forms import FlushForm
-from hera.contrib.django_utils import flush_urls, get_hera
 
 import amo
 from addons.decorators import addon_view
@@ -25,9 +22,9 @@ from amo.decorators import any_permission_required, json_view, post_required
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked
-from devhub.models import ActivityLog
 from files.models import File
-from market.utils import update_from_csv
+from mkt.developers.models import ActivityLog
+from mkt.prices.utils import update_from_csv
 from users.models import UserProfile
 from zadmin.forms import GenerateErrorForm, PriceTiersForm
 
@@ -40,52 +37,11 @@ from .models import EmailPreviewTopic
 log = commonware.log.getLogger('z.zadmin')
 
 
-@admin.site.admin_view
-def hera(request):
-    form = FlushForm(initial={'flushprefix': settings.SITE_URL})
-
-    boxes = []
-    configured = False  # Default to not showing the form.
-    for i in settings.HERA:
-        hera = get_hera(i)
-        r = {'location': urlparse(i['LOCATION'])[1], 'stats': False}
-        if hera:
-            r['stats'] = hera.getGlobalCacheInfo()
-            configured = True
-        boxes.append(r)
-
-    if not configured:
-        messages.error(request, "Hera is not (or mis-)configured.")
-        form = None
-
-    if request.method == 'POST' and hera:
-        form = FlushForm(request.POST)
-        if form.is_valid():
-            expressions = request.POST['flushlist'].splitlines()
-
-            for url in expressions:
-                num = flush_urls([url], request.POST['flushprefix'], True)
-                msg = ("Flushed %d objects from front end cache for: %s"
-                       % (len(num), url))
-                log.info("[Hera] (user:%s) %s" % (request.user, msg))
-                messages.success(request, msg)
-
-    return render(request, 'zadmin/hera.html', {'form': form, 'boxes': boxes})
-
-
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
-    # sigh
-    settings_dict['HERA'] = []
-    for i in settings.HERA:
-        settings_dict['HERA'].append(debug.cleanse_setting('HERA', i))
-
-    # Retain this so that legacy PAYPAL_CGI_AUTH variables in settings_local
-    # are not exposed.
-    for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH',
-              'GOOGLE_ANALYTICS_CREDENTIALS']:
+    for i in ['GOOGLE_ANALYTICS_CREDENTIALS']:
         settings_dict[i] = debug.cleanse_setting(i,
                                                  getattr(settings, i, {}))
 
@@ -157,11 +113,8 @@ def email_devs(request):
         else:
             qs = qs.filter(addon__status__in=amo.LISTED_STATUSES)
 
-        if data['recipients'] == 'eula':
-            qs = qs.exclude(addon__eula=None)
-        elif data['recipients'] in ('payments',
-                                    'payments_region_enabled',
-                                    'payments_region_disabled'):
+        if data['recipients'] in ('payments', 'payments_region_enabled',
+                                  'payments_region_disabled'):
             qs = qs.filter(addon__type=amo.ADDON_WEBAPP)
             qs = qs.exclude(addon__premium_type__in=(amo.ADDON_FREE,
                                                      amo.ADDON_OTHER_INAPP))
@@ -259,11 +212,6 @@ def addon_manage(request, addon):
         if 'highest_status' in form.changed_data:
             log.info('Addon "%s" highest status changed to: %s' % (
                 addon.slug, form.cleaned_data['highest_status']))
-            form.save()
-
-        if 'outstanding' in form.changed_data:
-            log.info('Addon "%s" changed to%s outstanding' % (addon.slug,
-                     '' if form.cleaned_data['outstanding'] else ' not'))
             form.save()
 
         for form in formset:

@@ -21,24 +21,23 @@ import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.utils import paginate
-from apps.access import acl
-from devhub.models import ActivityLog
 from lib.pay_server import client
-from market.models import AddonPaymentData, Refund
+from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
-from mkt.developers.models import AddonPaymentAccount
+from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
                               TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
+from mkt.prices.models import AddonPaymentData, Refund
+from mkt.purchase.models import Contribution
 from mkt.site import messages
 from mkt.webapps.models import Webapp, WebappIndexer
-from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -71,8 +70,6 @@ def user_summary(request, user_id):
     user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
                               .order_by('-created'))
     user_addons = paginate(request, user_addons, per_page=15)
-    paypal_ids = set(user.addons.exclude(paypal_id='')
-                                .values_list('paypal_id', flat=True))
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
                     .values(*AddonPaymentData.address_fields())
@@ -91,7 +88,6 @@ def user_summary(request, user_id):
                    'delete_form': DeleteUserForm(), 'delete_log': delete_log,
                    'is_admin': is_admin, 'refund_summary': refund_summary,
                    'user_addons': user_addons, 'payment_data': payment_data,
-                   'paypal_ids': paypal_ids,
                    'provider_portals': provider_portals})
 
 

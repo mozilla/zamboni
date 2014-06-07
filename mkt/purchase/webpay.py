@@ -1,5 +1,6 @@
 import sys
 import urlparse
+import uuid
 from decimal import Decimal
 
 from django import http
@@ -13,10 +14,10 @@ from amo.decorators import json_view, login_required, post_required, write
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
 from mkt.api.exceptions import AlreadyPurchased
+from mkt.purchase.models import Contribution
 from mkt.purchase.decorators import can_be_purchased
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
-from stats.models import Contribution
 
 from . import tasks
 
@@ -38,13 +39,24 @@ def prepare_pay(request, addon):
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
 
-    return get_product_jwt(
-        WebAppProduct(addon),
-        user=request.amo_user,
-        region=request.REGION,
+    log.debug('Starting purchase of app: {0} by user: {1}'.format(
+        addon.pk, request.amo_user))
+
+    contribution = Contribution.objects.create(
+        addon_id=addon.pk,
+        amount=addon.get_price(region=request.REGION.id),
+        paykey=None,
+        price_tier=addon.premium.price,
         source=request.REQUEST.get('src', ''),
-        lang=request.LANG
+        source_locale=request.LANG,
+        type=amo.CONTRIB_PENDING,
+        user=request.amo_user,
+        uuid=str(uuid.uuid4()),
     )
+
+    log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+
+    return get_product_jwt(WebAppProduct(addon), contribution)
 
 
 @login_required
@@ -123,7 +135,11 @@ def postback(request):
                    amount=Decimal(data['response']['price']['amount']),
                    currency=data['response']['price']['currency'])
 
-    tasks.send_purchase_receipt.delay(contrib.pk)
+    if contrib.user:
+        tasks.send_purchase_receipt.delay(contrib.pk)
+    else:
+        log.info('No user for contribution {c}; not sending receipt'
+                 .format(c=contrib))
     return http.HttpResponse(trans_id)
 
 

@@ -6,7 +6,6 @@ from nose.tools import eq_
 from rest_framework import status
 
 import amo.tests
-from market.models import Price
 from users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuthClient
@@ -14,6 +13,7 @@ from mkt.api.models import Access, generate
 from mkt.inapp.models import InAppProduct
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
+from mkt.prices.models import Price
 
 
 class BaseInAppProductViewSetTests(amo.tests.TestCase):

@@ -12,70 +12,31 @@
     },
     {
         "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 18,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{zzz}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 1,
         "model": "addons.addon",
         "fields": {
             "slug": "24007",
             "_current_version": 24007,
-            "dev_agreement": 1,
-            "eula": null,
             "public_stats": 0,
             "modified": "2010-01-06 18:16:38",
             "weekly_downloads": 112297,
-            "share_count": 16,
-            "admin_review": 0,
-            "average_daily_downloads": 19684,
             "support_email": null,
-            "trusted": 1,
             "average_rating": "3.98",
-            "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
-            "view_source": 0,
-            "external_software": 0,
-            "average_daily_users": 1343482,
             "total_downloads": 17046775,
             "icon_type": "image/png",
             "homepage": null,
             "status": 4,
             "description": null,
-            "target_locale": "",
-            "site_specific": 0,
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
-            "prerelease": 0,
             "guid": "piclens@cooliris.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
-            "developer_comments": null,
-            "summary": null,
             "disabled_by_user": 0,
             "type": 1,
             "highest_status": 4,
-            "default_locale": "en-US",
-            "the_reason": null
+            "default_locale": "en-US"
         }
     },
     {
@@ -84,48 +45,27 @@
         "fields": {
             "slug": "2",
             "_current_version": 2,
-            "dev_agreement": 1,
-            "eula": null,
             "public_stats": 0,
             "modified": "2010-01-06 18:16:38",
             "weekly_downloads": 112297,
-            "share_count": 16,
-            "admin_review": 0,
-            "average_daily_downloads": 19684,
             "support_email": null,
-            "trusted": 1,
             "average_rating": "3.98",
-            "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
-            "view_source": 0,
-            "external_software": 0,
-            "average_daily_users": 1343482,
             "total_downloads": 17046775,
             "icon_type": "image/png",
             "homepage": null,
             "status": 4,
             "description": null,
-            "target_locale": "",
-            "site_specific": 0,
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
-            "prerelease": 0,
             "guid": "fake@cooliris.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
-            "developer_comments": null,
-            "summary": null,
             "disabled_by_user": 0,
             "type": 1,
             "highest_status": 4,
-            "default_locale": "en-US",
-            "the_reason": null
+            "default_locale": "en-US"
         }
     },
     {
@@ -133,85 +73,27 @@
         "model": "addons.addon",
         "fields": {
             "slug": "3",
-            "dev_agreement": 1,
-            "eula": null,
             "public_stats": 0,
             "modified": "2010-01-06 18:16:38",
             "weekly_downloads": 112297,
-            "share_count": 16,
-            "admin_review": 0,
-            "average_daily_downloads": 19684,
             "support_email": null,
-            "trusted": 1,
             "average_rating": "3.98",
-            "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
-            "view_source": 0,
-            "external_software": 0,
-            "average_daily_users": 1343482,
             "total_downloads": 17046775,
             "icon_type": "image/png",
             "homepage": null,
             "status": 1,
             "description": null,
-            "target_locale": "",
-            "site_specific": 0,
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
-            "prerelease": 0,
             "guid": "something@mozilla.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
-            "developer_comments": null,
-            "summary": null,
             "disabled_by_user": 0,
             "type": 1,
             "highest_status": 1,
-            "default_locale": "en-US",
-            "the_reason": null
-        }
-    },
-    {
-        "pk": 1,
-        "model": "addons.feature",
-        "fields": {
-            "application": 1,
-            "end": "2037-12-01 00:00:00",
-            "created": "2007-10-10 15:34:20",
-            "locale": "",
-            "modified": "2009-12-08 11:00:58",
-            "start": "2007-10-10 15:34:20",
-            "addon": 1
-        }
-    },
-    {
-        "pk": 2,
-        "model": "addons.feature",
-        "fields": {
-            "application": 18,
-            "end": "2037-12-01 00:00:00",
-            "created": "2007-10-10 15:34:20",
-            "locale": "",
-            "modified": "2009-12-08 11:00:58",
-            "start": "2007-10-10 15:34:20",
-            "addon": 2
-        }
-    },
-    {
-        "pk": 296,
-        "model": "applications.appversion",
-        "fields": {
-            "version_int": 3001200200100,
-            "application": 1,
-            "version": "3.0.12",
-            "created": "2007-10-10 15:34:20",
-            "modified": "2007-10-10 15:34:20"
+            "default_locale": "en-US"
         }
     },
     {
@@ -251,16 +133,6 @@
         }
     },
     {
-        "pk": 44555,
-        "model": "versions.applicationsversions",
-        "fields": {
-            "application": 1,
-            "max": 296,
-            "version": 24007,
-            "min": 296
-        }
-    },
-    {
         "pk": 2,
         "model": "versions.version",
         "fields": {
@@ -286,16 +158,6 @@
             "version": 2,
             "datestatuschanged": null,
             "size": 173056
-        }
-    },
-    {
-        "pk": 1186,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 1,
-            "modified": "2010-10-02 07:30:34",
-            "created": "2010-10-02 07:30:34"
         }
     }
 ]

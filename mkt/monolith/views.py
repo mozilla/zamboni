@@ -8,9 +8,9 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
 import amo
-from abuse.models import AbuseReport
 from reviews.models import Review
 
+from mkt.abuse.models import AbuseReport
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView

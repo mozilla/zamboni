@@ -5,7 +5,8 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, CSP_SCRIPT_SRC, CSP_FRAME_SRC
+from mkt.settings import (CACHE_PREFIX, CSP_SCRIPT_SRC, CSP_FRAME_SRC,
+                          ES_INDEXES, KNOWN_PROXIES, LOGGING)
 
 from .. import splitstrip
 import private_base as private
@@ -44,9 +45,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.memcached.CacheClass',
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
@@ -79,12 +78,10 @@ SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
-HERA = []
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -95,10 +92,6 @@ REDIS_BACKENDS = {
     'slave': private.REDIS_BACKENDS_SLAVE,
 }
 CACHE_MACHINE_USE_REDIS = True
-
-RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
-RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 
@@ -115,23 +108,13 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'marketplace-identity-stage'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons.allizom.org/repackage/sdk-versions/"
-
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_identity_stage' % v) for k, v in ES_INDEXES.items())
 
-BUILDER_UPGRADE_URL = "https://builder-addons.allizom.org/repackage/rebuild/"
-
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
 STATSD_PREFIX = private.STATSD_PREFIX
-
-GRAPHITE_HOST = private.GRAPHITE_HOST
-GRAPHITE_PORT = private.GRAPHITE_PORT
-GRAPHITE_PREFIX = private.GRAPHITE_PREFIX
 
 CEF_PRODUCT = STATSD_PREFIX
 
@@ -163,13 +146,15 @@ NEW_FEATURES = True
 REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
+LESS_BIN = 'lessc'
+STYLUS_BIN = 'stylus'
 UGLIFY_BIN = 'uglifyjs'
 
 CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE = True
 
 ALLOW_SELF_REVIEWS = True
 
@@ -183,3 +168,6 @@ CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("https://firefoxos.anosrep.org",)
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)
 
 AES_KEYS = private.AES_KEYS
+
+TASK_USER_ID = 4757633
+SERVE_TMP_PATH = False

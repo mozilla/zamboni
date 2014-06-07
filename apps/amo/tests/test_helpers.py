@@ -412,12 +412,6 @@ class TestAnimatedImages(amo.tests.TestCase):
         assert img.is_image()
 
 
-def test_site_nav():
-    r = Mock()
-    r.APP = amo.FIREFOX
-    assert 'id="site-nav"' in helpers.site_nav({'request': r})
-
-
 def test_jinja_trans_monkeypatch():
     # This tests the monkeypatch in manage.py that prevents localizers from
     # taking us down.

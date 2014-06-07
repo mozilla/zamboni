@@ -1,5 +1,6 @@
 import json
 from decimal import Decimal
+from urlparse import parse_qs
 
 from django.conf import settings
 from django.core import mail
@@ -11,18 +12,21 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 import mkt
-from access.models import GroupUser
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
 from constants.payments import PROVIDER_BANGO
-from market.models import Price, PriceCurrency
+from lib.crypto.receipt import crack
+from mkt.access.models import GroupUser
+from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
+from mkt.inapp.models import InAppProduct
+from mkt.prices.models import Price, PriceCurrency
+from mkt.prices.views import PricesViewSet
+from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webpay.models import ProductIcon
-from mkt.webpay.views import PricesViewSet
-from stats.models import Contribution
 from users.models import UserProfile
 
 
@@ -38,6 +42,7 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         self.setup_base()
         self.setup_package()
         self.setup_mock_generic_product()
+        self.setup_public_id()
 
     def _post(self, client=None, extra_headers=None):
         if client is None:
@@ -95,6 +100,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.setup_base()
         self.setup_package()
+        self.setup_public_id()
         self.list_url = reverse('webpay-prepare-inapp')
 
     def _post(self, inapp_id=None, extra_headers=None):
@@ -115,13 +121,15 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         res = self._post(extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
         contribution = Contribution.objects.get()
+        eq_(contribution.addon, self.inapp.webapp)
+        eq_(contribution.inapp_product, self.inapp)
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
 
-class TestStatus(RestOAuth):
-    fixtures = fixture('webapp_337141', 'user_2519')
+class TestStatus(BaseAPI):
+    fixtures = fixture('prices', 'webapp_337141', 'user_2519')
 
     def setUp(self):
         super(TestStatus, self).setUp()
@@ -130,38 +138,57 @@ class TestStatus(RestOAuth):
             uuid='some:uid')
         self.get_url = reverse('webpay-status',
                                kwargs={'uuid': self.contribution.uuid})
+        # No need to rely on a purchase record.
+        self.contribution.addon.addonpurchase_set.get().delete()
+
+    def get(self, expected_status=200):
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, expected_status, res)
+        return json.loads(res.content)
 
     def test_allowed(self):
         self._allowed_verbs(self.get_url, ['get'])
 
     def test_get(self):
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200)
-        eq_(res.json['status'], 'complete')
+        data = self.get()
+        eq_(data['status'], 'complete')
+        # Normal transactions should not produce receipts.
+        eq_(data['receipt'], None)
+
+    def test_completed_inapp_purchase(self):
+        price = Price.objects.get(pk=1)
+        inapp = InAppProduct.objects.create(
+            logo_url='logo.png', name='Magical Unicorn', price=price,
+            webapp=self.contribution.addon)
+        self.contribution.update(inapp_product=inapp)
+
+        data = self.get()
+        eq_(data['status'], 'complete')
+        receipt = crack(data['receipt'])[0]
+        eq_(receipt['typ'], 'purchase-receipt')
+        eq_(receipt['product']['url'], self.contribution.addon.origin)
+        storedata = parse_qs(receipt['product']['storedata'])
+        eq_(storedata['id'][0], str(self.contribution.addon.pk))
+        eq_(storedata['contrib'][0], str(self.contribution.pk))
+        assert 'user' in receipt, (
+            'The web platform requires a user value')
 
     def test_no_contribution(self):
         self.contribution.delete()
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
+        data = self.get()
+        eq_(data['status'], 'incomplete')
 
     def test_incomplete(self):
         self.contribution.update(type=CONTRIB_PENDING)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
-
-    def test_no_purchase(self):
-        self.contribution.addon.addonpurchase_set.get().delete()
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 200, res.content)
-        eq_(res.json['status'], 'incomplete', res.content)
+        data = self.get()
+        eq_(data['status'], 'incomplete')
 
     def test_not_owner(self):
         userprofile2 = UserProfile.objects.get(pk=31337)
         self.contribution.update(user=userprofile2)
-        res = self.client.get(self.get_url)
-        eq_(res.status_code, 403, res.content)
+        # Not owning a contribution is okay.
+        data = self.get()
+        eq_(data['status'], 'complete')
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',
@@ -233,7 +260,7 @@ class TestPrices(RestOAuth):
         self.assertCORS(self.client.get(self.get_url), 'get')
 
     @patch('mkt.api.exceptions.got_request_exception')
-    @patch('market.models.Price.prices')
+    @patch('mkt.prices.models.Price.prices')
     def test_other_cors(self, prices, got_request_exception):
         prices.side_effect = ValueError('The Price Is Not Right.')
         res = self.client.get(self.get_url)

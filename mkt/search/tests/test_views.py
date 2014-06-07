@@ -9,16 +9,15 @@ from django.http import QueryDict
 from django.test.client import RequestFactory
 
 from mock import MagicMock, patch
-from nose import SkipTest
 from nose.tools import eq_, ok_
 
 import amo
 import mkt
 import mkt.regions
-from access.middleware import ACLMiddleware
 from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
+from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
@@ -30,11 +29,11 @@ from mkt.regions.middleware import RegionMiddleware
 from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.utils import S
-from mkt.search.views import SearchView, DEFAULT_SORTING
+from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.tags.models import AddonTag, Tag
+from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
-from tags.models import AddonTag, Tag
 from translations.helpers import truncate
 from users.models import UserProfile
 
@@ -223,6 +222,7 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(obj['icons']['128'], self.webapp.get_icon_url(128))
             ok_(obj['icons']['128'].endswith('?modified=fakehash'))
             eq_(obj['id'], long(self.webapp.id))
+            eq_(obj['is_offline'], False)
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
             eq_(obj['payment_account'], None)
             self.assertApiUrlEqual(obj['privacy_policy'],
@@ -541,6 +541,8 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['is_packaged'], False)
+        eq_(obj['is_offline'], False)
 
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
@@ -551,6 +553,8 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['is_packaged'], True)
+        eq_(obj['is_offline'], True)
 
     def test_app_type_privileged(self):
         # Override the class-decorated patch.
@@ -589,37 +593,6 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 400)
         error = res.json['detail']
         eq_(error.keys(), ['type'])
-
-    def test_adolescent_popularity(self):
-        """
-        Adolescent regions use global popularity.
-
-          Webapp:   Global: 0, Regional: 0
-          Unknown1: Global: 1, Regional: 1 + 10 * 1 = 11
-          Unknown2: Global: 2, Regional: 0
-
-        """
-        # TODO: help from robhudson.
-        raise SkipTest
-
-        unknown1 = amo.tests.app_factory()
-        unknown2 = amo.tests.app_factory()
-        self.reindex(Webapp, 'webapp')
-
-        res = self.client.get(self.url, data={'region': 'br'})
-        eq_(res.status_code, 200)
-
-        objects = res.json['objects']
-        eq_(len(objects), 3)
-
-        eq_(int(objects[0]['id']), unknown2.id)
-        eq_(int(objects[1]['id']), unknown1.id)
-        eq_(int(objects[2]['id']), self.webapp.id)
-
-        # Cleanup to remove these from the index.
-        unknown1.delete()
-        unknown2.delete()
-        unindex_webapps([unknown1.id, unknown2.id])
 
     def test_word_delimiter_preserves_original(self):
         self.webapp.description = {
@@ -1081,6 +1054,10 @@ class TestRocketbarApi(ESTestCase):
                                 created=self.days_ago(3),
                                 manifest_url='http://rocket.example.com')
         self.app2.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
+        # Add 2 installed records so this app is boosted higher than app1.
+        Installed.objects.create(user=self.profile, addon=self.app2)
+        Installed.objects.create(user=amo.tests.user_factory(),
+                                 addon=self.app2)
         self.app2.save()
         self.refresh('webapp')
 
@@ -1136,16 +1113,14 @@ class TestRocketbarApi(ESTestCase):
         parsed = json.loads(response.content)
         eq_(len(parsed), 2)
         # Show app2 first since it gets boosted higher b/c of installs.
-        # TODO: robhudson, the boosting no longer occurs.
-        assert {'manifest_url': self.app2.get_manifest_url(),
-                'icon': self.app2.get_icon_url(64),
-                'name': unicode(self.app2.name),
-                'slug': self.app2.app_slug} in parsed
-
-        assert {'manifest_url': self.app1.get_manifest_url(),
-                'icon': self.app1.get_icon_url(64),
-                'name': unicode(self.app1.name),
-                'slug': self.app1.app_slug} in parsed
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
+        eq_(parsed[1], {'manifest_url': self.app1.get_manifest_url(),
+                        'icon': self.app1.get_icon_url(64),
+                        'name': unicode(self.app1.name),
+                        'slug': self.app1.app_slug})
 
     def test_suggestion_non_gaia_apps(self):
         AddonDeviceType.objects.all().delete()
@@ -1164,7 +1139,10 @@ class TestRocketbarApi(ESTestCase):
                                                        'limit': 1})
         parsed = json.loads(response.content)
         eq_(len(parsed), 1)
-        # TODO: robhudson, does the order matter?
+        eq_(parsed[0], {'manifest_url': self.app2.get_manifest_url(),
+                        'icon': self.app2.get_icon_url(64),
+                        'name': unicode(self.app2.name),
+                        'slug': self.app2.app_slug})
 
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):

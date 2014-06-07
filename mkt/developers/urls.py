@@ -11,7 +11,6 @@ from mkt.api.base import SubRouter
 from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, UpsellViewSet)
-from mkt.developers.decorators import use_apps
 from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.inapp.views import InAppProductViewSet
 from mkt.receipts.urls import test_patterns
@@ -137,8 +136,7 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.validate_addon'),
 
     # Redirect to /addons/ at the base.
-    url('^submissions$', use_apps(views.dashboard),
-        name='mkt.developers.apps'),
+    url('^submissions$', views.dashboard, name='mkt.developers.apps'),
     url('^upload$', views.upload_new, name='mkt.developers.upload'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='mkt.developers.upload_detail'),

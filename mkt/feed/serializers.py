@@ -6,40 +6,100 @@ import mkt.regions
 from addons.models import Category
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
-from mkt.collections.serializers import (CollectionImageField,
-                                         CollectionSerializer, SlugChoiceField,
+from mkt.collections.serializers import (CollectionImageField, SlugChoiceField,
                                          SlugModelChoiceField)
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.serializers import AppSerializer
 
-from .models import FeedApp, FeedItem
+from . import constants
+from .fields import FeedCollectionMembershipField
+from .models import FeedApp, FeedBrand, FeedCollection, FeedItem
+
+
+class BaseFeedCollectionSerializer(URLSerializerMixin,
+                                   serializers.ModelSerializer):
+    """
+    Base serializer for subclasses of BaseFeedCollection.
+    """
+    apps = FeedCollectionMembershipField(many=True, source='apps')
+    slug = serializers.CharField(required=False)
+
+    class Meta:
+        fields = ('apps', 'slug', 'url')
 
 
 class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
-    """Thin wrappers around apps w/ metadata related to its feature in feed."""
+    """
+    A serializer for the FeedApp class, which highlights a single app and some
+    additional metadata (e.g. a review or a screenshot).
+    """
     app = SplitField(relations.PrimaryKeyRelatedField(required=True),
                      AppSerializer())
     description = TranslationSerializerField(required=False)
-    image = CollectionImageField(
+    background_image = CollectionImageField(
         source='*',
-        view_name='feed-app-image-detail',
+        view_name='api-v2:feed-app-image-detail',
         format='png')
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
                          PreviewSerializer())
-    pullquote_attribution = TranslationSerializerField(required=False)
     pullquote_rating = serializers.IntegerField(required=False)
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
-        fields = ('app', 'background_color', 'description', 'feedapp_type',
-                  'id', 'image', 'preview', 'pullquote_attribution',
-                  'pullquote_rating', 'pullquote_text', 'slug', 'url')
+        fields = ('app', 'background_color', 'created', 'description',
+                  'feedapp_type', 'id', 'background_image', 'preview',
+                  'pullquote_attribution', 'pullquote_rating',
+                  'pullquote_text', 'slug', 'url')
         model = FeedApp
         url_basename = 'feedapps'
 
 
+class FeedBrandSerializer(BaseFeedCollectionSerializer):
+    """
+    A serializer for the FeedBrand class, a type of collection that allows
+    editors to quickly create content without involving localizers.
+    """
+    layout = serializers.ChoiceField(choices=constants.BRAND_LAYOUT_CHOICES,
+                                     required=True)
+    type = serializers.ChoiceField(choices=constants.BRAND_TYPE_CHOICES,
+                                   required=True)
+
+    class Meta:
+        fields = ('apps', 'id', 'layout', 'slug', 'type', 'url')
+        model = FeedBrand
+        url_basename = 'feedbrands'
+
+
+class FeedCollectionSerializer(BaseFeedCollectionSerializer):
+    """
+    A serializer for the FeedCollection class.
+    """
+    type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
+    background_color = serializers.CharField(max_length=7, required=False)
+    description = TranslationSerializerField(required=False)
+    name = TranslationSerializerField()
+
+    class Meta:
+        fields = ('apps', 'background_color', 'description', 'id', 'name',
+                  'slug', 'type', 'url')
+        model = FeedCollection
+        url_basename = 'feedcollections'
+
+    def validate_background_color(self, attrs, source):
+        background_color = attrs.get(source, None)
+        if (attrs.get('type') == constants.COLLECTION_TYPE_PROMO and not
+            background_color):
+            raise serializers.ValidationError(
+                '`background_color` is required for `promo` collections.'
+            )
+        return attrs
+
+
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
-    """Thin wrappers around apps w/ metadata related to its feature in feed."""
+    """
+    A serializer for the FeedItem class, which wraps all items that live on the
+    feed.
+    """
     carrier = SlugChoiceField(required=False,
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
@@ -49,13 +109,17 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     item_type = serializers.SerializerMethodField('get_item_type')
 
     # Types of objects that are allowed to be a feed item.
+    app = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                     FeedAppSerializer())
+    brand = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                       FeedBrandSerializer())
     collection = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                            CollectionSerializer())
+                            FeedCollectionSerializer())
 
     class Meta:
-        fields = ('carrier', 'category', 'collection', 'id', 'item_type',
-                  'region', 'url')
-        item_types = ('collection',)
+        fields = ('app', 'brand', 'carrier', 'category', 'collection', 'id',
+                  'item_type', 'region', 'url')
+        item_types = ('app', 'brand', 'collection')
         model = FeedItem
         url_basename = 'feeditems'
 
@@ -63,8 +127,10 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         """
         Ensure that at least one object type is specified.
         """
-        item_changed = any(k for k in self.Meta.item_types if k in attrs.keys())
-        num_defined = sum(1 for item in self.Meta.item_types if attrs.get(item))
+        item_changed = any(k for k in self.Meta.item_types
+                           if k in attrs.keys())
+        num_defined = sum(1 for item in self.Meta.item_types
+                          if attrs.get(item))
         if item_changed and num_defined != 1:
             message = ('A valid value for exactly one of the following '
                        'parameters must be defined: %s' % ','.join(

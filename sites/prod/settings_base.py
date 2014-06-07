@@ -3,10 +3,12 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
+from mkt.settings import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
 
 from .. import splitstrip
 import private_base as private
+
+ALLOWED_HOSTS = ['.firefox.com', '.firefox.com.cn']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = private.EMAIL_HOST
@@ -54,6 +56,7 @@ CACHES = {
 ## Celery
 BROKER_URL = private.BROKER_URL
 
+CELERY_ALWAYS_EAGER = False
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 BROKER_CONNECTION_TIMEOUT = 0.1
@@ -74,8 +77,6 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.png'
 SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 
-HERA = []
-
 LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
@@ -84,7 +85,6 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
-    'z.hera': {'level': logging.INFO},
     'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
@@ -98,10 +98,6 @@ REDIS_BACKENDS = {
 }
 
 CACHE_MACHINE_USE_REDIS = True
-
-RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
-RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 
@@ -118,25 +114,18 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'mkt'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 # ES_INDEXES doesn't change for prod.
-
-BUILDER_UPGRADE_URL = "https://builder.addons.mozilla.org/repackage/rebuild/"
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
 STATSD_PREFIX = private.STATSD_PREFIX
 
-GRAPHITE_HOST = private.GRAPHITE_HOST
-GRAPHITE_PORT = private.GRAPHITE_PORT
-GRAPHITE_PREFIX = private.GRAPHITE_PREFIX
-
 CEF_PRODUCT = STATSD_PREFIX
 
 ES_TIMEOUT = 60
+VALIDATOR_TIMEOUT = 110
 
 EXPOSE_VALIDATOR_TRACEBACKS = True
 
@@ -147,9 +136,11 @@ EMAIL_BLACKLIST = private.EMAIL_BLACKLIST
 NEW_FEATURES = True
 
 CLEANCSS_BIN = 'cleancss'
+LESS_BIN = 'lessc'
+STYLUS_BIN = 'stylus'
 UGLIFY_BIN = 'uglifyjs'
 
-XSENDFILE_HEADER = 'X-Accel-Redirect'
+XSENDFILE = True
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
@@ -167,3 +158,8 @@ NEWRELIC_WHITELIST = ['web1.addons.phx1.mozilla.com',
 NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_WHITELIST
 
 AES_KEYS = private.AES_KEYS
+
+ALLOW_SELF_REVIEWS = False
+
+TASK_USER_ID = 4757633
+SERVE_TMP_PATH = False
