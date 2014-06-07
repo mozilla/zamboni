@@ -282,7 +282,7 @@ Feed apps are represented thusly:
             "en-US": "A featured app",
             "fr": "Une application sélectionnée"
         },
-        "feedapp_type": "icon",
+        "type": "icon",
         "background_image": "http://somecdn.com/someimage.png"
         "id": 1
         "preview": null,
@@ -300,7 +300,7 @@ Feed apps are represented thusly:
 ``description``
     *string|null* - a :ref:`translated <overview-translations>` description of
     the app being featured.
-``feedapp_type``
+``type``
     *string* - describes how the feed app will be displayed or featured. Can be
     ``icon``, ``image``, ``description``, ``quote``, ``preview``.
 ``id``
@@ -374,9 +374,9 @@ Create
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
-    :param feedapp_type: can be ``icon``, ``image``, ``description``,
+    :param type: can be ``icon``, ``image``, ``description``,
         ``quote``, or ``preview``.
-    :type feedapp_type: string
+    :type type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null
@@ -402,7 +402,7 @@ Create
                 "en-US": "A featured app",
                 "fr": "Une application sélectionnée"
             },
-            "feedapp_type": "icon",
+            "type": "icon",
             "pullquote_rating": 4,
             "pullquote_text": {
                 "en-US": "This featured app is excellent.",
@@ -436,9 +436,9 @@ Update
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
-    :param feedapp_type: can be ``icon``, ``image``, ``description``,
+    :param type: can be ``icon``, ``image``, ``description``,
        ``quote``, or ``preview``.
-    :type feedapp_type: string
+    :type type: string
     :param preview: the ID of a :ref:`preview <screenshot-response-label>` to
         feature with the app.
     :type preview: int|null

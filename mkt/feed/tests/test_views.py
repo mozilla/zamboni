@@ -25,7 +25,7 @@ class FeedAppMixin(object):
         self.feedapp_data = {
             'app': 337141,
             'background_color': '#B90000',
-            'feedapp_type': 'icon',
+            'type': 'icon',
             'description': {
                 'en-US': u'pan-fried potatoes'
             },
@@ -352,7 +352,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(data['app']['id'], self.feedapp_data['app'])
         eq_(data['description'], self.feedapp_data['description'])
         eq_(data['slug'], self.feedapp_data['slug'])
-        eq_(data['feedapp_type'], self.feedapp_data['feedapp_type'])
+        eq_(data['type'], self.feedapp_data['type'])
 
         self.assertCORS(res, 'get', 'delete', 'patch', 'post', 'put')
         return res, data

@@ -47,7 +47,7 @@ class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
 
     class Meta:
         fields = ('app', 'background_color', 'created', 'description',
-                  'feedapp_type', 'id', 'background_image', 'preview',
+                  'type', 'id', 'background_image', 'preview',
                   'pullquote_attribution', 'pullquote_rating',
                   'pullquote_text', 'slug', 'url')
         model = FeedApp

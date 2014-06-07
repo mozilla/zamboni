@@ -238,7 +238,7 @@ class FeedApp(amo.models.ModelBase):
     and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
-    feedapp_type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
+    type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
     description = PurifiedField()
     slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
