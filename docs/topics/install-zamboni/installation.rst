@@ -360,11 +360,7 @@ Testing
 The :ref:`testing` page has more info, but here's the quick way to run
 zamboni's marketplace tests::
 
-    ./manage.py test --settings=settings_local_mkt
-
-Or to run AMO's tests::
-
-    ./manage.py test --settings=settings_local_amo
+    ./manage.py test
 
 There are a few useful makefile targets that you can use, the simplest one
 being::
