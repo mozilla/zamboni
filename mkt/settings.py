@@ -3,6 +3,7 @@ import datetime
 import logging
 import os
 import socket
+from urlparse import urlparse
 
 from django.utils.functional import lazy
 
@@ -24,7 +25,8 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
-HOSTNAME = os.environ.get('ZAMBONI_HOSTNAME', socket.gethostname())
+HOSTNAME = urlparse(os.environ.get('MARKETPLACE_URL',
+                                   'http://' + socket.gethostname())).netloc
 
 try:
     # If we have build ids available, we'll grab them here and add them to our
@@ -480,12 +482,12 @@ APP_FEATURES_VERSION = 4
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the DOMAIN setting and on B2G this must match
 # what's in the provider whitelist.
-APP_PURCHASE_AUD = 'localhost'
+APP_PURCHASE_AUD = DOMAIN
 
 # This is the iss (issuer) for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # In webpay this is the ISSUER setting.
-APP_PURCHASE_KEY = 'localhost'
+APP_PURCHASE_KEY = DOMAIN
 
 # This is the shared secret key for signing app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().

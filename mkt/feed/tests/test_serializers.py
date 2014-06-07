@@ -5,9 +5,10 @@ from rest_framework import serializers
 import amo
 import amo.tests
 
+from mkt.feed.constants import COLLECTION_TYPE_LISTING, COLLECTION_TYPE_PROMO
 from mkt.feed.models import FeedBrand
 from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
-                                  FeedItemSerializer)
+                                  FeedCollectionSerializer, FeedItemSerializer)
 from mkt.regions import RESTOFWORLD
 
 from .test_views import FeedAppMixin
@@ -73,3 +74,36 @@ class TestFeedBrandSerializer(amo.tests.TestCase):
         eq_(data['type'], self.brand_data['type'])
         self.assertSetEqual([app['id'] for app in data['apps']],
                             [app.pk for app in self.apps])
+
+
+class TestFeedCollectionSerializer(amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestFeedCollectionSerializer, self).setUp()
+        self.data = {
+            'background_color': '#FF4E00',
+            'name': {'en-US': 'Potato'},
+            'description': {'en-US': 'Potato, tomato'},
+            'type': COLLECTION_TYPE_PROMO
+        }
+
+    def validate(self, **attrs):
+        return FeedCollectionSerializer().validate_background_color(
+            attrs=self.data, source='background_color')
+
+    def test_validate_promo_bg(self):
+        self.validate()
+
+    def test_validate_promo_nobg(self):
+        del self.data['background_color']
+        with self.assertRaises(serializers.ValidationError):
+            self.validate()
+
+    def test_validate_listing_bg(self):
+        self.data['type'] = COLLECTION_TYPE_LISTING
+        self.validate()
+
+    def test_validate_listing_nobg(self):
+        self.data['type'] = COLLECTION_TYPE_LISTING
+        del self.data['background_color']
+        self.validate()

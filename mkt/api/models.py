@@ -13,6 +13,7 @@ REQUEST_TOKEN = 0
 ACCESS_TOKEN = 1
 TOKEN_TYPES = ((REQUEST_TOKEN, u'Request'), (ACCESS_TOKEN, u'Access'))
 
+
 class Access(ModelBase):
     key = models.CharField(max_length=255, unique=True)
     secret = AESField(max_length=255, aes_key='api:access:secret')
