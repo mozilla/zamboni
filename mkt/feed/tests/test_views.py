@@ -439,6 +439,7 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         eq_(data['app']['id'], self.feedapp.app.id)
         ok_(not data['preview'])
         ok_(not data['pullquote_text'])
+        return res, data
 
     def test_detail_anonymous(self):
         self._test_detail(self.anon)
@@ -451,10 +452,11 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         self._test_detail(self.client)
 
     def test_with_image(self):
-        self.feedapp = self.create_feedapps(1, has_image=True)[0]
+        self.feedapp = self.create_feedapps(1, image_hash='abcdefgh')[0]
         self.url = reverse('api-v2:feedapps-detail',
                            kwargs={'pk': self.feedapp.pk})
-        self._test_detail(self.client)
+        res, data = self._test_detail(self.client)
+        assert data.get('background_image')
 
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):

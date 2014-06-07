@@ -146,6 +146,18 @@ class BaseFeedCollection(amo.models.ModelBase):
             self.add_app(Webapp.objects.get(pk=app))
 
 
+class BaseFeedImage(models.Model):
+    image_hash = models.CharField(default=None, max_length=8, null=True,
+                                  blank=True)
+
+    class Meta:
+        abstract = True
+
+    @property
+    def has_image(self):
+        return bool(self.image_hash)
+
+
 class BaseFeedCollectionMembership(amo.models.ModelBase):
     """
     A custom `through` model is required for the M2M field `_apps` on
@@ -210,7 +222,7 @@ class FeedCollectionMembership(BaseFeedCollectionMembership):
         db_table = 'mkt_feed_collection_membership'
 
 
-class FeedCollection(BaseFeedCollection):
+class FeedCollection(BaseFeedCollection, BaseFeedImage):
     """
     Model for "Collections", a type of curated collection that allows more
     complex grouping of apps than an Editorial Brand.
@@ -231,8 +243,13 @@ class FeedCollection(BaseFeedCollection):
         abstract = False
         db_table = 'mkt_feed_collection'
 
+    def image_path(self):
+        return os.path.join(settings.FEED_COLLECTION_BG_PATH,
+                            str(self.pk / 1000),
+                            'feed_collection_%s.png' % (self.pk,))
 
-class FeedApp(amo.models.ModelBase):
+
+class FeedApp(BaseFeedImage, amo.models.ModelBase):
     """
     Model for "Custom Featured Apps", a feed item highlighting a single app
     and some additional metadata (e.g. a review or a screenshot).
@@ -253,9 +270,6 @@ class FeedApp(amo.models.ModelBase):
         validators=[validate_rating])
     pullquote_text = PurifiedField(null=True)
 
-    image_hash = models.CharField(default=None, max_length=8, null=True,
-                                  blank=True)
-
     class Meta:
         db_table = 'mkt_feed_app'
 
@@ -274,10 +288,6 @@ class FeedApp(amo.models.ModelBase):
         return os.path.join(settings.FEATURED_APP_BG_PATH,
                             str(self.pk / 1000),
                             'featured_app_%s.png' % (self.pk,))
-
-    @property
-    def has_image(self):
-        return bool(self.image_hash)
 
 
 class FeedItem(amo.models.ModelBase):
