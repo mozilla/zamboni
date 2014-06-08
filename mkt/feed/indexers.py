@@ -26,6 +26,7 @@ class FeedAppIndexer(BaseIndexer):
             }
         }
 
+    @classmethod
     def extract_document(cls, obj_id, obj=None):
         """Converts this instance into an Elasticsearch document"""
         if obj is None:
@@ -58,6 +59,7 @@ class FeedBrandIndexer(BaseIndexer):
             }
         }
 
+    @classmethod
     def extract_document(cls, obj_id, obj=None):
         if obj is None:
             obj = cls.get_model().get(pk=obj_id)
@@ -85,6 +87,7 @@ class FeedCollectionIndexer(BaseIndexer):
             }
         }
 
+    @classmethod
     def extract_document(cls, obj_id, obj=None):
         if obj is None:
             obj = cls.get_model().get(pk=obj_id)

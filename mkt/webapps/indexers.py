@@ -1,4 +1,5 @@
 import math
+import sys
 from operator import attrgetter
 
 from django.db.models import Max, Min
@@ -415,6 +416,25 @@ class WebappIndexer(BaseIndexer):
         from mkt.webapps.models import Webapp
         return (Webapp.with_deleted.all()
                 .order_by('-id').values_list('id', flat=True))
+
+    @classmethod
+    def run_indexing(cls, ids, ES, index=None, **kw):
+        """Override run_indexing to use app transformers."""
+        from mkt.webapps.models import Webapp
+        sys.stdout.write('Indexing %s apps' % len(ids))
+
+        qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache()
+                                         .filter(id__in=ids))
+
+        docs = []
+        for obj in qs:
+            try:
+                docs.append(cls.extract_document(obj.id, obj=obj))
+            except Exception as e:
+                sys.stdout.write('Failed to index obj: {0}. {1}'.format(
+                    obj.id, e))
+
+        WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
 
 
 def reverse_version(version):
