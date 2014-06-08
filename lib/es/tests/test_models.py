@@ -1,104 +1,63 @@
-import mock
 from nose.tools import eq_
 
 import amo.tests
 from lib.es.models import Reindexing
 
 
-class TestReindexManager(amo.tests.TestCase):
+class TestReindexing(amo.tests.TestCase):
 
     def test_flag_reindexing(self):
-        assert Reindexing.objects.filter(site='foo').count() == 0
+        assert Reindexing.objects.count() == 0
 
         # Flagging for the first time.
-        res = Reindexing.objects._flag_reindexing('foo', 'bar', 'baz', 'quux')
-        eq_(Reindexing.objects.filter(site='foo').count(), 1)
-        eq_(res.site, 'foo')
-        eq_(res.new_index, 'bar')
-        eq_(res.old_index, 'baz')
-        eq_(res.alias, 'quux')
+        res = Reindexing.flag_reindexing('foo', 'bar', 'baz')
+        eq_(Reindexing.objects.filter(alias='foo').count(), 1)
+        eq_(res.alias, 'foo')
+        eq_(res.old_index, 'bar')
+        eq_(res.new_index, 'baz')
 
         # Flagging for the second time.
-        res = Reindexing.objects._flag_reindexing('foo', 'bar', 'baz', 'quux')
-        assert Reindexing.objects.filter(site='foo').count() == 1
+        res = Reindexing.flag_reindexing('foo', 'bar', 'baz')
+        assert Reindexing.objects.filter(alias='foo').count() == 1
         assert res is None
 
-    @mock.patch('lib.es.models.ReindexingManager._flag_reindexing')
-    def test_flag_reindexing_amo(self, flag_reindexing_mock):
-        Reindexing.objects.flag_reindexing_amo('bar', 'baz', 'quux')
-        assert flag_reindexing_mock.called_with([
-            ('amo', 'bar', 'baz', 'quux')])
-
-    @mock.patch('lib.es.models.ReindexingManager._flag_reindexing')
-    def test_flag_reindexing_mkt(self, flag_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.flag_reindexing_mkt('bar', 'baz', 'quux')
-        assert flag_reindexing_mock.called_with([
-            ('mkt', 'bar', 'baz', 'quux')])
-
     def test_unflag_reindexing(self):
-        assert Reindexing.objects.filter(site='foo').count() == 0
+        assert Reindexing.objects.filter(alias='foo').count() == 0
 
         # Unflagging unflagged database does nothing.
-        Reindexing.objects._unflag_reindexing('foo')
-        assert Reindexing.objects.filter(site='foo').count() == 0
+        Reindexing.unflag_reindexing('foo')
+        assert Reindexing.objects.filter(alias='foo').count() == 0
 
         # Flag, then unflag.
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
-        assert Reindexing.objects.filter(site='foo').count() == 1
+        Reindexing.objects.create(alias='foo', new_index='bar',
+                                  old_index='baz')
+        assert Reindexing.objects.filter(alias='foo').count() == 1
 
-        Reindexing.objects._unflag_reindexing('foo')
-        assert Reindexing.objects.filter(site='foo').count() == 0
+        Reindexing.unflag_reindexing('foo')
+        assert Reindexing.objects.filter(alias='foo').count() == 0
 
-        # Unflagging another site doesn't clash.
-        Reindexing.objects.create(site='bar', new_index='bar', old_index='baz',
-                                  alias='quux')
-        Reindexing.objects._unflag_reindexing('foo')
-        assert Reindexing.objects.filter(site='bar').count() == 1
-
-    @mock.patch('lib.es.models.ReindexingManager._unflag_reindexing')
-    def test_unflag_reindexing_amo(self, unflag_reindexing_mock):
-        Reindexing.objects.unflag_reindexing_amo()
-        assert unflag_reindexing_mock.called_with([('amo')])
-
-    @mock.patch('lib.es.models.ReindexingManager._unflag_reindexing')
-    def test_unflag_reindexing_mkt(self, unflag_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.unflag_reindexing_mkt()
-        assert unflag_reindexing_mock.called_with([('mkt')])
+        # Unflagging another alias doesn't clash.
+        Reindexing.objects.create(alias='bar', new_index='bar',
+                                  old_index='baz')
+        Reindexing.unflag_reindexing('foo')
+        assert Reindexing.objects.filter(alias='bar').count() == 1
 
     def test_is_reindexing(self):
-        assert Reindexing.objects.filter(site='foo').count() == 0
-        assert not Reindexing.objects._is_reindexing('foo')
+        assert not Reindexing.is_reindexing()
 
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
-        assert Reindexing.objects._is_reindexing('foo')
-
-        # Reindexing on another site doesn't clash.
-        assert not Reindexing.objects._is_reindexing('bar')
-
-    @mock.patch('lib.es.models.ReindexingManager._is_reindexing')
-    def test_is_reindexing_amo(self, is_reindexing_mock):
-        Reindexing.objects.is_reindexing_amo()
-        assert is_reindexing_mock.called_with([('amo')])
-
-    @mock.patch('lib.es.models.ReindexingManager._is_reindexing')
-    def test_is_reindexing_mkt(self, is_reindexing_mock):
-        # This test doesn't run with AMO settings, no idea why.
-        Reindexing.objects.is_reindexing_mkt()
-        assert is_reindexing_mock.called_with([('mkt')])
+        Reindexing.objects.create(alias='foo', new_index='bar',
+                                  old_index='baz')
+        assert Reindexing.is_reindexing()
 
     def test_get_indices(self):
         # Not reindexing.
-        assert Reindexing.objects.filter(alias='foo').count() == 0
-        assert Reindexing.objects.get_indices('foo') == ['foo']
+        assert not Reindexing.objects.filter(alias='foo').exists()
+        assert Reindexing.get_indices('foo') == ['foo']
 
         # Reindexing on 'foo'.
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
-        assert Reindexing.objects.get_indices('quux') == ['bar', 'baz']
+        Reindexing.objects.create(alias='foo', new_index='bar',
+                                  old_index='baz')
+        self.assertSetEquals(Reindexing.get_indices('foo'), ['bar', 'baz'])
 
-        # Doesn't clash on other sites.
-        assert Reindexing.objects.get_indices('other') == ['other']
+        # Doesn't clash on other aliases.
+        self.assertSetEquals(Reindexing.get_indices('other'), ['other'])

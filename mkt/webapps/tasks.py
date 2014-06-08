@@ -31,7 +31,7 @@ from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
 from files.mjodels import FileUpload
 from files.utils import WebAppParser
-from lib.es.utils import get_indices
+from lib.es.models import Reindexing
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
 
@@ -348,7 +348,7 @@ def index_webapps(ids, **kw):
     index = kw.pop('index', WebappIndexer.get_index())
     # Note: If reindexing is currently occurring, `get_indices` will return
     # more than one index.
-    indices = get_indices(index)
+    indices = Reindexing.get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
     qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache().filter(
@@ -370,7 +370,7 @@ def unindex_webapps(ids, **kw):
     index = kw.pop('index', WebappIndexer.get_index())
     # Note: If reindexing is currently occurring, `get_indices` will return
     # more than one index.
-    indices = get_indices(index)
+    indices = Reindexing.get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
     for id_ in ids:

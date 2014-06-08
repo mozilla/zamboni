@@ -16,8 +16,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from amo.utils import chunked, timestamp_index
-from lib.es.utils import (flag_reindexing_mkt, is_reindexing_mkt,
-                          unflag_reindexing_mkt)
+from lib.es.models import Reindexing
 
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer)
@@ -112,7 +111,8 @@ def run_indexing(index, indexer):
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     sys.stdout.write('Flagging the database to start the reindexation')
-    flag_reindexing_mkt(new_index=new_index, old_index=old_index, alias=alias)
+    Reindexing.flag_reindexing(new_index=new_index, old_index=old_index,
+                               alias=alias)
     time.sleep(5)  # Give celeryd some time to flag the DB.
 
 
@@ -120,7 +120,7 @@ def flag_database(new_index, old_index, alias):
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     sys.stdout.write('Unflagging the database')
-    unflag_reindexing_mkt()
+    Reindexing.unflag_reindexing()
 
 
 @task
@@ -185,7 +185,7 @@ class Command(BaseCommand):
         force = kwargs.get('force', False)
         prefix = kwargs.get('prefix', '')
 
-        if is_reindexing_mkt() and not force:
+        if Reindexing.is_reindexing() and not force:
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
         elif force:
