@@ -18,9 +18,14 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.prices.models import PriceCurrency
 from mkt.search.serializers import ESAppSerializer
 from mkt.site.fixtures import fixture
+<<<<<<< HEAD
 from mkt.versions.models import Version
 from mkt.webapps.models import (AddonCategory, AddonDeviceType, Category,
                                 Installed, Preview, Webapp, WebappIndexer)
+=======
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Installed, Webapp
+>>>>>>> BaseIndexer class, factor out webapp indexer code
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
 from mkt.users.models import UserProfile

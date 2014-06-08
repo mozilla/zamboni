@@ -17,11 +17,12 @@ from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
 import amo
-import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.utils import paginate
 from lib.pay_server import client
+
+import mkt.constants.lookup as lkp
 from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
@@ -37,8 +38,9 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site import messages
-from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 
 
 log = commonware.log.getLogger('z.lookup')

@@ -1,16 +1,14 @@
 """
 Indexers for FeedApp, FeedBrand, FeedCollection are for Curator Tools search.
 """
-
-from elasticutils.contrib.django import Indexable, MappingType
-
 from amo.utils import attach_trans_dict
 
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
+from mkt.search.indexers import BaseIndexer
 from mkt.webapps.models import Webapp
 
 
-class FeedAppIndexer(MappingType, Indexable):
+class FeedAppIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
         """Returns the Django model this MappingType relates to"""
@@ -45,7 +43,7 @@ class FeedAppIndexer(MappingType, Indexable):
         }
 
 
-class FeedBrandIndexer(MappingType, Indexable):
+class FeedBrandIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
         return FeedBrand
@@ -71,7 +69,7 @@ class FeedBrandIndexer(MappingType, Indexable):
         }
 
 
-class FeedCollectionIndexer(MappingType, Indexable):
+class FeedCollectionIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
         return FeedCollection
