@@ -261,6 +261,8 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
                                 data=json.dumps({'disabled_by_user': True}))
         eq_(res.status_code, 200)
         self.app.reload()
+        data = json.loads(res.content)
+        eq_(data['status'], 'public')
         eq_(self.app.disabled_by_user, True)
         eq_(self.app.status, amo.STATUS_PUBLIC)  # Unchanged, doesn't matter.
 
@@ -284,7 +286,9 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'pending'}))
         eq_(res.status_code, 200)
+        data = json.loads(res.content)
         self.app.reload()
+        eq_(data['status'], 'pending')
         eq_(self.app.disabled_by_user, False)
         eq_(self.app.status, amo.STATUS_PENDING)
 
@@ -312,8 +316,38 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         is_fully_complete.return_value = True
         self.app.update(status=amo.STATUS_PUBLIC_WAITING)
         res = self.client.patch(self.get_url,
-                        data=json.dumps({'status': 'public'}))
+                                data=json.dumps({'status': 'public'}))
         eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['status'], 'public')
+        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_senior_reviewer_incomplete_to_pending(self, is_fully_complete):
+        # The app is incomplete, but the user has Admin:%s so he can override
+        # that.
+        is_fully_complete.return_value = False
+        self.grant_permission(self.user, 'Admin:%s')
+        self.app.update(status=amo.STATUS_NULL)
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'status': 'pending'}))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['status'], 'pending')
+        eq_(self.app.reload().status, amo.STATUS_PENDING)
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_senior_reviewer_incomplete_to_public(self, is_fully_complete):
+        # The app is incomplete, but the user has Admin:%s so he can override
+        # that.
+        is_fully_complete.return_value = False
+        self.grant_permission(self.user, 'Admin:%s')
+        self.app.update(status=amo.STATUS_NULL)
+        res = self.client.patch(self.get_url,
+                                data=json.dumps({'status': 'public'}))
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['status'], 'public')
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
 
 

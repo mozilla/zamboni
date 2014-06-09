@@ -2,13 +2,14 @@ import json
 
 from django.core.urlresolvers import reverse
 
+from mock import patch
 from nose.tools import eq_, ok_
 from rest_framework.reverse import reverse as rest_reverse
 
 from test_utils import RequestFactory
 
 import amo
-from amo.tests import app_factory
+from amo.tests import app_factory, file_factory
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
@@ -88,11 +89,8 @@ class TestVersionViewSet(RestOAuth):
             'developer_name': "Cee's Vans"
         }
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
-
-        # Uses PUT because Django's test client didn't support PATCH until
-        # bug #17797 was resolved.
-        res = self.client.put(url, data=json.dumps(data),
-                              content_type='application/json')
+        res = self.client.patch(url, data=json.dumps(data),
+                                content_type='application/json')
         return data, res
 
     def test_patch(self):
@@ -132,3 +130,109 @@ class TestVersionViewSet(RestOAuth):
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.delete(url)
         eq_(res.status_code, 405)
+
+
+class TestVersionStatusViewSet(RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.app = app_factory()
+        self.app_url = get_url('app', self.app.pk)
+        self.version = self.app.current_version
+        self.file = self.version.all_files[0]
+        self.request = RequestFactory()
+        super(TestVersionStatusViewSet, self).setUp()
+
+    def do_patch(self, data=None, client=None):
+        if data is None:
+            data = {}
+        if client is None:
+            client = self.client
+        url = rest_reverse('version-status', kwargs={'pk': self.version.pk})
+        res = self.client.patch(url, data=json.dumps(data),
+                                content_type='application/json')
+        return data, res
+
+    def test_has_cors(self):
+        url = rest_reverse('version-status', kwargs={'pk': self.version.pk})
+        self.assertCORS(self.client.get(url), 'patch')
+
+    def test_patch_anonymous(self):
+        data, res = self.do_patch(client=self.anon)
+        eq_(res.status_code, 403)
+
+    def test_patch_owner_but_no_permissions(self):
+        self.app.addonuser_set.create(user=self.user)
+        data, res = self.do_patch()
+        eq_(res.status_code, 403)
+
+    def test_patch_permissions(self):
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'pending'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content), {'status': 'pending',
+                                      'app_status': 'public'})
+        eq_(self.file.reload().status, amo.STATUS_PENDING)
+
+    def test_patch_permissions_pk_clash(self):
+        # By default, the File and Version objects we are creating share the
+        # same pk, and this can hide bugs. Create a new File to specifically
+        # test a scenario where they don't share the same pk.
+        self.file.delete()
+        self.new_file = file_factory(version=self.version)
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'pending'})
+        eq_(res.status_code, 200)
+        # Note: the app is incomplete since we deleted its public file above
+        # and this time we haven't patched is_fully_complete().
+        eq_(json.loads(res.content), {'status': 'pending',
+                                      'app_status': 'incomplete'})
+        eq_(self.new_file.reload().status, amo.STATUS_PENDING)
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_patch_permission_status_affecting_app(self, is_fully_complete):
+        is_fully_complete.return_value = True
+        self.app.update(status=amo.STATUS_NULL)
+        self.file.update(status=amo.STATUS_NULL)
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'pending'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content), {'status': 'pending',
+                                      'app_status': 'pending'})
+        eq_(self.file.reload().status, amo.STATUS_PENDING)
+        eq_(self.app.reload().status, amo.STATUS_PENDING)
+
+    @patch('mkt.webapps.models.Webapp.is_fully_complete')
+    def test_patch_permission_status_not_affecting_app(self, is_fully_complete):
+        is_fully_complete.return_value = False
+        self.app.update(status=amo.STATUS_NULL)
+        self.file.update(status=amo.STATUS_NULL)
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'pending'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content), {'status': 'pending',
+                                      'app_status': 'incomplete'})
+        eq_(self.file.reload().status, amo.STATUS_PENDING)
+        eq_(self.app.reload().status, amo.STATUS_NULL)
+
+    def test_patch_permissions_status(self):
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'incomplete'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content), {'status': 'incomplete',
+                                      'app_status': 'public'})
+        eq_(self.file.reload().status, amo.STATUS_NULL)
+
+        data, res = self.do_patch(data={'status': 'public'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content), {'status': 'public',
+                                      'app_status': 'public'})
+        eq_(self.file.reload().status, amo.STATUS_PUBLIC)
+
+    def test_patch_wrong_status(self):
+        self.grant_permission(self.user, 'Admin:%')
+        data, res = self.do_patch(data={'status': 'lol'})
+        eq_(res.status_code, 400)
+
+        data, res = self.do_patch()
+        eq_(res.status_code, 400)
