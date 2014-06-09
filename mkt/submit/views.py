@@ -20,6 +20,8 @@ from amo.decorators import login_required, write
 from .decorators import read_dev_agreement_required, submit_step
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
+
+import mkt
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -212,6 +214,15 @@ def details(request, addon_id, addon):
             # ratings has been entered.
             addon.update(status=amo.STATUS_NULL, make_public=make_public,
                          highest_status=amo.STATUS_PENDING)
+
+        # Mark as pending in special regions (i.e., China).
+        # By default, the column is set to pending when the row is inserted.
+        # But we need to set a nomination date so we know to list the app
+        # in the China Review Queue now (and sort it by that date too).
+        for region in mkt.regions.SPECIAL_REGIONS:
+            addon.geodata.set_nominated_date(region, save=True)
+            log.info(u'[Webapp:%s] Setting nomination date to '
+                     u'now for region (%s).' % (addon, region.slug))
 
         record_action('app-submitted', request, {'app-id': addon.pk})
 

@@ -601,9 +601,8 @@ def queue_region(request, region=None):
 
     qs = Webapp.objects.pending_in_region(region)
 
-    apps = _do_sort(request, qs, date_sort=column)
     apps = [QueuedApp(app, app.geodata.get_nominated_date(region))
-            for app in apps]
+            for app in _do_sort(request, qs, date_sort=column)]
 
     return _queue(request, apps, 'region', date_sort=column,
                   template='reviewers/queue_region.html',

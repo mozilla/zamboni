@@ -121,11 +121,11 @@ class TestRegionForm(amo.tests.WebappTestCase):
         self.request = RequestFactory()
         self.kwargs = {'product': self.app}
 
-    def test_initial_empty(self):
+    def test_initial_checked(self):
         form = forms.RegionForm(data=None, **self.kwargs)
+        # Even special regions (i.e., China) should be checked.
         self.assertSetEqual(form.initial['regions'],
-            set(mkt.regions.ALL_REGION_IDS) -
-            set(mkt.regions.SPECIAL_REGION_IDS))
+            set(mkt.regions.ALL_REGION_IDS))
         eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_region(self):
@@ -139,9 +139,8 @@ class TestRegionForm(amo.tests.WebappTestCase):
 
         form = forms.RegionForm(data=None, **self.kwargs)
 
-        # Everything except Brazil and China.
-        self.assertSetEqual(form.initial['regions'],
-            regions - set(mkt.regions.SPECIAL_REGION_IDS))
+        # Everything (even China) except Brazil.
+        self.assertSetEqual(form.initial['regions'], regions)
         eq_(form.initial['enable_new_regions'], False)
 
     def test_initial_excluded_in_regions_and_future_regions(self):
@@ -158,8 +157,7 @@ class TestRegionForm(amo.tests.WebappTestCase):
             regions)
 
         form = forms.RegionForm(data=None, **self.kwargs)
-        self.assertSetEqual(form.initial['regions'],
-            regions - set(mkt.regions.SPECIAL_REGION_IDS))
+        self.assertSetEqual(form.initial['regions'], regions)
         eq_(form.initial['enable_new_regions'], False)
 
     def test_restofworld_only(self):
@@ -229,11 +227,11 @@ class TestRegionForm(amo.tests.WebappTestCase):
             {'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
-    def test_china_initially_excluded_if_null(self):
+    def test_china_initially_included(self):
         self.create_flag('special-regions')
         form = forms.RegionForm(None, **self.kwargs)
         cn = mkt.regions.CN.id
-        assert cn not in form.initial['regions']
+        assert cn in form.initial['regions']
         assert cn in dict(form.fields['regions'].choices).keys()
 
     def _test_china_excluded_if_pending_or_rejected(self):
