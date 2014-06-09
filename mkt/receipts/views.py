@@ -73,11 +73,11 @@ def _record(request, addon):
         # If you are reviewer, you get a user receipt. Use the reviewer tools
         # to get a reviewer receipt. App developers still get their special
         # receipt.
-        install_type = (apps.INSTALL_TYPE_DEVELOPER if is_dev
-                        else apps.INSTALL_TYPE_USER)
+        install = (apps.INSTALL_TYPE_DEVELOPER if is_dev
+                   else apps.INSTALL_TYPE_USER)
         # Log the install.
         installed, c = Installed.objects.get_or_create(addon=addon,
-            user=request.amo_user, install_type=install_type)
+            user=request.amo_user, install_type=install)
 
         # Get a suitable uuid for this receipt.
         uuid = get_uuid(addon, request.amo_user)
