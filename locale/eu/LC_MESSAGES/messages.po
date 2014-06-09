@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-04 22:03+0000\n"
+"PO-Revision-Date: 2014-06-09 20:25+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1401919406.0\n"
+"X-POOTLE-MTIME: 1402345530.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7582,83 +7582,97 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:104
 msgid "26%"
-msgstr ""
+msgstr "%26"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:105
 msgid "69%"
-msgstr ""
+msgstr "%69"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Galeria-ikuspegia"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Kamera-ikuspegia"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Irudi bat hautatzen"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"rtcamera kamera-aplikazio zoragarria da web teknologiak erabiliz irudiak "
+"denbora errealean prozesatzeko. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\"> Irakurri garatzaileentzako gida osoa </a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "GIF animatuak sortzen ditu."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "IndexedDB-rentzako bilgarria."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Perspektiba-transformazioak kalkulatzen ditu."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Gehitu ukipen-gertaerak."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
 msgstr ""
+"Behin aurrenekoz kargatzen denean, lineaz kanpo erabil daiteke, sarera "
+"konektatu gabe."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Fitxategiak nabigatzailera deskargatzeko."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Irudien datuak modu bizkor eta eraginkorrean prozesatzeko erabilia."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Kamera-gailuak atzitu eta bideo-korrontea eskuratzeko erabilia, gero "
+"bertatik irudiak kapturatzeko."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Kapturatutako irudiak gailuan gordetzen ditu, galeria-ikuspegian "
+"bistaratzeko eskuratuz."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
 msgstr ""
+"GIF fitxategiak atzeko planoan sortzen ditu, erabiltzaile-interfazea izoztu "
+"gabe."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"Irudiak zerbitzari desberdin batera igo partekatzeko, eta haien URLak "
+"eskuratzea."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
 msgstr ""
+"rtcamera-k x-appbar, x-deck, x-layout, x-modal eta x-switch erabiltzen ditu."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "%1"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "%83"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
@@ -7715,34 +7729,35 @@ msgstr ""
 
 #: mkt/files/views.py:43
 msgid "Back to review"
-msgstr ""
+msgstr "Itzuli berrikuspenera"
 
 #: mkt/files/views.py:48
 msgid "Back to app"
-msgstr ""
+msgstr "Itzuli aplikaziora"
 
 # 75%
 # 100%
 #: mkt/files/templates/fileviewer/file.html:2
-#, fuzzy
 msgid "Download {0}"
-msgstr "Deskargatu orain"
+msgstr "Deskarga {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
+"Bertsioa: %(version)s &bull; Tamaina: %(size)s &bull; MD5 hash-a: %(md5)s "
+"&bull; MIME mota: %(mimetype)s"
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Fitxategi-alderaketa :: Berrikusleen tresnak"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Fitxategi-ikustailea :: Berrikusleen tresnak"
 
 #: mkt/files/templates/fileviewer/viewer.html:15
 msgid "Validation failed:"
-msgstr ""
+msgstr "Balidazioak huts egin du:"
 
 #: mkt/files/templates/fileviewer/viewer.html:21 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
@@ -7750,11 +7765,11 @@ msgstr "Joan"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "Aplikazioa prozesatzen ari da, itxaron mesedez."
 
 #: mkt/files/templates/fileviewer/viewer.html:38
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Balidazioaren emaitzak eskuratzen..."
 
 #: mkt/files/templates/fileviewer/viewer.html:46
 msgid "Files:"
@@ -7794,39 +7809,39 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:103 mkt/files/templates/fileviewer/viewer.html:104
 msgid "Expand all"
-msgstr ""
+msgstr "Zabaldu dena"
 
 #: mkt/files/templates/fileviewer/viewer.html:108 mkt/files/templates/fileviewer/viewer.html:109
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Ezkutatu/Erakutsi zuhaitza"
 
 #: mkt/files/templates/fileviewer/viewer.html:113 mkt/files/templates/fileviewer/viewer.html:114
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Itzulbiratu/Ez itzulbiratu testua"
 
 #: mkt/files/templates/fileviewer/viewer.html:122
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Ez dago fitxategirik igotako fitxategian."
 
 #: mkt/files/templates/fileviewer/viewer.html:128
 msgid "Fetching file."
-msgstr ""
+msgstr "Fitxategia eskuratzen."
 
 #: mkt/lookup/forms.py:9
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Transakzioen bilaketa"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
-msgstr ""
+msgstr "Prozesatu eskuzko diru-itzulketa"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Idatzi diru-itzulketaren xehetasunak transakzioko dirua itzultzeko"
 
 #: mkt/lookup/forms.py:33
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Ezabatzeko arrazoia"
 
 #: mkt/lookup/views.py:146
 msgid "Currently unable to retrieve refund status."
@@ -7870,11 +7885,11 @@ msgstr "Egileak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
-msgstr ""
+msgstr "Manifestua"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:56
 msgid "View"
-msgstr ""
+msgstr "Ikusi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 msgid "Privileged Packaged app"
@@ -7882,15 +7897,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:46
 msgid "Packaged app"
-msgstr ""
+msgstr "Paketeratutako aplikazioa"
 
 #: mkt/lookup/templates/lookup/app_summary.html:53 mkt/reviewers/templates/reviewers/includes/details.html:18 mkt/reviewers/templates/reviewers/includes/mobile_details.html:49
 msgid "Hosted app"
-msgstr ""
+msgstr "Ostatatutako aplikazioa"
 
 #: mkt/lookup/templates/lookup/app_summary.html:63
 msgid "Submitted"
-msgstr ""
+msgstr "Bidalita"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
@@ -7903,7 +7918,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Abusu-salaketak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:79
 msgid "Permissions"
@@ -7952,11 +7967,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:47
 msgid "Lookup Tool"
-msgstr ""
+msgstr "Bilaketa-tresna"
 
 #: mkt/lookup/templates/lookup/base.html:10
 msgid "<small>Marketplace</small> Lookup Tool"
-msgstr ""
+msgstr "<small>Marketplace</small>-eko bilaketa-tresna"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
@@ -7964,7 +7979,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
-msgstr ""
+msgstr "Eroslea"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
@@ -7972,15 +7987,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
-msgstr ""
+msgstr "Erlazionatutako transakzioa"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:47
 msgid "Refund Status"
-msgstr ""
+msgstr "Diru-itzulketaren egoera"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:48
 msgid "Unrequested"
-msgstr ""
+msgstr "Eskatu gabea"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
