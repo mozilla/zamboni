@@ -1,14 +1,8 @@
 from django import forms
 from django.conf import settings
-from django.forms import ModelForm
-from django.forms.models import modelformset_factory
 
 import commonware.log
 import happyforms
-from quieter_formset.formset import BaseModelFormSet
-
-from addons.models import Addon
-from files.models import File
 
 
 LOGGER_NAME = 'z.zadmin'
@@ -16,8 +10,7 @@ log = commonware.log.getLogger(LOGGER_NAME)
 
 
 class DevMailerForm(happyforms.Form):
-    _choices = [('sdk', 'Developers of active SDK add-ons'),
-                ('apps', 'Developers of active apps (not add-ons)'),
+    _choices = [('apps', 'Developers of active apps (not add-ons)'),
                 ('free_apps_region_enabled',
                  'Developers of free apps and new region enabled'),
                 ('free_apps_region_disabled',
@@ -29,30 +22,13 @@ class DevMailerForm(happyforms.Form):
                 ('payments_region_disabled',
                  'Developers of apps with payments and new regions disabled'),
                 ('desktop_apps',
-                 'Developers of non-deleted apps supported on desktop'),
-                ('all_extensions', 'All extension developers')]
+                 'Developers of non-deleted apps supported on desktop')]
     recipients = forms.ChoiceField(choices=_choices, required=True)
     subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
                               required=True)
     preview_only = forms.BooleanField(initial=True, required=False,
                                       label=u'Log emails instead of sending')
     message = forms.CharField(widget=forms.Textarea, required=True)
-
-
-class AddonStatusForm(ModelForm):
-    class Meta:
-        model = Addon
-        fields = ('status', 'highest_status')
-
-
-class FileStatusForm(ModelForm):
-    class Meta:
-        model = File
-        fields = ('status',)
-
-
-FileFormSet = modelformset_factory(File, form=FileStatusForm,
-                                   formset=BaseModelFormSet, extra=0)
 
 
 class YesImSure(happyforms.Form):

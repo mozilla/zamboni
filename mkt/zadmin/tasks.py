@@ -5,7 +5,7 @@ from django.conf import settings
 from celeryutils import task
 
 from amo.utils import send_mail
-from zadmin.models import EmailPreviewTopic
+from mkt.zadmin.models import EmailPreviewTopic
 
 
 log = logging.getLogger('z.task')
