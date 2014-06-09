@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-06 03:04+0000\n"
+"PO-Revision-Date: 2014-06-09 04:35+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402023883.0\n"
+"X-POOTLE-MTIME: 1402288539.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6604,42 +6604,47 @@ msgstr "Contas de pagamento"
 #: mkt/developers/templates/developers/payments/premium.html:118
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
 msgstr ""
+"A sua aplicação está incompleta. Selecione a conta de pagamento e faixa de "
+"preço para a repor."
 
 #: mkt/developers/templates/developers/payments/premium.html:139
 msgid "Countries"
-msgstr ""
+msgstr "Países"
 
 #: mkt/developers/templates/developers/payments/premium.html:154
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Adicionar, gerir ou ver transações para as suas contas de pagamento"
 
 #: mkt/developers/templates/developers/payments/premium.html:164
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Preços e Países"
 
 #: mkt/developers/templates/developers/payments/premium.html:180
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr ""
+"A sua aplicação utiliza a plataforma da Mozilla de pagamentos na aplicação?"
 
 #: mkt/developers/templates/developers/payments/premium.html:190
 msgid "A server error occurred. Please try again later."
-msgstr ""
+msgstr "Ocorreu um erro de servidor. Por favor tente novamente mais tarde."
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "Not applicable"
-msgstr ""
+msgstr "Não aplicável"
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Regions"
-msgstr ""
+msgstr "Regiões"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Available Regions"
-msgstr ""
+msgstr "Regiões disponíveis"
 
 #: mkt/developers/templates/developers/payments/premium.html:212
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Verifique a <a href=\"%(status_url)s\" target=\"_blank\">página de estado</a> "
+"para ver quais os países que estão selecionados para a venda."
 
 #: mkt/developers/templates/developers/payments/premium.html:219
 msgid "Your app will be available in the following selected regions:"
@@ -6688,35 +6693,37 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:294
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr ""
+"Relacionar esta aplicação irá promover a sua aplicação premium junto à "
+"versão gratuita."
 
 #: mkt/developers/templates/developers/payments/premium.html:301
 msgid "No free apps"
-msgstr ""
+msgstr "Sem aplicações gratuitas"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "Termos do acordo"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
-msgstr ""
+msgstr "Concordar com os termos"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Fornecedor"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Modificar"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Ver transações"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "Adicionar uma conta {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
@@ -6773,7 +6780,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:129
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
-msgstr ""
+msgstr "Por favor, aguarde enquanto contactamos o servidor de pagamentos."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
