@@ -109,41 +109,17 @@ class ReviewerScore(amo.models.ModelBase):
         status has been updated by the reviewer action.
 
         """
-        queue = ''
-        if status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-            queue = 'PRELIM'
-        elif status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
-            queue = 'FULL'
-        elif status == amo.STATUS_PUBLIC:
-            queue = 'UPDATE'
-
-        if (addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN,
-                           amo.ADDON_API] and queue):
-            return getattr(amo, 'REVIEWED_ADDON_%s' % queue)
-        elif addon.type == amo.ADDON_DICT and queue:
-            return getattr(amo, 'REVIEWED_DICT_%s' % queue)
-        elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
-            return getattr(amo, 'REVIEWED_LP_%s' % queue)
-        elif addon.type == amo.ADDON_PERSONA:
-            return amo.REVIEWED_PERSONA
-        elif addon.type == amo.ADDON_SEARCH and queue:
-            return getattr(amo, 'REVIEWED_SEARCH_%s' % queue)
-        elif addon.type == amo.ADDON_THEME and queue:
-            return getattr(amo, 'REVIEWED_THEME_%s' % queue)
-        elif addon.type == amo.ADDON_WEBAPP:
-            if addon.is_packaged:
-                if status == amo.STATUS_PUBLIC:
-                    return amo.REVIEWED_WEBAPP_UPDATE
-                else:  # If it's not PUBLIC, assume it's a new submission.
-                    return amo.REVIEWED_WEBAPP_PACKAGED
-            else:  # It's a hosted app.
-                in_rereview = kwargs.pop('in_rereview', False)
-                if status == amo.STATUS_PUBLIC and in_rereview:
-                    return amo.REVIEWED_WEBAPP_REREVIEW
-                else:
-                    return amo.REVIEWED_WEBAPP_HOSTED
-        else:
-            return None
+        if addon.is_packaged:
+            if status == amo.STATUS_PUBLIC:
+                return amo.REVIEWED_WEBAPP_UPDATE
+            else:  # If it's not PUBLIC, assume it's a new submission.
+                return amo.REVIEWED_WEBAPP_PACKAGED
+        else:  # It's a hosted app.
+            in_rereview = kwargs.pop('in_rereview', False)
+            if status == amo.STATUS_PUBLIC and in_rereview:
+                return amo.REVIEWED_WEBAPP_REREVIEW
+            else:
+                return amo.REVIEWED_WEBAPP_HOSTED
 
     @classmethod
     def award_points(cls, user, addon, status, **kwargs):
@@ -168,9 +144,7 @@ class ReviewerScore(amo.models.ModelBase):
     @classmethod
     def award_moderation_points(cls, user, addon, review_id):
         """Awards points to user based on moderated review."""
-        event = amo.REVIEWED_ADDON_REVIEW
-        if addon.type == amo.ADDON_WEBAPP:
-            event = amo.REVIEWED_APP_REVIEW
+        event = amo.REVIEWED_APP_REVIEW
         score = amo.REVIEWED_SCORES.get(event)
 
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)
@@ -215,6 +189,7 @@ class ReviewerScore(amo.models.ModelBase):
     @classmethod
     def get_breakdown(cls, user):
         """Returns points broken down by addon type."""
+        # TODO: This makes less sense now that we only have apps.
         key = cls.get_key('get_breakdown:%s' % user.id)
         val = cache.get(key)
         if val is not None:
