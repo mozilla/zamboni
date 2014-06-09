@@ -552,7 +552,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
                                          name=self.file, valid=True)
 
 
-@patch('versions.models.Version.is_privileged', False)
+@patch('mkt.versions.models.Version.is_privileged', False)
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
     fixtures = fixture('user_2519', 'platform_all')
 

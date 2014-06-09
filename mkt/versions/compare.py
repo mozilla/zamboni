@@ -16,29 +16,6 @@ version_re = re.compile(r"""(?P<major>\d+|\*)      # major (x in x.y)
                         re.VERBOSE)
 
 
-def dict_from_int(version_int):
-    """Converts a version integer into a dictionary with major/minor/...
-    info."""
-    d = {}
-    rem = version_int
-    (rem, d['pre_ver']) = divmod(rem, 100)
-    (rem, d['pre']) = divmod(rem, 10)
-    (rem, d['alpha_ver']) = divmod(rem, 100)
-    (rem, d['alpha']) = divmod(rem, 10)
-    (rem, d['minor3']) = divmod(rem, 100)
-    (rem, d['minor2']) = divmod(rem, 100)
-    (rem, d['minor1']) = divmod(rem, 100)
-    (rem, d['major']) = divmod(rem, 100)
-    d['pre'] = None if d['pre'] else 'pre'
-    d['alpha'] = {0: 'a', 1: 'b'}.get(d['alpha'])
-
-    return d
-
-
-def num(vint):
-    return '{major}.{minor1}.{minor2}.{minor3}'.format(**dict_from_int(vint))
-
-
 def version_dict(version):
     """Turn a version string into a dict with major/minor/... info."""
     match = version_re.match(version or '')

@@ -17,8 +17,8 @@ from mkt.developers.views import preload_submit, status
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.versions.models import Version
 from users.models import UserProfile
-from versions.models import Version
 
 
 class TestVersion(amo.tests.TestCase):

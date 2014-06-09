@@ -51,12 +51,12 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
+from mkt.versions.models import update_status, Version
 from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
 from users.models import UserProfile
-from versions.models import update_status, Version
 
 
 class TestWebapp(amo.tests.TestCase):
@@ -412,7 +412,7 @@ class TestWebapp(amo.tests.TestCase):
     def test_app_type_packaged(self):
         eq_(Webapp(is_packaged=True).app_type, 'packaged')
 
-    @mock.patch('versions.models.Version.is_privileged', True)
+    @mock.patch('mkt.versions.models.Version.is_privileged', True)
     def test_app_type_privileged(self):
         # Have to use `app_factory` because we need a `latest_version`
         # to make it a privileged version.

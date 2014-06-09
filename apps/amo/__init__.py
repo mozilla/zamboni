@@ -15,7 +15,7 @@ from constants.licenses import *
 from constants.payments import *
 from constants.platforms import *
 from constants.search import *
-from versions.compare import version_re
+from mkt.versions.compare import version_re
 
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,

@@ -24,10 +24,10 @@ from mkt.developers.models import ActivityLog
 from mkt.prices.models import AddonPaymentData, AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
-from versions.models import Version
 
 
 class TestCleanSlug(amo.tests.TestCase):

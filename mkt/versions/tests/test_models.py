@@ -11,12 +11,10 @@ import amo
 import amo.tests
 from addons.models import Addon
 from files.models import File, Platform
-from versions.compare import (dict_from_int, MAXVERSION, version_dict,
-                              version_int)
-from versions.models import Version
-
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
+from mkt.versions.compare import MAXVERSION, version_dict, version_int
+from mkt.versions.models import Version
 
 
 def test_version_int():
@@ -56,18 +54,6 @@ def test_version_dict():
 
 def test_version_int_unicode():
     eq_(version_int(u'\u2322 ugh stephend'), 200100)
-
-
-def test_dict_from_int():
-    d = dict_from_int(3050000001002)
-    eq_(d['major'], 3)
-    eq_(d['minor1'], 5)
-    eq_(d['minor2'], 0)
-    eq_(d['minor3'], 0)
-    eq_(d['alpha'], 'a')
-    eq_(d['alpha_ver'], 1)
-    eq_(d['pre'], 'pre')
-    eq_(d['pre_ver'], 2)
 
 
 class TestVersion(BaseUploadTest, amo.tests.TestCase):
@@ -194,7 +180,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         v.all_files[0].status = status
         return v
 
-    @mock.patch('versions.models.storage')
+    @mock.patch('mkt.versions.models.storage')
     def test_version_delete(self, storage_mock):
         self.version.delete()
         addon = Addon.objects.get(pk=337141)
@@ -205,7 +191,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
         assert not storage_mock.delete.called
 
-    @mock.patch('versions.models.storage')
+    @mock.patch('mkt.versions.models.storage')
     def test_packaged_version_delete(self, storage_mock):
         addon = Addon.objects.get(pk=337141)
         addon.update(is_packaged=True)

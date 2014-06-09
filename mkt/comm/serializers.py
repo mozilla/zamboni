@@ -7,8 +7,8 @@ from addons.models import Addon
 from amo.helpers import absolutify
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
+from mkt.versions.models import Version
 from users.models import UserProfile
-from versions.models import Version
 
 
 class AuthorSerializer(ModelSerializer):

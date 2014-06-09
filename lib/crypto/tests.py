@@ -14,10 +14,10 @@ from nose.tools import eq_, raises
 import amo.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
-from mkt.webapps.models import Webapp
-from versions.models import Version
-
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
+from mkt.webapps.models import Webapp
+
 
 def mock_sign(version_id, reviewer=False):
     """

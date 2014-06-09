@@ -6,7 +6,7 @@ import amo.tests
 from addons import cron
 from addons.models import Addon
 from files.models import File, Platform
-from versions.models import Version
+from mkt.versions.models import Version
 
 
 class CurrentVersionTestCase(amo.tests.TestCase):

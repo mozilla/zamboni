@@ -10,7 +10,7 @@ from tower import ugettext as _
 
 import amo
 from files.models import File
-from versions.models import Version
+from mkt.versions.models import Version
 
 
 log = commonware.log.getLogger('z.files')

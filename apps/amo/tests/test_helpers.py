@@ -18,7 +18,7 @@ import amo
 import amo.tests
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck
-from versions.models import License
+from mkt.versions.models import License
 
 
 def render(s, context={}):

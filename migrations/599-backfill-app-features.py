@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from django.db.utils import IntegrityError
 
-from versions.models import Version
+from mkt.versions.models import Version
 from mkt.webapps.models import AppFeatures, Webapp
 
 

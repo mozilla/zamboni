@@ -30,14 +30,13 @@ from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
 from files.models import File
 from lib.utils import static_url
 from mkt.ratings.models import Review
+from mkt.access import acl
+from mkt.prices.models import AddonPremium, Price
 from mkt.tags.models import Tag
+from mkt.versions.models import Version
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
                                  Translation)
 from users.models import UserForeignKey, UserProfile
-from versions.models import Version
-
-from mkt.access import acl
-from mkt.prices.models import AddonPremium, Price
 
 
 log = commonware.log.getLogger('z.addons')

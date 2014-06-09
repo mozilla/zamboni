@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from versions.models import Version
 from mkt.features.serializers import AppFeaturesSerializer
+from mkt.versions.models import Version
 
 
 class SimpleVersionSerializer(serializers.ModelSerializer):

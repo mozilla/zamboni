@@ -4,8 +4,7 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 from amo.tests import app_factory, TestCase
-
-from versions.models import Version
+from mkt.versions.models import Version
 from mkt.versions.serializers import VersionSerializer
 
 

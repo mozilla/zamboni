@@ -11,21 +11,19 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import AddonCategory, AddonDeviceType, Category, Preview
-
 import mkt
+from addons.models import AddonCategory, AddonDeviceType, Category, Preview
 from mkt.constants import ratingsbodies, regions
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.prices.models import PriceCurrency
 from mkt.search.serializers import ESAppSerializer
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
 from mkt.webapps.models import Installed, Webapp, WebappIndexer
 from mkt.webapps.serializers import AppSerializer
-from mkt.webapps.utils import (dehydrate_content_rating,
-                               get_supported_locales)
-from mkt.prices.models import PriceCurrency
+from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
 from users.models import UserProfile
-from versions.models import Version
 
 
 class TestAppSerializer(amo.tests.TestCase):
@@ -316,7 +314,7 @@ class TestAppSerializerPrices(amo.tests.TestCase):
         eq_(res['payment_required'], True)
 
 
-@mock.patch('versions.models.Version.is_privileged', False)
+@mock.patch('mkt.versions.models.Version.is_privileged', False)
 class TestESAppToDict(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 

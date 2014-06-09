@@ -27,9 +27,9 @@ from mkt.access.models import Group
 from mkt.constants.payments import ACCESS_SIMULATE
 from mkt.ratings.models import Review
 from mkt.tags.models import Tag
+from mkt.versions.models import Version
 from users.helpers import user_link
 from users.models import UserForeignKey, UserProfile
-from versions.models import Version
 
 
 log = commonware.log.getLogger('z.devhub')
