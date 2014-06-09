@@ -22,7 +22,7 @@ from oauthlib.common import Request
 from oauthlib.oauth1.rfc5849 import signature
 
 from mkt.api.models import Access, ACCESS_TOKEN, Token
-from mkt.api.oauth import OAuthServer
+from mkt.api.oauth import server, validator
 from mkt.carriers import get_carrier
 from users.models import UserProfile
 
@@ -59,26 +59,26 @@ class RestOAuthMiddleware(object):
         # Set up authed_from attribute.
         auth_header = {'Authorization': auth_header_value}
         method = getattr(request, 'signed_method', request.method)
-        oauth = OAuthServer()
         if ('oauth_token' in request.META['QUERY_STRING'] or
             'oauth_token' in auth_header_value):
             # This is 3-legged OAuth.
             log.info('Trying 3 legged OAuth')
             try:
-                valid, oauth_request = oauth.verify_request(
+                valid, oauth_req = server.validate_protected_resource_request(
                     request.build_absolute_uri(),
-                    method, headers=auth_header,
-                    require_resource_owner=True)
+                    http_method=method,
+                    body=request.body,
+                    headers=auth_header)
             except ValueError:
                 log.error('ValueError on verifying_request', exc_info=True)
                 return
             if not valid:
                 log.error(u'Cannot find APIAccess token with that key: %s'
-                          % oauth.attempted_key)
+                          % oauth_req.attempted_key)
                 return
             uid = Token.objects.filter(
                 token_type=ACCESS_TOKEN,
-                key=oauth_request.resource_owner_key).values_list(
+                key=oauth_req.resource_owner_key).values_list(
                     'user_id', flat=True)[0]
             request.amo_user = UserProfile.objects.select_related(
                 'user').get(pk=uid)
@@ -88,7 +88,7 @@ class RestOAuthMiddleware(object):
             log.info('Trying 2 legged OAuth')
             try:
                 client_key = validate_2legged_oauth(
-                    oauth,
+                    server,
                     request.build_absolute_uri(),
                     method, auth_header)
             except TwoLeggedOAuthError, e:
@@ -145,7 +145,7 @@ def validate_2legged_oauth(oauth, uri, method, auth_header):
     if oauth_params.get('oauth_signature_method').lower() != 'hmac-sha1':
         raise TwoLeggedOAuthError(u'unsupported signature method ' +
                                   oauth_params.get('oauth_signature_method'))
-    secret = oauth.get_client_secret(req.client_key)
+    secret = validator.get_client_secret(req.client_key, req)
     valid_signature = signature.verify_hmac_sha1(req, secret, None)
     if valid_signature:
         return req.client_key

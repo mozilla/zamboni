@@ -5,6 +5,7 @@ from datetime import datetime
 from functools import partial
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test.client import Client, FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
@@ -257,6 +258,20 @@ class Test3LeggedOAuthFlow(TestCase):
         eq_(res.get('location'), full_redirect)
         eq_(Token.objects.get(pk=t.pk).user.pk, 999)
 
+    def test_deny_authorize_page(self):
+        t = Token.generate_new(REQUEST_TOKEN, self.access)
+        self.client.login(username='regular@mozilla.com', password='password')
+        url = reverse('mkt.developers.oauth_authorize')
+        res = self.client.post(url, data={'oauth_token': t.key, 'deny': ''})
+        eq_(res.status_code, 200)
+        eq_(Token.objects.filter(pk=t.pk).count(), 0)
+
+    def test_fail_authorize_page(self):
+        self.client.login(username='regular@mozilla.com', password='password')
+        url = reverse('mkt.developers.oauth_authorize')
+        res = self.client.post(url, data={'oauth_token': "fake", 'grant': ''})
+        eq_(res.status_code, 401)
+
     def test_access_request(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
         url = urlparse.urljoin(settings.SITE_URL,
@@ -319,3 +334,50 @@ class Test3LeggedOAuthFlow(TestCase):
                               HTTP_AUTHORIZATION=auth_header)
         eq_(res.status_code, 401)
         assert not Token.objects.filter(token_type=REQUEST_TOKEN).exists()
+
+class Test2LeggedOAuthFlow(TestCase):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self, api_name='apps'):
+        self.profile = self.user = UserProfile.objects.get(pk=2519)
+        self.profile.update(read_dev_agreement=datetime.now())
+        self.app_name = 'Mkt Test App'
+        self.redirect_uri = 'https://example.com/redirect_target'
+        self.access = Access.objects.create(key='oauthClientKeyForTests',
+                                            secret=generate(),
+                                            user=self.user,
+                                            redirect_uri=self.redirect_uri,
+                                            app_name=self.app_name)
+
+    def _oauth_request_info(self, url, **kw):
+        oa = oauth1.Client(signature_method=oauth1.SIGNATURE_HMAC, **kw)
+        url, headers, _ = oa.sign(url, http_method='GET')
+        return url, headers['Authorization']
+
+    def test_success(self):
+        url = absolutify(reverse('app-list'))
+        url, auth_header = self._oauth_request_info(
+            url, client_key=self.access.key,
+            client_secret=self.access.secret)
+        auth = authentication.RestOAuthAuthentication()
+        req = RequestFactory().get(
+            url, HTTP_HOST='testserver',
+            HTTP_AUTHORIZATION=auth_header)
+        req.API = True
+        RestOAuthMiddleware().process_request(req)
+        assert auth.authenticate(Request(req))
+        eq_(req.user, self.user)
+
+    def test_fail(self):
+        url = absolutify(reverse('app-list'))
+        url, auth_header = self._oauth_request_info(
+            url, client_key=self.access.key,
+            client_secret="none")
+        auth = authentication.RestOAuthAuthentication()
+        req = RequestFactory().get(
+            url, HTTP_HOST='testserver',
+            HTTP_AUTHORIZATION=auth_header)
+        req.API = True
+        RestOAuthMiddleware().process_request(req)
+        assert not auth.authenticate(Request(req))
+        assert not hasattr(req, 'user')
