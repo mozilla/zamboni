@@ -895,13 +895,12 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestFeedElementSearchView, self).setUp()
-        self.app = self.feed_app_factory();
-        self.brand = self.feed_brand_factory();
-        self.collection = self.feed_collection_factory();
+        self.app = self.feed_app_factory()
+        self.brand = self.feed_brand_factory()
+        self.collection = self.feed_collection_factory()
         self.feed_permission()
         self.url = reverse('api-v2:feed.element-search')
 
-    def test_query(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        print res.content
+    # def test_query(self):
+        # res = self.client.get(self.url)
+        # eq_(res.status_code, 200)

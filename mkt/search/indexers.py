@@ -8,10 +8,21 @@ import amo
 
 
 class BaseIndexer(MappingType, Indexable):
+    """
+    A class inheriting from BaseIndexer should implement:
+
+    - get_model(cls)
+    - get_mapping(cls)
+    - extract_document(cls, obj_id, obj=None)
+    """
 
     @classmethod
     def get_index(cls):
         return settings.ES_INDEXES[cls.get_mapping_type_name()]
+
+    @classmethod
+    def get_mapping_type_name(cls):
+        return cls.get_model()._meta.db_table
 
     @classmethod
     def get_settings(cls, settings_override=None):
@@ -98,25 +109,26 @@ class BaseIndexer(MappingType, Indexable):
 
     @classmethod
     def get_indexable(cls):
-        return cls.get_model.objects.order_by('-id').values_list('id',
-                                                                  flat=True)
+        return cls.get_model().objects.order_by('-id').values_list(
+            'id', flat=True)
 
     @classmethod
     def run_indexing(cls, ids, ES, index=None, **kw):
         """Used in reindex_mkt."""
-        sys.stdout.write('Indexing %s %s' % [len(ids), cls._meta.model_name])
+        sys.stdout.write('Indexing {0} {1}\n'.format(
+            len(ids), cls.get_model()._meta.model_name))
 
         # Fetch QS given the IDs.
         docs = []
-        qs = cls.objects.filter(id__in=ids)
+        qs = cls.get_model().objects.filter(id__in=ids)
 
         # For each object, extract document.
         for obj in qs:
             try:
                 docs.append(cls.extract_document(obj.id, obj=obj))
             except Exception as e:
-                sys.stdout.write('Failed to index {0}: {1}. {2}'.format(
-                    cls._meta.model_name, obj.id, e))
+                sys.stdout.write('Failed to index {0} {1}: {2}\n'.format(
+                    cls.get_model()._meta.model_name, obj.id, e))
 
         # Index.
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())

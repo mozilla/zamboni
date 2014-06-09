@@ -24,14 +24,14 @@ import mkt.regions
 from amo.decorators import use_master
 from amo.models import SlugField
 from mkt.collections.fields import ColorField
-from mkt.constants.feed import FEEDAPP_TYPES
 from mkt.ratings.validators import validate_rating
 from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 from translations.fields import PurifiedField, save_signal
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
-                        COLLECTION_TYPE_CHOICES, FEED_COLOR_CHOICES)
+                        COLLECTION_TYPE_CHOICES,
+                        FEEDAPP_TYPE_CHOICES, FEED_COLOR_CHOICES)
 
 
 class BaseFeedCollection(amo.models.ModelBase):
@@ -286,7 +286,7 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
     description = PurifiedField()
     slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
-    type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
+    type = models.CharField(choices=FEEDAPP_TYPE_CHOICES, max_length=30)
 
     # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
@@ -354,6 +354,7 @@ models.signals.pre_save.connect(
 models.signals.pre_save.connect(
     save_signal, sender=FeedCollectionMembership,
     dispatch_uid='feedcollectionmembership_translations')
+
 
 # Delete membership instances when their apps are deleted.
 def remove_deleted_app_on(cls):

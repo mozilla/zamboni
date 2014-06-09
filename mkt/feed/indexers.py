@@ -17,12 +17,16 @@ class FeedAppIndexer(BaseIndexer):
     @classmethod
     def get_mapping(cls):
         """Returns an Elasticsearch mapping for this MappingType"""
+        doc_type = cls.get_mapping_type_name()
+
         return {
-            'properties': {
-                'id': {'type': 'integer'},
-                'name': {'type': 'string', 'analyzer': 'default_icu'},
-                'slug': {'type': 'string'},
-                'type': {'type': 'string'},
+            doc_type: {
+                'properties': {
+                    'id': {'type': 'integer'},
+                    'name': {'type': 'string', 'analyzer': 'default_icu'},
+                    'slug': {'type': 'string'},
+                    'type': {'type': 'string'},
+                }
             }
         }
 
@@ -51,11 +55,15 @@ class FeedBrandIndexer(BaseIndexer):
 
     @classmethod
     def get_mapping(cls):
+        doc_type = cls.get_mapping_type_name()
+
         return {
-            'properties': {
-                'id': {'type': 'integer'},
-                'slug': {'type': 'string'},
-                'type': {'type': 'string'},
+            doc_type: {
+                'properties': {
+                    'id': {'type': 'integer'},
+                    'slug': {'type': 'string'},
+                    'type': {'type': 'string'},
+                }
             }
         }
 
@@ -78,12 +86,16 @@ class FeedCollectionIndexer(BaseIndexer):
 
     @classmethod
     def get_mapping(cls):
+        doc_type = cls.get_mapping_type_name()
+
         return {
-            'properties': {
-                'id': {'type': 'integer'},
-                'name': {'type': 'string', 'analyzer': 'default_icu'},
-                'slug': {'type': 'string'},
-                'type': {'type': 'string'},
+            doc_type: {
+                'properties': {
+                    'id': {'type': 'integer'},
+                    'name': {'type': 'string', 'analyzer': 'default_icu'},
+                    'slug': {'type': 'string'},
+                    'type': {'type': 'string'},
+                }
             }
         }
 

@@ -421,7 +421,7 @@ class WebappIndexer(BaseIndexer):
     def run_indexing(cls, ids, ES, index=None, **kw):
         """Override run_indexing to use app transformers."""
         from mkt.webapps.models import Webapp
-        sys.stdout.write('Indexing %s apps' % len(ids))
+        sys.stdout.write('Indexing %s webapps\n' % len(ids))
 
         qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache()
                                          .filter(id__in=ids))
@@ -431,7 +431,7 @@ class WebappIndexer(BaseIndexer):
             try:
                 docs.append(cls.extract_document(obj.id, obj=obj))
             except Exception as e:
-                sys.stdout.write('Failed to index obj: {0}. {1}'.format(
+                sys.stdout.write('Failed to index webapp {0}: {1}\n'.format(
                     obj.id, e))
 
         WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
