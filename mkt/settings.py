@@ -87,7 +87,6 @@ INSTALLED_APPS = (
     'addons',
     'cronjobs',
     'csp',
-    'editors',
     'files',
     'jingo_minify',
     'lib.es',
@@ -812,7 +811,6 @@ JINGO_EXCLUDE_PATHS = (
     'webapps/dump',
     'users/email',
     'reviews/emails',
-    'editors/emails',
     'amo/emails',
 )
 

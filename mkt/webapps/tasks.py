@@ -29,7 +29,6 @@ from addons.models import Addon
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
-from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.es.utils import get_indices
@@ -38,11 +37,11 @@ from lib.post_request_task.task import task as post_request_task
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, validator)
+from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
 from mkt.webapps.utils import get_locale_properties
 from users.models import UserProfile
 from users.utils import get_task_user
-
 
 
 task_log = logging.getLogger('z.task')
@@ -572,7 +571,7 @@ def _regenerate_icons_and_thumbnails(pk):
 @write
 def regenerate_icons_and_thumbnails(ids, **kw):
     for pk in ids:
-        _regenerate_icons_and_thumbnails(pk);
+        _regenerate_icons_and_thumbnails(pk)
 
 
 @task

@@ -3,24 +3,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
-from editors import helpers
-from files.models import File
-from versions.models import Version
-
-
-class TestCompareLink(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/platforms']
-
-    def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
-        self.current = File.objects.get(pk=67442)
-        self.version = Version.objects.create(addon=self.addon)
-
-    def test_same_platform(self):
-        file = File.objects.create(version=self.version,
-                                   platform=self.current.platform)
-        eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
+from mkt.reviewers import helpers
 
 
 class TestGetPosition(amo.tests.TestCase):

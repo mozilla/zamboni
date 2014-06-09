@@ -10,10 +10,10 @@ import amo
 from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
-from editors.models import EscalationQueue, EventLog
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.prices.models import Refund
+from mkt.reviewers.models import EscalationQueue, EventLog
 from reviews.models import Review
 
 

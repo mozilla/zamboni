@@ -8,16 +8,17 @@ from nose.tools import eq_
 import amo
 from amo.tasks import find_abuse_escalations, find_refund_escalations
 from amo.tests import app_factory
-from editors.models import EscalationQueue
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import AppLog
 from mkt.prices.models import AddonPurchase, Refund
 from mkt.purchase.models import Contribution
+from mkt.reviewers.models import EscalationQueue
+from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
 class TestAbuseEscalationTask(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_admin')
 
     def setUp(self):
         self.app = app_factory(name='XXX')
@@ -108,7 +109,7 @@ class TestAbuseEscalationTask(amo.tests.TestCase):
 
 
 class TestRefundsEscalationTask(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_admin', 'user_2519', 'user_999')
 
     def setUp(self):
         self.app = app_factory(name='XXX')

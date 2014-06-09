@@ -140,7 +140,7 @@ class Version(amo.models.ModelBase):
         # If packaged app and app is blocked, put in escalation queue.
         if addon.is_packaged and addon.status == amo.STATUS_BLOCKED:
             # To avoid circular import.
-            from editors.models import EscalationQueue
+            from mkt.reviewers.models import EscalationQueue
             EscalationQueue.objects.create(addon=addon)
 
         return v

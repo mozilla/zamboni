@@ -6,12 +6,11 @@ from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext_lazy as _lazy
 
 import amo
-from editors.models import ReviewerScore
-from reviews.models import Review
-
 from mkt.ratings import (REVIEW_MODERATE_DELETE, REVIEW_MODERATE_KEEP,
                          REVIEW_MODERATE_SKIP)
 from mkt.ratings.helpers import user_can_delete_review
+from mkt.reviewers.models import ReviewerScore
+from reviews.models import Review
 
 
 class BaseReviewFlagFormSet(BaseModelFormSet):

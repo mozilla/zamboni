@@ -31,8 +31,6 @@ from amo.helpers import absolutify, urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
 from amo.utils import isotime
-from editors.models import (CannedResponse, EscalationQueue, RereviewQueue,
-                            ReviewerScore)
 from files.models import File
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
@@ -42,6 +40,8 @@ from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
+from mkt.reviewers.models import (CannedResponse, EscalationQueue,
+                                  RereviewQueue, ReviewerScore)
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
@@ -87,7 +87,8 @@ class AttachmentManagementMixin(object):
 
 
 class AppReviewerTest(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_999')
 
     def setUp(self):
         self.login_as_editor()
@@ -372,7 +373,6 @@ class XSSMixin(object):
 
 class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                    XSSMixin):
-    fixtures = ['base/users']
 
     def setUp(self):
         self.apps = [app_factory(name='XXX',
@@ -396,7 +396,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_queue_viewing_ping(self):
-        eq_(self.client.post(reverse('editors.queue_viewing')).status_code,
+        eq_(self.client.post(reverse('reviewers.queue_viewing')).status_code,
             200)
 
     def test_template_links(self):
@@ -539,7 +539,6 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
 class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
-    fixtures = ['base/users']
 
     def setUp(self):
         self.apps = [app_factory(name='WWW',
@@ -586,7 +585,6 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 @mock.patch('versions.models.Version.is_privileged', False)
 class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         XSSMixin):
-    fixtures = ['base/users']
 
     def setUp(self):
         self.apps = [app_factory(name='XXX'),
@@ -724,7 +722,6 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 @mock.patch('versions.models.Version.is_privileged', False)
 class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
-    fixtures = ['base/users']
 
     def setUp(self):
         app1 = app_factory(is_packaged=True, name='XXX',
@@ -935,8 +932,6 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
 
 class TestDeviceQueue(AppReviewerTest, AccessMixin):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
-                       'user_999')
 
     def setUp(self):
         self.app1 = app_factory(name='XXX',
@@ -978,7 +973,6 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
 @mock.patch('versions.models.Version.is_privileged', False)
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
                           SearchMixin, XSSMixin):
-    fixtures = ['base/users']
 
     def setUp(self):
         self.apps = [app_factory(name='XXX'),
@@ -1164,7 +1158,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                     PackagedFilesMixin):
-    fixtures = ['base/platforms', 'base/users'] + fixture('webapp_337141')
+    fixtures = AppReviewerTest.fixtures + fixture('webapp_337141')
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
@@ -1189,7 +1183,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.assert3xx(res, reverse('reviewers.apps.queue_%s' % queue))
 
     def test_review_viewing_ping(self):
-        eq_(self.client.post(reverse('editors.review_viewing')).status_code,
+        eq_(self.client.post(reverse('reviewers.review_viewing')).status_code,
             200)
 
     @mock.patch('mkt.webapps.models.Webapp.in_rereview_queue')
@@ -2208,6 +2202,8 @@ class TestCannedResponses(AppReviewerTest):
 
 class TestReviewLog(AppReviewerTest, AccessMixin):
 
+    fixtures = AppReviewerTest.fixtures + fixture('user_admin')
+
     def setUp(self):
         self.login_as_editor()
         super(TestReviewLog, self).setUp()
@@ -2453,7 +2449,8 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
     Test communication threads + notes are created and that emails are
     sent to the right groups of people.
     """
-    fixtures = ['base/users']
+    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
+                       'group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
         super(TestReviewAppComm, self).setUp()
@@ -2636,7 +2633,8 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
 
 class TestModeratedQueue(AppReviewerTest, AccessMixin):
-    fixtures = ['base/users']
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_2519', 'user_999')
 
     def setUp(self):
         self.app = app_factory()
@@ -2908,8 +2906,6 @@ class TestMiniManifestView(BasePackagedAppTest):
 
 
 class TestReviewersScores(AppReviewerTest, AccessMixin):
-    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
-                       'user_999')
 
     def setUp(self):
         super(TestReviewersScores, self).setUp()
@@ -2938,7 +2934,6 @@ class TestReviewersScores(AppReviewerTest, AccessMixin):
 
 
 class TestQueueSort(AppReviewerTest):
-    fixtures = ['base/users']
 
     def setUp(self):
         """Create and set up apps for some filtering fun."""
@@ -3013,7 +3008,7 @@ class TestQueueSort(AppReviewerTest):
     def test_do_sort_version_nom(self):
         """Tests version nomination sort order."""
         url = reverse('reviewers.apps.queue_pending')
-        user = UserProfile.objects.get(username='admin')
+        user = UserProfile.objects.get(username='editor')
 
         version_0 = self.apps[0].versions.get()
         version_0.update(nomination=days_ago(1))
@@ -3150,6 +3145,8 @@ class TestQueueSort(AppReviewerTest):
 
 
 class TestAppsReviewing(AppReviewerTest, AccessMixin):
+    fixtures = AppReviewerTest.fixtures + fixture(
+        'user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
         self.login_as_editor()
@@ -3163,7 +3160,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
                                  status=amo.STATUS_PENDING)]
 
     def _view_app(self, app_id):
-        self.client.post(reverse('editors.review_viewing'), {
+        self.client.post(reverse('reviewers.review_viewing'), {
             'addon_id': app_id})
 
     def test_no_apps_reviewing(self):
@@ -3195,9 +3192,8 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestAttachmentDownload(amo.tests.TestCase):
-    fixtures = ['data/user_editor', 'data/user_editor_group',
-                'data/group_editor',
-                'data/user_999'] + fixture('webapp_337141')
+    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor',
+                       'user_999', 'webapp_337141')
 
     def _attachment(self, log):
         return ActivityLogAttachment.objects.create(activity_log=log,
@@ -3239,7 +3235,7 @@ class TestAttachmentDownload(amo.tests.TestCase):
 
 
 class TestLeaderboard(AppReviewerTest):
-    fixtures = ['base/users']
+    fixtures = AppReviewerTest.fixtures + fixture('user_10482')
 
     def setUp(self):
         self.url = reverse('reviewers.leaderboard')
@@ -3296,12 +3292,12 @@ class TestLeaderboard(AppReviewerTest):
 
 
 class TestReviewPage(amo.tests.TestCase):
-    fixtures = fixture('user_editor', 'user_editor_group', 'group_editor')
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
         self.create_switch('iarc')
         self.app = app_factory(status=amo.STATUS_PENDING)
-        self.reviewer = UserProfile.objects.get()
+        self.reviewer = UserProfile.objects.get(username='editor')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
     def test_iarc_ratingless_disable_approve_btn(self):

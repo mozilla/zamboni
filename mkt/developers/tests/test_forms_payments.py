@@ -6,19 +6,17 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-
 from addons.models import Addon, AddonDeviceType, AddonUser
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
-from editors.models import RereviewQueue
-from users.models import UserProfile
-
 from mkt.developers import forms_payments, models
 from mkt.developers.providers import get_provider
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.tests.test_views_payments import setup_payment_account
-from mkt.site.fixtures import fixture
 from mkt.prices.models import AddonPremium, Price
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.fixtures import fixture
+from users.models import UserProfile
 
 
 class TestPremiumForm(amo.tests.TestCase):

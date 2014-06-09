@@ -36,7 +36,6 @@ from amo.tests import app_factory, version_factory
 from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from editors.models import EscalationQueue, RereviewQueue
 from files.models import File, Platform
 from files.utils import WebAppParser
 from lib.crypto import packaged
@@ -47,6 +46,8 @@ from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
+from mkt.prices.models import AddonPremium, Price
+from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
@@ -54,7 +55,6 @@ from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
                                 ContentRating, Geodata, get_excluded_in,
                                 IARCInfo, Installed, RatingDescriptors,
                                 RatingInteractives, Webapp, WebappIndexer)
-from mkt.prices.models import AddonPremium, Price
 from users.models import UserProfile
 from versions.models import update_status, Version
 

@@ -6,7 +6,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from editors.models import RereviewQueue
+from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from users.models import UserProfile
 

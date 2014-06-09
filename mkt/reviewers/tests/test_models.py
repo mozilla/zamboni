@@ -5,12 +5,15 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from editors.models import RereviewQueue, ReviewerScore
+from mkt.reviewers.models import RereviewQueue, ReviewerScore
+from mkt.site.fixtures import fixture
 from users.models import UserProfile
 
 
 class TestReviewerScore(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('group_admin', 'group_editor', 'user_admin',
+                       'user_admin_group', 'user_editor', 'user_editor_group',
+                       'user_999')
 
     def setUp(self):
         self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)

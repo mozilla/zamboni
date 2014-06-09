@@ -22,9 +22,9 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser, Preview
 from amo.helpers import absolutify
-from editors.models import RereviewQueue
 from files.models import File, FileUpload
 from mkt.developers.models import ActivityLog
+from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,

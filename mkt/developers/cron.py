@@ -6,14 +6,12 @@ from celery.task.sets import TaskSet
 from tower import ugettext as _
 
 import amo
-from amo.utils import chunked
-from editors.models import RereviewQueue
-
 import lib.iarc
-
+from amo.utils import chunked
 from lib.iarc.utils import RATINGS_MAPPING
 from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
                                   region_exclude)
+from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import AddonExcludedRegion, Webapp
 
 

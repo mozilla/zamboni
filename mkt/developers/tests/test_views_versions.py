@@ -10,11 +10,11 @@ import amo
 import amo.tests
 from addons.models import Addon, AddonUser
 from amo.tests import req_factory_factory
-from editors.models import EditorSubscription, EscalationQueue
 from files.models import File
 from mkt.comm.models import CommunicationNote
 from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
 from mkt.developers.views import preload_submit, status
+from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from users.models import UserProfile

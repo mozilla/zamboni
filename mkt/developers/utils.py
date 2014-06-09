@@ -14,12 +14,12 @@ from tower import ugettext as _
 
 import amo
 from amo.helpers import absolutify
-from editors.models import EscalationQueue
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
-from mkt.constants import APP_PREVIEW_MINIMUMS
-from mkt.constants import comm
+from mkt.constants import APP_PREVIEW_MINIMUMS, comm
+from mkt.reviewers.models import EscalationQueue
 from mkt.reviewers.utils import send_mail
+
 
 log = commonware.log.getLogger('z.devhub')
 

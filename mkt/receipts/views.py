@@ -20,7 +20,6 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo.decorators import json_view, post_required, write
 from constants.payments import CONTRIB_NO_CHARGE
-from editors.views import reviewer_required
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
 from lib.metrics import record_action
@@ -36,6 +35,7 @@ from mkt.prices.models import AddonPurchase
 from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
+from mkt.reviewers.views import reviewer_required
 from mkt.webapps.models import Installed, Webapp
 from services.verify import get_headers, Verify
 from users.models import UserProfile

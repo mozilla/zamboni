@@ -15,19 +15,18 @@ from addons.models import Addon, AddonUpsell, BlacklistedSlug, Webapp
 from amo.utils import slug_validator
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
-from editors.models import RereviewQueue
 from files.models import FileUpload
 from files.utils import parse_addon
+from mkt.comm.utils import create_comm_note
+from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.developers.forms import verify_app_domain
+from mkt.prices.models import AddonPremium, Price
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
+from mkt.webapps.models import AppFeatures
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea
-
-from mkt.comm.utils import create_comm_note
-from mkt.constants import APP_FEATURES, FREE_PLATFORMS, PAID_PLATFORMS, comm
-from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
-from mkt.webapps.models import AppFeatures
-from mkt.prices.models import AddonPremium, Price
-from mkt.developers.forms import verify_app_domain
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):

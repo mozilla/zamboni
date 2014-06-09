@@ -12,6 +12,7 @@ from mkt.comm.forms import CommAttachmentForm
 
 @patch.object(settings, 'MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE', 1024)
 class TestReviewAppAttachmentForm(amo.tests.TestCase):
+
     def setUp(self):
         self.max_size = settings.MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE
 

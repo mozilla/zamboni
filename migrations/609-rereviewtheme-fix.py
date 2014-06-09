@@ -3,7 +3,7 @@
 import logging
 
 from addons.models import Addon
-from editors.models import RereviewQueueTheme
+from mkt.reviewers.models import RereviewQueueTheme
 
 
 log = logging.getLogger('z.task')
