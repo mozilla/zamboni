@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1402124706.0\n"
 
 #: media/js/common/ratingwidget.js:31
@@ -28,7 +28,8 @@ msgstr "Het door u geüploade bestandstype wordt niet herkend."
 msgid "You cancelled the upload."
 msgstr "U hebt de upload geannuleerd."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
@@ -36,7 +37,8 @@ msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 msgid "Videos must be in WebM."
 msgstr "Video’s dienen in WebM te zijn."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de server."
 
@@ -70,7 +72,8 @@ msgstr "Uploaden {0}"
 msgid "Error with {0}"
 msgstr "Fout met {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Uw app kon niet worden gevalideerd met {0} fout."
@@ -82,7 +85,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "… en nog {0}"
 msgstr[1] "… en nog {0}"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 msgid "See full validation report"
 msgstr "Volledig validatierapport bekijken"
 
@@ -106,8 +111,10 @@ msgstr "Validatie van {0} afgerond"
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
-msgstr[1] "Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
+msgstr[0] ""
+"Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
+msgstr[1] ""
+"Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
@@ -117,15 +124,18 @@ msgstr "Uw app heeft de validatie zonder fouten of waarschuwingen doorstaan."
 msgid "The manifest could not be found at the given location."
 msgstr "Het manifest kon niet op de opgegeven locatie worden gevonden."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
 msgstr "App-host kan niet worden bereikt."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
 msgstr "App-manifest kan niet worden ontleed."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
 msgstr "App-manifest is ongeldig."
 
@@ -141,15 +151,18 @@ msgstr "Interne serverfout."
 msgid "Internal server error on app installation."
 msgstr "Interne serverfout bij installatie app."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
 msgstr "Installatie mislukt. Probeer het later nog eens."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Uw app heeft de validatie niet doorstaan met {0} fout en {1} bericht(en)."
-msgstr[1] "Uw app heeft de validatie niet doorstaan met {0} fouten en {1} bericht(en)."
+msgstr[0] ""
+"Uw app heeft de validatie niet doorstaan met {0} fout en {1} bericht(en)."
+msgstr[1] ""
+"Uw app heeft de validatie niet doorstaan met {0} fouten en {1} bericht(en)."
 
 #: media/js/devreg/devhub.js:200
 msgid "Your app passed validation with no errors and {0} message."
@@ -201,17 +214,27 @@ msgstr "of de <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. "
+"Probeer het later nog eens."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Deze vertaling verwijderen"
 
 #: media/js/devreg/login.js:75
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Persona-aanmelding mislukt. Misschien hebt u geen account met dat "
+"e-mailadres?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
@@ -223,7 +246,8 @@ msgstr "Alle resultaten weergeven"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
-msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
+msgstr ""
+"Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -283,7 +307,9 @@ msgstr "Griekse HEBIC/Indonesische Bank code"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-code"
+msgstr ""
+"UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-"
+"code"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -308,21 +334,39 @@ msgstr "Gedetecteerd: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende app. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
-msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende apps. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount "
+"verwijderd uit de volgende app. Toepassingen zonder betalingsaccount zijn "
+"niet meer beschikbaar voor verkoop."
+msgstr[1] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount "
+"verwijderd uit de volgende apps. Toepassingen zonder betalingsaccount zijn "
+"niet meer beschikbaar voor verkoop."
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
 msgstr "Betalingsaccounts {appName}:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:96
+#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fout"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
 
@@ -334,15 +378,18 @@ msgstr "Authenticatiefout"
 msgid "You do not currently have any payment accounts."
 msgstr "U hebt momenteel geen betalingsaccounts."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Thema’s zoeken op <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Apps doorzoeken op <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Add-ons doorzoeken op <b>{0}</b>"
 
@@ -357,11 +404,13 @@ msgstr[1] "{0} tekens resterend."
 msgid "All tests passed successfully."
 msgstr "Alle tests succesvol doorstaan."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Deze tests zijn niet uitgevoerd."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Tests"
 
@@ -445,7 +494,8 @@ msgstr "Opmerkingen voor beoordelaars"
 msgid "No version notes found"
 msgstr "Geen versieopmerkingen gevonden"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
@@ -543,7 +593,8 @@ msgid "Following"
 msgstr "Wordt gevolgd"
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dit thema is niet compatibel met uw versie van {0}"
 
@@ -579,15 +630,18 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 msgid "Your Theme's Name"
 msgstr "De naam van uw thema"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Gemarkeerd voor beoordeling"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Uw bijdrage is vereist"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Gemarkeerd voor verwijdering"
 
@@ -606,14 +660,22 @@ msgstr "oorspronkelijke gebruiken"
 #: media/js/zamboni/admin_validation.js:52
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} add-on instellen op een maximumversie van {1} en een e-mailbericht naar de schrijver sturen."
-msgstr[1] "{0} add-ons instellen op een maximumversie van {1} en een e-mailbericht naar de schrijvers sturen."
+msgstr[0] ""
+"{0} add-on instellen op een maximumversie van {1} en een e-mailbericht naar "
+"de schrijver sturen."
+msgstr[1] ""
+"{0} add-ons instellen op een maximumversie van {1} en een e-mailbericht naar "
+"de schrijvers sturen."
 
 #: media/js/zamboni/admin_validation.js:55
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "E-mailbericht versturen naar schrijver van {2} add-on die de validatie niet heeft doorstaan."
-msgstr[1] "E-mailbericht versturen naar schrijver van {2} add-ons die de validatie niet heeft doorstaan."
+msgstr[0] ""
+"E-mailbericht versturen naar schrijver van {2} add-on die de validatie niet "
+"heeft doorstaan."
+msgstr[1] ""
+"E-mailbericht versturen naar schrijver van {2} add-ons die de validatie niet "
+"heeft doorstaan."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -633,11 +695,17 @@ msgstr "Dit systeem ondersteunt de installatie van apps niet."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr "Beheerders en editors dienen een wachtwoord op te geven om zich aan te melden."
+msgstr ""
+"Beheerders en editors dienen een wachtwoord op te geven om zich aan te "
+"melden."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "BrowserID-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"BrowserID-aanmelding mislukt. Misschien hebt u geen account met dat "
+"e-mailadres?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:100
@@ -661,8 +729,11 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "U dient Firefox 10.0 of hoger te gebruiken."
 
 #: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla heeft deze versie als niet-compatibel met uw Firefox-versie gemarkeerd."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla heeft deze versie als niet-compatibel met uw Firefox-versie "
+"gemarkeerd."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:230
@@ -678,7 +749,8 @@ msgid "Not available for your platform"
 msgstr "Niet beschikbaar voor uw platform"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
+#: media/js/zamboni/buttons.js:298
+#: media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
 msgstr "Niet beschikbaar voor {0} {1}"
 
@@ -690,9 +762,14 @@ msgstr "Werkt met {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Overige versies bekijken"
 
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een zoekplug-in te kunnen installeren."
+#: media/js/zamboni/buttons.js:563
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een "
+"zoekplug-in te kunnen installeren."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -735,7 +812,8 @@ msgstr "Niet beoordeeld"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimenteel <span>(meer info)</span>"
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Niet beschikbaar voor {0}"
 
