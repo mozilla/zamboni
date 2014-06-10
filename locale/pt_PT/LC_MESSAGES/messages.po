@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-10 03:41+0000\n"
+"PO-Revision-Date: 2014-06-10 03:48+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402371703.0\n"
+"X-POOTLE-MTIME: 1402372119.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -27,7 +27,7 @@ msgstr "Não revisto"
 #: apps/addons/buttons.py:183
 msgctxt "install_button"
 msgid "Experimental"
-msgstr "Em teste"
+msgstr "Experimental"
 
 #: apps/addons/forms.py:39
 msgid "This name is already in use. Please choose another."
