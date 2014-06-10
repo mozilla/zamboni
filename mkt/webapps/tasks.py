@@ -343,6 +343,7 @@ def update_supported_locales(ids, **kw):
 @post_request_task(acks_late=True)
 @write
 def index_webapps(ids, **kw):
+    """TODO: use search/indexers.py:index."""
     task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
 
     index = kw.pop('index', WebappIndexer.get_index())

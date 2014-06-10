@@ -683,6 +683,7 @@ ES_INDEXES = {
     'mkt_feed_app': 'feed_apps_index',
     'mkt_feed_brand': 'feed_brands_index',
     'mkt_feed_collection': 'feed_collections_index',
+    # Adding an index? Don't forget to add the indexer to ESTestCase.
 }
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_USE_PLUGINS = False

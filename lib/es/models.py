@@ -32,15 +32,15 @@ class Reindexing(models.Model):
         cls.objects.all().delete()
 
     @classmethod
-    def get_indices(cls, index):
+    def get_indices(cls, alias):
         """
         Return the indices associated with an alias.
         If we are reindexing, there should be two indices returned.
         """
         try:
-            reindex = cls.objects.get(alias=index)
+            reindex = cls.objects.get(alias=alias)
             # Yes. Let's reindex on both indexes.
             return [idx for idx in reindex.new_index, reindex.old_index
                     if idx is not None]
         except Reindexing.DoesNotExist:
-            return [index]
+            return [alias]

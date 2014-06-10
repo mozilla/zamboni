@@ -3,7 +3,6 @@ Indexers for FeedApp, FeedBrand, FeedCollection are for Curator Tools search.
 """
 from amo.utils import attach_trans_dict
 
-from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
 from mkt.search.indexers import BaseIndexer
 from mkt.webapps.models import Webapp
 
@@ -12,6 +11,7 @@ class FeedAppIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
         """Returns the Django model this MappingType relates to"""
+        from mkt.feed.models import FeedApp
         return FeedApp
 
     @classmethod
@@ -51,6 +51,7 @@ class FeedAppIndexer(BaseIndexer):
 class FeedBrandIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
+        from mkt.feed.models import FeedBrand
         return FeedBrand
 
     @classmethod
@@ -82,6 +83,7 @@ class FeedBrandIndexer(BaseIndexer):
 class FeedCollectionIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
+        from mkt.feed.models import FeedCollection
         return FeedCollection
 
     @classmethod
@@ -101,6 +103,8 @@ class FeedCollectionIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, obj_id, obj=None):
+        from mkt.feed.models import FeedCollection
+
         if obj is None:
             obj = cls.get_model().get(pk=obj_id)
 

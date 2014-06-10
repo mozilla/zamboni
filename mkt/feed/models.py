@@ -10,21 +10,26 @@ Current content types able to be attached to FeedItem:
 - `FeedBrand` (via the `brand` field)
 - `FeedCollection` (via the `collection` field)
 """
-
 import os
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 import amo.models
-import mkt.carriers
-import mkt.regions
 from amo.decorators import use_master
 from amo.models import SlugField
+
+import mkt.carriers
+import mkt.regions
 from mkt.collections.fields import ColorField
 from mkt.ratings.validators import validate_rating
+from mkt.feed import indexers
+from mkt.feed.models import ColorField
+from mkt.ratings.validators import validate_rating
+from mkt.search.indexers import index
 from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 from translations.fields import PurifiedField, save_signal
@@ -206,6 +211,9 @@ class FeedBrand(BaseFeedCollection):
         abstract = False
         db_table = 'mkt_feed_brand'
 
+    def get_indexer(self):
+        return indexers.FeedBrandIndexer
+
 
 class FeedCollectionMembership(BaseFeedCollectionMembership):
     """
@@ -240,6 +248,9 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
     class Meta(BaseFeedCollection.Meta):
         abstract = False
         db_table = 'mkt_feed_collection'
+
+    def get_indexer(self):
+        return indexers.FeedCollectionIndexer
 
     def image_path(self):
         return os.path.join(settings.FEED_COLLECTION_BG_PATH,
@@ -301,6 +312,9 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
     class Meta:
         db_table = 'mkt_feed_app'
 
+    def get_indexer(self):
+        return indexers.FeedAppIndexer
+
     def clean(self):
         """
         Require `pullquote_text` if `pullquote_rating` or
@@ -342,6 +356,17 @@ class FeedItem(amo.models.ModelBase):
     class Meta:
         db_table = 'mkt_feed_item'
         ordering = ('order',)
+
+
+# Maintain ElasticSearch index.
+@receiver(models.signals.post_save, sender=FeedApp,
+          dispatch_uid='feedapp.search.index')
+@receiver(models.signals.post_save, sender=FeedApp,
+          dispatch_uid='feedbrand.search.index')
+@receiver(models.signals.post_save, sender=FeedApp,
+          dispatch_uid='feedcollection.search.index')
+def update_search_index(sender, instance, **kw):
+    index.delay([instance.id], instance.get_indexer())
 
 
 # Save translations when saving instance with translated fields.

@@ -1,3 +1,4 @@
+import logging
 import sys
 
 from django.conf import settings
@@ -5,6 +6,12 @@ from django.conf import settings
 from elasticutils.contrib.django import Indexable, MappingType
 
 import amo
+from amo.decorators import write
+from lib.es.models import Reindexing
+from lib.post_request_task.task import task as post_request_task
+
+
+task_log = logging.getLogger('z.task')
 
 
 class BaseIndexer(MappingType, Indexable):
@@ -109,8 +116,7 @@ class BaseIndexer(MappingType, Indexable):
 
     @classmethod
     def get_indexable(cls):
-        return cls.get_model().objects.order_by('-id').values_list(
-            'id', flat=True)
+        return cls.get_model().objects.order_by('-id')
 
     @classmethod
     def run_indexing(cls, ids, ES, index=None, **kw):
@@ -132,3 +138,23 @@ class BaseIndexer(MappingType, Indexable):
 
         # Index.
         cls.bulk_index(docs, es=ES, index=index or cls.get_index())
+
+
+@post_request_task(acks_late=True)
+@write
+def index(ids, indexer, **kw):
+    """
+    Given a list of IDs and an indexer, index into ES.
+    If an reindexation is currently occurring, index on both the old and new.
+    """
+    task_log.info('Indexing {0} {1}-{2}. [{3}]'.format(
+        indexer.get_model()._meta.model_name, ids[0], ids[-1], len(ids)))
+
+    # If reindexing is currently occurring, index on both old and new indexes.
+    indices = Reindexing.get_indices(indexer.get_index())
+
+    es = indexer.get_es(urls=settings.ES_URLS)
+    for obj in indexer.get_indexable().filter(id__in=ids):
+        doc = indexer.extract_document(obj.id, obj)
+        for idx in indices:
+            indexer.index(doc, id_=obj.id, es=es, index=idx)

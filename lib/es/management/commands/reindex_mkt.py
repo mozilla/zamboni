@@ -109,7 +109,7 @@ def run_indexing(index, indexer, chunk_size):
     """
     sys.stdout.write('Indexing apps into index: %s\n' % index)
 
-    qs = indexer.get_indexable()
+    qs = indexer.get_indexable().values_list('id', flat=True)
     for ids in chunked(list(qs), chunk_size):
         indexer.run_indexing(ids, ES, index=index)
 
