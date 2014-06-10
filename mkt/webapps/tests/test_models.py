@@ -2174,8 +2174,14 @@ class TestGeodata(amo.tests.WebappTestCase):
             u'%s (restricted): <Webapp 337141>' % self.geo.id)
 
     def test_get_status(self):
-        eq_(self.geo.get_status(mkt.regions.CN), amo.STATUS_NULL)
-        eq_(self.geo.region_cn_status, amo.STATUS_NULL)
+        status = amo.STATUS_PENDING
+        eq_(self.geo.get_status(mkt.regions.CN), status)
+        eq_(self.geo.region_cn_status, status)
+
+        status = amo.STATUS_PUBLIC
+        self.geo.update(region_cn_status=status)
+        eq_(self.geo.get_status(mkt.regions.CN), status)
+        eq_(self.geo.region_cn_status, status)
 
     def test_set_status(self):
         status = amo.STATUS_PUBLIC
@@ -2183,7 +2189,7 @@ class TestGeodata(amo.tests.WebappTestCase):
         # Called with `save=False`.
         self.geo.set_status(mkt.regions.CN, status)
         eq_(self.geo.region_cn_status, status)
-        eq_(self.geo.reload().region_cn_status, amo.STATUS_NULL,
+        eq_(self.geo.reload().region_cn_status, amo.STATUS_PENDING,
             '`set_status(..., save=False)` should not save the value')
 
         # Called with `save=True`.

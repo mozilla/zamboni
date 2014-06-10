@@ -332,6 +332,7 @@ class TestApproveRegion(RestOAuth):
 
         app = Webapp.objects.get(id=337141)
         app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_nominated_date('cn', save=True)
 
         res = self.client.post(self.url())
         eq_(res.status_code, 200)
@@ -344,6 +345,7 @@ class TestApproveRegion(RestOAuth):
 
         app = Webapp.objects.get(id=337141)
         app.geodata.set_status('cn', amo.STATUS_PENDING, save=True)
+        app.geodata.set_nominated_date('cn', save=True)
 
         res = self.client.post(self.url(), data=json.dumps({'approve': '1'}))
         eq_(res.status_code, 200)
