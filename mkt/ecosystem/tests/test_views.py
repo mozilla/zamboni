@@ -7,13 +7,16 @@ from pyquery import PyQuery as pq
 
 import amo.tests
 
+from mkt.ecosystem.urls import APP_SLUGS
+
 
 VIEW_PAGES = (
     'dev_phone', 'partners', 'support'
 )
 
 REDIRECT_PAGES = (
-    'build_apps_offline', 'build_ffos', 'build_game_apps', 'build_intro',
+    'build_apps_offline', 'build_ffos',
+    'build_game_apps', 'build_intro',
     'build_manifests', 'build_mobile_developers', 'build_quick',
     'build_reference', 'build_web_developers', 'design_concept',
     'design_fundamentals', 'design_patterns', 'design_ui', 'ffos_guideline',
@@ -82,13 +85,14 @@ class TestDevHub(amo.tests.TestCase):
             r = self.client.get(reverse('ecosystem.%s' % page))
             eq_(r.status_code, 301, '%s: status %s' % (page, r.status_code))
 
-    def test_valid_reference_app(self):
-        r = self.client.get(reverse('ecosystem.apps_documentation',
-                            args=['face_value']))
-        eq_(r.status_code, 200)
-        self.assertTemplateUsed(r, 'ecosystem/reference_apps/face_value.html')
+    def test_app_redirect_pages(self):
+        mdn_url = (
+            'https://developer.mozilla.org/docs/Web/Apps/Reference_apps/')
+        for mkt_slug, mdn_slug in APP_SLUGS.iteritems():
+            r = self.client.get(reverse('ecosystem.apps_documentation',
+                                        args=[mkt_slug]))
+            self.assert3xx(r, mdn_url + mdn_slug, status_code=301)
 
-    def test_invalid_reference_app(self):
         r = self.client.get(reverse('ecosystem.apps_documentation',
-                            args=['face_value_invalid']))
-        eq_(r.status_code, 404)
+                                    args=['badslug']))
+        self.assert3xx(r, mdn_url, status_code=301)

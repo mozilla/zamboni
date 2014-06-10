@@ -4,9 +4,22 @@ from django.views.generic import RedirectView
 from . import views
 
 
-def redirect_doc(uri):
-    return RedirectView.as_view(
+APP_SLUGS = {
+    'chrono': 'Chrono',
+    'face_value': 'Face_Value',
+    'podcasts': 'Podcasts',
+    'roller': 'Roller',
+    'webfighter': 'Webfighter',
+    'generalnotes': 'General_Notes',
+    'rtcamera': 'rtcamera'
+}
+
+
+def redirect_doc(uri, request=None):
+    view = RedirectView.as_view(
         url='https://developer.mozilla.org/docs%s' % uri)
+    return view(request) if request else view
+
 
 redirect_patterns = patterns('',
     url('^docs/firefox_os_guideline$',
@@ -75,6 +88,10 @@ redirect_patterns = patterns('',
     url('^docs/reference_apps$',
         redirect_doc('/Web/Apps/Reference_apps'),
         name='ecosystem.build_reference'),
+    url('^docs/apps/(?P<page>\w+)?$',
+        lambda req, page:
+            redirect_doc('/Web/Apps/Reference_apps/' + APP_SLUGS.get(page, ''), req),
+        name='ecosystem.apps_documentation'),
     url('^docs/payments/status$',
         redirect_doc('/Mozilla/Marketplace/Payments_Status'),
         name='ecosystem.publish_payments'),
@@ -92,6 +109,7 @@ redirect_patterns = patterns('',
         name='ecosystem.build_dev_tools'),
 )
 
+
 urlpatterns = redirect_patterns + patterns('',
     url('^$', views.landing, name='ecosystem.landing'),
     url('^partners$', views.partners, name='ecosystem.partners'),
@@ -99,6 +117,4 @@ urlpatterns = redirect_patterns + patterns('',
     url('^dev_phone$', views.dev_phone, name='ecosystem.dev_phone'),
     url('^docs/badges$', views.publish_badges,
         name='ecosystem.publish_badges'),
-    url('^docs/apps/(?P<page>\w+)?$', views.apps_documentation,
-        name='ecosystem.apps_documentation'),
 )
