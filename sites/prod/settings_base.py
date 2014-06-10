@@ -8,7 +8,13 @@ from mkt.settings import CACHE_PREFIX, KNOWN_PROXIES, LOGGING, HOSTNAME
 from .. import splitstrip
 import private_base as private
 
-ALLOWED_HOSTS = ['.firefox.com', '.firefox.com.cn']
+ALLOWED_HOSTS = [
+    '.firefox.com',
+    '.firefox.com.cn',
+    '.mozilla.org',
+    '.mozilla.com',
+    '.mozilla.net',
+]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = private.EMAIL_HOST
