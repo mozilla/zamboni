@@ -29,7 +29,7 @@ import amo
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
-from files.mjodels import FileUpload
+from files.models import FileUpload
 from files.utils import WebAppParser
 from lib.es.models import Reindexing
 from lib.metrics import get_monolith_client

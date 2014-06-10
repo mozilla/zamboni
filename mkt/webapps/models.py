@@ -53,13 +53,11 @@ from lib.iarc.utils import (get_iarc_app_title, render_xml,
 from lib.utils import static_url
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
                                  Translation)
-from versions.models import Version
 
 import mkt
 from mkt.access import acl
 from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps
-from mkt.developers.models import AddonPaymentAccount
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region

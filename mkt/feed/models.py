@@ -25,9 +25,7 @@ from amo.models import SlugField
 import mkt.carriers
 import mkt.regions
 from mkt.collections.fields import ColorField
-from mkt.ratings.validators import validate_rating
 from mkt.feed import indexers
-from mkt.feed.models import ColorField
 from mkt.ratings.validators import validate_rating
 from mkt.search.indexers import index
 from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
@@ -361,9 +359,9 @@ class FeedItem(amo.models.ModelBase):
 # Maintain ElasticSearch index.
 @receiver(models.signals.post_save, sender=FeedApp,
           dispatch_uid='feedapp.search.index')
-@receiver(models.signals.post_save, sender=FeedApp,
+@receiver(models.signals.post_save, sender=FeedBrand,
           dispatch_uid='feedbrand.search.index')
-@receiver(models.signals.post_save, sender=FeedApp,
+@receiver(models.signals.post_save, sender=FeedCollection,
           dispatch_uid='feedcollection.search.index')
 def update_search_index(sender, instance, **kw):
     index.delay([instance.id], instance.get_indexer())

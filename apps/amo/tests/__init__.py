@@ -35,13 +35,11 @@ from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
 import amo
-from addons.models import Addon, Category
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from constants.applications import DEVICE_TYPES
 from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
 from translations.models import Translation
-from versions.models import Version
 
 import mkt
 from mkt.access.acl import check_ownership
@@ -52,11 +50,11 @@ from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
 from mkt.files.helpers import copyfileobj
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Addon, Category, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
-from mkt.users.models import UserProfile
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.

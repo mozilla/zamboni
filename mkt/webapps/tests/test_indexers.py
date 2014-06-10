@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import amo.tests
-from addons.models import (AddonCategory, AddonDeviceType, Category)
 from amo.utils import to_language
 from constants.applications import DEVICE_TYPES
-from editors.models import EscalationQueue
 
 from nose.tools import eq_, ok_
 
 import mkt
+from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import ContentRating, Webapp
+from mkt.webapps.models import (AddonCategory, AddonDeviceType,
+                                Category, ContentRating, Webapp)
 
 
 class TestWebappIndexer(amo.tests.TestCase):

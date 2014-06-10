@@ -235,12 +235,14 @@ class FeedElementSearchView(CORSMixin, APIView):
         q = request.GET.get('q')
 
         # Gather.
-        feed_app_ids = S(FeedAppIndexer).query(
-            name=q, slug=q, type=q, should=True).values_list('id')
-        feed_brand_ids = S(FeedBrandIndexer).query(
-            slug=q, type=q, should=True).values_list('id')
-        feed_collection_ids = S(FeedCollectionIndexer).query(
-            name=q, slug=q, type=q, should=True).values_list('id')
+        feed_app_ids = ([pk[0] for pk in S(FeedAppIndexer).query(
+            name__fuzzy=q, slug__fuzzy=q, type=q, should=True)
+            .values_list('id')])
+        feed_brand_ids = [pk[0] for pk in S(FeedBrandIndexer).query(
+            slug__fuzzy=q, type=q, should=True).values_list('id')]
+        feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
+            name__fuzzy=q, slug__fuzzy=q, type=q, should=True)
+            .values_list('id')])
 
         # Dehydrate.
         apps = FeedApp.objects.filter(id__in=feed_app_ids)
@@ -248,9 +250,12 @@ class FeedElementSearchView(CORSMixin, APIView):
         colls = FeedCollection.objects.filter(id__in=feed_collection_ids)
 
         # Serialize.
-        apps = [FeedAppSerializer(app) for app in apps]
-        brands = [FeedBrandSerializer(brand) for brand in brands]
-        collections = [FeedCollectionSerializer(coll) for coll in colls]
+        ctx = {'request': request}
+        apps = [FeedAppSerializer(app, context=ctx).data for app in apps]
+        brands = [FeedBrandSerializer(brand, context=ctx).data
+                  for brand in brands]
+        collections = [FeedCollectionSerializer(coll, context=ctx).data
+                       for coll in colls]
 
         # Return.
         return response.Response({

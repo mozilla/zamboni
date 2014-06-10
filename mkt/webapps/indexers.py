@@ -11,12 +11,12 @@ import commonware.log
 import amo
 from amo.utils import to_language
 from constants.applications import DEVICE_GAIA
-from versions.models import Version
 
 import mkt
 from mkt.constants import APP_FEATURES
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
+from mkt.versions.models import Version
 
 
 log = commonware.log.getLogger('z.addons')

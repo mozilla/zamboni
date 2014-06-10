@@ -35,6 +35,8 @@ logger = logging.getLogger('z.elasticsearch')
 INDEXES = (
     # Index, Indexer, chunk size.
     (settings.ES_INDEXES['webapp'], WebappIndexer, 100),
+    # Currently using 500 since these are manually created by a curator and
+    # there will probably never be this many.
     (settings.ES_INDEXES['mkt_feed_app'], FeedAppIndexer, 500),
     (settings.ES_INDEXES['mkt_feed_brand'], FeedBrandIndexer, 500),
     (settings.ES_INDEXES['mkt_feed_collection'], FeedCollectionIndexer, 500),
