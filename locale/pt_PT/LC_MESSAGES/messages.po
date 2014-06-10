@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-10 03:48+0000\n"
+"PO-Revision-Date: 2014-06-10 20:53+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402372119.0\n"
+"X-POOTLE-MTIME: 1402433623.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6841,40 +6841,49 @@ msgstr "Actualizar conta"
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Modificar conta Boku"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
 msgid "Currently editing a Boku account is not possible."
-msgstr ""
+msgstr "Não é possível editar a conta Boku neste momento."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
-msgstr ""
+msgstr "Modificar conta de referência"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
-msgstr ""
+msgstr "Regiões que requerem uma atenção adicional:"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
-msgstr ""
+msgstr "Entender porque algumas regiões são restritas."
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
 msgstr ""
+"A sua aplicação não será mais listada em certas regiões pois essas regiões "
+"não suportam pagamentos. Nós transferimos as suas escolhas de região. Por "
+"favor, reveja as alterações antes de guardar."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid "Your app will be displayed in any regional Marketplace that is added in the future."
 msgstr ""
+"A sua aplicação será apresentada em qualquer Marketplace regional que seja "
+"adicionado no futuro."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:7
 msgid "(Subject to payments being available in that region for the selected price point)."
 msgstr ""
+"(Sujeito à disponibilização de pagamentos nessa região para a faixa de preço "
+"selecionada)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
 msgstr ""
+"Irá receber uma notificação por correio eletrónico quando uma nova região "
+"for adicionada."
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
@@ -6921,21 +6930,21 @@ msgstr "Início rápido"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:165
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Simulador Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:62
 msgid "Reference Apps"
-msgstr ""
+msgstr "Aplicações de referência"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:189
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:5 mkt/ecosystem/templates/ecosystem/publish_deploy.html:13
 msgid "Deploying Your App"
-msgstr ""
+msgstr "Distribuindo a sua aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:194
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:23
 msgid "Hosted Apps"
-msgstr ""
+msgstr "Aplicações alojadas"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:198
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:34
@@ -6944,30 +6953,39 @@ msgstr "Aplicativos empacotados"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:211
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Medalhas, cabeçalhos e ícones."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:15
 msgid ""
 "There's no &quot;right way&quot; to design a user interface, but there are plenty of ways to make your app less fun and easy to use. With this in mind, the following sections can help avoid making "
 "some of the most common UI mistakes, setting you on the path to making an app that is a joy to use no matter what platform it's running on."
 msgstr ""
+"Não existe nenhuma &quot;maneira correta&quot; de desenhar um interface "
+"gráfico, mas existem muitas formas de tornar a sua aplicação menos divertida "
+"e mais difícil de utilizar. Com isto em mente, as próximas secções podem "
+"ajudá-lo a evitar alguns dos erros mais comuns, definindo o caminho para "
+"tornar uma aplicação fácil de usar independentemente da plataforma em que é "
+"executada."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:27 mkt/ecosystem/templates/ecosystem/macros.html:24
 msgid "Intro to Responsive Design"
-msgstr ""
+msgstr "Introdução ao design responsivo"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:31 mkt/ecosystem/templates/ecosystem/design_ui.html:43
 msgid ""
 "One app, multiple screens. How do you make a UI that looks and works as great on a smartphone as it does on the desktop? Learn how to design and build UIs that change to fit your user's screen."
 msgstr ""
+"Uma aplicação, múltiplos ecrãs. Como construir um interface que parece e "
+"funciona bem tanto num smartphone como num computador? Aprenda a desenhar e "
+"a construir interfaces que se alteram para se ajustar ao ecrã do utilizador."
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:39 mkt/ecosystem/templates/ecosystem/macros.html:28
 msgid "Responsive Navigation Patterns"
-msgstr ""
+msgstr "Padrões responsivos de navegação"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:52 mkt/ecosystem/templates/ecosystem/macros.html:32
 msgid "UI Guidelines for Firefox OS"
-msgstr ""
+msgstr "Linhas orientadoras de interface para o Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:56
 msgid "Want to make your app look and feel like it's a Firefox OS native? These guidelines will show you how."
@@ -7019,6 +7037,9 @@ msgid ""
 "<a href=\"%(us_ebay_url)s\" class=\"button\">Buy from US store</a> <a href=\"%(uk_ebay_url)s\" class=\"button\">Buy from UK store</a> <a href=\"%(hk_ebay_url)s\" class=\"button\">Buy from HK store</"
 "a>"
 msgstr ""
+"<a href=\"%(us_ebay_url)s\" class=\"button\">Comprar da loja dos EUA</a> <a "
+"href=\"%(uk_ebay_url)s\" class=\"button\">Comprar da loja do Reino Unido</a> <a "
+"href=\"%(hk_ebay_url)s\" class=\"button\">Comprar da loja de Hong Kong</a>"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:60
 msgid ""
