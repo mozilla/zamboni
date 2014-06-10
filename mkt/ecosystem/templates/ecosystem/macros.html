@@ -13,25 +13,11 @@
               <a href="{{ url('ecosystem.design_fundamentals') }}">
                 {{- _('Design Fundamentals') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('design_ui', 'design_patterns') }}">
+            <li>
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.design_ui') }}">
                   {{- _('UI Guidelines') }}</a>
               </h2>
-              <ol>
-                <li>
-                  <a href="{{ url('ecosystem.responsive_design') }}">
-                    {{- _('Intro to Responsive Design') }}</a>
-                </li>
-                <li>
-                  <a href="{{ url('ecosystem.design_patterns') }}">
-                    {{- _('Responsive Navigation Patterns') }}</a>
-                </li>
-                <li>
-                  <a href="{{ url('ecosystem.ffos_guideline') }}">
-                    {{- _('UI Guidelines for Firefox OS') }}</a>
-                </li>
-              </ol>
             </li>
           </ol>
         </div>
@@ -183,7 +169,7 @@
               <a href="{{ url('ecosystem.publish_review') }}">
                 {{- _('Marketplace Review Criteria') }}</a>
             </li>
-            <li class="has-children{{ ' active' if section in ('publish_deploy', 'publish_hosted', 'publish_packaged') }}">
+            <li class="has-children">
               <h2 class="subtitle nav-title">
                 <a href="{{ url('ecosystem.publish_deploy') }}">
                   {{- _('Deploying Your App') }}</a>
