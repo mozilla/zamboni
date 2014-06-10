@@ -169,7 +169,7 @@ class Version(amo.models.ModelBase):
     def all_activity(self):
         from mkt.developers.models import VersionLog
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related(depth=1).no_cache())
+              .select_related('activity_log', 'version').no_cache())
         return al
 
     @amo.cached_property(writable=True)
@@ -241,7 +241,7 @@ class Version(amo.models.ModelBase):
             return
 
         al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related(depth=1).no_cache())
+              .select_related('activity_log', 'version').no_cache())
 
         def rollup(xs):
             groups = amo.utils.sorted_groupby(xs, 'version_id')
