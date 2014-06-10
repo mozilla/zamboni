@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-09 04:35+0000\n"
-"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2014-06-10 03:41+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402288539.0\n"
+"X-POOTLE-MTIME: 1402371703.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -6727,7 +6727,7 @@ msgstr "Adicionar uma conta {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
-msgstr ""
+msgstr "Aceitar os termos de serviço"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
@@ -6740,41 +6740,45 @@ msgstr "Remover conta de pagamento"
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
 msgstr ""
+"A conta de pagamento atual foi associada com a aplicação pelo proprietário "
+"da aplicação."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
 msgid "You have an incomplete payment account. Complete it or set up a new one below."
 msgstr ""
+"Tem uma conta de pagamento incompleta. Conclua a conta de pagamento ou "
+"defina uma nova abaixo."
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr ""
+msgstr "Não tem quaisquer contas de pagamento definidas."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
-msgstr ""
+msgstr "Adicionar conta Bango"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Geralmente contém 9, 10 ou 11 dígitos. Por exemplo: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:27
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "Possui 8 ou 11 dígitos. Exemplo: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
 msgid "Optional"
-msgstr ""
+msgstr "Opcional"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
-msgstr ""
+msgstr "Registar conta de pagamento"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
-msgstr ""
+msgstr "A processar pedido..."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:129
@@ -6784,29 +6788,38 @@ msgstr "Por favor, aguarde enquanto contactamos o servidor de pagamentos."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Adicionar uma conta Boku"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
 msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Para adicionar uma conta de pagamento Boku tem de registar uma nova conta "
+"específica da Mozilla no site web de Boku. Depois registar demorará 24-48 "
+"horas para que Boku aprove a conta. Pode encontrar documentação e acesso ao "
+"site Boku no Rede de Programadores da Mozilla (MDN)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "Ir para a documentação Boku na MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"Registou uma conta Boku e a sua conta está aprovada? Por favor crie um nome "
+"de conta e adicione o identificador de serviço Boku em baixo."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "Criar um nome para esta conta."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"Identificador alfa-numérico listado sob o nome de serviço no site Boku. "
+"Saiba mais na <a href=\"%(boku_docs_url)s\" target=\"_blank\">página Boku na "
+"MDN</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72 templates/impala/base.html:118
 #: templates/impala/base.html:133 templates/impala/base.html:151 templates/impala/base.html:161
@@ -6815,11 +6828,11 @@ msgstr "Fechar"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
-msgstr ""
+msgstr "Adicionar conta de referência"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr ""
+msgstr "Modificar conta do Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -6869,40 +6882,42 @@ msgstr "Selecionar todos"
 
 #: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Obrigado por subscrever!"
 
 #: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
+"Lamentamos, mas ocorreu um erro no nosso sistema. Por favor tente novamente "
+"mais tarde."
 
 #: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
-msgstr ""
+msgstr "Blocos de construção do Gaia"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Projete"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Conceito: Uma grande aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
-msgstr ""
+msgstr "Fundamentos de Design"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:28 mkt/ecosystem/templates/ecosystem/design_ui.html:5 mkt/ecosystem/templates/ecosystem/design_ui.html:13
 #: mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:19
 msgid "UI Guidelines"
-msgstr ""
+msgstr "Linhas orientadores de interface"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:39
 msgid "Build"
-msgstr ""
+msgstr "Construa"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:43
 msgid "Quick Start"
-msgstr ""
+msgstr "Início rápido"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:165
 msgid "Firefox OS Simulator"
@@ -6957,34 +6972,47 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/design_ui.html:56
 msgid "Want to make your app look and feel like it's a Firefox OS native? These guidelines will show you how."
 msgstr ""
+"Quer que a sua aplicação tenha uma aparência e funcionamento semelhante ao "
+"de uma aplicação nativa no Firefox OS? Estas linhas orientadoras irão "
+"mostrar-lhe como."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
-msgstr ""
+msgstr "Telemóvel de desenvolvimento e de testes"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:20
 msgid "Bringing the Open Web to mobile devices."
-msgstr ""
+msgstr "Trazer a web aberta para dispositivos móveis."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:22
 msgid ""
 "Firefox OS is a new mobile operating system built entirely using open web standards. In Firefox OS, HTML5 apps can directly control phone hardware and key functionality — for example making the "
 "phone vibrate, placing phone calls, and sending text messages."
 msgstr ""
+"O Firefox OS é um novo sistema operativo, totalmente construído com padrões "
+"Web abertos. No Firefox OS, aplicações HTML5 podem controlar diretamente o "
+"hardware do telemóvel e funcionalidades chave - por exemplo, fazer o "
+"telemóvel vibrar, fazer chamadas e enviar mensagens de texto."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:30
 msgid ""
 "We believe that developers will be truly instrumental in bringing the power of the web to mobile, so we have worked with various partners to make devices available for developing and testing apps, "
 "and learning more about customizing Firefox OS itself. This page provides useful information to developers, such as links to developer documentation, available devices, and where to obtain them."
 msgstr ""
+"Acreditamos que os programadores serão fundamentais para trazer o poder da "
+"web para o móvel, pelo que trabalhámos com vários parceiros para "
+"disponibilizar equipamentos para desenvolver e testar aplicação, e aprender "
+"mais sobre personalizar o próprio Firefox OS. Esta página fornece "
+"informações úteis a programadores, tais como ligações para documentação para "
+"programadores, dispositivos disponíveis e onde os obter."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:39
 msgid "Keon"
-msgstr ""
+msgstr "Keon"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:46 mkt/ecosystem/templates/ecosystem/dev_phone.html:58
 msgid "ZTE OPEN"
-msgstr ""
+msgstr "ZTE Open"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:48
 msgid ""
