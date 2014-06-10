@@ -87,18 +87,6 @@ def dev_phone(request):
                   {'page': 'dev_phone'})
 
 
-def design_ui(request):
-    """Design - UI Guidelines page."""
-    return render(request, 'ecosystem/design_ui.html',
-                  {'page': 'design_ui', 'category': 'design'})
-
-
-def publish_deploy(request):
-    """Publish - Deploying your app page."""
-    return render(request, 'ecosystem/publish_deploy.html',
-                  {'page': 'publish_deploy', 'category': 'publish'})
-
-
 def publish_badges(request):
     """Publish - Marketplace badges."""
     return render(request, 'ecosystem/publish_badges.html',
