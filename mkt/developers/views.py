@@ -601,6 +601,7 @@ def upload_for_addon(request, addon_id, addon):
 
 
 @dev_required
+@post_required
 def refresh_manifest(request, addon_id, addon):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
     _update_manifest(addon_id, True, {})

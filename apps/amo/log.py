@@ -531,6 +531,14 @@ class ESCALATION_VIP_APP(_LOG):
     review_queue = True
 
 
+class REREVIEW_MANIFEST_URL_CHANGE(_LOG):
+    id = 79
+    format = _(u'{addon} re-reviewed because of manifest URL change.')
+    short = _(u'Manifest URL Change')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

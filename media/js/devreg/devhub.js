@@ -437,7 +437,8 @@ $("#user-form-template .email-autocomplete")
 var notification = require('notification');
 
 function addManifestRefresh() {
-    z.page.on('click', '#manifest-url a.button', _pd(function(e) {
+    var originalManifestUrl = $('#manifest-url input').val();
+    z.page.on('click', '#manifest-url a.button', _pd(function () {
         var $this = $(this);
         $this.addClass('disabled');
         $.post(
@@ -455,7 +456,12 @@ function addManifestRefresh() {
         }).always(function() {
             $this.removeClass('disabled');
         });
-    }));
+    })).on('input', '#manifest-url input', function () {
+        // Hide the "Refresh" button if the manifest URL changes (because when
+        // we will trigger a refresh after the form is POSTed and saved).
+        // TODO(bug 1023575): Consider changing the behaviour of this button.
+        $('#manifest-url a.button').toggle($(this).val() === originalManifestUrl);
+    });
 }
 
 function initEditAddon() {
