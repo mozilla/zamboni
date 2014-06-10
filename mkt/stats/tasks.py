@@ -8,11 +8,11 @@ import amo
 from amo.decorators import write
 
 from addons.models import AddonUser
-from reviews.models import Review
 from users.models import UserProfile
 
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
+from mkt.ratings.models import Review
 from mkt.webapps.models import Webapp
 
 log = logging.getLogger('z.stats')

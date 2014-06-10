@@ -1,39 +1,20 @@
-from django.utils import translation
-
 from nose.tools import eq_
-import test_utils
 
 import amo.tests
-from reviews.models import check_spam, Review, Spam
-
-
-class TestReviewModel(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/platforms', 'reviews/test_models']
-
-    def test_translations(self):
-        translation.activate('en-US')
-
-        # There's en-US and de translations.  We should get en-US.
-        r1 = Review.objects.get(id=1)
-        test_utils.trans_eq(r1.title, 'r1 title en', 'en-US')
-
-        # There's only a de translation, so we get that.
-        r2 = Review.objects.get(id=2)
-        test_utils.trans_eq(r2.title, 'r2 title de', 'de')
-
-        translation.activate('de')
-
-        # en and de exist, we get de.
-        r1 = Review.objects.get(id=1)
-        test_utils.trans_eq(r1.title, 'r1 title de', 'de')
-
-        # There's only a de translation, so we get that.
-        r2 = Review.objects.get(id=2)
-        test_utils.trans_eq(r2.title, 'r2 title de', 'de')
+from mkt.ratings.models import check_spam, Review, Spam
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
+from users.models import UserProfile
 
 
 class TestSpamTest(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/platforms', 'reviews/test_models']
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=31337)
+        Review.objects.create(addon=self.app, user=self.user, title="review 1")
+        Review.objects.create(addon=self.app, user=self.user, title="review 2")
 
     def test_create_not_there(self):
         Review.objects.all().delete()

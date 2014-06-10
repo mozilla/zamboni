@@ -3,11 +3,10 @@ from django.core.urlresolvers import reverse
 from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
-from reviews.models import Review, ReviewFlag
-
 from mkt.account.serializers import AccountSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.exceptions import Conflict
+from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions import get_region
 from mkt.versions.serializers import SimpleVersionSerializer
 from mkt.webapps.models import Webapp

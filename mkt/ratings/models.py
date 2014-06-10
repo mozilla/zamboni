@@ -135,9 +135,9 @@ class ReviewFlag(amo.models.ModelBase):
 class Spam(object):
 
     def add(self, review, reason):
-        reason = 'amo:review:spam:%s' % reason
+        reason = 'mkt:review:spam:%s' % reason
         try:
-            reasonset = cache.get('amo:review:spam:reasons', set())
+            reasonset = cache.get('mkt:review:spam:reasons', set())
         except KeyError:
             reasonset = set()
         try:
@@ -145,13 +145,13 @@ class Spam(object):
         except KeyError:
             idset = set()
         reasonset.add(reason)
-        cache.set('amo:review:spam:reasons', reasonset)
+        cache.set('mkt:review:spam:reasons', reasonset)
         idset.add(review.id)
         cache.set(reason, idset)
         return True
 
     def reasons(self):
-        return cache.get('amo:review:spam:reasons')
+        return cache.get('mkt:review:spam:reasons')
 
 
 @task

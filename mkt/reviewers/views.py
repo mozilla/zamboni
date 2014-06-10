@@ -52,6 +52,7 @@ from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.ratings.forms import ReviewFlagFormSet
+from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  MOTDForm)
@@ -68,7 +69,6 @@ from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp, WebappIndexer
-from reviews.models import Review, ReviewFlag
 from translations.query import order_by_translation
 from users.models import UserProfile
 from zadmin.models import set_config, unmemoized_get_config

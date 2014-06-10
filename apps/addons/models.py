@@ -29,7 +29,7 @@ from amo.utils import (attach_trans_dict, find_language, send_mail, slugify,
                        sorted_groupby, timer, to_language, urlparams)
 from files.models import File
 from lib.utils import static_url
-from reviews.models import Review
+from mkt.ratings.models import Review
 from mkt.tags.models import Tag
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
                                  Translation)

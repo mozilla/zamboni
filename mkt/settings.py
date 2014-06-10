@@ -91,7 +91,6 @@ INSTALLED_APPS = (
     'jingo_minify',
     'lib.es',
     'product_details',
-    'reviews',
     'tower',  # for ./manage.py extract
     'translations',
     'users',
