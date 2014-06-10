@@ -2,7 +2,7 @@ import re
 
 from tower import ugettext_lazy as _
 
-from versions.compare import version_int as vint
+from mkt.versions.compare import version_int as vint
 
 
 # These are the minimum versions required for `navigator.mozApps` support.

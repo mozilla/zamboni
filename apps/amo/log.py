@@ -690,7 +690,7 @@ def log(action, *args, **kw):
     from mkt.access.models import Group
     from mkt.webapps.models import Webapp
     from users.models import UserProfile
-    from versions.models import Version
+    from mkt.versions.models import Version
 
     user = kw.get('user', get_user())
 

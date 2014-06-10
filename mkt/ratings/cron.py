@@ -7,7 +7,8 @@ import cronjobs
 
 import amo
 from amo.utils import send_mail_jinja
-from reviews.models import Review
+from mkt.ratings.models import Review
+
 
 cron_log = commonware.log.getLogger('mkt.ratings.cron')
 

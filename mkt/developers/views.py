@@ -58,12 +58,12 @@ from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.developers.utils import check_upload, handle_vip
 from mkt.purchase.models import Contribution
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
+from mkt.versions.models import Version
 from mkt.webapps.models import ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 from users.models import UserProfile
 from users.views import _login
-from versions.models import Version
 
 from . import forms, tasks
 

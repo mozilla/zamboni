@@ -8,10 +8,10 @@ from django.utils.encoding import smart_str
 import mock
 from nose.tools import eq_
 
-from addons.models import AddonUser
 import amo.tests
+from addons.models import AddonUser
 from mkt.ratings.cron import email_daily_ratings
-from reviews.models import Review
+from mkt.ratings.models import Review
 from users.models import UserProfile
 
 

@@ -25,11 +25,11 @@ from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access.models import Group
 from mkt.constants.payments import ACCESS_SIMULATE
+from mkt.ratings.models import Review
 from mkt.tags.models import Tag
-from reviews.models import Review
+from mkt.versions.models import Version
 from users.helpers import user_link
 from users.models import UserForeignKey, UserProfile
-from versions.models import Version
 
 
 log = commonware.log.getLogger('z.devhub')

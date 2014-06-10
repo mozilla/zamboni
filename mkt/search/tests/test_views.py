@@ -85,7 +85,7 @@ class TestGetRegion(TestCase):
         eq_(self.region_for('worldwide'), regions.RESTOFWORLD)
 
 
-@patch('versions.models.Version.is_privileged', False)
+@patch('mkt.versions.models.Version.is_privileged', False)
 class TestApi(RestOAuth, ESTestCase):
     fixtures = fixture('webapp_337141')
 
@@ -558,7 +558,7 @@ class TestApi(RestOAuth, ESTestCase):
 
     def test_app_type_privileged(self):
         # Override the class-decorated patch.
-        with patch('versions.models.Version.is_privileged', True):
+        with patch('mkt.versions.models.Version.is_privileged', True):
             self.webapp.update(is_packaged=True)
             self.refresh('webapp')
 

@@ -13,8 +13,8 @@ from amo.utils import get_email_backend
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.prices.models import Refund
+from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, EventLog
-from reviews.models import Review
 
 
 log = commonware.log.getLogger('z.task')

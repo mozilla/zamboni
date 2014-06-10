@@ -42,16 +42,16 @@ from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.reviewers.models import (CannedResponse, EscalationQueue,
                                   RereviewQueue, ReviewerScore)
+from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
-from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
-from versions.models import Version
 from zadmin.models import get_config, set_config
 
 
@@ -438,7 +438,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         ]
         self.check_actions(expected, actions)
 
-    @mock.patch('versions.models.Version.is_privileged', True)
+    @mock.patch('mkt.versions.models.Version.is_privileged', True)
     def test_action_buttons_privileged_cantreview(self):
         self.apps[0].update(is_packaged=True)
         self.apps[0].latest_version.files.update(status=amo.STATUS_PENDING)
@@ -452,7 +452,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         ]
         self.check_actions(expected, actions)
 
-    @mock.patch('versions.models.Version.is_privileged', True)
+    @mock.patch('mkt.versions.models.Version.is_privileged', True)
     def test_action_buttons_privileged_canreview(self):
         self.login_as_senior_reviewer()
         self.apps[0].update(is_packaged=True)
@@ -582,7 +582,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
 
-@mock.patch('versions.models.Version.is_privileged', False)
+@mock.patch('mkt.versions.models.Version.is_privileged', False)
 class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         XSSMixin):
 
@@ -719,7 +719,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
-@mock.patch('versions.models.Version.is_privileged', False)
+@mock.patch('mkt.versions.models.Version.is_privileged', False)
 class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
 
@@ -970,7 +970,7 @@ class TestDeviceQueue(AppReviewerTest, AccessMixin):
         ok_(self.app2 not in apps)
 
 
-@mock.patch('versions.models.Version.is_privileged', False)
+@mock.patch('mkt.versions.models.Version.is_privileged', False)
 class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
                           SearchMixin, XSSMixin):
 

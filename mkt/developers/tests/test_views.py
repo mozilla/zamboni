@@ -22,8 +22,7 @@ import amo.tests
 import mkt
 from addons.models import Addon, AddonDeviceType, AddonUpsell, AddonUser
 from amo.helpers import absolutify
-from amo.tests import (app_factory, assert_no_validation_errors,
-                       version_factory)
+from amo.tests import app_factory, assert_no_validation_errors, version_factory
 from amo.tests.test_helpers import get_image_path
 from amo.utils import urlparams
 from files.models import File, FileUpload
@@ -34,14 +33,14 @@ from mkt.developers.views import (_filter_transactions, _get_transactions,
                                   _ratings_success_msg, _submission_msgs,
                                   content_ratings, content_ratings_edit)
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
-from mkt.site.fixtures import fixture
-from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import ContentRating, Webapp
 from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
+from mkt.site.fixtures import fixture
+from mkt.submit.models import AppSubmissionChecklist
+from mkt.versions.models import Version
+from mkt.webapps.models import ContentRating, Webapp
 from translations.models import Translation
 from users.models import UserProfile
-from versions.models import Version
 
 
 class AppHubTest(amo.tests.TestCase):

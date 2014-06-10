@@ -15,8 +15,8 @@ from addons.models import Addon
 from amo.tests.test_helpers import render
 from files.models import File, Platform
 from mkt.developers import helpers
+from mkt.versions.models import Version
 from users.models import UserProfile
-from versions.models import Version
 
 
 def test_hub_page_title():

@@ -10,8 +10,8 @@ import commonware.log
 import amo
 from amo.decorators import use_master
 from files.models import FileUpload
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
-from versions.models import Version
 
 
 log = commonware.log.getLogger('mkt.fireplace.commands')

@@ -21,7 +21,7 @@ from mkt.developers.helpers import mkt_page_title
 from mkt.reviewers.models import EscalationQueue, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
-from versions.models import Version
+from mkt.versions.models import Version
 
 
 @register.function

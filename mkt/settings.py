@@ -91,11 +91,9 @@ INSTALLED_APPS = (
     'jingo_minify',
     'lib.es',
     'product_details',
-    'reviews',
     'tower',  # for ./manage.py extract
     'translations',
     'users',
-    'versions',
     'zadmin',
 
     # Third party apps
@@ -144,6 +142,7 @@ INSTALLED_APPS = (
     'mkt.stats',
     'mkt.submit',
     'mkt.tags',
+    'mkt.versions',
     'mkt.zadmin',
     'mkt.webapps',
     'mkt.webpay',
@@ -391,10 +390,10 @@ CELERY_ROUTES = {
     # are routed to the priority queue.
     'lib.crypto.packaged.sign': {'queue': 'priority'},
     'mkt.inapp_pay.tasks.fetch_product_image': {'queue': 'priority'},
+    'mkt.versions.tasks.update_supported_locales_single': {'queue': 'priority'},
     'mkt.webapps.tasks.index_webapps': {'queue': 'priority'},
     'mkt.webapps.tasks.unindex_webapps': {'queue': 'priority'},
     'stats.tasks.update_monolith_stats': {'queue': 'priority'},
-    'versions.tasks.update_supported_locales_single': {'queue': 'priority'},
     # And the rest.
     'mkt.developers.tasks.validator': {'queue': 'devhub'},
     'mkt.developers.tasks.file_validator': {'queue': 'devhub'},

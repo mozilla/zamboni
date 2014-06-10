@@ -5,12 +5,11 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon, AddonUser
-from reviews.models import Review
-from users.models import UserProfile
-from versions.models import Version
-
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
+from mkt.ratings.models import Review
 from mkt.stats import tasks
+from mkt.versions.models import Version
+from users.models import UserProfile
 
 
 class TestMonolithStats(amo.tests.TestCase):

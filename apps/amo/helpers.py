@@ -21,8 +21,8 @@ from tower import ugettext as _, strip_whitespace
 import amo
 from amo import urlresolvers, utils
 from constants.licenses import PERSONA_LICENSES_IDS
+from mkt.versions.models import License
 from translations.helpers import truncate
-from versions.models import License
 
 
 # Yanking filters from Django.

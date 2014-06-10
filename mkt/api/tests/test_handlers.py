@@ -23,10 +23,10 @@ from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
 from mkt.prices.models import Price, PriceCurrency
+from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
 from mkt.webapps.models import AddonExcludedRegion, Webapp
-from reviews.models import Review
 from users.models import UserProfile
 
 
@@ -552,7 +552,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
                                          name=self.file, valid=True)
 
 
-@patch('versions.models.Version.is_privileged', False)
+@patch('mkt.versions.models.Version.is_privileged', False)
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
     fixtures = fixture('user_2519', 'platform_all')
 

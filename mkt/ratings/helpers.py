@@ -13,14 +13,14 @@ def stars(num, large=False):
         return _('Not yet rated')
     else:
         num = min(5, int(round(num)))
-        t = jingo.env.get_template('reviews/impala/reviews_rating.html')
+        t = jingo.env.get_template('ratings/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
         return jinja2.Markup(t.render({'rating': num, 'detailpage': large}))
 
 
 @jingo.register.function
 def impala_reviews_link(addon):
-    t = jingo.env.get_template('reviews/impala/reviews_link.html')
+    t = jingo.env.get_template('ratings/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon}))
 
 

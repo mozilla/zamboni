@@ -7,14 +7,14 @@ from rest_framework.test import APIRequestFactory
 from test_utils import RequestFactory
 
 import amo
-from amo.tests import TestCase
 from addons.models import AddonCategory, Category
-from mkt.api.fields import (ESTranslationSerializerField, 
+from amo.tests import TestCase
+from mkt.api.fields import (ESTranslationSerializerField,
                             SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
-from versions.models import Version
 from translations.models import Translation
 
 

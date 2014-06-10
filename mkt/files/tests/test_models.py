@@ -15,10 +15,9 @@ from nose.tools import eq_
 
 from addons.models import Addon
 from files.models import File, FileUpload, FileValidation, nfd_str, Platform
-from versions.models import Version
-
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
 
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):

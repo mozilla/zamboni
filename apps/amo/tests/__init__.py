@@ -47,12 +47,12 @@ from mkt.constants import regions
 from mkt.files.helpers import copyfileobj
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
 from translations.models import Translation
 from users.models import UserProfile
-from versions.models import Version
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.

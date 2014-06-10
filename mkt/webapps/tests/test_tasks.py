@@ -26,13 +26,13 @@ from files.models import File, FileUpload
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
 from users.models import UserProfile
-from versions.models import Version
 
 
 original = {

@@ -19,9 +19,9 @@ import amo.utils
 from amo.decorators import use_master
 from files import utils
 from files.models import cleanup_file, File, Platform
+from mkt.versions.tasks import update_supported_locales_single
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
-from versions.tasks import update_supported_locales_single
 
 from .compare import version_dict, version_int
 

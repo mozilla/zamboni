@@ -2,19 +2,20 @@ import json
 import os
 import shutil
 import tempfile
+from base64 import b64decode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
-from base64 import b64decode
-from celeryutils import task
 import commonware.log
+import requests
+from celeryutils import task
 from django_statsd.clients import statsd
 from signing_clients.apps import JarExtractor
-import requests
 
 import amo
-from versions.models import Version
+from mkt.versions.models import Version
+
 
 log = commonware.log.getLogger('z.crypto')
 

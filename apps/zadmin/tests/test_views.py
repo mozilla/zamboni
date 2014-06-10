@@ -17,8 +17,8 @@ from amo.urlresolvers import reverse
 from amo.utils import urlparams
 from files.models import File
 from mkt.access.models import Group, GroupUser
+from mkt.versions.models import Version
 from users.models import UserProfile
-from versions.models import Version
 from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic
 

@@ -53,11 +53,11 @@ from mkt.prices.models import AddonPremium
 from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
+from mkt.versions.models import Version
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives, get_locale_properties,
                                get_supported_locales)
 from translations.fields import PurifiedField, save_signal
-from versions.models import Version
 
 
 log = commonware.log.getLogger('z.addons')

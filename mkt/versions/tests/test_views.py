@@ -12,7 +12,7 @@ from amo.tests import app_factory
 from mkt.api.base import get_url
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
-from versions.models import Version
+from mkt.versions.models import Version
 
 
 class TestVersionViewSet(RestOAuth):
