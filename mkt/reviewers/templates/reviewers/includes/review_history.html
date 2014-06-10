@@ -79,7 +79,7 @@
                   {% set attachments = record.activitylogattachment_set.all() %}
                   {% if attachments %}
                     <div class="log-group log-attachments">
-                      <strong>Attachments</strong>
+                      <strong>{{ _('Attachments') }}</strong>
                       <ul>
                         {% for attachment in attachments %}
                           <li{% if attachment.is_image() %} class="image"{% endif %}>
