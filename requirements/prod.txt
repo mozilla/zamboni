@@ -85,6 +85,7 @@ recaptcha-client==1.0.6
 receipts==0.2.9
 redis==2.8.0
 requests==2.0.0
+requests_oauthlib==0.4.1
 schematic==0.2
 signing_clients==0.1.7
 six==1.4.1

@@ -2,31 +2,32 @@ define('login', ['notification'], function(notification) {
 
     var requestedLogin = false;
     var readyForReload = false;
+    if (z.body.data('persona-url')) {
+      z.doc.bind('login', function(skipDialog) {
+          if (readyForReload) {
+              window.location.reload();
+              return;
+          }
+          if (skipDialog) {
+              startLogin();
+          } else {
+              $('.overlay.login').addClass('show');
+          }
+      }).on('click', '.browserid', function(e) {
+          if (readyForReload) {
+              window.location.reload();
+              return;
+          }
 
-    z.doc.bind('login', function(skipDialog) {
-        if (readyForReload) {
-            window.location.reload();
-            return;
-        }
-        if (skipDialog) {
-            startLogin();
-        } else {
-            $('.overlay.login').addClass('show');
-        }
-    }).on('click', '.browserid', function(e) {
-        if (readyForReload) {
-            window.location.reload();
-            return;
-        }
-
-        var $this = $(this);
-        $this.addClass('loading-submit');
-        z.doc.on('logincancel', function() {
-            $this.removeClass('loading-submit').blur();
-        });
-        startLogin();
-        e.preventDefault();
-    });
+          var $this = $(this);
+          $this.addClass('loading-submit');
+          z.doc.on('logincancel', function() {
+              $this.removeClass('loading-submit').blur();
+          });
+          startLogin();
+          e.preventDefault();
+      });
+    }
 
     function startLogin() {
         requestedLogin = true;
@@ -147,19 +148,21 @@ define('login', ['notification'], function(notification) {
         return localStorage.getItem(_prefix('user'));
     }
 
-    // Load `include.js` from persona.org, and drop login hotness like it's hot.
-    var s = document.createElement('script');
-    s.onload = init_persona;
-    if (z.capabilities.firefoxOS) {
-        // Load the Firefox OS include that knows how to handle native Persona.
-        // Once this functionality lands in the normal include we can stop
-        // doing this special case. See bug 821351.
-        s.src = z.body.data('native-persona-url');
-    } else {
-        s.src = z.body.data('persona-url');
+    if (z.body.data('persona-url')) {
+        // Load `include.js` from persona.org, and drop login hotness like it's hot.
+        var s = document.createElement('script');
+        s.onload = init_persona;
+        if (z.capabilities.firefoxOS) {
+            // Load the Firefox OS include that knows how to handle native Persona.
+            // Once this functionality lands in the normal include we can stop
+            // doing this special case. See bug 821351.
+            s.src = z.body.data('native-persona-url');
+        } else {
+            s.src = z.body.data('persona-url');
+        }
+        document.body.appendChild(s);
+        $('.browserid').css('cursor', 'wait');
     }
-    document.body.appendChild(s);
-    $('.browserid').css('cursor', 'wait');
 
     return {
         userToken: userToken,

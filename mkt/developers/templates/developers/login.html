@@ -9,7 +9,12 @@
       <h1>{{ _('Sign in') }}</h1>
       <p>{{ _('You must sign in to proceed.') }}</p>
       <p class="proceed">
+      {% if waffle.switch('firefox-accounts') %}
+        <a class="button prominent browserid"
+           href="{{ url('fxa_login') }}?to={{ to }}">{{ _('Sign in / Sign up') }}</a>
+      {% else %}
         <a class="button prominent browserid" href="#">{{ _('Sign in / Sign up') }}</a>
+      {% endif %}
       </p>
     </div>
   </section>
