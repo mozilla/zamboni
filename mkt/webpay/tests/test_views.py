@@ -170,6 +170,7 @@ class TestStatus(BaseAPI):
         storedata = parse_qs(receipt['product']['storedata'])
         eq_(storedata['id'][0], str(self.contribution.addon.pk))
         eq_(storedata['contrib'][0], str(self.contribution.pk))
+        eq_(storedata['inapp_id'][0], str(self.contribution.inapp_product_id))
         assert 'user' in receipt, (
             'The web platform requires a user value')
 

@@ -385,7 +385,6 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'reviewed': self.version.reviewed,
             'slug': 'something-something',
             'status': 4,
-            'support_email': None,
             'support_url': None,
             'supported_locales': [u'en-US', u'es', u'pt-BR'],
             'upsell': False,
@@ -432,7 +431,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'description': u'XSS attempt &lt;script&gt;alert(1)&lt;/script&gt;',
             'homepage': None,
             'name': u'Algo Algo Steamcube!',
-            'support_email': None,
+            'support_email': u'foo@bar.com',
             'support_url': None,
         }
 

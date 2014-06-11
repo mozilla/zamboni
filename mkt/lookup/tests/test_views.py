@@ -816,8 +816,8 @@ class TestAppSummary(AppSummaryTest):
 
     def test_edit_link_staff(self):
         res = self.summary()
-        eq_(pq(res.content)('.shortcuts li').length, 4)
-        eq_(pq(res.content)('.shortcuts li').eq(3).text(), 'Edit Listing')
+        eq_(pq(res.content)('.shortcuts li').length, 3)
+        eq_(pq(res.content)('.shortcuts li').eq(2).text(), 'Edit Listing')
 
     def test_operator_200(self):
         assert self.client.login(username='operator@mozilla.com',

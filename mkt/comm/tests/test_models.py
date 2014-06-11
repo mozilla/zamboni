@@ -13,6 +13,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
                              user_has_perm_note, user_has_perm_thread)
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon
 from users.models import UserProfile
 
@@ -22,7 +23,7 @@ ATTACHMENTS_DIR = path.join(TESTS_DIR, 'attachments')
 
 
 class PermissionTestMixin(object):
-    fixtures = ['base/addon_3615', 'base/user_999']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
         self.addon = Addon.objects.get()
@@ -122,10 +123,10 @@ class TestCommunicationThread(PermissionTestMixin, amo.tests.TestCase):
 
 
 class TestThreadTokenModel(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/user_999']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        addon = Addon.objects.get(pk=3615)
+        addon = Addon.objects.get(pk=337141)
         self.thread = CommunicationThread(addon=addon)
         user = UserProfile.objects.all()[0]
         self.token = CommunicationThreadToken(thread=self.thread, user=user)
@@ -175,7 +176,7 @@ class TestThreadTokenModel(amo.tests.TestCase):
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
 class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
-    fixtures = ['base/addon_3615']
+    fixtures = fixture('webapp_337141')
     XSS_STRING = 'MMM <script>alert(bacon);</script>'
 
     def setUp(self):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.conf import settings
 from django.core import mail
 
 import phpserialize as php
@@ -12,6 +13,7 @@ from mkt.prices.models import Refund
 from mkt.purchase.models import Contribution, StatsDictField
 from mkt.webapps.models import Addon
 from users.models import UserProfile
+from mkt.site.fixtures import fixture
 
 
 class TestStatsDictField(amo.tests.TestCase):
@@ -32,10 +34,10 @@ class TestStatsDictField(amo.tests.TestCase):
 
 
 class TestEmail(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = Addon.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=999)
 
     def make_contribution(self, amount, locale, type):
@@ -79,6 +81,7 @@ class TestEmail(amo.tests.TestCase):
         eq_(email.subject, u'%s refund declined' % self.addon.name)
 
     def test_failed_email(self):
+        UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)
         cont = self.make_contribution('10', 'en-US', amo.CONTRIB_PURCHASE)
         msg = 'oh no'
         cont.record_failed_refund(msg, self.user)

@@ -314,6 +314,31 @@ class TestVerify(amo.tests.TestCase):
             eq_(res['status'], 'invalid')
             eq_(res['reason'], 'WRONG_STOREDATA')
 
+    def test_inapp_product_matches_contribution(self):
+        contribution = self.make_inapp_contribution()
+        receipt = get_sample_inapp_receipt(contribution)
+        receipt['product']['storedata'] = urlencode({
+            'contrib': contribution.id,
+            # Set the inapp_id to the wrong id
+            'inapp_id': contribution.inapp_product_id + 1,
+        })
+
+        res = self.verify_receipt_data(receipt)
+        eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'NO_PURCHASE')
+
+    def test_invalid_inapp_id_returns_invalid(self):
+        contribution = self.make_inapp_contribution()
+        receipt = get_sample_inapp_receipt(contribution)
+        receipt['product']['storedata'] = urlencode({
+            'contrib': contribution.id,
+            'inapp_id': 'not_an_id',
+        })
+
+        res = self.verify_receipt_data(receipt)
+        eq_(res['status'], 'invalid')
+        eq_(res['reason'], 'WRONG_STOREDATA')
+
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
         self.app.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')

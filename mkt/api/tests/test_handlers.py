@@ -649,7 +649,7 @@ class TestAppDetail(RestOAuth):
         eq_(res.status_code, 451)
         data = json.loads(res.content)['detail']
         eq_(data['reason'], 'Not available in your region.')
-        eq_(data['support_email'], '')
+        eq_(data['support_email'], 'foo@bar.com')
         eq_(data['support_url'], 'http://www.example.com/fake_support_url')
 
     def test_owner_nonregion(self):

@@ -23,12 +23,6 @@
       </li>
       {% if not is_operator or is_author %}
         <li>
-          <a href="{{ url('detail.app_activity', app.app_slug) }}"
-            {% if page_type == 'activity' %}class="sel"{% endif %}>
-            {{ _('Activity') }}
-          </a>
-        </li>
-        <li>
           <a href="{{ url('commonplace.stats.app_dashboard', app.app_slug) }}">
             {{ _('Statistics') }}
           </a>
