@@ -94,7 +94,6 @@ INSTALLED_APPS = (
     'tower',  # for ./manage.py extract
     'translations',
     'users',
-    'zadmin',
 
     # Third party apps
     'djcelery',
@@ -146,6 +145,7 @@ INSTALLED_APPS = (
     'mkt.zadmin',
     'mkt.webapps',
     'mkt.webpay',
+    'mkt.zadmin',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -62,9 +62,6 @@ urlpatterns = patterns('',
     # webpay / nav.pay() services.
     ('^services/webpay/', include(webpay_services_patterns)),
 
-    # AMO admin (not django admin).
-    ('^admin/', include('zadmin.urls')),
-
     # AMO Marketplace admin (not django admin).
     ('^admin/', include('mkt.zadmin.urls')),
 

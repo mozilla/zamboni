@@ -10,7 +10,7 @@ from test_utils import RequestFactory
 import amo.tests
 from amo.middleware import NoVarySessionMiddleware
 from amo.urlresolvers import reverse
-from zadmin.models import Config, _config_cache
+from mkt.zadmin.models import Config, _config_cache
 
 
 class TestMiddleware(amo.tests.TestCase):

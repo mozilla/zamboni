@@ -69,9 +69,9 @@ from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.zadmin.models import set_config, unmemoized_get_config
 from translations.query import order_by_translation
 from users.models import UserProfile
-from zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
 from .models import AppCannedResponse
