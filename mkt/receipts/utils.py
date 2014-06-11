@@ -75,6 +75,7 @@ def create_receipt(webapp, user, uuid, flavour=None, contrib=None):
                 'contribution {c} does not link to an in-app product'
                 .format(c=contrib))
         storedata['contrib'] = int(contrib.pk)
+        storedata['inapp_id'] = int(contrib.inapp_product_id)
 
     elif flavour in ('developer', 'reviewer'):
         if not (acl.action_allowed_user(user, 'Apps', 'Review') or
