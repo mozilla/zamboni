@@ -177,7 +177,7 @@ class Verify:
             storedata = self.decoded['product']['storedata']
             return dict(parse_qsl(storedata))
         except Exception, e:
-            log_info('Invalid store data: {err}'.format(err=str(e)))
+            log_info('Invalid store data: {err}'.format(err=e))
             raise InvalidReceipt('WRONG_STOREDATA')
 
     def get_app_id(self, raise_exception=True):
@@ -190,7 +190,7 @@ class Verify:
             if raise_exception:
                 # There was some value for storedata but it was invalid.
                 log_info('Invalid store data for app id: {err}'.format(
-                    err=str(e)))
+                    err=e))
                 raise InvalidReceipt('WRONG_STOREDATA')
 
     def get_contribution_id(self):
@@ -203,7 +203,20 @@ class Verify:
         except Exception, e:
             # There was some value for storedata but it was invalid.
             log_info('Invalid store data for contrib id: {err}'.format(
-                err=str(e)))
+                err=e))
+            raise InvalidReceipt('WRONG_STOREDATA')
+
+    def get_inapp_id(self):
+        """
+        Attempt to retrieve the inapp id
+        from the storedata in the receipt.
+        """
+        try:
+            return int(self.get_storedata()['inapp_id'])
+        except Exception, e:
+            # There was some value for storedata but it was invalid.
+            log_info('Invalid store data for inapp id: {err}'.format(
+                err=e))
             raise InvalidReceipt('WRONG_STOREDATA')
 
     def setup_db(self):
@@ -231,7 +244,7 @@ class Verify:
         Verifies that the inapp has been purchased.
         """
         self.setup_db()
-        sql = """SELECT type FROM stats_contributions
+        sql = """SELECT inapp_product_id, type FROM stats_contributions
                  WHERE id = %(contribution_id)s LIMIT 1;"""
         self.cursor.execute(
             sql,
@@ -242,14 +255,21 @@ class Verify:
             log_info('Invalid receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
 
-        self.check_purchase_type(result[0])
+        contribution_inapp_id, purchase_type = result
+        self.check_purchase_type(purchase_type)
+        self.check_inapp_product(contribution_inapp_id)
+
+    def check_inapp_product(self, contribution_inapp_id):
+        if int(contribution_inapp_id) != self.get_inapp_id():
+            log_info('Invalid receipt, inapp_id does not match')
+            raise InvalidReceipt('NO_PURCHASE')
 
     def check_purchase_app(self):
         """
         Verifies that the app has been purchased by the user.
         """
         self.setup_db()
-        sql = """SELECT id, type FROM addon_purchase
+        sql = """SELECT type FROM addon_purchase
                  WHERE addon_id = %(app_id)s
                  AND uuid = %(uuid)s LIMIT 1;"""
         self.cursor.execute(sql, {'app_id': self.get_app_id(),
@@ -259,8 +279,7 @@ class Verify:
             log_info('Invalid receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
 
-        purchase_id, purchase_type = result
-        self.check_purchase_type(purchase_type)
+        self.check_purchase_type(result[0])
 
     def check_purchase_type(self, purchase_type):
         """

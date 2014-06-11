@@ -30,5 +30,6 @@ def get_sample_inapp_receipt(contribution):
     sample_receipt['product']['storedata'] = urlencode({
         'id': 337141,
         'contrib': contribution.pk,
+        'inapp_id': contribution.inapp_product_id,
     })
     return sample_receipt
