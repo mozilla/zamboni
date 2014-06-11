@@ -3316,6 +3316,24 @@ class TestReviewPage(amo.tests.TestCase):
         eq_(doc('.reviewers-mobile .content-rating').length, 2)
 
 
+class TestAbusePage(AppReviewerTest):
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
+
+    def setUp(self):
+        self.app = app_factory(name = u'My app é <script>alert(5)</script>')
+        self.url = reverse('reviewers.apps.review.abuse',
+                           args=[self.app.app_slug])
+        AbuseReport.objects.create(addon=self.app, message=self.app.name)
+        self.login_as_editor()
+
+    def testXSS(self):
+        from django.utils.encoding import smart_unicode
+        from jinja2.utils import escape
+        content = smart_unicode(self.client.get(self.url).content)
+        ok_(not unicode(self.app.name) in content)
+        ok_(unicode(escape(self.app.name)) in content)
+
+
 class TestReviewTranslate(AppReviewerTest):
 
     def setUp(self):

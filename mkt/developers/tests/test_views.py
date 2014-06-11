@@ -11,8 +11,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.utils.encoding import smart_unicode
 
 import mock
+from jinja2.utils import escape
 from nose.plugins.attrib import attr
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
@@ -199,6 +201,15 @@ class TestAppDashboard(AppHubTest):
                 reverse('mkt.developers.transactions'), app=app.id)),
         ]
         amo.tests.check_links(expected, doc('a.action-link'), verify=False)
+
+    def test_xss(self):
+        app = self.get_app()
+        app.name = u'My app é <script>alert(5)</script>'
+        app.save()
+        self.make_mine()
+        content = smart_unicode(self.client.get(self.url).content)
+        ok_(not unicode(app.name) in content)
+        ok_(unicode(escape(app.name)) in content)
 
 
 class TestAppDashboardSorting(AppHubTest):
