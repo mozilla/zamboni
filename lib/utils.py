@@ -44,5 +44,6 @@ def static_url(url):
     if value.startswith(('https://', 'http://')):
         return value
     if settings.DEBUG and settings.SERVE_TMP_PATH:
+        value = '/' + value if not value.startswith('/') else value
         return urljoin(prefix[url], '/tmp' + value)
     return urljoin(prefix[url], value)

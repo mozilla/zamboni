@@ -37,3 +37,12 @@ class TestURL(TestCase):
 
         with self.settings(WEBAPPS_RECEIPT_URL='http://f.com'):
             eq_(static_url('WEBAPPS_RECEIPT_URL'), 'http://f.com')
+
+    def test_leading_slash(self):
+        with self.settings(ADDON_ICON_URL='v', DEBUG=True,
+                           SERVE_TMP_PATH=True):
+            eq_(static_url('ADDON_ICON_URL'), 'http://testserver/tmp/v')
+
+        with self.settings(ADDON_ICON_URL='/v', DEBUG=True,
+                           SERVE_TMP_PATH=True):
+            eq_(static_url('ADDON_ICON_URL'), 'http://testserver/tmp/v')
