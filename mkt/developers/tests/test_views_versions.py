@@ -17,7 +17,7 @@ from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon, AddonUser
+from mkt.webapps.models import AddonUser, Webapp
 from users.models import UserProfile
 
 
@@ -31,7 +31,7 @@ class TestVersion(amo.tests.TestCase):
         self.url = self.webapp.get_dev_url('versions')
 
     def get_webapp(self):
-        return Addon.objects.get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     def test_nav_link(self):
         r = self.client.get(self.url)
@@ -414,7 +414,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         self.user = UserProfile.objects.get(username='admin')
         self.login(self.user)
 
-        self.webapp = Addon.objects.get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('versions')
         self.home_url = self.webapp.get_dev_url('preload_home')
         self.submit_url = self.webapp.get_dev_url('preload_submit')
@@ -427,7 +427,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         f = open(self.test_pdf, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        return preload_submit(req, self.webapp.slug)
+        return preload_submit(req, self.webapp.app_slug)
 
     def test_get_200(self):
         eq_(self.client.get(self.home_url).status_code, 200)
@@ -437,7 +437,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
     @mock.patch('mkt.developers.views.messages')
     def test_preload_on_status_page(self, noop1, noop2):
         req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.slug)
+        r = status(req, self.webapp.app_slug)
         doc = pq(r.content)
         eq_(doc('#preload .listing-footer a').attr('href'),
             self.webapp.get_dev_url('preload_home'))
@@ -446,7 +446,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         self._submit_pdf()
 
         req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.slug)
+        r = status(req, self.webapp.app_slug)
         doc = pq(r.content)
         eq_(doc('#preload .listing-footer a').attr('href'),
             self.webapp.get_dev_url('preload_submit'))
@@ -476,7 +476,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         f = open(self.test_xls, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        r = preload_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.app_slug)
         self.assert3xx(r, self.url)
         self._assert_submit('xls', 'application/vnd.ms-excel', save_mock)
 
@@ -486,7 +486,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         f = open(os.path.abspath(__file__), 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True, 'test_plan': f})
-        r = preload_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.app_slug)
         eq_(r.status_code, 200)
         eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
@@ -499,7 +499,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
     def test_submit_no_file(self, noop, save_mock):
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'agree': True})
-        r = preload_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.app_slug)
         eq_(r.status_code, 200)
         eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
@@ -512,7 +512,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         f = open(self.test_xls, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'test_plan': f})
-        r = preload_submit(req, self.webapp.slug)
+        r = preload_submit(req, self.webapp.app_slug)
         eq_(r.status_code, 200)
         eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
@@ -525,7 +525,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         f = open(self.test_xls, 'r')
         req = req_factory_factory(self.submit_url, user=self.user, post=True,
                                   data={'test_plan': f, 'agree': True})
-        preload_submit(req, self.webapp.slug)
+        preload_submit(req, self.webapp.app_slug)
         self._submit_pdf()
 
         eq_(PreloadTestPlan.objects.count(), 2)
@@ -536,7 +536,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
 
         # Check the link points to most recent one.
         req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.slug)
+        r = status(req, self.webapp.app_slug)
         doc = pq(r.content)
         eq_(doc('.test-plan-download').attr('href'),
             pdf.preload_test_plan_url)
@@ -549,6 +549,6 @@ class TestPreloadSubmit(amo.tests.TestCase):
         self._submit_pdf()
 
         req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.slug)
+        r = status(req, self.webapp.app_slug)
         doc = pq(r.content)
         assert doc('.outdated')
