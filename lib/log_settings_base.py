@@ -87,6 +87,12 @@ loggers = {
         'level': 'ERROR',
         'propagate': True
     },
+    'cron': {
+        'level': 'WARNING',
+    },
+    'z.cron': {
+        'level': 'WARNING',
+    },
 }
 
 cfg = {
