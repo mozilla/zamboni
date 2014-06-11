@@ -446,8 +446,8 @@ ALLOW_SELF_REVIEWS = True
 # A smaller range of languages for the Marketplace.
 AMO_LANGUAGES = (
     'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'fr', 'ga-IE',
-    'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pl', 'pt-BR', 'ro',
-    'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'tr', 'zh-CN', 'zh-TW',
+    'hr', 'hu', 'it', 'ja', 'ko', 'mk', 'nb-NO', 'nl', 'pa', 'pl', 'pt-BR',
+    'ro', 'ru', 'sk', 'sq', 'sr', 'sr-Latn', 'tr', 'zh-CN', 'zh-TW',
 )
 
 
@@ -455,8 +455,12 @@ def lazy_langs(languages):
     from product_details import product_details
     if not product_details.languages:
         return {}
+    # Here we have to ignore any language that exists in `languages` but not
+    # yet in `product_details.languages`, because otherwise we'll get an
+    # `IndexError`, causing `manage.py update_product_details` to fail
+    # during deployment.
     return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in languages])
+                 for i in languages if i in product_details.languages])
 
 # Override Django's built-in with our native names, this is a Django setting
 # but we are putting it here because its being overridden.
