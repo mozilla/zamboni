@@ -219,7 +219,7 @@ Builder
 .. http:put:: /api/v2/feed/builder/
 
     Sets feeds by region. For each region passed in, the builder
-    will delete all of the carrier-less :ref:`feed items <feed-items` for
+    will delete all of the carrier-less :ref:`feed items <feed-items>` for
     that region and then batch create feed items in the order that feed
     element IDs are passed in for that region.
 
@@ -246,10 +246,10 @@ Builder
     - The keys of the request are region slugs.
     - The region slugs point to two-element arrays.
     - The first element of the array is the item type. It can be
-    ``app``, ``collection``, or ``brand``.
+        ``app``, ``collection``, or ``brand``.
     - The second element of the array is the ID of a feed element.
     - It can be the ID of a :ref:`FeedApp  <feed-apps>`, or
-      :ref:`FeedBrand <feed-brands>`.
+        :ref:`FeedBrand <feed-brands>`.
     - Order matters.
 
     **Response**
@@ -699,6 +699,11 @@ Feed Collections
 A feed collection is a complex assemblage of apps with a variety of display
 options.
 
+Apps in feed collections may be grouped. The group they belong to, if set, is
+represented as a :ref:`translated <overview-translations>` group name, which is
+assigned to the ``group`` property of each app's serialization. If ungrouped,
+``group`` will be ``null``.
+
 Feed collections are represented thusly:
 
 .. code-block:: json
@@ -706,10 +711,28 @@ Feed collections are represented thusly:
     {
         'apps': [
             {
-                'id': 1
+                'id': 1,
+                'group': {
+                    'en-US': 'Games',
+                    'fr': 'Jeux'
+                },
+                'other_fields': 'other_values'
             },
             {
-                'id': 2
+                'id': 2,
+                'group': {
+                    'en-US': 'Games',
+                    'fr': 'Jeux'
+                },
+                'other_fields': 'other_values'
+            },
+            {
+                'id': 3,
+                'group': {
+                    'en-US': 'Tools',
+                    'fr': 'Outils'
+                },
+                'other_fields': 'other_values'
             }
         ],
         'background_color': '#00AACC',
@@ -748,6 +771,47 @@ Feed collections are represented thusly:
     *string|null* - the permanent URL for this collection.
 
 
+.. _feed-collections-grouped:
+
+When creating or updating a feed collection, the ``apps`` parameter may take
+two forms:
+
+1. An array of app IDs. This will result in the collection's apps being
+   ungrouped.
+
+.. code-block:: json
+
+    {
+        'apps': [1, 18, 3, 111, 98, 231]
+    }
+
+2. An array of objects, each with an ``apps`` property containing app IDs and
+   a :ref:`translated <overview-translations>` ``name`` property defining the
+   name of the group for those apps. This will result in the collection's apps
+   being grouped as specified.
+
+.. code-block:: json
+
+    {
+        'apps': [
+            {
+                'apps': [1, 18, 3],
+                'name': {
+                    'en-US': 'Games',
+                    'fr': 'Jeux' 
+                }
+            },
+            {
+                'apps': [111, 98, 231],
+                'name': {
+                    'en-US': 'Tools',
+                    'fr': 'Outils' 
+                }
+            }
+        ]
+    }
+
+
 List
 ====
 
@@ -757,7 +821,7 @@ List
 
     **Response**
 
-    :param apps: an ordered array of :ref:`app <app>` serializations.
+    :param apps: an ordered array of :ref:`app serializations <app>`..
     :type apps: array
     :param meta: :ref:`meta-response-label`.
     :type meta: object
@@ -792,8 +856,8 @@ Create
 
     **Request**
 
-    :param apps: an ordered array of app IDs.
-    :type apps: array
+    :param apps: a grouped or ungrouped
+        :ref:`app list <feed-collections-grouped>`.
     :param color: a hex color used in display of the collection. Currently must
         be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
         ``#5F9B0A``, or ``#2C393B``.
@@ -846,7 +910,8 @@ Update
 
     **Request**
 
-    :param apps: an ordered array of app IDs. If it is included in PATCH
+    :param apps: a grouped or ungrouped
+        :ref:`app list <feed-collections-grouped>`. If included in PATCH
         requests, it will delete from the collection all apps not included.
     :type apps: array
     :param color: a hex color used in display of the collection. Currently must

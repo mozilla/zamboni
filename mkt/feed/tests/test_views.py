@@ -737,6 +737,37 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         super(TestFeedCollectionViewSet, self).make_item(
             description={'en-US': 'Baby Potato'}, name={'en-US': 'Sprout'})
 
+    def ungrouped_apps(self):
+        apps = [app_factory() for i in xrange(3)]
+        return [app.pk for app in apps]
+
+    def grouped_apps(self):
+        ret = []
+        for name in ['Games', 'Productivity', 'Lifestyle']:
+            apps = [app_factory() for i in xrange(2)]
+            ret.append({
+                'apps': [app.pk for app in apps],
+                'name': {
+                    'en-US': name,
+                    'fr': name[::-1]
+                }
+            })
+        return ret
+
+    def assertGroupedAppsEqual(self, grouped_apps, data):
+        """
+        Passed a list of dicts formed similar to the return value from
+        self.grouped_apps() and a collection serialization, asserts that the
+        apps in the serialization are in the correct groups as specified by the
+        list of dicts.
+        """
+        compare = {}
+        for group in grouped_apps:
+            for app in group['apps']:
+                compare[app] = group['name']
+        for app in data['apps']:
+            eq_(compare[app['id']], app['group'])
+
     def test_create_missing_name(self):
         self.feed_permission()
         obj_data = self.data()
@@ -758,6 +789,30 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         del obj_data['description']
         res, data = self.create(self.client, **obj_data)
         eq_(res.status_code, 201)
+
+    def test_create_ungrouped(self):
+        self.feed_permission()
+        obj_data = self.data()
+        obj_data['apps'] = self.ungrouped_apps()
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)
+        for app in data['apps']:
+            eq_(app['group'], None)
+
+    def test_create_grouped(self):
+        self.feed_permission()
+        obj_data = self.data()
+        obj_data['apps'] = self.grouped_apps()
+        res, data = self.create(self.client, **obj_data)
+        eq_(res.status_code, 201)
+        self.assertGroupedAppsEqual(obj_data['apps'], data)
+
+    def test_update_grouped(self):
+        self.feed_permission()
+        new_grouped = self.grouped_apps()
+        res, data = self.update(self.client, apps=new_grouped)
+        eq_(res.status_code, 200)
+        self.assertGroupedAppsEqual(new_grouped, data)
 
 
 class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
@@ -812,11 +867,11 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
 
     def test_update_feed(self):
         self.feed_permission()
-        r = self._set_feed_items(self.data)
+        self._set_feed_items(self.data)
 
         # Update US.
         self.data['us'] = self.data['cn']
-        r = self._set_feed_items(self.data)
+        self._set_feed_items(self.data)
 
         us_items = FeedItem.objects.filter(
             region=mkt.regions.US.id).order_by('order')
@@ -826,11 +881,11 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
     def test_truncate_feed(self):
         """Fill up China feed, then send an empty array for China."""
         self.feed_permission()
-        r = self._set_feed_items(self.data)
+        self._set_feed_items(self.data)
         ok_(FeedItem.objects.filter(region=mkt.regions.CN.id))
 
         self.data['cn'] = []
-        r = self._set_feed_items(self.data)
+        self._set_feed_items(self.data)
         ok_(FeedItem.objects.filter(region=mkt.regions.US.id))
         ok_(not FeedItem.objects.filter(region=mkt.regions.CN.id))
 

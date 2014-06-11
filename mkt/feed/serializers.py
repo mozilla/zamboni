@@ -16,7 +16,8 @@ from addons.models import Category
 
 from . import constants
 from .fields import FeedCollectionMembershipField
-from .models import FeedApp, FeedBrand, FeedCollection, FeedItem
+from .models import (FeedApp, FeedBrand, FeedCollection,
+                     FeedCollectionMembership, FeedItem)
 
 
 class BaseFeedCollectionSerializer(URLSerializerMixin,
@@ -98,6 +99,7 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         format='png')
     description = TranslationSerializerField(required=False)
     name = TranslationSerializerField()
+    apps = serializers.SerializerMethodField('get_apps')
 
     class Meta:
         fields = ('apps', 'background_color', 'background_image',
@@ -113,6 +115,22 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
                 '`background_color` is required for `promo` collections.'
             )
         return attrs
+
+    def get_apps(self, obj):
+        """
+        Return a list of serialized apps, adding each app's `group` to the
+        serialization.
+        """
+        ret = []
+        memberships = FeedCollectionMembership.objects.filter(obj=self.object)
+        field = TranslationSerializerField()
+        field.initialize(self, 'group')
+        field.context = self.context
+        for member in memberships:
+            data = AppSerializer(member.app).data
+            data['group'] = field.field_to_native(member, 'group')
+            ret.append(data)
+        return ret
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):

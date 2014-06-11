@@ -197,3 +197,20 @@ class FeedCollectionViewSet(BaseFeedCollectionViewSet):
     """
     serializer_class = FeedCollectionSerializer
     queryset = FeedCollection.objects.all()
+
+    def set_apps_grouped(self, obj, apps):
+        if apps:
+            try:
+                obj.set_apps_grouped(apps)
+            except Webapp.DoesNotExist:
+                raise ParseError(detail=self.exceptions['doesnt_exist'])
+
+    def set_apps(self, obj, apps):
+        """
+        Attempt to set the apps via the superclass, catching and handling the
+        TypeError raised if the apps are passed in a grouped manner.
+        """
+        try:
+            super(FeedCollectionViewSet, self).set_apps(obj, apps)
+        except TypeError:
+            self.set_apps_grouped(obj, apps)
