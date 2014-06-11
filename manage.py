@@ -121,6 +121,10 @@ if newrelic_ini:
         startup_logger = logging.getLogger('z.startup')
         startup_logger.exception('Failed to load new relic config.')
 
+# Alter zamboni to run on a particular port as per the
+# marketplace docs, unless overridden.
+from django.core.management.commands import runserver
+runserver.DEFAULT_PORT = 2600
 
 if __name__ == "__main__":
     # If product details aren't present, get them.
