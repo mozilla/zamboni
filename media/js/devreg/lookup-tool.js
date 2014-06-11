@@ -2,6 +2,39 @@ require(['prefetchManifest']);
 
 
 (function() {
+    var notification = require('notification');
+
+    $('.change-status button').click(_pd(function() {
+        var button = $(this);
+        var select = button.prev('select');
+        var status = select[0].options[select[0].selectedIndex].value;
+        var secret = require('login').userToken();
+
+        button.addClass('disabled');
+
+        $.ajax({
+            url: button.data('api-url') + '?_user=' + encodeURIComponent(secret),
+            data: {
+                status: status
+            },
+            type: 'PATCH',
+            dataType: 'json'
+        }).done(function() {
+            notification({
+                message: format(gettext('Status successfully changed to "{0}"'), status),
+                timeout: 2000
+            });
+        }).fail(function() {
+            notification({
+                message: format(gettext('Could not change status to "{0}"'), status),
+                timeout: 2000
+            });
+        });
+    }));
+
+    $('.change-status select').change(function() {
+        $(this).next('button').removeClass('disabled');
+    });
 
     // Delete user button.
     $('#delete-user button').click(function() {

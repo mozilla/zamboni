@@ -4,6 +4,21 @@ from django.conf import settings
 import happyforms
 from tower import ugettext_lazy as _lazy
 
+import amo
+
+
+STATUS_CHOICES = []
+for status in amo.MARKET_STATUSES:
+    STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
+                           amo.MKT_STATUS_CHOICES[status]))
+
+
+class NoAutoCompleteChoiceField(forms.ChoiceField):
+    def widget_attrs(self, widget):
+        attrs = super(NoAutoCompleteChoiceField, self).widget_attrs(widget)
+        attrs['autocomplete'] = 'off'
+        return attrs
+
 
 class TransactionSearchForm(happyforms.Form):
     q = forms.CharField(label=_lazy(u'Transaction Lookup'))
@@ -32,3 +47,8 @@ class DeleteUserForm(happyforms.Form):
     delete_reason = forms.CharField(
         label=_lazy(u'Reason for Deletion'),
         widget=forms.Textarea(attrs={'rows': 2}))
+
+
+class APIStatusForm(happyforms.Form):
+    status = NoAutoCompleteChoiceField(required=False, choices=STATUS_CHOICES,
+                                       label=_lazy(u'Status'))
