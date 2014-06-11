@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-04 16:47+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2014-06-11 12:03+0000\n"
+"Last-Translator: Aleksandra <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401900424.0\n"
+"X-POOTLE-MTIME: 1402488225.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1287,11 +1287,11 @@ msgstr "Поновно слање апликације"
 
 #: apps/amo/log.py:528
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} је аутоматски ескалиран зато што је VIP апликација."
 
 #: apps/amo/log.py:529
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP ауто-ескалација"
 
 #: apps/amo/log.py:546
 msgid "Created: {0}."
@@ -2135,43 +2135,46 @@ msgstr "Имате <span>{0}</span> поена."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56 mkt/reviewers/templates/reviewers/leaderboard.html:3
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Табела вођства рецензената"
 
 #: apps/files/forms.py:95
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Не може се урадити diff са истом верзијом"
 
 #: apps/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Дошло до грешке приликом приступа датотеци %s. %s."
 
 #: apps/files/tasks.py:31
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Дошло до грешке приликом приступа датотеци %s."
 
 #: apps/files/utils.py:76
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr ""
+"Датотека \"manifest.webapp\" није нађена у корену архиве спаковане апликације."
 
 #: apps/files/utils.py:98
 msgid "Could not decode the webapp manifest file."
-msgstr ""
+msgstr "Нисмо могли да декодирамо webapp манифест датотеку."
 
 #: apps/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
-msgstr ""
+msgstr "Манифест webapp није валидан JSON."
 
 #: apps/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
-msgstr ""
+msgstr "Ваши назначени локали апликације нису исправног формата."
 
 #: apps/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
+"Назив програмера је неопходан у манифесту како би био приказан на листингу "
+"апликације."
 
 #: apps/files/utils.py:181
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Неисправан назив датотеке у архиви: {0}"
 
 #: apps/files/utils.py:189
 msgid "File exceeding size limit in archive: {0}"
