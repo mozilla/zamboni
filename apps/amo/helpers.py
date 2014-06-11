@@ -94,35 +94,6 @@ def url(viewname, *args, **kwargs):
     return url
 
 
-@register.function
-def shared_url(viewname, addon, *args, **kwargs):
-    """
-    Helper specifically for addons or apps to get urls. Requires
-    the viewname, addon (or app). It's assumed that we'll pass the
-    slug into the args and we'll look up the right slug (addon or app)
-    for you.
-
-    Viewname should be a normal view eg: `addons.details` or `apps.details`.
-    `addons.details` becomes `apps.details`, if we've passed an app, etc.
-
-    A viewname such as `details` becomes `addons.details` or `apps.details`,
-    depending on the add-on type.
-    """
-    slug = addon.app_slug if addon.is_webapp() else addon.slug
-    prefix = 'apps' if addon.is_webapp() else 'addons'
-
-    namespace, dot, latter = viewname.partition('.')
-
-    # If `viewname` is prefixed with `addons.` but we're linking to a
-    # webapp, the `viewname` magically gets prefixed with `apps.`.
-    if namespace in ('addons', 'apps'):
-        viewname = latter
-
-    # Otherwise, we just slap the appropriate prefix in front of `viewname`.
-    viewname = '.'.join([prefix, viewname])
-    return url(viewname, *([slug] + list(args)), **kwargs)
-
-
 @register.filter
 def paginator(pager):
     return Paginator(pager).render()
