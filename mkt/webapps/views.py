@@ -81,6 +81,13 @@ class BaseFilter(object):
     def _filter(self, field):
         return getattr(self, 'filter_%s' % field)()
 
+    def filter_created(self):
+        return (self.model.objects.order_by('-created')
+                .with_index(addons='created_type_idx'))
+
+    def filter_name(self):
+        return order_by_translation(self.model.objects.all(), 'name')
+
 
 class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                  viewsets.ModelViewSet):

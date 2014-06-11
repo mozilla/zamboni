@@ -39,7 +39,7 @@ from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
 from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, Category,
                                 IARCInfo, Preview, Webapp)
-from mkt.webapps.tasks import index_webapps
+from mkt.webapps.tasks import index_webapps, update_manifests
 from mkt.webapps.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
