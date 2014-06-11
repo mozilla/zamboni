@@ -94,7 +94,6 @@ INSTALLED_APPS = (
     'tower',  # for ./manage.py extract
     'translations',
     'users',
-    'zadmin',
 
     # Third party apps
     'djcelery',
@@ -146,6 +145,7 @@ INSTALLED_APPS = (
     'mkt.zadmin',
     'mkt.webapps',
     'mkt.webpay',
+    'mkt.zadmin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -548,7 +548,7 @@ except ImportError:
     build_id = ""
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = 'cleancss'
+CLEANCSS_BIN = path('node_modules/clean-css/bin/cleancss')
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',

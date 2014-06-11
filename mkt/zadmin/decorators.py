@@ -18,7 +18,7 @@ def admin_required(reviewers=False):
         def wrapper(request, *args, **kw):
             admin = (action_allowed(request, 'Admin', '%') or
                      action_allowed(request, 'AdminTools', 'View'))
-            if reviewers:
+            if reviewers is True:
                 admin = (
                     admin or
                     action_allowed(request, 'ReviewerAdminTools', 'View'))

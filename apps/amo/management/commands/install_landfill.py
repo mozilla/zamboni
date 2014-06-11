@@ -11,7 +11,7 @@ import requests
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from zadmin.models import Config
+from mkt.zadmin.models import Config
 
 
 class Command(BaseCommand):

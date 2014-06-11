@@ -8,7 +8,7 @@ import amo
 import mkt
 from amo.context_processors import get_collect_timings
 from mkt.access import acl
-from zadmin.models import get_config
+from mkt.zadmin.models import get_config
 
 
 def global_settings(request):

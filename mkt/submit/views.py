@@ -17,7 +17,6 @@ from rest_framework.viewsets import GenericViewSet
 import amo
 from addons.models import Addon, AddonUser, Preview
 from amo.decorators import login_required, write
-from .decorators import read_dev_agreement_required, submit_step
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
 
@@ -25,7 +24,8 @@ import mkt
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, AllowRelatedAppOwner
+from mkt.api.authorization import (AllowAppOwner, AllowRelatedAppOwner, AnyOf,
+                                   GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.forms import NewPackagedForm, PreviewJSONForm
 from mkt.constants import DEVICE_LOOKUP
@@ -321,7 +321,8 @@ class StatusViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
     queryset = Webapp.objects.all()
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
-    permission_classes = [AllowAppOwner]
+    permission_classes = [AnyOf(AllowAppOwner,
+                                GroupPermission('Admin', '%s'))]
     serializer_class = AppStatusSerializer
 
     def update(self, request, *args, **kwargs):

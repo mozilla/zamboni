@@ -1,13 +1,46 @@
 from rest_framework import mixins, viewsets
-from rest_framework.exceptions import ParseError
+from rest_framework.decorators import action
+from rest_framework.exceptions import MethodNotAllowed, ParseError
 
 import amo
+from mkt.api.authentication import (RestAnonymousAuthentication,
+                                    RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.api.authorization import (AllowReadOnlyIfPublic, AllowRelatedAppOwner,
                                    AnyOf, GroupPermission)
 from mkt.api.base import CORSMixin
 from mkt.constants import APP_FEATURES
 from mkt.versions.models import Version
-from mkt.versions.serializers import VersionSerializer
+from mkt.versions.serializers import FileStatusSerializer, VersionSerializer
+
+
+class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    """Special API view used by senior reviewers and admins to modify a version
+    (actually the corresponding File) status."""
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+    permission_classes = [GroupPermission('Admin', '%')]
+    serializer_class = FileStatusSerializer
+    cors_allowed_methods = ['patch']
+
+    def get_object(self):
+        # Since we are fetching a totally different object than the pk the
+        # client is passing, we need to make sure to override the pk in
+        # self.kwargs, DRF uses it as a precautionary measure in in pre_save().
+        obj = self.kwargs['version'].all_files[0]
+        self.kwargs[self.pk_url_kwarg] = obj.pk
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        # PUT is disallowed, only PATCH is accepted for this endpoint.
+        if request.method == 'PUT':
+            raise MethodNotAllowed('PUT')
+        res = super(VersionStatusViewSet, self).update(
+            request, *args, **kwargs)
+        app = self.object.version.addon
+        res.data['app_status'] = amo.STATUS_CHOICES_API[app.status]
+        return res
 
 
 class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
@@ -15,10 +48,13 @@ class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
     queryset = Version.objects.filter(
         addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
-    authorization_classes = []
-    permission_classes = [AnyOf(AllowRelatedAppOwner,
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+    permission_classes = [AnyOf(AllowReadOnlyIfPublic,
+                                AllowRelatedAppOwner,
                                 GroupPermission('Apps', 'Review'),
-                                AllowReadOnlyIfPublic)]
+                                GroupPermission('Admin', '%'))]
     cors_allowed_methods = ['get', 'patch', 'put']
 
     def update(self, request, *args, **kwargs):
@@ -47,3 +83,11 @@ class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
             del request.DATA['features']
 
         return super(VersionViewSet, self).update(request, *args, **kwargs)
+
+    @action(methods=['PATCH'],
+            cors_allowed_methods=VersionStatusViewSet.cors_allowed_methods)
+    def status(self, request, *args, **kwargs):
+        self.queryset = Version.with_deleted.all()
+        kwargs['version'] = self.get_object()
+        view = VersionStatusViewSet.as_view({'patch': 'update'})
+        return view(request, *args, **kwargs)

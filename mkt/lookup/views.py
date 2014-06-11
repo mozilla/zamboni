@@ -30,8 +30,8 @@ from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
-from mkt.lookup.forms import (DeleteUserForm, TransactionRefundForm,
-                              TransactionSearchForm)
+from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
+                              TransactionRefundForm, TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
@@ -255,12 +255,27 @@ def app_summary(request, addon_id):
 
     purchases, refunds = _app_purchases_and_refunds(app)
     provider_portals = get_payment_provider_portals(app=app)
+    versions = None
 
-    return render(request, 'lookup/app_summary.html',
-                  {'abuse_reports': app.abuse_reports.count(), 'app': app,
-                   'authors': authors, 'downloads': _app_downloads(app),
-                   'purchases': purchases, 'refunds': refunds, 'price': price,
-                   'provider_portals': provider_portals})
+    status_form = APIStatusForm(initial={
+        'status' : amo.STATUS_CHOICES_API[app.status]
+    })
+    version_status_forms = {}
+    if app.is_packaged:
+        versions = app.versions.all().order_by('-created')
+        for v in versions:
+            version_status_forms[v.pk] = APIFileStatusForm(initial={
+                'status' : amo.STATUS_CHOICES_API[v.all_files[0].status]
+            })
+
+    return render(request, 'lookup/app_summary.html', {
+        'abuse_reports': app.abuse_reports.count(), 'app': app,
+        'authors': authors, 'downloads': _app_downloads(app),
+        'purchases': purchases, 'refunds': refunds, 'price': price,
+        'provider_portals': provider_portals,
+        'status_form': status_form, 'versions': versions,
+        'version_status_forms': version_status_forms
+    })
 
 
 @login_required

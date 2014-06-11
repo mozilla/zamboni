@@ -65,8 +65,15 @@
         <dt>{{ _('Status') }}</dt>
         <dd>
             <form method="post">
-            {{ amo.MKT_STATUS_CHOICES[app.status] }} -
             {{ csrf() }}
+            {% if action_allowed('Admin', '%') %}
+              <div class="change-status">
+                {{ status_form.status }}
+                <button data-api-url="{{ url('app-status-detail', pk=app.pk) }}" class="button disabled">{{ _('OK') }}</button>
+              </div>
+            {% else %}
+              {{ amo.MKT_STATUS_CHOICES[app.status] }}
+            {% endif %}
             {% if app.priority_review %}
               <button class="button disabled" name="prioritize">{{ _('Review Prioritized') }}</button>
             {% else %}
@@ -129,14 +136,23 @@
             </tr>
           </thead>
           <tbody>
-          {% for v in app.versions.all().order_by('-created') %}
+          {% for v in versions %}
             <tr>
               <td>{{ v.created|datetime }}</td>
-              <td>{{ v.version }} ({{ v.id }})</td>
+              <td>{{ v.version }} ({{ v.pk }})</td>
               {% with file = v.files.latest() %}
                 <td><a href="{{ v.all_files[0].get_url_path('') }}" class="download">
                   {{ file.filename }} ({{ file.id }}, {{ file.size|filesizeformat }})</a></td>
-                <td>{{ amo.MKT_STATUS_CHOICES[file.status] }}</td>
+                <td>
+                  {% if action_allowed('Admin', '%') %}
+                    <div class="change-status">
+                      {{ version_status_forms[v.pk].status }}
+                      <button data-api-url="{{ url('version-status', pk=v.pk) }}" class="button disabled">{{ _('OK') }}</button>
+                    </div>
+                  {% else %}
+                    {{ amo.MKT_STATUS_CHOICES[app.status] }}
+                  {% endif %}
+                </td>
               {% endwith %}
             </tr>
           {% endfor %}

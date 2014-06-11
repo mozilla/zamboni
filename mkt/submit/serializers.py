@@ -7,6 +7,7 @@ from rest_framework import serializers
 import amo
 from addons.models import Preview
 from files.models import FileUpload
+from mkt.access import acl
 from mkt.api.fields import ReverseChoiceField
 from mkt.webapps.models import Webapp
 
@@ -32,6 +33,12 @@ class AppStatusSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(u'Error getting app.')
 
         if not source in attrs:
+            return attrs
+
+        # Admins can change any status, skip validation for them.
+        # It's dangerous, but with great powers comes great responsability.
+        if ('request' in self.context and self.context['request'].amo_user and
+            acl.action_allowed(self.context['request'], 'Admin', '%')):
             return attrs
 
         # An incomplete app's status can not be changed.
