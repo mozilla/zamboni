@@ -99,8 +99,6 @@ ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
-# Remove DetectMobileMiddleware from middleware in production.
-detect = 'mobility.middleware.DetectMobileMiddleware'
 csp = 'csp.middleware.CSPMiddleware'
 
 
