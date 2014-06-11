@@ -224,26 +224,6 @@ class TestEditBasic(TestEdit):
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
             '&lt;/script&gt;')
 
-    def test_view_manifest_url_default(self):
-        # Should be able to see manifest URL listed.
-        r = self.client.get(self.url)
-        eq_(pq(r.content)('#manifest-url a').attr('href'),
-            self.webapp.manifest_url)
-
-        # There should be a readonly text field.
-        r = self.client.get(self.edit_url)
-        row = pq(r.content)('#manifest-url')
-        eq_(row.find('input[name=manifest_url][readonly]').length, 1)
-
-        # POST with the new manifest URL.
-        url = 'https://ballin.com/ballin4eva'
-        r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
-        self.assertNoFormErrors(r)
-
-        # The manifest should remain unchanged since this is disabled for
-        # non-admins.
-        eq_(self.get_webapp().manifest_url, self.webapp.manifest_url)
-
     def test_view_edit_manifest_url_empty(self):
         # Empty manifest should throw an error.
         r = self.client.post(self.edit_url, self.get_dict(manifest_url=''))
@@ -251,14 +231,17 @@ class TestEditBasic(TestEdit):
         assert 'manifest_url' in form.errors
         assert 'This field is required' in form.errors['manifest_url'][0]
 
-    def test_view_admin_edit_manifest_url(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+    @mock.patch('mkt.developers.forms.update_manifests')
+    def test_view_edit_manifest_url(self, fetch):
+        assert not self.webapp.in_rereview_queue(), (
+            'App should not be in re-review queue')
+
         # Should be able to see manifest URL listed.
         r = self.client.get(self.url)
         eq_(pq(r.content)('#manifest-url a').attr('href'),
             self.webapp.manifest_url)
 
-        # Admins can edit the manifest URL and should see a text field.
+        # Devs/admins can edit the manifest URL and should see a text field.
         r = self.client.get(self.edit_url)
         row = pq(r.content)('#manifest-url')
         eq_(row.find('input[name=manifest_url]').length, 1)
@@ -275,13 +258,20 @@ class TestEditBasic(TestEdit):
         eq_(self.webapp.current_version.version, '1.0')
         eq_(self.webapp.versions.count(), 1)
 
-    def test_view_manifest_changed_dupe_app_domain(self):
-        Switch.objects.create(name='webapps-unique-by-domain', active=True)
+        assert self.webapp.in_rereview_queue(), (
+            'App should be in re-review queue')
+
+        # Ensure that we're refreshing the manifest.
+        fetch.delay.assert_called_once_with([self.webapp.pk])
+
+    @mock.patch('mkt.developers.forms.update_manifests')
+    def test_view_manifest_changed_dupe_app_domain(self, fetch):
+        self.create_switch('webapps-unique-by-domain')
         amo.tests.app_factory(name='Super Duper',
                               app_domain='https://ballin.com')
+        self.login('admin')
 
-        self.client.login(username='admin@mozilla.com', password='password')
-        # POST with the new manifest URL.
+        # POST with new manifest URL.
         url = 'https://ballin.com/ballin4eva.webapp'
         r = self.client.post(self.edit_url, self.get_dict(manifest_url=url))
         form = r.context['form']
@@ -291,15 +281,27 @@ class TestEditBasic(TestEdit):
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url,
             'Manifest URL should not have been changed!')
 
-    def test_view_manifest_changed_same_domain_diff_path(self):
-        Switch.objects.create(name='webapps-unique-by-domain', active=True)
-        self.client.login(username='admin@mozilla.com', password='password')
-        # POST with the new manifest URL for same domain but w/ different path.
+        assert not fetch.delay.called, (
+            'Manifest should not have been refreshed!')
+
+    @mock.patch('mkt.developers.forms.update_manifests')
+    def test_view_manifest_changed_same_domain_diff_path(self, fetch):
+        self.create_switch('webapps-unique-by-domain')
+        self.login('admin')
+
+        # POST with new manifest URL for same domain but w/ different path.
         data = self.get_dict(manifest_url=self.webapp.manifest_url + 'xxx')
         r = self.client.post(self.edit_url, data)
         self.assertNoFormErrors(r)
+
         eq_(self.get_webapp().manifest_url, self.webapp.manifest_url + 'xxx',
             'Manifest URL should have changed!')
+
+        assert not self.webapp.in_rereview_queue(), (
+            'App should be in re-review queue because an admin changed it')
+
+        # Ensure that we're refreshing the manifest.
+        fetch.delay.assert_called_once_with([self.webapp.pk])
 
     def test_view_manifest_url_changed(self):
         new_url = 'http://omg.org/yes'
