@@ -2,10 +2,11 @@ from django import forms
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-from lib.utils import static_url
+
 from tower import ugettext as _
 
-from addons.models import Category
+from lib.utils import static_url
+from mkt.webapps.models import Category
 
 
 class IconWidgetRenderer(forms.RadioSelect.renderer):

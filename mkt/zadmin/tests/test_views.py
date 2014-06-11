@@ -10,11 +10,11 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
 from amo.urlresolvers import reverse
 from mkt.access.models import Group, GroupUser
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon, AddonDeviceType
 from users.models import UserProfile
 
 from ..forms import DevMailerForm
@@ -160,7 +160,7 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_desktop_apps(self):
-        from addons.models import AddonDeviceType
+        self.addon.update(type=amo.ADDON_WEBAPP)
         AddonDeviceType.objects.create(addon=self.addon,
             device_type=amo.DEVICE_MOBILE.id)
         res = self.post(recipients='desktop_apps')

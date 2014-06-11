@@ -15,7 +15,6 @@ from rest_framework.status import (HTTP_201_CREATED, HTTP_202_ACCEPTED,
 from rest_framework.viewsets import GenericViewSet
 
 import amo
-from addons.models import Addon, AddonUser, Preview
 from amo.decorators import login_required, write
 from files.models import FileUpload, Platform
 from lib.metrics import record_action
@@ -37,7 +36,7 @@ from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from users.models import UserProfile
 
 from . import forms

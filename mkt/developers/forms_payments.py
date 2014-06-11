@@ -12,7 +12,6 @@ from curling.lib import HttpClientError
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon, AddonUpsell
 from amo.utils import raise_required
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR)
@@ -25,6 +24,7 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
+from mkt.webapps.models import Addon, AddonUpsell
 
 
 log = commonware.log.getLogger('z.devhub')

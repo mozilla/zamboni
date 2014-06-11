@@ -15,8 +15,6 @@ from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
-from addons.decorators import addon_view_factory
-from addons.models import Addon
 from amo import messages
 from amo.decorators import json_view, login_required, post_required
 from amo.urlresolvers import get_url_prefix
@@ -30,8 +28,6 @@ from .utils import autocreate_username
 
 
 log = commonware.log.getLogger('z.users')
-
-addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 def user_view(f):

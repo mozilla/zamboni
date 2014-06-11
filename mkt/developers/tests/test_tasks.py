@@ -22,14 +22,14 @@ from requests import RequestException
 import amo
 import amo.tests
 import mkt
-from addons.models import Preview
 from amo.tests.test_helpers import get_image_path
 from amo.utils import ImageCheck
 from files.models import FileUpload
 from mkt.developers import tasks
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest
-from mkt.webapps.models import AddonExcludedRegion as AER, Webapp
+from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import Preview, Webapp
 
 
 def test_resize_icon_shrink():

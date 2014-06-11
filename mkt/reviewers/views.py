@@ -32,9 +32,6 @@ from waffle.decorators import waffle_switch
 
 import amo
 import mkt
-from addons.decorators import addon_view
-from addons.models import AddonDeviceType, Version
-from addons.signals import version_changed
 from amo.decorators import (any_permission_required, json_view, login_required,
                             permission_required)
 from amo.helpers import absolutify, urlparams
@@ -68,7 +65,9 @@ from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.decorators import app_view
+from mkt.webapps.models import AddonDeviceType, Version, Webapp, WebappIndexer
+from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 from translations.query import order_by_translation
 from users.models import UserProfile
@@ -444,7 +443,7 @@ def _review(request, addon, version):
 
 @transaction.commit_manually
 @reviewer_required
-@addon_view
+@app_view
 def app_review(request, addon):
     version = addon.latest_version
     resp = None
@@ -784,7 +783,7 @@ def _get_manifest_json(addon):
 
 
 @any_permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
-@addon_view
+@app_view
 @json_view
 def app_view_manifest(request, addon):
     headers = {}
@@ -866,7 +865,7 @@ def reviewer_or_token_required(f):
     return wrapper
 
 
-@addon_view
+@app_view
 @reviewer_or_token_required
 def mini_manifest(request, addon, version_id):
     token = request.GET.get('token')
@@ -907,7 +906,7 @@ def _mini_manifest(addon, version_id, token=None):
 
 
 @permission_required('Apps', 'Review')
-@addon_view
+@app_view
 def app_abuse(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
@@ -917,7 +916,7 @@ def app_abuse(request, addon):
                           total=total))
 
 
-@addon_view
+@app_view
 @reviewer_or_token_required
 def get_signed_packaged(request, addon, version_id):
     version = get_object_or_404(addon.versions, pk=version_id)

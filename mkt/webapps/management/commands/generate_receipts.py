@@ -1,15 +1,14 @@
-from optparse import make_option
-
-from django.core.management.base import BaseCommand, CommandError
 import json
 import os
 import tempfile
 import time
+from optparse import make_option
+
+from django.core.management.base import BaseCommand, CommandError
 
 import amo
-from addons.models import Addon
+from mkt.webapps.models import Addon, Installed
 from users.models import UserProfile
-from mkt.webapps.models import Installed
 
 
 class Command(BaseCommand):

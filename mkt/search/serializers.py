@@ -7,13 +7,12 @@ from rest_framework import serializers
 
 import amo
 import mkt
-from addons.models import Category, Preview
 from amo.helpers import absolutify
 from constants.applications import DEVICE_TYPES
 from mkt.api.fields import ESTranslationSerializerField
 from mkt.submit.serializers import SimplePreviewSerializer
 from mkt.versions.models import Version
-from mkt.webapps.models import Geodata, Webapp
+from mkt.webapps.models import Category, Geodata, Preview, Webapp
 from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
 from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                dehydrate_interactives)

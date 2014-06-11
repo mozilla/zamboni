@@ -8,25 +8,25 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 
-from addons.decorators import addon_view_factory
 import amo
 from amo.decorators import json_view, login_required, post_required, write
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
 from mkt.api.exceptions import AlreadyPurchased
-from mkt.purchase.models import Contribution
 from mkt.purchase.decorators import can_be_purchased
+from mkt.purchase.models import Contribution
+from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
 
 from . import tasks
 
 log = commonware.log.getLogger('z.purchase')
-addon_view = addon_view_factory(qs=Webapp.objects.valid)
+app_view = app_view_factory(qs=Webapp.objects.valid)
 
 
 @login_required
-@addon_view
+@app_view
 @write
 @post_required
 @json_view
@@ -60,7 +60,7 @@ def prepare_pay(request, addon):
 
 
 @login_required
-@addon_view
+@app_view
 @write
 @json_view
 def pay_status(request, addon, contrib_uuid):

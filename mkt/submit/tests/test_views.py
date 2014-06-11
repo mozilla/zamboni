@@ -15,8 +15,6 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 import mkt
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from apps.users.models import UserNotification
@@ -27,7 +25,8 @@ from mkt.site.fixtures import fixture
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
-from mkt.webapps.models import AppFeatures, Webapp
+from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
+                                AddonUser, AppFeatures, Category, Webapp)
 from translations.models import Translation
 from users.models import UserProfile
 

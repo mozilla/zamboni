@@ -11,13 +11,12 @@ from nose.tools import eq_, ok_
 
 import amo
 import mkt.regions
-from addons.models import AddonUser
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.models import ActivityLog
 from mkt.prices.models import AddonPurchase
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
 from users.models import UserProfile
 
 

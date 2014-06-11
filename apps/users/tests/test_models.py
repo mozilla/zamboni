@@ -10,9 +10,9 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
 from mkt.access.models import Group, GroupUser
 from mkt.ratings.models import Review
+from mkt.webapps.models import Addon, AddonUser
 from translations.models import Translation
 from users.models import UserEmailField, UserProfile
 

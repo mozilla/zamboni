@@ -3,16 +3,15 @@ from django.conf import settings
 from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
 
+import amo
 import mkt.carriers
 import mkt.regions
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
-from mkt.collections.serializers import (SlugChoiceField, SlugModelChoiceField)
+from mkt.collections.serializers import SlugChoiceField, SlugModelChoiceField
 from mkt.submit.serializers import PreviewSerializer
+from mkt.webapps.models import Category
 from mkt.webapps.serializers import AppSerializer
-
-import amo
-from addons.models import Category
 
 from . import constants
 from .fields import FeedCollectionMembershipField

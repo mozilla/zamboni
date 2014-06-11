@@ -6,8 +6,8 @@ from django.core.management.base import BaseCommand
 from celery.task.sets import TaskSet
 
 import amo
-from addons.models import Webapp
 from lib.crypto.packaged import sign
+from mkt.webapps.models import Webapp
 
 
 HELP = """\

@@ -12,7 +12,6 @@ from django.db import models
 import commonware.log
 import jinja2
 
-import addons.query
 import amo
 import amo.models
 import amo.utils
@@ -20,6 +19,7 @@ from amo.decorators import use_master
 from files import utils
 from files.models import cleanup_file, File, Platform
 from mkt.versions.tasks import update_supported_locales_single
+from mkt.webapps import query
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 
@@ -37,14 +37,14 @@ class VersionManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(VersionManager, self).get_query_set()
-        qs = qs._clone(klass=addons.query.IndexQuerySet)
+        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
 
 
 class Version(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon', related_name='versions')
+    addon = models.ForeignKey('webapps.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)

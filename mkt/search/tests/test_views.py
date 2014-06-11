@@ -14,7 +14,6 @@ from nose.tools import eq_, ok_
 import amo
 import mkt
 import mkt.regions
-from addons.models import AddonCategory, AddonDeviceType, AddonUpsell, Category
 from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.access.middleware import ACLMiddleware
@@ -32,7 +31,8 @@ from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
-from mkt.webapps.models import Installed, Webapp, WebappIndexer
+from mkt.webapps.models import (AddonCategory, AddonDeviceType, AddonUpsell,
+                                Category, Installed, Webapp, WebappIndexer)
 from mkt.webapps.tasks import unindex_webapps
 from translations.helpers import truncate
 from users.models import UserProfile

@@ -14,7 +14,6 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 import mkt
-from addons.helpers import new_context
 from amo.helpers import impala_breadcrumbs
 from mkt.access import acl
 from mkt.developers.helpers import mkt_page_title
@@ -22,6 +21,7 @@ from mkt.reviewers.models import EscalationQueue, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
 from mkt.versions.models import Version
+from mkt.webapps.helpers import new_context
 
 
 @register.function

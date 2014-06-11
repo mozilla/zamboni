@@ -9,9 +9,9 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import AddonUser
 from mkt.ratings.cron import email_daily_ratings
 from mkt.ratings.models import Review
+from mkt.webapps.models import AddonUser
 from users.models import UserProfile
 
 

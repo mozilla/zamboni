@@ -8,8 +8,7 @@ from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
 from django.core.management.base import BaseCommand
 
-from addons.models import Webapp  # To avoid circular import.
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.tasks import index_webapps
 
 

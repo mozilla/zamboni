@@ -16,8 +16,6 @@ from tower import ugettext as _
 
 import amo
 import amo.log
-from addons.decorators import addon_view_factory
-from addons.models import Addon
 from amo.decorators import json_view, post_required, write
 from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
@@ -36,14 +34,15 @@ from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.reviewers.views import reviewer_required
-from mkt.webapps.models import Installed, Webapp
+from mkt.webapps.decorators import app_view_factory
+from mkt.webapps.models import Addon, Installed, Webapp
 from services.verify import get_headers, Verify
 from users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.receipts')
-addon_view = addon_view_factory(qs=Webapp.objects.valid)
-addon_all_view = addon_view_factory(qs=Webapp.objects.all)
+app_view = app_view_factory(qs=Webapp.objects.valid)
+app_all_view = app_view_factory(qs=Webapp.objects.all)
 
 
 def _record(request, addon):
@@ -106,7 +105,7 @@ def _record(request, addon):
 
 @anonymous_csrf_exempt
 @json_view
-@addon_all_view
+@app_all_view
 @post_required
 @write
 def record_anon(request, addon):
@@ -114,7 +113,7 @@ def record_anon(request, addon):
 
 
 @json_view
-@addon_all_view
+@app_all_view
 @post_required
 @write
 def record(request, addon):
@@ -156,7 +155,7 @@ def verify(request, uuid):
     return response(verify.invalid())
 
 
-@addon_all_view
+@app_all_view
 @json_view
 @post_required
 def issue(request, addon):

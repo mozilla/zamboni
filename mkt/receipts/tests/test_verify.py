@@ -16,15 +16,15 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import Addon
-from services import utils, verify
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
-from mkt.receipts.utils import create_receipt
 from mkt.receipts.tests.utils import (get_sample_app_receipt,
                                       get_sample_inapp_receipt)
+from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon
+from services import utils, verify
 from users.models import UserProfile
 
 

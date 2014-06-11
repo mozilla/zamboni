@@ -1,5 +1,5 @@
 import amo
-from addons.models import AddonCategory, Category, Webapp
+from mkt.webapps.models import AddonCategory, Category, Webapp
 
 
 def run():

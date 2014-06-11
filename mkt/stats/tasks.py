@@ -6,16 +6,15 @@ from celeryutils import task
 
 import amo
 from amo.decorators import write
-
-from addons.models import AddonUser
-from users.models import UserProfile
-
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
 from mkt.ratings.models import Review
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonUser, Webapp
+from users.models import UserProfile
+
 
 log = logging.getLogger('z.stats')
+
 
 @task
 @write

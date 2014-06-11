@@ -29,9 +29,6 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-from addons.decorators import addon_view
-from addons.models import AddonUser
-from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required, skip_cache, write)
@@ -59,13 +56,16 @@ from mkt.developers.utils import check_upload, handle_vip
 from mkt.purchase.models import Contribution
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.versions.models import Version
-from mkt.webapps.models import ContentRating, IARCInfo, Webapp
+from mkt.webapps.decorators import app_view
+from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
+from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 from users.models import UserProfile
 from users.views import _login
 
 from . import forms, tasks
+
 
 log = commonware.log.getLogger('z.devhub')
 
@@ -1019,7 +1019,7 @@ def api(request):
                   {'consumers': consumers, 'roles': roles, 'form': f})
 
 
-@addon_view
+@app_view
 @post_required
 @any_permission_required([('Admin', '%'),
                           ('Apps', 'Configure')])
@@ -1078,7 +1078,7 @@ def testing(request):
     return render(request, 'developers/testing.html')
 
 
-@addon_view
+@app_view
 def debug(request, addon):
     if not settings.DEBUG:
         raise http.Http404

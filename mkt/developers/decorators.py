@@ -2,9 +2,9 @@ import functools
 
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
-from addons.decorators import addon_view
 from amo.decorators import login_required
 from mkt.access import acl
+from mkt.webapps.decorators import app_view
 
 
 def dev_required(owner_for_post=False, allow_editors=False, support=False,
@@ -17,7 +17,7 @@ def dev_required(owner_for_post=False, allow_editors=False, support=False,
     allowed. Users in the Developers group are allowed read-only.
     """
     def decorator(f):
-        @addon_view
+        @app_view
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):

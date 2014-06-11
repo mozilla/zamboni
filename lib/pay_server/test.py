@@ -7,10 +7,10 @@ import test_utils
 from mock import patch
 from nose.tools import eq_
 
-from addons.models import Addon
 import amo
-from users.models import UserProfile
 from lib.pay_server import filter_encoder, model_to_uid, ZamboniEncoder
+from mkt.webapps.models import Addon
+from users.models import UserProfile
 
 
 @patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))

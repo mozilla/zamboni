@@ -21,7 +21,7 @@ def can_become_premium(f):
 def can_be_purchased(f):
     """
     Check if it can be purchased, returns False if not premium.
-    Must be called after the addon_view decorator.
+    Must be called after the app_view decorator.
     """
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
@@ -35,7 +35,7 @@ def can_be_purchased(f):
 def has_purchased(f):
     """
     If the addon is premium, require a purchase.
-    Must be called after addon_view decorator.
+    Must be called after app_view decorator.
     """
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):

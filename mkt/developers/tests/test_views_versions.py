@@ -8,7 +8,6 @@ from django.conf import settings
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
 from amo.tests import req_factory_factory
 from files.models import File
 from mkt.comm.models import CommunicationNote
@@ -18,6 +17,7 @@ from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon, AddonUser
 from users.models import UserProfile
 
 

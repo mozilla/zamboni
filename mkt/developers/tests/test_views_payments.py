@@ -15,21 +15,21 @@ from waffle.models import Switch
 import amo
 import amo.tests
 import mkt
-from addons.models import (Addon, AddonDeviceType, AddonPremium, AddonUpsell,
-                           AddonUser, Category)
 from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                 PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
                                 PROVIDER_BOKU, PROVIDER_REFERENCE)
 from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
-from mkt.constants.regions import ALL_REGION_IDS, SPAIN, US, UK
+from mkt.constants.regions import ALL_REGION_IDS, SPAIN, UK, US
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
 from mkt.developers.tests.test_providers import Patcher
 from mkt.developers.views_payments import (get_inapp_config,
                                            require_in_app_payments)
+from mkt.prices.models import Price
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
-from mkt.prices.models import Price
+from mkt.webapps.models import (Addon, AddonDeviceType, AddonPremium,
+                                AddonUpsell, AddonUser, Category)
 from users.models import UserProfile
 
 

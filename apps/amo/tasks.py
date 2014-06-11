@@ -7,7 +7,6 @@ import phpserialize
 from celeryutils import task
 
 import amo
-from addons.models import Addon
 from amo.decorators import set_task_user
 from amo.utils import get_email_backend
 from mkt.abuse.models import AbuseReport
@@ -15,6 +14,7 @@ from mkt.developers.models import ActivityLog, AppLog
 from mkt.prices.models import Refund
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, EventLog
+from mkt.webapps.models import Addon
 
 
 log = commonware.log.getLogger('z.task')

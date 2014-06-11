@@ -75,7 +75,7 @@ class ContributionError(Exception):
 
 
 class Contribution(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('webapps.Addon')
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
                                       blank=True, null=True)
@@ -96,7 +96,7 @@ class Contribution(amo.models.ModelBase):
     post_data = StatsDictField(null=True)
 
     # Voluntary Contribution specific.
-    charity = models.ForeignKey('addons.Charity', null=True)
+    charity = models.ForeignKey('webapps.Charity', null=True)
     annoying = models.PositiveIntegerField(default=0,
                                            choices=amo.CONTRIB_CHOICES,)
     is_suggested = models.BooleanField(default=False)

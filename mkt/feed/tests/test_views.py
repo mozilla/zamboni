@@ -7,15 +7,13 @@ from django.core.urlresolvers import reverse
 
 from nose.tools import eq_, ok_
 
-from addons.models import Preview
-from amo.tests import app_factory
-
 import mkt.carriers
 import mkt.regions
+from amo.tests import app_factory
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Preview, Webapp
 
 
 class FeedAppMixin(object):

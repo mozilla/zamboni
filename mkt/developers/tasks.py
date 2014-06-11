@@ -27,19 +27,18 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-from addons.models import Addon
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
 from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
-from files.models import FileUpload, File, FileValidation
+from files.models import File, FileUpload, FileValidation
 from files.utils import SafeUnzip
-
 from mkt.constants import APP_PREVIEW_SIZES
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import Addon, AddonExcludedRegion, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 
 
 log = logging.getLogger('z.mkt.developers.task')
+
 
 CT_URL = (
     'https://developer.mozilla.org/docs/Web/Apps/Manifest#Serving_manifests'

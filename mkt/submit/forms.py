@@ -11,7 +11,6 @@ import waffle
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon, AddonUpsell, BlacklistedSlug, Webapp
 from amo.utils import slug_validator
 from apps.users.models import UserNotification
 from apps.users.notifications import app_surveys
@@ -23,7 +22,8 @@ from mkt.developers.forms import verify_app_domain
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
-from mkt.webapps.models import AppFeatures
+from mkt.webapps.models import (Addon, AddonUpsell, AppFeatures,
+                                BlacklistedSlug, Webapp)
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.widgets import TransInput, TransTextarea

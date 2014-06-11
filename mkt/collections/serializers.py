@@ -15,13 +15,12 @@ from django.core.files.storage import default_storage as storage
 
 import amo
 import mkt
-from addons.models import Category
 from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
                             TranslationSerializerField)
 from mkt.features.utils import get_feature_profile
 from mkt.search.serializers import SimpleESAppSerializer
+from mkt.webapps.models import Category, Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
-from mkt.webapps.models import Webapp
 from users.models import UserProfile
 
 from .models import Collection

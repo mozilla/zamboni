@@ -11,10 +11,12 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.template import Context, loader
 
 import pytz
 import requests
+import waffle
 from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task
@@ -25,7 +27,6 @@ from tower import ugettext as _
 
 import amo
 import mkt
-from addons.models import Addon
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
@@ -38,13 +39,57 @@ from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, validator)
 from mkt.reviewers.models import RereviewQueue
-from mkt.webapps.models import AppManifest, Webapp, WebappIndexer
+from mkt.webapps.models import (Addon, AppManifest, Preview, Webapp,
+                                WebappIndexer)
 from mkt.webapps.utils import get_locale_properties
 from users.models import UserProfile
 from users.utils import get_task_user
 
 
 task_log = logging.getLogger('z.task')
+
+
+@task
+@write
+def version_changed(addon_id, **kw):
+    update_last_updated(addon_id)
+
+
+def update_last_updated(addon_id):
+    queries = Addon._last_updated_queries()
+    try:
+        addon = Addon.objects.get(pk=addon_id)
+    except Addon.DoesNotExist:
+        task_log.info(
+            '[1@None] Updating last updated for %s failed, no addon found'
+            % addon_id)
+        return
+
+    task_log.info('[1@None] Updating last updated for %s.' % addon_id)
+
+    if addon.is_webapp():
+        q = 'webapps'
+    elif addon.status == amo.STATUS_PUBLIC:
+        q = 'public'
+    else:
+        q = 'exp'
+    qs = queries[q].filter(pk=addon_id).using('default')
+    res = qs.values_list('id', 'last_updated')
+    if res:
+        pk, t = res[0]
+        Addon.objects.filter(pk=pk).update(last_updated=t)
+
+
+@task
+def delete_preview_files(id, **kw):
+    task_log.info('[1@None] Removing preview with id of %s.' % id)
+
+    p = Preview(id=id)
+    for f in (p.thumbnail_path, p.image_path):
+        try:
+            storage.delete(f)
+        except Exception, e:
+            task_log.error('Error deleting preview file (%s): %s' % (f, e))
 
 
 def _get_content_hash(content):

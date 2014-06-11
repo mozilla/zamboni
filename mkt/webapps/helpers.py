@@ -3,7 +3,7 @@ import jinja2
 from jingo import register
 
 
-@register.inclusion_tag('addons/impala/listing/sorter.html')
+@register.inclusion_tag('webapps/impala/listing/sorter.html')
 @jinja2.contextfunction
 def impala_addon_listing_header(context, url_base, sort_opts={}, selected=None,
                                 extra_sort_opts={}, search_filter=None):

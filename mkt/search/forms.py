@@ -2,10 +2,7 @@ from django import forms
 
 from tower import ugettext_lazy as _lazy
 
-from addons.models import Category
 import amo
-
-from mkt.api.forms import SluggableModelChoiceField
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]

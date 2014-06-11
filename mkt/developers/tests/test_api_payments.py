@@ -11,18 +11,16 @@ from rest_framework.request import Request
 from test_utils import RequestFactory
 
 import amo
-from addons.models import AddonUpsell, AddonUser
 from amo.tests import app_factory, TestCase
-
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
                                          PaymentAppViewSet)
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.developers.tests.test_providers import Patcher
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
 from mkt.prices.models import AddonPremium, Price
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import AddonUpsell, AddonUser, Webapp
 
 
 package_data = {
@@ -446,8 +444,10 @@ class TestPaymentDebug(AccountCase, RestOAuth):
         eq_(res.status_code, 200)
         eq_(res.json['bango']['environment'], 'dev')
 
+
 class Form(forms.Form):
     app = forms.ChoiceField(choices=(('valid', 'valid'),))
+
 
 class TestPaymentAppViewSet(TestCase):
 
@@ -464,9 +464,3 @@ class TestPaymentAppViewSet(TestCase):
     def test_not_ok(self):
         self.viewset.initialize_request(self.request, pk='invalid')
         eq_(self.viewset.app, None)
-
-
-
-
-
-
