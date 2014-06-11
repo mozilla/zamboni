@@ -845,11 +845,6 @@ LEGAL_XFRAME_ALLOW_FROM = [
     'fxos.login.persona.org',
 ]
 
-# LESS CSS OPTIONS (Debug only).
-LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
-LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = path('node_modules/less/bin/lessc')
-
 # Handlers and log levels are set up automatically based on LOG_LEVEL.
 LOG_LEVEL = logging.DEBUG if DEBUG else logging.ERROR
 
@@ -883,78 +878,11 @@ MIN_BETA_VERSION = '3.7'
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        # CSS files common to the entire site.
-        'zamboni/css': (
-            'css/legacy/main.css',
-            'css/legacy/main-mozilla.css',
-            'css/legacy/jquery-lightbox.css',
-            'css/legacy/autocomplete.css',
-            'css/zamboni/zamboni.css',
-            'css/global/headerfooter.css',
-            'css/zamboni/tags.css',
-            'css/zamboni/tabs.css',
-            'css/impala/formset.less',
-            'css/impala/suggestions.less',
-            'css/impala/header.less',
-            'css/impala/moz-tab.css',
-            'css/impala/footer.less',
-            'css/impala/faux-zamboni.less',
-            'css/impala/collection-stats.less',
-        ),
-        'zamboni/impala': (
-            'css/impala/base.css',
-            'css/legacy/jquery-lightbox.css',
-            'css/impala/site.less',
-            'css/impala/typography.less',
-            'css/global/headerfooter.css',
-            'css/impala/forms.less',
-            'css/common/invisible-upload.less',
-            'css/impala/header.less',
-            'css/impala/footer.less',
-            'css/impala/moz-tab.css',
-            'css/impala/hovercards.less',
-            'css/impala/toplist.less',
-            'css/impala/reviews.less',
-            'css/impala/buttons.less',
-            'css/impala/addon_details.less',
-            'css/impala/policy.less',
-            'css/impala/expando.less',
-            'css/impala/popups.less',
-            'css/impala/l10n.less',
-            'css/impala/contributions.less',
-            'css/impala/lightbox.less',
-            'css/impala/prose.less',
-            'css/impala/abuse.less',
-            'css/impala/paginator.less',
-            'css/impala/listing.less',
-            'css/impala/versions.less',
-            'css/impala/users.less',
-            'css/impala/collections.less',
-            'css/impala/tooltips.less',
-            'css/impala/search.less',
-            'css/impala/suggestions.less',
-            'css/impala/colorpicker.less',
-            'css/impala/login.less',
-            'css/impala/dictionaries.less',
-            'css/impala/apps.less',
-            'css/impala/formset.less',
-            'css/impala/tables.less',
-        ),
-        'zamboni/mobile': (
-            'css/zamboni/mobile.css',
-            'css/mobile/typography.less',
-            'css/mobile/forms.less',
-            'css/mobile/header.less',
-            'css/mobile/search.less',
-            'css/mobile/listing.less',
-            'css/mobile/footer.less',
-        ),
         'zamboni/admin': (
+            'css/zamboni/zamboni.css',
+            'css/zamboni/mkt-admin.css',
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
-            'css/zamboni/admin_features.css',
-            # Datepicker styles and jQuery UI core.
-            'css/zamboni/jquery-ui/custom-1.7.2.css',
         ),
     },
     'js': {
@@ -1140,12 +1068,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/admin.js',
             'js/zamboni/admin_features.js',
             'js/zamboni/admin_validation.js',
-        ),
-        # This is included when DEBUG is True.  Bundle in <head>.
-        'debug': (
-            'js/debug/less_setup.js',
-            'js/lib/less.js',
-            'js/debug/less_live.js',
         ),
     }
 }

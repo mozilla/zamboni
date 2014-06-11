@@ -1,0 +1,347 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: hotpink !important;
+}
+
+a {
+  color: #447bc4;
+}
+
+#navbar {
+  background: salmon;
+  font-family: Chalkboard, sans-serif;
+  margin-top: 1.5em !important;
+}
+
+#navbar a {
+  font-size: 14px;
+}
+
+#navbar a:hover {
+  background: goldenrod;
+}
+
+.section {
+  margin: 0 auto;
+  width: 960px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+}
+
+#masthead {
+  padding-top: 45px;
+}
+#masthead h1 a {
+  color: cyan;
+}
+#masthead h1 {
+  font: 600 40px/40px Chalkboard;
+  text-transform: uppercase;
+}
+
+#aux-nav {
+  float: right;
+}
+.html-rtl #aux-nav {
+  float: left;
+}
+
+#site-notice {
+  background: #ffe;
+  border-bottom: 2px solid #ccc;
+  font-size: 110%;
+  width: 80%;
+  padding: 5px 10% 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* tags.css */
+.tagLevel1 {font-size: 1.2em;}
+.tagLevel2 {font-size: 1.4em;}
+.tagLevel3 {font-size: 1.6em;}
+.tagLevel4 {font-size: 1.8em;}
+.tagLevel5 {font-size: 2em;}
+.tagLevel6 {font-size: 2.2em;}
+.tagLevel7 {font-size: 2.4em;}
+.tagLevel8 {font-size: 2.6em;}
+.tagLevel9 {font-size: 2.8em;}
+.tagLevel10 {font-size: 3em;}
+
+.secondary #tag-box div {
+  font-size: 60%;
+}
+.primary #tag-box div {
+  text-align: center;
+}
+#tag-box div {
+  line-height: 3.07em;
+  padding: 0;
+  text-align: left;
+}
+.html-rtl #tag-box div {
+  text-align: right;
+}
+
+#tag-box .tag {
+  vertical-align: baseline;
+}
+.html-ltr #tag-box .tag {
+  margin-right: 8px;
+}
+.html-rtl #tag-box .tag {
+  margin-left: 8px;
+}
+
+#tag-box p.more {
+  border-top: 1px dotted #94BFCE;
+  display: block;
+  padding-top: .3em;
+  text-align: right;
+}
+.html-rtl #tag-box p.more {
+  text-align: left;
+}
+
+/** site navigation */
+.menu-nav {
+  font-size: 12px;
+  margin-left: 64px;
+  z-index: 50;
+}
+.menu-nav.no-img {
+  margin-left: 0;
+}
+.menu-nav li.slim:hover:after {
+  display: none;
+}
+.menu-nav li.slim:hover > a {
+  border-radius: 3px;
+}
+.menu-nav > ul > li {
+  float: left;
+  position: relative;
+}
+.menu-nav > ul > li > a {
+  position: relative;
+  font-weight: bold;
+  z-index: 60;
+  border-style: solid;
+  border-radius: 3px 3px 0 0;
+  border-color: transparent;
+  border-width: 1px 1px 0;
+}
+.menu-nav > ul > li:hover > a {
+  background: #fff;
+  border-color: #98b2c9 #98b2c9 #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+.menu-nav > ul > li:hover > ul,
+.menu-nav > ul > li:hover > div {
+  display: block;
+}
+.menu-nav > ul > li:hover:after {
+  content: "";
+  width: 200px;
+  z-index: 62;
+  height: 5px;
+  background: #fff;
+  position: absolute;
+  top: 18px;
+  left: 1px;
+}
+.menu-nav > ul > li > ul,
+.menu-nav > ul > li > div {
+  display: none;
+  position: absolute;
+  z-index: 59;
+}
+.menu-nav > ul > li > ul {
+  width: 190px;
+  top: 17px;
+  z-index: 59;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #98b2c9;
+  border-radius: 0 3px 3px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4), 0 -2px 0 rgba(152, 178, 201, 0.3) inset;
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4), 0 -2px 0 rgba(152, 178, 201, 0.3) inset;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4), 0 -2px 0 rgba(152, 178, 201, 0.3) inset;
+}
+.menu-nav > ul > li > ul a {
+  text-decoration: none;
+  display: block;
+  padding: 6px 8px;
+  word-wrap: break-word;
+}
+.menu-nav > ul > li > ul a:hover {
+  background: #ebf4fe;
+}
+.menu-nav > ul > li > ul.two-col {
+  column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-gap: 8px;
+  -moz-column-gap: 8px;
+  -webkit-column-gap: 8px;
+  width: 340px;
+}
+.menu-nav > ul em a:hover {
+  background: #e1edfb;
+}
+.menu-nav hr {
+  border: 0;
+  margin: 6px 8px;
+  border-top: 1px dotted #ccc;
+}
+.menu-nav em {
+  background: #F4F8FC;
+  display: block;
+  font-weight: bold;
+}
+.html-rtl .menu-nav {
+  margin-left: 0;
+  margin-right: 64px;
+}
+.html-rtl .menu-nav > ul > li {
+  border-left: 0 !important;
+  border-right: 1px solid #9FA7AF;
+  float: right;
+  left: auto;
+  right: -9px;
+}
+.html-rtl .menu-nav > ul > li:hover:after {
+  left: auto;
+  right: 1px;
+}
+
+#aux-nav > ul > li:not(:first-child):before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 32px;
+  background: -moz-linear-gradient(#9fa7af, transparent);
+  background-size: 1px 100%;
+}
+#aux-nav > ul > li {
+  margin-left: 1px;
+}
+#aux-nav > ul > li > a {
+  display: block;
+  line-height: 32px;
+  height: 32px;
+  padding: 0 1em;
+  border-radius: 0;
+}
+#aux-nav > ul > li > a:after {
+  display: inline-block;
+  vertical-align: middle;
+  top: 12px;
+  left: 4px;
+  margin: 0 0 0 4px;
+  content: "\00a0";
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-style: solid;
+  border-top-color: #666;
+}
+#aux-nav > ul > li:hover {
+  z-index: 63;
+}
+#aux-nav > ul > li:hover:after {
+  left: auto;
+  right: 1px;
+}
+#aux-nav > ul > li:after {
+  top: 32px;
+}
+#aux-nav > ul > li > ul {
+  top: 31px;
+  right: 0;
+}
+#aux-nav > ul > li.nomenu a {
+  display: inline-block;
+}
+#aux-nav > ul > li.nomenu a:after {
+  display: none;
+}
+#aux-nav > ul > li.nomenu:hover a {
+  background: transparent;
+  box-shadow: 0 0 inset;
+  -moz-box-shadow: 0 0 inset;
+  -webkit-box-shadow: 0 0 inset;
+  border-color: transparent;
+}
+#aux-nav > ul > li.nomenu:hover:after {
+  display: none;
+}
+#aux-nav > ul > li.logout:before,
+#aux-nav > ul > li.login:before {
+  background: 0;
+}
+#aux-nav > ul > li.logout a,
+#aux-nav > ul > li.login a {
+  font-weight: normal;
+}
+#aux-nav > ul > li.logout.legacy a,
+#aux-nav > ul > li.login.legacy a {
+  padding-left: .5em;
+}
+#aux-nav > ul > li.logout.legacy a:first-child,
+#aux-nav > ul > li.login.legacy a:first-child {
+  padding-right: .5em;
+}
+#aux-nav .other-apps a {
+  padding-left: 24px;
+  background-repeat: no-repeat;
+  background-position: left 4px;
+  background-image: url(../../img/app-icons/16/sprite.png);
+}
+#aux-nav .thunderbird a {
+  background-position: left -28px;
+}
+#aux-nav .sunbird a {
+  background-position: left -92px;
+}
+#aux-nav .seamonkey a {
+  background-position: left -60px;
+}
+#aux-nav .android a {
+  background-position: left -124px;
+}
+.html-rtl #aux-nav > ul > li:hover:after {
+  left: 1px;
+  right: auto;
+}
+.html-rtl #aux-nav > ul > li.legacy a {
+  padding: 0 .5em 0 1em;
+}
+.html-rtl #aux-nav > ul > li.legacy a:first-child {
+  padding: 0 1em 0 .5em;
+}
+.html-rtl #aux-nav > ul > li > a:after {
+  margin: 0 4px 0 0;
+  right: 4px;
+  left: auto;
+}
+.html-rtl #aux-nav > ul > li > ul {
+  left: 0;
+  right: auto;
+}
