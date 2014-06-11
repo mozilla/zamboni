@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.utils.encoding import smart_unicode
 
 import mock
+from jinja2.utils import escape
 from nose import SkipTest
 from nose.tools import eq_, ok_
 from PIL import Image
@@ -155,6 +156,13 @@ class TestEditListingWebapp(TestEdit):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
+    def test_edit_global_xss_name(self):
+        self.webapp.name = u'My app é <script>alert(5)</script>'
+        self.webapp.save()
+        content = smart_unicode(self.client.get(self.url).content)
+        ok_(not unicode(self.webapp.name) in content)
+        ok_(unicode(escape(self.webapp.name)) in content)
+
 
 @mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestEditBasic(TestEdit):
@@ -215,7 +223,7 @@ class TestEditBasic(TestEdit):
         eq_(webapp.slug, self.webapp.slug)
         eq_(webapp.app_slug, self.webapp.app_slug)
 
-    def test_edit_xss(self):
+    def test_edit_xss_description(self):
         self.webapp.description = ("This\n<b>IS</b>"
                                    "<script>alert('awesome')</script>")
         self.webapp.save()
@@ -223,6 +231,13 @@ class TestEditBasic(TestEdit):
         eq_(pq(r.content)('#addon-description span[lang]').html(),
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
             '&lt;/script&gt;')
+
+    def test_edit_xss_name(self):
+        self.webapp.name = u'My app é <script>alert(5)</script>'
+        self.webapp.save()
+        content = smart_unicode(self.client.get(self.url).content)
+        ok_(not unicode(self.webapp.name) in content)
+        ok_(unicode(escape(self.webapp.name)) in content)
 
     def test_view_edit_manifest_url_empty(self):
         # Empty manifest should throw an error.

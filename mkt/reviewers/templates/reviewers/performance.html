@@ -1,6 +1,6 @@
 {% extends 'reviewers/base.html' %}
 
-{% set pagetitle = _('Reviewer Scores for {0}')|f(profile.name) %}
+{% set pagetitle = _('Reviewer Scores for {0}')|fe(profile.name) %}
 {% set types = ('addons', 'apps') %}
 
 {% block title %}
