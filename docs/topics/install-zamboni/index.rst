@@ -9,7 +9,6 @@ Install Zamboni
    install-with-vagrant
    vagrant-on-windows
    advanced-installation
-   settings-changelog
    celery
    elasticsearch
    packages
