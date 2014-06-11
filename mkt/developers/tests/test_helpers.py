@@ -11,11 +11,11 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from addons.models import Addon
 from amo.tests.test_helpers import render
 from files.models import File, Platform
 from mkt.developers import helpers
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon
 from users.models import UserProfile
 
 

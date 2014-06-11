@@ -13,8 +13,6 @@ from test_utils import RequestFactory
 
 import amo
 import mkt
-from addons.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
-                           Category, Preview)
 from amo.tests import AMOPaths, app_factory, TestCase
 from files.models import FileUpload
 from mkt.access.models import Group, GroupUser
@@ -26,7 +24,9 @@ from mkt.prices.models import Price, PriceCurrency
 from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
-from mkt.webapps.models import AddonExcludedRegion, Webapp
+from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
+                                AddonUpsell, AddonUser, Category, Preview,
+                                Webapp)
 from users.models import UserProfile
 
 

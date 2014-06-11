@@ -1,17 +1,16 @@
 import os
-import stat
 from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 
-from addons.models import Addon
-
 import amo
 from amo.decorators import write
 from amo.storage_utils import walk_storage
-from amo.utils import resize_image, chunked
+from amo.utils import chunked, resize_image
+from mkt.webapps.models import Addon
+
 
 extensions = ['.png', '.jpg', '.gif']
 sizes = amo.ADDON_ICON_SIZES

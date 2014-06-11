@@ -3,12 +3,12 @@ from decimal import Decimal
 import mock
 
 import amo.tests
-from addons.models import Addon
-from mkt.inapp.models import InAppProduct
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
-from mkt.site.fixtures import fixture
+from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon
 from users.models import UserProfile
 
 

@@ -5,12 +5,6 @@ DJANGO_SETTINGS_MODULE='settings_local_mkt'
 
 HOME=/tmp
 
-# Every minute!
-* * * * * %(z_cron)s fast_current_version
-
-# Every 30 minutes.
-*/30 * * * * %(z_cron)s update_addons_current_version
-
 # Once per hour.
 20 * * * * %(z_cron)s addon_last_updated
 50 * * * * %(z_cron)s cleanup_extracted_file

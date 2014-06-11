@@ -6,9 +6,9 @@ from django_filters.filterset import FilterSet
 
 import amo
 import mkt
-from addons.models import Category
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.collections.models import Collection
+from mkt.webapps.models import Category
 
 
 class SlugChoiceFilter(ChoiceFilter):

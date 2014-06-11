@@ -17,13 +17,11 @@ from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
 
 import amo
-from addons.models import AddonUpsell
 from constants.payments import PROVIDER_BANGO
-
-from mkt.api.authorization import (AllowAppOwner, GroupPermission,
-                                   switch)
+from lib.pay_server import get_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
+from mkt.api.authorization import AllowAppOwner, GroupPermission, switch
 from mkt.api.base import MarketplaceView
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
@@ -31,11 +29,11 @@ from mkt.developers.forms_payments import (BangoPaymentAccountForm,
 from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount)
 from mkt.developers.providers import get_provider
+from mkt.webapps.models import AddonUpsell
 
-
-from lib.pay_server import get_client
 
 log = commonware.log.getLogger('z.api.payments')
+
 
 class PaymentAppViewSet(GenericViewSet):
 
@@ -291,8 +289,3 @@ class PaymentDebugViewSet(PaymentAppViewSet):
             'bango': res['bango'],
         }
         return Response(filtered, status=200)
-
-
-
-
-

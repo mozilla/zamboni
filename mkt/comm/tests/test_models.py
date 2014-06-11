@@ -6,18 +6,15 @@ from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 
-from addons.models import Addon
 import amo.tests
-
-from users.models import UserProfile
-
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
-                             CommunicationThreadToken,
-                             user_has_perm_app, user_has_perm_note,
-                             user_has_perm_thread)
+                             CommunicationThreadToken, user_has_perm_app,
+                             user_has_perm_note, user_has_perm_thread)
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
+from mkt.webapps.models import Addon
+from users.models import UserProfile
 
 
 TESTS_DIR = path.dirname(path.abspath(__file__))

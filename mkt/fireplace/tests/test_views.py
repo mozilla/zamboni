@@ -9,7 +9,6 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import mkt
-from addons.models import AddonUser
 from amo.tests import app_factory, ESTestCase, TestCase
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
@@ -18,8 +17,7 @@ from mkt.collections.models import Collection
 from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.search.utils import S
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonUser, Installed, Webapp
 from users.models import UserProfile
 
 

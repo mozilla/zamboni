@@ -19,19 +19,16 @@ from django.db import models
 from django.db.models.signals import post_delete
 
 import amo.models
-from addons.models import Addon, clean_slug
-from amo.decorators import use_master
-from amo.models import SlugField
-from addons.models import Category, Preview
-from translations.fields import PurifiedField, save_signal
-
 import mkt.carriers
 import mkt.regions
+from amo.decorators import use_master
+from amo.models import SlugField
 from mkt.collections.fields import ColorField
 from mkt.constants.feed import FEEDAPP_TYPES
 from mkt.ratings.validators import validate_rating
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
+from translations.fields import PurifiedField, save_signal
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
                         COLLECTION_TYPE_CHOICES, FEED_COLOR_CHOICES)

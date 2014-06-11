@@ -9,9 +9,9 @@ import happyforms
 from tower import ugettext_lazy as _lazy
 
 import amo
-from addons.models import Category
 from mkt.developers.forms import JSONField, NewPackagedAppForm
 from mkt.developers.utils import check_upload
+from mkt.webapps.models import Category
 
 
 class SluggableModelChoiceField(forms.ModelChoiceField):

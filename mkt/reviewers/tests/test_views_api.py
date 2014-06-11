@@ -11,7 +11,6 @@ from test_utils import RequestFactory
 
 import amo
 import mkt.regions
-from addons.models import Category
 from amo.tests import ESTestCase
 from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
@@ -20,7 +19,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Category, Webapp
 from users.models import UserProfile
 
 

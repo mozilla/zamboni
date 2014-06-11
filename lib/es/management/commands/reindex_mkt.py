@@ -19,11 +19,9 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from amo.utils import chunked, timestamp_index
-from addons.models import Webapp  # To avoid circular import.
 from lib.es.utils import (flag_reindexing_mkt, is_reindexing_mkt,
                           unflag_reindexing_mkt)
-
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.models import Webapp, WebappIndexer
 
 
 logger = logging.getLogger('z.elasticsearch')

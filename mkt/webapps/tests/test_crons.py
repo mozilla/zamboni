@@ -13,15 +13,111 @@ from nose.tools import eq_
 import amo
 import amo.tests
 import mkt
-from addons.models import Addon
+from files.models import File
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
+from mkt.versions.models import Version
+from mkt.webapps import cron
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, Webapp
 from mkt.webapps.tasks import _get_trending
 from users.models import UserProfile
+
+
+class TestLastUpdated(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def test_catchall(self):
+        """Make sure the catch-all last_updated is stable and accurate."""
+        # Nullify all datestatuschanged so the public add-ons hit the
+        # catch-all.
+        (File.objects.filter(status=amo.STATUS_PUBLIC)
+         .update(datestatuschanged=None))
+        Addon.objects.update(last_updated=None)
+
+        cron.addon_last_updated()
+        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
+            eq_(addon.last_updated, addon.created)
+
+        # Make sure it's stable.
+        cron.addon_last_updated()
+        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
+            eq_(addon.last_updated, addon.created)
+
+
+class TestHideDisabledFiles(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    msg = 'Moving disabled file: %s => %s'
+
+    def setUp(self):
+        self.addon = Webapp.objects.get(pk=337141)
+        self.version = self.addon.latest_version
+        self.f1 = self.version.all_files[0]
+
+    @mock.patch('files.models.os')
+    def test_leave_nondisabled_files(self, os_mock):
+        stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)]
+        for addon_status, file_status in stati:
+            self.addon.update(status=addon_status)
+            File.objects.update(status=file_status)
+            cron.hide_disabled_files()
+            assert not os_mock.path.exists.called, (addon_status, file_status)
+
+    @mock.patch('files.models.File.mv')
+    @mock.patch('files.models.storage')
+    def test_move_user_disabled_addon(self, m_storage, mv_mock):
+        # Use Addon.objects.update so the signal handler isn't called.
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        File.objects.update(status=amo.STATUS_PUBLIC)
+        cron.hide_disabled_files()
+
+        # Check that f1 was moved.
+        mv_mock.assert_called_with(self.f1.file_path,
+                                   self.f1.guarded_file_path, self.msg)
+        # There's only 1 file.
+        eq_(mv_mock.call_count, 1)
+
+    @mock.patch('files.models.File.mv')
+    @mock.patch('files.models.storage')
+    def test_move_admin_disabled_addon(self, m_storage, mv_mock):
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_DISABLED)
+        File.objects.update(status=amo.STATUS_PUBLIC)
+        cron.hide_disabled_files()
+        # Check that f1 was moved.
+        mv_mock.assert_called_with(self.f1.file_path,
+                                   self.f1.guarded_file_path, self.msg)
+        # There's only 1 file.
+        eq_(mv_mock.call_count, 1)
+
+    @mock.patch('files.models.File.mv')
+    @mock.patch('files.models.storage')
+    def test_move_disabled_file(self, m_storage, mv_mock):
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_REJECTED)
+        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
+        cron.hide_disabled_files()
+        # f1 should have been moved.
+        mv_mock.assert_called_with(self.f1.file_path,
+                                   self.f1.guarded_file_path, self.msg)
+        eq_(mv_mock.call_count, 1)
+
+    @mock.patch('files.models.File.mv')
+    @mock.patch('files.models.storage')
+    def test_ignore_deleted_versions(self, m_storage, mv_mock):
+        # Apps only have 1 file and version delete only deletes one.
+        self.version.delete()
+        mv_mock.reset_mock()
+        # Create a new version/file just like the one we deleted.
+        version = Version.objects.create(addon=self.addon)
+        File.objects.create(version=version, filename='f2')
+        cron.hide_disabled_files()
+        # Mock shouldn't have been called.
+        assert not mv_mock.called, mv_mock.call_args
 
 
 class TestWeeklyDownloads(amo.tests.TestCase):

@@ -5,9 +5,8 @@ from django import forms
 from tower import ugettext_lazy as _lazy
 
 import amo
-from addons.models import Addon
-
 from mkt.api.forms import SluggableModelChoiceField
+from mkt.webapps.models import Addon
 
 
 class ReceiptForm(forms.Form):

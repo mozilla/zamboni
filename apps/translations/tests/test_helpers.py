@@ -7,7 +7,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
+from mkt.webapps.models import Addon
 from translations import helpers
 from translations.fields import save_signal
 from translations.models import PurifiedTranslation

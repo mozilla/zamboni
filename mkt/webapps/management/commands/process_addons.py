@@ -6,9 +6,8 @@ from django.db.models import Q
 from celery import chord, group
 
 import amo
-from addons.models import Addon
 from amo.utils import chunked
-
+from mkt.webapps.models import Addon
 from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
                                fix_missing_icons, import_manifests,
                                regenerate_icons_and_thumbnails,

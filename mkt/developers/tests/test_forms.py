@@ -14,19 +14,18 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
+import mkt
 from amo.tests import app_factory, version_factory
 from amo.tests.test_helpers import get_image_path
-from addons.models import Addon, AddonCategory, Category
-from translations.models import Translation
-from users.models import UserProfile
-
-import mkt
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
-from mkt.webapps.models import Geodata, IARCInfo, Webapp
+from mkt.webapps.models import (Addon, AddonCategory, Category, Geodata,
+                                IARCInfo, Webapp)
+from translations.models import Translation
+from users.models import UserProfile
 
 
 class TestPreviewForm(amo.tests.TestCase):

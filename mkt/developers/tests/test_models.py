@@ -9,14 +9,13 @@ from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.models import Addon
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    AddonPaymentAccount, CantCancel,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, Webapp
 from users.models import UserProfile
 
 from .test_providers import Patcher

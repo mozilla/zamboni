@@ -1,3 +1,4 @@
+import logging
 import os
 import shutil
 import stat
@@ -5,22 +6,124 @@ import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.db.models import Q
 
 import commonware.log
 import cronjobs
+import path
 from celery import chord
 
 import amo
+from amo.decorators import write
 from amo.utils import chunked
+from files.models import File
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 
-from .models import Installed, Webapp
+from .models import Addon, Installed, Webapp
 from .tasks import (dump_user_installs, update_downloads, update_trending,
                     zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
+task_log = logging.getLogger('z.task')
+
+
+def _change_last_updated(next):
+    # We jump through some hoops here to make sure we only change the add-ons
+    # that really need it, and to invalidate properly.
+    current = dict(Addon.objects.values_list('id', 'last_updated'))
+    changes = {}
+
+    for addon, last_updated in next.items():
+        try:
+            if current[addon] != last_updated:
+                changes[addon] = last_updated
+        except KeyError:
+            pass
+
+    if not changes:
+        return
+
+    log.debug('Updating %s add-ons' % len(changes))
+    # Update + invalidate.
+    qs = Addon.objects.no_cache().filter(id__in=changes).no_transforms()
+    for addon in qs:
+        addon.last_updated = changes[addon.id]
+        addon.save()
+
+
+@cronjobs.register
+@write
+def addon_last_updated():
+    next = {}
+    for q in Addon._last_updated_queries().values():
+        for addon, last_updated in q.values_list('id', 'last_updated'):
+            next[addon] = last_updated
+
+    _change_last_updated(next)
+
+    # Get anything that didn't match above.
+    other = (Addon.objects.no_cache().filter(last_updated__isnull=True)
+             .values_list('id', 'created'))
+    _change_last_updated(dict(other))
+
+
+@cronjobs.register
+def addons_add_slugs():
+    """Give slugs to any slugless addons."""
+    Addon._meta.get_field('modified').auto_now = False
+    q = Addon.objects.filter(slug=None).order_by('id')
+
+    # Chunk it so we don't do huge queries.
+    for chunk in chunked(q, 300):
+        task_log.info('Giving slugs to %s slugless addons' % len(chunk))
+        for addon in chunk:
+            addon.save()
+
+
+@cronjobs.register
+def hide_disabled_files():
+    # If an add-on or a file is disabled, it should be moved to
+    # GUARDED_ADDONS_PATH so it's not publicly visible.
+    #
+    # We ignore deleted versions since we hide those files when deleted and
+    # also due to bug 980916.
+    ids = (File.objects
+           .filter(version__deleted=False)
+           .filter(Q(status=amo.STATUS_DISABLED) |
+                   Q(version__addon__status=amo.STATUS_DISABLED) |
+                   Q(version__addon__disabled_by_user=True))
+           .values_list('id', flat=True))
+    for chunk in chunked(ids, 300):
+        qs = File.objects.no_cache().filter(id__in=chunk)
+        qs = qs.select_related('version')
+        for f in qs:
+            f.hide_disabled_file()
+
+
+@cronjobs.register
+def unhide_disabled_files():
+    # Files are getting stuck in /guarded-addons for some reason. This job
+    # makes sure guarded add-ons are supposed to be disabled.
+    log = logging.getLogger('z.files.disabled')
+    q = (Q(version__addon__status=amo.STATUS_DISABLED)
+         | Q(version__addon__disabled_by_user=True))
+    files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
+                .values_list('version__addon', 'filename'))
+    for filepath in path.path(settings.GUARDED_ADDONS_PATH).walkfiles():
+        addon, filename = filepath.split('/')[-2:]
+        if tuple([int(addon), filename]) not in files:
+            log.warning('File that should not be guarded: %s.' % filepath)
+            try:
+                file_ = (File.objects.select_related('version__addon')
+                         .get(version__addon=addon, filename=filename))
+                file_.unhide_disabled_file()
+            except File.DoesNotExist:
+                log.warning('File object does not exist for: %s.' % filepath)
+            except Exception:
+                log.error('Could not unhide file: %s.' % filepath,
+                          exc_info=True)
 
 
 @cronjobs.register

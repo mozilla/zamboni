@@ -20,14 +20,13 @@ from requests.exceptions import RequestException
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser, Preview
 from amo.helpers import absolutify
 from files.models import File, FileUpload
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
@@ -94,7 +93,7 @@ nhash = ('sha256:'
 
 
 class TestUpdateManifest(amo.tests.TestCase):
-    fixtures = ('base/platforms', 'base/users')
+    fixtures = fixture('platform_all', 'user_2519', 'user_999')
 
     def setUp(self):
         UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)
@@ -257,7 +256,7 @@ class TestUpdateManifest(amo.tests.TestCase):
 
     def test_notify_failure_lang(self):
         user1 = UserProfile.objects.get(pk=999)
-        user2 = UserProfile.objects.get(pk=10482)
+        user2 = UserProfile.objects.get(pk=2519)
         AddonUser.objects.create(addon=self.addon, user=user2)
         user1.update(lang='de')
         user2.update(lang='en')

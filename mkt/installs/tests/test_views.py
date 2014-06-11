@@ -6,12 +6,10 @@ from mock import ANY, patch
 from nose.tools import eq_
 
 import amo
-from addons.models import Addon, AddonUser
-
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import Installed
 from mkt.constants.apps import INSTALL_TYPE_DEVELOPER, INSTALL_TYPE_USER
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon, AddonUser, Installed
 
 
 class TestAPI(RestOAuth):

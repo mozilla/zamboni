@@ -19,7 +19,6 @@ from tower import ugettext as _
 
 import amo
 import amo.models
-from addons.models import Addon
 from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
@@ -28,6 +27,7 @@ from mkt.constants.payments import ACCESS_SIMULATE
 from mkt.ratings.models import Review
 from mkt.tags.models import Tag
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon
 from users.helpers import user_link
 from users.models import UserForeignKey, UserProfile
 
@@ -142,7 +142,7 @@ class PaymentAccount(amo.models.ModelBase):
 
 class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.ForeignKey(
-        'addons.Addon', related_name='app_payment_accounts')
+        'webapps.Addon', related_name='app_payment_accounts')
     payment_account = models.ForeignKey(PaymentAccount)
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
@@ -190,7 +190,7 @@ class UserInappKey(amo.models.ModelBase):
 
 
 class PreloadTestPlan(amo.models.ModelBase):
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('webapps.Addon')
     last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
     status = models.PositiveSmallIntegerField(default=amo.STATUS_PUBLIC)
@@ -210,7 +210,7 @@ class AppLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by app.
     """
-    addon = models.ForeignKey('addons.Addon', db_constraint=False)
+    addon = models.ForeignKey('webapps.Addon', db_constraint=False)
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:

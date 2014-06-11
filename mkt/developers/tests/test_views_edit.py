@@ -19,8 +19,6 @@ from waffle.models import Switch
 import amo
 import amo.tests
 import mkt
-from addons.models import (Addon, AddonCategory, AddonDeviceType, AddonUser,
-                           Category)
 from amo.helpers import absolutify
 from amo.tests import assert_required, formset, initial
 from amo.tests.test_helpers import get_image_path
@@ -33,6 +31,8 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
+                                AddonUser, Category)
 from translations.models import Translation
 from users.models import UserProfile
 

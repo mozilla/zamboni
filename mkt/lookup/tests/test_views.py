@@ -19,7 +19,6 @@ from slumber import exceptions
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
@@ -36,7 +35,7 @@ from mkt.lookup.views import (_transaction_summary, app_summary,
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, AddonUser, Webapp
 from users.models import UserProfile
 
 

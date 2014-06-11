@@ -10,9 +10,6 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from addons.models import AddonUser, Category
-from users.models import UserProfile
-
 import mkt
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_OPERATOR)
@@ -23,7 +20,9 @@ from mkt.collections.serializers import (CollectionMembershipField,
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import FeaturedSearchView
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import AddonUser, Category
 from mkt.webapps.serializers import SimpleAppSerializer
+from users.models import UserProfile
 
 
 class CollectionDataMixin(object):

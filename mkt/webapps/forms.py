@@ -8,10 +8,11 @@ import happyforms
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from addons.models import Addon, BlacklistedSlug
 from amo.utils import slug_validator, slugify
 from mkt.access import acl
 from mkt.tags.models import Tag
+
+from .models import Addon, BlacklistedSlug
 
 
 log = commonware.log.getLogger('z.addons')

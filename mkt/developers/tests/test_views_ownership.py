@@ -8,10 +8,10 @@ import waffle
 
 import amo
 import amo.tests
-from addons.models import Addon, AddonUser
 from amo.tests import formset
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon, AddonUser
 from users.models import UserProfile
 
 

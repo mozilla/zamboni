@@ -21,9 +21,6 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 import amo
 import lib.iarc
 import mkt
-from addons.forms import clean_slug, clean_tags, icons
-from addons.models import Addon, AddonUser, BlacklistedSlug, Category, Preview
-from addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from amo import get_user
 from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons, slug_validator, slugify
@@ -39,8 +36,11 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.tags.models import Tag
 from mkt.versions.models import Version
-from mkt.webapps.models import IARCInfo, Webapp
-from mkt.webapps.tasks import index_webapps, update_manifests
+from mkt.webapps.forms import clean_slug, clean_tags, icons
+from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, Category,
+                                IARCInfo, Preview, Webapp)
+from mkt.webapps.tasks import index_webapps
+from mkt.webapps.widgets import CategoriesSelectMultiple, IconWidgetRenderer
 from translations.fields import TransField
 from translations.forms import TranslationFormMixin
 from translations.models import Translation

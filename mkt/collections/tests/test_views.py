@@ -20,19 +20,17 @@ from rest_framework.exceptions import PermissionDenied
 import amo
 import amo.tests
 import mkt
-from addons.models import Category
 from amo.utils import slugify
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
                                        COLLECTIONS_TYPE_FEATURED,
                                        COLLECTIONS_TYPE_OPERATOR)
 from mkt.collections.models import Collection
-from mkt.collections.views import CollectionViewSet
-from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
-
 from mkt.collections.tests.test_serializers import (CollectionDataMixin,
                                                     IMAGE_DATA)
+from mkt.collections.views import CollectionViewSet
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Category, Webapp
 from users.models import UserProfile
 
 

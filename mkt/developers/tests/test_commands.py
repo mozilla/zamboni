@@ -3,15 +3,14 @@ from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.models import AddonPremium, Category
-
 import mkt
 from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 exclude_games, migrate_geodata,
                                                 refresh_iarc_ratings,
                                                 remove_old_aers)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import IARCInfo, RatingDescriptors, Webapp
+from mkt.webapps.models import (AddonPremium, Category, IARCInfo,
+                                RatingDescriptors, Webapp)
 
 
 class TestCommandViews(amo.tests.TestCase):

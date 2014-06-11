@@ -125,8 +125,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def addon(self):
-        from addons.models import Addon
         from mkt.versions.models import Version
+        from mkt.webapps.models import Addon
+
         version = Version.with_deleted.get(pk=self.version_id)
         return Addon.with_deleted.get(pk=version.addon_id)
 

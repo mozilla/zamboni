@@ -9,12 +9,12 @@ from django.conf import settings
 
 import amo
 import amo.tests
-from addons.models import Addon
 from files.models import File, Platform
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.versions.compare import MAXVERSION, version_dict, version_int
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon
 
 
 def test_version_int():
@@ -255,7 +255,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
         # Non-public addon.
         self._reset_version(version)
-        with mock.patch('addons.models.Addon.is_public') as is_addon_public:
+        with mock.patch('mkt.webapps.models.Addon.is_public') as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
 

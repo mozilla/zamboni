@@ -26,7 +26,6 @@ import amo
 import amo.tests
 import mkt
 import mkt.ratings
-from addons.models import AddonDeviceType
 from amo.helpers import absolutify, urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
@@ -40,16 +39,16 @@ from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
+from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.models import (CannedResponse, EscalationQueue,
                                   RereviewQueue, ReviewerScore)
-from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.versions.models import Version
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.zadmin.models import get_config, set_config
 from users.models import UserProfile

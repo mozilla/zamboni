@@ -6,18 +6,17 @@ import os
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
-import amo
-import amo.tests
-
 import mock
 import path
 from nose.tools import eq_
 
-from addons.models import Addon
+import amo
+import amo.tests
 from files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon
 
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):

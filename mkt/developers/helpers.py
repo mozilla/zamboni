@@ -13,9 +13,9 @@ from jingo.helpers import datetime as jingo_datetime
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
-from addons.helpers import new_context
 from mkt.access import acl
 from mkt.site.helpers import mkt_breadcrumbs
+from mkt.webapps.helpers import new_context
 
 
 register.function(acl.check_addon_ownership)

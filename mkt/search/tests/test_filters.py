@@ -6,8 +6,6 @@ from nose.tools import ok_
 from django.contrib.auth.models import AnonymousUser
 
 import amo
-from addons.models import Category
-
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.regions import set_region
@@ -16,7 +14,7 @@ from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
                               TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _filter_search
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Category, Webapp
 
 
 class TestSearchFilters(BaseOAuth):

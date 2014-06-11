@@ -84,7 +84,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
-    'addons',
     'cronjobs',
     'csp',
     'files',
@@ -763,9 +762,6 @@ HIDDEN_LANGUAGES = (
     # The hidden list from AMO's settings:
     'cy',
 )
-
-# Name of view to use for homepage. AMO uses this. Marketplace has its own.
-HOME = 'addons.views.home'
 
 # IARC content ratings.
 IARC_ALLOW_CERT_REUSE = True

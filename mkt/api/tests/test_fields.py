@@ -7,14 +7,13 @@ from rest_framework.test import APIRequestFactory
 from test_utils import RequestFactory
 
 import amo
-from addons.models import AddonCategory, Category
 from amo.tests import TestCase
 from mkt.api.fields import (ESTranslationSerializerField,
                             SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import AddonCategory, Category, Webapp
 from translations.models import Translation
 
 
@@ -145,6 +144,7 @@ class _TestTranslationSerializerField(object):
         result = field.field_to_native(self.app, 'description')
         eq_(result, None)
 
+
 class TestTranslationSerializerField(_TestTranslationSerializerField, TestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
@@ -167,7 +167,7 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase
 
     def test_attach_translations(self):
         data = {
-            'foo_translations' : [{
+            'foo_translations': [{
                 'lang': 'testlang',
                 'string': 'teststring'
             }, {
@@ -177,12 +177,12 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase
         }
         self.app = Webapp()
         self.field_class().attach_translations(self.app, data, 'foo')
-        eq_(self.app.foo_translations, {'testlang': 'teststring', 
+        eq_(self.app.foo_translations, {'testlang': 'teststring',
                                         'testlang2': 'teststring2'})
 
     def test_attach_translations_target_name(self):
         data = {
-            'foo_translations' : [{
+            'foo_translations': [{
                 'lang': 'testlang',
                 'string': 'teststring'
             }, {

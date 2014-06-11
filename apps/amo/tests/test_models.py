@@ -6,7 +6,7 @@ import amo.models
 from amo.models import manual_order
 from amo.tests import TestCase
 from amo import models as context
-from addons.models import Addon
+from mkt.webapps.models import Addon
 
 
 class ManualOrderTest(TestCase):

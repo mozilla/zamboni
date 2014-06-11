@@ -24,10 +24,8 @@ from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
                                      ReadOnlyModelViewSet)
 
 import amo
-from addons.models import Category, Webapp
 from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from lib.constants import ALL_CURRENCIES
-
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
@@ -35,10 +33,11 @@ from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
 from mkt.api.fields import SlugChoiceField
 from mkt.api.serializers import CarrierSerializer, RegionSerializer
 from mkt.carriers import CARRIER_MAP, CARRIERS
-from mkt.regions.utils import parse_region
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
-from mkt.webapps.tasks import _update_manifest
 from mkt.prices.models import Price, PriceCurrency
+from mkt.regions.utils import parse_region
+from mkt.webapps.models import Category, Webapp
+from mkt.webapps.tasks import _update_manifest
 
 
 log = commonware.log.getLogger('z.api')

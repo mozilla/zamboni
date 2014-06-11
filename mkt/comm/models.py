@@ -134,7 +134,7 @@ def user_has_perm_note(note, profile):
 
 
 class CommunicationThread(CommunicationPermissionModel):
-    addon = models.ForeignKey('addons.Addon', related_name='threads')
+    addon = models.ForeignKey('webapps.Addon', related_name='threads')
     version = models.ForeignKey('versions.Version', related_name='threads',
                                 null=True)
 

@@ -4,11 +4,11 @@ import mock
 from nose.tools import eq_
 
 import amo.tests
-from addons.models import Addon, AddonUser
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.ratings.models import Review
 from mkt.stats import tasks
 from mkt.versions.models import Version
+from mkt.webapps.models import Addon, AddonUser
 from users.models import UserProfile
 
 

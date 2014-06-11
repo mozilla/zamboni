@@ -5,7 +5,8 @@ from django.db.models import Count, Avg, F
 import caching.base as caching
 from celeryutils import task
 
-from addons.models import Addon
+from mkt.webapps.models import Addon
+
 from .models import Review
 
 

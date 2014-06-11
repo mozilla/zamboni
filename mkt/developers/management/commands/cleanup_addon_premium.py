@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 import amo
-from addons.models import AddonPremium
+from mkt.webapps.models import AddonPremium
 
 
 class Command(BaseCommand):

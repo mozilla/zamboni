@@ -9,11 +9,11 @@ from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
 import amo
-from addons.models import AddonDeviceType
 from mkt.api.forms import CustomNullBooleanSelect
 from mkt.reviewers.models import CannedResponse
 from mkt.reviewers.utils import ReviewHelper
 from mkt.search.forms import ApiSearchForm
+from mkt.webapps.models import AddonDeviceType
 
 
 log = logging.getLogger('z.reviewers.forms')

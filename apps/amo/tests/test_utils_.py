@@ -6,7 +6,7 @@ from nose.tools import eq_, ok_
 import amo
 from amo import floor_version
 from amo.utils import attach_trans_dict
-from addons.models import Addon
+from mkt.webapps.models import Addon
 
 
 class TestAttachTransDict(amo.tests.TestCase):

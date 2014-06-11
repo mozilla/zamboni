@@ -71,7 +71,7 @@
     },
     {
         "pk": 2818,
-        "model": "addons.addonuser",
+        "model": "webapps.addonuser",
         "fields": {
             "position": 0,
             "addon": 337141,
@@ -103,7 +103,7 @@
     },
     {
         "pk": 337141,
-        "model": "addons.addon",
+        "model": "webapps.webapp",
         "fields": {
             "last_updated": "2011-10-18 16:28:24",
             "total_downloads": 0,

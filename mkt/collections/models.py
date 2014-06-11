@@ -6,11 +6,10 @@ from django.db import models
 import amo.models
 import mkt.carriers
 import mkt.regions
-from addons.models import Addon, Category, clean_slug
 from amo.decorators import use_master
 from amo.models import SlugField
 from amo.utils import to_language
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Addon, Category, clean_slug, Webapp
 from mkt.webapps.tasks import index_webapps
 from translations.fields import PurifiedField, save_signal
 

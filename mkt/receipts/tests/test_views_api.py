@@ -8,13 +8,13 @@ from receipts.receipts import Receipt
 
 import amo.tests
 
-from addons.models import Addon, AddonUser
 from constants.payments import CONTRIB_NO_CHARGE
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
 from mkt.developers.models import AppLog
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Addon, AddonUser
 from users.models import UserProfile
 
 

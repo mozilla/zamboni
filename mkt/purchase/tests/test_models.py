@@ -8,11 +8,10 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from addons.models import Addon
-from users.models import UserProfile
-
 from mkt.prices.models import Refund
 from mkt.purchase.models import Contribution, StatsDictField
+from mkt.webapps.models import Addon
+from users.models import UserProfile
 
 
 class TestStatsDictField(amo.tests.TestCase):

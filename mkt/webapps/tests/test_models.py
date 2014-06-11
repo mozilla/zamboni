@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
@@ -24,13 +25,12 @@ from django.utils.translation import ugettext_lazy as _
 import mock
 import pyelasticsearch
 from elasticutils.contrib.django import S
+from mock import Mock, patch
 from nose.tools import eq_, ok_, raises
 
 import amo
+import amo.tests
 import mkt
-from addons.models import (Addon, AddonCategory, AddonDeviceType,
-                           BlacklistedSlug, Category, Preview, version_changed)
-from addons.signals import version_changed as version_changed_signal
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from amo.utils import to_language
@@ -42,6 +42,7 @@ from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
+from lib.utils import static_url
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -52,15 +53,487 @@ from mkt.site.fixtures import fixture
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.versions.models import update_status, Version
-from mkt.webapps.models import (AddonExcludedRegion, AppFeatures, AppManifest,
+from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
+                                AddonExcludedRegion, AddonUpsell, AppFeatures,
+                                AppManifest, BlacklistedSlug, Category,
                                 ContentRating, Geodata, get_excluded_in,
-                                IARCInfo, Installed, RatingDescriptors,
-                                RatingInteractives, Webapp, WebappIndexer)
+                                IARCInfo, Installed, Preview, RatingDescriptors,
+                                RatingInteractives, version_changed, Webapp,
+                                WebappIndexer)
+from mkt.webapps.signals import version_changed as version_changed_signal
+from translations.models import Translation
 from users.models import UserProfile
+
+
+class TestCleanSlug(amo.tests.TestCase):
+
+    def test_clean_slug_new_object(self):
+        # Make sure there's at least an addon with the "addon" slug, subsequent
+        # ones should be "addon-1", "addon-2" ...
+        a = Addon.objects.create()
+        eq_(a.slug, "addon")
+
+        # Start with a first clash. This should give us "addon-1".
+        # We're not saving yet, we're testing the slug creation without an id.
+        b = Addon()
+        b.clean_slug()
+        eq_(b.slug, 'addon-1')
+        # Now save the instance to the database for future clashes.
+        b.save()
+
+        # Test on another object without an id.
+        c = Addon()
+        c.clean_slug()
+        eq_(c.slug, 'addon-2')
+
+        # Even if an addon is deleted, don't clash with its slug.
+        c.status = amo.STATUS_DELETED
+        # Now save the instance to the database for future clashes.
+        c.save()
+
+        # And yet another object without an id. Make sure we're not trying to
+        # assign the 'addon-2' slug from the deleted addon.
+        d = Addon()
+        d.clean_slug()
+        eq_(d.slug, 'addon-3')
+
+    def test_clean_slug_with_id(self):
+        # Create an addon and save it to have an id.
+        a = Addon.objects.create()
+        # Start over: don't use the name nor the id to generate the slug.
+        a.slug = a.name = ""
+        a.clean_slug()
+        # Slugs created from an id are of the form "id~", eg "123~" to avoid
+        # clashing with URLs.
+        eq_(a.slug, "%s~" % a.id)
+
+        # And again, this time make it clash.
+        b = Addon.objects.create()
+        # Set a's slug to be what should be created for b from its id.
+        a.slug = "%s~" % b.id
+        a.save()
+
+        # Now start over for b.
+        b.slug = b.name = ""
+        b.clean_slug()
+        eq_(b.slug, "%s~-1" % b.id)
+
+    def test_clean_slug_with_name(self):
+        # Make sure there's at least an addon with the "fooname" slug,
+        # subsequent ones should be "fooname-1", "fooname-2" ...
+        a = Addon.objects.create(name="fooname")
+        eq_(a.slug, "fooname")
+
+        b = Addon(name="fooname")
+        b.clean_slug()
+        eq_(b.slug, "fooname-1")
+
+    def test_clean_slug_with_slug(self):
+        # Make sure there's at least an addon with the "fooslug" slug,
+        # subsequent ones should be "fooslug-1", "fooslug-2" ...
+        a = Addon.objects.create(name="fooslug")
+        eq_(a.slug, "fooslug")
+
+        b = Addon(name="fooslug")
+        b.clean_slug()
+        eq_(b.slug, "fooslug-1")
+
+    def test_clean_slug_blacklisted_slug(self):
+        blacklisted_slug = 'fooblacklisted'
+        BlacklistedSlug.objects.create(name=blacklisted_slug)
+
+        a = Addon(slug=blacklisted_slug)
+        a.clean_slug()
+        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
+        # avoid clashing with URLs.
+        eq_(a.slug, "%s~" % blacklisted_slug)
+        # Now save the instance to the database for future clashes.
+        a.save()
+
+        b = Addon(slug=blacklisted_slug)
+        b.clean_slug()
+        eq_(b.slug, "%s~-1" % blacklisted_slug)
+
+    def test_clean_slug_blacklisted_slug_long_slug(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        BlacklistedSlug.objects.create(name=long_slug[:30])
+
+        # If there's no clashing slug, just append a "~".
+        a = Addon.objects.create(slug=long_slug[:30])
+        eq_(a.slug, "%s~" % long_slug[:29])
+
+        # If there's a clash, use the standard clash resolution.
+        a = Addon.objects.create(slug=long_slug[:30])
+        eq_(a.slug, "%s-1" % long_slug[:27])
+
+    def test_clean_slug_long_slug(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+
+        # If there's no clashing slug, don't over-shorten it.
+        a = Addon.objects.create(slug=long_slug)
+        eq_(a.slug, long_slug[:30])
+
+        # Now that there is a clash, test the clash resolution.
+        b = Addon(slug=long_slug)
+        b.clean_slug()
+        eq_(b.slug, "%s-1" % long_slug[:27])
+
+    def test_clean_slug_always_slugify(self):
+        illegal_chars = "some spaces and !?@"
+
+        # Slugify if there's a slug provided.
+        a = Addon(slug=illegal_chars)
+        a.clean_slug()
+        assert a.slug.startswith("some-spaces-and"), a.slug
+
+        # Also slugify if there's no slug provided.
+        b = Addon(name=illegal_chars)
+        b.clean_slug()
+        assert b.slug.startswith("some-spaces-and"), b.slug
+
+    def test_clean_slug_worst_case_scenario(self):
+        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+
+        # Generate 100 addons with this very long slug. We should encounter the
+        # worst case scenario where all the available clashes have been
+        # avoided. Check the comment in addons.models.clean_slug, in the "else"
+        # part of the "for" loop checking for available slugs not yet assigned.
+        for i in range(100):
+            Addon.objects.create(slug=long_slug)
+        with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
+            Addon.objects.create(slug=long_slug)
+
+
+class TestCategoryModel(amo.tests.TestCase):
+
+    def test_category_url(self):
+        cat = Category(slug='omg')
+        assert cat.get_url_path()
+
+    @patch('mkt.webapps.tasks.index_webapps')
+    def test_reindex_on_change(self, index_mock):
+        c = Category.objects.create(type=amo.ADDON_WEBAPP, slug='keyboardcat')
+        app = amo.tests.app_factory()
+        AddonCategory.objects.create(addon=app, category=c)
+        c.update(slug='nyancat')
+        assert index_mock.called
+        eq_(index_mock.call_args[0][0], [app.id])
+
+
+class TestPreviewModel(amo.tests.TestCase):
+
+    def setUp(self):
+        app = Webapp.objects.create()
+        self.preview = Preview.objects.create(addon=app, filetype='image/png',
+                                              thumbtype='image/png',
+                                              caption='my preview')
+
+    def test_as_dict(self):
+        expect = ['caption', 'full', 'thumbnail']
+        reality = sorted(Preview.objects.all()[0].as_dict().keys())
+        eq_(expect, reality)
+
+    def test_filename(self):
+        eq_(self.preview.file_extension, 'png')
+        self.preview.update(filetype='')
+        eq_(self.preview.file_extension, 'png')
+        self.preview.update(filetype='video/webm')
+        eq_(self.preview.file_extension, 'webm')
+
+    def test_filename_in_url(self):
+        self.preview.update(filetype='video/webm')
+        assert 'png' in self.preview.thumbnail_path
+        assert 'webm' in self.preview.image_path
+
+
+class TestRemoveLocale(amo.tests.TestCase):
+
+    def test_remove(self):
+        app = Webapp.objects.create()
+        app.name = {'en-US': 'woo', 'el': 'yeah'}
+        app.description = {'en-US': 'woo', 'el': 'yeah', 'he': 'ola'}
+        app.save()
+        app.remove_locale('el')
+        qs = (Translation.objects.filter(localized_string__isnull=False)
+              .values_list('locale', flat=True))
+        eq_(sorted(qs.filter(id=app.name_id)), ['en-US'])
+        eq_(sorted(qs.filter(id=app.description_id)), ['en-US', 'he'])
+
+    def test_remove_version_locale(self):
+        app = app_factory()
+        version = app.latest_version
+        version.releasenotes = {'fr': 'oui'}
+        version.save()
+        app.remove_locale('fr')
+        qs = (Translation.objects.filter(localized_string__isnull=False)
+              .values_list('locale', flat=True))
+        eq_(sorted(qs), [u'en-us'])
+
+
+class TestUpdateNames(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = Webapp.objects.create()
+        self.addon.name = self.names = {'en-US': 'woo'}
+        self.addon.save()
+
+    def get_name(self, app, locale='en-US'):
+        return Translation.objects.no_cache().get(id=app.name_id,
+                                                  locale=locale)
+
+    def check_names(self, names):
+        """`names` in {locale: name} format."""
+        for locale, localized_string in names.iteritems():
+            eq_(self.get_name(self.addon, locale).localized_string,
+                localized_string)
+
+    def test_new_name(self):
+        names = dict(self.names, **{'de': u'frü'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_new_names(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_remove_name_missing(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now update without de to remove it.
+        del names['de']
+        self.addon.update_names(names)
+        self.addon.save()
+        names['de'] = None
+        self.check_names(names)
+
+    def test_remove_name_with_none(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now update without de to remove it.
+        names['de'] = None
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_add_and_remove(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        # Now add a new locale and remove an existing one.
+        names['de'] = None
+        names['fr'] = u'oui'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+
+    def test_default_locale_change(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        addon = self.addon.reload()
+        eq_(addon.default_locale, 'de')
+
+    def test_default_locale_change_remove_old(self):
+        names = dict(self.names, **{'de': u'frü', 'es': u'eso', 'en-US': None})
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(names)
+        eq_(self.addon.reload().default_locale, 'de')
+
+    def test_default_locale_removal_not_deleted(self):
+        names = {'en-US': None}
+        self.addon.update_names(names)
+        self.addon.save()
+        self.check_names(self.names)
+
+
+class TestAddonWatchDisabled(amo.tests.TestCase):
+
+    def setUp(self):
+        self.addon = Webapp.objects.create(disabled_by_user=False,
+                                           status=amo.STATUS_PUBLIC)
+
+    @patch('mkt.webapps.models.File.objects.filter')
+    def test_no_disabled_change(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.save()
+        assert not mock.unhide_disabled_file.called
+        assert not mock.hide_disabled_file.called
+
+    @patch('mkt.webapps.models.File.objects.filter')
+    def test_disable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(disabled_by_user=True)
+        assert not mock.unhide_disabled_file.called
+        assert mock.hide_disabled_file.called
+
+    @patch('mkt.webapps.models.File.objects.filter')
+    def test_admin_disable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert not mock.unhide_disabled_file.called
+        assert mock.hide_disabled_file.called
+
+    @patch('mkt.webapps.models.File.objects.filter')
+    def test_enable_addon(self, file_mock):
+        mock = Mock()
+        file_mock.return_value = [mock]
+        self.addon.update(status=amo.STATUS_DISABLED)
+        mock.reset_mock()
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        assert mock.unhide_disabled_file.called
+        assert not mock.hide_disabled_file.called
+
+
+class TestAddonUpsell(amo.tests.TestCase):
+
+    def setUp(self):
+        self.one = Webapp.objects.create(name='free')
+        self.two = Webapp.objects.create(name='premium')
+        self.upsell = AddonUpsell.objects.create(free=self.one,
+                                                 premium=self.two)
+
+    def test_create_upsell(self):
+        eq_(self.one.upsell.free, self.one)
+        eq_(self.one.upsell.premium, self.two)
+        eq_(self.two.upsell, None)
+
+    def test_delete(self):
+        self.upsell = AddonUpsell.objects.create(free=self.two,
+                                                 premium=self.one)
+        # Note: delete ignores if status 0.
+        self.one.update(status=amo.STATUS_PUBLIC)
+        self.one.delete()
+        eq_(AddonUpsell.objects.count(), 0)
+
+
+class TestAddonPurchase(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(pk=999)
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
+                                          premium_type=amo.ADDON_PREMIUM,
+                                          name='premium')
+
+    def test_no_premium(self):
+        # If you've purchased something, the fact that its now free
+        # doesn't change the fact that you purchased it.
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=amo.ADDON_FREE)
+        assert self.addon.has_purchased(self.user)
+
+    def test_has_purchased(self):
+        self.addon.addonpurchase_set.create(user=self.user)
+        assert self.addon.has_purchased(self.user)
+
+    def test_not_purchased(self):
+        assert not self.addon.has_purchased(self.user)
+
+    def test_anonymous(self):
+        assert not self.addon.has_purchased(None)
+        assert not self.addon.has_purchased(AnonymousUser)
+
+    def test_is_refunded(self):
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=amo.CONTRIB_REFUND)
+        assert self.addon.is_refunded(self.user)
+
+    def test_is_chargeback(self):
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=amo.CONTRIB_CHARGEBACK)
+        assert self.addon.is_chargeback(self.user)
+
+    def test_purchase_state(self):
+        purchase = self.addon.addonpurchase_set.create(user=self.user)
+        for state in [amo.CONTRIB_PURCHASE, amo.CONTRIB_REFUND,
+                      amo.CONTRIB_CHARGEBACK]:
+            purchase.update(type=state)
+            eq_(state, self.addon.get_purchase_type(self.user))
+
+
+class TestNewAddonVsWebapp(amo.tests.TestCase):
+
+    def test_addon_from_kwargs(self):
+        a = Addon(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+
+    def test_webapp_from_kwargs(self):
+        w = Addon(type=amo.ADDON_WEBAPP)
+        assert isinstance(w, Webapp)
+
+    def test_addon_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        assert isinstance(a, Addon)
+        assert isinstance(Addon.objects.get(id=a.id), Addon)
+
+    def test_webapp_from_db(self):
+        a = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        assert isinstance(a, Webapp)
+        assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
 class TestWebapp(amo.tests.TestCase):
     fixtures = fixture('prices')
+
+    def test_icon_url(self):
+        app = Webapp.objects.create(id=337141, status=amo.STATUS_PUBLIC,
+                                    icon_type='image/png')
+        expected = (static_url('ADDON_ICON_URL')
+                    % (str(app.id)[0:3], app.id, 32, 'never'))
+        assert app.icon_url.endswith(expected), (
+            'Expected %s, got %s' % (expected, app.icon_url))
+
+        app.icon_hash = 'abcdef'
+        assert app.icon_url.endswith('?modified=abcdef')
+
+        app.icon_type = None
+        assert app.icon_url.endswith('hub/default-32.png')
+
+    def test_thumbnail_url_no_preview(self):
+        app = Webapp.objects.create()
+        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
+            'No match for %s' % app.thumbnail_url)
+
+    def test_thumbnail_url(self):
+        app = Webapp.objects.create()
+        preview = Preview.objects.create(addon=app, filetype='image/png',
+                                         position=0)
+        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
+                                       % (preview.id / 1000, preview.id))
+
+    def test_is_public(self):
+        app = Webapp(status=amo.STATUS_PUBLIC)
+        assert app.is_public(), 'public app should be is_pulic()'
+
+        # Public, disabled.
+        app.disabled_by_user = True
+        assert not app.is_public(), (
+            'public, disabled app should not be is_public()')
+
+        # Any non-public status
+        app.status = amo.STATUS_PENDING
+        app.disabled_by_user = False
+        assert not app.is_public(), 'pending, app should not be is_public()'
+
+    def _newlines_helper(self, app, string_before):
+        app.privacy_policy = string_before
+        app.save()
+        return app.privacy_policy.localized_string_clean
 
     def add_payment_account(self, app, provider_id, user=None):
         if not user:
@@ -204,9 +677,6 @@ class TestWebapp(amo.tests.TestCase):
     def test_punicode_domain(self):
         webapp = Webapp(app_domain=u'http://www.allizôm.org')
         eq_(webapp.punycode_app_domain, 'http://www.xn--allizm-mxa.org')
-
-    def test_reviewed(self):
-        assert not Webapp().is_unreviewed()
 
     def test_cannot_be_purchased(self):
         eq_(Webapp(premium_type=True).can_be_purchased(), False)
@@ -1071,9 +1541,7 @@ class TestExclusions(amo.tests.TestCase):
 
 
 class TestPackagedAppManifestUpdates(amo.tests.TestCase):
-    # Note: More extensive tests for `Addon.update_names` are in the Addon
-    # model tests.
-    fixtures = ['base/platforms']
+    # Note: More extensive tests for `.update_names` are above.
 
     def setUp(self):
         self.webapp = amo.tests.app_factory(is_packaged=True,
@@ -1126,7 +1594,7 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
 
 
 class TestWebappVersion(amo.tests.TestCase):
-    fixtures = ['base/platforms']
+    fixtures = fixture('platform_all')
 
     def test_no_version(self):
         eq_(Webapp().get_latest_file(), None)
@@ -1147,41 +1615,6 @@ class TestWebappVersion(amo.tests.TestCase):
 
 
 class TestWebappManager(amo.tests.TestCase):
-
-    def setUp(self):
-        self.reviewed_eq = (lambda f=[]:
-                            eq_(list(Webapp.objects.reviewed()), f))
-        self.listed_eq = (lambda f=[]: eq_(list(Webapp.objects.visible()), f))
-
-    def test_reviewed(self):
-        for status in amo.REVIEWED_STATUSES:
-            w = Webapp.objects.create(status=status)
-            self.reviewed_eq([w])
-            Webapp.objects.all().delete()
-
-    def test_unreviewed(self):
-        for status in amo.UNREVIEWED_STATUSES:
-            Webapp.objects.create(status=status)
-            self.reviewed_eq()
-            Webapp.objects.all().delete()
-
-    def test_listed(self):
-        # Public status, non-null current version, non-user-disabled.
-        w = app_factory(status=amo.STATUS_PUBLIC)
-        self.listed_eq([w])
-
-    def test_unlisted(self):
-        # Public, null current version, non-user-disabled.
-        w = Webapp.objects.create()
-        self.listed_eq()
-
-        # With current version but unreviewed.
-        Version.objects.create(addon=w)
-        self.listed_eq()
-
-        # And user-disabled.
-        w.update(disabled_by_user=True)
-        self.listed_eq()
 
     def test_by_identifier(self):
         w = Webapp.objects.create(app_slug='foo')
@@ -1669,10 +2102,15 @@ class TestIARCInfo(amo.tests.WebappTestCase):
 
 class TestQueue(amo.tests.WebappTestCase):
 
-    def test_in_queue(self):
+    def test_in_rereview_queue(self):
         assert not self.app.in_rereview_queue()
         RereviewQueue.objects.create(addon=self.app)
         assert self.app.in_rereview_queue()
+
+    def test_in_escalation_queue(self):
+        assert not self.app.in_escalation_queue()
+        EscalationQueue.objects.create(addon=self.app)
+        assert self.app.in_escalation_queue()
 
 
 class TestPackagedSigning(amo.tests.WebappTestCase):

@@ -5,11 +5,10 @@ from django.core.urlresolvers import reverse
 from rest_framework import serializers
 
 import amo
-from addons.models import Preview
 from files.models import FileUpload
 from mkt.access import acl
 from mkt.api.fields import ReverseChoiceField
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Preview, Webapp
 
 
 class AppStatusSerializer(serializers.ModelSerializer):

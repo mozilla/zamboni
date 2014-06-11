@@ -5,21 +5,26 @@ from django.core.urlresolvers import reverse
 
 from rest_framework import response, serializers
 
+import commonware.log
 from tower import ungettext as ngettext
 
 import amo
-from addons.models import AddonCategory, AddonUpsell, Category
+import mkt
 from amo.utils import no_translation
 from constants.payments import PROVIDER_BANGO
-
-import mkt
-from mkt.api.fields import (LargeTextField, SemiSerializerMethodField,
-                            ReverseChoiceField, TranslationSerializerField)
+from mkt.api.fields import (LargeTextField, ReverseChoiceField,
+                            SemiSerializerMethodField,
+                            TranslationSerializerField)
 from mkt.constants.features import FeatureProfile
+from mkt.prices.models import AddonPremium, Price
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
-from mkt.webapps.models import AppFeatures, Webapp
-from mkt.prices.models import AddonPremium, Price
+from mkt.webapps.models import (AddonCategory, AddonUpsell, AppFeatures,
+                                Category, Webapp)
+
+
+log = commonware.log.getLogger('z.api')
+
 
 class AppFeaturesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,6 +51,7 @@ class RegionSerializer(serializers.Serializer):
     slug = serializers.CharField()
     mcc = serializers.CharField()
     adolescent = serializers.BooleanField()
+
 
 class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
@@ -369,4 +375,3 @@ class SimpleAppSerializer(AppSerializer):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
                    'default_locale', 'payment_account', 'supported_locales',
                    'weekly_downloads', 'upsold', 'tags']
-
