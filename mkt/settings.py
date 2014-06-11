@@ -685,7 +685,7 @@ ES_USE_PLUGINS = False
 ES_TIMEOUT = 30
 
 # When True include full tracebacks in JSON. This is useful for QA on preview.
-EXPOSE_VALIDATOR_TRACEBACKS = False
+EXPOSE_VALIDATOR_TRACEBACKS = True
 
 # Django cache machine settings.
 FETCH_BY_ID = True
