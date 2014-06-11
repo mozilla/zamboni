@@ -30,7 +30,7 @@ from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
-from mkt.lookup.forms import (APIStatusForm, DeleteUserForm,
+from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
 from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
@@ -264,7 +264,7 @@ def app_summary(request, addon_id):
     if app.is_packaged:
         versions = app.versions.all().order_by('-created')
         for v in versions:
-            version_status_forms[v.pk] = APIStatusForm(initial={
+            version_status_forms[v.pk] = APIFileStatusForm(initial={
                 'status' : amo.STATUS_CHOICES_API[v.all_files[0].status]
             })
 
