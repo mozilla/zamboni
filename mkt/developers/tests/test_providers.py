@@ -13,7 +13,7 @@ from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
                                       Reference)
 from mkt.site.fixtures import fixture
 
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class Patcher(object):

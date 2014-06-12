@@ -37,7 +37,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
 from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step

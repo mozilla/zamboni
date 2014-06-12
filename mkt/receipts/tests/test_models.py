@@ -13,7 +13,7 @@ from amo.helpers import absolutify
 from amo.tests import addon_factory
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.webapps.models import AddonUser, Installed, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 # We are testing times down to the second. To make sure we don't fail, this

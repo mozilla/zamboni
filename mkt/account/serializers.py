@@ -4,7 +4,7 @@ from rest_framework import fields, serializers
 
 from mkt.access import acl
 from mkt.api.serializers import PotatoCaptchaSerializer
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class AccountSerializer(serializers.ModelSerializer):

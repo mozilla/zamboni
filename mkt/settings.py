@@ -92,7 +92,6 @@ INSTALLED_APPS = (
     'product_details',
     'tower',  # for ./manage.py extract
     'translations',
-    'users',
 
     # Third party apps
     'djcelery',
@@ -140,6 +139,7 @@ INSTALLED_APPS = (
     'mkt.stats',
     'mkt.submit',
     'mkt.tags',
+    'mkt.users',
     'mkt.versions',
     'mkt.zadmin',
     'mkt.webapps',

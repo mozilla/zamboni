@@ -38,7 +38,7 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site import messages
 from mkt.webapps.models import Webapp, WebappIndexer
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.lookup')

@@ -21,7 +21,7 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_REVIEWER
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Installed
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestPotatoCaptcha(object):
@@ -385,7 +385,7 @@ class TestLoginHandler(TestCase):
         eq_(data['apps']['purchased'], [])
         eq_(data['apps']['developed'], [])
 
-    @patch('users.models.UserProfile.purchase_ids')
+    @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
         purchased_app = app_factory()

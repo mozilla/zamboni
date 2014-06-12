@@ -25,7 +25,7 @@ from mkt.tags.models import Tag
 from mkt.webapps.models import (Addon, AddonCategory, Category, Geodata,
                                 IARCInfo, Webapp)
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestPreviewForm(amo.tests.TestCase):

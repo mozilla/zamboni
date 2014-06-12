@@ -40,7 +40,7 @@ from mkt.versions.models import Version
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
                                 ContentRating, Webapp)
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class AppHubTest(amo.tests.TestCase):

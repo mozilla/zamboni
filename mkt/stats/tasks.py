@@ -10,7 +10,7 @@ from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
 from mkt.ratings.models import Review
 from mkt.webapps.models import AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = logging.getLogger('z.stats')

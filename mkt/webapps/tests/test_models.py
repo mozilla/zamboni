@@ -62,7 +62,7 @@ from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
                                 WebappIndexer)
 from mkt.webapps.signals import version_changed as version_changed_signal
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestCleanSlug(amo.tests.TestCase):

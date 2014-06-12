@@ -13,7 +13,7 @@ from nose.tools import eq_, ok_
 
 from amo.tests import (addon_factory, req_factory_factory, user_factory,
                        version_factory)
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 import mkt.constants.comm
 from mkt.api.tests.test_oauth import RestOAuth

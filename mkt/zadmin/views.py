@@ -24,7 +24,7 @@ from mkt.developers.models import ActivityLog
 from mkt.prices.utils import update_from_csv
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.webapps.tasks import update_manifests
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from . import tasks
 from .decorators import admin_required

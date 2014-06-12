@@ -15,7 +15,7 @@ from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import ContentRating, Geodata
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAPI(amo.tests.TestCase):

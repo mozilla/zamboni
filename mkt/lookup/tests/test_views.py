@@ -36,7 +36,7 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon, AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class SummaryTest(TestCase):

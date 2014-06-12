@@ -7,7 +7,7 @@ from django.utils.translation import gettext
 import amo.models
 import amo.utils
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = logging.getLogger('z.abuse')

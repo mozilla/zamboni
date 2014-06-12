@@ -34,7 +34,7 @@ from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
                                 AddonUser, Category)
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 response_mock = mock.Mock()

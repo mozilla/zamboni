@@ -8,7 +8,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class AuthorSerializer(ModelSerializer):

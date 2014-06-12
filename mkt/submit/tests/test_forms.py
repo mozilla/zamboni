@@ -15,7 +15,7 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
 from mkt.webapps.models import AppFeatures, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestNewWebappForm(amo.tests.TestCase):

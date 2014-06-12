@@ -24,7 +24,7 @@ from oauthlib.oauth1.rfc5849 import signature
 from mkt.api.models import Access, ACCESS_TOKEN, Token
 from mkt.api.oauth import server, validator
 from mkt.carriers import get_carrier
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.api')

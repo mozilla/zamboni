@@ -6,7 +6,7 @@ from django.db import models
 from aesfield.field import AESField
 
 from amo.models import ModelBase
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 REQUEST_TOKEN = 0

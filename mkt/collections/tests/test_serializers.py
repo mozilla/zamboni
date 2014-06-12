@@ -22,7 +22,7 @@ from mkt.search.views import FeaturedSearchView
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser, Category
 from mkt.webapps.serializers import SimpleAppSerializer
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class CollectionDataMixin(object):

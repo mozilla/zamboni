@@ -12,7 +12,7 @@ import amo.tests
 from mkt.prices.models import Refund
 from mkt.purchase.models import Contribution, StatsDictField
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 from mkt.site.fixtures import fixture
 
 

@@ -8,7 +8,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 import amo
 from mkt.webapps.models import Addon, Installed
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class Command(BaseCommand):

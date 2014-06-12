@@ -51,7 +51,7 @@ from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.zadmin.models import get_config, set_config
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 TEST_PATH = path.dirname(path.abspath(__file__))

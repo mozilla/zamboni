@@ -8,7 +8,7 @@ from mkt.access.middleware import ACLMiddleware
 from mkt.feed.authorization import FeedAuthorization
 from mkt.site.fixtures import fixture
 from test_utils import RequestFactory
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestFeedAuthorization(TestCase):

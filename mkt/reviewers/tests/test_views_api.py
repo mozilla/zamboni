@@ -20,7 +20,7 @@ from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
 from mkt.webapps.models import Category, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestReviewing(RestOAuth):

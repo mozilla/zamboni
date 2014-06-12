@@ -14,7 +14,7 @@ from mkt.access.models import Group
 from mkt.comm.models import (CommunicationNoteRead, CommunicationThreadToken,
                              user_has_perm_thread)
 from mkt.constants import comm
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('comm')

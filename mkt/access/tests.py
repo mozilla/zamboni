@@ -8,7 +8,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_reviewer, match_rules)

@@ -27,7 +27,7 @@ from mkt.tags.models import AddonTag, Tag
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AddonUser, Category, Preview,
                                 Webapp)
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class CreateHandler(RestOAuth):

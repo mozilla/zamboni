@@ -7,7 +7,7 @@ import amo.tests
 from mkt.abuse.models import AbuseReport
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAbuse(amo.tests.TestCase):

@@ -5,7 +5,7 @@ from django.conf import settings
 
 import commonware.log
 
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.users')

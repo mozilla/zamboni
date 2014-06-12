@@ -8,10 +8,10 @@ from django.utils import translation
 import mock
 from nose.tools import eq_
 
-import users.notifications
+import mkt.users.notifications
 from amo.models import FakeEmail
 from amo.utils import send_html_mail_jinja, send_mail
-from users.models import UserNotification, UserProfile
+from mkt.users.models import UserNotification, UserProfile
 
 
 class TestSendMail(test.TestCase):

@@ -166,16 +166,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         qs = order_by_translation(qs, 'name')
         return qs[:n]
 
-    @property
-    def picture_url(self):
-        if not self.picture_type:
-            return settings.MEDIA_URL + '/img/zamboni/anon_user.png'
-        else:
-            split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-            return settings.USERPICS_URL % (
-                split_id.group(2) or 0, split_id.group(1) or 0, self.id,
-                int(time.mktime(self.modified.timetuple())))
-
     @amo.cached_property
     def is_developer(self):
         return self.addonuser_set.exists()

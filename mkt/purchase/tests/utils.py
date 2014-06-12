@@ -9,7 +9,7 @@ from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class PurchaseTest(amo.tests.TestCase):

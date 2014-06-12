@@ -51,7 +51,7 @@ from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Addon, Category, Webapp, WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.

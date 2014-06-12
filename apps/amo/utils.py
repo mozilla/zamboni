@@ -49,7 +49,7 @@ from PIL import Image, ImageFile, PngImagePlugin
 from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import linkify_with_outgoing, reverse
 from translations.models import Translation
-from users.models import UserNotification
+from mkt.users.models import UserNotification
 
 from . import logger_log as log
 
@@ -152,7 +152,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     Adds blacklist checking and error logging.
     """
     from amo.tasks import send_email
-    import users.notifications as notifications
+    import mkt.users.notifications as notifications
 
     if not recipient_list:
         return True

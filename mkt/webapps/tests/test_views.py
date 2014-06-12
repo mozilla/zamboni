@@ -13,7 +13,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import (AppSerializer, AppFeaturesSerializer,
                                      SimpleAppSerializer)
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAppFeaturesSerializer(BaseOAuth):

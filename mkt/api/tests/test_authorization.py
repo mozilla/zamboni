@@ -6,7 +6,7 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from mkt.api.authorization import (AllowAuthor, AllowAppOwner, AllowNone,
                                    AllowOwner, AllowRelatedAppOwner,

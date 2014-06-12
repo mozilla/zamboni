@@ -5,7 +5,7 @@ import amo
 from mkt.access.models import Group
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import EventLog
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 # Are there other group changes we care about here?
