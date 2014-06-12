@@ -18,8 +18,10 @@ log = commonware.log.getLogger('mkt.fireplace.commands')
 
 
 class Command(BaseCommand):
-    help = ('Upload and sign a new version of the Marketplace packaged app.\n'
-        'Syntax:\n./manage.py upload_new_marketplace_package <path-to-zip>')
+    help = (
+        'Upload and sign a new version of the specified app.\n'
+        'Syntax:\n\t./manage.py upload_new_marketplace_package'
+        ' <app-slug> <path-to-zip>')
 
     def info(self, msg):
         log.info(msg)
@@ -64,10 +66,11 @@ class Command(BaseCommand):
 
     @use_master
     def handle(self, *args, **options):
-        try:
-            path = args[0]
-        except IndexError:
+        if len(args) != 2:
             raise CommandError(self.help)
+
+        slug = args[0]
+        path = args[1]
 
         if not path.endswith('.zip'):
             raise CommandError('File does not look like a zip file.')
@@ -75,7 +78,7 @@ class Command(BaseCommand):
         if not os.path.exists(path):
             raise CommandError('File does not exist')
 
-        addon = Webapp.objects.get(app_slug='marketplace-package')
+        addon = Webapp.objects.get(app_slug=slug)
 
         # Wrap everything we're doing in a transaction, if there is an uncaught
         # exception everything will be rolled back. We force a connect() call
