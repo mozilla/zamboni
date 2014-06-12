@@ -1539,7 +1539,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_pending_to_public_waiting(self, update_name, update_locales,
                                        update_cached_manifests, index_webapps,
                                        storefront_mock):
-        self.get_app().update(_signal=False, make_public=amo.PUBLIC_WAIT)
+        self.get_app().update(make_public=amo.PUBLIC_WAIT)
+
+        # Reset mocks from the above update call.
+        index_webapps.reset_mock()
 
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
