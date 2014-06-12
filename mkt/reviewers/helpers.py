@@ -8,7 +8,7 @@ from django.db import connection
 from django.utils.encoding import smart_str
 
 import jinja2
-from jingo import register
+from jingo import env, register
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
@@ -194,6 +194,13 @@ def reviewers_score_bar(context, types=None, addon_type=None):
         total=ReviewerScore.get_total(user),
         **ReviewerScore.get_leaderboards(user, types=types,
                                          addon_type=addon_type)))
+
+
+@register.filter
+def mobile_reviewers_paginator(pager):
+    # Paginator for non-responsive version of Reviewer Tools.
+    t = env.get_template('reviewers/includes/reviewers_paginator.html')
+    return jinja2.Markup(t.render({'pager': pager}))
 
 
 def get_avg_app_waiting_time():

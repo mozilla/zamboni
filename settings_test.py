@@ -62,7 +62,6 @@ ENABLE_API_ERROR_SERVICE = False
 
 SITE_URL = 'http://testserver'
 STATIC_URL = SITE_URL + '/'
-MOBILE_SITE_URL = ''
 MEDIA_URL = '/media/'
 
 CACHES = {
