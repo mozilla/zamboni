@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-12 00:23+0000\n"
+"PO-Revision-Date: 2014-06-12 00:46+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402532611.0\n"
+"X-POOTLE-MTIME: 1402533960.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7247,10 +7247,12 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:191
 msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
+"O Firefox Marketplace está agora aberto e a aceitar aplicações. Submeter a "
+"sua aplicação para:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr ""
+msgstr "Teste a sua aplicação com um grupo empenhado de pioneiros."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
@@ -7259,86 +7261,92 @@ msgstr "Criar uma base de usuários e ganhar popularidade."
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
 msgstr ""
+"Direcione a sua aplicação para consumidores interessados ​​em tecnologia."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
-msgstr ""
+msgstr "Aplicações e Hacks do Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
 msgstr ""
+"Subscreva à nossa newsletter mensal sobre o FIrefox OS, o Marketplace e o "
+"ecossistema de aplicações <a href=\"%(dev_phone_url)s\">Veja o pré-lançamento "
+"do telemóvel para programadores</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
-msgstr ""
+msgstr "Equipamentos para programadores"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code &amp; Tools"
-msgstr ""
+msgstr "Código e Ferramentas"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events &amp; Meetups"
-msgstr ""
+msgstr "Eventos e Encontros"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
 msgstr ""
+"Concordo que a Mozilla faça a gestão desta informação tal como é explicado "
+"na <a href=\"%(privacy_link)s\">Política de Privacidade</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
-msgstr ""
+msgstr "Inscrevam-me!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:47
 msgid "Intro to Open Web Apps"
-msgstr ""
+msgstr "Introdução às aplicações web abertas"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:51
 msgid "Intro to Firefox OS"
-msgstr ""
+msgstr "Introdução ao Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:71 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:9
 msgid "Chrono"
-msgstr ""
+msgstr "Chrono"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:79 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:9
 msgid "Face Value"
-msgstr ""
+msgstr "Face Value"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:87 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:9
 msgid "Podcasts"
-msgstr ""
+msgstr "Podcasts"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:95 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:9
 msgid "Roller"
-msgstr ""
+msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:103 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:9
 msgid "Webfighter"
-msgstr ""
+msgstr "Webfighter"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:111 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:6 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:9
 msgid "General Notes"
-msgstr ""
+msgstr "Notas gerais"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:123
 msgid "Intro to Manifests"
-msgstr ""
+msgstr "Introdução a manifestos"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:127
 msgid "For Current Web Developers"
-msgstr ""
+msgstr "Para quem programa atualmente para web"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:131
 msgid "For Current Mobile Developers"
-msgstr ""
+msgstr "Para quem programa atualmente para dispositivos móveis"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:135
 msgid "Using Apps Offline"
-msgstr ""
+msgstr "Utilização de aplicações offline"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "Developing Game Apps"
-msgstr ""
+msgstr "Programar jogos"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143 mkt/lookup/templates/lookup/app_summary.html:91 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47
 #: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:564
@@ -7347,19 +7355,19 @@ msgstr "Pagamentos"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:153
 msgid "App Generator"
-msgstr ""
+msgstr "Construtor de aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:157
 msgid "App Validator"
-msgstr ""
+msgstr "Validador de aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
-msgstr ""
+msgstr "Gestor de aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:169
 msgid "Firefox Developer Tools"
-msgstr ""
+msgstr "Ferramentas de programação do Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:180
 msgid "Marketplace Submission"
@@ -7367,31 +7375,35 @@ msgstr "Envio ao Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:184
 msgid "Marketplace Review Criteria"
-msgstr ""
+msgstr "Critérios de revisão do Markerplace"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:203
 msgid "Payments Status"
-msgstr ""
+msgstr "Estado dos pagamentos"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:250
 msgid "View with subtitles"
-msgstr ""
+msgstr "Ver com legendas"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:283
 msgid "Made in partnership with our friends at Treehouse"
-msgstr ""
+msgstr "Criado em parceria com nossos amigos da Treehouse"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:285
 msgid "Check them out!"
-msgstr ""
+msgstr "Verifique!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
 msgstr ""
+"Seja um parceiro da Mozilla para distribuir as suas aplicações através de "
+"uma plataforma aberta com mais de 450 milhões de utilizadores"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\" class=\"button\">Submeta agora</a> <span>ou</span> <a "
+"href=\"%(api_url)s\" class=\"button api\">Submeta através da API</a>"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:33
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
