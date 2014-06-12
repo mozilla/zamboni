@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-11 23:56+0000\n"
+"PO-Revision-Date: 2014-06-12 00:08+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402530975.0\n"
+"X-POOTLE-MTIME: 1402531682.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7158,49 +7158,61 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr ""
+msgstr "Desenvolva Aplicações HTML5 abertas para o mercado aberto."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
 msgstr ""
+"Saiba como criar aplicações que oferecem uma experiência otimizada ao "
+"utilizador para o Firefox OS e dispositivos móveis"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
 msgstr ""
+"Todas as ferramentas, documentação e referências que precisa para "
+"desenvolver e testar a sua aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
 msgstr ""
+"Saiba como distribuir as suas aplicações num mercado aberto que coloca os "
+"utilizadores e programadores em primeiro lugar"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
-msgstr ""
+msgstr "Tem uma aplicação pronta a descolar?"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr ""
+msgstr "Submeta a sua aplicação ao Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Junte-se à comunidade"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
-msgstr ""
+msgstr "Veja quem já está aqui"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
 msgstr ""
+"Você é uma empresa Web, de serviços ou fabricante à procura de uma parceria "
+"com a Mozilla? <a href=\"%(partner_url)s\">Visite a nossa página de Parceiros "
+"para mais informações.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
-msgstr ""
+msgstr "A plataforma de aplicações da Mozilla"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
+"Construir aplicações para a Web dá aos programadores controlo absoluto sobre "
+"conteúdo, funcionalidades e como as aplicações são distribuídas, incluindo "
+"acesso milhões de utilizadores do Firefox através do Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
