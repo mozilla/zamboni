@@ -213,6 +213,7 @@ class FeedCollectionMembership(BaseFeedCollectionMembership):
     `FeedBrand._apps`.
     """
     obj = models.ForeignKey('FeedCollection')
+    group = PurifiedField(blank=True, null=True)
 
     class Meta(BaseFeedCollectionMembership.Meta):
         abstract = False
@@ -244,6 +245,36 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
         return os.path.join(settings.FEED_COLLECTION_BG_PATH,
                             str(self.pk / 1000),
                             'feed_collection_%s.png' % (self.pk,))
+
+    def add_app_grouped(self, app, group, order=None):
+        """
+        Add an app to this collection, as a member of the passed `group`.
+
+        If specified, the app will be created with the specified `order`. If
+        not, it will be added to the end of the collection.
+        """
+        qs = self.membership_class.objects.filter(obj=self)
+        if order is None:
+            aggregate = qs.aggregate(models.Max('order'))['order__max']
+            order = aggregate + 1 if aggregate is not None else 0
+
+        rval = self.membership_class.objects.create(obj_id=self.id, app_id=app,
+                                                    group=group, order=order)
+
+        # Help django-cache-machine: it doesn't like many 2 many relations,
+        # the cache is never invalidated properly when adding a new object.
+        self.membership_class.objects.invalidate(*qs)
+
+        index_webapps.delay([app])
+
+        return rval
+
+    def set_apps_grouped(self, new_apps):
+        for app in self.apps().no_cache().values_list('pk', flat=True):
+            self.remove_app(Webapp.objects.get(pk=app))
+        for group in new_apps:
+            for app in group['apps']:
+                self.add_app_grouped(app, group['name'])
 
 
 class FeedApp(BaseFeedImage, amo.models.ModelBase):
@@ -314,10 +345,15 @@ class FeedItem(amo.models.ModelBase):
 
 
 # Save translations when saving instance with translated fields.
-models.signals.pre_save.connect(save_signal, sender=FeedApp,
-                                dispatch_uid='feedapp_translations')
-models.signals.pre_save.connect(save_signal, sender=FeedCollection,
-                                dispatch_uid='feedcollection_translations')
+models.signals.pre_save.connect(
+    save_signal, sender=FeedApp,
+    dispatch_uid='feedapp_translations')
+models.signals.pre_save.connect(
+    save_signal, sender=FeedCollection,
+    dispatch_uid='feedcollection_translations')
+models.signals.pre_save.connect(
+    save_signal, sender=FeedCollectionMembership,
+    dispatch_uid='feedcollectionmembership_translations')
 
 
 # Delete membership instances when their apps are deleted.
