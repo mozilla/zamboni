@@ -12,7 +12,6 @@ ALLOWED_HOSTS = [
     '.firefox.com',
     '.firefox.com.cn',
     '.mozilla.org',
-    '.mozilla.com',
     '.mozilla.net',
 ]
 
