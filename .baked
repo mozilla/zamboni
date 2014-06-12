@@ -39,7 +39,7 @@
             "dateutil", "django_browserid", "django_statsd", "django_tables",
             "easy_thumbnails", "elasticutils", "fudge", "happyforms",
             "html5lib", "jingo", "jingo_minify", "jinja2", "json_field", "jwt",
-            "lxml", "mobility", "mock", "mozpay", "multidb", "nose", "oauth2",
+            "lxml", "mock", "mozpay", "multidb", "nose", "oauth2",
             "oauth2client", "oauthlib", "path", "paypalx", "phpserialize",
             "piston", "product_details", "pyelasticsearch", "pyes", "pyquery",
             "pytz", "queryset_transform", "quieter_formset", "rdflib",
