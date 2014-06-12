@@ -1,4 +1,3 @@
-import datetime
 import urllib
 from collections import defaultdict
 
@@ -214,8 +213,3 @@ def dev_agreement_ok(user):
         return False
 
     return True
-
-
-@register.function
-def passed_iarc_app_disable_date():
-    return datetime.datetime.now() > settings.IARC_APP_DISABLE_DATE

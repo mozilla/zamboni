@@ -12,7 +12,7 @@ class TestRatingsHelpers(amo.tests.TestCase):
 
     def test_stars(self):
         s = self.render('{{ num|stars }}', {'num': None})
-        eq_(s, 'Not yet rated')
+        eq_(s, 'Not yet reviewed')
 
         doc = pq(self.render('{{ num|stars }}', {'num': 1}))
         msg = 'Rated 1 out of 5 stars'

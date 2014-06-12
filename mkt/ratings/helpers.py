@@ -10,7 +10,7 @@ def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
     if num is None or num == 0.0:
-        return _('Not yet rated')
+        return _('Not yet reviewed')
     else:
         num = min(5, int(round(num)))
         t = jingo.env.get_template('ratings/reviews_rating.html')

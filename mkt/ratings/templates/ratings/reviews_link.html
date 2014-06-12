@@ -5,7 +5,7 @@
       {{ addon.average_rating|float|stars }}
       <a href="{{ base }}">({{ num|numberfmt }})</a>
     {% else %}
-      <b>{{ _('Not yet rated') }}</b>
+      <b>{{ _('Not yet reviewed') }}</b>
     {% endif %}
   {% endwith %}
 </span>

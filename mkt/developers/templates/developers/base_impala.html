@@ -28,17 +28,10 @@
             {% endtrans %}
           {% else %}
             {# Pre-IARC public/pending apps. #}
-            {% if next_step['url'] == addon.get_dev_url('ratings') and not passed_iarc_app_disable_date() %}
-              {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
-              {% trans next_url=next_step['url'], next_step_name=next_step['name'], pretty_date=settings.IARC_APP_DISABLE_DATE|datetime %}
-                You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> or else your app will be disabled on {{ pretty_date }}.
-              {% endtrans %}
-            {% else %}
-              {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
-              {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
-                You must set up <a href="{{ next_url }}">{{ next_step_name }}</a>.
-              {% endtrans %}
-            {% endif %}
+            {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
+            {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
+              You must set up <a href="{{ next_url }}">{{ next_step_name }}</a>.
+            {% endtrans %}
           {% endif %}
         </p>
       </div>
