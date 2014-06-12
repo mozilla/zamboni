@@ -1,4 +1,5 @@
 import json
+import uuid
 from decimal import Decimal
 from urlparse import parse_qs
 
@@ -26,6 +27,7 @@ from mkt.prices.views import PricesViewSet
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
 from mkt.webpay.models import ProductIcon
 from users.models import UserProfile
 
@@ -133,62 +135,81 @@ class TestStatus(BaseAPI):
 
     def setUp(self):
         super(TestStatus, self).setUp()
-        self.contribution = Contribution.objects.create(
-            addon_id=337141, user_id=2519, type=CONTRIB_PURCHASE,
-            uuid='some:uid')
-        self.get_url = reverse('webpay-status',
-                               kwargs={'uuid': self.contribution.uuid})
-        # No need to rely on a purchase record.
-        self.contribution.addon.addonpurchase_set.get().delete()
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.price = Price.objects.get(pk=1)
+        self.user = UserProfile.objects.get(pk=2519)
 
-    def get(self, expected_status=200):
-        res = self.client.get(self.get_url)
+    def get_inapp_product(self):
+        return InAppProduct.objects.create(
+            logo_url='logo.png',
+            name='Magical Unicorn',
+            price=self.price,
+            webapp=self.webapp
+        )
+
+    def get_contribution(self, user=None, inapp=None):
+        return Contribution.objects.create(
+            addon=self.webapp,
+            inapp_product=inapp,
+            type=CONTRIB_PURCHASE,
+            user=user or self.user,
+            uuid=str(uuid.uuid4()),
+        )
+
+    def get_contribution_url(self, contribution=None):
+        contribution = contribution or self.get_contribution()
+        return reverse('webpay-status', kwargs={'uuid': contribution.uuid})
+
+    def get_status(self, url=None, expected_status=200):
+        url = url or self.get_contribution_url()
+        res = self.client.get(url)
         eq_(res.status_code, expected_status, res)
         return json.loads(res.content)
 
+    def validate_inapp_receipt(self, receipt, contribution):
+        eq_(receipt['typ'], 'purchase-receipt')
+        eq_(receipt['product']['url'], contribution.addon.origin)
+        storedata = parse_qs(receipt['product']['storedata'])
+        eq_(storedata['id'][0], str(contribution.addon.pk))
+        eq_(storedata['contrib'][0], str(contribution.pk))
+        eq_(storedata['inapp_id'][0], str(contribution.inapp_product_id))
+        assert 'user' in receipt, (
+            'The web platform requires a user value')
+
     def test_allowed(self):
-        self._allowed_verbs(self.get_url, ['get'])
+        self._allowed_verbs(self.get_contribution_url(), ['get'])
 
     def test_get(self):
-        data = self.get()
+        data = self.get_status(self.get_contribution_url())
         eq_(data['status'], 'complete')
         # Normal transactions should not produce receipts.
         eq_(data['receipt'], None)
 
     def test_completed_inapp_purchase(self):
-        price = Price.objects.get(pk=1)
-        inapp = InAppProduct.objects.create(
-            logo_url='logo.png', name='Magical Unicorn', price=price,
-            webapp=self.contribution.addon)
-        self.contribution.update(inapp_product=inapp)
-
-        data = self.get()
+        contribution = self.get_contribution(inapp=self.get_inapp_product())
+        data = self.get_status(self.get_contribution_url(contribution))
         eq_(data['status'], 'complete')
         receipt = crack(data['receipt'])[0]
-        eq_(receipt['typ'], 'purchase-receipt')
-        eq_(receipt['product']['url'], self.contribution.addon.origin)
-        storedata = parse_qs(receipt['product']['storedata'])
-        eq_(storedata['id'][0], str(self.contribution.addon.pk))
-        eq_(storedata['contrib'][0], str(self.contribution.pk))
-        eq_(storedata['inapp_id'][0], str(self.contribution.inapp_product_id))
-        assert 'user' in receipt, (
-            'The web platform requires a user value')
+        self.validate_inapp_receipt(receipt, contribution)
 
     def test_no_contribution(self):
-        self.contribution.delete()
-        data = self.get()
+        contribution = self.get_contribution()
+        url = self.get_contribution_url(contribution)
+        contribution.delete()
+        data = self.get_status(url=url)
         eq_(data['status'], 'incomplete')
 
     def test_incomplete(self):
-        self.contribution.update(type=CONTRIB_PENDING)
-        data = self.get()
+        contribution = self.get_contribution()
+        contribution.update(type=CONTRIB_PENDING)
+        data = self.get_status(url=self.get_contribution_url(contribution))
         eq_(data['status'], 'incomplete')
 
     def test_not_owner(self):
-        userprofile2 = UserProfile.objects.get(pk=31337)
-        self.contribution.update(user=userprofile2)
+        user2 = UserProfile.objects.get(pk=31337)
+        contribution = self.get_contribution(user=user2)
         # Not owning a contribution is okay.
-        data = self.get()
+        data = self.get_status(self.get_contribution_url(contribution))
         eq_(data['status'], 'complete')
 
 
