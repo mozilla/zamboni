@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-12 01:18+0000\n"
+"PO-Revision-Date: 2014-06-13 02:08+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402535881.0\n"
+"X-POOTLE-MTIME: 1402625310.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7532,18 +7532,27 @@ msgstr "Logótipo"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Para ver e transferir o logótipo do Firefox Marketplace, por favor visite o "
+"<a href=\"%(style_guide_url)s\">guia de estilo da Mozilla</a>."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:15
 msgid "One your app is finished, you need to deploy it. If you're publishing through the Firefox Marketplace you have some options on how to deploy your app."
 msgstr ""
+"Assim que a sua aplicação estiver terminada, necessita de a distribuir. Se a "
+"estiver a publicar através do Firefox Marketplace tem algumas opções sobre "
+"como distribuir a sua aplicação."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:27
 msgid "You can host your app on a publicly accessible Web server, just like any other website."
 msgstr ""
+"Pode alojar a sua aplicação num servidor web público, como qualquer outro "
+"site web."
 
 #: mkt/ecosystem/templates/ecosystem/publish_deploy.html:38
 msgid "You can package your app as a zip file, instead of hosting it on a web server."
 msgstr ""
+"Pode empacotar a sua aplicação como um ficheiro zip em vez de a alojar num "
+"servidor web."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -7571,7 +7580,7 @@ msgstr "Como funcionam os pagamentos?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Como posso fazer a gestão das taxas das minhas vendas?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Known issues"
@@ -7594,6 +7603,8 @@ msgstr "Stack Overflow"
 #: mkt/ecosystem/templates/ecosystem/support.html:69
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
 msgstr ""
+"Se se quiser envolver com outros programadores, junte-se às nossas vibrantes "
+"comunidades nestas listas de correio:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (English)"
@@ -7605,35 +7616,41 @@ msgstr "Mozilla Web apps (em Português Brasileiro)"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
 msgid "Start Screen"
-msgstr ""
+msgstr "Ecrã inicial"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:23
 msgid "Timer"
-msgstr ""
+msgstr "Temporizador"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:28
 msgid "Lap History"
-msgstr ""
+msgstr "Histórico da volta"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:35
 msgid ""
 "Chrono is a simple chronometer with lap counter, built to highlight various aspects of the Firefox OS development process. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full "
 "developer walkthrough </a>"
 msgstr ""
+"O Chrono é um simples cronometro com um contador de voltas, construído para "
+"destacar vários aspetos do processo de desenvolvimento do Firefox OS. <a "
+"href=\"%(walkthrough_link)s\" class=\"walkthrough\">Leia o guia passo a passo do "
+"programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:47 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:71
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:48 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:73
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:96 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:51
 msgid "Web API Usage"
-msgstr ""
+msgstr "Utilização da API Web"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:52
 msgid "Chrono does not require a network connection to run."
-msgstr ""
+msgstr "Chrono não necessita de uma ligação à rede para ser executado."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:60
 msgid "Uses the Open Web Apps installation API to allow installation on the device independently on Marketplace."
 msgstr ""
+"Utiliza a API de instalação de aplicações web abertas para permitir a "
+"instalação no dispositivo de modo independente do Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:181
 msgid "Custom Elements"
@@ -7642,101 +7659,114 @@ msgstr "Elementos personalizados"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:77
 msgid "Chrono uses the same UI components as the built-in apps."
 msgstr ""
+"O Chrono utiliza os mesmos componentes de interface do utilizador que as "
+"aplicações internas."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:88 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:97
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:72 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:107
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:49 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:47
 msgid "Third-party Libraries"
-msgstr ""
+msgstr "Bibliotecas de terceiros"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:93
 msgid "Uses a volo.js script to optimize app before release, i.e. by auto-generating an appcache manifest."
 msgstr ""
+"Utiliza o script volo.js para otimizar a aplicação antes do lançamento, por "
+"exemplo, gerando de forma automática um manifesto appcache."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:102 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:93
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:70
 msgid "Uses jQuery to simplify common tasks such as DOM manipulation."
 msgstr ""
+"Utiliza o jQuery para simplificar tarefas comuns como a manipulação do DOM."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:101
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:78 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:84
 msgid "Uses RequireJS to split JavaScript code into more easily maintainable modules."
 msgstr ""
+"Utiliza o RequireJS para separar código JavaScript em módulos mais fáceis de "
+"manter."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:122 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:124
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:113 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:133
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:90 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:197
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:84
 msgid "View Source"
-msgstr ""
+msgstr "Ver código-fonte"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Difficulty:"
-msgstr ""
+msgstr "Dificuldade:"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130
 msgid "Easy"
-msgstr ""
+msgstr "Fácil"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:133 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:144
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:101 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:208
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:95
 msgid "Code Breakdown"
-msgstr ""
+msgstr "Resumo do código"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
-msgstr ""
+msgstr "7%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:136
 msgid "11%"
-msgstr ""
+msgstr "11%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:139
 msgid "82%"
-msgstr ""
+msgstr "82%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:18
 msgid "Euros to Canadian Dollars"
-msgstr ""
+msgstr "Euros para Dólares Canadenses"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:23
 msgid "Canadian Dollars to Euros"
-msgstr ""
+msgstr "Dólares Canadenses para Euros"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:28
 msgid "Conversion Selector"
-msgstr ""
+msgstr "Seletor de conversão"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:35
 msgid ""
 "Face Value is a currency conversion app that does things differently: instead of converting arbitrary amounts it shows you the actual denominations in the country you're visiting. It lets you think "
 "in your home currency even with a foreign currency in your pocket. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"O Face Value é uma aplicação de conversão de moeda que faz as coisas de "
+"forma diferente: em vez de converter valores arbitrários, mostra as "
+"denominações atuais do país que está a visitar. Permite-lhe pensar na moeda "
+"do seu país mesmo com uma moeda estrangeira no seu bolso. <a href=\"%"
+"(walkthrough_link)s\" class=\"walkthrough\">Leia o guia passo a passo completo "
+"do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:50 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:48
 msgid "Folder Structure"
-msgstr ""
+msgstr "Estrutura de pastas"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:53
 msgid "integration tests"
-msgstr ""
+msgstr "testes de integração"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:54 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:53
 msgid "client-side code/styles"
-msgstr ""
+msgstr "código do lado cliente/estilos"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "ficheiro HTML base"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
 msgid "EJS/HTML templates"
-msgstr ""
+msgstr "Modelos EJS/HTML"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:59
 msgid ""
