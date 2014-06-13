@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-09 20:31+0000\n"
+"PO-Revision-Date: 2014-06-13 18:18+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402345878.0\n"
+"X-POOTLE-MTIME: 1402683485.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -38,15 +38,15 @@ msgstr "Esperimentala"
 
 #: apps/addons/forms.py:39
 msgid "This name is already in use. Please choose another."
-msgstr "Izen hau hartuta dago. Mesedez aukeratu beste bat."
+msgstr "Izen hori norbait ari da erabiltzen. Hautatu beste bat."
 
 #: apps/addons/forms.py:51 mkt/developers/forms.py:568 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
-msgstr "Slug hau dagoeneko erabiltzen ari da. Aukeratu beste bat."
+msgstr "Slug hori norbait ari da erabiltzen. Hautatu beste bat."
 
 #: apps/addons/forms.py:54 mkt/developers/forms.py:571 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Slug-a ezin da \"%s\" izan. Aukeratu beste bat."
+msgstr "Slug-ak ezin du \"%s\" izan. Hautatu beste bat."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:73
@@ -65,7 +65,7 @@ msgstr[1] "\"{0}\" erreserbatutako etiketak dira, eta ezin dira erabili."
 #: apps/addons/forms.py:91
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Behar baino etiketa {0} gehiago duzu."
+msgstr[0] "Behar baino {0} etiketa gehiago dituzu."
 msgstr[1] "Behar baino {0} etiketa gehiago dituzu."
 
 #: apps/addons/forms.py:96
@@ -99,7 +99,9 @@ msgstr "Askotarikoa kategoria ezin da beste kategoriekin konbinatu."
 
 #: apps/addons/forms.py:349
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Zure hizkuntza lehenetsia aldatu baino lehen, hizkuntza horretan izena, laburpena eta deskribapena izan behar dituzu. %s falta zaizu."
+msgstr ""
+"Zure hizkuntza lehenetsia aldatu baino lehen, izen bat, laburpen bat eta "
+"deskribapen bat izan behar dituzu hizkuntza horretan. %s falta zaizu."
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -253,7 +255,9 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"Garapen-kanalak gehigarri honen bertsio berri esperimental bat probatzeko aukera ematen dizu, argitaratu baino lehen. Behin garapeneko bertsioa instalatzen duzunean, kanal honetako eguneratzeak "
+"Garapen-kanalak gehigarri honen bertsio berri esperimentalak probatzea "
+"ahalbidetzen dizu, bertsio horiek publiko orokorrarentzat argitaratuak izan "
+"baino lehen. Garapen-bertsioa instalatu ondoren, kanal honetako eguneraketak "
 "jasotzen jarraituko duzu."
 
 #: apps/addons/templates/addons/details_box.html:165 apps/addons/templates/addons/impala/details.html:237
@@ -265,8 +269,10 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Kontuz:</strong> Gehigarri honen garapeneko bertsioak ez ditu Mozillak berrikusten. Behin garapeneko bertsio bat instalatzen duzunean, garatzaile honen garapeneko eguneratzeak jasotzen "
-"jarraituko duzu. Garapeneko eguneratzeak jasotzeari uzteko, berrinstalatu bertsio lehenetsia goiko loturari jarraituz."
+"<strong>Kontuz:</strong> Mozillak ez ditu gehigarri honen garapeneko "
+"bertsioak berrikusi. Garapen-bertsio bat instalatzen baduzu, garatzailearen "
+"garapen-eguneraketak jasotzen jarraituko duzu. Garapen-bertsio gehiagorik "
+"jaso nahi ez baduzu, berrinstalatu bertsio lehenetsia goiko esteka erabiliz."
 
 #: apps/addons/templates/addons/details_box.html:178 apps/addons/templates/addons/impala/details.html:246
 msgid "Version {0}:"
@@ -274,7 +280,7 @@ msgstr "{0} bertsioa:"
 
 #: apps/addons/templates/addons/details_box.html:192 mkt/reviewers/templates/reviewers/includes/details.html:172
 msgid "Nothing to see here! The developer did not include any details."
-msgstr "Hemen ez dago ikustekorik ezer! Garatzaileak ez du inolako xehetasunik gehitu."
+msgstr "Ez dago ezer ikusteko hemen! Garatzaileak ez du xehetasunik gehitu."
 
 #: apps/addons/templates/addons/details_box.html:198
 msgctxt "addons_display_release_notes"
@@ -395,7 +401,9 @@ msgstr "Lagundu Firefoxen bertsio berriak probatzen"
 
 #: apps/addons/templates/addons/popups.html:58
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Gehigarri honek %(app)s {new_version} behar du. Une honetan %(app)s {old_version} ari zara erabiltzen."
+msgstr ""
+"Gehigarri honek %(app)aren {new_version} behar du. Orain  %(app)aren "
+"{old_version} erabiltzen ari zara."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:63
@@ -404,7 +412,10 @@ msgstr "Bertsio-berritu {0}"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>Kontuz:</strong> Gehigarri hau ez du Mozillak berrikusi. Kontuz ibili hirugarrengoen softwarea instalatzerakoan, ordenagailua kaltetu baitezake."
+msgstr ""
+"<strong>Kontuz:</strong> Mozillak ez du gehigarri hau berrikusi. Kontuz "
+"ibili hirugarrenen softwarea instalatzean, zure ordenagailua kaltetu "
+"baitezake."
 
 #: apps/addons/templates/addons/popups.html:82
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -435,7 +446,10 @@ msgstr "Gehigarriaren QR kodea"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr "{0} zure mugikorreko Firefoxen eduki nahi duzu? Eskaneatu QR kode hau, zuzenean mugikorrean instalatzeko. (QR irakurgailu bat beharko duzu. Ez baduzu halakorik, bilatu zure gailuko dendan.)"
+msgstr ""
+"{0} zure Firefox mugikorrean nahi duzu? Eskaneatu QR kode hau zuzenean zure "
+"sakelakoan instalatzeko. (QR irakurgailu bat behar duzu. Bilatu zure "
+"sakelakoaren dendan oraindik ez badaukazu.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:11
 #: apps/addons/templates/addons/impala/details.html:291
@@ -447,8 +461,10 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Gehigarri honek <a href=\"%(url)s\">gure politikak</a> urratzen dituela uste baduzu, edo segurtasun edo pribatutasun arazoak dituela, erabili beheko inprimakia zure kezka deskribatzeko. Ez erabili "
-"inprimaki hau beste ezertarako, mesedez."
+"Gehigarri honek <a href=\"%(url)s\">gure politikak</a> bortxatzen dituela edo "
+"segurtasun- edo pribatutasun-arazoak dituela uste baduzu, erabili beheko "
+"formularioa zure kezkak deskribatzeko. Ez erabili formulario hau beste "
+"edozertarako."
 
 #: apps/addons/templates/addons/report_abuse.html:33
 msgid "Send Report"
@@ -496,8 +512,9 @@ msgstr "<a href=\"%(login)s\">Hasi saioa</a> berrikuspen bat bidaltzeko"
 #: apps/addons/templates/addons/review_add_box.html:16 apps/addons/templates/addons/impala/review_add_box.html:23
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
-"Ez eman programa-erroreen berri berrikuspenetan mesedez. Ez dugu zure helbide elektronikoa gehigarrien garatzaileekin partekatzen eta agian beharrezkoa zaie zurekin harremanetan jartzea zure arazoa "
-"konpontzen laguntzeko."
+"Ez bidali akats-jakinarazpenak berrikuspenetan. Ez diegu zure posta-helbidea "
+"ematen gehigarrien garatzaileei, baina haiek zurekin harremanetan jarri "
+"nahi izan dezakete zure arazoa konpontzeko."
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:38
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
@@ -610,12 +627,17 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"Garapen-kanalak gehigarri honen bertsio berri esperimentala probatzeko aukera ematen dizu, argitaratu baino lehen. Behin garapeneko bertsioa instalatzen duzunean, kanal honetako eguneratzeak "
-"jasotzen jarraituko duzu. Garapeneko eguneratzeak jasotzeari uzteko, berrinstalatu bertsio lehenetsia goiko loturari jarraituz."
+"Garapen-kanalak gehigarri honen bertsio berri esperimentalak probatzea "
+"ahalbidetzen dizu, bertsio horiek publiko orokorrarentzat argitaratuak izan "
+"baino lehen. Garapen-bertsioa instalatu ondoren, kanal honetako eguneraketak "
+"jasotzen jarraituko duzu. Garapen-bertsio gehiagorik jaso nahi ez baduzu, "
+"berrinstalatu bertsio lehenetsia goiko esteka erabiliz."
 
 #: apps/addons/templates/addons/impala/details.html:241
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Kontuz:</strong> Gehigarri honen garapeneko bertsioak ez ditu Mozillak berrikusi."
+msgstr ""
+"<strong>Kontuz:</strong> Mozillak ez ditu gehigarri honen garapeneko "
+"bertsioak berrikusi."
 
 #: apps/addons/templates/addons/impala/details.html:269 apps/addons/templates/addons/impala/details.html:278 apps/addons/templates/addons/impala/details.html:290
 #: apps/addons/templates/addons/impala/review_add_box.html:5 mkt/developers/templates/developers/apps/owner.html:77 mkt/developers/templates/developers/payments/includes/account_list.html:5
@@ -797,7 +819,9 @@ msgstr "{0}(e)rako gehigarriak"
 
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:49
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr "Firefox eduki behar duzu gehigarriak instalatu ahal izateko. <a href=\"http://mozilla.com/mobile\">Ikasi gehiago&nbsp;&raquo;</a>"
+msgstr ""
+"Firefox behar duzu gehigarriak instalatzeko. <a "
+"href=\"http://mozilla.com/mobile\">Gehiago&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:17
 msgid "Easy ways to personalize."
@@ -812,8 +836,10 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Gehigarriak, Firefox funtzionalitate eta estilo berriekin pertsonalizatzeko aukera ematen dizuten aplikazioak dira. Webgune baten izena gaizki idazten duzunean, edo lanpetutako orri bat ezin "
-"duzunean irakurri, beti dago gehigarri bat nabigazioa hobetzen laguntzeko."
+"Gehigarriak Firefox funtzionaltasun eta estilo gehiagorekin "
+"pertsonalizatzeko erabil ditzakezun aplikazioak dira. Webgune baten izena "
+"gaizki idatzi duzula, edo lanpetuta dagoen orri bat ezin duzula irakurri... "
+"baietz gehigarri bat dagoela zure nabigazioa hobetzeko."
 
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:22 mkt/developers/templates/developers/apps/edit/basic.html:148
 #: mkt/reviewers/templates/reviewers/includes/details.html:137 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/search/forms.py:135 templates/categories.html:7
@@ -1009,7 +1035,7 @@ msgstr "{addon} {versjon} gora igorrita."
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:33 mkt/reviewers/forms.py:122
 msgid "Escalated"
-msgstr "Gora igorrita"
+msgstr "Goratua"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
@@ -1183,15 +1209,15 @@ msgstr "Kontua eguneratuta."
 
 #: apps/amo/log.py:427
 msgid "Valid receipt was checked for {addon}."
-msgstr ""
+msgstr "{addon}(r)entzako baliozko ordainagiria egiaztatu da."
 
 #: apps/amo/log.py:432
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Goratzea ezabatu da {addon}(r)entzat."
 
 #: apps/amo/log.py:433 mkt/constants/comm.py:37
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Goratzea ezabatu da"
 
 #: apps/amo/log.py:441
 msgid "App disabled"
@@ -1199,7 +1225,7 @@ msgstr "Aplikazioa desgaitu da"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} goratu da abusu-salaketa asko izan dituelako."
 
 #: apps/amo/log.py:449
 msgid "High Abuse Reports"
@@ -1207,7 +1233,7 @@ msgstr "Abusu-salaketa ugari"
 
 #: apps/amo/log.py:456
 msgid "{addon} escalated because of high number of refund requests."
-msgstr ""
+msgstr "{addon} goratu da dirua itzultzeko eskaera asko izan dituelako."
 
 #: apps/amo/log.py:457
 msgid "High Refund Requests"
@@ -1215,7 +1241,7 @@ msgstr "Dirua itzultzeko eskaera ugari"
 
 #: apps/amo/log.py:464
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "{addon} berriro berrikusi da bere manifestua aldatu delako."
 
 #: apps/amo/log.py:465
 msgid "Manifest Change"
@@ -1223,7 +1249,7 @@ msgstr "Manifestuaren aldaketa"
 
 #: apps/amo/log.py:472
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "{addon} berriro berrikusi da, aplikazioa Premium izatera pasa delako."
 
 #: apps/amo/log.py:473
 msgid "Premium Type Upgrade"
@@ -1231,19 +1257,19 @@ msgstr ""
 
 #: apps/amo/log.py:480
 msgid "Re-review cleared for {addon}."
-msgstr ""
+msgstr "Bigarren berrikuspena ezabatuta {addon}(r)entzat."
 
 #: apps/amo/log.py:481 mkt/constants/comm.py:40
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Bigarren berrikuspena ezabatua"
 
 #: apps/amo/log.py:488
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} berrikusleak goratua."
 
 #: apps/amo/log.py:489
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Berrikusleak goratua"
 
 #: apps/amo/log.py:497
 msgid "Video removed from {addon} because of a problem with the video."
@@ -1255,7 +1281,7 @@ msgstr "Bideoa kenduta"
 
 #: apps/amo/log.py:504
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} berriro berrikusi da gailu berria(k) gehitu d(ir)elako."
 
 #: apps/amo/log.py:505
 msgid "Device(s) Added"
@@ -1495,7 +1521,7 @@ msgstr "Gehiago&hellip;"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Gehigarriak Mobile bertsiorako"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
@@ -1619,19 +1645,19 @@ msgstr "Mahaigainekoa"
 #: apps/constants/applications.py:161 mkt/constants/platforms.py:47 mkt/constants/platforms.py:68 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:45
 #: mkt/constants/tests/test_platforms.py:58 mkt/constants/tests/test_platforms.py:75 mkt/constants/tests/test_platforms.py:96
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: apps/constants/applications.py:168 mkt/constants/platforms.py:48 mkt/constants/platforms.py:69 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:46
 #: mkt/constants/tests/test_platforms.py:59 mkt/constants/tests/test_platforms.py:76 mkt/constants/tests/test_platforms.py:97
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: apps/constants/applications.py:175 mkt/constants/platforms.py:32 mkt/constants/platforms.py:57 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:25
 #: mkt/constants/tests/test_platforms.py:34 mkt/constants/tests/test_platforms.py:44 mkt/constants/tests/test_platforms.py:56 mkt/constants/tests/test_platforms.py:66
 #: mkt/constants/tests/test_platforms.py:74 mkt/constants/tests/test_platforms.py:85 mkt/constants/tests/test_platforms.py:95 mkt/ecosystem/templates/ecosystem/dev_phone.html:10
 #: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:52
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: apps/constants/base.py:26 mkt/lookup/views.py:156
 msgid "Incomplete"
@@ -1690,23 +1716,23 @@ msgstr ""
 
 #: apps/constants/base.py:43
 msgid "Blocked"
-msgstr ""
+msgstr "Blokeatua"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr ""
+msgstr "Argitaratua"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr ""
+msgstr "Onartua baina argitaratu gabea"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
-msgstr ""
+msgstr "Zaharkitua"
 
 #: apps/constants/base.py:143
 msgid "Full"
-msgstr ""
+msgstr "Osoa"
 
 #: apps/constants/base.py:144
 msgid "Preliminary"
@@ -1741,7 +1767,7 @@ msgstr "Hedapena"
 
 #: apps/constants/base.py:183
 msgid "Complete Theme"
-msgstr ""
+msgstr "Gai osoa"
 
 #: apps/constants/base.py:184
 msgid "Dictionary"
@@ -1767,7 +1793,7 @@ msgstr "Gaia"
 #: mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29
 #: mkt/reviewers/templates/reviewers/queue_region.html:24 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Aplikazioa"
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:195 templates/menu_links.html:8
@@ -1776,7 +1802,7 @@ msgstr "Hedapenak"
 
 #: apps/constants/base.py:196
 msgid "Complete Themes"
-msgstr ""
+msgstr "Gai osoak"
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:197
@@ -1802,16 +1828,16 @@ msgstr "Gaiak"
 
 #: apps/constants/base.py:202 mkt/reviewers/helpers.py:33 mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:192 templates/mobile/base_apps.html:35
 msgid "Apps"
-msgstr ""
+msgstr "Aplikazioak"
 
 #: apps/constants/base.py:287 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:56 mkt/search/forms.py:28 mkt/search/forms.py:40
 #: mkt/submit/templates/submit/manifest.html:32
 msgid "Free"
-msgstr ""
+msgstr "Doan"
 
 #: apps/constants/base.py:288 mkt/search/forms.py:42
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: apps/constants/base.py:289
 msgid "Premium with in-app payments"
@@ -1919,7 +1945,7 @@ msgstr ""
 
 #: apps/constants/base.py:458
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Web aplikazioaren bigarren berrikuspena"
 
 #: apps/constants/base.py:459
 msgid "Updated Packaged App Review"
@@ -1935,27 +1961,27 @@ msgstr ""
 
 #: apps/constants/base.py:518
 msgid "Level 1"
-msgstr ""
+msgstr "1. maila"
 
 #: apps/constants/base.py:519
 msgid "Level 2"
-msgstr ""
+msgstr "2. maila"
 
 #: apps/constants/base.py:520
 msgid "Level 3"
-msgstr ""
+msgstr "3. maila"
 
 #: apps/constants/base.py:521
 msgid "Level 4"
-msgstr ""
+msgstr "4. maila"
 
 #: apps/constants/base.py:522
 msgid "Level 5"
-msgstr ""
+msgstr "5. maila"
 
 #: apps/constants/base.py:523
 msgid "Level 6"
-msgstr ""
+msgstr "6. maila"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -1963,27 +1989,27 @@ msgstr "Eskubide guztiak erreserbatuta"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: apps/constants/payments.py:40 apps/constants/payments.py:48
 msgid "Chargeback"
@@ -2043,7 +2069,7 @@ msgstr "Plataforma guztiak"
 
 #: apps/constants/platforms.py:26
 msgid "All Mobile Platforms"
-msgstr ""
+msgstr "Plataforma mugikor guztiak"
 
 #: apps/constants/platforms.py:33
 msgid "Linux"
@@ -2264,11 +2290,11 @@ msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Lehendik dauden hizkuntzak"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Hizkuntza berriak"
 
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -2281,7 +2307,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:157 mkt/developers/templates/developers/payments/premium.html:256 mkt/developers/templates/developers/payments/premium.html:270
 #: mkt/developers/templates/developers/payments/premium.html:309
 msgid "Save Changes"
-msgstr ""
+msgstr "Gorde aldaketak"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -2290,10 +2316,12 @@ msgstr "Baztertu aldaketak"
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
+"Seguru zaude <b>{0}</b> itzulpen guztiak kendu nahi dituzula? Hau ezin da "
+"desegin."
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Ezabatu hizkuntza"
 
 #: apps/users/helpers.py:56
 msgctxt "user_list_others"
@@ -2374,15 +2402,15 @@ msgstr ""
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Erabiltzaile-jakinarazpenak"
 
 #: apps/users/views.py:72
 msgid "An email address is required."
-msgstr ""
+msgstr "Beharrezkoa da posta-helbide bat."
 
 #: apps/users/views.py:79
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Ez dago posta-helbide hori duen erabiltzailerik."
 
 #: apps/users/views.py:80
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
@@ -2418,7 +2446,8 @@ msgstr "Izena"
 
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
-msgstr "Hautatu baliozko aukera bat. %(value)s ez da aukera posible bat."
+msgstr ""
+"Hautatu baliozko aukera bat. %(value)s is not one of the available choices."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
@@ -2446,7 +2475,7 @@ msgstr "Nabarmendutako aplikazioen zerrenda"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Operatzaile-apala"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
@@ -2474,11 +2503,11 @@ msgstr ""
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "Eranskina:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:347
 msgid "Description:"
-msgstr ""
+msgstr "Deskribapena:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
@@ -2602,7 +2631,7 @@ msgstr "Bhutan"
 
 #: mkt/constants/bango.py:43
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivia"
 
 #: mkt/constants/bango.py:44
 msgid "Bonaire, Saint Eustatius and Saba"
@@ -2610,11 +2639,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:45
 msgid "Bosnia and Herzegovina"
-msgstr ""
+msgstr "Bosnia‐Herzegovina"
 
 #: mkt/constants/bango.py:46
 msgid "Botswana"
-msgstr ""
+msgstr "Botswana"
 
 #: mkt/constants/bango.py:47
 msgid "Bouvet Island"
@@ -2622,7 +2651,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:81
 msgid "Brazil"
-msgstr ""
+msgstr "Brasil"
 
 #: mkt/constants/bango.py:49
 msgid "British Indian Ocean Territory"
@@ -2634,31 +2663,31 @@ msgstr ""
 
 #: mkt/constants/bango.py:51
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: mkt/constants/bango.py:52
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: mkt/constants/bango.py:53
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: mkt/constants/bango.py:54
 msgid "Cambodia"
-msgstr ""
+msgstr "Kanbodia"
 
 #: mkt/constants/bango.py:55
 msgid "Cameroon"
-msgstr ""
+msgstr "Kamerun"
 
 #: mkt/constants/bango.py:56
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: mkt/constants/bango.py:57
 msgid "Cape Verde"
-msgstr ""
+msgstr "Cabo Verde"
 
 #: mkt/constants/bango.py:58
 msgid "Cayman Islands"
@@ -2666,15 +2695,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:59
 msgid "Central African Republic"
-msgstr ""
+msgstr "Afrika Erdiko Errepublika"
 
 #: mkt/constants/bango.py:60
 msgid "Chad"
-msgstr ""
+msgstr "Txad"
 
 #: mkt/constants/bango.py:61 mkt/constants/regions.py:242
 msgid "Chile"
-msgstr ""
+msgstr "Txile"
 
 #: mkt/constants/bango.py:62 mkt/constants/regions.py:222
 msgid "China"
@@ -2714,15 +2743,15 @@ msgstr "Costa Rica"
 
 #: mkt/constants/bango.py:71
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "Boli Kosta"
 
 #: mkt/constants/bango.py:72
 msgid "Croatia"
-msgstr ""
+msgstr "Kroazia"
 
 #: mkt/constants/bango.py:73
 msgid "Cuba"
-msgstr ""
+msgstr "Kuba"
 
 #: mkt/constants/bango.py:74
 msgid "Curaçao"
@@ -2730,11 +2759,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:75
 msgid "Cyprus"
-msgstr ""
+msgstr "Zipre"
 
 #: mkt/constants/bango.py:76
 msgid "Czech Republic"
-msgstr ""
+msgstr "Txekia"
 
 #: mkt/constants/bango.py:77
 msgid "Denmark Do"
@@ -2790,15 +2819,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:90
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: mkt/constants/bango.py:91
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: mkt/constants/bango.py:92
 msgid "France"
-msgstr ""
+msgstr "Frantzia"
 
 #: mkt/constants/bango.py:93
 msgid "French Guiana"
@@ -2814,11 +2843,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:96
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 #: mkt/constants/bango.py:97
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 #: mkt/constants/bango.py:98
 msgid "Georgia"
@@ -2858,7 +2887,7 @@ msgstr "Guam"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:262
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:108
 msgid "Guernsey"
@@ -2866,19 +2895,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:109
 msgid "Guinea"
-msgstr ""
+msgstr "Ginea"
 
 #: mkt/constants/bango.py:110
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Ginea Bissau"
 
 #: mkt/constants/bango.py:111
 msgid "Guyana"
-msgstr ""
+msgstr "Guyana"
 
 #: mkt/constants/bango.py:112
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: mkt/constants/bango.py:113
 msgid "Heard and McDonald Islands"
@@ -2926,43 +2955,43 @@ msgstr "Irlanda"
 
 #: mkt/constants/bango.py:124
 msgid "Isle of Man"
-msgstr ""
+msgstr "Man"
 
 #: mkt/constants/bango.py:125
 msgid "Israel"
-msgstr ""
+msgstr "Israel"
 
 #: mkt/constants/bango.py:126 mkt/constants/regions.py:232
 msgid "Italy"
-msgstr ""
+msgstr "Italia"
 
 #: mkt/constants/bango.py:127
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaika"
 
 #: mkt/constants/bango.py:128
 msgid "Japan"
-msgstr ""
+msgstr "Japonia"
 
 #: mkt/constants/bango.py:129
 msgid "Jersey"
-msgstr ""
+msgstr "Jersey"
 
 #: mkt/constants/bango.py:130
 msgid "Jordan"
-msgstr ""
+msgstr "Jordania"
 
 #: mkt/constants/bango.py:131
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazakhstan"
 
 #: mkt/constants/bango.py:132
 msgid "Kenya"
-msgstr ""
+msgstr "Kenya"
 
 #: mkt/constants/bango.py:133
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: mkt/constants/bango.py:134
 msgid "Korea, Democratic People's Rep"
@@ -3002,7 +3031,7 @@ msgstr "Lesotho"
 
 #: mkt/constants/bango.py:143
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: mkt/constants/bango.py:144
 msgid "Libyan Arab Jamahiriya"
@@ -3014,11 +3043,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:146
 msgid "Lithuania"
-msgstr ""
+msgstr "Lituania"
 
 #: mkt/constants/bango.py:147
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxenburgo"
 
 #: mkt/constants/bango.py:148
 msgid "Macao"
@@ -3026,15 +3055,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:149
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "Mazedoniako Errepublika"
 
 #: mkt/constants/bango.py:150
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagaskar"
 
 #: mkt/constants/bango.py:151
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: mkt/constants/bango.py:152
 msgid "Malaysia"
@@ -3074,7 +3103,7 @@ msgstr "Mayotte"
 
 #: mkt/constants/bango.py:161 mkt/constants/regions.py:133
 msgid "Mexico"
-msgstr ""
+msgstr "Mexiko"
 
 #: mkt/constants/bango.py:162
 msgid "Micronesia, Federated States of"
@@ -3082,31 +3111,31 @@ msgstr ""
 
 #: mkt/constants/bango.py:163
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Modavia"
 
 #: mkt/constants/bango.py:164
 msgid "Monaco"
-msgstr ""
+msgstr "Monako"
 
 #: mkt/constants/bango.py:165
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: mkt/constants/bango.py:166 mkt/constants/regions.py:164
 msgid "Montenegro"
-msgstr ""
+msgstr "Montenegro"
 
 #: mkt/constants/bango.py:167
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: mkt/constants/bango.py:168
 msgid "Morocco"
-msgstr ""
+msgstr "Maroko"
 
 #: mkt/constants/bango.py:169
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambike"
 
 #: mkt/constants/bango.py:170
 msgid "Myanmar"
@@ -3146,7 +3175,7 @@ msgstr "Niger"
 
 #: mkt/constants/bango.py:179
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
 #: mkt/constants/bango.py:180
 msgid "Niue"
@@ -3162,23 +3191,23 @@ msgstr ""
 
 #: mkt/constants/bango.py:183
 msgid "Norway"
-msgstr ""
+msgstr "Norvegia"
 
 #: mkt/constants/bango.py:184
 msgid "Oman"
-msgstr ""
+msgstr "Oman"
 
 #: mkt/constants/bango.py:185
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistan"
 
 #: mkt/constants/bango.py:186
 msgid "Palau"
-msgstr ""
+msgstr "Palay"
 
 #: mkt/constants/bango.py:187
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Palestina"
 
 #: mkt/constants/bango.py:188 mkt/constants/regions.py:292
 msgid "Panama"
@@ -3218,7 +3247,7 @@ msgstr "Puerto Rico"
 
 #: mkt/constants/bango.py:197
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: mkt/constants/bango.py:198
 msgid "Réunion"
@@ -3226,15 +3255,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:199
 msgid "Romania"
-msgstr ""
+msgstr "Errumania"
 
 #: mkt/constants/bango.py:200
 msgid "Russian Federation"
-msgstr ""
+msgstr "Errusia"
 
 #: mkt/constants/bango.py:201
 msgid "Rwanda"
-msgstr ""
+msgstr "Ruanda"
 
 #: mkt/constants/bango.py:202
 msgid "Saint Barthélemy"
@@ -3290,19 +3319,19 @@ msgstr "Serbia"
 
 #: mkt/constants/bango.py:215
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Serbia eta Montenegro"
 
 #: mkt/constants/bango.py:216
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelleak"
 
 #: mkt/constants/bango.py:217
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leona"
 
 #: mkt/constants/bango.py:218
 msgid "Singapore"
-msgstr ""
+msgstr "Singapur"
 
 #: mkt/constants/bango.py:219
 msgid "Sint Maarten (Dutch part)"
@@ -3310,11 +3339,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:220
 msgid "Slovakia"
-msgstr ""
+msgstr "Eslovakia"
 
 #: mkt/constants/bango.py:221
 msgid "Slovenia"
-msgstr ""
+msgstr "Eslovenia"
 
 #: mkt/constants/bango.py:222
 msgid "Solomon Islands"
@@ -3322,7 +3351,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:223
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 #: mkt/constants/bango.py:224
 msgid "South Africa"
@@ -3362,31 +3391,31 @@ msgstr "Swazilandia"
 
 #: mkt/constants/bango.py:233
 msgid "Sweden"
-msgstr ""
+msgstr "Suedia"
 
 #: mkt/constants/bango.py:234
 msgid "Switzerland"
-msgstr ""
+msgstr "Suitza"
 
 #: mkt/constants/bango.py:235
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Siria"
 
 #: mkt/constants/bango.py:236
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Taiwan"
 
 #: mkt/constants/bango.py:237
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tajikistan"
 
 #: mkt/constants/bango.py:238
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tanzania"
 
 #: mkt/constants/bango.py:239
 msgid "Thailand"
-msgstr ""
+msgstr "Thailandia"
 
 #: mkt/constants/bango.py:240
 msgid "Timor-Leste"
@@ -3394,7 +3423,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:241
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: mkt/constants/bango.py:242
 msgid "Tokelau"
@@ -3434,19 +3463,19 @@ msgstr "Uganda"
 
 #: mkt/constants/bango.py:251
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraina"
 
 #: mkt/constants/bango.py:252
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Arabiar Emirerri Batuak"
 
 #: mkt/constants/bango.py:253 mkt/constants/regions.py:72
 msgid "United Kingdom"
-msgstr ""
+msgstr "Erresuma Batua"
 
 #: mkt/constants/bango.py:254 mkt/constants/regions.py:63
 msgid "United States"
-msgstr ""
+msgstr "Estatu Batua"
 
 #: mkt/constants/bango.py:255
 msgid "United States Minor Outlying Islands"
@@ -3454,19 +3483,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:202
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguai"
 
 #: mkt/constants/bango.py:257
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekistan"
 
 #: mkt/constants/bango.py:258
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: mkt/constants/bango.py:259
 msgid "Venezuela, Bolivarian Republic of"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/bango.py:260
 msgid "Viet Nam"
@@ -3514,15 +3543,15 @@ msgstr ""
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "Onartuta, baina publikatzeko zain"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Abusu-salaketa ugarien ondorioz igorria"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Dirua itzultzeko eskaera ugarien ondorioz goratua"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -3566,11 +3595,11 @@ msgstr ""
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Fitxategia"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "Bateria"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
@@ -3582,7 +3611,7 @@ msgstr ""
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Kontaktuak"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
@@ -3630,7 +3659,7 @@ msgstr ""
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
-msgstr ""
+msgstr "Hurbiltasuna"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -3893,7 +3922,7 @@ msgstr ""
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox for Desktop"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
@@ -3901,11 +3930,11 @@ msgstr ""
 
 #: mkt/constants/platforms.py:78
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac eta Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:82 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android smartphone-ak"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
@@ -3917,15 +3946,15 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:11 mkt/constants/ratingdescriptors.py:68 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:96
 msgid "Drugs"
-msgstr ""
+msgstr "Drogak"
 
 #: mkt/constants/ratingdescriptors.py:12
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Legez kanpoko drogak"
 
 #: mkt/constants/ratingdescriptors.py:13
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Legezko drogak"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
@@ -3934,16 +3963,16 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:52 mkt/constants/ratingdescriptors.py:108
 msgid "Nudity"
-msgstr ""
+msgstr "Biluztasuna"
 
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:18 mkt/constants/ratingdescriptors.py:75 mkt/constants/ratingdescriptors.py:86
 msgid "Sex"
-msgstr ""
+msgstr "Sexua"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:56 mkt/constants/ratingdescriptors.py:100
 msgid "Sexual Content"
-msgstr ""
+msgstr "Eduki sexuala"
 
 #: mkt/constants/ratingdescriptors.py:20
 msgid "Explicit Sex"
@@ -3959,7 +3988,7 @@ msgstr "Indarkeria"
 
 #: mkt/constants/ratingdescriptors.py:23
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Muturreko indarkeria"
 
 #: mkt/constants/ratingdescriptors.py:25
 msgid "Alcohol Reference"
@@ -3979,7 +4008,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:29
 msgid "Blood"
-msgstr ""
+msgstr "Odola"
 
 #: mkt/constants/ratingdescriptors.py:30
 msgid "Blood and Gore"
@@ -4280,11 +4309,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:56
 msgid "Rest of World"
-msgstr ""
+msgstr "Munduaren gainerakoa"
 
 #: mkt/constants/regions.py:113
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:56
 msgid "Hosted"
@@ -4308,11 +4337,11 @@ msgstr "Xehetasunak"
 
 #: mkt/constants/submit.py:8
 msgid "Done!"
-msgstr ""
+msgstr "Egina!"
 
 #: mkt/detail/templates/detail/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:28 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
-msgstr ""
+msgstr "Jarduera"
 
 #: mkt/detail/templates/detail/app_activity.html:18 mkt/detail/templates/detail/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
 #: mkt/lookup/templates/lookup/user_activity.html:43
@@ -4418,10 +4447,12 @@ msgstr ""
 #: mkt/developers/forms.py:621
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Before changing your default locale you must have a name and description in "
+"that locale. %s falta zaizu."
 
 #: mkt/developers/forms.py:676
 msgid "Your comments"
-msgstr ""
+msgstr "Zure iruzkinak"
 
 #: mkt/developers/forms.py:699
 msgid "Choose the regions your app will be listed in:"
@@ -4445,7 +4476,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:899
 msgid "Agree"
-msgstr ""
+msgstr "Ados"
 
 #: mkt/developers/forms.py:916
 msgid "Please enter a valid email address."
@@ -4453,11 +4484,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:919
 msgid "Your email address"
-msgstr ""
+msgstr "Zure posta-helbidea"
 
 #: mkt/developers/forms.py:922
 msgid "Text"
-msgstr ""
+msgstr "Testua"
 
 #: mkt/developers/forms.py:926
 msgid "You must agree to the Privacy Policy."
@@ -4465,23 +4496,23 @@ msgstr ""
 
 #: mkt/developers/forms.py:927 mkt/developers/forms_payments.py:408 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Herrialdea"
 
 #: mkt/developers/forms.py:962
 msgid "Transaction Type"
-msgstr ""
+msgstr "Transakzio-mota"
 
 #: mkt/developers/forms.py:965 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
-msgstr ""
+msgstr "Transakzioaren IDa"
 
 #: mkt/developers/forms.py:971
 msgid "From"
-msgstr ""
+msgstr "Hemendik:"
 
 #: mkt/developers/forms.py:974
 msgid "To"
-msgstr ""
+msgstr "Hona:"
 
 #: mkt/developers/forms.py:1023
 msgid ""
@@ -4499,11 +4530,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1046
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "Fitxategi handiegia. Mantendu tamaina %s azpitik. Uneko tamaina: %s."
 
 #: mkt/developers/forms.py:1052
 msgid "Invalid file type. Only %s files are supported."
-msgstr ""
+msgstr "Baliogabeko fitxategi-mota. Only %s files are supported."
 
 #: mkt/developers/forms.py:1076
 msgid "Please enter a valid submission ID."
@@ -4688,11 +4719,11 @@ msgstr ""
 
 #: mkt/developers/helpers.py:37 mkt/developers/helpers.py:66
 msgid "Developers"
-msgstr ""
+msgstr "Garatzaileak"
 
 #: mkt/developers/helpers.py:67 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:39 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
-msgstr ""
+msgstr "Nire bidalketak"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
@@ -4807,7 +4838,7 @@ msgstr "Deskargak"
 
 #: mkt/developers/views.py:84 mkt/reviewers/templates/reviewers/includes/details.html:94 mkt/reviewers/templates/reviewers/includes/mobile_details.html:115
 msgid "Rating"
-msgstr "Balorazioa"
+msgstr "Kalifikazioa"
 
 #: mkt/developers/views.py:156
 msgid "Paid apps cannot be deleted. Disable this app instead."
@@ -4907,7 +4938,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:187
 msgid "Carrier"
-msgstr ""
+msgstr "Hornitzailea"
 
 #: mkt/developers/views_payments.py:336
 msgid "A server error occurred when retrieving the application key."
@@ -5097,23 +5128,23 @@ msgstr ""
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Hasi saioa"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Saioa hasi behar duzu jarraitu ahal izateko."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142
 msgid "Sign in / Sign up"
-msgstr ""
+msgstr "Hasi saioa / Eman izena"
 
 #: mkt/developers/templates/developers/nav.html:14
 msgid "more apps..."
-msgstr ""
+msgstr "aplikazio gehiago..."
 
 #: mkt/developers/templates/developers/nav.html:21 mkt/developers/templates/developers/nav.html:35
 msgid "Submit a New App"
-msgstr ""
+msgstr "Bidali aplikazio berria"
 
 #: mkt/developers/templates/developers/nav.html:26
 msgid "Documentation"
@@ -5121,7 +5152,7 @@ msgstr "Dokumentazioa"
 
 #: mkt/developers/templates/developers/nav.html:32 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Aplikazioak probatzen"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -5160,19 +5191,19 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:71
 msgid "Submit an app"
-msgstr ""
+msgstr "Bidali aplikazio bat"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:73 mkt/ecosystem/templates/ecosystem/partners.html:115
 msgid "Marketplace"
-msgstr ""
+msgstr "Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:77 mkt/templates/mkt/header.html:28
 msgid "Sign In"
-msgstr ""
+msgstr "Hasi saioa"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:84 mkt/templates/mkt/header.html:21
 msgid "Settings"
-msgstr ""
+msgstr "Ezarpenak"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:101 templates/base.html:57 templates/impala/base.html:101
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -5309,7 +5340,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:39 mkt/reviewers/templates/reviewers/review.html:54
 msgid "Edit Listing"
-msgstr ""
+msgstr "Editatu zerrenda"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:20 mkt/developers/templates/developers/apps/listing/item_actions_app.html:92
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:35 mkt/reviewers/templates/reviewers/includes/details.html:130 mkt/reviewers/templates/reviewers/includes/mobile_details.html:151
@@ -5520,7 +5551,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:231
 msgid "Submission date"
-msgstr ""
+msgstr "Bidalketa-data"
 
 #: mkt/developers/templates/developers/apps/status.html:250 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:124
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:126 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:115
@@ -5532,11 +5563,11 @@ msgstr "Deskargatu"
 #: mkt/developers/templates/developers/apps/status.html:255 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:176 mkt/submit/templates/submit/next_steps.html:43
 msgid "Publish"
-msgstr ""
+msgstr "Argitaratu"
 
 #: mkt/developers/templates/developers/apps/status.html:270
 msgid "Upload New Version"
-msgstr ""
+msgstr "Igo bertsio berria"
 
 #: mkt/developers/templates/developers/apps/status.html:276
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for install."
@@ -5612,7 +5643,7 @@ msgstr "Ezabatu bertsioa"
 #: mkt/developers/templates/developers/apps/version_edit.html:24 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:62
 msgid "Version Notes"
-msgstr ""
+msgstr "Bertsio-oharrak"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 msgid ""
@@ -5782,7 +5813,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
-msgstr ""
+msgstr "Freskatu"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
@@ -5806,7 +5837,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr ""
+msgstr "Aplikazio-xehetasunak"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
@@ -5839,7 +5870,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "lehenetsia"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
@@ -5881,7 +5912,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Uses Flash"
-msgstr ""
+msgstr "Flash darabil"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
@@ -5889,7 +5920,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:35
 msgid "Public Stats?"
-msgstr ""
+msgstr "Estatistika publikoak?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
@@ -5909,78 +5940,88 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Aplikazioaren ikonoa"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
+"Igo ikono bat aplikazioarentzat, edo aukeratu gureetako bat. Aplikazioa "
+"azaltzen den leku ia denetan erakutsiko da ikonoa. Igotako ikonoak mota "
+"hauetariko batekoak izan behar dute: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "Hautatu aplikazioarentzako ikonoa:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
-msgstr ""
+msgstr "Bilaketetan, arakatzerakoan eta hasiera-orrian erabilia."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:45
 msgid "Used in app detail pages."
-msgstr ""
+msgstr "Aplikazioaren xehetasunen orrian erabilia."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:54
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
 msgstr ""
+"Aplikazioak zerrendatzerakoan erabilia, adibidez bilaketen emaitzetan eta "
+"nabarmendutako aplikazioetan."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Igo ikono pertsonalizatua..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
 msgstr ""
+"PNG eta JPG formatuak onartzen dira. Ikonoek gutxienez 128x128px-ekoak izan "
+"behar dute."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
-msgstr ""
+msgstr "Pantaila-argazkiak edo bideoak"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr ""
+msgstr "Gehitu gutxienez aplikazioaren pantaila-argazki edo bideo bat:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:160
 msgid "Add a Screenshot or Video..."
-msgstr ""
+msgstr "Gehitu pantaila-argazkia edo bideoa..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
 msgstr ""
+"Pantaila-argazki eta bideoek gutxienez 320x480px-ekoak izan behar dute. "
+"320x480px-ekin proportzionalak diren euskarriak dira egokienak. Bideoek WebM "
+"kodeketa izan behar dute."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
-msgstr ""
+msgstr "Proba orokorrak"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:9 mkt/developers/templates/developers/apps/includes/validation_test_results.html:45
 msgid "Package Tests"
-msgstr ""
+msgstr "Pakete-probak"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:13 mkt/developers/templates/developers/apps/includes/validation_test_results.html:58
 msgid "Content Tests"
-msgstr ""
+msgstr "Eduki-probak"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:28 mkt/developers/templates/developers/apps/includes/validation_test_results.html:42
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:55
@@ -5989,11 +6030,11 @@ msgstr "Goialdean"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr ""
+msgstr "Ziur aplikazioa ezabatu nahi duzula?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
-msgstr ""
+msgstr "Esaguzu zergatik ezabatu duzun aplikazioa"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1 mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
@@ -6009,7 +6050,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Ezabatu gehigarri hau."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -6058,7 +6099,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr ""
+msgstr "Ezabatu aplikazio hau."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -6070,18 +6111,18 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
-msgstr ""
+msgstr "Gehitu bertsio berria"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Egoera eta bertsioak"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:69 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:13 mkt/webapps/models.py:558
 msgid "Content Ratings"
-msgstr ""
+msgstr "Edukiaren sailkapena"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:179
@@ -6090,7 +6131,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:102 mkt/developers/templates/developers/includes/addons_edit_nav.html:42
 msgid "Messages"
-msgstr ""
+msgstr "Mezuak"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:107 mkt/developers/templates/developers/includes/addons_edit_nav.html:47
 #: mkt/lookup/templates/lookup/helpers/app_header.html:33
@@ -6099,12 +6140,12 @@ msgstr "Estatistikak"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:113 mkt/developers/templates/developers/includes/addons_edit_nav.html:52
 msgid "Transactions"
-msgstr ""
+msgstr "Transakzioak"
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "Created:"
-msgstr ""
+msgstr "Sortua:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
@@ -6120,7 +6161,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:47
 msgid "Price:"
-msgstr ""
+msgstr "Prezioa:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
@@ -6128,7 +6169,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Aldatu gailuak"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<strong class=\"rating-notice alert-notice\">This app will be disabled if no content ratings are assigned by %(pretty_date)s:</strong> <a href=\"%(rating_url)s\">Set up Content Ratings</a>"
@@ -6225,7 +6266,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
-msgstr ""
+msgstr "Eskualdea"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
@@ -6468,7 +6509,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:190
 msgid "A server error occurred. Please try again later."
-msgstr ""
+msgstr "A server error occurred. Saiatu berriro geroago."
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "Not applicable"
@@ -6542,16 +6583,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Hornitzailea"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Aldatu"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Ikusi transakzioak"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
@@ -6595,7 +6636,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
 msgid "Optional"
-msgstr ""
+msgstr "Aukerakoa"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -6651,16 +6692,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr ""
+msgstr "Aldatu Bango kontua"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr ""
+msgstr "Eguneratu kontua"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
 msgid "Modify Boku Account"
-msgstr ""
+msgstr "Aldatu Boku kontua"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:10
@@ -6697,15 +6738,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
-msgstr ""
+msgstr "Hautatu dena"
 
 #: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Eskerrik asko izena emateagatik!"
 
 #: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
+"We apologize, but an error occurred in our system. Saiatu berriro geroago."
 
 #: mkt/ecosystem/views.py:228
 msgid "Gaia Building Blocks"
@@ -6713,7 +6755,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Diseinua"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
@@ -7340,18 +7382,18 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:90 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:197
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:84
 msgid "View Source"
-msgstr ""
+msgstr "Ikusi iturburua"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Difficulty:"
-msgstr ""
+msgstr "Zailtasuna:"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130
 msgid "Easy"
-msgstr ""
+msgstr "Erraza"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:133 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:135
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:124 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:144
@@ -7362,23 +7404,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:135
 msgid "7%"
-msgstr ""
+msgstr "%7"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:136
 msgid "11%"
-msgstr ""
+msgstr "%11"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:139
 msgid "82%"
-msgstr ""
+msgstr "%82"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:18
 msgid "Euros to Canadian Dollars"
-msgstr ""
+msgstr "Euroak Kanadako dolarretara"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:23
 msgid "Canadian Dollars to Euros"
-msgstr ""
+msgstr "Kanadako dolarrak eurotara"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:28
 msgid "Conversion Selector"
@@ -7392,23 +7434,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:50 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:48
 msgid "Folder Structure"
-msgstr ""
+msgstr "Karpeten egitura"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:53
 msgid "integration tests"
-msgstr ""
+msgstr "integrazio-probak"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:54 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:53
 msgid "client-side code/styles"
-msgstr ""
+msgstr "bezeroaren aldeko kodea/estiloak"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:55 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:54
 msgid "base HTML file"
-msgstr ""
+msgstr "oinarriko HTML fitxategia"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:56 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:56
 msgid "EJS/HTML templates"
-msgstr ""
+msgstr "EJS/HTML txantiloiak"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:59
 msgid ""
@@ -8326,11 +8368,11 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:30 mkt/reviewers/helpers.py:61 mkt/site/context_processors.py:43
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Berrikuspen-tresnak"
 
 #: mkt/reviewers/helpers.py:34
 msgid "Re-reviews"
-msgstr ""
+msgstr "Bigarren berrikuspenak"
 
 #: mkt/reviewers/helpers.py:35
 msgid "Updates"
@@ -8365,7 +8407,7 @@ msgstr "Aplikazioak ({0})"
 #: mkt/reviewers/helpers.py:86
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr "Ber-berrikuspenak ({0})"
+msgstr "Bigarren berrikuspenak ({0})"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "updates"
@@ -8440,11 +8482,13 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
-msgstr ""
+msgstr "Ezabatu bigarren berrikuspena"
 
 #: mkt/reviewers/utils.py:462
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
+"Kendu aplikazio hau berriro berrikusteko ilaratik. Egileak ez du ez mezurik "
+"jasoko, ez hemengo iruzkinik ikusiko."
 
 #: mkt/reviewers/utils.py:467
 msgid "Disable app"
@@ -8575,8 +8619,8 @@ msgstr[1] ""
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bigarren berrikuspen {num}"
+msgstr[1] "{num} bigarren berrikuspen"
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
@@ -8715,7 +8759,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:31 mkt/reviewers/templates/reviewers/includes/details.html:23
 msgid "In re-review queue"
-msgstr ""
+msgstr "Berriro berrikusteko ilaran"
 
 #: mkt/reviewers/templates/reviewers/review.html:34 mkt/reviewers/templates/reviewers/includes/details.html:24
 msgid "In escalation queue"
@@ -8759,7 +8803,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:167
 msgid "Attach another file"
-msgstr ""
+msgstr "Erantsi beste fitxategi bat"
 
 #: mkt/reviewers/templates/reviewers/review.html:170
 msgid "Device Override:"
@@ -8799,7 +8843,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:65 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Ratings"
-msgstr ""
+msgstr "Kalifikazioak"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:72 mkt/reviewers/templates/reviewers/includes/mobile_details.html:93
 msgid "This app has not yet been rated"
@@ -9100,7 +9144,7 @@ msgstr ""
 
 #: mkt/site/helpers.py:182
 msgid "Home"
-msgstr ""
+msgstr "Nagusia"
 
 #: mkt/site/messages.py:17
 msgid "Errors Found"
