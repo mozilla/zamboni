@@ -121,7 +121,7 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         serialization.
         """
         ret = []
-        memberships = FeedCollectionMembership.objects.filter(obj=self.object)
+        memberships = FeedCollectionMembership.objects.filter(obj_id=obj.id)
         field = TranslationSerializerField()
         field.initialize(self, 'group')
         field.context = self.context

@@ -628,6 +628,17 @@ class BaseTestFeedCollection(object):
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], self.item.id)
 
+    def test_list_with_apps(self):
+        self.feed_permission()
+        apps = [app.pk for app in self.make_apps()]
+        data = dict(self.obj_data)
+        data.update({'apps': apps})
+        self.create(self.client, **data)
+
+        res, data = self.list(self.client)
+        self.assertSetEqual(
+            apps, [app['id'] for app in data['objects'][1]['apps']])
+
     def test_create_anonymous(self):
         res, data = self.create(self.anon, **self.obj_data)
         eq_(res.status_code, 403)
@@ -811,6 +822,19 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         res, data = self.update(self.client, apps=new_grouped)
         eq_(res.status_code, 200)
         self.assertGroupedAppsEqual(new_grouped, data)
+
+    def test_get_with_apps(self):
+        self.feed_permission()
+        apps = [app.pk for app in self.make_apps()]
+        data = dict(self.obj_data)
+        data.update({'apps': apps})
+        res, data = self.create(self.client, **data)
+
+        res = self.client.get(reverse('api-v2:feedcollections-detail',
+                                      args=[data['id']]))
+        data = json.loads(res.content)
+        self.assertSetEqual(
+            apps, [app['id'] for app in data['apps']])
 
 
 class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
