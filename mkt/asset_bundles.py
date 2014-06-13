@@ -1,6 +1,12 @@
 # A list of our CSS and JS assets for jingo-minify.
 
 CSS = {
+    'mkt/admin': (
+        'css/zamboni/zamboni.css',
+        'css/zamboni/mkt-admin.css',
+        'css/zamboni/admin-django.css',
+        'css/zamboni/admin-mozilla.css',
+    ),
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
         'css/devreg/base.css',
@@ -120,6 +126,31 @@ CSS = {
 }
 
 JS = {
+    # Used by the File Viewer for packaged apps.
+    'zamboni/files': (
+        'js/lib/diff_match_patch_uncompressed.js',
+        'js/lib/syntaxhighlighter/xregexp-min.js',
+        'js/lib/syntaxhighlighter/shCore.js',
+        'js/lib/syntaxhighlighter/shLegacy.js',
+        'js/lib/syntaxhighlighter/shBrushAppleScript.js',
+        'js/lib/syntaxhighlighter/shBrushAS3.js',
+        'js/lib/syntaxhighlighter/shBrushBash.js',
+        'js/lib/syntaxhighlighter/shBrushCpp.js',
+        'js/lib/syntaxhighlighter/shBrushCSharp.js',
+        'js/lib/syntaxhighlighter/shBrushCss.js',
+        'js/lib/syntaxhighlighter/shBrushDiff.js',
+        'js/lib/syntaxhighlighter/shBrushJava.js',
+        'js/lib/syntaxhighlighter/shBrushJScript.js',
+        'js/lib/syntaxhighlighter/shBrushPhp.js',
+        'js/lib/syntaxhighlighter/shBrushPlain.js',
+        'js/lib/syntaxhighlighter/shBrushPython.js',
+        'js/lib/syntaxhighlighter/shBrushSass.js',
+        'js/lib/syntaxhighlighter/shBrushSql.js',
+        'js/lib/syntaxhighlighter/shBrushVb.js',
+        'js/lib/syntaxhighlighter/shBrushXml.js',
+        'js/zamboni/storage.js',
+        'js/zamboni/files.js',
+    ),
     'mkt/devreg': (
         # tiny module loader
         'js/lib/amd.js',
@@ -196,7 +227,7 @@ JS = {
         'js/devreg/reviewers/expandable.js',
         'js/devreg/reviewers/mobile_review_actions.js',
         'js/common/fakefilefield.js',
-        'js/common/formsets.js',  # TODO: Not used? Only seen in devreg/init.js
+        'js/common/formsets.js',  # Used by Reviewer Attachments in devreg/init.js.
         'js/devreg/reviewers/reviewers_init.js',
     ),
     'mkt/in-app-payments': (
@@ -220,10 +251,8 @@ JS = {
     ),
     'mkt/ecosystem': (
         'js/devreg/ecosystem.js',
-    ),
-    'mkt/debug': (
-        'js/debug/tinytools.js',
-    ),
+    )
+
 }
 
 
