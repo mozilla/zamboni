@@ -403,22 +403,6 @@ def loc(s):
 
 @register.function
 @jinja2.contextfunction
-def remora_url(context, url, lang=None, app=None, prefix=''):
-    """Wrapper for urlresolvers.remora_url"""
-    if lang is None:
-        _lang = context['LANG']
-        if _lang:
-            lang = translation.to_locale(_lang).replace('_', '-')
-    if app is None:
-        try:
-            app = context['APP'].short
-        except (AttributeError, KeyError):
-            pass
-    return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
-
-
-@register.function
-@jinja2.contextfunction
 def hasOneToOne(context, obj, attr):
     try:
         getattr(obj, attr)
