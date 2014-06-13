@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-13 02:18+0000\n"
-"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2014-06-13 03:09+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402625880.0\n"
+"X-POOTLE-MTIME: 1402628987.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7793,15 +7793,20 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:102
 msgid "By using backbone's data bindings, Face Value ensures that changes to the backend (such as exchange rate updates) are automatically reflected on the frontend."
 msgstr ""
+"Ao utilizar as ligações de dados do backbone, o Face Value garante que "
+"alterações internas (tais como atualizações de taxas de conversão) são "
+"automaticamente refletidas no interface."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:112 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:112
 msgid "The lightweight jQuery-like library simplifies common tasks such as DOM manipulation."
 msgstr ""
+"A biblioteca leve parecida com o jQuery que simplifica tarefas comuns, como "
+"manipulação do DOM."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:132 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:121
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Medium"
-msgstr ""
+msgstr "Média"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:97
 msgid "2%"
@@ -7898,85 +7903,97 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:87
 msgid "An asynchronous and fast datastore for maintaining podcast audio and images."
 msgstr ""
+"Um sistema de armazenamento rápido e assíncrono para manter áudio e imagens."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:96
 msgid "Allows cross-domain requests on Firefox OS without CORS."
-msgstr ""
+msgstr "Permite requisições multi-domínio no Firefox OS sem CORS."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:121
 msgid "Backbone lets us do data-binding and MVC-style coding, making the app a lot easier to develop."
 msgstr ""
+"O Backbone permite-nos fazer mapeamentos de dados e programação estilo MVC, "
+"tornando a programação da aplicação mais fácil."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 msgid "Advanced"
-msgstr ""
+msgstr "Avançado"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:146
 msgid "4%"
-msgstr ""
+msgstr "4%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:147 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:98
 msgid "6%"
-msgstr ""
+msgstr "6%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:148
 msgid "90%"
-msgstr ""
+msgstr "90%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
 msgid "Default Feed View"
-msgstr ""
+msgstr "Vista por omissão do Feed"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:23
 msgid "Writing a Status Update"
-msgstr ""
+msgstr "A escrever uma atualização de estado"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:28
 msgid "Liking a Post"
-msgstr ""
+msgstr "A gostar de um artigo"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:35
 msgid ""
 "Roller is a micro blog app that allows you to post text, upload an image or paste a link that has an image extension such as jpg, gif, png or jpeg. <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"O Roller é uma aplicação micro blogue que permite publicar textos, enviar "
+"imagens ou colar uma ligação que tem uma imagem com uma extensão como jpg, "
+"gif, png ou jpeg. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Leia o "
+"guia passo a passo completo do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:62
 msgid "A key-value store that contains all the post data for Roller."
 msgstr ""
+"Um armazenamento do tipo chave-valor que contem todos os dados das "
+"publicações para o Roller."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:104
 msgid "26%"
-msgstr ""
+msgstr "26%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:105
 msgid "69%"
-msgstr ""
+msgstr "69%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Vista de galeria"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:23
 msgid "Camera View"
-msgstr ""
+msgstr "Vista de câmara"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "A selecionar uma imagem"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"O rtcamera é uma aplicação de fotografia para processar imagens em tempo "
+"real, utilizando tecnologias Web. <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Leia o guia completo passo a passo do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:52
 msgid "Generates animated GIFs."
-msgstr ""
+msgstr "Gera animações GIF."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:60
 msgid "A wrapper for IndexedDB."
-msgstr ""
+msgstr "Um encapsulador para o IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
@@ -8101,7 +8118,7 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
-msgstr ""
+msgstr "Visualizador de Ficheiros :: Ferramentas do revisor"
 
 #: mkt/files/templates/fileviewer/viewer.html:15
 msgid "Validation failed:"
@@ -8113,7 +8130,7 @@ msgstr "Ir"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "A sua aplicação está a ser processada, por favor aguarde."
 
 #: mkt/files/templates/fileviewer/viewer.html:38
 msgid "Fetching validation results..."
@@ -8177,43 +8194,43 @@ msgstr "A procurar ficheiro."
 
 #: mkt/lookup/forms.py:9
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Revisão da transação"
 
 #: mkt/lookup/forms.py:17
 msgid "Process a manual refund"
-msgstr ""
+msgstr "Processar um reembolso manual"
 
 #: mkt/lookup/forms.py:20
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Insira os dados de reembolso para o processo de devolução"
 
 #: mkt/lookup/forms.py:33
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Motivo da exclusão"
 
 #: mkt/lookup/views.py:146
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Não é possível obter o estado do reembolso neste momento."
 
 #: mkt/lookup/views.py:173
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Já foi processado um reembolso."
 
 #: mkt/lookup/views.py:196
 msgid "You cannot make a refund request for this transaction."
-msgstr ""
+msgstr "Não pode fazer um pedido de reembolso para esta transação."
 
 #: mkt/lookup/views.py:218
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "O reembolso para esta transação está pendente."
 
 #: mkt/lookup/views.py:227
 msgid "Refund for this transaction successfully approved."
-msgstr ""
+msgstr "O reembolso para esta transação foi aprovado com sucesso."
 
 #: mkt/lookup/views.py:232
 msgid "Refund request for this transaction failed."
-msgstr ""
+msgstr "O pedido de reembolso para esta transação falhou."
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
@@ -8241,7 +8258,7 @@ msgstr "Ver"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 msgid "Privileged Packaged app"
-msgstr ""
+msgstr "Aplicação empacotada com privilégios"
 
 #: mkt/lookup/templates/lookup/app_summary.html:50 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:46
 msgid "Packaged app"
@@ -8257,11 +8274,11 @@ msgstr "Submetido"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 msgid "Review Prioritized"
-msgstr ""
+msgstr "Revisão priorizada"
 
 #: mkt/lookup/templates/lookup/app_summary.html:73
 msgid "Prioritize Review?"
-msgstr ""
+msgstr "Dar prioridade de revisão?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:77 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:108 mkt/reviewers/templates/reviewers/includes/mobile_details.html:129
@@ -8311,7 +8328,7 @@ msgstr "Versão (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:127
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Nome do ficheiro (ID, Tamanho)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:47
 msgid "Lookup Tool"
@@ -8324,6 +8341,8 @@ msgstr "Ferramenta de pesquisa do <small>Marketplace</small>"
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
 msgstr ""
+"Resultados da revisão da transação por <a href=\"%(tx_url)s\">Transação %"
+"(uuid)s</a>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
@@ -8331,15 +8350,15 @@ msgstr "Comprador"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
-msgstr ""
+msgstr "Faixa de preço"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
-msgstr ""
+msgstr "Transação relacionada"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:47
 msgid "Refund Status"
-msgstr ""
+msgstr "Estado do reembolso"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:48
 msgid "Unrequested"
@@ -8496,15 +8515,15 @@ msgstr "Pesquisa de conta"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Painel do operador"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "Painel do <small>operador</small>"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
-msgstr ""
+msgstr "Candidatos a pré-carregamento"
 
 #: mkt/operators/templates/operators/preloads.html:16
 msgid "Category"
@@ -8512,60 +8531,60 @@ msgstr "Categoria"
 
 #: mkt/operators/templates/operators/preloads.html:17
 msgid "Preload Opt-in"
-msgstr ""
+msgstr "Candidatos a pré-carregamento"
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Plano de Teste"
 
 #: mkt/operators/templates/operators/preloads.html:41
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:55
 msgid "No preload candidates found"
-msgstr ""
+msgstr "Não foram encontrados candidatos a pré-carregamento"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:27
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "Recibo para {0}"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Recibo"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
-msgstr ""
+msgstr "Cobrado a:"
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Número do pedido:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Data do pedido:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Vendedor"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Para ver os termos de serviço do Firefox Marketplace por favor visite:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "Para suporte por favor visite:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Histórico da sua compra:"
 
 #: mkt/ratings/forms.py:69
 msgid "Keep review; remove flags"
@@ -8581,15 +8600,15 @@ msgstr "Eliminar comentário"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
-msgstr ""
+msgstr "Nenhum recibo"
 
 #: mkt/receipts/forms.py:21
 msgid "Test receipt"
-msgstr ""
+msgstr "Recibo de teste"
 
 #: mkt/receipts/forms.py:22
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Recibo de teste expirado"
 
 #: mkt/receipts/forms.py:23
 msgid "Invalid test receipt"
@@ -8713,7 +8732,7 @@ msgstr "Aplicativos ({0})"
 #: mkt/reviewers/helpers.py:86
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr ""
+msgstr "Reanálises ({0})"
 
 # 76%
 #: mkt/reviewers/helpers.py:90
@@ -8724,32 +8743,34 @@ msgstr "Atualizações ({0})"
 #: mkt/reviewers/helpers.py:94
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Encaminhamentos para análise superior ({0})"
 
 #: mkt/reviewers/helpers.py:98
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr ""
+msgstr "Revisões moderadas ({0})"
 
 #: mkt/reviewers/helpers.py:102
 msgid "Reviewing ({0})"
-msgstr ""
+msgstr "Em revisão ({0})"
 
 #: mkt/reviewers/helpers.py:108
 msgid "China ({0})"
-msgstr ""
+msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:115
 msgid "Device ({0})"
-msgstr ""
+msgstr "Dispositivo ({0})"
 
 #: mkt/reviewers/utils.py:425
 msgid "Push to public"
-msgstr "Enviar para o público"
+msgstr "Publicar"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the sandboxed app so it appears on the public side."
 msgstr ""
+"Isto irá aprovar a aplicação que se encontra na área de segurança para que "
+"esta seja apresentada na área pública."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
