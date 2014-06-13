@@ -28,6 +28,27 @@
     }
     var pricePointFormatter = new PricePointFormatter().format;
 
+    var InlineTextComponent = flight.component(function () {
+        this.defaultAttrs({
+            dataSource: null,
+            name: null,
+            outputFormatter: function (value) { return value; },
+        });
+
+        this.setValue = function (value) {
+            $.when(this.attr.outputFormatter(value))
+             .done((function (newValue) {
+                this.$node.text(newValue);
+            }).bind(this));
+        };
+
+        this.after('initialize', function () {
+            this.attr.dataSource.on('dataChange', (function (e, data) {
+                this.setValue(data[this.attr.name])
+            }).bind(this));
+        });
+    });
+
     var InlineTextEditComponent = flight.component(function () {
         this.defaultAttrs({
             name: null,
@@ -39,20 +60,15 @@
         });
 
         this.setValue = function (value) {
-            this.value = value;
-            $.when(this.attr.outputFormatter(value))
-             .done((function (newValue) {
-                this.output.text(newValue);
-            }).bind(this));
-            this.input.val(value);
-        };
-
-        this.valueChanged = function (value) {
             if (this.value != value) {
+                this.value = value;
+                this.data[this.name] = this.value;
+                this.input.val(value);
                 this.trigger('dataInlineEditChanged', {
                     name: this.name,
                     value: value,
                 });
+                this.trigger('dataChange', this.data);
             }
         };
 
@@ -60,6 +76,12 @@
             this.name = this.attr.name;
             this.output = this.select('outputSelector');
             this.input = this.select('inputSelector');
+            this.displayComponent = InlineTextComponent.attachTo(this.output, {
+                name: this.name,
+                outputFormatter: this.attr.outputFormatter,
+                dataSource: this,
+            });
+            this.data = {};
 
             if (typeof this.attr.value === 'undefined') {
                 this.attr.value = this.input.val() || this.output.text();
@@ -81,13 +103,13 @@
             switch (this.input.prop('tagName')) {
                 case 'INPUT':
                     this.on(this.input, 'keyup', function (e) {
-                        this.valueChanged(e.target.value);
+                        this.setValue(e.target.value);
 
                     });
                     break;
                 case 'SELECT':
                     this.on(this.input, 'change', function (e) {
-                        this.valueChanged(e.target.value);
+                        this.setValue(e.target.value);
                     });
                     break;
             }
@@ -96,7 +118,7 @@
                 this.trigger('uiStartInlineEdit');
             }
 
-            this.valueChanged(this.attr.value);
+            this.setValue(this.attr.value);
         });
     });
 
@@ -129,7 +151,7 @@
             saveSelector: '.in-app-product-save',
             editSelector: '.in-app-product-edit',
             deleteSelector: '.in-app-product-delete',
-            productIdSelector: '.in-app-product-id',
+            productIdSelector: '.in-app-product-pk',
         });
 
         this.url = function () {
@@ -172,11 +194,12 @@
             this.detailUrlFormat = decodeURIComponent(this.$rootData.detailUrlFormat);
             this.name = this.select('nameSelector');
             this.price = this.select('priceSelector');
+            this.pk = this.select('productIdSelector');
             this.logoUrl = this.select('logoUrlSelector');
             this.saveButton = this.select('saveSelector');
             this.editButton = this.select('editSelector');
             this.product = {
-                id: this.select('productIdSelector').val(),
+                id: this.pk.text(),
             };
 
             this.on('dataInlineEditChanged', function (e, payload) {
@@ -193,6 +216,7 @@
 
             this.on('uiDoneInlineEdit', function () {
                 this.$node.removeClass('editing');
+                this.trigger('dataChange', this.product);
             })
 
             this.on(this.saveButton, 'click', function (e) {
@@ -212,6 +236,10 @@
             InlineTextEditComponent.attachTo(this.name, {
                 name: 'name',
                 startEditing: this.attr.startEditing,
+            });
+            InlineTextComponent.attachTo(this.pk, {
+                name: 'id',
+                dataSource: this,
             });
 
             this.on(this.logoUrl, 'click', function (e) {

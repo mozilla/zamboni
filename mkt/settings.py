@@ -529,7 +529,7 @@ BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 CACHE_COUNT_TIMEOUT = 60
 
 # A Django cache machine setting, that hasn't been updated to use the
-# new PREFIX in the CACHE setttings.
+# new PREFIX in the CACHE settings.
 CACHE_PREFIX = 'marketplace:%s' % build_id
 
 # Cache timeout on the /search/featured API.
