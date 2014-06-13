@@ -24,11 +24,6 @@ class InAppProduct(ModelBase):
     def icon_url(self):
         return self.logo_url or self.webapp.get_icon_url(64)
 
-    @property
-    def buy_url(self):
-        # FIXME: This should accept the id in the url instead of from JSON.
-        return reverse('webpay-prepare-inapp')
-
 
 models.signals.pre_save.connect(save_signal, sender=InAppProduct,
                                 dispatch_uid='inapp_products_translations')

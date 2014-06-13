@@ -13,9 +13,7 @@
     {% endwith %}
   </td>
   <td>
-    {% if product.buy_url %}
-    <a href="{{ product.buy_url }}">{{ _('Copy me') }}</a>
-    {% endif %}
+    {{ product.pk }}
   </td>
   <td>
     <input type="hidden" class="in-app-product-id" value="{{ product.id }}">
