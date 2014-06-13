@@ -25,7 +25,7 @@ class TestReindexing(amo.tests.TestCase):
         assert Reindexing.objects.filter(alias='foo').count() == 0
 
         # Unflagging unflagged database does nothing.
-        Reindexing.unflag_reindexing('foo')
+        Reindexing.unflag_reindexing(alias='foo')
         assert Reindexing.objects.filter(alias='foo').count() == 0
 
         # Flag, then unflag.
@@ -33,13 +33,13 @@ class TestReindexing(amo.tests.TestCase):
                                   old_index='baz')
         assert Reindexing.objects.filter(alias='foo').count() == 1
 
-        Reindexing.unflag_reindexing('foo')
+        Reindexing.unflag_reindexing(alias='foo')
         assert Reindexing.objects.filter(alias='foo').count() == 0
 
         # Unflagging another alias doesn't clash.
         Reindexing.objects.create(alias='bar', new_index='bar',
                                   old_index='baz')
-        Reindexing.unflag_reindexing('foo')
+        Reindexing.unflag_reindexing(alias='foo')
         assert Reindexing.objects.filter(alias='bar').count() == 1
 
     def test_is_reindexing(self):
@@ -57,7 +57,7 @@ class TestReindexing(amo.tests.TestCase):
         # Reindexing on 'foo'.
         Reindexing.objects.create(alias='foo', new_index='bar',
                                   old_index='baz')
-        self.assertSetEquals(Reindexing.get_indices('foo'), ['bar', 'baz'])
+        self.assertSetEqual(Reindexing.get_indices('foo'), ['bar', 'baz'])
 
         # Doesn't clash on other aliases.
-        self.assertSetEquals(Reindexing.get_indices('other'), ['other'])
+        self.assertSetEqual(Reindexing.get_indices('other'), ['other'])

@@ -25,7 +25,7 @@ class FeedAppIndexer(BaseIndexer):
                     'id': {'type': 'integer'},
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     'slug': {'type': 'string'},
-                    'type': {'type': 'string'},
+                    'type': {'type': 'string', 'index': 'not_analyzed'},
                 }
             }
         }
@@ -96,7 +96,7 @@ class FeedCollectionIndexer(BaseIndexer):
                     'id': {'type': 'integer'},
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     'slug': {'type': 'string'},
-                    'type': {'type': 'string'},
+                    'type': {'type': 'string', 'index': 'not_analyzed'},
                 }
             }
         }

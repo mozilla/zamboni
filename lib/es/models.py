@@ -27,9 +27,12 @@ class Reindexing(models.Model):
                                   new_index=new_index)
 
     @classmethod
-    def unflag_reindexing(cls):
+    def unflag_reindexing(cls, alias=None):
         """Mark down that we are done reindexing"""
-        cls.objects.all().delete()
+        qs = cls.objects.all()
+        if alias:
+            qs = qs.filter(alias=alias)
+        qs.delete()
 
     @classmethod
     def get_indices(cls, alias):

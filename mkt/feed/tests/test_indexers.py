@@ -3,8 +3,6 @@ from nose.tools import eq_
 import amo.tests
 
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
-from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer)
 from mkt.feed.tests.test_models import FeedTestMixin
 from mkt.webapps.models import Webapp
 
@@ -24,7 +22,7 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.obj = self.feed_app_factory()
-        self.indexer = FeedAppIndexer()
+        self.indexer = self.obj.get_indexer()()
         self.model = FeedApp
 
     def test_extract(self):
@@ -40,7 +38,7 @@ class TestFeedBrandIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
     def setUp(self):
         self.obj = self.feed_brand_factory()
-        self.indexer = FeedBrandIndexer()
+        self.indexer = self.obj.get_indexer()()
         self.model = FeedBrand
 
     def test_extract(self):
@@ -55,7 +53,7 @@ class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
 
     def setUp(self):
         self.obj = self.feed_collection_factory()
-        self.indexer = FeedCollectionIndexer()
+        self.indexer = self.obj.get_indexer()()
         self.model = FeedCollection
 
     def test_extract(self):

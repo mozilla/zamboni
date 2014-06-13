@@ -231,18 +231,35 @@ class FeedElementSearchView(CORSMixin, APIView):
     permission_classes = [GroupPermission('Feed', 'Curate')]
     cors_allowed_methods = ('get',)
 
+    def _phrase(self, q):
+        return {
+            'query': q,
+            'type': 'phrase',
+            'slop': 4,
+        }
+
+    def _fuzzy(self, q):
+        return {
+            'query': q,
+            'type': 'fuzzy',
+            'fuzziness': 4,
+        }
+
     def get(self, request, *args, **kwargs):
         q = request.GET.get('q')
 
         # Gather.
+        query = {
+            'slug__match': self._phrase(q),
+            'type__match': self._phrase(q),
+            'should': True
+        }
         feed_app_ids = ([pk[0] for pk in S(FeedAppIndexer).query(
-            name__fuzzy=q, slug__fuzzy=q, type=q, should=True)
-            .values_list('id')])
+            name__match=self._fuzzy(q), **query).values_list('id')])
         feed_brand_ids = [pk[0] for pk in S(FeedBrandIndexer).query(
-            slug__fuzzy=q, type=q, should=True).values_list('id')]
+            **query).values_list('id')]
         feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
-            name__fuzzy=q, slug__fuzzy=q, type=q, should=True)
-            .values_list('id')])
+            name__match=self._fuzzy(q), **query).values_list('id')])
 
         # Dehydrate.
         apps = FeedApp.objects.filter(id__in=feed_app_ids)
