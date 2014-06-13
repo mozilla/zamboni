@@ -3,7 +3,7 @@ import datetime
 from celery.task.sets import TaskSet
 import cronjobs
 
-from mkt.purchase import tasks
+from mkt.stats import tasks
 
 
 @cronjobs.register
