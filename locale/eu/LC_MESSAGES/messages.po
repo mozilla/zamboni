@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-13 18:18+0000\n"
+"PO-Revision-Date: 2014-06-13 18:23+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402683485.0\n"
+"X-POOTLE-MTIME: 1402683825.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1667,9 +1667,8 @@ msgstr "Osatu gabea"
 # 81%
 # 100%
 #: apps/constants/base.py:27
-#, fuzzy
 msgid "Awaiting Preliminary Review"
-msgstr "Ordezkatu aurrebista"
+msgstr "Behin behineko berrikuspenaren zain"
 
 #: apps/constants/base.py:28
 msgid "Pending approval"
@@ -1694,9 +1693,8 @@ msgstr "Beta"
 # 81%
 # 100%
 #: apps/constants/base.py:33
-#, fuzzy
 msgid "Preliminarily Reviewed"
-msgstr "Prozesatu berrikuspenak"
+msgstr "Behin behinean berrikusita"
 
 #: apps/constants/base.py:34
 msgid "Preliminarily Reviewed and Awaiting Full Review"
@@ -1736,7 +1734,7 @@ msgstr "Osoa"
 
 #: apps/constants/base.py:144
 msgid "Preliminary"
-msgstr ""
+msgstr "Behin behinekoa"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:154 mkt/developers/templates/developers/apps/owner.html:82
@@ -1877,7 +1875,7 @@ msgstr ""
 
 #: apps/constants/base.py:441
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Gehigarriaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:442
 msgid "Updated Add-on Review"
@@ -1889,7 +1887,7 @@ msgstr ""
 
 #: apps/constants/base.py:444
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Hiztegiaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:445
 msgid "Updated Dictionary Review"
@@ -1901,7 +1899,7 @@ msgstr ""
 
 #: apps/constants/base.py:447
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Hizkuntza-paketearen behin behineko berrikuspena"
 
 #: apps/constants/base.py:448
 msgid "Updated Language Pack Review"
@@ -1917,7 +1915,7 @@ msgstr ""
 
 #: apps/constants/base.py:451
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Bilaketa-hornitzailearen behin behineko berrikuspena"
 
 #: apps/constants/base.py:452
 msgid "Updated Search Provider Review"
@@ -1929,7 +1927,7 @@ msgstr ""
 
 #: apps/constants/base.py:454
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Gai osoaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:455
 msgid "Updated Complete Theme Review"
@@ -2214,19 +2212,16 @@ msgid "Tier %s"
 msgstr ""
 
 #: apps/reviews/models.py:125
-#, fuzzy
 msgid "Spam or otherwise non-review content"
-msgstr "Spam or otherwise non-review content"
+msgstr ""
 
 #: apps/reviews/models.py:126
-#, fuzzy
 msgid "Inappropriate language/dialog"
-msgstr "Inappropriate language/dialog"
+msgstr "Hizkera/elkarrizketa desegokiak"
 
 #: apps/reviews/models.py:127
-#, fuzzy
 msgid "Misplaced bug report or support request"
-msgstr "Misplaced bug report or support request"
+msgstr ""
 
 #: apps/reviews/models.py:128
 msgid "Other (please specify)"
@@ -8594,9 +8589,8 @@ msgid "Queues"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/base.html:34 mkt/reviewers/templates/reviewers/base.html:73
-#, fuzzy
 msgid "Logs"
-msgstr "Hasi saioa"
+msgstr ""
 
 #: mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
@@ -8653,9 +8647,8 @@ msgid "Total Reviews"
 msgstr "Berrikuspenak guztira"
 
 #: mkt/reviewers/templates/reviewers/home.html:69
-#, fuzzy
 msgid "Reviews This Month"
-msgstr "Ezabatu grafiko hau"
+msgstr "Hil honetako berrikuspenak"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:19
 msgid "No review points awarded yet."
@@ -8904,9 +8897,8 @@ msgid "Process Reviews"
 msgstr "Prozesatu berrikuspenak"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
-#, fuzzy
 msgid "Moderation actions:"
-msgstr "Bildumaren puntuazioak"
+msgstr "Moderazio-ekintzak:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -9804,9 +9796,8 @@ msgid "Mobile Home"
 msgstr ""
 
 #: templates/mobile/base_addons.html:77 templates/mobile/base_apps.html:66
-#, fuzzy
 msgid "View full site"
-msgstr "Ikusi bertsio guztiak"
+msgstr "Ikusi gune osoa"
 
 #: templates/mobile/base_addons.html:80 templates/mobile/base_apps.html:69
 msgid "Legal Notices"
