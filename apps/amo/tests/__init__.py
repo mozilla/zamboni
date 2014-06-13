@@ -705,12 +705,7 @@ def app_factory(**kw):
     app = amo.tests.addon_factory(**kw)
 
     if rated or complete:
-        app.set_content_ratings(
-            dict((body, body.ratings[0]) for body in
-            mkt.ratingsbodies.ALL_RATINGS_BODIES))
-        app.set_iarc_info(123, 'abc')
-        app.set_descriptors([])
-        app.set_interactives([])
+        make_rated(app)
 
     if complete:
         cat, _ = Category.objects.get_or_create(slug='utilities',
@@ -877,11 +872,15 @@ def make_game(app, rated):
         type=amo.ADDON_WEBAPP)
     app.addoncategory_set.create(category=cat)
     if rated:
-        app.set_content_ratings(
-            dict((body, body.ratings[0]) for body in
-            mkt.ratingsbodies.ALL_RATINGS_BODIES))
-        app.set_iarc_info(123, 'abc')
-        app.set_descriptors([])
-        app.set_interactives([])
+        make_rated(app)
     app = app.reload()
     return app
+
+
+def make_rated(app):
+    app.set_content_ratings(
+        dict((body, body.ratings[0]) for body in
+        mkt.ratingsbodies.ALL_RATINGS_BODIES))
+    app.set_iarc_info(123, 'abc')
+    app.set_descriptors([])
+    app.set_interactives([])

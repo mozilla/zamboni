@@ -5,7 +5,8 @@ import amo
 import amo.tests
 import mkt
 from mkt.developers.management.commands import (cleanup_addon_premium,
-                                                exclude_games, migrate_geodata,
+                                                exclude_unrated,
+                                                migrate_geodata,
                                                 refresh_iarc_ratings,
                                                 remove_old_aers)
 from mkt.site.fixtures import fixture
@@ -73,7 +74,7 @@ class TestMigrateGeodata(amo.tests.TestCase):
         eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BR.slug)
 
 
-class TestExcludeUnratedGames(amo.tests.TestCase):
+class TestExcludeUnrated(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -86,51 +87,41 @@ class TestExcludeUnratedGames(amo.tests.TestCase):
         return not self.webapp.geodata.reload().region_br_iarc_exclude
 
     def test_exclude_unrated(self):
-        amo.tests.make_game(self.webapp, rated=False)
-
-        exclude_games.Command().handle()
+        exclude_unrated.Command().handle()
         assert not self._brazil_listed()
         assert not self._germany_listed()
 
-    def test_dont_exclude_non_game(self):
-        exclude_games.Command().handle()
-        assert self._brazil_listed()
-        assert self._germany_listed()
-
     def test_dont_exclude_rated(self):
-        amo.tests.make_game(self.webapp, rated=True)
+        amo.tests.make_rated(self.webapp)
 
-        exclude_games.Command().handle()
+        exclude_unrated.Command().handle()
         assert self._brazil_listed()
         assert self._germany_listed()
 
     def test_germany_case_generic(self):
-        amo.tests.make_game(self.webapp, rated=False)
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.GENERIC: mkt.ratingsbodies.GENERIC_18
         })
 
-        exclude_games.Command().handle()
+        exclude_unrated.Command().handle()
         assert not self._germany_listed()
         assert not self._brazil_listed()
 
     def test_germany_case_usk(self):
-        amo.tests.make_game(self.webapp, rated=False)
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_18
         })
 
-        exclude_games.Command().handle()
+        exclude_unrated.Command().handle()
         assert self._germany_listed()
         assert not self._brazil_listed()
 
     def test_brazil_case_classind(self):
-        amo.tests.make_game(self.webapp, rated=False)
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
         })
 
-        exclude_games.Command().handle()
+        exclude_unrated.Command().handle()
         assert self._brazil_listed()
         assert not self._germany_listed()
 
