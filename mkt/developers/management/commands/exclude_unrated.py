@@ -3,8 +3,9 @@ import logging
 from django.core.management.base import BaseCommand
 
 import amo
-
 import mkt
+from mkt.webapps.models import Geodata, Webapp
+from mkt.webapps.tasks import index_webapps
 
 
 log = logging.getLogger('z.task')
@@ -14,9 +15,8 @@ class Command(BaseCommand):
     help = ('Exclude pre-IARC unrated public apps in Brazil/Germany.')
 
     def handle(self, *args, **options):
-        # Avoid import error.
-        from mkt.webapps.models import Geodata, Webapp
 
+        ids_to_reindex = []
         apps = Webapp.objects.filter(
             status__in=(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC_WAITING))
 
@@ -41,4 +41,8 @@ class Command(BaseCommand):
                          % (app.pk, app.slug))
 
             if save:
+                ids_to_reindex.append(app.id)
                 geodata.save()
+
+        if ids_to_reindex:
+            index_webapps(ids_to_reindex)

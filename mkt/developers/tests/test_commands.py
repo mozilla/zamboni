@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import mock
 from nose.tools import eq_, ok_
 
 import amo
@@ -74,6 +75,7 @@ class TestMigrateGeodata(amo.tests.TestCase):
         eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BR.slug)
 
 
+@mock.patch('mkt.developers.management.commands.exclude_unrated.index_webapps')
 class TestExcludeUnrated(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
@@ -86,19 +88,19 @@ class TestExcludeUnrated(amo.tests.TestCase):
     def _brazil_listed(self):
         return not self.webapp.geodata.reload().region_br_iarc_exclude
 
-    def test_exclude_unrated(self):
+    def test_exclude_unrated(self, index_mock):
         exclude_unrated.Command().handle()
         assert not self._brazil_listed()
         assert not self._germany_listed()
 
-    def test_dont_exclude_rated(self):
+    def test_dont_exclude_rated(self, index_mock):
         amo.tests.make_rated(self.webapp)
 
         exclude_unrated.Command().handle()
         assert self._brazil_listed()
         assert self._germany_listed()
 
-    def test_germany_case_generic(self):
+    def test_germany_case_generic(self, index_mock):
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.GENERIC: mkt.ratingsbodies.GENERIC_18
         })
@@ -107,7 +109,7 @@ class TestExcludeUnrated(amo.tests.TestCase):
         assert not self._germany_listed()
         assert not self._brazil_listed()
 
-    def test_germany_case_usk(self):
+    def test_germany_case_usk(self, index_mock):
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_18
         })
@@ -116,7 +118,7 @@ class TestExcludeUnrated(amo.tests.TestCase):
         assert self._germany_listed()
         assert not self._brazil_listed()
 
-    def test_brazil_case_classind(self):
+    def test_brazil_case_classind(self, index_mock):
         self.webapp.set_content_ratings({
             mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
         })
@@ -124,6 +126,13 @@ class TestExcludeUnrated(amo.tests.TestCase):
         exclude_unrated.Command().handle()
         assert self._brazil_listed()
         assert not self._germany_listed()
+
+    def test_index_called(self, index_mock):
+        exclude_unrated.Command().handle()
+        assert not self._brazil_listed()
+        assert not self._germany_listed()
+        assert index_mock.called
+        eq_(index_mock.call_args[0][0], [self.webapp.id])
 
 
 class TestRemoveOldAERs(amo.tests.TestCase):
