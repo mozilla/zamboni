@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-13 02:08+0000\n"
+"PO-Revision-Date: 2014-06-13 02:18+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402625310.0\n"
+"X-POOTLE-MTIME: 1402625880.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7773,14 +7773,22 @@ msgid ""
 "The <code>CordovaLib</code>, <code>assets</code>, <code>cordova</code>, <code>face-value.xcodeproj</code>, and <code>face-value</code> folders contain Cordova files used to create a packaged iOS "
 "web app that can be submitted to the iOS App Store."
 msgstr ""
+"As pastas <code>CordovaLib</code>, <code>assets</code>, "
+"<code>cordova</code>, <code>face-value.xcodeproj</code> e <code>face-"
+"value</code> contêm ficheiros Cordova utilizados para criar uma aplicação "
+"web empacotada para iOS que pode ser submetida para a iOS App Store."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:76
 msgid "Remembers user preferences and saves exchange rates for offline use."
 msgstr ""
+"Memoriza preferências do utilizar e guarda taxas de conversão para "
+"utilização sem ligação à rede."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:85
 msgid "Works great offline, only requires online connection when updated exchange rates are desired."
 msgstr ""
+"Trabalha bem sem ligação à rede e apenas necessita de ligação à Internet "
+"quando se pretende atualizar as taxas de conversão."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:102
 msgid "By using backbone's data bindings, Face Value ensures that changes to the backend (such as exchange rate updates) are automatically reflected on the frontend."
