@@ -24,7 +24,6 @@
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
-    {{ js('preload') }}
   </head>
   <body class="html-{{ DIR }} moz-header-slim {% block bodyclass %}{% endblock %}"
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
@@ -79,7 +78,6 @@
       {# js #}
       {% block site_js %}
         <script src="{{ static(url('jsi18n')) }}"></script>
-        {{ js('common') }}
       {% endblock %}
       {% block js %}{% endblock %}
     </div>
