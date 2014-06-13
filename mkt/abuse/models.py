@@ -6,6 +6,7 @@ from django.utils.translation import gettext
 
 import amo.models
 import amo.utils
+
 from mkt.webapps.models import Addon
 from mkt.users.models import UserProfile
 

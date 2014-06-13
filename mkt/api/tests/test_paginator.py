@@ -11,7 +11,7 @@ from test_utils import RequestFactory
 from amo.tests import TestCase
 
 from mkt.api.paginator import MetaSerializer, ESPaginator
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 
 
 class TestSearchPaginator(TestCase):

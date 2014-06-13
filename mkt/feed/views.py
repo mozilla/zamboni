@@ -1,3 +1,4 @@
+from elasticutils.contrib.django import S
 from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
@@ -10,6 +11,8 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
 from mkt.collections.views import CollectionImageViewSet
+from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
+                               FeedCollectionIndexer)
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
@@ -214,3 +217,66 @@ class FeedCollectionViewSet(BaseFeedCollectionViewSet):
             super(FeedCollectionViewSet, self).set_apps(obj, apps)
         except TypeError:
             self.set_apps_grouped(obj, apps)
+
+
+class FeedElementSearchView(CORSMixin, APIView):
+    """
+    Search view for the Curation Tools.
+
+    Returns an object keyed by feed element type
+    ('apps', 'brands', 'collections').
+    """
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Feed', 'Curate')]
+    cors_allowed_methods = ('get',)
+
+    def _phrase(self, q):
+        return {
+            'query': q,
+            'type': 'phrase',
+            'slop': 4,
+        }
+
+    def _fuzzy(self, q):
+        return {
+            'query': q,
+            'type': 'fuzzy',
+            'fuzziness': 4,
+        }
+
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get('q')
+
+        # Gather.
+        query = {
+            'slug__match': self._phrase(q),
+            'type__match': self._phrase(q),
+            'should': True
+        }
+        feed_app_ids = ([pk[0] for pk in S(FeedAppIndexer).query(
+            name__match=self._fuzzy(q), **query).values_list('id')])
+        feed_brand_ids = [pk[0] for pk in S(FeedBrandIndexer).query(
+            **query).values_list('id')]
+        feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
+            name__match=self._fuzzy(q), **query).values_list('id')])
+
+        # Dehydrate.
+        apps = FeedApp.objects.filter(id__in=feed_app_ids)
+        brands = FeedBrand.objects.filter(id__in=feed_brand_ids)
+        colls = FeedCollection.objects.filter(id__in=feed_collection_ids)
+
+        # Serialize.
+        ctx = {'request': request}
+        apps = [FeedAppSerializer(app, context=ctx).data for app in apps]
+        brands = [FeedBrandSerializer(brand, context=ctx).data
+                  for brand in brands]
+        collections = [FeedCollectionSerializer(coll, context=ctx).data
+                       for coll in colls]
+
+        # Return.
+        return response.Response({
+            'apps': apps,
+            'brands': brands,
+            'collections': collections
+        })
