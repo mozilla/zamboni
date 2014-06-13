@@ -11,7 +11,6 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from users.models import UserProfile
 
 import mkt
 from mkt.constants import ratingsbodies, regions
@@ -20,13 +19,13 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.prices.models import PriceCurrency
 from mkt.search.serializers import ESAppSerializer
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import (AddonCategory, AddonDeviceType, Category,
                                 Installed, Preview, Webapp)
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
-from mkt.users.models import UserProfile
 
 
 class TestAppSerializer(amo.tests.TestCase):
