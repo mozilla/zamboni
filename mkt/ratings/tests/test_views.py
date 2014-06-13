@@ -17,7 +17,7 @@ from mkt.prices.models import AddonPurchase
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestRatingResource(RestOAuth, amo.tests.AMOPaths):

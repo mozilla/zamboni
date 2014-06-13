@@ -29,7 +29,7 @@ from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.webpay.models import ProductIcon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',

@@ -26,10 +26,9 @@ from mkt.access.models import Group
 from mkt.constants.payments import ACCESS_SIMULATE
 from mkt.ratings.models import Review
 from mkt.tags.models import Tag
+from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
-from users.helpers import user_link
-from users.models import UserForeignKey, UserProfile
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -483,11 +482,9 @@ class ActivityLog(amo.models.ModelBase):
                 group = arg.name
                 arguments.remove(arg)
 
-        user = user_link(self.user)
-
         try:
-            kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user, group=group)
+            kw = dict(addon=addon, review=review, version=version, group=group,
+                      collection=collection, tag=tag, user=self.user.username)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

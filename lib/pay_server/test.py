@@ -10,7 +10,7 @@ from nose.tools import eq_
 import amo
 from lib.pay_server import filter_encoder, model_to_uid, ZamboniEncoder
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 @patch.object(settings, 'SOLITUDE_HOSTS', ('http://localhost'))

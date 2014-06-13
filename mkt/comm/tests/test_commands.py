@@ -8,7 +8,7 @@ import mkt.constants.comm as cmb
 from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestMigrateActivityLog(amo.tests.TestCase):

@@ -31,7 +31,7 @@ from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 original = {

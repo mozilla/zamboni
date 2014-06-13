@@ -24,7 +24,7 @@ from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
 from mkt.api.tests import BaseAPI
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 def get_absolute_url(url, api_name='apps', absolute=True):

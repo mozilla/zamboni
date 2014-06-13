@@ -61,8 +61,8 @@ from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
-from users.models import UserProfile
-from users.views import _login
+from mkt.users.models import UserProfile
+from mkt.users.views import _login
 
 from . import forms, tasks
 

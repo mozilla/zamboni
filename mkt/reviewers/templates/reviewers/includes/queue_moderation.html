@@ -20,7 +20,7 @@
           <span>{%- if review.instance.title %}: {{ review.instance.title }}{% endif %}</span>
         </h3>
         <p>
-          {% trans user=review.instance.user|user_link,
+          {% trans user=review.instance.user.username,
                    date=review.instance.created|datetime,
                    stars=review.instance.rating|stars,
                    locale=review.instance.title.locale %}
@@ -39,7 +39,7 @@
           {% for reason in review.instance.reviewflag_set.all() %}
             <li>
               <div>
-                {% trans user=reason.user|user_link, date=reason.modified|babel_datetime,
+                {% trans user=reason.user.username, date=reason.modified|babel_datetime,
                          reason=flags[reason.flag] %}
                 <strong>{{ reason }}</strong>
                 <span class="light">Flagged by {{ user }} on {{ date }}</span>

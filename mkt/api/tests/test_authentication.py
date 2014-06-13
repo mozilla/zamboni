@@ -18,7 +18,7 @@ from mkt.api.tests.test_oauth import OAuthClient
 from mkt.site.fixtures import fixture
 from mkt.site.middleware import RedirectPrefixedURIMiddleware
 from test_utils import RequestFactory
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestRestOAuthAuthentication(TestCase):

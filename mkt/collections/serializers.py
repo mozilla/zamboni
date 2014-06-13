@@ -21,7 +21,7 @@ from mkt.features.utils import get_feature_profile
 from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.models import Category, Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR

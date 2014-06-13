@@ -23,7 +23,7 @@ from mkt.webapps.models import (AddonCategory, AddonDeviceType, Category,
                                 Installed, Preview, Webapp, WebappIndexer)
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAppSerializer(amo.tests.TestCase):

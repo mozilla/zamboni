@@ -37,7 +37,7 @@ from mkt.reviewers.views import reviewer_required
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Addon, Installed, Webapp
 from services.verify import get_headers, Verify
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.receipts')

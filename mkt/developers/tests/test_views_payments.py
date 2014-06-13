@@ -30,7 +30,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonPremium,
                                 AddonUpsell, AddonUser, Category)
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 # Id without any significance but to be different of 1.

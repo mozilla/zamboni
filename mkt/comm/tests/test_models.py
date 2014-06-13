@@ -15,7 +15,7 @@ from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 TESTS_DIR = path.dirname(path.abspath(__file__))

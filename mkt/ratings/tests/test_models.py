@@ -4,7 +4,7 @@ import amo.tests
 from mkt.ratings.models import check_spam, Review, Spam
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestSpamTest(amo.tests.TestCase):

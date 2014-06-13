@@ -70,7 +70,7 @@ from mkt.webapps.models import AddonDeviceType, Version, Webapp, WebappIndexer
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 from translations.query import order_by_translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from . import forms
 from .models import AppCannedResponse

@@ -22,7 +22,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from .authorization import (CanBeHeroAuthorization, CuratorAuthorization,
                             StrictCuratorAuthorization)

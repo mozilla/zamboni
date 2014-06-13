@@ -15,7 +15,7 @@ from amo.tests.test_helpers import get_image_path
 from lib.video import ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 files = {

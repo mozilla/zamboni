@@ -11,8 +11,8 @@ from nose.tools import eq_
 
 import amo
 from mkt.access.models import Group, GroupUser
-from users.models import UserProfile
-from users.views import browserid_authenticate
+from mkt.users.models import UserProfile
+from mkt.users.views import browserid_authenticate
 
 
 def fake_request():
@@ -80,7 +80,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         # If the user is already logged in, then we return fast.
         eq_(self.client.post(self.url).status_code, 200)
 
-    @patch('users.models.UserProfile.log_login_attempt')
+    @patch('mkt.users.models.UserProfile.log_login_attempt')
     @patch('requests.post')
     def test_browserid_login_logged(self, http_request, log_login_attempt):
         url = reverse('users.browserid_login')
@@ -120,7 +120,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @patch('requests.post')
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_browserid_no_account(self, record_action, http_request):
         """
         BrowserID login for an email address with no account creates a
@@ -135,7 +135,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(profiles[0].display_name, 'newuser')
 
     @patch('requests.post')
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_browserid_misplaced_auth_user(self, record_action, http_request):
         """
         Login still works even after the user has changed his email
@@ -154,7 +154,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @patch('requests.post')
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_browserid_no_auth_user(self, record_action, http_request):
         """
         Login still works after a new UserProfile has been created for an
@@ -172,7 +172,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
     @patch('requests.post')
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_browserid_no_mark_as_market(self, record_action, post):
         email = 'newuser@example.com'
         self._browserid_login(email, post)
@@ -193,7 +193,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         assert 'Persona authentication failure' in res.content
 
     @patch('requests.post')
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_browserid_duplicate_username(self, record_action, post):
         email = 'jbalogh@example.com'  # existing
         post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
@@ -218,7 +218,7 @@ class TestPersonaLogin(amo.tests.TestCase):
         browserid_authenticate(request=request, assertion='fake-assertion')
         return UserProfile.objects.get(email=email)
 
-    @patch('users.views.record_action')
+    @patch('mkt.users.views.record_action')
     def test_mmo_source(self, record_action):
         profile = self.create_profile()
         eq_(profile.source, amo.LOGIN_SOURCE_MMO_BROWSERID)

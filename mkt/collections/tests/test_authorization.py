@@ -14,7 +14,7 @@ from mkt.collections.authorization import (CanBeHeroAuthorization,
 from mkt.collections.tests import CollectionTestMixin
 from mkt.site.fixtures import fixture
 from test_utils import RequestFactory
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestCuratorAuthorization(CollectionTestMixin, TestCase):

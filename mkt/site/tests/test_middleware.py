@@ -8,7 +8,7 @@ from dateutil.tz import tzutc
 from nose.tools import eq_, ok_
 
 import amo.tests
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from mkt.site.fixtures import fixture
 

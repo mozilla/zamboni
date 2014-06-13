@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 import commonware.log
 
 from mkt.access.models import Group, GroupUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class Command(BaseCommand):

@@ -7,7 +7,7 @@ import amo
 import amo.tests
 from mkt.reviewers.models import RereviewQueue, ReviewerScore
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestReviewerScore(amo.tests.TestCase):

@@ -15,7 +15,7 @@ from mkt.developers.models import AppLog
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon, AddonUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAPI(RestOAuth):

@@ -21,8 +21,8 @@ from rest_framework.throttling import UserRateThrottle
 
 import amo
 from amo.utils import send_mail_jinja
-from users.models import UserProfile
-from users.views import browserid_authenticate
+from mkt.users.models import UserProfile
+from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
                                      LoginSerializer, NewsletterSerializer,

@@ -12,7 +12,7 @@ import amo.tests
 from amo import decorators, get_user, set_user
 from amo.urlresolvers import reverse
 
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 def test_post_required():

@@ -16,7 +16,7 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon, AddonDeviceType, AddonUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestPremiumForm(amo.tests.TestCase):

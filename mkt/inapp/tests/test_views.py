@@ -6,7 +6,7 @@ from nose.tools import eq_
 from rest_framework import status
 
 import amo.tests
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from mkt.api.tests.test_oauth import RestOAuthClient
 from mkt.api.models import Access, generate

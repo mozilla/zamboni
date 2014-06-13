@@ -12,8 +12,8 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import slug_validator
-from apps.users.models import UserNotification
-from apps.users.notifications import app_surveys
+from mkt.users.models import UserNotification
+from mkt.users.notifications import app_surveys
 from files.models import FileUpload
 from files.utils import parse_addon
 from mkt.comm.utils import create_comm_note

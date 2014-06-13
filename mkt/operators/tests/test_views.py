@@ -9,7 +9,7 @@ from amo.tests import app_factory
 from mkt.developers.models import PreloadTestPlan
 from mkt.operators.views import preloads
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestPreloadCandidates(amo.tests.TestCase):
