@@ -95,7 +95,7 @@ suds==0.4
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@d83d94f6494fa842cd11fdbb0b0acf150b85af51#egg=amo-validator
--e git+https://github.com/mozilla/app-validator.git@ab243a87705f09139daddafcf60454f1dcbb8c23#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@7b26e685b267f104e526c996ccb3891da8f29e12#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
