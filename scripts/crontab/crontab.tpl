@@ -29,6 +29,5 @@ HOME=/tmp
 45 11 * * * %(django)s export_data --settings=settings_local_mkt
 # 30 13 * * * %(z_cron)s expired_resetcode
 # 30 14 * * * %(z_cron)s category_totals
-45 7 * * * %(django)s dump_apps
 
 MAILTO=root
