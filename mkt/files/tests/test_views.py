@@ -20,7 +20,7 @@ from files.models import File
 from mkt.files.helpers import DiffHelper, FileViewer
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'

@@ -12,7 +12,7 @@ import amo.tests
 from mkt.ratings.cron import email_daily_ratings
 from mkt.ratings.models import Review
 from mkt.webapps.models import AddonUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)

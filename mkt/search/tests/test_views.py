@@ -35,7 +35,7 @@ from mkt.webapps.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                                 Category, Installed, Webapp, WebappIndexer)
 from mkt.webapps.tasks import unindex_webapps
 from translations.helpers import truncate
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestGetRegion(TestCase):

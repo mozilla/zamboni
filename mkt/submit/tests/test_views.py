@@ -17,8 +17,8 @@ import amo.tests
 import mkt
 from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
-from apps.users.models import UserNotification
-from apps.users.notifications import app_surveys
+from mkt.users.models import UserNotification
+from mkt.users.notifications import app_surveys
 from constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
@@ -28,7 +28,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
                                 AddonUser, AppFeatures, Category, Webapp)
 from translations.models import Translation
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestSubmit(amo.tests.TestCase):

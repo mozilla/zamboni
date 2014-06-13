@@ -18,7 +18,7 @@ from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestVersion(amo.tests.TestCase):

@@ -23,7 +23,7 @@ from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
 from mkt.webapps.models import Addon, Webapp
 from mkt.webapps.tasks import _get_trending
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestLastUpdated(amo.tests.TestCase):

@@ -6,7 +6,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class LogTest(amo.tests.TestCase):

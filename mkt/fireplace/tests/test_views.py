@@ -18,7 +18,7 @@ from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.search.utils import S
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser, Installed, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
@@ -228,7 +228,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         eq_(data['apps']['developed'], [])
         eq_(data['apps']['purchased'], [])
 
-    @patch('users.models.UserProfile.purchase_ids')
+    @patch('mkt.users.models.UserProfile.purchase_ids')
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_with_user_purchased(self, region_from_request, purchase_ids):
         region_from_request.return_value = mkt.regions.BR

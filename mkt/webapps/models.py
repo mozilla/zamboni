@@ -68,7 +68,7 @@ from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
                                get_supported_locales)
 from translations.fields import (PurifiedField, save_signal, TranslatedField,
                                  Translation)
-from users.models import UserForeignKey, UserProfile
+from mkt.users.models import UserForeignKey, UserProfile
 
 
 log = commonware.log.getLogger('z.addons')

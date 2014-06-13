@@ -4,7 +4,7 @@ from django.db import IntegrityError
 import commonware.log
 
 from mkt.access.models import Group, GroupUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class Command(BaseCommand):

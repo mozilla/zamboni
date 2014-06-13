@@ -8,7 +8,7 @@ from nose.tools import eq_
 
 import amo
 from amo.tests import app_factory, TestCase, user_factory
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken

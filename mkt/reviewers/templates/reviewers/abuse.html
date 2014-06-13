@@ -12,7 +12,7 @@
   <li>
     {% with date=report.created|datetime, ip_address=report.ip_address %}
       {% if report.reporter %}
-        {% trans user=report.reporter|user_link %}
+        {% trans user=report.reporter.username %}
           {{ user }} on {{ date }} [{{ ip_address }}]
         {% endtrans %}
       {% else %}

@@ -6,7 +6,7 @@ import mock
 from nose.tools import eq_, ok_
 
 import amo.tests
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 import mkt
 from mkt.site.fixtures import fixture

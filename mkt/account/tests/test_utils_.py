@@ -5,7 +5,7 @@ import amo.tests
 from mkt.constants import apps
 from mkt.webapps.models import Installed, Webapp
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 from ..utils import purchase_list
 
 

@@ -89,7 +89,9 @@ def validator(upload_id, **kw):
         # it for normal logging.
         tb = traceback.format_exception(*sys.exc_info())
         upload.update(task_error=''.join(tb))
-        raise
+        # Don't raise if we're being eager, setting the error is enough.
+        if not settings.CELERY_ALWAYS_EAGER:
+            raise
 
 
 @task
@@ -126,8 +128,8 @@ def run_validator(file_path, url=None):
             log.info(u'Running `validate_app` for path: %s' % (file_path))
             with statsd.timer('mkt.developers.validate_app'):
                 return validate_app(storage.open(file_path).read(),
-                    market_urls=settings.VALIDATOR_IAF_URLS,
-                    url=url)
+                                    market_urls=settings.VALIDATOR_IAF_URLS,
+                                    url=url)
 
 
 def _hash_file(fd):

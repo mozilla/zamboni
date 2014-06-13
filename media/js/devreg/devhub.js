@@ -126,7 +126,10 @@ $(document).ready(function() {
                 $eb_messages = $("<ul>", {'id': 'upload_errors'}),
                 messages = r.validation.messages || [];
 
-            $error_box.append($("<strong>", {'text': message}));
+            // Set text and retrieve html to escape everything first.
+            $error_message = $("<strong>", {'text': message});
+            $error_message.html($error_message.html().replace(/\n/g, "<br>"));
+            $error_box.append($error_message);
             $error_box.append($eb_messages);
 
             $.each(messages, function(i, m) {

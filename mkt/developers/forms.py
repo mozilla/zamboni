@@ -536,7 +536,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Addons', 'Edit'):
+        if acl.action_allowed(self.request, 'Apps', 'Edit'):
             return list(addon.tags.values_list('tag_text', flat=True))
         else:
             return list(addon.tags.filter(restricted=False)

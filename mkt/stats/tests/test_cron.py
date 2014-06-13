@@ -9,7 +9,7 @@ from mkt.ratings.models import Review
 from mkt.stats import tasks
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon, AddonUser
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestMonolithStats(amo.tests.TestCase):

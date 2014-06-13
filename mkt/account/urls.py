@@ -1,6 +1,6 @@
 from django.conf.urls import include, patterns, url
 
-from users import views
+from mkt.users import views
 
 from mkt.account.views import (AccountView, FeedbackView, InstalledView,
                                LoginView, LogoutView, NewsletterView,

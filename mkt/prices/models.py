@@ -25,7 +25,7 @@ from mkt.constants import apps
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 log = commonware.log.getLogger('z.market')
 
@@ -247,7 +247,7 @@ class PriceCurrency(amo.models.ModelBase):
     # If this should show up in the developer hub.
     dev = models.BooleanField(default=True)
 
-    # If this can currently accept payments from users.
+    # If this can currently accept payments from mkt.users.
     paid = models.BooleanField(default=True)
 
     class Meta:

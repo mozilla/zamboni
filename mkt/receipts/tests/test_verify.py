@@ -25,7 +25,7 @@ from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon
 from services import utils, verify
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 def get_response(data, status):

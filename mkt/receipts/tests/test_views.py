@@ -23,7 +23,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser, Webapp
 from services.verify import settings as verify_settings
 from services.verify import decode_receipt
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestInstall(amo.tests.TestCase):

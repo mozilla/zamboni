@@ -13,7 +13,7 @@ from files.models import FileUpload
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 def fake_fetch_manifest(url, upload_pk=None, **kw):

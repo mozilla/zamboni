@@ -10,7 +10,7 @@ from tower import ugettext_lazy as _
 
 import amo.models
 from translations.fields import save_signal, TranslatedField
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 log = logging.getLogger('z.review')

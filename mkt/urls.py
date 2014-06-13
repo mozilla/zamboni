@@ -7,7 +7,6 @@ from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
 
 import amo
-from apps.users.views import logout
 from mkt.account.urls import user_patterns
 from mkt.api import oauth
 from mkt.detail.views import manifest as mini_manifest
@@ -15,6 +14,7 @@ from mkt.developers.views import login
 from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
+from mkt.users.views import logout
 
 
 admin.autodiscover()

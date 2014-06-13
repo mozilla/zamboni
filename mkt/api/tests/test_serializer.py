@@ -12,7 +12,7 @@ from rest_framework.serializers import Serializer, ValidationError
 from simplejson import JSONDecodeError
 from test_utils import RequestFactory
 
-from users.models import UserProfile 
+from mkt.users.models import UserProfile 
 from mkt.api.serializers import PotatoCaptchaSerializer, URLSerializerMixin
 from mkt.site.fixtures import fixture
 from mkt.site.tests.test_forms import PotatoCaptchaTestCase

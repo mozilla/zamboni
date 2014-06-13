@@ -63,11 +63,11 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     """
     if not request.user.is_authenticated():
         return False
-    # Deleted addons can't be edited at all.
+    # Deleted apps can't be edited at all.
     if addon.is_deleted:
         return False
-    # Users with 'Addons:Edit' can do anything.
-    if admin and action_allowed(request, 'Addons', 'Edit'):
+    # Users with 'Apps:Edit' can do anything.
+    if admin and action_allowed(request, 'Apps', 'Edit'):
         return True
     # Only admins can edit admin-disabled addons.
     if addon.status == amo.STATUS_DISABLED and not ignore_disabled:

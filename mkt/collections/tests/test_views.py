@@ -31,7 +31,7 @@ from mkt.collections.tests.test_serializers import (CollectionDataMixin,
 from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Category, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class BaseCollectionViewSetTest(RestOAuth):

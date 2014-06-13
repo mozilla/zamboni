@@ -16,7 +16,7 @@ from files.models import File, Platform
 from mkt.developers import helpers
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 def test_hub_page_title():

@@ -16,7 +16,7 @@ from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from .test_providers import Patcher
 

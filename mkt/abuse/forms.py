@@ -1,6 +1,6 @@
 from django import forms
 
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.site.forms import AbuseForm

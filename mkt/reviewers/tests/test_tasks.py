@@ -14,7 +14,7 @@ from mkt.prices.models import AddonPurchase, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestAbuseEscalationTask(amo.tests.TestCase):

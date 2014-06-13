@@ -92,7 +92,6 @@ INSTALLED_APPS = (
     'product_details',
     'tower',  # for ./manage.py extract
     'translations',
-    'users',
 
     # Third party apps
     'djcelery',
@@ -140,6 +139,7 @@ INSTALLED_APPS = (
     'mkt.stats',
     'mkt.submit',
     'mkt.tags',
+    'mkt.users',
     'mkt.versions',
     'mkt.zadmin',
     'mkt.webapps',
@@ -685,7 +685,7 @@ ES_USE_PLUGINS = False
 ES_TIMEOUT = 30
 
 # When True include full tracebacks in JSON. This is useful for QA on preview.
-EXPOSE_VALIDATOR_TRACEBACKS = False
+EXPOSE_VALIDATOR_TRACEBACKS = True
 
 # Django cache machine settings.
 FETCH_BY_ID = True

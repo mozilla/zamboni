@@ -42,8 +42,8 @@ from mkt.reviewers.models import RereviewQueue
 from mkt.webapps.models import (Addon, AppManifest, Preview, Webapp,
                                 WebappIndexer)
 from mkt.webapps.utils import get_locale_properties
-from users.models import UserProfile
-from users.utils import get_task_user
+from mkt.users.models import UserProfile
+from mkt.users.utils import get_task_user
 
 
 task_log = logging.getLogger('z.task')

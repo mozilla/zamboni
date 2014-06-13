@@ -17,7 +17,7 @@ from mkt.prices.models import AddonPurchase
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion, AddonUser, Webapp
-from users.models import UserProfile
+from mkt.users.models import UserProfile
 
 
 class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
@@ -173,7 +173,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
 
     def test_filter_by_nonpublic_app_admin(self):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        self.grant_permission(self.user, 'Addons:Edit')
+        self.grant_permission(self.user, 'Apps:Edit')
         self.app.update(status=amo.STATUS_PENDING)
         self._get_filter(app=self.app.app_slug)
 
@@ -196,7 +196,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
     @patch('mkt.ratings.views.get_region')
     def test_filter_by_app_excluded_in_region_admin(self, get_region_mock):
         Review.objects.create(addon=self.app, user=self.user, body='yes')
-        self.grant_permission(self.user, 'Addons:Edit')
+        self.grant_permission(self.user, 'Apps:Edit')
         AddonExcludedRegion.objects.create(addon=self.app,
                                            region=mkt.regions.BR.id)
         get_region_mock.return_value = mkt.regions.BR

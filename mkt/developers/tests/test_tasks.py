@@ -158,8 +158,7 @@ class TestValidator(amo.tests.TestCase):
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
         eq_(self.upload.task_error, None)
-        with self.assertRaises(Exception):
-            tasks.validator(self.upload.pk)
+        tasks.validator(self.upload.pk)
         error = self.get_upload().task_error
         assert error is not None
         assert error.startswith('Traceback (most recent call last)'), error

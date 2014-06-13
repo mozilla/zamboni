@@ -697,7 +697,7 @@ def log(action, *args, **kw):
                                        VersionLog)
     from mkt.access.models import Group
     from mkt.webapps.models import Webapp
-    from users.models import UserProfile
+    from mkt.users.models import UserProfile
     from mkt.versions.models import Version
 
     user = kw.get('user', get_user())
