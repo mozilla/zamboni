@@ -43,4 +43,4 @@ def user_can_delete_review(request, review):
         not is_author and (
             is_editor or
             acl.action_allowed(request, 'Users', 'Edit') or
-            acl.action_allowed(request, 'Addons', 'Edit')))
+            acl.action_allowed(request, 'Apps', 'Edit')))
