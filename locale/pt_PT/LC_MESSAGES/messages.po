@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-13 03:12+0000\n"
+"PO-Revision-Date: 2014-06-14 03:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402629150.0\n"
+"X-POOTLE-MTIME: 1402714879.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -7818,35 +7818,38 @@ msgstr "16%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
-msgstr ""
+msgstr "Lista de notas"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:23
 msgid "Writing a New Note"
-msgstr ""
+msgstr "A escrever uma nova nota"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:28
 msgid "Local Notes"
-msgstr ""
+msgstr "Notas locais"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:35
 msgid "General Notes is a simple note app that allows you to sync local and remote content. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
 msgstr ""
+"O General Notes é uma simples aplicação que permite sincronizar conteúdo "
+"local e remoto. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Leia o "
+"guia passo a passo do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:53
 msgid "Stores local and remote notes on the client side."
-msgstr ""
+msgstr "Armazena notas locais e remotas no cliente."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:61
 msgid "Enables the page and functionality to work offline."
-msgstr ""
+msgstr "Permite que a página e suas funcionalidades funcionem offline."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:77 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:54
 msgid "Both server and client code are written in JavaScript."
-msgstr ""
+msgstr "Tanto o servidor como o cliente são escritos em JavaScript."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:85
 msgid "A key-value store that contains all the server notes."
-msgstr ""
+msgstr "Um armazenamento chave-valor que contem todas as notas do servidor."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:126
 msgid "81%"
@@ -7877,28 +7880,42 @@ msgid ""
 "Podcasts is an offline-capable, entirely HTML5/JS audio app. It's chiefly designed for Firefox OS, but support for other platforms and browsers is an eventual design goal. It allows users to "
 "subscribe to any podcast and listen to it right from their Firefox OS device! <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"Podcasts é uma aplicação áudio inteiramente em HTML5/JS que pode funcionar "
+"sem Internet. Foi principalmente desenhada para Firefox OS, mas suporte para "
+"outras plataformas e navegadores foi também um dos objetivos. Permite aos "
+"utilizadores subscrever a qualquer podcast e ouvir o mesmo a partir do seu "
+"dispositivo com Firefox OS! <a href=\"%(walkthrough_link)s\" "
+"class=\"walkthrough\">Leia o guia passo a passo do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
-msgstr ""
+msgstr "Ficheiros de tradução"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:52
 msgid "integration and UI tests"
-msgstr ""
+msgstr "integração e testes de interface"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:55
 msgid "UI files"
-msgstr ""
+msgstr "Ficheiros da interface"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:59
 msgid ""
 "Podcasts is a <a href=\"%(packaged_apps_link)s\">packaged app</a>, so it requires a build step to be installed to Firefox OS. The <code>Makefile</code> contains a multi-step process that will "
 "create a <code>www-built</code> folder used to install the app on a phone or the <a href=\"%(simulator_link)s\">Firefox OS Simulator</a>."
 msgstr ""
+"Podcasts é uma <a href=\"%(packaged_apps_link)s\">aplicação empacotada</a>, "
+"pelo que requer um passo de construção para que possa ser instalada no "
+"Firefox OS. O <code>Makefile</code> contém um processo passo a passo que irá "
+"criar uma pasta <code>www-built</code> que será utilizada para instalar a "
+"aplicação num telemóvel ou no <a href=\"%(simulator_link)s\">Simulador do "
+"Firefox OS</a>."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:78
 msgid "Used to store settings and basic podcast metadata. Not used for podcast audio files or cover art."
 msgstr ""
+"Utilizada para guardar definições e meta-dados básicos de podcast. Não "
+"utilizada para guardar ficheiros de áudio ou capas."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:87
 msgid "An asynchronous and fast datastore for maintaining podcast audio and images."
@@ -7997,60 +8014,67 @@ msgstr "Um encapsulador para o IndexedDB."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:68
 msgid "Calculates perspective transformations."
-msgstr ""
+msgstr "Calcula transformações em perspetiva."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:76
 msgid "Add touch events."
-msgstr ""
+msgstr "Adiciona eventos de toque."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:101
 msgid "Once loaded for the first time, it can be used offline, without a network connection."
 msgstr ""
+"Depois de carregada uma primeira vez, pode ser utilizada sem ligação à rede."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:110 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:118
 msgid "For downloading files to the browser."
-msgstr ""
+msgstr "Para transferir ficheiros para o navegador."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:126
 msgid "Used for fast and efficient processing of image data."
-msgstr ""
+msgstr "Utilizado para processamento rápido e eficiente de dados de imagem."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:134 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:143
 msgid "Used to access camera devices and get a video stream from where to capture frames."
 msgstr ""
+"Utilizado para a aceder a câmeras e obter um fluxo de vídeo de onde são "
+"capturadas imagens."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:152
 msgid "Stores captured images on the device and retrieve them for the gallery view."
 msgstr ""
+"Armazena as imagens capturadas no dispositivo e devolve-as para serem "
+"utilizadas na galeria."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:161
 msgid "Generates GIF files on the background without freezing the UI."
-msgstr ""
+msgstr "Gera ficheiros GIF em segundo plano sem bloquear o interface."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:169
 msgid "Uploading images to a different server for sharing, and getting their url."
 msgstr ""
+"A transferir imagens para um servidor diferente para partilha e a obter o "
+"seu endereço."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:186
 msgid "rtcamera uses x-appbar, x-deck, x-layout, x-modal and x-switch."
-msgstr ""
+msgstr "rtcamera utiliza x-appbar, x-deck, x-layout, x-modal e x-switch."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:210
 msgid "1%"
-msgstr ""
+msgstr "1%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:212
 msgid "83%"
-msgstr ""
+msgstr "83%"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:18
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:22 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:23
 msgid "Webfighter game sample"
-msgstr ""
+msgstr "Jogo Webfighter de exemplo"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:28
 msgid "Enemy damage"
-msgstr ""
+msgstr "Dano ao inimigo"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:35
 msgid ""
@@ -8058,22 +8082,31 @@ msgid ""
 "addition to destroying the alien bug, kill as many enemies as possible to get the highest score. <a href=\"%(marketplace_link)s\">View on the marketplace</a> <a href=\"%(walkthrough_link)s\" class="
 "\"walkthrough\">Read the full developer walkthrough</a>"
 msgstr ""
+"O Webfighter é um jogo inspirado nos clássicos R-Type e Tyrian onde deve "
+"caçar e destruir um inseto alienígena. Como um shooter de deslocamento "
+"lateral, apanhe várias armas para desbravar o caminho por entre inimigos. "
+"Para além de destruir o inseto alienígena, mate o maior número de inimigos "
+"possível para obter a pontuação máxima..<a href=\"%(marketplace_link)s\">Ver "
+"no Marketplace</a> <a href=\"%(walkthrough_link)s\" class=\"walkthrough\">Ler o "
+"guia passo a passo do programador</a>"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:56
 msgid "Used to generate the game graphics."
-msgstr ""
+msgstr "Utilizado para gerar os gráficos do jogo."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:64
 msgid "Allows the game to be played in fullscreen mode."
-msgstr ""
+msgstr "Permite que o jogo possa ser jogado em ecrã completo."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:72
 msgid "The player can purchase items in a store that will aid their quest. This shows the workflow for in-app payments."
 msgstr ""
+"O jogador pode comprar itens numa loja que irão ajudá-lo na sua missão. Isto "
+"mostra o funcionamento de pagamentos na aplicação."
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
-msgstr ""
+msgstr "92%"
 
 #: mkt/files/helpers.py:151
 msgid "That file no longer exists."
@@ -8114,7 +8147,7 @@ msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; MD5 hash: %(md5)s &
 
 #: mkt/files/templates/fileviewer/viewer.html:4
 msgid "File Compare :: Reviewer Tools"
-msgstr ""
+msgstr "Comparador de ficheiros :: Ferramentas do revisor"
 
 #: mkt/files/templates/fileviewer/viewer.html:6
 msgid "File Viewer :: Reviewer Tools"
@@ -8362,15 +8395,18 @@ msgstr "Estado do reembolso"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:48
 msgid "Unrequested"
-msgstr ""
+msgstr "Não solicitado"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:60
 msgid "If a manual refund has been processed by the payment provider, check this box. This will refund it in the Mozilla servers but not contact the payment provider."
 msgstr ""
+"Se já foi processado um reembolso manual pelo fornecedor de pagamento, "
+"marque esta caixa. Isto irá fazer o reembolso no servidores da Mozilla mas o "
+"fornecedor do pagamento não será contactado."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Reembolsar esta transação"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
@@ -8386,15 +8422,15 @@ msgstr "Resultados de aquisições para"
 
 #: mkt/lookup/templates/lookup/user_purchases.html:25
 msgid "This user has not purchased any apps."
-msgstr ""
+msgstr "Este utilizador não comprou quaisquer aplicações."
 
 #: mkt/lookup/templates/lookup/user_summary.html:10
 msgid "Account Lookup results for"
-msgstr ""
+msgstr "Resultados de pesquisa de conta para"
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -8644,7 +8680,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
-msgstr ""
+msgstr "Qualquer estado"
 
 #: mkt/reviewers/forms.py:32
 msgid "Comments:"
@@ -8652,7 +8688,7 @@ msgstr "Comentários:"
 
 #: mkt/reviewers/forms.py:36 mkt/reviewers/templates/reviewers/review.html:131
 msgid "Device Types:"
-msgstr ""
+msgstr "Tipos de dispositivo:"
 
 #: mkt/reviewers/forms.py:38 mkt/reviewers/templates/reviewers/review.html:135
 msgid "Browsers:"
@@ -8660,7 +8696,7 @@ msgstr "Navegadores:"
 
 #: mkt/reviewers/forms.py:41
 msgid "Device Type Override:"
-msgstr ""
+msgstr "Sobreposição de tipo de dispositivo:"
 
 #: mkt/reviewers/forms.py:44
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
