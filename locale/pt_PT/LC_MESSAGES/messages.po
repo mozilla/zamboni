@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 03:01+0000\n"
-"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2014-06-14 03:28+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402714879.0\n"
+"X-POOTLE-MTIME: 1402716507.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -8450,11 +8450,11 @@ msgstr "Grupos"
 
 #: mkt/lookup/templates/lookup/user_summary.html:37
 msgid "PayPal linked"
-msgstr ""
+msgstr "Ligado ao PayPal"
 
 #: mkt/lookup/templates/lookup/user_summary.html:45
 msgid "Marketplace Credit"
-msgstr ""
+msgstr "Crédito do Marketplace"
 
 #: mkt/lookup/templates/lookup/user_summary.html:48
 msgid "apps purchased"
@@ -8482,7 +8482,7 @@ msgstr "Endereços"
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Submissions"
-msgstr ""
+msgstr "Submissões"
 
 #: mkt/lookup/templates/lookup/user_summary.html:94
 msgid "Unnamed"
@@ -8491,23 +8491,25 @@ msgstr "Sem nome"
 #: mkt/lookup/templates/lookup/user_summary.html:105 mkt/lookup/templates/lookup/user_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:117
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "Delete User"
-msgstr ""
+msgstr "Eliminar utilizador"
 
 #: mkt/lookup/templates/lookup/user_summary.html:108
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Eliminar este utilizador irá remover <strong>permanentemente</strong> esta "
+"conta de utilizador."
 
 #: mkt/lookup/templates/lookup/user_summary.html:118
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Tem a certeza que pretende eliminar este utilizador?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:128
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Este utilizador já foi eliminado."
 
 #: mkt/lookup/templates/lookup/user_summary.html:130
 msgid "Deleted by"
-msgstr ""
+msgstr "Eliminado por"
 
 #: mkt/lookup/templates/lookup/user_summary.html:133
 msgid "Reason"
@@ -8515,7 +8517,7 @@ msgstr "Motivo"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:3
 msgid "App Lookup results for"
-msgstr ""
+msgstr "Resultados de pesquisa de aplicações por"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 msgid "App Detail"
@@ -8531,19 +8533,19 @@ msgstr "Histórico de revisão"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
-msgstr ""
+msgstr "Resumo da conta"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Conta eliminada"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
-msgstr ""
+msgstr "Pesquisa de aplicações"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Aplicação: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
@@ -8648,11 +8650,11 @@ msgstr "Recibo de teste expirado"
 
 #: mkt/receipts/forms.py:23
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Recibo de teste inválido"
 
 #: mkt/receipts/forms.py:24
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Recibo de teste reembolsado"
 
 #: mkt/receipts/views.py:89 mkt/receipts/views.py:180
 msgid "There was a problem installing the app."
@@ -8660,23 +8662,28 @@ msgstr "Houve um problema ao instalar o aplicativo."
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
-msgstr ""
+msgstr "Detalhes do recibo de teste"
 
 #: mkt/receipts/templates/receipts/test_details.html:16
 msgid "This is a placeholder page for the receipt details. If you'd installed a real app from the Marketplace, this page would show more details."
 msgstr ""
+"Esta é uma página com detalhes do recibo. Se tivesse instalado uma aplicação "
+"real do Marketplace, esta página mostraria mais detalhes."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:16
 msgid "Test installation of your app before uploading to the marketplace. You can choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Teste a instalação de uma aplicação antes de a enviar para o marketplace. "
+"Pode escolher diferentes tipos de recibos para testar o processamento de "
+"recibos."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Tipo de recibo"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Localização do manifesto"
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
@@ -8701,10 +8708,12 @@ msgstr "Sobreposição de tipo de dispositivo:"
 #: mkt/reviewers/forms.py:44
 msgid "Notify me the next time the manifest is updated. (Subsequent updates will not generate an email)"
 msgstr ""
+"Notifique-me da próxima vez que o manifesto for atualizado. (Atualizações "
+"subsequentes não irão gerar um email)"
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Esta aplicação funciona em dispositivos Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -8717,23 +8726,23 @@ msgstr "aplicativo, editor ou comentário"
 
 #: mkt/reviewers/forms.py:114
 msgid "Has Editor Comment"
-msgstr ""
+msgstr "Tem comentário do editor"
 
 #: mkt/reviewers/forms.py:118
 msgid "More Info Requested"
-msgstr ""
+msgstr "Solicitadas mais informações"
 
 #: mkt/reviewers/forms.py:126
 msgid "Tarako-ready"
-msgstr ""
+msgstr "Pronto para Tarako"
 
 #: mkt/reviewers/helpers.py:30 mkt/reviewers/helpers.py:61 mkt/site/context_processors.py:43
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Ferramentas de revisão"
 
 #: mkt/reviewers/helpers.py:34
 msgid "Re-reviews"
-msgstr ""
+msgstr "Re-revisões"
 
 # 85%
 #: mkt/reviewers/helpers.py:35
@@ -8742,11 +8751,11 @@ msgstr "Atualizações"
 
 #: mkt/reviewers/helpers.py:36
 msgid "Escalations"
-msgstr ""
+msgstr "Encaminhamentos para análise superior"
 
 #: mkt/reviewers/helpers.py:37
 msgid "Device"
-msgstr ""
+msgstr "Dispositivo"
 
 #: mkt/reviewers/helpers.py:38
 msgid "Moderated Reviews"
@@ -8754,11 +8763,11 @@ msgstr "Revisões moderadas"
 
 #: mkt/reviewers/helpers.py:39
 msgid "Reviewing"
-msgstr ""
+msgstr "A rever"
 
 #: mkt/reviewers/helpers.py:41 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
-msgstr ""
+msgstr "Filas regionais"
 
 #: mkt/reviewers/helpers.py:83
 msgctxt "pending"
@@ -8814,7 +8823,7 @@ msgstr "Rejeitar"
 
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app and remove it from the review queue."
-msgstr ""
+msgstr "Isto irá rejeitar a aplicação e removê-la da fila de revisão."
 
 #: mkt/reviewers/utils.py:436
 msgid "Request more information"
@@ -8826,7 +8835,7 @@ msgstr "Isto enviará uma mensagem ao(s) autor(es) solicitando mais informaçõe
 
 #: mkt/reviewers/utils.py:442
 msgid "Escalate"
-msgstr ""
+msgstr "Encaminhar para análise superior"
 
 #: mkt/reviewers/utils.py:444
 msgid "Flag this app for an admin to review."
@@ -8834,23 +8843,27 @@ msgstr "Marcar esse aplicativo para um administrador revisá-lo."
 
 #: mkt/reviewers/utils.py:449
 msgid "Make a comment on this app. The author won't be able to see this."
-msgstr ""
+msgstr "Faça um comentário nesta aplicação. O autor não conseguirá ver isto."
 
 #: mkt/reviewers/utils.py:453
 msgid "Clear Escalation"
-msgstr ""
+msgstr "Remover encaminhamento para análise superior"
 
 #: mkt/reviewers/utils.py:455
 msgid "Clear this app from the escalation queue. The author will get no email or see comments here."
 msgstr ""
+"Remover esta aplicação da fila de encaminhamentos para análise superior. O "
+"autor não receberá nenhum e-mail nem irá ver os comentários publicados aqui."
 
 #: mkt/reviewers/utils.py:460
 msgid "Clear Re-review"
-msgstr ""
+msgstr "Remover reanálise"
 
 #: mkt/reviewers/utils.py:462
 msgid "Clear this app from the re-review queue. The author will get no email or see comments here."
 msgstr ""
+"Remover esta aplicação da fila de reanálise. O autor não receberá nenhum "
+"e-mail nem irá ver os comentários publicados aqui."
 
 #: mkt/reviewers/utils.py:467
 msgid "Disable app"
@@ -8862,7 +8875,7 @@ msgstr "Desativa o aplicativo, removendo-o de resultados públicos. Envia um com
 
 #: mkt/reviewers/views.py:94
 msgid "New Apps (Under 5 days)"
-msgstr ""
+msgstr "Novas aplicações (menos de 5 dias)"
 
 #: mkt/reviewers/views.py:95
 msgid "Passable (5 to 10 days)"
@@ -8878,24 +8891,24 @@ msgstr "Não são permitidas auto-revisões."
 
 #: mkt/reviewers/views.py:254
 msgid "Only senior reviewers can review blocklisted apps."
-msgstr ""
+msgstr "Apenas revisores seniores podem rever aplicações bloqueadas."
 
 #: mkt/reviewers/views.py:304
 msgid "Device(s) changed by reviewer: {0}"
-msgstr ""
+msgstr "Dispositivo(s) alterado(s) pelo revisor: {0}"
 
 #: mkt/reviewers/views.py:308 mkt/reviewers/views.py:328 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
-msgstr ""
+msgstr "{0} removido"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:330
 msgid "Requirements changed by reviewer: {0}"
-msgstr ""
+msgstr "Requisitos alterados pelo revisor: {0}"
 
 #: mkt/reviewers/views.py:356
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" processado com sucesso (+{1} pontos, {2} total)."
 
 #: mkt/reviewers/views.py:358
 msgid "Review successfully processed."
