@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 03:28+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-06-14 04:00+0000\n"
+"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402716507.0\n"
+"X-POOTLE-MTIME: 1402718404.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -8928,7 +8928,7 @@ msgstr "<i>anônimo</i> em %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Atualmente não está a rever quaisquer aplicações."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25
 #: mkt/reviewers/templates/reviewers/includes/details.html:144 mkt/reviewers/templates/reviewers/includes/mobile_details.html:166 mkt/reviewers/templates/reviewers/includes/search_results.html:7
@@ -8938,7 +8938,7 @@ msgstr "Etiquetas"
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/queue_region.html:27
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:72
 msgid "Packaged App"
@@ -8983,7 +8983,7 @@ msgstr "Retirar este anúncio"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
 msgid "Back to Reviewer Tools"
-msgstr ""
+msgstr "Voltar para as ferramentas do revisor"
 
 #: mkt/reviewers/templates/reviewers/home.html:17
 msgid "{num} Pending App Review"
@@ -8994,20 +8994,20 @@ msgstr[1] "{num} Revisões de aplicativos pendentes"
 #: mkt/reviewers/templates/reviewers/home.html:24
 msgid "{num} Re-review"
 msgid_plural "{num} Re-reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} reanálise"
+msgstr[1] "{num} reanálises"
 
 #: mkt/reviewers/templates/reviewers/home.html:31
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} revisão da atualização"
+msgstr[1] "{num} revisões da atualização"
 
 #: mkt/reviewers/templates/reviewers/home.html:40
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{c} submissão de aplicação não revista esta semana."
+msgstr[1] "{c} submissões de aplicações não revistas esta semana."
 
 #: mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
@@ -9225,11 +9225,11 @@ msgstr "Avaliações"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:72 mkt/reviewers/templates/reviewers/includes/mobile_details.html:93
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Esta aplicação ainda não foi classificada"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Total Downloads"
-msgstr ""
+msgstr "Total de transferências"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
@@ -9237,11 +9237,11 @@ msgstr "Ver Estatísticas"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Tipos de dispositivo"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:146
 msgid "Requirements"
-msgstr ""
+msgstr "Requisitos"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:158
 msgid "Images"
@@ -9259,24 +9259,24 @@ msgstr "Filtro"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
-msgstr ""
+msgstr "Revisão prioritária necessária"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:74
 msgid "Privileged App"
-msgstr ""
+msgstr "Aplicação privilegiada"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
 msgid "Premium with In-App"
-msgstr ""
+msgstr "Premium com compras na aplicação"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:84
 msgid "Free with In-App"
-msgstr ""
+msgstr "Grátis com compras na aplicação"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19 mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:171
 msgid "more..."
-msgstr ""
+msgstr "mais…"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
 msgid "Process Reviews"
@@ -9308,11 +9308,13 @@ msgstr "Pesquisa avançada"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Limpar pesquisa"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Versão %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:20 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:25
 msgid "Files in this version:"
@@ -9338,11 +9340,11 @@ msgstr "<div>Por %(user)s em %(date)s</div>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Próxima página"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Página anterior"
 
 #: mkt/search/forms.py:14
 msgid "Relevance"
@@ -9354,7 +9356,7 @@ msgstr "Popularidade"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
-msgstr ""
+msgstr "Revisto"
 
 #: mkt/search/forms.py:29
 msgid "Paid"
@@ -9362,27 +9364,27 @@ msgstr "Pago"
 
 #: mkt/search/forms.py:33
 msgid "Any App Type"
-msgstr ""
+msgstr "Qualquer tipo de aplicação"
 
 #: mkt/search/forms.py:36
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Aplicação empacotada com privilégios"
 
 #: mkt/search/forms.py:41
 msgid "Free with In-app"
-msgstr ""
+msgstr "Grátis com compras na aplicação"
 
 #: mkt/search/forms.py:43
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium com compras na aplicação"
 
 #: mkt/search/forms.py:44
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Outro sistema para compras na aplicação"
 
 #: mkt/search/forms.py:48
 msgid "Any Device Type"
-msgstr ""
+msgstr "Qualquer tipo de dispositivo"
 
 #: mkt/search/forms.py:51
 msgid "Tablet"
@@ -9479,19 +9481,19 @@ msgstr ""
 
 #: mkt/search/forms.py:141
 msgid "Premium types"
-msgstr ""
+msgstr "Tipos premium"
 
 #: mkt/search/forms.py:145
 msgid "App type"
-msgstr ""
+msgstr "Tipo de aplicação"
 
 #: mkt/search/forms.py:148
 msgid "Works offline"
-msgstr ""
+msgstr "Funciona sem ligação à Internet"
 
 #: mkt/search/forms.py:150
 msgid "Supported languages"
-msgstr ""
+msgstr "Idiomas suportados"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -9511,7 +9513,7 @@ msgstr "Alterar senha"
 
 #: mkt/site/context_processors.py:33
 msgid "Sign out"
-msgstr ""
+msgstr "Terminar sessão"
 
 #: mkt/site/forms.py:10
 msgid "As soon as it is approved."
@@ -9560,6 +9562,9 @@ msgstr "Sentimos muito, mas não pudemos encontrar o que você está procurando.
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr ""
+"A página ou ficheiro que solicitou não foi encontrado no nosso site. É "
+"possível que tenha clicado numa hiperligação desatualizada ou digitou o "
+"endereço incorretamente."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
@@ -9596,16 +9601,16 @@ msgstr "Semana"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Trimestre"
 
 #: mkt/submit/forms.py:33
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Dispositivo(s) alterado(s): {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:43
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "Requisitos alterados: {0}"
 
 #: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
@@ -9613,11 +9618,11 @@ msgstr "Não pode ser gratuito e pago."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Por favor selecione um dispositivo."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr ""
+msgstr "Aplicações empacotadas ainda não são suportadas nessas plataformas."
 
 #: mkt/submit/forms.py:147
 msgid "Agree and Continue"
@@ -9638,11 +9643,11 @@ msgstr "Quando o seu aplicativo estará disponível para venda?"
 #. L10n: "App" is a paid version of this app. "from" is this app.
 #: mkt/submit/forms.py:284
 msgid "App to upgrade from"
-msgstr ""
+msgstr "Aplicação para atualizar de"
 
 #: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Política de privacidade:"
 
 #: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
@@ -9650,11 +9655,13 @@ msgstr "É requerida uma política de privacidade que explica quais dados são t
 
 #: mkt/submit/forms.py:356
 msgid "Homepage:"
-msgstr ""
+msgstr "Página inicial:"
 
 #: mkt/submit/forms.py:357
 msgid "If your app has another homepage, enter its address here."
 msgstr ""
+"Se a sua aplicação tiver outra página inicial, introduza aqui o respetivo "
+"endereço."
 
 # 75%
 #: mkt/submit/forms.py:361
@@ -9673,24 +9680,33 @@ msgstr "Endereço de correio de ajuda:"
 #: mkt/submit/forms.py:367
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"Este endereço de email será apresentado publicamente no Marketplace e será "
+"utilizado por utilizadores finais para entrar em contacto consigo com "
+"problemas e pedidos de suporte. Este endereço de email será apresentado "
+"publicamente na página de detalhes da sua aplicação."
 
 #: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
-msgstr ""
+msgstr "A sua aplicação requer suporte ao Flash?"
 
 #: mkt/submit/forms.py:382
 msgid "Publish my app in the Firefox Marketplace as soon as it's reviewed."
 msgstr ""
+"Publicar a minha aplicação no Firefox Marketplace assim que estiver revista."
 
 #: mkt/submit/forms.py:384
 msgid ""
 "If selected your app will be published immediately following its approval by reviewers. If you don't select this option you will be notified via email about your app's approval and you will need to "
 "log in and manually publish it."
 msgstr ""
+"Se selecionado, a sua aplicação será imediatamente publicada após a sua "
+"aprovação pelos revisores. Se não selecionar esta opção será notificação por "
+"correio eletrónico sobre a aprovação da sua aplicação e terá de iniciar "
+"sessão e publicar a mesma manualmente."
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Próximos passos"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -9831,15 +9847,15 @@ msgstr ""
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
-msgstr ""
+msgstr "<strong>Qual é o próximo passo:</strong> Configurar %(next_step_name)s"
 
 #: mkt/submit/templates/submit/next_steps.html:94
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr ""
+msgstr "<strong>Qual é o próximo passo:</strong> Publicar a sua aplicação"
 
 #: mkt/submit/templates/submit/payments-upsell.html:4 mkt/submit/templates/submit/payments.html:3
 msgid "App Payments"
-msgstr ""
+msgstr "Pagamentos da aplicação"
 
 #: mkt/submit/templates/submit/payments-upsell.html:18
 msgid "To sell your app in the Marketplace, you'll first need to set its price tier below. Price tiers are based on US Dollars and are fixed for all supported currencies."
@@ -9865,17 +9881,23 @@ msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
-msgstr ""
+msgstr "Programa de Programadores do Marketplace"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
 "We're excited you've built an app using web technologies, and submitting it to the Firefox Marketplace is the best way for users to discover and enjoy it across their devices. First, you'll need to "
 "join the Marketplace Developer Program below."
 msgstr ""
+"Estamos contentes que tenha construído uma aplicação utilizando tecnologias "
+"web e, submetê-la para o Firefox Marketplace é a melhor forma dos "
+"utilizadores a descobrirem e a utilizarem nos seus dispositivos. Primeiro "
+"tem de juntar-se ao Programa de Programadores do Marketplace em baixo."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
+"Para começar, por favor leia e aceite o nosso <strong>Acordo de "
+"Programador</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
