@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 06:43+0000\n"
+"PO-Revision-Date: 2014-06-14 07:12+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402728236.0\n"
+"X-POOTLE-MTIME: 1402729972.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -822,7 +822,7 @@ msgstr "Precisa do Firefox para instalar extras, <a href=\"http://mozilla.com/mo
 
 #: apps/addons/templates/addons/mobile/home.html:17
 msgid "Easy ways to personalize."
-msgstr "Maneiras simples de personalizar."
+msgstr "Formas simples de personalizar."
 
 #: apps/addons/templates/addons/mobile/home.html:18
 msgid "Learn More"
@@ -833,8 +833,10 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Os extras são aplicações que permitem personalizar o Firefox com funcionalidade e estilo extra. Se você escrever o nome de um sítio ou não consegue ler uma página ocupada, existe um extra para "
-"melhorar a sua experiência de navegação."
+"Os extras são aplicações que permitem personalizar o Firefox com "
+"funcionalidades e estilos adicionais. Se escrever mal o nome de um sítio ou "
+"se não consegue ler uma página ocupada, existe um extra para melhorar a sua "
+"experiência de navegação."
 
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:22 mkt/developers/templates/developers/apps/edit/basic.html:148
 #: mkt/reviewers/templates/reviewers/includes/details.html:137 mkt/reviewers/templates/reviewers/includes/mobile_details.html:158 mkt/search/forms.py:135 templates/categories.html:7
@@ -859,7 +861,7 @@ msgstr "Sair"
 
 #: apps/amo/context_processors.py:77 mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
-msgstr "Gerenciar Meus Envios"
+msgstr "Gerir as minhas submissões"
 
 #: apps/amo/context_processors.py:80
 msgid "Submit a New Add-on"
@@ -867,7 +869,7 @@ msgstr "Submeter um novo extra"
 
 #: apps/amo/context_processors.py:82 apps/amo/templates/amo/site_nav.html:46 mkt/site/context_processors.py:36 templates/footer.html:5 templates/menu_links.html:13
 msgid "Developer Hub"
-msgstr "Hub do desenvolvedor"
+msgstr "Central do programador"
 
 #: apps/amo/context_processors.py:87
 msgid "Editor Tools"
@@ -875,15 +877,15 @@ msgstr "Ferramentas do editor"
 
 #: apps/amo/context_processors.py:91 mkt/site/context_processors.py:50
 msgid "Admin Tools"
-msgstr "Ferramentas do admin"
+msgstr "Ferramentas de administração"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr "Tem de ser um código hex de cor válido, tal como #000000."
+msgstr "Isto tem de ser um código de cor hexadecimal válido, tal como #000000."
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr "Introduza pelo menos um valor."
+msgstr "Insira pelo menos um valor."
 
 #: apps/amo/helpers.py:174 apps/amo/templates/amo/site_nav.html:30 templates/menu_links.html:11
 msgid "Collections"
@@ -915,15 +917,15 @@ msgstr "{addon} foi criado."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr "{addon} propriedades editadas."
+msgstr "As propriedades de {addon} foram editadas."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr "{addon} descrição editada."
+msgstr "A descrição de {addon} foi editada."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr "Categorias editadas para {addon}."
+msgstr "As categorias de {addon} foram editadas."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
@@ -940,11 +942,11 @@ msgstr "Contribuições para {addon}."
 
 #: apps/amo/log.py:65 apps/amo/log.py:440
 msgid "{addon} disabled."
-msgstr "{addon} desactivado."
+msgstr "{addon} desativado."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr "{addon} activado."
+msgstr "{addon} ativado."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
@@ -1371,7 +1373,7 @@ msgstr "Requisitos modificados"
 #. L10n: {0} is the status
 #: apps/amo/log.py:633
 msgid "{version} status changed to {0}."
-msgstr "Estado de {version} modificado para {0}."
+msgstr "Estado de {version} alterado para {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
@@ -2341,16 +2343,16 @@ msgstr "a compatibilidade do meu extra foi actualizada com sucesso"
 
 #: apps/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr "o meu extra baseado no sdk foi actualizado com sucesso"
+msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr "alguém escreveu um comentário sobre o meu extra"
+msgstr "alguém escreveu uma análise sobre o meu extra"
 
 # 86%
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "alguém escreveu um comentário sobre o meu aplicativo"
+msgstr "alguém escreveu uma análise sobre a minha aplicação"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -2358,11 +2360,11 @@ msgstr "concursos ou eventos de extras são anunciados"
 
 #: apps/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "a compatibilidade do meu extra não pode ser actualizada"
+msgstr "a compatibilidade do meu extra não pode ser atualizada"
 
 #: apps/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr "o meu extra baseado no sdk não pode ser actualizado"
+msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #: apps/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
@@ -2370,7 +2372,7 @@ msgstr "o meu extra é revisto por um editor"
 
 #: apps/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "A Mozilla necessita contactá-lo sobre o meu extra individual"
+msgstr "A Mozilla necessita contactá-lo sobre o meu extra em particular"
 
 # 85%
 #: apps/users/notifications.py:126
@@ -2380,7 +2382,7 @@ msgstr "meu aplicativo foi analisado por um editor"
 # 90%
 #: apps/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr "Mozilla precisa entrar em contato sobre meu aplicativo"
+msgstr "a Mozilla precisa entrar em contacto sobre a minha aplicação"
 
 #: apps/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
@@ -2416,7 +2418,7 @@ msgstr "Por favor, utilize o endereço email confirmado para esta conta."
 
 #: apps/users/views.py:236
 msgid "Wrong email address or password!"
-msgstr "Senha ou endereço de correio errados!"
+msgstr "Senha ou endereço de correio incorreto!"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -3522,7 +3524,7 @@ msgstr "Nenhuma ação"
 
 #: mkt/constants/comm.py:31 mkt/developers/templates/developers/apps/status.html:241 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
-msgstr "Desactivado"
+msgstr "Desativado"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
@@ -3558,7 +3560,7 @@ msgstr "A aplicação requer a API `navigator.mozApps.installPackage` para insta
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr "Pagamentos web"
+msgstr "Pagamentos na web"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
@@ -3925,7 +3927,7 @@ msgstr "Windows, Mac e Linux"
 
 #: mkt/constants/platforms.py:79 mkt/constants/platforms.py:82 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr "Telemoveis android"
+msgstr "Telemóveis Android"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
@@ -5449,7 +5451,7 @@ msgstr "<b>Removeu</b> esta aplicação da listagem pública."
 # 84%
 #: mkt/developers/templates/developers/apps/status.html:31
 msgid "This app is <b>incomplete</b>."
-msgstr "Este aplicativo está <b>incompleto</b>."
+msgstr "Esta aplicação está <b>incompleta</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -5459,7 +5461,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:42
 msgid "You will receive an email when the review is complete."
-msgstr "Você receberá um correio quando a análise estiver completa."
+msgstr "Você receberá um email quando a análise estiver completa."
 
 #: mkt/developers/templates/developers/apps/status.html:45
 msgid "This app is <b>public</b>."
@@ -5512,7 +5514,7 @@ msgstr "Saber mais"
 
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Reviewed by <b>%(reviewer)s</b>"
-msgstr "Revisado por <b>%(reviewer)s</b>"
+msgstr "Analisado por <b>%(reviewer)s</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
@@ -5592,7 +5594,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr "Eliminar Aplicativo"
+msgstr "Eliminar aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:207
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
@@ -5623,7 +5625,7 @@ msgstr "Publicar"
 # 90%
 #: mkt/developers/templates/developers/apps/status.html:270
 msgid "Upload New Version"
-msgstr "Carregar Versão Nova"
+msgstr "Enviar uma nova versão"
 
 #: mkt/developers/templates/developers/apps/status.html:276
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for install."
@@ -5682,7 +5684,7 @@ msgstr "todas as revisões de utilizadores relacionadas serão eliminadas"
 
 #: mkt/developers/templates/developers/apps/status.html:363
 msgid "the app status will be marked as &quot;incomplete&quot;"
-msgstr "o estado do aplicativo será marcado como &quot;incompleto&quot;"
+msgstr "o estado da aplicação será marcado como &quot;incompleto&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "the app will be removed from our review queue"
@@ -5719,7 +5721,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/version_edit.html:39 mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:72
 msgid "Notes for Reviewers"
-msgstr "Nota para revisores"
+msgstr "Notas para revisores"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
@@ -5836,7 +5838,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/admin.html:181
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Separado por vírgulas, mínimo de {0} caractere."
+msgstr[0] "Separado por vírgulas, mínimo de {0} caracter."
 msgstr[1] "Separado por vírgulas, mínimo de {0} caracteres."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:184
@@ -5851,7 +5853,7 @@ msgstr[1] "Etiquetas reservadas:"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
-msgstr "Informação básica"
+msgstr "Informações básicas"
 
 #. {0} is the addon name
 #: mkt/developers/templates/developers/apps/edit/basic.html:16
@@ -8483,7 +8485,7 @@ msgstr "Geral"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
-msgstr "Nome a mostrar"
+msgstr "Nome a apresentar"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Username"
@@ -8507,7 +8509,7 @@ msgstr "Crédito do Marketplace"
 
 #: mkt/lookup/templates/lookup/user_summary.html:48
 msgid "apps purchased"
-msgstr "aplicativos comprados"
+msgstr "aplicações adquiridas"
 
 #: mkt/lookup/templates/lookup/user_summary.html:51
 msgid "requested"
@@ -8570,7 +8572,7 @@ msgstr "Resultados de pesquisa de aplicações por"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 msgid "App Detail"
-msgstr "Detalhes do Aplicativo"
+msgstr "Detalhe da aplicação"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:7
 msgid "Add-on Lookup results for"
@@ -8578,7 +8580,7 @@ msgstr "Resultados de pesquisa de extras para"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:46
 msgid "Review History"
-msgstr "Histórico de revisão"
+msgstr "Histórico da análise"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
@@ -8675,15 +8677,15 @@ msgstr "Histórico da sua compra:"
 
 #: mkt/ratings/forms.py:69
 msgid "Keep review; remove flags"
-msgstr "Manter revisão; remover etiquetas"
+msgstr "Manter análise; remover etiquetas"
 
 #: mkt/ratings/forms.py:70
 msgid "Skip for now"
-msgstr "Saltar por agora"
+msgstr "Ignorar por agora"
 
 #: mkt/ratings/forms.py:71
 msgid "Delete review"
-msgstr "Eliminar comentário"
+msgstr "Eliminar análise"
 
 #: mkt/receipts/forms.py:20
 msgid "No receipt"
@@ -8766,7 +8768,7 @@ msgstr "Esta aplicação funciona em dispositivos Tarako."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
-msgstr "Escolha um modelo de resposta ..."
+msgstr "Escolha um modelo de resposta..."
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:105
@@ -8808,11 +8810,11 @@ msgstr "Dispositivo"
 
 #: mkt/reviewers/helpers.py:38
 msgid "Moderated Reviews"
-msgstr "Revisões moderadas"
+msgstr "Análises moderadas"
 
 #: mkt/reviewers/helpers.py:39
 msgid "Reviewing"
-msgstr "A rever"
+msgstr "Em análise"
 
 #: mkt/reviewers/helpers.py:41 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
@@ -8876,11 +8878,12 @@ msgstr "Isto irá rejeitar a aplicação e removê-la da fila de revisão."
 
 #: mkt/reviewers/utils.py:436
 msgid "Request more information"
-msgstr "Pedir mais informação"
+msgstr "Solicitar mais informação"
 
 #: mkt/reviewers/utils.py:438
 msgid "This will send the author(s) an email requesting more information."
-msgstr "Isto enviará uma mensagem ao(s) autor(es) solicitando mais informações."
+msgstr ""
+"Isto irá enviar uma mensagem ao(s) autor(es) solicitando mais informações."
 
 #: mkt/reviewers/utils.py:442
 msgid "Escalate"
@@ -8888,7 +8891,7 @@ msgstr "Encaminhar para análise superior"
 
 #: mkt/reviewers/utils.py:444
 msgid "Flag this app for an admin to review."
-msgstr "Marcar esse aplicativo para um administrador revisá-lo."
+msgstr "Marcar esta aplicação para ser revista por um administrador."
 
 #: mkt/reviewers/utils.py:449
 msgid "Make a comment on this app. The author won't be able to see this."
@@ -10153,7 +10156,7 @@ msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Extras"
 
 #: templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Extras do Mobile"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Extras do Móvel"
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
@@ -10173,11 +10176,11 @@ msgstr "Extras em destaque"
 
 #: templates/menu_links.html:10
 msgid "Language Support"
-msgstr "Suporte de idioma"
+msgstr "Suporte a idiomas"
 
 #: templates/menu_links.html:12 templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
-msgstr "Extras do Mobile"
+msgstr "Extras do Móvel"
 
 #: templates/menu_links.html:19
 msgid "About"
@@ -10225,7 +10228,7 @@ msgstr "Contacte-nos"
 
 #: templates/user_login.html:22
 msgid "My Account"
-msgstr "A Minha Conta"
+msgstr "A minha conta"
 
 #: templates/user_login.html:37
 msgid "Welcome, {0}"
@@ -10237,7 +10240,10 @@ msgstr "<a href=\"%(reg)s\">Registe-se</a> ou <a href=\"%(login)s\">Inicie sess�
 
 #: templates/impala/base.html:127
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "para experimentar as centenas de extras aqui disponíveis, transfira o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
+msgstr ""
+"Para experimentar os milhares de extras aqui disponíveis, transfira o <a "
+"href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar "
+"na Web!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:138
@@ -10246,11 +10252,14 @@ msgstr "Bem-vindo aos extras do {0}."
 
 #: templates/impala/base.html:141
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Escolha a partir de centenas de funcionalidades e estilos extra para tornar o Firefox só seu."
+msgstr ""
+"Escolha a partir de milhares de funcionalidades e estilos adicionais para "
+"tornar o Firefox só seu."
 
 #: templates/impala/base.html:146
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Adicione funcionalidades e estilos extra para tornar o %(app)s só seu."
+msgstr ""
+"Adicione funcionalidades e estilos adicionais para tornar o %(app)s só seu."
 
 #: templates/impala/base.html:154
 msgid "On the go?"
