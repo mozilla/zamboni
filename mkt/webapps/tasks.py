@@ -26,21 +26,22 @@ from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
-import mkt
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
 from files.models import FileUpload
 from files.utils import WebAppParser
-from lib.es.utils import get_indices
+from lib.es.models import Reindexing
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
+
+import mkt
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, validator)
 from mkt.reviewers.models import RereviewQueue
-from mkt.webapps.models import (Addon, AppManifest, Preview, Webapp,
-                                WebappIndexer)
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Addon, AppManifest, Preview, Webapp
 from mkt.webapps.utils import get_locale_properties
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
@@ -342,12 +343,13 @@ def update_supported_locales(ids, **kw):
 @post_request_task(acks_late=True)
 @write
 def index_webapps(ids, **kw):
+    """TODO: use search/indexers.py:index."""
     task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
 
     index = kw.pop('index', WebappIndexer.get_index())
     # Note: If reindexing is currently occurring, `get_indices` will return
     # more than one index.
-    indices = get_indices(index)
+    indices = Reindexing.get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
     qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache().filter(
@@ -369,7 +371,7 @@ def unindex_webapps(ids, **kw):
     index = kw.pop('index', WebappIndexer.get_index())
     # Note: If reindexing is currently occurring, `get_indices` will return
     # more than one index.
-    indices = get_indices(index)
+    indices = Reindexing.get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
     for id_ in ids:

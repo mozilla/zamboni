@@ -529,7 +529,7 @@ BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 CACHE_COUNT_TIMEOUT = 60
 
 # A Django cache machine setting, that hasn't been updated to use the
-# new PREFIX in the CACHE setttings.
+# new PREFIX in the CACHE settings.
 CACHE_PREFIX = 'marketplace:%s' % build_id
 
 # Cache timeout on the /search/featured API.
@@ -651,7 +651,6 @@ DOMAIN_METHODS = {
         # crashes the extractor with bad unicode data.
         ('media/js/*.js', 'javascript'),
         ('media/js/common/**.js', 'javascript'),
-        ('media/js/impala/**.js', 'javascript'),
         ('media/js/zamboni/**.js', 'javascript'),
         ('media/js/devreg/**.js', 'javascript'),
     ],
@@ -679,7 +678,13 @@ ENGAGE_ROBOTS = True
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
 ES_HOSTS = ['127.0.0.1:9200']
-ES_INDEXES = {'webapp': 'apps'}
+ES_INDEXES = {
+    'webapp': 'apps',
+    'mkt_feed_app': 'feed_apps',
+    'mkt_feed_brand': 'feed_brands',
+    'mkt_feed_collection': 'feed_collections',
+    # Adding an index? Don't forget to add the indexer to ESTestCase.
+}
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_USE_PLUGINS = False
 ES_TIMEOUT = 30
@@ -875,184 +880,9 @@ MIN_BETA_VERSION = '3.7'
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
-    'css': {
-        'zamboni/admin': (
-            'css/zamboni/zamboni.css',
-            'css/zamboni/mkt-admin.css',
-            'css/zamboni/admin-django.css',
-            'css/zamboni/admin-mozilla.css',
-        ),
-    },
-    'js': {
-        # JS files common to the entire site (pre-impala).
-        'common': (
-            'js/lib/jquery-1.6.4.js',
-            'js/lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/apps.js',
-            'js/zamboni/buttons.js',
-            'js/zamboni/tabs.js',
-            'js/common/keys.js',
-
-            # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
-
-            'js/zamboni/helpers.js',
-            'js/zamboni/global.js',
-            'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
-            'js/zamboni/l10n.js',
-            'js/zamboni/debouncer.js',
-
-            # Homepage
-            'js/zamboni/homepage.js',
-
-            # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
-            'js/zamboni/addon_details.js',
-            'js/impala/abuse.js',
-            'js/zamboni/reviews.js',
-
-            # Users
-            'js/zamboni/users.js',
-
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
-
-            # Hover delay for global header
-            'js/global/menu.js',
-
-            # Password length and strength
-            'js/zamboni/password-strength.js',
-
-            # Search suggestions
-            'js/impala/forms.js',
-            'js/impala/ajaxcache.js',
-            'js/impala/suggestions.js',
-            'js/impala/site_suggestions.js',
-        ),
-
-        # Impala and Legacy: Things to be loaded at the top of the page
-        'preload': (
-            'js/lib/jquery-1.6.4.js',
-            'js/impala/preloaded.js',
-            'js/zamboni/analytics.js',
-        ),
-        # Impala: Things to be loaded at the bottom
-        'impala': (
-            'js/lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/apps.js',
-            'js/zamboni/buttons.js',
-            'js/lib/jquery.pjax.js',
-            'js/impala/footer.js',
-            'js/common/keys.js',
-
-            # BrowserID
-            'js/zamboni/browserid_support.js',
-
-            # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
-
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/impala/ajaxcache.js',
-            'js/zamboni/helpers.js',
-            'js/zamboni/global.js',
-            'js/lib/stick.js',
-            'js/impala/global.js',
-            'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
-            'js/zamboni/l10n.js',
-            'js/impala/forms.js',
-
-            # Homepage
-            'js/impala/homepage.js',
-
-            # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
-            'js/impala/addon_details.js',
-            'js/impala/abuse.js',
-            'js/impala/reviews.js',
-
-            # Browse listing pages
-            'js/impala/listing.js',
-
-            # Collections
-            'js/impala/collections.js',
-
-            # Users
-            'js/zamboni/users.js',
-            'js/impala/users.js',
-
-            # Search
-            'js/impala/serializers.js',
-            'js/impala/search.js',
-            'js/impala/suggestions.js',
-            'js/impala/site_suggestions.js',
-
-            # Login
-            'js/impala/login.js',
-
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
-        ),
-        'zamboni/files': (
-            'js/lib/diff_match_patch_uncompressed.js',
-            'js/lib/syntaxhighlighter/xregexp-min.js',
-            'js/lib/syntaxhighlighter/shCore.js',
-            'js/lib/syntaxhighlighter/shLegacy.js',
-            'js/lib/syntaxhighlighter/shBrushAppleScript.js',
-            'js/lib/syntaxhighlighter/shBrushAS3.js',
-            'js/lib/syntaxhighlighter/shBrushBash.js',
-            'js/lib/syntaxhighlighter/shBrushCpp.js',
-            'js/lib/syntaxhighlighter/shBrushCSharp.js',
-            'js/lib/syntaxhighlighter/shBrushCss.js',
-            'js/lib/syntaxhighlighter/shBrushDiff.js',
-            'js/lib/syntaxhighlighter/shBrushJava.js',
-            'js/lib/syntaxhighlighter/shBrushJScript.js',
-            'js/lib/syntaxhighlighter/shBrushPhp.js',
-            'js/lib/syntaxhighlighter/shBrushPlain.js',
-            'js/lib/syntaxhighlighter/shBrushPython.js',
-            'js/lib/syntaxhighlighter/shBrushSass.js',
-            'js/lib/syntaxhighlighter/shBrushSql.js',
-            'js/lib/syntaxhighlighter/shBrushVb.js',
-            'js/lib/syntaxhighlighter/shBrushXml.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/files.js',
-        ),
-        'zamboni/admin': (
-            'js/zamboni/admin.js',
-            'js/zamboni/admin_features.js',
-            'js/zamboni/admin_validation.js',
-        ),
-    }
+    'css': asset_bundles.CSS,
+    'js': asset_bundles.JS
 }
-
-MINIFY_BUNDLES['css'].update(asset_bundles.CSS)
-MINIFY_BUNDLES['js'].update(asset_bundles.JS)
 
 MINIFY_MOZMARKET = True
 

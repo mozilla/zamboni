@@ -5,7 +5,7 @@ from rest_framework import serializers
 import amo
 import amo.tests
 
-from mkt.feed.constants import COLLECTION_TYPE_LISTING, COLLECTION_TYPE_PROMO
+from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
 from mkt.feed.models import FeedBrand
 from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
                                   FeedCollectionSerializer, FeedItemSerializer)
@@ -84,7 +84,7 @@ class TestFeedCollectionSerializer(amo.tests.TestCase):
             'background_color': '#FF4E00',
             'name': {'en-US': 'Potato'},
             'description': {'en-US': 'Potato, tomato'},
-            'type': COLLECTION_TYPE_PROMO
+            'type': COLLECTION_PROMO
         }
 
     def validate(self, **attrs):
@@ -100,10 +100,10 @@ class TestFeedCollectionSerializer(amo.tests.TestCase):
             self.validate()
 
     def test_validate_listing_bg(self):
-        self.data['type'] = COLLECTION_TYPE_LISTING
+        self.data['type'] = COLLECTION_LISTING
         self.validate()
 
     def test_validate_listing_nobg(self):
-        self.data['type'] = COLLECTION_TYPE_LISTING
+        self.data['type'] = COLLECTION_LISTING
         del self.data['background_color']
         self.validate()

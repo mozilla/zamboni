@@ -7,8 +7,8 @@ from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.feed.views import (FeedAppImageViewSet, FeedAppViewSet,
                             FeedBrandViewSet, FeedBuilderView,
-                            FeedCollectionViewSet, FeedCollectionImageViewSet,
-                            FeedItemViewSet)
+                            FeedCollectionImageViewSet, FeedCollectionViewSet,
+                            FeedElementSearchView, FeedItemViewSet)
 
 
 feed = SimpleRouter()
@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^rocketfuel/collections/.*', endpoint_removed),
     url(r'^feed/builder/$', FeedBuilderView.as_view(),
         name='feed.builder'),
+    url(r'^feed/elements/search/$', FeedElementSearchView.as_view(),
+        name='feed.element-search'),
     url(r'^feed/', include(feed.urls)),
     url(r'^feed/apps/', include(subfeedapp.urls)),
     url(r'^feed/collections/', include(subfeedcollection.urls)),

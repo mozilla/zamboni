@@ -12,11 +12,10 @@
         {{ widget.render('price_id', None, attrs={'class': 'inline-edit'}) }}
     {% endwith %}
   </td>
-  <td>
+  <td class="in-app-product-pk">
     {{ product.pk }}
   </td>
   <td>
-    <input type="hidden" class="in-app-product-id" value="{{ product.id }}">
     <button class="in-app-product-edit button inline-view">{{ _('Edit') }}</button>
     <button class="in-app-product-save button good inline-edit">{{ _('Save') }}</button>
   </td>

@@ -10,28 +10,31 @@ Current content types able to be attached to FeedItem:
 - `FeedBrand` (via the `brand` field)
 - `FeedCollection` (via the `collection` field)
 """
-
 import os
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 import amo.models
-import mkt.carriers
-import mkt.regions
 from amo.decorators import use_master
 from amo.models import SlugField
+
+import mkt.carriers
+import mkt.regions
 from mkt.collections.fields import ColorField
-from mkt.constants.feed import FEEDAPP_TYPES
+from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
+from mkt.search.indexers import index
 from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 from translations.fields import PurifiedField, save_signal
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
-                        COLLECTION_TYPE_CHOICES, FEED_COLOR_CHOICES)
+                        COLLECTION_TYPE_CHOICES,
+                        FEEDAPP_TYPE_CHOICES, FEED_COLOR_CHOICES)
 
 
 class BaseFeedCollection(amo.models.ModelBase):
@@ -206,6 +209,9 @@ class FeedBrand(BaseFeedCollection):
         abstract = False
         db_table = 'mkt_feed_brand'
 
+    def get_indexer(self):
+        return indexers.FeedBrandIndexer
+
 
 class FeedCollectionMembership(BaseFeedCollectionMembership):
     """
@@ -240,6 +246,9 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
     class Meta(BaseFeedCollection.Meta):
         abstract = False
         db_table = 'mkt_feed_collection'
+
+    def get_indexer(self):
+        return indexers.FeedCollectionIndexer
 
     def image_path(self):
         return os.path.join(settings.FEED_COLLECTION_BG_PATH,
@@ -283,10 +292,10 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
     and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
-    type = models.CharField(choices=FEEDAPP_TYPES, max_length=30)
     description = PurifiedField()
     slug = SlugField(max_length=30, unique=True)
     background_color = ColorField(null=True)
+    type = models.CharField(choices=FEEDAPP_TYPE_CHOICES, max_length=30)
 
     # Optionally linked to a Preview (screenshot or video).
     preview = models.ForeignKey(Preview, null=True, blank=True)
@@ -300,6 +309,9 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
 
     class Meta:
         db_table = 'mkt_feed_app'
+
+    def get_indexer(self):
+        return indexers.FeedAppIndexer
 
     def clean(self):
         """
@@ -342,6 +354,17 @@ class FeedItem(amo.models.ModelBase):
     class Meta:
         db_table = 'mkt_feed_item'
         ordering = ('order',)
+
+
+# Maintain ElasticSearch index.
+@receiver(models.signals.post_save, sender=FeedApp,
+          dispatch_uid='feedapp.search.index')
+@receiver(models.signals.post_save, sender=FeedBrand,
+          dispatch_uid='feedbrand.search.index')
+@receiver(models.signals.post_save, sender=FeedCollection,
+          dispatch_uid='feedcollection.search.index')
+def update_search_index(sender, instance, **kw):
+    index.delay([instance.id], instance.get_indexer())
 
 
 # Save translations when saving instance with translated fields.

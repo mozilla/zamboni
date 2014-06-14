@@ -1,12 +1,84 @@
-from nose.tools import eq_, ok_
+# -*- coding: utf-8 -*-
+import random
+import string
 
 from django.core.exceptions import ValidationError
 
+from nose.tools import eq_, ok_
+
 import amo.tests
-from mkt.feed.models import FeedApp, FeedBrand
+
+import mkt.feed.constants as feed
+from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
-from .test_views import FeedAppMixin
+
+class FeedTestMixin(object):
+    fixtures = fixture('webapp_337141')
+
+    def feed_app_factory(self, app_id=None, app_type=feed.FEEDAPP_ICON,
+                         **kwargs):
+        count = FeedApp.objects.count()
+        return FeedApp.objects.create(
+            app_id=app_id or Webapp.objects.get(id=337141).id,
+            slug='feed-app-%s' % count, type=app_type, **kwargs)
+
+    def feed_brand_factory(self, app_ids=None, layout=feed.BRAND_GRID,
+                           brand_type='mystery-app', **kwargs):
+        count = FeedBrand.objects.count()
+        brand = FeedBrand.objects.create(slug='feed-brand-%s' % count,
+                                         type=brand_type, **kwargs)
+        brand.set_apps(app_ids or [337141])
+        return brand
+
+    def feed_collection_factory(self, app_ids=None, name='test-coll',
+                                coll_type=feed.COLLECTION_LISTING, **kwargs):
+        count = FeedCollection.objects.count()
+        coll = FeedCollection.objects.create(
+            name=name, slug='feed-coll-%s' % count, type=coll_type, **kwargs)
+        coll.set_apps(app_ids or [337141])
+        return coll
+
+
+class FeedAppMixin(object):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.feedapp_data = {
+            'app': 337141,
+            'background_color': '#B90000',
+            'type': 'icon',
+            'description': {
+                'en-US': u'pan-fried potatoes'
+            },
+            'slug': self.random_slug()
+        }
+        self.pullquote_data = {
+            'pullquote_text': {'en-US': u'The bést!'},
+            'pullquote_rating': 4,
+            'pullquote_attribution': u'Jamés Bod'
+        }
+        self.feedapps = []
+        super(FeedAppMixin, self).setUp()
+
+    def random_slug(self):
+        return ''.join(random.choice(string.ascii_uppercase + string.digits)
+                       for _ in range(10))
+
+    def create_feedapps(self, n=2, **kwargs):
+        data = dict(self.feedapp_data)
+        data.update(kwargs)
+        if not isinstance(data['app'], Webapp):
+            data['app'] = Webapp.objects.get(pk=data['app'])
+
+        feedapps = []
+        for idx in xrange(n):
+            data['slug'] = self.random_slug()
+            feedapps.append(FeedApp.objects.create(**data))
+        self.feedapps.extend(feedapps)
+
+        return feedapps
 
 
 class TestFeedApp(FeedAppMixin, amo.tests.TestCase):

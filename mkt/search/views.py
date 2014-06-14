@@ -28,7 +28,8 @@ from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
 from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                     SuggestionsESAppSerializer)
 from mkt.search.utils import S
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Webapp
 
 
 DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort', 'tag']

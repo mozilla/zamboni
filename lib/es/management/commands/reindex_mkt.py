@@ -1,11 +1,8 @@
 """
-A Marketplace only reindexing that indexes only apps.
+Marketplace ElasticSearch Indexer.
 
-This avoids a lot of complexity for now. We might want an all encompassing
-reindex command that has args for AMO and MKT.
-
+Currently indexes apps and feed elements.
 """
-
 import logging
 import os
 import sys
@@ -19,9 +16,11 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from amo.utils import chunked, timestamp_index
-from lib.es.utils import (flag_reindexing_mkt, is_reindexing_mkt,
-                          unflag_reindexing_mkt)
-from mkt.webapps.models import Webapp, WebappIndexer
+from lib.es.models import Reindexing
+
+from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
+                               FeedCollectionIndexer)
+from mkt.webapps.models import WebappIndexer
 
 
 logger = logging.getLogger('z.elasticsearch')
@@ -33,7 +32,21 @@ logger = logging.getLogger('z.elasticsearch')
 
 
 # The subset of settings.ES_INDEXES we are concerned with.
-ALIAS = settings.ES_INDEXES['webapp']
+INDEXES = (
+    # Index, Indexer, chunk size.
+    (settings.ES_INDEXES['webapp'], WebappIndexer, 100),
+    # Currently using 500 since these are manually created by a curator and
+    # there will probably never be this many.
+    (settings.ES_INDEXES['mkt_feed_app'], FeedAppIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_brand'], FeedBrandIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_collection'], FeedCollectionIndexer, 500),
+)
+
+INDEX_DICT = {
+    # In case we want to index only a subset of indexes.
+    'webapp': [INDEXES[0]],
+    'feed': [INDEXES[1], INDEXES[2], INDEXES[3]],
+}
 
 if hasattr(settings, 'ES_URLS'):
     ES_URL = settings.ES_URLS[0]
@@ -51,12 +64,12 @@ time_limits = settings.CELERY_TIME_LIMITS[job]
 @task
 def delete_index(old_index):
     """Removes the index."""
-    sys.stdout.write('Removing index %r' % old_index)
+    sys.stdout.write('Removing index %r\n' % old_index)
     ES.delete_index(old_index)
 
 
 @task
-def create_index(new_index, alias, settings):
+def create_index(new_index, alias, indexer, settings):
     """Creates a mapping for the new index.
 
     - new_index: new index name
@@ -65,12 +78,12 @@ def create_index(new_index, alias, settings):
 
     """
     sys.stdout.write(
-        'Create the mapping for index %r, alias: %r' % (new_index, alias))
+        'Create the mapping for index %r, alias: %r\n' % (new_index, alias))
 
     # Update settings with mapping.
     settings = {
         'settings': settings,
-        'mappings': WebappIndexer.get_mapping(),
+        'mappings': indexer.get_mapping(),
     }
 
     # Create index and mapping.
@@ -83,25 +96,8 @@ def create_index(new_index, alias, settings):
     ES.health(new_index, wait_for_status='green', wait_for_relocating_shards=0)
 
 
-def index_webapp(ids, **kw):
-    index = kw.pop('index', None) or ALIAS
-    sys.stdout.write('Indexing %s apps' % len(ids))
-
-    qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache()
-                                     .filter(id__in=ids))
-
-    docs = []
-    for obj in qs:
-        try:
-            docs.append(WebappIndexer.extract_document(obj.id, obj=obj))
-        except Exception as e:
-            sys.stdout.write('Failed to index obj: {0}. {1}'.format(obj.id, e))
-
-    WebappIndexer.bulk_index(docs, es=ES, index=index)
-
-
 @task(time_limit=time_limits['hard'], soft_time_limit=time_limits['soft'])
-def run_indexing(index):
+def run_indexing(index, indexer, chunk_size):
     """Index the objects.
 
     - index: name of the index
@@ -113,26 +109,27 @@ def run_indexing(index):
           requires celery 3 (bug 825938).
 
     """
-    sys.stdout.write('Indexing apps into index: %s' % index)
+    sys.stdout.write('Indexing apps into index: %s\n' % index)
 
-    qs = WebappIndexer.get_indexable()
-    for chunk in chunked(list(qs), 100):
-        index_webapp(chunk, index=index)
+    qs = indexer.get_indexable().values_list('id', flat=True)
+    for ids in chunked(list(qs), chunk_size):
+        indexer.run_indexing(ids, ES, index=index)
 
 
 @task
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
-    sys.stdout.write('Flagging the database to start the reindexation')
-    flag_reindexing_mkt(new_index=new_index, old_index=old_index, alias=alias)
+    sys.stdout.write('Flagging the database to start the reindexation\n')
+    Reindexing.flag_reindexing(new_index=new_index, old_index=old_index,
+                               alias=alias)
     time.sleep(5)  # Give celeryd some time to flag the DB.
 
 
 @task
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
-    sys.stdout.write('Unflagging the database')
-    unflag_reindexing_mkt()
+    sys.stdout.write('Unflagging the database\n')
+    Reindexing.unflag_reindexing()
 
 
 @task
@@ -147,7 +144,7 @@ def update_alias(new_index, old_index, alias, settings):
         3. Point the alias to this new index.
 
     """
-    sys.stdout.write('Optimizing, updating settings and aliases.')
+    sys.stdout.write('Optimizing, updating settings and aliases.\n')
 
     # Optimize.
     ES.optimize(new_index)
@@ -168,14 +165,20 @@ def update_alias(new_index, old_index, alias, settings):
 
 @task
 def output_summary():
-    aliases = ES.aliases(ALIAS)
+    alias_output = ''
+    for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
+        alias_output += unicode(ES.aliases(ALIAS)) + '\n'
     sys.stdout.write(
-        'Reindexation done. Current Aliases configuration: %s\n' % aliases)
+        'Reindexation done. Current Aliases configuration: %s\n' %
+        alias_output)
 
 
 class Command(BaseCommand):
     help = 'Reindex all ES indexes'
     option_list = BaseCommand.option_list + (
+        make_option('--index', action='store',
+                    help='Which indexes to reindex',
+                    default=None),
         make_option('--prefix', action='store',
                     help='Indexes prefixes, like test_',
                     default=''),
@@ -191,70 +194,86 @@ class Command(BaseCommand):
         Creates a Tasktree that creates a new indexes and indexes all objects,
         then points the alias to this new index when finished.
         """
-        force = kwargs.get('force', False)
-        prefix = kwargs.get('prefix', '')
+        global INDEXES
 
-        if is_reindexing_mkt() and not force:
+        index_choice = kwargs.get('index', None)
+        prefix = kwargs.get('prefix', '')
+        force = kwargs.get('force', False)
+
+        if index_choice:
+            # If we only want to reindex a subset of indexes.
+            INDEXES = INDEX_DICT.get(index_choice, INDEXES)
+
+        if Reindexing.is_reindexing() and not force:
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
         elif force:
             unflag_database()
 
-        # The list of indexes that is currently aliased by `ALIAS`.
-        try:
-            aliases = ES.aliases(ALIAS).keys()
-        except pyelasticsearch.exceptions.ElasticHttpNotFoundError:
-            aliases = []
-        old_index = aliases[0] if aliases else None
-        # Create a new index, using the index name with a timestamp.
-        new_index = timestamp_index(prefix + ALIAS)
-
-        # See how the index is currently configured.
-        if old_index:
+        chain = None
+        old_indexes = []
+        for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
+            # Get the old index if it exists.
             try:
-                s = (ES.get_settings(old_index).get(old_index, {})
-                                               .get('settings', {}))
+                aliases = ES.aliases(ALIAS).keys()
             except pyelasticsearch.exceptions.ElasticHttpNotFoundError:
+                aliases = []
+            old_index = aliases[0] if aliases else None
+            old_indexes.append(old_index)
+
+            # Create a new index, using the index name with a timestamp.
+            new_index = timestamp_index(prefix + ALIAS)
+
+            # See how the index is currently configured.
+            if old_index:
+                try:
+                    s = (ES.get_settings(old_index).get(old_index, {})
+                                                   .get('settings', {}))
+                except pyelasticsearch.exceptions.ElasticHttpNotFoundError:
+                    s = {}
+            else:
                 s = {}
-        else:
-            s = {}
+            num_replicas = s.get('number_of_replicas',
+                                 settings.ES_DEFAULT_NUM_REPLICAS)
+            num_shards = s.get('number_of_shards',
+                               settings.ES_DEFAULT_NUM_SHARDS)
 
-        num_replicas = s.get('number_of_replicas',
-                             settings.ES_DEFAULT_NUM_REPLICAS)
-        num_shards = s.get('number_of_shards', settings.ES_DEFAULT_NUM_SHARDS)
+            # Flag the database to mark as currently indexing.
+            if not chain:
+                chain = flag_database.si(new_index, old_index, ALIAS)
+            else:
+                chain |= flag_database.si(new_index, old_index, ALIAS)
 
-        # Flag the database.
-        chain = flag_database.si(new_index, old_index, ALIAS)
+            # Create the indexes and mappings.
+            # Note: We set num_replicas=0 here to lower load while re-indexing.
+            # In later step we increase it which results in more efficient bulk
+            # copy in ES. For ES < 0.90 we manually enable compression.
+            chain |= create_index.si(new_index, ALIAS, INDEXER, {
+                'analysis': INDEXER.get_analysis(),
+                'number_of_replicas': 0, 'number_of_shards': num_shards,
+                'store.compress.tv': True, 'store.compress.stored': True,
+                'refresh_interval': '-1'})
 
-        # Create the index and mapping.
-        #
-        # Note: We set num_replicas=0 here to decrease load while re-indexing.
-        # In a later step we increase it which results in a more efficient bulk
-        # copy in Elasticsearch.
-        # For ES < 0.90 we manually enable compression.
-        chain |= create_index.si(new_index, ALIAS, {
-            'analysis': WebappIndexer.get_analysis(),
-            'number_of_replicas': 0, 'number_of_shards': num_shards,
-            'store.compress.tv': True, 'store.compress.stored': True,
-            'refresh_interval': '-1'})
+            # Index all the things!
+            chain |= run_indexing.si(new_index, INDEXER, CHUNK_SIZE)
 
-        # Index all the things!
-        chain |= run_indexing.si(new_index)
+            # After indexing we optimize the index, adjust settings, and point
+            # alias to the new index.
+            chain |= update_alias.si(new_index, old_index, ALIAS, {
+                'number_of_replicas': num_replicas, 'refresh_interval': '5s'})
 
-        # After indexing we optimize the index, adjust settings, and point the
-        # alias to the new index.
-        chain |= update_alias.si(new_index, old_index, ALIAS, {
-            'number_of_replicas': num_replicas, 'refresh_interval': '5s'})
-
-        # Unflag the database.
+        # Unflag the database to mark as done indexing.
         chain |= unflag_database.si()
 
         # Delete the old index, if any.
-        if old_index:
-            chain |= delete_index.si(old_index)
+        for old_index in old_indexes:
+            if old_index:
+                chain |= delete_index.si(old_index)
 
+        # All done!
         chain |= output_summary.si()
 
+        # Ship it.
         self.stdout.write('\nNew index and indexing tasks all queued up.\n')
         os.environ['FORCE_INDEXING'] = '1'
         try:
