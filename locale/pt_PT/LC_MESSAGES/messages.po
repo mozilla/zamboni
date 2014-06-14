@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 06:18+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2014-06-14 06:43+0000\n"
+"Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402726726.0\n"
+"X-POOTLE-MTIME: 1402728236.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -299,7 +299,7 @@ msgstr "Este extra foi removido pelo autor."
 
 #: apps/addons/templates/addons/disabled.html:25 apps/addons/templates/addons/impala/disabled.html:28
 msgid "This add-on has been disabled by an administrator."
-msgstr "Este extra foi desactivado por um administrador."
+msgstr "Este extra foi desativado por um administrador."
 
 #: apps/addons/templates/addons/disabled.html:27
 msgid "This add-on is not ready for sale yet."
@@ -308,15 +308,17 @@ msgstr "Este extra ainda não está pronto para ser vendido."
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/eula.html:6
 msgid "End-User License Agreement for {0}"
-msgstr "Acordo de Licença para o Utilizador Final para {0}"
+msgstr "Acordo de Licenciamento para o Utilizador Final para {0}"
 
 #: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:45 apps/addons/templates/addons/impala/details.html:279
 msgid "End-User License Agreement"
-msgstr "Acordo de licença de utilizador final"
+msgstr "Acordo de licenciamento para o utilizador final"
 
 #: apps/addons/templates/addons/eula.html:23
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s necessita que aceite o seguinte Acordo de Licença para o Utilizador Final antes de continuar com a instalação:"
+msgstr ""
+"%(addon_name)s necessita que aceite o seguinte Acordo de Licenciamento para "
+"o Utilizador Final antes de continuar com a instalação:"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -330,13 +332,13 @@ msgstr "Ordenar por:"
 #. {0} is a date
 #: apps/addons/templates/addons/macros.html:7 apps/addons/templates/addons/macros.html:70 apps/addons/templates/addons/listing/items_mobile.html:48 apps/addons/templates/addons/listing/macros.html:38
 msgid "Updated {0}"
-msgstr "Actualizado {0}"
+msgstr "Atualizado a {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:67 apps/addons/templates/addons/listing/items_mobile.html:44
 #: apps/addons/templates/addons/listing/macros.html:35 mkt/reviewers/views.py:306 mkt/reviewers/views.py:327 mkt/submit/forms.py:34 mkt/submit/forms.py:44
 msgid "Added {0}"
-msgstr "Adicionado {0}"
+msgstr "Adicionado a {0}"
 
 #: apps/addons/templates/addons/macros.html:16
 msgid "%(num)s weekly download"
@@ -374,7 +376,7 @@ msgstr "Saber mais sobre o Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ou <b><a class=\"installer\" href=\"{url}\">transferir de qualquer maneira</a></b>"
+msgstr "ou <b><a class=\"installer\" href=\"{url}\">transferir mesmo assim</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -386,23 +388,26 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Este extra não foi actualizado para funcionar com a sua versão do %(app)s."
+msgstr ""
+"Este extra não foi atualizado para funcionar com a sua versão do %(app)s."
 
 #: apps/addons/templates/addons/popups.html:44 apps/addons/templates/addons/popups.html:102 apps/addons/templates/addons/popups.html:112
 msgid "Install Anyway"
-msgstr "Instalar de qualquer maneira"
+msgstr "Instalar mesmo assim"
 
 #: apps/addons/templates/addons/popups.html:52
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Este extra necessita de uma versão do Firefox que ainda não foi lançada."
+msgstr "Este extra requer uma versão do Firefox que ainda não foi lançada."
 
 #: apps/addons/templates/addons/popups.html:55
 msgid "Help test new Firefox Versions"
-msgstr "Ajude a testar novas versões do Firefox"
+msgstr "Ajude a testar as novas versões do Firefox"
 
 #: apps/addons/templates/addons/popups.html:58
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Este extra necessita o %(app)s {new_version}. Está a utilizar o %(app)s {old_version}."
+msgstr ""
+"Este extra necessita do %(app)s {new_version}. Está a utilizar o %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:63
@@ -536,11 +541,13 @@ msgstr "por %(users)s"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:5
 msgid "This app requires the following apps to work properly:"
-msgstr "Esta app necessita das seguintes apps para funcionar corretamente:"
+msgstr ""
+"Esta aplicação necessita das seguintes aplicações para funcionar "
+"corretamente:"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:7
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Este extra necessita dos seguintes extras para funcionar correctamente:"
+msgstr "Este extra necessita dos seguintes extras para funcionar corretamente:"
 
 #: apps/addons/templates/addons/impala/details-more.html:21
 msgid "Related Categories"
@@ -548,7 +555,7 @@ msgstr "Categorias relacionadas"
 
 #: apps/addons/templates/addons/impala/details-more.html:40
 msgid "Often used with&hellip;"
-msgstr "Usado normalmente com&hellip;"
+msgstr "Normalmente utilizado com&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:51
 msgid "Other apps by %(author)s"
@@ -569,7 +576,9 @@ msgstr[1] "<a href=\"%(url)s\">Conheça os programadores</a>"
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:111
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Saiba porque é que {0} foi criado e saiba o próximo desenvolvimento para este extra."
+msgstr ""
+"Saiba porque é que {0} foi criado e saiba qual a próxima novidade para este "
+"extra."
 
 #: apps/addons/templates/addons/impala/details.html:155
 msgid "Add-on home page"
@@ -577,11 +586,11 @@ msgstr "Página do extra"
 
 #: apps/addons/templates/addons/impala/details.html:158
 msgid "Support site"
-msgstr "Sítio de ajuda"
+msgstr "Site de suporte"
 
 #: apps/addons/templates/addons/impala/details.html:162
 msgid "Support E-mail"
-msgstr "Endereço de correio de ajuda"
+msgstr "Endereço de correio de suporte"
 
 #: apps/addons/templates/addons/impala/details.html:167 apps/devhub/models.py:299 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
@@ -589,11 +598,11 @@ msgstr "Versão {0}"
 
 #: apps/addons/templates/addons/impala/details.html:167
 msgid "Info"
-msgstr "Info"
+msgstr "Informações"
 
 #: apps/addons/templates/addons/impala/details.html:173
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Lançado sobre a <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgstr "Lançado sob <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:174 apps/addons/templates/addons/impala/details.html:179 apps/amo/helpers.py:391
 msgid "Custom License"
@@ -601,7 +610,7 @@ msgstr "Licença personalizada"
 
 #: apps/addons/templates/addons/impala/details.html:178
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Lançado sobre <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Lançado sob <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:190
 msgid "About this Add-on"
@@ -613,7 +622,7 @@ msgstr "Comentários do desenvolvedor"
 
 #: apps/addons/templates/addons/impala/details.html:216
 msgid "Version Information"
-msgstr "Informação da versão"
+msgstr "Informações da versão"
 
 #: apps/addons/templates/addons/impala/details.html:230
 msgid ""
@@ -645,7 +654,7 @@ msgstr "Obrigado por instalar {0}"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:8
 msgid "Meet the {0} Developer"
-msgstr "Encontre-se com o desenvolvedor do {0}"
+msgstr "Conheça o programador de {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:37
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
@@ -653,7 +662,9 @@ msgstr "Antes de transferir este extra, considere em ajudar o desenvolvimento de
 
 #: apps/addons/templates/addons/impala/developers.html:40
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "O desenvolvedor deste extra pede que o ajude para continuar o desenvolvimento com uma pequena contribuição."
+msgstr ""
+"O programador deste extra pede uma pequena contribuição para o ajudar a "
+"continuar o desenvolvimento."
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:76
@@ -1076,20 +1087,20 @@ msgstr "{review} para {addon} escrita."
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr "{addon} incluído em {0}."
+msgstr "{addon} destacado em {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} já não está incluído em {0}."
+msgstr "{addon} já não está destacado em {0}."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr "{addon} está destacado."
+msgstr "{addon} está agora destacado."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr "{addon} já não está em destaque."
+msgstr "{addon} já não está mais em destaque."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
@@ -1103,19 +1114,19 @@ msgstr "{0.name} papel alterado para {1} para {addon}."
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} está agora licenciado sobre {0.name}."
+msgstr "{addon} é agora licenciado sob {0.name}."
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr "{addon} política alterada."
+msgstr "Política de {addon} alterada."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr "{addon} ícone alterado."
+msgstr "Ícone de {addon} alterado."
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr "{review} para {addon} aprovado."
+msgstr "{review} para {addon} aprovada."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
@@ -1131,15 +1142,17 @@ msgstr "{user} eliminou {0} para {addon}."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr "Actualizada a versão máx. da aplicação para {version}"
+msgstr "A versão máxima da aplicação foi atualizada para {version}."
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Mensagem de correio enviada aos autores sobre a compatibilidade da {version}."
+msgstr "Os autores enviaram uma mensagem sobre a compatibilidade da {version}."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Mensagem de correio electrónico enviada ao autor sobre a compatibilidade do Extra."
+msgstr ""
+"Mensagem de correio eletrónico enviada ao autor sobre a compatibilidade do "
+"extra."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1151,11 +1164,11 @@ msgstr "{addon} alterado para premium."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr "{addon} manifesto atualizado."
+msgstr "Manifesto de {addon} atualizado."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} aprovado mas aguardando para ser publicado."
+msgstr "{addon} {version} aprovado mas à espera para ser tornado publico."
 
 #: apps/amo/log.py:384 apps/constants/base.py:41
 msgid "Approved but waiting"
@@ -1679,7 +1692,7 @@ msgstr "Analisado preliminarmente e aguarda a análise completa"
 
 #: apps/constants/base.py:36
 msgid "Pending a review choice"
-msgstr "Aguarda escolha da revisão"
+msgstr "A aguardar uma escolha de análise"
 
 # 85%
 #: apps/constants/base.py:37
@@ -1688,7 +1701,7 @@ msgstr "Excluído"
 
 #: apps/constants/base.py:42
 msgid "Flagged for further review"
-msgstr "Sinalizado para revisão posterior"
+msgstr "Sinalizado para uma análise mais aprofundada"
 
 #: apps/constants/base.py:43
 msgid "Blocked"
@@ -1700,7 +1713,7 @@ msgstr "Publicado"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr "Aprovado mas não publicado"
+msgstr "Aprovado, mas não publicado"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
@@ -1712,7 +1725,7 @@ msgstr "Completo"
 
 #: apps/constants/base.py:144
 msgid "Preliminary"
-msgstr "Preliminares"
+msgstr "Preliminar"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:154 mkt/developers/templates/developers/apps/owner.html:82
@@ -1751,7 +1764,7 @@ msgstr "Dicionário"
 
 #: apps/constants/base.py:185
 msgid "Search Engine"
-msgstr "Motor de Pesquisa"
+msgstr "Motor de pesquisa"
 
 #: apps/constants/base.py:186
 msgid "Plugin"
@@ -1759,7 +1772,7 @@ msgstr "Plugin"
 
 #: apps/constants/base.py:187
 msgid "Language Pack (Application)"
-msgstr "Pacote de Idioma (Aplicação)"
+msgstr "Pacote de idioma (aplicação)"
 
 #: apps/constants/base.py:188
 msgid "Theme"
@@ -1769,7 +1782,7 @@ msgstr "Tema"
 #: mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29
 #: mkt/reviewers/templates/reviewers/queue_region.html:24 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr "App"
+msgstr "Aplicação"
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:195 templates/menu_links.html:8
@@ -1796,7 +1809,7 @@ msgstr "Plugins"
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:200
 msgid "Language Packs (Application)"
-msgstr "Pacotes de Idioma (Aplicações)"
+msgstr "Pacotes de idioma (aplicação)"
 
 #: apps/constants/base.py:201
 msgid "Themes"
@@ -1804,12 +1817,12 @@ msgstr "Temas"
 
 #: apps/constants/base.py:202 mkt/reviewers/helpers.py:33 mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:192 templates/mobile/base_apps.html:35
 msgid "Apps"
-msgstr "Apps"
+msgstr "Aplicações"
 
 #: apps/constants/base.py:287 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:56 mkt/search/forms.py:28 mkt/search/forms.py:40
 #: mkt/submit/templates/submit/manifest.html:32
 msgid "Free"
-msgstr "Gratuito"
+msgstr "Grátis"
 
 #: apps/constants/base.py:288 mkt/search/forms.py:42
 msgid "Premium"
@@ -1817,11 +1830,11 @@ msgstr "Premium"
 
 #: apps/constants/base.py:289
 msgid "Premium with in-app payments"
-msgstr "Premium com pagamento no extra"
+msgstr "Premium com compras na aplicação"
 
 #: apps/constants/base.py:290
 msgid "Free with in-app payments"
-msgstr "Gratuito com pagamento no extra"
+msgstr "Gratuito com compras na aplicação"
 
 #: apps/constants/base.py:291
 msgid "I'll use my own system for in-app payments"
@@ -1829,11 +1842,11 @@ msgstr "Eu usarei meu próprio sistema de pagamentos pelo aplicativo"
 
 #: apps/constants/base.py:341
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "Pedir apenas na página deste extra e no perfil do desenvolvedor"
+msgstr "Pedir apenas na página deste extra e no perfil do programador"
 
 #: apps/constants/base.py:342
 msgid "Ask after users start downloading this add-on"
-msgstr "Perguntar depois de os utilizadores começarem a transferir este extra"
+msgstr "Perguntar depois dos utilizadores começarem a transferir este extra"
 
 #: apps/constants/base.py:343
 msgid "Ask before users can download this add-on"
