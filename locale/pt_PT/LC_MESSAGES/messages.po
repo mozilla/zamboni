@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 04:42+0000\n"
+"PO-Revision-Date: 2014-06-14 05:13+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402720922.0\n"
+"X-POOTLE-MTIME: 1402722822.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -35,11 +35,11 @@ msgstr "Este nome já está em uso. Por favor, escolha outro."
 
 #: apps/addons/forms.py:51 mkt/developers/forms.py:568 mkt/submit/forms.py:406
 msgid "This slug is already in use. Please choose another."
-msgstr "Este slug já está em uso. Por favor escolha outro."
+msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
 
 #: apps/addons/forms.py:54 mkt/developers/forms.py:571 mkt/submit/forms.py:410
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Este slug não pode ser \"%s\". Por favor escolha outro."
+msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:73
@@ -88,11 +88,15 @@ msgstr[1] "Apenas pode ter {0} categorias."
 
 #: apps/addons/forms.py:253
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "A categoria Diversos não pode ser combinada com outras categorias."
+msgstr ""
+"A categoria diversos não pode ser combinada com outras categorias "
+"adicionais."
 
 #: apps/addons/forms.py:349
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Antes de alterar o seu idioma pré-definido tem de ter um nome, sumário e uma descrição nesse idioma. Falta %s."
+msgstr ""
+"Antes de alterar o seu idioma por omissão tem de ter um nome, sumário e uma "
+"descrição nesse idioma. Falta %s."
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -105,11 +109,15 @@ msgstr "Em destaque"
 
 #: apps/addons/models.py:322
 msgid "Users have the option of contributing more or less than this amount."
-msgstr "Os utilizadores têm a opção de contribuir com mais ou menos desta quantia."
+msgstr ""
+"Os utilizadores têm a opção de contribuir com mais ou menos do que este "
+"valor."
 
 #: apps/addons/models.py:331
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
-msgstr "Os utilizadores serão sempre informados no Gestor de Extras (Firefox 4 e superiores)"
+msgstr ""
+"Os utilizadores serão sempre informados no Gestor de Extras (Firefox 4 e "
+"superior)"
 
 # Column name in a table.
 #: apps/addons/models.py:1603
@@ -122,11 +130,11 @@ msgstr "Popular"
 
 #: apps/addons/views.py:242
 msgid "Recently Added"
-msgstr "Adicionado recentemente"
+msgstr "Adicionadas recentemente"
 
 #: apps/addons/views.py:243
 msgid "Recently Updated"
-msgstr "Actualizado recentemente"
+msgstr "Atualizadas recentemente"
 
 #: apps/addons/views.py:322
 msgid "Abuse reported."
@@ -153,11 +161,11 @@ msgstr "Nenhuma versão compatível"
 
 #: apps/addons/templates/addons/button.html:20 apps/addons/templates/addons/impala/button.html:16
 msgid "Added to Mobile"
-msgstr "Adicionado ao Mobile"
+msgstr "Adicionado ao Móvel"
 
 #: apps/addons/templates/addons/button.html:22 apps/addons/templates/addons/impala/button.html:18
 msgid "Add to Mobile"
-msgstr "Adicionar ao Mobile"
+msgstr "Adicionar ao Móvel"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:53 apps/addons/templates/addons/includes/install_button.html:29
@@ -170,7 +178,7 @@ msgstr "Ver a política de privacidade"
 
 #: apps/addons/templates/addons/button.html:74 apps/addons/templates/addons/details_box.html:98 apps/addons/templates/addons/mobile/button.html:28
 msgid "View End-User License Agreement"
-msgstr "Ver Licença de Utilização"
+msgstr "Ver Contrato de licenciamento para o utilizador final"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:19
@@ -180,12 +188,12 @@ msgstr "Informação do extra para {0}"
 #: apps/addons/templates/addons/details_box.html:23 apps/addons/templates/addons/mobile/details.html:61 mkt/developers/views.py:81 mkt/reviewers/templates/reviewers/includes/details.html:75
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
-msgstr "Actualizado"
+msgstr "Atualizado"
 
 #: apps/addons/templates/addons/details_box.html:31 apps/addons/templates/addons/mobile/details.html:69 mkt/developers/templates/developers/apps/edit/support.html:39
 #: mkt/reviewers/templates/reviewers/includes/details.html:81 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
-msgstr "Sítio web"
+msgstr "Site web"
 
 #: apps/addons/templates/addons/details_box.html:40 apps/addons/templates/addons/mobile/details.html:79 mkt/reviewers/templates/reviewers/includes/details.html:90
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
@@ -194,7 +202,7 @@ msgstr "Funciona com"
 
 #: apps/addons/templates/addons/details_box.html:49
 msgid "Required Apps"
-msgstr "App necesária"
+msgstr "Aplicações necessárias"
 
 #: apps/addons/templates/addons/details_box.html:51
 msgid "Required Add-ons"
@@ -222,7 +230,7 @@ msgstr "Ver política de privacidade"
 
 #: apps/addons/templates/addons/details_box.html:95
 msgid "EULA"
-msgstr "ALUF"
+msgstr "Licença"
 
 #: apps/addons/templates/addons/details_box.html:129 apps/addons/templates/addons/details_box.html:189
 msgid "More about this add-on"
@@ -246,8 +254,10 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"O Canal de Desenvolvimento permite que você teste uma versão experimental do novo extra antes de ser lançado ao público em geral. Depois de instalar a versão de desenvolvimento, você vai continuar "
-"a receber as actualizações deste canal."
+"O Canal de Desenvolvimento permite que teste uma versão experimental do novo "
+"extra antes de ser lançado ao público em geral. Depois de instalar a versão "
+"de desenvolvimento, você vai continuar a receber as atualizações deste "
+"canal."
 
 #: apps/addons/templates/addons/details_box.html:165 apps/addons/templates/addons/impala/details.html:237
 msgid "Install development version"
@@ -258,8 +268,11 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla. Depois de instalar uma versão de desenvolvimento vai continuar a receber actualizações deste "
-"desenvolvedor. Para parar de receber actualizações de desenvolvimento, reinstale a versão pré-definida na ligação acima."
+"<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não "
+"foram revistas pela Mozilla. Depois de instalar uma versão de "
+"desenvolvimento vai continuar a receber atualizações deste programador. Para "
+"parar de receber atualizações de desenvolvimento, reinstale a versão "
+"pré-definida na ligação acima."
 
 #: apps/addons/templates/addons/details_box.html:178 apps/addons/templates/addons/impala/details.html:246
 msgid "Version {0}:"
@@ -267,7 +280,8 @@ msgstr "Versão {0}:"
 
 #: apps/addons/templates/addons/details_box.html:192 mkt/reviewers/templates/reviewers/includes/details.html:172
 msgid "Nothing to see here! The developer did not include any details."
-msgstr "Não existe nada para ver aqui!! O desenvolvedor não incluiu detalhes nenhuns."
+msgstr ""
+"Não existe nada para ver aqui! O programador não incluiu quaisquer detalhes."
 
 #: apps/addons/templates/addons/details_box.html:198
 msgctxt "addons_display_release_notes"
@@ -401,7 +415,8 @@ msgstr "<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla. Te
 
 #: apps/addons/templates/addons/popups.html:82
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Tenha em atenção:</strong> Este extra não é compatível com o seu sistema."
+msgstr ""
+"<strong>Atenção:</strong> Este extra não é compatível com o seu sistema."
 
 #: apps/addons/templates/addons/popups.html:98
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
@@ -426,7 +441,10 @@ msgstr "Código QR para o extra"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr "Quer o {0} no seu Firefox mobile?Digitalize este código QR para o instalar directamente no seu telefone. (Necessita de um leitor QR. Procure no mercado do seu telefone se não tiver um.)"
+msgstr ""
+"Quer o {0} no seu Firefox mobile? Digitalize este código QR para o instalar "
+"diretamente no seu telefone. (Necessita de um leitor QR. Procure no mercado "
+"do seu telefone se não tiver um.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:11
 #: apps/addons/templates/addons/impala/details.html:291
@@ -486,7 +504,10 @@ msgstr "Por favor <a href=\"%(login)s\">inicie sessão</a> para colocar um comen
 
 #: apps/addons/templates/addons/review_add_box.html:16 apps/addons/templates/addons/impala/review_add_box.html:23
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
-msgstr "Por favor não coloque relatos de erro nos comentários. Nós não disponibilizamos o seu endereço de correio ao desenvolvedor do extra e ele poderá ter que o contactar para resolver o problema."
+msgstr ""
+"Por favor não coloque relatos de erro nos comentários. Nós não "
+"disponibilizamos o seu endereço de correio ao programador do extra e ele "
+"poderá ter que o contactar para resolver o problema."
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:38
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
@@ -494,15 +515,15 @@ msgstr "Veja a <a href=\"%(support)s\">secção de suporte</a> para encontrar as
 
 #: apps/addons/templates/addons/review_list_box.html:5 mkt/reviewers/helpers.py:129
 msgid "Reviews"
-msgstr "Comentários"
+msgstr "Revisões"
 
 #: apps/addons/templates/addons/review_list_box.html:14
 msgid "by %(user)s on %(date)s"
-msgstr "pelo %(user)s em %(date)s"
+msgstr "por %(user)s em %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19
 msgid "Show the developer's reply to this review"
-msgstr "Mostrar a resposta do desenvolvedor a está revisão"
+msgstr "Mostrar a resposta do programador a esta revisão"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -642,7 +663,7 @@ msgstr "Porque é que o {0} foi criado?"
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
 msgid "What's next for {0}"
-msgstr "O que há a seguir para {0}"
+msgstr "O que vem por aí para {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:85
 msgid "About the Developer"
@@ -660,11 +681,11 @@ msgstr "Quem é {0}?"
 
 #: apps/addons/templates/addons/impala/disabled.html:20
 msgid "This app has been removed by its author."
-msgstr "Esta app foi removida pelo autor."
+msgstr "Esta aplicação foi removida pelo autor."
 
 #: apps/addons/templates/addons/impala/disabled.html:22
 msgid "This app has been disabled by an administrator."
-msgstr "Esta app foi desativada por um administrador."
+msgstr "Esta aplicação foi desativada por um administrador."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -709,7 +730,7 @@ msgstr "Adicionar ao Firefox"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr "Sem avaliações"
+msgstr "Sem classificações"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:20
@@ -920,7 +941,7 @@ msgstr "Estatísticas definidas como públicas para {addon}."
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr "{addon} restatísticas definidas como privadas."
+msgstr "Estatísticas de {addon} definidas como privadas."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
@@ -937,7 +958,7 @@ msgstr "Pré-visualização editada para {addon}."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr "Pré-visualizaçãoeliminada de {addon}."
+msgstr "Pré-visualização eliminada de {addon}."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
@@ -970,7 +991,7 @@ msgstr "Aprovado"
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr "Efectuada revisão preliminar de {addon} {version}."
+msgstr "Efetuada uma revisão preliminar de {addon} {version}."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
@@ -986,7 +1007,7 @@ msgstr "Rejeitado"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr "{addon} {version} mantido."
+msgstr "{addon} {version} retido."
 
 #: apps/amo/log.py:188
 msgid "Retained"
@@ -994,39 +1015,39 @@ msgstr "Retido"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escalado."
+msgstr "{addon} {version} encaminhado para análise superior."
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:33 mkt/reviewers/forms.py:122
 msgid "Escalated"
-msgstr "Escalado"
+msgstr "Encaminhado para análise superior"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr "{addon} {version} análise solicitada."
+msgstr "Revisão de {addon} {version} solicitada."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr "Análise pedida"
+msgstr "Revisão solicitada"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} pedida mais informação."
+msgstr "Solicitada mais informação para {addon} {version}."
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:32
 msgid "More information requested"
-msgstr "Pedida mais informação"
+msgstr "Mais informação solicitada"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} pedido de super revisão."
+msgstr "Solicitado um pedido de super revisão para {addon} {version}."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr "Pedida super revisão"
+msgstr "Solicitada uma super revisão"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr "Comentário em {addon} {version}."
+msgstr "Comentário a {addon} {version}."
 
 #: apps/amo/log.py:234 mkt/constants/comm.py:34 mkt/reviewers/utils.py:447
 msgid "Comment"
@@ -1142,7 +1163,7 @@ msgstr "Aprovado mas em espera"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr "{addon} comprado."
+msgstr "{addon} adquirido."
 
 # 77%
 #: apps/amo/log.py:397
@@ -1211,15 +1232,15 @@ msgstr "Alteração no manifesto"
 
 #: apps/amo/log.py:472
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr "{addon} revisto novamente devido à atualização tipo premium da aplicação."
+msgstr "{addon} reanalisado pois o tipo de premium da aplicação foi atualizado."
 
 #: apps/amo/log.py:473
 msgid "Premium Type Upgrade"
-msgstr "Atualização tipo premium"
+msgstr "Atualização para um tipo de premium"
 
 #: apps/amo/log.py:480
 msgid "Re-review cleared for {addon}."
-msgstr "Reanálise do {addon} aprovada."
+msgstr "Reanálise de {addon} aprovada."
 
 #: apps/amo/log.py:481 mkt/constants/comm.py:40
 msgid "Re-review cleared"
