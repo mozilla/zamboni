@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-09 20:30+0000\n"
+"PO-Revision-Date: 2014-06-13 19:04+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402345816.0\n"
+"X-POOTLE-MTIME: 1402686285.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -81,7 +81,7 @@ msgstr[1] "Zure aplikazioak balidazioan huts egin du, {0} errorerekin."
 #: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;eta bat gehiago"
+msgstr[0] "&hellip;eta {0} gehiago"
 msgstr[1] "&hellip;eta {0} gehiago"
 
 #: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
@@ -392,7 +392,7 @@ msgstr[1] "{0} errore"
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "Abisu bat"
+msgstr[0] "Abisu {0}"
 msgstr[1] "{0} abisu"
 
 #: media/js/devreg/validator.js:439
@@ -708,7 +708,7 @@ msgstr "Kargatzen..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Karaktere <b>bat</b> faltan."
+msgstr[0] "Karaktere <b>{0}</b> faltan."
 msgstr[1] "<b>{0}</b> karaktere faltan."
 
 #: media/js/zamboni/password-strength.js:20
@@ -718,7 +718,7 @@ msgstr "Pasahitzaren sendotasuna:"
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Gutxienez karaktere bat geratzen da."
+msgstr[0] "Gutxienez karaktere {0} geratzen da."
 msgstr[1] "Gutxienez {0} karaktere geratzen dira."
 
 #: media/js/zamboni/mobile/buttons.js:75

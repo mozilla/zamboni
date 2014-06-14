@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-13 18:23+0000\n"
-"Last-Translator: Ibai <ibai@oihanguren.com>\n"
+"PO-Revision-Date: 2014-06-13 22:27+0000\n"
+"Last-Translator: asiersar <asier.sarasua@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402683825.0\n"
+"X-POOTLE-MTIME: 1402698467.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -75,7 +75,7 @@ msgstr "Etiketa guztiek %s karaktere edo gutxiago izan behar dituzte karaktere b
 #: apps/addons/forms.py:100
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Etiketa guztiek gutxienez karaktere bat izan behar dute."
+msgstr[0] "Etiketa guztiek gutxienez karaktere {0} izan behar dute."
 msgstr[1] "Etiketa guztiek gutxienez {0} karaktere izan behar dituzte."
 
 #: apps/addons/forms.py:238
@@ -143,7 +143,7 @@ msgstr "Abusua salatu da."
 
 #: apps/addons/widgets.py:48
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "Nire gehigarria ez dagokio kategoria hauetako inorri."
+msgstr "Nire gehigarria ez dagokio kategoria hauetako bati ere"
 
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:57
 msgid "Other add-ons by %(author)s"
@@ -353,14 +353,14 @@ msgstr[1] "%(num)s erabiltzaile"
 #: apps/addons/templates/addons/macros.html:51 apps/addons/templates/addons/impala/details.html:47 mkt/detail/helpers.py:23
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "Deskarga bat asteko"
+msgstr[0] "Deskarga {0} asteko"
 msgstr[1] "{0} deskarga asteko"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:59 apps/addons/templates/addons/impala/details.html:40
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "Erabiltzaile bat"
+msgstr[0] "Erabiltzaile {0}"
 msgstr[1] "{0} erabiltzaile"
 
 #: apps/addons/templates/addons/popups.html:17
@@ -402,7 +402,7 @@ msgstr "Lagundu Firefoxen bertsio berriak probatzen"
 #: apps/addons/templates/addons/popups.html:58
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
 msgstr ""
-"Gehigarri honek %(app)aren {new_version} behar du. Orain  %(app)aren "
+"Gehigarri honek %(app)aren {new_version} behar du. Orain %(app)aren "
 "{old_version} erabiltzen ari zara."
 
 #. {0} is an app name, like Firefox.
@@ -748,7 +748,7 @@ msgstr "Puntuatu gabe oraindik"
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:20
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "Deskarga <strong>bat</strong> asteko"
+msgstr[0] "Deskarga <strong>{0}</strong> asteko"
 msgstr[1] "<strong>{0}</strong> deskarga asteko"
 
 #. {0} is the number of users.
@@ -1031,7 +1031,7 @@ msgstr "Geldiarazita"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr "{addon} {versjon} gora igorrita."
+msgstr "{addon} {version} intzidentziengatik goratu da."
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:33 mkt/reviewers/forms.py:122
 msgid "Escalated"
@@ -1189,7 +1189,7 @@ msgstr "{addon} instalatuta."
 
 #: apps/amo/log.py:402
 msgid "Refund requested for {addon}"
-msgstr "{addon}(r)engatik ordaindutako dirua itzultzeko eskatuta."
+msgstr "{addon}(r)engatik ordaindutako dirua itzultzeko eskatuta"
 
 #: apps/amo/log.py:407
 msgid "Refund declined for {addon} for {0}."
@@ -1261,7 +1261,7 @@ msgstr "Bigarren berrikuspena ezabatuta {addon}(r)entzat."
 
 #: apps/amo/log.py:481 mkt/constants/comm.py:40
 msgid "Re-review cleared"
-msgstr "Bigarren berrikuspena ezabatua"
+msgstr "Ber-berrikuspena ezabatua"
 
 #: apps/amo/log.py:488
 msgid "{addon} escalated by reviewer."
@@ -1273,7 +1273,7 @@ msgstr "Berrikusleak goratua"
 
 #: apps/amo/log.py:497
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Bideoa kendu da {addon} gehigarritik arazo bat egon delako bideoarekin."
 
 #: apps/amo/log.py:499
 msgid "Video removed"
@@ -1297,11 +1297,11 @@ msgstr "Gailua(k) berrikusleak aldatuta"
 
 #: apps/amo/log.py:520
 msgid "{addon} resubmitted for review."
-msgstr ""
+msgstr "{addon} birbidalia berrikuspenerako."
 
 #: apps/amo/log.py:521
 msgid "App Resubmission"
-msgstr ""
+msgstr "Aplikazioaren birbidalketa"
 
 #: apps/amo/log.py:528
 msgid "{addon} auto-escalated because its a VIP app."
@@ -1333,11 +1333,12 @@ msgstr "{user} erabiltzailea anonimotuta."
 
 #: apps/amo/log.py:576
 msgid "User {user} restricted."
-msgstr ""
+msgstr "{user} erabiltzailea mugatua."
 
 #: apps/amo/log.py:582
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
+"{0} administratzaileak {user} erabiltzailearen jarduera-egunkaria ikusi du."
 
 #: apps/amo/log.py:589
 msgid "{review} for {addon} updated."
@@ -1403,11 +1404,13 @@ msgstr "Ez duzu baimenik"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Hara! Ez duzu horretarako baimenik.</h1> <p>Zerbait egiten saiatu zara, baina ez duzu horretarako baimenik.</p>"
+msgstr ""
+"<h1>Ene! Ez da onartzen.</h1> <p>Baimenduta ez dagoen zerbait egiten saiatu "
+"zara.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Saiatu aurreko orrira itzultzen, freskatu eta berriro saiatu.</p>"
 
 #: apps/amo/templates/amo/403_apps.html:4 apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1425,10 +1428,26 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Sentitzen dugu, ez dugu aurkitu bilatzen ari zarena.</h1> <p> Eskatu "
+"duzun orria edo fitxategia ez dago gure gunean. Beharbada zaharitua dagoen "
+"esteka bat sakatu duzu, edo helbidea gaizki idatzi duzu. </p> <ul> "
+"<li>Helbidea idatzi baduzu, egiaztatu ongi idatzi duzula.</li> <li> "
+"Nonbaiten aurkitutako esteka bati jarraitu badiozu, esaiguzu zein den <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a> postan. "
+"Esaiguzu nondik zatozen eta zeren bila zabiltzan, eta arazoa konpontzen "
+"saiatuko gara. </li> </ul> <p>Bestela, gure webguneko orri bisitatuenetako "
+"batera joan zaitezke.</p> <ul> <li> <a href=\"%(search)s\">Hedapenak "
+"bilatu</a> nahi al dituzu? <a href=\"%(search)s\">Bilaketa-orrira</a> joan "
+"zaitezke, edo bestela goiko bilaketa-eremua erabil dezakezu. </li> <li> "
+"Berriro hasi nahi baduzu, joan <a href=\"%(home)s\">gehigarrien orri "
+"nagusia</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Ene! Errorea izan dugu.</h1> <p>Laster saiatuko gara konpontzen.</p> <p>Orria freskatzen saia zaitezke, edo <a href=\"%(home)s\">gehigarrien hasiera-orrira</a> joaten. </p>"
+msgstr ""
+"<h1>Ene! Errore bat izan dugu.</h1> <p>Laster konponduko dugu.</p> <p> "
+"Saiatu orria freskatzen, edo itzuli <a href=\"%(home)s\">gehigarrien orri "
+"nagusira</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -1447,7 +1466,7 @@ msgstr "Ez da emaitzarik aurkitu"
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:27 mkt/developers/templates/developers/apps/includes/validation_test_results.html:41
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr "Aur."
+msgstr "Aurrekoa"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
 #: apps/amo/templates/amo/mobile/paginator.html:16 mkt/developers/templates/developers/apps/includes/validation_test_results.html:29
@@ -1458,7 +1477,7 @@ msgstr "Hurrengoa"
 #: apps/amo/templates/amo/paginator.html:32
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr ""
-"<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong>  tarteko emaitzak "
+"<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> tarteko emaitzak "
 "<strong>%(count)s</strong>(e)tik"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
@@ -1490,6 +1509,10 @@ msgid ""
 "<p> Please enter <strong>both words</strong> below, <strong>separated by a space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try different words</a> "
 "or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Please enter <strong>both words</strong> below, <strong>separated by a "
+"space</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" "
+"id=\"recaptcha_different\">try different words</a> or <a href=\"#\" "
+"id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
 msgid "Most Popular"
@@ -1672,7 +1695,7 @@ msgstr "Behin behineko berrikuspenaren zain"
 
 #: apps/constants/base.py:28
 msgid "Pending approval"
-msgstr ""
+msgstr "Onarpenaren zain"
 
 #: apps/constants/base.py:29
 msgid "Awaiting Full Review"
@@ -1987,27 +2010,27 @@ msgstr "Eskubide guztiak erreserbatuta"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Aitortu 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Aitortu-EzKomertziala 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Aitortu-EzKomertziala-LanEratorririkGabe 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Aitortu-EzKomertziala-PartekatuBerdin 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Aitortu-LanEratorririkGabe 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Aitortu-PartekatuBerdin 3.0"
 
 #: apps/constants/payments.py:40 apps/constants/payments.py:48
 msgid "Chargeback"
@@ -2043,15 +2066,15 @@ msgstr ""
 
 #: apps/constants/payments.py:75 mkt/constants/payments.py:9
 msgid "Failed"
-msgstr ""
+msgstr "Huts egin du"
 
 #: apps/constants/payments.py:79 apps/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "Ordainketa jaso da, baina ez da osatu."
 
 #: apps/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "Ordainketak huts egin du."
 
 #: apps/constants/payments.py:82
 msgid "The reversal failed."
@@ -2059,7 +2082,7 @@ msgstr ""
 
 #: apps/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
-msgstr ""
+msgstr "Ordainketa jaso da, baina ez da osatu eta prozesatzeko zain dago."
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -2108,7 +2131,7 @@ msgstr "Ikusi data-tarte honetako sarrerak"
 
 #: apps/editors/forms.py:17 mkt/developers/tasks.py:483 mkt/developers/tasks.py:489
 msgid "and"
-msgstr ""
+msgstr "eta"
 
 #: apps/editors/forms.py:18
 msgid "containing"
@@ -2117,12 +2140,12 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:24
 msgid "start"
-msgstr ""
+msgstr "hasiera"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:28
 msgid "end"
-msgstr ""
+msgstr "amaiera"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:31
@@ -2135,7 +2158,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Azken aldiko puntuak"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
@@ -3534,7 +3557,7 @@ msgstr "Desgaituta"
 
 #: mkt/constants/comm.py:35
 msgid "App resubmission"
-msgstr ""
+msgstr "Aplikazioaren birbidalketa"
 
 #: mkt/constants/comm.py:36
 msgid "Approved but waiting to be made public"
@@ -3550,7 +3573,7 @@ msgstr "Dirua itzultzeko eskaera ugarien ondorioz goratua"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "Aplikazio-kudeaketako APIa"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
@@ -3566,7 +3589,7 @@ msgstr ""
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Web ordainketa"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
@@ -3574,7 +3597,7 @@ msgstr ""
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Web jarduerak"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
@@ -3614,7 +3637,7 @@ msgstr ""
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Gailu-biltegiratzea"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
@@ -3626,7 +3649,7 @@ msgstr ""
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Geokokapena"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
@@ -3638,7 +3661,7 @@ msgstr ""
 
 #: mkt/constants/features.py:92
 msgid "Network Information"
-msgstr ""
+msgstr "Sare-informazioa"
 
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
@@ -3646,7 +3669,7 @@ msgstr ""
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
-msgstr ""
+msgstr "Sare-estatistikak"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
@@ -3670,7 +3693,7 @@ msgstr ""
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Pantaila-orientazioa"
 
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
@@ -3748,7 +3771,7 @@ msgstr ""
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
-msgstr ""
+msgstr "Pantaila osoa"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
@@ -3772,7 +3795,7 @@ msgstr ""
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
@@ -3780,7 +3803,7 @@ msgstr ""
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofonoa"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -3788,7 +3811,7 @@ msgstr ""
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Pantaila-kaptura"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
@@ -3913,11 +3936,11 @@ msgstr ""
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
-msgstr ""
+msgstr "Osatua"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr "Firefox for Desktop"
+msgstr "Mahaigainekorako Firefox"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
@@ -3933,7 +3956,7 @@ msgstr "Android smartphone-ak"
 
 #: mkt/constants/platforms.py:80 mkt/constants/platforms.py:83
 msgid "Tablets"
-msgstr ""
+msgstr "Tabletak"
 
 #: mkt/constants/ratingdescriptors.py:10
 msgid "Criminal Acts"
@@ -3954,7 +3977,7 @@ msgstr "Legezko drogak"
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "Hizkera desegokia"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:52 mkt/constants/ratingdescriptors.py:108
 msgid "Nudity"
@@ -3971,7 +3994,7 @@ msgstr "Eduki sexuala"
 
 #: mkt/constants/ratingdescriptors.py:20
 msgid "Explicit Sex"
-msgstr ""
+msgstr "Sexu esplizitua"
 
 #: mkt/constants/ratingdescriptors.py:21
 msgid "Impacting Content"
@@ -3987,19 +4010,19 @@ msgstr "Muturreko indarkeria"
 
 #: mkt/constants/ratingdescriptors.py:25
 msgid "Alcohol Reference"
-msgstr ""
+msgstr "Alkoholaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:26
 msgid "Alcohol and Tobacco Reference"
-msgstr ""
+msgstr "Alkohol eta tabakoaren aipemana"
 
 #: mkt/constants/ratingdescriptors.py:27
 msgid "Use of Alcohol and Tobacco"
-msgstr ""
+msgstr "Alkohol eta tabakoaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:28
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Alkoholaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:29
 msgid "Blood"
@@ -4007,7 +4030,7 @@ msgstr "Odola"
 
 #: mkt/constants/ratingdescriptors.py:30
 msgid "Blood and Gore"
-msgstr ""
+msgstr "Odola eta gore-a"
 
 #: mkt/constants/ratingdescriptors.py:31
 msgid "Comic Mischief"
@@ -4015,7 +4038,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:32
 msgid "Crime"
-msgstr ""
+msgstr "Krimena"
 
 #: mkt/constants/ratingdescriptors.py:33
 msgid "Criminal Instruction"
@@ -4023,39 +4046,39 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:34
 msgid "Crude Humor"
-msgstr ""
+msgstr "Umore beltza"
 
 #: mkt/constants/ratingdescriptors.py:35
 msgid "Drug and Alcohol Reference"
-msgstr ""
+msgstr "Droga eta alkoholaren aipemana"
 
 #: mkt/constants/ratingdescriptors.py:36
 msgid "Drug, Alcohol, and Tobacco Reference"
-msgstr ""
+msgstr "Droga, alkohol eta tabakoaren aipemana"
 
 #: mkt/constants/ratingdescriptors.py:37
 msgid "Use of Drug, Alcohol, and Tobacco"
-msgstr ""
+msgstr "Droga, alkohol eta tabakoaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:38
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Droga eta alkoholaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:39
 msgid "Drug Reference"
-msgstr ""
+msgstr "Drogaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:40
 msgid "Drug and Tobacco Reference"
-msgstr ""
+msgstr "Droga eta tabakoaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:41
 msgid "Use of Drug and Tobacco"
-msgstr ""
+msgstr "Droga eta tabakoaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Drogen erabilera"
 
 #: mkt/constants/ratingdescriptors.py:43
 msgid "Fantasy Violence"
@@ -4067,7 +4090,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Intense Violence"
-msgstr ""
+msgstr "Bortizkeria bizia"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:47 mkt/constants/ratingdescriptors.py:71 mkt/constants/ratingdescriptors.py:82 mkt/developers/templates/developers/apps/edit/language.html:24
@@ -4092,7 +4115,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:53
 msgid "Partial Nudity"
-msgstr ""
+msgstr "Biluztasun partziala"
 
 #: mkt/constants/ratingdescriptors.py:54
 msgid "Real Gambling"
@@ -4100,11 +4123,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:55
 msgid "Scary Themes"
-msgstr ""
+msgstr "Beldurrezko gaiak"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Sexual Themes"
-msgstr ""
+msgstr "Gai sexualak"
 
 #: mkt/constants/ratingdescriptors.py:58
 msgid "Simulated Gambling"
@@ -4124,11 +4147,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:62
 msgid "Tobacco Reference"
-msgstr ""
+msgstr "Tabakoaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:63
 msgid "Use of Tobacco"
-msgstr ""
+msgstr "Tabakoaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:65
 msgid "Violence References"
@@ -4136,19 +4159,19 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:67 mkt/constants/ratingdescriptors.py:78 mkt/constants/ratingdescriptors.py:95
 msgid "Discrimination"
-msgstr ""
+msgstr "Diskriminazioa"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:80
 msgid "Gambling"
-msgstr ""
+msgstr "Jokoa"
 
 #: mkt/constants/ratingdescriptors.py:72 mkt/constants/ratingdescriptors.py:83
 msgid "Online"
-msgstr ""
+msgstr "Linean"
 
 #: mkt/constants/ratingdescriptors.py:73 mkt/constants/ratingdescriptors.py:84
 msgid "Fear"
-msgstr ""
+msgstr "Beldurra"
 
 #: mkt/constants/ratingdescriptors.py:90
 msgid "Social Interaction Functionality"
@@ -4169,7 +4192,7 @@ msgstr ""
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:98
 msgid "Explicit Language"
-msgstr ""
+msgstr "Hizkera esplizitua"
 
 #: mkt/constants/ratingdescriptors.py:99
 msgid "Frightening Content"
@@ -4181,15 +4204,15 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:104
 msgid "Alcohol Use"
-msgstr ""
+msgstr "Alkoholaren erabilera"
 
 #: mkt/constants/ratingdescriptors.py:105
 msgid "Drug Use"
-msgstr ""
+msgstr "Drogaren erabilerea"
 
 #: mkt/constants/ratingdescriptors.py:106
 msgid "Explicit Violence"
-msgstr ""
+msgstr "Bortizkeria esplizitua"
 
 #: mkt/constants/ratingdescriptors.py:107
 msgid "Horror"
@@ -4197,15 +4220,15 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:109
 msgid "Sexual Violence"
-msgstr ""
+msgstr "Bortizkeria sexuala"
 
 #: mkt/constants/ratingdescriptors.py:110
 msgid "Sexual Violence Reference"
-msgstr ""
+msgstr "Bortizkeria sexualaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:111
 msgid "Sexual References"
-msgstr ""
+msgstr "Sexuaren aipamena"
 
 #: mkt/constants/ratingdescriptors.py:112
 msgid "Rare Scares"
@@ -4217,7 +4240,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:114
 msgid "Tobacco Use"
-msgstr ""
+msgstr "Tabakoaren erabilera"
 
 #: mkt/constants/ratinginteractives.py:12
 msgid "Users Interact"
@@ -4237,12 +4260,12 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Adin guztietarako"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "%d+ gorako adinetarako"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
@@ -4345,7 +4368,7 @@ msgstr ""
 
 #: mkt/detail/templates/detail/app_activity.html:30 mkt/lookup/templates/lookup/user_activity.html:34
 msgid "Administrative Actions"
-msgstr ""
+msgstr "Ekintza administratiboak"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
@@ -4451,15 +4474,15 @@ msgstr "Zure iruzkinak"
 
 #: mkt/developers/forms.py:699
 msgid "Choose the regions your app will be listed in:"
-msgstr ""
+msgstr "Hautatu zein eskualdetan erakutsiko den zure aplikazioa:"
 
 #: mkt/developers/forms.py:703 mkt/developers/forms.py:790
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Gutxienez eskualde bat hautatu behar duzu."
 
 #: mkt/developers/forms.py:708
 msgid "Enable new regions"
-msgstr ""
+msgstr "Gaitu eskualde berriak"
 
 #: mkt/developers/forms.py:710
 msgid "Make my app available in most regions"
@@ -4467,7 +4490,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Hautatu nire aplikazioa non egongo den eskuragarri"
 
 #: mkt/developers/forms.py:899
 msgid "Agree"
@@ -4475,7 +4498,7 @@ msgstr "Ados"
 
 #: mkt/developers/forms.py:916
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Sartu baliozko posta-helbide bat."
 
 #: mkt/developers/forms.py:919
 msgid "Your email address"
@@ -4487,7 +4510,7 @@ msgstr "Testua"
 
 #: mkt/developers/forms.py:926
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Pribatutasun-politika onartu behar duzu."
 
 #: mkt/developers/forms.py:927 mkt/developers/forms_payments.py:408 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
@@ -4589,11 +4612,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:382
 msgid "Company Name"
-msgstr ""
+msgstr "Konpainiaren izena"
 
 #: mkt/developers/forms_payments.py:384
 msgid "Vendor Name"
-msgstr ""
+msgstr "Hornitzailearen izena"
 
 #: mkt/developers/forms_payments.py:386
 msgid "Financial Email"
@@ -4609,27 +4632,27 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:396
 msgid "Address"
-msgstr ""
+msgstr "Helbidea"
 
 #: mkt/developers/forms_payments.py:398
 msgid "Address 2"
-msgstr ""
+msgstr "2. helbidea"
 
 #: mkt/developers/forms_payments.py:400
 msgid "City/Municipality"
-msgstr ""
+msgstr "Hiria/Udalerria"
 
 #: mkt/developers/forms_payments.py:402
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Estatua/Probintzia/Eskualdea"
 
 #: mkt/developers/forms_payments.py:404
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "ZIP/Posta-kodea"
 
 #: mkt/developers/forms_payments.py:406
 msgid "Phone"
-msgstr ""
+msgstr "Telefonoa"
 
 #: mkt/developers/forms_payments.py:411
 msgid "I prefer to be paid in"
@@ -4972,6 +4995,10 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org"
+"/en/latest/topics/authentication.html#oauth\">documentation</a> on how to "
+"create a keypair and use it with the Marketplace API. Any testing should "
+"occur on the development server and not the production server. </p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -8402,7 +8429,7 @@ msgstr "Aplikazioak ({0})"
 #: mkt/reviewers/helpers.py:86
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr "Bigarren berrikuspenak ({0})"
+msgstr "Ber-berrikuspenak ({0})"
 
 #: mkt/reviewers/helpers.py:90
 msgctxt "updates"
@@ -9173,6 +9200,8 @@ msgstr ""
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr ""
+"The page or file you requested wasn't found on our site. Beharbada zaharitua "
+"dagoen esteka bat sakatu duzu, edo helbidea gaizki idatzi duzu."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
