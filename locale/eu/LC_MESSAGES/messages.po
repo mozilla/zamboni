@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-14 00:15+0000\n"
+"PO-Revision-Date: 2014-06-15 20:44+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402704937.0\n"
+"X-POOTLE-MTIME: 1402865056.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1253,7 +1253,7 @@ msgstr "{addon} berriro berrikusi da, aplikazioa Premium izatera pasa delako."
 
 #: apps/amo/log.py:473
 msgid "Premium Type Upgrade"
-msgstr ""
+msgstr "Premium-era eguneraketa"
 
 #: apps/amo/log.py:480
 msgid "Re-review cleared for {addon}."
@@ -1289,7 +1289,7 @@ msgstr "Gailua(k) gehituta"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon}(r)entzako gailuen sostengua eskuz aldatu du berrikusleak."
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
@@ -1305,11 +1305,11 @@ msgstr "Aplikazioaren birbidalketa"
 
 #: apps/amo/log.py:528
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr ""
+msgstr "{addon} automatikoki goratu da, VIP aplikazio bat delako."
 
 #: apps/amo/log.py:529
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIPen goratze automatikoa"
 
 #: apps/amo/log.py:546
 msgid "Created: {0}."
@@ -1354,11 +1354,11 @@ msgstr "{0.name} erabiltzailea {group}(e)ra gehituta."
 
 #: apps/amo/log.py:609
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{0.name} erabiltzailea {group} taldetik kendu da."
 
 #: apps/amo/log.py:616
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "{addon}(r)en gutxieneko eskakizunak berrikusleak eskuz aldatu ditu."
 
 #: apps/amo/log.py:617
 msgid "Requirements Changed by Reviewer"
@@ -1380,7 +1380,7 @@ msgstr "{version}(r)en egoera {0}(e)ra aldatuta."
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "{0.name} {0.id} erabiltzailea bilaketa-tresna erabiliz ezabatu da."
 
 #: apps/amo/log.py:646
 msgid "{addon} content rating changed to Adult."
