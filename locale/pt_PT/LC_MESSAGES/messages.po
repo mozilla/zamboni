@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-15 00:54+0000\n"
+"PO-Revision-Date: 2014-06-15 01:29+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402793659.0\n"
+"X-POOTLE-MTIME: 1402795788.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -73,7 +73,9 @@ msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
 
 #: apps/addons/forms.py:238
 msgid "Categories cannot be changed while your app is featured for this application."
-msgstr "As categorias não podem ser alteradas enquanto a sua app estiver indicada para esta aplicação."
+msgstr ""
+"As categorias não podem ser alteradas enquanto a sua aplicação estiver "
+"indicada para esta aplicação."
 
 #: apps/addons/forms.py:241
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1378,15 +1380,15 @@ msgstr "Estado de {version} alterado para {0}."
 #. L10n: {0} is the status
 #: apps/amo/log.py:640
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "Utilizador {0.name} {0.id} eliminado via ferramenta de pesquisa."
+msgstr "Utilizador {0.name} {0.id} eliminado através de ferramenta de pesquisa."
 
 #: apps/amo/log.py:646
 msgid "{addon} content rating changed to Adult."
-msgstr "Classificação de conteúdo de {addon} modificada para Adulto."
+msgstr "Classificação de conteúdo de {addon} alterada para Adulto."
 
 #: apps/amo/log.py:652
 msgid "{addon} content rating changed."
-msgstr "Classificação de conteúdo de {addon} modificada."
+msgstr "Classificação de conteúdo de {addon} alterada."
 
 #: apps/amo/log.py:657
 msgid "Priority review requested for {addon}."
@@ -1402,15 +1404,19 @@ msgstr "Não permitido"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Oops! Não permitido.</h1> <p>Tentou fazer algo que não está autorizado a fazer.</p>"
+msgstr ""
+"<h1>Ops! Não permitido.</h1> <p>Tentou fazer algo que não está autorizado a "
+"fazer.</p>"
 
 #: apps/amo/templates/amo/403.html:12 apps/amo/templates/amo/403_apps.html:17
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr "<p>Tente voltar para a página anterior, actualize e volte a tentar de novo.</p>"
+msgstr ""
+"<p>Tente voltar para a página anterior, atualize a página e tente "
+"novamente.</p>"
 
 #: apps/amo/templates/amo/403_apps.html:4 apps/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr "Oops"
+msgstr "Ops"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -1432,7 +1438,10 @@ msgstr ""
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Oops! Aconteceu um erro.</h1> <p>Vamos repará-lo logo que possível.</p> <p> Pode tentar atualizar a página, ou volte à <a href=\"%(home)s\">página inicial Extras</a>. </p>"
+msgstr ""
+"<h1>Ops! Ocorreu um erro.</h1> <p>Vamos repará-lo logo que possível.</p> <p> "
+"Pode tentar atualizar a página, ou volte à <a href=\"%(home)s\">página "
+"inicial dos Extras</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -1469,11 +1478,16 @@ msgstr "Manutenção em curso"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Esta funcionalidade está temporariamente desactivadas enquanto efectuamos uma manutenção ao sítio web. Use o botão retroceder do seu navegador e tente de novo mais tarde."
+msgstr ""
+"Esta funcionalidade está temporariamente desativada enquanto efetuamos uma "
+"manutenção ao site web. Utilize o botão retroceder do seu navegador e tente "
+"novamente mais tarde."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Algumas funcionalidades estão temporariamente desactivadas enquanto efectuamos uma manutenção ao sítio web. Volte a tentar dentro de alguns minutos."
+msgstr ""
+"Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos "
+"uma manutenção ao site web. Por favor, tente novamente mais tarde."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -1497,7 +1511,7 @@ msgstr "Mais populares"
 
 #: apps/amo/templates/amo/side_nav.html:6
 msgid "Highest Rated"
-msgstr "Avaliação mais alta"
+msgstr "Melhores classificadas"
 
 #: apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 mkt/search/forms.py:17
 msgid "Top Rated"
@@ -1678,7 +1692,7 @@ msgstr "Totalmente revisto"
 
 #: apps/constants/base.py:31
 msgid "Disabled by Mozilla"
-msgstr "Desactivado pela Mozilla"
+msgstr "Desativado pela Mozilla"
 
 #: apps/constants/base.py:32
 msgid "Beta"
@@ -1690,7 +1704,7 @@ msgstr "Analisado preliminarmente"
 
 #: apps/constants/base.py:34
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Analisado preliminarmente e aguarda a análise completa"
+msgstr "Revisão preliminar efetuada e aguarda a análise completa"
 
 #: apps/constants/base.py:36
 msgid "Pending a review choice"
@@ -1980,27 +1994,27 @@ msgstr "Todos os direitos reservados"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Atribuição 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Atribuição-Uso não-comercial 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Atribuição-NãoComercial-SemDerivações 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Atribuição-NãoComercial-CompartilhaIgual 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Atribuição-SemDerivações 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Atribuição-CompartilhaIgual 3.0"
 
 #: apps/constants/payments.py:40 apps/constants/payments.py:48
 msgid "Chargeback"
@@ -2028,7 +2042,7 @@ msgstr "Em espera"
 
 #: apps/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr "Aprovado instantâneamente"
+msgstr "Aprovado instantaneamente"
 
 #: apps/constants/payments.py:72
 msgid "Declined"
@@ -2060,7 +2074,7 @@ msgstr "Todas as plataformas"
 
 #: apps/constants/platforms.py:26
 msgid "All Mobile Platforms"
-msgstr "Todas as plataformas do Mobile"
+msgstr "Todas as plataformas móveis"
 
 #: apps/constants/platforms.py:33
 msgid "Linux"
@@ -2092,7 +2106,7 @@ msgstr "Maemo"
 
 #: apps/devhub/models.py:296
 msgid "Review"
-msgstr "Comentário"
+msgstr "Análise"
 
 #: apps/editors/forms.py:16
 msgid "View entries between"
@@ -2135,7 +2149,7 @@ msgstr "Nenhum ponto recebido ainda."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr "Principais editores (últimos 7 dias)"
+msgstr "Principais revisores (últimos 7 dias)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
@@ -2160,11 +2174,11 @@ msgstr "Não é possível comparar uma versão consigo própria"
 
 #: apps/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr "Houve um erro ao aceder ao ficheiro %s. %s."
+msgstr "Ocorreu um erro ao aceder ao ficheiro %s. %s."
 
 #: apps/files/tasks.py:31
 msgid "There was an error accessing file %s."
-msgstr "Houve um erro ao aceder ao ficheiro %s."
+msgstr "Ocorreu um erro ao aceder ao ficheiro %s."
 
 #: apps/files/utils.py:76
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
@@ -2341,7 +2355,7 @@ msgstr "estão disponíveis novos extras ou funcionalidades no Firefox"
 
 #: apps/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "a compatibilidade do meu extra foi actualizada com sucesso"
+msgstr "a compatibilidade do meu extra foi atualizada com sucesso"
 
 #: apps/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
@@ -4909,11 +4923,11 @@ msgstr "Alterações guardadas com sucesso."
 
 #: mkt/developers/views.py:648
 msgid "There was an error with the submission."
-msgstr "Houve um erro com a submissão."
+msgstr "Ocorreu um erro com a submissão."
 
 #: mkt/developers/views.py:952
 msgid "There was an error uploading your preview."
-msgstr "Houve um erro ao carregar a sua pré-visualização."
+msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 
 #: mkt/developers/views.py:1003
 msgid "Terms of service accepted."
@@ -5058,15 +5072,15 @@ msgstr "Builder e SDK"
 #. Section in strong tag is bigger and on it's own line
 #: mkt/developers/templates/developers/builder.html:11
 msgid "<strong>Builder and SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>Construtor e SDK:</strong> Crie extras rápida e facilmente"
+msgstr "<strong>Builder e SDK:</strong> Crie extras rápida e facilmente"
 
 #: mkt/developers/templates/developers/builder.html:17 mkt/developers/templates/developers/builder.html:21 mkt/developers/templates/developers/builder.html:22
 msgid "Builder Overview"
-msgstr "Visualização geral do construtor"
+msgstr "Visão geral do Builder"
 
 #: mkt/developers/templates/developers/builder.html:24 mkt/developers/templates/developers/builder.html:28 mkt/developers/templates/developers/builder.html:29
 msgid "Builder Tutorial"
-msgstr "Tutorial do construtor"
+msgstr "Tutorial do Builder"
 
 #: mkt/developers/templates/developers/builder.html:32
 msgid ""
@@ -5089,7 +5103,10 @@ msgstr "Construtor de extras"
 
 #: mkt/developers/templates/developers/builder.html:50
 msgid "The Add-on Builder is a web-based development environment that provides additional functionality for working with the Add-on SDK."
-msgstr "O extra de compilação é um ambiente baseado na web que fornece funcionalidades adicionais para trabalhar com o extra SDK."
+msgstr ""
+"O construtor de extras (Builder) é um ambiente de desenvolvimento baseado na "
+"web que fornece funcionalidades adicionais para trabalhar com o SDK de "
+"extras."
 
 #: mkt/developers/templates/developers/builder.html:56
 msgid "Edit code in a feature-rich environment"
@@ -5097,15 +5114,15 @@ msgstr "Editar o código num ambiente rico em recursos"
 
 #: mkt/developers/templates/developers/builder.html:57
 msgid "Test your add-ons instantly"
-msgstr "Teste os seus extras intantâneamente"
+msgstr "Teste os seus extras instantaneamente"
 
 #: mkt/developers/templates/developers/builder.html:58
 msgid "Use built-in version control &amp; sharing"
-msgstr "Use o controlo de versão e partilha incluído"
+msgstr "Utilize o controlo de versões e partilha incluído"
 
 #: mkt/developers/templates/developers/builder.html:60
 msgid "Try the Builder Now"
-msgstr "Experimente a construtor agora"
+msgstr "Experimentar o Builder agora"
 
 #: mkt/developers/templates/developers/builder.html:68
 msgid "Add-on SDK"
@@ -5113,7 +5130,9 @@ msgstr "SDK dos extras"
 
 #: mkt/developers/templates/developers/builder.html:70
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
-msgstr "O extra SDK é um conjunto de APIs com uma linha de comandos que lhe permite desenvolver extras com a sua própria cadeia de ferramentas."
+msgstr ""
+"O SDK dos extras é um conjunto de APIs com uma linha de comandos que lhe "
+"permite desenvolver extras com a sua própria cadeia de ferramentas."
 
 #: mkt/developers/templates/developers/builder.html:76
 msgid "Choose your own code editor"
@@ -5464,7 +5483,7 @@ msgstr "Estado"
 
 #: mkt/developers/templates/developers/apps/status.html:21
 msgid "Current Status"
-msgstr "Estado actual"
+msgstr "Estado atual"
 
 #: mkt/developers/templates/developers/apps/status.html:27
 msgid "You have <b>delisted</b> this app."
@@ -6255,7 +6274,7 @@ msgstr "Configurar pagamentos"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr "Eliminar esta app."
+msgstr "Eliminar esta aplicação."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -6450,7 +6469,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:21
 msgid "Summary"
-msgstr "Sumário"
+msgstr "Resumo"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
@@ -6495,11 +6514,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:23
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Seja uma ideia que teve enquantoestava na fila do supermercado ou a solução para um dos problemas da vida, partilhe a sua história."
+msgstr ""
+"Seja uma ideia que teve enquanto estava na fila do supermercado ou a solução "
+"para um dos grandes problemas da vida, partilhe a sua história."
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:37
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Dizer aos seus utilizadores o que aí vem irá dar-lhes algo para ver."
+msgstr ""
+"Informar os seus utilizadores sobre o que está para vir irá alimentar o seu "
+"interesse."
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:48
 msgid "Create Profile"
@@ -6520,7 +6543,7 @@ msgstr "HTML permitido: {0}"
 
 #: mkt/developers/templates/developers/includes/macros.html:9
 msgid "Some HTML supported."
-msgstr "Suportado algum HTML."
+msgstr "Alguns elementos HTML são suportados."
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
@@ -6535,8 +6558,8 @@ msgstr "Escolha uma ou duas categorias."
 #: mkt/developers/templates/developers/includes/macros.html:72
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Seleccione <b>até {0}</b> categoria do {1} para este extra:"
-msgstr[1] "Seleccione <b>até {0}</b> categorias do {1} para este extra:"
+msgstr[0] "Selecione <b>até {0}</b> categoria do {1} para este extra:"
+msgstr[1] "Selecione <b>até {0}</b> categorias do {1} para este extra:"
 
 #: mkt/developers/templates/developers/includes/macros.html:86
 msgid "Categories:"
@@ -6612,7 +6635,7 @@ msgstr "Repor segredo"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:18
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr "Saiba mais sobre <b>pagamentos na aplicação</b> no MDN."
+msgstr "Saber mais sobre <b>pagamentos na aplicação</b> na MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:21
 msgid ""
@@ -6924,7 +6947,7 @@ msgstr "Modificar conta do Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr "Actualizar conta"
+msgstr "Atualizar conta"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
@@ -7449,7 +7472,7 @@ msgstr "Construtor de aplicação"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:157
 msgid "App Validator"
-msgstr "Validador de aplicação"
+msgstr "Validador de aplicações"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:161
 msgid "App Manager"
@@ -7700,11 +7723,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (English)"
-msgstr "Mozilla Web apps (em Inglês)"
+msgstr "Aplicações Web da Mozilla (em Inglês)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:81
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr "Mozilla Web apps (em Português Brasileiro)"
+msgstr "Aplicações Web da Mozilla (em Português Brasileiro)"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:18
 msgid "Start Screen"
@@ -9261,7 +9284,9 @@ msgstr "Submissão da aplicação incompleta"
 
 #: mkt/reviewers/templates/reviewers/review.html:116
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Pode, ainda assim, submeter este formulário, no entanto, faça-o apenas se souber que não entra em conflito."
+msgstr ""
+"Pode, ainda assim, submeter este formulário, no entanto faça-o apenas se "
+"souber que não haverá conflito."
 
 #: mkt/reviewers/templates/reviewers/review.html:123
 msgid "Insert canned response..."
@@ -9331,7 +9356,7 @@ msgstr "Total de transferências"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
-msgstr "Ver Estatísticas"
+msgstr "Ver estatísticas"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
@@ -9378,11 +9403,11 @@ msgstr "mais…"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:64
 msgid "Process Reviews"
-msgstr "Processar revisões"
+msgstr "Processar análises"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:54
 msgid "Moderation actions:"
-msgstr "Acções de moderação:"
+msgstr "Ações de moderação:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:23
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -9394,11 +9419,13 @@ msgstr "traduzir"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Etiquetado por %(user)s em %(date)s</span>"
+msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Denunciado por %(user)s em %"
+"(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:61
 msgid "All reviews have been moderated. Good work!"
-msgstr "Todos os comentários foram moderados. Bom trabalho!"
+msgstr "Todas as análises foram moderadas. Bom trabalho!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
@@ -9595,7 +9622,7 @@ msgstr "Idiomas suportados"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr "Pesquisa Indisponível"
+msgstr "Pesquisa indisponível"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -9619,7 +9646,7 @@ msgstr "Assim que for aprovado."
 
 #: mkt/site/forms.py:11
 msgid "Not until I manually make it public."
-msgstr "Não até que eu o torne público manualmente."
+msgstr "Não até que eu a publique manualmente."
 
 #: mkt/site/helpers.py:182
 msgid "Home"
@@ -9631,7 +9658,8 @@ msgstr "Erros encontrados"
 
 #: mkt/site/messages.py:18
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Houve erros nas alterações que efectuou. Corrija-os e volte a submeter."
+msgstr ""
+"Ocorreram erros nas alterações que efetuou. Corrija-os e volte a submeter."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -9639,7 +9667,7 @@ msgstr "Não permitido"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
-msgstr "Ops! Não é permitido."
+msgstr "Ops! Não permitido."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
