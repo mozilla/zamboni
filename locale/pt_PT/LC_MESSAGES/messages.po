@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-15 00:42+0000\n"
+"PO-Revision-Date: 2014-06-15 00:54+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402792936.0\n"
+"X-POOTLE-MTIME: 1402793659.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -243,7 +243,7 @@ msgstr "Galeria de imagens"
 #: apps/addons/templates/addons/details_box.html:148
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
-msgstr "Comentários do desenvolvedor"
+msgstr "Comentários do programador"
 
 #: apps/addons/templates/addons/details_box.html:157 apps/addons/templates/addons/impala/details.html:227
 msgid "Development Channel"
@@ -618,7 +618,7 @@ msgstr "Sobre este extra"
 
 #: apps/addons/templates/addons/impala/details.html:206
 msgid "Developer’s Comments"
-msgstr "Comentários do desenvolvedor"
+msgstr "Comentários do programador"
 
 #: apps/addons/templates/addons/impala/details.html:216
 msgid "Version Information"
@@ -679,8 +679,8 @@ msgstr "O que vem por aí para {0}"
 #: apps/addons/templates/addons/impala/developers.html:85
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] "Sobre o desenvolvedor"
-msgstr[1] "Sobre os desenvolvedores"
+msgstr[0] "Sobre o programador"
+msgstr[1] "Sobre os programadores"
 
 #: apps/addons/templates/addons/impala/developers.html:92
 msgid "No Photo"
@@ -1331,7 +1331,7 @@ msgstr "Utilizador {user} foi tornado anónimo."
 
 #: apps/amo/log.py:576
 msgid "User {user} restricted."
-msgstr "Usuário {user} restringido."
+msgstr "Utilizador {user} restringido."
 
 #: apps/amo/log.py:582
 msgid "Admin {0} viewed activity log for {user}."
@@ -1736,7 +1736,7 @@ msgstr "Dono"
 
 #: apps/constants/base.py:155 apps/users/notifications.py:157 mkt/constants/apps.py:11 mkt/developers/templates/developers/apps/owner.html:85 mkt/operators/templates/operators/preloads.html:15
 msgid "Developer"
-msgstr "Desenvolvedor"
+msgstr "Programador"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:156 mkt/developers/templates/developers/apps/owner.html:88
@@ -4731,7 +4731,7 @@ msgstr "Nenhuma conta de pagamento definida para esta aplicação"
 # 90%
 #: mkt/developers/helpers.py:37 mkt/developers/helpers.py:66
 msgid "Developers"
-msgstr "Desenvolvedores"
+msgstr "Programadores"
 
 #: mkt/developers/helpers.py:67 mkt/developers/templates/developers/nav.html:8 mkt/site/context_processors.py:39 mkt/templates/mkt/account-links.html:10
 msgid "My Submissions"
@@ -4778,7 +4778,7 @@ msgstr "O seu manifesto tem de ter pelo menos %s bytes."
 
 #: mkt/developers/tasks.py:413
 msgid "Your manifest file was not encoded as valid UTF-8."
-msgstr "Seu arquivo de manifesto não foi codificado como UTF-8 válido."
+msgstr "O seu ficheiro de manifesto não foi codificado como UTF-8 válido."
 
 #: mkt/developers/tasks.py:424
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
@@ -4815,7 +4815,7 @@ msgstr "As imagens não podem ser animadas."
 # 80%
 #: mkt/developers/utils.py:90
 msgid "Please use files smaller than %s."
-msgstr "Por favor, use arquivos menores que %s."
+msgstr "Por favor, utilize ficheiros menores que %s."
 
 #: mkt/developers/utils.py:100
 msgid "Icon could not be opened."
@@ -5073,8 +5073,11 @@ msgid ""
 "Add-on Builder and the Add-on SDK provide powerful APIs and tools that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy "
 "to share it with over 400 million Firefox users world wide."
 msgstr ""
-"O construtor de extra e o SDK do extra fornecem APIs e ferramentas poderosas que permitem aos desenvolvedores a criação de extras para o Firefox usando HTML, CSS e JavaScript. Quando o seu extra "
-"estiver terminado, nós tornamos a partilha com 400 milhões de utilizadores do Firefox fácil."
+"O construtor de extras e o SDK de extras fornecem poderosas APIs e "
+"ferramentas que permitem aos programadores a criação de extras para o "
+"Firefox utilizando HTML, CSS e JavaScript. Quando o seu extra estiver "
+"concluído, nós faremos com que seja fácil partilhá-lo com mais de 400 "
+"milhões de utilizadores do Firefox."
 
 #: mkt/developers/templates/developers/builder.html:42
 msgid "Choose Your Build Environment"
@@ -5219,7 +5222,7 @@ msgstr "Pesquisar"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:63
 msgid "Firefox Marketplace Developers"
-msgstr "Desenvolvedores do Firefox Marketplace"
+msgstr "Programadores do Firefox Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 msgid "API Reference"
@@ -5437,7 +5440,7 @@ msgstr "Perfil de programador"
 
 #: mkt/developers/templates/developers/apps/profile.html:19
 msgid "Your developer profile is set to be <b>public</b>."
-msgstr "Seu perfil de desenvolvedor está definido como <b>público</b>."
+msgstr "O seu perfil de programador está definido como <b>público</b>."
 
 #: mkt/developers/templates/developers/apps/profile.html:20 mkt/developers/templates/developers/apps/profile.html:30
 msgid "Remove Profile"
@@ -5445,7 +5448,8 @@ msgstr "Remover perfil"
 
 #: mkt/developers/templates/developers/apps/profile.html:28
 msgid "Your developer profile will be <b>public</b> when it is fully completed."
-msgstr "Seu perfil de desenvolvedor será <b>público</b> assim que for completado."
+msgstr ""
+"O seu perfil de programador será <b>público</b> quando estiver completo."
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -5984,7 +5988,9 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:57
 msgid "A privacy policy is required that explains what data is transmitted from a user's computer and how it is used."
-msgstr "Uma política de privacidade é necessária para explicar que dados são transmitidos do computador de um usuário e como ele é usado."
+msgstr ""
+"Uma política de privacidade é necessária para explicar que dados são "
+"transmitidos do computador de um utilizador e como ele é utilizado."
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
@@ -6469,15 +6475,15 @@ msgstr "Elementos interativos"
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
 msgid "Developer Agreement"
-msgstr "Acordo do desenvolvedor"
+msgstr "Acordo com o programador"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:5
 msgid "Manage Your Developer Profile"
-msgstr "Gerir o seu perfil de desenvolvedor"
+msgstr "Gerir o seu perfil de programador"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:7
 msgid "Create a Developer Profile"
-msgstr "Criar um perfil de desenvolvedor"
+msgstr "Criar um perfil de programador"
 
 #: mkt/developers/templates/developers/includes/addons_create_profile.html:12
 msgid "Your developer profile will tell users about you, why you made this app, and what's next for the app. This profile can be useful for any developer interested in connecting with users."
@@ -7340,7 +7346,7 @@ msgstr "Teste a sua aplicação com um grupo empenhado de pioneiros."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
-msgstr "Criar uma base de usuários e ganhar popularidade."
+msgstr "Crie uma base de fãs e ganhe popularidade."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
@@ -8558,7 +8564,7 @@ msgstr "aprovado automaticamente"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Developer Program"
-msgstr "Programa de desenvolvedores"
+msgstr "Programa de programadores"
 
 #: mkt/lookup/templates/lookup/user_summary.html:60
 msgid "Read agreement"
@@ -9649,7 +9655,7 @@ msgstr "Página não encontrada"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr "Sentimos muito, mas não pudemos encontrar o que você está procurando."
+msgstr "Pedimos desculpa, mas não conseguimos encontrar o que procurava."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
@@ -9743,7 +9749,9 @@ msgstr "Política de privacidade:"
 
 #: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
-msgstr "É requerida uma política de privacidade que explica quais dados são transmitidos do computador do usuário e como eles são utilizados."
+msgstr ""
+"É necessária uma política de privacidade que explique que dados são "
+"transmitidos do computador do utilizador e como eles são utilizados."
 
 #: mkt/submit/forms.py:356
 msgid "Homepage:"
