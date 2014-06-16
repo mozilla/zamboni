@@ -121,3 +121,4 @@ CARRIERS = CARRIER_MAP.values()
 CARRIER_IDS = frozenset([c.id for c in CARRIERS])
 CARRIER_SLUGS = frozenset([c.slug for c in CARRIERS])
 CARRIER_CHOICES = [(c.id, c) for c in CARRIERS]
+CARRIER_CHOICE_DICT = dict(CARRIER_CHOICES)

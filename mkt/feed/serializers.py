@@ -8,7 +8,9 @@ import mkt.carriers
 import mkt.regions
 from mkt.api.fields import SplitField, TranslationSerializerField
 from mkt.api.serializers import URLSerializerMixin
+from mkt.carriers import CARRIER_CHOICE_DICT
 from mkt.collections.serializers import SlugChoiceField, SlugModelChoiceField
+from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.submit.serializers import PreviewSerializer
 from mkt.webapps.models import Category
 from mkt.webapps.serializers import AppSerializer
@@ -201,3 +203,24 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
             if getattr(obj, item_type):
                 return item_type
         return
+
+    def validate_shelf(self, attrs, source):
+        """
+        If `shelf` is defined, validate that the FeedItem's `carrier` and
+        `region` match the `carrier` and `region on `shelf`.
+        """
+        shelf_id = attrs.get(source)
+        if shelf_id:
+            shelf = FeedShelf.objects.get(pk=shelf_id)
+
+            carrier = CARRIER_CHOICE_DICT[shelf.carrier]
+            if attrs.get('carrier') != carrier.slug:
+                raise serializers.ValidationError(
+                    'Feed item carrier does not match operator shelf carrier.')
+
+            region = REGIONS_CHOICES_ID_DICT[shelf.region]
+            if attrs.get('region') != region.slug:
+                raise serializers.ValidationError(
+                    'Feed item region does not match operator shelf region.')
+
+        return attrs
