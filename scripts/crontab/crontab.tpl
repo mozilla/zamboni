@@ -22,12 +22,9 @@ HOME=/tmp
 15 8 * * * %(z_cron)s process_iarc_changes --settings=settings_local_mkt
 30 8 * * * %(z_cron)s dump_user_installs_cron --settings=settings_local_mkt
 00 9 * * * %(z_cron)s update_app_downloads --settings=settings_local_mkt
-30 9 * * * %(z_cron)s update_user_ratings
 45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
 45 9 * * * %(z_cron)s clean_old_signed --settings=settings_local_mkt
 45 10 * * * %(django)s process_addons --task=update_manifests --settings=settings_local_mkt
 45 11 * * * %(django)s export_data --settings=settings_local_mkt
-# 30 13 * * * %(z_cron)s expired_resetcode
-# 30 14 * * * %(z_cron)s category_totals
 
 MAILTO=root
