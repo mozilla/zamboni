@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-15 20:44+0000\n"
+"PO-Revision-Date: 2014-06-16 21:40+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1402865056.0\n"
+"X-POOTLE-MTIME: 1402954846.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1575,6 +1575,8 @@ msgstr[1] "{n}.orria"
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Une bat barru ez bazaizu %(addon_name)s instalatzeko gonbita azaltzen, <a "
+"href=\"%(addon_xpi)s\">egin klik hemen</a>."
 
 #: apps/amo/tests/test_messages.py:52 apps/amo/tests/test_messages.py:53
 msgid "Title"
@@ -1733,7 +1735,7 @@ msgstr "Ezabatuta"
 
 #: apps/constants/base.py:42
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Geroago berrikusteko markatuta"
 
 #: apps/constants/base.py:43
 msgid "Blocked"
@@ -1894,7 +1896,7 @@ msgstr ""
 
 #: apps/constants/base.py:440
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Gehigarriaren berrikuspen osoa"
 
 #: apps/constants/base.py:441
 msgid "Preliminary Add-on Review"
@@ -1902,11 +1904,11 @@ msgstr "Gehigarriaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:442
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Gehigarriaren berrikuspena eguneratuta"
 
 #: apps/constants/base.py:443
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Hiztegiaren berrikuspen osoa"
 
 #: apps/constants/base.py:444
 msgid "Preliminary Dictionary Review"
@@ -1914,11 +1916,11 @@ msgstr "Hiztegiaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:445
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Hiztegiaren berrikuspena eguneratuta"
 
 #: apps/constants/base.py:446
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Hizkuntz-paketearen berrikuspen osoa"
 
 #: apps/constants/base.py:447
 msgid "Preliminary Language Pack Review"
@@ -1926,15 +1928,15 @@ msgstr "Hizkuntza-paketearen behin behineko berrikuspena"
 
 #: apps/constants/base.py:448
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Hizkuntza-paketearen berrikuspena eguneratuta"
 
 #: apps/constants/base.py:449
 msgid "Theme Review"
-msgstr ""
+msgstr "Gaiaren berrikuspena"
 
 #: apps/constants/base.py:450
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Bilaketa-hornitzailearen berrikuspen osoa"
 
 #: apps/constants/base.py:451
 msgid "Preliminary Search Provider Review"
@@ -1942,11 +1944,11 @@ msgstr "Bilaketa-hornitzailearen behin behineko berrikuspena"
 
 #: apps/constants/base.py:452
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Bilaketa-hornitzailearen berrikuspena eguneratuta"
 
 #: apps/constants/base.py:453
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Gai osoaren berrikuspena"
 
 #: apps/constants/base.py:454
 msgid "Preliminary Complete Theme Review"
@@ -2042,7 +2044,7 @@ msgstr "Bestelakoa"
 
 #: apps/constants/payments.py:42 apps/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Erosi"
 
 #: apps/constants/payments.py:43 apps/constants/payments.py:50
 msgid "Refund"
@@ -2058,11 +2060,11 @@ msgstr "Zain"
 
 #: apps/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Berehala onartua"
 
 #: apps/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Baztertua"
 
 #: apps/constants/payments.py:75 mkt/constants/payments.py:9
 msgid "Failed"
@@ -2191,11 +2193,11 @@ msgstr ""
 
 #: apps/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Errore bat geratu da %s fitxategia atzitzean. %s."
 
 #: apps/files/tasks.py:31
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Errore bat gertatu da %s fitxategia atzitzean."
 
 #: apps/files/utils.py:76
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
@@ -2256,11 +2258,11 @@ msgstr "Puntuatu gabe oraindik"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Kalifikazioa: {0} / 5 izar"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Kalifikazioa: %(rating)s / 5 izar"
 
 #. L10n: the addon name.
 #: apps/stats/models.py:123
@@ -8731,15 +8733,15 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:28
 msgid "Total"
-msgstr ""
+msgstr "Guztira"
 
 #: mkt/reviewers/templates/reviewers/performance.html:33 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Hilabetea"
 
 #: mkt/reviewers/templates/reviewers/performance.html:40 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "Urtea"
 
 #: mkt/reviewers/templates/reviewers/performance.html:47
 msgid "All-Time"
@@ -8747,11 +8749,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/queue_region.html:26
 msgid "Waiting Time"
-msgstr ""
+msgstr "Itxarote-denbora"
 
 #: mkt/reviewers/templates/reviewers/queue.html:55
 msgid "Payment Category:"
-msgstr ""
+msgstr "Ordainketaren kategoria:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:59
 msgid "Abuse Reports:"
@@ -8799,7 +8801,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Resolution"
-msgstr ""
+msgstr "Ebazpena"
 
 #: mkt/reviewers/templates/reviewers/review.html:96
 msgid "App submission incomplete"
@@ -8819,7 +8821,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:155
 msgid "Browse"
-msgstr ""
+msgstr "Arakatu"
 
 #: mkt/reviewers/templates/reviewers/review.html:167
 msgid "Attach another file"
@@ -8879,7 +8881,7 @@ msgstr "Ikusi estatistikak"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Gailu motak"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:146
 msgid "Requirements"
@@ -8949,15 +8951,17 @@ msgstr "Bilaketa aurreratua"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Garbitu bilaketa"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:10 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:14
 msgid "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"%(version)s bertsioa &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:20 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:25
 msgid "Files in this version:"
-msgstr ""
+msgstr "Bertsio honetako fitxategiak:"
 
 # Header for a column in a table
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:31
@@ -8967,11 +8971,11 @@ msgstr "Balidazioa"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:30 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:35
 msgid "Contents"
-msgstr ""
+msgstr "Edukiak"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:33 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:38
 msgid "Compare"
-msgstr ""
+msgstr "Alderatu"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:72
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -8979,11 +8983,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:86
 msgid "Next Page"
-msgstr ""
+msgstr "Hurrengo orria"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Previous Page"
-msgstr ""
+msgstr "Aurreko orria"
 
 #: mkt/search/forms.py:14
 msgid "Relevance"
@@ -9031,11 +9035,11 @@ msgstr ""
 
 #: mkt/search/forms.py:63
 msgid "All Categories"
-msgstr ""
+msgstr "Kategoria guztiak"
 
 #: mkt/search/forms.py:64 mkt/search/forms.py:96
 msgid "Games"
-msgstr ""
+msgstr "Jokoak"
 
 #: mkt/search/forms.py:65
 msgid "Books"
@@ -9063,11 +9067,11 @@ msgstr ""
 
 #: mkt/search/forms.py:71
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Mapak eta nabigazioa"
 
 #: mkt/search/forms.py:72
 msgid "Music"
-msgstr ""
+msgstr "Musika"
 
 #: mkt/search/forms.py:73
 msgid "News & Weather"
@@ -9087,7 +9091,7 @@ msgstr ""
 
 #: mkt/search/forms.py:77
 msgid "Shopping"
-msgstr ""
+msgstr "Erosketak"
 
 #: mkt/search/forms.py:78
 msgid "Social"
@@ -9095,11 +9099,11 @@ msgstr ""
 
 #: mkt/search/forms.py:79
 msgid "Sports"
-msgstr ""
+msgstr "Kirolak"
 
 #: mkt/search/forms.py:80
 msgid "Travel"
-msgstr ""
+msgstr "Bidaiak"
 
 #: mkt/search/forms.py:81
 msgid "Utilities"
@@ -9115,7 +9119,7 @@ msgstr ""
 
 #: mkt/search/forms.py:138
 msgid "Device type"
-msgstr ""
+msgstr "Gailu mota"
 
 #: mkt/search/forms.py:141
 msgid "Premium types"
@@ -9127,15 +9131,15 @@ msgstr ""
 
 #: mkt/search/forms.py:148
 msgid "Works offline"
-msgstr ""
+msgstr "Lineaz kanpo dabil"
 
 #: mkt/search/forms.py:150
 msgid "Supported languages"
-msgstr ""
+msgstr "Onartutako hizkuntzak"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Bilaketa ez dago erabilgarri"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -9147,7 +9151,7 @@ msgstr "Kontu-ezarpenak"
 
 #: mkt/site/context_processors.py:31
 msgid "Change Password"
-msgstr ""
+msgstr "Aldatu pasahitza"
 
 #: mkt/site/context_processors.py:33
 msgid "Sign out"
@@ -9191,11 +9195,11 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "Ez da orria aurkitu"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
+msgstr "Sentitzen dugu baina ezin dugu bila zabiltzana aurkitu."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
@@ -9213,11 +9217,11 @@ msgstr ""
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Zerbitzariaren errorea"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Ene bada! Errore bat izan dugu."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
