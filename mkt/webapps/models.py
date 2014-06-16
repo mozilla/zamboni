@@ -35,10 +35,9 @@ import mkt
 from amo.decorators import skip_cache, use_master, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.urlresolvers import get_outgoing_url
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
-                       slugify, smart_path, sorted_groupby, timer, to_language,
-                       urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
+                       send_mail, slugify, smart_path, sorted_groupby, timer,
+                       to_language, urlparams)
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
@@ -243,8 +242,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                            db_column='inactive')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
 
-    charity = models.ForeignKey('Charity', null=True)
-
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = models.ManyToManyField('Category', through='AddonCategory')
@@ -276,7 +273,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     iarc_purged = models.BooleanField(default=False)
 
     # This is the public_id to a Generic Solitude Product
-    solitude_public_id = models.CharField(max_length=255, null=True, blank=True)
+    solitude_public_id = models.CharField(max_length=255, null=True,
+                                          blank=True)
 
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
@@ -622,8 +620,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             # [1] is the whole ID, [2] is the directory.
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            # If we don't have the icon_hash set to a dummy string ("never"), when
-            # the icon is eventually changed, icon_hash will be updated.
+            # If we don't have the icon_hash set to a dummy string ("never"),
+            # when the icon is eventually changed, icon_hash will be updated.
             suffix = getattr(self, 'icon_hash', None) or 'never'
             return static_url('ADDON_ICON_URL') % (
                 split_id.group(2) or 0, self.id, size, suffix)
@@ -1427,21 +1425,6 @@ class Preview(amo.models.ModelBase):
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
-
-
-class Charity(amo.models.ModelBase):
-    name = models.CharField(max_length=255)
-    url = models.URLField()
-    paypal = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'charities'
-
-    @property
-    def outgoing_url(self):
-        if self.pk == amo.FOUNDATION_ORG:
-            return self.url
-        return get_outgoing_url(unicode(self.url))
 
 
 class BlacklistedSlug(amo.models.ModelBase):

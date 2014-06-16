@@ -74,7 +74,7 @@ database:
         - zadmin_siteevent_mkt
     tables:
         addons:
-            nullify: [nominationmessage, paypal_id, charity_id]
+            nullify: [nominationmessage, paypal_id]
             random_email: mozilla_contact
             random_int:
                 - average_daily_downloads
