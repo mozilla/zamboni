@@ -11,9 +11,9 @@ import amo.models
 from amo.utils import cache_ns_key
 from mkt.access.models import Group
 from mkt.developers.models import ActivityLog
-from mkt.webapps.models import Addon
-from translations.fields import save_signal, TranslatedField
+from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Addon
 
 
 user_log = commonware.log.getLogger('z.users')

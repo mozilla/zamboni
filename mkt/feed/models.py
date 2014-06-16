@@ -30,7 +30,7 @@ from mkt.ratings.validators import validate_rating
 from mkt.search.indexers import index
 from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
-from translations.fields import PurifiedField, save_signal
+from mkt.translations.fields import PurifiedField, save_signal
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
                         COLLECTION_TYPE_CHOICES,

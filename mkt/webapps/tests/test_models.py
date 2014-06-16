@@ -30,6 +30,7 @@ from nose.tools import eq_, ok_, raises
 
 import amo
 import amo.tests
+import mkt
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from constants.applications import DEVICE_TYPES
@@ -41,9 +42,6 @@ from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from lib.utils import static_url
-from translations.models import Translation
-
-import mkt
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
@@ -53,6 +51,7 @@ from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
+from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import update_status, Version
 from mkt.webapps.indexers import WebappIndexer

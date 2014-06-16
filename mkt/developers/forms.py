@@ -35,16 +35,16 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.tags.models import Tag
+from mkt.translations.fields import TransField
+from mkt.translations.forms import TranslationFormMixin
+from mkt.translations.models import Translation
+from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
 from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, Category,
                                 IARCInfo, Preview, Webapp)
 from mkt.webapps.tasks import index_webapps, update_manifests
 from mkt.webapps.widgets import CategoriesSelectMultiple, IconWidgetRenderer
-from translations.fields import TransField
-from translations.forms import TranslationFormMixin
-from translations.models import Translation
-from translations.widgets import TranslationTextarea, TransTextarea
 
 from . import tasks
 

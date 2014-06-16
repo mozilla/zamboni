@@ -1,7 +1,7 @@
 from django.db import models
 
 import amo.models
-from translations.fields import (LinkifiedField, PurifiedField, save_signal,
+from mkt.translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 
 

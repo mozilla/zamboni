@@ -2,8 +2,9 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from amo.models import ModelBase
-from apps.translations.fields import save_signal, TranslatedField
 from mkt.prices.models import Price
+from mkt.translations.fields import save_signal, TranslatedField
+
 
 class InAppProduct(ModelBase):
     """

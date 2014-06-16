@@ -22,9 +22,9 @@ from mkt.developers import tasks
 from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
+from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Addon, AddonUser, get_excluded_in, Webapp
 from mkt.webapps.serializers import AppSerializer
-from translations.query import order_by_translation
 
 
 log = commonware.log.getLogger('z.api')

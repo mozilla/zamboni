@@ -48,10 +48,11 @@ from PIL import Image, ImageFile, PngImagePlugin
 
 from amo import ADDON_ICON_SIZES
 from amo.urlresolvers import linkify_with_outgoing, reverse
-from translations.models import Translation
+from mkt.translations.models import Translation
 from mkt.users.models import UserNotification
 
 from . import logger_log as log
+
 
 heka = settings.HEKA
 

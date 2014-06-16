@@ -1,7 +1,7 @@
 from nose.tools import eq_
 
-from translations.models import Translation
-from translations.utils import transfield_changed, truncate, truncate_text
+from mkt.translations.models import Translation
+from mkt.translations.utils import transfield_changed, truncate, truncate_text
 
 
 def test_truncate_text():

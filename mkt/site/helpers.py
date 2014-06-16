@@ -10,7 +10,7 @@ from tower import ugettext as _
 
 from amo.helpers import urlparams
 from amo.urlresolvers import get_outgoing_url, reverse
-from translations.helpers import truncate
+from mkt.translations.helpers import truncate
 
 log = commonware.log.getLogger('z.mkt.site')
 

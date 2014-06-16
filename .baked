@@ -1,10 +1,12 @@
 {
-    "order": ["stdlib", "django", "3rd", "local", "relative"],
+    "order": ["future", "stdlib", "django", "3rd", "local", "relative"],
     "fallback": "local",
     "from_order": {
         "local": false
     },
     "modules": {
+        "future": ["__future__"],
+
         "stdlib": [
             "BaseHTTPServer", "ConfigParser", "Cookie", "EasyDialogs",
             "HTMLParser", "Queue", "SimpleXMLRPCServer", "SocketServer",
@@ -68,7 +70,7 @@
             "simplejson", "six", "slumber", "sphinx", "sphinxcontrib",
             "sqlalchemy", "sqlparse", "statsd", "storages", "suds", "tastypie",
             "tastypie_services", "test_utils", "tests", "tower", "tox",
-            "translate", "uritemplate", "validator", "virtualenv",
+            "translate", "uritemplate", "uuidfield", "validator", "virtualenv",
             "virtualenv_support", "waffle"],
 
         "relative" : ["acl", "authorization", "decorators", "filters",
