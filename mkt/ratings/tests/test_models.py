@@ -1,3 +1,4 @@
+from mock import patch
 from nose.tools import eq_
 
 import amo.tests
@@ -23,3 +24,10 @@ class TestSpamTest(amo.tests.TestCase):
 
     def test_add(self):
         assert Spam().add(Review.objects.all()[0], 'numbers')
+
+    @patch('mkt.webapps.tasks.index_webapps.original_apply_async')
+    def test_refresh_triggers_reindex(self, index_webapps_apply_async):
+        index_webapps_apply_async.reset_mock()
+        review = Review.objects.latest('pk')
+        review.refresh()
+        assert index_webapps_apply_async.called
