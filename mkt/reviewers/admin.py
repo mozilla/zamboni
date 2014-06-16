@@ -11,7 +11,6 @@ class CannedResponseAdmin(admin.ModelAdmin):
     truncate_response.short_description = 'Response'
 
     list_display = ('name', truncate_response)
-    list_filter = ('type',)
 
 
 class EventLogAdmin(admin.ModelAdmin):

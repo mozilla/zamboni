@@ -2177,17 +2177,13 @@ class TestCannedResponses(AppReviewerTest):
     def setUp(self):
         super(TestCannedResponses, self).setUp()
         self.login_as_editor()
-        self.app = app_factory(name='XXX',
-                               status=amo.STATUS_PENDING)
-        self.cr_addon = CannedResponse.objects.create(
-            name=u'addon reason', response=u'addon reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
-        self.cr_app = CannedResponse.objects.create(
+        self.app = app_factory(name='XXX', status=amo.STATUS_PENDING)
+        self.cr = CannedResponse.objects.create(
             name=u'app reason', response=u'app reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_APP)
+            sort_group=u'public')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
-    def test_no_addon(self):
+    def test_ok(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         form = r.context['form']
@@ -2198,12 +2194,10 @@ class TestCannedResponses(AppReviewerTest):
         # So above, choices[1][1] gets the first real group's list of
         # responses.
         eq_(len(choices), 1)
-        assert self.cr_app.response in choices[0]
-        assert self.cr_addon.response not in choices[0]
+        assert self.cr.response in choices[0]
 
 
 class TestReviewLog(AppReviewerTest, AccessMixin):
-
     fixtures = AppReviewerTest.fixtures + fixture('user_admin')
 
     def setUp(self):

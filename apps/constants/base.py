@@ -380,15 +380,6 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 
-# Types of Canned Responses for reviewer tools.
-CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_APP = 2
-
-CANNED_RESPONSE_CHOICES = {
-    CANNED_RESPONSE_ADDON: _('Add-on'),
-    CANNED_RESPONSE_APP: _('App'),
-}
-
 # For use in urls.
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'

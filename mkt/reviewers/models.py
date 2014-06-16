@@ -20,12 +20,9 @@ user_log = commonware.log.getLogger('z.users')
 
 
 class CannedResponse(amo.models.ModelBase):
-
     name = TranslatedField()
     response = TranslatedField(short=False)
     sort_group = models.CharField(max_length=255)
-    type = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_CHOICES.items(), db_index=True, default=0)
 
     class Meta:
         db_table = 'cannedresponses'
@@ -383,19 +380,6 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
-
-
-class AppCannedResponseManager(amo.models.ManagerBase):
-    def get_query_set(self):
-        qs = super(AppCannedResponseManager, self).get_query_set()
-        return qs.filter(type=amo.CANNED_RESPONSE_APP)
-
-
-class AppCannedResponse(CannedResponse):
-    objects = AppCannedResponseManager()
-
-    class Meta:
-        proxy = True
 
 
 def cleanup_queues(sender, instance, **kwargs):
