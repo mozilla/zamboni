@@ -307,6 +307,7 @@ DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
 DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 FEED_COLLECTION_BG_PATH = UPLOADS_PATH + '/feed_collection_background'
+FEED_SHELF_BG_PATH = UPLOADS_PATH + '/feed_shelf_background'
 
 # Like ADDONS_PATH but protected by the app. Used for storing files that should
 # not be publicly accessible (like disabled add-ons).

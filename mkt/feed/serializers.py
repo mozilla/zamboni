@@ -16,7 +16,7 @@ from mkt.webapps.serializers import AppSerializer
 from . import constants
 from .fields import FeedCollectionMembershipField
 from .models import (FeedApp, FeedBrand, FeedCollection,
-                     FeedCollectionMembership, FeedItem)
+                     FeedCollectionMembership, FeedItem, FeedShelf)
 
 
 class BaseFeedCollectionSerializer(URLSerializerMixin,
@@ -87,6 +87,25 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
         url_basename = 'feedbrands'
 
 
+class FeedShelfSerializer(BaseFeedCollectionSerializer):
+    """
+    A serializer for the FeedBrand class, a type of collection that allows
+    editors to quickly create content without involving localizers.
+    """
+    background_image = FeedImageField(
+        source='*', view_name='api-v2:feed-shelf-image-detail', format='png')
+    carrier = SlugChoiceField(choices_dict=mkt.carriers.CARRIER_MAP)
+    description = TranslationSerializerField(required=False)
+    name = TranslationSerializerField()
+    region = SlugChoiceField(choices_dict=mkt.regions.REGION_LOOKUP)
+
+    class Meta:
+        fields = ('apps', 'background_color', 'background_image', 'carrier',
+                  'description', 'id', 'name', 'region', 'slug', 'url')
+        model = FeedShelf
+        url_basename = 'feedshelves'
+
+
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     """
     A serializer for the FeedCollection class.
@@ -152,11 +171,13 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                        FeedBrandSerializer())
     collection = SplitField(relations.PrimaryKeyRelatedField(required=False),
                             FeedCollectionSerializer())
+    shelf = SplitField(relations.PrimaryKeyRelatedField(required=False),
+                       FeedShelfSerializer())
 
     class Meta:
         fields = ('app', 'brand', 'carrier', 'category', 'collection', 'id',
                   'item_type', 'region', 'url')
-        item_types = ('app', 'brand', 'collection')
+        item_types = ('app', 'brand', 'collection', 'shelf',)
         model = FeedItem
         url_basename = 'feeditems'
 

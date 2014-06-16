@@ -46,7 +46,7 @@ class BaseFeedCollection(amo.models.ModelBase):
 
     - Editorial Brands: `FeedBrand`
     - Collections: `FeedCollection`
-    - Operator Shelves (future): `FeedOperatorShelf`
+    - Operator Shelves: `FeedShelf`
 
     A series of base classes wraps the common code for these:
 
@@ -286,6 +286,44 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
                 self.add_app_grouped(app, group['name'])
 
 
+class FeedShelfMembership(BaseFeedCollectionMembership):
+    """
+    An app's membership to a `FeedBrand` class, used as the through model for
+    `FeedBrand._apps`.
+    """
+    obj = models.ForeignKey('FeedShelf')
+
+    class Meta(BaseFeedCollectionMembership.Meta):
+        abstract = False
+        db_table = 'mkt_feed_shelf_membership'
+
+
+class FeedShelf(BaseFeedCollection, BaseFeedImage):
+    """
+    Model for "Operator Shelves", a special type of collection that gives
+    operators a place to centralize content they wish to feature.
+    """
+    _apps = models.ManyToManyField(Webapp, through=FeedShelfMembership,
+                                   related_name='app_shelves')
+    background_color = ColorField()
+    carrier = models.IntegerField(choices=mkt.carriers.CARRIER_CHOICES)
+    description = PurifiedField(null=True)
+    name = PurifiedField()
+    region = models.PositiveIntegerField(
+        choices=mkt.regions.REGIONS_CHOICES_ID)
+
+    membership_class = FeedShelfMembership
+    membership_relation = 'feedshelfmembership'
+
+    class Meta(BaseFeedCollection.Meta):
+        abstract = False
+        db_table = 'mkt_feed_shelf'
+
+    def image_path(self):
+        return os.path.join(settings.FEED_SHELF_BG_PATH, str(self.pk / 1000),
+                            'feed_shelf_%s.png' % (self.pk,))
+
+
 class FeedApp(BaseFeedImage, amo.models.ModelBase):
     """
     Model for "Custom Featured Apps", a feed item highlighting a single app
@@ -325,7 +363,7 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
         super(FeedApp, self).clean()
 
     def image_path(self):
-        return os.path.join(settings.FEATURED_APP_BG_PATH,
+        return os.path.join(settings.FEED_SHELF_BG_PATH,
                             str(self.pk / 1000),
                             'featured_app_%s.png' % (self.pk,))
 
@@ -350,6 +388,7 @@ class FeedItem(amo.models.ModelBase):
     app = models.ForeignKey(FeedApp, blank=True, null=True)
     brand = models.ForeignKey(FeedBrand, blank=True, null=True)
     collection = models.ForeignKey(FeedCollection, blank=True, null=True)
+    shelf = models.ForeignKey(FeedShelf, blank=True, null=True)
 
     class Meta:
         db_table = 'mkt_feed_item'
@@ -377,6 +416,9 @@ models.signals.pre_save.connect(
 models.signals.pre_save.connect(
     save_signal, sender=FeedCollectionMembership,
     dispatch_uid='feedcollectionmembership_translations')
+models.signals.pre_save.connect(
+    save_signal, sender=FeedShelf,
+    dispatch_uid='feedshelfmembership_translations')
 
 
 # Delete membership instances when their apps are deleted.
@@ -386,6 +428,7 @@ def remove_deleted_app_on(cls):
         cls.objects.filter(app_id=instance.pk).delete()
     return inner
 
-for cls in [FeedBrandMembership, FeedCollectionMembership]:
+for cls in [FeedBrandMembership, FeedCollectionMembership,
+            FeedShelfMembership]:
     post_delete.connect(remove_deleted_app_on(cls), sender=Addon,
                         dispatch_uid='apps_collections_cleanup')
