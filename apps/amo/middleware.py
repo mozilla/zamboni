@@ -1,88 +1,11 @@
-"""
-Borrowed from: http://code.google.com/p/django-localeurl
-
-Note: didn't make sense to use localeurl since we need to capture app as well
-"""
 import contextlib
-import urllib
 
 from django.conf import settings
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect
 from django.middleware import common
-from django.utils.cache import patch_cache_control, patch_vary_headers
-from django.utils.encoding import iri_to_uri, smart_str
-
-import tower
-
-import amo
-from . import urlresolvers
-from .helpers import urlparams
-
-
-class LocaleAndAppURLMiddleware(object):
-    """
-    1. search for locale first
-    2. see if there are acceptable apps
-    3. save those matched parameters in the request
-    4. strip them from the URL so we can do stuff
-    """
-
-    def process_request(self, request):
-        # Find locale, app
-        prefixer = urlresolvers.Prefixer(request)
-        if settings.DEBUG:
-            redirect_type = HttpResponseRedirect
-        else:
-            redirect_type = HttpResponsePermanentRedirect
-        urlresolvers.set_url_prefix(prefixer)
-        full_path = prefixer.fix(prefixer.shortened_path)
-        # In mkt, don't vary headers on User-Agent.
-        with_app = False
-
-        if (prefixer.app == amo.MOBILE.short and
-                request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
-            # TODO: Eventually put MOBILE in RETIRED_APPS, but not yet.
-            return redirect_type(request.path.replace('/mobile', '/android'))
-
-        if 'lang' in request.GET:
-            # Blank out the locale so that we can set a new one.  Remove lang
-            # from query params so we don't have an infinite loop.
-            prefixer.locale = ''
-            new_path = prefixer.fix(prefixer.shortened_path)
-            query = dict((smart_str(k), request.GET[k]) for k in request.GET)
-            query.pop('lang')
-            return redirect_type(urlparams(new_path, **query))
-
-        if full_path != request.path:
-            query_string = request.META.get('QUERY_STRING', '')
-            full_path = urllib.quote(full_path.encode('utf-8'))
-
-            if query_string:
-                full_path = "%s?%s" % (full_path, query_string)
-
-            response = redirect_type(full_path)
-            # Cache the redirect for a year.
-            if not settings.DEBUG:
-                patch_cache_control(response, max_age=60 * 60 * 24 * 365)
-
-            # Vary on Accept-Language or User-Agent if we changed the locale or
-            # app.
-            old_app = prefixer.app
-            old_locale = prefixer.locale
-            new_locale, new_app, _ = prefixer.split_path(full_path)
-
-            if old_locale != new_locale:
-                patch_vary_headers(response, ['Accept-Language'])
-            if with_app and old_app != new_app:
-                patch_vary_headers(response, ['User-Agent'])
-            return response
-
-        request.path_info = '/' + prefixer.shortened_path
-        tower.activate(prefixer.locale)
-        request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
-        request.LANG = prefixer.locale
+from django.utils.encoding import iri_to_uri
 
 
 class NoVarySessionMiddleware(SessionMiddleware):
@@ -161,14 +84,3 @@ class CommonMiddleware(common.CommonMiddleware):
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
-
-
-class ViewMiddleware(object):
-
-    def get_name(self, view_func):
-        # Find a function name or used the class based view class name.
-        if not hasattr(view_func, '__name__'):
-            name = view_func.__class__.__name__
-        else:
-            name = view_func.__name__
-        return '%s.%s' % (view_func.__module__, name)

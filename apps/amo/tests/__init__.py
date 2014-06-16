@@ -739,7 +739,6 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req.amo_user = UserProfile.objects.get(id=user.id)
         req.user = user
         req.groups = user.groups.all()
-    req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
 

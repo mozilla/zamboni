@@ -84,7 +84,6 @@ class RedirectPrefixedURIMiddleware(object):
 
     def process_request(self, request):
         request.API = False
-        request.APP = amo.FIREFOX
 
         path_ = request.get_full_path()
         new_path = None

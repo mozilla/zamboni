@@ -9,7 +9,7 @@ def run():
 
     # Fix invalid compat ranges from last migration
     (CompatOverrideRange.objects.filter(
-            compat__addon__in=addons, type=1, app_id=amo.FIREFOX.id,
+            compat__addon__in=addons, type=1, app_id=1,  # amo.FIREFOX.id
             min_app_version='0', max_app_version='21.*', min_version='0')
         .delete())
 
@@ -19,7 +19,7 @@ def run():
                                                            guid=addon.guid,
                                                            name=addon.name)
         CompatOverrideRange.objects.create(
-            compat=co, type=1, app_id=amo.FIREFOX.id,
+            compat=co, type=1, app_id=1,  # amo.FIREFOX.id
             min_app_version='21.*', max_app_version='*',
             min_version='0', max_version=addon.current_version.version)
 

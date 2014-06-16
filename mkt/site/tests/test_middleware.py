@@ -17,12 +17,6 @@ _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
 @mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
-
-    def test_redirect_for_good_application(self):
-        for app in amo.APPS:
-            r = self.client.get('/%s/' % app)
-            self.assert3xx(r, '/', 302)
-
     def test_redirect_for_bad_application(self):
         r = self.client.get('/mosaic/')
         eq_(r.status_code, 404)
@@ -40,9 +34,6 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
             self.assert3xx(r, after, 302)
 
     def test_preserve_qs_for_lang(self):
-        r = self.client.get('/pt-BR/firefox/privacy-policy?omg=yes')
-        self.assert3xx(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
-
         r = self.client.get('/pt-BR/privacy-policy?omg=yes')
         self.assert3xx(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
 

@@ -60,12 +60,10 @@ def global_settings(request):
 
     DESKTOP = (getattr(request, 'TABLET', None) or
                not getattr(request, 'MOBILE', None))
-    request.APP = getattr(request, 'APP', None)
 
     context.update(account_links=account_links,
                    settings=settings,
                    amo=amo, mkt=mkt,
-                   APP=amo.FIREFOX,
                    tools_links=tools_links,
                    tools_title=tools_title,
                    footer_links=footer_links,
