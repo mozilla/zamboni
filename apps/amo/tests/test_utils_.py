@@ -2,7 +2,6 @@ import collections
 
 from nose.tools import eq_, ok_
 
-
 import amo
 from amo import floor_version
 from amo.utils import attach_trans_dict
