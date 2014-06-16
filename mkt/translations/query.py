@@ -2,7 +2,6 @@ import itertools
 
 from django.conf import settings
 from django.db import models
-
 from django.utils import translation as translation_utils
 
 from mkt.webapps import query

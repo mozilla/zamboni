@@ -12,9 +12,9 @@ from mkt.api.fields import (ESTranslationSerializerField,
                             SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
+from mkt.translations.models import Translation
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonCategory, Category, Webapp
-from translations.models import Translation
 
 
 class _TestTranslationSerializerField(object):

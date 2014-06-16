@@ -20,8 +20,8 @@ from tower import ugettext as _
 import amo
 import amo.models
 from amo.urlresolvers import reverse
-from translations.fields import NoLinksField, save_signal
-from translations.query import order_by_translation
+from mkt.translations.fields import NoLinksField, save_signal
+from mkt.translations.query import order_by_translation
 
 
 log = commonware.log.getLogger('z.users')

@@ -1,6 +1,6 @@
+import imghdr
 import os
 from datetime import datetime
-import imghdr
 
 from django.conf import settings
 from django.db import models
@@ -13,7 +13,7 @@ import amo.models
 from amo.utils import reverse
 from mkt.access import acl
 from mkt.constants import comm
-from translations.fields import save_signal
+from mkt.translations.fields import save_signal
 
 
 class CommunicationPermissionModel(amo.models.ModelBase):

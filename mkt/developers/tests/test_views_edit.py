@@ -29,12 +29,12 @@ from mkt.constants import regions
 from mkt.developers.models import ActivityLog
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.translations.models import Translation
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
                                 AddonUser, Category)
-from translations.models import Translation
-from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonExcludedRegion as AER
 
 
 response_mock = mock.Mock()

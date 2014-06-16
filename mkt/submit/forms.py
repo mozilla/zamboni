@@ -12,8 +12,6 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import slug_validator
-from mkt.users.models import UserNotification
-from mkt.users.notifications import app_surveys
 from files.models import FileUpload
 from files.utils import parse_addon
 from mkt.comm.utils import create_comm_note
@@ -22,11 +20,13 @@ from mkt.developers.forms import verify_app_domain
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
+from mkt.translations.fields import TransField
+from mkt.translations.forms import TranslationFormMixin
+from mkt.translations.widgets import TransInput, TransTextarea
+from mkt.users.models import UserNotification
+from mkt.users.notifications import app_surveys
 from mkt.webapps.models import (Addon, AddonUpsell, AppFeatures,
                                 BlacklistedSlug, Webapp)
-from translations.fields import TransField
-from translations.forms import TranslationFormMixin
-from translations.widgets import TransInput, TransTextarea
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):

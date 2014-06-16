@@ -291,7 +291,7 @@ class CORSMiddleware(object):
             else:
                 response['Access-Control-Allow-Origin'] = '*'
             options = [h.upper() for h in request.CORS]
-            if not 'OPTIONS' in options:
+            if 'OPTIONS' not in options:
                 options.append('OPTIONS')
             response['Access-Control-Allow-Methods'] = ', '.join(options)
 
@@ -303,12 +303,14 @@ class CORSMiddleware(object):
 
 v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')
 
+
 def detect_api_version(request):
     url = request.META.get('PATH_INFO', '')
     version = v_re.match(url).group('version')
     if not version:
         version = 1
     return version
+
 
 class APIVersionMiddleware(object):
     """

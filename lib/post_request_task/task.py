@@ -6,6 +6,7 @@ from django.core.signals import got_request_exception, request_finished
 import commonware.log
 from celery import task as base_task
 from celery import Task
+from celery.signals import task_postrun
 
 
 log = commonware.log.getLogger('z.post_request_task')
@@ -68,7 +69,14 @@ task = partial(base_task, base=PostRequestTask)
 
 
 # Hook the signal handlers up.
+# Send the tasks to celery when the request is finished.
 request_finished.connect(_send_tasks,
                          dispatch_uid='request_finished_tasks')
+# Also send the tasks when a task is finished (outside the request-response
+# cycle, when a task calls another task).
+task_postrun.connect(_send_tasks, dispatch_uid='tasks_finished_tasks')
+
+# And make sure to discard the task queue when we have an exception in the
+# request-response cycle.
 got_request_exception.connect(_discard_tasks,
                               dispatch_uid='request_exception_tasks')

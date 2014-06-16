@@ -1,5 +1,5 @@
-from datetime import datetime, timedelta
 import logging
+from datetime import datetime, timedelta
 
 from django.core.cache import cache
 from django.db import models
@@ -9,7 +9,7 @@ from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
-from translations.fields import save_signal, TranslatedField
+from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 
 

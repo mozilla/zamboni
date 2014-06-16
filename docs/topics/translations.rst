@@ -16,7 +16,7 @@ A minimal model with translations in zamboni would look like this::
     from django.db import models
 
     import amo.models
-    import translations.fields
+    import mkt.translations
 
     class MyModel(amo.models.ModelBase):
         description = translations.fieldsTranslatedField()

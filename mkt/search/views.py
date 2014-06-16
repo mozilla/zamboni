@@ -1,17 +1,16 @@
 from __future__ import absolute_import
+
 import json
 
 from django.conf import settings
 from django.http import HttpResponse
 from django.utils import translation
 
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
 
 import amo
-from translations.helpers import truncate
-
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
@@ -28,6 +27,7 @@ from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
 from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                     SuggestionsESAppSerializer)
 from mkt.search.utils import S
+from mkt.translations.helpers import truncate
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 

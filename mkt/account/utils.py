@@ -7,9 +7,9 @@ from amo.models import manual_order
 from amo.utils import paginate
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
+from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Webapp
 from mkt.webapps.views import BaseFilter
-from translations.query import order_by_translation
 
 
 class PurchasesFilter(BaseFilter):

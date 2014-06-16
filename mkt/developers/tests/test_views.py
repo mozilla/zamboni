@@ -36,11 +36,11 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.submit.models import AppSubmissionChecklist
+from mkt.translations.models import Translation
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
                                 ContentRating, Webapp)
-from translations.models import Translation
-from mkt.users.models import UserProfile
 
 
 class AppHubTest(amo.tests.TestCase):

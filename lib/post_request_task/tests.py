@@ -1,6 +1,7 @@
 from django.core.signals import request_finished
 from django.test import TestCase
 
+from celery.signals import task_postrun
 from mock import Mock, patch
 from nose.tools import eq_
 
@@ -38,6 +39,19 @@ class TestTask(TestCase):
     def test_task(self):
         test_task.delay()
         assert not task_mock.called
+
+    @patch('lib.post_request_task.task.PostRequestTask.original_apply_async')
+    def test_task_postrun(self, _mock):
+        with self.settings(CELERY_ALWAYS_EAGER=False):
+            test_task.delay()
+        self._verify_task_filled()
+
+        task_postrun.send(sender=self)
+        self._verify_task_empty()
+
+        # Assert the original `apply_async` called.
+        assert _mock.called, (
+            'Expected PostRequestTask.original_apply_async call')
 
     @patch('lib.post_request_task.task.PostRequestTask.original_apply_async')
     def test_request_finished(self, _mock):

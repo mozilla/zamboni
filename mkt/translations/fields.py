@@ -6,9 +6,10 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
+from .widgets import TransInput, TransTextarea
+
 from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
                      NoLinksTranslation, NoLinksNoMarkupTranslation)
-from .widgets import TransInput, TransTextarea
 
 
 class TranslatedField(models.ForeignKey):

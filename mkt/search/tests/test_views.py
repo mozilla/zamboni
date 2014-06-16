@@ -12,12 +12,10 @@ from mock import MagicMock, patch
 from nose.tools import eq_, ok_
 
 import amo
-from amo.helpers import absolutify
-from amo.tests import app_factory, ESTestCase, TestCase, user_factory
-from translations.helpers import truncate
-
 import mkt
 import mkt.regions
+from amo.helpers import absolutify
+from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
@@ -33,10 +31,11 @@ from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
+from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import (AddonCategory, AddonDeviceType, AddonUpsell,
                                 Category, Installed, Webapp)
-from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.tasks import unindex_webapps
 
 
