@@ -71,7 +71,6 @@ class MOTDForm(happyforms.Form):
 
 
 class ReviewAppForm(happyforms.Form):
-
     comments = forms.CharField(widget=forms.Textarea(),
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
@@ -93,13 +92,12 @@ class ReviewAppForm(happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
-        self.type = kw.pop('type', amo.CANNED_RESPONSE_APP)
         super(ReviewAppForm, self).__init__(*args, **kw)
 
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [['', [('', _('Choose a canned response...'))]]]
 
-        responses = CannedResponse.objects.filter(type=self.type)
+        responses = CannedResponse.objects.all()
 
         # Loop through the actions.
         for k, action in self.helper.actions.iteritems():

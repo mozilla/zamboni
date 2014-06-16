@@ -73,7 +73,7 @@ from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
-from .models import AppCannedResponse
+from .models import CannedResponse
 
 
 QUEUE_PER_PAGE = 100
@@ -388,7 +388,7 @@ def _review(request, addon, version):
 
         return redirect(redirect_url)
 
-    canned = AppCannedResponse.objects.all()
+    canned = CannedResponse.objects.all()
     actions = form.helper.actions.items()
 
     try:
