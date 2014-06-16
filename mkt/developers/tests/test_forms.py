@@ -22,10 +22,10 @@ from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.files.helpers import copyfileobj
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
+from mkt.translations.models import Translation
+from mkt.users.models import UserProfile
 from mkt.webapps.models import (Addon, AddonCategory, Category, Geodata,
                                 IARCInfo, Webapp)
-from translations.models import Translation
-from mkt.users.models import UserProfile
 
 
 class TestPreviewForm(amo.tests.TestCase):

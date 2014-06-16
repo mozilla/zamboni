@@ -9,13 +9,12 @@ import mkt.regions
 from amo.decorators import use_master
 from amo.models import SlugField
 from amo.utils import to_language
-from mkt.webapps.models import Addon, Category, clean_slug, Webapp
-from mkt.webapps.tasks import index_webapps
-from translations.fields import PurifiedField, save_signal
-
 from .constants import COLLECTION_TYPES
 from .fields import ColorField
 from .managers import PublicCollectionsManager
+from mkt.translations.fields import PurifiedField, save_signal
+from mkt.webapps.models import Addon, Category, clean_slug, Webapp
+from mkt.webapps.tasks import index_webapps
 
 
 class Collection(amo.models.ModelBase):

@@ -1,8 +1,8 @@
-from pyquery import PyQuery as pq
 from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo.tests
-from translations import models, widgets
+from mkt.translations import models, widgets
 
 
 class TestWidget(amo.tests.TestCase):

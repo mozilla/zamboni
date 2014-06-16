@@ -31,16 +31,17 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 import amo.models
+import mkt
 from amo.decorators import skip_cache, use_master, write
+from amo.decorators import skip_cache, write
 from amo.helpers import absolutify
+from amo.helpers import absolutify
+from amo.storage_utils import copy_stored_file
 from amo.storage_utils import copy_stored_file
 from amo.urlresolvers import get_outgoing_url
 from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
                        slugify, smart_path, sorted_groupby, timer, to_language,
                        urlparams)
-from amo.decorators import skip_cache, write
-from amo.helpers import absolutify
-from amo.storage_utils import copy_stored_file
 from amo.utils import JSONEncoder, smart_path, urlparams
 from constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
@@ -51,10 +52,6 @@ from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from lib.utils import static_url
-from translations.fields import (PurifiedField, save_signal, TranslatedField,
-                                 Translation)
-
-import mkt
 from mkt.access import acl
 from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps
@@ -64,6 +61,8 @@ from mkt.regions.utils import parse_region
 from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.tags.models import Tag
+from mkt.translations.fields import (PurifiedField, save_signal,
+                                     TranslatedField, Translation)
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import query, signals

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from translations.helpers import truncate
+from mkt.translations.helpers import truncate
 
 from .models import CannedResponse, EventLog, ReviewerScore
 

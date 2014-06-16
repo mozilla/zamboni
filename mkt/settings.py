@@ -91,7 +91,7 @@ INSTALLED_APPS = (
     'lib.es',
     'product_details',
     'tower',  # for ./manage.py extract
-    'translations',
+    'mkt.translations',
 
     # Third party apps
     'djcelery',
@@ -1109,7 +1109,7 @@ TASK_USER_ID = 1
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
 TEST_INSTALLED_APPS = (
-    'translations.tests.testapp',
+    'mkt.translations.tests.testapp',
 )
 
 # Tests

@@ -1,11 +1,11 @@
-from pyquery import PyQuery as pq
-from nose.tools import eq_
-
 from django.forms import ModelForm
 
+from nose.tools import eq_
+from pyquery import PyQuery as pq
+
 import amo.tests
-from translations import forms, fields
-from translations.tests.testapp.models import TranslatedModel
+from mkt.translations import forms, fields
+from mkt.translations.tests.testapp.models import TranslatedModel
 
 
 class TestForm(forms.TranslationFormMixin, ModelForm):

@@ -18,10 +18,10 @@ import amo.utils
 from amo.decorators import use_master
 from files import utils
 from files.models import cleanup_file, File, Platform
+from mkt.translations.fields import (LinkifiedField, PurifiedField,
+                                     save_signal, TranslatedField)
 from mkt.versions.tasks import update_supported_locales_single
 from mkt.webapps import query
-from translations.fields import (LinkifiedField, PurifiedField, save_signal,
-                                 TranslatedField)
 
 from .compare import version_dict, version_int
 

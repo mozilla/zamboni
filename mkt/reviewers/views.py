@@ -65,12 +65,12 @@ from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
+from mkt.translations.query import order_by_translation
+from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonDeviceType, Version, Webapp, WebappIndexer
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
-from translations.query import order_by_translation
-from mkt.users.models import UserProfile
 
 from . import forms
 from .models import AppCannedResponse

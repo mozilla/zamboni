@@ -2,12 +2,12 @@ import re
 
 from django.conf import settings
 from django.utils import translation
-from django.utils.translation.trans_real import to_language
 from django.utils.encoding import smart_unicode
+from django.utils.translation.trans_real import to_language
 
 import bleach
-import jinja2
 import jingo
+import jinja2
 
 from amo.utils import clean_nl
 

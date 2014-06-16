@@ -10,12 +10,12 @@ from django.utils import translation
 
 import mock
 from nose.tools import eq_, assert_raises, raises
+from product_details import product_details
 
 from amo.utils import (cache_ns_key, escape_all, find_language,
                        LocalFileStorage, no_translation, resize_image,
                        rm_local_tmp_dir, slugify, slug_validator, to_language)
-from product_details import product_details
-from translations.models import Translation
+from mkt.translations.models import Translation
 
 u = u'Ελληνικά'
 

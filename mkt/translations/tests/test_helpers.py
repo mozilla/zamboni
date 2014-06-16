@@ -7,11 +7,11 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
+from mkt.translations import helpers
+from mkt.translations.fields import save_signal
+from mkt.translations.models import PurifiedTranslation
+from mkt.translations.tests.testapp.models import TranslatedModel
 from mkt.webapps.models import Addon
-from translations import helpers
-from translations.fields import save_signal
-from translations.models import PurifiedTranslation
-from translations.tests.testapp.models import TranslatedModel
 
 
 def super():
@@ -113,7 +113,7 @@ def test_l10n_menu():
     # Use the remove_locale_url taken from the addon in the context.
     menu = helpers.l10n_menu({'addon': Addon()},
                              remove_locale_url='some/url/')
-    assert 'data-rm-locale="/developers/addon/None/rmlocale"' in menu, menu
+    assert 'data-rm-locale="/developers/app/None/rmlocale"' in menu, menu
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
