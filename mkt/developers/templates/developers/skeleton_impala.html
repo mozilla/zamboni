@@ -30,12 +30,6 @@
       <![endif]-->
     {% endblock %}
 
-    {% block extrahead %}
-      <noscript>
-        <link rel="stylesheet" href="{{ media('css/impala/nojs.css') }}">
-      </noscript>
-    {% endblock %}
-
     {% if logged %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
