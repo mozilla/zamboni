@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
 import amo
-from files.models import File
 from mkt.api.fields import ReverseChoiceField
 from mkt.features.serializers import AppFeaturesSerializer
+from mkt.files.models import File
 from mkt.versions.models import Version
 
 

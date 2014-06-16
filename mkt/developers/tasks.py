@@ -30,9 +30,9 @@ import amo
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
 from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
-from files.models import File, FileUpload, FileValidation
-from files.utils import SafeUnzip
 from mkt.constants import APP_PREVIEW_SIZES
+from mkt.files.models import File, FileUpload, FileValidation
+from mkt.files.utils import SafeUnzip
 from mkt.webapps.models import Addon, AddonExcludedRegion, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 

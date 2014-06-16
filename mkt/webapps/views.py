@@ -8,7 +8,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 import amo
-from files.models import FileUpload, Platform
 from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -20,6 +19,7 @@ from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.forms import IconJSONForm
 from mkt.developers import tasks
 from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
+from mkt.files.models import FileUpload, Platform
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
 from mkt.translations.query import order_by_translation

@@ -1,11 +1,12 @@
 import json
 import os
-import urllib
 import tempfile
+import urllib
 from decimal import Decimal
 from StringIO import StringIO
 
 from django.core.urlresolvers import reverse
+
 from mock import patch
 from nose.tools import eq_
 from rest_framework.request import Request
@@ -14,20 +15,20 @@ from test_utils import RequestFactory
 import amo
 import mkt
 from amo.tests import AMOPaths, app_factory, TestCase
-from files.models import FileUpload
 from mkt.access.models import Group, GroupUser
 from mkt.api.fields import LargeTextField
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants import regions
+from mkt.files.models import FileUpload
 from mkt.prices.models import Price, PriceCurrency
 from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
+from mkt.users.models import UserProfile
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AddonUser, Category, Preview,
                                 Webapp)
-from mkt.users.models import UserProfile
 
 
 class CreateHandler(RestOAuth):

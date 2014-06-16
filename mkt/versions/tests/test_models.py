@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import os.path
 
+from django.conf import settings
+
 import mock
 import path
 from nose.tools import eq_
 
-from django.conf import settings
-
 import amo
 import amo.tests
-from files.models import File, Platform
+from mkt.files.models import File, Platform
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.versions.compare import MAXVERSION, version_dict, version_int
@@ -69,7 +69,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         eq_(version.developer_name, u'M€lâ')
         eq_(Version(_developer_name=u'M€lâ').developer_name, u'M€lâ')
 
-    @mock.patch('files.utils.parse_addon')
+    @mock.patch('mkt.files.utils.parse_addon')
     def test_developer_name_from_upload(self, parse_addon):
         parse_addon.return_value = {
             'version': '42.0',
@@ -86,7 +86,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         eq_(version.version, '42.0')
         eq_(version.developer_name, u'Mýself')
 
-    @mock.patch('files.utils.parse_addon')
+    @mock.patch('mkt.files.utils.parse_addon')
     def test_long_developer_name_from_upload(self, parse_addon):
         truncated_developer_name = u'ý' * 255
         long_developer_name = truncated_developer_name + u'àààà'
@@ -208,7 +208,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         self.version.delete()
         eq_(self.version.files.all()[0].status, amo.STATUS_DISABLED)
 
-    @mock.patch('files.models.File.hide_disabled_file')
+    @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
         addon = Addon.objects.get(pk=337141)
         # The status doesn't change for public files.

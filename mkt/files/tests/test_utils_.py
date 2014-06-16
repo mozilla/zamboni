@@ -1,15 +1,15 @@
+from django import forms
+
 import mock
 from nose.tools import eq_
 
-from django import forms
-
 import amo.tests
-from files.utils import WebAppParser
+from mkt.files.utils import WebAppParser
 
 
 class TestWebAppParser(amo.tests.TestCase):
 
-    @mock.patch('files.utils.WebAppParser.get_json_data')
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_no_developer_name(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah'
@@ -22,7 +22,7 @@ class TestWebAppParser(amo.tests.TestCase):
                                    " in order to display it on the app's "
                                    "listing."])
 
-    @mock.patch('files.utils.WebAppParser.get_json_data')
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_empty_developer_object(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah',
@@ -36,7 +36,7 @@ class TestWebAppParser(amo.tests.TestCase):
                                    " in order to display it on the app's "
                                    "listing."])
 
-    @mock.patch('files.utils.WebAppParser.get_json_data')
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_developer_name(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah',
@@ -49,7 +49,7 @@ class TestWebAppParser(amo.tests.TestCase):
         parsed_results = WebAppParser().parse('')
         eq_(parsed_results['developer_name'], 'Mozilla Marketplace Testing')
 
-    @mock.patch('files.utils.WebAppParser.get_json_data')
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_name_with_translations(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah',
@@ -75,7 +75,7 @@ class TestWebAppParser(amo.tests.TestCase):
         eq_(parsed_results['name'].get('de'), None)
         eq_(parsed_results['default_locale'], 'en-US')
 
-    @mock.patch('files.utils.WebAppParser.get_json_data')
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_name_with_translations_fallback(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah',

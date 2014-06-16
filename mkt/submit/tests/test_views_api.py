@@ -1,19 +1,19 @@
 import base64
-import os
 import json
-
-from nose.tools import eq_, ok_
-from mock import patch
-from PIL import Image, ImageChops
+import os
 
 from django.core.urlresolvers import reverse
 
+from mock import patch
+from nose.tools import eq_, ok_
+from PIL import Image, ImageChops
+
 import amo.tests
-from files.models import FileUpload
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonUser, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonUser, Webapp
 
 
 def fake_fetch_manifest(url, upload_pk=None, **kw):

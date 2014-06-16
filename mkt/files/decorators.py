@@ -1,18 +1,18 @@
-from datetime import datetime
 import functools
-
-import commonware.log
-from cache_nuggets.lib import Token
+from datetime import datetime
 
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
+import commonware.log
+from cache_nuggets.lib import Token
+
 import amo
-from files.models import File
 from mkt.access import acl
 from mkt.files.helpers import DiffHelper, FileViewer
+from mkt.files.models import File
 
 
 log = commonware.log.getLogger('z.addons')

@@ -5,9 +5,9 @@ from django.core.urlresolvers import reverse
 from rest_framework import serializers
 
 import amo
-from files.models import FileUpload
 from mkt.access import acl
 from mkt.api.fields import ReverseChoiceField
+from mkt.files.models import FileUpload
 from mkt.webapps.models import Preview, Webapp
 
 

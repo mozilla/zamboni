@@ -12,11 +12,11 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import slug_validator
-from files.models import FileUpload
-from files.utils import parse_addon
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import verify_app_domain
+from mkt.files.models import FileUpload
+from mkt.files.utils import parse_addon
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES

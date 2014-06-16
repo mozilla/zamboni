@@ -38,7 +38,6 @@ import amo
 import mkt
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from constants.applications import DEVICE_TYPES
-from files.models import File, Platform
 from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
@@ -46,6 +45,7 @@ from mkt.constants import regions
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer)
 from mkt.files.helpers import copyfileobj
+from mkt.files.models import File, Platform
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
@@ -562,7 +562,7 @@ class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
 
     def file_fixture_path(self, name):
-        path = 'apps/files/fixtures/files/%s' % name
+        path = 'mkt/files/fixtures/files/%s' % name
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):

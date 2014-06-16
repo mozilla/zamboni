@@ -15,11 +15,11 @@ from tower import ugettext_lazy as _lazy
 import amo
 from amo.helpers import absolutify
 from amo.utils import JSONEncoder, send_mail_jinja, to_language
-from files.models import File
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
+from mkt.files.models import File
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
 from mkt.site.helpers import product_as_dict
 from mkt.webapps.models import Webapp

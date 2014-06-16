@@ -15,11 +15,9 @@ from rest_framework.status import (HTTP_201_CREATED, HTTP_202_ACCEPTED,
 from rest_framework.viewsets import GenericViewSet
 
 import amo
-from amo.decorators import login_required, write
-from files.models import FileUpload, Platform
-from lib.metrics import record_action
-
 import mkt
+from amo.decorators import login_required, write
+from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -32,12 +30,13 @@ from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
+from mkt.files.models import FileUpload, Platform
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
-from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step

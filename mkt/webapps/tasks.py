@@ -26,25 +26,24 @@ from test_utils import RequestFactory
 from tower import ugettext as _
 
 import amo
+import mkt
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
-from files.models import FileUpload
-from files.utils import WebAppParser
 from lib.es.models import Reindexing
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
-
-import mkt
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, validator)
+from mkt.files.models import FileUpload
+from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import RereviewQueue
+from mkt.users.models import UserProfile
+from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Addon, AppManifest, Preview, Webapp
 from mkt.webapps.utils import get_locale_properties
-from mkt.users.models import UserProfile
-from mkt.users.utils import get_task_user
 
 
 task_log = logging.getLogger('z.task')

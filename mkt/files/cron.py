@@ -10,7 +10,7 @@ from django.core.cache import cache
 import commonware.log
 import cronjobs
 
-from files.models import FileValidation
+from mkt.files.models import FileValidation
 
 
 log = commonware.log.getLogger('z.cron')

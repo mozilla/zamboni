@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.utils.http import http_date
 
+from cache_nuggets.lib import Message
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
@@ -15,12 +16,11 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from cache_nuggets.lib import Message
-from files.models import File
 from mkt.files.helpers import DiffHelper, FileViewer
+from mkt.files.models import File
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 packaged_app = 'mkt/submit/tests/packaged/full-tpa.zip'
@@ -216,7 +216,8 @@ class FilesBase(object):
 
 
 class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_999', 'webapp_337141')
 
     def poll_url(self):
         return reverse('mkt.files.poll', args=[self.file.pk])
@@ -357,7 +358,8 @@ class TestFileViewer(FilesBase, amo.tests.WebappTestCase):
 
 
 class TestDiffViewer(FilesBase, amo.tests.WebappTestCase):
-    fixtures = ['base/apps', 'base/users'] + fixture('webapp_337141')
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
+                       'user_999', 'webapp_337141')
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()

@@ -12,8 +12,8 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from mkt.files.helpers import copyfileobj
+from mkt.files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
@@ -220,7 +220,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.update(filename='')
         f.delete()
 
-    @mock.patch('files.models.File.hide_disabled_file')
+    @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_disable_signal(self, hide_mock):
         f = File.objects.get()
         f.status = amo.STATUS_PUBLIC
@@ -231,7 +231,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         f.save()
         assert hide_mock.called
 
-    @mock.patch('files.models.File.unhide_disabled_file')
+    @mock.patch('mkt.files.models.File.unhide_disabled_file')
     def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get()
         f.status = amo.STATUS_PUBLIC

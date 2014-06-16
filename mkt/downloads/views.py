@@ -5,8 +5,8 @@ import commonware.log
 
 import amo
 from amo.utils import HttpResponseSendFile
-from files.models import File
 from mkt.access import acl
+from mkt.files.models import File
 from mkt.webapps.models import Webapp
 
 

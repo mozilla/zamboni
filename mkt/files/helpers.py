@@ -16,12 +16,12 @@ import jinja2
 from cache_nuggets.lib import memoize, Message
 from jingo import env, register
 from tower import ugettext as _
+from validator.testcases.packagelayout import (blacklisted_extensions,
+                                               blacklisted_magic_numbers)
 
 import amo
 from amo.utils import rm_local_tmp_dir
-from files.utils import extract_xpi, get_md5
-from validator.testcases.packagelayout import (blacklisted_extensions,
-                                               blacklisted_magic_numbers)
+from mkt.files.utils import extract_xpi, get_md5
 
 
 # Allow files with a shebang through.

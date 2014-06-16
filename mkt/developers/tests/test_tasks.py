@@ -5,8 +5,8 @@ import shutil
 import socket
 import tempfile
 import urllib2
-from cStringIO import StringIO
 from contextlib import contextmanager
+from cStringIO import StringIO
 
 from django.conf import settings
 from django.core import mail
@@ -24,8 +24,8 @@ import amo.tests
 import mkt
 from amo.tests.test_helpers import get_image_path
 from amo.utils import ImageCheck
-from files.models import FileUpload
 from mkt.developers import tasks
+from mkt.files.models import FileUpload
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.webapps.models import AddonExcludedRegion as AER

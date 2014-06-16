@@ -7,15 +7,15 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from files.models import FileUpload
 from mkt.comm.models import CommunicationNote
 from mkt.constants.features import APP_FEATURES
 from mkt.developers.models import AppLog
+from mkt.files.models import FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.submit import forms
-from mkt.webapps.models import AppFeatures, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AppFeatures, Webapp
 
 
 class TestNewWebappForm(amo.tests.TestCase):

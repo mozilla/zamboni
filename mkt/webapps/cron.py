@@ -16,9 +16,9 @@ from celery import chord
 import amo
 from amo.decorators import write
 from amo.utils import chunked
-from files.models import File
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
+from mkt.files.models import File
 
 from .models import Addon, Installed, Webapp
 from .tasks import (dump_user_installs, update_downloads, update_trending,

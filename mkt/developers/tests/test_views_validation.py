@@ -16,11 +16,11 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from files.models import FileUpload
-from files.utils import WebAppParser
 from mkt.developers.views import standalone_hosted_upload
 from mkt.files.helpers import copyfileobj
+from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
+from mkt.files.utils import WebAppParser
 from mkt.site.fixtures import fixture
 
 

@@ -13,17 +13,17 @@ from nose.tools import eq_
 import amo
 import amo.tests
 import mkt
-from files.models import File
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
+from mkt.files.models import File
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import cron
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
 from mkt.webapps.models import Addon, Webapp
 from mkt.webapps.tasks import _get_trending
-from mkt.users.models import UserProfile
 
 
 class TestLastUpdated(amo.tests.TestCase):
@@ -57,7 +57,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         self.version = self.addon.latest_version
         self.f1 = self.version.all_files[0]
 
-    @mock.patch('files.models.os')
+    @mock.patch('mkt.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)]
         for addon_status, file_status in stati:
@@ -66,8 +66,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
             cron.hide_disabled_files()
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('mkt.files.models.File.mv')
+    @mock.patch('mkt.files.models.storage')
     def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
@@ -81,8 +81,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('mkt.files.models.File.mv')
+    @mock.patch('mkt.files.models.storage')
     def test_move_admin_disabled_addon(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
@@ -94,8 +94,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         # There's only 1 file.
         eq_(mv_mock.call_count, 1)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('mkt.files.models.File.mv')
+    @mock.patch('mkt.files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_REJECTED)
@@ -106,8 +106,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
                                    self.f1.guarded_file_path, self.msg)
         eq_(mv_mock.call_count, 1)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('mkt.files.models.File.mv')
+    @mock.patch('mkt.files.models.storage')
     def test_ignore_deleted_versions(self, m_storage, mv_mock):
         # Apps only have 1 file and version delete only deletes one.
         self.version.delete()

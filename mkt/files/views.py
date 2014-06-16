@@ -14,11 +14,11 @@ from tower import ugettext as _
 
 from amo.decorators import json_view
 from amo.utils import HttpResponseSendFile, urlparams
-from files import forms
-from files.decorators import (compare_webapp_file_view, etag, last_modified,
-                              webapp_file_view, webapp_file_view_token)
-from files.tasks import extract_file
 from mkt.access import acl
+from mkt.files import forms
+from mkt.files.decorators import (compare_webapp_file_view, etag, last_modified,
+                                  webapp_file_view, webapp_file_view_token)
+from mkt.files.tasks import extract_file
 
 
 log = commonware.log.getLogger('z.addons')

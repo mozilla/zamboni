@@ -35,8 +35,6 @@ from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
-from files.models import File, Platform
-from files.utils import WebAppParser
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
@@ -45,7 +43,9 @@ from lib.utils import static_url
 from mkt.constants import apps
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.files.models import File, Platform
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
+from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture

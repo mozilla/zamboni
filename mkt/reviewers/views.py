@@ -38,7 +38,6 @@ from amo.helpers import absolutify, urlparams
 from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
-from files.models import File
 from lib.crypto.packaged import SigningError
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
@@ -48,6 +47,7 @@ from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
+from mkt.files.models import File
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region

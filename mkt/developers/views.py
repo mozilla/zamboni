@@ -33,8 +33,6 @@ from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required, skip_cache, write)
 from amo.utils import escape_all
-from files.models import File, FileUpload
-from files.utils import parse_addon
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
@@ -53,16 +51,18 @@ from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
 from mkt.developers.utils import check_upload, handle_vip
+from mkt.files.models import File, FileUpload
+from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
+from mkt.users.models import UserProfile
+from mkt.users.views import _login
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
-from mkt.users.models import UserProfile
-from mkt.users.views import _login
 
 from . import forms, tasks
 

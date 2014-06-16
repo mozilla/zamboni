@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand
 
 import amo
-from files.models import File
+from mkt.files.models import File
 
 HELP = 'List all Marketplace packaged apps'
 

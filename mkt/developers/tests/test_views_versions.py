@@ -1,24 +1,25 @@
 import datetime
-import mock
-from nose.tools import eq_
 import os
-from pyquery import PyQuery as pq
 
 from django.conf import settings
+
+import mock
+from nose.tools import eq_
+from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
 from amo.tests import req_factory_factory
-from files.models import File
 from mkt.comm.models import CommunicationNote
 from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
 from mkt.developers.views import preload_submit, status
+from mkt.files.models import File
 from mkt.reviewers.models import EditorSubscription, EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BasePackagedAppTest
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonUser, Webapp
-from mkt.users.models import UserProfile
 
 
 class TestVersion(amo.tests.TestCase):

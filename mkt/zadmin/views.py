@@ -19,12 +19,12 @@ from amo.decorators import any_permission_required, json_view, post_required
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked
-from files.models import File
 from mkt.developers.models import ActivityLog
+from mkt.files.models import File
 from mkt.prices.utils import update_from_csv
+from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.webapps.tasks import update_manifests
-from mkt.users.models import UserProfile
 
 from . import tasks
 from .decorators import admin_required

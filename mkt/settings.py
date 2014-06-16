@@ -86,7 +86,6 @@ INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
     'cronjobs',
     'csp',
-    'files',
     'jingo_minify',
     'lib.es',
     'product_details',

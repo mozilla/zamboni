@@ -11,11 +11,11 @@ from mock import Mock, patch
 from nose.tools import eq_
 
 import amo.tests
-from files.utils import SafeUnzip
 from mkt.files.helpers import FileViewer, DiffHelper
+from mkt.files.utils import SafeUnzip
 
 
-root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
+root = os.path.join(settings.ROOT, 'mkt/files/fixtures/files')
 get_file = lambda x: '%s/%s' % (root, x)
 
 

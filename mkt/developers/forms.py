@@ -24,12 +24,12 @@ import mkt
 from amo import get_user
 from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons, slug_validator, slugify
-from files.models import FileUpload
-from files.utils import WebAppParser
 from lib.video import tasks as vtasks
 from mkt.access import acl
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
+from mkt.files.models import FileUpload
+from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue

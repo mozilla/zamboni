@@ -9,8 +9,8 @@ from copy import deepcopy
 from tempfile import mkdtemp
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
 
@@ -21,17 +21,17 @@ from requests.exceptions import RequestException
 import amo
 import amo.tests
 from amo.helpers import absolutify
-from files.models import File, FileUpload
 from mkt.developers.models import ActivityLog
+from mkt.files.models import File, FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
-from mkt.users.models import UserProfile
 
 
 original = {

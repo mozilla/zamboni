@@ -9,7 +9,7 @@ import jinja2
 from tower import ugettext as _
 
 import amo
-from files.models import File
+from mkt.files.models import File
 from mkt.versions.models import Version
 
 
@@ -19,7 +19,6 @@ log = commonware.log.getLogger('z.files')
 class FileSelectWidget(widgets.Select):
     def render_options(self, choices, selected_choices):
         def option(files, label=None):
-            addon = files[0].version.addon
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
             files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
