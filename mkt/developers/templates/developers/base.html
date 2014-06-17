@@ -1,6 +1,6 @@
-{# We're extending from the impala skeleton base template,
+{# We're extending from the former "impala" skeleton base template,
    but we're still using legacy styles. One step at a time. #}
-{% extends 'developers/skeleton_impala.html' %}
+{% extends 'base.html' %}
 
 {% if addon %}
   {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}

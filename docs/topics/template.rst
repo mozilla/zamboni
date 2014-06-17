@@ -29,7 +29,7 @@ A function can be turned into a context filter like so:
 
 Template Files
 --------------
-Template files should be stored in ``apps/{APP_NAME}/templates/{APP_NAME}``
+Template files should be stored in ``mkt/{APP_NAME}/templates/{APP_NAME}``
 with exceptions for global template files.  Jingo_ allows us to follow standard
 Django conventions for dealing with Jinja2.
 

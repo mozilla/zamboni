@@ -1,85 +1,152 @@
+{% set logged = request.user.is_authenticated() %}
+{% set in_devhub = request.path.startswith('/developers/') %}
 <!DOCTYPE html>
 <html lang="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta charset="utf-8">
-      {% if not settings.ENGAGE_ROBOTS %}
-        <meta name="robots" content="noindex">
-      {% endif %}
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     {% block extrameta %}{% endblock %}
     <title>{% block title %}{{ _('Firefox Marketplace') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ MEDIA_URL}}img/favicon.ico">
+          href="{{ MEDIA_URL }}img/mkt/logos/128.png" sizes="128x128">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/mkt/logos/64.png" sizes="64x64">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ MEDIA_URL }}img/mkt/logos/32.png" sizes="32x32">
 
-    {% block rss_feed %}{% endblock %}
+    {{ css('mkt/devreg') }}
+    {% block css_extra %}{% endblock %}
 
     {% block site_css %}
-      <!--[if IE]><link rel="stylesheet" href="{{ media('css/legacy/ie.css') }}"><![endif]-->
-      <!--[if IE 7]><link rel="stylesheet" href="{{ media('css/legacy/ie7.css') }}"><![endif]-->
+      <!--[if lt IE 9]>
+        <script src="{{ media('js/lib/iepp.min.js') }}"></script>
+      <![endif]-->
+      <!--[if lte IE 9]>
+        <link rel="stylesheet" href="{{ media('css/legacy/ie9.css') }}">
+      <![endif]-->
     {% endblock %}
 
-    {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
-
-    {% if request.user.is_authenticated() %}
+    {% if logged %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} moz-header-slim {% block bodyclass %}{% endblock %}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+  <body class="html-{{ DIR }} {{ request.APP.short }}
+               moz-header-slim {% block bodyclass %}{% endblock %}"
+        data-app="{{ request.APP.short }}"
+        data-appname="{{ request.APP.pretty }}"
+        data-appid="{{ request.APP.id }}"
+        data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-login-url="{{ url('account-login') }}"
+        data-persona-url="{{ settings.BROWSERID_JS_URL }}"
+        data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
+        data-persona-unverified-issuer="{{ settings.UNVERIFIED_ISSUER }}"
+        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>
+    <section id="site-header">
+      {% block site_header %}
+        <div class="pad upper-header">
+          {% block masthead %}
+            <h1 class="logo"><a href="{{ url('ecosystem.landing')|urlparams(src='nav_logo') }}">
+              {{ _('Firefox Marketplace Developers') }}</a></h1>
+          {% endblock %}
+          {% if in_devhub %}
+            <div class="devhub-links{{ ' logged' if logged }}">
+              <a href="//developer.mozilla.org/Apps/Reference">
+                {{- _('API Reference') }}</a>
+              <a href="{{ url('ecosystem.support') }}">{{ _('Support') }}</a>
+              <a href="{{ url('submit.app') }}" class="submit">
+                {{- _('Submit an app') }}</a>
+              <a href="{{ url('home') }}" class="submit">
+                {{- _('Marketplace') }}</a>
 
-    <div id="tabzilla-wrapper">
-      {% if ADMIN_MESSAGE or settings.READ_ONLY %}
-        <div id="site-notice">
+
+              {% if not logged %}
+                <a href="#" class="browserid">{{ _('Sign In') }}</a>
+              {% endif %}
+            </div>
+          {% endif %}
+          {% if logged %}
+            <div class="account-links reviewers">
+              <a href="/settings"
+                 class="header-button icon settings" title="{{ _('Settings') }}"></a>
+              {% include 'mkt/account-links.html' %}
+            </div>
+          {% endif %}
+        </div>
+        {% block site_header_title %}
+          {% include 'developers/nav.html' %}
+        {% endblock %}
+      {% endblock site_header %}
+    </section>
+    {% if ADMIN_MESSAGE or settings.READ_ONLY or not dev_agreement_ok(amo_user) %}
+      <div id="site-notice">
+        <div class="pad">
           {% if ADMIN_MESSAGE %}
             <p>{{ ADMIN_MESSAGE|safe }}</p>
           {% endif %}
           {% if settings.READ_ONLY %}
-            <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+            <p>{% trans %}
+              Some features are temporarily disabled while we perform
+              website maintenance. We'll be back to full capacity shortly.
+              {% endtrans %}</p>
+          {% endif %}
+          {% if not dev_agreement_ok(amo_user) %}
+             <p>{% trans url=url('mkt.developers.apps.terms') %}
+               The Terms of Service have changed since you last agreed to them.
+               Please read and agree to the <a href="{{ url }}">new terms</a>.
+               {% endtrans %}</p>
           {% endif %}
         </div>
-      {% endif %}
-      <div class="section">
-        {% block site_header %}
-          <div class="amo-header">
-            <nav id="aux-nav" role="navigation" class="menu-nav c">
-              <ul>
-                {% if not settings.READ_ONLY %}
-                  {% include "impala/user_login.html" %}
-                {% endif %}
-              </ul>
-            </nav>
-            <div id="masthead">
-              {% block site_header_title %}{% endblock %}
-              {% block navbar %}{% endblock %}
-              {% block site_stats %}{% endblock %}
-            </div>
-          </div>
-        {% endblock site_header %}
+      </div>
+    {% endif %}
 
-        {# Overridden in base_side_categories, which expands categories
-           on the side of the page. #}
+    <div id="wrap">
+      <div id="page" class="pad section c" role="main">
         {% block main_content %}
           {# outer_content is for something you want above content on every page. #}
           {% block outer_content %}{% include "messages.html" %}{% endblock %}
           {% block content %}{% endblock %}
         {% endblock %}
       </div>
-      <div id="tooltip">
-        <span></span>
-      </div>
-      <div id="popup-staging">
-        {% block popups %}
-        {% endblock %}
-      </div>
-      {# js #}
-      {% block site_js %}
-        <script src="{{ static(url('jsi18n')) }}"></script>
-      {% endblock %}
-      {% block js %}{% endblock %}
     </div>
+    <div id="tooltip">
+      <span></span>
+    </div>
+    {% block site_nav_footer %}{% endblock %}
+    {% include 'mkt/footer.html' %}
+
+    {% if not logged %}
+      <div class="overlay centre login">
+        <section>
+          <h2>{{ _('Please sign in') }}</h2>
+          <p>
+            {% trans url='https://login.persona.org/' %}
+              Just log in or register with your
+              <a href="{{ url }}">Persona</a> account below.
+            {% endtrans %}
+          </p>
+          <footer>
+            <a class="button browserid" href="#">{{ _('Sign in / Sign up') }}</a>
+          </footer>
+        </section>
+      </div>
+    {% endif %}
+
+    {% block dbgoverlay %}{% endblock %}
+
+    {# js #}
+    {% block site_js %}
+      <script src="{{ static(url('jsi18n'))|urlparams(lang=LANG) }}"></script>
+      {{ js('mkt/devreg') }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {% block js_extras %}{% endblock %}
   </body>
 </html>
