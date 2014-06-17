@@ -76,3 +76,6 @@ class TestDownload(BasePackagedAppTest):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         assert settings.XSENDFILE_HEADER in res
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.get(self.url), 'get')

@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 import commonware.log
 
 import amo
+from amo.decorators import allow_cross_site_request
 from amo.utils import HttpResponseSendFile
 from mkt.access import acl
 from mkt.files.models import File
@@ -13,6 +14,7 @@ from mkt.webapps.models import Webapp
 log = commonware.log.getLogger('z.downloads')
 
 
+@allow_cross_site_request
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File, pk=file_id)
     webapp = get_object_or_404(Webapp, pk=file.version.addon_id,
