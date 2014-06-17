@@ -87,4 +87,4 @@ class PreviewSerializer(serializers.ModelSerializer):
 
 class SimplePreviewSerializer(PreviewSerializer):
     class Meta(PreviewSerializer.Meta):
-        fields = ['image_url', 'thumbnail_url']
+        fields = ['id', 'image_url', 'thumbnail_url']
