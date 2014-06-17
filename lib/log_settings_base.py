@@ -93,6 +93,9 @@ loggers = {
     'z.cron': {
         'level': 'WARNING',
     },
+    'z.geoip': {
+        'level': 'WARNING',
+    },
 }
 
 cfg = {
