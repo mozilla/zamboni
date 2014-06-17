@@ -57,35 +57,13 @@ def test_slugify_spaces():
     eq_(utils.slugify(' b  ar ', spaces=True), 'b  ar')
 
 
-def test_page_title():
-    request = Mock()
-    request.APP = amo.THUNDERBIRD
-    title = 'Oh hai!'
-    s = render('{{ page_title("%s") }}' % title, {'request': request})
-    eq_(s, '%s :: Add-ons for Thunderbird' % title)
-
-    # pages without app should show a default
-    request.APP = None
-    s = render('{{ page_title("%s") }}' % title, {'request': request})
-    eq_(s, '%s :: Add-ons' % title)
-
-    # Check the dirty unicodes.
-    request.APP = amo.FIREFOX
-    s = render('{{ page_title(x) }}',
-               {'request': request,
-                'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
-
-
 class TestBreadcrumbs(object):
 
     def setUp(self):
-        self.req_noapp = Mock()
-        self.req_noapp.APP = None
-        self.req_app = Mock()
-        self.req_app.APP = amo.FIREFOX
+        self.request = Mock()
 
     def test_no_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.req_noapp})
+        s = render('{{ breadcrumbs() }}', {'request': self.request})
         doc = PyQuery(s)
         crumbs = doc('li>a')
         eq_(len(crumbs), 1)
@@ -93,7 +71,7 @@ class TestBreadcrumbs(object):
         eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
 
     def test_with_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.req_app})
+        s = render('{{ breadcrumbs() }}', {'request': self.request})
         doc = PyQuery(s)
         crumbs = doc('li>a')
         eq_(len(crumbs), 1)
@@ -220,15 +198,6 @@ def test_epoch():
     eq_(s, '1261764672')
     s = render('{{ d|epoch }}', {'d': None})
     eq_(s, '')
-
-
-def test_locale_url():
-    rf = test_utils.RequestFactory()
-    request = rf.get('/de', SCRIPT_NAME='/z')
-    prefixer = urlresolvers.Prefixer(request)
-    urlresolvers.set_url_prefix(prefixer)
-    s = render('{{ locale_url("mobile") }}')
-    eq_(s, '/z/de/mobile')
 
 
 def test_external_url():

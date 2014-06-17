@@ -34,11 +34,7 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }}
-               moz-header-slim {% block bodyclass %}{% endblock %}"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
+  <body class="html-{{ DIR }} moz-header-slim {% block bodyclass %}{% endblock %}"
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"

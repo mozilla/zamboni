@@ -94,24 +94,13 @@ class Prefixer(object):
 
         # Check language-territory first.
         if first_lower in settings.LANGUAGES:
-            if second in amo.APPS:
-                return first, second, rest
-            else:
-                return first, '', first_rest
+            return first, '', first_rest
         # And check just language next.
         elif dash and lang in settings.LANGUAGES:
             first = lang
-            if second in amo.APPS:
-                return first, second, rest
-            else:
-                return first, '', first_rest
-        elif first in amo.APPS:
-            return '', first, first_rest
+            return first, '', first_rest
         else:
-            if second in amo.APPS:
-                return '', second, rest
-            else:
-                return '', '', path
+            return '', '', path
 
     def get_language(self):
         """

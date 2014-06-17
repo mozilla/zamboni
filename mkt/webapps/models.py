@@ -981,18 +981,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def get_localepicker(self):
-        """For language packs, gets the contents of localepicker."""
-        if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
-            and self.current_version):
-            files = (self.current_version.files
-                         .filter(platform__in=amo.MOBILE_PLATFORMS.keys()))
-            try:
-                return unicode(files[0].get_localepicker(), 'utf-8')
-            except IndexError:
-                pass
-        return ''
-
     def get_mozilla_contacts(self):
         return [x.strip() for x in self.mozilla_contact.split(',')]
 
