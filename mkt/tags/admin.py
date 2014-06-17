@@ -4,7 +4,7 @@ from .models import Tag
 
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('tag_text', 'popularity', 'created', 'blacklisted')
+    list_display = ('tag_text', 'created', 'blacklisted')
     list_editable = ('blacklisted',)
     list_filter = ('blacklisted',)
     ordering = ('-created',)

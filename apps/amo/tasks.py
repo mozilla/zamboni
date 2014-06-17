@@ -65,40 +65,6 @@ def delete_logs(items, **kw):
 
 
 @task
-def delete_incomplete_addons(items, **kw):
-    log.info('[%s@%s] Deleting incomplete add-ons' %
-             (len(items), delete_incomplete_addons.rate_limit))
-    for addon in Addon.objects.filter(
-            highest_status=0, status=0, pk__in=items):
-        try:
-            addon.delete('Deleted for incompleteness')
-        except Exception as e:
-            log.error("Couldn't delete add-on %s: %s" % (addon.id, e))
-
-
-@task
-def migrate_editor_eventlog(items, **kw):
-    log.info('[%s@%s] Migrating eventlog items' %
-             (len(items), migrate_editor_eventlog.rate_limit))
-    for item in EventLog.objects.filter(pk__in=items):
-        kw = dict(user=item.user, created=item.created)
-        if item.action == 'review_delete':
-            details = None
-            try:
-                details = phpserialize.loads(item.notes)
-            except ValueError:
-                pass
-            amo.log(amo.LOG.DELETE_REVIEW, item.changed_id, details=details,
-                    **kw)
-        elif item.action == 'review_approve':
-            try:
-                r = Review.objects.get(pk=item.changed_id)
-                amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
-            except Review.DoesNotExist:
-                log.warning("Couldn't find review for %d" % item.changed_id)
-
-
-@task
 @set_task_user
 def find_abuse_escalations(addon_id, **kw):
     weekago = datetime.date.today() - datetime.timedelta(days=7)

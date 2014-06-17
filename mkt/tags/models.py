@@ -18,7 +18,6 @@ class Tag(amo.models.ModelBase):
     restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField('webapps.Addon', through='AddonTag',
                                     related_name='tags')
-    num_addons = models.IntegerField(default=0)
 
     objects = TagManager()
 
@@ -28,10 +27,6 @@ class Tag(amo.models.ModelBase):
 
     def __unicode__(self):
         return self.tag_text
-
-    @property
-    def popularity(self):
-        return self.num_addons
 
     def can_reverse(self):
         try:
@@ -55,12 +50,6 @@ class Tag(amo.models.ModelBase):
             addon_tag.delete()
         amo.log(amo.LOG.REMOVE_TAG, tag, addon)
 
-    def update_stat(self):
-        if self.blacklisted:
-            return
-        self.num_addons = self.addons.count()
-        self.save()
-
 
 class AddonTag(amo.models.ModelBase):
     addon = models.ForeignKey('webapps.Addon', related_name='addon_tags')
@@ -68,17 +57,3 @@ class AddonTag(amo.models.ModelBase):
 
     class Meta:
         db_table = 'users_tags_addons'
-
-
-def update_tag_stat_signal(sender, instance, **kw):
-    from .tasks import update_tag_stat
-    if not kw.get('raw'):
-        try:
-            update_tag_stat.delay(instance.tag)
-        except Tag.DoesNotExist:
-            pass
-
-models.signals.post_save.connect(update_tag_stat_signal, sender=AddonTag,
-                                 dispatch_uid='update_tag_stat')
-models.signals.post_delete.connect(update_tag_stat_signal, sender=AddonTag,
-                                   dispatch_uid='delete_tag_stat')

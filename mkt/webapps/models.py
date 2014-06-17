@@ -915,14 +915,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def can_be_deleted(self):
         return not self.is_deleted
 
-    @amo.cached_property
-    def tags_partitioned_by_developer(self):
-        """Returns a tuple of developer tags and user tags for this addon."""
-        tags = self.tags.not_blacklisted()
-        user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
-        dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
-        return dev_tags, user_tags
-
     def has_author(self, user, roles=None):
         """True if ``user`` is an author with any of the specified ``roles``.
 
