@@ -46,7 +46,7 @@ from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
 from PIL import Image, ImageFile, PngImagePlugin
 
-from amo import ADDON_ICON_SIZES
+from amo import APP_ICON_SIZES
 from amo.urlresolvers import linkify_with_outgoing, reverse
 from mkt.translations.models import Translation
 from mkt.users.models import UserNotification
@@ -483,7 +483,7 @@ def resize_image(src, dst, size=None, remove_src=True, locally=False):
 
 
 def remove_icons(destination):
-    for size in ADDON_ICON_SIZES:
+    for size in APP_ICON_SIZES:
         filename = '%s-%s.png' % (destination, size)
         if storage.exists(filename):
             storage.delete(filename)
