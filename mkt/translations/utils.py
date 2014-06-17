@@ -1,5 +1,3 @@
-import copy
-
 from django.utils.encoding import force_unicode
 
 import html5lib

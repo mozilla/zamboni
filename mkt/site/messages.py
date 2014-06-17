@@ -2,7 +2,7 @@ import jinja2
 from jingo import env
 from tower import ugettext as _
 
-from amo.messages import debug, info, success, warning, error
+from amo.messages import error
 
 
 def _make_message(message=None, title=None, title_safe=False,

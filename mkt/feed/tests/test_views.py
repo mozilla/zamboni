@@ -13,7 +13,6 @@ import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
-from mkt.site.fixtures import fixture
 from mkt.webapps.models import Preview, Webapp
 
 

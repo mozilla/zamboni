@@ -9,7 +9,6 @@ from django.utils.cache import (get_max_age, patch_cache_control,
 import tower
 from django_statsd.clients import statsd
 
-import amo
 from amo.urlresolvers import lang_from_accept_header, Prefixer
 from amo.utils import urlparams
 

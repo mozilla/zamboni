@@ -11,12 +11,10 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
-from django.db import transaction
 from django.template import Context, loader
 
 import pytz
 import requests
-import waffle
 from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task

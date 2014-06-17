@@ -1,7 +1,7 @@
 import jinja2
 from jingo import register
 
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 from mkt.developers.helpers import mkt_page_title
 

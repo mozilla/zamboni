@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
-import json
-
 from django.core.handlers.wsgi import WSGIRequest
 from django.test import TestCase
-from django.utils.http import urlencode
 
 import mock
 from nose.tools import eq_, ok_
 from rest_framework.serializers import Serializer, ValidationError
-from simplejson import JSONDecodeError
 from test_utils import RequestFactory
 
 from mkt.users.models import UserProfile 

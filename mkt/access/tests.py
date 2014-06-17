@@ -5,7 +5,6 @@ from nose.tools import assert_false
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile

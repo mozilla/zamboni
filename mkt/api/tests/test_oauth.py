@@ -5,7 +5,6 @@ from datetime import datetime
 from functools import partial
 
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test.client import Client, FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
