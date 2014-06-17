@@ -102,8 +102,8 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(self.product.name(), unicode(self.addon.name))
         eq_(self.product.addon(), self.addon)
         eq_(self.product.price(), self.addon.premium.price)
-        eq_(self.product.icons()['512'],
-            absolutify(self.addon.get_icon_url(512)))
+        eq_(self.product.icons()['64'],
+            absolutify(self.addon.get_icon_url(64)))
         eq_(self.product.description(), self.addon.description)
         eq_(self.product.application_size(),
             self.addon.current_version.all_files[0].size)
