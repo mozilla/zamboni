@@ -306,8 +306,8 @@ MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 
-# Icon upload sizes
-ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
+# Icon sizes we want to generate and expose in the API.
+APP_ICON_SIZES = [32, 48, 64, 128]
 
 # Preview upload sizes [thumb, full]
 ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]

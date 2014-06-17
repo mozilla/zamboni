@@ -81,7 +81,7 @@ class WebAppProduct(object):
 
     def icons(self):
         icons = {}
-        for size in amo.ADDON_ICON_SIZES:
+        for size in amo.APP_ICON_SIZES:
             icons[str(size)] = absolutify(self.webapp.get_icon_url(size))
 
         return icons

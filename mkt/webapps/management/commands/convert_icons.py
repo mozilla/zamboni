@@ -13,7 +13,7 @@ from mkt.webapps.models import Addon
 
 
 extensions = ['.png', '.jpg', '.gif']
-sizes = amo.ADDON_ICON_SIZES
+sizes = amo.APP_ICON_SIZES
 size_suffixes = ['-%s' % s for s in sizes]
 
 

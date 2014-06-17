@@ -472,7 +472,7 @@ class TestFetchIcon(BaseWebAppTest):
         biggest = max([int(size) for size in manifest['icons']])
 
         icon_dir = webapp.get_icon_dir()
-        for size in amo.ADDON_ICON_SIZES:
+        for size in amo.APP_ICON_SIZES:
             if not size <= biggest:
                 continue
             icon_path = os.path.join(icon_dir, '%s-%s.png'

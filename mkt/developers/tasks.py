@@ -293,7 +293,7 @@ def save_icon(webapp, content):
     dirname = webapp.get_icon_dir()
     destination = os.path.join(dirname, '%s' % webapp.id)
     remove_icons(destination)
-    resize_icon(tmp_dst, destination, amo.ADDON_ICON_SIZES,
+    resize_icon(tmp_dst, destination, amo.APP_ICON_SIZES,
                 set_modified_on=[webapp])
 
     # Need to set the icon type so .get_icon_url() works
