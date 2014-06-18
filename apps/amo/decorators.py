@@ -208,7 +208,7 @@ def allow_cross_site_request(f):
         return data required cookies to see.  This is a good thing, let's keep
         it that way."""
         response['Access-Control-Allow-Origin'] = '*'
-        response['Access-Control-Allow-Methods'] = 'GET'
+        response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
         return response
     return wrapper
 

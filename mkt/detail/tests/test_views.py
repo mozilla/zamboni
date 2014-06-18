@@ -150,3 +150,9 @@ class TestPackagedManifest(amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(res['Content-type'],
             'application/x-web-app-manifest+json; charset=utf-8')
+
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_has_cors(self, _mock):
+        _mock.return_value = self._mocked_json()
+        res = self.client.get(self.url)
+        self.assertCORS(res, 'get')
