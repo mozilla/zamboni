@@ -371,9 +371,6 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
 
-# Contributions.
-FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
-
 VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
 VERSION_SEARCH = re.compile('\.(\d+)$')
 

@@ -1,11 +1,9 @@
 import datetime
-import json
 
 from django.conf import settings
 from django.db import models
 from django.utils import translation
 
-import phpserialize as php
 import tower
 from babel import Locale, numbers
 from jingo import env
@@ -16,53 +14,6 @@ import amo
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
 from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
-
-
-class StatsDictField(models.TextField):
-
-    description = 'A dictionary of counts stored as serialized php.'
-    __metaclass__ = models.SubfieldBase
-
-    def db_type(self, connection):
-        return 'text'
-
-    def to_python(self, value):
-        # object case
-        if value is None:
-            return None
-        if isinstance(value, dict):
-            return value
-
-        # string case
-        if value and value[0] in '[{':
-            # JSON
-            try:
-                d = json.loads(value)
-            except ValueError:
-                d = None
-        else:
-            # phpserialize data
-            try:
-                if isinstance(value, unicode):
-                    value = value.encode('utf8')
-                d = php.unserialize(value, decode_strings=True)
-            except ValueError:
-                d = None
-        if isinstance(d, dict):
-            return d
-        return None
-
-    def get_db_prep_value(self, value, connection, prepared=False):
-        if value is None or value == '':
-            return value
-        try:
-            value = json.dumps(dict(value))
-        except TypeError:
-            value = None
-        return value
-
-    def value_to_string(self, obj):
-        return str(obj)
 
 
 class ContributionError(Exception):
@@ -93,15 +44,6 @@ class Contribution(amo.models.ModelBase):
     # for example paypal or solitude.
     transaction_id = models.CharField(max_length=255, null=True, db_index=True)
     paykey = models.CharField(max_length=255, null=True)
-    post_data = StatsDictField(null=True)
-
-    # Voluntary Contribution specific.
-    charity = models.ForeignKey('webapps.Charity', null=True)
-    annoying = models.PositiveIntegerField(default=0,
-                                           choices=amo.CONTRIB_CHOICES,)
-    is_suggested = models.BooleanField(default=False)
-    suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
-                                        nullify_invalid=True, null=True)
 
     # Marketplace specific.
     # TODO(andym): figure out what to do when we delete the user.
@@ -127,23 +69,6 @@ class Contribution(amo.models.ModelBase):
                                  self.created.month, self.created.day)
         except AttributeError:
             # created may be None
-            return None
-
-    @property
-    def contributor(self):
-        try:
-            return u'%s %s' % (self.post_data['first_name'],
-                               self.post_data['last_name'])
-        except (TypeError, KeyError):
-            # post_data may be None or missing a key
-            return None
-
-    @property
-    def email(self):
-        try:
-            return self.post_data['payer_email']
-        except (TypeError, KeyError):
-            # post_data may be None or missing a key
             return None
 
     def _switch_locale(self):

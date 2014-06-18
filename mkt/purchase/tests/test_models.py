@@ -1,36 +1,16 @@
 # -*- coding: utf-8 -*-
-import json
-
 from django.conf import settings
 from django.core import mail
 
-import phpserialize as php
 from nose.tools import eq_
 
 import amo
 import amo.tests
 from mkt.prices.models import Refund
-from mkt.purchase.models import Contribution, StatsDictField
+from mkt.purchase.models import Contribution
 from mkt.webapps.models import Addon
 from mkt.users.models import UserProfile
 from mkt.site.fixtures import fixture
-
-
-class TestStatsDictField(amo.tests.TestCase):
-
-    def test_to_python_none(self):
-        eq_(StatsDictField().to_python(None), None)
-
-    def test_to_python_dict(self):
-        eq_(StatsDictField().to_python({'a': 1}), {'a': 1})
-
-    def test_to_python_php(self):
-        val = {'a': 1}
-        eq_(StatsDictField().to_python(php.serialize(val)), val)
-
-    def test_to_python_json(self):
-        val = {'a': 1}
-        eq_(StatsDictField().to_python(json.dumps(val)), val)
 
 
 class TestEmail(amo.tests.TestCase):
