@@ -2,16 +2,18 @@
 import logging
 import os
 import site
+import sys
 
+from django.core.management import call_command, execute_from_command_line
+
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mkt.settings')
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
 
 site.addsitedir(path('apps'))
 site.addsitedir(path('vendor/lib/python'))
-
-# No third-party imports until we've added all our sitedirs!
-from django.core.management import call_command, execute_from_command_line
 
 import session_csrf
 session_csrf.monkeypatch()
@@ -78,4 +80,4 @@ if __name__ == "__main__":
         call_command('update_product_details')
         product_details.__init__()  # reload the product details
 
-    execute_from_command_line()
+    execute_from_command_line(sys.argv)
