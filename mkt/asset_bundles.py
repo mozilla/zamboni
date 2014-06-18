@@ -5,7 +5,6 @@ CSS = {
         'css/zamboni/zamboni.css',
         'css/zamboni/mkt-admin.css',
         'css/zamboni/admin-django.css',
-        'css/zamboni/admin-mozilla.css',
     ),
     'mkt/devreg': (
         # Contains reset, clearfix, etc.
