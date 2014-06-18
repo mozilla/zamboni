@@ -44,6 +44,7 @@ define('payments', [], function() {
             var $form = $(this);
             var $waiting_overlay = getOverlay({
                 id: 'payment-account-waiting',
+                class: 'payment-account-overlay',
                 provider: $overlay.data('provider'),
             });
             var $old_overlay = $overlay.children('section');

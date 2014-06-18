@@ -11,7 +11,7 @@ define('payments-manage', ['payments'], function(payments) {
         var provider = e.currentTarget.attributes['data-provider'].value;
         var $overlay = payments.getOverlay({
             'id': 'payment-account-add',
-            'class': 'undismissable',
+            'class': 'undismissable payment-account-overlay',
             'provider': provider,
         });
         payments.setupPaymentAccountOverlay($overlay, function (data) {
@@ -25,6 +25,7 @@ define('payments-manage', ['payments'], function(payments) {
         var isPlural = data['app-names'].indexOf(spliter) !== -1;
         var $confirm_delete_overlay = payments.getOverlay({
             id: 'payment-account-delete-confirm',
+            class: 'payment-account-overlay',
         });
         var deletingAccountName = data['name'];
         // L10n: This sentence introduces a list of applications.
@@ -73,6 +74,7 @@ define('payments-manage', ['payments'], function(payments) {
     function setupAgreementOverlay(data, onsubmit) {
         var $waiting_overlay = payments.getOverlay({
             id: 'payment-account-waiting',
+            class: 'payment-account-overlay',
             provider: data.provider,
         });
         var $portal_link = data['portal-link'];
@@ -132,6 +134,7 @@ define('payments-manage', ['payments'], function(payments) {
         function paymentAccountSetup() {
             var $overlay = payments.getOverlay({
                 id: 'payment-account-edit',
+                class: 'payment-account-overlay',
                 provider: provider,
             });
             $overlay.find('form').attr('action', account_url);
@@ -144,6 +147,7 @@ define('payments-manage', ['payments'], function(payments) {
         return function(e) {
             var $waiting_overlay = payments.getOverlay({
                 id: 'payment-account-waiting',
+                class: 'payment-account-overlay',
                 provider: provider,
             });
             $.getJSON(account_url, function(data) {
