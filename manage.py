@@ -13,7 +13,6 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 path = lambda *a: os.path.join(ROOT, *a)
 
 site.addsitedir(path('apps'))
-site.addsitedir(path('vendor/lib/python'))
 
 import session_csrf
 session_csrf.monkeypatch()
