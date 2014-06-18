@@ -315,14 +315,6 @@ def timesince(time):
     return _(u'{0} ago').format(ago)
 
 
-@register.inclusion_tag('amo/recaptcha.html')
-@jinja2.contextfunction
-def recaptcha(context, form):
-    d = dict(context.items())
-    d.update(form=form)
-    return d
-
-
 @register.filter
 def is_choice_field(value):
     try:
