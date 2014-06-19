@@ -320,7 +320,8 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
         db_table = 'mkt_feed_shelf'
 
     def image_path(self):
-        return os.path.join(settings.FEED_SHELF_BG_PATH, str(self.pk / 1000),
+        return os.path.join(settings.FEED_SHELF_BG_PATH,
+                            str(self.pk / 1000),
                             'feed_shelf_%s.png' % (self.pk,))
 
 
@@ -363,7 +364,7 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
         super(FeedApp, self).clean()
 
     def image_path(self):
-        return os.path.join(settings.FEED_SHELF_BG_PATH,
+        return os.path.join(settings.FEATURED_APP_BG_PATH,
                             str(self.pk / 1000),
                             'featured_app_%s.png' % (self.pk,))
 
