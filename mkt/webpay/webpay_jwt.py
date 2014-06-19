@@ -1,6 +1,7 @@
 import calendar
 import time
 from urllib import urlencode
+from urlparse import urljoin
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -125,7 +126,10 @@ class InAppProduct(object):
     def icons(self):
         # TODO: Default to 64x64 icon until addressed in
         # https://bugzilla.mozilla.org/show_bug.cgi?id=981093
-        return {64: absolutify(self.inapp.logo_url)}
+        return {64: absolutify(
+            self.inapp.logo_url or
+            urljoin(settings.MEDIA_URL, '/img/mkt/icons/rocket-64.png')
+        )}
 
     def description(self):
         return self.inapp.webapp.description

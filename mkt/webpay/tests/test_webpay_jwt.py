@@ -171,3 +171,8 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(product_data['inapp_id'], self.product.id())
         eq_(product_data['application_size'], self.product.application_size())
         eq_(product_data['public_id'], self.public_id)
+
+    def test_no_url(self):
+        self.inapp.logo_url = None
+        eq_(self.product.icons()[64],
+            'http://testserver/img/mkt/icons/rocket-64.png')
