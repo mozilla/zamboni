@@ -3,6 +3,8 @@ import random
 import jinja2
 from jingo import register
 
+from amo import urlresolvers, utils
+
 
 @register.function
 def emaillink(email, title=None, klass=None):
@@ -37,3 +39,17 @@ def user_data(amo_user):
         email = amo_user.email
 
     return {'anonymous': anonymous, 'currency': currency, 'email': email}
+
+
+@register.function
+@jinja2.contextfunction
+def fxa_login_link(context):
+    next = context['request'].path
+
+    qs = context['request'].GET.urlencode()
+
+    if qs:
+        next += '?' + qs
+
+    l = utils.urlparams(urlresolvers.reverse('fxa_login'), to=next)
+    return l

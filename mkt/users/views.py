@@ -1,26 +1,28 @@
 import functools
+import json
+import urlparse
 
 from django import http
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.views import login as auth_login
 from django.db import transaction
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
+from django.template.response import TemplateResponse
 from django.utils.http import is_safe_url
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 from django_browserid import get_audience, verify
 from django_statsd.clients import statsd
+from requests_oauthlib import OAuth2Session
 from tower import ugettext as _
+import waffle
 
 import amo
-from amo import messages
 from amo.decorators import json_view, login_required, post_required
 from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
-from mkt.access.middleware import ACLMiddleware
 
 from .models import UserProfile
 from .signals import logged_out
@@ -95,6 +97,71 @@ def _clean_next_url(request):
     gets['to'] = url
     request.GET = gets
     return request
+
+
+def get_fxa_session(state=None):
+    return OAuth2Session(
+        settings.FXA_CLIENT_ID,
+        scope=u'profile',
+        state=state)
+
+
+def fxa_oauth_api(name):
+    return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
+
+
+@csrf_exempt
+def fxa_login(request):
+    if not waffle.switch_is_active('firefox-accounts'):
+        return http.HttpResponse(status=403)
+    if 'to' in request.GET:
+        request = _clean_next_url(request)
+        request.session['redirect_to'] = request.GET.get('to')
+    fxa = get_fxa_session()
+    auth_url, state = fxa.authorization_url(fxa_oauth_api('authorization'))
+    request.session['state'] = state
+    return http.HttpResponseRedirect(auth_url)
+
+
+@csrf_exempt
+@transaction.commit_on_success
+def fxa_authorize(request):
+    if not waffle.switch_is_active('firefox-accounts'):
+        return http.HttpResponse(status=403)
+    state = request.session.get('state')
+    if not state:
+        return http.HttpResponse(status=400, content='Invalid callback state.')
+    fxa = get_fxa_session(state)
+    token = fxa.fetch_token(
+        fxa_oauth_api('token'),
+        authorization_response=request.build_absolute_uri(),
+        client_secret=settings.FXA_CLIENT_SECRET)
+    res = fxa.post(fxa_oauth_api('verify'),
+                   data=json.dumps({'token': token['access_token']}),
+                   headers={'Content-Type': 'application/json'})
+    data = res.json()
+    if 'user' in data:
+        email = data['email']
+        username = data['user']
+        try:
+            profile = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            source = amo.LOGIN_SOURCE_FXA
+            profile = UserProfile.objects.create(username=username, email=email,
+                                                 source=source,
+                                                 display_name=email.partition('@')[0],
+                                                 is_verified=True)
+            log_cef('New Account', 5, request, username=username,
+                    signature='AUTHNOTICE',
+                    msg='User created a new account (from FxA)')
+            record_action('new-user', request)
+        auth.login(request, profile)
+        profile.log_login_attempt(True)
+        return http.HttpResponseRedirect(request.session.get('redirect_to') or
+                                         settings.LOGIN_REDIRECT_URL)
+    else:
+        log.error('FxA token verification failed: ' + res.content)
+        return http.HttpResponse(status=401)
 
 
 def browserid_authenticate(request, assertion, is_mobile=False,
@@ -193,60 +260,15 @@ def browserid_login(request, browserid_audience=None):
 def _login(request, template=None, data=None, dont_redirect=False):
     data = data or {}
     data['webapp'] = True
-    # In case we need it later.  See below.
-    get_copy = request.GET.copy()
-
     if 'to' in request.GET:
         request = _clean_next_url(request)
+    data['to'] = request.GET.get('to')
 
     if request.user.is_authenticated():
         return http.HttpResponseRedirect(
             request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
-    user = None
-    login_status = None
-    r = auth_login(request, template_name=template, redirect_field_name='to',
-                   extra_context=data)
-
-    if isinstance(r, http.HttpResponseRedirect):
-        # Django's auth.views.login has security checks to prevent someone from
-        # redirecting to another domain.  Since we want to allow this in
-        # certain cases, we have to make a new response object here to replace
-        # the above.
-
-        if 'domain' in request.GET:
-            request.GET = get_copy
-            request = _clean_next_url(request)
-            r = http.HttpResponseRedirect(request.GET['to'])
-
-        # Succsesful log in according to django.  Now we do our checks.  I do
-        # the checks here instead of the form's clean() because I want to use
-        # the messages framework and it's not available in the request there.
-        if user.deleted:
-            logout(request)
-            log.warning(u'Attempt to log in with deleted account (%s)' % user)
-            messages.error(request, _('Wrong email address or password!'))
-            user.log_login_attempt(False)
-            log_cef('Authentication Failure', 5, request,
-                    username=request.user, signature='AUTHFAIL',
-                    msg='Account is deactivated')
-            return render(request, template, data)
-
-        login_status = True
-
-        if dont_redirect:
-            # We're recalling the middleware to re-initialize amo_user
-            ACLMiddleware().process_request(request)
-            r = render(request, template, data)
-
-    if login_status is not None:
-        user.log_login_attempt(login_status)
-        log_cef('Authentication Failure', 5, request,
-                username=request.POST['username'],
-                signature='AUTHFAIL',
-                msg='The password was incorrect')
-
-    return r
+    return TemplateResponse(request, template, data)
 
 
 def logout(request):

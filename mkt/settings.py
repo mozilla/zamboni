@@ -707,6 +707,14 @@ FIREPLACE_URL = ''
 # Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'
 
+FXA_CLIENT_ID = '56fc6da8d185c8e3'
+FXA_CLIENT_SECRET = 'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a3'
+FXA_OAUTH_URL = 'https://oauth.dev.lcip.org'
+if DEBUG:
+    # In DEBUG mode, don't require HTTPS for FxA oauth redirects.
+    import os
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
 # GeoIP server settings
 # This flag overrides the GeoIP server functions and will force the
 # return of the GEOIP_DEFAULT_VAL
