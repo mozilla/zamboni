@@ -180,3 +180,7 @@ DEFAULT_PAYMENT_PROVIDER = 'reference'
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'
+
+FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
+FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
+FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')

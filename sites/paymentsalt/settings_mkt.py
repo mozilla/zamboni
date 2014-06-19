@@ -147,3 +147,7 @@ PRE_GENERATE_APK_URL = \
 # Bug 1002569.
 PAYMENT_PROVIDERS = ['bango', 'boku']
 DEFAULT_PAYMENT_PROVIDER = 'bango'
+
+FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
+FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
+FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')

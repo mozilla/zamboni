@@ -87,3 +87,7 @@ APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
 APP_PURCHASE_TYP = 'mozilla-landfill/payments/pay/v1'
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
+
+FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
+FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
+FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')

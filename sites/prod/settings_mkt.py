@@ -151,3 +151,7 @@ PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'
 
 VALIDATOR_TIMEOUT = 110
+
+FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
+FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
+FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')
