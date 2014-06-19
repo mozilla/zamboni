@@ -16,9 +16,10 @@ from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
-from .models import FeedApp, FeedBrand, FeedCollection, FeedItem
+from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppSerializer, FeedBrandSerializer,
-                          FeedCollectionSerializer, FeedItemSerializer)
+                          FeedCollectionSerializer, FeedItemSerializer,
+                          FeedShelfSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
@@ -185,6 +186,10 @@ class FeedCollectionImageViewSet(CollectionImageViewSet):
     queryset = FeedCollection.objects.all()
 
 
+class FeedShelfImageViewSet(CollectionImageViewSet):
+    queryset = FeedShelf.objects.all()
+
+
 class FeedBrandViewSet(BaseFeedCollectionViewSet):
     """
     A viewset for the FeedBrand class, a type of collection that allows editors
@@ -217,6 +222,14 @@ class FeedCollectionViewSet(BaseFeedCollectionViewSet):
             super(FeedCollectionViewSet, self).set_apps(obj, apps)
         except TypeError:
             self.set_apps_grouped(obj, apps)
+
+
+class FeedShelfViewSet(BaseFeedCollectionViewSet):
+    """
+    A viewset for the FeedShelf class.
+    """
+    serializer_class = FeedShelfSerializer
+    queryset = FeedShelf.objects.all()
 
 
 class FeedElementSearchView(CORSMixin, APIView):

@@ -13,6 +13,7 @@ feed may include:
 - :ref:`Feed Apps <feed-apps>`
 - :ref:`Feed Brands <feed-brands>`
 - :ref:`Feed Collections <feed-collections>`
+- :ref:`Operator Shelves <feed-shelves>`
 
 .. note::
 
@@ -44,7 +45,8 @@ represented thusly:
         "id": 47,
         "item_type": "collection",
         "region": "br",
-        "resource_url": "/api/v2/feed/items/47/"
+        "resource_url": "/api/v2/feed/items/47/",
+        "shelf": null
     }
 
 ``app``
@@ -75,6 +77,9 @@ represented thusly:
 ``region``
     *string|null* - the slug of a :ref:`region <regions>`. If defined, this
     feed item will only be available in that region.
+``shelf``
+    *object* - the full representation of an :ref:`operator shelf
+    <feed-shelves>`.
 
 
 List
@@ -971,3 +976,251 @@ Delete
 
     :status 204: successfully deleted.
     :status 403: not authorized.
+
+
+.. _feed-shelves:
+
+--------------
+Operator Shelf
+--------------
+
+An operator shelf is a collection-like object that provides a centralized place
+for operators to showcase content to their customers. They are always bound to
+category + region pairs, and are only shown to users browsing from the
+specified category and region.
+
+Operator shelves are represented thusly:
+
+.. code-block:: json
+
+    {
+        "apps": [
+            {
+                "id": 1
+            },
+            {
+                "id": 2
+            }
+        ],
+        "background_color": "#A90000",
+        "background_image": "http://somecdn.com/someimage.png",
+        "carrier": "telefonica",
+        "description": {
+            "en-US": "A description of my collection."
+        },
+        "id": 19,
+        "name": {
+            "en-US": "My awesome collection"
+        },
+        "region": "br",
+        "slug": "potato",
+        "url": "/api/v2/feed/shelves/1/"
+    }
+
+``apps``
+    *array* - a list of serializations of the member :ref:`apps <app>`.
+``background_color``
+    *string* - a hex color used in display of the operator shelf. Currently
+    must be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
+    ``#5F9B0A``, or ``#2C393B``.
+``background_image``
+    *string* - the URL to an image used while displaying the operator shelf.
+``carrier``
+    *string* - the slug of the :ref:`carrier <carriers>` the operator shelf
+    belongs to.
+``description``
+    *string|null* - a :ref:`translated <overview-translations>` description of
+    the operator shelf.
+``id``
+    *int* - the ID of this operator shelf.
+``name``
+    *string* - a :ref:`translated <overview-translations>` name for the
+    operator shelf.
+``region``
+    *string* - the slug of the :ref:`region <regions>` the operator shelf
+    belongs to.
+``slug``
+    *string* - a slug to use in URLs for the operator shelf
+``url``
+    *string|null* - the permanent URL for the operator shelf.
+
+
+List
+====
+
+.. http:get:: /api/v2/feed/shelves/
+
+    A listing of operator shelves.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A :ref:`listing <objects-response-label>` of
+        :ref:`operator shelves <feed-shelves>`.
+    :type objects: array
+
+
+Detail
+======
+
+.. http:get:: /api/v2/feed/shelves/(int:id|string:slug)/
+
+    Detail of a specific operator shelf.
+
+    **Request**
+
+    :param id: the ID of the operator shelf.
+    :type id: int
+
+    **Response**
+
+    A representation of the :ref:`operator shelf <feed-shelves>`.
+
+
+Create
+======
+
+.. http:post:: /api/v2/feed/shelves/
+
+    Create an operator shelf.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param background_color: color in six-digit hex (with hash prefix). Must be
+        one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
+        or ``#2C393B``.
+    :type background_color: string
+    :param carrier: the slug of a :ref:`carrier <carriers>`.
+    :type carrier: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the app being featured.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
+    :param region: the slug of a :ref:`region <regions>`.
+    :type region: string
+    :param slug: a slug to use in URLs for the operator shelf.
+    :type slug: string
+
+    .. code-block:: json
+
+        {
+            "apps": [19, 1, 44],
+            "background_color": "#B90000",
+            "carrier": "telefonica",
+            "description": {
+                "en-US": "A list of Telefonica's Favorite apps."
+            },
+            "name": {
+                "en-US": "Telefonica's Favorite Apps"
+            },
+            "region": "br",
+            "slug": "telefonica-brazil-shelf"
+        }
+
+    **Response**
+
+    A representation of the newly-created :ref:`operator shelf <feed-shelves>`.
+
+    :status 201: successfully created.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Update
+======
+
+.. http:patch:: /api/v2/feed/shelves/(int:id|string:slug)/
+
+    Update the properties of an operator shelf.
+
+    **Request**
+
+    :param apps: an ordered array of app IDs.
+    :type apps: array
+    :param background_color: color in six-digit hex (with hash prefix). Must be
+        one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
+        or ``#2C393B``.
+    :type background_color: string
+    :param carrier: the slug of a :ref:`carrier <carriers>`.
+    :type carrier: string
+    :param description: a :ref:`translated <overview-translations>` description
+        of the app being featured.
+    :type description: object|null
+    :param name: a :ref:`translated <overview-translations>` name of the
+        collection.
+    :type name: object
+    :param region: the slug of a :ref:`region <regions>`.
+    :type region: string
+    :param slug: a slug to use in URLs for the operator shelf.
+    :type slug: string
+
+    .. code-block:: json
+
+        {
+            "apps": [19, 1, 44],
+            "background_color": "#B90000",
+            "carrier": "telefonica",
+            "description": {
+                "en-US": "A list of Telefonica's Favorite apps."
+            },
+            "name": {
+                "en-US": "Telefonica's Favorite Apps"
+            },
+            "region": "br",
+            "slug": "telefonica-brazil-shelf"
+        }
+
+    **Response**
+
+    A representation of the updated :ref:`operator shelf <feed-shelves>`.
+
+    :status 200: successfully updated.
+    :status 400: submission error, see the error message in the response body
+        for more detail.
+    :status 403: not authorized.
+
+
+Delete
+======
+
+.. http:delete:: /api/v2/feed/shelves/(int:id|string:slug)/
+
+    Delete an operator shelf.
+
+    **Request**
+
+    :param id: the ID of the operator shelf.
+    :type id: int
+
+    **Response**
+
+    :status 204: successfully deleted.
+    :status 403: not authorized.
+
+
+Image
+==============
+
+One-to-one background image or header graphic used to display with the operator
+shelf.
+
+.. http:get:: /api/v2/feed/shelves/(int:id|string:slug)/image/
+
+    Get the image for an operator shelf.
+
+
+.. http:put:: /api/v2/feed/shelves/(int:id|string:slug)/image/
+
+    Set the image for an operator shelf. Accepts a data URI as the request
+    body containing the image, rather than a JSON object.
+
+
+.. http:delete:: /api/v2/feed/shelves/(int:id|string:slug)/image/
+
+    Delete the image for an operator shelf.

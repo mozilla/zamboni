@@ -6,7 +6,7 @@ import amo
 import amo.tests
 
 from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
-from mkt.feed.models import FeedBrand
+from mkt.feed.models import FeedBrand, FeedShelf
 from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
                                   FeedCollectionSerializer, FeedItemSerializer)
 from mkt.regions import RESTOFWORLD
@@ -34,6 +34,27 @@ class TestFeedItemSerializer(FeedAppMixin, amo.tests.TestCase):
     def test_validate_fails_no_items(self):
         with self.assertRaises(serializers.ValidationError):
             self.validate(app=None)
+
+    def validate_shelf(self, **attrs):
+        shelf = FeedShelf.objects.create(carrier=1, region=2)
+        data = {
+            'carrier': 'telefonica',
+            'region': 'us',
+            'shelf': shelf.id
+        }
+        data.update(attrs)
+        return self.serializer().validate_shelf(data, 'shelf')
+
+    def test_validate_shelf_passes(self):
+        self.validate_shelf()
+
+    def test_validate_shelf_fails_region(self):
+        with self.assertRaises(serializers.ValidationError):
+            self.validate_shelf(region='br')
+
+    def test_validate_shelf_fails_carrier(self):
+        with self.assertRaises(serializers.ValidationError):
+            self.validate_shelf(carrier='telenor')
 
     def test_region_handles_worldwide(self):
         data = {

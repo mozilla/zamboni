@@ -11,7 +11,8 @@ from amo.tests import app_factory
 import mkt.carriers
 import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedItem
+from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
+                             FeedShelf)
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.webapps.models import Preview, Webapp
 
@@ -699,13 +700,6 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
     model = FeedCollection
     url_basename = 'feedcollections'
 
-    def make_item(self):
-        """
-        Add additional unique fields: `description` and `name`.
-        """
-        super(TestFeedCollectionViewSet, self).make_item(
-            description={'en-US': 'Baby Potato'}, name={'en-US': 'Sprout'})
-
     def ungrouped_apps(self):
         apps = [app_factory() for i in xrange(3)]
         return [app.pk for app in apps]
@@ -795,6 +789,40 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         data = json.loads(res.content)
         self.assertSetEqual(
             apps, [app['id'] for app in data['apps']])
+
+
+class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
+    obj_data = {
+        'carrier': 'telefonica',
+        'description': {'en-US': 'Potato french fries'},
+        'region': 'br',
+        'slug': 'potato',
+        'name': {'en-US': 'Deep Fried'}
+    }
+    model = FeedShelf
+    url_basename = 'feedshelves'
+
+    def make_item(self):
+        """
+        Add additional unique fields: `description` and `name`.
+        """
+        super(TestFeedShelfViewSet, self).make_item(
+            carrier=1, region=7, name={'en-US': 'Sprout'},
+            description={'en-US': 'Baby Potato'})
+
+    def setUp(self):
+        super(TestFeedShelfViewSet, self).setUp()
+        self.obj_data.update({
+            'carrier': 'telefonica',
+            'region': 'br'
+        })
+
+    def test_create_with_permission(self):
+        self.feed_permission()
+        res, data = self.create(self.client, **self.obj_data)
+        eq_(res.status_code, 201)
+        for name, value in self.obj_data.iteritems():
+            eq_(value, data[name])
 
 
 class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
