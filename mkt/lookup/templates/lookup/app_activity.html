@@ -1,13 +1,13 @@
 {% extends 'lookup/base.html' %}
 
-{% set pagetitle = product.name %}
-
 {% block content %}
+  {% include 'lookup/includes/app_search.html' %}
+
   <section class="island c">
-    {{ app_header(product, 'activity') }}
+    {{ app_header(app, 'activity') }}
 
     <section id="activity-info" class="column-b">
-      <h2>{{ product.name }} - {{ _('Activity') }}</h2>
+      <h2>{{ app.name }} - {{ _('Activity') }}</h2>
       <ol class="simple-log">
         {% for item in user_items %}
         <li class="item">

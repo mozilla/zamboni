@@ -17,12 +17,11 @@ from slumber.exceptions import HttpClientError, HttpServerError
 from tower import ugettext as _
 
 import amo
+import mkt.constants.lookup as lkp
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required)
 from amo.utils import paginate
 from lib.pay_server import client
-
-import mkt.constants.lookup as lkp
 from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
@@ -39,8 +38,8 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site import messages
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Webapp, WebappIndexer
 from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.lookup')
@@ -260,14 +259,14 @@ def app_summary(request, addon_id):
     versions = None
 
     status_form = APIStatusForm(initial={
-        'status' : amo.STATUS_CHOICES_API[app.status]
+        'status': amo.STATUS_CHOICES_API[app.status]
     })
     version_status_forms = {}
     if app.is_packaged:
         versions = app.versions.all().order_by('-created')
         for v in versions:
             version_status_forms[v.pk] = APIFileStatusForm(initial={
-                'status' : amo.STATUS_CHOICES_API[v.all_files[0].status]
+                'status': amo.STATUS_CHOICES_API[v.all_files[0].status]
             })
 
     return render(request, 'lookup/app_summary.html', {
@@ -278,6 +277,24 @@ def app_summary(request, addon_id):
         'status_form': status_form, 'versions': versions,
         'version_status_forms': version_status_forms
     })
+
+
+@login_required
+@permission_required('AccountLookup', 'View')
+def app_activity(request, addon_id):
+    """Shows the app activity age for single app."""
+    app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
+
+    user_items = ActivityLog.objects.for_apps([app]).exclude(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+    admin_items = ActivityLog.objects.for_apps([app]).filter(
+        action__in=amo.LOG_HIDE_DEVELOPER)
+
+    user_items = paginate(request, user_items, per_page=20)
+    admin_items = paginate(request, admin_items, per_page=20)
+
+    return render(request, 'lookup/app_activity.html', {
+        'admin_items': admin_items, 'app': app, 'user_items': user_items})
 
 
 @login_required

@@ -1,16 +1,13 @@
 import hashlib
 
 from django import http
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.decorators.http import etag
 
 import commonware.log
 
 import amo
-from amo.decorators import (allow_cross_site_request, login_required,
-                            permission_required)
-from amo.utils import paginate
-from mkt.developers.models import ActivityLog
+from amo.decorators import allow_cross_site_request
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 
@@ -55,22 +52,3 @@ def manifest(request, uuid):
         return response
 
     return _inner_view(request, addon)
-
-
-@login_required
-@permission_required('AccountLookup', 'View')
-@addon_all_view
-def app_activity(request, addon):
-    """Shows the app activity age for single app."""
-
-    user_items = ActivityLog.objects.for_apps([addon]).exclude(
-        action__in=amo.LOG_HIDE_DEVELOPER)
-    admin_items = ActivityLog.objects.for_apps([addon]).filter(
-        action__in=amo.LOG_HIDE_DEVELOPER)
-
-    user_items = paginate(request, user_items, per_page=20)
-    admin_items = paginate(request, admin_items, per_page=20)
-
-    return render(request, 'detail/app_activity.html',
-                  {'admin_items': admin_items, 'product': addon,
-                   'user_items': user_items})

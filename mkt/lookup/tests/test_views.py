@@ -35,8 +35,8 @@ from mkt.lookup.views import (_transaction_summary, app_summary,
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon, AddonUser, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Addon, AddonUser, Webapp
 
 
 class SummaryTest(TestCase):
@@ -999,11 +999,11 @@ class TestPurchases(amo.tests.TestCase):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_not_even_mine(self):
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user)
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_access(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(pq(res.content)('p.notice').length, 1)
@@ -1011,7 +1011,7 @@ class TestPurchases(amo.tests.TestCase):
     def test_purchase_shows_up(self):
         Contribution.objects.create(user=self.user, addon=self.app,
                                     amount=1, type=amo.CONTRIB_PURCHASE)
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -1022,7 +1022,7 @@ class TestPurchases(amo.tests.TestCase):
         for type_ in [amo.CONTRIB_PURCHASE]:
             Contribution.objects.create(user=self.user, addon=self.app,
                                         amount=1, type=type_)
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
@@ -1043,17 +1043,17 @@ class TestActivity(amo.tests.TestCase):
         self.assertLoginRequired(self.client.get(self.url))
 
     def test_not_even_mine(self):
-        self.client.login(username=self.user.email, password='password')
+        self.login(self.user)
         eq_(self.client.get(self.url).status_code, 403)
 
     def test_access(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(len(pq(res.content)('.simple-log div')), 0)
 
     def test_log(self):
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         self.client.get(self.url)
         log_item = ActivityLog.objects.get(action=amo.LOG.ADMIN_VIEWED_LOG.id)
         eq_(len(log_item.arguments), 1)
@@ -1063,9 +1063,45 @@ class TestActivity(amo.tests.TestCase):
     def test_display(self):
         amo.log(amo.LOG.PURCHASE_ADDON, self.app, user=self.user)
         amo.log(amo.LOG.ADMIN_USER_EDITED, self.user, 'spite', user=self.user)
-        self.client.login(username=self.reviewer.email, password='password')
+        self.login(self.reviewer)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
         assert 'purchased' in doc('li.item').eq(0).text()
         assert 'edited' in doc('li.item').eq(1).text()
+
+
+class TestAppActivity(amo.tests.TestCase):
+    fixtures = ['base/users'] + fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.reviewer = UserProfile.objects.get(username='admin')
+        self.user = UserProfile.objects.get(username='regularuser')
+        self.url = reverse('lookup.app_activity', args=[self.app.pk])
+
+    def test_not_allowed(self):
+        self.client.logout()
+        self.assertLoginRequired(self.client.get(self.url))
+
+    def test_not_even_mine(self):
+        self.login(self.user)
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_access(self):
+        self.login(self.reviewer)
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+
+    def test_logs(self):
+        # Admin log.
+        amo.log(amo.LOG.COMMENT_VERSION, self.app, self.app.current_version,
+                user=self.user)
+        # Regular log.
+        amo.log(amo.LOG.MANIFEST_UPDATED, self.app, user=self.user)
+
+        self.login(self.reviewer)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert 'manifest updated' in doc('li.item').eq(0).text()
+        assert 'Comment on' in doc('li.item').eq(1).text()

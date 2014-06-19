@@ -16,6 +16,7 @@ user_patterns = patterns('',
 # These views all start with app/addon ID.
 app_patterns = patterns('',
     url(r'^summary$', views.app_summary, name='lookup.app_summary'),
+    url(r'^activity$', views.app_activity, name='lookup.app_activity'),
 )
 
 

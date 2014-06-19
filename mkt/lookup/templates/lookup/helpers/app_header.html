@@ -23,7 +23,7 @@
       </li>
       {% if not is_operator or is_author %}
         <li>
-          <a href="{{ url('detail.app_activity', app.app_slug) }}"
+          <a href="{{ url('lookup.app_activity', app.id) }}"
             {% if page_type == 'activity' %}class="sel"{% endif %}>
             {{ _('Activity') }}
           </a>

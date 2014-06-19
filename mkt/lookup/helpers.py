@@ -1,5 +1,5 @@
-from jingo import env, register
 import jinja2
+from jingo import env, register
 
 from mkt.access import acl
 
