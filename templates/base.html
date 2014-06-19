@@ -123,6 +123,12 @@
       <div class="overlay centre login">
         <section>
           <h2>{{ _('Please sign in') }}</h2>
+        {% if waffle.switch('firefox-accounts') %}
+          <footer>
+            <a class="button browserid"
+               href="{{ fxa_login_link() }}">{{ _('Sign in / Sign up') }}</a>
+          </footer>
+        {% else %}
           <p>
             {% trans url='https://login.persona.org/' %}
               Just log in or register with your
@@ -132,10 +138,10 @@
           <footer>
             <a class="button browserid" href="#">{{ _('Sign in / Sign up') }}</a>
           </footer>
+        {% endif %}
         </section>
       </div>
     {% endif %}
-
     {% block dbgoverlay %}{% endblock %}
 
     {# js #}
