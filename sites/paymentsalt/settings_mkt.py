@@ -149,5 +149,5 @@ PAYMENT_PROVIDERS = ['bango', 'boku']
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 
 FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
-FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
-FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')
+FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
+FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')

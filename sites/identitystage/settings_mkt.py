@@ -134,5 +134,5 @@ ES_DEFAULT_NUM_REPLICAS = 2
 ES_USE_PLUGINS = True
 
 FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
-FXA_OAUTH_CLIENT_ID = getattr(private_mkt, 'FXA_OAUTH_CLIENT_ID', '')
-FXA_OAUTH_CLIENT_SECRET = getattr(private_mkt, 'FXA_OAUTH_CLIENT_SECRET', '')
+FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
+FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')
