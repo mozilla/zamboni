@@ -793,6 +793,7 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
 
 class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
     obj_data = {
+        'background_color': '#00AACC',
         'carrier': 'telefonica',
         'description': {'en-US': 'Potato french fries'},
         'region': 'br',
