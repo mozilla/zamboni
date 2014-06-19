@@ -39,10 +39,12 @@
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+      {% if not waffle.switch('firefox-accounts') %}
         data-login-url="{{ url('account-login') }}"
         data-persona-url="{{ settings.BROWSERID_JS_URL }}"
         data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
         data-persona-unverified-issuer="{{ settings.UNVERIFIED_ISSUER }}"
+      {% endif %}
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>
@@ -65,7 +67,11 @@
 
 
               {% if not logged %}
-                <a href="#" class="browserid">{{ _('Sign In') }}</a>
+                {% if waffle.switch('firefox-accounts') %}
+                  <a href="{{ fxa_login_link() }}" class="browserid">{{ _('Sign In') }}</a>
+                {% else %}
+                 <a href="#" class="browserid">{{ _('Sign In') }}</a>
+                {% endif %}
               {% endif %}
             </div>
           {% endif %}
