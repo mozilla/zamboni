@@ -1,4 +1,4 @@
-define('reviewersCommbadge', [], function() {
+define('reviewersCommbadge', ['login'], function(login) {
     var $itemHistory = $('#review-files');
     var commThreadUrl = $itemHistory.data('comm-thread-url');
     var threadIdPlaceholder = $itemHistory.data('thread-id-placeholder');
@@ -9,8 +9,7 @@ define('reviewersCommbadge', [], function() {
 
     function _userArg(url) {
         // Persona user token.
-        // TODO: store schema version in localStorage, sync Zamboni + Commonplace login.
-        return urlparams(url, {'_user': localStorage.getItem('0::user'),
+        return urlparams(url, {'_user': login.userToken(),
                                'ordering': '-created'});
     }
 
@@ -63,6 +62,7 @@ define('reviewersCommbadge', [], function() {
                 metadata: format(gettext('By {0} on {1}'),
                                  [author, created]),
                 noteType: noteTypes[note.note_type],
+                _userArg: _userArg,
             }));
         }
     }

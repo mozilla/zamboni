@@ -10,7 +10,7 @@
           <ul>
             <% _.each(attachments, function(attachment) { %>
               <li<% if (attachment.is_image) { %> class="image"<% } %>>
-                <a href="<%= attachment.url %>">
+                <a href="<%= _userArg(attachment.url) %>">
                   <%= attachment.display_name %>
                 </a>
               </li>
