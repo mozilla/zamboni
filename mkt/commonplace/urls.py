@@ -74,6 +74,7 @@ if settings.DEBUG:
         fireplace_route('category/.*'),
         fireplace_route('collection/.*'),
         fireplace_route('debug'),
+        fireplace_route('feed/.*'),
         fireplace_route('feedback'),
         fireplace_route('privacy-policy'),
         fireplace_route('purchases'),
