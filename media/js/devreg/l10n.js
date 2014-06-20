@@ -289,9 +289,3 @@ function annotateLocalizedErrors($el) {
         err.text(format("{0}: ",[l])+t).addClass("l10n");
     });
 }
-
-
-function loc(s) {
-    // A noop function for strings that are not ready to be localized.
-    return s;
-}

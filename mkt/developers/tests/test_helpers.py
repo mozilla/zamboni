@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-import unittest
-import urllib
-
 from django.core.urlresolvers import reverse
 from django.utils import translation
 
@@ -13,10 +10,7 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import render
 from mkt.developers import helpers
-from mkt.files.models import File, Platform
 from mkt.users.models import UserProfile
-from mkt.versions.models import Version
-from mkt.webapps.models import Addon
 
 
 def test_hub_page_title():
@@ -40,7 +34,7 @@ def test_hub_page_title():
     eq_(s1, s2)
 
 
-class TestNewDevBreadcrumbs(amo.tests.TestCase):
+class TestDevBreadcrumbs(amo.tests.TestCase):
 
     def setUp(self):
         self.request = Mock()
@@ -103,23 +97,6 @@ class TestNewDevBreadcrumbs(amo.tests.TestCase):
         amo.tests.check_links(expected, crumbs, verify=False)
 
 
-def test_summarize_validation():
-    v = Mock()
-    v.errors = 1
-    v.warnings = 1
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'1 error, 1 warning')
-    v.errors = 2
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'2 errors, 1 warning')
-    v.warnings = 2
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'2 errors, 2 warnings')
-
-
 def test_log_action_class():
     v = Mock()
     for k, v in amo.LOG_BY_ID.iteritems():
@@ -128,79 +105,6 @@ def test_log_action_class():
         else:
             cls = ''
         eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
-
-
-class TestDisplayUrl(unittest.TestCase):
-
-    def setUp(self):
-        self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
-
-    def test_utf8(self):
-        url = urllib.quote(self.raw_url.encode('utf8'))
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
-
-    def test_unicode(self):
-        url = urllib.quote(self.raw_url.encode('utf8'))
-        url = unicode(url, 'utf8')
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
-
-    def test_euc_jp(self):
-        url = urllib.quote(self.raw_url.encode('euc_jp'))
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
-
-
-class TestDevFilesStatus(amo.tests.TestCase):
-
-    def setUp(self):
-        platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
-        self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version,
-                                        platform=platform,
-                                        status=amo.STATUS_UNREVIEWED)
-
-    def expect(self, expected):
-        cnt, msg = helpers.dev_files_status([self.file], self.addon)[0]
-        eq_(cnt, 1)
-        eq_(msg, expected)
-
-    def test_unreviewed_lite(self):
-        self.addon.status = amo.STATUS_LITE
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_UNREVIEWED])
-
-    def test_unreviewed_public(self):
-        self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
-
-    def test_unreviewed_nominated(self):
-        self.addon.status = amo.STATUS_NOMINATED
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
-
-    def test_unreviewed_lite_and_nominated(self):
-        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_NOMINATED])
-
-    def test_reviewed_lite(self):
-        self.addon.status = amo.STATUS_LITE
-        self.file.status = amo.STATUS_LITE
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_LITE])
-
-    def test_reviewed_public(self):
-        self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_PUBLIC
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_PUBLIC])
-
-    def test_disabled(self):
-        self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_DISABLED
-        self.expect(amo.MKT_STATUS_CHOICES[amo.STATUS_DISABLED])
 
 
 class TestDevAgreement(amo.tests.TestCase):
