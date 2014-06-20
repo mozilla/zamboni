@@ -64,7 +64,7 @@
             "picklefield", "piston", "polib", "product_details", "py",
             "pyasn1", "pyelasticsearch", "pyes", "pyflakes", "pygments",
             "pymemcache", "pymysql", "pyquery", "pytz", "queryset_transform",
-            "quieter_formset", "ratelimit", "raven", "rdflib", "recaptcha",
+            "quieter_formset", "ratelimit", "raven", "rdflib",
             "receipts", "redis", "redis", "redisutils", "requests",
             "rest_framework", "rest_framework", "see", "session_csrf", "share",
             "simplejson", "six", "slumber", "sphinx", "sphinxcontrib",
