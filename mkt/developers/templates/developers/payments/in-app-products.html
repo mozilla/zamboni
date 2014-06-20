@@ -24,6 +24,20 @@
   </header>
 
   <section class="primary manage" role="main">
+    {% if not addon.is_packaged %}
+      <div class="island notification-box">
+        {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}
+          Your app must be packaged and specify an <a href="{{ origin }}">origin</a> to use this in-app payment system.
+        {% endtrans %}
+      </div>
+    {% elif not addon.origin %}
+      <div class="island notification-box">
+        {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}
+          Your app must define an <a href="{{ origin }}">origin</a> in your manifest so that receipts can be verified properly.
+        {% endtrans %}
+      </div>
+    {% endif %}
+
     <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', app_slug=addon.app_slug) }}" data-detail-url-format="{{ url('in-app-products-detail', app_slug=addon.app_slug, pk="{id}") }}">
       <table>
         <thead>
