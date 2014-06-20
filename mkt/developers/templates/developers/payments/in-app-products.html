@@ -39,7 +39,7 @@
     {% endif %}
 
     <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', app_slug=addon.app_slug) }}" data-detail-url-format="{{ url('in-app-products-detail', app_slug=addon.app_slug, pk="{id}") }}">
-      <table>
+      <table id="version-list">
         <thead>
           <tr>
             <th>{{ _('Icon') }}</th>
@@ -55,7 +55,9 @@
           {% endfor %}
         </tbody>
       </table>
-      <button id="add-in-app-product">{{ _('+ Add a product') }}</button>
+      <p class="listing-footer">
+        <button id="add-in-app-product">{{ _('Add a product') }}</button>
+      <p>
     </div>
     <script id="in-app-product-row-template" type="x-template">
       {% with product=new_product %}
