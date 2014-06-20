@@ -2,9 +2,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
-import captcha.fields
 import commonware.log
-import happyforms
 from tower import ugettext as _, ungettext as ngettext
 
 import amo
@@ -94,18 +92,3 @@ def icons():
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons
-
-
-class AbuseForm(happyforms.Form):
-    recaptcha = captcha.fields.ReCaptchaField(label='')
-    text = forms.CharField(required=True,
-                           label='',
-                           widget=forms.Textarea())
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(AbuseForm, self).__init__(*args, **kwargs)
-
-        if (not self.request.user.is_anonymous() or
-            not settings.RECAPTCHA_PRIVATE_KEY):
-            del self.fields['recaptcha']
