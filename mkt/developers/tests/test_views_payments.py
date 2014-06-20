@@ -189,6 +189,21 @@ class TestInAppProductsView(InappTest):
         self.waffle.save()
         eq_(self.get().status_code, 404)
 
+    def test_origin(self):
+        self.app.update(is_packaged=True, app_domain='http://f.c/')
+        doc = pq(self.get().content)
+        ok_(not doc('section.primary div.notification-box'))
+
+    def test_no_origin(self):
+        self.app.update(is_packaged=True, app_domain=None)
+        doc = pq(self.get().content)
+        ok_(doc('section.primary div.notification-box'))
+
+    def test_not_packaged(self):
+        self.app.update(is_packaged=False)
+        doc = pq(self.get().content)
+        ok_(doc('section.primary div.notification-box'))
+
 
 class TestInappSecret(InappTest):
 
