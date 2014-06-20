@@ -1,168 +1,180 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-06-20 22:56+0000\n"
+"Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1403304968.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ਤਾਰਾ"
+msgstr[1] "{0} ਤਾਰੇ"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਵਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਗਈ ਫਾਇਲ-ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਕੀਤੀ ਗਈ।"
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਰੱਦ ਕੀਤਾ"
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
+#: media/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ।"
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "...ਫਾਇਲ ਚੁਣੋ"
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਪੈਕਿਜ ਐਪ ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ <code>.zip</code>।"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% ਮੁਕੰਮਲ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} ਵਿੱਚੋਂ {0}"
 
 #: media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
-msgstr ""
+msgstr "ਰੱਦ ਕਰੋ"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} ਅੱਪਲੋਡ ਜਾਰੀ"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} ਨਾਲ ਗਲਤੀ"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ ਨਾਲ {0} ਗਲਤੀ।"
+msgstr[1] "ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ ਨਾਲ {0} ਗਲਤੀਆਂ।"
 
 #: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
+msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:197
+#: media/js/common/upload-packaged-app.js:323
+#: media/js/devreg/devhub.js:143
 msgid "See full validation report"
-msgstr ""
+msgstr "ਪੂਰੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਰਿਪੋਰਟ ਵੇਖੋ"
 
 #: media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
-msgstr ""
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ ਹੈ; ਸਥਿਤੀ{0}"
 
 #: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
 
 #: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਮੁਕੰਮਲ {0}"
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀਆਂ।"
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਨਹੀਂ।"
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "ਮੈਨੀਫਿਸਟ ਦਿੱਤੇ ਟਿਕਾਣੇ ਨੂੰ ਲੱਭ ਨਹੀਂ ਸਕਦਾ ਸੀ।"
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
+#: media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ ਸੀ।"
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
+#: media/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾ-ਪਾਰਸਯੋਗ ਹੈ।"
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
+#: media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਅਸਮਰੱਥ ਹੈ।"
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "ਐਪ ਪਹਿਲਾਂ ਹੀ ਇੰਸਟਾਲ ਹੈ।"
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ।"
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "ਐਪ ਇੰਸਟਾਲ ਉੱਤੇ ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ।"
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
+#: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀ ਨਾਲ ਪ੍ਰਮਾਣਕਿਤਾ ਅਸਫਲ ਅਤੇ {0} ਸੁਨੇਹਾ (s)।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀਆਂ ਨਾਲ ਪ੍ਰਮਾਣਕਿਤਾ ਅਸਫਲ ਅਤੇ {0} ਸੁਨੇਹਾ (s)।"
 
 #: media/js/devreg/devhub.js:200
+#, fuzzy
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀਆਂ।"
 
 #: media/js/devreg/devhub.js:205
+#, fuzzy
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਪ ਪਾਸ ਹੋ ਗਿਆ ਪ੍ਰਮਾਣਿਕਤਾ ਨਾਲ ਕੋਈ ਗਲਤੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਨਹੀਂ।"
 
 #: media/js/devreg/devhub.js:419
 msgid "Changes Saved"
-msgstr ""
+msgstr "ਬਦਲਾਅ ਸੰਭਾਲਿਆ"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
@@ -170,7 +182,7 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "ਤਾਜਾ ਕੀਤਾ"
 
 #: media/js/devreg/devhub.js:616
 msgid "There was an error uploading your file."
@@ -178,47 +190,54 @@ msgstr ""
 
 #: media/js/devreg/devhub.js:886
 msgid "Learn more"
-msgstr ""
+msgstr "ਹੋਰ ਜਾਣੋ"
 
 #: media/js/devreg/devhub.js:890
 msgid "Example"
-msgstr ""
+msgstr "ਨਮੂਨਾ"
 
 #: media/js/devreg/devhub.js:1192
 msgid "Image changes being processed"
-msgstr ""
+msgstr "ਚਿਤਰ ਬਦਲਾਅ ਉੱਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "ਇਹ ਵੀਡੀਓ ਲਈ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਕਿ ਓਪਨ ਵੀਡੀਓ "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "ਜਾਂ <a href=\"http://www.adobe.com/go/getflashplayer\">ਅਡੋਬ "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
+msgstr "ਫਲੈਸ਼ ਪਲੇਅਰ</a> ਲਈ ਸਹਾਇਕ ਹੋਵੇ।"
+
+#: media/js/devreg/init.js:35
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr ""
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
+#: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "ਇਹ ਅਨੁਵਾਦ ਹਟਾਓ"
 
 #: media/js/devreg/login.js:75
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
+"ਪਰਸੋਨਾ ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੈ।  ਸ਼ਾਇਦ ਤੁਹਾਡੇ ਕੋਲ ਉਸ ਈਮੇਲ ਸਿਰਨਾਵੇਂ ਨਾਲ ਖਾਤਾ ਨਹੀਂ ਹੈ?"
 
 #: media/js/devreg/login.js:80
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "ਪਰਸੋਨਾ ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੈ। ਸਰਵਰ ਗਲਤੀ ਆਈ ਹੈ।"
 
 #: media/js/devreg/lookup-tool.js:65
 msgid "Show All Results"
-msgstr ""
+msgstr "ਸਭ ਨਤੀਜੇ ਵੇਖੋ"
 
 #: media/js/devreg/lookup-tool.js:68
 msgid "Over {0} results found, consider refining your search."
@@ -226,27 +245,27 @@ msgstr ""
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "ਮਨਜ਼ੂਰੀਆਂ ਦੀ ਮੰਗ ਕੀਤੀ ਗਈ:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "ਤਸਦੀਕ ਕੀਤੀ"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "ਅਧਿਕਾਰ ਹਨ"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "ਬਿਨਾਂ-ਅਧਿਕਾਰ"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "ਕੋਈ ਕਾਰਨ ਨਹੀਂ ਦਿੱਤਾ"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "ਠੀਕ ਹੈ"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
@@ -274,7 +293,7 @@ msgstr ""
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "ਕੋਰੀਆਈ ਬੈਂਕ ਤੇ ਬਰਾਂਚ/ਇੰਡੋਨੇਸ਼ੀਆਈ ਬੈਂਕ ਕੋਡ"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
@@ -303,27 +322,40 @@ msgstr ""
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "ਖੋਜਿਆ: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:31
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
 msgstr[1] ""
 
 #: media/js/devreg/payments-manage.js:44
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "{appName} ਭੁਗਤਾਨ ਖਾਤੇ:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:96
+#: media/js/devreg/payments-manage.js:157
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:97
+#: media/js/devreg/payments-manage.js:158
+#, fuzzy
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ।"
 
 #: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
@@ -333,15 +365,18 @@ msgstr ""
 msgid "You do not currently have any payment accounts."
 msgstr ""
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
+#: media/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
+#: media/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr ""
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
+#: media/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr ""
 
@@ -356,41 +391,43 @@ msgstr[1] ""
 msgid "All tests passed successfully."
 msgstr ""
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr ""
+msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਏ ਗਏ।"
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr ""
+msgstr "ਟੈਸਟ"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr ""
+msgstr "ਚੇਤਾਵਨੀ"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "ਅਨੁਕੂਲਤਾ ਟੈਸਟ"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr ""
+msgstr "ਐਪ ਵੈਧਤਾ ਲਈ ਫੇਲ੍ਹ ਹੈ।"
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr ""
+msgstr "ਐਪ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ।"
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ਗਲਤੀ"
+msgstr[1] "{0} ਗਲਤੀਆਂ"
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ਚੇਤਾਵਨੀ"
+msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
@@ -398,7 +435,7 @@ msgstr ""
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr ""
+msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
@@ -430,27 +467,28 @@ msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:275
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #: media/js/devreg/reviewers/editors.js:280
 msgid "Version Notes"
-msgstr ""
+msgstr "ਵਰਜਨ ਸੂਚਨਾ"
 
 #: media/js/devreg/reviewers/editors.js:285
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "ਪੜਤਾਲ ਕਰਤਾ ਲਈ ਸੂਚਨਾ"
 
 #: media/js/devreg/reviewers/editors.js:290
 msgid "No version notes found"
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
+#: media/js/zamboni/admin_validation.js:24
 msgid "Select an application first"
-msgstr ""
+msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕਸ਼ਨ ਚੁਣੋ"
 
 #: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
-msgstr ""
+msgstr "ਅਨੁਵਾਦ ਲੋਡ ਕਰਨ ਲਈ ਗਲਤੀ"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -486,15 +524,15 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "More Information Requested"
-msgstr ""
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਕੀਤੀ ਗਈ"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "ਐਡੀਟਰ ਟਿੱਪਣੀ ਹੈ"
 
 #: media/js/devreg/reviewers/reviewers.js:118
 msgid "Premium App"
-msgstr ""
+msgstr "ਪ੍ਰੀਮੀਅਮ ਐਪ"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Escalated"
@@ -502,19 +540,19 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:126
 msgid "Free"
-msgstr ""
+msgstr "ਮੁਫ਼ਤ"
 
 #: media/js/devreg/reviewers/reviewers.js:234
 msgid "Any"
-msgstr ""
+msgstr "ਕੋਈ ਵੀ"
 
 #: media/js/devreg/reviewers/reviewers.js:261
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "ਮਨਜ਼ੂਰ ਕੀਤੀ ਐਪ: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "ਰੱਦ ਕੀਤੀ ਐਪ: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:270
 msgid "Error approving app: {app}"
@@ -542,7 +580,8 @@ msgid "Following"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
+#: media/js/impala/listing.js:11
+#: media/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr ""
 
@@ -576,19 +615,22 @@ msgstr ""
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
+#: media/js/impala/reviews.js:23
+#: media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "ਪੜਤਾਲ ਲਈ ਨਿਸ਼ਾਨ ਲਗਾਇਆ"
 
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
+#: media/js/impala/reviews.js:40
+#: media/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਸੁਝਾਅ ਦੀ ਲੋੜ ਹੈ"
 
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
+#: media/js/impala/reviews.js:133
+#: media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "ਹਟਾਉਣ ਲਈ ਨਿਸ਼ਾਨਬੱਧ"
 
 #: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
@@ -624,32 +666,34 @@ msgstr ""
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫੇਲ੍ਹ ਹੋਈ।"
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ।"
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "ਐਡਮਿਨ ਤੇ ਐਡੀਟਰਾਂ ਨੂੰ ਲਾਗਇਨ ਕਰਨ ਲਈ ਪਾਸਵਰਡ ਦੇਣਾ ਜ਼ਰੂਰੀ ਹੈ।"
 
 #: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:100
 msgid "Accept and Install"
-msgstr ""
+msgstr "ਮਨਜ਼ੂਰ ਤੇ ਇੰਸਟਾਲ"
 
 #: media/js/zamboni/buttons.js:100
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} ਵਿੱਚ ਜੋੜੋ"
 
 #: media/js/zamboni/buttons.js:105
 msgid "Download Now"
-msgstr ""
+msgstr "ਹੁਣੇ ਡਾਊਨਲੋਡ"
 
 #: media/js/zamboni/buttons.js:135
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -657,10 +701,11 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:140
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਫਾਇਰਫਾਕਸ ਦਾ 10.0 ਜਾਂ ਨਵਾਂ ਵਰਜਨ ਚਾਹੀਦਾ ਹੈ।"
 
 #: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -677,9 +722,10 @@ msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
+#: media/js/zamboni/buttons.js:298
+#: media/js/zamboni/buttons.js:335
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ"
 
 #: media/js/zamboni/buttons.js:361
 msgid "Works with {app} {min} - {max}"
@@ -687,30 +733,33 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:363
 msgid "View other versions"
-msgstr ""
+msgstr "ਹੋਰ ਵਰਜਨ ਵੇਖੋ"
 
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+#: media/js/zamboni/buttons.js:563
+#: media/js/zamboni/mobile/buttons.js:39
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr ""
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ।"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
-msgstr ""
+msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> ਅੱਖਰ ਬਾਕੀ।"
+msgstr[1] "<b>{0}</b> ਅੱਖਰ ਬਾਕੀ"
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਮਜ਼ਬੂਤੀ:"
 
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
@@ -720,7 +769,7 @@ msgstr[1] ""
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
@@ -734,7 +783,8 @@ msgstr ""
 msgid "Experimental <span>(Learn More)</span>"
 msgstr ""
 
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
+#: media/js/zamboni/mobile/buttons.js:79
+#: media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr ""
 
