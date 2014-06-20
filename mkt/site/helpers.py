@@ -9,7 +9,7 @@ from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 from amo.helpers import urlparams
-from amo.urlresolvers import get_outgoing_url, reverse
+from amo.urlresolvers import reverse
 from mkt.translations.helpers import truncate
 
 log = commonware.log.getLogger('z.mkt.site')
@@ -39,18 +39,6 @@ def js(context, bundle, debug=None, defer=False, async=False):
         debug = True
 
     return jingo_minify_helpers.js(bundle, debug, defer, async)
-
-
-@jinja2.contextfunction
-@register.function
-def get_media_hash(context):
-    return jingo_minify_helpers.BUILD_ID_JS + jingo_minify_helpers.BUILD_ID_CSS
-
-
-def new_context(context, **kw):
-    c = dict(context.items())
-    c.update(kw)
-    return c
 
 
 @register.function
@@ -219,15 +207,6 @@ def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
     return jinja2.Markup(t)
 
 
-@register.function
-def grid_field(field, label=None, tag='div', req=None, opt=False, hint=False,
-               some_html=False, cc_startswith=None, cc_maxlength=None,
-               validate=False):
-    return form_field(field, label, tag, req, opt, hint, some_html,
-                      cc_startswith, cc_maxlength, grid=True,
-                      validate=validate)
-
-
 @register.filter
 @jinja2.contextfilter
 def timelabel(context, time):
@@ -258,18 +237,6 @@ def mkt_admin_site_links():
              reverse('zadmin.manifest_revalidation'))
         ],
     }
-
-
-@register.filter
-def external_href(url):
-    t = 'target="_blank" href="%s"' % get_outgoing_url(unicode(url))
-    return jinja2.Markup(t)
-
-
-@register.filter
-def more_button(pager):
-    t = env.get_template('site/paginator.html')
-    return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.function

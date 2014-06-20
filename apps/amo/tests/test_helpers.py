@@ -6,38 +6,20 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.utils import encoding
 
 import jingo
-import test_utils
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
-from pyquery import PyQuery
 
 import amo
 import amo.tests
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck
-from mkt.versions.models import License
 
 
 def render(s, context={}):
     t = jingo.env.from_string(s)
     return t.render(context)
-
-
-def test_strip_html():
-    eq_('Hey Brother!', render('{{ "Hey <b>Brother!</b>"|strip_html }}'))
-
-
-def test_currencyfmt():
-    eq_(helpers.currencyfmt(None, 'USD'), '')
-    eq_(helpers.currencyfmt(5, 'USD'), '$5.00')
-
-
-def test_strip_html_none():
-    eq_('', render('{{ a|strip_html }}', {'a': None}))
-    eq_('', render('{{ a|strip_html(True) }}', {'a': None}))
 
 
 def test_strip_controls():
@@ -55,72 +37,6 @@ def test_slugify_spaces():
     eq_(utils.slugify(' b ar '), 'b-ar')
     eq_(utils.slugify(' b ar ', spaces=True), 'b ar')
     eq_(utils.slugify(' b  ar ', spaces=True), 'b  ar')
-
-
-class TestBreadcrumbs(object):
-
-    def setUp(self):
-        self.request = Mock()
-
-    def test_no_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.request})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        eq_(len(crumbs), 1)
-        eq_(crumbs.text(), 'Add-ons')
-        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
-
-    def test_with_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.request})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        eq_(len(crumbs), 1)
-        eq_(crumbs.text(), 'Add-ons for Firefox')
-        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
-
-    def test_no_add_default(self):
-        s = render('{{ breadcrumbs(add_default=False) }}',
-                   {'request': self.req_app})
-        eq_(len(s), 0)
-
-    def test_items(self):
-        s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                      ('/bar', 'bar')],
-                                     add_default=False) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        eq_(len(crumbs), 2)
-        eq_(crumbs.eq(0).text(), 'foo')
-        eq_(crumbs.eq(0).attr('href'), '/foo')
-        eq_(crumbs.eq(1).text(), 'bar')
-        eq_(crumbs.eq(1).attr('href'), '/bar')
-
-    def test_items_with_default(self):
-        s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                      ('/bar', 'bar')]) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        eq_(len(crumbs), 3)
-        eq_(crumbs.eq(1).text(), 'foo')
-        eq_(crumbs.eq(1).attr('href'), '/foo')
-        eq_(crumbs.eq(2).text(), 'bar')
-        eq_(crumbs.eq(2).attr('href'), '/bar')
-
-    def test_truncate(self):
-        s = render("""{{ breadcrumbs([('/foo', 'abcd efghij'),],
-                                     crumb_size=5) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        eq_('abcd ...', crumbs.eq(1).text())
-
-    def test_xss(self):
-        s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
-                   {'request': self.req_app})
-        assert '&lt;script&gt;' in s, s
-        assert '<script>' not in s
 
 
 @patch('amo.helpers.urlresolvers.reverse')
@@ -271,63 +187,6 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
         'a markup <a href="http://example.com">link</a> with text',
         nofollow=True)
     eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
-
-
-class TestLicenseLink(amo.tests.TestCase):
-
-    def test_license_link(self):
-        mit = License.objects.create(
-            name='MIT/X11 License', builtin=6, url='http://m.it')
-        copyright = License.objects.create(
-            name='All Rights Reserved', icons='copyr', builtin=7)
-        cc = License.objects.create(
-            name='Creative Commons', url='http://cre.at', builtin=8,
-            some_rights=True, icons='cc-attrib cc-noncom cc-share')
-        cc.save()
-        expected = {
-            mit: (
-                '<ul class="license"><li class="text">'
-                '<a href="http://m.it">MIT/X11 License</a></li></ul>'),
-            copyright: (
-                '<ul class="license"><li class="icon copyr"></li>'
-                '<li class="text">All Rights Reserved</li></ul>'),
-            cc: (
-                '<ul class="license"><li class="icon cc-attrib"></li>'
-                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
-                '</li><li class="text"><a href="http://cre.at" '
-                'title="Creative Commons">Some rights reserved</a></li></ul>'),
-        }
-        for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
-
-    def test_license_link_xss(self):
-        mit = License.objects.create(
-            name='<script>', builtin=6, url='<script>')
-        copyright = License.objects.create(
-            name='<script>', icons='<script>', builtin=7)
-        cc = License.objects.create(
-            name='<script>', url='<script>', builtin=8,
-            some_rights=True, icons='<script> cc-noncom cc-share')
-        cc.save()
-        expected = {
-            mit: (
-                '<ul class="license"><li class="text">'
-                '<a href="&lt;script&gt;">&lt;script&gt;</a></li></ul>'),
-            copyright: (
-                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
-                '<li class="text">&lt;script&gt;</li></ul>'),
-            cc: (
-                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
-                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
-                '</li><li class="text"><a href="&lt;script&gt;" '
-                'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
-        }
-        for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
 
 
 def get_image_path(name):
