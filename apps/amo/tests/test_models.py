@@ -1,4 +1,3 @@
-
 from mock import Mock
 from nose.tools import eq_
 

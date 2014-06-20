@@ -105,13 +105,6 @@ def market_button(context, product, receipt_type=None, classes=None):
 
 def product_as_dict(request, product, purchased=None, receipt_type=None,
                     src=''):
-    # Dev environments might not have authors set.
-    author = ''
-    author_url = ''
-    if product.listed_authors:
-        author = product.listed_authors[0].name
-        author_url = product.listed_authors[0].get_url_path()
-
     receipt_url = (reverse('receipt.issue', args=[product.app_slug]) if
                    receipt_type else product.get_detail_url('record'))
     token_url = reverse('generate-reviewer-token', args=[product.app_slug])
@@ -119,6 +112,8 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
     src = src or request.GET.get('src', '')
     reviewer = receipt_type == 'reviewer'
 
+    # This is the only info. we need to render the app buttons on the
+    # Reviewer Tools pages.
     ret = {
         'id': product.id,
         'name': product.name,
@@ -127,24 +122,9 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
         'manifest_url': product.get_manifest_url(reviewer),
         'recordUrl': urlparams(receipt_url, src=src),
         'tokenUrl': token_url,
-        'author': author,
-        'author_url': author_url,
-        'iconUrl': product.get_icon_url(64),
         'is_packaged': product.is_packaged,
         'src': src
     }
-
-    # Add in previews to the dict.
-    if product.all_previews:
-        previews = []
-        for p in product.all_previews:
-            preview = {
-                'fullUrl': jinja2.escape(p.image_url),
-                'type': jinja2.escape(p.filetype),
-                'thumbUrl': jinja2.escape(p.thumbnail_url),
-            }
-            previews.append(preview)
-        ret.update({'previews': previews})
 
     if product.premium:
         ret.update({
