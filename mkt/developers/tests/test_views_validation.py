@@ -16,11 +16,12 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from mkt.developers.views import standalone_hosted_upload
+from mkt.developers.views import standalone_hosted_upload, trap_duplicate
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
+from mkt.webapps.models import AddonUser, Webapp
 from mkt.site.fixtures import fixture
 
 
@@ -134,6 +135,26 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
                                                       'status_code content')
         standalone_hosted_upload(request)
         assert not trap_duplicate_mock.called
+
+    def test_trap_duplicate(self):
+        self.create_switch('webapps-unique-by-domain')
+        manifest = 'https://omg.org/yes.webapp'
+        request = Mock(
+            method='POST',
+            POST={'manifest': manifest},
+            return_value = collections.namedtuple('FakeResponse',
+                'status_code content'),
+        )
+        # Mocking a queryset that contains single `AddonUser` that contains
+        # a `Webapp` with a suspicious name.
+        request.user.addonuser_set.filter.return_value = [
+            AddonUser(addon=Webapp(name='<script>alert("poop")</script>'))
+        ]
+
+        standalone_hosted_upload(request)
+        msg = trap_duplicate(request, manifest)
+        assert '&lt;script&gt;alert(&#34;poop&#34;)&lt;/script&gt;' in msg, (
+            'Error message should be escaped.')
 
 
 class TestStandaloneValidation(BaseUploadTest):

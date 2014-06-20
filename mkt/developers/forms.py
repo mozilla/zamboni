@@ -14,6 +14,7 @@ from django.template.defaultfilters import filesizeformat
 import commonware
 import happyforms
 import waffle
+from jinja2 import escape as jinja2_escape
 from product_details import product_details
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
@@ -209,7 +210,7 @@ def trap_duplicate(request, manifest_url):
                  'for %s, which is currently disabled. '
                  '<a href="%s">Edit app</a>')
     if msg:
-        return msg % (app.name, error_url)
+        return msg % (jinja2_escape(app.name), error_url)
 
 
 def verify_app_domain(manifest_url, exclude=None, packaged=False):
