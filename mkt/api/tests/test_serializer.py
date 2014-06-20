@@ -7,14 +7,22 @@ from nose.tools import eq_, ok_
 from rest_framework.serializers import Serializer, ValidationError
 from test_utils import RequestFactory
 
-from mkt.users.models import UserProfile 
+from mkt.users.models import UserProfile
 from mkt.api.serializers import PotatoCaptchaSerializer, URLSerializerMixin
 from mkt.site.fixtures import fixture
-from mkt.site.tests.test_forms import PotatoCaptchaTestCase
 
 
-class TestPotatoCaptchaSerializer(PotatoCaptchaTestCase):
+class TestPotatoCaptchaSerializer(TestCase):
     fixtures = fixture('user_999')
+
+    def setUp(self):
+        self.request = mock.Mock()
+        self.request.META = {}
+        self.request.user = mock.Mock()
+        self.context = {'request': self.request}
+        self.request.user.is_authenticated = lambda: False
+        self.data = {'tuber': '', 'sprout': 'potato'}
+
 
     def test_success_authenticated(self):
         self.request.user = UserProfile.objects.get(id=999)
