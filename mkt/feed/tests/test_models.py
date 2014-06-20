@@ -9,7 +9,7 @@ from nose.tools import eq_, ok_
 import amo.tests
 
 import mkt.feed.constants as feed
-from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
+from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedShelf
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -39,6 +39,15 @@ class FeedTestMixin(object):
             name=name, slug='feed-coll-%s' % count, type=coll_type, **kwargs)
         coll.set_apps(app_ids or [337141])
         return coll
+
+    def feed_shelf_factory(self, app_ids=None, name='test-shelf',
+                           carrier=1, region=1, **kwargs):
+        count = FeedShelf.objects.count()
+        shelf = FeedShelf.objects.create(
+            name=name, slug='feed-shelf-%s' % count, carrier=carrier,
+            region=region, **kwargs)
+        shelf.set_apps(app_ids or [337141])
+        return shelf
 
 
 class FeedAppMixin(object):

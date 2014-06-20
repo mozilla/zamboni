@@ -18,8 +18,7 @@ from django.core.management.base import BaseCommand, CommandError
 from amo.utils import chunked, timestamp_index
 from lib.es.models import Reindexing
 
-from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer)
+import mkt.feed.indexers as f_indexers
 from mkt.webapps.models import WebappIndexer
 
 
@@ -37,15 +36,17 @@ INDEXES = (
     (settings.ES_INDEXES['webapp'], WebappIndexer, 100),
     # Currently using 500 since these are manually created by a curator and
     # there will probably never be this many.
-    (settings.ES_INDEXES['mkt_feed_app'], FeedAppIndexer, 500),
-    (settings.ES_INDEXES['mkt_feed_brand'], FeedBrandIndexer, 500),
-    (settings.ES_INDEXES['mkt_feed_collection'], FeedCollectionIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_app'], f_indexers.FeedAppIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_brand'], f_indexers.FeedBrandIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_collection'],
+     f_indexers.FeedCollectionIndexer, 500),
+    (settings.ES_INDEXES['mkt_feed_shelf'], f_indexers.FeedShelfIndexer, 500),
 )
 
 INDEX_DICT = {
     # In case we want to index only a subset of indexes.
     'webapp': [INDEXES[0]],
-    'feed': [INDEXES[1], INDEXES[2], INDEXES[3]],
+    'feed': [INDEXES[1], INDEXES[2], INDEXES[3], INDEXES[4]],
 }
 
 if hasattr(settings, 'ES_URLS'):

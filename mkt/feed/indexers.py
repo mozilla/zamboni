@@ -3,6 +3,8 @@ Indexers for FeedApp, FeedBrand, FeedCollection are for Curator Tools search.
 """
 from amo.utils import attach_trans_dict
 
+import mkt.carriers
+import mkt.regions
 from mkt.search.indexers import BaseIndexer
 from mkt.webapps.models import Webapp
 
@@ -112,8 +114,49 @@ class FeedCollectionIndexer(BaseIndexer):
 
         return {
             'id': obj.id,
-            'slug': obj.slug,
             'name': list(set(string for _, string
                              in obj.translations[obj.name_id])),
+            'slug': obj.slug,
             'type': obj.type,
+        }
+
+
+class FeedShelfIndexer(BaseIndexer):
+    @classmethod
+    def get_model(cls):
+        from mkt.feed.models import FeedShelf
+        return FeedShelf
+
+    @classmethod
+    def get_mapping(cls):
+        doc_type = cls.get_mapping_type_name()
+
+        return {
+            doc_type: {
+                'properties': {
+                    'id': {'type': 'integer'},
+                    'name': {'type': 'string', 'analyzer': 'default_icu'},
+                    'slug': {'type': 'string'},
+                    'carrier': {'type': 'string', 'index': 'not_analyzed'},
+                    'region': {'type': 'string', 'index': 'not_analyzed'},
+                }
+            }
+        }
+
+    @classmethod
+    def extract_document(cls, obj_id, obj=None):
+        from mkt.feed.models import FeedShelf
+
+        if obj is None:
+            obj = cls.get_model().get(pk=obj_id)
+
+        attach_trans_dict(FeedShelf, [obj])
+
+        return {
+            'id': obj.id,
+            'name': list(set(string for _, string
+                             in obj.translations[obj.name_id])),
+            'slug': obj.slug,
+            'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
+            'region': mkt.regions.REGIONS_CHOICES_ID_DICT[obj.region].slug,
         }

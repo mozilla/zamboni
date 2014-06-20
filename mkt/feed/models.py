@@ -319,6 +319,9 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
         abstract = False
         db_table = 'mkt_feed_shelf'
 
+    def get_indexer(self):
+        return indexers.FeedShelfIndexer
+
     def image_path(self):
         return os.path.join(settings.FEED_SHELF_BG_PATH,
                             str(self.pk / 1000),
@@ -403,6 +406,8 @@ class FeedItem(amo.models.ModelBase):
           dispatch_uid='feedbrand.search.index')
 @receiver(models.signals.post_save, sender=FeedCollection,
           dispatch_uid='feedcollection.search.index')
+@receiver(models.signals.post_save, sender=FeedShelf,
+          dispatch_uid='feedshelf.search.index')
 def update_search_index(sender, instance, **kw):
     index.delay([instance.id], instance.get_indexer())
 
