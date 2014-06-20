@@ -133,6 +133,7 @@ $(document).ready(function() {
             $error_box.append($eb_messages);
 
             $.each(messages, function(i, m) {
+                // Make sure that all the text in `m.message` is properly escaped!
                 var li = $('<li>', {'html': m.message});
                 $eb_messages.append(li);
             });

@@ -176,13 +176,15 @@
                 var errors_ul = $('<ul>', {'id': 'upload_errors'});
 
                 $.each(all_errors.splice(0, 5), function(i, error) {
-                    errors_ul.append($('<li>', {'html': error }));
+                    // Make sure that all the text in `error` is properly escaped!
+                    errors_ul.append($('<li>', {'html': error}));
                 });
 
                 if (all_errors.length > 0) {
                     var message = format(ngettext('&hellip;and {0} more',
                                                   '&hellip;and {0} more',
                                                   all_errors.length), [all_errors.length]);
+                    // Make sure that all the text in `message` is properly escaped!
                     errors_ul.append($('<li>', {'html': message}));
                 }
 
