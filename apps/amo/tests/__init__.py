@@ -43,7 +43,7 @@ from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer)
+                               FeedCollectionIndexer, FeedShelfIndexer)
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, Platform
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
@@ -820,7 +820,7 @@ class ESTestCase(TestCase):
                 print 'Could not delete index %r: %s' % (index, exc)
 
         for indexer in (WebappIndexer, FeedAppIndexer, FeedBrandIndexer,
-                        FeedCollectionIndexer):
+                        FeedCollectionIndexer, FeedShelfIndexer):
             indexer.setup_mapping()
 
     @classmethod

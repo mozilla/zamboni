@@ -12,7 +12,7 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
 from mkt.collections.views import CollectionImageViewSet
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer)
+                               FeedCollectionIndexer, FeedShelfIndexer)
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
@@ -273,11 +273,15 @@ class FeedElementSearchView(CORSMixin, APIView):
             **query).values_list('id')]
         feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
             name__match=self._fuzzy(q), **query).values_list('id')])
+        feed_shelf_ids = ([pk[0] for pk in S(FeedShelfIndexer).query(
+            name__match=self._fuzzy(q), slug__match=self._fuzzy(q),
+            carrier__prefix=q, region=q, should=True).values_list('id')])
 
         # Dehydrate.
         apps = FeedApp.objects.filter(id__in=feed_app_ids)
         brands = FeedBrand.objects.filter(id__in=feed_brand_ids)
         colls = FeedCollection.objects.filter(id__in=feed_collection_ids)
+        shelves = FeedShelf.objects.filter(id__in=feed_shelf_ids)
 
         # Serialize.
         ctx = {'request': request}
@@ -286,10 +290,13 @@ class FeedElementSearchView(CORSMixin, APIView):
                   for brand in brands]
         collections = [FeedCollectionSerializer(coll, context=ctx).data
                        for coll in colls]
+        shelves = [FeedShelfSerializer(shelf, context=ctx).data
+                   for shelf in shelves]
 
         # Return.
         return response.Response({
             'apps': apps,
             'brands': brands,
-            'collections': collections
+            'collections': collections,
+            'shelves': shelves
         })

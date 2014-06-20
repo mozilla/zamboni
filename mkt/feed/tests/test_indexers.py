@@ -2,7 +2,9 @@ from nose.tools import eq_
 
 import amo.tests
 
-from mkt.feed.models import FeedApp, FeedBrand, FeedCollection
+import mkt.carriers
+import mkt.regions
+from mkt.feed.models import FeedApp, FeedBrand, FeedCollection, FeedShelf
 from mkt.feed.tests.test_models import FeedTestMixin
 from mkt.webapps.models import Webapp
 
@@ -62,3 +64,22 @@ class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
         assert self.obj.name.localized_string in doc['name']
         eq_(doc['slug'], self.obj.slug)
         eq_(doc['type'], self.obj.type)
+
+
+class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
+                           amo.tests.TestCase):
+
+    def setUp(self):
+        self.obj = self.feed_shelf_factory()
+        self.indexer = self.obj.get_indexer()()
+        self.model = FeedShelf
+
+    def test_extract(self):
+        doc = self._get_doc()
+        eq_(doc['id'], self.obj.id)
+        assert self.obj.name.localized_string in doc['name']
+        eq_(doc['slug'], self.obj.slug)
+        eq_(doc['carrier'],
+            mkt.carriers.CARRIER_CHOICE_DICT[self.obj.carrier].slug)
+        eq_(doc['region'],
+            mkt.regions.REGIONS_CHOICES_ID_DICT[self.obj.region].slug)

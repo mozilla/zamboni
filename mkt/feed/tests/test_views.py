@@ -927,6 +927,7 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         self.app = self.feed_app_factory()
         self.brand = self.feed_brand_factory()
         self.collection = self.feed_collection_factory(name='Super Collection')
+        self.shelf = self.feed_shelf_factory()
         self.feed_permission()
         self.url = reverse('api-v2:feed.element-search')
 
@@ -936,6 +937,7 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         self.refresh(FeedApp._meta.db_table)
         self.refresh(FeedBrand._meta.db_table)
         self.refresh(FeedCollection._meta.db_table)
+        self.refresh(FeedShelf._meta.db_table)
 
     def _search(self, q):
         res = self.client.get(self.url, data={'q': 'feed'})
@@ -948,3 +950,4 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         eq_(data['apps'][0]['id'], self.app.id)
         eq_(data['brands'][0]['id'], self.brand.id)
         eq_(data['collections'][0]['id'], self.collection.id)
+        eq_(data['shelves'][0]['id'], self.shelf.id)
