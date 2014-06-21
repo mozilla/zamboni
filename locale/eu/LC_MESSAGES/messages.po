@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-19 21:55+0000\n"
+"PO-Revision-Date: 2014-06-21 00:35+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1403214946.0\n"
+"X-POOTLE-MTIME: 1403310919.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1864,15 +1864,15 @@ msgstr "Premium"
 
 #: apps/constants/base.py:289
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium-a aplikazio barneko ordainketekin"
 
 #: apps/constants/base.py:290
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Doakoa aplikazio barneko ordainketekin"
 
 #: apps/constants/base.py:291
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Nire sistema propioa erabiliko dut aplikazio barneko ordainketentzako"
 
 #: apps/constants/base.py:341
 msgid "Only ask on this add-on's page and developer profile"
@@ -1956,15 +1956,15 @@ msgstr "Gai osoaren behin behineko berrikuspena"
 
 #: apps/constants/base.py:455
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Gai osoaren berrikuspena eguneratuta"
 
 #: apps/constants/base.py:456
 msgid "Web App Review"
-msgstr ""
+msgstr "Web aplikazioaren berrikuspena"
 
 #: apps/constants/base.py:457
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Paketeratutako aplikazioaren berrikuspena"
 
 #: apps/constants/base.py:458
 msgid "Web App Re-review"
@@ -1972,15 +1972,15 @@ msgstr "Web aplikazioaren bigarren berrikuspena"
 
 #: apps/constants/base.py:459
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Paketeratutako aplikazioaren berrikuspena eguneratuta"
 
 #: apps/constants/base.py:460
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Gehigarriaren moderatutako berrikuspena"
 
 #: apps/constants/base.py:461
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Aplikazioaren moderatutako berrikuspena"
 
 #: apps/constants/base.py:518
 msgid "Level 1"
@@ -2052,7 +2052,7 @@ msgstr ""
 
 #: apps/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Borondatezkoa"
 
 #: apps/constants/payments.py:63 mkt/constants/payments.py:7
 msgid "Pending"
@@ -5188,15 +5188,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Baimendu"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Ukatu"
 
 #: mkt/developers/templates/developers/search.html:7
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Bilatu garatzaileentzako dokumentazioan"
 
 #: mkt/developers/templates/developers/search.html:9 mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6
 #: mkt/lookup/templates/lookup/includes/user_search.html:6 mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10
@@ -5207,11 +5207,11 @@ msgstr "Bilatu"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:63
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Firefox Marketplace-eko garatzaileak"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 msgid "API Reference"
-msgstr ""
+msgstr "Kontsultarako APIa"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:71
 msgid "Submit an app"
@@ -5239,7 +5239,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:134
 msgid "Please sign in"
-msgstr ""
+msgstr "Hasi saioa, mesedez"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:136
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
