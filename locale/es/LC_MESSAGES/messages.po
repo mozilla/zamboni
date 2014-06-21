@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-05-12 18:42+0000\n"
-"Last-Translator: Inma <inma.barrios@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2014-06-21 20:21+0000\n"
+"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1399920172.0\n"
+"X-POOTLE-MTIME: 1403382066.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1399,11 +1399,20 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Lo sentimos, no encontramos lo que buscas.</h1> <p> La página o el archivo que buscas no se encuentra. Es posible que el enlace esté desactualizado o que hayas escrito mal la dirección. </p> "
-"<ul> <li>Si escribiste la dirección, echa un vistazo a ver si hay algun error ortotipográfico.<li> <li> Si accediste al enlace desde otro sitio, háznoslo saber escribiéndonos a <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dinos desde dónde accediste y qué estabas buscando. Haremos todo lo posible por solucionar el error. </li> </ul> <p>También puedes echarle un "
-"vistazo a nuestras páginas más populares.</p> <ul> <li> ¿Quieres <a href=\"%(search)s\">buscar un complemento</a>? Puedes acceder a la <a href=\"%(search)s\">página de búsqueda</a> o utilizar el "
-"campo de búsqueda de más abajo. </li> <li> Si prefieres empezar de nuevo, ve a la <a href=\"%(home)s\">página principal de los complementos</a>. </li> </ul>"
+"<h1>Lo sentimos, no encontramos lo que buscas.</h1> <p> La página o el "
+"archivo que buscas no se encuentra. Es posible que el enlace esté "
+"desactualizado o que hayas escrito mal la dirección. </p> <ul> <li>Si "
+"escribiste la dirección, echa un vistazo a ver si hay algún error "
+"ortotipográfico.</li> <li> Si accediste al enlace desde otro sitio, háznoslo "
+"saber escribiéndonos a <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dinos desde "
+"dónde accediste y qué estabas buscando. Haremos todo lo posible por "
+"solucionar el error. </li> </ul> <p>También puedes echarle un vistazo a "
+"nuestras páginas más populares.</p> <ul> <li> ¿Quieres <a href=\"%"
+"(search)s\">buscar un complemento</a>? Puedes acceder a la <a href=\"%"
+"(search)s\">página de búsqueda</a> o utilizar el campo de búsqueda de más "
+"abajo. </li> <li> Si prefieres empezar de nuevo, ve a la <a href=\"%"
+"(home)s\">página principal de los complementos</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -6663,22 +6672,32 @@ msgid ""
 "To add a Boku payment account you must sign up for a new Mozilla specific account on Boku's website. After sign up it will take 24-48 hours for Boku to approve the account. You can find "
 "documentation and access to the Boku site on the Mozilla Developer Network."
 msgstr ""
+"Para incorporar una cuenta de pago Boku debes registrarte para una nueva "
+"cuenta específica de Mozilla en el sitio web de Boku. Luego de registrarte "
+"Boku demorará 24-48 horas para aprobar la cuenta. Puedes encontrar "
+"documentación y acceso al sitio web de Boku en la Red de Desarrolladores de "
+"Mozilla."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:19
 msgid "Go to Boku documentation on MDN"
-msgstr ""
+msgstr "Ir a la documentación de Boku en MDN"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"¿Te has registrado para una cuenta de Boku y ya la han aprobado? Por favor "
+"crea un nombre de cuenta y tu identificador de Boku debajo."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
-msgstr ""
+msgstr "Crea un nombre para esta cuenta."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"Identificador alfanumérico listado como Nombre de Servicio en el sitio web "
+"de Boku. Más información en el <a href=\"%(boku_docs_url)s\" "
+"target=\"_blank\">sitio MDN de Boku</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72 templates/impala/base.html:118
 #: templates/impala/base.html:133 templates/impala/base.html:151 templates/impala/base.html:161
@@ -8237,7 +8256,7 @@ msgstr "Análisis de la ap."
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "App: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
