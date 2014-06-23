@@ -15,18 +15,23 @@ elasticsearch over curl.
 Installation
 ------------
 
-Elasticsearch comes with most package managers.::
+For the moment our code will not work with Elasticsearch 1.0 or later. For
+that reason we must install the latest version 0.90.x. We are working on
+updating our code to work with 1.0+ and then you can use your favorite
+package manager to install Elasticsearch. Until then, you can install by
+doing the following::
 
-    brew install elasticsearch  # or whatever your package manager is called.
-
-If Elasticsearch isn't packaged for your system, you can install it
-manually, `here are some good instructions on how to do so
-<http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
+    curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.13.tar.gz
+    tar -xvzf elasticsearch-0.90.13.tar.gz
+    cd elasticsearch-0.90.13
 
 For running Marketplace you must install the
-`ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_.
-See the `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_
-for instructions on installing this plugin.
+`ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_::
+
+    ./bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
+
+For more about the ICU plugin, see the
+`ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_.
 
 Settings
 --------
@@ -38,17 +43,12 @@ different from normal text.
 
 To get the same results as our servers, configure Elasticsearch by copying the
 :src:`scripts/elasticsearch/elasticsearch.yml` (available in the
-``scripts/elasticsearch/`` folder of your install) to your system:
+``scripts/elasticsearch/`` folder of your install) to your system.
 
-* If on OS X, copy that file into
-  ``/usr/local/Cellar/elasticsearch/*/config/``.
-* On Linux, the directory is ``/etc/elasticsearch/``.
+For example, copy it to the local directory so it's nearby when you launch
+Elasticsearch::
 
-.. note::
-
-   If you are on a linux box, make sure to comment out the 4 lines relevant to
-   the path configuration, unless it corresponds to an existing
-   ``/usr/local/var`` folder and you want it to be stored there.
+    cp /path/to/zamboni/scripts/elasticsearch/elasticsearch.yml .
 
 If you don't do this your results will be slightly different, but you probably
 won't notice.
@@ -56,20 +56,20 @@ won't notice.
 Launching and Setting Up
 ------------------------
 
-Launch the Elasticsearch service. If you used homebrew, ``brew info
-elasticsearch`` will show you the commands to launch. If you used aptitude,
-Elasticsearch will come with a start-stop daemon in /etc/init.d.
+Launch the Elasticsearch service::
 
-Zamboni has commands that sets up mappings and indexes objects such as add-ons
-and apps for you. Setting up the mappings is analagous to defining the
-structure of a table, indexing is analagous to storing rows.
+    ./bin/elasticsearch -f -D elasticsearch.yml
+
+Zamboni has commands that sets up mappings and indexes for you. Setting up
+the mappings is analagous to defining the structure of a table, indexing
+is analagous to storing rows.
 
 It is worth noting that the index is maintained incrementally through
 post_save and post_delete hooks.
 
 Use this to create the apps index and index apps::
 
-    ./manage.py reindex_mkt --settings=your_local_mkt_settings
+    ./manage.py reindex_mkt
 
 Or you could use the makefile target (using the ``settings_local.py`` file)::
 
