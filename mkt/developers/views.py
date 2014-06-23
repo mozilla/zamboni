@@ -1157,10 +1157,12 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             }, status=http_status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
         app = self.get_object()
-
-        # Verify token.
         data = request.DATA[0]
+        if settings.DEBUG:
+            log.debug(u'%s' % data)
+
         if app.iarc_token() != data.get('token'):
+            # Verify token.
             log.info(u'Token mismatch in IARC pingback for app:%s' % app.id)
             return Response({'detail': 'Token mismatch'},
                             status=http_status.HTTP_400_BAD_REQUEST)
