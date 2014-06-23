@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2013-11-10 00:18+0000\n"
+"PO-Revision-Date: 2014-06-23 07:14+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384042689.0\n"
+"X-POOTLE-MTIME: 1403507684.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -857,11 +857,11 @@ msgstr "Utvidelser"
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59 templates/base.html:9 templates/impala/base.html:9
 msgid "Firefox Marketplace"
-msgstr "Firefox Markedsplass"
+msgstr "Firefox Marketplace"
 
 #: apps/amo/helpers.py:302
 msgid "Apps Marketplace"
-msgstr "Apps-markedsplass"
+msgstr "Apps Marketplace"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:421
