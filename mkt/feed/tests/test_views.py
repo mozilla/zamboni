@@ -951,3 +951,40 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         eq_(data['brands'][0]['id'], self.brand.id)
         eq_(data['collections'][0]['id'], self.collection.id)
         eq_(data['shelves'][0]['id'], self.shelf.id)
+
+
+class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedShelfPublishView, self).setUp()
+        self.shelf = self.feed_shelf_factory()
+        self.url = reverse('api-v2:feed-shelf-publish', args=[self.shelf.id])
+        self.feed_permission()
+
+    def test_publish(self):
+        res = self.client.put(self.url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 201)
+
+        eq_(data['carrier'],
+            mkt.carriers.CARRIER_CHOICE_DICT[self.shelf.carrier].slug)
+        eq_(data['region'],
+            mkt.regions.REGIONS_CHOICES_ID_DICT[self.shelf.region].slug)
+        eq_(data['shelf']['id'], self.shelf.id)
+
+    def test_publish_overwrite(self):
+        res = self.client.put(self.url)
+        eq_(FeedItem.objects.count(), 1)
+        assert FeedItem.objects.filter(shelf_id=self.shelf.id).exists()
+
+        new_shelf = self.feed_shelf_factory()
+        new_url = reverse('api-v2:feed-shelf-publish', args=[new_shelf.id])
+        self.client.put(new_url)
+        eq_(FeedItem.objects.count(), 1)
+        assert FeedItem.objects.filter(shelf_id=new_shelf.id).exists()
+
+    def test_404(self):
+        self.url = reverse('api-v2:feed-shelf-publish', args=[8008135])
+        res = self.client.put(self.url)
+        eq_(res.status_code, 404)

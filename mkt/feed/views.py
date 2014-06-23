@@ -7,6 +7,7 @@ from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
 
 import mkt
+import mkt.feed.constants as feed
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -235,6 +236,42 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
     """
     serializer_class = FeedShelfSerializer
     queryset = FeedShelf.objects.all()
+
+
+class FeedShelfPublishView(CORSMixin, APIView):
+    """
+    Create a FeedItem for a FeedShelf with respective carrier/region pair.
+    Deletes any currently existing FeedItems with the carrier/region pair to
+    effectively "unpublish" it since only one shelf can be toggled at a time
+    for a carrier/region.
+    """
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Feed', 'Curate')]
+    cors_allowed_methods = ('put',)
+
+    def put(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        try:
+            if pk.isdigit():
+                shelf = FeedShelf.objects.get(pk=pk)
+            else:
+                shelf = FeedShelf.objects.get(slug=pk)
+        except FeedShelf.DoesNotExist:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+        feed_item_kwargs = {
+            'item_type': feed.FEED_TYPE_SHELF,
+            'carrier': shelf.carrier,
+            'region': shelf.region
+        }
+        FeedItem.objects.filter(**feed_item_kwargs).delete()
+        feed_item = FeedItem.objects.create(shelf_id=shelf.id,
+                                            **feed_item_kwargs)
+
+        # Return.
+        return response.Response(FeedItemSerializer(feed_item).data,
+                                 status=status.HTTP_201_CREATED)
 
 
 class FeedElementSearchView(CORSMixin, APIView):
