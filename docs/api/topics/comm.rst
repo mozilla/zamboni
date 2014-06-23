@@ -233,6 +233,11 @@ Note
 
 .. _note-type-label:
 
+    Only "No Action", "Reviewer Comment", and "Developer Comment" note types
+    can be created through the Note API. Further, one must be a reviewer to
+    make a "Reviewer Comment". And one must be a developer of an app to make
+    a "Developer Comment" on an app's thread.
+
     Note type values and associated actions -
 
     ..
@@ -245,13 +250,27 @@ Note
 
         3 - Disabled
 
-        4 - MoreInfo
+        4 - More Information Required
 
         5 - Escalation
 
         6 - Reviewer Comment
 
         7 - Resubmission
+
+        8 - Approved but Unpublished
+
+        9 - Escalation Cleared
+
+        10 - Escalation due to High Refund Requests
+
+        11 - Escalation due to High Abuse Reports
+
+        12 - Re-review cleared
+
+        13 - Submission
+
+        14 - Developer comment
 
 .. _note-patch-label:
 

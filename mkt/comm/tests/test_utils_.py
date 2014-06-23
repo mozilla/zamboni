@@ -27,22 +27,32 @@ class TestEmailReplySaving(TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
-        app = app_factory(name='Antelope', status=amo.STATUS_PENDING)
+        self.app = app_factory(name='Antelope', status=amo.STATUS_PENDING)
         self.profile = UserProfile.objects.get(pk=999)
-        t = CommunicationThread.objects.create(addon=app,
-            version=app.current_version, read_permission_reviewer=True)
+        t = CommunicationThread.objects.create(
+            addon=self.app, version=self.app.current_version,
+            read_permission_reviewer=True)
 
         self.create_switch('comm-dashboard')
-        self.token = CommunicationThreadToken.objects.create(thread=t,
-            user=self.profile)
+        self.token = CommunicationThreadToken.objects.create(
+            thread=t, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.email_base64 = open(sample_email).read()
         self.grant_permission(self.profile, 'Apps:Review')
 
     def test_successful_save(self):
         note = save_from_email_reply(self.email_base64)
-        assert note
         eq_(note.body, 'test note 5\n')
+
+    def test_developer_comment(self):
+        self.profile.addonuser_set.create(addon=self.app)
+        note = save_from_email_reply(self.email_base64)
+        eq_(note.note_type, comm.DEVELOPER_COMMENT)
+
+    def test_reviewer_comment(self):
+        self.grant_permission(self.profile, 'Apps:Review')
+        note = save_from_email_reply(self.email_base64)
+        eq_(note.note_type, comm.REVIEWER_COMMENT)
 
     def test_with_max_count_token(self):
         # Test with an invalid token.

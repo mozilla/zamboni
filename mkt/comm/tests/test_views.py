@@ -15,9 +15,10 @@ from amo.tests import (addon_factory, req_factory_factory, user_factory,
                        version_factory)
 from mkt.users.models import UserProfile
 
-import mkt.constants.comm
+import mkt.constants.comm as comm
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
+from mkt.comm.views import (EmailCreationPermission, post_email,
+                            ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
 from mkt.site.fixtures import fixture
@@ -415,6 +416,36 @@ class TestNote(NoteSetupMixin):
         # one of the authors of the addon.
         eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
 
+    def test_create_dev_comment(self):
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': comm.DEVELOPER_COMMENT,
+                                'body': 'something'}))
+        eq_(res.status_code, 201)
+
+        self.addon.addonuser_set.filter(user=self.profile).delete()
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': comm.DEVELOPER_COMMENT,
+                                'body': 'something'}))
+        eq_(res.status_code, 403)
+
+    def test_create_rev_comment(self):
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': comm.REVIEWER_COMMENT,
+                                'body': 'something'}))
+        eq_(res.status_code, 403)
+
+        self.grant_permission(self.profile, 'Apps:Review')
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': comm.DEVELOPER_COMMENT,
+                                'body': 'something'}))
+        eq_(res.status_code, 201)
+
+    def test_create_whitelisted_note_types(self):
+        res = self.client.post(self.list_url, data=json.dumps(
+                               {'note_type': comm.RESUBMISSION,
+                                'body': 'something'}))
+        eq_(res.status_code, 400)
+
     def test_create_no_perm(self):
         self.thread.update(read_permission_developer=False)
         res = self.client.post(self.list_url, data=json.dumps(
@@ -488,7 +519,7 @@ class TestAttachments(NoteSetupMixin):
         eq_(attach2.description, 'mmm, bacon')
         assert attach2.is_image()
 
-    @mock.patch.object(mkt.constants.comm, 'MAX_ATTACH', 1)
+    @mock.patch.object(comm, 'MAX_ATTACH', 1)
     def test_max_attach(self):
         data = self._attachments(num=2)
         res = self.client.post(self.attachment_url, data=data,

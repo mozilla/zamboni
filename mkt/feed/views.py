@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from elasticutils.contrib.django import S
 from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
@@ -77,17 +79,20 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
 
 class RegionCarrierFilter(BaseFilterBackend):
-    def filter_queryset(self, request, queryset, view):
-        filters = {}
+    def filter_queryset(self, request, qs, view):
         q = request.QUERY_PARAMS
 
+        # Filter for only the region if specified.
         if q.get('region'):
-            filters['region'] = mkt.regions.REGIONS_DICT[
-                q['region']].id
+            region_id =mkt.regions.REGIONS_DICT[q['region']].id
+            qs = qs.filter(region=region_id)
+
+        # Exclude feed items that specify carrier but do not match carrier.
         if q.get('carrier'):
-            filters['carrier'] = mkt.carriers.CARRIER_MAP[
-                q['carrier']].id
-        return queryset.filter(**filters)
+            carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
+            qs = qs.exclude(~Q(carrier=carrier), carrier__isnull=False)
+
+        return qs
 
 
 class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):

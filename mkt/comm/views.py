@@ -25,6 +25,7 @@ from amo.utils import HttpResponseSendFile
 
 import mkt.comm.forms as forms
 import mkt.constants.comm as comm
+from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
@@ -192,12 +193,24 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         form = forms.CreateCommNoteForm(request.DATA)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
+        note_type = form.cleaned_data['note_type']
+
+        if (note_type == comm.DEVELOPER_COMMENT and not
+            request.amo_user.addonuser_set.filter(
+                addon=thread.addon).exists()):
+            # Developer comment only for developers.
+            return Response('Only developers can make developer comments',
+                            status=status.HTTP_403_FORBIDDEN)
+        elif (note_type == comm.REVIEWER_COMMENT and not
+              acl.check_reviewer(request)):
+            # Reviewer comment only for reviewers.
+            return Response('Only reviewers can make reviewer comments',
+                            status=status.HTTP_403_FORBIDDEN)
 
         # Create notes.
         thread, note = create_comm_note(
             thread.addon, thread.version, self.request.amo_user,
-            form.cleaned_data['body'],
-            note_type=form.cleaned_data['note_type'])
+            form.cleaned_data['body'], note_type=note_type)
 
         return Response(
             NoteSerializer(note, context={'request': request}).data,

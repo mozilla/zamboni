@@ -9,6 +9,7 @@ MAX_TOKEN_USE_COUNT = 5
 
 MAX_ATTACH = 10
 
+# Faith of the seven.
 NO_ACTION = 0
 APPROVAL = 1
 REJECTION = 2
@@ -24,6 +25,7 @@ ESCALATION_HIGH_REFUNDS = 10
 ESCALATION_CLEARED = 11
 REREVIEW_CLEARED = 12
 SUBMISSION = 13
+DEVELOPER_COMMENT = 14
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -39,7 +41,8 @@ NOTE_TYPES = {
     ESCALATION_HIGH_ABUSE: _('Escalated due to High Abuse Reports'),
     ESCALATION_HIGH_REFUNDS: _('Escalated due to High Refund Requests'),
     REREVIEW_CLEARED: _('Re-review cleared'),
-    SUBMISSION: _('App submission notes')
+    SUBMISSION: _('App submission notes'),
+    DEVELOPER_COMMENT: _('Developer comment'),
 }
 
 # Note types only visible by reviewers and not developers.
@@ -49,6 +52,14 @@ REVIEWER_NOTE_TYPES = (
     ESCALATION_HIGH_ABUSE,
     ESCALATION_HIGH_REFUNDS,
     ESCALATION_CLEARED
+)
+
+
+# Note types that can be created through the API view.
+API_NOTE_TYPE_WHITELIST = (
+    NO_ACTION,
+    REVIEWER_COMMENT,
+    DEVELOPER_COMMENT,
 )
 
 
@@ -67,7 +78,7 @@ def ACTION_MAP(activity_action):
 
     return {
         amo.LOG.APPROVE_VERSION.id: APPROVAL,
-        amo.LOG.APPROVE_VERSION_WAITING.id: APPROVAL,
+        amo.LOG.APPROVE_VERSION_WAITING.id: APPROVE_VERSION_WAITING,
         amo.LOG.APP_DISABLED.id: DISABLED,
         amo.LOG.ESCALATE_MANUAL.id: ESCALATION,
         amo.LOG.ESCALATE_VERSION.id: ESCALATION,

@@ -1,3 +1,5 @@
+import hashlib
+
 from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
@@ -12,11 +14,15 @@ from mkt.users.models import UserProfile
 
 
 class AuthorSerializer(ModelSerializer):
+    gravatar_hash = SerializerMethodField('get_gravatar_hash')
     name = CharField()
 
     class Meta:
         model = UserProfile
-        fields = ('name',)
+        fields = ('gravatar_hash', 'name')
+
+    def get_gravatar_hash(self, obj):
+        return hashlib.md5(obj.email.lower()).hexdigest()
 
 
 class AttachmentSerializer(ModelSerializer):
@@ -87,7 +93,8 @@ class ThreadSerializer(ModelSerializer):
             notes, many=True, context={'request': self.get_request()}).data
 
     def get_notes_count(self, obj):
-        return obj.notes.count()
+        return (obj.notes.with_perms(self.get_request().amo_user, obj)
+                         .count())
 
     def get_version_number(self, obj):
         try:

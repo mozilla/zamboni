@@ -10,6 +10,7 @@ import commonware.log
 import waffle
 from email_reply_parser import EmailReplyParser
 
+from mkt.access import acl
 from mkt.access.models import Group
 from mkt.comm.models import (CommunicationNoteRead, CommunicationThreadToken,
                              user_has_perm_thread)
@@ -74,8 +75,16 @@ def save_from_email_reply(reply_text):
         return False
 
     if user_has_perm_thread(tok.thread, tok.user) and tok.is_valid():
+        # Deduce an appropriate note type.
+        note_type = comm.NO_ACTION
+        if (tok.user.addonuser_set.filter(addon=tok.thread.addon).exists()):
+            note_type = comm.DEVELOPER_COMMENT
+        elif acl.action_allowed_user(tok.user, 'Apps', 'Review'):
+            note_type = comm.REVIEWER_COMMENT
+
         t, note = create_comm_note(tok.thread.addon, tok.thread.version,
-                                   tok.user, parser.get_body())
+                                   tok.user, parser.get_body(),
+                                   note_type=note_type)
         log.info('A new note has been created (from %s using tokenid %s).'
                  % (tok.user.id, uuid))
         return note
