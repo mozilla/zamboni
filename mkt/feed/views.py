@@ -19,6 +19,7 @@ from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
+from .constants import FEED_TYPE_SHELF
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppSerializer, FeedBrandSerializer,
                           FeedCollectionSerializer, FeedItemSerializer,
@@ -85,7 +86,7 @@ class RegionCarrierFilter(BaseFilterBackend):
 
         # Filter for only the region if specified.
         if q.get('region'):
-            region_id =mkt.regions.REGIONS_DICT[q['region']].id
+            region_id = mkt.regions.REGIONS_DICT[q['region']].id
             qs = qs.filter(region=region_id)
 
         # Exclude feed items that specify carrier but do not match carrier.
@@ -342,3 +343,27 @@ class FeedElementSearchView(CORSMixin, APIView):
             'collections': collections,
             'shelves': shelves
         })
+
+
+class FeedView(CORSMixin, APIView):
+    """
+    Streamlined view for a feed, separating operator shelves for ease of
+    consumer display.
+    """
+    authentication_classes = []
+    permission_classes = []
+    cors_allowed_methods = ('get',)
+
+    def get(self, request, *args, **kwargs):
+        filterer = RegionCarrierFilter()
+        data = {
+            'feed': [],
+            'shelf': None
+        }
+        feed = filterer.filter_queryset(request, FeedItem.objects.all(), self)
+        data['feed'] = FeedItemSerializer(feed).data
+        for index, item in enumerate(data['feed']):
+            if item['item_type'] == FEED_TYPE_SHELF:
+                data['shelf'] = data['feed'].pop(index)
+                break
+        return response.Response(data, status=status.HTTP_200_OK)
