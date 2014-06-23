@@ -15,12 +15,13 @@ from mkt.webapps.models import Webapp
 
 class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     serializer_class = InAppProductSerializer
-    cors_allowed_methods = ('get', 'post', 'put', 'delete')
+    cors_allowed_methods = ('get', 'post', 'put', 'patch' 'delete')
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
         'get': AllowAuthor,
         'post': AllowAuthor,
         'put': AllowAuthor,
+        'patch': AllowAuthor,
     })]
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

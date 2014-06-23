@@ -54,6 +54,7 @@
             name: null,
             outputSelector: 'span',
             inputSelector: 'input[type="text"]',
+            errorSelector: '.field-error',
             editingClass: 'editing',
             startEditing: false,
             outputFormatter: function (value) { return value; },
@@ -76,6 +77,7 @@
             this.name = this.attr.name;
             this.output = this.select('outputSelector');
             this.input = this.select('inputSelector');
+            this.error = this.select('errorSelector');
             this.displayComponent = InlineTextComponent.attachTo(this.output, {
                 name: this.name,
                 outputFormatter: this.attr.outputFormatter,
@@ -89,6 +91,7 @@
 
             this.on('dataInlineEditChanged', function (e, payload) {
                 this.setValue(payload.value);
+                this.error.text('');
             });
 
             this.on('uiStartInlineEdit', function () {
@@ -98,6 +101,11 @@
 
             this.on('uiDoneInlineEdit', function () {
                 this.$node.removeClass(this.attr.editingClass);
+            });
+
+            this.on('dataErrors', function (e, payload) {
+                e.stopPropagation();
+                this.error.text(payload.errors[0]);
             });
 
             switch (this.input.prop('tagName')) {
@@ -152,6 +160,7 @@
             editSelector: '.in-app-product-edit',
             deleteSelector: '.in-app-product-delete',
             productIdSelector: '.in-app-product-pk',
+            errorSelector: '.in-app-product-error',
         });
 
         this.url = function () {
@@ -165,27 +174,38 @@
         };
 
         this.save = function () {
-            this.saveButton.attr('disabled', true);
-            var method = this.product.id ? 'put' : 'post';
-            console.log('saving product', method.toUpperCase(), this.url(),
-                        this.product);
+            var self = this;
+            self.error.text('');
+            self.saveButton.attr('disabled', true);
+            var method = self.product.id ? 'patch' : 'post';
+            console.log('saving product', method.toUpperCase(), self.url(),
+                        self.product);
             $.ajax({
                 method: method,
-                url: this.url(),
-                data: this.product,
+                url: self.url(),
+                data: self.product,
                 headers: {
                     Authorization: 'mkt-shared-secret ' + login.userToken(),
                 },
-            }).always((function () {
-                this.saveButton.attr('disabled', false);
-            }).bind(this)).done((function (product) {
-                this.product = product;
-                this.trigger('uiDoneInlineEdit');
-                console.log('product saved', this.product);
-            }).bind(this)).fail((function () {
-                console.log('failed to save product', this.product);
-                alert('Error while saving product, please try again.');
-            }).bind(this));
+            }).always(function () {
+                self.saveButton.attr('disabled', false);
+            }).done(function (product) {
+                self.product = product;
+                self.trigger('uiDoneInlineEdit');
+                console.log('product saved', self.product);
+            }).fail(function (response) {
+                console.log('failed to save product', self.product);
+                var fieldErrors = response.responseJSON;
+                if (fieldErrors) {
+                    Object.keys(fieldErrors).forEach(function (field) {
+                        self.components[field].trigger(
+                            'dataErrors', {errors: fieldErrors[field]});
+                    });
+                } else {
+                    self.trigger('dataErrors',
+                        {errors: [response.responseText]});
+                }
+            });
         };
 
         this.after('initialize', function () {
@@ -198,8 +218,15 @@
             this.logoUrl = this.select('logoUrlSelector');
             this.saveButton = this.select('saveSelector');
             this.editButton = this.select('editSelector');
+            this.error = this.select('errorSelector');
             this.product = {
                 id: this.pk.text().trim(),
+            };
+            this.components = {
+                logo_url: this.logoUrl,
+                name: this.name,
+                pk: this.pk,
+                price_id: this.price,
             };
 
             this.on('dataInlineEditChanged', function (e, payload) {
@@ -227,6 +254,10 @@
                 this.trigger('uiStartInlineEdit');
             });
 
+            this.on('dataErrors', function (e, payload) {
+                this.error.text(payload.errors[0]);
+            });
+
             InlineTextEditComponent.attachTo(this.price, {
                 name: 'price_id',
                 inputSelector: 'select',
@@ -245,12 +276,18 @@
             this.on(this.logoUrl, 'click', function (e) {
                 if (this.$node.hasClass('editing')) {
                     var url = prompt('Please enter your logo\'s URL.');
+                    this.logoUrl.siblings('.field-error').text('');
                     this.trigger('dataInlineEditChanged', {
                         name: 'logo_url',
                         value: url,
                     });
                     this.logoUrl.attr('src', url);
                 }
+            });
+
+            this.on(this.logoUrl, 'dataErrors', function (e, payload) {
+                e.stopPropagation();
+                this.logoUrl.siblings('.field-error').text(payload.errors[0]);
             });
 
             if (this.attr.startEditing) {

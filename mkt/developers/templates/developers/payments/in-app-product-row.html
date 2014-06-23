@@ -1,16 +1,20 @@
 <tr class="in-app-product-row inline-editing">
   <td>
     <img src="{{ product.icon_url }}" width="64" height="64" class="in-app-product-logo-url">
+    <div class="field-error error"></div>
   </td>
   <td class="in-app-product-name">
     <span class="inline-view"></span>
+    <div class="in-app-product-error error"></div>
     <input type="text" class="inline-edit" value="{{ product.name }}">
+    <div class="field-error error"></div>
   </td>
   <td class="in-app-product-price">
     {% with widget=form.fields['price'].widget %}
         <span class="inline-view">{{ product.price_id }}</span>
         {{ widget.render('price_id', None, attrs={'class': 'inline-edit'}) }}
     {% endwith %}
+    <div class="field-error error"></div>
   </td>
   <td class="in-app-product-pk">{{ product.pk }}</td>
   <td>
