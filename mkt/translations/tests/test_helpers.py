@@ -74,33 +74,6 @@ def test_truncate_purified_field_xss():
     eq_(actual, 'safe ...')
 
 
-def test_clean():
-    # Links are not mangled, bad HTML is escaped, newlines are slimmed.
-    s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
-    eq_(helpers.clean(s),
-        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>')
-
-
-def test_clean_in_template():
-    s = '<a href="#woo">yeah</a>'
-    eq_(jingo.env.from_string('{{ s|clean }}').render({'s': s}), s)
-
-
-def test_no_links():
-    s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
-        'a http://example.com, http://text.link')
-
-    # Bad markup.
-    s = '<http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}), '')
-
-    # Bad markup.
-    s = 'some text <http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
-        'some text')
-
-
 def test_l10n_menu():
     # No remove_locale_url provided.
     menu = helpers.l10n_menu({})
