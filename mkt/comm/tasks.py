@@ -1,7 +1,7 @@
 import logging
 from celeryutils import task
 
-import mkt.constants.comm as cmb
+import mkt.comm.constants as cmb
 from amo.decorators import write
 from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
                              CommunicationThread)

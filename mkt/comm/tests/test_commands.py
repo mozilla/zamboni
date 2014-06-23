@@ -4,7 +4,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-import mkt.constants.comm as cmb
+import mkt.comm.constants as cmb
 from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.site.fixtures import fixture

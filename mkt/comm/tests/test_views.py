@@ -15,7 +15,7 @@ from amo.tests import (addon_factory, req_factory_factory, user_factory,
                        version_factory)
 from mkt.users.models import UserProfile
 
-import mkt.constants.comm
+import mkt.comm.constants
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
 from mkt.comm.models import (CommAttachment, CommunicationNote,
@@ -488,7 +488,7 @@ class TestAttachments(NoteSetupMixin):
         eq_(attach2.description, 'mmm, bacon')
         assert attach2.is_image()
 
-    @mock.patch.object(mkt.constants.comm, 'MAX_ATTACH', 1)
+    @mock.patch.object(mkt.comm.constants, 'MAX_ATTACH', 1)
     def test_max_attach(self):
         data = self._attachments(num=2)
         res = self.client.post(self.attachment_url, data=data,
