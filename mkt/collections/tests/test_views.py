@@ -1310,10 +1310,6 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
             eq_(getattr(self.collection, key), value)
 
     def test_edit_collection_invalid_region_0(self):
-        # 0 is an invalid region. Unfortunately, because django bug #18724 is
-        # fixed in django 1.5 but not 1.4, '0' values are accepted.
-        # Unskip this test when using django 1.5.
-        raise SkipTest('Test that needs django 1.5 to pass')
         self.make_publisher()
         updates = {'region': 0}
         res, data = self.edit_collection(self.client, **updates)
