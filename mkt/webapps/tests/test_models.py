@@ -59,8 +59,9 @@ from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
                                 AddonExcludedRegion, AddonUpsell, AppFeatures,
                                 AppManifest, BlacklistedSlug, Category,
                                 ContentRating, Geodata, get_excluded_in,
-                                IARCInfo, Installed, Preview, RatingDescriptors,
-                                RatingInteractives, version_changed, Webapp)
+                                IARCInfo, Installed, Preview,
+                                RatingDescriptors, RatingInteractives,
+                                version_changed, Webapp)
 from mkt.webapps.signals import version_changed as version_changed_signal
 
 
@@ -1661,7 +1662,20 @@ class PackagedFilesMixin(amo.tests.AMOPaths):
 
 class TestPackagedModel(amo.tests.TestCase):
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://hy.fr')
+    @override_settings(SITE_URL='http://hy.fr')
+    def test_get_package_path(self):
+        app = app_factory(name=u'Mozillaball ょ', app_slug='test',
+                          is_packaged=False, version_kw={'version': '1.0',
+                                                         'created': None})
+        f = app.versions.latest().files.latest()
+
+        eq_(app.get_package_path(), None)
+
+        app.update(is_packaged=True)
+        eq_(app.get_package_path(),
+            'http://hy.fr/downloads/file/%s/%s' % (f.id, f.filename))
+
+    @override_settings(SITE_URL='http://hy.fr')
     @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
     def test_create_blocklisted_version(self):
         app = app_factory(name=u'Mozillaball ょ', app_slug='test',

@@ -79,6 +79,8 @@ class AppSerializer(serializers.ModelSerializer):
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     name = TranslationSerializerField(required=False)
+    package_path = serializers.CharField(
+        source='get_package_path', read_only=True)
     payment_account = serializers.SerializerMethodField('get_payment_account')
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
@@ -119,12 +121,14 @@ class AppSerializer(serializers.ModelSerializer):
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'homepage',
-            'icons', 'id', 'is_offline', 'is_packaged', 'manifest_url', 'name',
-            'payment_account', 'payment_required', 'premium_type', 'previews',
-            'price', 'price_locale', 'privacy_policy', 'public_stats',
-            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
-            'status', 'support_email', 'support_url', 'supported_locales',
-            'tags', 'upsell', 'upsold', 'user', 'versions', 'weekly_downloads']
+            'icons', 'id', 'is_offline', 'is_packaged', 'manifest_url',
+            'name', 'package_path', 'payment_account', 'payment_required',
+            'premium_type', 'previews', 'price', 'price_locale',
+            'privacy_policy', 'public_stats', 'release_notes', 'ratings',
+            'regions', 'resource_uri', 'slug', 'status', 'support_email',
+            'support_url', 'supported_locales', 'tags', 'upsell', 'upsold',
+            'user', 'versions', 'weekly_downloads'
+        ]
 
     def _get_region_id(self):
         request = self.context.get('request')
@@ -230,8 +234,8 @@ class AppSerializer(serializers.ModelSerializer):
     def get_versions(self, app):
         # Disable transforms, we only need two fields: version and pk.
         # Unfortunately, cache-machine gets in the way so we can't use .only()
-        # (.no_transforms() is ignored, defeating the purpose), and we can't use
-        # .values() / .values_list() because those aren't cached :(
+        # (.no_transforms() is ignored, defeating the purpose), and we can't
+        # use .values() / .values_list() because those aren't cached :(
         return dict((v.version, reverse('version-detail', kwargs={'pk': v.pk}))
                     for v in app.versions.all().no_transforms())
 
@@ -373,5 +377,5 @@ class SimpleAppSerializer(AppSerializer):
 
     class Meta(AppSerializer.Meta):
         exclude = ['absolute_url', 'app_type', 'categories', 'created',
-                   'default_locale', 'payment_account', 'supported_locales',
-                   'weekly_downloads', 'upsold', 'tags']
+                   'default_locale', 'package_path', 'payment_account',
+                   'supported_locales', 'weekly_downloads', 'upsold', 'tags']

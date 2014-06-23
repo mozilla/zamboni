@@ -3,6 +3,7 @@ import json
 from decimal import Decimal
 
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 import mock
 from elasticutils.contrib.django import S
@@ -53,6 +54,22 @@ class TestAppSerializer(amo.tests.TestCase):
         res = self.serialize(self.app)
         eq_(res['is_packaged'], True)
         eq_(res['is_offline'], True)
+
+    @override_settings(SITE_URL='http://hy.fr')
+    def test_package_path(self):
+        res = self.serialize(self.app)
+        eq_(res['package_path'], None)
+
+        self.app.update(is_packaged=True)
+        res = self.serialize(self.app)
+
+        pkg = self.app.versions.latest().files.latest()
+        eq_(res['package_path'], self.app.get_package_path())
+
+        # This method is already tested in `mkt.webapps.tests.test_models`,
+        # but let's test it anyway.
+        eq_(res['package_path'],
+            'http://hy.fr/downloads/file/%s/%s' % (pkg.id, pkg.filename))
 
     def test_no_previews(self):
         eq_(self.serialize(self.app)['previews'], [])

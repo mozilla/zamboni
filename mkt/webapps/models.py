@@ -2275,6 +2275,20 @@ class Webapp(Addon):
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 
+    def get_package_path(self):
+        """Returns the `package_path` if the app is packaged."""
+        if not self.is_packaged:
+            return
+
+        version = self.current_version
+        if not version:
+            return
+
+        file_obj = version.all_files[0]
+        return absolutify(
+            os.path.join(reverse('downloads.file', args=[file_obj.id]),
+                         file_obj.filename))
+
     def get_cached_manifest(self, force=False):
         """
         Creates the "mini" manifest for packaged apps and caches it.
