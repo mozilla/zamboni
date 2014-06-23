@@ -93,7 +93,8 @@ class ThreadSerializer(ModelSerializer):
             notes, many=True, context={'request': self.get_request()}).data
 
     def get_notes_count(self, obj):
-        return obj.notes.count()
+        return (obj.notes.with_perms(self.get_request().amo_user, obj)
+                         .count())
 
     def get_version_number(self, obj):
         try:
