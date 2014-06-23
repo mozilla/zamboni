@@ -1,3 +1,5 @@
+import hashlib
+
 from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
@@ -12,11 +14,15 @@ from mkt.users.models import UserProfile
 
 
 class AuthorSerializer(ModelSerializer):
+    gravatar_hash = SerializerMethodField('get_gravatar_hash')
     name = CharField()
 
     class Meta:
         model = UserProfile
-        fields = ('name',)
+        fields = ('gravatar_hash', 'name')
+
+    def get_gravatar_hash(self, obj):
+        return hashlib.md5(obj.email.lower()).hexdigest()
 
 
 class AttachmentSerializer(ModelSerializer):
