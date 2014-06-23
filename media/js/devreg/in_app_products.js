@@ -174,7 +174,7 @@
                 url: this.url(),
                 data: this.product,
                 headers: {
-                    Authorization: login.userToken(),
+                    Authorization: 'mkt-shared-secret ' + login.userToken(),
                 },
             }).always((function () {
                 this.saveButton.attr('disabled', false);
@@ -199,7 +199,7 @@
             this.saveButton = this.select('saveSelector');
             this.editButton = this.select('editSelector');
             this.product = {
-                id: this.pk.text(),
+                id: this.pk.text().trim(),
             };
 
             this.on('dataInlineEditChanged', function (e, payload) {
