@@ -55,6 +55,14 @@ REVIEWER_NOTE_TYPES = (
 )
 
 
+# Note types that can be created through the API view.
+API_NOTE_TYPE_WHITELIST = (
+    NO_ACTION,
+    REVIEWER_COMMENT,
+    DEVELOPER_COMMENT,
+)
+
+
 # Prefix of the reply to address in comm emails.
 REPLY_TO_PREFIX = 'commreply+'
 
