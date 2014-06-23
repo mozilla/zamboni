@@ -43,11 +43,6 @@ pip install -U --exists-action=w --no-deps -q \
 	-r requirements/compiled.txt -r requirements/test.txt \
 	-f https://pyrepo.addons.mozilla.org/
 
-# Create paths we want for addons
-if [ ! -d "/tmp/warez" ]; then
-    mkdir /tmp/warez
-fi
-
 if [ ! -d "$LOCALE" ]; then
     echo "No locale dir?  Cloning..."
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
@@ -63,34 +58,11 @@ echo "Updating vendor..."
 git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
-if [ -z $SET_ES_TESTS ]; then
-    RUN_ES_TESTS=False
-else
-    RUN_ES_TESTS=True
-fi
-
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
-LOG_LEVEL = logging.ERROR
-DATABASES['default']['NAME'] = 'zamboni_mkt'
-DATABASES['default']['HOST'] = 'localhost'
-DATABASES['default']['USER'] = 'hudson'
-DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
-    }
-}
-CELERY_ALWAYS_EAGER = True
-RUN_ES_TESTS = ${RUN_ES_TESTS}
 ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ADDONS_PATH = '/tmp/warez'
-STATIC_URL = ''
 
 SETTINGS
 
