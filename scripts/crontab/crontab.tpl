@@ -8,7 +8,10 @@ HOME=/tmp
 # Once per hour.
 20 * * * * %(z_cron)s addon_last_updated
 50 * * * * %(z_cron)s cleanup_extracted_file
-55 * * * * %(z_cron)s unhide_disabled_files
+
+# 2014-06-23: Disabled to stop sending 2MB emails for old AMO files.
+# TODO: Determine if we need this. If not, remove. If so, re-enable after removing AMO files.
+# 55 * * * * %(z_cron)s unhide_disabled_files
 
 # Twice per day.
 # Use system python to use an older version of sqlalchemy than what is in our venv
