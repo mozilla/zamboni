@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-23 07:14+0000\n"
+"PO-Revision-Date: 2014-06-23 10:58+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403507684.0\n"
+"X-POOTLE-MTIME: 1403521133.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -139,7 +139,7 @@ msgstr "Utvidelsen passer ikke i noen av kategoriene"
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Andre utvidelser av %(author)s"
-msgstr[1] "Andre utvidelser av disse forfatterne"
+msgstr[1] "Andre utvidelser av disse utviklerne"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
@@ -169,7 +169,7 @@ msgstr "Vis personvernpolicy"
 
 #: apps/addons/templates/addons/button.html:74 apps/addons/templates/addons/details_box.html:98 apps/addons/templates/addons/mobile/button.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Vis sluttbrukerlisensavtalen"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:19
@@ -193,7 +193,7 @@ msgstr "Virker med"
 
 #: apps/addons/templates/addons/details_box.html:49
 msgid "Required Apps"
-msgstr "Påkrevde apps"
+msgstr "Påkrevde apper"
 
 #: apps/addons/templates/addons/details_box.html:51
 msgid "Required Add-ons"
@@ -280,7 +280,7 @@ msgstr "av"
 
 #: apps/addons/templates/addons/disabled.html:23 apps/addons/templates/addons/impala/disabled.html:26
 msgid "This add-on has been removed by its author."
-msgstr "Denne utvidelsen er fjernet av forfatteren."
+msgstr "Denne utvidelsen er fjernet av utvikleren"
 
 #: apps/addons/templates/addons/disabled.html:25 apps/addons/templates/addons/impala/disabled.html:28
 msgid "This add-on has been disabled by an administrator."
@@ -512,7 +512,7 @@ msgstr "av %(users)s"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:5
 msgid "This app requires the following apps to work properly:"
-msgstr "Denne appen krever følgende apps for å virke riktig:"
+msgstr "Denne appen krever følgende apper for å virke riktig:"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:7
 msgid "This add-on requires the following add-ons to work properly:"
@@ -529,8 +529,8 @@ msgstr "Ofte brukt sammen med &hellip;"
 #: apps/addons/templates/addons/impala/details-more.html:51
 msgid "Other apps by %(author)s"
 msgid_plural "Other apps by these authors"
-msgstr[0] "Andre apps av %(author)s"
-msgstr[1] "Andre apps av disse forfatterne"
+msgstr[0] "Andre apper av %(author)s"
+msgstr[1] "Andre apper av disse utviklerene"
 
 #: apps/addons/templates/addons/impala/details.html:60
 msgid "Manage"
@@ -653,7 +653,7 @@ msgstr "Hvem er {0}?"
 
 #: apps/addons/templates/addons/impala/disabled.html:20
 msgid "This app has been removed by its author."
-msgstr "Denne appen er fjernet av forfatteren."
+msgstr "Denne appen er fjernet av utvikleren."
 
 #: apps/addons/templates/addons/impala/disabled.html:22
 msgid "This app has been disabled by an administrator."
@@ -757,7 +757,7 @@ msgstr "Vis brukerstøttenettsted"
 
 #: apps/addons/templates/addons/mobile/details.html:139
 msgid "Ask the Author a Question"
-msgstr "Still forfatteren et spørsmål"
+msgstr "Still utvikleren et spørsmål"
 
 #: apps/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
@@ -1105,11 +1105,11 @@ msgstr "Maksversjon for applikasjon for {version} oppdatert."
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr "E-post sendt til forfattere om kompatibilitet til {version}."
+msgstr "E-post sendt til utviklerne om kompatibilitet til {version}."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-post sendt utvikler om utvidelseskompatibilitet."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1233,11 +1233,11 @@ msgstr "Video fjernet"
 
 #: apps/amo/log.py:504
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Revurdering av {addon} på grunn av ny enhet(er) lagt til."
 
 #: apps/amo/log.py:505
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Enhet(er) lag til"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
@@ -1758,7 +1758,7 @@ msgstr "Temaer"
 
 #: apps/constants/base.py:202 mkt/reviewers/helpers.py:33 mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:192 templates/mobile/base_apps.html:35
 msgid "Apps"
-msgstr "App"
+msgstr "Apper"
 
 #: apps/constants/base.py:287 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:56 mkt/search/forms.py:28 mkt/search/forms.py:40
 #: mkt/submit/templates/submit/manifest.html:32
