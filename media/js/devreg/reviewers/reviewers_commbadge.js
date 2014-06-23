@@ -10,7 +10,7 @@ define('reviewersCommbadge', ['login'], function(login) {
     function _userArg(url) {
         // Persona user token.
         return urlparams(url, {'_user': login.userToken(),
-                               'ordering': '-created'});
+                               'ordering': 'created'});
     }
 
     // Fetch all of the app's threads.
