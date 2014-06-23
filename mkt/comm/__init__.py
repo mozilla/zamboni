@@ -1,1 +1,1 @@
-from mkt.comm.constants import U_NOTE_TYPES
+from mkt.constants.comm import U_NOTE_TYPES

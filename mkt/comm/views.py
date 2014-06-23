@@ -24,7 +24,7 @@ from amo.decorators import skip_cache
 from amo.utils import HttpResponseSendFile
 
 import mkt.comm.forms as forms
-import mkt.comm.constants as comm
+import mkt.constants.comm as comm
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
