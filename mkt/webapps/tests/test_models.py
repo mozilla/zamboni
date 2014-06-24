@@ -1680,7 +1680,7 @@ class TestPackagedModel(amo.tests.TestCase):
 
         # Delete one of the files and ensure that `package_path` is gone.
         f.delete()
-        eq_(app.reload().get_package_path(True), None)
+        eq_(app.reload().get_package_path(), None)
 
     @override_settings(SITE_URL='http://hy.fr')
     @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
