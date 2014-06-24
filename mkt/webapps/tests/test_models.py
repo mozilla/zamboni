@@ -1667,13 +1667,20 @@ class TestPackagedModel(amo.tests.TestCase):
         app = app_factory(name=u'Mozillaball ょ', app_slug='test',
                           is_packaged=False, version_kw={'version': '1.0',
                                                          'created': None})
+        app = app.reload()
         f = app.versions.latest().files.latest()
 
+        # There should not be a `package_path` for a hosted app.
         eq_(app.get_package_path(), None)
 
+        # There should be a `package_path` for a packaged app.
         app.update(is_packaged=True)
         eq_(app.get_package_path(),
             'http://hy.fr/downloads/file/%s/%s' % (f.id, f.filename))
+
+        # Delete one of the files and ensure that `package_path` is gone.
+        f.delete()
+        eq_(app.reload().get_package_path(True), None)
 
     @override_settings(SITE_URL='http://hy.fr')
     @mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
