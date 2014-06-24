@@ -65,9 +65,8 @@ class AppSerializer(serializers.ModelSerializer):
         queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
     content_ratings = serializers.SerializerMethodField('get_content_ratings')
     created = serializers.DateField(read_only=True)
-    current_version = serializers.CharField(
-        source='current_version.version',
-        read_only=True)
+    current_version = serializers.CharField(source='current_version.version',
+                                            read_only=True)
     default_locale = serializers.CharField(read_only=True)
     device_types = SemiSerializerMethodField('get_device_types')
     description = TranslationSerializerField(required=False)
@@ -79,8 +78,8 @@ class AppSerializer(serializers.ModelSerializer):
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
     name = TranslationSerializerField(required=False)
-    package_path = serializers.CharField(
-        source='get_package_path', read_only=True)
+    package_path = serializers.CharField(source='get_package_path',
+                                         read_only=True)
     payment_account = serializers.SerializerMethodField('get_payment_account')
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')

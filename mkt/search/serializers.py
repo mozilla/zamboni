@@ -31,6 +31,7 @@ class ESAppSerializer(AppSerializer):
     categories = serializers.SlugRelatedField(read_only=True,
         many=True, slug_field='slug', source='all_categories')
     manifest_url = serializers.CharField(source='manifest_url')
+    package_path = serializers.SerializerMethodField('get_package_path')
 
     # Override translations, because we want a different field.
     banner_message = ESTranslationSerializerField(
@@ -174,6 +175,9 @@ class ESAppSerializer(AppSerializer):
 
     def get_absolute_url(self, obj):
         return absolutify(obj.get_absolute_url())
+
+    def get_package_path(self, obj):
+        return obj.es_data.get('package_path')
 
     def get_tags(self, obj):
         return obj.es_data['tags']
