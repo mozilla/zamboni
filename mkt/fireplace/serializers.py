@@ -11,6 +11,7 @@ class BaseFireplaceAppSerializer(object):
         # Fireplace only requires 64px-sized icons.
         return {64: app.get_icon_url(64)}
 
+
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
 
     class Meta(SimpleAppSerializer.Meta):
