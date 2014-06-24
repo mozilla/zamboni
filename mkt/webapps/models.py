@@ -2284,10 +2284,14 @@ class Webapp(Addon):
         if not version:
             return
 
-        file_obj = version.all_files[0]
-        return absolutify(
-            os.path.join(reverse('downloads.file', args=[file_obj.id]),
-                         file_obj.filename))
+        try:
+            file_obj = version.all_files[0]
+        except IndexError:
+            return
+        else:
+            return absolutify(
+                os.path.join(reverse('downloads.file', args=[file_obj.id]),
+                             file_obj.filename))
 
     def get_cached_manifest(self, force=False):
         """
