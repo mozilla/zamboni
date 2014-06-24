@@ -138,6 +138,8 @@ class WebappIndexer(BaseIndexer):
                     # Name for suggestions.
                     'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
+                    'package_path': {'type': 'string',
+                                     'index': 'not_analyzed'},
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
                     'previews': {
@@ -292,6 +294,7 @@ class WebappIndexer(BaseIndexer):
                 'has_info_request': None,
             }
         d['manifest_url'] = obj.get_manifest_url()
+        d['package_path'] = obj.get_package_path()
         d['name'] = list(
             set(string for _, string in obj.translations[obj.name_id]))
         d['name_sort'] = unicode(obj.name).lower()
