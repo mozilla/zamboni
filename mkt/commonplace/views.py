@@ -11,6 +11,7 @@ from django.shortcuts import render
 import jingo
 import jinja2
 import newrelic.agent
+import waffle
 
 from cache_nuggets.lib import memoize
 
@@ -51,9 +52,12 @@ def commonplace(request, repo, **kwargs):
 
     BUILD_ID = get_build_id(repo)
 
-    site_settings = {
-        'persona_unverified_issuer': settings.BROWSERID_DOMAIN
-    }
+    if not waffle.switch_is_active('firefox-accounts'):
+        site_settings = {
+            'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
+        }
+    else:
+        site_settings = {}
 
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
 

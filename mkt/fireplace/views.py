@@ -7,7 +7,9 @@ from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from waffle.models import Switch
+from waffle.models import Switch, switch_is_active
+
+from amo.utils import urlparams
 
 from mkt.account.views import user_relevant_apps
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -70,7 +72,15 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
             }
         }
         if request.amo_user:
-          data['apps'] = user_relevant_apps(request.amo_user)
+            data['apps'] = user_relevant_apps(request.amo_user)
+        if switch_is_active('firefox-accounts'):
+            state = uuid.uuid4().hex
+            data['fxa_auth_url'] = urlparams(
+                fxa_oauth_api('authorization'),
+                client_id=settings.FXA_FIREPLACE_CLIENT_ID,
+                state=state,
+                scope='profile')
+            data['fxa_auth_state'] = state
 
         # Return an HttpResponse directly to be as fast as possible.
         return Response(data)

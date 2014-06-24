@@ -76,6 +76,7 @@ if settings.DEBUG:
         fireplace_route('debug'),
         fireplace_route('feed/.*'),
         fireplace_route('feedback'),
+        fireplace_route('fxa-authorize'),
         fireplace_route('privacy-policy'),
         fireplace_route('purchases'),
         fireplace_route('search/?'),

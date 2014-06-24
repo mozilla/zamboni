@@ -20,7 +20,8 @@ import waffle
 
 import amo
 from amo.decorators import json_view, login_required, post_required
-from amo.urlresolvers import get_url_prefix
+from amo.helpers import absolutify
+from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
 
@@ -99,11 +100,11 @@ def _clean_next_url(request):
     return request
 
 
-def get_fxa_session(state=None):
+def get_fxa_session(**kwargs):
     return OAuth2Session(
         settings.FXA_CLIENT_ID,
         scope=u'profile',
-        state=state)
+        **kwargs)
 
 
 def fxa_oauth_api(name):
@@ -117,7 +118,7 @@ def fxa_login(request):
     if 'to' in request.GET:
         request = _clean_next_url(request)
         request.session['redirect_to'] = request.GET.get('to')
-    fxa = get_fxa_session()
+    fxa = get_fxa_session(redirect_uri=absolutify(reverse('fxa_authorize')))
     auth_url, state = fxa.authorization_url(fxa_oauth_api('authorization'))
     request.session['state'] = state
     return http.HttpResponseRedirect(auth_url)
@@ -129,13 +130,23 @@ def fxa_authorize(request):
     if not waffle.switch_is_active('firefox-accounts'):
         return http.HttpResponse(status=403)
     state = request.session.get('state')
-    if not state:
+    if not state or state != request.GET.get('state'):
         return http.HttpResponse(status=400, content='Invalid callback state.')
-    fxa = get_fxa_session(state)
+    profile = _fxa_authorize(get_fxa_session(state=state),
+                             settings.FXA_CLIENT_SECRET,
+                             request, request.build_absolute_uri())
+    if profile is None:
+        return http.HttpResponse(status=401)
+    else:
+        return http.HttpResponseRedirect(
+            request.session.get('redirect_to', settings.LOGIN_REDIRECT_URL))
+
+
+def _fxa_authorize(fxa, client_secret, request, auth_response):
     token = fxa.fetch_token(
         fxa_oauth_api('token'),
-        authorization_response=request.build_absolute_uri(),
-        client_secret=settings.FXA_CLIENT_SECRET)
+        authorization_response=auth_response,
+        client_secret=client_secret)
     res = fxa.post(fxa_oauth_api('verify'),
                    data=json.dumps({'token': token['access_token']}),
                    headers={'Content-Type': 'application/json'})
@@ -147,21 +158,22 @@ def fxa_authorize(request):
             profile = UserProfile.objects.get(email=email)
         except UserProfile.DoesNotExist:
             source = amo.LOGIN_SOURCE_FXA
-            profile = UserProfile.objects.create(username=username, email=email,
-                                                 source=source,
-                                                 display_name=email.partition('@')[0],
-                                                 is_verified=True)
+            profile = UserProfile.objects.create(
+                username=username,
+                email=email,
+                source=source,
+                display_name=email.partition('@')[0],
+                is_verified=True)
             log_cef('New Account', 5, request, username=username,
                     signature='AUTHNOTICE',
                     msg='User created a new account (from FxA)')
             record_action('new-user', request)
         auth.login(request, profile)
         profile.log_login_attempt(True)
-        return http.HttpResponseRedirect(request.session.get('redirect_to') or
-                                         settings.LOGIN_REDIRECT_URL)
-    else:
-        log.error('FxA token verification failed: ' + res.content)
-        return http.HttpResponse(status=401)
+        auth.signals.user_logged_in.send(
+            sender=profile.__class__, request=request,
+            user=profile)
+        return profile
 
 
 def browserid_authenticate(request, assertion, is_mobile=False,
