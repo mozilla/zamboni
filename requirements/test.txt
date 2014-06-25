@@ -2,5 +2,6 @@
 # it is not needed for local testing.
 -r prod.txt
 
+coverage==3.7.1
 psutil==0.2.0
 nose-blockage==0.1.2
