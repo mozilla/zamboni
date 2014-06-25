@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
 from django.http import QueryDict
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -219,6 +220,7 @@ class TestApi(RestOAuth, ESTestCase):
             eq_(obj['id'], long(self.webapp.id))
             eq_(obj['is_offline'], False)
             eq_(obj['manifest_url'], self.webapp.get_manifest_url())
+            eq_(obj['package_path'], None)
             eq_(obj['payment_account'], None)
             self.assertApiUrlEqual(obj['privacy_policy'],
                                    '/apps/app/337141/privacy/')
@@ -531,25 +533,29 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_app_type_hosted(self):
-        res = self.client.get(self.url,
-                              data={'app_type': 'hosted'})
+        res = self.client.get(self.url, data={'app_type': 'hosted'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['is_packaged'], False)
         eq_(obj['is_offline'], False)
+        eq_(obj['package_path'], None)
 
+    @override_settings(SITE_URL='http://hy.fr')
     def test_app_type_packaged(self):
         self.webapp.update(is_packaged=True)
+        f = self.webapp.current_version.all_files[0]
+
         self.refresh('webapp')
 
-        res = self.client.get(self.url,
-                              data={'app_type': 'packaged'})
+        res = self.client.get(self.url, data={'app_type': 'packaged'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['is_packaged'], True)
         eq_(obj['is_offline'], True)
+        eq_(obj['package_path'],
+            '%s/downloads/file/%s/%s' % (settings.SITE_URL, f.id, f.filename))
 
     def test_app_type_privileged(self):
         # Override the class-decorated patch.
@@ -557,8 +563,7 @@ class TestApi(RestOAuth, ESTestCase):
             self.webapp.update(is_packaged=True)
             self.refresh('webapp')
 
-            res = self.client.get(self.url,
-                                  data={'app_type': 'packaged'})
+            res = self.client.get(self.url, data={'app_type': 'packaged'})
             eq_(res.status_code, 200)
             # Packaged also includes privileged, which is technically also a
             # packaged app.
