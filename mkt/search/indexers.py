@@ -9,6 +9,7 @@ import amo
 from amo.decorators import write
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
+from mkt.search.utils import S
 
 
 task_log = logging.getLogger('z.task')
@@ -30,6 +31,13 @@ class BaseIndexer(MappingType, Indexable):
     @classmethod
     def get_mapping_type_name(cls):
         return cls.get_model()._meta.db_table
+
+    @classmethod
+    def search(cls):
+        """
+        Returns an elasticutils `S` object to start chaining search methods on.
+        """
+        return S(cls)
 
     @classmethod
     def get_settings(cls, settings_override=None):

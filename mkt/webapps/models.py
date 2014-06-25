@@ -53,7 +53,6 @@ from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
-from mkt.search.utils import S
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
@@ -2253,7 +2252,7 @@ class Webapp(Addon):
         if cat:
             filters.update(category=cat.slug)
 
-        srch = S(WebappIndexer).filter(**filters)
+        srch = WebappIndexer.search().filter(**filters)
 
         if (region and
             not waffle.flag_is_active(request, 'override-region-exclusion')):

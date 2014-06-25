@@ -20,12 +20,6 @@ SORT_CHOICES = [
 
 FREE_SORT_CHOICES = [(k, v) for k, v in SORT_CHOICES if k != 'price']
 
-PRICE_CHOICES = [
-    (None, _lazy(u'All')),
-    ('free', _lazy(u'Free')),
-    ('paid', _lazy(u'Paid')),
-]
-
 APP_TYPE_CHOICES = [
     ('', _lazy(u'Any App Type')),
     ('hosted', _lazy(u'Hosted')),
@@ -187,4 +181,17 @@ class ApiSearchForm(forms.Form):
             at_id = amo.ADDON_WEBAPP_TYPES_LOOKUP.get(at)
             if at_id is not None:
                 at_ids.append(at_id)
+
+        # Include privileged apps even when we search for packaged.
+        if (amo.ADDON_WEBAPP_PACKAGED in at_ids and
+            amo.ADDON_WEBAPP_PRIVILEGED not in at_ids):
+            at_ids.append(amo.ADDON_WEBAPP_PRIVILEGED)
+
         return at_ids
+
+    def clean_languages(self):
+        languages = self.cleaned_data.get('languages', '')
+        return [l.strip() for l in languages.split(',')]
+
+    def clean_device(self):
+        return DEVICE_CHOICES_IDS.get(self.cleaned_data.get('device'))

@@ -33,9 +33,6 @@ Search
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
         'premium', 'premium-inapp', or 'other'.
     :type premium_types: string
-    :param optional type: Filters by type of add-on. One of 'app' or
-        'theme'.
-    :type type: string
     :param optional app_type: Filters by types of web apps. Any of 'hosted',
         'packaged', or 'privileged'.
     :type app_type: string

@@ -1,7 +1,7 @@
 import json
 
 import test_utils
-from nose.tools import ok_
+from nose.tools import eq_, ok_
 
 from django.contrib.auth.models import AnonymousUser
 
@@ -12,7 +12,7 @@ from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
                               TARAKO_CATEGORIES_MAPPING)
-from mkt.search.views import _filter_search
+from mkt.search.views import _filter_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Category, Webapp
 
@@ -36,12 +36,12 @@ class TestSearchFilters(BaseOAuth):
         self.grant_permission(self.profile, rules)
         self.req.groups = self.profile.groups.all()
 
-    def _filter(self, req, filters, sorting=None, **kwargs):
+    def _filter(self, req, filters, **kwargs):
         form = self.form_class(filters)
         if form.is_valid():
             qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
-                self.req, qs, form.cleaned_data, sorting)._build_query()
+                self.req, qs, form.cleaned_data)._build_query()
         else:
             return form.errors.copy()
 
@@ -136,6 +136,11 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'app_type': ['hosted']})
         ok_({'in': {'app_type': [1]}} in qs['filter']['and'])
 
+    def test_app_type_packaged(self):
+        """Test packaged also includes privileged."""
+        qs = self._filter(self.req, {'app_type': ['packaged']})
+        ok_({'in': {'app_type': [2, 3]}} in qs['filter']['and'], qs)
+
     def test_manifest_url(self):
         url = 'http://hy.fr/manifest.webapp'
         qs = self._filter(self.req, {'manifest_url': url})
@@ -175,3 +180,16 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
         ok_({'not': {'filter': {'term': {'region_exclusions': regions.CO.id}}}}
             not in qs['filter']['and'])
+
+    def test_sort(self):
+        for api_sort, es_sort in DEFAULT_SORTING.items():
+            qs = self._filter(self.req, {'sort': [api_sort]})
+            if es_sort.startswith('-'):
+                ok_({es_sort[1:]: 'desc'} in qs['sort'], qs)
+            else:
+                eq_([es_sort], qs['sort'], qs)
+
+    def test_sort_multiple(self):
+        qs = self._filter(self.req, {'sort': ['rating', 'created']})
+        ok_({'bayesian_rating': 'desc'} in qs['sort'])
+        ok_({'created': 'desc'} in qs['sort'])

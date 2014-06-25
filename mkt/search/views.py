@@ -22,8 +22,7 @@ from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
 from mkt.features.utils import get_feature_profile
-from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
-                              TARAKO_CATEGORIES_MAPPING)
+from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
 from mkt.search.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                     SuggestionsESAppSerializer)
 from mkt.search.utils import S
@@ -32,7 +31,6 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 
-DEFAULT_FILTERS = ['cat', 'device', 'premium_types', 'price', 'sort', 'tag']
 DEFAULT_SORTING = {
     'popularity': '-popularity',
     # TODO: Should popularity replace downloads?
@@ -122,8 +120,7 @@ def name_query(q):
     return dict(more, **name_only_query(q))
 
 
-def _filter_search(request, qs, query, filters=None, sorting=None,
-                   sorting_default='-popularity', region=None, profile=None):
+def _filter_search(request, qs, data, region=None, profile=None):
     """
     Filter an ES queryset based on a list of filters.
 
@@ -132,68 +129,53 @@ def _filter_search(request, qs, query, filters=None, sorting=None,
     device detection for when this happens elsewhere.
 
     """
-    # Intersection of the form fields present and the filters we want to apply.
-    filters = filters or DEFAULT_FILTERS
-    sorting = sorting or DEFAULT_SORTING
-    show = filter(query.get, filters)
+    # An empty `order_by` will result in a sort by relevance, the default for
+    # Elasticsearch.
+    order_by = []
 
-    if query.get('q'):
-        qs = qs.query(should=True, **name_query(query['q'].lower()))
-    if 'cat' in show:
-        # query['cat'] should be a list, the form clean_cat method takes care
-        # of that.
-        qs = qs.filter(category__in=query['cat'])
-    if 'tag' in show:
+    # Queries.
+    if data.get('q'):
+        qs = qs.query(should=True, **name_query(data['q'].lower()))
+    else:
+        # When querying we want to sort by relevance. If no query is provided,
+        # i.e. we are only applying filters which don't affect the relevance,
+        # we sort by popularity descending.
+        order_by = ['-popularity']
+
+    # Filters.
+    filters = {
+        'category__in': data.get('cat', []),
         # We only allow searching on one tag for now, and not a list.
-        qs = qs.filter(tags=query['tag'])
-    if 'price' in show:
-        if query['price'] == 'paid':
-            qs = qs.filter(premium_type__in=amo.ADDON_PREMIUMS)
-        elif query['price'] == 'free':
-            qs = qs.filter(premium_type__in=amo.ADDON_FREES, price=0)
-    if 'device' in show:
-        qs = qs.filter(device=DEVICE_CHOICES_IDS[query['device']])
-    if 'premium_types' in show:
-        if query.get('premium_types'):
-            qs = qs.filter(premium_type__in=query['premium_types'])
-    if query.get('app_type'):
-        # Also include `privileged` apps even when we search for `packaged`.
-        if 'packaged' in query['app_type']:
-            query['app_type'].push('privileged')
-        qs = qs.filter(app_type__in=query['app_type'])
-    if query.get('manifest_url'):
-        qs = qs.filter(manifest_url=query['manifest_url'])
-    if query.get('offline') is not None:
-        qs = qs.filter(is_offline=query.get('offline'))
-    if query.get('languages'):
-        langs = [x.strip() for x in query['languages'].split(',')]
-        qs = qs.filter(supported_locales__in=langs)
-    if 'sort' in show:
-        sort_by = [sorting[name] for name in query['sort'] if name in sorting]
-
-        # For "Adolescent" regions popularity is global installs + reviews.
-
-        if query['sort'] == 'popularity' and region and not region.adolescent:
-            # For "Mature" regions popularity becomes installs + reviews
-            # from only that region.
-            sort_by = ['-popularity_%s' % region.id]
-
-        if sort_by:
-            qs = qs.order_by(*sort_by)
-    elif not query.get('q'):
-
-        if (sorting_default == 'popularity' and region and
-            not region.adolescent):
-            # For "Mature" regions popularity becomes installs + reviews
-            # from only that region.
-            sorting_default = '-popularity_%s' % region.id
-
-        # Sort by a default if there was no query so results are predictable.
-        qs = qs.order_by(sorting_default)
+        'tags': data.get('tag'),
+        'device': data.get('device'),
+        'premium_type__in': data.get('premium_types', []),
+        'app_type__in': data.get('app_type', []),
+        'manifest_url': data.get('manifest_url'),
+        'supported_locales__in': data.get('languages', []),
+    }
+    # Remove filters with no values.
+    for k, v in filters.items():
+        if not v:
+            filters.pop(k)
+    # Handle the NullBooleanField.
+    if data.get('offline') in (True, False):
+        filters['is_offline'] = data['offline']
+    qs = qs.filter(**filters)
 
     if profile:
         # Exclude apps that require any features we don't support.
         qs = qs.filter(**profile.to_kwargs(prefix='features.has_'))
+
+    # Sorting.
+    if data.get('sort'):
+        if 'popularity' in data['sort'] and region and not region.adolescent:
+            # Mature regions sort by their popularity field.
+            order_by = ['-popularity_%s' % region.id]
+        else:
+            order_by = [DEFAULT_SORTING[name] for name in data['sort']
+                        if name in DEFAULT_SORTING]
+    if order_by:
+        qs = qs.order_by(*order_by)
 
     return qs
 
