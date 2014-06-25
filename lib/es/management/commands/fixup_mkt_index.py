@@ -8,7 +8,8 @@ from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 
 from django.core.management.base import BaseCommand
 
-from mkt.webapps.models import Webapp, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import index_webapps
 
 
@@ -26,7 +27,7 @@ class Command(BaseCommand):
 
         for app in apps:
             try:
-                res = es.get(index, doctype, app, fields='id')
+                es.get(index, doctype, app, fields='id')
             except ElasticHttpNotFoundError:
                 # App doesn't exist in our index, add it to `missing_ids`.
                 missing_ids.append(app)

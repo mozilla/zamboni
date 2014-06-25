@@ -93,11 +93,11 @@ object manager. ``.filter(**kwargs)`` can be run on this search object::
         MyModel.search().filter(my_field=a_str.lower())
         .values_dict('that_field'))
 
-On Marketplace, apps use ``mkt/webapps/models:WebappIndexer`` as its
+On Marketplace, apps use ``mkt/webapps/indexers:WebappIndexer`` as its
 interface to Elasticsearch. Search is done a little differently using
 this and results are a list of ``WebappIndexer`` objects::
 
-    query_results = S(WebappIndexer).filter(...)
+    query_results = WebappIndexer.search().filter(...)
 
 Testing with Elasticsearch
 --------------------------

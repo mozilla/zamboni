@@ -15,11 +15,10 @@ from celery import task
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+import mkt.feed.indexers as f_indexers
 from amo.utils import chunked, timestamp_index
 from lib.es.models import Reindexing
-
-import mkt.feed.indexers as f_indexers
-from mkt.webapps.models import WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 
 
 logger = logging.getLogger('z.elasticsearch')

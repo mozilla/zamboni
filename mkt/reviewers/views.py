@@ -68,7 +68,8 @@ from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
-from mkt.webapps.models import AddonDeviceType, Version, Webapp, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import AddonDeviceType, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 

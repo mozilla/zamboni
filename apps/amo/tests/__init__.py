@@ -51,8 +51,9 @@ from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon, Category, Webapp, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import update_search_index as app_update_search_index
+from mkt.webapps.models import Addon, Category, Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
