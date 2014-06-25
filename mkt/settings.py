@@ -194,12 +194,12 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
-        'suds': {'handlers': ['null']},
-        'z.task': {'level': logging.INFO},
-        'z.es': {'level': logging.INFO},
-        'z.heka': {'level': logging.INFO},
-        's.client': {'level': logging.INFO},
         'nose': {'level': logging.WARNING},
+        's.client': {'level': logging.INFO},
+        'suds': {'handlers': ['null']},
+        'z.heka': {'level': logging.INFO},
+        'z.es': {'level': logging.INFO},
+        'z.task': {'level': logging.INFO},
     },
 }
 LOGGING_CONFIG = None

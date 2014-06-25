@@ -91,9 +91,10 @@ LOGGING['loggers'].update({
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.DEBUG},
+    'z.elasticsearch': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
     'z.task': {'level': logging.DEBUG},
     'z.redis': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
