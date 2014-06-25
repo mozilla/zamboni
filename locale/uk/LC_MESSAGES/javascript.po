@@ -32,7 +32,7 @@ msgstr "Зображення повинні бути PNG чи JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Відео повинно бути у форматі WebM"
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -44,7 +44,7 @@ msgstr "Оберіть файл..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Ваша запакована програма повинна мати розширення <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
@@ -71,8 +71,8 @@ msgstr "Помилка з {0}"
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою."
+msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками."
 
 #: media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
@@ -104,16 +104,16 @@ msgstr "Завершена перевірка {0}"
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} попередженням."
+msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Ваша програма пройшла перевірку без помилок і попереджень."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Не вдалось знайти маніфест у вказаному розташуванні."
 
 #: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
 msgid "App host could not be reached."
@@ -125,59 +125,59 @@ msgstr ""
 
 #: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Маніфест програми недійсний."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Програму вже встановлено."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Внутрішня помилка сервера."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Внутрішня помилка сервера при встановленні програми."
 
 #: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Встановлення невдале. Спробуйте ще раз пізніше."
 
 #: media/js/devreg/devhub.js:186
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
+msgstr[1] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
 
 #: media/js/devreg/devhub.js:200
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} повідомленням."
+msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 
 #: media/js/devreg/devhub.js:205
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Ваша програма пройшла перевірку без помилок чи повідомлень."
 
 #: media/js/devreg/devhub.js:419
 msgid "Changes Saved"
-msgstr ""
+msgstr "Зміни збережено"
 
 #: media/js/devreg/devhub.js:435
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Введіть ел. адресу нового члена команди"
 
 #: media/js/devreg/devhub.js:443
 msgid "Refreshed"
-msgstr ""
+msgstr "Оновлено"
 
 #: media/js/devreg/devhub.js:616
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Сталась помилка при вивантаженні вашого файлу."
 
 #: media/js/devreg/devhub.js:886
 msgid "Learn more"
-msgstr ""
+msgstr "Дізнатись більше"
 
 #: media/js/devreg/devhub.js:890
 msgid "Example"
@@ -318,11 +318,11 @@ msgstr ""
 #: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
 #: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Сталась помилка з'єднання з сервером оплат."
 
 #: media/js/devreg/payments-manage.js:127
 msgid "Authentication error"
@@ -449,15 +449,15 @@ msgstr ""
 
 #: media/js/devreg/reviewers/editors.js:379
 msgid "Error loading translation"
-msgstr ""
+msgstr "Помилка завантаження перекладу"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "більше..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "менше..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
@@ -575,7 +575,7 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Назва вашої теми"
 
 #: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -623,11 +623,11 @@ msgstr ""
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Встановлення програми невдале"
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ця система не підтримує встановлення програм."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
