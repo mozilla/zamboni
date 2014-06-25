@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-21 00:35+0000\n"
+"PO-Revision-Date: 2014-06-25 22:18+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1403310919.0\n"
+"X-POOTLE-MTIME: 1403734705.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1876,7 +1876,7 @@ msgstr "Nire sistema propioa erabiliko dut aplikazio barneko ordainketentzako"
 
 #: apps/constants/base.py:341
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Gehigarri honen orrian eta garatzailearen profilean soilik galdetu"
 
 #: apps/constants/base.py:342
 msgid "Ask after users start downloading this add-on"
@@ -1892,7 +1892,7 @@ msgstr "Gehigarria"
 
 #: apps/constants/base.py:439
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Eskuzko berrikusleen puntuak"
 
 #: apps/constants/base.py:440
 msgid "Full Add-on Review"
@@ -2036,7 +2036,7 @@ msgstr "Creative Commons Aitortu-PartekatuBerdin 3.0"
 
 #: apps/constants/payments.py:40 apps/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Kobrantza-ezeztapena"
 
 #: apps/constants/payments.py:41
 msgid "Other"
@@ -2048,7 +2048,7 @@ msgstr "Erosi"
 
 #: apps/constants/payments.py:43 apps/constants/payments.py:50
 msgid "Refund"
-msgstr ""
+msgstr "Itzuli dirua"
 
 #: apps/constants/payments.py:44
 msgid "Voluntary"
@@ -2267,17 +2267,17 @@ msgstr "Kalifikazioa: %(rating)s / 5 izar"
 #. L10n: the addon name.
 #: apps/stats/models.py:123
 msgid "%s refund failed"
-msgstr ""
+msgstr "%s diru-itzulketak huts egin du"
 
 #. L10n: the adddon name.
 #: apps/stats/models.py:139
 msgid "%s refund approved"
-msgstr ""
+msgstr "%s diru-itzulketa onartuta"
 
 #. L10n: the adddon name.
 #: apps/stats/models.py:147
 msgid "%s refund declined"
-msgstr ""
+msgstr "%s diru-itzulketa ukatuta"
 
 # {0} is a number
 #: apps/tags/templates/tags/top_cloud.html:4
@@ -5272,21 +5272,21 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Transakzioaren xehetasunak"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Iragazi transakzioak"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Transakzio {num} aurkitu da"
+msgstr[1] "{num} transakzio aurkitu dira"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "Zure aplikazioek une honetan ez dute transakziorik."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
@@ -5300,23 +5300,23 @@ msgstr "Mota"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Moneta"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Kopurua"
 
 #: mkt/developers/templates/developers/validate_addon.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Probatu aplikazioaren balidazioa"
 
 #: mkt/developers/templates/developers/validate_addon.html:17 mkt/submit/templates/submit/manifest.html:57
 msgid "Submit your app manifest URL"
-msgstr ""
+msgstr "Bidali aplikazioaren manifestuaren URLa"
 
 #: mkt/developers/templates/developers/validate_addon.html:27 mkt/submit/templates/submit/manifest.html:66
 msgid "Validate"
-msgstr ""
+msgstr "Balidatu"
 
 #: mkt/developers/templates/developers/validate_addon.html:35 mkt/submit/templates/submit/manifest.html:74
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
@@ -5397,7 +5397,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:91
 msgid "Can view the app's settings and manage refund requests"
-msgstr ""
+msgstr "Aplikazioaren ezarpenak ikusi eta diru-itzulketa eskaerak kudea ditzake"
 
 #: mkt/developers/templates/developers/apps/profile.html:3
 msgid "Developer Profile"
@@ -5916,6 +5916,10 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"Azken erabiltzaileek erabiliko duten helbide elektronikoa sostengu-arazo eta "
+"diru-itzulketa eskaerengatik zurekin harremanetan jartzeko. Hizkuntza "
+"bakoitzerako helbide desberdinak badituzu, eremu honen itzulpenak gehi "
+"daitezke."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:42
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
@@ -7504,11 +7508,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:137 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:97
 msgid "2%"
-msgstr ""
+msgstr "%2"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/face_value.html:138 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:211
 msgid "16%"
-msgstr ""
+msgstr "%16"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:18
 msgid "Note Listing"
@@ -7544,15 +7548,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:126
 msgid "81%"
-msgstr ""
+msgstr "%81"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:127
 msgid "14%"
-msgstr ""
+msgstr "%14"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/generalnotes.html:128 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:103
 msgid "5%"
-msgstr ""
+msgstr "%5"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:18
 msgid "Podcast Listing"
@@ -7574,7 +7578,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:51
 msgid "Translation files"
-msgstr ""
+msgstr "Itzulpen-fitxategiak"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:52
 msgid "integration and UI tests"
@@ -7609,19 +7613,19 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:141 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 msgid "Advanced"
-msgstr ""
+msgstr "Aurreratua"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:146
 msgid "4%"
-msgstr ""
+msgstr "%4"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:147 mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:98
 msgid "6%"
-msgstr ""
+msgstr "%6"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/podcasts.html:148
 msgid "90%"
-msgstr ""
+msgstr "%90"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:17 mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:18
 msgid "Default Feed View"
@@ -7769,11 +7773,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:99
 msgid "92%"
-msgstr ""
+msgstr "%92"
 
 #: mkt/files/helpers.py:151
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Fitxategia dagoeneko ez da existitzen."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:160
@@ -7782,7 +7786,7 @@ msgstr ""
 
 #: mkt/files/helpers.py:174
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Arazoak {0} deskodetzean."
 
 #: mkt/files/helpers.py:212
 msgid "This file is not viewable online. Please download the file to view the contents."
@@ -7790,7 +7794,7 @@ msgstr ""
 
 #: mkt/files/helpers.py:220
 msgid "This file is a directory."
-msgstr ""
+msgstr "Fitxategi hau direktorio bat da."
 
 #: mkt/files/views.py:43
 msgid "Back to review"
@@ -7838,11 +7842,11 @@ msgstr "Balidazioaren emaitzak eskuratzen..."
 
 #: mkt/files/templates/fileviewer/viewer.html:46
 msgid "Files:"
-msgstr ""
+msgstr "Fitxategiak:"
 
 #: mkt/files/templates/fileviewer/viewer.html:49
 msgid "Deleted files:"
-msgstr ""
+msgstr "Ezabatutako fitxategiak:"
 
 #: mkt/files/templates/fileviewer/viewer.html:67
 msgid "Tab stops:"
@@ -7862,7 +7866,7 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:87 mkt/files/templates/fileviewer/viewer.html:88
 msgid "Previous note"
-msgstr ""
+msgstr "Aurreko oharra"
 
 #: mkt/files/templates/fileviewer/viewer.html:94 mkt/files/templates/fileviewer/viewer.html:95
 msgid "Next diff"
@@ -7870,7 +7874,7 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:97 mkt/files/templates/fileviewer/viewer.html:98
 msgid "Next note"
-msgstr ""
+msgstr "Hurrengo oharra"
 
 #: mkt/files/templates/fileviewer/viewer.html:103 mkt/files/templates/fileviewer/viewer.html:104
 msgid "Expand all"
@@ -7910,27 +7914,27 @@ msgstr "Ezabatzeko arrazoia"
 
 #: mkt/lookup/views.py:146
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Une honetan ezin da diru-itzulketaren egoera eskuratu."
 
 #: mkt/lookup/views.py:173
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Dagoeneko prozesatu da diru-itzulketa bat."
 
 #: mkt/lookup/views.py:196
 msgid "You cannot make a refund request for this transaction."
-msgstr ""
+msgstr "Ezin duzu transakzio honentzako diru-itzulketarik eskatu."
 
 #: mkt/lookup/views.py:218
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "Transakzio honentzako diru-itzulketa burutu zain dago."
 
 #: mkt/lookup/views.py:227
 msgid "Refund for this transaction successfully approved."
-msgstr ""
+msgstr "Transakzio honentzako diru-itzulketa onartuta dago."
 
 #: mkt/lookup/views.py:232
 msgid "Refund request for this transaction failed."
-msgstr ""
+msgstr "Transakzio honentzako diru-itzulketa eskaerak huts egin du."
 
 #: mkt/lookup/templates/lookup/app_summary.html:8
 msgid "last 24 hours"
@@ -7987,15 +7991,15 @@ msgstr "Abusu-salaketak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:79
 msgid "Permissions"
-msgstr ""
+msgstr "Baimenak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:93 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
-msgstr ""
+msgstr "Erosketak"
 
 #: mkt/lookup/templates/lookup/app_summary.html:103 mkt/lookup/templates/lookup/user_summary.html:50
 msgid "Refunds"
-msgstr ""
+msgstr "Diru-itzulketak"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
 #: mkt/lookup/templates/lookup/app_summary.html:106
@@ -8024,11 +8028,11 @@ msgstr "Bertsioaren historia"
 
 #: mkt/lookup/templates/lookup/app_summary.html:126
 msgid "Version (ID)"
-msgstr ""
+msgstr "Bertsioa (IDa)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:127
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Fitxategi-izena (IDa, tamaina)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:47
 msgid "Lookup Tool"
@@ -8068,7 +8072,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Itzuli transakzio honetako dirua"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
@@ -8092,7 +8096,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Orokorra"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -8104,11 +8108,11 @@ msgstr "Erabiltzaile-izena"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
-msgstr ""
+msgstr "Izena emanda"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Taldeak"
 
 #: mkt/lookup/templates/lookup/user_summary.html:37
 msgid "PayPal linked"
@@ -8144,16 +8148,16 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Submissions"
-msgstr ""
+msgstr "Bidalketak"
 
 #: mkt/lookup/templates/lookup/user_summary.html:94
 msgid "Unnamed"
-msgstr ""
+msgstr "Izengabea"
 
 #: mkt/lookup/templates/lookup/user_summary.html:105 mkt/lookup/templates/lookup/user_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:117
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "Delete User"
-msgstr ""
+msgstr "Ezabatu erabiltzailea"
 
 #: mkt/lookup/templates/lookup/user_summary.html:108
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
@@ -8169,11 +8173,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:130
 msgid "Deleted by"
-msgstr ""
+msgstr "Honek ezabatua:"
 
 #: mkt/lookup/templates/lookup/user_summary.html:133
 msgid "Reason"
-msgstr ""
+msgstr "Arrazoia"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:3
 msgid "App Lookup results for"
@@ -8197,7 +8201,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Kontua ezabatuta"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -8205,7 +8209,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Aplikazioa: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
@@ -8250,7 +8254,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Ordainagiria"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
@@ -8270,7 +8274,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Saltzailea"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -8314,7 +8318,7 @@ msgstr ""
 
 #: mkt/receipts/forms.py:24
 msgid "Refunded test receipt"
-msgstr ""
+msgstr "Diru-itzulketa probaren ordainagiria"
 
 #: mkt/receipts/views.py:89 mkt/receipts/views.py:180
 msgid "There was a problem installing the app."
@@ -8334,11 +8338,11 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Ordainagiri mota"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Manifestuaren kokalekua"
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
@@ -8350,11 +8354,11 @@ msgstr "Iruzkinak:"
 
 #: mkt/reviewers/forms.py:36 mkt/reviewers/templates/reviewers/review.html:131
 msgid "Device Types:"
-msgstr ""
+msgstr "Gailu motak:"
 
 #: mkt/reviewers/forms.py:38 mkt/reviewers/templates/reviewers/review.html:135
 msgid "Browsers:"
-msgstr ""
+msgstr "Nabigatzaileak:"
 
 #: mkt/reviewers/forms.py:41
 msgid "Device Type Override:"
@@ -8375,7 +8379,7 @@ msgstr ""
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:105
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "aplikazioa, berrikuslea edo iruzkina"
 
 #: mkt/reviewers/forms.py:114
 msgid "Has Editor Comment"
@@ -8407,7 +8411,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:37
 msgid "Device"
-msgstr ""
+msgstr "Gailua"
 
 # %1 is the review count
 #: mkt/reviewers/helpers.py:38
@@ -8416,7 +8420,7 @@ msgstr "Moderatutako berrikuspenak"
 
 #: mkt/reviewers/helpers.py:39
 msgid "Reviewing"
-msgstr ""
+msgstr "Berrikusten"
 
 #: mkt/reviewers/helpers.py:41 mkt/reviewers/templates/reviewers/queue_region.html:6
 msgid "Regional Queues"
@@ -8523,7 +8527,7 @@ msgstr ""
 
 #: mkt/reviewers/views.py:94
 msgid "New Apps (Under 5 days)"
-msgstr ""
+msgstr "Aplikazio berriak (5 egun baino gutxiagokoak)"
 
 #: mkt/reviewers/views.py:95
 msgid "Passable (5 to 10 days)"
