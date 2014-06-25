@@ -190,8 +190,8 @@ class ApiSearchForm(forms.Form):
         return at_ids
 
     def clean_languages(self):
-        languages = self.cleaned_data.get('languages', '')
-        return [l.strip() for l in languages.split(',')]
+        languages = self.cleaned_data.get('languages')
+        return [l.strip() for l in languages.split(',')] if languages else []
 
     def clean_device(self):
         return DEVICE_CHOICES_IDS.get(self.cleaned_data.get('device'))
