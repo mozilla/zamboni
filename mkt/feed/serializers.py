@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.utils.text import slugify
 
 from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
@@ -21,7 +22,18 @@ from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
 
 
-class BaseFeedCollectionSerializer(URLSerializerMixin,
+class ValidateSlugMixin(object):
+    """
+    Rather than raise validation errors on slugs, coerce them into something
+    safer.
+    """
+    def validate_slug(self, attrs, source):
+        if source in attrs:
+            attrs[source] = slugify(attrs[source])
+        return attrs
+
+
+class BaseFeedCollectionSerializer(ValidateSlugMixin, URLSerializerMixin,
                                    serializers.ModelSerializer):
     """
     Base serializer for subclasses of BaseFeedCollection.
@@ -49,7 +61,8 @@ class FeedImageField(serializers.HyperlinkedRelatedField):
             return None
 
 
-class FeedAppSerializer(URLSerializerMixin, serializers.ModelSerializer):
+class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
+                        serializers.ModelSerializer):
     """
     A serializer for the FeedApp class, which highlights a single app and some
     additional metadata (e.g. a review or a screenshot).

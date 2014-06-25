@@ -73,7 +73,7 @@ class FeedAppMixin(object):
 
     def random_slug(self):
         return ''.join(random.choice(string.ascii_uppercase + string.digits)
-                       for _ in range(10))
+                       for _ in range(10)).lower()
 
     def create_feedapps(self, n=2, **kwargs):
         data = dict(self.feedapp_data)

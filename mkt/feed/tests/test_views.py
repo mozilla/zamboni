@@ -2,6 +2,7 @@
 import json
 
 from django.core.urlresolvers import reverse
+from django.utils.text import slugify
 
 from nose.tools import eq_, ok_
 
@@ -333,6 +334,13 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         for field, value in self.pullquote_data.iteritems():
             eq_(data[field], value)
 
+    def test_create_slug_xss(self):
+        xss_slug = u"<script>alert('yo.');</script>"
+        self.feed_permission()
+        self.feedapp_data.update(slug=xss_slug)
+        res, data = self.create(self.client, **self.feedapp_data)
+        eq_(data['slug'], slugify(xss_slug))
+
     def test_create_with_pullquote_no_rating(self):
         del self.pullquote_data['pullquote_rating']
         self.test_create_with_pullquote()
@@ -614,6 +622,15 @@ class BaseTestFeedCollection(object):
         eq_(res.status_code, 201)
         for name, value in self.obj_data.iteritems():
             eq_(value, data[name])
+
+    def test_create_slug_xss(self):
+        self.feed_permission()
+        obj_data = dict(self.obj_data)
+        xss_slug = u"<script>alert('yo.');</script>"
+        if 'slug' in obj_data:
+            obj_data.update({'slug': xss_slug})
+        res, data = self.create(self.client, **obj_data)
+        eq_(data['slug'], slugify(xss_slug))
 
     def test_create_with_apps(self):
         self.feed_permission()
@@ -974,7 +991,7 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         eq_(data['shelf']['id'], self.shelf.id)
 
     def test_publish_overwrite(self):
-        res = self.client.put(self.url)
+        self.client.put(self.url)
         eq_(FeedItem.objects.count(), 1)
         assert FeedItem.objects.filter(shelf_id=self.shelf.id).exists()
 
