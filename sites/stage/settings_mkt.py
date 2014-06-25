@@ -41,9 +41,9 @@ LOG_LEVEL = logging.DEBUG
 # The django statsd client to use, see django-statsd for more.
 #STATSD_CLIENT = 'django_statsd.clients.moz_heka'
 
-SYSLOG_TAG = "http_app_addons_marketplacestage"
-SYSLOG_TAG2 = "http_app_addons_marketplacestage_timer"
-SYSLOG_CSP = "http_app_addons_marketplacestage_csp"
+SYSLOG_TAG = "http_app_mkt_stage"
+SYSLOG_TAG2 = "http_app_mkt_stage_timer"
+SYSLOG_CSP = "http_app_mkt_stage_csp"
 STATSD_PREFIX = 'marketplace-stage'
 
 ## Celery

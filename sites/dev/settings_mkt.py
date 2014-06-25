@@ -37,9 +37,9 @@ CACHE_PREFIX = 'dev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_marketplacedev"
-SYSLOG_TAG2 = "http_app_addons_marketplacedev_timer"
-SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
+SYSLOG_TAG = "http_app_mkt_dev"
+SYSLOG_TAG2 = "http_app_mkt_dev_timer"
+SYSLOG_CSP = "http_app_mkt_dev_csp"
 
 STATSD_PREFIX = 'marketplace-dev'
 

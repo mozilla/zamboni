@@ -35,9 +35,9 @@ MEDIA_URL = STATIC_URL + 'media/'
 CACHE_PREFIX = 'marketplace.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_marketplace"
-SYSLOG_TAG2 = "http_app_addons_marketplace_timer"
-SYSLOG_CSP = "http_app_addons_marketplace_csp"
+SYSLOG_TAG = "http_app_mkt_prod"
+SYSLOG_TAG2 = "http_app_mkt_prod_timer"
+SYSLOG_CSP = "http_app_mkt_prod_csp"
 
 # Redis
 REDIS_BACKEND = getattr(private_mkt, 'REDIS_BACKENDS_CACHE', private.REDIS_BACKENDS_CACHE)

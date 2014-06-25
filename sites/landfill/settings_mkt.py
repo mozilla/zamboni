@@ -35,9 +35,9 @@ CACHE_PREFIX = 'landfill.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_marketplacelandfill"
-SYSLOG_TAG2 = "http_app_addons_marketplacelandfill_timer"
-SYSLOG_CSP = "http_app_addons_marketplacelandfill_csp"
+SYSLOG_TAG = "http_app_mkt_landfill"
+SYSLOG_TAG2 = "http_app_mkt_landfill_timer"
+SYSLOG_CSP = "http_app_mkt_landfill_csp"
 
 STATSD_PREFIX = 'marketplace-landfill'
 

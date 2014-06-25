@@ -33,9 +33,9 @@ CACHE_PREFIX = 'altdev.mkt.%s' % CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
-SYSLOG_TAG = "http_app_addons_marketplacedev"
-SYSLOG_TAG2 = "http_app_addons_marketplacedev_timer"
-SYSLOG_CSP = "http_app_addons_marketplacedev_csp"
+SYSLOG_TAG = "http_app_mkt_altdev"
+SYSLOG_TAG2 = "http_app_mkt_altdev_timer"
+SYSLOG_CSP = "http_app_mkt_altdev_csp"
 
 STATSD_PREFIX = 'marketplace-dev'
 
