@@ -61,6 +61,7 @@ git submodule --quiet sync && git submodule update --init --recursive
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *
 
+DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 
