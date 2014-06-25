@@ -39,7 +39,7 @@
             {% endtrans %}
           </li>
         {% endif %}
-        <li{% if public or addon.is_public_waiting() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
+        <li{% if public or addon.is_approved() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
         <li{% if public %} class="done"{% endif %}><span>{{ _('Publish') }}</span></li>
       </ol>
 
@@ -89,7 +89,7 @@
               <strong>What's next:</strong> Set up {{ next_step_name }}
             {% endtrans %}
           </span>
-        {% elif addon.is_public_waiting() %}
+        {% elif addon.is_approved() %}
           <span>
             {% trans %}
               <strong>What's next:</strong> Publish Your App

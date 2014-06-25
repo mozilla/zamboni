@@ -209,8 +209,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
-    def test_waiting(self, mock_):
-        self.addon.update(status=amo.STATUS_PUBLIC_WAITING)
+    def test_approved(self, mock_):
+        self.addon.update(status=amo.STATUS_APPROVED)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
@@ -605,8 +605,8 @@ class TestFixMissingIcons(amo.tests.TestCase):
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._fix_missing_icons')
-    def test_public_waiting(self, mock_):
-        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+    def test_approved(self, mock_):
+        self.app.update(status=amo.STATUS_APPROVED)
         call_command('process_addons', task='fix_missing_icons')
         assert mock_.called
 

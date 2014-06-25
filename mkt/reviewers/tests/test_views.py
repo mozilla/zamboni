@@ -544,7 +544,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps = [app_factory(name='WWW',
                                  status=amo.STATUS_PUBLIC),
                      app_factory(name='XXX',
-                                 status=amo.STATUS_PUBLIC_WAITING),
+                                 status=amo.STATUS_APPROVED),
                      app_factory(name='YYY',
                                  status=amo.STATUS_PUBLIC),
                      app_factory(name='ZZZ',
@@ -863,9 +863,9 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
 
-    def test_public_waiting_update_in_queue(self):
+    def test_approved_update_in_queue(self):
         app = app_factory(is_packaged=True, name='YYY',
-                          status=amo.STATUS_PUBLIC_WAITING,
+                          status=amo.STATUS_APPROVED,
                           version_kw={'version': '1.0',
                                       'created': self.days_ago(2),
                                       'nomination': self.days_ago(2)})
@@ -892,7 +892,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         file_kw={'status': amo.STATUS_PENDING})
 
         # Now that we have a version with nomination=None, reset app status.
-        app.update(status=amo.STATUS_PUBLIC_WAITING)
+        app.update(status=amo.STATUS_APPROVED)
         File.objects.filter(version=first_version).update(status=app.status)
 
         # Safeguard: we /really/ want to test with nomination=None.
@@ -1298,7 +1298,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.make_public, amo.PUBLIC_WAIT)
-        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+        eq_(app.status, amo.STATUS_APPROVED)
         eq_([o.id for o in app.device_types], [amo.DEVICE_DESKTOP.id])
         self._check_log(amo.LOG.REVIEW_DEVICE_OVERRIDE)
 
@@ -1342,7 +1342,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         app = self.get_app()
         assert app.current_version.features.has_sms
         eq_(app.make_public, amo.PUBLIC_WAIT)
-        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
+        eq_(app.status, amo.STATUS_APPROVED)
         self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
 
         # A reviewer changing features shouldn't generate a re-review.
@@ -1537,9 +1537,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_pending_to_public_waiting(self, update_name, update_locales,
-                                       update_cached_manifests, index_webapps,
-                                       storefront_mock):
+    def test_pending_to_approved(self, update_name, update_locales,
+                                 update_cached_manifests, index_webapps,
+                                 storefront_mock):
         self.get_app().update(make_public=amo.PUBLIC_WAIT)
 
         # Reset mocks from the above update call.
@@ -1555,9 +1555,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.status, amo.STATUS_PUBLIC_WAITING)
-        eq_(app._current_version.files.all()[0].status,
-            amo.STATUS_PUBLIC_WAITING)
+        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app._current_version.files.all()[0].status, amo.STATUS_APPROVED)
         self._check_log(amo.LOG.APPROVE_VERSION_WAITING)
 
         eq_(len(mail.outbox), 1)
@@ -1576,13 +1575,13 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(index_webapps.delay.call_count, 1)
 
     @mock.patch('lib.crypto.packaged.sign')
-    def test_public_waiting_signs(self, sign):
+    def test_approved_signs(self, sign):
         self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
 
-        eq_(self.get_app().status, amo.STATUS_PUBLIC_WAITING)
+        eq_(self.get_app().status, amo.STATUS_APPROVED)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_reject(self):
@@ -3321,7 +3320,7 @@ class TestAbusePage(AppReviewerTest):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.app = app_factory(name = u'My app é <script>alert(5)</script>')
+        self.app = app_factory(name=u'My app é <script>alert(5)</script>')
         self.url = reverse('reviewers.apps.review.abuse',
                            args=[self.app.app_slug])
         AbuseReport.objects.create(addon=self.app, message=self.app.name)

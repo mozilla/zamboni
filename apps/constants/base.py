@@ -18,7 +18,7 @@ STATUS_LITE_AND_NOMINATED = 9
 STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11
 STATUS_REJECTED = 12  # This applies only to apps (for now)
-STATUS_PUBLIC_WAITING = 13  # bug 740967
+STATUS_APPROVED = 13  # bug 740967
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 STATUS_BLOCKED = 15
 
@@ -38,7 +38,7 @@ STATUS_CHOICES = {
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
-    STATUS_PUBLIC_WAITING: _(u'Approved but waiting'),
+    STATUS_APPROVED: _(u'Approved but waiting'),
     STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
     STATUS_BLOCKED: _(u'Blocked'),
 }
@@ -47,7 +47,7 @@ STATUS_CHOICES = {
 # Marketplace app status terms.
 MKT_STATUS_CHOICES = STATUS_CHOICES.copy()
 MKT_STATUS_CHOICES[STATUS_PUBLIC] = _(u'Published')
-MKT_STATUS_CHOICES[STATUS_PUBLIC_WAITING] = _(u'Approved but unpublished')
+MKT_STATUS_CHOICES[STATUS_APPROVED] = _(u'Approved but unpublished')
 
 # Marketplace file status terms.
 MKT_STATUS_FILE_CHOICES = MKT_STATUS_CHOICES.copy()
@@ -67,7 +67,7 @@ STATUS_CHOICES_API = {
     STATUS_PURGATORY: 'purgatory',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
-    STATUS_PUBLIC_WAITING: 'waiting',
+    STATUS_APPROVED: 'waiting',
     STATUS_REVIEW_PENDING: 'review-pending',
     STATUS_BLOCKED: 'blocked',
 }
@@ -85,7 +85,7 @@ STATUS_CHOICES_API_LOOKUP = {
     'purgatory': STATUS_PURGATORY,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
-    'waiting': STATUS_PUBLIC_WAITING,
+    'waiting': STATUS_APPROVED,
     'review-pending': STATUS_REVIEW_PENDING,
     'blocked': STATUS_BLOCKED,
 }
@@ -97,13 +97,11 @@ PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
 UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                        STATUS_PURGATORY)
-VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                  STATUS_PUBLIC, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY,
-                  STATUS_PUBLIC_WAITING)
+VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_PUBLIC,
+                  STATUS_APPROVED)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING, STATUS_PUBLIC_WAITING))
+                        if st not in (STATUS_PENDING, STATUS_APPROVED))
 
 # An add-on in one of these statuses is awaiting a review.
 STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,
@@ -121,15 +119,15 @@ WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
 
 # These apps have been approved and are listed; or could be without further
 # review
-WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_PUBLIC_WAITING)
+WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
 
 # An app with this status makes its detail page "invisible".
 WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,
-                             STATUS_PUBLIC_WAITING, STATUS_REJECTED)
+                             STATUS_APPROVED, STATUS_REJECTED)
 
 # The only statuses we use in the marketplace.
 MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
-                   STATUS_DELETED, STATUS_REJECTED, STATUS_PUBLIC_WAITING,
+                   STATUS_DELETED, STATUS_REJECTED, STATUS_APPROVED,
                    STATUS_BLOCKED)
 
 # These apps shouldn't be considered anymore in mass-emailing etc.

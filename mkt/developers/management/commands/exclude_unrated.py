@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
         ids_to_reindex = []
         apps = Webapp.objects.filter(
-            status__in=(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC_WAITING))
+            status__in=(amo.STATUS_PUBLIC, amo.STATUS_APPROVED))
 
         for app in apps:
             save = False

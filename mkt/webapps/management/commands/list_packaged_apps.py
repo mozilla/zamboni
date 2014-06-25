@@ -11,7 +11,7 @@ HELP = 'List all Marketplace packaged apps'
 
 statuses = {'pending': amo.STATUS_PENDING,
             'public': amo.STATUS_PUBLIC,
-            'approved': amo.STATUS_PUBLIC_WAITING,
+            'approved': amo.STATUS_APPROVED,
             'rejected': amo.STATUS_DISABLED}
 
 

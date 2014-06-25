@@ -191,7 +191,7 @@ class ReviewApp(ReviewBase):
 
     def process_public(self):
         """
-        Makes an app public or public waiting.
+        Makes an app public or approved.
         Changes status to Public/Public Waiting.
         Creates Approval note/email.
         """
@@ -204,7 +204,7 @@ class ReviewApp(ReviewBase):
         if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
             self._process_public_immediately()
         else:
-            self._process_public_waiting()
+            self._process_approved()
 
         if self.in_escalate:
             EscalationQueue.objects.filter(addon=self.addon).delete()
@@ -217,24 +217,24 @@ class ReviewApp(ReviewBase):
         return ReviewerScore.award_points(self.request.amo_user, self.addon,
                                           status)
 
-    def _process_public_waiting(self):
-        """Make an app public waiting."""
+    def _process_approved(self):
+        """Make an app approved."""
         if self.addon.has_incomplete_status():
             # Failsafe.
             return
 
         self.addon.sign_if_packaged(self.version.pk)
-        self.set_files(amo.STATUS_PUBLIC_WAITING, self.version.files.all())
+        self.set_files(amo.STATUS_APPROVED, self.version.files.all())
         if self.addon.status != amo.STATUS_PUBLIC:
-            self.set_addon(status=amo.STATUS_PUBLIC_WAITING,
-                           highest_status=amo.STATUS_PUBLIC_WAITING)
+            self.set_addon(status=amo.STATUS_APPROVED,
+                           highest_status=amo.STATUS_APPROVED)
         self.set_reviewed()
 
         self.create_note(amo.LOG.APPROVE_VERSION_WAITING)
-        self.notify_email('pending_to_public_waiting',
+        self.notify_email('pending_to_approved',
                           u'App approved but waiting: %s')
 
-        log.info(u'Making %s public but pending' % self.addon)
+        log.info(u'Making %s approved' % self.addon)
 
     def _process_public_immediately(self):
         """Changes status to Public."""
