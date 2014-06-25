@@ -1078,7 +1078,10 @@ class PreloadTestPlanForm(happyforms.Form):
 
     def clean(self):
         """Validate test_plan file."""
-        content_types = ['application/pdf', 'application/vnd.ms-excel']
+        content_types = ['application/pdf',
+                         'application/vnd.pdf',
+                         'application/ms-excel',
+                         'application/vnd.ms-excel']
         max_upload_size = 2621440  # 2.5MB
 
         if 'test_plan' not in self.files:
@@ -1095,8 +1098,8 @@ class PreloadTestPlanForm(happyforms.Form):
                 self._errors['test_plan'] = self.error_class([msg])
                 raise forms.ValidationError(msg)
         else:
-            msg = (_('Invalid file type. Only %s files are supported.') %
-                   ', '.join(content_types))
+            msg = (_('Invalid file type {0}. Only {1} files are supported.')
+                   .format(content_type, ', '.join(content_types)))
             self._errors['test_plan'] = self.error_class([msg])
             raise forms.ValidationError(msg)
 

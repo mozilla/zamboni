@@ -492,7 +492,7 @@ class TestPreloadSubmit(amo.tests.TestCase):
         eq_(PreloadTestPlan.objects.count(), 0)
         assert not save_mock.called
 
-        assert ('Invalid file type.' in
+        assert ('Invalid file type' in
                 pq(r.content)('.test_plan .errorlist').text())
 
     @mock.patch('mkt.developers.views.save_test_plan')
