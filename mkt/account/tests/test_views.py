@@ -116,6 +116,12 @@ class TestPermission(RestOAuth):
         eq_(res.status_code, 200)
         ok_(res.json['permissions']['curator'])
 
+    def test_feed_publisher_ok(self):
+        self.grant_permission(self.user, 'Feed:Curate')
+        res = self.client.get(self.get_url)
+        eq_(res.status_code, 200)
+        ok_(res.json['permissions']['curator'])
+
     def test_webpay(self):
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
