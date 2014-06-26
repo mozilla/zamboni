@@ -714,18 +714,19 @@ def no_translation(lang=None):
     translation.trans_real.activate(old_lang)
 
 
-def escape_all(v):
+def escape_all(v, linkify=True):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
-        v = linkify_with_outgoing(v)
+        if linkify:
+            v = linkify_with_outgoing(v)
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):
-            v[i] = escape_all(lv)
+            v[i] = escape_all(lv, linkify=linkify)
     elif isinstance(v, dict):
         for k, lv in v.iteritems():
-            v[k] = escape_all(lv)
+            v[k] = escape_all(lv, linkify=linkify)
     elif isinstance(v, Translation):
         v = jinja2.escape(smart_unicode(v.localized_string))
     return v

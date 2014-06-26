@@ -680,7 +680,7 @@ def make_validation_result(data):
     if data['validation']:
         for msg in data['validation']['messages']:
             for k, v in msg.items():
-                msg[k] = escape_all(v)
+                msg[k] = escape_all(v, linkify=k in ('message', 'description'))
     return data
 
 

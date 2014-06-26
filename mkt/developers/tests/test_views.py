@@ -928,6 +928,62 @@ class TestUploadDetail(BaseUploadTest):
                     args=['hosted', upload.uuid]))
         eq_(suite('#suite-results-tier-2').length, 1)
 
+    def test_detail_view_linkification(self):
+        uid = '9b1b3898db8a4d99a049829a46969ab4'
+        upload = FileUpload.objects.create(
+            name='something.zip',
+            validation=json.dumps({
+                u'ending_tier': 1,
+                u'success': False,
+                u'warnings': 0,
+                u'errors': 1,
+                u'notices': 0,
+                u'feature_profile': [],
+                u'messages': [
+                    {
+                        u'column': None,
+                        u'context': [
+                            u'',
+                            u'<button on-click="{{ port.name }}">uh</button>',
+                            u''
+                        ],
+                        u'description': [
+                            u'http://www.firefox.com'
+                            u'<script>alert("hi");</script>',
+                        ],
+                        u'file': u'index.html',
+                        u'id': [u'csp', u'script_attribute'],
+                        u'line': 1638,
+                        u'message': u'CSP Violation Detected',
+                        u'tier': 2,
+                        u'type': u'error',
+                        u'uid': uid,
+                    },
+                ],
+                u'metadata': {'ran_js_tests': 'yes'},
+                u'manifest': {},
+                u'feature_usage': [],
+                u'permissions': [],
+
+            }),
+        )
+        r = self.client.get(reverse('mkt.developers.standalone_upload_detail',
+                                    args=['packaged', upload.uuid]))
+        eq_(r.status_code, 200)
+        data = json.loads(r.content)
+        message = data['validation']['messages'][0]
+        description = message['description'][0]
+        eq_(description,
+            '<a rel="nofollow" href="http://outgoing.mozilla.org/v1/'
+            '680c0c59e4d87f3d21faf1d7365f0fec615076041466406aa3608fe6503aef43'
+            '/http%3A//www.firefox.com">'
+            'http://www.firefox.com</a>'
+            '&lt;script&gt;alert("hi");&lt;/script&gt;')
+        context = message['context'][1]
+        eq_(context,
+            '&lt;button on-click=&#34;{{ port.name }}&#34;&gt;'
+            'uh&lt;/button&gt;')
+
 
 def assert_json_error(request, field, msg):
     eq_(request.status_code, 400)
