@@ -761,6 +761,17 @@ class TestAppSummary(AppSummaryTest):
         res = self.summary()
         eq_(res.context['authors'][0].display_name, user.display_name)
 
+    def test_status(self):
+        res = self.summary()
+        assert 'Published' in pq(res.content)('.column-b dd').eq(5).text()
+
+    def test_disabled(self):
+        self.app.update(disabled_by_user=True)
+        res = self.summary()
+        text = pq(res.content)('.column-b dd').eq(5).text()
+        assert 'Published' not in text
+        assert 'disabled by user' in text
+
     def test_visible_authors(self):
         AddonUser.objects.all().delete()
         for role in (amo.AUTHOR_ROLE_DEV,
