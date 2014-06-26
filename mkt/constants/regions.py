@@ -307,6 +307,10 @@ class NI(REGION):
     ratingsbody = ratingsbodies.ESRB
 
 
+# Note: When adding a new region, don't forget to include the country code to
+# the file: media/css/devreg/payments.styl
+
+
 # Create a list of tuples like so (in alphabetical order):
 #
 #     [('restofworld', <class 'mkt.constants.regions.RESTOFWORLD'>),
