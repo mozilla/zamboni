@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from waffle.models import Switch, switch_is_active
+from waffle import switch_is_active
+from waffle.models import Switch
 
 from amo.utils import urlparams
 
