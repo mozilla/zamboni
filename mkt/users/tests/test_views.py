@@ -202,6 +202,8 @@ class FirefoxAccountTests(amo.tests.TestCase):
                 'user': 'fake-uid',
                 'email': 'regular@mozilla.com'
             }
+            if 'state' not in args:
+                args['state'] = self.client.session.get('state')
             url = reverse('fxa_authorize')
             return self.client.get(url, args)
 
@@ -237,7 +239,8 @@ class FirefoxAccountTests(amo.tests.TestCase):
                 'email': 'newacct@mozilla.com'
             }
             url = reverse('fxa_authorize')
-            r = self.client.get(url)
+            r = self.client.get(url,
+                                {'state': self.client.session.get('state')})
         eq_(r.status_code, 302)
         eq_(r['location'], 'http://testserver/')
         eq_(UserProfile.objects.filter(email='newacct@mozilla.com',

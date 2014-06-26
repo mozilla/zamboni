@@ -241,3 +241,15 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['developed'], [])
         eq_(data['apps']['purchased'], [purchased_app.pk])
+
+    def test_no_switches(self):
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(len(data['waffle']['switches']), 0)
+
+    def test_with_switches(self):
+        self.create_switch('wax-on', db=True)
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        eq_(len(data['waffle']['switches']), 1)
+        eq_(data['waffle']['switches'], ['wax-on'])

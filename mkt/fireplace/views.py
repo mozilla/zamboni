@@ -1,20 +1,28 @@
 import json
+import uuid
 
+from django.conf import settings
 from django.http import HttpResponse
+
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from waffle.models import Switch, switch_is_active
+
+from amo.utils import urlparams
 
 from mkt.account.views import user_relevant_apps
-from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-
+from mkt.api.base import CORSMixin
 from mkt.collections.views import CollectionViewSet as BaseCollectionViewSet
-from mkt.fireplace.serializers import (FireplaceCollectionSerializer, FireplaceAppSerializer,
-                                      FireplaceESAppSerializer)
-from mkt.search.views import (FeaturedSearchView as BaseFeaturedSearchView,
-                              SearchView as BaseSearchView)
+from mkt.fireplace.serializers import (FireplaceAppSerializer,
+                                       FireplaceCollectionSerializer,
+                                       FireplaceESAppSerializer)
+from mkt.search.views import FeaturedSearchView as BaseFeaturedSearchView
+from mkt.search.views import SearchView as BaseSearchView
+from mkt.users.views import fxa_oauth_api
 from mkt.webapps.views import AppViewSet as BaseAppViewset
 
 
@@ -51,12 +59,28 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
     permission_classes = (AllowAny,)
 
     def retrieve(self, request, *args, **kwargs):
+
+        # List of active switch names.
+        switches = [str(s) for s in
+                    Switch.objects.filter(active=True)
+                    .values_list('name', flat=True)]
+
         data = {
-            'region': request.REGION.slug
+            'region': request.REGION.slug,
+            'waffle': {
+                'switches': switches,
+            }
         }
         if request.amo_user:
-          data['apps'] = user_relevant_apps(request.amo_user)
+            data['apps'] = user_relevant_apps(request.amo_user)
+        if switch_is_active('firefox-accounts'):
+            state = uuid.uuid4().hex
+            data['fxa_auth_url'] = urlparams(
+                fxa_oauth_api('authorization'),
+                client_id=settings.FXA_FIREPLACE_CLIENT_ID,
+                state=state,
+                scope='profile')
+            data['fxa_auth_state'] = state
 
         # Return an HttpResponse directly to be as fast as possible.
-        return HttpResponse(json.dumps(data),
-                            content_type='application/json; charset=utf-8')
+        return Response(data)
