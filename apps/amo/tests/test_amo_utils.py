@@ -272,6 +272,23 @@ class TestEscapeAll(unittest.TestCase):
         eq_(res['list'], [expected])
         eq_(res['bool'], True)
 
+    def test_without_linkify(self):
+        value = '<button>http://firefox.com</button>'
+        expected = '&lt;button&gt;http://firefox.com&lt;/button&gt;'
+
+        test = {
+            'string': value,
+            'dict': {'x': value},
+            'list': [value],
+            'bool': True,
+        }
+        res = escape_all(test, linkify=False)
+
+        eq_(res['string'], expected)
+        eq_(res['dict'], {'x': expected})
+        eq_(res['list'], [expected])
+        eq_(res['bool'], True)
+
 
 class TestAttachTransDict(amo.tests.TestCase):
     """
