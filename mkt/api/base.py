@@ -162,6 +162,35 @@ class MarketplaceView(object):
         return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
 
 
+class MultiSerializerViewSetMixin(object):
+    """
+    Allows attaching multiple serializers to a single viewset. A serializer
+    is chosen based on request.GET['serializer'] which is used to look up the
+    appropriate serializer in a serializers_classes map. Useful to not have to
+    create separate endpoints just to use different serializers (e.g.,
+    product-specific serializers, slimmed serializers).
+    """
+    def get_serializer_class(self):
+        """
+        Look for serializer class in self.serializer_classes. It will be looked
+        up using request.GET.serializer, i.e.:
+
+        class MyViewSet(ViewSet):
+            serializer_class = MySerializer
+            serializer_classes = {
+               'mini': MyMiniSerializer,
+            }
+
+        If there's no entry for that param then just fallback to the regular
+        get_serializer_class lookup: self.serializer_class.
+        """
+        try:
+            return self.serializer_classes[self.request.GET.get('serializer')]
+        except KeyError:
+            return super(MultiSerializerViewSetMixin,
+                         self).get_serializer_class()
+
+
 class CORSMixin(object):
     """
     Mixin to enable CORS for DRF API.

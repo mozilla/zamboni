@@ -41,6 +41,17 @@ class BaseFeedCollectionSerializer(ValidateSlugMixin, URLSerializerMixin,
     apps = FeedCollectionMembershipField(many=True, source='apps')
     slug = serializers.CharField(required=False)
 
+    # Search-specific.
+    app_count = serializers.SerializerMethodField('get_app_count')
+    preview_icon = serializers.SerializerMethodField('get_preview_icon')
+
+    def get_app_count(self, obj):
+        return obj.apps().count()
+
+    def get_preview_icon(self, obj):
+        if obj.apps().exists():
+            return obj.apps()[0].get_icon_url(48)
+
     class Meta:
         fields = ('apps', 'slug', 'url')
 
@@ -86,6 +97,15 @@ class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
         url_basename = 'feedapps'
 
 
+class FeedAppSearchSerializer(FeedAppSerializer):
+    """
+    A simpler serializer for the FeedApp class that does not include extra
+    fields.
+    """
+    class Meta(FeedAppSerializer.Meta):
+        fields = ('app', 'id', 'slug', 'type', 'url')
+
+
 class FeedBrandSerializer(BaseFeedCollectionSerializer):
     """
     A serializer for the FeedBrand class, a type of collection that allows
@@ -100,6 +120,15 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
         fields = ('apps', 'id', 'layout', 'slug', 'type', 'url')
         model = FeedBrand
         url_basename = 'feedbrands'
+
+
+class FeedBrandSearchSerializer(FeedBrandSerializer):
+    """
+    A simpler serializer for the FeedBrand class that does not include apps.
+    """
+    class Meta(FeedBrandSerializer.Meta):
+        fields = ('app_count', 'id', 'layout', 'preview_icon', 'slug', 'type',
+                  'url')
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -119,6 +148,15 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
                   'description', 'id', 'name', 'region', 'slug', 'url')
         model = FeedShelf
         url_basename = 'feedshelves'
+
+
+class FeedShelfSearchSerializer(FeedShelfSerializer):
+    """
+    A simpler serializer for the FeedShelf class that does not include apps.
+    """
+    class Meta(FeedShelfSerializer.Meta):
+        fields = ('app_count', 'carrier', 'id', 'name', 'preview_icon',
+                  'region', 'slug', 'url')
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
@@ -164,6 +202,16 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
             data['group'] = field.field_to_native(member, 'group')
             ret.append(data)
         return ret
+
+
+class FeedCollectionSearchSerializer(FeedCollectionSerializer):
+    """
+    A simpler serializer for the FeedCollection class that does not include
+    apps.
+    """
+    class Meta(FeedCollectionSerializer.Meta):
+        fields = ('app_count', 'id', 'name', 'preview_icon', 'slug', 'type',
+                  'url')
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
