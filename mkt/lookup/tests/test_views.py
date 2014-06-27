@@ -662,7 +662,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
     def test_by_name_unreviewed(self):
         # Just the same as the above test, but with an unreviewed app.
-        self.app.status = amo.STATUS_UNREVIEWED
+        self.app.status = amo.STATUS_PENDING
         self.test_by_name_part()
 
     def test_by_deleted_app(self):

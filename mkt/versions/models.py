@@ -253,15 +253,13 @@ class Version(amo.models.ModelBase):
             version.all_activity = al_dict.get(v_id, [])
 
     def disable_old_files(self):
-        if not self.files.filter(status=amo.STATUS_BETA).exists():
-            qs = File.objects.filter(version__addon=self.addon_id,
-                                     version__lt=self.id,
-                                     version__deleted=False,
-                                     status__in=[amo.STATUS_UNREVIEWED,
-                                                 amo.STATUS_PENDING])
-            # Use File.update so signals are triggered.
-            for f in qs:
-                f.update(status=amo.STATUS_DISABLED)
+        qs = File.objects.filter(version__addon=self.addon_id,
+                                 version__lt=self.id,
+                                 version__deleted=False,
+                                 status__in=[amo.STATUS_PENDING])
+        # Use File.update so signals are triggered.
+        for f in qs:
+            f.update(status=amo.STATUS_DISABLED)
 
     @property
     def developer_name(self):

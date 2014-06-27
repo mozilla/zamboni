@@ -324,8 +324,8 @@ class TestMarketplace(amo.tests.TestCase):
         self.create_flag('allow-b2g-paid-submission')
 
         self.addon = Addon.objects.get(id=337141)
-        self.addon.update(status=amo.STATUS_NOMINATED,
-                          highest_status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_PUBLIC,
+                          highest_status=amo.STATUS_PUBLIC)
 
         self.url = self.addon.get_dev_url('payments')
         assert self.client.login(username='steamcube@mozilla.com',

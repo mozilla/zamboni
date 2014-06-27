@@ -6,41 +6,44 @@ from tower import ugettext_lazy as _
 
 # Add-on and File statuses.
 STATUS_NULL = 0
-STATUS_UNREVIEWED = 1
 STATUS_PENDING = 2
-STATUS_NOMINATED = 3
 STATUS_PUBLIC = 4
 STATUS_DISABLED = 5
-_STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7
-STATUS_LITE = 8
-STATUS_LITE_AND_NOMINATED = 9
-STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11
-STATUS_REJECTED = 12  # This applies only to apps (for now)
-STATUS_APPROVED = 13  # bug 740967
-STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
+STATUS_REJECTED = 12
+STATUS_APPROVED = 13
 STATUS_BLOCKED = 15
+
+# AMO-only statuses. Kept here only for memory and to not re-use the IDs.
+_STATUS_UNREVIEWED = 1
+_STATUS_NOMINATED = 3
+_STATUS_LISTED = 6  # See bug 616242.
+_STATUS_BETA = 7
+_STATUS_LITE = 8
+_STATUS_LITE_AND_NOMINATED = 9
+_STATUS_PURGATORY = 10  # A temporary home; bug 614686
+_STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
-    STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
     STATUS_PENDING: _(u'Pending approval'),
-    STATUS_NOMINATED: _(u'Awaiting Full Review'),
     STATUS_PUBLIC: _(u'Fully Reviewed'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_BETA: _(u'Beta'),
-    STATUS_LITE: _(u'Preliminarily Reviewed'),
-    STATUS_LITE_AND_NOMINATED: _(
-        u'Preliminarily Reviewed and Awaiting Full Review'),
-    STATUS_PURGATORY: _(u'Pending a review choice'),
     STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
     STATUS_APPROVED: _(u'Approved but waiting'),
-    STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
     STATUS_BLOCKED: _(u'Blocked'),
+    # Deprecated.
+    # _STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
+    # _STATUS_NOMINATED: _(u'Awaiting Full Review'),
+    # _STATUS_BETA: _(u'Beta'),
+    # _STATUS_LITE: _(u'Preliminarily Reviewed'),
+    # _STATUS_LITE_AND_NOMINATED: _(
+    #     u'Preliminarily Reviewed and Awaiting Full Review'),
+    # _STATUS_PURGATORY: _(u'Pending a review choice'),
+    # _STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
 }
 
 
@@ -56,37 +59,23 @@ MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
     STATUS_NULL: 'incomplete',
-    STATUS_UNREVIEWED: 'unreviewed',
     STATUS_PENDING: 'pending',
-    STATUS_NOMINATED: 'nominated',
     STATUS_PUBLIC: 'public',
     STATUS_DISABLED: 'disabled',
-    STATUS_BETA: 'beta',
-    STATUS_LITE: 'lite',
-    STATUS_LITE_AND_NOMINATED: 'lite-nominated',
-    STATUS_PURGATORY: 'purgatory',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_APPROVED: 'waiting',
-    STATUS_REVIEW_PENDING: 'review-pending',
     STATUS_BLOCKED: 'blocked',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
     'incomplete': STATUS_NULL,
-    'unreviewed': STATUS_UNREVIEWED,
     'pending': STATUS_PENDING,
-    'nominated': STATUS_NOMINATED,
     'public': STATUS_PUBLIC,
     'disabled': STATUS_DISABLED,
-    'beta': STATUS_BETA,
-    'lite': STATUS_LITE,
-    'lite-nominated': STATUS_LITE_AND_NOMINATED,
-    'purgatory': STATUS_PURGATORY,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'waiting': STATUS_APPROVED,
-    'review-pending': STATUS_REVIEW_PENDING,
     'blocked': STATUS_BLOCKED,
 }
 
@@ -94,22 +83,15 @@ PUBLIC_IMMEDIATELY = None
 # Our MySQL does not store microseconds.
 PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 
-REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
-UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                       STATUS_PURGATORY)
-VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_PUBLIC,
-                  STATUS_APPROVED)
+REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
+UNREVIEWED_STATUSES = (STATUS_PENDING,)
+VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_APPROVED)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES
                         if st not in (STATUS_PENDING, STATUS_APPROVED))
 
-# An add-on in one of these statuses is awaiting a review.
-STATUS_UNDER_REVIEW = (STATUS_UNREVIEWED, STATUS_NOMINATED,
-                       STATUS_LITE_AND_NOMINATED)
-
-LITE_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED)
-
-MIRROR_STATUSES = (STATUS_PUBLIC,)
+# An addon in one of these statuses is awaiting a review.
+STATUS_UNDER_REVIEW = (STATUS_PENDING,)
 
 # An add-on in one of these statuses can become premium.
 PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW

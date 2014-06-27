@@ -500,7 +500,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         current = self.get_version()
 
         try:
-            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
+            latest_qs = self.versions.all()
             if ignore is not None:
                 latest_qs = latest_qs.exclude(pk=ignore.pk)
             latest = latest_qs.latest()
@@ -621,12 +621,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @write
     def update_status(self):
-        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
-            or self.is_disabled or self.is_webapp()):
+        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
+            self.is_disabled):
             return
 
         def logit(reason, old=self.status):
-            log.info('Changing add-on status [%s]: %s => %s (%s).'
+            log.info('Changing addon status [%s]: %s => %s (%s).'
                      % (self.id, old, self.status, reason))
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
@@ -639,12 +639,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             logit('no versions with files')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-            if versions.filter(files__status=amo.STATUS_LITE).exists():
-                self.update(status=amo.STATUS_LITE)
-                logit('only lite files')
-            else:
-                self.update(status=amo.STATUS_UNREVIEWED)
-                logit('no reviewed files')
+            self.update(status=amo.STATUS_PENDING)
+            logit('no reviewed files')
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
@@ -749,18 +745,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return addon_dict
 
     @property
-    def show_beta(self):
-        return self.status == amo.STATUS_PUBLIC and self.current_beta_version
-
-    @amo.cached_property
-    def current_beta_version(self):
-        """Retrieves the latest version of an addon, in the beta channel."""
-        versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
-
-        if versions:
-            return versions[0]
-
-    @property
     def icon_url(self):
         return self.get_icon_url(32)
 
@@ -789,48 +773,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return preview.thumbnail_url
         except IndexError:
             return settings.MEDIA_URL + '/img/icons/no-preview.png'
-
-    def can_request_review(self):
-        """Return the statuses an add-on can request."""
-        if not File.objects.filter(version__addon=self):
-            return ()
-        if (self.is_disabled or
-            self.status in (amo.STATUS_PUBLIC,
-                            amo.STATUS_LITE_AND_NOMINATED,
-                            amo.STATUS_DELETED) or
-            not self.latest_version or
-            not self.latest_version.files.exclude(status=amo.STATUS_DISABLED)):
-            return ()
-        elif self.status == amo.STATUS_NOMINATED:
-            return (amo.STATUS_LITE,)
-        elif self.status == amo.STATUS_UNREVIEWED:
-            return (amo.STATUS_PUBLIC,)
-        elif self.status == amo.STATUS_LITE:
-            if self.days_until_full_nomination() == 0:
-                return (amo.STATUS_PUBLIC,)
-            else:
-                # Still in preliminary waiting period...
-                return ()
-        else:
-            return (amo.STATUS_LITE, amo.STATUS_PUBLIC)
-
-    def days_until_full_nomination(self):
-        """Returns number of days until author can request full review.
-
-        If wait period is over or this doesn't apply at all, returns 0 days.
-        An author must wait 10 days after submitting first LITE approval
-        to request FULL.
-        """
-        if self.status != amo.STATUS_LITE:
-            return 0
-        # Calculate wait time from the earliest submitted version:
-        qs = (File.objects.filter(version__addon=self, status=self.status)
-              .order_by('created').values_list('datestatuschanged'))[:1]
-        if qs:
-            days_ago = datetime.datetime.now() - qs[0][0]
-            if days_ago < datetime.timedelta(days=10):
-                return 10 - days_ago.days
-        return 0
 
     def is_webapp(self):
         return self.type == amo.ADDON_WEBAPP
@@ -932,13 +874,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
             .values('id').annotate(last_updated=status_change))
 
-        lite = (
-            Addon.objects.no_cache().filter(
-                status__in=amo.LISTED_STATUSES,
-                versions__files__status=amo.STATUS_LITE)
-            .exclude(type=amo.ADDON_WEBAPP)
-            .values('id').annotate(last_updated=status_change))
-
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
         exp = (Addon.objects.no_cache().exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_STATUSES)
@@ -953,7 +888,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                    .values('id')
                    .annotate(last_updated=Max('versions__created')))
 
-        return dict(public=public, exp=exp, lite=lite, webapps=webapps)
+        return dict(public=public, exp=exp, webapps=webapps)
 
     @amo.cached_property(writable=True)
     def all_categories(self):

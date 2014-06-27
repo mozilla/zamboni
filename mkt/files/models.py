@@ -38,7 +38,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
-                                              default=amo.STATUS_UNREVIEWED)
+                                              default=amo.STATUS_PENDING)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     reviewed = models.DateTimeField(null=True)
     # Whether a webapp uses flash or not.
