@@ -8,7 +8,7 @@
 
 {% block main_content %}
 <div class="notification-box {{ status(status_summary.memcache) }}">
-  <h2>[Memcache] Connection Tests ({{ memcache_timer }}ms)</h2>
+  <h2>[Caching] Connection Tests ({{ memcache_timer }}ms)</h2>
   <ul>
   {% for ip, port, result in memcache_results %}
     <li>{{ ip }}:{{ port }}
@@ -18,11 +18,7 @@
       <strong>Failed</strong>
     {% endif %}
     </li>
-  {% else %}
-    <li>There are no memcache servers!</li>
   {% endfor %}
-  </ul>
-  <p>There must be a minimum of 2 working servers.</p>
 </div>
 
 <div class="notification-box {{ status(status_summary.libraries) }}">

@@ -1,8 +1,25 @@
 .. _advanced-installation:
 
-=============
-Getting Fancy
-=============
+=================
+Optional installs
+=================
+
+All of these are optional, you can get up and running without having to setup
+any of this.
+
+--------------------
+Virtual environments
+--------------------
+
+virtualenvwrapper lets you run hooks when creating, activating, and deleting
+virtual environments.  These hooks can change settings, the shell environment,
+or anything else you want to do from a shell script.  For complete hook
+documentation, see
+http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
+
+You can find some lovely hooks to get started at http://gist.github.com/536998.
+The hook files should go in ``$WORKON_HOME`` (``$HOME/Envs`` from
+above), and ``premkvirtualenv`` should be made executable.
 
 .. _configure-mysql:
 
@@ -37,9 +54,9 @@ Here are `more tips for optimizing MySQL <http://bonesmoses.org/2011/02/28/mysql
 Memcached
 ---------
 
-We slipped this in with the basic install.  The package was
-``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Switch your
-``settings_local.py`` to use ::
+By default zamboni uses an in memory cache. To install memcached
+``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Alter your
+local settings file to use::
 
     CACHES = {
         'default': {
@@ -53,18 +70,20 @@ We slipped this in with the basic install.  The package was
 RabbitMQ and Celery
 -------------------
 
+By default zamboni automatically processes jobs without needing celery.
+
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
-If you're setting up Rabbit and want to use ``celeryd``, make sure you remove
-that line from your ``settings_local.py``.
+If you're setting up Rabbit and want to use ``celeryd`` you will need to
+alter you local settings file to set this up.
 
+See :doc:`./celery` for more instructions.
 
 -------------
 elasticsearch
 -------------
 
 See :doc:`./elasticsearch` for more instructions.
-
 
 -----
 Redis

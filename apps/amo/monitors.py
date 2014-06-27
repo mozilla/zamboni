@@ -54,6 +54,10 @@ def memcache():
                       '%s available') % len(memcache_results)
             monitor_log.warning(status)
 
+    # If we are in debug mode, don't worry about checking for memcache.
+    elif settings.DEBUG:
+        return status, []
+
     if not memcache_results:
         status = 'Memcache is not configured'
         monitor_log.info(status)
@@ -85,6 +89,11 @@ def libraries():
         else:
             msg = "You said spidermonkey was at (%s)" % settings.SPIDERMONKEY
             libraries_results.append(('Spidermonkey', False, msg))
+    # If settings are debug and spidermonkey is empty,
+    # thorw this error.
+    elif settings.DEBUG and not settings.SPIDERMONKEY:
+        msg = 'SPIDERMONKEY is empty'
+        libraries_results.append(('Spidermonkey', True, msg))
     else:
         msg = "Please set SPIDERMONKEY in your settings file."
         libraries_results.append(('Spidermonkey', False, msg))

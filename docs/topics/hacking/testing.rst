@@ -4,20 +4,7 @@
 Testing
 =======
 
-We're using a mix of `Django's Unit Testing`_, :mod:`nose <nose>`, and
-:mod:`Selenium <selenium>` for our automated testing. This gives us a lot of
-power and flexibility to test all aspects of the site.
-
-Selenium tests are maintained in a seperate `Selenium repository`_.
-
-Configuration
--------------
-
-Configuration for your unit tests is mostly handled automatically.  The only
-thing you'll need to ensure is that the database credentials in your
-``settings_local.py`` has full permissions to modify a database with ``test-``
-prepended to it.  For example, if my database name were ``zamboni`` this
-database would be ``test-zamboni``.
+We're using a mix of `Django's Unit Testing`_ and :mod:`nose <nose>`.
 
 Running Tests
 -------------
@@ -39,11 +26,11 @@ for the full set, but some common ones are:
 
 Our continuous integration server adds some additional flags for other features
 (for example, coverage statistics).  To see what those commands are check out
-the build script at :src:`scripts/build.sh`.
+the build script at :src:`scripts/run_mkt_tests.sh`.
 
 There are a few useful makefile targets that you can use:
 
-Run all the tests using your ``settings_local.py`` file::
+Run all the tests::
 
     make test
 
