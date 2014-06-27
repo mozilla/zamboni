@@ -29,7 +29,7 @@ class ValidateSlugMixin(object):
     """
     def validate_slug(self, attrs, source):
         if source in attrs:
-            attrs[source] = slugify(attrs[source])
+            attrs[source] = slugify(unicode(attrs[source]))
         return attrs
 
 
