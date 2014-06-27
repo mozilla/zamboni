@@ -10,7 +10,6 @@ import basket
 import commonware.log
 from django_browserid import get_audience
 from django_statsd.clients import statsd
-from requests_oauthlib import OAuth2Session
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
@@ -35,7 +34,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants.apps import INSTALL_TYPE_USER
-from mkt.users.views import _fxa_authorize
+from mkt.users.views import _fxa_authorize, get_fxa_session
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Webapp
 
@@ -159,10 +158,7 @@ class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
     serializer_class = FxaLoginSerializer
 
     def create_action(self, request, serializer):
-        session = OAuth2Session(
-            settings.FXA_FIREPLACE_CLIENT_ID,
-            state=serializer.data['state'],
-            scope=u'profile')
+        session = get_fxa_session(state=serializer.data['state'])
         profile = _fxa_authorize(
             session,
             settings.FXA_FIREPLACE_CLIENT_SECRET,

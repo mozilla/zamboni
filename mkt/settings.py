@@ -748,7 +748,7 @@ GOOGLE_TRANSLATE_REDIRECT_URL = (
 
 # Assume that locally run servers, with DEBUG to True will not want
 # their logs going to syslog.
-HAS_SYSLOG = not DEBUG
+HAS_SYSLOG = True
 
 HEKA_CONF = {
     'logger': 'zamboni',

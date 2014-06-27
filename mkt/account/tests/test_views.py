@@ -448,7 +448,7 @@ class TestFxaLoginHandler(TestCase):
     @patch.object(uuid, 'uuid4', FakeUUID)
     @patch('requests.post')
     def _test_login(self, http_request):
-        with patch('mkt.users.views.get_fxa_session') as get_session:
+        with patch('mkt.account.views.get_fxa_session') as get_session:
             m = get_session()
             m.fetch_token.return_value = {'access_token': 'fake'}
             m.post().json.return_value = {
@@ -456,7 +456,7 @@ class TestFxaLoginHandler(TestCase):
                 'email': 'cvan@mozilla.com'
             }
             res = self.post({'auth_response':
-                             'https://testserver/?access_token=fake-token'
+                             'https://testserver/?access_token=fake-token&code=coed'
                              '&state=fake-state',
                              'state': 'fake-state'})
             eq_(res.status_code, 201)
@@ -507,7 +507,7 @@ class TestFxaLoginHandler(TestCase):
 
     @patch('requests.post')
     def test_login_failure(self, http_request):
-        with patch('mkt.users.views.get_fxa_session') as get_session:
+        with patch('mkt.account.views.get_fxa_session') as get_session:
             m = get_session()
             m.fetch_token.return_value = {'access_token': 'fake'}
             m.post().json.return_value = {'error': 'busted'}
