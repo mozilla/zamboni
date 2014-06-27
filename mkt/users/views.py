@@ -111,37 +111,6 @@ def fxa_oauth_api(name):
     return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
 
 
-@csrf_exempt
-def fxa_login(request):
-    if not waffle.switch_is_active('firefox-accounts'):
-        return http.HttpResponse(status=403)
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
-        request.session['redirect_to'] = request.GET.get('to')
-    fxa = get_fxa_session(redirect_uri=absolutify(reverse('fxa_authorize')))
-    auth_url, state = fxa.authorization_url(fxa_oauth_api('authorization'))
-    request.session['state'] = state
-    return http.HttpResponseRedirect(auth_url)
-
-
-@csrf_exempt
-@transaction.commit_on_success
-def fxa_authorize(request):
-    if not waffle.switch_is_active('firefox-accounts'):
-        return http.HttpResponse(status=403)
-    state = request.session.get('state')
-    if not state or state != request.GET.get('state'):
-        return http.HttpResponse(status=400, content='Invalid callback state.')
-    profile = _fxa_authorize(get_fxa_session(state=state),
-                             settings.FXA_CLIENT_SECRET,
-                             request, request.build_absolute_uri())
-    if profile is None:
-        return http.HttpResponse(status=401)
-    else:
-        return http.HttpResponseRedirect(
-            request.session.get('redirect_to', settings.LOGIN_REDIRECT_URL))
-
-
 def _fxa_authorize(fxa, client_secret, request, auth_response):
     token = fxa.fetch_token(
         fxa_oauth_api('token'),

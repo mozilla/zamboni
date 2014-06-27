@@ -161,7 +161,7 @@ class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
         session = get_fxa_session(state=serializer.data['state'])
         profile = _fxa_authorize(
             session,
-            settings.FXA_FIREPLACE_CLIENT_SECRET,
+            settings.FXA_CLIENT_SECRET,
             request,
             serializer.data['auth_response'])
         if profile is None:

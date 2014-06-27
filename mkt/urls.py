@@ -14,7 +14,7 @@ from mkt.developers.views import login
 from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
-from mkt.users.views import fxa_authorize, fxa_login, logout
+from mkt.users.views import logout
 
 
 admin.autodiscover()
@@ -77,12 +77,6 @@ urlpatterns = patterns('',
 
     url('^oauth/authorize/$', oauth.authorize,
         name='mkt.developers.oauth_authorize'),
-
-    url('^fxa/authorize/$', fxa_authorize,
-        name='fxa_authorize'),
-
-    url('^fxa/login/$', fxa_login,
-        name='fxa_login'),
 
     url('^api/', include('mkt.api.urls')),
 

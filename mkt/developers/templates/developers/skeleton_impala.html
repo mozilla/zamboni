@@ -38,7 +38,12 @@
         data-user="{{ user_data(amo_user)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
-      {% if not waffle.switch('firefox-accounts') %}
+      {% if waffle.switch('firefox-accounts') %}
+        {% set fxa_state, fxa_url = fxa_auth_info() %}
+        data-fxa-state="{{ fxa_state }}"
+        data-fxa-login-url="{{ fxa_url }}"
+        data-fxa-auth-url="{{ url('fxa-account-login') }}"
+      {% else %}
         data-login-url="{{ url('account-login') }}"
         data-persona-url="{{ settings.BROWSERID_JS_URL }}"
         data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
@@ -66,11 +71,7 @@
 
 
               {% if not logged %}
-                {% if waffle.switch('firefox-accounts') %}
-                  <a href="{{ fxa_login_link() }}" class="browserid">{{ _('Sign In') }}</a>
-                {% else %}
-                 <a href="#" class="browserid">{{ _('Sign In') }}</a>
-                {% endif %}
+                <a href="#" class="browserid">{{ _('Sign In') }}</a>
               {% endif %}
             </div>
           {% endif %}
@@ -129,21 +130,16 @@
         <section>
           <h2>{{ _('Please sign in') }}</h2>
         {% if waffle.switch('firefox-accounts') %}
-          <footer>
-            <a class="button browserid"
-               href="{{ fxa_login_link() }}">{{ _('Sign in / Sign up') }}</a>
-          </footer>
-        {% else %}
           <p>
             {% trans url='https://login.persona.org/' %}
               Just log in or register with your
               <a href="{{ url }}">Persona</a> account below.
             {% endtrans %}
           </p>
+        {% endif %}
           <footer>
             <a class="button browserid" href="#">{{ _('Sign in / Sign up') }}</a>
           </footer>
-        {% endif %}
         </section>
       </div>
     {% endif %}

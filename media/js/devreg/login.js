@@ -2,31 +2,64 @@ define('login', ['notification'], function(notification) {
 
     var requestedLogin = false;
     var readyForReload = false;
-    if (z.body.data('persona-url')) {
-      z.doc.bind('login', function(skipDialog) {
-          if (readyForReload) {
-              window.location.reload();
-              return;
-          }
-          if (skipDialog) {
-              startLogin();
-          } else {
-              $('.overlay.login').addClass('show');
-          }
-      }).on('click', '.browserid', function(e) {
-          if (readyForReload) {
-              window.location.reload();
-              return;
-          }
+    z.doc.bind('login', function(skipDialog) {
+        if (readyForReload) {
+            window.location.reload();
+            return;
+        }
+        if (skipDialog) {
+            startLogin();
+        } else {
+            $('.overlay.login').addClass('show');
+        }
+    }).on('click', '.browserid', function(e) {
+        if (readyForReload) {
+            window.location.reload();
+            return;
+        }
 
-          var $this = $(this);
-          $this.addClass('loading-submit');
-          z.doc.on('logincancel', function() {
-              $this.removeClass('loading-submit').blur();
-          });
-          startLogin();
-          e.preventDefault();
-      });
+        var $this = $(this);
+        $this.addClass('loading-submit');
+        z.doc.on('logincancel', function() {
+            $this.removeClass('loading-submit').blur();
+        });
+        if (z.body.data('persona-url')) {
+            startLogin();
+        } else {
+            startFxALogin();
+        };
+        e.preventDefault();
+    });
+
+    function getCenteredCoordinates (width, height) {
+        var x = window.screenX + Math.max(0, Math.floor((window.innerWidth - width) / 2));
+        var y = window.screenY + Math.max(0, Math.floor((window.innerHeight - height) / 2));
+        return [x, y];
+    }
+
+    function startFxALogin() {
+        var w = 320;
+        var h = 500;
+        var i = getCenteredCoordinates(w, h);
+        requestedLogin = true;
+        window.open(z.body.data('fxa-login-url'),
+                    'fxa',
+                    'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+        window.addEventListener("message", function (msg) {
+            if (!msg.data || !msg.data.auth_code) {
+                return;
+            };
+            var data = {
+                'auth_response': msg.data.auth_code,
+                'state': z.body.data('fxa-state')
+            };
+            $.ajax({
+                type: 'POST',
+                url: z.body.data('fxa-auth-url'),
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json'}).done(finishLogin);
+        });
     }
 
     function startLogin() {
