@@ -125,7 +125,7 @@ class TestProductAsDict(amo.tests.TestCase):
         recordUrl = '/app/something-something/purchase/record?src=poop'
         assert tokenUrl in data['tokenUrl'], (
             'Invalid Token URL. Expected %s; Got %s'
-            % (tokenUrl, data['tokenUrl'])
+            % (tokenUrl, data['tokenUrl']))
         assert recordUrl in data['recordUrl'], (
             'Invalid Record URL. Expected %s; Got %s'
-            % (recordUrl, data['recordUrl'])
+            % (recordUrl, data['recordUrl']))
