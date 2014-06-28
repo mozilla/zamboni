@@ -3,10 +3,13 @@ from django.conf import settings
 
 import fudge
 import mock
+from nose.tools import eq_
 
 import amo
 import amo.tests
-from mkt.site.helpers import css, js
+from mkt.site.helpers import css, js, product_as_dict
+from mkt.site.fixtures import fixture
+from mkt.webapps.models import Webapp
 
 
 class TestCSS(amo.tests.TestCase):
@@ -101,3 +104,28 @@ class TestJS(amo.tests.TestCase):
         # Should be called with `debug=True`.
         fake_js.expects('js').with_args('mkt/devreg', True, False, False)
         js(context, 'mkt/devreg')
+
+
+class TestProductAsDict(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def test_correct(self):
+        request = mock.Mock(GET={'src': 'poop'})
+        app = Webapp.objects.get(id=337141)
+
+        data = product_as_dict(request, app)
+        eq_(data['src'], 'poop')
+        eq_(data['is_packaged'], False)
+        eq_(data['categories'], [])
+        eq_(data['name'], 'Something Something Steamcube!')
+        eq_(data['id'], '337141')
+        eq_(data['manifest_url'], 'http://micropipes.com/temp/steamcube.webapp')
+
+        tokenUrl = '/reviewers/app/something-something/token'
+        recordUrl = '/app/something-something/purchase/record?src=poop'
+        assert tokenUrl in data['tokenUrl'], (
+            'Invalid Token URL. Expected %s; Got %s'
+            % (tokenUrl, data['tokenUrl']))
+        assert recordUrl in data['recordUrl'], (
+            'Invalid Record URL. Expected %s; Got %s'
+            % (recordUrl, data['recordUrl']))

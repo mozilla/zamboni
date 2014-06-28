@@ -177,10 +177,10 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def publicise(request, addon_id, addon):
-    if addon.status == amo.STATUS_PUBLIC_WAITING:
+    if addon.status == amo.STATUS_APPROVED:
         addon.update(status=amo.STATUS_PUBLIC)
         File.objects.filter(
-            version__addon=addon, status=amo.STATUS_PUBLIC_WAITING).update(
+            version__addon=addon, status=amo.STATUS_APPROVED).update(
                 status=amo.STATUS_PUBLIC)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
         # Call update_version, so various other bits of data update.
@@ -402,7 +402,7 @@ def preload_submit(request, addon_id, addon):
             # Save test plan file.
             test_plan = request.FILES['test_plan']
             # Figure the type to save it as (cleaned as pdf/xls from the form).
-            if test_plan.content_type == 'application/pdf':
+            if 'pdf' in test_plan.content_type:
                 filename = 'test_plan_%s.pdf'
             else:
                 filename = 'test_plan_%s.xls'
@@ -476,7 +476,7 @@ def version_edit(request, addon_id, addon, version_id):
 def version_publicise(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    if version.all_files[0].status == amo.STATUS_PUBLIC_WAITING:
+    if version.all_files[0].status == amo.STATUS_APPROVED:
         File.objects.filter(version=version).update(status=amo.STATUS_PUBLIC)
         amo.log(amo.LOG.CHANGE_VERSION_STATUS, unicode(version.status[0]),
                 version)
@@ -484,9 +484,9 @@ def version_publicise(request, addon_id, addon):
         addon.update_version()
 
         # If the version we are publishing is the current_version one, and the
-        # app was in waiting state as well, update the app status.
+        # app was in approved state as well, update the app status.
         if (version == addon.current_version and
-                addon.status == amo.STATUS_PUBLIC_WAITING):
+                addon.status == amo.STATUS_APPROVED):
             addon.update(status=amo.STATUS_PUBLIC)
             amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
 

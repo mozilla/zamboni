@@ -1,9 +1,9 @@
 .. _feed:
 .. versionadded:: 2
 
-====
-Feed
-====
+================
+Marketplace Feed
+================
 
 The Marketplace Feed is a stream of content relevant to the user displayed on
 the Marketplace home page. The feed is comprised of a number of :ref:`feed items
@@ -20,6 +20,61 @@ feed may include:
     ``GET``, ``HEAD``, and ``OPTIONS`` requests to these endpoints may be made
     anonymously. Authentication and the ``Feed:Curate`` permission are required
     to make any other request.
+
+
+
+.. _feed-feed:
+
+----
+Feed
+----
+
+.. http:get:: /api/v2/feed/get/?carrier=(str:carrier)&region=(str:region)
+
+    A convenience endpoint containing all the data necessary for a user's feed,
+    which currently includes:
+
+    - All the :ref:`feed items <feed-items>`.
+    - The :ref:`operator shelf <feed-shelves>`, if available.
+
+
+    **Request**
+
+    :param carrier: the slug of a :ref:`carrier <carriers>`. Omit if no carrier
+        is available.
+    :type carrier: str
+    :param region: the slug of a :ref:`region <regions>`. Omit if no region is
+        available.
+    :type region: str
+
+
+    **Response**
+
+    :param feed: An ordered list of :ref:`feed items <feed-items>` for the
+        user.
+    :type feed: array
+    :param shelf: The :ref:`operator shelf <feed-shelves>` for the passed
+        region and carrier pair.
+    :type shelf: object
+
+    .. code-block:: json
+
+        {
+            "feed": [
+                {
+                    "id": 343,
+                    "other": "data"
+                },
+                {
+                    "id": 518,
+                    "other": "data"
+                }
+            ],
+            "shelf": {
+                "id": 101,
+                "other": "data"
+            }
+        }
 
 
 .. _feed-items:
@@ -91,11 +146,20 @@ List
 
     **Response**
 
-    :param meta: :ref:`meta-response-label`.
-    :type meta: object
-    :param objects: A :ref:`listing <objects-response-label>` of
+    :param feed: :ref:`meta-response-label`.
+    :type feed: object
+    :param shelf: A :ref:`listing <objects-response-label>` of
         :ref:`feed items <feed-items>`.
-    :type objects: array
+    :type shelf: array
+
+    .. code-block:: json
+
+        {
+            "carrier": null,
+            "category": null,
+            "collection": 4,
+            "region": 1
+        }
 
 
 Detail

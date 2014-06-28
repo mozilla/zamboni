@@ -12,9 +12,12 @@ from amo.tests import app_factory
 import mkt.carriers
 import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.carriers import CARRIER_MAP
+from mkt.constants.regions import REGIONS_DICT
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -425,6 +428,14 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         res, data = self._test_detail(self.client)
         assert data.get('background_image')
 
+    def test_multi_serializer(self):
+        self.feedapp = self.create_feedapps()[0]
+        self.url = reverse('api-v2:feedapps-detail',
+                           kwargs={'pk': self.feedapp.pk})
+        res = self.client.get(self.url, data={'serializer': 'search'})
+        eq_(res.status_code, 200)
+        assert 'background_image' not in json.loads(res.content)
+
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
     """
@@ -694,6 +705,14 @@ class BaseTestFeedCollection(object):
         self.feed_permission()
         res, data = self.delete(self.client)
         eq_(res.status_code, 204)
+
+    def test_multi_serializer(self):
+        self.make_item()
+        res = self.client.get(self.detail_url, {'serializer': 'search'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        assert 'app_count' in data
+        assert not 'apps' in data
 
 
 class TestFeedBrandViewSet(BaseTestFeedCollection, RestOAuth):
@@ -1005,3 +1024,83 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         self.url = reverse('api-v2:feed-shelf-publish', args=[8008135])
         res = self.client.put(self.url)
         eq_(res.status_code, 404)
+
+
+class TestFeedView(FeedTestMixin, RestOAuth):
+    fixtures = fixture('webapp_337141') + RestOAuth.fixtures
+
+    def setUp(self):
+        super(TestFeedView, self).setUp()
+        self.url = reverse('api-v2:feed.get')
+        self.carrier = 'tmn'
+        self.carrier_id = CARRIER_MAP[self.carrier].id
+        self.region = 'us'
+        self.region_id = REGIONS_DICT[self.region].id
+
+    def create_feed(self, n):
+        self.feed_items = []
+        for i in xrange(n):
+            app = app_factory()
+            feedapp = self.feed_app_factory(app_id=app.id)
+            feeditem = FeedItem.objects.create(carrier=self.carrier_id,
+                app=feedapp, region=self.region_id, item_type='app')
+            self.feed_items.append(feeditem)
+
+    def create_shelf(self):
+        feedshelf = self.feed_shelf_factory(carrier=self.carrier_id,
+                                            region=self.region_id)
+        self.shelf = FeedItem.objects.create(
+            carrier=self.carrier_id, region=self.region_id, item_type='shelf',
+            shelf=feedshelf)
+
+    def get(self, client, **kwargs):
+        res = client.get(self.url, kwargs)
+        data = json.loads(res.content)
+        return res, data
+
+    def test_get_anon(self):
+        res, data = self.get(self.anon, carrier=self.carrier,
+                             region=self.region)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def test_get_authed(self):
+        res, data = self.get(self.client, carrier=self.carrier,
+                             region=self.region)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def test_get_shelf(self):
+        self.create_shelf()
+        res, data = self.test_get_anon()
+        eq_(data['shelf']['id'], self.shelf.id)
+        eq_(data['feed'], [])
+
+    def test_get_feed(self):
+        feed_size = 3
+        self.create_feed(feed_size)
+        res, data = self.test_get_anon()
+        eq_(data['shelf'], None)
+        eq_(len(data['feed']), feed_size)
+
+    def test_get_both(self):
+        feed_size = 3
+        self.create_shelf()
+        self.create_feed(feed_size)
+        res, data = self.test_get_anon()
+        eq_(data['shelf']['id'], self.shelf.id)
+        eq_(len(data['feed']), feed_size)
+        return res, data
+
+    def test_shelf_mismatch(self):
+        self.test_get_both()
+        self.shelf.update(region=0)
+        res, data = self.test_get_anon()
+        eq_(data['shelf'], None)
+
+    def test_feed_mismatch(self):
+        self.test_get_both()
+        for item in self.feed_items:
+            item.update(region=0)
+        res, data = self.test_get_anon()
+        eq_(data['feed'], [])

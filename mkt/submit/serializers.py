@@ -20,7 +20,7 @@ class AppStatusSerializer(serializers.ModelSerializer):
         # You can push to the pending queue.
         amo.STATUS_NULL: amo.STATUS_PENDING,
         # You can push to public if you've been reviewed.
-        amo.STATUS_PUBLIC_WAITING: amo.STATUS_PUBLIC,
+        amo.STATUS_APPROVED: amo.STATUS_PUBLIC,
     }
 
     class Meta:

@@ -424,9 +424,9 @@ class TestPublicise(amo.tests.TestCase):
     def setUp(self):
         self.create_switch('iarc')
         self.webapp = self.get_webapp()
-        self.webapp.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.webapp.update(status=amo.STATUS_APPROVED)
         self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.file.update(status=amo.STATUS_APPROVED)
         self.publicise_url = self.webapp.get_dev_url('publicise')
         self.status_url = self.webapp.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -439,7 +439,7 @@ class TestPublicise(amo.tests.TestCase):
         self.client.logout()
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
+        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
 
     def test_publicise_get(self):
         eq_(self.client.get(self.publicise_url).status_code, 405)
@@ -457,7 +457,7 @@ class TestPublicise(amo.tests.TestCase):
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
-        eq_(self.get_webapp().status, amo.STATUS_PUBLIC_WAITING)
+        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
 
         res = self.client.post(self.publicise_url)
         eq_(res.status_code, 302)
@@ -478,9 +478,7 @@ class TestPublicise(amo.tests.TestCase):
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(doc('#version-status form').attr('action'), self.publicise_url)
-        # TODO: fix this when jenkins can get the jinja helpers loaded in
-        # the correct order.
-        #eq_(len(doc('strong.status-waiting')), 1)
+        eq_(len(doc('strong.status-waiting')), 1)
 
 
 class TestPubliciseVersion(amo.tests.TestCase):
@@ -510,11 +508,11 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
     def test_logout(self):
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_PUBLIC_WAITING)
+            status=amo.STATUS_APPROVED)
         self.client.logout()
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_version_status(), amo.STATUS_PUBLIC_WAITING)
+        eq_(self.get_version_status(), amo.STATUS_APPROVED)
 
     def test_publicise_get(self):
         eq_(self.client.get(self.url).status_code, 405)
@@ -523,14 +521,14 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_new_waiting(self, update_name, update_locales,
-                                           update_cached_manifests,
-                                           index_webapps):
-        """ Test publishing the latest, public_waiting version when the app is
-        already public, with a current version also already public """
+    def test_publicise_version_new_approved(self, update_name, update_locales,
+                                            update_cached_manifests,
+                                            index_webapps):
+        """ Test publishing the latest, approved version when the app is
+        already public, with a current version also already public. """
         eq_(self.app.status, amo.STATUS_PUBLIC)
         ver = version_factory(addon=self.app, version='2.0',
-                              file_kw=dict(status=amo.STATUS_PUBLIC_WAITING))
+                              file_kw=dict(status=amo.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
         ok_(self.app.current_version != ver)
 
@@ -552,14 +550,13 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_cur_waiting_app_public(self, update_name,
-                                                      update_locales,
-                                                      update_cached_manifests,
-                                                      index_webapps):
+    def test_publicise_version_cur_approved_app_public(
+        self, update_name, update_locales, update_cached_manifests,
+        index_webapps):
         """ Test publishing when the app is in a weird state: public but with
-        only one version, which is public_waiting """
+        only one version, which is approved. """
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_PUBLIC_WAITING)
+            status=amo.STATUS_APPROVED)
         eq_(self.app.current_version, self.app.latest_version)
         eq_(self.app.status, amo.STATUS_PUBLIC)
 
@@ -584,13 +581,13 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise_version_cur_waiting(self, update_name, update_locales,
-                                           update_cached_manifests,
-                                           index_webapps):
-        """ Test publishing when the only version of the app is waiting """
-        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+    def test_publicise_version_cur_approved(self, update_name, update_locales,
+                                            update_cached_manifests,
+                                            index_webapps):
+        """ Test publishing when the only version of the app is approved. """
+        self.app.update(status=amo.STATUS_APPROVED)
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_PUBLIC_WAITING)
+            status=amo.STATUS_APPROVED)
         eq_(self.app.current_version, self.app.latest_version)
 
         index_webapps.delay.reset_mock()
@@ -628,7 +625,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
     def test_status(self):
         File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_PUBLIC_WAITING)
+            status=amo.STATUS_APPROVED)
         res = self.client.get(self.status_url)
         eq_(res.status_code, 200)
         doc = pq(res.content)

@@ -68,9 +68,6 @@ def commonplace(request, repo, **kwargs):
             ('mcc' in request.GET and 'mnc' in request.GET)):
             include_persona = False
 
-    # Temporarily enabling include.js shim (bug 992334).
-    include_persona = True
-
     ctx = {
         'BUILD_ID': BUILD_ID,
         'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,

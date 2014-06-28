@@ -310,9 +310,9 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         self.assertSetEqual(data['status'], self.app.completion_error_msgs())
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
-    def test_public_waiting(self, is_fully_complete):
+    def test_approved(self, is_fully_complete):
         is_fully_complete.return_value = True
-        self.app.update(status=amo.STATUS_PUBLIC_WAITING)
+        self.app.update(status=amo.STATUS_APPROVED)
         res = self.client.patch(self.get_url,
                                 data=json.dumps({'status': 'public'}))
         eq_(res.status_code, 200)
