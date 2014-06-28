@@ -6,6 +6,7 @@ import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
+from mkt.search.views import RocketbarViewV2
 
 
 feed = SimpleRouter()
@@ -29,6 +30,8 @@ subfeedshelf.register('image', views.FeedShelfImageViewSet,
                       base_name='feed-shelf-image')
 
 urlpatterns = patterns('',
+    url(r'^apps/search/rocketbar/', RocketbarViewV2.as_view(),
+        name='rocketbar-search-api'),
     url(r'^rocketfuel/collections/.*', endpoint_removed),
     url(r'^feed/builder/$', views.FeedBuilderView.as_view(),
         name='feed.builder'),
