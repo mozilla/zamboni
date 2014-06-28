@@ -21,9 +21,12 @@ class TestPreloadCandidates(amo.tests.TestCase):
         self.user = UserProfile.objects.get()
         self.app = app_factory()
 
-    def test_preloads(self):
-        plan = PreloadTestPlan.objects.create(addon=self.app, filename='tstpn')
+    def _preload_factory(self):
+        return PreloadTestPlan.objects.create(addon=app_factory(),
+                                              filename='tstpn')
 
+    def test_preloads(self):
+        plan = self._preload_factory()
         req = amo.tests.req_factory_factory(self.url, user=self.user)
         res = preloads(req)
         eq_(res.status_code, 200)

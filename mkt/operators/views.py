@@ -13,7 +13,7 @@ from mkt.developers.models import PreloadTestPlan
 @waffle_switch('preload-apps')
 def preloads(request):
     preloads = (PreloadTestPlan.objects.filter(status=amo.STATUS_PUBLIC)
-                                       .order_by('addon__name'))
+                                       .order_by('-created'))
     preloads = paginate(request, preloads, per_page=20)
 
     return render(request, 'operators/preloads.html', {'preloads': preloads})
