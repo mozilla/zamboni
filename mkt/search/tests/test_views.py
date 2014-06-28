@@ -62,7 +62,7 @@ class TestGetRegion(TestCase):
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_get_region_all(self, mock_request_region):
-        geoip_fallback = regions.PE  # Different than the default (restofworld).
+        geoip_fallback = regions.PE  # Different than the default: restofworld.
         mock_request_region.return_value = geoip_fallback
 
         # Test string values (should return region with that slug).
@@ -1147,6 +1147,22 @@ class TestRocketbarApi(ESTestCase):
                         'icon': self.app2.get_icon_url(64),
                         'name': unicode(self.app2.name),
                         'slug': self.app2.app_slug})
+
+    def test_suggestions_with_multiple_icons(self):
+        url = reverse('api-v2:rocketbar-search-api')
+        with self.assertNumQueries(0):
+            response = self.client.get(
+                url, data={'q': 'something', 'lang': 'en-US', 'limit': 1})
+        parsed = json.loads(response.content)
+        eq_(len(parsed), 1)
+        eq_(parsed[0]['manifest_url'], self.app2.get_manifest_url())
+        eq_(parsed[0]['name'], unicode(self.app2.name))
+        eq_(parsed[0]['slug'], self.app2.app_slug)
+
+        assert 'icon' not in parsed[0], '`icon` field has been deprecated.'
+
+        for size in (128, 64, 48, 32):
+            eq_(parsed[0]['icons'][str(size)], self.app2.get_icon_url(size))
 
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):

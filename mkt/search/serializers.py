@@ -200,6 +200,7 @@ class SuggestionsESAppSerializer(ESAppSerializer):
 
 
 class RocketbarESAppSerializer(serializers.Serializer):
+    """Used by Firefox OS's Rocketbar apps viewer."""
     name = ESTranslationSerializerField()
 
     @property
@@ -211,15 +212,28 @@ class RocketbarESAppSerializer(serializers.Serializer):
     def to_native(self, obj):
         # fake_app is a fake instance because we need to access a couple
         # properties and methods on Webapp. It should never hit the database.
-        fake_app = Webapp(
+        self.fake_app = Webapp(
             id=obj['id'], icon_type='image/png', type=amo.ADDON_WEBAPP,
             default_locale=obj.get('default_locale', settings.LANGUAGE_CODE),
             icon_hash=obj.get('icon_hash'),
             modified=datetime.strptime(obj['modified'], '%Y-%m-%dT%H:%M:%S'))
-        ESTranslationSerializerField.attach_translations(fake_app, obj, 'name')
+        ESTranslationSerializerField.attach_translations(
+            self.fake_app, obj, 'name')
         return {
-            'name': self.fields['name'].field_to_native(fake_app, 'name'),
-            'icon': fake_app.get_icon_url(64),
+            'name': self.fields['name'].field_to_native(self.fake_app, 'name'),
+            'icon': self.fake_app.get_icon_url(64),
             'slug': obj['slug'],
             'manifest_url': obj['manifest_url'],
         }
+
+
+class RocketbarESAppSerializerV2(AppSerializer, RocketbarESAppSerializer):
+    """
+    Replaced `icon` key with `icons` for various pixel sizes: 128, 64, 48, 32.
+    """
+
+    def to_native(self, obj):
+        data = super(RocketbarESAppSerializerV2, self).to_native(obj)
+        del data['icon']
+        data['icons'] = self.get_icons(self.fake_app)
+        return data
