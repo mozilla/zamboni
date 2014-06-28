@@ -402,7 +402,7 @@ def preload_submit(request, addon_id, addon):
             # Save test plan file.
             test_plan = request.FILES['test_plan']
             # Figure the type to save it as (cleaned as pdf/xls from the form).
-            if test_plan.content_type == 'application/pdf':
+            if 'pdf' in test_plan.content_type:
                 filename = 'test_plan_%s.pdf'
             else:
                 filename = 'test_plan_%s.xls'
