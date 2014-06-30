@@ -85,6 +85,14 @@ class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(data['meta']['total_count'], 1)
         eq_(data['objects'][0]['id'], self.item.id)
 
+    def test_filter_bad_region(self):
+        res, data = self.list(self.client, region='kantoregion')
+        eq_(data['meta']['total_count'], 1)
+
+    def test_filter_bad_carrier(self):
+        res, data = self.list(self.client, carrier='carrierpigeons')
+        eq_(data['meta']['total_count'], 1)
+
 
 class TestFeedItemViewSetCreate(FeedAppMixin, BaseTestFeedItemViewSet):
     """
