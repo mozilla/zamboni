@@ -10,6 +10,7 @@ SERVER_EMAIL = 'zmarketplacestage@addons.mozilla.org'
 
 DOMAIN = "marketplace.allizom.org"
 SITE_URL = 'https://marketplace.allizom.org'
+BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-cdn.allizom.org/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 MIRROR_URL = LOCAL_MIRROR_URL

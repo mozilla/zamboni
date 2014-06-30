@@ -528,6 +528,7 @@ BROWSERID_DOMAIN = 'login.persona.org'
 # Adjust these settings if you need to use a custom verifier.
 BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
+BROWSERID_AUDIENCES = [SITE_URL]
 
 # Number of seconds a count() query should be cached.  Keep it short because
 # it's not possible to invalidate these queries.

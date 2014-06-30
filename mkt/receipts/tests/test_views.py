@@ -283,7 +283,7 @@ class TestReceiptIssue(amo.tests.TestCase):
         eq_(res.status_code, 403)
 
     def test_issued_not_reviewer(self):
-        self.client.login(username=self.user, password='password')
+        self.client.login(username=self.user.email, password='password')
         res = self.client.post(self.url)
         eq_(res.status_code, 403)
 
