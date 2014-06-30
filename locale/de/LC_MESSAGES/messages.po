@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-21 18:57+0000\n"
+"PO-Revision-Date: 2014-06-30 18:46+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400698657.0\n"
+"X-POOTLE-MTIME: 1404153976.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -434,11 +434,11 @@ msgstr "VIP-Auto-Weitergabe"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} wegen geänderter Manifest-URL neu überprüft."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Änderung der Manifest-URL"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -2056,11 +2056,11 @@ msgstr "Wegen häufiger Erstattungsanfragen an nächsthöhere Stelle weitergegeb
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "Hinweise zur App-Einreichung"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "Entwicklerkommentar"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2934,7 +2934,7 @@ msgstr "Der Adressname kann nicht „%s“ sein. Bitte wählen Sie einen anderen
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "Manifest-URL von {before_url} zu {after_url} geändert"
 
 #: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
@@ -3037,7 +3037,7 @@ msgstr "Datei zu groß. Sie darf höchstens %s groß sein. Aktuelle Größe: %s.
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Ungültiger Dateityp {0}. Nur {1}-Dateien werden unterstützt."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3737,7 +3737,7 @@ msgstr "Team-Mitglieder"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Nur der/die App-Eigentümer kann/können diese Seite bearbeiten."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4240,6 +4240,10 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Versuchen Sie bitte, Ihre Manifest-URL nicht zu oft zu ändern. Wenn Sie Ihre "
+"Manifest-URL ändern, werden bestehende Nutzer nicht auf die neue Manifest-"
+"URL aktualisiert. Weitere Informationen finden Sie in der <a href=\"%"
+"(doc_url)s\" target=\"_blank\">Dokumentation zum Aktualisieren von Apps</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:156
 msgid "Description"
@@ -4614,7 +4618,7 @@ msgstr "Geräte ändern"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Inhaltsbewertungen einrichten</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4846,10 +4850,14 @@ msgstr "Speichern"
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Ihre App muss gepackt sein und eine <a href=\"%(origin)s\">Herkunft</a> "
+"angeben, um diese App-interne Zahlungssystem zu verwenden."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Ihre App muss eine <a href=\"%(origin)s\">Herkunft</a> in Ihrem Manifest "
+"angeben, damit Quittungen korrekt verifiziert werden können."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4861,11 +4869,11 @@ msgstr "Preispunkt"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
-msgstr ""
+msgstr "Produkt-ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Add a product"
-msgstr ""
+msgstr "Ein Produkt hinzufügen"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -5991,7 +5999,7 @@ msgstr "Abgeschickt"
 
 #: mkt/lookup/templates/lookup/app_summary.html:75 mkt/lookup/templates/lookup/app_summary.html:154
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Review Prioritized"
@@ -6346,7 +6354,7 @@ msgstr "Bewertung löschen"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Noch nicht überprüft"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6567,7 +6575,7 @@ msgstr "Bewertungen"
 
 #: mkt/reviewers/helpers.py:176
 msgid "Rejected or Unreviewed"
-msgstr "Abgelehnt oder nicht überprüt"
+msgstr "Abgelehnt oder nicht überprüft"
 
 #: mkt/reviewers/utils.py:425
 msgid "Push to public"
@@ -6988,7 +6996,7 @@ msgstr "Anforderungen"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "Mehr anzeigen"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
@@ -7032,7 +7040,7 @@ msgstr "Wöchentliche Downloads"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
 msgid "Show less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
@@ -7529,11 +7537,14 @@ msgstr ""
 
 #: mkt/submit/forms.py:390
 msgid "Your comments for reviewers"
-msgstr ""
+msgstr "Ihre Kommentare für Überprüfer"
 
 #: mkt/submit/forms.py:391
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Ihre App wird von Mozilla überprüft, bevor sie öffentlich im Marketplace "
+"angezeigt wird. Geben Sie hier besondere Anweisungen für die App-Überprüfer "
+"ein."
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
@@ -7862,7 +7873,7 @@ msgstr "Mein SDK-basiertes Add-on kann nicht aktualisiert werden"
 
 #: mkt/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr "Mein Add-on wird von einem Redakteurt geprüft"
+msgstr "Mein Add-on wird von einem Redakteur geprüft"
 
 #: mkt/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
