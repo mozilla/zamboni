@@ -89,12 +89,12 @@ class RegionCarrierFilter(BaseFilterBackend):
         q = request.QUERY_PARAMS
 
         # Filter for only the region if specified.
-        if q.get('region'):
+        if q.get('region') and q.get('region') in mkt.regions.REGIONS_DICT:
             region_id = mkt.regions.REGIONS_DICT[q['region']].id
             qs = qs.filter(region=region_id)
 
         # Exclude feed items that specify carrier but do not match carrier.
-        if q.get('carrier'):
+        if q.get('carrier') and q.get('carrier') in mkt.carriers.CARRIER_MAP:
             carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
             qs = qs.exclude(~Q(carrier=carrier), carrier__isnull=False)
 
