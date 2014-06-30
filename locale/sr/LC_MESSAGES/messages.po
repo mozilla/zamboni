@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-28 09:40-0700\n"
-"PO-Revision-Date: 2014-06-26 16:11+0000\n"
-"Last-Translator: Branchy <brancybancy@gmail.com>\n"
+"PO-Revision-Date: 2014-06-30 11:08+0000\n"
+"Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403799070.0\n"
+"X-POOTLE-MTIME: 1404126522.0\n"
 
 #: apps/addons/buttons.py:171
 msgctxt "install_button"
@@ -1407,11 +1407,19 @@ msgid ""
 "the popular pages on our website.</p> <ul> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field "
 "above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Жао нам је, али нисмо могли да нађемо то што сте тражили.</h1> <p> Страница или датотека коју сте тражили није нађена на нашем сајту. Могуће да сте кликнули на застарелу везу, или нисте унели "
-"добру адресу. </p> <ul> <li>Ако сте укуцали адресу, погледајте правопис.</li> <li>Ако сте пратили везу однекуд, молимо да нам јавите на <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla."
-"com</a>. Реците нам одакле сте дошли и шта сте тражили, и ми ћемо дати све од себе да то поправимо. </li> </ul> <p>Или можете да пређете на неке од популарних страница на нашем веб сајту.</p> <ul> "
-"<li> Да ли желите да <a href=\"%(search)s\">претражите додатке</a>? Можете отићи на <a href=\"%(search)s\">страницу за претрагу</a> или само користите поље за претрагу горе. </li> <li> Ако "
-"преферирате да почнете из почетка, идите на <a href=\"%(home)s\">страницу са додацима</a>. </li> </ul>"
+"<h1>Жао нам је, али нисмо могли да нађемо то што сте тражили.</h1> <p> "
+"Страница или датотека коју сте тражили није нађена на нашем сајту. Могуће да "
+"сте кликнули на застарелу везу, или нисте унели добру адресу. </p> <ul> "
+"<li>Ако сте укуцали адресу, погледајте правопис.</li> <li> Ако сте пратили "
+"везу однекуд, молимо да нам јавите на <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Реците нам "
+"одакле сте дошли и шта сте тражили, и ми ћемо дати све од себе да то "
+"поправимо. </li> </ul> <p>Или можете да пређете на неке од популарних "
+"страница на нашем веб сајту.</p> <ul> <li> Да ли желите да <a href=\"%"
+"(search)s\">претражите додатке</a>? Можете отићи на <a href=\"%"
+"(search)s\">страницу за претрагу</a> или само користите поље за претрагу "
+"горе. </li> <li> Ако преферирате да почнете из почетка, идите на <a href=\"%"
+"(home)s\">страницу са додацима</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -2114,7 +2122,7 @@ msgstr "Недавни поени"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr "До сада нису додељени поени"
+msgstr "До сада нису додељени поени."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -2215,7 +2223,7 @@ msgstr "Оцењено са {0} од 5 звездица"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оцењено са %(оцена) од 5 звездица"
+msgstr "Оцењено са %(rating)s од 5 звездица"
 
 #. L10n: the addon name.
 #: apps/stats/models.py:123
@@ -2304,7 +2312,7 @@ msgstr "остали"
 
 #: apps/users/models.py:58
 msgid "No user with that email."
-msgstr "Не постоји корисник са том адресом е-поште"
+msgstr "Не постоји корисник са том адресом е-поште."
 
 #: apps/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
@@ -2384,7 +2392,7 @@ msgstr "Нотификације корисника"
 
 #: apps/users/views.py:72
 msgid "An email address is required."
-msgstr "Потребна је дреса е-поште"
+msgstr "Потребна је дреса е-поште."
 
 #: apps/users/views.py:79
 msgid "A user with that email address does not exist."
@@ -2406,7 +2414,7 @@ msgstr "Молимо Вас користите верификовану адре
 
 #: apps/users/views.py:236
 msgid "Wrong email address or password!"
-msgstr "Погрешна адреса е-поште или лозинка"
+msgstr "Погрешна адреса е-поште или лозинка!"
 
 #: mkt/account/utils.py:16
 msgid "Purchase Date"
@@ -2465,6 +2473,8 @@ msgstr "Мора да буде hex код боје, нпр. #FF0035."
 #: mkt/collections/serializers.py:221
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"Не можете имати више од једне Истакнуте/Оператерске полице колекције за исту "
+"комбинацију категорије/оператера/региона."
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
@@ -3056,7 +3066,7 @@ msgstr "Мали"
 
 #: mkt/constants/bango.py:155
 msgid "Malta"
-msgstr "Malta"
+msgstr "Малта"
 
 #: mkt/constants/bango.py:156
 msgid "Marshall Islands"
@@ -3524,15 +3534,15 @@ msgstr "Одобрено, али чека да буде јавно"
 
 #: mkt/constants/comm.py:38
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Ескалирано због високог броја извештаја о злоупотреби"
 
 #: mkt/constants/comm.py:39
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Ескалирано због високог броја захтева о повраћају новца"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "АПИ за управљање апликацијом"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
@@ -3542,7 +3552,7 @@ msgstr ""
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "АПИ за запаковане апликације"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
@@ -3556,15 +3566,15 @@ msgstr "Веб плаћање"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozApps` АПИ."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Web Activities"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Апликација захтева Web Activities (`MozActivity` АПИ)."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -3597,7 +3607,7 @@ msgstr "Контакти"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozContacts` АПИ."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
@@ -3606,6 +3616,8 @@ msgstr "Складиште уређаја"
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Апликација захтева Device Storage АПИ за приступ датотекама у систему "
+"датотека."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
@@ -3621,7 +3633,7 @@ msgstr "Апликација захтева платформу за подршк
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Неактиван"
 
 #: mkt/constants/features.py:92
 msgid "Network Information"
@@ -3630,22 +3642,24 @@ msgstr "Информације о мрежи"
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Апликација захтева способност прикупљања информација о мрежној вези "
+"(`navigator.mozConnection` АПИ)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
-msgstr ""
+msgstr "Мрежни статус"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Ова апликација захтева `navigator.mozNetworkStats` АПИ."
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
-msgstr ""
+msgstr "Близина"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Апликације захтева сензор за близину (`ondeviceproximity` АПИ)."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
@@ -3653,7 +3667,7 @@ msgstr ""
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozPush` АПИ."
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
@@ -3661,11 +3675,11 @@ msgstr "Оријентација екрана"
 
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Апликација захтева платформу да би подржала `ondeviceorientation` АПИ."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
-msgstr ""
+msgstr "Време/сат"
 
 #: mkt/constants/features.py:123
 msgid "The app requires the `navigator.mozTime` API."
@@ -3735,7 +3749,7 @@ msgstr ""
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
-msgstr ""
+msgstr "Цео екран"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
@@ -3839,7 +3853,7 @@ msgstr ""
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Аларми"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -3847,7 +3861,7 @@ msgstr ""
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
@@ -3855,7 +3869,7 @@ msgstr ""
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP сокети"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -3900,15 +3914,15 @@ msgstr "Снимак екрана"
 
 #: mkt/constants/payments.py:8
 msgid "Completed"
-msgstr ""
+msgstr "Завршено"
 
 #: mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox за десктоп"
 
 #: mkt/constants/platforms.py:77 mkt/constants/platforms.py:81
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Потпуно отворен мобилни екосистем"
 
 #: mkt/constants/platforms.py:78
 msgid "Windows, Mac and Linux"
@@ -3928,20 +3942,20 @@ msgstr "Криминалне радње"
 
 #: mkt/constants/ratingdescriptors.py:11 mkt/constants/ratingdescriptors.py:68 mkt/constants/ratingdescriptors.py:79 mkt/constants/ratingdescriptors.py:96
 msgid "Drugs"
-msgstr ""
+msgstr "Дрога"
 
 #: mkt/constants/ratingdescriptors.py:12
 msgid "Illegal Drugs"
-msgstr ""
+msgstr "Илегална дрога"
 
 #: mkt/constants/ratingdescriptors.py:13
 msgid "Legal Drugs"
-msgstr ""
+msgstr "Легална дрога"
 
 #. L10n: `Language` as in foul language.
 #: mkt/constants/ratingdescriptors.py:15
 msgid "Inappropriate Language"
-msgstr ""
+msgstr "Неприкладан језик"
 
 #: mkt/constants/ratingdescriptors.py:16 mkt/constants/ratingdescriptors.py:52 mkt/constants/ratingdescriptors.py:108
 msgid "Nudity"
@@ -3950,11 +3964,11 @@ msgstr ""
 #. L10n: `Sex` as in sexual, not as in gender.
 #: mkt/constants/ratingdescriptors.py:18 mkt/constants/ratingdescriptors.py:75 mkt/constants/ratingdescriptors.py:86
 msgid "Sex"
-msgstr ""
+msgstr "Секс"
 
 #: mkt/constants/ratingdescriptors.py:19 mkt/constants/ratingdescriptors.py:56 mkt/constants/ratingdescriptors.py:100
 msgid "Sexual Content"
-msgstr ""
+msgstr "Сексуални садржај"
 
 #: mkt/constants/ratingdescriptors.py:20
 msgid "Explicit Sex"
@@ -3966,11 +3980,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:22 mkt/constants/ratingdescriptors.py:64 mkt/constants/ratingdescriptors.py:76 mkt/constants/ratingdescriptors.py:87 mkt/constants/ratingdescriptors.py:101
 msgid "Violence"
-msgstr ""
+msgstr "Насиље"
 
 #: mkt/constants/ratingdescriptors.py:23
 msgid "Extreme Violence"
-msgstr ""
+msgstr "Екстремно насиље"
 
 #: mkt/constants/ratingdescriptors.py:25
 msgid "Alcohol Reference"
@@ -3986,11 +4000,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:28
 msgid "Use of Alcohol"
-msgstr ""
+msgstr "Употреба алкохола"
 
 #: mkt/constants/ratingdescriptors.py:29
 msgid "Blood"
-msgstr ""
+msgstr "Крв"
 
 #: mkt/constants/ratingdescriptors.py:30
 msgid "Blood and Gore"
@@ -4026,7 +4040,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:38
 msgid "Use of Drug and Alcohol"
-msgstr ""
+msgstr "Употреба дроге и алкохола"
 
 #: mkt/constants/ratingdescriptors.py:39
 msgid "Drug Reference"
@@ -4042,7 +4056,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:42
 msgid "Use of Drugs"
-msgstr ""
+msgstr "Употреба дроге"
 
 #: mkt/constants/ratingdescriptors.py:43
 msgid "Fantasy Violence"
@@ -4050,7 +4064,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:44
 msgid "Hate Speech"
-msgstr ""
+msgstr "Говор мржње"
 
 #: mkt/constants/ratingdescriptors.py:45
 msgid "Intense Violence"
@@ -4083,11 +4097,11 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:54
 msgid "Real Gambling"
-msgstr ""
+msgstr "Стварно коцкање"
 
 #: mkt/constants/ratingdescriptors.py:55
 msgid "Scary Themes"
-msgstr ""
+msgstr "Страшне теме"
 
 #: mkt/constants/ratingdescriptors.py:57
 msgid "Sexual Themes"
@@ -4123,7 +4137,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:67 mkt/constants/ratingdescriptors.py:78 mkt/constants/ratingdescriptors.py:95
 msgid "Discrimination"
-msgstr ""
+msgstr "Дискриминација"
 
 #: mkt/constants/ratingdescriptors.py:69 mkt/constants/ratingdescriptors.py:80
 msgid "Gambling"
@@ -4143,7 +4157,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:91
 msgid "Personal Data Sharing"
-msgstr ""
+msgstr "Дељење личних података"
 
 #: mkt/constants/ratingdescriptors.py:92
 msgid "In-app Purchase Option"
@@ -4160,7 +4174,7 @@ msgstr ""
 
 #: mkt/constants/ratingdescriptors.py:99
 msgid "Frightening Content"
-msgstr ""
+msgstr "Застрашујући садржај"
 
 #: mkt/constants/ratingdescriptors.py:103
 msgid "Abstract Violence"
@@ -4212,11 +4226,11 @@ msgstr ""
 
 #: mkt/constants/ratinginteractives.py:15
 msgid "Shares Info"
-msgstr ""
+msgstr "Дели информације"
 
 #: mkt/constants/ratinginteractives.py:18
 msgid "Shares Location"
-msgstr ""
+msgstr "Дели локацију"
 
 #: mkt/constants/ratinginteractives.py:21
 msgid "Digital Purchases"
@@ -4229,7 +4243,7 @@ msgstr "За све узрасте"
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
 msgid "For ages %d+"
-msgstr ""
+msgstr "За узраст %d+"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
@@ -4295,7 +4309,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:113
 msgid "Venezuela"
-msgstr ""
+msgstr "Венецуела"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_addon.html:16 mkt/search/forms.py:34 mkt/submit/templates/submit/manifest.html:56
 msgid "Hosted"
@@ -4307,7 +4321,7 @@ msgstr ""
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
-msgstr ""
+msgstr "Уговор"
 
 #: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
@@ -4336,7 +4350,7 @@ msgstr ""
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
-msgstr ""
+msgstr "(није подржано)"
 
 #: mkt/developers/api_payments.py:105
 msgid "Could not connect to payment server."
@@ -4352,7 +4366,7 @@ msgstr "Оцена садржаја промењена на Одрасли."
 
 #: mkt/developers/forms.py:56
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Не можете одабрати {region}."
 
 #: mkt/developers/forms.py:123
 msgid "All team members must have read and agreed to the developer agreement."
@@ -4440,7 +4454,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:703 mkt/developers/forms.py:790
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Морате одабрати барем један регион."
 
 #: mkt/developers/forms.py:708
 msgid "Enable new regions"
@@ -4452,15 +4466,15 @@ msgstr ""
 
 #: mkt/developers/forms.py:711
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Изабери где ће моја апликација бити доступна"
 
 #: mkt/developers/forms.py:899
 msgid "Agree"
-msgstr ""
+msgstr "Прихвати"
 
 #: mkt/developers/forms.py:916
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Унесите валидну адресу е-поште."
 
 #: mkt/developers/forms.py:919
 msgid "Your email address"
@@ -4480,7 +4494,7 @@ msgstr "Држава"
 
 #: mkt/developers/forms.py:962
 msgid "Transaction Type"
-msgstr ""
+msgstr "Тип трансакције"
 
 #: mkt/developers/forms.py:965 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
@@ -4558,7 +4572,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:232
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Није валидан избор"
 
 #: mkt/developers/forms_payments.py:336 mkt/developers/templates/developers/payments/premium.html:285
 msgid "This is a paid upgrade of"
@@ -4566,7 +4580,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:337
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Није надоградња"
 
 #: mkt/developers/forms_payments.py:380
 msgid "Account Holder Name"
@@ -4602,11 +4616,11 @@ msgstr "Адреса 2"
 
 #: mkt/developers/forms_payments.py:400
 msgid "City/Municipality"
-msgstr ""
+msgstr "Град/општина"
 
 #: mkt/developers/forms_payments.py:402
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Држава/покрајина/регион"
 
 #: mkt/developers/forms_payments.py:404
 msgid "Zip/Postal Code"
@@ -4622,7 +4636,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:414
 msgid "VAT Number"
-msgstr ""
+msgstr "VAT број"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank Account Number"
@@ -4630,7 +4644,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:420
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT код"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Name"
@@ -4646,11 +4660,11 @@ msgstr "Адреса банке 2"
 
 #: mkt/developers/forms_payments.py:428
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Град/општина банке"
 
 #: mkt/developers/forms_payments.py:431
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Држава/покрајина/регион банке"
 
 #: mkt/developers/forms_payments.py:433
 msgid "Bank Zip/Postal Code"
@@ -4658,11 +4672,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:435
 msgid "Bank Country"
-msgstr ""
+msgstr "Држава банке"
 
 #: mkt/developers/forms_payments.py:437 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Име налога"
 
 #: mkt/developers/forms_payments.py:466
 msgid "Payment Account"
@@ -4678,7 +4692,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:626 mkt/developers/forms_payments.py:642
 msgid "Account name"
-msgstr ""
+msgstr "Име налога"
 
 #: mkt/developers/forms_payments.py:628 mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
@@ -4734,7 +4748,7 @@ msgstr ""
 
 #: mkt/developers/providers.py:350
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:390
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -4766,7 +4780,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:59
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Видео подршка није омогућена."
 
 #: mkt/developers/utils.py:72
 msgid "Icons must be either PNG or JPG."
@@ -4798,7 +4812,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:109
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Иконице морају бити најмање 128px по 128px."
 
 #: mkt/developers/utils.py:112
 msgid "Icons must be square."
@@ -4840,7 +4854,7 @@ msgstr ""
 
 #: mkt/developers/views.py:265
 msgid "New version successfully added."
-msgstr ""
+msgstr "Нова верзија је успешно додата."
 
 #: mkt/developers/views.py:313
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
@@ -4868,7 +4882,7 @@ msgstr ""
 
 #: mkt/developers/views.py:527
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "Верзија \"{0}\" је избрисана."
 
 #: mkt/developers/views.py:566 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:413 mkt/reviewers/views.py:714
 msgid "Changes successfully saved."
@@ -4944,7 +4958,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:29
 msgid "API"
-msgstr "АПИ"
+msgstr "API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -4978,7 +4992,7 @@ msgstr "Кључ"
 
 #: mkt/developers/templates/developers/api.html:56
 msgid "Secret"
-msgstr ""
+msgstr "Тајна"
 
 #: mkt/developers/templates/developers/api.html:70 mkt/developers/templates/developers/apps/status.html:258 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
@@ -5167,7 +5181,7 @@ msgstr "Претражи"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:63
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Firefox Marketplace програмери"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 msgid "API Reference"
@@ -5232,7 +5246,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Детаљи трансакције"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
@@ -5485,7 +5499,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:145
 msgid "Not Submitted"
-msgstr ""
+msgstr "Није послато"
 
 #: mkt/developers/templates/developers/apps/status.html:149
 msgid "New version of the test plan available"
@@ -5586,7 +5600,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:358
 msgid "Delete Version &quot;{version}&quot;"
-msgstr ""
+msgstr "Избриши верзију &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:359
 msgid "Deleting the only version will result in the following:"
@@ -5614,11 +5628,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:367
 msgid "These changes cannot be undone."
-msgstr ""
+msgstr "Ове промене се не могу поништити."
 
 #: mkt/developers/templates/developers/apps/status.html:368
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Да ли сте сигурни да желите да избришете ову верзију?"
 
 #: mkt/developers/templates/developers/apps/status.html:371
 msgid "Delete Version"
@@ -5769,7 +5783,7 @@ msgstr "Име програмера"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:46 mkt/submit/templates/submit/details.html:67
 msgid "App URL"
-msgstr ""
+msgstr "URL апликације"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:47 mkt/submit/templates/submit/details.html:69
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
@@ -5795,11 +5809,11 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
 #: mkt/search/forms.py:146
 msgid "Manifest URL"
-msgstr ""
+msgstr "URL манифеста"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:84
 msgid "Refresh"
-msgstr ""
+msgstr "Освежи"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:86
 msgid "Manifest URLs cannot be changed after your app has been submitted. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your manifest URL."
@@ -5823,7 +5837,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr ""
+msgstr "Детаљи апликације"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
@@ -5843,7 +5857,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/language.html:1
 msgid "Country and Language"
-msgstr ""
+msgstr "Држава и језик"
 
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
@@ -5926,7 +5940,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Иконица апликације"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid "Upload an icon for your app or choose from one of ours. The icon is displayed nearly everywhere your app is. Uploaded images must be one of the following image types: .png, .jpg"
@@ -5934,7 +5948,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr ""
+msgstr "Изаберите иконицу за Вашу апликацију:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -5997,7 +6011,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:13 mkt/developers/templates/developers/apps/includes/validation_test_results.html:58
 msgid "Content Tests"
-msgstr ""
+msgstr "Тестови садржаја"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:28 mkt/developers/templates/developers/apps/includes/validation_test_results.html:42
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:55
@@ -6087,7 +6101,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
 msgid "Add New Version"
-msgstr ""
+msgstr "Додај нову верзију"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
@@ -6165,7 +6179,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/home.html:26
 msgid "Testing Finished?"
-msgstr ""
+msgstr "Тестирање завршено?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
@@ -6242,7 +6256,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
@@ -6304,11 +6318,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:58
 msgid "Remove this application"
-msgstr ""
+msgstr "Уклони ову апликацију"
 
 #: mkt/developers/templates/developers/includes/macros.html:68 mkt/developers/templates/developers/includes/macros.html:87
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "Изаберите једну или две категорије."
 
 #. {0} is the maximum number of add-on categories allowed.
 #.                  {1} is the application name.
@@ -6411,11 +6425,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:34
 msgid "Buy URL"
-msgstr ""
+msgstr "Купи URL"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:44
 msgid "+ Add a product"
-msgstr ""
+msgstr "+ додај производ"
 
 #: mkt/developers/templates/developers/payments/premium.html:51
 msgid "App Compatibility"
@@ -6487,7 +6501,7 @@ msgstr "Регије"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Available Regions"
-msgstr ""
+msgstr "Доступни региони"
 
 #: mkt/developers/templates/developers/payments/premium.html:212
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
@@ -6511,7 +6525,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Other regions"
-msgstr ""
+msgstr "Остали региони"
 
 #: mkt/developers/templates/developers/payments/premium.html:240
 msgid ""
@@ -6549,7 +6563,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Провајдер"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
@@ -6558,7 +6572,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Прикажи трансакције"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
@@ -6602,7 +6616,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
 msgid "Optional"
-msgstr ""
+msgstr "Опционо"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -6623,7 +6637,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:5
 msgid "Add Boku Account"
-msgstr ""
+msgstr "Додај Boku налог"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:12
 msgid ""
@@ -6662,7 +6676,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr ""
+msgstr "Ажурирај налог"
 
 #. Boku should not be localised
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:6
@@ -6720,7 +6734,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Дизајн"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
@@ -6923,7 +6937,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Придружите се заједници"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
@@ -6987,7 +7001,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
-msgstr ""
+msgstr "Уређаји за програмере"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code &amp; Tools"
@@ -7043,11 +7057,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:127
 msgid "For Current Web Developers"
-msgstr ""
+msgstr "За веб програмере"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:131
 msgid "For Current Mobile Developers"
-msgstr ""
+msgstr "За програмере мобилних уређаја"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:135
 msgid "Using Apps Offline"
@@ -7060,7 +7074,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/macros.html:143 mkt/lookup/templates/lookup/app_summary.html:91 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:47
 #: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:564
 msgid "Payments"
-msgstr ""
+msgstr "Плаћања"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:153
 msgid "App Generator"
@@ -7152,7 +7166,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "Останите повезани."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
@@ -7196,11 +7210,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Наранџасто"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Сиво"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
@@ -7228,7 +7242,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Често постављена питања"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -7256,11 +7270,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Known issues"
-msgstr ""
+msgstr "Познати проблеми"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:53
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "Да ли још увек имате питања?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:55
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
@@ -7354,7 +7368,7 @@ msgstr "Прикажи извор"
 #: mkt/ecosystem/templates/ecosystem/reference_apps/roller.html:98 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:205
 #: mkt/ecosystem/templates/ecosystem/reference_apps/webfighter.html:92
 msgid "Difficulty:"
-msgstr ""
+msgstr "Тежина:"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/chrono.html:130
 msgid "Easy"
@@ -7605,7 +7619,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:27 mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:28
 msgid "Selecting an image"
-msgstr ""
+msgstr "Бирање слике"
 
 #: mkt/ecosystem/templates/ecosystem/reference_apps/rtcamera.html:35
 msgid "rtcamera is a fun camera app to process images in real time, using Web technologies. <a href=\"%(walkthrough_link)s\" class=\"walkthrough\"> Read the full developer walkthrough </a>"
@@ -7701,7 +7715,7 @@ msgstr "92%"
 
 #: mkt/files/helpers.py:151
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Ова датотека више не постоји."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:160
@@ -7726,7 +7740,7 @@ msgstr ""
 
 #: mkt/files/views.py:48
 msgid "Back to app"
-msgstr ""
+msgstr "Назад на апликацију"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
@@ -7762,11 +7776,11 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:46
 msgid "Files:"
-msgstr ""
+msgstr "Датотеке:"
 
 #: mkt/files/templates/fileviewer/viewer.html:49
 msgid "Deleted files:"
-msgstr ""
+msgstr "Избрисане датотеке:"
 
 #: mkt/files/templates/fileviewer/viewer.html:67
 msgid "Tab stops:"
@@ -7782,19 +7796,19 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:84 mkt/files/templates/fileviewer/viewer.html:85
 msgid "Previous diff"
-msgstr ""
+msgstr "Претходни diff"
 
 #: mkt/files/templates/fileviewer/viewer.html:87 mkt/files/templates/fileviewer/viewer.html:88
 msgid "Previous note"
-msgstr ""
+msgstr "Претходна забелешка"
 
 #: mkt/files/templates/fileviewer/viewer.html:94 mkt/files/templates/fileviewer/viewer.html:95
 msgid "Next diff"
-msgstr ""
+msgstr "Следећи diff"
 
 #: mkt/files/templates/fileviewer/viewer.html:97 mkt/files/templates/fileviewer/viewer.html:98
 msgid "Next note"
-msgstr ""
+msgstr "Следећа забелешка"
 
 #: mkt/files/templates/fileviewer/viewer.html:103 mkt/files/templates/fileviewer/viewer.html:104
 msgid "Expand all"
@@ -7874,11 +7888,11 @@ msgstr "Аутори"
 
 #: mkt/lookup/templates/lookup/app_summary.html:34
 msgid "Manifest"
-msgstr ""
+msgstr "Манифест"
 
 #: mkt/lookup/templates/lookup/app_summary.html:40 mkt/reviewers/templates/reviewers/includes/details.html:35 mkt/reviewers/templates/reviewers/includes/mobile_details.html:56
 msgid "View"
-msgstr ""
+msgstr "Приказ"
 
 #: mkt/lookup/templates/lookup/app_summary.html:48 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:44
 msgid "Privileged Packaged app"
@@ -7911,7 +7925,7 @@ msgstr "Извештаји о злоупотреби"
 
 #: mkt/lookup/templates/lookup/app_summary.html:79
 msgid "Permissions"
-msgstr ""
+msgstr "Дозволе"
 
 #: mkt/lookup/templates/lookup/app_summary.html:93 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
@@ -7967,7 +7981,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
-msgstr ""
+msgstr "Купац"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
@@ -8015,7 +8029,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Опште"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -8063,7 +8077,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:68
 msgid "Addresses"
-msgstr ""
+msgstr "Адресе"
 
 #: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Submissions"
@@ -8088,7 +8102,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:128
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Овај корисник је већ обрисан."
 
 #: mkt/lookup/templates/lookup/user_summary.html:130
 msgid "Deleted by"
@@ -8104,7 +8118,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:5
 msgid "App Detail"
-msgstr ""
+msgstr "Детаљи апликације"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:7
 msgid "Add-on Lookup results for"
@@ -8261,7 +8275,7 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
-msgstr ""
+msgstr "Локација манифеста"
 
 #: mkt/reviewers/forms.py:23
 msgid "Any Status"
@@ -8273,11 +8287,11 @@ msgstr "Коментари:"
 
 #: mkt/reviewers/forms.py:36 mkt/reviewers/templates/reviewers/review.html:131
 msgid "Device Types:"
-msgstr ""
+msgstr "Типови уређаја:"
 
 #: mkt/reviewers/forms.py:38 mkt/reviewers/templates/reviewers/review.html:135
 msgid "Browsers:"
-msgstr ""
+msgstr "Прегледачи:"
 
 #: mkt/reviewers/forms.py:41
 msgid "Device Type Override:"
@@ -8289,7 +8303,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:48
 msgid "This app works on Tarako devices."
-msgstr ""
+msgstr "Ова апликација ради на Tarako уређајима."
 
 #: mkt/reviewers/forms.py:56
 msgid "Choose a canned response..."
@@ -8330,7 +8344,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:37
 msgid "Device"
-msgstr ""
+msgstr "Уређај"
 
 #: mkt/reviewers/helpers.py:38
 msgid "Moderated Reviews"
@@ -8399,7 +8413,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:436
 msgid "Request more information"
-msgstr ""
+msgstr "Захтевај више информација"
 
 #: mkt/reviewers/utils.py:438
 msgid "This will send the author(s) an email requesting more information."
@@ -8435,7 +8449,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:467
 msgid "Disable app"
-msgstr ""
+msgstr "Онемогући апликацију"
 
 #: mkt/reviewers/utils.py:469
 msgid "Disable the app, removing it from public results. Sends comments to author."
@@ -8467,7 +8481,7 @@ msgstr ""
 
 #: mkt/reviewers/views.py:308 mkt/reviewers/views.py:328 mkt/submit/forms.py:36 mkt/submit/forms.py:45
 msgid "Removed {0}"
-msgstr ""
+msgstr "Уклоњено {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:330
@@ -8484,11 +8498,11 @@ msgstr "Предглед успешно обрађен."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Извештаји злоупотребе за {addon} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:15
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s датума %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:19
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
@@ -8496,7 +8510,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
-msgstr ""
+msgstr "Тренутно не прегледавате апликације."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/queue_region.html:25
 #: mkt/reviewers/templates/reviewers/includes/details.html:144 mkt/reviewers/templates/reviewers/includes/mobile_details.html:166 mkt/reviewers/templates/reviewers/includes/search_results.html:7
@@ -8538,11 +8552,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/base.html:34 mkt/reviewers/templates/reviewers/base.html:73
 msgid "Logs"
-msgstr ""
+msgstr "Дневници"
 
 #: mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
-msgstr ""
+msgstr "Објава"
 
 #: mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
@@ -8582,7 +8596,7 @@ msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:45
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Тренутно време чекања:"
 
 #: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
@@ -8593,7 +8607,7 @@ msgstr[2] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: mkt/reviewers/templates/reviewers/home.html:68
 msgid "Total Reviews"
@@ -8609,7 +8623,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
-msgstr ""
+msgstr "Ранг"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
@@ -8621,11 +8635,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
 msgid "Event"
-msgstr ""
+msgstr "Догађај"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "Апликација је избрисана."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -8641,7 +8655,7 @@ msgstr "Ни један преглед није пронађен у овом в�
 
 #: mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Порука дана"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -8657,7 +8671,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:28
 msgid "Total"
-msgstr ""
+msgstr "Укупно"
 
 #: mkt/reviewers/templates/reviewers/performance.html:33 mkt/stats/forms.py:11
 msgid "Month"
@@ -8677,7 +8691,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/queue.html:55
 msgid "Payment Category:"
-msgstr ""
+msgstr "Категорије плаћања:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:59
 msgid "Abuse Reports:"
@@ -8718,7 +8732,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:59
 msgid "More Information"
-msgstr ""
+msgstr "Више информација"
 
 #: mkt/reviewers/templates/reviewers/review.html:60 mkt/reviewers/templates/reviewers/includes/review_history.html:3 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:2
 msgid "App History"
@@ -8742,11 +8756,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:129
 msgid "Tested with:"
-msgstr ""
+msgstr "Тестирано са:"
 
 #: mkt/reviewers/templates/reviewers/review.html:155
 msgid "Browse"
-msgstr ""
+msgstr "Прегледај"
 
 #: mkt/reviewers/templates/reviewers/review.html:167
 msgid "Attach another file"
@@ -8770,7 +8784,7 @@ msgstr "Прилози"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Ова верзија није прегледана"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
@@ -8778,7 +8792,7 @@ msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:38 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
-msgstr ""
+msgstr "Домен апликације"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:43 mkt/reviewers/templates/reviewers/includes/mobile_details.html:64
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -8798,7 +8812,7 @@ msgstr "Ова апликација још није оцењена"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:118
 msgid "Total Downloads"
-msgstr ""
+msgstr "Укупно преузимања"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:122
 msgid "View Statistics"
@@ -8806,11 +8820,11 @@ msgstr "Погледај статистику"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:115 mkt/reviewers/templates/reviewers/includes/mobile_details.html:136
 msgid "Device Types"
-msgstr ""
+msgstr "Типови уређаја"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:146
 msgid "Requirements"
-msgstr ""
+msgstr "Захтеви"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:158
 msgid "Images"
@@ -8823,7 +8837,7 @@ msgstr "Више о овој апликацији"
 #. "Filter" is a button label (verb)
 #: mkt/reviewers/templates/reviewers/includes/macros.html:61 mkt/templates/mkt/header.html:18
 msgid "Filter"
-msgstr ""
+msgstr "Филтрирај"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:69
 msgid "Priority Review Needed"
@@ -8884,7 +8898,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:20 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:25
 msgid "Files in this version:"
-msgstr ""
+msgstr "Датотеке у овој верзији:"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:31
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:33
@@ -8949,7 +8963,7 @@ msgstr ""
 
 #: mkt/search/forms.py:48
 msgid "Any Device Type"
-msgstr ""
+msgstr "Било који тип уређаја"
 
 #: mkt/search/forms.py:51
 msgid "Tablet"
@@ -9041,15 +9055,15 @@ msgstr "Врста додатка"
 
 #: mkt/search/forms.py:138
 msgid "Device type"
-msgstr ""
+msgstr "Тип уређаја"
 
 #: mkt/search/forms.py:141
 msgid "Premium types"
-msgstr ""
+msgstr "Премијум типови"
 
 #: mkt/search/forms.py:145
 msgid "App type"
-msgstr ""
+msgstr "Тип апликације"
 
 #: mkt/search/forms.py:148
 msgid "Works offline"
@@ -9057,7 +9071,7 @@ msgstr ""
 
 #: mkt/search/forms.py:150
 msgid "Supported languages"
-msgstr ""
+msgstr "Подржани језици"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -9093,7 +9107,7 @@ msgstr ""
 
 #: mkt/site/messages.py:17
 msgid "Errors Found"
-msgstr ""
+msgstr "Грешке су пронађене"
 
 #: mkt/site/messages.py:18
 msgid "There were errors in the changes you made. Please correct them and resubmit."
@@ -9134,14 +9148,16 @@ msgstr ""
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
 msgstr ""
+"Посетите <a class=\"sync\" href=\"%(home)s\">почетну страну Firefox "
+"Marketplace-а</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Грешка сервера"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Упс! Десила се грешка."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
@@ -9178,7 +9194,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Изаберите уређај."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -9215,7 +9231,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:356
 msgid "Homepage:"
-msgstr ""
+msgstr "Почетна страница:"
 
 #: mkt/submit/forms.py:357
 msgid "If your app has another homepage, enter its address here."
@@ -9253,7 +9269,7 @@ msgstr ""
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Следећи кораци"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -9275,7 +9291,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Отвори страницу са детаљима"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Screenshot or video of your app:"
@@ -9291,7 +9307,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Готово!"
 
 #: mkt/submit/templates/submit/done.html:16
 msgid "Success! What happens now?"
@@ -9327,7 +9343,7 @@ msgstr "Тип уређаја"
 
 #: mkt/submit/templates/submit/manifest.html:108
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Минимални захтеви апликације"
 
 #: mkt/submit/templates/submit/manifest.html:113
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -9339,7 +9355,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:23
 msgid "Published!"
-msgstr ""
+msgstr "Објављено!"
 
 #: mkt/submit/templates/submit/next_steps.html:25
 msgid "Almost There!"
@@ -9351,7 +9367,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:29
 msgid "Enter App Details"
-msgstr ""
+msgstr "Унесите детаље апликације"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
