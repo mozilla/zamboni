@@ -9,6 +9,7 @@ DOMAIN = "marketplace-altdev.allizom.org"
 SERVER_EMAIL = 'zmarketplacedev@addons.mozilla.org'
 
 SITE_URL = 'https://marketplace-altdev.allizom.org'
+BROWSERID_AUDIENCES = [SITE_URL, 'localhost', 'localhost:8675']
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-altdev-cdn.allizom.org/')
 
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL

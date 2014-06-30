@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:40-0700\n"
+"POT-Creation-Date: 2014-06-30 09:45-0700\n"
 "PO-Revision-Date: 2014-06-28 06:57+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,17 +10,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1403938651.0\n"
-
-#: media/js/common/ratingwidget.js:31
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} звездица"
-msgstr[1] "{0} звездице"
-msgstr[2] "{0} звездица"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -30,7 +22,7 @@ msgstr "Тип датотеке коју сте поставили није пр
 msgid "You cancelled the upload."
 msgstr "Отказали сте отпремање."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
 msgstr "Слике морају бити у PNG или JPG формату."
 
@@ -72,49 +64,49 @@ msgstr "Отпремам {0}"
 msgid "Error with {0}"
 msgstr "Грешка са {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваша апликација није прошла проверу због {0} грешке."
 msgstr[1] "Ваша апликација није прошла проверу због {0} грешке."
 msgstr[2] "Ваша апликација није прошла проверу због {0} грешака."
 
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и још {0}"
 msgstr[1] "&hellip;и још {0}"
 msgstr[2] "&hellip;и још {0}"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
 msgid "See full validation report"
 msgstr "Погледајте потпуни извештај прегледа"
 
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
 msgstr "Проверавам {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Добијен је празан одговор од сервера; статус: {0}"
 
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
 msgstr "Неочекивана грешка на серверу током провере."
 
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
 msgstr "Провера завршена {0}"
 
-#: media/js/common/upload-packaged-app.js:298
+#: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Ваша апликацијa је прошла проверу без грешака и {0} упозорењем."
 msgstr[1] "Ваша апликацијa је прошла проверу без грешака и {0} упозорења."
 msgstr[2] "Ваша апликацијa је прошла проверу без грешака и {0} упозорења."
 
-#: media/js/common/upload-packaged-app.js:303
+#: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Ваша апликација је прошла проверу без грешака или упозорења."
 
@@ -122,15 +114,15 @@ msgstr "Ваша апликација је прошла проверу без г
 msgid "The manifest could not be found at the given location."
 msgstr "Манифест није нађен на изабраној локацији."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
 msgstr "Хост апликације није доступан."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
 msgstr "Манифест апликације се не може упоредити."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
 msgstr "Манифест апликације је неисправан."
 
@@ -146,53 +138,57 @@ msgstr "Серверска грешка."
 msgid "Internal server error on app installation."
 msgstr "Серверска грешка током инсталације апликације."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
 msgstr "Инсталација неуспешна. Молимо Вас покушајте касније."
 
-#: media/js/devreg/devhub.js:186
+#: media/js/devreg/devhub.js:190
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Ваша апликацијa није прошла проверу - {0} грешка и {1} message(s)."
 msgstr[1] "Ваша апликацијa није прошла проверу - {0} грешке и {1} message(s)."
 msgstr[2] "Ваша апликацијa није прошла проверу - {0} грешака и {1} message(s)."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:204
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваша апликацијa је прошла проверу без грешака и {0} поруком."
 msgstr[1] "Ваша апликацијa је прошла проверу без грешака и {0} поруке."
 msgstr[2] "Ваша апликацијa је прошла проверу без грешака и {0} порука."
 
-#: media/js/devreg/devhub.js:205
+#: media/js/devreg/devhub.js:209
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваша апликацијa је прошла проверу без грешака или порука."
 
-#: media/js/devreg/devhub.js:419
+#: media/js/devreg/devhub.js:423
 msgid "Changes Saved"
 msgstr "Измене сачуване"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:439
 msgid "Enter a new team member's email address"
 msgstr "Унесите адресу е-поште новог члана тима"
 
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Освежено"
+#: media/js/devreg/devhub.js:452
+msgid "Manifest refreshed"
+msgstr ""
 
-#: media/js/devreg/devhub.js:616
+#: media/js/devreg/devhub.js:457
+msgid "Could not refresh manifest. Try again later."
+msgstr ""
+
+#: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
 msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
 
-#: media/js/devreg/devhub.js:886
+#: media/js/devreg/devhub.js:908
 msgid "Learn more"
 msgstr "Сазнајте више"
 
-#: media/js/devreg/devhub.js:890
+#: media/js/devreg/devhub.js:912
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1192
+#: media/js/devreg/devhub.js:1214
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
@@ -208,29 +204,35 @@ msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+#: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Ова могућност је привремено онемогућена док обављамо одржавања сајта. Молимо "
-"пробајте мало касније."
+msgstr "Ова могућност је привремено онемогућена док обављамо одржавања сајта. Молимо пробајте мало касније."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Уклони ову локализацију"
 
-#: media/js/devreg/login.js:75
+#: media/js/devreg/login.js:76
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Пријава путем Persona система је неуспешна. Можда немате налог под том адресом е-поште?"
 
-#: media/js/devreg/login.js:80
+#: media/js/devreg/login.js:81
 msgid "Persona login failed. A server error was encountered."
 msgstr "Пријава путем Persona система је неуспешна. Дошло је до грешке на серверу."
 
-#: media/js/devreg/lookup-tool.js:65
+#: media/js/devreg/lookup-tool.js:24
+msgid "Status successfully changed to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:29
+msgid "Could not change status to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
 msgstr "Прикажи све резултате"
 
-#: media/js/devreg/lookup-tool.js:68
+#: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
 msgstr "Преко {0} резултата је нађено, покушајте да дефинишете Вашу претрагу."
 
@@ -316,52 +318,43 @@ msgid "Detected: {0}"
 msgstr "Откривено: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:31
+#: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следећих "
-"апликација. Апликације без платног налога више неће бити доступне за "
-"продају."
-msgstr[1] ""
-"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће "
-"апликације. Апликације без платног налога више неће бити доступне за "
-"продају."
-msgstr[2] ""
-"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће "
-"апликације. Апликације без платног налога више неће бити доступне за "
-"продају."
+msgstr[0] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следећих апликација. Апликације без платног налога више неће бити доступне за продају."
+msgstr[1] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће апликације. Апликације без платног налога више неће бити доступне за продају."
+msgstr[2] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће апликације. Апликације без платног налога више неће бити доступне за продају."
 
-#: media/js/devreg/payments-manage.js:44
+#: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} налози за плаћање:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Грешка"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Дошло је до грешке приликом контактирања сервера за плаћање."
 
-#: media/js/devreg/payments-manage.js:127
+#: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
 msgstr "Грешка током аутентификације"
 
-#: media/js/devreg/payments-manage.js:181
+#: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
 msgstr "Тренутно немате ни један налог за плаћање."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Претражи теме за <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Претражи апликације за <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Претражи додатке за <b>{0}</b>"
 
@@ -467,7 +460,7 @@ msgstr "Белешке за рецензенте"
 msgid "No version notes found"
 msgstr "Није нађена ни једна белешка о верзији"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
 
@@ -499,284 +492,55 @@ msgstr "Прескочи за сада"
 msgid "Payment failed. Try again later."
 msgstr "Плаћање неуспешно. Покушајте касније."
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:106
 msgid "Packaged App"
 msgstr "Спакована апликација"
 
-#: media/js/devreg/reviewers/reviewers.js:108
+#: media/js/devreg/reviewers/reviewers.js:110
 msgid "Privileged App"
 msgstr "Овлашћена апликација"
 
-#: media/js/devreg/reviewers/reviewers.js:111
+#: media/js/devreg/reviewers/reviewers.js:113
 msgid "More Information Requested"
 msgstr "Захтева се више информација"
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:116
 msgid "Contains Editor Comment"
 msgstr "Садржи коментар уредника"
 
-#: media/js/devreg/reviewers/reviewers.js:118
+#: media/js/devreg/reviewers/reviewers.js:120
 msgid "Premium App"
 msgstr "Премијум апликација"
 
-#: media/js/devreg/reviewers/reviewers.js:121
+#: media/js/devreg/reviewers/reviewers.js:123
 msgid "Escalated"
 msgstr "Ескалирано"
 
-#: media/js/devreg/reviewers/reviewers.js:126
+#: media/js/devreg/reviewers/reviewers.js:128
 msgid "Free"
 msgstr "Бесплатно"
 
-#: media/js/devreg/reviewers/reviewers.js:234
+#: media/js/devreg/reviewers/reviewers.js:236
 msgid "Any"
 msgstr "Било коју"
 
-#: media/js/devreg/reviewers/reviewers.js:261
+#: media/js/devreg/reviewers/reviewers.js:263
 msgid "Approved app: {app}"
 msgstr "Одобрена апликација: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:266
 msgid "Rejected app: {app}"
 msgstr "Одбијена апликација: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:270
+#: media/js/devreg/reviewers/reviewers.js:272
 msgid "Error approving app: {app}"
 msgstr "Грешка приликом одобравања апликације: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:271
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error rejecting app: {app}"
 msgstr "Грешка приликом одбијања апликације: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:62
 msgid "By {0} on {1}"
 msgstr "По {0} на {1}"
-
-#: media/js/impala/collections.js:10
-msgid "Follow this Collection"
-msgstr "Прати ову колекцију"
-
-#: media/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Прекини праћење"
-
-#: media/js/impala/collections.js:20
-msgid "Following"
-msgstr "Праћење"
-
-#. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
-
-#: media/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Сва права су задржана"
-
-#: media/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-#: media/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#: media/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#: media/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#: media/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#: media/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#: media/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "Назив Ваше теме"
-
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Назначено за преглед"
-
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Ваш одзив је неопходан"
-
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Обележено за брисање"
-
-#: media/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "Ажурирам резултате&hellip;"
-
-#: media/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "Категорија"
-
-#: media/js/impala/users.js:33
-msgid "use original"
-msgstr "користи оригинал"
-
-#: media/js/zamboni/admin_validation.js:52
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Подесите {0} додатак на максималну верзију од {1} и пошаљи е-пошту аутору."
-msgstr[1] "Подесите {0} додатака на максималну верзију од {1} и пошаљи е-пошту ауторима."
-msgstr[2] "Подесите {0} додатака на максималну верзију од {1} и пошаљи е-пошту ауторима."
-
-#: media/js/zamboni/admin_validation.js:55
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Пошаљите е-пошту аутору {2} додатка који није прошао валидацију."
-msgstr[1] "Пошаљите е-пошту ауторима {2} додатка који није прошао валидацију."
-msgstr[2] "Пошаљите е-пошту ауторима {2} додатка који није прошао валидацију."
-
-#: media/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Није дозвољена инсталација апликације."
-
-#: media/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Манифест апликације је у погрешном формату."
-
-#: media/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Инсталација апликације није успела."
-
-#: media/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Овај систем не подржава иснталације апликација."
-
-#: media/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "Администратори и уредници морају укуцати лозинку за пријављивање."
-
-#: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Пријава преко BrowserID-а неуспела. Можда немате налог са том адресом е-поште?"
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:100
-msgid "Accept and Install"
-msgstr "Прихвати и инсталирај"
-
-#: media/js/zamboni/buttons.js:100
-msgid "Add to {0}"
-msgstr "Додај у {0}"
-
-#: media/js/zamboni/buttons.js:105
-msgid "Download Now"
-msgstr "Преузми одмах"
-
-#: media/js/zamboni/buttons.js:135
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Додатак није ажуриран да подржава default-to-compatible."
-
-#: media/js/zamboni/buttons.js:140
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Морате користити Firefox 10.0 или новији."
-
-#: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla је означила ову верзију као некомпатабилну са Вашом верзијом Firefox-а."
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:230
-msgid "Install for {0} anyway"
-msgstr "Инсталирај за {0} у сваком случају"
-
-#: media/js/zamboni/buttons.js:230
-msgid "Download for {0} anyway"
-msgstr "Преузми за {0} у сваком случају"
-
-#: media/js/zamboni/buttons.js:287
-msgid "Not available for your platform"
-msgstr "Није доступно за Вашу платформу"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
-msgid "Not available for {0} {1}"
-msgstr "Није доступно за {0} {1}"
-
-#: media/js/zamboni/buttons.js:361
-msgid "Works with {app} {min} - {max}"
-msgstr "Ради са {app} {min} - {max}"
-
-#: media/js/zamboni/buttons.js:363
-msgid "View other versions"
-msgstr "Погледај остале верзије"
-
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Жао нам је, треба Вам прегледач базиран на технологији Mozilla фондације (као што је Firefox) да бисте инсталирали прикључак за претраживање."
-
-#: media/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "Нема резултата."
-
-#: media/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Учитавање..."
-
-#. L10n: {0} is the number of characters left.
-#: media/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Још <b>{0}</b> карактер."
-msgstr[1] "Још <b>{0}</b> карактера."
-msgstr[2] "Још <b>{0}</b> карактера."
-
-#: media/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Јачина лозинке:"
-
-#: media/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Остао је још најмање {0} каратер."
-msgstr[1] "Остало је још најмање {0} каратера."
-msgstr[2] "Остало је још најмање {0} каратера."
-
-#: media/js/zamboni/mobile/buttons.js:75
-msgid "Not Updated for {0} {1}"
-msgstr "Није ажурирано за {0} {1}"
-
-#: media/js/zamboni/mobile/buttons.js:76
-msgid "Requires Newer Version of {0}"
-msgstr "Захтева верзију новију од {0}"
-
-#: media/js/zamboni/mobile/buttons.js:77
-msgid "Unreviewed"
-msgstr "Неоцењено"
-
-#: media/js/zamboni/mobile/buttons.js:78
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Експериментално <span>(Сазнај више)</span>"
-
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
-msgid "Not Available for {0}"
-msgstr "Није доступно за {0}"
-
-#: media/js/zamboni/mobile/buttons.js:81
-msgid "Experimental"
-msgstr "Експериментално"
-
-#: media/js/zamboni/mobile/buttons.js:123
-msgid "Installing..."
-msgstr "Инсталирам..."
-
-#: media/js/zamboni/mobile/buttons.js:131
-msgid "Purchasing..."
-msgstr "Купујем..."
-
-#: media/js/zamboni/mobile/buttons.js:160
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Овај додатак је прелиминарно прегледан од Mozilla-е."

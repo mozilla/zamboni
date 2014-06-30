@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:40-0700\n"
+"POT-Creation-Date: 2014-06-30 09:45-0700\n"
 "PO-Revision-Date: 2014-06-19 21:55+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -16,12 +16,6 @@ msgstr ""
 "X-Project-Style: default\n"
 "X-POOTLE-MTIME: 1403214905.0\n"
 
-#: media/js/common/ratingwidget.js:31
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "Izar {0}"
-msgstr[1] "{0} izar"
-
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Igo duzun fitxategi mota ez da ezagutzen."
@@ -30,7 +24,7 @@ msgstr "Igo duzun fitxategi mota ez da ezagutzen."
 msgid "You cancelled the upload."
 msgstr "Igotzea bertan behera utzi duzu."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
 msgstr "Irudiek PNG edo JPG formatua izan behar dute."
 
@@ -72,46 +66,46 @@ msgstr "{0} igotzen"
 msgid "Error with {0}"
 msgstr "Errorea {0}(r)ekin"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Zure aplikazioak balidazioan huts egin du, errore {0}ekin."
 msgstr[1] "Zure aplikazioak balidazioan huts egin du, {0} errorerekin."
 
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;eta {0} gehiago"
 msgstr[1] "&hellip;eta {0} gehiago"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
 msgid "See full validation report"
 msgstr "Ikusi balidazioaren txosten osoa"
 
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
 msgstr "{0} balidatzen"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Erantzun huts jaso da zerbitzaritik; egoera: {0}"
 
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
 msgstr "Espero gabeko zerbitzari-errorea balidatzean."
 
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
 msgstr "{0}(r)en balidazioa amaitu da"
 
-#: media/js/common/upload-packaged-app.js:298
+#: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Zure aplikazioak balidazioa gainditu du, errorerik gabe eta abisu {0}ekin."
 msgstr[1] "Zure aplikazioak balidazioa gainditu du, errorerik gabe eta {0} abisurekin."
 
-#: media/js/common/upload-packaged-app.js:303
+#: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Zure aplikazioak balidazioa gainditu du, errore edo abisurik gabe."
 
@@ -119,15 +113,15 @@ msgstr "Zure aplikazioak balidazioa gainditu du, errore edo abisurik gabe."
 msgid "The manifest could not be found at the given location."
 msgstr "Ezin izan da manifestua aurkitu emandako helbidean."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
 msgstr "Ezin izan da aplikazioaren ostalariarekin kontaktatu."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
 msgstr "Ezin izan da aplikazioaren manifestua analizatu."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
 msgstr "Aplikazioaren manifestua baliogabea da."
 
@@ -143,51 +137,55 @@ msgstr "Zerbitzariaren barne-errorea."
 msgid "Internal server error on app installation."
 msgstr "Zerbitzariaren barne-errorea aplikazioa instalatzean."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
 msgstr "Instalazioak huts egin du. Mesedez saiatu berriro geroago."
 
-#: media/js/devreg/devhub.js:186
+#: media/js/devreg/devhub.js:190
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Zure aplikazioak balidazioan huts egin du, errore {0} eta {1} mezurekin."
 msgstr[1] "Zure aplikazioak balidazioan huts egin du, {0} errore eta {1} mezurekin."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:204
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Zure aplikazioak balidazioa pasa du errorerik gabe eta mezu batekin."
 msgstr[1] "Zure aplikazioak balidazioa pasa du errorerik gabe eta {0} mezurekin."
 
-#: media/js/devreg/devhub.js:205
+#: media/js/devreg/devhub.js:209
 msgid "Your app passed validation with no errors or messages."
 msgstr "Zure aplikazioak balidazioa pasa du errorerik edo mezurik gabe."
 
-#: media/js/devreg/devhub.js:419
+#: media/js/devreg/devhub.js:423
 msgid "Changes Saved"
 msgstr "Aldaketak gordeta"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:439
 msgid "Enter a new team member's email address"
 msgstr "Idatzi taldekide berri baten helbide elektronikoa"
 
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Berrituta"
+#: media/js/devreg/devhub.js:452
+msgid "Manifest refreshed"
+msgstr ""
 
-#: media/js/devreg/devhub.js:616
+#: media/js/devreg/devhub.js:457
+msgid "Could not refresh manifest. Try again later."
+msgstr ""
+
+#: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
 msgstr "Errorea gertatu da fitxategia igotzean."
 
-#: media/js/devreg/devhub.js:886
+#: media/js/devreg/devhub.js:908
 msgid "Learn more"
 msgstr "Argibide gehiago"
 
-#: media/js/devreg/devhub.js:890
+#: media/js/devreg/devhub.js:912
 msgid "Example"
 msgstr "Adibidea"
 
-#: media/js/devreg/devhub.js:1192
+#: media/js/devreg/devhub.js:1214
 msgid "Image changes being processed"
 msgstr "Irudi-aldaketak prozesatzen ari dira"
 
@@ -203,29 +201,35 @@ msgstr "edo <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a> erreproduzitzailea."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+#: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Funtzionaltasun hau behin-behinean desgaituta dago webgunearen mantentze-"
-"lanak burutu artean. Saiatu berriro geroago."
+msgstr "Funtzionaltasun hau behin-behinean desgaituta dago webgunearen mantentze-lanak burutu artean. Saiatu berriro geroago."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Kendu itzulpen hau"
 
-#: media/js/devreg/login.js:75
+#: media/js/devreg/login.js:76
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona-rekin saioa hasteak huts egin du. Agian ez duzu konturik helbide elektroniko horrekin?"
 
-#: media/js/devreg/login.js:80
+#: media/js/devreg/login.js:81
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-rekin saioa hasteak huts egin du. Zerbitzariaren errore bat gertatu da."
 
-#: media/js/devreg/lookup-tool.js:65
+#: media/js/devreg/lookup-tool.js:24
+msgid "Status successfully changed to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:29
+msgid "Could not change status to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
 msgstr "Erakutsi emaitza guztiak"
 
-#: media/js/devreg/lookup-tool.js:68
+#: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} emaitzatik gora aurkitu dira, saiatu bilaketa zehazten."
 
@@ -311,42 +315,42 @@ msgid "Detected: {0}"
 msgstr "Detektatua: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:31
+#: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] "Ordainketarako \"{0}\" kontua ezabatuz, ondorengo aplikaziotik ordainketarako kontua ezabatuko da. Ordainketarako konturik gabeko aplikazioa ez da aurrerantzean salgai egongo."
 msgstr[1] "Ordainketarako \"{0}\" kontua ezabatuz, ondorengo aplikazioetatik ordainketarako kontua ezabatuko da. Ordainketarako konturik gabeko aplikazioak ez dira aurrerantzean salgai egongo."
 
-#: media/js/devreg/payments-manage.js:44
+#: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName}(r)en ordainketarako kontuak:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Errorea"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Arazo bat egon da ordainketarako zerbitzaria kontaktatzean."
 
-#: media/js/devreg/payments-manage.js:127
+#: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
 msgstr "Errorea autentifikatzean"
 
-#: media/js/devreg/payments-manage.js:181
+#: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
 msgstr "Une honetan ez duzu ordainketarako konturik."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Bilatu <b>{0}</b>(e)rako gaiak"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Bilatu <b>{0}</b>(e)rako aplikazioak"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Bilatu <b>{0}</b>(e)rako gehigarriak"
 
@@ -449,7 +453,7 @@ msgstr "Baloratzaileentzako oharrak"
 msgid "No version notes found"
 msgstr "Ez da bertsio-oharrik aurkitu"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
 msgid "Select an application first"
 msgstr "Hautatu aplikazioa lehenik"
 
@@ -481,280 +485,55 @@ msgstr "Saltatu oraingoz"
 msgid "Payment failed. Try again later."
 msgstr "Ordainketak huts egin du. Saiatu berriro geroago."
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:106
 msgid "Packaged App"
 msgstr "Paketeratutako aplikazioa"
 
-#: media/js/devreg/reviewers/reviewers.js:108
+#: media/js/devreg/reviewers/reviewers.js:110
 msgid "Privileged App"
 msgstr "Pribilegiodun aplikazioa"
 
-#: media/js/devreg/reviewers/reviewers.js:111
+#: media/js/devreg/reviewers/reviewers.js:113
 msgid "More Information Requested"
 msgstr "Informazio gehiago eskatu da"
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:116
 msgid "Contains Editor Comment"
 msgstr "Editorearen iruzkina dauka"
 
-#: media/js/devreg/reviewers/reviewers.js:118
+#: media/js/devreg/reviewers/reviewers.js:120
 msgid "Premium App"
 msgstr "Premium aplikazioa"
 
-#: media/js/devreg/reviewers/reviewers.js:121
+#: media/js/devreg/reviewers/reviewers.js:123
 msgid "Escalated"
 msgstr "Gora igorria"
 
-#: media/js/devreg/reviewers/reviewers.js:126
+#: media/js/devreg/reviewers/reviewers.js:128
 msgid "Free"
 msgstr "Doan"
 
-#: media/js/devreg/reviewers/reviewers.js:234
+#: media/js/devreg/reviewers/reviewers.js:236
 msgid "Any"
 msgstr "Edozein"
 
-#: media/js/devreg/reviewers/reviewers.js:261
+#: media/js/devreg/reviewers/reviewers.js:263
 msgid "Approved app: {app}"
 msgstr "Aplikazioa onartuta: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:266
 msgid "Rejected app: {app}"
 msgstr "Aplikazioa baztertuta: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:270
+#: media/js/devreg/reviewers/reviewers.js:272
 msgid "Error approving app: {app}"
 msgstr "Errorea aplikazio hau onartzean: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:271
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error rejecting app: {app}"
 msgstr "Errorea aplikazio hau baztertzerakoan: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:62
 msgid "By {0} on {1}"
 msgstr "{0}(e)k, {1}(e)an"
-
-#: media/js/impala/collections.js:10
-msgid "Follow this Collection"
-msgstr "Jarraitu bilduma hau"
-
-#: media/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Jarraitzeari utzi"
-
-#: media/js/impala/collections.js:20
-msgid "Following"
-msgstr "Jarraitzen"
-
-#. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Gai hau bateraezina da {0}(r)en zure bertsioarekin"
-
-#: media/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Eskubide guztiak gordeta"
-
-#: media/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Aitortu 3.0"
-
-#: media/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Aitortu-EzKomertziala 3.0"
-
-#: media/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Aitortu-EzKomertziala-LanEratorririkGabe 3.0"
-
-#: media/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Aitortu-EzKomertziala-PartekatuBerdin 3.0"
-
-#: media/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Aitortu-LanEratorririkEz 3.0"
-
-#: media/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Aitortu-PartekatuBerdin 3.0"
-
-#: media/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "Zure gaiaren izena"
-
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Berrikusteko markatuta"
-
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Zure sarrera beharrezkoa da"
-
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Ezabatzeko markatuta"
-
-#: media/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "Emaitzak eguneratzen&hellip;"
-
-#: media/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "Kategoria"
-
-#: media/js/impala/users.js:33
-msgid "use original"
-msgstr "erabili jatorrizkoa"
-
-#: media/js/zamboni/admin_validation.js:52
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Ezarri gehigarri {0} {1}(e)ko bertsio maximora eta bidali mezua egileari."
-msgstr[1] "Ezarri {0} gehigarri {1}(e)ko bertsio maximora eta bidali mezuak egileei."
-
-#: media/js/zamboni/admin_validation.js:55
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Bidali mezua balidatzean huts egin duen {2} gehigarriaren egileari."
-msgstr[1] "Bidali mezua balidatzean huts egin duten {2} gehigarrien egileei."
-
-#: media/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Aplikazioaren instalazioa ez dago baimendua."
-
-#: media/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Aplikazioaren manifestua gaizki osatua dago."
-
-#: media/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Aplikazioaren instalazioak huts egin du."
-
-#: media/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Sistemak ez du aplikazioak instalatzea onartzen."
-
-#: media/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "Administratzaile eta editoreek pasahitza idatzi behar dute saioa hasteko."
-
-#: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Huts egin du BrowserID bidez saioa hasteak. Agian ez daukazu konturik helbide elektroniko horrekin?"
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:100
-msgid "Accept and Install"
-msgstr "Onartu eta instalatu"
-
-#: media/js/zamboni/buttons.js:100
-msgid "Add to {0}"
-msgstr "Gehitu {0}(e)ra"
-
-#: media/js/zamboni/buttons.js:105
-msgid "Download Now"
-msgstr "Deskargatu orain"
-
-#: media/js/zamboni/buttons.js:135
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Gehigarria ez da eguneratu lehenespenez bateragarri izatea onartzeko."
-
-#: media/js/zamboni/buttons.js:140
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 edo berriagoa erabili behar duzu."
-
-#: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozillak bertsio hau zure Firefox bertsioarekin bateraezin gisa markatu du."
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:230
-msgid "Install for {0} anyway"
-msgstr "Instalatu {0}(e)rako halare"
-
-#: media/js/zamboni/buttons.js:230
-msgid "Download for {0} anyway"
-msgstr "Deskargatu {0}(e)rako halere"
-
-#: media/js/zamboni/buttons.js:287
-msgid "Not available for your platform"
-msgstr "Ez dago eskuragarri zure plataformarako"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
-msgid "Not available for {0} {1}"
-msgstr "Ez dago eskuragarri {0} {1} bertsiorako"
-
-#: media/js/zamboni/buttons.js:361
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} bertsioekin funtzionatzen du"
-
-#: media/js/zamboni/buttons.js:363
-msgid "View other versions"
-msgstr "Ikusi beste bertsioak"
-
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Mozillan oinarritutako nabigatzailea behar duzu (Firefox, adibidez) bilaketa-motorra instalatzeko."
-
-#: media/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "Ez da emaitzarik aurkitu."
-
-#: media/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Kargatzen..."
-
-#. L10n: {0} is the number of characters left.
-#: media/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Karaktere <b>{0}</b> faltan."
-msgstr[1] "<b>{0}</b> karaktere faltan."
-
-#: media/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Pasahitzaren sendotasuna:"
-
-#: media/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Gutxienez karaktere {0} geratzen da."
-msgstr[1] "Gutxienez {0} karaktere geratzen dira."
-
-#: media/js/zamboni/mobile/buttons.js:75
-msgid "Not Updated for {0} {1}"
-msgstr "Eguneratu gabe {0} {1}(e)rako"
-
-#: media/js/zamboni/mobile/buttons.js:76
-msgid "Requires Newer Version of {0}"
-msgstr "{0}(r)en bertsio berriagoa eskatzen du"
-
-#: media/js/zamboni/mobile/buttons.js:77
-msgid "Unreviewed"
-msgstr "Berrikusi gabea"
-
-#: media/js/zamboni/mobile/buttons.js:78
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Esperimentala <span>(argibide gehiago)</span>"
-
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
-msgid "Not Available for {0}"
-msgstr "Ez dago eskuragarri {0}(e)rako"
-
-#: media/js/zamboni/mobile/buttons.js:81
-msgid "Experimental"
-msgstr "Esperimentala"
-
-#: media/js/zamboni/mobile/buttons.js:123
-msgid "Installing..."
-msgstr "Instalatzen..."
-
-#: media/js/zamboni/mobile/buttons.js:131
-msgid "Purchasing..."
-msgstr "Erosten..."
-
-#: media/js/zamboni/mobile/buttons.js:160
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Gehigarri hau aurretik Mozilla berrikusi du."

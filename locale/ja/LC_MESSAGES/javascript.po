@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:40-0700\n"
+"POT-Creation-Date: 2014-06-30 09:45-0700\n"
 "PO-Revision-Date: 2014-05-28 18:30-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -14,11 +14,6 @@ msgstr ""
 "X-Generator: \n"
 "X-POOTLE-MTIME: 1382526649.0\n"
 
-#: media/js/common/ratingwidget.js:31
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} つ星"
-
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
@@ -27,7 +22,7 @@ msgstr "アップロードされたファイルの種類を認識できません
 msgid "You cancelled the upload."
 msgstr "アップロードはキャンセルされました。"
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPEG 形式でなければなりません。"
 
@@ -69,43 +64,43 @@ msgstr "{0} をアップロードしています"
 msgid "Error with {0}"
 msgstr "{0} にエラーがありました"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーがあります。"
 
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバから空の応答が返りました。ステータス: {0}"
 
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
 msgstr "検証中に予期せぬサーバエラーが発生しました。"
 
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
 msgstr "{0} の検証が完了しました"
 
-#: media/js/common/upload-packaged-app.js:298
+#: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個の警告があります。"
 
-#: media/js/common/upload-packaged-app.js:303
+#: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
 msgstr "アプリは検証に合格しました。エラーや警告はありません。"
 
@@ -113,15 +108,15 @@ msgstr "アプリは検証に合格しました。エラーや警告はありま
 msgid "The manifest could not be found at the given location."
 msgstr "指定された場所にマニフェストが見つかりませんでした。"
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
 msgstr "アプリのサーバへ接続できませんでした。"
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
 msgstr "アプリマニフェストを解析できません。"
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
 msgstr "アプリマニフェストが不正な形式です。"
 
@@ -137,49 +132,53 @@ msgstr "内部サーバエラー"
 msgid "Internal server error on app installation."
 msgstr "アプリのインストール中に内部サーバエラーが発生しました。"
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
 msgstr "インストールに失敗しました。また後で試してください。"
 
-#: media/js/devreg/devhub.js:186
+#: media/js/devreg/devhub.js:190
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:204
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:205
+#: media/js/devreg/devhub.js:209
 msgid "Your app passed validation with no errors or messages."
 msgstr "アプリは検証に合格しました。エラーやメッセージはありません。"
 
-#: media/js/devreg/devhub.js:419
+#: media/js/devreg/devhub.js:423
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:439
 msgid "Enter a new team member's email address"
 msgstr "新しいチームメンバーのメールアドレスを入力してください"
 
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "更新されました"
+#: media/js/devreg/devhub.js:452
+msgid "Manifest refreshed"
+msgstr ""
 
-#: media/js/devreg/devhub.js:616
+#: media/js/devreg/devhub.js:457
+msgid "Could not refresh manifest. Try again later."
+msgstr ""
+
+#: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: media/js/devreg/devhub.js:886
+#: media/js/devreg/devhub.js:908
 msgid "Learn more"
 msgstr "詳細"
 
-#: media/js/devreg/devhub.js:890
+#: media/js/devreg/devhub.js:912
 msgid "Example"
 msgstr "例"
 
-#: media/js/devreg/devhub.js:1192
+#: media/js/devreg/devhub.js:1214
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
@@ -195,27 +194,35 @@ msgstr "<a href=\"http://get.adobe.com/jp/flashplayer/\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a> が必要です。"
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+#: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "このローカライズを削除"
 
-#: media/js/devreg/login.js:75
+#: media/js/devreg/login.js:76
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona のログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
 
-#: media/js/devreg/login.js:80
+#: media/js/devreg/login.js:81
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona のログインに失敗しました。サーバエラーが発生しました。"
 
-#: media/js/devreg/lookup-tool.js:65
+#: media/js/devreg/lookup-tool.js:24
+msgid "Status successfully changed to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:29
+msgid "Could not change status to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
 msgstr "すべての結果を表示"
 
-#: media/js/devreg/lookup-tool.js:68
+#: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
 msgstr "{0} 件以上の結果があります。検索条件を見直してみてください。"
 
@@ -301,42 +308,42 @@ msgid "Detected: {0}"
 msgstr "判別結果: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:31
+#: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] "決済用アカウント「{0}」を削除すると、以下のアプリから決済用アカウントが削除されます。決済用アカウントが設定されていないアプリケーションは販売中止となります。"
 msgstr[1] "決済用アカウント「{0}」を削除すると、以下のアプリから決済用アカウントが削除されます。決済用アカウントが設定されていないアプリケーションは販売中止となります。"
 
-#: media/js/devreg/payments-manage.js:44
+#: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} の決済用アカウント:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "エラー"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "決済サーバへの接続中に問題が発生しました。"
 
-#: media/js/devreg/payments-manage.js:127
+#: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
 msgstr "認証エラー"
 
-#: media/js/devreg/payments-manage.js:181
+#: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
 msgstr "あなたはまだ決済用アカウントを設定していません。"
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> 用テーマを検索"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "<b>{0}</b> 用アプリを検索"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 用アドオンを検索"
 
@@ -436,7 +443,7 @@ msgstr "審査担当者へのメモ"
 msgid "No version notes found"
 msgstr "リリースノートはありません"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
@@ -468,276 +475,55 @@ msgstr "今はスキップ"
 msgid "Payment failed. Try again later."
 msgstr "決済に失敗しました。また後で試してください。"
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:106
 msgid "Packaged App"
 msgstr "パッケージ型アプリ"
 
-#: media/js/devreg/reviewers/reviewers.js:108
+#: media/js/devreg/reviewers/reviewers.js:110
 msgid "Privileged App"
 msgstr "特権アプリ"
 
-#: media/js/devreg/reviewers/reviewers.js:111
+#: media/js/devreg/reviewers/reviewers.js:113
 msgid "More Information Requested"
 msgstr "詳しい情報が求められています"
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:116
 msgid "Contains Editor Comment"
 msgstr "エディタのコメントがあります"
 
-#: media/js/devreg/reviewers/reviewers.js:118
+#: media/js/devreg/reviewers/reviewers.js:120
 msgid "Premium App"
 msgstr "有料アプリ"
 
-#: media/js/devreg/reviewers/reviewers.js:121
+#: media/js/devreg/reviewers/reviewers.js:123
 msgid "Escalated"
 msgstr "上級審査依頼中"
 
-#: media/js/devreg/reviewers/reviewers.js:126
+#: media/js/devreg/reviewers/reviewers.js:128
 msgid "Free"
 msgstr "無料"
 
-#: media/js/devreg/reviewers/reviewers.js:234
+#: media/js/devreg/reviewers/reviewers.js:236
 msgid "Any"
 msgstr "すべて"
 
-#: media/js/devreg/reviewers/reviewers.js:261
+#: media/js/devreg/reviewers/reviewers.js:263
 msgid "Approved app: {app}"
 msgstr "アプリを承認しました: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:266
 msgid "Rejected app: {app}"
 msgstr "アプリを却下しました: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:270
+#: media/js/devreg/reviewers/reviewers.js:272
 msgid "Error approving app: {app}"
 msgstr "アプリの承認中にエラーが発生しました: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:271
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error rejecting app: {app}"
 msgstr "アプリの却下中にエラーが発生しました: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:62
 msgid "By {0} on {1}"
 msgstr "{0} / {1}"
-
-#: media/js/impala/collections.js:10
-msgid "Follow this Collection"
-msgstr "このコレクションをフォロー"
-
-#: media/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "フォローをやめる"
-
-#: media/js/impala/collections.js:20
-msgid "Following"
-msgstr "フォロー中"
-
-#. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
-
-#: media/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "All Rights Reserved"
-
-#: media/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons 表示 3.0"
-
-#: media/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons 表示-非営利 3.0"
-
-#: media/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons 表示-非営利-改変禁止 3.0"
-
-#: media/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons 表示-非営利-継承 3.0"
-
-#: media/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons 表示-改変禁止 3.0"
-
-#: media/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons 表示-継承 3.0"
-
-#: media/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "テーマの名前"
-
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "レビューフラグ付き"
-
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "入力が必要です"
-
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "削除マーク付き"
-
-#: media/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "結果を更新..."
-
-#: media/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "カテゴリ"
-
-#: media/js/impala/users.js:33
-msgid "use original"
-msgstr "オリジナルを使用"
-
-#: media/js/zamboni/admin_validation.js:52
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新し、作者へメールを送ります。"
-
-#: media/js/zamboni/admin_validation.js:55
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "検証に失敗した {2} 個のアドオンの作者へメールを送ります。"
-
-#: media/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "アプリのインストールは許可されていません。"
-
-#: media/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "アプリマニフェストが不正な形式です。"
-
-#: media/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "アプリのインストールに失敗しました。"
-
-#: media/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "このシステムはアプリのインストールに対応していません。"
-
-#: media/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "管理者と編集者はパスワードを入力してログインする必要があります。"
-
-#: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "BrowserID のログインに失敗しました。このメールアドレスのアカウントをお持ちですか？"
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:100
-msgid "Accept and Install"
-msgstr "同意してインストール"
-
-#: media/js/zamboni/buttons.js:100
-msgid "Add to {0}"
-msgstr "{0} へ追加"
-
-#: media/js/zamboni/buttons.js:105
-msgid "Download Now"
-msgstr "今すぐダウンロード"
-
-#: media/js/zamboni/buttons.js:135
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "アドオンが自動的に互換性を保つバージョンへ更新されていません。"
-
-#: media/js/zamboni/buttons.js:140
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10 以上のバージョンを使ってください。"
-
-#: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "このバージョンは、お使いの Firefox のバージョンと互換性がありません。"
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:230
-msgid "Install for {0} anyway"
-msgstr "{0} へ強制インストール"
-
-#: media/js/zamboni/buttons.js:230
-msgid "Download for {0} anyway"
-msgstr "{0} へ強制ダウンロード"
-
-#: media/js/zamboni/buttons.js:287
-msgid "Not available for your platform"
-msgstr "お使いの OS には対応していません"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} には対応していません"
-
-#: media/js/zamboni/buttons.js:361
-msgid "Works with {app} {min} - {max}"
-msgstr "動作環境: {app} {min} - {max}"
-
-#: media/js/zamboni/buttons.js:363
-msgid "View other versions"
-msgstr "他のバージョンを見る"
-
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザが必要です。"
-
-#: media/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "結果が見つかりませんでした。"
-
-#: media/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "読み込み中..."
-
-#. L10n: {0} is the number of characters left.
-#: media/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "残り <b>{0}</b> 文字です。"
-
-#: media/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "パスワードの強度:"
-
-#: media/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "あと {0} 文字以上入力してください。"
-
-#: media/js/zamboni/mobile/buttons.js:75
-msgid "Not Updated for {0} {1}"
-msgstr "まだ {0} {1} には対応していません"
-
-#: media/js/zamboni/mobile/buttons.js:76
-msgid "Requires Newer Version of {0}"
-msgstr "{0} の新バージョンが必要です"
-
-#: media/js/zamboni/mobile/buttons.js:77
-msgid "Unreviewed"
-msgstr "未審査"
-
-#: media/js/zamboni/mobile/buttons.js:78
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "実験的 <span>(詳細)</span>"
-
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
-msgid "Not Available for {0}"
-msgstr "{0} には対応していません"
-
-#: media/js/zamboni/mobile/buttons.js:81
-msgid "Experimental"
-msgstr "実験的"
-
-#: media/js/zamboni/mobile/buttons.js:123
-msgid "Installing..."
-msgstr "インストール中..."
-
-#: media/js/zamboni/mobile/buttons.js:131
-msgid "Purchasing..."
-msgstr "購入中..."
-
-#: media/js/zamboni/mobile/buttons.js:160
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "このアドオンは Mozilla の事前審査を受けています。"

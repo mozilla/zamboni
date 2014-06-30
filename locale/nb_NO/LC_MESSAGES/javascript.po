@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 09:40-0700\n"
+"POT-Creation-Date: 2014-06-30 09:45-0700\n"
 "PO-Revision-Date: 2014-06-23 10:22+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1403518960.0\n"
 
-#: media/js/common/ratingwidget.js:31
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjerne"
-msgstr[1] "{0} stjerner"
-
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
@@ -28,7 +22,7 @@ msgstr "Filtypen du lastet opp er ikke gjenkjent."
 msgid "You cancelled the upload."
 msgstr "Du avbrøt opplastingen."
 
-#: media/js/common/upload-image.js:98 media/js/impala/users.js:51
+#: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder må være enten PNG eller JPG."
 
@@ -70,46 +64,46 @@ msgstr "Laster opp {0}"
 msgid "Error with {0}"
 msgstr "Feil med {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Validering av app mislykket med {0} feil."
 msgstr[1] "Validering av app mislykket med {0} feil."
 
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;og {0} flere"
 msgstr[1] "&hellip;og {0} flere"
 
-#: media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
 msgid "See full validation report"
 msgstr "Se fullstendig valideringsrapport"
 
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
 msgstr "Validerer {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Mottok en tom respons fra serveren; status: {0}"
 
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
 msgstr "Uventet serverfeil ved validering."
 
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
 msgstr "Fullførte validering av {0}"
 
-#: media/js/common/upload-packaged-app.js:298
+#: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Appen fullførte validering uten feil og med {0} advarsel."
 msgstr[1] "Appen fullførte validering uten feil og med {0} advarsler."
 
-#: media/js/common/upload-packaged-app.js:303
+#: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Appen fullførte validering uten feil eller advarsler."
 
@@ -117,15 +111,15 @@ msgstr "Appen fullførte validering uten feil eller advarsler."
 msgid "The manifest could not be found at the given location."
 msgstr "Fant ikke manifestet på den oppgitte adressen."
 
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
+#: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
 msgstr "Klarte ikke nå app-verten."
 
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
+#: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
 msgstr "App-manifestet kan ikke parses."
 
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
+#: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
 msgstr "App-manifestet er ugyldig."
 
@@ -141,51 +135,55 @@ msgstr "Intern serverfeil."
 msgid "Internal server error on app installation."
 msgstr "Intern serverfeil ved app-installasjon."
 
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
+#: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
 msgstr "Installering mislykket. Prøv igjen senere."
 
-#: media/js/devreg/devhub.js:186
+#: media/js/devreg/devhub.js:190
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 msgstr[1] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:204
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Appen fullførte validering uten feil og med {0} melding."
 msgstr[1] "Appen fullførte validering uten feil og med {0} meldinger."
 
-#: media/js/devreg/devhub.js:205
+#: media/js/devreg/devhub.js:209
 msgid "Your app passed validation with no errors or messages."
 msgstr "Appen fullførte validering uten feil eller meldinger."
 
-#: media/js/devreg/devhub.js:419
+#: media/js/devreg/devhub.js:423
 msgid "Changes Saved"
 msgstr "Endringer lagret"
 
-#: media/js/devreg/devhub.js:435
+#: media/js/devreg/devhub.js:439
 msgid "Enter a new team member's email address"
 msgstr "Skriv inn e-postadresse til nytt teammedlem"
 
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Oppdatert"
+#: media/js/devreg/devhub.js:452
+msgid "Manifest refreshed"
+msgstr ""
 
-#: media/js/devreg/devhub.js:616
+#: media/js/devreg/devhub.js:457
+msgid "Could not refresh manifest. Try again later."
+msgstr ""
+
+#: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
 msgstr "En feil oppstod under opplasting av fil."
 
-#: media/js/devreg/devhub.js:886
+#: media/js/devreg/devhub.js:908
 msgid "Learn more"
 msgstr "Les mer"
 
-#: media/js/devreg/devhub.js:890
+#: media/js/devreg/devhub.js:912
 msgid "Example"
 msgstr "Eksempel"
 
-#: media/js/devreg/devhub.js:1192
+#: media/js/devreg/devhub.js:1214
 msgid "Image changes being processed"
 msgstr "Endringer på bilde blir behandlet"
 
@@ -201,27 +199,35 @@ msgstr "eller <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
+#: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold. Kom tilbake senere."
 
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
+#: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Fjern denne oversettelsen"
 
-#: media/js/devreg/login.js:75
+#: media/js/devreg/login.js:76
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona-innlogging mislykket. Kanskje hadde du ikke en konto med den e-postadressen?"
 
-#: media/js/devreg/login.js:80
+#: media/js/devreg/login.js:81
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
 
-#: media/js/devreg/lookup-tool.js:65
+#: media/js/devreg/lookup-tool.js:24
+msgid "Status successfully changed to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:29
+msgid "Could not change status to \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
 msgstr "Vis alle resultater."
 
-#: media/js/devreg/lookup-tool.js:68
+#: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
 msgstr "Over {0} resultater funnet, prøv å justere søket."
 
@@ -307,48 +313,42 @@ msgid "Detected: {0}"
 msgstr "Oppdaget: {0}"
 
 #. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:31
+#: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Sletting av betalingskonto \"{0}\" vil fjerne betalingskonto fra følgende "
-"apper. Programmer uten en betalingskonto vil ikke lenger være tilgjengelig "
-"for salg."
-msgstr[1] ""
-"Sletting av betalingskonto \"{0}\" vil fjerne betalingskonto fra følgende app. "
-"Programmer uten en betalingskonto vil ikke lenger være tilgjengelig for "
-"salg."
+msgstr[0] "Sletting av betalingskonto \"{0}\" vil fjerne betalingskonto fra følgende apper. Programmer uten en betalingskonto vil ikke lenger være tilgjengelig for salg."
+msgstr[1] "Sletting av betalingskonto \"{0}\" vil fjerne betalingskonto fra følgende app. Programmer uten en betalingskonto vil ikke lenger være tilgjengelig for salg."
 
-#: media/js/devreg/payments-manage.js:44
+#: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} betalingskonto:"
 
-#: media/js/devreg/payments-manage.js:96 media/js/devreg/payments-manage.js:157 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Feil"
 
-#: media/js/devreg/payments-manage.js:97 media/js/devreg/payments-manage.js:158
+#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Et problem oppstod ved forsøk på å kontakte betalingsserver."
 
-#: media/js/devreg/payments-manage.js:127
+#: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
 msgstr "Autentiseringsfeil"
 
-#: media/js/devreg/payments-manage.js:181
+#: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
 msgstr "Du har ingen betalingskonto."
 
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
+#: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
 msgstr "Søk i temaer etter <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
+#: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
 msgstr "Søk i apper etter <b>{0}</b>"
 
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
+#: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Søk i utvidelser etter <b>{0}</b>"
 
@@ -451,7 +451,7 @@ msgstr "Notat for redaktører"
 msgid "No version notes found"
 msgstr "Versjonsnotat ikke funnet"
 
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24
+#: media/js/devreg/reviewers/editors.js:315
 msgid "Select an application first"
 msgstr "Velg en applikasjon først"
 
@@ -483,280 +483,55 @@ msgstr "Hopp over for nå"
 msgid "Payment failed. Try again later."
 msgstr "Betaling mislykket. Prøv igjen senere."
 
-#: media/js/devreg/reviewers/reviewers.js:104
+#: media/js/devreg/reviewers/reviewers.js:106
 msgid "Packaged App"
 msgstr "Innpakket app"
 
-#: media/js/devreg/reviewers/reviewers.js:108
+#: media/js/devreg/reviewers/reviewers.js:110
 msgid "Privileged App"
 msgstr "Priviligert app"
 
-#: media/js/devreg/reviewers/reviewers.js:111
+#: media/js/devreg/reviewers/reviewers.js:113
 msgid "More Information Requested"
 msgstr "Mer informasjon er forespurt"
 
-#: media/js/devreg/reviewers/reviewers.js:114
+#: media/js/devreg/reviewers/reviewers.js:116
 msgid "Contains Editor Comment"
 msgstr "Inneholder redaktør-kommentar"
 
-#: media/js/devreg/reviewers/reviewers.js:118
+#: media/js/devreg/reviewers/reviewers.js:120
 msgid "Premium App"
 msgstr "Premium-app"
 
-#: media/js/devreg/reviewers/reviewers.js:121
+#: media/js/devreg/reviewers/reviewers.js:123
 msgid "Escalated"
 msgstr "Eskalert"
 
-#: media/js/devreg/reviewers/reviewers.js:126
+#: media/js/devreg/reviewers/reviewers.js:128
 msgid "Free"
 msgstr "Gratis"
 
-#: media/js/devreg/reviewers/reviewers.js:234
+#: media/js/devreg/reviewers/reviewers.js:236
 msgid "Any"
 msgstr "Alle"
 
-#: media/js/devreg/reviewers/reviewers.js:261
+#: media/js/devreg/reviewers/reviewers.js:263
 msgid "Approved app: {app}"
 msgstr "Godkjent app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:266
 msgid "Rejected app: {app}"
 msgstr "Avvist app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:270
+#: media/js/devreg/reviewers/reviewers.js:272
 msgid "Error approving app: {app}"
 msgstr "Feil ved godkjenning av app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:271
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error rejecting app: {app}"
 msgstr "Feil ved avvising av app: {app}"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
+#: media/js/devreg/reviewers/reviewers_commbadge.js:62
 msgid "By {0} on {1}"
 msgstr "Av {0} den {1}"
-
-#: media/js/impala/collections.js:10
-msgid "Follow this Collection"
-msgstr "Følg denne samlingen"
-
-#: media/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Stopp følging"
-
-#: media/js/impala/collections.js:20
-msgid "Following"
-msgstr "Følger"
-
-#. L10n: {0} is an app name.
-#: media/js/impala/listing.js:11 media/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
-
-#: media/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Med enerett"
-
-#: media/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-#: media/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#: media/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#: media/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#: media/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#: media/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#: media/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "Navn på temaet"
-
-#: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Flagget for gjennomgang"
-
-#: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Inndata er påkrevd"
-
-#: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Markert for sletting"
-
-#: media/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "Oppdaterer resultater &hellip;"
-
-#: media/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "Kategori"
-
-#: media/js/impala/users.js:33
-msgid "use original"
-msgstr "bruk original"
-
-#: media/js/zamboni/admin_validation.js:52
-msgid "Set {0} add-on to a max version of {1} and email the author."
-msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Sett {0} utvidelse til maksversjon {1} og send e-post til utvikleren."
-msgstr[1] "Sett {0} utvidelser til maksversjon {1} og send e-post til utviklerne."
-
-#: media/js/zamboni/admin_validation.js:55
-msgid "Email author of {2} add-on which failed validation."
-msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Send e-post til utvikler av {2} utvidelse som mislyktes validering."
-msgstr[1] "Send e-post til utviklere av {2} utvidelser som mislyktes validering."
-
-#: media/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "App-installasjon ikke tillatt."
-
-#: media/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "App-manifestet er feilformatert."
-
-#: media/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "App-installasjon mislykket."
-
-#: media/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Systemet støtter ikke installasjon av apper."
-
-#: media/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "Administratorer og redaktører må oppgi passord for å logge inn."
-
-#: media/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "BrowserID-innlogging mislykket. Kanskje har du ikke en konto under den e-postadressen?"
-
-#. L10n: {0} is an app name like Firefox.
-#: media/js/zamboni/buttons.js:100
-msgid "Accept and Install"
-msgstr "Godta og installer"
-
-#: media/js/zamboni/buttons.js:100
-msgid "Add to {0}"
-msgstr "Legg til {0}"
-
-#: media/js/zamboni/buttons.js:105
-msgid "Download Now"
-msgstr "Last ned nå"
-
-#: media/js/zamboni/buttons.js:135
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Utvidelsen har ikke blitt oppdatert til å støtte kompatibel-som-standard."
-
-#: media/js/zamboni/buttons.js:140
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Du må bruke Firefox 10.0 eller nyere."
-
-#: media/js/zamboni/buttons.js:152
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markert denne versjonen som inkompatibel med din Firefox-versjon."
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: media/js/zamboni/buttons.js:230
-msgid "Install for {0} anyway"
-msgstr "Installer for {0} likevel"
-
-#: media/js/zamboni/buttons.js:230
-msgid "Download for {0} anyway"
-msgstr "Last ned for {0} likevel"
-
-#: media/js/zamboni/buttons.js:287
-msgid "Not available for your platform"
-msgstr "Ikke tilgjengelig for plattformen din"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: media/js/zamboni/buttons.js:298 media/js/zamboni/buttons.js:335
-msgid "Not available for {0} {1}"
-msgstr "Ikke tilgjengelig for {0} {1}"
-
-#: media/js/zamboni/buttons.js:361
-msgid "Works with {app} {min} - {max}"
-msgstr "Virker med {app} {min} - {max}"
-
-#: media/js/zamboni/buttons.js:363
-msgid "View other versions"
-msgstr "Vis andre versjoner"
-
-#: media/js/zamboni/buttons.js:563 media/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."
-
-#: media/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "Ingen resultater funnet."
-
-#: media/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Laster ..."
-
-#. L10n: {0} is the number of characters left.
-#: media/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> tegn igjen."
-msgstr[1] "<b>{0}</b> tegn igjen."
-
-#: media/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Passordstyrke:"
-
-#: media/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Minst {0} tegn igjen."
-msgstr[1] "Minst {0} tegn igjen."
-
-#: media/js/zamboni/mobile/buttons.js:75
-msgid "Not Updated for {0} {1}"
-msgstr "Ikke oppdatert for {0} {1}"
-
-#: media/js/zamboni/mobile/buttons.js:76
-msgid "Requires Newer Version of {0}"
-msgstr "Krever en nyere versjon av {0}"
-
-#: media/js/zamboni/mobile/buttons.js:77
-msgid "Unreviewed"
-msgstr "Ingen anmeldelser"
-
-#: media/js/zamboni/mobile/buttons.js:78
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Eksperimentell <span>(Les mer)</span>"
-
-#: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
-msgid "Not Available for {0}"
-msgstr "Ikke tilgjengelig for {0}"
-
-#: media/js/zamboni/mobile/buttons.js:81
-msgid "Experimental"
-msgstr "Eksperimentell"
-
-#: media/js/zamboni/mobile/buttons.js:123
-msgid "Installing..."
-msgstr "Installerer ..."
-
-#: media/js/zamboni/mobile/buttons.js:131
-msgid "Purchasing..."
-msgstr "Kjøper ..."
-
-#: media/js/zamboni/mobile/buttons.js:160
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Denne utvidelsen er midlertidig kontrollert av Mozilla."
