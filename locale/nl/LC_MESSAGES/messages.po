@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-27 09:06+0000\n"
+"PO-Revision-Date: 2014-06-30 19:55+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403859963.0\n"
+"X-POOTLE-MTIME: 1404158103.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -440,11 +440,11 @@ msgstr "Automatische VIP-escalatie"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} opnieuw beoordeeld vanwege URL-wijziging manifest."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "URL-wijziging manifest"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -2063,11 +2063,11 @@ msgstr "Geëscaleerd vanwege hoeveelheid restitutieaanvragen"
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "App-indieningsopmerkingen"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "Ontwikkelaarsopmerking"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2940,7 +2940,7 @@ msgstr "De code kan niet “%s” zijn. Kies een andere."
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "Manifest-URL gewijzigd van {before_url} in {after_url}"
 
 #: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
@@ -3044,6 +3044,8 @@ msgstr "Bestand te groot. Houd de omvang onder %s. Huidige omvang %s."
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr ""
+"Ongeldig bestandstype {0}. Alleen bestanden van het type {1} worden "
+"ondersteund."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3744,7 +3746,7 @@ msgstr "Teamleden"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Alleen de eigenaar(s) van de app kan/kunnen deze pagina bewerken."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4248,6 +4250,10 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"Probeer uw manifest URL niet te vaak te wijzigen. Als u uw manifest-URL "
+"wijzigt, worden bestaande gebruikers niet bijgewerkt naar de nieuwe "
+"manifest-URL. Lees voor meer informatie de <a href=\"%(doc_url)s\" "
+"target=\"_blank\">documentatie over het bijwerken van apps</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:156
 msgid "Description"
@@ -4618,7 +4624,7 @@ msgstr "Apparaten wijzigen"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Inhoudswaardering instellen</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4850,10 +4856,14 @@ msgstr "Opslaan"
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Uw app dient verpakt te zijn en een <a href=\"%(origin)s\">bron</a> op te "
+"geven om dit in-app-betalingssysteem te gebruiken."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Uw app dient een <a href=\"%(origin)s\">bron</a> in uw manifest op te geven "
+"zodat ontvangstbewijzen correct kunnen worden geverifieerd."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4865,11 +4875,11 @@ msgstr "Prijspunt"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
-msgstr ""
+msgstr "Productkenmerk"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Add a product"
-msgstr ""
+msgstr "Een product toevoegen"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -5987,7 +5997,7 @@ msgstr "Ingediend"
 
 #: mkt/lookup/templates/lookup/app_summary.html:75 mkt/lookup/templates/lookup/app_summary.html:154
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Review Prioritized"
@@ -6343,7 +6353,7 @@ msgstr "Beoordeling verwijderen"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Nog niet beoordeeld"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6985,7 +6995,7 @@ msgstr "Vereisten"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "Meer weergeven"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
@@ -7029,7 +7039,7 @@ msgstr "Wekelijkse downloads"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
 msgid "Show less"
-msgstr ""
+msgstr "Minder weergeven"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
@@ -7526,11 +7536,14 @@ msgstr ""
 
 #: mkt/submit/forms.py:390
 msgid "Your comments for reviewers"
-msgstr ""
+msgstr "Uw opmerkingen voor beoordelaars"
 
 #: mkt/submit/forms.py:391
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Uw app wordt door Mozilla beoordeeld voordat hij op de Marketplace wordt "
+"gepubliceerd. Voer hier eventuele speciale instructies voor app-beoordelaars "
+"in."
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
