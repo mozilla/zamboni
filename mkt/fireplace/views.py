@@ -1,16 +1,8 @@
-import json
-import uuid
-
-from django.conf import settings
-from django.http import HttpResponse
-
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from waffle import switch_is_active
 from waffle.models import Switch
-
-from amo.utils import urlparams
 
 from mkt.account.views import user_relevant_apps
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -23,7 +15,7 @@ from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceESAppSerializer)
 from mkt.search.views import FeaturedSearchView as BaseFeaturedSearchView
 from mkt.search.views import SearchView as BaseSearchView
-from mkt.users.views import fxa_oauth_api
+from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.views import AppViewSet as BaseAppViewset
 
 
@@ -75,13 +67,7 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
         if request.amo_user:
             data['apps'] = user_relevant_apps(request.amo_user)
         if switch_is_active('firefox-accounts'):
-            state = uuid.uuid4().hex
-            data['fxa_auth_url'] = urlparams(
-                fxa_oauth_api('authorization'),
-                client_id=settings.FXA_FIREPLACE_CLIENT_ID,
-                state=state,
-                scope='profile')
-            data['fxa_auth_state'] = state
+            data['fxa_auth_state'], data['fxa_auth_url'] = fxa_auth_info()
 
         # Return an HttpResponse directly to be as fast as possible.
         return Response(data)
