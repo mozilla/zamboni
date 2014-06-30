@@ -28,8 +28,6 @@ class TestRenderAppInfo(amo.tests.TestCase):
         assert '<FIELD NAME="submission_id" VALUE="100"' in xml
         assert '<FIELD NAME="security_code" VALUE="AB12CD3"' in xml
         assert '<FIELD NAME="platform" VALUE="Firefox"' in xml
-        # If these aren't specified in the context they aren't included.
-        assert not '<FIELD NAME="title"' in xml
 
 
 class TestRenderSetStorefrontData(amo.tests.TestCase):
