@@ -395,9 +395,11 @@ class TestFetchManifest(amo.tests.TestCase):
         self.check_validation('Your manifest must be less than %s bytes.' %
                               max_webapp_size)
 
+    @mock.patch('mkt.developers.tasks.validator', lambda uid, **kw: None)
     def test_http_error(self):
-        self.requests_mock.side_effect = urllib2.HTTPError(
-            'url', 404, 'Not Found', [], None)
+        with self.patch_requests() as ur:
+            ur.status_code = 404
+
         tasks.fetch_manifest('url', self.upload.pk)
         self.check_validation(
             'No manifest was found at that URL. Check the address and try '
