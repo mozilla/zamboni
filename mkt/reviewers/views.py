@@ -169,12 +169,13 @@ def queue_counts(request):
         'escalated': EscalationQueue.objects.no_cache()
                                     .filter(addon__disabled_by_user=False)
                                     .count(),
-        'moderated': Review.objects.no_cache().filter(
-                                            addon__type=amo.ADDON_WEBAPP,
-                                            reviewflag__isnull=False,
-                                            editorreview=True)
-                                    .count(),
-
+        'moderated': Review.objects.no_cache()
+                           .exclude(Q(addon__isnull=True) |
+                                    Q(reviewflag__isnull=True))
+                           .exclude(addon__status=amo.STATUS_DELETED)
+                           .filter(addon__type=amo.ADDON_WEBAPP,
+                                   editorreview=True)
+                           .count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
     }
 
@@ -673,6 +674,7 @@ def queue_moderated(request):
     """Queue for reviewing app reviews."""
     rf = (Review.objects.no_cache()
                 .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
+                .exclude(addon__status=amo.STATUS_DELETED)
                 .filter(addon__type=amo.ADDON_WEBAPP, editorreview=True)
                 .order_by('reviewflag__created'))
 
