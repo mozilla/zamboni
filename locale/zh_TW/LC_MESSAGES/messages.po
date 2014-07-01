@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-22 02:24+0000\n"
+"PO-Revision-Date: 2014-07-01 05:15+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400725445.0\n"
+"X-POOTLE-MTIME: 1404191718.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -437,11 +437,11 @@ msgstr "VIP 自動提升審核"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "因為安裝資訊網址變更，已重新審查 {addon}。"
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "安裝資訊網址變更"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -2061,11 +2061,11 @@ msgstr "有大量退費請求，被送交至上一層審核"
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "應用程式提交註記"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "開發者留言"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2937,7 +2937,7 @@ msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "安裝資訊網址已自 {before_url} 變更為 {after_url}"
 
 # 86%
 #: mkt/developers/forms.py:646
@@ -3038,7 +3038,7 @@ msgstr "檔案過大。請保持小於 %s，現在大小 %s。"
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "無效檔案類型 {0}，僅支援 {1}。"
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3741,7 +3741,7 @@ msgstr "團隊成員"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "僅有應用程式擁有者可編輯此頁面。"
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4238,6 +4238,8 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"請不要太常修改您的安裝資訊網址。若您變更了安裝資訊網址，現有的使用者將無法升級使用新的安裝資訊網址。若需更多資訊，請參考 <a href=\"%"
+"(doc_url)s\" target=\"_blank\">更新應用程式相關文件</a>。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:156
 msgid "Description"
@@ -4615,7 +4617,7 @@ msgstr "變更支援裝置"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">設定內容評等</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4837,11 +4839,11 @@ msgstr "儲存"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
-msgstr ""
+msgstr "您的應用程式必須封裝好，並指定 <a href=\"%(origin)s\">來源</a> 以使用此應用程式內付款系統。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
-msgstr ""
+msgstr "您的應用程式必須在安裝資訊中指定 <a href=\"%(origin)s\">來源</a>，這樣才能正確驗證明細。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4853,11 +4855,11 @@ msgstr "價格點"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
-msgstr ""
+msgstr "產品 ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Add a product"
-msgstr ""
+msgstr "新增產品"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -5960,7 +5962,7 @@ msgstr "提交日期"
 
 #: mkt/lookup/templates/lookup/app_summary.html:75 mkt/lookup/templates/lookup/app_summary.html:154
 msgid "OK"
-msgstr ""
+msgstr "確定"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Review Prioritized"
@@ -6318,7 +6320,7 @@ msgstr "刪除評論"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "尚未審核"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6964,7 +6966,7 @@ msgstr "需求"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "顯示更多"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
@@ -7008,7 +7010,7 @@ msgstr "每週下載次數"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
 msgid "Show less"
-msgstr ""
+msgstr "顯示更少"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
@@ -7506,7 +7508,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:391
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
-msgstr ""
+msgstr "您的應用程式將在公開上架到 Marketplace 前由 Mozilla 審核。請在此輸入要給應用程式審查者執行的特別操作。"
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
