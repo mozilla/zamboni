@@ -6,7 +6,6 @@ Logging
 
 Logging is fun.  We all want to be lumberjacks.  My muscle-memory wants to put
 ``print`` statements everywhere, but it's better to use ``log.debug`` instead.
-``print`` statements make mod_wsgi sad, and they're not much use in production.
 Plus, ``django-debug-toolbar`` can hijack the logger and show all the log
 statements generated during the last request.  When ``DEBUG = True``, all logs
 will be printed to the development console where you started the server.  In
