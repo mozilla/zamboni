@@ -10,3 +10,5 @@ INSTALL_TYPES = {
     INSTALL_TYPE_REVIEWER: _('Reviewer'),
     INSTALL_TYPE_DEVELOPER: _('Developer')
 }
+
+MANIFEST_CONTENT_TYPE = 'application/x-web-app-manifest+json; charset=utf-8'

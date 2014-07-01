@@ -40,7 +40,7 @@ from lib.crypto.tests import mock_sign
 from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from lib.utils import static_url
-from mkt.constants import apps
+from mkt.constants import apps, MANIFEST_CONTENT_TYPE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.files.models import File, Platform
@@ -1704,8 +1704,7 @@ class TestPackagedModel(amo.tests.TestCase):
         # Check manifest.
         url = app.get_manifest_url()
         res = self.client.get(url)
-        eq_(res['Content-type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
+        eq_(res['Content-type'], MANIFEST_CONTENT_TYPE)
         assert 'etag' in res._headers
         data = json.loads(res.content)
         eq_(data['name'], 'Blocked by Mozilla')

@@ -46,6 +46,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
+from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.files.models import File
 from mkt.ratings.forms import ReviewFlagFormSet
@@ -872,9 +873,8 @@ def reviewer_or_token_required(f):
 @reviewer_or_token_required
 def mini_manifest(request, addon, version_id):
     token = request.GET.get('token')
-    return http.HttpResponse(
-        _mini_manifest(addon, version_id, token),
-        content_type='application/x-web-app-manifest+json; charset=utf-8')
+    return http.HttpResponse(_mini_manifest(addon, version_id, token),
+                             content_type=MANIFEST_CONTENT_TYPE)
 
 
 def _mini_manifest(addon, version_id, token=None):

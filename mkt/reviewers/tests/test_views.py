@@ -36,7 +36,7 @@ from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.comm.utils import create_comm_note
-from mkt.constants import comm
+from mkt.constants import comm, MANIFEST_CONTENT_TYPE
 from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
@@ -2862,8 +2862,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         manifest = self.app.get_manifest_json(self.file)
 
         res = self.client.get(self.url)
-        eq_(res['Content-type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
+        eq_(res['Content-type'], MANIFEST_CONTENT_TYPE)
         data = json.loads(res.content)
         eq_(data['name'], manifest['name'])
         eq_(data['developer']['name'], 'Mozilla Marketplace')
@@ -2879,8 +2878,7 @@ class TestMiniManifestView(BasePackagedAppTest):
         manifest = self.app.get_manifest_json(self.file)
 
         res = self.client.get(self.url)
-        eq_(res['Content-type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
+        eq_(res['Content-type'], MANIFEST_CONTENT_TYPE)
         data = json.loads(res.content)
         eq_(data['name'], manifest['name'])
         eq_(data['developer']['name'], 'Mozilla Marketplace')
@@ -2907,8 +2905,7 @@ class TestMiniManifestView(BasePackagedAppTest):
 
         res = self.client.get(urlparams(self.url, token=token.token))
         eq_(res.status_code, 200)
-        eq_(res['Content-type'],
-            'application/x-web-app-manifest+json; charset=utf-8')
+        eq_(res['Content-type'], MANIFEST_CONTENT_TYPE)
         data = json.loads(res.content)
         ok_('token=' in data['package_path'])
 

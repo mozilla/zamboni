@@ -1,3 +1,4 @@
+from .apps import MANIFEST_CONTENT_TYPE
 from .bango import (BANGO_COUNTRIES, BANGO_CURRENCIES,
                     BANGO_OUTPAYMENT_CURRENCIES)
 from .carriers import CARRIER_CHOICES, CARRIER_SLUGS

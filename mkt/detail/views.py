@@ -8,6 +8,7 @@ import commonware.log
 
 import amo
 from amo.decorators import allow_cross_site_request
+from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 
@@ -46,9 +47,8 @@ def manifest(request, uuid):
 
     @etag(lambda r, a: manifest_etag)
     def _inner_view(request, addon):
-        response = http.HttpResponse(
-            manifest_content,
-            content_type='application/x-web-app-manifest+json; charset=utf-8')
+        response = http.HttpResponse(manifest_content,
+                                     content_type=MANIFEST_CONTENT_TYPE)
         return response
 
     return _inner_view(request, addon)
