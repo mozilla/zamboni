@@ -2245,9 +2245,18 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         assert doc('#log-filter button'), 'No filters.'
+
         # Should have 2 showing.
         rows = doc('tbody tr')
-        eq_(rows.filter(':not(.hide)').length, 2)
+        logs = rows.filter(':not(.hide)')
+        eq_(logs.length, 2)
+
+        # Ensure that the app links are valid.
+        eq_(logs.find('.name .app-link').eq(0).attr('href'),
+            self.apps[0].get_url_path())
+        eq_(logs.find('.name .app-link').eq(1).attr('href'),
+            self.apps[1].get_url_path())
+
         eq_(rows.filter('.hide').eq(0).text(), 'youwin')
 
     def test_search_app_soft_deleted(self):

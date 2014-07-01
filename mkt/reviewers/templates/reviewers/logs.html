@@ -25,7 +25,7 @@
               <td class="reviewers-desktop">{{ item.created|babel_datetime }}</td>
               <td class="name">
                 {% if item.arguments.0 %}
-                  <a href="{{ item.arguments.0 }}">{{ item.arguments.0.name }}</a>
+                  <a href="{{ item.arguments.0.get_url_path() }}" class="app-link">{{ item.arguments.0.name }}</a>
                   {% if item.arguments|count >= 2 %}
                     {{ item.arguments[1].version }}
                     <a href="{{ url('reviewers.apps.review', item.arguments[0].app_slug) }}">
