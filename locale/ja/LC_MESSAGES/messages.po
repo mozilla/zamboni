@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-31 04:40-0400\n"
+"PO-Revision-Date: 2014-06-30 20:03-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -438,11 +438,11 @@ msgstr "VIP 自動管理者審査指定"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} は、マニフェスト URL が変更されたため、再審査を受けました。"
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "マニフェスト URL 変更"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -2060,11 +2060,11 @@ msgstr "返品要求が多数寄せられたため管理者審査中"
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "アプリ登録時の注意"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "開発者のコメント"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2384,7 +2384,7 @@ msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
-msgstr "このアプリは、同一オリジンポリシーの制限なく非同期 HTTP リクエストを送信できるプラットフォームを必要とします。"
+msgstr "このアプリは、同一配信元ポリシーの制限なく非同期 HTTP リクエストを送信できるプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
@@ -2936,7 +2936,7 @@ msgstr "スラグを「%s」にすることはできません。別のスラグ�
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "マニフェスト URL が {before_url} から {after_url} へ変更されました"
 
 #: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
@@ -3036,7 +3036,7 @@ msgstr "ファイルが大きすぎます。サイズを %s 以下にしてく�
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "{0} は不正なファイル形式です。{1} 形式のみ対応しています。"
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3735,7 +3735,7 @@ msgstr "チームメンバー"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "このページを編集できるのはアプリのオーナーだけです。"
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4234,6 +4234,8 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"アプリのマニフェスト URL を頻繁に変更しないでください。マニフェスト URL を変更した場合、既存のユーザはその新しいマニフェスト URL へ更新されなくなります。詳しくは <a href=\"%(doc_url)s\" target=\"_blank\">"
+"アプリの更新に関するドキュメント</a> を参照してください。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:156
 msgid "Description"
@@ -4602,7 +4604,7 @@ msgstr "端末を変更"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">コンテンツレーティングを設定</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4828,11 +4830,11 @@ msgstr "保存"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
-msgstr ""
+msgstr "このアプリ内課金システムを利用するには、アプリをパッケージ型とした上で <a href=\"%(origin)s\">配信元</a> を指定する必要があります。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
-msgstr ""
+msgstr "レシートを適切に検証するには、アプリのマニフェスト内で <a href=\"%(origin)s\">配信元</a> を定義する必要があります。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4844,11 +4846,11 @@ msgstr "価格帯"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
-msgstr ""
+msgstr "製品 ID"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Add a product"
-msgstr ""
+msgstr "製品を追加"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -5960,7 +5962,7 @@ msgstr "送信完了"
 
 #: mkt/lookup/templates/lookup/app_summary.html:75 mkt/lookup/templates/lookup/app_summary.html:154
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Review Prioritized"
@@ -6314,7 +6316,7 @@ msgstr "レビューを削除"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "まだ審査を受けていません"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6551,7 +6553,7 @@ msgstr "却下"
 
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app and remove it from the review queue."
-msgstr "この処理は、アプリを却下し、レビュー待ちの列から削除します。"
+msgstr "この処理は、アプリを却下し、審査待ちの列から削除します。"
 
 #: mkt/reviewers/utils.py:436
 msgid "Request more information"
@@ -6759,7 +6761,7 @@ msgstr "審査担当者用ダッシュボード"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:19
 msgid "No review points awarded yet."
-msgstr "まだレビューポイントは付与されていません。"
+msgstr "まだ審査ポイントは付与されていません。"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
@@ -6951,7 +6953,7 @@ msgstr "依存関係"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "もっと見る"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
@@ -6995,7 +6997,7 @@ msgstr "週間ダウンロード数"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
 msgid "Show less"
-msgstr ""
+msgstr "折りたたむ"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
@@ -7490,11 +7492,11 @@ msgstr ""
 
 #: mkt/submit/forms.py:390
 msgid "Your comments for reviewers"
-msgstr ""
+msgstr "審査担当者へのコメント"
 
 #: mkt/submit/forms.py:391
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
-msgstr ""
+msgstr "このアプリは Marketplace 上で一般に公開される前に Mozilla による審査を受けます。アプリ使用時に何か特別な手順が必要とされる場合、審査担当者が分かるようここに記入してください。"
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
