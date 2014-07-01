@@ -407,7 +407,7 @@ class AuthenticationMiddleware(BaseAuthenticationMiddleware):
     session based auth for non-API requests.
     """
     def process_request(self, request):
-        if getattr(request, 'API', False):
+        if getattr(request, 'API', False) and request.path != '/api/v1/reviewers/search':
             request.user = AnonymousUser()
         else:
             super(AuthenticationMiddleware, self).process_request(request)
