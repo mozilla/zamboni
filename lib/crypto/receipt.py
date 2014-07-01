@@ -1,12 +1,11 @@
 import json
-import urllib2
 
 from django.conf import settings
 from django_statsd.clients import statsd
 
 import commonware.log
-
 import jwt
+import requests
 
 
 log = commonware.log.getLogger('z.crypto')
@@ -34,30 +33,28 @@ def sign(receipt):
     log.info('Receipt contents: %s' % receipt_json)
     headers = {'Content-Type': 'application/json'}
     data = receipt if isinstance(receipt, basestring) else receipt_json
-    request = urllib2.Request(destination, data, headers)
 
     try:
         with statsd.timer('services.sign.receipt'):
-            response = urllib2.urlopen(request, timeout=timeout)
-    except urllib2.HTTPError, error:
-        # Will occur when a 3xx or greater code is returned
-        msg = error.read().strip()
-        log.error('Posting to receipt signing failed: %s, %s'
-                  % (error.code, msg))
-        raise SigningError('Posting to receipt signing failed: %s, %s'
-                           % (error.code, msg))
-    except:
+            req = requests.get(destination, data=data, headers=headers,
+                               timeout=timeout)
+    except requests.Timeout:
+        statsd.incr('services.sign.receipt.timeout')
+        log.error('Posting to receipt signing timed out')
+        raise SigningError('Posting to receipt signing timed out')
+    except requests.RequestException:
         # Will occur when some other error occurs.
+        statsd.incr('services.sign.receipt.error')
         log.error('Posting to receipt signing failed', exc_info=True)
-        raise SigningError('Posting receipt signing failed')
+        raise SigningError('Posting to receipt signing failed')
 
-    if response.getcode() != 200:
-        log.error('Posting to signing failed: %s'
-                  % (response.getcode()))
+    if req.status_code != 200:
+        statsd.incr('services.sign.receipt.error')
+        log.error('Posting to signing failed: %s' % req.status_code)
         raise SigningError('Posting to signing failed: %s'
-                           % (response.getcode()))
+                           % req.status_code)
 
-    return json.loads(response.read())['receipt']
+    return json.loads(req.content)['receipt']
 
 
 def decode(receipt):
