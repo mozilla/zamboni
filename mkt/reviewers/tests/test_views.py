@@ -2730,6 +2730,22 @@ class TestModeratedQueue(AppReviewerTest, AccessMixin):
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (0)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (2)')
 
+    def test_deleted_app(self):
+        "Test that a deleted app doesn't break the queue."
+        self.app.delete()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+    def test_queue_count_deleted_app(self):
+        self.app.delete()
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
+        eq_(doc('.tabnav li a:eq(1)').text(), u'Re-reviews (0)')
+        eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (0)')
+        eq_(doc('.tabnav li a:eq(3)').text(), u'Moderated Reviews (0)')
+
 
 class TestGetSigned(BasePackagedAppTest, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999', 'user_editor',
