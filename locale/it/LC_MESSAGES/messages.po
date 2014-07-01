@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-24 11:07+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-07-01 22:11+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1400929640.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1404252690.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -439,11 +439,11 @@ msgstr "Procedimento automatico di escalation per app VIP"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} riesaminato a causa della modifica dell’url del manifesto."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Modifica url del manifesto"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -2061,11 +2061,11 @@ msgstr "In escalation a causa dell’alto numero di richieste di rimborso"
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "Note di caricamento dell’app"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "Commento dello sviluppatore"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2938,7 +2938,7 @@ msgstr "“%s” non è uno slug valido. Scegline un altro."
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "L’url del manifesto è stato modificato da {before_url} in {after_url}"
 
 #: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
@@ -3042,6 +3042,8 @@ msgstr "Il file è troppo pesante. La dimensione del file deve essere inferiore 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr ""
+"Un file di tipo {0} non è consentito. Sono supportati esclusivamente i file "
+"{1}."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3742,6 +3744,8 @@ msgstr "Membri del team"
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
 msgstr ""
+"Questa pagina può essere modificata esclusivamente dal proprietario (o dai "
+"proprietari) dell’app."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4244,6 +4248,11 @@ msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr ""
+"È sconsigliabile modificare frequentemente l’url del manifesto, in quanto "
+"gli utenti che hanno installato l’app precedentemente non riceveranno gli "
+"aggiornamenti del manifesto al nuovo url. Per ulteriori informazioni fai "
+"rifermento alla <a href=\"%(doc_url)s\" target=\"_blank\">documentazione "
+"sull’aggiornamento delle app</a>."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101 mkt/reviewers/templates/reviewers/includes/details.html:156
 msgid "Description"
@@ -4615,7 +4624,7 @@ msgstr "Modifica dispositivi"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Imposta la classificazione dei contenuti</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4852,10 +4861,14 @@ msgstr "Salva"
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Per utilizzare questo sistema di pagamenti in-app, l’app deve essere di tipo "
+"locale e specificare una <a href=\"%(origin)s\">origine</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Per una corretta verifica delle ricevute è necessario specificare una <a "
+"href=\"%(origin)s\">origine</a> nel manifesto dell’app."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4867,11 +4880,11 @@ msgstr "Prezzo di vendita"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
-msgstr ""
+msgstr "ID prodotto"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Add a product"
-msgstr ""
+msgstr "Aggiungi prodotto"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -4949,7 +4962,10 @@ msgstr "Regioni disponibili"
 
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr "Per conoscere quali Paesi sono idonei alla vendita controlla la <a href=\"%(status_url)s\" target=\"_blank\">pagina sullo stato di disponibilità dei pagamenti</a> "
+msgstr ""
+"Per conoscere quali Paesi sono idonei alla vendita controlla la <a href=\"%"
+"(status_url)s\" target=\"_blank\">pagina sullo stato di disponibilità dei "
+"pagamenti</a>"
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Your app will be available in the following selected regions:"
@@ -5998,7 +6014,7 @@ msgstr "Inviato"
 
 #: mkt/lookup/templates/lookup/app_summary.html:75 mkt/lookup/templates/lookup/app_summary.html:154
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:83
 msgid "Review Prioritized"
@@ -6353,7 +6369,7 @@ msgstr "Elimina revisione"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Non è stata ancora revisionata"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6995,7 +7011,7 @@ msgstr "Requisiti"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "Mostra dettagli"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
@@ -7039,7 +7055,7 @@ msgstr "Download per settimana"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:150
 msgid "Show less"
-msgstr ""
+msgstr "Nascondi dettagli"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:160
 msgid "Images"
@@ -7514,7 +7530,10 @@ msgstr "Email per il supporto:"
 
 #: mkt/submit/forms.py:367
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
-msgstr "Questo indirizzo email verrà mostrato pubblicamente sul Marketplace, nella pagina dell’app, e utilizzato dagli utenti per contattarti e richiedere assistenza. "
+msgstr ""
+"Questo indirizzo email verrà mostrato pubblicamente sul Marketplace, nella "
+"pagina dell’app, e utilizzato dagli utenti per contattarti e richiedere "
+"assistenza."
 
 #: mkt/submit/forms.py:374
 msgid "Does your app require Flash support?"
@@ -7534,11 +7553,14 @@ msgstr ""
 
 #: mkt/submit/forms.py:390
 msgid "Your comments for reviewers"
-msgstr ""
+msgstr "Commenti per i revisori"
 
 #: mkt/submit/forms.py:391
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
+"Prima di essere pubblicata sul Marketplace, l’app verrà revisionata dai "
+"revisori Mozilla. Se desideri informarli su qualcosa in particolare, puoi "
+"farlo inserendo le tue note qui di seguito."
 
 #: mkt/submit/helpers.py:28 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
@@ -7597,8 +7619,10 @@ msgstr ""
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
 msgstr ""
-" Prima di poter presentare l’app al pubblico, è necessario che tu fornisca le informazioni per i pagamenti. Non appena avrai inserito i dati relativi al tuo account pagamenti e il prezzo, l’app "
-"sarà sottoposta al processo di revisione."
+"Prima di poter presentare l’app al pubblico, è necessario che tu fornisca le "
+"informazioni per i pagamenti. Non appena avrai inserito i dati relativi al "
+"tuo account pagamenti e il prezzo, l’app sarà sottoposta al processo di "
+"revisione."
 
 #: mkt/submit/templates/submit/done.html:37
 msgid ""
