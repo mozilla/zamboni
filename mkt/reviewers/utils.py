@@ -422,15 +422,16 @@ class ReviewHelper(object):
         public = {
             'method': self.handler.process_public,
             'minimal': False,
-            'label': _lazy(u'Push to public'),
-            'details': _lazy(u'This will approve the sandboxed app so it '
-                             u'appears on the public side.')}
+            'label': _lazy(u'Approve'),
+            'details': _lazy(u'This will approve the app and allow the '
+                             u'author(s) to publish it.')}
         reject = {
             'method': self.handler.process_reject,
             'label': _lazy(u'Reject'),
             'minimal': False,
-            'details': _lazy(u'This will reject the app and remove it from '
-                             u'the review queue.')}
+            'details': _lazy(u'This will reject the app, remove it from '
+                             u'the review queue and un-publish it if already '
+                             u'published.')}
         info = {
             'method': self.handler.request_information,
             'label': _lazy(u'Request more information'),
@@ -441,33 +442,36 @@ class ReviewHelper(object):
             'method': self.handler.process_escalate,
             'label': _lazy(u'Escalate'),
             'minimal': True,
-            'details': _lazy(u'Flag this app for an admin to review.')}
+            'details': _lazy(u'Flag this app for an admin to review. The '
+                             u'comments are sent to the admins, '
+                             u'not the author(s).')}
         comment = {
             'method': self.handler.process_comment,
             'label': _lazy(u'Comment'),
             'minimal': True,
-            'details': _lazy(u'Make a comment on this app.  The author won\'t '
-                             u'be able to see this.')}
+            'details': _lazy(u'Make a comment on this app.  The author(s) '
+                             u'won\'t be able to see these comments.')}
         clear_escalation = {
             'method': self.handler.process_clear_escalation,
             'label': _lazy(u'Clear Escalation'),
             'minimal': True,
             'details': _lazy(u'Clear this app from the escalation queue. The '
-                             u'author will get no email or see comments '
+                             u'author(s) will get no email or see comments '
                              u'here.')}
         clear_rereview = {
             'method': self.handler.process_clear_rereview,
             'label': _lazy(u'Clear Re-review'),
             'minimal': True,
             'details': _lazy(u'Clear this app from the re-review queue. The '
-                             u'author will get no email or see comments '
+                             u'author(s) will get no email or see comments '
                              u'here.')}
         disable = {
             'method': self.handler.process_disable,
             'label': _lazy(u'Disable app'),
             'minimal': True,
-            'details': _lazy(u'Disable the app, removing it from public '
-                             u'results. Sends comments to author.')}
+            'details': _lazy(u'Disable the app, the same as Reject but the '
+                             u'author(s) can\'t resubmit. To only be used in
+                             u'extreme cases.')}
 
         actions = SortedDict()
 
