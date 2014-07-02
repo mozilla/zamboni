@@ -4,20 +4,20 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-26 19:25-0500\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"PO-Revision-Date: 2014-07-02 02:36+0000\n"
+"Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
-"X-Generator: Lokalize 1.5\n"
-"X-POOTLE-MTIME: 1403304968.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1404268607.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "ਇਹ ਇੱਕ ਯੋਗ ਹੈਕਸ ਰੰਗ ਕੋਡ ਹੋਣਾ ਚਾਹੀਦਾ , ਜਿਵੇਂ ਕਿ #000000"
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
@@ -77,36 +77,36 @@ msgstr "{addon} ਚਾਲੂ ਕੀਤੀ।"
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "{addon} ਲਈ ਤਹਿ ਜਨਤਕ ਅੰਕੜੇ।"
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} ਅੰਕੜੇ ਨਿੱਜੀ ਤੌਰ ਉੱਤੇ ਤਹਿ।"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} ਸਥਇਤੀ {0} ਵਿੱਚ ਬਦਲੀ।"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "{addon} ਲਈ ਝਲਕ ਜੋੜੀ।"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "{addon} ਲਈ ਝਲਕ ਸੋਧੀ ਗਈ।"
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "{addon} ਤੋਂ ਝਲਕ ਹਟਾਈ ਗਈ।"
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} ਲਈ {version} ਜੋੜਿਆ।"
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} ਲਈ {version} ਸੋਧਿਆ।"
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
@@ -3087,7 +3087,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:231
 msgid "Not a valid choice"
-msgstr ""
+msgstr "ਠੀਕ ਚੋਣ ਨਹੀਂ ਹੈ"
 
 #: mkt/developers/forms_payments.py:335 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
@@ -3095,20 +3095,19 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:336
 msgid "Not an upgrade"
-msgstr ""
+msgstr "ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੈ"
 
 #: mkt/developers/forms_payments.py:379
 msgid "Account Holder Name"
-msgstr ""
+msgstr "ਖਾਤਾ ਧਾਰਕ ਨਾਂ"
 
 #: mkt/developers/forms_payments.py:381
-#, fuzzy
 msgid "Company Name"
 msgstr "ਕੰਪਨੀ ਨਾਂ"
 
 #: mkt/developers/forms_payments.py:383
 msgid "Vendor Name"
-msgstr ""
+msgstr "ਵੇਂਡਰ ਨਾਂ"
 
 #: mkt/developers/forms_payments.py:385
 msgid "Financial Email"
@@ -3124,14 +3123,12 @@ msgid "Support Email"
 msgstr "ਸਹਿਯੋਗ ਈਮੇਲ"
 
 #: mkt/developers/forms_payments.py:395
-#, fuzzy
 msgid "Address"
-msgstr "ਐਡਰੈੱਸ"
+msgstr "ਸਿਰਨਾਵਾਂਂ"
 
 #: mkt/developers/forms_payments.py:397
-#, fuzzy
 msgid "Address 2"
-msgstr "ਐਡਰੈੱਸ"
+msgstr "ਸਿਰਨਾਵਾਂ 2"
 
 #: mkt/developers/forms_payments.py:399
 msgid "City/Municipality"
@@ -7967,14 +7964,14 @@ msgstr[1] "ਗਲਤ ਟੈਗ: {0}"
 #: mkt/webapps/forms.py:58
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" ਇਕ ਰਾਖਵਾਂ ਟੈਗ ਹੈ ਅਤੇ ਵਰਤਿਆ ਨਹੀ ਜਾ ਸਕਦਾ।"
+msgstr[1] "\"{0}\" ਰਾਖਵੇਂ ਟੈਗ ਹਨ ਅਤੇ ਵਰਤੇ ਨਹੀ ਜਾ ਸਕਦੇ।"
 
 #: mkt/webapps/forms.py:66
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
+msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
 
 #: mkt/webapps/forms.py:71
 msgid "All tags must be %s characters or less after invalid characters are removed."
