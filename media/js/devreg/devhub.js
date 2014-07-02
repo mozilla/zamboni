@@ -1,3 +1,11 @@
+// Send the Authorization header to local URLs.
+$(document).ajaxSend(function(event, xhr, ajaxSettings) {
+    var userToken = require('login').userToken();
+    if (isLocalUrl(ajaxSettings.url) && userToken) {
+        xhr.setRequestHeader('Authorization', 'mkt-shared-secret ' + userToken);
+    }
+});
+
 $(document).ready(function() {
     // Edit Add-on
     if (document.getElementById('edit-addon')) {

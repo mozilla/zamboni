@@ -159,7 +159,6 @@ JS = {
         'js/lib/format.js',
         'js/lib/jquery.cookie.js',
         'js/lib/stick.js',
-        'js/lib/csrf.js',
         'js/common/fakefilefield.js',
         'js/devreg/gettext.js',
         'js/devreg/tracking.js',
@@ -175,6 +174,7 @@ JS = {
         'js/devreg/notification.js',
         'js/devreg/outgoing_links.js',
         'js/devreg/utils.js',
+        'js/lib/csrf.js',
 
         'js/impala/serializers.js',
         'js/common/keys.js',
@@ -232,6 +232,7 @@ JS = {
     'mkt/in-app-payments': (
         'js/lib/jquery-1.11.1.js',
         'js/devreg/inapp_payments.js',
+        'js/devreg/utils.js',
         'js/lib/csrf.js',
         'js/impala/serializers.js',
         'js/devreg/login.js',
