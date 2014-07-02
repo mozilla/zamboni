@@ -1078,10 +1078,14 @@ class PreloadTestPlanForm(happyforms.Form):
 
     def clean(self):
         """Validate test_plan file."""
-        content_types = ['application/pdf',
-                         'application/vnd.pdf',
-                         'application/ms-excel',
-                         'application/vnd.ms-excel']
+        content_types = [
+            'application/pdf',
+            'application/vnd.pdf',
+            'application/ms-excel',
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.'
+            'sheet',
+            'application/octet-stream']
         max_upload_size = 2621440  # 2.5MB
 
         if 'test_plan' not in self.files:
