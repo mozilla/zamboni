@@ -415,7 +415,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Reject', 'reject'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
@@ -431,7 +431,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -461,7 +461,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Reject', 'reject'),
             (u'Disable app', 'disable'),
             (u'Escalate', 'escalate'),
@@ -666,7 +666,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
@@ -796,7 +796,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -1056,7 +1056,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(r.status_code, 200)
         actions = pq(r.content)('#review-actions input')
         expected = [
-            (u'Push to public', 'public'),
+            (u'Approve', 'public'),
             (u'Disable app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
