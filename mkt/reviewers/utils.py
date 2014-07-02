@@ -470,7 +470,7 @@ class ReviewHelper(object):
             'label': _lazy(u'Disable app'),
             'minimal': True,
             'details': _lazy(u'Disable the app, the same as Reject but the '
-                             u'author(s) can\'t resubmit. To only be used in
+                             u'author(s) can\'t resubmit. To only be used in '
                              u'extreme cases.')}
 
         actions = SortedDict()
