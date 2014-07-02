@@ -26,8 +26,9 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
             ('/en-US/', '/?lang=en-us'),
             ('/pt-BR/', '/?lang=pt-br'),
             ('/pt-br/', '/?lang=pt-br'),
-            ('/fr/', '/?lang=fr'),
             ('/es-PE/', '/?lang=es'),
+            # 'fr' is both a region and a lang.
+            ('/fr/', '/?lang=fr&region=fr'),
         ]
         for before, after in redirects:
             r = self.client.get(before)
