@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-29 02:40+0000\n"
+"PO-Revision-Date: 2014-07-02 05:25+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401331220.0\n"
+"X-POOTLE-MTIME: 1404278748.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -165,11 +165,11 @@ msgstr "Introduza o endereço de correio electrónico do novo membro da equipa"
 
 #: media/js/devreg/devhub.js:452
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifesto atualizado"
 
 #: media/js/devreg/devhub.js:457
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Não foi possível atualizar o manifesto. Tente novamente mais tarde."
 
 #: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
@@ -217,11 +217,11 @@ msgstr "A autenticação com o Persona falhou. Ocorreu um erro de servidor."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "O estado foi alterado com sucesso para \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Não foi possível alterar o estado para \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
