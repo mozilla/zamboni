@@ -12,7 +12,8 @@ import amo.tests
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
                                    AddonPaymentAccount, CantCancel,
-                                   PaymentAccount, SolitudeSeller)
+                                   PaymentAccount, PreloadTestPlan,
+                                   SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon, Webapp
@@ -289,3 +290,15 @@ class TestActivityLogAttachment(amo.tests.TestCase):
             self.attachment2.get_absolute_url()
         except NoReverseMatch:
             assert False, msg
+
+
+class TestPreloadTestPlan(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = amo.tests.app_factory()
+        self.preload = self.app.preloadtestplan_set.create(filename='test.pdf')
+
+    def test_delete_cascade(self):
+        eq_(self.preload.addon, self.app)
+        self.app.delete()
+        eq_(PreloadTestPlan.objects.count(), 0)
