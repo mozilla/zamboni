@@ -307,6 +307,16 @@ class NI(REGION):
     ratingsbody = ratingsbodies.ESRB
 
 
+class FR(REGION):
+    id = 30
+    name = _lazy(u'France')
+    slug = 'fr'
+    default_currency = 'EUR'
+    default_language = 'fr'
+    mcc = 208
+    ratingsbody = ratingsbodies.PEGI
+
+
 # Note: When adding a new region, don't forget to include the country code to
 # the file: media/css/devreg/payments.styl
 
