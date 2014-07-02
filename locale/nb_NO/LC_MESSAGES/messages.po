@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-23 10:58+0000\n"
+"PO-Revision-Date: 2014-07-02 08:53+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403521133.0\n"
+"X-POOTLE-MTIME: 1404291182.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -410,7 +410,7 @@ msgstr "Enhet(er) lag til"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} enhetsstøtte manuelt endret av anmelder."
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
