@@ -428,7 +428,27 @@ def dump_apps(ids, **kw):
 def zip_apps(*args, **kw):
     today = datetime.datetime.today().strftime('%Y-%m-%d')
     files = ['apps'] + compile_extra_files(date=today)
-    return compress_export(filename=today, files=files)
+    tarball = compress_export(filename=today, files=files)
+    link_latest_export(tarball)
+    return tarball
+
+
+def link_latest_export(tarball):
+    """
+    Atomically links basename(tarball) to
+    DUMPED_APPS_PATH/tarballs/latest.tgz.
+    """
+    tarball_name = os.path.basename(tarball)
+    target_dir = os.path.join(settings.DUMPED_APPS_PATH, 'tarballs')
+    target_file = os.path.join(target_dir, 'latest.tgz')
+    tmp_file = os.path.join(target_dir, '.latest.tgz')
+    if os.path.lexists(tmp_file):
+        os.unlink(tmp_file)
+
+    os.symlink(tarball_name, tmp_file)
+    os.rename(tmp_file, target_file)
+
+    return target_file
 
 
 def rm_directory(path):

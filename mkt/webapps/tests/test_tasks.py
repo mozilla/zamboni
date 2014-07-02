@@ -517,6 +517,9 @@ class TestDumpApps(amo.tests.TestCase):
             ok_(os.path.exists(os.path.join(settings.DUMPED_APPS_PATH, f)))
         ok_(os.stat(fn)[stat.ST_SIZE])
 
+        latest_tgz = os.path.join(os.path.dirname(fn), 'latest.tgz')
+        ok_(os.readlink(latest_tgz) == os.path.basename(fn))
+
     @mock.patch('mkt.webapps.tasks.dump_app')
     def test_not_public(self, dump_app):
         app = Addon.objects.get(pk=337141)
