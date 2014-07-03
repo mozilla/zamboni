@@ -1,5 +1,11 @@
 <html><body>
 <script type="text/javascript">
+
+if (!navigator.mozApps) {
+    // Only browsers that support installs.
+    return;
+}
+
 window.top.postMessage({
     'name': 'loaded'
 }, '*');
