@@ -76,10 +76,14 @@ Fields that can be updated:
         {
             "permissions": {
                 "admin": false,
+                "curator": false,
                 "developer": false,
                 "localizer": false,
                 "lookup": true,
-                "reviewer": false
+                "revenue_stats": false,
+                "reviewer": false,
+                "stats": false,
+                "webpay": false
             },
             "resource_uri": "/api/v1/account/permissions/1/"
         }
