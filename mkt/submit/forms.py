@@ -17,16 +17,13 @@ from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
 from mkt.developers.forms import verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
-from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import AddonChoiceField, APP_PUBLIC_CHOICES
 from mkt.translations.fields import TransField
 from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea
 from mkt.users.models import UserNotification
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import (Addon, AddonUpsell, AppFeatures,
-                                BlacklistedSlug, Webapp)
+from mkt.webapps.models import Addon, AppFeatures, BlacklistedSlug, Webapp
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -265,77 +262,6 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
 
     def is_packaged(self):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
-
-
-class UpsellForm(happyforms.Form):
-    price = forms.ModelChoiceField(queryset=Price.objects.active(),
-                                   label=_lazy(u'App Price'),
-                                   empty_label=None,
-                                   required=True)
-    make_public = forms.TypedChoiceField(choices=APP_PUBLIC_CHOICES,
-                                    widget=forms.RadioSelect(),
-                                    label=_lazy(u'When should your app be '
-                                                 'made available for sale?'),
-                                    coerce=int,
-                                    required=False)
-    free = AddonChoiceField(queryset=Addon.objects.none(),
-        required=False, empty_label='',
-        # L10n: "App" is a paid version of this app. "from" is this app.
-        label=_lazy(u'App to upgrade from'),
-        widget=forms.Select())
-
-    def __init__(self, *args, **kw):
-        self.extra = kw.pop('extra')
-        self.request = kw.pop('request')
-        self.addon = self.extra['addon']
-
-        if 'initial' not in kw:
-            kw['initial'] = {}
-
-        kw['initial']['make_public'] = amo.PUBLIC_IMMEDIATELY
-        if self.addon.premium:
-            kw['initial']['price'] = self.addon.premium.price
-
-        super(UpsellForm, self).__init__(*args, **kw)
-        self.fields['free'].queryset = (self.extra['amo_user'].addons
-                                    .exclude(pk=self.addon.pk)
-                                    .filter(premium_type__in=amo.ADDON_FREES,
-                                            status__in=amo.VALID_STATUSES,
-                                            type=self.addon.type))
-
-        if len(self.fields['price'].choices) > 1:
-            # Tier 0 (Free) should not be the default selection.
-            self.initial['price'] = (Price.objects.active()
-                                     .exclude(price='0.00')[0])
-
-    def clean_make_public(self):
-        return (amo.PUBLIC_WAIT if self.cleaned_data.get('make_public')
-                                else None)
-
-    def save(self):
-        if 'price' in self.cleaned_data:
-            premium = self.addon.premium
-            if not premium:
-                premium = AddonPremium()
-                premium.addon = self.addon
-            premium.price = self.cleaned_data['price']
-            premium.save()
-
-        upsell = self.addon.upsold
-        if self.cleaned_data['free']:
-
-            # Check if this app was already a premium version for another app.
-            if upsell and upsell.free != self.cleaned_data['free']:
-                upsell.delete()
-
-            if not upsell:
-                upsell = AddonUpsell(premium=self.addon)
-            upsell.free = self.cleaned_data['free']
-            upsell.save()
-        elif upsell:
-            upsell.delete()
-
-        self.addon.update(make_public=self.cleaned_data['make_public'])
 
 
 class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
