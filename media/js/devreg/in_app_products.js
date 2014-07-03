@@ -1,4 +1,4 @@
-(function (login) {
+(function () {
     function PricePointFormatter() {
         // A mapping from PricePointId to FormattedPriceDeferred.
         var pricePoints = {};
@@ -184,9 +184,6 @@
                 method: method,
                 url: self.url(),
                 data: self.product,
-                headers: {
-                    Authorization: 'mkt-shared-secret ' + login.userToken(),
-                },
             }).always(function () {
                 self.saveButton.attr('disabled', false);
             }).done(function (product) {
@@ -301,4 +298,4 @@
         component: InAppProductComponent,
         componentAttrs: {startEditing: true},
     });
-})(require('login'));
+})();

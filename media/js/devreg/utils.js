@@ -173,3 +173,9 @@ function urlencode(kwargs) {
 function urlparams(url, kwargs) {
     return baseurl(url) + '?' + urlencode(_.defaults(kwargs, querystring(url)));
 }
+
+function isLocalUrl(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    return a.hostname === window.location.hostname;
+}
