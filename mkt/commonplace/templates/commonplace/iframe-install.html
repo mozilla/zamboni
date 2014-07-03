@@ -1,178 +1,180 @@
 <html><body>
 <script type="text/javascript">
-
-if (!navigator.mozApps) {
-    // Only browsers that support installs.
-    return;
-}
-
-window.top.postMessage({
-    'name': 'loaded'
-}, '*');
-
-// Initialize.
-var installed = {};
-function getInstallers(callback) {
-    var r = navigator.mozApps.getInstalled();
-    r.onsuccess = function() {
-        var _installed = {};
-        for (var i = 0; i < r.result.length; i++) {
-            _installed[r.result[i].manifestURL] = r.result[i];
-        }
-        installed = _installed;
-
-        if (callback) {
-            callback();
-        }
-    };
-}
-getInstallers();
-
-
-// Message handler.
-var origin_whitelist = [
-    'app://packaged.marketplace-dev.allizom.org',
-    'app://packaged.marketplace.allizom.org',
-    'app://packaged.marketplace.firefox.com',
-    'app://marketplace.firefox.com',
-
-    'http://localhost:8675',
-    'https://localhost:8675',
-
-    'http://localhost',
-    'https://localhost',
-
-    'http://marketplace-dev.allizom.org',
-    'https://marketplace-dev.allizom.org',
-
-    'http://marketplace.allizom.org',
-    'https://marketplace.allizom.org',
-
-    'http://marketplace.firefox.com',
-    'https://marketplace.firefox.com'
-];
-window.addEventListener('message', function(e) {
-    console.log('[iframe-install] Received message: ' + JSON.stringify(e.data));
-
-    if (origin_whitelist.indexOf(e.origin) === -1) {
-        console.log('[iframe-install] message from ' + e.origin + ' not allowed');
-        return;
-    }
-    if (!e.data) {
-        console.log('[iframe-install] no data');
+(function() {
+    if (!navigator.mozApps) {
+        // Only browsers that support installs.
+        console.log('[iframe-install] Browser does not support mozApps');
         return;
     }
 
-    switch (e.data.name) {
-        case 'getInstalled':
-            getInstalled(e);
-            break;
-        case 'install-package':
-            installPackage(e);
-            break;
-        case 'launch-app':
-            launchApp(e);
-            break;
+    window.top.postMessage({
+        'name': 'loaded'
+    }, '*');
+
+    // Initialize.
+    var installed = {};
+    function getInstallers(callback) {
+        var r = navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            var _installed = {};
+            for (var i = 0; i < r.result.length; i++) {
+                _installed[r.result[i].manifestURL] = r.result[i];
+            }
+            installed = _installed;
+
+            if (callback) {
+                callback();
+            }
+        };
     }
-});
+    getInstallers();
 
 
-// MozApp stuff.
-function getInstalled(e) {
-    /* navigator.mozApps.getInstalled for parent to keep track of installed apps.
-       {
-           name: 'getInstalled';
-       }
-    */
-    console.log('[iframe-install] Received post message to getInstalled from ' + e.origin);
+    // Message handler.
+    var origin_whitelist = [
+        'app://packaged.marketplace-dev.allizom.org',
+        'app://packaged.marketplace.allizom.org',
+        'app://packaged.marketplace.firefox.com',
+        'app://marketplace.firefox.com',
 
-    var r = navigator.mozApps.getInstalled();
-    r.onsuccess = function() {
-        var installed = [];
-        for (var i = 0; i < r.result.length; i++) {
-            installed.push(r.result[i].manifestURL);
+        'http://localhost:8675',
+        'https://localhost:8675',
+
+        'http://localhost',
+        'https://localhost',
+
+        'http://marketplace-dev.allizom.org',
+        'https://marketplace-dev.allizom.org',
+
+        'http://marketplace.allizom.org',
+        'https://marketplace.allizom.org',
+
+        'http://marketplace.firefox.com',
+        'https://marketplace.firefox.com'
+    ];
+    window.addEventListener('message', function(e) {
+        console.log('[iframe-install] Received message: ' + JSON.stringify(e.data));
+
+        if (origin_whitelist.indexOf(e.origin) === -1) {
+            console.log('[iframe-install] message from ' + e.origin + ' not allowed');
+            return;
         }
-        window.top.postMessage({
-            'name': 'getInstalled',
-            'result': installed
-        }, '*');
-    };
-}
+        if (!e.data) {
+            console.log('[iframe-install] no data');
+            return;
+        }
+
+        switch (e.data.name) {
+            case 'getInstalled':
+                getInstalled(e);
+                break;
+            case 'install-package':
+                installPackage(e);
+                break;
+            case 'launch-app':
+                launchApp(e);
+                break;
+        }
+    });
 
 
-function installPackage(e) {
-    /* Receive postMessage from the packaged app and do something with it.
-       {
-           name: 'install-package',
-           data: {
-               product: <APP_INFO>,
-               opt: <OPTIONS>
+    // MozApp stuff.
+    function getInstalled(e) {
+        /* navigator.mozApps.getInstalled for parent to keep track of installed apps.
+           {
+               name: 'getInstalled';
            }
-       }
-    */
-    console.log('[iframe-install] Received post message to install-package from ' + e.origin);
+        */
+        console.log('[iframe-install] Received post message to getInstalled from ' + e.origin);
 
-    var product = e.data.data.product;
-    var opt = e.data.data.opt || {};
-    opt.data = opt.data || {};
-
-    var manifest_url;
-    if (product.manifest_url) {
-        manifest_url = product.manifest_url;
+        var r = navigator.mozApps.getInstalled();
+        r.onsuccess = function() {
+            var installed = [];
+            for (var i = 0; i < r.result.length; i++) {
+                installed.push(r.result[i].manifestURL);
+            }
+            window.top.postMessage({
+                'name': 'getInstalled',
+                'result': installed
+            }, '*');
+        };
     }
 
-    var mozApps = (opt.navigator || window.navigator).mozApps;
-    var installer = product.is_packaged ? 'installPackage' : 'install';
-    var installRequest = mozApps[installer](manifest_url, opt.data);
 
-    installRequest.onsuccess = function() {
-        console.log('[iframe-install] App install request for ' + product.name);
-        var status;
-        var isInstalled = setInterval(function() {
-            status = installRequest.result.installState;
-            if (status == 'installed') {
-                console.log('[iframe-install] App reported as installed for ' + product.name);
-                clearInterval(isInstalled);
+    function installPackage(e) {
+        /* Receive postMessage from the packaged app and do something with it.
+           {
+               name: 'install-package',
+               data: {
+                   product: <APP_INFO>,
+                   opt: <OPTIONS>
+               }
+           }
+        */
+        console.log('[iframe-install] Received post message to install-package from ' + e.origin);
+
+        var product = e.data.data.product;
+        var opt = e.data.data.opt || {};
+        opt.data = opt.data || {};
+
+        var manifest_url;
+        if (product.manifest_url) {
+            manifest_url = product.manifest_url;
+        }
+
+        var mozApps = (opt.navigator || window.navigator).mozApps;
+        var installer = product.is_packaged ? 'installPackage' : 'install';
+        var installRequest = mozApps[installer](manifest_url, opt.data);
+
+        installRequest.onsuccess = function() {
+            console.log('[iframe-install] App install request for ' + product.name);
+            var status;
+            var isInstalled = setInterval(function() {
+                status = installRequest.result.installState;
+                if (status == 'installed') {
+                    console.log('[iframe-install] App reported as installed for ' + product.name);
+                    clearInterval(isInstalled);
+                    window.top.postMessage({
+                        'appId': product.id,
+                        'product': product,
+                        'name': 'install-package'
+                    }, '*');
+                }
+            }, 250);
+
+            installRequest.result.ondownloaderror = function(e) {
+                console.log('[iframe-install] App download error: ' + e.application.downloadError.name);
                 window.top.postMessage({
                     'appId': product.id,
-                    'product': product,
+                    'error': {error: e.application.downloadError.name},
                     'name': 'install-package'
                 }, '*');
-            }
-        }, 250);
-
-        installRequest.result.ondownloaderror = function(e) {
-            console.log('[iframe-install] App download error: ' + e.application.downloadError.name);
+                clearInterval(isInstalled);
+            };
+        };
+        installRequest.onerror = function() {
+            console.log('[iframe-install] App installation failed for ' + product.name);
+            var error = this.error.name || this.error;
             window.top.postMessage({
                 'appId': product.id,
-                'error': {error: e.application.downloadError.name},
+                'error': {error: error},
                 'name': 'install-package'
             }, '*');
-            clearInterval(isInstalled);
         };
-    };
-    installRequest.onerror = function() {
-        console.log('[iframe-install] App installation failed for ' + product.name);
-        var error = this.error.name || this.error;
-        window.top.postMessage({
-            'appId': product.id,
-            'error': {error: error},
-            'name': 'install-package'
-        }, '*');
-    };
-}
+    }
 
 
-function launchApp(e) {
-    /* Find installer from getInstalled and launch an app.
-       {
-           name: 'launch-app',
-           manifestURL: <MANIFEST_URL>
-       }
-    */
-    getInstallers(function() {
-        installed[e.data.manifestURL].launch();
-    });
-}
+    function launchApp(e) {
+        /* Find installer from getInstalled and launch an app.
+           {
+               name: 'launch-app',
+               manifestURL: <MANIFEST_URL>
+           }
+        */
+        getInstallers(function() {
+            installed[e.data.manifestURL].launch();
+        });
+    }
+})();
 </script>
 </body></html>
