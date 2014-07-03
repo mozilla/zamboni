@@ -205,6 +205,16 @@ class PreloadTestPlan(amo.models.ModelBase):
         return posixpath.join(host, str(self.addon.id), self.filename)
 
 
+# When an app is deleted we need to remove the preload test plan.
+def preload_cleanup(*args, **kwargs):
+    instance = kwargs.get('instance')
+    PreloadTestPlan.objects.filter(addon=instance).delete()
+
+
+models.signals.post_delete.connect(preload_cleanup, sender=Addon,
+                                   dispatch_uid='webapps_preload_cleanup')
+
+
 class AppLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by app.
