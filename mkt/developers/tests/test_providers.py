@@ -152,6 +152,9 @@ class TestReference(Patcher, TestCase):
 
     def test_account_create(self):
         data = {'account_name': 'account', 'name': 'f', 'email': 'a@a.com'}
+        self.patched_client.api.generic.seller.post.return_value = {
+            'resource_uri': '/1'
+        }
         res = self.ref.account_create(self.user, data)
         acct = PaymentAccount.objects.get(user=self.user)
         eq_(acct.provider, PROVIDER_REFERENCE)
@@ -161,6 +164,7 @@ class TestReference(Patcher, TestCase):
             'email': 'a@a.com',
             'uuid': ANY,
             'name': 'f',
+            'seller': '/1'
         })
 
     def make_account(self):
@@ -191,7 +195,7 @@ class TestReference(Patcher, TestCase):
             'id': 1,
             'resource_uri': '/a/b/c',
             'resource_name': 'x',
-            'initial_field': u'initial content',
+            'reference': {}
         }
         seller_mock.put.return_value = {}
         self.ref_patcher.sellers.return_value = seller_mock
@@ -202,7 +206,7 @@ class TestReference(Patcher, TestCase):
         seller_mock.get.assert_called_with()
         seller_mock.put.assert_called_with({
             'agreement': datetime.now().strftime('%Y-%m-%d'),
-            'initial_field': u'initial content',
+            'seller': ''
         })
 
     def test_account_retrieve(self):
@@ -233,33 +237,27 @@ class TestReference(Patcher, TestCase):
         seller_mock.put.assert_called_with(account_data)
 
     def test_product_create_exists(self):
-        self.ref_patcher.products.get.return_value = [{'resource_uri': '/f'}]
         account = self.make_account()
         app = app_factory()
         self.ref.product_create(account, app)
         # Product should have been got from zippy, but not created by a post.
-        assert self.ref_patcher.products.get.called
-
-    @raises(ValueError)
-    def test_product_mulitple(self):
-        self.ref_patcher.products.get.return_value = [{}, {}]
-        account = self.make_account()
-        app = app_factory()
-        self.ref.product_create(account, app)
+        assert not self.ref_patcher.products.post.called
 
     def test_product_create_not(self):
         self.generic_patcher.product.get_object_or_404.return_value = {
-            'external_id': 'ext'}
+            'external_id': 'ext',
+            'resource_uri': '/f',
+            'public_id': 'public:id',
+            'seller_uuids': {'reference': None}
+        }
         self.ref_patcher.products.get.return_value = []
         self.ref_patcher.products.post.return_value = {'resource_uri': '/f'}
         account = self.make_account()
         app = app_factory()
         self.ref.product_create(account, app)
-        self.ref_patcher.products.get.assert_called_with(
-            seller_id='1', external_id='ext')
         self.ref_patcher.products.post.assert_called_with(data={
-            'seller_id': '1',
-            'external_id': 'ext',
+            'seller_product': '/f',
+            'seller_reference': '/f/b/1',
             'name': unicode(app.name),
             'uuid': ANY,
         })
