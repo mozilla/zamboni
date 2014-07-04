@@ -2,6 +2,7 @@
 import datetime
 import logging
 import os
+import socket
 from urlparse import urlparse
 
 from django.utils.functional import lazy
@@ -22,10 +23,9 @@ path = lambda *a: os.path.join(ROOT, *a)
 # It puts it in a dir called "workspace".  Way to be, jenkins.
 ROOT_PACKAGE = os.path.basename(ROOT)
 
-# The host currently running the site.  Only use this in code for good reason;
-# the site is designed to run on a cluster and should continue to support that
-HOSTNAME = urlparse(os.environ.get('MARKETPLACE_URL',
-                                   'http://localhost').netloc
+# The server currently the app, used for logging and newrelic. This allows us
+# to tell which server a log came from.
+HOSTNAME = socket.gethostname()
 
 try:
     # If we have build ids available, we'll grab them here and add them to our
@@ -77,7 +77,10 @@ DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 DEFAULT_FROM_EMAIL = 'Firefox Marketplace <nobody@mozilla.org>'
-DOMAIN = HOSTNAME
+
+# The host currently running the site, used for browserid and other lookups.
+DOMAIN = urlparse(os.environ.get('MARKETPLACE_URL',
+                                 'http://localhost')).netloc
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
