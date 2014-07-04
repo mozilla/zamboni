@@ -1,8 +1,8 @@
 .. _advanced-installation:
 
-=============
-Getting Fancy
-=============
+=================
+Optional installs
+=================
 
 .. _configure-mysql:
 
@@ -37,9 +37,9 @@ Here are `more tips for optimizing MySQL <http://bonesmoses.org/2011/02/28/mysql
 Memcached
 ---------
 
-We slipped this in with the basic install.  The package was
-``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Switch your
-``settings_local.py`` to use ::
+By default zamboni uses an in memory cache. To install memcached
+``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Alter your
+local settings file to use::
 
     CACHES = {
         'default': {
@@ -53,33 +53,14 @@ We slipped this in with the basic install.  The package was
 RabbitMQ and Celery
 -------------------
 
+By default zamboni automatically processes jobs without needing Celery.
+
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
-If you're setting up Rabbit and want to use ``celeryd``, make sure you remove
-that line from your ``settings_local.py``.
+If you're setting up Rabbit and want to use ``celeryd`` you will need to
+alter you local settings file to set this up.
 
-
--------------
-elasticsearch
--------------
-
-See :doc:`./elasticsearch` for more instructions.
-
-
------
-Redis
------
-
-On OS X the package is called ``redis``.  Get it running with the ``launchctl``
-script included in homebrew.  To let zamboni know about Redis, add this to
-``settings_local.py``::
-
-    CACHE_MACHINE_USE_REDIS = True
-    REDIS_BACKEND = 'redis://'
-
-The ``REDIS_BACKEND`` is parsed like ``CACHE_BACKEND`` if you need something
-other than the default settings.
-
+See :doc:`./celery` for more instructions.
 
 -------
 Node.js
