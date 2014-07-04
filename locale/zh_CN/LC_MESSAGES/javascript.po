@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-28 22:16+0000\n"
+"PO-Revision-Date: 2014-07-04 23:31+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401315402.0\n"
+"X-POOTLE-MTIME: 1404516693.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -160,11 +160,11 @@ msgstr "输入新的团队成员的电子邮件地址"
 
 #: media/js/devreg/devhub.js:452
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "清单已刷新"
 
 #: media/js/devreg/devhub.js:457
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "无法刷新清单，请稍后重试。"
 
 #: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
@@ -212,11 +212,11 @@ msgstr "Persona 登录失败。服务器发生错误。"
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "状态已成功变更为“{0}”"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "无法变更状态为“{0}”"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
