@@ -6,7 +6,7 @@ Trouble-shooting the development installation
 M2Crypto installation
 ---------------------
 
-If you are on a linux box and get a compilation error while installing M2Crypto
+If you are on a Linux box and get a compilation error while installing M2Crypto
 like the following::
 
     SWIG/_m2crypto_wrap.c:6116:1: error: unknown type name ‘STACK’
@@ -40,7 +40,7 @@ It may be because of a `few reasons`_:
 Pillow
 ------
 
-As of OS X Mavericks, you might see this error when pip builds Pillow::
+As of Mac OS X Mavericks, you might see this error when pip builds Pillow::
 
     clang: error: unknown argument: '-mno-fused-madd' [-Wunused-command-line-argument-hard-error-in-future]
 
@@ -60,7 +60,7 @@ More info: http://stackoverflow.com/questions/22334776/installing-pillow-pil-on-
 Landfill
 --------
 
-If you are under Mac OS X, you might need to add a *.Z* suffix to the
+If you are using Mac OS X, you might need to add a `.Z` suffix to the
 *.sql.gz* file, otherwise **zcat** might not recognize it::
 
     ...

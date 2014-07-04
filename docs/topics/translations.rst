@@ -4,12 +4,12 @@
 Translations
 ============================
 
-gettext in Javascript
+gettext in JavaScript
 =====================
 
-We have gettext in javascript!  Just mark your strings with ``gettext()`` or
+We have gettext in JavaScript!  Just mark your strings with ``gettext()`` or
 ``ngettext()``.  There isn't an ``_`` alias right now, since underscore.js has
-that.  If we end up with a lot of js translations, we can fix that.  Check it
+that.  If we end up with a lot of JS translations, we can fix that.  Check it
 out::
 
     cd locale
@@ -73,7 +73,7 @@ done every time, for each field.
 
 This query is then ran on the slave (``get_trans()`` gets a cursor using
 ``connections[multidb.get_slave()]``) to fetch the translations, and some
-Translation objects are instanciated from the results and set on the
+Translation objects are instantiated from the results and set on the
 instance(s) of the original query.
 
 To complete the mechanism, ``TranslationDescriptor.__get__`` returns the
@@ -83,14 +83,14 @@ as you'd except, making the whole thing transparent.
 When setting
 ------------
 Everytime you set a translated field to a string value, ``TranslationDescriptor``
-``__set__`` method is called. It determines what method to call (because you
+``__set__`` method is called. It determines which method to call (because you
 can also assign a dict with multiple translations in multiple languages at the
 same time). In this case, it calls ``translation_from_string()`` method, still
 on the "hidden" ``TranslationDescriptor`` instance. The current language is
 passed at this point, using ``translation_utils.get_language()``.
 
 From there, ``translation_from_string()`` figures out whether it's a new
-translation of a field we had no translation for, or a new translation of a
+translation of a field we had no translation for, a new translation of a
 field we already had but in a new language, or an update to an existing
 translation.
 
@@ -118,17 +118,17 @@ The reason why is twofold:
    FK to ``NULL`` and delete the translation normally. However, if there were
    any other translations, instead we temporarily disable the constraints to
    let you delete just the one you want.
-2. Remember how fetching works ? If you deleted a translation that is part of
+2. Remember how fetching works? If you deleted a translation that is part of
    the fallback, then when you fetch that object, depending on your locale
    you'll get an empty string for that field, even if there are ``Translation``
-   objects in other languages available !
+   objects in other languages available!
 
 For additional discussion on this topic, see https://bugzilla.mozilla.org/show_bug.cgi?id=902435
 
 Additional tricks
 -----------------
 In addition to the above, ``apps/translations/__init__.py`` monkeypatches
-django to bypass errors thrown because we have a ``ForeignKey`` pointing to
+Django to bypass errors thrown because we have a ``ForeignKey`` pointing to
 multiple rows.
 
 Also, you might be interested into ``translations.query.order_by_translation``.

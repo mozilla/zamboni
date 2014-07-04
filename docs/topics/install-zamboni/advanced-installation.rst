@@ -4,23 +4,6 @@
 Optional installs
 =================
 
-All of these are optional, you can get up and running without having to setup
-any of this.
-
---------------------
-Virtual environments
---------------------
-
-virtualenvwrapper lets you run hooks when creating, activating, and deleting
-virtual environments.  These hooks can change settings, the shell environment,
-or anything else you want to do from a shell script.  For complete hook
-documentation, see
-http://www.doughellmann.com/docs/virtualenvwrapper/hooks.html.
-
-You can find some lovely hooks to get started at http://gist.github.com/536998.
-The hook files should go in ``$WORKON_HOME`` (``$HOME/Envs`` from
-above), and ``premkvirtualenv`` should be made executable.
-
 .. _configure-mysql:
 
 -----
@@ -70,7 +53,7 @@ local settings file to use::
 RabbitMQ and Celery
 -------------------
 
-By default zamboni automatically processes jobs without needing celery.
+By default zamboni automatically processes jobs without needing Celery.
 
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
@@ -78,27 +61,6 @@ If you're setting up Rabbit and want to use ``celeryd`` you will need to
 alter you local settings file to set this up.
 
 See :doc:`./celery` for more instructions.
-
--------------
-elasticsearch
--------------
-
-See :doc:`./elasticsearch` for more instructions.
-
------
-Redis
------
-
-On OS X the package is called ``redis``.  Get it running with the ``launchctl``
-script included in homebrew.  To let zamboni know about Redis, add this to
-``settings_local.py``::
-
-    CACHE_MACHINE_USE_REDIS = True
-    REDIS_BACKEND = 'redis://'
-
-The ``REDIS_BACKEND`` is parsed like ``CACHE_BACKEND`` if you need something
-other than the default settings.
-
 
 -------
 Node.js

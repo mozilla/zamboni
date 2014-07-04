@@ -2,7 +2,6 @@
 import datetime
 import logging
 import os
-import socket
 from urlparse import urlparse
 
 from django.utils.functional import lazy
@@ -26,7 +25,7 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
 HOSTNAME = urlparse(os.environ.get('MARKETPLACE_URL',
-                                   'http://' + socket.gethostname())).netloc
+                                   'http://localhost').netloc
 
 try:
     # If we have build ids available, we'll grab them here and add them to our

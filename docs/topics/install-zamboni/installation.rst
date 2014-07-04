@@ -18,8 +18,8 @@ steps at your own peril. Here we go!
 Need help?
 ~~~~~~~~~~
 
-Come talk to us on irc://irc.mozilla.org/amo if you have questions, issues, or
-compliments.
+Come talk to us on irc://irc.mozilla.org/marketplace if you have questions,
+issues, or compliments.
 
 
 .. _ubuntu-packages:
@@ -39,7 +39,7 @@ On Ubuntu
 ~~~~~~~~~
 The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
-<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev,libssl-dev,swig openssl,curl,pngcrush>`_::
+<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev,libssl-dev,swig openssl,curl,pngcrush,redis-server>`_::
 
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libssl-dev swig openssl curl pngcrush redis-server
 
@@ -193,11 +193,11 @@ configured your settings and database, you're good to go::
 
 Hit::
 
-    http://localhost/services/monitor
+    http://localhost:2600/services/monitor
 
-This will give you a good idea of what is currently works.
+This will report any errors or issues in your installation.
 
-8. Create an Admin User
+8. Create an admin user
 -----------------------
 
 Chances are that for development, you'll want an admin account.
@@ -218,23 +218,22 @@ Additionally, add yourself to the admin group::
 9. Setting up the consumer pages
 --------------------------------
 
-You will not have any consumer pages, at this point, you should check out the
+You will not have any consumer pages you will need to install
 `Marketplace consumer`_ pages.
 
-10. Updating long term
-----------------------
+Post installation
+-----------------
 
-To run a full update of zamboni (including source files, pip requirements and
-database migrations)::
+To keep your zamboni up to date with the latest changes in source files,
+requrirements and database migrations run::
 
     make full_update
 
 Advanced Installation
 ---------------------
 
-In production we use things like memcached, rabbitmq + celery,
-elasticsearch, and Stylus.  Learn more about installing these on the
-:doc:`./advanced-installation` page.
+In production we use things like memcached, rabbitmq + celery and Stylus.
+Learn more about installing these on the :doc:`./advanced-installation` page.
 
 .. note::
 
