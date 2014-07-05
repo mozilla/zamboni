@@ -9,6 +9,11 @@ keep your dev system clean. At the time of this writing there are a few
 outstanding Vagrant / VirtualBox bugs that have blocked some people. But if it
 works, let us know!
 
+
+.. note::
+
+    This is not currently maintained and the docs might not be up to date.
+
 Requirements
 ------------
 

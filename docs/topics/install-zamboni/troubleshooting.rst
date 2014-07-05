@@ -3,6 +3,71 @@
 Trouble-shooting the development installation
 =============================================
 
+M2Crypto installation
+---------------------
+
+If you are on a Linux box and get a compilation error while installing M2Crypto
+like the following::
+
+    SWIG/_m2crypto_wrap.c:6116:1: error: unknown type name ‘STACK’
+
+    ... snip a very long output of errors around STACK...
+
+    SWIG/_m2crypto_wrap.c:23497:20: error: expected expression before ‘)’ token
+
+       result = (STACK *)pkcs7_get0_signers(arg1,arg2,arg3);
+
+                        ^
+
+    error: command 'gcc' failed with exit status 1
+
+It may be because of a `few reasons`_:
+
+.. _few reasons:
+    http://blog.rectalogic.com/2013/11/installing-m2crypto-in-python.html
+
+* comment the line starting with ``M2Crypto`` in ``requirements/compiled.txt``
+* install the patched package from the Debian repositories (replace
+  ``x86_64-linux-gnu`` by ``i386-linux-gnu`` if you're on a 32bits platform)::
+
+    DEB_HOST_MULTIARCH=x86_64-linux-gnu pip install -I --exists-action=w "git+git://anonscm.debian.org/collab-maint/m2crypto.git@debian/0.21.1-3#egg=M2Crypto"
+    pip install --no-deps -r requirements/dev.txt
+
+* revert your changes to ``requirements/compiled.txt``::
+
+    git checkout requirements/compiled.txt
+
+Pillow
+------
+
+As of Mac OS X Mavericks, you might see this error when pip builds Pillow::
+
+    clang: error: unknown argument: '-mno-fused-madd' [-Wunused-command-line-argument-hard-error-in-future]
+
+    clang: note: this will be a hard error (cannot be downgraded to a warning) in the future
+
+    error: command 'cc' failed with exit status 1
+
+You can solve this by setting these environment variables in your shell
+before running ``pip install ...``::
+
+    export CFLAGS=-Qunused-arguments
+    export CPPFLAGS=-Qunused-arguments
+    pip install ...
+
+More info: http://stackoverflow.com/questions/22334776/installing-pillow-pil-on-mavericks/22365032
+
+Landfill
+--------
+
+If you are using Mac OS X, you might need to add a `.Z` suffix to the
+*.sql.gz* file, otherwise **zcat** might not recognize it::
+
+    ...
+    $ mv /tmp/landfill-`date +%Y-%m-%d`.sql.gz /tmp/landfill-`date +%Y-%m-%d`.sql.gz.Z
+    $ zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
+    ...
+
 Image processing isn't working
 ------------------------------
 

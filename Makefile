@@ -1,7 +1,7 @@
 # You can set these variables from the command line.
 PYTHON := $(shell which python)
 DJANGO = $(PYTHON) manage.py
-SETTINGS = settings_local
+SETTINGS = mkt.settings
 SHELL := /usr/bin/env bash
 
 .PHONY: help docs test test_force_db tdd test_failed update_code update_deps update_db update_landfill update_commonplace full_update reindex release
