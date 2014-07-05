@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-05 18:22+0000\n"
-"Last-Translator: asiersar <asier.sarasua@gmail.com>\n"
+"PO-Revision-Date: 2014-07-05 19:00+0000\n"
+"Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404584546.0\n"
+"X-POOTLE-MTIME: 1404586819.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -443,11 +443,11 @@ msgstr "VIPen goratze automatikoa"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} berriro berrikusi da manifestuaren URLa aldatu delako."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Aldatu manifestuaren URLa"
 
 #: apps/amo/log.py:554
 msgid "Created: {0}."
@@ -659,7 +659,7 @@ msgstr "Behin-behinean berrikusia eta erabateko berrikuspenaren zain"
 
 #: apps/constants/base.py:36
 msgid "Pending a review choice"
-msgstr ""
+msgstr "Berrikuspen bat aukeratzeko zain"
 
 #: apps/constants/base.py:37
 msgid "Deleted"
@@ -1006,15 +1006,15 @@ msgstr ""
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "Oharraren gorputza hutsik dago."
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "Ohar mota baliogabea."
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "%s bertsioa ez da existitzen"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
@@ -1026,7 +1026,7 @@ msgstr "Deskribapena:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Eranskinaren tamainak %s(e)ko muga gainditzen du."
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1150,7 +1150,7 @@ msgstr "Bolivia"
 
 #: mkt/constants/bango.py:44
 msgid "Bonaire, Saint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, San Eustakio eta Saba"
 
 #: mkt/constants/bango.py:45
 msgid "Bosnia and Herzegovina"
@@ -1162,7 +1162,7 @@ msgstr "Botswana"
 
 #: mkt/constants/bango.py:47
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet uhartea"
 
 #: mkt/constants/bango.py:48 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:81
 msgid "Brazil"
@@ -1170,11 +1170,11 @@ msgstr "Brasil"
 
 #: mkt/constants/bango.py:49
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "Indiako Ozeanoko Britainiar Lurraldea"
 
 #: mkt/constants/bango.py:50
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Bruneiko sultanerria"
 
 #: mkt/constants/bango.py:51
 msgid "Bulgaria"
@@ -1206,7 +1206,7 @@ msgstr "Cabo Verde"
 
 #: mkt/constants/bango.py:58
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Kaiman uharteak"
 
 #: mkt/constants/bango.py:59
 msgid "Central African Republic"
@@ -1270,7 +1270,7 @@ msgstr "Kuba"
 
 #: mkt/constants/bango.py:74
 msgid "Curaçao"
-msgstr ""
+msgstr "Curaçao"
 
 #: mkt/constants/bango.py:75
 msgid "Cyprus"
@@ -1282,11 +1282,11 @@ msgstr "Txekia"
 
 #: mkt/constants/bango.py:77
 msgid "Denmark Do"
-msgstr ""
+msgstr "Danimarka"
 
 #: mkt/constants/bango.py:78
 msgid "Djibouti"
-msgstr ""
+msgstr "Djibuti"
 
 #: mkt/constants/bango.py:79
 msgid "Dominica"
@@ -1430,7 +1430,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:114
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Vatikano Hiriko Estatua"
 
 #: mkt/constants/bango.py:115
 msgid "Honduras"
@@ -1550,11 +1550,11 @@ msgstr "Liberia"
 
 #: mkt/constants/bango.py:144
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Libiako Errepublika"
 
 #: mkt/constants/bango.py:145
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/bango.py:146
 msgid "Lithuania"
@@ -1566,7 +1566,7 @@ msgstr "Luxenburgo"
 
 #: mkt/constants/bango.py:148
 msgid "Macao"
-msgstr ""
+msgstr "Macau"
 
 #: mkt/constants/bango.py:149
 msgid "Macedonia, Former Yugoslav Rep"
@@ -1622,7 +1622,7 @@ msgstr "Mexiko"
 
 #: mkt/constants/bango.py:162
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Mikronesiako Estatu Federatuak"
 
 #: mkt/constants/bango.py:163
 msgid "Moldova, Republic of"
@@ -1694,15 +1694,15 @@ msgstr "Nigeria"
 
 #: mkt/constants/bango.py:180
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: mkt/constants/bango.py:181
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Norfolk uhartea"
 
 #: mkt/constants/bango.py:182
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "Ipar Mariana uharteak"
 
 #: mkt/constants/bango.py:183
 msgid "Norway"
@@ -1766,7 +1766,7 @@ msgstr "Qatar"
 
 #: mkt/constants/bango.py:198
 msgid "Réunion"
-msgstr ""
+msgstr "Réunion"
 
 #: mkt/constants/bango.py:199
 msgid "Romania"
@@ -2074,7 +2074,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "Garatzailearen iruzkina"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2206,31 +2206,33 @@ msgstr ""
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
-msgstr ""
+msgstr "Ordua/Erlojua"
 
 #: mkt/constants/features.py:123
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozTime` APIa behar du."
 
 #: mkt/constants/features.py:127
 msgid "Vibration"
-msgstr ""
+msgstr "Bibrazioa"
 
 #: mkt/constants/features.py:128
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"Aplikazioak bibrazioa (`navigator.vibrate` APIa) onartzen duen gailua behar "
+"du."
 
 #: mkt/constants/features.py:134
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozFM` edo `navigator.mozFMRadio` APIa behar du."
 
 #: mkt/constants/features.py:140
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozSms` APIa behar du."
 
 #: mkt/constants/features.py:144
 msgid "Touch"
-msgstr ""
+msgstr "Ukipena"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."

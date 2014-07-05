@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-19 21:55+0000\n"
+"PO-Revision-Date: 2014-07-05 18:24+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1403214905.0\n"
+"X-POOTLE-MTIME: 1404584662.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -167,11 +167,11 @@ msgstr "Idatzi taldekide berri baten helbide elektronikoa"
 
 #: media/js/devreg/devhub.js:452
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifestua eguneratuta"
 
 #: media/js/devreg/devhub.js:457
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Ezin izan da manifestua eguneratu. Saiatu berriro geroago."
 
 #: media/js/devreg/devhub.js:638
 msgid "There was an error uploading your file."
@@ -219,11 +219,11 @@ msgstr "Persona-rekin saioa hasteak huts egin du. Zerbitzariaren errore bat gert
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Egoera behar bezala aldatu da \"{0}\"(e)ra"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Ezin izan da egoera \"{0}\"(e)ra aldatu"
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
