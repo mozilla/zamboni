@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-05 19:00+0000\n"
+"PO-Revision-Date: 2014-07-05 23:32+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404586819.0\n"
+"X-POOTLE-MTIME: 1404603137.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -932,7 +932,7 @@ msgstr "Ordainketak huts egin du."
 
 #: apps/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "Ezeztatzeak huts egin du."
 
 #: apps/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
@@ -1290,7 +1290,7 @@ msgstr "Djibuti"
 
 #: mkt/constants/bango.py:79
 msgid "Dominica"
-msgstr ""
+msgstr "Dominika"
 
 #: mkt/constants/bango.py:80
 msgid "Dominican Republic"
@@ -1330,7 +1330,7 @@ msgstr "Falkland uharteak (Malvinak)"
 
 #: mkt/constants/bango.py:89
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Faroe uharteak"
 
 #: mkt/constants/bango.py:90
 msgid "Fiji"
@@ -1346,15 +1346,15 @@ msgstr "Frantzia"
 
 #: mkt/constants/bango.py:93
 msgid "French Guiana"
-msgstr ""
+msgstr "Guyana Frantsesa"
 
 #: mkt/constants/bango.py:94
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinesia Frantsesa"
 
 #: mkt/constants/bango.py:95
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Frantziaren lurralde austral eta antartikoak"
 
 #: mkt/constants/bango.py:96
 msgid "Gabon"
@@ -1406,7 +1406,7 @@ msgstr "Guatemala"
 
 #: mkt/constants/bango.py:108
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernesey"
 
 #: mkt/constants/bango.py:109
 msgid "Guinea"
@@ -1426,7 +1426,7 @@ msgstr "Haiti"
 
 #: mkt/constants/bango.py:113
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "Heard eta McDonald uharteak"
 
 #: mkt/constants/bango.py:114
 msgid "Holy See (Vatican City State)"
@@ -1782,19 +1782,19 @@ msgstr "Ruanda"
 
 #: mkt/constants/bango.py:202
 msgid "Saint Barthélemy"
-msgstr ""
+msgstr "San Bartolome"
 
 #: mkt/constants/bango.py:203
 msgid "Saint Helena"
-msgstr ""
+msgstr "Santa Helena"
 
 #: mkt/constants/bango.py:204
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "Saint Kitts eta Nevis"
 
 #: mkt/constants/bango.py:205
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Santa Luzia"
 
 #: mkt/constants/bango.py:206
 msgid "Saint Martin"
@@ -1850,7 +1850,7 @@ msgstr "Singapur"
 
 #: mkt/constants/bango.py:219
 msgid "Sint Maarten (Dutch part)"
-msgstr ""
+msgstr "Sint Maarten (Herbehereetako zatia)"
 
 #: mkt/constants/bango.py:220
 msgid "Slovakia"
@@ -1862,7 +1862,7 @@ msgstr "Eslovenia"
 
 #: mkt/constants/bango.py:222
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Salomon uharteak"
 
 #: mkt/constants/bango.py:223
 msgid "Somalia"
@@ -1934,7 +1934,7 @@ msgstr "Thailandia"
 
 #: mkt/constants/bango.py:240
 msgid "Timor-Leste"
-msgstr ""
+msgstr "Ekialdeko Timor"
 
 #: mkt/constants/bango.py:241
 msgid "Togo"
@@ -1994,7 +1994,7 @@ msgstr "Estatu Batua"
 
 #: mkt/constants/bango.py:255
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "AEBetako itsasoz haraindiko uharteak"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:202
 msgid "Uruguay"
@@ -2126,11 +2126,11 @@ msgstr "Bateria"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.battery` APIa behar du."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozBluetooth` APIa behar du."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
