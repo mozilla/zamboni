@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-25 22:20+0000\n"
-"Last-Translator: Ibai <ibai@oihanguren.com>\n"
+"PO-Revision-Date: 2014-07-05 18:22+0000\n"
+"Last-Translator: asiersar <asier.sarasua@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1403734858.0\n"
+"X-POOTLE-MTIME: 1404584546.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -543,7 +543,7 @@ msgstr "marketplace-staff@mozilla.org"
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:41 mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr "Aurrekoa"
+msgstr "Aur."
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 mkt/developers/templates/developers/apps/includes/validation_test_results.html:29
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:43 mkt/developers/templates/developers/apps/includes/validation_test_results.html:56
@@ -3744,7 +3744,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Aplikazio-jabeek soilik edita dezakete orri hau."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -4055,7 +4055,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:368
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Ziur zaude bertsio hau ezabatu nahi duzula?"
 
 #: mkt/developers/templates/developers/apps/status.html:371
 msgid "Delete Version"
@@ -4492,7 +4492,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Igo gehigarri honen bertsio berria."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:30
 msgid "New Version"
@@ -4509,7 +4509,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:79
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:19 mkt/developers/templates/developers/payments/premium.html:4
 msgid "Compatibility & Payments"
-msgstr ""
+msgstr "Bateragarritasuna & ordainketak"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:55
 msgid "View Add-on Listing"
@@ -5703,7 +5703,7 @@ msgstr "Fitxategi hau direktorio bat da."
 
 #: mkt/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
-msgstr "Errore bat geratu da %s fitxategia atzitzean. %s."
+msgstr "Errore bat gertatu da %s fitxategia atzitzean. %s."
 
 #: mkt/files/tasks.py:31
 msgid "There was an error accessing file %s."
