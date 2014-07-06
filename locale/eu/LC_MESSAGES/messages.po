@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-05 23:32+0000\n"
+"PO-Revision-Date: 2014-07-06 12:39+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404603137.0\n"
+"X-POOTLE-MTIME: 1404650366.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -1030,7 +1030,7 @@ msgstr "Eranskinaren tamainak %s(e)ko muga gainditzen du."
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr ""
+msgstr "Firefox Marketplace Web plataformarako aplikazioen iturri ofiziala da."
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -2070,7 +2070,7 @@ msgstr "Dirua itzultzeko eskaera ugarien ondorioz goratua"
 
 #: mkt/constants/comm.py:44
 msgid "App submission notes"
-msgstr ""
+msgstr "Aplikazioaren bidalketa-oharrak"
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
@@ -2083,14 +2083,18 @@ msgstr "Aplikazio-kudeaketako APIa"
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"Aplikazioak `navigator.mozApps` APIa behar du beste aplikazioak instalatu "
+"eta kudeatzeko."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "Paketeratutako aplikazioak instalatzeko APIa"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
+"Aplikazioak `navigator.mozApps.installPackage` APIa behar du paketeratutako "
+"beste aplikazioak instalatzeko."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -2098,7 +2102,7 @@ msgstr "Web ordainketa"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozApps` APIa behar du."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
@@ -2106,15 +2110,15 @@ msgstr "Web jarduerak"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Aplikazioak web jarduera (`MozActivity` APIa) behar du."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Giro-argiaren sentsorea"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "Aplikazioak giro-argiaren sentsorea (`ondevicelight` APIa) behar du."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
@@ -2138,7 +2142,7 @@ msgstr "Kontaktuak"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozContacts` APIa behar du."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
