@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-06 12:39+0000\n"
+"PO-Revision-Date: 2014-07-06 13:57+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404650366.0\n"
+"X-POOTLE-MTIME: 1404655078.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2151,10 +2151,12 @@ msgstr "Gailu-biltegiratzea"
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Aplikazioak gailuan biltegiratzeko APIa behar du fitxategi-sistemako "
+"fitxategiak atzitzeko."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Aplikazioak IndexedDB-rekin bateragarria den plataforma behar du."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
@@ -2163,10 +2165,12 @@ msgstr "Geokokapena"
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Aplikazioak `navigator.geolocation` APIarekin bateragarria den plataforma "
+"behar du."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Zain"
 
 #: mkt/constants/features.py:92
 msgid "Network Information"
@@ -2175,6 +2179,8 @@ msgstr "Sare-informazioa"
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Aplikazioak sare-konexioaren informazioa lortzeko gaitasuna behar du "
+"(`navigator.mozConnection` APIa)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
@@ -2182,7 +2188,7 @@ msgstr "Sare-estatistikak"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozNetworkStats` APIa behar du."
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
@@ -2190,15 +2196,15 @@ msgstr "Hurbiltasuna"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Aplikazioak hurbiltasun-sentsorea (`ondeviceproximity` APIa) behar du."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
-msgstr ""
+msgstr "Sakatze soila"
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Aplikazioak `navigator.mozPush` APIa behar du."
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
@@ -2207,6 +2213,8 @@ msgstr "Pantaila-orientazioa"
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
 msgstr ""
+"Aplikazioak `ondeviceorientation` APIarekin bateragarria den plataforma "
+"behar du."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
@@ -2241,32 +2249,41 @@ msgstr "Ukipena"
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"Aplikazioak ukipen-gertaerekin bateragarria den plataforma behar du. Aukera "
+"honen adierazten du aplikazioak ez duela funtzionatuko saguarekin "
+"erabiltzean."
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Smartphone-en tamainako pantailak (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"Aplikazioak smartphone-en tamainako pantailadun plataforma behar du (qHD "
+"bereizmenduna). Aukera honek adierazten du aplikazioa ezingo dela pantaila "
+"handiagoetan erabili (adb. tabletak, mahaigainekoak, mugikor handiak edo DPI "
+"altukoak)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
+"Aplikazioak MP3 fitxategiak deskodetu eta erreproduzitu ditzakeen plataforma "
+"behar du."
 
 #: mkt/constants/features.py:167
 msgid "Audio"
-msgstr ""
+msgstr "Audioa"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Aplikazioak HTML5 audio APIarekin bateragarria den plataforma behar du."
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
-msgstr ""
+msgstr "Web audioa"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
@@ -2319,6 +2336,8 @@ msgstr "Mikrofonoa"
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"Aplikazioak gailuaren mikrofonotik audioa atzitzea ahalbidetzen duen "
+"plataforma behar du."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -2326,7 +2345,7 @@ msgstr "Pantaila-kaptura"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "Aplikazioak gailuaren pantaila kaptura dezakeen plataforma behar du."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
