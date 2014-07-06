@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-23 10:22+0000\n"
+"PO-Revision-Date: 2014-07-06 19:45+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403518960.0\n"
+"X-POOTLE-MTIME: 1404675954.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -209,7 +209,9 @@ msgstr "Fjern denne oversettelsen"
 
 #: media/js/devreg/login.js:76
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-innlogging mislykket. Kanskje hadde du ikke en konto med den e-postadressen?"
+msgstr ""
+"Persona-innlogging mislykket. Du har kanskje ikke en konto med den "
+"e-postadressen registrert?"
 
 #: media/js/devreg/login.js:81
 msgid "Persona login failed. A server error was encountered."
