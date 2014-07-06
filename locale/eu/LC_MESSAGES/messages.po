@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-06 13:57+0000\n"
+"PO-Revision-Date: 2014-07-06 14:15+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404655078.0\n"
+"X-POOTLE-MTIME: 1404656116.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2288,14 +2288,20 @@ msgstr "Web audioa"
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Aplikazioak Web Audio APIarekin (`window.AudioContext`) bateragarria den "
+"plataforma behar du."
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Aplikazioak H.264 bideo-fitxategiak deskodetu eta erreproduzitu ditzakeen "
+"plataforma behar du."
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"Aplikazioak WebM bideo-fitxategiak (VP8) deskodetu eta erreproduzitu "
+"ditzakeen plataforma behar du."
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
@@ -2304,14 +2310,18 @@ msgstr "Pantaila osoa"
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"Aplikazioak Full Screen APIa behar du (`requestFullScreen` edo "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
-msgstr ""
+msgstr "Joko-agintea"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"Aplikazioak gamepad APIarekin (`navigator.getGamepads`) bateragarria den "
+"plataforma behar du."
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
