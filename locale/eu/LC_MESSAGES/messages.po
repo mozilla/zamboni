@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-06 14:15+0000\n"
+"PO-Revision-Date: 2014-07-06 20:56+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404656116.0\n"
+"X-POOTLE-MTIME: 1404680211.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2325,11 +2325,14 @@ msgstr ""
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
-msgstr ""
+msgstr "Kuotaren kudeaketa"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"Aplikazioak biltegiratze iraunkorraren muga gainditzea ahalbidetzen duen "
+"plataforma behar du, normalean aplikazio bati baimentzen zaion muga "
+"gaindituz (`window.StorageInfo` edo `window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
@@ -2338,6 +2341,8 @@ msgstr "Kamera"
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Aplikazioak LocalMediaStream objektu bidez gailuaren kameratik bideoa "
+"atzitzea ahalbidetzen duen plataforma behar du."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
@@ -2415,7 +2420,7 @@ msgstr ""
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Alarmak"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
