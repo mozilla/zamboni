@@ -38,7 +38,7 @@ def mock_sign(version_id, reviewer=False):
     return path
 
 
-@mock.patch('lib.crypto.receipt.requests.get')
+@mock.patch('lib.crypto.receipt.requests.post')
 @mock.patch.object(settings, 'SIGNING_SERVER', 'http://localhost')
 class TestReceipt(amo.tests.TestCase):
 
