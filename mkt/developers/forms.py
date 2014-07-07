@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import mimetypes
 import os
 from datetime import datetime
 from zipfile import ZipFile
@@ -1140,15 +1141,15 @@ class PreloadTestPlanForm(happyforms.Form):
             'application/ms-excel',
             'application/vnd.ms-excel',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.'
-            'sheet',
-            'application/octet-stream']
+            'sheet'
+        ]
         max_upload_size = 2621440  # 2.5MB
 
         if 'test_plan' not in self.files:
             raise forms.ValidationError(_('Test plan required.'))
 
         file = self.files['test_plan']
-        content_type = file.content_type
+        content_type = mimetypes.guess_type(file.name)[0]
 
         if content_type in content_types:
             if file._size > max_upload_size:

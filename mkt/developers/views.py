@@ -1,4 +1,5 @@
 import json
+import mimetypes
 import os
 import sys
 import time
@@ -386,11 +387,14 @@ def preload_submit(request, addon_id, addon):
         if form.is_valid():
             # Save test plan file.
             test_plan = request.FILES['test_plan']
+
             # Figure the type to save it as (cleaned as pdf/xls from the form).
-            if 'pdf' in test_plan.content_type:
+            filetype = mimetypes.guess_type(test_plan.name)[0]
+            if 'pdf' in filetype:
                 filename = 'test_plan_%s.pdf'
             else:
                 filename = 'test_plan_%s.xls'
+
             # Timestamp.
             filename = filename % str(time.time()).split('.')[0]
             save_test_plan(request.FILES['test_plan'], filename, addon)
