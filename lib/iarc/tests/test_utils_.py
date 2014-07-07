@@ -124,7 +124,7 @@ class TestXMLParser(amo.tests.TestCase):
         self.assertSetEqual(data['descriptors'],
                             ['has_usk_lang',
                              'has_esrb_strong_lang',
-                             'has_classind_sex_content', 'has_classind_lang',
+                             'has_classind_lang',
                              'has_pegi_lang', 'has_pegi_online'])
 
         # Test interactives.
@@ -148,8 +148,7 @@ class TestXMLParser(amo.tests.TestCase):
         eq_(row['email'], 'nobody@mozilla.com')
         eq_(row['rating_system'], ratingsbodies.CLASSIND)
         eq_(row['new_rating'], '14+')
-        eq_(row['new_descriptors'],
-            u'Cont\xe9udo Sexual, Linguagem Impr\xf3pria')
+        eq_(row['new_descriptors'], u'Linguagem Impr\xf3pria')
         eq_(row['change_reason'],
             'Significant issues found in special mission cut scenes.')
 
