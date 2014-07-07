@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-06 20:56+0000\n"
+"PO-Revision-Date: 2014-07-07 20:07+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404680211.0\n"
+"X-POOTLE-MTIME: 1404763635.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2330,9 +2330,9 @@ msgstr "Kuotaren kudeaketa"
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
-"Aplikazioak biltegiratze iraunkorraren muga gainditzea ahalbidetzen duen "
-"plataforma behar du, normalean aplikazio bati baimentzen zaion muga "
-"gaindituz (`window.StorageInfo` edo `window.persistentStorage`)."
+"Plataformak biltegiratze iraunkorraren muga gainditzea baimendu dezan behar "
+"du aplikazioak, normalean aplikazio bati baimentzen zaion muga gaindituz "
+"(`window.StorageInfo` edo `window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
@@ -2341,8 +2341,8 @@ msgstr "Kamera"
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
-"Aplikazioak LocalMediaStream objektu bidez gailuaren kameratik bideoa "
-"atzitzea ahalbidetzen duen plataforma behar du."
+"Plataformak LocalMediaStream objektu bidez gailuaren kameratik bideoa "
+"atzitzea baimendu dezan behar du aplikazioak."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
@@ -2351,8 +2351,8 @@ msgstr "Mikrofonoa"
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
-"Aplikazioak gailuaren mikrofonotik audioa atzitzea ahalbidetzen duen "
-"plataforma behar du."
+"Plataformak gailuaren mikrofonotik audioa atzitzea baimendu dezan behar du "
+"aplikazioak."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
@@ -2360,15 +2360,19 @@ msgstr "Pantaila-kaptura"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr "Aplikazioak gailuaren pantaila kaptura dezakeen plataforma behar du."
+msgstr ""
+"Plataformak gailuaren pantaila kapturatzea baimen dezan behar du "
+"aplikazioak."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC multimedia-korrontea"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"Plataformak multimedia-korronte bidez nabigatzaileen artean denbora "
+"errealean komunikatzea baimen dezan behar du aplikazioak."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
@@ -2377,6 +2381,8 @@ msgstr ""
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Plataformak pareen artean (p2p) audioa eta bideoa ez diren datuak trukatzea "
+"baimen dezan behar du aplikazioak."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -2385,6 +2391,8 @@ msgstr ""
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Plataformak pareen artean datu-korronte bidezko komunikazioa baimen dezan "
+"behar du aplikazioak."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -2950,30 +2958,34 @@ msgstr ""
 #: mkt/developers/forms.py:224
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
+"Dagoeneko existitzen da aplikazio bat domeinu honetan; domeinuko aplikazio "
+"bakarra onartzen da."
 
 #: mkt/developers/forms.py:337
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Eskualde baliogabea(k) hautatu d(it)uzu."
 
 #: mkt/developers/forms.py:413 mkt/webapps/models.py:1850
 msgid "You must upload at least one screenshot or video."
-msgstr ""
+msgstr "Gutxienez pantaila-argazki edo bideo bat igo behar duzu."
 
 #: mkt/developers/forms.py:454
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
+"Paketeratutako aplikazioa bidaltzeko handiegia da. Paketeak %s baino "
+"txikiagoak izan behar dira."
 
 #: mkt/developers/forms.py:469
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Errorea zip fitxategitik manifestua erauzterakoan."
 
 #: mkt/developers/forms.py:552
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Eman aplikazioaren deskribapen xehea"
 
 #: mkt/developers/forms.py:553 mkt/submit/forms.py:348
 msgid "This description will appear on the details page."
-msgstr ""
+msgstr "Deskribapena xehetasunen orrian erakutsiko da."
 
 #: mkt/developers/forms.py:595 mkt/submit/forms.py:413 mkt/webapps/forms.py:26
 msgid "This slug is already in use. Please choose another."
@@ -2985,11 +2997,11 @@ msgstr "Slug-ak ezin du \"%s\" izan. Hautatu beste bat."
 
 #: mkt/developers/forms.py:626
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "Manifestuaren URLa aldatu da: {before_url} -> {after_url}"
 
 #: mkt/developers/forms.py:646
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "Zehaztu aplikazioaren pribatutasun-politika"
 
 #: mkt/developers/forms.py:667
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
@@ -3013,7 +3025,7 @@ msgstr "Gaitu eskualde berriak"
 
 #: mkt/developers/forms.py:756
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Jarri nire aplikazioa eskualde gehienetatik eskuragarri"
 
 #: mkt/developers/forms.py:757
 msgid "Choose where my app is made available"
@@ -3074,11 +3086,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1076
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Igo proben plana (.pdf, .xls; 2,5MBtik behera)"
 
 #: mkt/developers/forms.py:1088
 msgid "Test plan required."
-msgstr ""
+msgstr "Proben plana beharrezkoa da."
 
 #: mkt/developers/forms.py:1095
 msgid "File too large. Keep size under %s. Current size %s."
@@ -3086,11 +3098,11 @@ msgstr "Fitxategi handiegia. Mantendu tamaina %s azpitik. Uneko tamaina: %s."
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Fitxategi-mota baliogabea {0}. {1} fitxategiak soilik onartzen dira."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Idatzi bidalketaren ID baliozkoa."
 
 #: mkt/developers/forms.py:1141
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
@@ -3102,11 +3114,11 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:58 mkt/submit/forms.py:272
 msgid "App Price"
-msgstr ""
+msgstr "Aplikazioaren prezioa"
 
 #: mkt/developers/forms_payments.py:116
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Doan (aplikazio barneko ordainketekin)"
 
 #: mkt/developers/forms_payments.py:127
 msgid "Promotional Pricing"
@@ -3154,15 +3166,15 @@ msgstr "Hornitzailearen izena"
 
 #: mkt/developers/forms_payments.py:385
 msgid "Financial Email"
-msgstr ""
+msgstr "Finantza-gaietarako e-posta"
 
 #: mkt/developers/forms_payments.py:388
 msgid "Administrative Email"
-msgstr ""
+msgstr "Kudeaketarako e-posta"
 
 #: mkt/developers/forms_payments.py:391
 msgid "Support Email"
-msgstr ""
+msgstr "Laguntzarako e-posta"
 
 #: mkt/developers/forms_payments.py:395
 msgid "Address"
@@ -3190,7 +3202,7 @@ msgstr "Telefonoa"
 
 #: mkt/developers/forms_payments.py:410
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Honela ordain diezadaten nahi dut:"
 
 #: mkt/developers/forms_payments.py:413
 msgid "VAT Number"
@@ -3198,19 +3210,19 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Bankuko kontu zenbakia"
 
 #: mkt/developers/forms_payments.py:419
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT kodea"
 
 #: mkt/developers/forms_payments.py:421
 msgid "Bank Name"
-msgstr ""
+msgstr "Bankuaren izena"
 
 #: mkt/developers/forms_payments.py:423
 msgid "Bank Address"
-msgstr ""
+msgstr "Bankuaren helbidea"
 
 #: mkt/developers/forms_payments.py:425
 msgid "Bank Address 2"
@@ -3250,7 +3262,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:625 mkt/developers/forms_payments.py:641
 msgid "Account name"
-msgstr ""
+msgstr "Kontu-izena"
 
 #: mkt/developers/forms_payments.py:627 mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
@@ -3259,11 +3271,11 @@ msgstr "E-posta"
 
 #: mkt/developers/forms_payments.py:644
 msgid "Service ID"
-msgstr ""
+msgstr "Zerbitzuaren IDa"
 
 #: mkt/developers/forms_payments.py:651
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "Zerbitzuaren IDa ez da baliozkoa"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
@@ -3280,7 +3292,7 @@ msgstr "Nire bidalketak"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Shared Account: {0}"
-msgstr ""
+msgstr "Partekatutako kontua: {0}"
 
 #: mkt/developers/models.py:469
 msgid "Review"
@@ -3296,7 +3308,7 @@ msgstr ""
 
 #: mkt/developers/providers.py:362
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:396
 msgid "No manifest was found at that URL. Check the address and try again."
@@ -3332,7 +3344,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:59
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Bideo-sostengua ez dago gaituta."
 
 #: mkt/developers/utils.py:72
 msgid "Icons must be either PNG or JPG."
@@ -3348,27 +3360,27 @@ msgstr "Ikonoak ezin dira animatuak izan."
 
 #: mkt/developers/utils.py:81
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Irudiak ezin dira animatu."
 
 #: mkt/developers/utils.py:90
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "Erabili %s baino txikiagoak diren fitxategiak."
 
 #: mkt/developers/utils.py:100
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Ezin izan da ikonoa ireki."
 
 #: mkt/developers/utils.py:102
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Ezin izan da aurrebista ireki."
 
 #: mkt/developers/utils.py:109
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Ikonoek gutxienez 128x128px izan behar dituzte."
 
 #: mkt/developers/utils.py:112
 msgid "Icons must be square."
-msgstr ""
+msgstr "Ikonoak lauki formakoak izan behar dira."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
@@ -3383,6 +3395,8 @@ msgstr "Sortuta"
 #: mkt/developers/views.py:141
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr ""
+"Ordaindu beharreko aplikazioak ezin dira ezabatu. Ezabatu ordez, desgaitu "
+"aplikazioa."
 
 #: mkt/developers/views.py:151
 msgid "App deleted."
@@ -3414,27 +3428,27 @@ msgstr ""
 
 #: mkt/developers/views.py:424
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Errore bat gertatu da inprimakiarekin."
 
 #: mkt/developers/views.py:455
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Bertsioa behar bezala editatu da."
 
 #: mkt/developers/views.py:496
 msgid "Version successfully made public."
-msgstr ""
+msgstr "Bertsioa behar bezala publikatu da."
 
 #: mkt/developers/views.py:511
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "\"{0}\" bertsioa ezabatuta."
 
 #: mkt/developers/views.py:550 mkt/developers/views_payments.py:112 mkt/developers/views_payments.py:412 mkt/reviewers/views.py:742
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Aldaketak behar bezala gorde dira."
 
 #: mkt/developers/views.py:633
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Errore bat gertatu da bidalketarekin."
 
 #: mkt/developers/views.py:931
 msgid "There was an error uploading your preview."
@@ -3442,11 +3456,11 @@ msgstr "Errorea gertatu da aurrebista igotzean."
 
 #: mkt/developers/views.py:982
 msgid "Terms of service accepted."
-msgstr ""
+msgstr "Zerbitzuaren baldintzak onartu dira."
 
 #: mkt/developers/views.py:994
 msgid "Users with the admin role cannot use the API."
-msgstr ""
+msgstr "Administratzaile roldun erabiltzaileek ezin dute APIa erabili."
 
 #: mkt/developers/views.py:1002
 msgid "No such API key."
@@ -3486,15 +3500,16 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:342
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "Sekretua behar bezala berrezarri da."
 
 #: mkt/developers/views_payments.py:346
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "Gakoa eta sekretua behar bezala sortu dira."
 
 #: mkt/developers/views_payments.py:372
 msgid "Your app is not configured for in-app payments."
 msgstr ""
+"Zure aplikazioa ez dago aplikazio barneko ordainketak egiteko konfiguratuta."
 
 #: mkt/developers/views_payments.py:375
 msgid "No payment account for this app."
@@ -3517,8 +3532,6 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
-"<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
-"Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -3665,7 +3678,7 @@ msgstr ""
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_addon.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Probatzen"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
