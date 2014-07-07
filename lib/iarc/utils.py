@@ -254,7 +254,7 @@ DESC_MAPPING = {
     # All values will be prepended with 'has_%s_' % RATINGS_BODY later.
     ratingsbodies.CLASSIND: {
         u'Atos Crim\xEDnosos': 'criminal_acts',
-        u'Cont\xE9udo Sexual': 'sex_content',
+        u'Conte\xFAdo Sexual': 'sex_content',
         u'Conte\xFAdo Impactante': 'shocking',
         u'Drogas Il\xEDcitas': 'drugs_illegal',
         u'Drogas L\xEDcitas': 'drugs_legal',
