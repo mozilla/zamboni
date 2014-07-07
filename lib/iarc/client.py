@@ -104,7 +104,7 @@ MOCK_GET_APP_INFO = '''<?xml version="1.0" encoding="utf-16"?>
         <FIELD NAME="rating_ESRB" TYPE="string" VALUE="Mature 17+" />
         <FIELD NAME="descriptors_ESRB" TYPE="string" VALUE="Strong Language" />
         <FIELD NAME="rating_CLASSIND" TYPE="string" VALUE="14+" />
-        <FIELD NAME="descriptors_CLASSIND" TYPE="string" VALUE="Cont\xc3\xa9udo Sexual, Linguagem Impr\xc3\xb3pria" />
+        <FIELD NAME="descriptors_CLASSIND" TYPE="string" VALUE="Linguagem Impr\xc3\xb3pria" />
         <FIELD NAME="rating_Generic" TYPE="string" VALUE="16+" />
         <FIELD NAME="descriptors_Generic" TYPE="string" VALUE="" />
         <FIELD NAME="storefront" TYPE="string" VALUE="Mozilla" />
@@ -141,7 +141,7 @@ MOCK_GET_RATING_CHANGES = '''<?xml version="1.0" encoding="utf-16"?>
     <FIELD NAME="company" TYPE="string" VALUE="Mozilla" />
     <FIELD NAME="email" TYPE="string" VALUE="nobody@mozilla.com" />
     <FIELD NAME="new_rating" TYPE="string" VALUE="14+" />
-    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Cont\xc3\xa9udo Sexual, Linguagem Impr\xc3\xb3pria" />
+    <FIELD NAME="new_descriptors" TYPE="string" VALUE="Linguagem Impr\xc3\xb3pria" />
     <FIELD NAME="rating_system" TYPE="string" VALUE="CLASSIND" />
     <FIELD NAME="change_reason" TYPE="string" VALUE="Significant issues found in special mission cut scenes." />
   </ROW>

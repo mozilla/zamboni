@@ -36,8 +36,8 @@ def sign(receipt):
 
     try:
         with statsd.timer('services.sign.receipt'):
-            req = requests.get(destination, data=data, headers=headers,
-                               timeout=timeout)
+            req = requests.post(destination, data=data, headers=headers,
+                                timeout=timeout)
     except requests.Timeout:
         statsd.incr('services.sign.receipt.timeout')
         log.error('Posting to receipt signing timed out')
