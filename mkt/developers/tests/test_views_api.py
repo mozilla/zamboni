@@ -272,7 +272,7 @@ class TestContentRatingPingback(RestOAuth):
         # Descriptors.
         self.assertSetEqual(
             app.rating_descriptors.to_keys(),
-            ['has_classind_lang', 'has_classind_sex_content',
+            ['has_classind_lang',
              'has_pegi_lang', 'has_pegi_online',
              'has_esrb_strong_lang',
              'has_usk_lang'])

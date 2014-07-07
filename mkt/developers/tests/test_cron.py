@@ -113,7 +113,7 @@ class TestIARCChangesCron(amo.tests.TestCase):
         rd = RatingDescriptors.objects.get(addon=app)
         self.assertSetEqual(rd.to_keys(), [
             'has_esrb_strong_lang',
-            'has_classind_lang', 'has_classind_sex_content',
+            'has_classind_lang',
             'has_pegi_lang', 'has_pegi_online',
             'has_usk_lang',
         ])
