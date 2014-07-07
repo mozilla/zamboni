@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-05-19 15:27+0000\n"
-"Last-Translator: Théo <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2014-07-07 00:09+0000\n"
+"Last-Translator: SphinxKnight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400513237.0\n"
+"X-POOTLE-MTIME: 1404691790.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -28,7 +28,7 @@ msgstr "Ceci doit être un code couleur hexadécimal valide, par exemple #000000
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr "Entrez au moins une valeur."
+msgstr "Saisissez au moins une valeur."
 
 #: apps/amo/helpers.py:145 mkt/developers/helpers.py:40 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
@@ -434,11 +434,11 @@ msgstr "Re-proposition d'application"
 
 #: apps/amo/log.py:528
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr "{addon} escalade automatique en tant qu'application VIP."
+msgstr "{addon} a été promu car c'est une application VIP."
 
 #: apps/amo/log.py:529
 msgid "VIP auto-escalation"
-msgstr "Auto-escalade VIP"
+msgstr "Promotion automatique VIP"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
@@ -3223,7 +3223,7 @@ msgstr "Identifiant service"
 
 #: mkt/developers/forms_payments.py:651
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "L'identifiant du service n'est pas valide"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
@@ -4085,7 +4085,9 @@ msgstr "Notes aux testeurs"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:41
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
-msgstr "Optionnellement, entrez toute information qui peut être utile à l'Éditeur qui vérifiera ce module, tels que des comptes de test."
+msgstr ""
+"Optionnellement, saisissez toute information qui peut être utile à l'Éditeur "
+"qui vérifiera ce module, tels que des comptes de test."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Minimum Requirements"
@@ -4128,7 +4130,7 @@ msgstr "Une adresse courriel (ou plusieurs, séparées par des virgules) qui ser
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr "Entrez une ou plusieurs adresses courriel, séparées par des virgules"
+msgstr "Saisissez une ou plusieurs adresses courriel, séparées par des virgules"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
@@ -5911,7 +5913,7 @@ msgstr "Procéder à un remboursement manuel"
 
 #: mkt/lookup/forms.py:39
 msgid "Enter refund details to refund transaction"
-msgstr "Entrez les détails pour rembourser la transaction"
+msgstr "Saisissez les détails pour rembourser la transaction"
 
 #: mkt/lookup/forms.py:52
 msgid "Reason for Deletion"
@@ -7646,7 +7648,7 @@ msgstr "Envoyez le manifeste de l'application"
 
 #: mkt/submit/templates/submit/next_steps.html:29
 msgid "Enter App Details"
-msgstr "Entrez les détails de l'application"
+msgstr "Saisissez les détails de l'application"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
