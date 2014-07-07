@@ -22,9 +22,9 @@ log = logging.getLogger('z.reviewers.forms')
 # We set 'any' here since we need to default this field
 # to PUBLIC if not specified for consumer pages.
 STATUS_CHOICES = [('any', _lazy(u'Any Status'))]
-for status in amo.WEBAPPS_UNLISTED_STATUSES + (amo.STATUS_PUBLIC,):
+for status in amo.WEBAPPS_UNLISTED_STATUSES + amo.LISTED_STATUSES:
     STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.MKT_STATUS_CHOICES[status]))
+                           amo.STATUS_CHOICES[status]))
 
 
 log = logging.getLogger('z.reviewers.forms')

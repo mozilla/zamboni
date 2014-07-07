@@ -529,8 +529,8 @@ class TestEditBasic(TestEdit):
         releasenotes = self.webapp.current_version.reload().releasenotes
         eq_(res.status_code, 200)
         eq_(releasenotes, data['releasenotes'])
-        # Make sure make_public wasn't reset by accident.
-        eq_(self.webapp.reload().make_public, None)
+        # Make sure publish_type wasn't reset by accident.
+        eq_(self.webapp.reload().publish_type, amo.PUBLISH_IMMEDIATE)
 
     def test_edit_release_notes_pending(self):
         # Like test_edit_release_notes, but with a pending app.

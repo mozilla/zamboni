@@ -160,7 +160,8 @@
         </div>
       </div>
       {{ form_field(form_basic.notes, hint=True) }}
-      {{ form_field(form_basic.publish, tooltip=True) }}
+
+      {{ form_field(form_basic.publish_type) }}
 
       <button class="prominent continue" type="submit">
         {{ _('Continue') }}

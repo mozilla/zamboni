@@ -418,69 +418,6 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(upsell[0].free, new)
 
 
-class TestPublicise(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.create_switch('iarc')
-        self.webapp = self.get_webapp()
-        self.webapp.update(status=amo.STATUS_APPROVED)
-        self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=amo.STATUS_APPROVED)
-        self.publicise_url = self.webapp.get_dev_url('publicise')
-        self.status_url = self.webapp.get_dev_url('versions')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-
-    def get_webapp(self):
-        return Addon.objects.no_cache().get(id=337141)
-
-    def test_logout(self):
-        self.client.logout()
-        res = self.client.post(self.publicise_url)
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
-
-    def test_publicise_get(self):
-        eq_(self.client.get(self.publicise_url).status_code, 405)
-
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
-    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
-    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise(self, update_name, update_locales,
-                       update_cached_manifests, index_webapps,
-                       storefront_mock):
-        index_webapps.delay.reset_mock()
-        eq_(update_name.call_count, 0)
-        eq_(update_locales.call_count, 0)
-        eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(storefront_mock.call_count, 0)
-        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
-
-        res = self.client.post(self.publicise_url)
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
-        eq_(self.get_webapp().versions.latest().all_files[0].status,
-            amo.STATUS_PUBLIC)
-
-        eq_(update_name.call_count, 1)
-        eq_(update_locales.call_count, 1)
-        eq_(index_webapps.delay.call_count, 1)
-
-        # App is not packaged, no need to call update_cached_manifests.
-        eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(storefront_mock.call_count, 1)
-
-    def test_status(self):
-        res = self.client.get(self.status_url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('#version-status form').attr('action'), self.publicise_url)
-        eq_(len(doc('strong.status-waiting')), 1)
-
-
 class TestPubliciseVersion(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
@@ -527,6 +464,35 @@ class TestPubliciseVersion(amo.tests.TestCase):
         """ Test publishing the latest, approved version when the app is
         already public, with a current version also already public. """
         eq_(self.app.status, amo.STATUS_PUBLIC)
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=amo.STATUS_APPROVED))
+        eq_(self.app.latest_version, ver)
+        ok_(self.app.current_version != ver)
+
+        index_webapps.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.get_webapp().current_version, ver)
+
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_new_unpublished(
+        self, update_name, update_locales, update_cached_manifests,
+        index_webapps):
+        """ Test publishing the latest, approved version when the app is
+        unpublished, with a current version also already public. """
+        self.app.update(status=amo.STATUS_UNPUBLISHED)
         ver = version_factory(addon=self.app, version='2.0',
                               file_kw=dict(status=amo.STATUS_APPROVED))
         eq_(self.app.latest_version, ver)
@@ -606,6 +572,35 @@ class TestPubliciseVersion(amo.tests.TestCase):
         # only one version, update_version() won't change it, the mini-manifest
         # doesn't need to be updated.
         eq_(update_cached_manifests.delay.call_count, 0)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_cur_unpublished(self, update_name,
+                                               update_locales,
+                                               update_cached_manifests,
+                                               index_webapps):
+        """ Test publishing a version of an unpublished app when the only
+        version of the app is approved. """
+        self.app.update(status=amo.STATUS_UNPUBLISHED, _current_version=None)
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_APPROVED)
+
+        index_webapps.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(self.get_webapp().current_version, self.app.latest_version)
+        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.app.reload().status, amo.STATUS_UNPUBLISHED)
+
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')

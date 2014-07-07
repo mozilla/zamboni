@@ -1,6 +1,6 @@
 {% extends 'reviewers/emails/base.txt' %}
 {% block content %}
-Congratulations! {{ name }} has been approved and is listed on the Firefox Marketplace.
+Congratulations! {{ name }} has been approved and is now published on the Firefox Marketplace.
 
 Check it out: {{ detail_url }}
 

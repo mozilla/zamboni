@@ -517,18 +517,22 @@ class TestWebapp(amo.tests.TestCase):
                                        % (preview.id / 1000, preview.id))
 
     def test_is_public(self):
-        app = Webapp(status=amo.STATUS_PUBLIC)
-        assert app.is_public(), 'public app should be is_pulic()'
+        app = Webapp(status=amo.STATUS_UNPUBLISHED)
+        assert app.is_public(), 'STATUS_UNPUBLISHED app should be is_public()'
 
-        # Public, disabled.
-        app.disabled_by_user = True
-        assert not app.is_public(), (
-            'public, disabled app should not be is_public()')
+        app.status = amo.STATUS_PUBLIC
+        assert app.is_public(), 'STATUS_PUBLIC app should be is_public()'
 
         # Any non-public status
         app.status = amo.STATUS_PENDING
-        app.disabled_by_user = False
-        assert not app.is_public(), 'pending, app should not be is_public()'
+        assert not app.is_public(), (
+            'STATUS_PENDING app should not be is_public()')
+
+        # Public, disabled.
+        app.status = amo.STATUS_PUBLIC
+        app.disabled_by_user = True
+        assert not app.is_public(), (
+            'STATUS_PUBLIC, disabled app should not be is_public()')
 
     def _newlines_helper(self, app, string_before):
         app.privacy_policy = string_before

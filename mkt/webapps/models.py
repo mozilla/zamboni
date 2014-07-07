@@ -35,9 +35,9 @@ import mkt
 from amo.decorators import skip_cache, use_master, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
-                       send_mail, slugify, smart_path, sorted_groupby, timer,
-                       to_language, urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
+                       slugify, smart_path, sorted_groupby, timer, to_language,
+                       urlparams)
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
@@ -46,7 +46,6 @@ from lib.iarc.utils import (get_iarc_app_title, render_xml,
                             REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from lib.utils import static_url
 from mkt.access import acl
-from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps
 from mkt.files.models import File, nfd_str, Platform
 from mkt.files.utils import parse_addon, WebAppParser
@@ -256,7 +255,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    make_public = models.DateTimeField(null=True)
+    publish_type = models.PositiveIntegerField(default=0)
     mozilla_contact = models.EmailField(blank=True)
 
     vip_app = models.BooleanField(default=False)
@@ -455,16 +454,19 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def valid_file_statuses(self):
-        if self.status == amo.STATUS_PUBLIC:
+        """
+        Returns a list of valid file statuses depending on the app status.
+        """
+        if self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNPUBLISHED):
             return [amo.STATUS_PUBLIC]
 
         if self.status == amo.STATUS_APPROVED:
             # For approved apps, accept both public and approved statuses,
             # because the file status might be changed from APPROVED to PUBLIC
             # just before the app's is.
-            return amo.WEBAPPS_APPROVED_STATUSES
+            return [amo.STATUS_PUBLIC, amo.STATUS_APPROVED]
 
-        return amo.VALID_STATUSES
+        return [amo.STATUS_PENDING, amo.STATUS_PUBLIC, amo.STATUS_APPROVED]
 
     def get_version(self):
         """Retrieves the latest public version of an addon."""
@@ -490,9 +492,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Returns true if we updated the field.
 
-        The optional ``ignore`` parameter, if present, is a a version
-        to not consider as part of the update, since it may be in the
-        process of being deleted.
+        The optional ``ignore`` parameter, if present, is a version to not
+        consider as part of the update, since it may be in the process of being
+        deleted.
 
         Pass ``_signal=False`` if you want to no signals fired at all.
 
@@ -637,7 +639,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         elif not (versions.filter(files__isnull=False).exists()):
             self.update(status=amo.STATUS_NULL)
             logit('no versions with files')
-        elif (self.status == amo.STATUS_PUBLIC and
+        elif (self.status in amo.LISTED_STATUSES and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             self.update(status=amo.STATUS_PENDING)
             logit('no reviewed files')
@@ -789,15 +791,37 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    @property
-    def is_under_review(self):
-        return self.status in amo.STATUS_UNDER_REVIEW
-
     def is_public(self):
-        return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
+        """
+        True if the app is not disabled and the status is either STATUS_PUBLIC
+        or STATUS_UNPUBLISHED.
+
+        Both statuses are "public" in that they should result in a 200 to the
+        app detail page.
+
+        """
+        return (not self.disabled_by_user and
+                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNPUBLISHED))
 
     def is_approved(self):
-        return self.status == amo.STATUS_APPROVED
+        """
+        True if the app has status equal to amo.STATUS_APPROVED.
+
+        This app has been approved by a reviewer but is currently private and
+        only visitble to the app authors.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
+
+    def is_published(self):
+        """
+        True if the app status is amo.STATUS_PUBLIC.
+
+        This means we can display the app in listing pages and index it in our
+        search backend.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
 
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
@@ -866,29 +890,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Get the queries used to calculate addon.last_updated.
         """
-        status_change = Max('versions__files__datestatuschanged')
-        public = (
-            Addon.objects.no_cache().filter(
-                status=amo.STATUS_PUBLIC,
-                versions__files__status=amo.STATUS_PUBLIC)
-            .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
-            .values('id').annotate(last_updated=status_change))
-
-        stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
-        exp = (Addon.objects.no_cache().exclude(status__in=stati)
-               .filter(versions__files__status__in=amo.VALID_STATUSES)
-               .exclude(type=amo.ADDON_WEBAPP)
-               .values('id')
-               .annotate(last_updated=Max('versions__files__created')))
-
         webapps = (Addon.objects.no_cache()
                    .filter(type=amo.ADDON_WEBAPP,
-                           status=amo.STATUS_PUBLIC,
+                           status__in=amo.LISTED_STATUSES,
                            versions__files__status=amo.STATUS_PUBLIC)
                    .values('id')
                    .annotate(last_updated=Max('versions__created')))
 
-        return dict(public=public, exp=exp, webapps=webapps)
+        return webapps
 
     @amo.cached_property(writable=True)
     def all_categories(self):
@@ -1444,17 +1453,8 @@ class WebappManager(amo.models.ManagerBase):
                            disabled_by_user=False)
 
     def visible(self):
-        return self.filter(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    @skip_cache
-    def pending(self):
-        # - Holding
-        # ** Approved   -- PUBLIC
-        # ** Unapproved -- PENDING
-        # - Open
-        # ** Reviewed   -- PUBLIC
-        # ** Rejected   -- REJECTED
-        return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        return self.filter(status__in=amo.LISTED_STATUSES,
+                           disabled_by_user=False)
 
     @skip_cache
     def pending_in_region(self, region):
@@ -1971,33 +1971,6 @@ class Webapp(Addon):
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
-
-    def is_visible(self, request):
-        """Returns whether the app has a visible search result listing. Its
-        detail page will always be there.
-
-        This does not consider whether an app is excluded in the current region
-        by the developer.
-        """
-        # Let developers see it always.
-        can_see = (self.has_author(request.amo_user) or
-                   action_allowed(request, 'Apps', 'Edit'))
-
-        # Let app reviewers see it only when it's pending.
-        if check_reviewer(request) and self.is_pending():
-            can_see = True
-
-        visible = False
-
-        if can_see:
-            # Developers and reviewers should see it always.
-            visible = True
-        elif self.is_public():
-            # Everyone else can see it only if it's public -
-            # and if it's a game, it must have a content rating.
-            visible = True
-
-        return visible
 
     def has_premium(self):
         """If the app is premium status and has a premium object."""
@@ -3302,7 +3275,7 @@ class Geodata(amo.models.ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-        choices=amo.MKT_STATUS_CHOICES.items(), db_index=True,
+        choices=amo.STATUS_CHOICES.items(), db_index=True,
         default=amo.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 

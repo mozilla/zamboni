@@ -312,9 +312,11 @@ Enabling an App
 Key statuses are:
 
   * `incomplete`: incomplete
-  * `pending`: pending
-  * `public`: public
-  * `waiting`: waiting to be public
+  * `pending`: pending, awaiting review
+  * `public`: public and listed on listing pages and search results
+  * `unpublished`: available only to those who know the URL
+  * `waiting`: waiting for the developer to publish, currently private and
+    only visible to the developer
 
 Valid transitions that users can initiate are:
 
@@ -338,10 +340,9 @@ Valid transitions that users can initiate are:
             }
         }
 
-* Once reviewed by the Marketplace review team, the app will be to *public* or
-  *waiting to be public*.
-* *waiting* to *public*: occurs when the app has been reviewed, but not yet
-  been made public.
+* Once reviewed by the Marketplace review team, the app will be in one of the
+  approved statuses ('public', 'waiting', or 'unpublished') and you can
+  toggle between any of these statuses, e.g., *waiting* to *unpublished*.
 * *disabled_by_user*: by changing this value from `True` to `False` you can
   enable or disable an app.
 

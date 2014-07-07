@@ -1,5 +1,4 @@
 import re
-from datetime import datetime
 
 from tower import ugettext_lazy as _
 
@@ -13,6 +12,7 @@ STATUS_DELETED = 11
 STATUS_REJECTED = 12
 STATUS_APPROVED = 13
 STATUS_BLOCKED = 15
+STATUS_UNPUBLISHED = 16
 
 # AMO-only statuses. Kept here only for memory and to not re-use the IDs.
 _STATUS_UNREVIEWED = 1
@@ -27,14 +27,15 @@ _STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
     STATUS_PENDING: _(u'Pending approval'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_PUBLIC: _(u'Published'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
-    STATUS_APPROVED: _(u'Approved but waiting'),
+    STATUS_APPROVED: _(u'Approved but private'),
     STATUS_BLOCKED: _(u'Blocked'),
+    STATUS_UNPUBLISHED: _(u'Approved but unpublished'),
     # Deprecated.
     # _STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
     # _STATUS_NOMINATED: _(u'Awaiting Full Review'),
@@ -47,13 +48,8 @@ STATUS_CHOICES = {
 }
 
 
-# Marketplace app status terms.
-MKT_STATUS_CHOICES = STATUS_CHOICES.copy()
-MKT_STATUS_CHOICES[STATUS_PUBLIC] = _(u'Published')
-MKT_STATUS_CHOICES[STATUS_APPROVED] = _(u'Approved but unpublished')
-
 # Marketplace file status terms.
-MKT_STATUS_FILE_CHOICES = MKT_STATUS_CHOICES.copy()
+MKT_STATUS_FILE_CHOICES = STATUS_CHOICES.copy()
 MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
 
 # We need to expose nice values that aren't localisable.
@@ -64,8 +60,9 @@ STATUS_CHOICES_API = {
     STATUS_DISABLED: 'disabled',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
-    STATUS_APPROVED: 'waiting',
+    STATUS_APPROVED: 'waiting',  # TODO: Change to 'private' for API v2.
     STATUS_BLOCKED: 'blocked',
+    STATUS_UNPUBLISHED: 'unpublished',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -75,33 +72,34 @@ STATUS_CHOICES_API_LOOKUP = {
     'disabled': STATUS_DISABLED,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
-    'waiting': STATUS_APPROVED,
+    'waiting': STATUS_APPROVED,  # TODO: Change to 'private' for API v2.
     'blocked': STATUS_BLOCKED,
+    'unpublished': STATUS_UNPUBLISHED,
 }
 
-PUBLIC_IMMEDIATELY = None
-# Our MySQL does not store microseconds.
-PUBLIC_WAIT = datetime.max.replace(microsecond=0)
+# Publishing types.
+PUBLISH_IMMEDIATE = 0
+PUBLISH_HIDDEN = 1
+PUBLISH_PRIVATE = 2
 
-REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
+REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED, STATUS_UNPUBLISHED)
 UNREVIEWED_STATUSES = (STATUS_PENDING,)
-VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_APPROVED)
-# We don't show addons/versions with UNREVIEWED_STATUS in public.
-LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING, STATUS_APPROVED))
+VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_UNPUBLISHED,
+                  STATUS_APPROVED)
 
-# An addon in one of these statuses is awaiting a review.
-STATUS_UNDER_REVIEW = (STATUS_PENDING,)
+# We don't show addons/versions with UNREVIEWED_STATUS in public.
+LISTED_STATUSES = (STATUS_PUBLIC, STATUS_UNPUBLISHED)
 
 # An add-on in one of these statuses can become premium.
-PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
+PREMIUM_STATUSES = (STATUS_NULL, STATUS_PENDING)
 
 # Newly submitted apps begin life at this status.
 WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
 
 # These apps have been approved and are listed; or could be without further
-# review
-WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
+# review.
+WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_UNPUBLISHED,
+                             STATUS_APPROVED)
 
 # An app with this status makes its detail page "invisible".
 WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,

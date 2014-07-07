@@ -175,43 +175,23 @@ def disable(request, addon_id, addon):
 
 
 @dev_required
-@post_required
-def publicise(request, addon_id, addon):
-    if addon.status == amo.STATUS_APPROVED:
-        addon.update(status=amo.STATUS_PUBLIC)
-        File.objects.filter(
-            version__addon=addon, status=amo.STATUS_APPROVED).update(
-                status=amo.STATUS_PUBLIC)
-        amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
-        # Call update_version, so various other bits of data update.
-        addon.update_version()
-        # Call to update names and locales if changed.
-        addon.update_name_from_package_manifest()
-        addon.update_supported_locales()
-
-        if waffle.switch_is_active('iarc'):
-            addon.set_iarc_storefront_data()
-
-    return redirect(addon.get_dev_url('versions'))
-
-
-@dev_required
 def status(request, addon_id, addon):
-    form = forms.AppAppealForm(request.POST, product=addon)
+    appeal_form = forms.AppAppealForm(request.POST, product=addon)
     upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
                                        addon=addon, request=request)
+    publish_form = forms.PublishForm(request.POST or None, addon=addon)
 
     if request.method == 'POST':
-        if 'resubmit-app' in request.POST and form.is_valid():
+        if 'resubmit-app' in request.POST and appeal_form.is_valid():
             if waffle.switch_is_active('iarc') and not addon.is_rated():
                 # Cannot resubmit without content ratings.
                 return http.HttpResponseForbidden(
                     'This app must obtain content ratings before being '
                     'resubmitted.')
 
-            form.save()
-            create_comm_note(addon, addon.latest_version,
-                             request.amo_user, form.data['notes'],
+            appeal_form.save()
+            create_comm_note(addon, addon.latest_version, request.amo_user,
+                             appeal_form.data['notes'],
                              note_type=comm.RESUBMISSION)
             if addon.vip_app:
                 handle_vip(addon, addon.current_version, request.amo_user)
@@ -256,7 +236,12 @@ def status(request, addon_id, addon):
 
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
 
-    ctx = {'addon': addon, 'form': form, 'upload_form': upload_form}
+        elif 'publish-app' in request.POST and publish_form.is_valid():
+            publish_form.save()
+            return redirect(addon.get_dev_url('versions'))
+
+    ctx = {'addon': addon, 'appeal_form': appeal_form,
+           'upload_form': upload_form, 'publish_form': publish_form}
 
     # Used in the delete version modal.
     if addon.is_packaged:
@@ -494,6 +479,9 @@ def version_publicise(request, addon_id, addon):
         addon.update_name_from_package_manifest()
         addon.update_supported_locales()
         messages.success(request, _('Version successfully made public.'))
+
+        if waffle.switch_is_active('iarc'):
+            addon.set_iarc_storefront_data()
 
     return redirect(addon.get_dev_url('versions'))
 

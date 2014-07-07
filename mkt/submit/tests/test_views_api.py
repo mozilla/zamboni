@@ -233,6 +233,11 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         eq_(data['status'], 'public')
         eq_(data['disabled_by_user'], False)
 
+        self.app.update(status=amo.STATUS_UNPUBLISHED)
+        res, data = self.get()
+        eq_(data['status'], 'unpublished')
+        eq_(data['disabled_by_user'], False)
+
         self.app.update(status=amo.STATUS_NULL)
         res, data = self.get()
         eq_(data['status'], 'incomplete')
@@ -277,19 +282,6 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         data = json.loads(res.content)
         ok_('status' in data)
 
-    @patch('mkt.webapps.models.Webapp.is_fully_complete')
-    def test_change_status_to_pending(self, is_fully_complete):
-        is_fully_complete.return_value = True
-        self.app.update(status=amo.STATUS_NULL)
-        res = self.client.patch(self.get_url,
-                                data=json.dumps({'status': 'pending'}))
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        self.app.reload()
-        eq_(data['status'], 'pending')
-        eq_(self.app.disabled_by_user, False)
-        eq_(self.app.status, amo.STATUS_PENDING)
-
     def test_change_status_to_public_fails(self):
         self.app.update(status=amo.STATUS_PENDING)
         res = self.client.patch(self.get_url,
@@ -310,15 +302,27 @@ class TestAppStatusHandler(RestOAuth, amo.tests.AMOPaths):
         self.assertSetEqual(data['status'], self.app.completion_error_msgs())
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
-    def test_approved(self, is_fully_complete):
+    def test_status_changes(self, is_fully_complete):
         is_fully_complete.return_value = True
-        self.app.update(status=amo.STATUS_APPROVED)
-        res = self.client.patch(self.get_url,
-                                data=json.dumps({'status': 'public'}))
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['status'], 'public')
-        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+
+        # Statuses we want to check in (from, [to, ...]) tuples.
+        status_changes = (
+            (amo.STATUS_NULL, [amo.STATUS_PENDING]),
+            (amo.STATUS_APPROVED, [amo.STATUS_UNPUBLISHED, amo.STATUS_PUBLIC]),
+            (amo.STATUS_UNPUBLISHED, [amo.STATUS_APPROVED, amo.STATUS_PUBLIC]),
+            (amo.STATUS_PUBLIC, [amo.STATUS_APPROVED, amo.STATUS_UNPUBLISHED]),
+        )
+
+        for orig, new in status_changes:
+            for to in new:
+                self.app.update(status=orig)
+                to_api_status = amo.STATUS_CHOICES_API[to]
+                res = self.client.patch(
+                    self.get_url, data=json.dumps({'status': to_api_status}))
+                eq_(res.status_code, 200)
+                data = json.loads(res.content)
+                eq_(data['status'], to_api_status)
+                eq_(self.app.reload().status, to)
 
     @patch('mkt.webapps.models.Webapp.is_fully_complete')
     def test_senior_reviewer_incomplete_to_pending(self, is_fully_complete):
