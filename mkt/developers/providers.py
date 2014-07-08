@@ -28,6 +28,16 @@ root = 'developers/payments/includes/'
 log = commonware.log.getLogger('z.devhub.providers')
 
 
+def get_uuid(prefix=''):
+    """
+    Return a uuid for use in the payment flow. In debugging it prefixes
+    the value of the uuid so its easier to spot in logs and such.
+    """
+    if settings.DEBUG:
+        return prefix + str(uuid.uuid4())
+    return str(uuid.uuid4())
+
+
 def account_check(f):
     """
     Use this decorator on Provider methods to ensure that the account
@@ -64,7 +74,7 @@ class Provider(object):
         otherwise creates one
         """
         if app.solitude_public_id is None:
-            app.solitude_public_id = str(uuid.uuid4())
+            app.solitude_public_id = get_uuid('public')
             app.save()
 
         return app.solitude_public_id
@@ -78,7 +88,7 @@ class Provider(object):
         try:
             generic = self.generic.product.get_object_or_404(**product_data)
         except ObjectDoesNotExist:
-            seller_uuid = str(uuid.uuid4())
+            seller_uuid = get_uuid('seller')
             seller = self.generic.seller.post(data={'uuid': seller_uuid})
 
             log.info(
@@ -282,9 +292,15 @@ class Reference(Provider):
 
     def account_create(self, user, form_data):
         user_seller = self.setup_seller(user)
-        form_data.update({'uuid': user_seller.uuid, 'status': 'ACTIVE'})
+        form_data.update({
+            'seller': user_seller.resource_uri,
+            'status': 'ACTIVE',
+            'uuid': get_uuid('reference-seller')
+        })
         name = form_data.pop('account_name')
         res = self.client.sellers.post(data=form_data)
+
+        log.info('[User:%s] Creating Reference account' % user.pk)
         return self.setup_account(user=user,
                                   uri=res['resource_uri'],
                                   solitude_seller=user_seller,
@@ -295,41 +311,33 @@ class Reference(Provider):
     def account_retrieve(self, account):
         data = {'account_name': account.name}
         data.update(self.client.sellers(account.account_id).get())
+        log.info('Retreiving Reference account: %s' % account.pk)
         return data
 
     @account_check
     def account_update(self, account, form_data):
         account.update(name=form_data.pop('account_name'))
         self.client.sellers(account.account_id).put(form_data)
+        log.info('Updating Reference account: %s' % account.pk)
 
     @account_check
     def product_create(self, account, app):
         secret = generate_key(48)
         generic = self.get_or_create_generic_product(app, secret=secret)
 
-        # These just pass straight through to zippy to create the product
-        # and don't create any intermediate objects in solitude.
-        #
-        # Until bug 948240 is fixed, we have to do this, again.
-        try:
-            created = self.client.products.get(
-                external_id=generic['external_id'],
-                seller_id=uri_to_pk(account.uri))
-        except HttpClientError:
-            created = []
+        exists = generic['seller_uuids']['reference']
+        if exists:
+            log.info('Reference product already exists: %s' % exists)
+            return generic['resource_uri']
 
-        if len(created) > 1:
-            raise ValueError('Zippy returned more than one resource.')
-
-        elif len(created) == 1:
-            return created[0]['resource_uri']
-
-        created = self.client.products.post(data={
-            'external_id': generic['external_id'],
-            'seller_id': uri_to_pk(account.uri),
+        data = {
+            'seller_product': generic['resource_uri'],
+            'seller_reference': account.uri,
             'name': unicode(app.name),
-            'uuid': str(uuid.uuid4()),
-        })
+            'uuid': get_uuid('reference-product')
+        }
+        log.info('Creating Reference product: %s, %s' % (account.pk, app.pk))
+        created = self.client.products.post(data=data)
         return created['resource_uri']
 
     @account_check
@@ -337,17 +345,16 @@ class Reference(Provider):
         res = self.client.terms(account.account_id).get()
         if 'text' in res:
             res['text'] = bleach.clean(res['text'])
+        log.info('Retreiving Reference terms: %s' % account.pk)
         return res
 
     @account_check
     def terms_update(self, account):
         account.update(agreed_tos=True)
-        # GETed data from Zippy needs to be reformated prior to be PUT
-        # until bug 966096 is fixed.
-        data = self.client.sellers(account.account_id).get()
-        for field in ['id', 'resource_uri', 'resource_name']:
-            del data[field]
+        data = self.client.sellers(account.account_id).get()['reference']
         data['agreement'] = datetime.now().strftime('%Y-%m-%d')
+        data['seller'] = account.seller_uri
+        log.info('Updating Reference terms: %s' % account.pk)
         return self.client.sellers(account.account_id).put(data)
 
 
