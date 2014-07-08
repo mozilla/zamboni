@@ -9,8 +9,7 @@ import mkt
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (AddonCategory, AddonDeviceType,
-                                Category, ContentRating, Webapp)
+from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
 
 
 class TestWebappIndexer(amo.tests.TestCase):
@@ -73,11 +72,9 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['latest_version']['has_info_request'], False)
 
     def test_extract_category(self):
-        cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=self.app, category=cat)
-
+        self.app.update(categories=['books'])
         obj, doc = self._get_doc()
-        eq_(doc['category'], [cat.slug])
+        eq_(doc['category'], ['books'])
 
     def test_extract_device(self):
         device = DEVICE_TYPES.keys()[0]

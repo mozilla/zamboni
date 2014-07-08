@@ -36,8 +36,7 @@ from mkt.tags.models import AddonTag, Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (AddonCategory, AddonDeviceType, AddonUpsell,
-                                Category, Installed, Webapp)
+from mkt.webapps.models import AddonDeviceType, AddonUpsell, Installed, Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -96,8 +95,7 @@ class TestApi(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='Books', slug='books',
-                                                type=amo.ADDON_WEBAPP)
+        self.category = 'books'
         self.webapp.icon_hash = 'fakehash'
         self.webapp.save()
         self.refresh('webapp')
@@ -122,15 +120,9 @@ class TestApi(RestOAuth, ESTestCase):
 
     def test_wrong_category(self):
         res = self.client.get(self.url,
-                              data={'cat': self.category.slug + 'xq'})
+                              data={'cat': self.category + 'xq'})
         eq_(res.status_code, 400)
         eq_(res['Content-Type'], 'application/json')
-
-    def test_wrong_weight(self):
-        self.category.update(weight=-1)
-        res = self.client.get(self.url, data={'cat': self.category.slug})
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 0)
 
     def test_wrong_sort(self):
         res = self.client.get(self.url, data={'sort': 'awesomeness'})
@@ -148,18 +140,17 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
 
     def test_right_category(self):
-        res = self.client.get(self.url, data={'cat': self.category.slug})
+        res = self.client.get(self.url, data={'cat': self.category})
         eq_(res.status_code, 200)
         eq_(res.json['objects'], [])
 
     def create(self):
-        AddonCategory.objects.create(addon=self.webapp, category=self.category)
-        self.webapp.save()
+        self.webapp.update(categories=[self.category])
         self.refresh('webapp')
 
     def test_right_category_present(self):
         self.create()
-        res = self.client.get(self.url, data={'cat': self.category.slug})
+        res = self.client.get(self.url, data={'cat': self.category})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(len(objs), 1)
@@ -195,20 +186,21 @@ class TestApi(RestOAuth, ESTestCase):
                    '.process_request', fakeauth):
             with self.settings(SITE_URL=''):
                 self.create()
-            res = self.client.get(self.url, data={'cat': self.category.slug})
+            res = self.client.get(self.url, data={'cat': self.category})
             obj = res.json['objects'][0]
             assert 'user' in obj
 
     def test_dehydrate(self):
         with self.settings(SITE_URL='http://hy.fr'):
             self.create()
-            res = self.client.get(self.url, data={'cat': self.category.slug})
+            res = self.client.get(self.url, data={'cat': self.category})
             eq_(res.status_code, 200)
             obj = res.json['objects'][0]
             content_ratings = obj['content_ratings']
             eq_(obj['absolute_url'],
                 absolutify(self.webapp.get_absolute_url()))
             eq_(obj['app_type'], self.webapp.app_type)
+            eq_(obj['categories'], [self.category])
             eq_(content_ratings['body'], 'generic')
             eq_(content_ratings['rating'], None)
             eq_(content_ratings['descriptors'], [])
@@ -786,15 +778,15 @@ class BaseFeaturedTests(RestOAuth, ESTestCase):
 
     def setUp(self):
         super(BaseFeaturedTests, self).setUp()
-        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP, slug='books')
+        self.cat = 'books'
         self.app = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(
             addon=self.app, device_type=DEVICE_CHOICES_IDS['firefoxos'])
-        AddonCategory.objects.get_or_create(addon=self.app, category=self.cat)
+        self.app.update(categories=[self.cat])
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,
                                       sms=True).to_signature()
-        self.qs = {'cat': 'books', 'pro': self.profile, 'dev': 'firefoxos'}
+        self.qs = {'cat': self.cat, 'pro': self.profile, 'dev': 'firefoxos'}
 
 
 class TestFeaturedCollections(BaseFeaturedTests):

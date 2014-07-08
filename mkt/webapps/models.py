@@ -240,7 +240,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
-    categories = models.ManyToManyField('Category', through='AddonCategory')
+    categories = json_field.JSONField(default=None)
     premium_type = models.PositiveIntegerField(
         choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
@@ -867,10 +867,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 .annotate(last_updated=Max('versions__created')))
 
     @amo.cached_property(writable=True)
-    def all_categories(self):
-        return list(self.categories.all())
-
-    @amo.cached_property(writable=True)
     def all_previews(self):
         return list(self.get_previews())
 
@@ -1115,15 +1111,6 @@ def attach_prices(addons):
         addon_dict[addon].price = price
 
 
-def attach_categories(addons):
-    """Put all of the add-on's categories into a category_ids list."""
-    addon_dict = dict((a.id, a) for a in addons)
-    categories = (Category.objects.filter(addoncategory__addon__in=addon_dict)
-                  .values_list('addoncategory__addon', 'id'))
-    for addon, cats in sorted_groupby(categories, lambda x: x[0]):
-        addon_dict[addon].category_ids = [c[1] for c in cats]
-
-
 def attach_translations(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Addon, addons)
@@ -1135,19 +1122,6 @@ def attach_tags(addons):
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
-
-
-class AddonCategory(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
-    category = models.ForeignKey('Category')
-    feature = models.BooleanField(default=False)
-    feature_locales = models.CharField(max_length=255, default='', null=True)
-
-    objects = caching.CachingManager()
-
-    class Meta:
-        db_table = 'addons_categories'
-        unique_together = ('addon', 'category')
 
 
 class AddonType(amo.models.ModelBase):
@@ -1190,67 +1164,6 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
-
-
-class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
-    name = TranslatedField()
-    slug = amo.models.SlugField(max_length=50,
-                                help_text='Used in Category URLs.')
-    type = models.PositiveIntegerField(db_column='addontype_id',
-                                       choices=do_dictsort(amo.ADDON_TYPE))
-    count = models.IntegerField('Addon count', default=0)
-    weight = models.IntegerField(
-        default=0, help_text='Category weight used in sort ordering')
-    misc = models.BooleanField(default=False)
-
-    addons = models.ManyToManyField(Addon, through='AddonCategory')
-
-    class Meta:
-        db_table = 'categories'
-        verbose_name_plural = 'Categories'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-    def get_url_path(self):
-        return '/search?cat=%s' % self.slug
-
-    @staticmethod
-    def transformer(addons):
-        qs = (Category.objects.no_cache().filter(addons__in=addons)
-              .extra(select={'addon_id': 'addons_categories.addon_id'}))
-        cats = dict((addon_id, list(cs))
-                    for addon_id, cs in sorted_groupby(qs, 'addon_id'))
-        for addon in addons:
-            addon.all_categories = cats.get(addon.id, [])
-
-    def clean(self):
-        if self.slug.isdigit():
-            raise ValidationError('Slugs cannot be all numbers.')
-
-
-@Category.on_change
-def reindex_cat_slug(old_attr=None, new_attr=None, instance=None,
-                     sender=None, **kw):
-    """ES reindex category's apps if category slug changes."""
-    from mkt.webapps.tasks import index_webapps
-
-    if new_attr.get('type') != amo.ADDON_WEBAPP:
-        instance.save()
-        return
-
-    slug_changed = (instance.pk is not None and old_attr and new_attr and
-                    old_attr.get('slug') != new_attr.get('slug'))
-
-    instance.save()
-
-    if slug_changed:
-        index_webapps(list(instance.addon_set.filter(type=amo.ADDON_WEBAPP)
-                           .values_list('id', flat=True)))
-
-
-dbsignals.pre_save.connect(save_signal, sender=Category,
-                           dispatch_uid='category_translations')
 
 
 class Preview(amo.models.ModelBase):
@@ -1507,8 +1420,8 @@ class Webapp(Addon):
         apps_dict = dict((a.id, a) for a in apps)
 
         # Only the parts relevant for Webapps are copied over from Addon. In
-        # particular this avoids fetching categories and listed_authors, which
-        # isn't useful in most parts of the Marketplace.
+        # particular this avoids fetching listed_authors, which isn't useful
+        # in most parts of the Marketplace.
 
         # Set _latest_version, _current_version
         Addon.attach_related_versions(apps, apps_dict)
@@ -1562,8 +1475,8 @@ class Webapp(Addon):
     @staticmethod
     def indexing_transformer(apps):
         """Attach everything we need to index apps."""
-        transforms = (attach_categories, attach_devices, attach_prices,
-                      attach_tags, attach_translations)
+        transforms = (attach_devices, attach_prices, attach_tags,
+                      attach_translations)
         for t in transforms:
             qs = apps.transform(t)
         return qs
@@ -1755,7 +1668,7 @@ class Webapp(Addon):
         if not self.device_types:
             reasons.append(_('You must provide at least one device type.'))
 
-        if not self.categories.count():
+        if not self.categories:
             reasons.append(_('You must provide at least one category.'))
         if not self.previews.count():
             reasons.append(_('You must upload at least one screenshot or '
@@ -2103,11 +2016,7 @@ class Webapp(Addon):
         if region:
             listed.append(region.id in self.get_region_ids(restofworld=True))
         if category:
-            if isinstance(category, basestring):
-                filters = {'slug': category}
-            else:
-                filters = {'id': category.id}
-            listed.append(self.category_set.filter(**filters).exists())
+            listed.append(category in (self.categories or []))
         return all(listed or [False])
 
     def content_ratings_in(self, region, category=None):
@@ -2167,14 +2076,6 @@ class Webapp(Addon):
             srch = srch.filter(uses_flash=False)
 
         return srch
-
-    @classmethod
-    def category(cls, slug):
-        try:
-            return (Category.objects
-                    .filter(type=amo.ADDON_WEBAPP, slug=slug))[0]
-        except IndexError:
-            return None
 
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()

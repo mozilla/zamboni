@@ -32,8 +32,7 @@ from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
-                                AddonUser, Category)
+from mkt.webapps.models import Addon, AddonDeviceType, AddonUser
 from mkt.webapps.models import AddonExcludedRegion as AER
 
 
@@ -169,9 +168,9 @@ class TestEditBasic(TestEdit):
 
     def setUp(self):
         super(TestEditBasic, self).setUp()
-        self.cat = Category.objects.create(name='Games', type=amo.ADDON_WEBAPP)
+        self.cat = 'games'
         self.dtype = amo.DEVICE_TYPES.keys()[0]
-        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        self.webapp.update(categories=['games'])
         AddonDeviceType.objects.create(addon=self.webapp,
                                        device_type=self.dtype)
         self.url = self.get_url('basic')
@@ -184,7 +183,7 @@ class TestEditBasic(TestEdit):
         result = {'device_types': self.dtype, 'slug': 'NeW_SluG',
                   'description': 'New description with <em>html</em>!',
                   'manifest_url': self.webapp.manifest_url,
-                  'categories': [self.cat.id]}
+                  'categories': [self.cat]}
         result.update(**kw)
         return result
 
@@ -328,26 +327,22 @@ class TestEditBasic(TestEdit):
 
     def test_categories_listed(self):
         r = self.client.get(self.url)
-        eq_(pq(r.content)('#addon-categories-edit').text(),
-            unicode(self.cat.name))
+        eq_(pq(r.content)('#addon-categories-edit').text(), unicode('Games'))
 
         r = self.client.post(self.url)
-        eq_(pq(r.content)('#addon-categories-edit').text(),
-            unicode(self.cat.name))
+        eq_(pq(r.content)('#addon-categories-edit').text(), unicode('Games'))
 
     def test_edit_categories_add(self):
-        new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        cats = [self.cat.id, new.id]
+        new = 'books'
+        cats = [self.cat, new]
         self.client.post(self.edit_url, self.get_dict(categories=cats))
-        app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), cats)
+        eq_(sorted(self.get_webapp().categories), sorted(cats))
 
     def test_edit_categories_addandremove(self):
-        new = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        cats = [new.id]
+        new = 'books'
+        cats = [new]
         self.client.post(self.edit_url, self.get_dict(categories=cats))
-        app_cats = self.get_webapp().categories.values_list('id', flat=True)
-        eq_(sorted(app_cats), cats)
+        eq_(sorted(self.get_webapp().categories), sorted(cats))
 
     @mock.patch('mkt.webapps.models.Webapp.save')
     def test_edit_categories_required(self, save):
@@ -356,9 +351,8 @@ class TestEditBasic(TestEdit):
         assert not save.called
 
     def test_edit_categories_xss(self):
-        new = Category.objects.create(name='<script>alert("xss");</script>',
-                                      type=amo.ADDON_WEBAPP)
-        cats = [self.cat.id, new.id]
+        new = '<script>alert("xss");</script>'
+        cats = [self.cat, new]
         r = self.client.post(self.edit_url, self.get_dict(categories=cats))
 
         assert '<script>alert' not in r.content
@@ -371,10 +365,7 @@ class TestEditBasic(TestEdit):
              'choices.'])
 
     def test_edit_categories_max(self):
-        new1 = Category.objects.create(name='Books', type=amo.ADDON_WEBAPP)
-        new2 = Category.objects.create(name='Lifestyle', type=amo.ADDON_WEBAPP)
-        cats = [self.cat.id, new1.id, new2.id]
-
+        cats = [self.cat, 'books', 'social']
         r = self.client.post(self.edit_url, self.get_dict(categories=cats))
         eq_(r.context['cat_form'].errors['categories'],
             ['You can have only 2 categories.'])
@@ -426,7 +417,7 @@ class TestEditBasic(TestEdit):
         data = {
             'slug': self.webapp.app_slug,
             'manifest_url': self.webapp.manifest_url,
-            'categories': [self.cat.id],
+            'categories': [self.cat],
             'description_en-us': u'Nêw english description',
             'description_fr': u'Nëw french description',
             'releasenotes_en-us': u'Nëw english release notes',
@@ -1102,10 +1093,10 @@ class TestEditDetails(TestEdit):
 
     def test_games_already_excluded_in_brazil(self):
         AER.objects.create(addon=self.webapp, region=mkt.regions.BR.id)
-        games = Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
+        games = 'games'
 
         r = self.client.post(
-            self.edit_url, self.get_dict(categories=[games.id]))
+            self.edit_url, self.get_dict(categories=[games]))
         self.assertNoFormErrors(r)
         eq_(list(AER.objects.filter(addon=self.webapp)
                             .values_list('region', flat=True)),

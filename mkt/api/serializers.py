@@ -74,6 +74,11 @@ class RegionSerializer(CarrierSerializer):
     default_language = serializers.CharField()
 
 
+class CategorySerializer(serializers.Serializer):
+    def to_native(self, obj):
+        return {'slug': obj[0], 'name': unicode(obj[1])}
+
+
 class URLSerializerMixin(serializers.ModelSerializer):
     """
     ModelSerializer mixin that adds a field named `url` to the object with that

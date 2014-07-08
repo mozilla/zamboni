@@ -12,7 +12,7 @@ from constants.applications import DEVICE_TYPES
 from mkt.api.fields import ESTranslationSerializerField
 from mkt.submit.serializers import SimplePreviewSerializer
 from mkt.versions.models import Version
-from mkt.webapps.models import Category, Geodata, Preview, Webapp
+from mkt.webapps.models import Geodata, Preview, Webapp
 from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
 from mkt.webapps.utils import dehydrate_content_rating
 
@@ -27,8 +27,6 @@ class ESAppSerializer(AppSerializer):
 
     # Override those, because we want a different source. Also, related fields
     # will call self.queryset early if they are not read_only, so force that.
-    categories = serializers.SlugRelatedField(read_only=True,
-        many=True, slug_field='slug', source='all_categories')
     manifest_url = serializers.CharField(source='manifest_url')
     package_path = serializers.SerializerMethodField('get_package_path')
 
@@ -101,9 +99,9 @@ class ESAppSerializer(AppSerializer):
         obj._latest_version = Version()
         obj._latest_version.is_privileged = is_privileged
         obj._geodata = Geodata()
-        obj.all_categories = [Category(slug=cat) for cat in data['category']]
         obj.all_previews = [Preview(id=p['id'], modified=p['modified'],
             filetype=p['filetype']) for p in data['previews']]
+        obj.categories = data['category']
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
 
         # Set base attributes on the "fake" app using the data from ES.

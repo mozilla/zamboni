@@ -29,7 +29,7 @@ from amo.utils import remove_icons, slug_validator, slugify
 from lib.video import tasks as vtasks
 from mkt.access import acl
 from mkt.api.models import Access
-from mkt.constants import MAX_PACKAGED_APP_SIZE
+from mkt.constants import CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
@@ -43,10 +43,10 @@ from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
-from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, Category,
-                                IARCInfo, Preview, Webapp)
+from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, IARCInfo,
+                                Preview, Webapp)
 from mkt.webapps.tasks import index_webapps, update_manifests
-from mkt.webapps.widgets import CategoriesSelectMultiple, IconWidgetRenderer
+from mkt.webapps.widgets import IconWidgetRenderer
 
 from . import tasks
 
@@ -889,17 +889,17 @@ class RegionForm(forms.Form):
 
 
 class CategoryForm(happyforms.Form):
-    categories = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
-        widget=CategoriesSelectMultiple)
+    categories = forms.MultipleChoiceField(label=_lazy(u'Categories'),
+                                           choices=CATEGORY_CHOICES,
+                                           widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request', None)
         self.product = kw.pop('product', None)
         super(CategoryForm, self).__init__(*args, **kw)
 
-        self.cats_before = list(
-            self.product.categories.values_list('id', flat=True))
+        self.cats_before = (list(self.product.categories) 
+                            if self.product.categories else [])
 
         self.initial['categories'] = self.cats_before
 
@@ -908,8 +908,7 @@ class CategoryForm(happyforms.Form):
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
-        set_categories = set(categories.values_list('id', flat=True))
-
+        set_categories = set(categories)
         total = len(set_categories)
         max_cat = amo.MAX_CATEGORIES
 
@@ -923,20 +922,8 @@ class CategoryForm(happyforms.Form):
         return categories
 
     def save(self):
-        after = list(self.cleaned_data['categories']
-                     .values_list('id', flat=True))
-        before = self.cats_before
-
-        # Add new categories.
-        to_add = set(after) - set(before)
-        for c in to_add:
-            self.product.addoncategory_set.create(category_id=c)
-
-        # Remove old categories.
-        to_remove = set(before) - set(after)
-        self.product.addoncategory_set.filter(
-            category_id__in=to_remove).delete()
-
+        after = list(self.cleaned_data['categories'])
+        self.product.update(categories=after)
         toggle_app_for_special_regions(self.request, self.product)
 
 

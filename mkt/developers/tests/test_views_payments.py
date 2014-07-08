@@ -29,7 +29,7 @@ from mkt.prices.models import Price
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonExcludedRegion as AER
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonPremium,
-                                AddonUpsell, AddonUser, Category)
+                                AddonUpsell, AddonUser)
 from mkt.users.models import UserProfile
 
 
@@ -1086,9 +1086,6 @@ class TestRegions(amo.tests.TestCase):
                                  .values_list('region', flat=True))
 
     def test_edit_all_regions_are_not_excluded(self):
-        # Keep the category around for good measure.
-        Category.objects.create(type=amo.ADDON_WEBAPP, slug='games')
-
         r = self.client.post(self.url, self.get_dict())
         self.assertNoFormErrors(r)
         eq_(AER.objects.count(), 0)

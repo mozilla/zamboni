@@ -152,12 +152,7 @@
             {% endfor %}
           </dd>
           <dt>{{ _('Categories') }}</dt>
-          <dd>
-            {% for category in product.categories.all() %}
-              <a href="{{ category.get_url_path() }}">
-                {{ category.name }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-          </dd>
+          <dd> {{ product.categories|categories_names|join(', ') }} </dd>
           {% if flags %}
             <dt>{{ _('Flags') }}</dt>
             <dd>{{ flags|join(', ') }}</dd>

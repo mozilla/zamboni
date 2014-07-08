@@ -25,10 +25,11 @@ from amo.models import SlugField
 import mkt.carriers
 import mkt.regions
 from mkt.collections.fields import ColorField
+from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
 from mkt.search.indexers import index
-from mkt.webapps.models import Addon, Category, clean_slug, Preview, Webapp
+from mkt.webapps.models import Addon, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 from mkt.translations.fields import PurifiedField, save_signal
 
@@ -378,7 +379,8 @@ class FeedItem(amo.models.ModelBase):
     describing the conditions that the feed item should be included in a user's
     feed.
     """
-    category = models.ForeignKey(Category, null=True, blank=True)
+    category = models.CharField(null=True, blank=True, max_length=30,
+                                choices=CATEGORY_CHOICES)
     region = models.PositiveIntegerField(
         default=None, null=True, blank=True, db_index=True,
         choices=mkt.regions.REGIONS_CHOICES_ID)

@@ -27,8 +27,8 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserNotification
 from mkt.users.models import UserProfile
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
-                                AddonUser, AppFeatures, Category, Webapp)
+from mkt.webapps.models import (Addon, AddonDeviceType, AddonUser, AppFeatures,
+                                Webapp)
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -557,6 +557,7 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_NULL)
         self.url = reverse('submit.app.details', args=[self.webapp.app_slug])
+        self.cat1 = 'books'
 
     def get_webapp(self):
         return Webapp.objects.get(id=337141)
@@ -596,8 +597,7 @@ class TestDetails(TestSubmit):
         self.device_types = [self.dtype]
 
         # Associate category with app.
-        self.cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, name='Fun')
-        AddonCategory.objects.create(addon=self.webapp, category=self.cat1)
+        self.webapp.update(categories=[self.cat1])
 
     def test_anonymous(self):
         self._test_anonymous()
@@ -647,7 +647,7 @@ class TestDetails(TestSubmit):
             'homepage': 'http://www.goodreads.com/user/show/7595895-krupa',
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
-            'categories': [self.cat1.id],
+            'categories': [self.cat1],
             'flash': '1',
             'publish': '1',
             'notes': 'yes'
@@ -932,36 +932,35 @@ class TestDetails(TestSubmit):
     def test_categories_max(self):
         self._step()
         eq_(amo.MAX_CATEGORIES, 2)
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        cat3 = Category.objects.create(type=amo.ADDON_WEBAPP, name='blang')
-        cats = [self.cat1.id, cat2.id, cat3.id]
+        cat2 = 'games'
+        cat3 = 'social'
+        cats = [self.cat1, cat2, cat3]
         r = self.client.post(self.url, self.get_dict(categories=cats))
         eq_(r.context['form_cats'].errors['categories'],
             ['You can have only 2 categories.'])
 
     def _post_cats(self, cats):
         self.client.post(self.url, self.get_dict(categories=cats))
-        eq_(sorted(self.get_webapp().categories.values_list('id', flat=True)),
-            sorted(cats))
+        eq_(sorted(self.get_webapp().categories), sorted(cats))
 
     def test_categories_add(self):
         self._step()
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([self.cat1.id, cat2.id])
+        cat2 = 'games'
+        self._post_cats([self.cat1, cat2])
 
     def test_categories_add_and_remove(self):
         self._step()
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        self._post_cats([cat2.id])
+        cat2 = 'games'
+        self._post_cats([cat2])
 
     def test_categories_remove(self):
         # Add another category here so it gets added to the initial formset.
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, name='bling')
-        AddonCategory.objects.create(addon=self.webapp, category=cat2)
+        cat2 = 'games'
+        self.webapp.update(categories=[self.cat1, cat2])
         self._step()
 
         # `cat2` should get removed.
-        self._post_cats([self.cat1.id])
+        self._post_cats([self.cat1])
 
 
 class TestDone(TestSubmit):

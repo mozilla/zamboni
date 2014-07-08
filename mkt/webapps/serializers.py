@@ -3,9 +3,9 @@ from decimal import Decimal
 
 from django.core.urlresolvers import reverse
 
-from rest_framework import response, serializers
-
 import commonware.log
+from drf_compound_fields.fields import ListField
+from rest_framework import response, serializers
 from tower import ungettext as ngettext
 
 import amo
@@ -15,12 +15,12 @@ from constants.payments import PROVIDER_BANGO
 from mkt.api.fields import (LargeTextField, ReverseChoiceField,
                             SemiSerializerMethodField,
                             TranslationSerializerField)
+from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.features import FeatureProfile
 from mkt.prices.models import AddonPremium, Price
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
-from mkt.webapps.models import (AddonCategory, AddonUpsell, AppFeatures,
-                                Category, Webapp)
+from mkt.webapps.models import AddonUpsell, AppFeatures, Webapp
 
 
 log = commonware.log.getLogger('z.api')
@@ -60,9 +60,8 @@ class AppSerializer(serializers.ModelSerializer):
     banner_message = TranslationSerializerField(read_only=True,
         source='geodata.banner_message')
     banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
-    categories = serializers.SlugRelatedField(source='categories',
-        many=True, slug_field='slug', required=True,
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
+    categories = ListField(serializers.ChoiceField(choices=CATEGORY_CHOICES),
+                           required=True)
     content_ratings = serializers.SerializerMethodField('get_content_ratings')
     created = serializers.DateField(read_only=True)
     current_version = serializers.CharField(source='current_version.version',
@@ -291,18 +290,6 @@ class AppSerializer(serializers.ModelSerializer):
         if added_devices and obj.status in amo.WEBAPPS_APPROVED_STATUSES:
             mark_for_rereview(obj, added_devices, removed_devices)
 
-    def save_categories(self, obj, categories):
-        before = set(obj.categories.values_list('id', flat=True))
-        # Add new categories.
-        to_add = set(c.id for c in categories) - before
-        for c in to_add:
-            AddonCategory.objects.create(addon=obj, category_id=c)
-
-        # Remove old categories.
-        to_remove = before - set(categories)
-        for c in to_remove:
-            obj.addoncategory_set.filter(category=c).delete()
-
     def save_upsold(self, obj, upsold):
         current_upsell = obj.upsold
         if upsold and upsold != obj.upsold.free:
@@ -368,15 +355,6 @@ class AppSerializer(serializers.ModelSerializer):
         for f, v in extras:
             f(instance, v)
         return instance
-
-    def save_object(self, obj, **kwargs):
-        # this only gets called if validation succeeds.
-        m2m = getattr(obj, '_m2m_data', {})
-        cats = m2m.pop('categories', None)
-        super(AppSerializer, self).save_object(obj, **kwargs)
-        # Categories are handled here because we can't look up
-        # existing ones until the initial save is done.
-        self.save_categories(obj, cats)
 
 
 class SimpleAppSerializer(AppSerializer):

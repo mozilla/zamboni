@@ -12,7 +12,6 @@ import waffle
 from cache_nuggets.lib import memoize
 from rest_framework import generics
 from rest_framework.decorators import permission_classes
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.serializers import (BooleanField, CharField, ChoiceField,
@@ -23,20 +22,20 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
                                      ReadOnlyModelViewSet)
 
-import amo
 from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from lib.constants import ALL_CURRENCIES
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
-from mkt.api.base import (cors_api_view, CORSMixin, MarketplaceView,
-                          SlugOrIdMixin)
+from mkt.api.base import cors_api_view, CORSMixin, MarketplaceView
 from mkt.api.fields import SlugChoiceField
-from mkt.api.serializers import CarrierSerializer, RegionSerializer
+from mkt.api.serializers import (CarrierSerializer, CategorySerializer, 
+                                 RegionSerializer)
 from mkt.carriers import CARRIER_MAP, CARRIERS
+from mkt.constants.categories import CATEGORY_CHOICES, CATEGORY_CHOICES_DICT
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.prices.models import Price, PriceCurrency
 from mkt.regions.utils import parse_region
-from mkt.webapps.models import Category, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _update_manifest
 
 
@@ -57,28 +56,22 @@ class ErrorViewSet(MarketplaceView, GenericViewSet):
         raise TestError('This is a test.')
 
 
-class CategorySerializer(ModelSerializer):
-    name = CharField('name')
-    resource_uri = HyperlinkedIdentityField(view_name='app-category-detail')
-
-    class Meta:
-        model = Category
-        fields = ('name', 'id', 'resource_uri', 'slug')
-        view_name = 'category'
-
-
-class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CORSMixin,
-                      SlugOrIdMixin, MarketplaceView, GenericViewSet):
-    model = Category
+class CategoryViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
+    cors_allowed_methods = ['get']
+    authentication_classes = []
+    permission_classes = [AllowAny]
     serializer_class = CategorySerializer
-    permission_classes = (AllowAny,)
-    cors_allowed_methods = ('get',)
-    slug_field = 'slug'
+    paginate_by = len(CATEGORY_CHOICES_DICT)
 
-    def get_queryset(self):
-        qs = Category.objects.filter(type=amo.ADDON_WEBAPP,
-                                     weight__gte=0)
-        return qs.order_by('-weight')
+    def get_queryset(self, *args, **kwargs):
+        return CATEGORY_CHOICES
+
+    def get_object(self, *args, **kwargs):
+        cat = CATEGORY_CHOICES_DICT.get(self.kwargs['pk'])
+        if cat is None:
+            raise Http404
+        else:
+            return self.kwargs['pk'], cat
 
 
 class FlagSerializer(ModelSerializer):

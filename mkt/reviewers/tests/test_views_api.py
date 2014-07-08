@@ -19,7 +19,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
-from mkt.webapps.models import Category, Webapp
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -81,8 +81,6 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         self.url = reverse('reviewers-search-api')
 
         self.webapp = Webapp.objects.get(pk=337141)
-        self.category = Category.objects.create(name='test',
-                                                type=amo.ADDON_WEBAPP)
 
         self.webapp.update(status=amo.STATUS_PENDING)
         self.refresh('webapp')

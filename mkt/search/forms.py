@@ -3,6 +3,8 @@ from django import forms
 from tower import ugettext_lazy as _lazy
 
 import amo
+from mkt.constants import (CATEGORY_CHOICES, TARAKO_CATEGORY_CHOICES,
+                           TARAKO_CATEGORIES_MAPPING)
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
@@ -50,43 +52,7 @@ DEVICE_CHOICES_IDS = {
     'firefoxos': amo.DEVICE_GAIA.id,
 }
 
-CATEGORY_CHOICES = [
-    ('', _lazy(u'All Categories')),
-    ('games', _lazy(u'Games')),
-    ('books', _lazy(u'Books')),
-    ('business', _lazy(u'Business')),
-    ('education', _lazy(u'Education')),
-    ('entertainment', _lazy(u'Entertainment')),
-    ('health-fitness', _lazy(u'Health & Fitness')),
-    ('lifestyle', _lazy(u'Lifestyle')),
-    ('maps-navigation', _lazy(u'Maps & Navigation')),
-    ('music', _lazy(u'Music')),
-    ('news-weather', _lazy(u'News & Weather')),
-    ('photo-video', _lazy(u'Photo & Video')),
-    ('productivity', _lazy(u'Productivity')),
-    ('reference', _lazy(u'Reference')),
-    ('shopping', _lazy(u'Shopping')),
-    ('social', _lazy(u'Social')),
-    ('sports', _lazy(u'Sports')),
-    ('travel', _lazy(u'Travel')),
-    ('utilities', _lazy(u'Utilities'))
-]
-
-TARAKO_CATEGORIES_MAPPING = {
-    'tarako-tools': ['business', 'education', 'productivity',
-                     'reference', 'utilities'],
-    'tarako-games': ['games'],
-    'tarako-lifestyle': ['books', 'entertainment', 'health-fitness',
-                         'lifestyle', 'maps-navigation', 'music',
-                         'news-weather', 'photo-video', 'shopping',
-                         'social', 'sports', 'travel'],
-}
-
-TARAKO_CATEGORY_CHOICES = [
-    ('tarako-tools', _lazy(u'Tools')),
-    ('tarako-games', _lazy(u'Games')),
-    ('tarako-lifestyle', _lazy(u'Lifestyle')),
-]
+CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 
 # Tags are only available to admins. They are free-form, and we expose them in
 # the API, but they are not supposed to be manipulated by users atm, so we only

@@ -8,6 +8,7 @@ from tower import ugettext as _
 
 import amo
 from mkt.access import acl
+from mkt.constants import CATEGORY_CHOICES_DICT
 from mkt.site.helpers import mkt_breadcrumbs
 from mkt.webapps.helpers import new_context
 
@@ -130,3 +131,9 @@ def dev_agreement_ok(user):
         return False
 
     return True
+
+@register.filter
+def categories_names(cat_slugs):
+    if cat_slugs is None:
+        return []
+    return sorted(unicode(CATEGORY_CHOICES_DICT.get(k)) for k in cat_slugs)

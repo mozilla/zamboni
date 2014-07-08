@@ -261,7 +261,7 @@ class WebappIndexer(BaseIndexer):
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
-        d['category'] = list(obj.categories.values_list('slug', flat=True))
+        d['category'] = obj.categories if obj.categories else []
         if obj.is_public:
             d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
                                for cms in obj.collectionmembership_set.all()]

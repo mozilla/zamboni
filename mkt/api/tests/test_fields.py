@@ -13,8 +13,7 @@ from mkt.api.fields import (ESTranslationSerializerField,
                             TranslationSerializerField)
 from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
-from mkt.versions.models import Version
-from mkt.webapps.models import AddonCategory, Category, Webapp
+from mkt.webapps.models import Webapp
 
 
 class _TestTranslationSerializerField(object):
@@ -244,82 +243,69 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField, TestCase
 class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
     fixtures = fixture('webapp_337141')
 
-    def test_render_as_pks(self):
-        app = Webapp.objects.get(pk=337141)
-        c1 = Category.objects.create(name='delicious', slug='foo',
-                                     type=amo.ADDON_WEBAPP)
-        c2 = Category.objects.create(name='scrumptious', slug='baz',
-                                     type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=app, category=c1)
-        AddonCategory.objects.create(addon=app, category=c2)
-        field = SlugOrPrimaryKeyRelatedField(queryset=Category.objects.all(),
-                                             many=True)
-        eq_(field.field_to_native(app, 'categories'), [c1.pk, c2.pk])
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
 
     def test_render_as_pk(self):
-        v = Version.objects.get(pk=1268829)
-        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all())
-        eq_(field.field_to_native(v, 'addon'), v.addon.pk)
+        obj = Mock()
+        obj.attached = self.app
 
-    def test_parse_as_pks(self):
-        c1 = Category.objects.create(name='delicious', slug='foo',
-                                     type=amo.ADDON_WEBAPP)
-        c2 = Category.objects.create(name='scrumptious', slug='baz',
-                                     type=amo.ADDON_WEBAPP)
-        into = {}
-        field = SlugOrPrimaryKeyRelatedField(queryset=Category.objects.all(),
-                                             many=True)
-        field.field_from_native({'categories': [c1.pk, c2.pk]}, None,
-                                'categories', into)
-        eq_(into, {'categories': [c1, c2]})
+        field = SlugOrPrimaryKeyRelatedField()
+        eq_(field.field_to_native(obj, 'attached'), self.app.pk)
 
-    def test_parse_as_pk(self):
-        app = Webapp.objects.get(pk=337141)
-        into = {}
-        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all())
-        field.field_from_native({'addon': 337141}, None, 'addon', into)
-        eq_(into, {'addon': app})
+    def test_render_as_pks_many(self):
+        obj = Mock()
+        obj.attached = [self.app]
 
-    def test_render_as_slugs(self):
-        app = Webapp.objects.get(pk=337141)
-        c1 = Category.objects.create(name='delicious', slug='foo',
-                                     type=amo.ADDON_WEBAPP)
-        c2 = Category.objects.create(name='scrumptious', slug='baz',
-                                     type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=app, category=c1)
-        AddonCategory.objects.create(addon=app, category=c2)
-        field = SlugOrPrimaryKeyRelatedField(queryset=Category.objects.all(),
-                                             render_as='slug',
-                                             slug_field='slug',
-                                             many=True)
-        eq_(field.field_to_native(app, 'categories'), [c1.slug, c2.slug])
+        field = SlugOrPrimaryKeyRelatedField(many=True)
+        eq_(field.field_to_native(obj, 'attached'), [self.app.pk])
 
     def test_render_as_slug(self):
-        v = Version.objects.get(pk=1268829)
-        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
-                                             render_as='slug',
-                                             slug_field='app_slug')
-        eq_(field.field_to_native(v, 'addon'), v.addon.app_slug)
+        obj = Mock()
+        obj.attached = self.app
 
-    def test_parse_as_slugs(self):
-        c1 = Category.objects.create(name='delicious', slug='foo',
-                                     type=amo.ADDON_WEBAPP)
-        c2 = Category.objects.create(name='scrumptious', slug='baz',
-                                     type=amo.ADDON_WEBAPP)
+        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
+                                             slug_field='app_slug')
+        eq_(field.field_to_native(obj, 'attached'), self.app.app_slug)
+
+    def test_render_as_slugs_many(self):
+        obj = Mock()
+        obj.attached = [self.app]
+
+        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
+                                             slug_field='app_slug', many=True)
+        eq_(field.field_to_native(obj, 'attached'), [self.app.app_slug])
+
+    def test_parse_as_pk(self):
         into = {}
-        field = SlugOrPrimaryKeyRelatedField(queryset=Category.objects.all(),
+        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all())
+        field.field_from_native({'addon': self.app.pk}, None, 'addon', into)
+        eq_(into, {'addon': self.app})
+
+    def test_parse_as_pks_many(self):
+        app2 = amo.tests.app_factory()
+        into = {}
+        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              many=True)
-        field.field_from_native({'categories': [c1.slug, c2.slug]}, None,
-                                'categories', into)
-        eq_(into, {'categories': [c1, c2]})
+        field.field_from_native({'apps': [self.app.pk, app2.pk]}, None,
+                                 'apps', into)
+        eq_(into, {'apps': [self.app, app2]})
 
     def test_parse_as_slug(self):
-        app = Webapp.objects.get(pk=337141)
         into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              slug_field='app_slug')
-        field.field_from_native({'addon': app.app_slug}, None, 'addon', into)
-        eq_(into, {'addon': app})
+        field.field_from_native({'app': self.app.app_slug}, None, 'app', into)
+        eq_(into, {'app': self.app})
+
+    def test_parse_as_slugs_many(self):
+        app2 = amo.tests.app_factory(app_slug='foo')
+        into = {}
+        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
+                                             slug_field='app_slug', many=True)
+        field.field_from_native({'apps': [self.app.app_slug, app2.app_slug]},
+                                None, 'apps', into)
+        eq_(into, {'apps': [self.app, app2]})
 
 
 class Spud(object):
