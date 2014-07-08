@@ -35,9 +35,9 @@ import mkt
 from amo.decorators import skip_cache, use_master, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
-                       slugify, smart_path, sorted_groupby, timer, to_language,
-                       urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
+                       send_mail, slugify, smart_path, sorted_groupby, timer,
+                       to_language, urlparams)
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
@@ -800,8 +800,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         app detail page.
 
         """
-        return (not self.disabled_by_user and
-                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNPUBLISHED))
+        return not self.disabled_by_user and self.status in amo.LISTED_STATUSES
 
     def is_approved(self):
         """
@@ -2222,6 +2221,13 @@ class Webapp(Addon):
             # available it can get picked up correctly.
             return '{}'
         else:
+            # This will sign the package if it isn't already.
+            #
+            # Ensure that the calling method checks various permissions if
+            # needed. E.g. see mkt/detail/views.py. This is also called as a
+            # task after reviewer approval so we can't perform some checks
+            # here.
+            signed_file_path = packaged.sign(version.pk)
             file_obj = version.all_files[0]
             manifest = self.get_manifest_json(file_obj)
             package_path = absolutify(
@@ -2231,7 +2237,7 @@ class Webapp(Addon):
             data = {
                 'name': manifest['name'],
                 'version': version.version,
-                'size': storage.size(file_obj.signed_file_path),
+                'size': storage.size(signed_file_path),
                 'release_notes': version.releasenotes,
                 'package_path': package_path,
             }

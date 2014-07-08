@@ -197,3 +197,11 @@ class TestPackagedManifest(amo.tests.TestCase):
         _mock.return_value = self._mocked_json()
         res = self.client.get(self.url)
         self.assertCORS(res, 'get')
+
+    @mock.patch('mkt.webapps.models.storage')
+    @mock.patch('mkt.webapps.models.packaged')
+    def test_calls_sign(self, _sign, _storage):
+        _sign.sign.return_value = '/path/to/signed.zip'
+        _storage.size.return_value = 1234
+        self.client.get(self.url)
+        assert _sign.sign.called
