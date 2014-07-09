@@ -512,12 +512,18 @@ $mobileborder = #d7d2c3;
     }
 }
 
+#queue-tab-overlay, #log-tab-overlay {
+    overflow: scroll;
+
+    > .nav-action-menu {
+        top: 5rem;
+        padding-top: 15px;
+    }
+}
+
 
 @media $mobile-portrait-overlay {
     #queue-tab-overlay > menu.nav-action-menu {
-        top: 5.5rem;
-        overflow: scroll;
-
         > div {
             max-height: 225px;
             overflow: auto;
