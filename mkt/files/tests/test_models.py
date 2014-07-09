@@ -33,13 +33,11 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
 
-    def get_upload(self, filename=None, abspath=None, validation=None,
-                   is_webapp=False):
+    def get_upload(self, filename=None, abspath=None, validation=None):
         zip = open(abspath if abspath else self.file_path(filename)).read()
         upload = FileUpload.from_post([zip], filename=abspath or filename,
                                       size=1234)
         # Simulate what fetch_manifest() does after uploading an app.
-        upload.is_webapp = is_webapp
         upload.validation = (validation or
                              json.dumps(dict(errors=0, warnings=1, notices=2,
                                              metadata={}, messages=[])))

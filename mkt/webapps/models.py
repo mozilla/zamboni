@@ -394,13 +394,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
-        if addon.is_webapp():
-            addon.is_packaged = is_packaged
-            if is_packaged:
-                addon.app_domain = data.get('origin')
-            else:
-                addon.manifest_url = upload.name
-                addon.app_domain = addon.domain_from_url(addon.manifest_url)
+        addon.is_packaged = is_packaged
+        if is_packaged:
+            addon.app_domain = data.get('origin')
+        else:
+            addon.manifest_url = upload.name
+            addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
         Version.from_upload(upload, addon, platforms)
 
@@ -775,9 +774,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return preview.thumbnail_url
         except IndexError:
             return settings.MEDIA_URL + '/img/icons/no-preview.png'
-
-    def is_webapp(self):
-        return self.type == amo.ADDON_WEBAPP
 
     @property
     def is_disabled(self):

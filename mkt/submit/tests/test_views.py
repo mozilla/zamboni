@@ -255,7 +255,7 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.manifest = self.manifest_path('mozball.webapp')
         self.manifest_url = 'http://allizom.org/mozball.webapp'
         self.upload = self.get_upload(abspath=self.manifest)
-        self.upload.update(name=self.manifest_url, is_webapp=True)
+        self.upload.update(name=self.manifest_url)
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -350,7 +350,7 @@ class TestCreateWebApp(BaseWebAppTest):
     def test_manifest_with_any_extension(self):
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
                                      'tests', 'addons', 'mozball.owa')
-        self.upload = self.get_upload(abspath=self.manifest, is_webapp=True)
+        self.upload = self.get_upload(abspath=self.manifest)
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
 
@@ -473,7 +473,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
         self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
-        self.upload.update(name='mozball.zip', is_webapp=True)
+        self.upload.update(name='mozball.zip')
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
