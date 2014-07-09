@@ -512,15 +512,6 @@ $mobileborder = #d7d2c3;
     }
 }
 
-#queue-tab-overlay, #log-tab-overlay {
-    overflow: scroll;
-
-    > .nav-action-menu {
-        top: 5rem;
-        padding-top: 15px;
-    }
-}
-
 
 @media $mobile-portrait-overlay {
     #queue-tab-overlay > menu.nav-action-menu {
@@ -546,5 +537,16 @@ $mobileborder = #d7d2c3;
 @media $landscape-min {
     .reviewers-mobile {
         display: none;
+    }
+}
+
+@media $mobile-landscape {
+    #queue-tab-overlay, #log-tab-overlay {
+        overflow: scroll;
+
+        > .nav-action-menu {
+            top: 5rem;
+            padding-top: 15px;
+        }
     }
 }
