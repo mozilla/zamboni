@@ -202,14 +202,9 @@ This will report any errors or issues in your installation.
 
 Chances are that for development, you'll want an admin account.
 
-After logging in, find your user record::
+After logging in, run this management command::
 
-    ./manage.py dbshell
-    mysql> select id, email from users order by -created limit 1;
-
-Then add yourself to the admin group::
-
-    mysql> insert into groups_users (group_id, user_id) values (1, <id from above>);
+    ./manage.py addusertogroup <your email> 1
 
 9. Setting up the consumer pages
 --------------------------------
