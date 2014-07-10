@@ -1,7 +1,8 @@
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo.tests
-from mkt.lookup.forms import TransactionSearchForm, TransactionRefundForm
+from mkt.lookup.forms import (APIStatusForm, APIFileStatusForm,
+                              TransactionRefundForm, TransactionSearchForm)
 
 
 class TestTransactionSearchForm(amo.tests.TestCase):
@@ -27,3 +28,22 @@ class TestTransactionRefundForm(amo.tests.TestCase):
     def test_fake(self):
         with self.settings(BANGO_FAKE_REFUNDS=True):
             assert 'fake' in TransactionRefundForm().fields.keys()
+
+
+class TestAPIStatusForm(amo.tests.TestCase):
+
+    def test_statuses(self):
+        for status in amo.STATUS_CHOICES.keys():
+            valid = status not in [amo.STATUS_BLOCKED, amo.STATUS_DELETED]
+            ok_(APIStatusForm({'status': amo.STATUS_CHOICES_API[status]})
+                .is_valid() == valid)
+
+
+class TestAPIFileStatusForm(amo.tests.TestCase):
+
+    def test_statuses(self):
+        for status in amo.STATUS_CHOICES.keys():
+            valid = status not in [amo.STATUS_BLOCKED, amo.STATUS_DELETED,
+                                   amo.STATUS_UNPUBLISHED]
+            ok_(APIFileStatusForm({'status': amo.STATUS_CHOICES_API[status]})
+                .is_valid() == valid)

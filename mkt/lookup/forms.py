@@ -8,14 +8,22 @@ import amo
 
 
 STATUS_CHOICES = []
-for status in amo.MARKET_STATUSES:
+for status in amo.STATUS_CHOICES.keys():
+    if status in [amo.STATUS_BLOCKED, amo.STATUS_DELETED]:
+        # Blocked and deleted must happen in devhub.
+        continue
     STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
                            amo.STATUS_CHOICES[status]))
 
 FILE_STATUS_CHOICES = []
-for status in amo.MARKET_STATUSES:
+for status in amo.STATUS_CHOICES.keys():
+    if status in [amo.STATUS_BLOCKED, amo.STATUS_DELETED,
+                  amo.STATUS_UNPUBLISHED]:
+        # Blocked and deleted must happen in devhub.
+        # We don't use STATUS_UNPUBLISHED for files.
+        continue
     FILE_STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.MKT_STATUS_FILE_CHOICES[status]))
+                                amo.MKT_STATUS_FILE_CHOICES[status]))
 
 
 class NoAutoCompleteChoiceField(forms.ChoiceField):
@@ -55,10 +63,10 @@ class DeleteUserForm(happyforms.Form):
 
 
 class APIStatusForm(happyforms.Form):
-    status = NoAutoCompleteChoiceField(required=False,
-        choices=STATUS_CHOICES, label=_lazy(u'Status'))
+    status = NoAutoCompleteChoiceField(
+        required=False, choices=STATUS_CHOICES, label=_lazy(u'Status'))
 
 
 class APIFileStatusForm(happyforms.Form):
-    status = NoAutoCompleteChoiceField(required=False,
-        choices=FILE_STATUS_CHOICES, label=_lazy(u'Status'))
+    status = NoAutoCompleteChoiceField(
+        required=False, choices=FILE_STATUS_CHOICES, label=_lazy(u'Status'))
