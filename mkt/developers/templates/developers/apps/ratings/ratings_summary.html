@@ -26,22 +26,25 @@
           <th>{{ _('Descriptors') }}</th>
         </thead>
         <tbody>
-          {% set descriptors = addon.get_descriptors_full() %}
           {% for cr in addon.content_ratings.order_by('ratings_body') %}
-            {% set ratings_body = cr.get_body() %}
+            {% set body = cr.get_body() %}
             {% set rating = cr.get_rating() %}
             <tr>
-              <td class="name">{{ ratings_body.name }}</td>
-              <td class="regions">{{ ratings_body.description or '&mdash;'|safe }}</td>
-              <td class="content-rating">{% include "developers/includes/content_rating_icon.html" %}</td>
+              <td class="name">{{ body.name }}</td>
+              <td class="regions">{{ body.description or '&mdash;'|safe }}</td>
+              <td class="content-rating">
+                {% include "developers/includes/content_rating_icon.html" %}</td>
               <td class="content-descriptors">
                 {% set desc_icons = mkt.ratingsbodies.IARC_ICONS.descriptors %}
-                {% for descriptor in descriptors[ratings_body.label] %}
-                  {% set desc_icon = ratings_body.label in desc_icons and desc_icons[ratings_body.label][descriptor.label] %}
+                {% for descriptor in addon.rating_descriptors.to_keys_by_body(body.label) %}
+                  {% set desc_icon = body.label in desc_icons and desc_icons[body.label][descriptor] %}
                   {% if desc_icon %}
-                    <img src="{{ media(desc_icon) }}" class="icon" title="{{ descriptor.name }}">
+                    <img src="{{ media(desc_icon) }}" class="icon"
+                         title="{{ mkt.iarc_mappings.REVERSE_DESCS[descriptor] }}">
                   {% else %}
-                    <span class="dot-sep">{{ descriptor.name }}</span>
+                    <span class="dot-sep descriptor">
+                      {{ mkt.iarc_mappings.REVERSE_DESCS[descriptor] }}
+                    </span>
                   {% endif %}
                 {% else %}
                   &mdash;
@@ -52,21 +55,22 @@
         </tbody>
       </table>
 
-      {% set interactives = addon.get_interactives_full() %}
+      {% set interactives = addon.rating_interactives.to_keys() %}
       {% if interactives %}
         <h3>{{ _('Interactive Elements') }}</h3>
         <div class="interactive-elements c">
           <div class="names">
             {% for interactive in interactives %}
-              <span class="dot-sep">{{ interactive.name }}</span>
+              <span class="dot-sep interactive">
+                {{ mkt.iarc_mappings.REVERSE_INTERACTIVES[interactive] }}
+              </span>
             {% endfor %}
           </div>
           {% set inter_icons = mkt.ratingsbodies.IARC_ICONS.interactive_elements %}
           {% for interactive in interactives %}
-            {% set inter_icon = inter_icons[interactive.label] %}
-            {% if inter_icon %}
-              <img src="{{ media(inter_icon) }}"
-                   class="icon {{ interactive.label }}" title="{{ interactive.name }}">
+            {% if inter_icons[interactive] %}
+              <img src="{{ media(inter_icons[interactive]) }}" class="icon"
+                   title="{{ mkt.iarc_mappings.REVERSE_INTERACTIVES[interactive] }}">
             {% endif %}
           {% endfor %}
         </div>

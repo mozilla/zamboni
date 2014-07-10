@@ -174,25 +174,20 @@ class TestAppSerializer(amo.tests.TestCase):
 
         self.request.REGION = mkt.regions.US
         res = self.serialize(self.app)
+        self.assertSetEqual(res['content_ratings']['descriptors_text'],
+                            ['Blood', 'Crime'])
         self.assertSetEqual(res['content_ratings']['descriptors'],
-                            ['blood', 'crime'])
+                            ['has_esrb_blood', 'has_esrb_crime'])
 
     def test_interactive_elements(self):
         self.app.set_interactives(['has_digital_purchases', 'has_shares_info'])
         res = self.serialize(self.app)
-        self.assertSetEqual(
+        eq_(
+            res['content_ratings']['interactives_text'],
+            ['Digital Purchases', 'Shares Info'])
+        eq_(
             res['content_ratings']['interactives'],
-            ['shares-info', 'digital-purchases'])
-
-    def test_dehydrate_content_rating_old_es(self):
-        """Test dehydrate works with old ES mapping."""
-        rating = dehydrate_content_rating(
-            [json.dumps({'body': u'CLASSIND',
-                         'slug': u'0',
-                         'description': u'General Audiences',
-                         'name': u'0+',
-                         'body_slug': u'classind'})])
-        eq_(rating, {})
+            ['has_digital_purchases', 'has_shares_info'])
 
     def test_no_release_notes(self):
         res = self.serialize(self.app)
@@ -477,10 +472,13 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['content_ratings']['rating'], '18')
         self.assertSetEqual(
             res['content_ratings']['descriptors'],
-            ['violence', 'scary'])
+            ['has_generic_violence', 'has_generic_scary'])
         self.assertSetEqual(
-            res['content_ratings']['interactives'],
-            ['digital-purchases', 'shares-info'])
+            res['content_ratings']['descriptors_text'],
+            ['Violence', 'Fear'])
+        self.assertSetEqual(
+            res['content_ratings']['interactives_text'],
+            ['Digital Purchases', 'Shares Info'])
 
         self.request.REGION = mkt.regions.BR
         res = self.serialize()
@@ -488,7 +486,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         eq_(res['content_ratings']['rating'], '18')
         self.assertSetEqual(
             res['content_ratings']['descriptors'],
-            ['shocking'])
+            ['has_classind_shocking'])
 
     def test_show_downloads_count(self):
         """Show weekly_downloads in results if app stats are public."""

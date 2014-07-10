@@ -52,17 +52,9 @@ class DynamicBoolFieldsTestMixin():
         self._flag()
         self._check()
 
-    def test_bools_unset(self):
-        eq_(self._get_related_bool_obj().to_list(), [])
-
     def test_to_dict(self):
         self._flag()
         self._check(self._get_related_bool_obj().to_dict())
-
-    def test_to_list(self):
-        self._flag()
-        to_list = self._get_related_bool_obj().to_list()
-        self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
     def test_default_false(self):
         obj = self.model(addon=self.app)

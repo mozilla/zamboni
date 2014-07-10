@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import defaultdict
-
 import commonware.log
 
 from amo.utils import find_language
@@ -63,36 +61,6 @@ def dehydrate_content_ratings(content_ratings):
         # Dehydrate all content ratings.
         content_ratings[body] = dehydrate_content_rating(content_ratings[body])
     return content_ratings
-
-
-def dehydrate_descriptors(keys, body=None):
-    """
-    List of keys to lists of descriptor slugs by body.
-
-    ['ESRB_BLOOD, ...] to {'esrb': ['blood'], ...}.
-    """
-    results = defaultdict(list)
-    for key in keys:
-        obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
-        if obj:
-            # Slugify and remove body prefix.
-            body, label = key.lower().replace('_', '-').split('-', 1)
-            results[body].append(label)
-    return dict(results)
-
-
-def dehydrate_interactives(keys):
-    """
-    List of keys to list of interactive slugs.
-
-    ['SOCIAL_NETWORKING', ...] to ['social-networking', ...].
-    """
-    results = []
-    for key in keys:
-        obj = mkt.ratinginteractives.RATING_INTERACTIVES.get(key)
-        if obj:
-            results.append(key.lower().replace('_', '-'))
-    return results
 
 
 def iarc_get_app_info(app):

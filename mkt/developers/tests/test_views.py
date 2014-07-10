@@ -1271,18 +1271,26 @@ class TestContentRatings(amo.tests.TestCase):
 
     def test_summary(self):
         rbs = mkt.ratingsbodies
-        ratings = [rbs.CLASSIND_L, rbs.GENERIC_3, rbs.USK_18, rbs.ESRB_M,
-                   rbs.PEGI_12]
-        for rating in ratings:
-            ContentRating.objects.create(
-                addon=self.app, ratings_body=rating.ratingsbody.id,
-                rating=rating.id)
+        ratings = {
+            rbs.CLASSIND: rbs.CLASSIND_L,
+            rbs.GENERIC: rbs.GENERIC_3,
+            rbs.USK: rbs.USK_18,
+            rbs.ESRB: rbs.ESRB_M,
+            rbs.PEGI: rbs.PEGI_12
+        }
+        self.app.set_content_ratings(ratings)
+        self.app.set_descriptors(['has_classind_sex', 'has_pegi_lang'])
+        self.app.set_interactives(['has_users_interact'])
 
         r = content_ratings(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
 
-        for i, name in enumerate(doc('.name')):
-            eq_(name.text, ratings[i].ratingsbody.name)
+        self.assertSetEqual([name.text for name in doc('.name')],
+                            [body.name for body in ratings])
+        self.assertSetEqual([name.text.strip() for name in doc('.descriptor')],
+                            ['Sexo'])
+        self.assertSetEqual([name.text.strip() for name in doc('.interactive')],
+                            ['Users Interact'])
 
     def test_edit_iarc_app_form(self):
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)

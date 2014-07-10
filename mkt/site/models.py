@@ -9,10 +9,3 @@ class DynamicBoolFieldsMixin(object):
 
     def to_keys(self):
         return [k for k, v in self.to_dict().iteritems() if v]
-
-    def to_list(self):
-        keys = self.to_keys()
-        # Strip `has_` from each feature.
-        field_names = [self.field_source[key[4:].upper()]['name']
-                       for key in keys]
-        return sorted(field_names)
