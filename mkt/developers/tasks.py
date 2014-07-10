@@ -445,7 +445,7 @@ def fetch_manifest(url, upload_pk=None, **kw):
     if content is None:
         return
 
-    upload.add_file([content], url, len(content), is_webapp=True)
+    upload.add_file([content], url, len(content))
     # Send the upload to the validator.
     validator(upload.pk, url=url)
 

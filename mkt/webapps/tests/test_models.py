@@ -2387,8 +2387,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        upload = self.get_upload(abspath=self.manifest('mozball.webapp'),
-                                 is_webapp=True)
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
@@ -2405,8 +2404,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
-        upload = self.get_upload(abspath=self.manifest('mozball.webapp'),
-                                 is_webapp=True)
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         app = Addon.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
@@ -2416,7 +2414,6 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
     def test_manifest_url(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         addon = Addon.from_upload(upload, [self.platform])
-        assert addon.is_webapp()
         eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):

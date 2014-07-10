@@ -18,7 +18,7 @@ log = commonware.log.getLogger('z.addons')
 
 def clean_slug(slug, instance):
     slug_validator(slug, lower=False)
-    slug_field = 'app_slug' if instance.is_webapp() else 'slug'
+    slug_field = 'app_slug'
 
     if slug != getattr(instance, slug_field):
         if Addon.objects.filter(**{slug_field: slug}).exists():

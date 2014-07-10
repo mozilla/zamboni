@@ -56,42 +56,41 @@ def no_results():
 @register.function
 def market_button(context, product, receipt_type=None, classes=None):
     request = context['request']
-    if product.is_webapp():
-        purchased = False
-        classes = (classes or []) + ['button', 'product']
-        reviewer = receipt_type == 'reviewer'
-        data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
-                      'is_packaged': json.dumps(product.is_packaged)}
+    purchased = False
+    classes = (classes or []) + ['button', 'product']
+    reviewer = receipt_type == 'reviewer'
+    data_attrs = {'manifest_url': product.get_manifest_url(reviewer),
+                  'is_packaged': json.dumps(product.is_packaged)}
 
-        installed = None
+    installed = None
 
-        if request.amo_user:
-            installed_set = request.amo_user.installed_set
-            installed = installed_set.filter(addon=product).exists()
+    if request.amo_user:
+        installed_set = request.amo_user.installed_set
+        installed = installed_set.filter(addon=product).exists()
 
-        # Handle premium apps.
-        if product.has_premium():
-            # User has purchased app.
-            purchased = (request.amo_user and
-                         product.pk in request.amo_user.purchase_ids())
+    # Handle premium apps.
+    if product.has_premium():
+        # User has purchased app.
+        purchased = (request.amo_user and
+                     product.pk in request.amo_user.purchase_ids())
 
-            # App authors are able to install their apps free of charge.
-            if (not purchased and
-                    request.check_ownership(product, require_author=True)):
-                purchased = True
+        # App authors are able to install their apps free of charge.
+        if (not purchased and
+                request.check_ownership(product, require_author=True)):
+            purchased = True
 
-        if installed or purchased or not product.has_premium():
-            label = _('Install')
-        else:
-            label = product.get_tier_name()
+    if installed or purchased or not product.has_premium():
+        label = _('Install')
+    else:
+        label = product.get_tier_name()
 
-        # Free apps and purchased apps get active install buttons.
-        if not product.is_premium() or purchased:
-            classes.append('install')
+    # Free apps and purchased apps get active install buttons.
+    if not product.is_premium() or purchased:
+        classes.append('install')
 
-        c = dict(product=product, label=label, purchased=purchased,
-                 data_attrs=data_attrs, classes=' '.join(classes))
-        t = env.get_template('site/helpers/webapp_button.html')
+    c = dict(product=product, label=label, purchased=purchased,
+             data_attrs=data_attrs, classes=' '.join(classes))
+    t = env.get_template('site/helpers/webapp_button.html')
     return jinja2.Markup(t.render(c))
 
 

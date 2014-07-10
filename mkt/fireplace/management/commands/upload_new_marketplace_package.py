@@ -36,7 +36,7 @@ class Command(BaseCommand):
         upload = FileUpload()
         upload.user = addon.authors.all()[0]
         upload.add_file(package_file.read(), 'marketplace-package.zip',
-                        package_size, is_webapp=True)
+                        package_size)
         self.info('Created FileUpload %s.' % upload)
         return upload
 

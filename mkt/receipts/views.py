@@ -60,8 +60,7 @@ def _record(request, addon):
         is_dev = request.check_ownership(addon, require_owner=False,
                                          ignore_disabled=True, admin=False)
         is_reviewer = acl.check_reviewer(request)
-        if (not addon.is_webapp() or not addon.is_public() and
-            not (is_reviewer or is_dev)):
+        if (not addon.is_public() and not (is_reviewer or is_dev)):
             raise http.Http404
 
         if (premium and
@@ -90,7 +89,7 @@ def _record(request, addon):
 
         ctx.update(receipt=receipt, error=error)
     else:
-        if not addon.is_public() or not addon.is_webapp():
+        if not addon.is_public():
             raise http.Http404
 
     amo.log(amo.LOG.INSTALL_ADDON, addon)
