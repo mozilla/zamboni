@@ -99,7 +99,7 @@ def process_iarc_changes(date=None):
 
             # Flag for rereview if it changed to adult.
             ratings_body = row.get('rating_system')
-            rating = RATINGS[ratings_body].get(row['new_rating'])
+            rating = RATINGS[ratings_body.id].get(row['new_rating'])
             _flag_rereview_adult(app, ratings_body, rating)
 
             # Log change reason.
