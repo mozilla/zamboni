@@ -86,8 +86,8 @@
           <dt>{{ _('Ratings') }}</dt>
           <dd class="content-ratings">
             {% for content_rating in product.content_ratings.order_by('ratings_body') %}
-              {% set ratings_body = content_rating.get_body() %}
-+             {% set rating = content_rating.get_rating() %}
+              {% set body = content_rating.get_body() %}
+              {% set rating = content_rating.get_rating() %}
               {% include "developers/includes/content_rating_icon.html" %}
             {% else %}
               <strong>{{ _('This app has not yet been rated') }}</strong>

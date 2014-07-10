@@ -37,10 +37,10 @@ from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
-from lib.iarc.utils import (DESC_MAPPING, INTERACTIVES_MAPPING,
-                            REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
 from lib.utils import static_url
 from mkt.constants import apps, MANIFEST_CONTENT_TYPE
+from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
+                                         REVERSE_INTERACTIVES)
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.files.models import File, Platform
@@ -1295,7 +1295,7 @@ class TestWebappContentRatings(amo.tests.TestCase):
 
         # Create.
         app.set_interactives([
-            'has_shares_info', 'has_digital_PurChaSes', 'has_UWOTM8'
+            'has_shares_info', 'has_digital_purchases', 'has_UWOTM8'
         ])
         eq_(RatingInteractives.objects.count(), 1)
         app_interactives = RatingInteractives.objects.get(addon=app)
@@ -1413,38 +1413,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
         eq_(data['security_code'], 'abc')
         eq_(data['title'], 'LOL')
         eq_(data['release_date'], '')
-
-    def test_get_descriptors_slugs(self):
-        app = app_factory()
-        eq_(app.get_descriptors_slugs(), [])
-
-        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        self.assertSetEqual(
-            app.get_descriptors_slugs(), ['ESRB_BLOOD', 'PEGI_SCARY'])
-
-    def test_get_descriptors_dehydrated(self):
-        app = app_factory()
-        eq_(app.get_descriptors_dehydrated(), {})
-
-        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        eq_(dict(app.get_descriptors_dehydrated()),
-            {'esrb': ['blood'], 'pegi': ['scary']})
-
-    def test_get_interactives_slugs(self):
-        app = app_factory()
-        eq_(app.get_interactives_slugs(), [])
-
-        app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-        self.assertSetEqual(app.get_interactives_slugs(),
-                            ['DIGITAL_PURCHASES', 'SHARES_INFO'])
-
-    def test_get_interactives_dehydrated(self):
-        app = app_factory()
-        eq_(app.get_interactives_dehydrated(), [])
-
-        app.set_interactives(['has_digital_purchases', 'has_shares_info'])
-        eq_(app.get_interactives_dehydrated(), ['shares-info',
-                                                'digital-purchases'])
 
     @override_settings(SECRET_KEY='test')
     def test_iarc_token(self):
@@ -2295,37 +2263,21 @@ class TestAppFeatures(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         eq_(getattr(obj, 'has_%s' % self.flags[0].lower()), False)
 
 
-class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
+class TestRatingDescriptors(amo.tests.TestCase):
 
     def setUp(self):
         super(TestRatingDescriptors, self).setUp()
-        self.model = RatingDescriptors
-        self.related_name = 'rating_descriptors'
-
-        self.BOOL_DICT = mkt.ratingdescriptors.RATING_DESCS
-        self.flags = ('ESRB_VIOLENCE', 'PEGI_LANG', 'CLASSIND_DRUGS')
-        self.expected = [u'Violence', u'Language', u'Drugs']
-
-        RatingDescriptors.objects.create(addon=self.app)
-
-    @mock.patch.dict('mkt.ratingdescriptors.RATING_DESCS',
-                     PEGI_LANG={'name': _(u'H\xe9llo')})
-    def test_to_list_nonascii(self):
-        self.expected[1] = u'H\xe9llo'
-        self._flag()
-        to_list = self.app.rating_descriptors.to_list()
-        self.assertSetEqual(self.to_unicode(to_list), self.expected)
 
     def test_desc_mapping(self):
         descs = RatingDescriptors.objects.create(addon=app_factory())
-        for body, mapping in DESC_MAPPING.items():
+        for body, mapping in DESCS.items():
             for native, rating_desc_field in mapping.items():
                 assert hasattr(descs, rating_desc_field), rating_desc_field
 
     def test_reverse_desc_mapping(self):
         descs = RatingDescriptors.objects.create(addon=app_factory())
         for desc in descs._fields():
-            eq_(type(REVERSE_DESC_MAPPING.get(desc)), unicode, desc)
+            eq_(type(REVERSE_DESCS.get(desc)), unicode, desc)
 
     def test_iarc_deserialize(self):
         descs = RatingDescriptors.objects.create(
@@ -2335,29 +2287,20 @@ class TestRatingDescriptors(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
         eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), 'Blood')
 
 
-class TestRatingInteractives(DynamicBoolFieldsTestMixin, amo.tests.TestCase):
+class TestRatingInteractives(amo.tests.TestCase):
 
     def setUp(self):
         super(TestRatingInteractives, self).setUp()
-        self.model = RatingInteractives
-        self.related_name = 'rating_interactives'
-
-        self.BOOL_DICT = mkt.ratinginteractives.RATING_INTERACTIVES
-        self.flags = ('SHARES_INFO', 'DIGITAL_PURCHASES', 'USERS_INTERACT')
-        self.expected = [u'Shares Info', u'Digital Purchases',
-                         u'Users Interact']
-
-        RatingInteractives.objects.create(addon=self.app)
 
     def test_interactives_mapping(self):
         interactives = RatingInteractives.objects.create(addon=app_factory())
-        for native, field in INTERACTIVES_MAPPING.items():
+        for native, field in INTERACTIVES.items():
             assert hasattr(interactives, field)
 
     def test_reverse_interactives_mapping(self):
         interactives = RatingInteractives.objects.create(addon=app_factory())
         for interactive_field in interactives._fields():
-            assert REVERSE_INTERACTIVES_MAPPING.get(interactive_field)
+            assert REVERSE_INTERACTIVES.get(interactive_field)
 
     def test_iarc_deserialize(self):
         interactives = RatingInteractives.objects.create(

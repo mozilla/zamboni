@@ -59,8 +59,10 @@ App
             "content_ratings": {
                 "body": "esrb",
                 "rating": "13",
-                "descriptors": ["scary"],
-                "interactives": ["users-interact', "shares-location"]
+                "descriptors_text": ["Frightening Content", "Crime"],
+                "descriptors": ["has_esrb_scary", "has_esrb_crime"],
+                "interactives_text": ["Users Interact", "Shares Location"]
+                "interactives": ["has_users_interact", "has_shares_location"]
             },
             "created": "2013-09-17T13:19:16",
             "current_version": "1.1",
@@ -171,13 +173,19 @@ App
     :type content_ratings.body: string
     :param content_ratings.rating: The content rating (usually an age).
     :type content_ratings.ratings: string
-    :param content_ratings.descriptors: IARC content descriptors, flags about
+    :param content_ratings.descriptors_text: IARC content descriptors, flags about
         the app that might affect its suitability for younger-aged users.
+    :type content_ratings.descriptors_text: array
+    :param content_ratings.descriptors: IARC content descriptors in
+        normalized slug form.
     :type content_ratings.descriptors: array
-    :param content_ratings.interactives: IARC interactive elements,
+    :param content_ratings.interactives_text: IARC interactive elements,
         aspects about the app relating to whether the app shares info or
         interacts with external elements.
-    :type content_ratings.interactive_elements: array
+    :type content_ratings.interactives_text: array
+    :param content_ratings.interactives: IARC interactive elements in
+        normalized slug form
+    :type content_ratings.interactives: array
     :param created: The date the app was added to the Marketplace, in ISO 8601
         format.
     :type created: string

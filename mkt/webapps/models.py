@@ -8,7 +8,6 @@ import re
 import time
 import urlparse
 import uuid
-from collections import defaultdict
 
 from django.conf import settings
 from django.core.cache import cache
@@ -42,11 +41,10 @@ from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
-from lib.iarc.utils import (get_iarc_app_title, render_xml,
-                            REVERSE_DESC_MAPPING, REVERSE_INTERACTIVES_MAPPING)
+from lib.iarc.utils import get_iarc_app_title, render_xml
 from lib.utils import static_url
 from mkt.access import acl
-from mkt.constants import APP_FEATURES, apps
+from mkt.constants import APP_FEATURES, apps, iarc_mappings
 from mkt.files.models import File, nfd_str, Platform
 from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
@@ -60,8 +58,7 @@ from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import query, signals
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
-                               dehydrate_interactives, get_locale_properties,
+from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
                                get_supported_locales)
 
 
@@ -2454,88 +2451,6 @@ class Webapp(Addon):
 
         return content_ratings
 
-    def get_descriptors_slugs(self):
-        """
-        Return list of content descriptor slugs (e.g., ['has_esrb_drugs'...]).
-        """
-        try:
-            app_descriptors = self.rating_descriptors
-        except RatingDescriptors.DoesNotExist:
-            return []
-
-        descriptors = []
-        for key in mkt.ratingdescriptors.RATING_DESCS.keys():
-            field = 'has_%s' % key.lower()  # Build the field name.
-            if getattr(app_descriptors, field):
-                descriptors.append(key)
-
-        return descriptors
-
-    def get_interactives_slugs(self):
-        """
-        Return list of interactive element slugs (e.g., ['shares_info'...]).
-        """
-        try:
-            app_interactives = self.rating_interactives
-        except RatingInteractives.DoesNotExist:
-            return []
-
-        interactives = []
-        for key in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
-            field = 'has_%s' % key.lower()
-            if getattr(app_interactives, field):
-                interactives.append(key)
-
-        return interactives
-
-    def get_descriptors_dehydrated(self):
-        """
-        Return lists of descriptors slugs by body
-        (e.g., {'esrb': ['real-gambling'], 'pegi': ['scary']}).
-        """
-        return dehydrate_descriptors(self.get_descriptors_slugs())
-
-    def get_interactives_dehydrated(self):
-        """
-        Return lists of interactive element slugs
-        (e.g., ['shares-info', 'shares-location']).
-        """
-        return dehydrate_interactives(self.get_interactives_slugs())
-
-    def get_descriptors_full(self):
-        """
-        Return descriptor objects (label, name) by body.
-        (e.g., {'esrb': {'label': 'blood', 'name': 'Blood'}}).
-        """
-        keys = self.get_descriptors_slugs()
-        results = defaultdict(list)
-        for key in keys:
-            obj = mkt.ratingdescriptors.RATING_DESCS.get(key)
-            if obj:
-                # Slugify and remove body prefix.
-                body, label = key.lower().replace('_', '-').split('-', 1)
-                results[body].append({
-                    'label': label,
-                    'name': unicode(obj['name']),
-                })
-        return dict(results)
-
-    def get_interactives_full(self):
-        """
-        Return list of interactive element objects (label, name).
-        e.g., [{'label': 'social-networking', 'name': 'Facebocks'}, ...].
-        """
-        keys = self.get_interactives_slugs()
-        results = []
-        for key in keys:
-            obj = mkt.ratinginteractives.RATING_INTERACTIVES.get(key)
-            if obj:
-                results.append({
-                    'label': key.lower().replace('_', '-'),
-                    'name': unicode(obj['name']),
-                })
-        return results
-
     def set_iarc_info(self, submission_id, security_code):
         """
         Sets the iarc_info for this app.
@@ -2609,19 +2524,12 @@ class Webapp(Addon):
         """
         Sets IARC rating descriptors on this app.
 
-        This overwrites or creates elements, it doesn't delete and expects data
-        of the form:
-
-            [<has_descriptor_1>, <has_descriptor_6>]
-
+        data -- list of database flags ('has_usk_lang')
         """
-        log.info('IARC setting descriptors for app:%s:%s' %
-                 (self.id, self.app_slug))
-
         create_kwargs = {}
-        for desc in mkt.ratingdescriptors.RATING_DESCS.keys():
-            has_desc_attr = 'has_%s' % desc.lower()
-            create_kwargs[has_desc_attr] = has_desc_attr in data
+        for body in mkt.iarc_mappings.DESCS:
+            for desc, db_flag in mkt.iarc_mappings.DESCS[body].items():
+                create_kwargs[db_flag] = db_flag in data
 
         rd, created = RatingDescriptors.objects.get_or_create(
             addon=self, defaults=create_kwargs)
@@ -2629,33 +2537,21 @@ class Webapp(Addon):
             rd.update(modified=datetime.datetime.now(),
                       **create_kwargs)
 
-        log.info('IARC descriptors set for app:%s:%s' %
-                 (self.id, self.app_slug))
-
     @write
     def set_interactives(self, data):
         """
         Sets IARC interactive elements on this app.
 
-        This overwrites or creates elements, it doesn't delete and expects data
-        of the form:
-
-            [<has_interactive_1>, <has_interactive name 2>]
-
+        data -- list of database flags ('has_users_interact')
         """
         create_kwargs = {}
-        for interactive in mkt.ratinginteractives.RATING_INTERACTIVES.keys():
-            interactive = 'has_%s' % interactive.lower()
-            create_kwargs[interactive] = interactive in map(
-                lambda x: x.lower(), data)
+        for interactive, db_flag in mkt.iarc_mappings.INTERACTIVES.items():
+            create_kwargs[db_flag] = db_flag in data
 
         ri, created = RatingInteractives.objects.get_or_create(
             addon=self, defaults=create_kwargs)
         if not created:
             ri.update(**create_kwargs)
-
-        log.info('IARC interactive elements set for app:%s:%s' %
-                 (self.id, self.app_slug))
 
     def set_iarc_storefront_data(self, disable=False):
         """Send app data to IARC for them to verify."""
@@ -3018,7 +2914,6 @@ class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
     stating if an app is rated with a particular descriptor.
     """
     addon = models.OneToOneField(Addon, related_name='rating_descriptors')
-    field_source = mkt.ratingdescriptors.RATING_DESCS
 
     class Meta:
         db_table = 'webapps_rating_descriptors'
@@ -3026,17 +2921,22 @@ class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.addon.name)
 
+    def to_keys_by_body(self, body):
+        return [key for key in self.to_keys() if
+                key.startswith('has_%s' % body)]
+
     def iarc_deserialize(self, body=None):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
         keys = self.to_keys()
         if body:
             keys = [key for key in keys if body.iarc_name.lower() in key]
-        return ', '.join(REVERSE_DESC_MAPPING.get(desc) for desc in keys)
+        return ', '.join(iarc_mappings.REVERSE_DESCS.get(desc) for desc
+                         in keys)
 
 # Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
-for k, v in mkt.ratingdescriptors.RATING_DESCS.iteritems():
-    field = models.BooleanField(default=False, help_text=v['name'])
-    field.contribute_to_class(RatingDescriptors, 'has_%s' % k.lower())
+for db_flag, desc in mkt.iarc_mappings.REVERSE_DESCS.items():
+    field = models.BooleanField(default=False, help_text=desc)
+    field.contribute_to_class(RatingDescriptors, db_flag)
 
 
 # The RatingInteractives table is created with dynamic fields based on
@@ -3047,7 +2947,6 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
     stating if an app features a particular interactive element.
     """
     addon = models.OneToOneField(Addon, related_name='rating_interactives')
-    field_source = mkt.ratinginteractives.RATING_INTERACTIVES
 
     class Meta:
         db_table = 'webapps_rating_interactives'
@@ -3057,14 +2956,14 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
 
     def iarc_deserialize(self):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
-        return ', '.join(REVERSE_INTERACTIVES_MAPPING.get(inter)
+        return ', '.join(iarc_mappings.REVERSE_INTERACTIVES.get(inter)
                          for inter in self.to_keys())
 
 
 # Add a dynamic field to `RatingInteractives` model for each rating descriptor.
-for k, v in mkt.ratinginteractives.RATING_INTERACTIVES.iteritems():
-    field = models.BooleanField(default=False, help_text=v['name'])
-    field.contribute_to_class(RatingInteractives, 'has_%s' % k.lower())
+for interactive, db_flag in mkt.iarc_mappings.INTERACTIVES.items():
+    field = models.BooleanField(default=False, help_text=interactive)
+    field.contribute_to_class(RatingInteractives, db_flag)
 
 
 def iarc_cleanup(*args, **kwargs):
@@ -3137,6 +3036,13 @@ class AppFeatures(amo.models.ModelBase, DynamicBoolFieldsMixin):
                           for f in self._fields())
         return '%x.%s.%s' % (int(profile, 2), len(profile),
                              settings.APP_FEATURES_VERSION)
+
+    def to_list(self):
+        keys = self.to_keys()
+        # Strip `has_` from each feature.
+        field_names = [self.field_source[key[4:].upper()]['name']
+                       for key in keys]
+        return sorted(field_names)
 
 
 # Add a dynamic field to `AppFeatures` model for each buchet feature.

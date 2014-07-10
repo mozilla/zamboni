@@ -14,8 +14,7 @@ from mkt.submit.serializers import SimplePreviewSerializer
 from mkt.versions.models import Version
 from mkt.webapps.models import Category, Geodata, Preview, Webapp
 from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
-from mkt.webapps.utils import (dehydrate_content_rating, dehydrate_descriptors,
-                               dehydrate_interactives)
+from mkt.webapps.utils import dehydrate_content_rating
 
 
 class ESAppSerializer(AppSerializer):
@@ -142,16 +141,22 @@ class ESAppSerializer(AppSerializer):
     def get_content_ratings(self, obj):
         body = (mkt.regions.REGION_TO_RATINGS_BODY().get(
             self.context['request'].REGION.slug, 'generic'))
+        prefix = 'has_%s' % body
         return {
             'body': body,
             'rating': dehydrate_content_rating(
                 (obj.es_data.get('content_ratings') or {})
                 .get(body)) or None,
-            'descriptors': dehydrate_descriptors(
-                obj.es_data.get('content_descriptors', {})
-            ).get(body, []),
-            'interactives': dehydrate_interactives(
-                obj.es_data.get('interactive_elements', [])),
+            'descriptors': [key for key in
+                            obj.es_data.get('content_descriptors', {})
+                            if prefix in key],
+            'descriptors_text': [mkt.iarc_mappings.REVERSE_DESCS[key] for key
+                                 in obj.es_data.get('content_descriptors')
+                                 if prefix in key],
+            'interactives': obj.es_data.get('interactive_elements', []),
+            'interactives_text': [mkt.iarc_mappings.REVERSE_INTERACTIVES[key]
+                                  for key in
+                                  obj.es_data.get('interactive_elements')]
         }
 
     def get_versions(self, obj):

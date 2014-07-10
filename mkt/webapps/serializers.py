@@ -142,11 +142,24 @@ class AppSerializer(serializers.ModelSerializer):
     def get_content_ratings(self, app):
         body = mkt.regions.REGION_TO_RATINGS_BODY().get(
             self._get_region_slug(), 'generic')
+
         return {
             'body': body,
             'rating': app.get_content_ratings_by_body().get(body, None),
-            'descriptors': app.get_descriptors_dehydrated().get(body, []),
-            'interactives': app.get_interactives_dehydrated(),
+            'descriptors': (
+                app.rating_descriptors.to_keys_by_body(body)
+                if hasattr(app, 'rating_descriptors') else []),
+            'descriptors_text': (
+                [mkt.iarc_mappings.REVERSE_DESCS[key] for key in
+                 app.rating_descriptors.to_keys_by_body(body)]
+                if hasattr(app, 'rating_descriptors') else []),
+            'interactives': (
+                app.rating_interactives.to_keys()
+                if hasattr(app, 'rating_interactives') else []),
+            'interactives_text': (
+                [mkt.iarc_mappings.REVERSE_INTERACTIVES[key] for key in
+                 app.rating_interactives.to_keys()]
+                if hasattr(app, 'rating_interactives') else []),
         }
 
     def get_icons(self, app):
