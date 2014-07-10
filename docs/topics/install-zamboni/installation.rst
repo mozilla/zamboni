@@ -205,13 +205,9 @@ Chances are that for development, you'll want an admin account.
 After logging in, find your user record::
 
     ./manage.py dbshell
-    mysql> select * from auth_user order by date_joined desc limit 1\G
+    mysql> select id, email from users order by -created limit 1;
 
-Then make yourself a superuser like this::
-
-    mysql> update auth_user set is_superuser=1, is_staff=1 where id=<id from above>;
-
-Additionally, add yourself to the admin group::
+Then add yourself to the admin group::
 
     mysql> insert into groups_users (group_id, user_id) values (1, <id from above>);
 
