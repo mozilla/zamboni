@@ -8,7 +8,7 @@ from mkt.users.models import UserProfile
 
 class Command(BaseCommand):
     help = ('Remove a user from a group. Syntax: \n'
-            '    ./manage.py removeuserfromgroup <userid> <groupid>')
+            '    ./manage.py removeuserfromgroup <user_id|email> <group_id>')
 
     log = commonware.log.getLogger('z.users')
 

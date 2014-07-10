@@ -9,7 +9,7 @@ from mkt.users.models import UserProfile
 
 class Command(BaseCommand):
     help = ('Add a new user to a group. Syntax: \n'
-            '    ./manage.py addusertogroup <userid> <groupid>')
+            '    ./manage.py addusertogroup <user_id|email> <group_id>')
 
     log = commonware.log.getLogger('z.users')
 
