@@ -80,7 +80,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
                             'addons', 'mozball.webapp')
-        upload = self.get_upload(abspath=path, is_webapp=True)
+        upload = self.get_upload(abspath=path)
         platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
         version = Version.from_upload(upload, addon, [platform])
         eq_(version.version, '42.0')
@@ -99,7 +99,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
                             'addons', 'mozball.webapp')
-        upload = self.get_upload(abspath=path, is_webapp=True)
+        upload = self.get_upload(abspath=path)
         platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
         version = Version.from_upload(upload, addon, [platform])
         eq_(version.version, '42.1')

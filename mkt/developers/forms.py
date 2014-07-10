@@ -498,7 +498,7 @@ class NewPackagedAppForm(happyforms.Form):
 
         # Everything passed validation.
         self.file_upload = FileUpload.from_post(
-            upload, upload.name, upload.size, is_webapp=True)
+            upload, upload.name, upload.size)
         self.file_upload.user = self.user
         self.file_upload.save()
 
@@ -514,8 +514,7 @@ class NewPackagedAppForm(happyforms.Form):
         }
 
         self.file_upload = FileUpload.objects.create(
-                is_webapp=True, user=self.user,
-                name=getattr(upload, 'name', ''),
+                user=self.user, name=getattr(upload, 'name', ''),
                 validation=json.dumps(validation))
 
         # Return a ValidationError to be raised by the view.
@@ -560,10 +559,9 @@ class AppFormBasic(AddonFormBase):
         fields = ('slug', 'manifest_url', 'description')
 
     def __init__(self, *args, **kw):
-        # Force the form to use app_slug if this is a webapp. We want to keep
+        # Force the form to use app_slug. We want to keep
         # this under "slug" so all the js continues to work.
-        if kw['instance'].is_webapp():
-            kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
+        kw.setdefault('initial', {})['slug'] = kw['instance'].app_slug
 
         super(AppFormBasic, self).__init__(*args, **kw)
 

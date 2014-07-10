@@ -166,7 +166,6 @@ class TestValidator(amo.tests.TestCase):
     @mock.patch('mkt.developers.tasks.validate_app')
     @mock.patch('mkt.developers.tasks.storage.open')
     def test_validate_manifest(self, _open, _mock):
-        self.get_upload().update(is_webapp=True)
         _open.return_value = StringIO('')
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
@@ -175,7 +174,6 @@ class TestValidator(amo.tests.TestCase):
     @mock.patch('mkt.developers.tasks.validate_packaged_app')
     @mock.patch('zipfile.is_zipfile')
     def test_validate_packaged_app(self, _zipfile, _mock):
-        self.get_upload().update(is_webapp=True)
         _zipfile.return_value = True
         _mock.return_value = '{"errors": 0}'
         tasks.validator(self.upload.pk)
@@ -286,7 +284,6 @@ class TestFetchManifest(amo.tests.TestCase):
         tasks.fetch_manifest('http://xx.com/manifest.json', self.upload.pk)
         upload = FileUpload.objects.get(pk=self.upload.pk)
         eq_(upload.name, 'http://xx.com/manifest.json')
-        eq_(upload.is_webapp, True)
         eq_(storage.open(upload.path).read(), 'woo')
 
     @mock.patch('mkt.developers.tasks.validator')

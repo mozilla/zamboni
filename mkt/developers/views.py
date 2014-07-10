@@ -727,7 +727,6 @@ def json_upload_detail(request, upload, addon=None):
 def upload_validation_context(request, upload, addon=None, url=None):
     if not settings.VALIDATE_ADDONS:
         upload.task_error = ''
-        upload.is_webapp = True
         upload.validation = json.dumps({'errors': 0, 'messages': [],
                                         'metadata': {}, 'notices': 0,
                                         'warnings': 0})

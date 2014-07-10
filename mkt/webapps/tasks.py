@@ -193,8 +193,7 @@ def _update_manifest(id, check_hash, failed_fetches):
 
     # Validate the new manifest.
     upload = FileUpload.objects.create()
-    upload.add_file([content], webapp.manifest_url, len(content),
-                    is_webapp=True)
+    upload.add_file([content], webapp.manifest_url, len(content))
 
     validator(upload.pk)
 

@@ -30,30 +30,24 @@
             {{ _('None') }}
           {% endif %}
         </dd>
-        {% if app.is_webapp() %}
-          <dt>{{ _('Manifest') }}</dt>
-          <dd>
-              {% set manifest = app.get_manifest_url() %}
-              <a target="_blank" href="{{ manifest }}">{{ manifest }}</a>
-              <a href="#" id="view-manifest" data-manifest="{{ manifest }}"
-                 data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
-                <b>{{ _('View') }}</b></a>
-          </dd>
-        {% endif %}
+        <dt>{{ _('Manifest') }}</dt>
+        <dd>
+            {% set manifest = app.get_manifest_url() %}
+            <a target="_blank" href="{{ manifest }}">{{ manifest }}</a>
+            <a href="#" id="view-manifest" data-manifest="{{ manifest }}"
+               data-url="{{ url('reviewers.apps.review.manifest', app.app_slug) }}">
+              <b>{{ _('View') }}</b></a>
+        </dd>
         <dt>{{ _('Type') }}</dt>
         <dd>
-          {% if app.is_webapp() %}
-            {% if app.is_packaged %}
-              {% if app.latest_version.is_privileged %}
-                {{ _('Privileged Packaged app') }};
-              {% else %}
-                {{ _('Packaged app') }};
-              {% endif %}
+          {% if app.is_packaged %}
+            {% if app.latest_version.is_privileged %}
+              {{ _('Privileged Packaged app') }};
             {% else %}
-              {{ _('Hosted app') }};
+              {{ _('Packaged app') }};
             {% endif %}
           {% else %}
-            {{ amo.ADDON_TYPE[app.type] }};
+            {{ _('Hosted app') }};
           {% endif %}
           {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
           {% if price %}
