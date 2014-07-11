@@ -231,7 +231,9 @@ class WebappIndexer(BaseIndexer):
     @classmethod
     def extract_document(cls, pk, obj=None):
         """Extracts the ElasticSearch index document for this instance."""
-        from mkt.webapps.models import AppFeatures, Geodata, Installed, Webapp
+        from mkt.webapps.models import (AppFeatures, Geodata, Installed,
+                                        RatingDescriptors, RatingInteractives,
+                                        Webapp)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
@@ -267,7 +269,10 @@ class WebappIndexer(BaseIndexer):
             d['collection'] = []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
-        d['content_descriptors'] = obj.get_descriptors_slugs()
+        try:
+            d['content_descriptors'] = obj.rating_descriptors.to_keys()
+        except RatingDescriptors.DoesNotExist:
+            d['content_descriptors'] = []
         d['current_version'] = version.version if version else None
         d['default_locale'] = obj.default_locale
         d['description'] = list(
@@ -276,7 +281,10 @@ class WebappIndexer(BaseIndexer):
         d['features'] = features
         d['has_public_stats'] = obj.public_stats
         d['icon_hash'] = obj.icon_hash
-        d['interactive_elements'] = obj.get_interactives_slugs()
+        try:
+            d['interactive_elements'] = obj.rating_interactives.to_keys()
+        except RatingInteractives.DoesNotExist:
+            d['interactive_elements'] = []
         d['is_escalated'] = is_escalated
         d['is_offline'] = getattr(obj, 'is_offline', False)
         if latest_version:

@@ -433,34 +433,32 @@ IARC_ICONS = {
         }
     },
     'descriptors': {
-        # The keys are descriptors' keys lower-cased and 's/_/-/g'.
         'pegi': {
-            'discrimination': pth('descriptors/pegi_discrimination.png'),
-            'drugs': pth('descriptors/pegi_drugs.png'),
-            'gambling': pth('descriptors/pegi_gambling.png'),
-            'lang': pth('descriptors/pegi_language.png'),
-            'nudity': pth('descriptors/pegi_nudity.png'),
-            'online': pth('descriptors/pegi_online.png'),
-            'scary': pth('descriptors/pegi_fear.png'),
-            'sex-content': pth('descriptors/pegi_sex.png'),
-            'violence': pth('descriptors/pegi_violence.png'),
+            'has_pegi_discrimination': pth('descriptors/pegi_discrimination.png'),
+            'has_pegi_drugs': pth('descriptors/pegi_drugs.png'),
+            'has_pegi_gambling': pth('descriptors/pegi_gambling.png'),
+            'has_pegi_lang': pth('descriptors/pegi_language.png'),
+            'has_pegi_nudity': pth('descriptors/pegi_nudity.png'),
+            'has_pegi_online': pth('descriptors/pegi_online.png'),
+            'has_pegi_scary': pth('descriptors/pegi_fear.png'),
+            'has_pegi_sex_content': pth('descriptors/pegi_sex.png'),
+            'has_pegi_violence': pth('descriptors/pegi_violence.png'),
 
-            'digital-purchases': pth(
+            'has_pegi_digital_purchases': pth(
                 'descriptors/pegi_inapp_purchase_option.png'),
-            'shares-info': pth(
+            'has_pegi_shares_info': pth(
                 'descriptors/pegi_personal_data_sharing.png'),
-            'shares-location': pth(
+            'has_pegi_shares_location': pth(
                 'descriptors/pegi_location_data_sharing.png'),
-            'users-interact': pth(
+            'has_pegi_users_interact': pth(
                 'descriptors/pegi_social_interaction_functionality.png'),
         }
     },
     'interactive_elements': {
-        # The keys are interactives' keys lower-cased and 's/_/-/g'.
-        'shares-info': pth('interactives/ESRB_shares-info_small.png'),
-        'shares-location': pth('interactives/ESRB_shares-location_small.png'),
-        'users-interact': pth('interactives/ESRB_users-interact_small.png'),
-        'digital-purchases': pth(
+        'has_shares_info': pth('interactives/ESRB_shares-info_small.png'),
+        'has_shares_location': pth('interactives/ESRB_shares-location_small.png'),
+        'has_users_interact': pth('interactives/ESRB_users-interact_small.png'),
+        'has_digital_purchases': pth(
             'interactives/ESRB_digital-purchases_small.png'),
     }
 }

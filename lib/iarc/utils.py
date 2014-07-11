@@ -3,13 +3,17 @@ import StringIO
 
 from django.conf import settings
 
+import commonware.log
 from jinja2 import Environment, FileSystemLoader
 from rest_framework.parsers import JSONParser, XMLParser
 
 import amo.utils
 from amo.helpers import strip_controls
 
+import mkt.constants.iarc_mappings as mappings
 from mkt.constants import ratingsbodies
+
+log = commonware.log.getLogger('z.iarc')
 
 
 root = os.path.join(settings.ROOT, 'lib', 'iarc')
@@ -64,26 +68,34 @@ class IARC_Parser(object):
 
             for k, v in row.items():
                 # Get ratings body constant.
-                ratings_body = RATINGS_BODY_MAPPING.get(
-                    k.split('_')[-1].lower(), ratingsbodies.GENERIC)
+                body = mappings.BODIES.get(k.split('_')[-1].lower(),
+                                           ratingsbodies.GENERIC)
 
                 if k == 'rating_system':
                     # This key is used in the Get_Rating_Changes API.
-                    d[k] = RATINGS_BODY_MAPPING.get(v.lower(),
-                                                    ratingsbodies.GENERIC)
+                    d[k] = mappings.BODIES.get(v.lower(),
+                                               ratingsbodies.GENERIC)
+
                 elif k == 'interactive_elements':
-                    interactives = [INTERACTIVES_MAPPING[s] for s in
-                                    filter(None, [s.strip()
-                                                  for s in v.split(',')])]
+                    for interact in [s.strip() for s in v.split(',') if s]:
+                        key = mappings.INTERACTIVES.get(interact)
+                        if key:
+                            interactives.append(key)
+                        else:
+                            log.error('Rating interactive %s DNE' % interact)
+
                 elif k.startswith('rating_'):
-                    ratings[ratings_body] = RATINGS_MAPPING[ratings_body].get(
-                        v, RATINGS_MAPPING[ratings_body]['default'])
+                    ratings[body] = mappings.RATINGS[body.id].get(
+                        v, mappings.RATINGS[body.id]['default'])
+
                 elif k.startswith('descriptors_'):
-                    native_descs = filter(None,
-                                          [s.strip() for s in v.split(',')])
-                    descriptors.extend(
-                        filter(None, [DESC_MAPPING[ratings_body].get(desc)
-                                      for desc in native_descs]))
+                    for desc in [s.strip() for s in v.split(',') if s]:
+                        key = mappings.DESCS[body.id].get(desc)
+                        if key:
+                            descriptors.append(key)
+                        else:
+                            log.error('Rating descriptor %s DNE' % desc)
+
                 else:
                     d[k] = v
 
@@ -188,198 +200,3 @@ class IARC_JSON_Parser(JSONParser, IARC_Parser):
 
         # Return a list to match the parsed XML.
         return [d]
-
-
-# These mappings are required to convert the IARC response strings, like "ESRB"
-# to the ratings body constants in mkt/constants/ratingsbodies. Likewise for
-# the descriptors.
-RATINGS_BODY_MAPPING = {
-    'classind': ratingsbodies.CLASSIND,
-    'esrb': ratingsbodies.ESRB,
-    'generic': ratingsbodies.GENERIC,
-    'pegi': ratingsbodies.PEGI,
-    'usk': ratingsbodies.USK,
-    'default': ratingsbodies.GENERIC,
-}
-
-
-RATINGS_MAPPING = {
-    ratingsbodies.CLASSIND: {
-        'Livre': ratingsbodies.CLASSIND_L,
-        '10+': ratingsbodies.CLASSIND_10,
-        '12+': ratingsbodies.CLASSIND_12,
-        '14+': ratingsbodies.CLASSIND_14,
-        '16+': ratingsbodies.CLASSIND_16,
-        '18+': ratingsbodies.CLASSIND_18,
-        'default': ratingsbodies.CLASSIND_L,
-    },
-    ratingsbodies.ESRB: {
-        'Everyone': ratingsbodies.ESRB_E,
-        'Everyone 10+': ratingsbodies.ESRB_10,
-        'Teen': ratingsbodies.ESRB_T,
-        'Mature 17+': ratingsbodies.ESRB_M,
-        'Adults Only': ratingsbodies.ESRB_A,
-        'default': ratingsbodies.ESRB_E,
-    },
-    ratingsbodies.GENERIC: {
-        '3+': ratingsbodies.GENERIC_3,
-        '7+': ratingsbodies.GENERIC_7,
-        '12+': ratingsbodies.GENERIC_12,
-        '16+': ratingsbodies.GENERIC_16,
-        '18+': ratingsbodies.GENERIC_18,
-        'RP': ratingsbodies.GENERIC_RP,
-        'default': ratingsbodies.GENERIC_3,
-    },
-    ratingsbodies.PEGI: {
-        '3+': ratingsbodies.PEGI_3,
-        '7+': ratingsbodies.PEGI_7,
-        '12+': ratingsbodies.PEGI_12,
-        '16+': ratingsbodies.PEGI_16,
-        '18+': ratingsbodies.PEGI_18,
-        'default': ratingsbodies.PEGI_3,
-    },
-    ratingsbodies.USK: {
-        '0+': ratingsbodies.USK_0,
-        '6+': ratingsbodies.USK_6,
-        '12+': ratingsbodies.USK_12,
-        '16+': ratingsbodies.USK_16,
-        '18+': ratingsbodies.USK_18,
-        'Rating Refused': ratingsbodies.USK_REJECTED,
-        'default': ratingsbodies.USK_0,
-    },
-}
-
-
-DESC_MAPPING = {
-    # All values will be prepended with 'has_%s_' % RATINGS_BODY later.
-    ratingsbodies.CLASSIND: {
-        u'Atos Crim\xEDnosos': 'criminal_acts',
-        u'Conte\xFAdo Sexual': 'sex_content',
-        u'Conte\xFAdo Impactante': 'shocking',
-        u'Drogas Il\xEDcitas': 'drugs_illegal',
-        u'Drogas L\xEDcitas': 'drugs_legal',
-        u'Drogas': 'drugs',
-        u'Linguagem Impr\xF3pria': 'lang',
-        u'Nudez': 'nudity',
-        u'Sexo': 'sex',
-        u'Sexo Expl\xEDcito': 'sex_explicit',
-        u'Viol\xEAncia Extrema': 'violence_extreme',
-        u'Viol\xEAncia': 'violence',
-    },
-
-    ratingsbodies.ESRB: {
-        u'Alcohol and Tobacco Reference': 'alcohol_tobacco_ref',
-        u'Alcohol Reference': 'alcohol_ref',
-        u'Blood and Gore': 'blood_gore',
-        u'Blood': 'blood',
-        u'Comic Mischief': 'comic_mischief',
-        u'Crime': 'crime',
-        u'Criminal Instruction': 'crime_instruct',
-        u'Crude Humor': 'crude_humor',
-        u'Drug and Alcohol Reference': 'drug_alcohol_ref',
-        u'Drug and Tobacco Reference': 'drug_tobacco_ref',
-        u'Drug Reference': 'drug_ref',
-        u'Drug, Alcohol and Tobacco Reference': 'drug_alcohol_tobacco_ref',
-        u'Fantasy Violence': 'fantasy_violence',
-        u'Hate Speech': 'hate_speech',
-        u'Intense Violence': 'intense_violence',
-        u'Language': 'lang',
-        u'Mild Blood': 'mild_blood',
-        u'Mild Fantasy Violence': 'mild_fantasy_violence',
-        u'Mild Language': 'mild_lang',
-        u'Mild Violence': 'mild_violence',
-        u'Nudity': 'nudity',
-        u'Partial Nudity': 'partial_nudity',
-        u'Real Gambling': 'real_gambling',
-        u'Scary Themes': 'scary',
-        u'Sexual Content': 'sex_content',
-        u'Sexual Themes': 'sex_themes',
-        u'Simulated Gambling': 'sim_gambling',
-        u'Strong Language': 'strong_lang',
-        u'Strong Sexual Content': 'strong_sex_content',
-        u'Suggestive Themes': 'suggestive',
-        u'Tobacco Reference': 'tobacco_ref',
-        u'Use of Alcohol and Tobacco': 'alcohol_tobacco_use',
-        u'Use of Alcohol': 'alcohol_use',
-        u'Use of Drug and Alcohol': 'drug_alcohol_use',
-        u'Use of Drug and Tobacco': 'drug_tobacco_use',
-        u'Use of Drug, Alcohol and Tobacco': 'drug_alcohol_tobacco_use',
-        u'Use of Drugs': 'drug_use',
-        u'Use of Tobacco': 'tobacco_use',
-        u'Violence': 'violence',
-        u'Violent References': 'violence_ref',
-    },
-
-    ratingsbodies.GENERIC: {
-        u'Discrimination': 'discrimination',
-        u'Drugs': 'drugs',
-        u'Fear': 'scary',
-        u'Gambling': 'gambling',
-        u'Language': 'lang',
-        u'Online': 'online',
-        u'Sex': 'sex_content',
-        u'Violence': 'violence',
-    },
-
-    ratingsbodies.PEGI: {
-        u'Discrimination': 'discrimination',
-        u'Drugs': 'drugs',
-        u'Fear': 'scary',
-        u'Gambling': 'gambling',
-        u'Language': 'lang',
-        u'Online': 'online',
-        u'Sex': 'sex_content',
-        u'Violence': 'violence',
-
-        # PEGI's versions of Interactive Elements.
-        u'In-app purchase option': 'digital_purchases',
-        u'Location data sharing': 'shares_location',
-        u'Personal data sharing': 'shares_info',
-        u'Social interaction functionality': 'users_interact',
-    },
-
-    ratingsbodies.USK: {
-        u'Alkoholkonsum': 'alcohol',
-        u'Abstrakte Gewalt': 'abstract_violence',
-        u'Andeutungen Sexueller Gewalt': 'sex_violence_ref',
-        u'\xC4ngstigende Inhalte': 'scary',
-        u'Diskriminierung': 'discrimination',
-        u'Drogen': 'drugs',
-        u'Drogenkonsum': 'drug_use',
-        u'Erotik/Sexuelle Inhalte': 'sex_content',
-        u'Explizite Sprache': 'lang',
-        u'Explizite Gewalt': 'explicit_violence',
-        u'Gelegentliches Fluchen': 'some_swearing',
-        u'Gewalt': 'violence',
-        u'Grusel/Horror': 'horror',
-        u'Nacktheit/Erotik': 'nudity',
-        u'Seltene Schreckmomente': 'some_scares',
-        u'Sexuelle Gewalt': 'sex_violence',
-        u'Sexuelle Andeutungen': 'sex_ref',
-        u'Tabakkonsum': 'tobacco',
-    },
-}
-
-# Expand the mapping key names (e.g. 'blood' to 'has_esrb_blood').
-for body, mappings in DESC_MAPPING.items():
-    for native_desc, desc_slug in mappings.items():
-        DESC_MAPPING[body][native_desc] = 'has_{0}_{1}'.format(
-            body.iarc_name, desc_slug).lower()
-
-# Change {body: {'key': 'val'}} to {'val': 'key'}.
-REVERSE_DESC_MAPPING_BY_BODY = (
-    dict([(unicode(v), unicode(k)) for k, v in body_mapping.iteritems()])
-    for body, body_mapping in DESC_MAPPING.iteritems())
-REVERSE_DESC_MAPPING = {}
-for mapping in REVERSE_DESC_MAPPING_BY_BODY:
-    REVERSE_DESC_MAPPING.update(mapping)
-
-INTERACTIVES_MAPPING = {
-    'Users Interact': 'has_users_interact',
-    'Shares Info': 'has_shares_info',
-    'Shares Location': 'has_shares_location',
-    'Digital Purchases': 'has_digital_purchases',
-}
-
-REVERSE_INTERACTIVES_MAPPING = dict(
-    (v, k) for k, v in INTERACTIVES_MAPPING.iteritems())

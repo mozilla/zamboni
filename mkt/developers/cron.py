@@ -8,7 +8,7 @@ from tower import ugettext as _
 import amo
 import lib.iarc
 from amo.utils import chunked
-from lib.iarc.utils import RATINGS_MAPPING
+from mkt.constants.iarc_mappings import RATINGS
 from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
                                   region_exclude)
 from mkt.reviewers.models import RereviewQueue
@@ -99,7 +99,7 @@ def process_iarc_changes(date=None):
 
             # Flag for rereview if it changed to adult.
             ratings_body = row.get('rating_system')
-            rating = RATINGS_MAPPING[ratings_body].get(row['new_rating'])
+            rating = RATINGS[ratings_body.id].get(row['new_rating'])
             _flag_rereview_adult(app, ratings_body, rating)
 
             # Log change reason.
