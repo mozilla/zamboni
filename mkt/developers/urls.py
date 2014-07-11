@@ -130,10 +130,6 @@ urlpatterns = decorate(write, patterns('',
     ('^apps/\d+/.*',
      lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
 
-    # Standalone validator:
-    url('^validator/?$', views.validate_addon,
-        name='mkt.developers.validate_addon'),
-
     # Redirect to /addons/ at the base.
     url('^submissions$', views.dashboard, name='mkt.developers.apps'),
     url('^upload$', views.upload_new, name='mkt.developers.upload'),
@@ -148,6 +144,8 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.standalone_upload_detail'),
 
     # Standalone tools.
+    url('^validator/?$', views.validate_app,
+        name='mkt.developers.validate_app'),
     url('^upload-manifest$', views.upload_manifest,
         name='mkt.developers.upload_manifest'),
     url('^in-app-keys/$', views_payments.in_app_keys,

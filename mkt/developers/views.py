@@ -547,8 +547,8 @@ def ownership(request, addon_id, addon):
 
 
 @anonymous_csrf
-def validate_addon(request):
-    return render(request, 'developers/validate_addon.html', {
+def validate_app(request):
+    return render(request, 'developers/validate_app.html', {
         'upload_hosted_url':
             reverse('mkt.developers.standalone_hosted_upload'),
         'upload_packaged_url':

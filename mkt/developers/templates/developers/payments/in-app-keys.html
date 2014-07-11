@@ -13,7 +13,6 @@
 <section class="island manage primary" role="main">
   <div id="in-app-config" class="devhub-form">
     <form class="item in-app-config" method="post" action="{{ request.path }}">
-      {{ csrf() }}
       <p class="learn-mdn active"><a href="https://developer.mozilla.org/en-US/docs/Apps/In-app_payments" target="_blank">
         {% trans %}Learn more about <b>in-app payments</b> on MDN.{% endtrans -%}
       </a></p>
@@ -51,6 +50,7 @@
       <div class="listing-footer">
         <button type="submit">{{ _('Reset secret') if key else _('Generate Keys') }}</button>
       </div>
+      {{ csrf() }}
     </form>
   </div>
 </section>
