@@ -476,7 +476,7 @@ class TestAppVersionForm(amo.tests.TestCase):
 
     def setUp(self):
         self.request = mock.Mock()
-        self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
+        self.app = app_factory(publish_type=amo.PUBLISH_IMMEDIATE,
                                version_kw={'version': '1.0',
                                            'created': self.days_ago(5)})
         version_factory(addon=self.app, version='2.0',
@@ -490,7 +490,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, True)
 
-        self.app.update(make_public=amo.PUBLIC_WAIT)
+        self.app.update(publish_type=amo.PUBLISH_PRIVATE)
         self.app.reload()
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, False)
@@ -502,14 +502,14 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
 
         form = self._get_form(self.app.latest_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.make_public, amo.PUBLIC_WAIT)
+        eq_(self.app.publish_type, amo.PUBLISH_PRIVATE)
 
     def test_post_publish_not_pending(self):
         # Using the current_version, which is public.
@@ -518,7 +518,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
 
 
 class TestAdminSettingsForm(TestAdmin):

@@ -15,7 +15,7 @@
   <section id="submit-done" class="primary{{ ' payments' if payments }}">
     <h2>{{ _('Success! What happens now?') }}</h2>
     <div class="island devhub-form c">
-      {% if addon.make_public == amo.PUBLIC_WAIT %}
+      {% if addon.publish_type == amo.PUBLISH_PRIVATE %}
         <p>
           {%- trans url=addon.get_dev_url('versions') -%}
             We've got your app saved and ready to go! Your app is currently

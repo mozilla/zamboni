@@ -321,8 +321,8 @@ def _review(request, addon, version):
             if old_types != new_types:
                 # The reviewer overrode the device types. We need to not
                 # publish this app immediately.
-                if addon.make_public == amo.PUBLIC_IMMEDIATELY:
-                    addon.update(make_public=amo.PUBLIC_WAIT)
+                if addon.publish_type == amo.PUBLISH_IMMEDIATE:
+                    addon.update(publish_type=amo.PUBLISH_PRIVATE)
 
                 # And update the device types to what the reviewer set.
                 AddonDeviceType.objects.filter(addon=addon).delete()
@@ -345,8 +345,8 @@ def _review(request, addon, version):
             if old_features != new_features:
                 # The reviewer overrode the requirements. We need to not
                 # publish this app immediately.
-                if addon.make_public == amo.PUBLIC_IMMEDIATELY:
-                    addon.update(make_public=amo.PUBLIC_WAIT)
+                if addon.publish_type == amo.PUBLISH_IMMEDIATE:
+                    addon.update(publish_type=amo.PUBLISH_PRIVATE)
 
                 appfeatures_form.save(mark_for_rereview=False)
 

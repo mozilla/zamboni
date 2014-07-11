@@ -673,7 +673,7 @@ class TestDetails(TestSubmit):
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
             'uses_flash': True,
-            'make_public': amo.PUBLIC_IMMEDIATELY
+            'publish_type': amo.PUBLISH_IMMEDIATE
         }
         if expected:
             expected_data.update(expected)
@@ -759,7 +759,8 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
 
-        self.check_dict(data=data, expected={'make_public': amo.PUBLIC_WAIT})
+        self.check_dict(data=data,
+                        expected={'publish_type': amo.PUBLISH_PRIVATE})
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 

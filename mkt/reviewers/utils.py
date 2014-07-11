@@ -201,7 +201,7 @@ class ReviewApp(ReviewBase):
 
         # Hold onto the status before we change it.
         status = self.addon.status
-        if self.addon.make_public == amo.PUBLIC_IMMEDIATELY:
+        if self.addon.publish_type == amo.PUBLISH_IMMEDIATE:
             self._process_public_immediately()
         else:
             self._process_approved()

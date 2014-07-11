@@ -1290,14 +1290,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                                        device_type=amo.DEVICE_DESKTOP.id)
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_TABLET.id)
-        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
         data = {'action': 'public', 'device_types': '', 'browsers': '',
                 'comments': 'something',
                 'device_override': [amo.DEVICE_DESKTOP.id]}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.make_public, amo.PUBLIC_WAIT)
+        eq_(app.publish_type, amo.PUBLISH_PRIVATE)
         eq_(app.status, amo.STATUS_APPROVED)
         eq_([o.id for o in app.device_types], [amo.DEVICE_DESKTOP.id])
         self._check_log(amo.LOG.REVIEW_DEVICE_OVERRIDE)
@@ -1315,14 +1315,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                                        device_type=amo.DEVICE_DESKTOP.id)
         AddonDeviceType.objects.create(addon=self.app,
                                        device_type=amo.DEVICE_TABLET.id)
-        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
                 'comments': 'something',
                 'device_override': [amo.DEVICE_DESKTOP.id]}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
-        eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
         eq_(app.status, amo.STATUS_REJECTED)
         eq_(set([o.id for o in app.device_types]),
             set([amo.DEVICE_DESKTOP.id, amo.DEVICE_TABLET.id]))
@@ -1341,7 +1341,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         assert app.current_version.features.has_sms
-        eq_(app.make_public, amo.PUBLIC_WAIT)
+        eq_(app.publish_type, amo.PUBLISH_PRIVATE)
         eq_(app.status, amo.STATUS_APPROVED)
         self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
 
@@ -1358,7 +1358,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
-        eq_(app.make_public, amo.PUBLIC_IMMEDIATELY)
+        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
         eq_(app.status, amo.STATUS_REJECTED)
         assert not app.latest_version.features.has_sms
 
@@ -1371,7 +1371,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         assert app.latest_version.features.has_sms
-        eq_(app.make_public, None)
+        eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
         eq_(app.status, amo.STATUS_PUBLIC)
         action_id = amo.LOG.REVIEW_FEATURES_OVERRIDE.id
         assert not AppLog.objects.filter(
@@ -1540,7 +1540,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
     def test_pending_to_approved(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
                                  storefront_mock):
-        self.get_app().update(make_public=amo.PUBLIC_WAIT)
+        self.get_app().update(publish_type=amo.PUBLISH_PRIVATE)
 
         # Reset mocks from the above update call.
         index_webapps.reset_mock()
@@ -1576,7 +1576,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     @mock.patch('lib.crypto.packaged.sign')
     def test_approved_signs(self, sign):
-        self.get_app().update(is_packaged=True, make_public=amo.PUBLIC_WAIT)
+        self.get_app().update(is_packaged=True,
+                              publish_type=amo.PUBLISH_PRIVATE)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)

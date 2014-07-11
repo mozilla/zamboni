@@ -253,7 +253,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    make_public = models.DateTimeField(null=True)
+    publish_type = models.PositiveIntegerField(default=0)
     mozilla_contact = models.EmailField(blank=True)
 
     vip_app = models.BooleanField(default=False)
