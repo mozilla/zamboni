@@ -33,6 +33,8 @@
     // Message handler.
     var origin_whitelist = [
         'app://packaged.marketplace-dev.allizom.org',
+        'app://packaged.marketplace-altdev.allizom.org',
+        'app://packaged.payments-alt.allizom.org',
         'app://packaged.marketplace.allizom.org',
         'app://packaged.marketplace.firefox.com',
         'app://marketplace.firefox.com',
@@ -43,13 +45,10 @@
         'http://localhost',
         'https://localhost',
 
-        'http://marketplace-dev.allizom.org',
         'https://marketplace-dev.allizom.org',
-
-        'http://marketplace.allizom.org',
+        'https://marketplace-altdev.allizom.org',
+        'https://payments-alt.allizom.org',
         'https://marketplace.allizom.org',
-
-        'http://marketplace.firefox.com',
         'https://marketplace.firefox.com'
     ];
     window.addEventListener('message', function(e) {
