@@ -539,6 +539,14 @@ class REREVIEW_MANIFEST_URL_CHANGE(_LOG):
     review_queue = True
 
 
+class ESCALATION_PRERELEASE_APP(_LOG):
+    id = 80
+    format = _(u'{addon} auto-escalated because its a prerelease app.')
+    short = _(u'Prerelease auto-escalation')
+    keep = True
+    review_queue = True
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'

@@ -4,7 +4,7 @@ import os
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 import amo
@@ -156,11 +156,9 @@ class TestVersion(amo.tests.TestCase):
         eq_(doc('#rejection blockquote').text(), comments)
 
 
-@mock.patch('mkt.webapps.tasks.update_cached_manifests.delay', new=mock.Mock)
-class TestAddVersion(BasePackagedAppTest):
-
+class BaseAddVersionTest(BasePackagedAppTest):
     def setUp(self):
-        super(TestAddVersion, self).setUp()
+        super(BaseAddVersionTest, self).setUp()
         self.app = amo.tests.app_factory(
             complete=True, is_packaged=True, version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
@@ -172,6 +170,10 @@ class TestAddVersion(BasePackagedAppTest):
                                           'upload-version': ''})
         eq_(res.status_code, expected_status)
         return res
+
+
+@mock.patch('mkt.webapps.tasks.update_cached_manifests.delay', new=mock.Mock)
+class TestAddVersion(BaseAddVersionTest):
 
     def test_post(self):
         self.app.current_version.update(version='0.9',
@@ -269,6 +271,28 @@ class TestAddVersion(BasePackagedAppTest):
 
         assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'VIP App not in escalation queue')
+
+
+class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
+    @property
+    def package(self):
+        return self.packaged_app_path('prerelease.zip')
+
+    def test_escalate_on_prerelease_permissions(self):
+        """Test that apps that use prerelease permissions are escalated."""
+        UserProfile.objects.create(email=settings.NOBODY_EMAIL_ADDRESS)
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App in escalation queue')
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        self.app.update_status()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        ok_(EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App not in escalation queue')
 
 
 class TestVersionPackaged(amo.tests.WebappTestCase):

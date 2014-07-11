@@ -1,3 +1,4 @@
+import json
 import os
 import uuid
 from datetime import datetime
@@ -16,9 +17,10 @@ import amo
 from amo.helpers import absolutify
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
-from mkt.constants import APP_PREVIEW_MINIMUMS, comm
+from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
 from mkt.reviewers.utils import send_mail
+from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -125,28 +127,46 @@ def check_upload(file_obj, upload_type, content_type):
     return errors, upload_hash
 
 
-def handle_vip(addon, version, user):
-    msg = u'VIP app updated'
-
+def escalate_app(app, version, user, msg, email_template, log_type):
     # Add to escalation queue
-    EscalationQueue.objects.get_or_create(addon=addon)
+    EscalationQueue.objects.get_or_create(addon=app)
 
     # Create comm note
-    create_comm_note(addon, version, user, msg, note_type=comm.ESCALATION,
+    create_comm_note(app, version, user, msg, note_type=comm.ESCALATION,
                      perms={'developer': False})
 
     # Log action
-    amo.log(amo.LOG.ESCALATION_VIP_APP, addon, version, created=datetime.now(),
+    amo.log(log_type, app, version, created=datetime.now(),
             details={'comments': msg})
-    log.info(u'[app:%s] escalated - %s' % (addon.name, msg))
+    log.info(u'[app:%s] escalated - %s' % (app.name, msg))
 
     # Special senior reviewer email.
     if not waffle.switch_is_active('comm-dashboard'):
-        context = {'name': addon.name,
+        context = {'name': app.name,
                    'review_url': absolutify(reverse('reviewers.apps.review',
-                                                     args=[addon.app_slug],
-                                                     add_prefix=False)),
+                                                    args=[app.app_slug],
+                                                    add_prefix=False)),
                    'SITE_URL': settings.SITE_URL}
-        send_mail(u'%s: %s' % (msg, addon.name),
-                   'developers/emails/vip_escalation.ltxt', context,
-                   [settings.MKT_SENIOR_EDITORS_EMAIL])
+        send_mail(u'%s: %s' % (msg, app.name),
+                  email_template,
+                  context,
+                  [settings.MKT_SENIOR_EDITORS_EMAIL])
+
+
+def handle_vip(addon, version, user):
+    escalate_app(
+        addon, version, user, u'VIP app updated',
+        'developers/emails/vip_escalation.ltxt',
+        amo.LOG.ESCALATION_VIP_APP)
+
+
+def escalate_prerelease_permissions(app, validation, version):
+    """Escalate the app if it uses prerelease permissions."""
+    app_permissions = validation.get('permissions', [])
+    permissions = set(app_permissions)
+    if any(pre_perm in permissions for pre_perm in PRERELEASE_PERMISSIONS):
+        nobody = UserProfile.objects.get(email=settings.NOBODY_EMAIL_ADDRESS)
+        escalate_app(
+            app, version, nobody, 'App uses prerelease permissions',
+            'developers/emails/prerelease_escalation.ltxt',
+            amo.LOG.ESCALATION_PRERELEASE_APP)

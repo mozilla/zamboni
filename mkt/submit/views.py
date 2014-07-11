@@ -1,3 +1,5 @@
+import json
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import transaction
@@ -30,6 +32,7 @@ from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
+from mkt.developers.utils import escalate_prerelease_permissions
 from mkt.files.models import FileUpload, Platform
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
@@ -100,14 +103,19 @@ def manifest(request):
     features_form_valid = features_form.is_valid()
 
     if (request.method == 'POST' and form.is_valid()
-        and features_form_valid):
+            and features_form_valid):
 
         with transaction.commit_on_success():
-
+            upload = form.cleaned_data['upload']
             addon = Addon.from_upload(
-                form.cleaned_data['upload'],
+                upload,
                 [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
                 is_packaged=form.is_packaged())
+
+            if form.is_packaged():
+                validation = json.loads(upload.validation)
+                escalate_prerelease_permissions(
+                    addon, validation, addon.current_version)
 
             # Set the device type.
             for device in form.get_devices():
