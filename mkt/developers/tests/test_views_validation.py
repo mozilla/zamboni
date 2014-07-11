@@ -183,7 +183,7 @@ class TestStandaloneValidation(BaseUploadTest):
         return reverse('mkt.developers.upload_detail', args=[uuid])
 
     def test_context(self):
-        res = self.client.get(reverse('mkt.developers.validate_addon'))
+        res = self.client.get(reverse('mkt.developers.validate_app'))
         eq_(res.status_code, 200)
         doc = pq(res.content)
         eq_(doc('#upload-webapp-url').attr('data-upload-url'),
