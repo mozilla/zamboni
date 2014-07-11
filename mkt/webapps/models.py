@@ -2682,7 +2682,8 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             '[Webapp:{id}] Status changed from {old_status}:{old_status_name} '
             'to {new_status}:{new_status_name}'.format(
                 id=addon.id, old_status=old_status,
-                old_status_name=amo.STATUS_CHOICES_API[old_status],
+                old_status_name=amo.STATUS_CHOICES_API.get(old_status,
+                                                           'unknown'),
                 new_status=new_status,
                 new_status_name=amo.STATUS_CHOICES_API[new_status]))
 
