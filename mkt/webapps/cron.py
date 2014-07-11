@@ -57,9 +57,9 @@ def _change_last_updated(next):
 @write
 def addon_last_updated():
     next = {}
-    for q in Addon._last_updated_queries().values():
-        for addon, last_updated in q.values_list('id', 'last_updated'):
-            next[addon] = last_updated
+    qs = Addon._last_updated_queries().values()
+    for addon, last_updated in qs.values_list('id', 'last_updated'):
+        next[addon] = last_updated
 
     _change_last_updated(next)
 

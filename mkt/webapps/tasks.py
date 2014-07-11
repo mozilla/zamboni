@@ -54,10 +54,8 @@ def version_changed(addon_id, **kw):
 
 
 def update_last_updated(addon_id):
-    queries = Addon._last_updated_queries()
-    try:
-        addon = Addon.objects.get(pk=addon_id)
-    except Addon.DoesNotExist:
+    qs = Addon._last_updated_queries()
+    if not Webapp.objects.filter(pk=addon_id).exists():
         task_log.info(
             '[1@None] Updating last updated for %s failed, no addon found'
             % addon_id)
@@ -65,17 +63,12 @@ def update_last_updated(addon_id):
 
     task_log.info('[1@None] Updating last updated for %s.' % addon_id)
 
-    if addon.is_webapp():
-        q = 'webapps'
-    elif addon.status == amo.STATUS_PUBLIC:
-        q = 'public'
-    else:
-        q = 'exp'
-    qs = queries[q].filter(pk=addon_id).using('default')
-    res = qs.values_list('id', 'last_updated')
+    res = (qs.filter(pk=addon_id)
+             .using('default')
+             .values_list('id', 'last_updated'))
     if res:
         pk, t = res[0]
-        Addon.objects.filter(pk=pk).update(last_updated=t)
+        Webapp.objects.filter(pk=pk).update(last_updated=t)
 
 
 @task

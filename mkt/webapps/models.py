@@ -859,29 +859,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Get the queries used to calculate addon.last_updated.
         """
-        status_change = Max('versions__files__datestatuschanged')
-        public = (
-            Addon.objects.no_cache().filter(
-                status=amo.STATUS_PUBLIC,
-                versions__files__status=amo.STATUS_PUBLIC)
-            .exclude(type__in=(amo.ADDON_PERSONA, amo.ADDON_WEBAPP))
-            .values('id').annotate(last_updated=status_change))
-
-        stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
-        exp = (Addon.objects.no_cache().exclude(status__in=stati)
-               .filter(versions__files__status__in=amo.VALID_STATUSES)
-               .exclude(type=amo.ADDON_WEBAPP)
-               .values('id')
-               .annotate(last_updated=Max('versions__files__created')))
-
-        webapps = (Addon.objects.no_cache()
-                   .filter(type=amo.ADDON_WEBAPP,
-                           status=amo.STATUS_PUBLIC,
-                           versions__files__status=amo.STATUS_PUBLIC)
-                   .values('id')
-                   .annotate(last_updated=Max('versions__created')))
-
-        return dict(public=public, exp=exp, webapps=webapps)
+        return (Addon.objects.no_cache()
+                .filter(type=amo.ADDON_WEBAPP,
+                        status=amo.STATUS_PUBLIC,
+                        versions__files__status=amo.STATUS_PUBLIC)
+                .values('id')
+                .annotate(last_updated=Max('versions__created')))
 
     @amo.cached_property(writable=True)
     def all_categories(self):
