@@ -142,13 +142,22 @@ class ESAppSerializer(AppSerializer):
         body = (mkt.regions.REGION_TO_RATINGS_BODY().get(
             self.context['request'].REGION.slug, 'generic'))
         prefix = 'has_%s' % body
+
+        # Backwards incompat with old index.
+        for i, desc in enumerate(obj.es_data.get('content_descriptors', [])):
+            if desc.isupper():
+                obj.es_data['content_descriptors'][i] = 'has_' + desc.lower()
+        for i, inter in enumerate(obj.es_data.get('interactive_elements', [])):
+            if inter.isupper():
+                obj.es_data['interactive_elements'][i] = 'has_' + inter.lower()
+
         return {
             'body': body,
             'rating': dehydrate_content_rating(
                 (obj.es_data.get('content_ratings') or {})
                 .get(body)) or None,
             'descriptors': [key for key in
-                            obj.es_data.get('content_descriptors', {})
+                            obj.es_data.get('content_descriptors', [])
                             if prefix in key],
             'descriptors_text': [mkt.iarc_mappings.REVERSE_DESCS[key] for key
                                  in obj.es_data.get('content_descriptors')
