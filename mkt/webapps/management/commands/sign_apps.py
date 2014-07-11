@@ -34,8 +34,7 @@ class Command(BaseCommand):
     help = HELP
 
     def handle(self, *args, **kw):
-        qs = Webapp.objects.filter(is_packaged=True,
-                                   status__in=amo.LISTED_STATUSES)
+        qs = Webapp.objects.filter(is_packaged=True, status=amo.STATUS_PUBLIC)
         if kw['webapps']:
             pks = [int(a.strip()) for a in kw['webapps'].split(',')]
             qs = qs.filter(pk__in=pks)

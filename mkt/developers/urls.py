@@ -57,6 +57,7 @@ app_detail_patterns = patterns('',
     url('^enable$', views.enable, name='mkt.developers.apps.enable'),
     url('^delete$', views.delete, name='mkt.developers.apps.delete'),
     url('^disable$', views.disable, name='mkt.developers.apps.disable'),
+    url('^publicise$', views.publicise, name='mkt.developers.apps.publicise'),
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
@@ -130,10 +131,6 @@ urlpatterns = decorate(write, patterns('',
     ('^apps/\d+/.*',
      lambda r: http.HttpResponseRedirect(r.path.replace('apps', 'app', 1))),
 
-    # Standalone validator:
-    url('^validator/?$', views.validate_addon,
-        name='mkt.developers.validate_addon'),
-
     # Redirect to /addons/ at the base.
     url('^submissions$', views.dashboard, name='mkt.developers.apps'),
     url('^upload$', views.upload_new, name='mkt.developers.upload'),
@@ -148,6 +145,8 @@ urlpatterns = decorate(write, patterns('',
         name='mkt.developers.standalone_upload_detail'),
 
     # Standalone tools.
+    url('^validator/?$', views.validate_app,
+        name='mkt.developers.validate_app'),
     url('^upload-manifest$', views.upload_manifest,
         name='mkt.developers.upload_manifest'),
     url('^in-app-keys/$', views_payments.in_app_keys,

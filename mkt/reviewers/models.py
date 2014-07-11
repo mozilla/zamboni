@@ -107,14 +107,13 @@ class ReviewerScore(amo.models.ModelBase):
 
         """
         if addon.is_packaged:
-            if status in (amo.STATUS_PUBLIC, amo.STATUS_UNPUBLISHED):
+            if status == amo.STATUS_PUBLIC:
                 return amo.REVIEWED_WEBAPP_UPDATE
             else:  # If it's not PUBLIC, assume it's a new submission.
                 return amo.REVIEWED_WEBAPP_PACKAGED
         else:  # It's a hosted app.
             in_rereview = kwargs.pop('in_rereview', False)
-            if status in (amo.STATUS_PUBLIC,
-                          amo.STATUS_UNPUBLISHED) and in_rereview:
+            if status == amo.STATUS_PUBLIC and in_rereview:
                 return amo.REVIEWED_WEBAPP_REREVIEW
             else:
                 return amo.REVIEWED_WEBAPP_HOSTED

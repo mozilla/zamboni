@@ -58,8 +58,8 @@
       </ul>
 
       <p>
-        {# Tell the developer what happens after review based on publish_type. #}
-        {% if addon.publish_type != amo.PUBLISH_IMMEDIATE %}
+        {# Tell the developer what's happens after review based on public-waiting. #}
+        {% if addon.publish_type == amo.PUBLISH_PRIVATE %}
           {% trans url=addon.get_dev_url('versions') %}
             Once your app is reviewed, you will have to manually
             publish your app from <a href="{{ url }}">Manage Status</a>.

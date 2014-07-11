@@ -262,7 +262,7 @@ class WebappIndexer(BaseIndexer):
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
         d['category'] = list(obj.categories.values_list('slug', flat=True))
-        if obj.is_published:
+        if obj.is_public:
             d['collection'] = [{'id': cms.collection_id, 'order': cms.order}
                                for cms in obj.collectionmembership_set.all()]
         else:
@@ -331,7 +331,7 @@ class WebappIndexer(BaseIndexer):
             d['supported_locales'] = []
 
         d['tags'] = getattr(obj, 'tag_list', [])
-        if obj.upsell and obj.upsell.premium.is_published():
+        if obj.upsell and obj.upsell.premium.is_public():
             upsell_obj = obj.upsell.premium
             d['upsell'] = {
                 'id': upsell_obj.id,
@@ -388,7 +388,7 @@ class WebappIndexer(BaseIndexer):
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to
         # Firefox OS.
-        if DEVICE_GAIA.id in d['device'] and obj.is_published():
+        if DEVICE_GAIA.id in d['device'] and obj.is_public():
             d['name_suggest'] = {
                 'input': d['name'],
                 'output': unicode(obj.id),  # We only care about the payload.
