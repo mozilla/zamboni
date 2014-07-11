@@ -30,7 +30,7 @@ from lib.video import tasks as vtasks
 from mkt.access import acl
 from mkt.api.models import Access
 from mkt.constants import MAX_PACKAGED_APP_SIZE
-from mkt.files.models import File, FileUpload
+from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
@@ -367,8 +367,7 @@ class AdminSettingsForm(PreviewForm):
         contact = self.cleaned_data.get('mozilla_contact')
         updates = {} if contact is None else {'mozilla_contact': contact}
         updates.update({'vip_app': self.cleaned_data.get('vip_app')})
-        updates.update(
-            {'priority_review': self.cleaned_data.get('priority_review')})
+        updates.update({'priority_review': self.cleaned_data.get('priority_review')})
         addon.update(**updates)
 
         tags_new = self.cleaned_data['tags']
@@ -740,62 +739,6 @@ class AppAppealForm(happyforms.Form):
         return version
 
 
-class PublishForm(happyforms.Form):
-    # Publish choice wording is slightly different here than with the
-    # submission flow because the app may have already been published.
-    PUBLISH_CHOICES = (
-        (amo.PUBLISH_IMMEDIATE,
-         _lazy(u'Public: Visible to everyone and included in search '
-               u'results and listing pages.')),
-        (amo.PUBLISH_HIDDEN,
-         _lazy(u'Unpublished: Visible only to those who know the URL.')),
-        (amo.PUBLISH_PRIVATE,
-         _lazy(u'Private: Only visible to team members.')),
-    )
-    PUBLISH_MAPPING = {
-        amo.STATUS_PUBLIC: amo.PUBLISH_IMMEDIATE,
-        amo.STATUS_UNPUBLISHED: amo.PUBLISH_HIDDEN,
-        amo.STATUS_APPROVED: amo.PUBLISH_PRIVATE,
-    }
-    STATUS_MAPPING = dict((v, k) for k, v in PUBLISH_MAPPING.items())
-
-    publish_type = forms.TypedChoiceField(
-        label=_lazy('App Visibility'), choices=PUBLISH_CHOICES,
-        widget=forms.RadioSelect(), initial=0, coerce=int)
-
-    def __init__(self, *args, **kwargs):
-        self.addon = kwargs.pop('addon')
-        super(PublishForm, self).__init__(*args, **kwargs)
-
-        # Determine the current selection via STATUS to publish choice mapping.
-        self.fields['publish_type'].initial = self.PUBLISH_MAPPING.get(
-            self.addon.status, amo.PUBLISH_PRIVATE)
-
-    def save(self):
-        publish = self.cleaned_data['publish_type']
-        status = self.STATUS_MAPPING[publish]
-        self.addon.update(status=status)
-
-        # Update the file's status to match.
-        # If UNPUBLISHED, we set to PUBLIC so there are only 2 states for Files
-        # to be in.
-        file_status = (amo.STATUS_PUBLIC if status == amo.STATUS_UNPUBLISHED
-                       else status)
-        File.objects.filter(
-            version__addon=self.addon).update(status=file_status)
-
-        amo.log(amo.LOG.CHANGE_STATUS, self.addon.get_status_display(),
-                self.addon)
-        # Call update_version, so various other bits of data update.
-        self.addon.update_version()
-        # Call to update names and locales if changed.
-        self.addon.update_name_from_package_manifest()
-        self.addon.update_supported_locales()
-
-        if waffle.switch_is_active('iarc'):
-            self.addon.set_iarc_storefront_data()
-
-
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(required=False,
         label=_lazy(u'Choose the regions your app will be listed in:'),
@@ -1104,17 +1047,18 @@ class AppVersionForm(happyforms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AppVersionForm, self).__init__(*args, **kwargs)
         self.fields['publish_immediately'].initial = (
-            self.instance.addon.publish_type == amo.PUBLISH_IMMEDIATE)
+            self.instance.addon.make_public == amo.PUBLIC_IMMEDIATELY)
 
     def save(self, *args, **kwargs):
         rval = super(AppVersionForm, self).save(*args, **kwargs)
         if self.instance.all_files[0].status == amo.STATUS_PENDING:
-            # If version is pending, allow changes to publish_type.
+            # If version is pending, allow changes to make_public, which lives
+            # on the app itself.
             if self.cleaned_data.get('publish_immediately'):
-                publish_type = amo.PUBLISH_IMMEDIATE
+                make_public = amo.PUBLIC_IMMEDIATELY
             else:
-                publish_type = amo.PUBLISH_PRIVATE
-            self.instance.addon.update(publish_type=publish_type)
+                make_public = amo.PUBLIC_WAIT
+            self.instance.addon.update(make_public=make_public)
         return rval
 
 

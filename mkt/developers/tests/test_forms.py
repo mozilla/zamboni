@@ -476,7 +476,7 @@ class TestAppVersionForm(amo.tests.TestCase):
 
     def setUp(self):
         self.request = mock.Mock()
-        self.app = app_factory(publish_type=amo.PUBLISH_IMMEDIATE,
+        self.app = app_factory(make_public=amo.PUBLIC_IMMEDIATELY,
                                version_kw={'version': '1.0',
                                            'created': self.days_ago(5)})
         version_factory(addon=self.app, version='2.0',
@@ -490,7 +490,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, True)
 
-        self.app.update(publish_type=amo.PUBLISH_PRIVATE)
+        self.app.update(make_public=amo.PUBLIC_WAIT)
         self.app.reload()
         form = self._get_form(self.app.latest_version)
         eq_(form.fields['publish_immediately'].initial, False)
@@ -502,14 +502,14 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
 
         form = self._get_form(self.app.latest_version,
                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_PRIVATE)
+        eq_(self.app.make_public, amo.PUBLIC_WAIT)
 
     def test_post_publish_not_pending(self):
         # Using the current_version, which is public.
@@ -518,54 +518,7 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()
-        eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
-
-
-class TestPublishForm(amo.tests.TestCase):
-
-    def setUp(self):
-        self.app = app_factory(status=amo.STATUS_PUBLIC)
-        self.form = forms.PublishForm
-
-    def test_initial(self):
-        app = Webapp(status=amo.STATUS_PUBLIC)
-        eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_IMMEDIATE)
-        app.status = amo.STATUS_UNPUBLISHED
-        eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_HIDDEN)
-        app.status = amo.STATUS_APPROVED
-        eq_(self.form(None, addon=app).fields['publish_type'].initial,
-            amo.PUBLISH_PRIVATE)
-
-    def test_go_public(self):
-        self.app.update(status=amo.STATUS_APPROVED)
-        form = self.form({'publish_type': amo.PUBLISH_IMMEDIATE},
-                         addon=self.app)
-        assert form.is_valid()
-        form.save()
-        self.app.reload()
-        eq_(self.app.status, amo.STATUS_PUBLIC)
-
-    def test_go_private(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_PRIVATE}, addon=self.app)
-        assert form.is_valid()
-        form.save()
-        self.app.reload()
-        eq_(self.app.status, amo.STATUS_APPROVED)
-
-    def test_go_unpublished(self):
-        self.app.update(status=amo.STATUS_PUBLIC)
-        form = self.form({'publish_type': amo.PUBLISH_HIDDEN}, addon=self.app)
-        assert form.is_valid()
-        form.save()
-        self.app.reload()
-        eq_(self.app.status, amo.STATUS_UNPUBLISHED)
-
-    def test_invalid(self):
-        form = self.form({'publish_type': 999}, addon=self.app)
-        assert not form.is_valid()
+        eq_(self.app.make_public, amo.PUBLIC_IMMEDIATELY)
 
 
 class TestAdminSettingsForm(TestAdmin):

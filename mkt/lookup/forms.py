@@ -10,13 +10,12 @@ import amo
 STATUS_CHOICES = []
 for status in amo.MARKET_STATUSES:
     STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
-                           amo.STATUS_CHOICES[status]))
+                           amo.MKT_STATUS_CHOICES[status]))
 
 FILE_STATUS_CHOICES = []
 for status in amo.MARKET_STATUSES:
     FILE_STATUS_CHOICES.append((amo.STATUS_CHOICES_API[status],
                            amo.MKT_STATUS_FILE_CHOICES[status]))
-
 
 class NoAutoCompleteChoiceField(forms.ChoiceField):
     def widget_attrs(self, widget):
@@ -57,7 +56,6 @@ class DeleteUserForm(happyforms.Form):
 class APIStatusForm(happyforms.Form):
     status = NoAutoCompleteChoiceField(required=False,
         choices=STATUS_CHOICES, label=_lazy(u'Status'))
-
 
 class APIFileStatusForm(happyforms.Form):
     status = NoAutoCompleteChoiceField(required=False,

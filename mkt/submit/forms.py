@@ -267,68 +267,63 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
 class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
     """Form for "Details" submission step."""
 
-    PUBLISH_CHOICES = (
-        (amo.PUBLISH_IMMEDIATE,
-         _lazy(u'Published immediately and visible to everyone and included '
-               u'in search results and listing pages.')),
-        (amo.PUBLISH_HIDDEN,
-         _lazy(u'Unpublished and visible only to those who know the URL.')),
-        (amo.PUBLISH_PRIVATE,
-         _lazy(u'Private and only visible to team members.')),
-    )
-
     app_slug = forms.CharField(max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'm'}))
-    description = TransField(
+                           widget=forms.TextInput(attrs={'class': 'm'}))
+    description = TransField(required=True,
         label=_lazy(u'Description:'),
         help_text=_lazy(u'This description will appear on the details page.'),
         widget=TransTextarea(attrs={'rows': 4}))
-    privacy_policy = TransField(
+    privacy_policy = TransField(widget=TransTextarea(attrs={'rows': 6}),
         label=_lazy(u'Privacy Policy:'),
-        widget=TransTextarea(attrs={'rows': 6}),
-        help_text=_lazy(
-            u"A privacy policy that explains what data is transmitted from a "
-            u"user's computer and how it is used is required."))
-    homepage = TransField.adapt(forms.URLField)(
-        label=_lazy(u'Homepage:'), required=False,
-        widget=TransInput(attrs={'class': 'full'}),
-        help_text=_lazy(
-            u'If your app has another homepage, enter its address here.'))
-    support_url = TransField.adapt(forms.URLField)(
-        label=_lazy(u'Support Website:'), required=False,
-        widget=TransInput(attrs={'class': 'full'}),
-        help_text=_lazy(
-            u'If your app has a support website or forum, enter its address '
-            u'here.'))
+        help_text=_lazy(u"A privacy policy that explains what "
+                         "data is transmitted from a user's computer and how "
+                         "it is used is required."))
+    homepage = TransField.adapt(forms.URLField)(required=False,
+        label=_lazy(u'Homepage:'),
+        help_text=_lazy(u'If your app has another homepage, enter its address '
+                         'here.'),
+        widget=TransInput(attrs={'class': 'full'}))
+    support_url = TransField.adapt(forms.URLField)(required=False,
+        label=_lazy(u'Support Website:'),
+        help_text=_lazy(u'If your app has a support website or forum, enter '
+                         'its address here.'),
+        widget=TransInput(attrs={'class': 'full'}))
     support_email = TransField.adapt(forms.EmailField)(
         label=_lazy(u'Support Email:'),
-        widget=TransInput(attrs={'class': 'full'}),
-        help_text=_lazy(
-            u'This email address will be listed publicly on the Marketplace '
-            u'and used by end users to contact you with support issues. This '
-            u'email address will be listed publicly on your app details page.'))
-    flash = forms.TypedChoiceField(
+        help_text=_lazy(u'This email address will be listed publicly on the '
+                        u'Marketplace and used by end users to contact you '
+                        u'with support issues. This email address will be '
+                        u'listed publicly on your app details page.'),
+        widget=TransInput(attrs={'class': 'full'}))
+    flash = forms.TypedChoiceField(required=False,
+        coerce=lambda x: bool(int(x)),
         label=_lazy(u'Does your app require Flash support?'),
-        required=False, coerce=lambda x: bool(int(x)),
-        initial=0, widget=forms.RadioSelect,
-        choices=((1, _lazy(u'Yes')),
-                 (0, _lazy(u'No'))))
+        initial=0,
+        choices=(
+            (1, _lazy(u'Yes')),
+            (0, _lazy(u'No')),
+        ),
+        widget=forms.RadioSelect)
+    publish = forms.BooleanField(required=False, initial=1,
+        label=_lazy(u"Publish my app in the Firefox Marketplace as soon as "
+                     "it's reviewed."),
+        help_text=_lazy(u"If selected your app will be published immediately "
+                         "following its approval by reviewers.  If you don't "
+                         "select this option you will be notified via email "
+                         "about your app's approval and you will need to log "
+                         "in and manually publish it."))
     notes = forms.CharField(
-        label=_lazy(u'Your comments for reviewers'), required=False,
-        widget=forms.Textarea(attrs={'rows': 2}),
-        help_text=_lazy(
-            u'Your app will be reviewed by Mozilla before it becomes publicly '
-            u'listed on the Marketplace. Enter any special instructions for '
-            u'the app reviewers here.'))
-    publish_type = forms.TypedChoiceField(
-        label=_lazy(u'How should we handle your app upon reviewer approval?'),
-        choices=PUBLISH_CHOICES, initial=amo.PUBLISH_IMMEDIATE,
-        widget=forms.RadioSelect())
+        label=_lazy(u'Your comments for reviewers'),
+        help_text=_lazy(u'Your app will be reviewed by Mozilla before it '
+                        u'becomes publicly listed on the Marketplace. Enter '
+                        u'any special instructions for the app reviewers '
+                        u'here.'),
+        required=False, widget=forms.Textarea(attrs={'rows': 2}))
 
     class Meta:
         model = Addon
         fields = ('app_slug', 'description', 'privacy_policy', 'homepage',
-                  'support_url', 'support_email', 'publish_type')
+                  'support_url', 'support_email')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')

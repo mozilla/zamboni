@@ -175,49 +175,39 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         self.request = mock.Mock()
         self.request.amo_user = UserProfile.objects.get(id=999)
 
-    def get_app(self):
-        return Webapp.objects.get(pk=337141)
-
-    def get_data(self, **kwargs):
-        default = {
+    def test_slug(self):
+        app = Webapp.objects.get(pk=337141)
+        data = {
             'app_slug': 'thisIsAslug',
-            'description': '...',
-            'privacy_policy': '...',
+            'description': '.',
+            'privacy_policy': '.',
             'support_email': 'test@example.com',
             'notes': '',
-            'publish_type': amo.PUBLISH_IMMEDIATE,
         }
-        default.update(kwargs)
-        return default
-
-    def test_slug(self):
-        app = self.get_app()
-        form = forms.AppDetailsBasicForm(self.get_data(), request=self.request,
+        form = forms.AppDetailsBasicForm(data, request=self.request,
                                          instance=app)
-        assert form.is_valid(), form.errors
+        assert form.is_valid()
         form.save()
         eq_(app.app_slug, 'thisisaslug')
 
     def test_comm_thread(self):
         self.create_switch('comm-dashboard')
-        app = self.get_app()
+        app = Webapp.objects.get(pk=337141)
         note_body = 'please approve this app'
-        form = forms.AppDetailsBasicForm(self.get_data(notes=note_body),
-                                         request=self.request, instance=app)
-        assert form.is_valid(), form.errors
+        data = {
+            'app_slug': 'thisIsAslug',
+            'description': '.',
+            'privacy_policy': '.',
+            'support_email': 'test@example.com',
+            'notes': note_body,
+        }
+        form = forms.AppDetailsBasicForm(data, request=self.request,
+                                         instance=app)
+        assert form.is_valid()
         form.save()
         notes = CommunicationNote.objects.all()
         eq_(notes.count(), 1)
         eq_(notes[0].body, note_body)
-
-    def test_publish_type(self):
-        app = self.get_app()
-        form = forms.AppDetailsBasicForm(
-            self.get_data(publish_type=amo.PUBLISH_HIDDEN),
-            request=self.request, instance=app)
-        assert form.is_valid(), form.errors
-        form.save()
-        eq_(app.publish_type, amo.PUBLISH_HIDDEN)
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):

@@ -27,16 +27,13 @@ def manifest(request, uuid):
 
     """
     addon = get_object_or_404(Webapp, guid=uuid, is_packaged=True)
-    is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_UNPUBLISHED,
-                                amo.STATUS_BLOCKED]
-    is_owner = addon.authors.filter(pk=request.user.pk).exists()
-    is_owner_avail = addon.status == amo.STATUS_APPROVED
+    is_avail = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_BLOCKED]
     package_etag = hashlib.sha256()
 
-    if (addon.is_packaged and
-        not addon.disabled_by_user and
-        (is_avail or (is_owner_avail and is_owner))):
+    if not addon.is_packaged or addon.disabled_by_user or not is_avail:
+        raise http.Http404
 
+    else:
         manifest_content = addon.get_cached_manifest()
         package_etag.update(manifest_content)
 
@@ -46,15 +43,12 @@ def manifest(request, uuid):
             if package_file:
                 package_etag.update(package_file.hash)
 
-        manifest_etag = package_etag.hexdigest()
+    manifest_etag = package_etag.hexdigest()
 
-        @etag(lambda r, a: manifest_etag)
-        def _inner_view(request, addon):
-            response = http.HttpResponse(manifest_content,
-                                         content_type=MANIFEST_CONTENT_TYPE)
-            return response
+    @etag(lambda r, a: manifest_etag)
+    def _inner_view(request, addon):
+        response = http.HttpResponse(manifest_content,
+                                     content_type=MANIFEST_CONTENT_TYPE)
+        return response
 
-        return _inner_view(request, addon)
-
-    else:
-        raise http.Http404
+    return _inner_view(request, addon)

@@ -57,9 +57,9 @@ def _change_last_updated(next):
 @write
 def addon_last_updated():
     next = {}
-    qs = Addon._last_updated_queries().values()
-    for addon, last_updated in qs.values_list('id', 'last_updated'):
-        next[addon] = last_updated
+    for q in Addon._last_updated_queries().values():
+        for addon, last_updated in q.values_list('id', 'last_updated'):
+            next[addon] = last_updated
 
     _change_last_updated(next)
 
@@ -142,7 +142,7 @@ def clean_old_signed(seconds=60 * 60):
 @cronjobs.register
 def update_app_trending():
     """
-    Update trending for all published apps.
+    Update trending for all apps.
 
     Spread these tasks out successively by 15 seconds so they don't hit
     Monolith all at once.

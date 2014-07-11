@@ -649,7 +649,7 @@ class TestDetails(TestSubmit):
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1.id],
             'flash': '1',
-            'publish_type': amo.PUBLISH_IMMEDIATE,
+            'publish': '1',
             'notes': 'yes'
         }
         # Add the required screenshot.
@@ -673,7 +673,7 @@ class TestDetails(TestSubmit):
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
             'uses_flash': True,
-            'publish_type': amo.PUBLISH_IMMEDIATE,
+            'make_public': amo.PUBLIC_IMMEDIATELY
         }
         if expected:
             expected_data.update(expected)
@@ -750,15 +750,16 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
-    def test_success_for_approved(self):
+    def test_success_for_public_waiting(self):
         self._step()
 
-        data = self.get_dict(publish_type=amo.PUBLISH_PRIVATE)
+        data = self.get_dict()
+        del data['publish']
+
         r = self.client.post(self.url, data)
         self.assertNoFormErrors(r)
 
-        self.check_dict(data=data,
-                        expected={'publish_type': amo.PUBLISH_PRIVATE})
+        self.check_dict(data=data, expected={'make_public': amo.PUBLIC_WAIT})
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
