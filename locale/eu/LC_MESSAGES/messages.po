@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-11 21:54+0000\n"
+"PO-Revision-Date: 2014-07-13 21:16+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1405115684.0\n"
+"X-POOTLE-MTIME: 1405286208.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -7143,24 +7143,24 @@ msgstr "Azken aldiko puntuak"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Oraindik ez da punturik eman."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Nabarmendutako berrikusleak (azken 7 egunetan)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Oraindik ez dago nabarmendutako berrikuslerik."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Denbora guztian"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "<span>{0}</span> puntu dituzu."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
@@ -7184,31 +7184,31 @@ msgstr "Berrienak"
 
 #: mkt/search/forms.py:17
 msgid "Reviewed"
-msgstr ""
+msgstr "Berrikusita"
 
 #: mkt/search/forms.py:24
 msgid "Any App Type"
-msgstr ""
+msgstr "Edozein aplikazio mota"
 
 #: mkt/search/forms.py:27
 msgid "Privileged packaged app"
-msgstr ""
+msgstr "Pribilegiodun aplikazio paketeratua"
 
 #: mkt/search/forms.py:32
 msgid "Free with In-app"
-msgstr ""
+msgstr "Doakoa aplikazio barneko ordainketekin"
 
 #: mkt/search/forms.py:34
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium-a aplikazio barneko ordainketekin"
 
 #: mkt/search/forms.py:35
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Aplikazio barneko ordainketetarako beste sistema bat"
 
 #: mkt/search/forms.py:39
 msgid "Any Device Type"
-msgstr ""
+msgstr "Edozein gailu mota"
 
 #: mkt/search/forms.py:41
 msgid "Mobile"
@@ -7216,7 +7216,7 @@ msgstr "Mugikorra"
 
 #: mkt/search/forms.py:42
 msgid "Tablet"
-msgstr ""
+msgstr "Tableta"
 
 #: mkt/search/forms.py:54
 msgid "All Categories"
@@ -7228,23 +7228,23 @@ msgstr "Jokoak"
 
 #: mkt/search/forms.py:56
 msgid "Books"
-msgstr ""
+msgstr "Liburuak"
 
 #: mkt/search/forms.py:57
 msgid "Business"
-msgstr ""
+msgstr "Negozioak"
 
 #: mkt/search/forms.py:58
 msgid "Education"
-msgstr ""
+msgstr "Hezkuntza"
 
 #: mkt/search/forms.py:59
 msgid "Entertainment"
-msgstr ""
+msgstr "Entretenimendua"
 
 #: mkt/search/forms.py:60
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Osasuna eta sasoia"
 
 #: mkt/search/forms.py:61 mkt/search/forms.py:88
 msgid "Lifestyle"
@@ -7312,7 +7312,7 @@ msgstr ""
 
 #: mkt/search/forms.py:136
 msgid "App type"
-msgstr ""
+msgstr "Aplikazio mota"
 
 #: mkt/search/forms.py:139
 msgid "Works offline"
@@ -7329,6 +7329,8 @@ msgstr "Bilaketa ez dago erabilgarri"
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Bilaketa ez dago erabilgarri aldi baterako. Saiatu berriro minutu batzuk "
+"barru."
 
 #: mkt/site/context_processors.py:30
 msgid "Account Settings"
@@ -7340,7 +7342,7 @@ msgstr "Aldatu pasahitza"
 
 #: mkt/site/context_processors.py:33
 msgid "Sign out"
-msgstr ""
+msgstr "Amaitu saioa"
 
 #: mkt/site/context_processors.py:36
 msgid "Developer Hub"
@@ -7352,11 +7354,11 @@ msgstr "Kudeaketa-tresnak"
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Onartu bezain laster."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Ez eskuz publiko egin arte."
 
 #: mkt/site/helpers.py:150
 msgid "Home"
@@ -7372,19 +7374,19 @@ msgstr "Erroreren bat dago egindako aldaketetan. Zuzendu itzazu eta bidali berri
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
-msgstr ""
+msgstr "Ez onartua"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Hara! Ekintza ez da onartzen."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Egin ezin duzun zerbait egiten saiatu zara."
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
-msgstr ""
+msgstr "Probatu aurreko orrira itzuli, orria freskatu eta berriro saiatzen."
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
@@ -7445,11 +7447,11 @@ msgstr ""
 
 #: mkt/submit/forms.py:51
 msgid "Cannot be free and paid."
-msgstr ""
+msgstr "Ezin da doakoa eta ordaindu beharrekoa izan aldi berean."
 
 #: mkt/submit/forms.py:52
 msgid "Please select a device."
-msgstr ""
+msgstr "Hautatu gailu bat."
 
 #: mkt/submit/forms.py:53
 msgid "Packaged apps are not yet supported for those platforms."
@@ -7457,19 +7459,19 @@ msgstr ""
 
 #: mkt/submit/forms.py:147
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Onartu eta jarraitu"
 
 #: mkt/submit/forms.py:173 mkt/submit/forms.py:239
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Errore bat gertatu da igotzerakoan. Saiatu berriro."
 
 #: mkt/submit/forms.py:207
 msgid "Version %s already exists"
-msgstr ""
+msgstr "%s bertsioa dagoeneko existitzen da"
 
 #: mkt/submit/forms.py:277
 msgid "When should your app be made available for sale?"
-msgstr ""
+msgstr "Noiz jarri beharko litzateke aplikazioa salgai?"
 
 #. L10n: "App" is a paid version of this app. "from" is this app.
 #: mkt/submit/forms.py:284
@@ -7478,7 +7480,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:351
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Pribatutasun-politika:"
 
 #: mkt/submit/forms.py:352
 msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
@@ -7620,7 +7622,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:23
 msgid "Published!"
-msgstr ""
+msgstr "Publikatuta!"
 
 #: mkt/submit/templates/submit/next_steps.html:25
 msgid "Almost There!"
