@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-13 08:01+0000\n"
+"PO-Revision-Date: 2014-07-13 15:41+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405238507.0\n"
+"X-POOTLE-MTIME: 1405266076.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2279,6 +2279,8 @@ msgstr "Цео екран"
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"Апликација захтева API за приказ преко целог екрана (`requestFullScreen` или "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
@@ -2287,6 +2289,8 @@ msgstr "Џојстик"
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"Апликација захтева да платформа подржава gamepad API "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
@@ -2335,6 +2339,8 @@ msgstr ""
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Апликација захтева да платформа дозвољава размену података у мрежи "
+"равноправних рачунара, не само видео и аудио формата."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
@@ -3046,7 +3052,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Неисправан тип датотеке {0}. Само су {1} датотеке подржане."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -3219,11 +3225,11 @@ msgstr "Е-пошта"
 
 #: mkt/developers/forms_payments.py:644
 msgid "Service ID"
-msgstr ""
+msgstr "ID сервиса"
 
 #: mkt/developers/forms_payments.py:651
 msgid "Service ID is not valid"
-msgstr ""
+msgstr "ID сервиса није исправан"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
