@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-06-30 11:08+0000\n"
+"PO-Revision-Date: 2014-07-13 08:01+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404126522.0\n"
+"X-POOTLE-MTIME: 1405238507.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2063,11 +2064,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:45
 msgid "Developer comment"
-msgstr ""
+msgstr "Коментар програмера"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr "АПИ за управљање апликацијом"
+msgstr "API за управљање апликацијом"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
@@ -2075,7 +2076,7 @@ msgstr "Апликација захтева `navigator.mozApps` API да би с
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr "АПИ за запаковане апликације"
+msgstr "API за запаковане апликације"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
@@ -2087,15 +2088,15 @@ msgstr "Веб плаћање"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr "Апликација захтева `navigator.mozApps` АПИ."
+msgstr "Апликација захтева `navigator.mozApps` API."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr "Web Activities"
+msgstr "Веб активности"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr "Апликација захтева Web Activities (`MozActivity` АПИ)."
+msgstr "Апликација захтева Web Activities (`MozActivity` API)."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
@@ -2127,7 +2128,7 @@ msgstr "Контакти"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr "Апликација захтева `navigator.mozContacts` АПИ."
+msgstr "Апликација захтева `navigator.mozContacts` API."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
@@ -2135,7 +2136,9 @@ msgstr "Складиште уређаја"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr "Апликација захтева Device Storage АПИ за приступ датотекама у систему датотека."
+msgstr ""
+"Апликација захтева Device Storage API за приступ датотекама у систему "
+"датотека."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
@@ -2159,7 +2162,9 @@ msgstr "Информације о мрежи"
 
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr "Апликација захтева способност прикупљања информација о мрежној вези (`navigator.mozConnection` АПИ)."
+msgstr ""
+"Апликација захтева способност прикупљања информација о мрежној вези "
+"(`navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
@@ -2167,7 +2172,7 @@ msgstr "Мрежни статус"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr "Ова апликација захтева `navigator.mozNetworkStats` АПИ."
+msgstr "Ова апликација захтева `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
@@ -2175,7 +2180,7 @@ msgstr "Близина"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr "Апликације захтева сензор за близину (`ondeviceproximity` АПИ)."
+msgstr "Апликације захтева сензор за близину (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
@@ -2183,7 +2188,7 @@ msgstr ""
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
-msgstr "Апликација захтева `navigator.mozPush` АПИ."
+msgstr "Апликација захтева `navigator.mozPush` API."
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
@@ -2191,7 +2196,7 @@ msgstr "Оријентација екрана"
 
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr "Апликација захтева платформу да би подржала `ondeviceorientation` АПИ."
+msgstr "Апликација захтева платформу да би подржала `ondeviceorientation` API."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
@@ -2199,7 +2204,7 @@ msgstr "Време/сат"
 
 #: mkt/constants/features.py:123
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozTime` API."
 
 #: mkt/constants/features.py:127
 msgid "Vibration"
@@ -2208,14 +2213,16 @@ msgstr "Вибрација"
 #: mkt/constants/features.py:128
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"Апликација захтева да уређај подржава вибрацију (the `navigator.vibrate` "
+"API)."
 
 #: mkt/constants/features.py:134
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozFM` или `navigator.mozFMRadio` APIs."
 
 #: mkt/constants/features.py:140
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Апликација захтева `navigator.mozSms` API."
 
 #: mkt/constants/features.py:144
 msgid "Touch"
@@ -2245,7 +2252,7 @@ msgstr "Аудио"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Апликација захтева да платформа подржава HTML5 audio API."
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
@@ -2254,6 +2261,8 @@ msgstr "Веб аудио"
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Апликација захтева да платформа подржава Web Audio API "
+"(`window.AudioContext`)."
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
@@ -2273,7 +2282,7 @@ msgstr ""
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
-msgstr ""
+msgstr "Џојстик"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
@@ -2313,7 +2322,7 @@ msgstr ""
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
@@ -2839,7 +2848,7 @@ msgstr[2] "{0} преузимања недељно"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
-msgstr "(није подржано)"
+msgstr "(Није подржано)"
 
 #: mkt/developers/api_payments.py:103
 msgid "Could not connect to payment server."
@@ -3007,7 +3016,7 @@ msgstr "Тип трансакције"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
-msgstr ""
+msgstr "ID трансакције"
 
 #: mkt/developers/forms.py:1017
 msgid "From"
@@ -5134,11 +5143,13 @@ msgstr "Одабери све"
 
 #: mkt/ecosystem/views.py:53
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Хвала Вам на претплати!"
 
 #: mkt/ecosystem/views.py:59
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr ""
+"Извињавамо се, али дошло је до грешке у нашем систему. Молимо Вас покушајте "
+"поново касније."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
@@ -5146,31 +5157,31 @@ msgstr "Дизајн"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr ""
+msgstr "Концепт: сјајна апликација"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
-msgstr ""
+msgstr "Основе дизајна"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:28 mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:19
 msgid "UI Guidelines"
-msgstr ""
+msgstr "UI упутства"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
-msgstr ""
+msgstr "Изградња"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
-msgstr ""
+msgstr "Брзи почетак"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox OS Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
-msgstr ""
+msgstr "Референтне апликације"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
@@ -5186,15 +5197,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Значке, банери и иконице"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:12
 msgid "Developer Preview Phone"
-msgstr ""
+msgstr "Телефон за програмере"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:20
 msgid "Bringing the Open Web to mobile devices."
-msgstr ""
+msgstr "Довођење отвореног веба на мобилне уређаје."
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:22
 msgid ""
@@ -5255,7 +5266,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:101
 msgid "Docs and tools"
-msgstr ""
+msgstr "Документи и алати"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:103
 msgid ""
@@ -5271,7 +5282,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:122
 msgid "Sharing with the community"
-msgstr ""
+msgstr "Делење са заједницом"
 
 #: mkt/ecosystem/templates/ecosystem/dev_phone.html:124
 msgid ""
@@ -5290,7 +5301,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr ""
+msgstr "Развијајте HTML5 веб апликације за отворен marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
 msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
