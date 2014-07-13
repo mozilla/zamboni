@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-13 15:41+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2014-07-13 20:24+0000\n"
+"Last-Translator: Marko <smrzlicm@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405266076.0\n"
+"X-POOTLE-MTIME: 1405283078.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2267,10 +2267,14 @@ msgstr ""
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Апликација захтева да платформа може да декодира и репродукује H.264 видео "
+"датотеке."
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"Апликација захтева да платформа може да декодира и репродукује WebM видео "
+"датотеке (VP8)."
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
@@ -2318,7 +2322,7 @@ msgstr ""
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Снимак екрана"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
@@ -2334,7 +2338,7 @@ msgstr ""
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
@@ -2978,7 +2982,7 @@ msgstr "Омогући нове регије"
 
 #: mkt/developers/forms.py:756
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Учини моју апликацију доступну у већини регија"
 
 #: mkt/developers/forms.py:757
 msgid "Choose where my app is made available"
@@ -3192,7 +3196,7 @@ msgstr "Држава/покрајина/регион банке"
 
 #: mkt/developers/forms_payments.py:432
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Поштански број банке"
 
 #: mkt/developers/forms_payments.py:434
 msgid "Bank Country"
