@@ -350,10 +350,10 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.refresh('webapp')
 
     def get_obj(self):
-        return S(WebappIndexer).filter(id=self.app.pk).execute().objects[0]
+        return S(WebappIndexer).filter(id=self.app.pk).execute().results[0]
 
     def serialize(self):
-        serializer = ESAppSerializer(instance=self.get_obj(),
+        serializer = ESAppSerializer(self.get_obj(),
                                      context={'request': self.request})
         return serializer.data
 
