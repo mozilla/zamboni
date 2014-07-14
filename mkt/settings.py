@@ -1079,7 +1079,7 @@ SLAVE_DATABASES = []
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.
-SOLITUDE_HOSTS = (os.environ.get('SOLITUDE_URL', ''),)
+SOLITUDE_HOSTS = (os.environ.get('SOLITUDE_URL', 'http://localhost:2602'),)
 
 # The oAuth key and secret that solitude needs.
 SOLITUDE_KEY = ''
