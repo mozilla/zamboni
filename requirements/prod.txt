@@ -93,6 +93,7 @@ slumber==0.5.3
 SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
+urllib3==1.8.2
 
 ## Not on pypi.
 -e git+https://github.com/mozilla/amo-validator.git@d83d94f6494fa842cd11fdbb0b0acf150b85af51#egg=amo-validator
