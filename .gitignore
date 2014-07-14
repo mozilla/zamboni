@@ -39,5 +39,6 @@ media/fireplace
 media/rocketfuel
 media/commbadge
 media/marketplace-stats
+media/transonic
 *.signed.zip
 *.po~
