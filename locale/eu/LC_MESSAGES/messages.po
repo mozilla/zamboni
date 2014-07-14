@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:45-0700\n"
-"PO-Revision-Date: 2014-07-13 21:16+0000\n"
+"PO-Revision-Date: 2014-07-14 20:38+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1405286208.0\n"
+"X-POOTLE-MTIME: 1405370291.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -675,11 +675,11 @@ msgstr "Blokeatua"
 
 #: apps/constants/base.py:49
 msgid "Published"
-msgstr "Argitaratua"
+msgstr "Publikatuta"
 
 #: apps/constants/base.py:50
 msgid "Approved but unpublished"
-msgstr "Onartua baina argitaratu gabea"
+msgstr "Onartuta baina publikatu gabe"
 
 #: apps/constants/base.py:54
 msgid "Obsolete"
@@ -3066,7 +3066,7 @@ msgstr "Herrialdea"
 
 #: mkt/developers/forms.py:1008
 msgid "Transaction Type"
-msgstr "Transakzio-mota"
+msgstr "Transakzio mota"
 
 #: mkt/developers/forms.py:1011 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
@@ -3100,7 +3100,7 @@ msgstr "Fitxategi handiegia. Mantendu tamaina %s azpitik. Uneko tamaina: %s."
 
 #: mkt/developers/forms.py:1101
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr "Fitxategi-mota baliogabea {0}. {1} fitxategiak soilik onartzen dira."
+msgstr "Fitxategi mota baliogabea {0}. {1} fitxategiak soilik onartzen dira."
 
 #: mkt/developers/forms.py:1125
 msgid "Please enter a valid submission ID."
@@ -4013,7 +4013,7 @@ msgstr "Deskargatu"
 #: mkt/developers/templates/developers/apps/status.html:255 mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:43
 msgid "Publish"
-msgstr "Argitaratu"
+msgstr "Publikatu"
 
 #: mkt/developers/templates/developers/apps/status.html:270
 msgid "Upload New Version"
@@ -5000,11 +5000,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:233
 msgid "Billing method"
-msgstr ""
+msgstr "Fakturazio-metodoa"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Other regions"
-msgstr ""
+msgstr "Beste eskualdeak"
 
 #: mkt/developers/templates/developers/payments/premium.html:246
 msgid ""
@@ -5014,31 +5014,35 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:268
 msgid "Regions and Listings"
-msgstr ""
+msgstr "Eskualdeak eta zerrendak"
 
 #: mkt/developers/templates/developers/payments/premium.html:283
 msgid "Promote as upgrade to free version"
-msgstr ""
+msgstr "Promozionatu doako bertsioaren eguneratze gisa"
 
 #: mkt/developers/templates/developers/payments/premium.html:292
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr ""
+"Doako aplikazio bat baduzu, zure premium aplikazioa doako bertsioarekin lotu "
+"eta honen alboan promoziona dezakezu."
 
 #: mkt/developers/templates/developers/payments/premium.html:300
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr ""
+"Aplikazio hau lotzean zure premium aplikazioa doakoaren alboan "
+"promozionatuko da."
 
 #: mkt/developers/templates/developers/payments/premium.html:307
 msgid "No free apps"
-msgstr ""
+msgstr "Doako aplikaziorik ez"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "Akordioaren baldintzak"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
-msgstr ""
+msgstr "Onartu baldintzak"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
@@ -5059,7 +5063,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
-msgstr ""
+msgstr "Onartu zerbitzuaren baldintzak"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
