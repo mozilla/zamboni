@@ -26,7 +26,6 @@ class BaseIndexer(object):
     - extract_document(cls, obj_id, obj=None)
 
     """
-
     _es = {}
 
     @classmethod
@@ -110,11 +109,11 @@ class BaseIndexer(object):
         es.indices.refresh(index=index)
 
     @classmethod
-    def search(cls):
+    def search(cls, using=None):
         """
         Returns a `Search` object from elasticsearch_dsl.
         """
-        return Search(using=cls.get_es(),
+        return Search(using=using or cls.get_es(),
                       index=cls.get_index(),
                       doc_type=cls.get_mapping_type_name())
 

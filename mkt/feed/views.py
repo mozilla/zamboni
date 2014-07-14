@@ -1,6 +1,11 @@
+import string
+
+from django.conf import settings
 from django.db.models import Q
 
-from elasticsearch_dsl import query
+from elasticsearch_dsl import filter as es_filter
+from elasticsearch_dsl import function as es_function
+from elasticsearch_dsl import F, query, Search
 from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
@@ -15,7 +20,9 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
 from mkt.collections.views import CollectionImageViewSet
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer, FeedShelfIndexer)
+                               FeedCollectionIndexer, FeedItemIndexer,
+                               FeedShelfIndexer)
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
@@ -23,7 +30,7 @@ from .constants import FEED_TYPE_SHELF
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppSerializer, FeedBrandSerializer,
                           FeedCollectionSerializer, FeedItemSerializer,
-                          FeedShelfSerializer)
+                          FeedItemESSerializer, FeedShelfSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
@@ -357,16 +364,111 @@ class FeedView(CORSMixin, APIView):
     permission_classes = []
     cors_allowed_methods = ('get',)
 
+    def get_es_feed_query(self, region=mkt.regions.RESTOFWORLD.id,
+                          carrier=None):
+        """
+        Build ES query for feed.
+        Weights on region and carrier if passed in.
+        Operator shelf on top if region and carrier passed in.
+
+        region -- region ID (integer)
+        carrier -- carrier ID (integer)
+        """
+        # Filter by only region.
+        region_filter = es_filter.Bool(must=[es_filter.Term(region=region)])
+        if carrier is None:
+            return region_filter.to_dict()  # Why doesn't work w/o to_dict()?
+
+        # Filter by both region and carrier.
+        shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
+
+        # Boost shelf to top.
+        functions = [es_function.BoostFactor(value=10000.0,
+                                             filter=shelf_filter)]
+
+        # Exclude shelves that may match the region, but NOT the carrier.
+        bad_shelf_filter = es_filter.Bool(
+            must=[shelf_filter],
+            must_not=[es_filter.Term(carrier=carrier)])
+        shelf_filter = es_filter.Bool(must_not=[bad_shelf_filter])
+
+        return query.FunctionScore(functions=functions,
+                                   filter=region_filter + shelf_filter)
+
+    def get_es_feed_element_query(self, feed_items):
+        """
+        From a list of FeedItems with normalized feed element IDs,
+        return an ES query that fetches the feed elements for each feed item.
+        """
+        filters = []
+        for feed_item in feed_items:
+            item_type = feed_item['item_type']
+            filters.append(es_filter.Bool(must=[
+                es_filter.Term(id=feed_item[item_type]),
+                es_filter.Term(item_type=item_type)
+            ]))
+
+        return es_filter.Bool(should=filters)
+
     def get(self, request, *args, **kwargs):
-        filterer = RegionCarrierFilter()
-        data = {
-            'feed': [],
-            'shelf': None
+        es = FeedItemIndexer.get_es()
+
+        # Parse carrier and region.
+        q = request.QUERY_PARAMS
+        region = request.REGION.id
+        carrier = None
+        if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
+            carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
+
+        # Fetch FeedItems.
+        sq = self.get_es_feed_query(region=region, carrier=carrier)
+        feed_items = FeedItemIndexer.search(using=es).query(sq).execute().hits
+        if not feed_items:
+            return response.Response({'objects': []},
+                                     status=status.HTTP_404_NOT_FOUND)
+
+        # Set up serializer context and index name.
+        apps = []
+        feed_element_map = {
+            feed.FEED_TYPE_APP: {},
+            feed.FEED_TYPE_BRAND: {},
+            feed.FEED_TYPE_COLL: {},
+            feed.FEED_TYPE_SHELF: {},
         }
-        feed = filterer.filter_queryset(request, FeedItem.objects.all(), self)
-        data['feed'] = FeedItemSerializer(feed).data
-        for index, item in enumerate(data['feed']):
-            if item['item_type'] == FEED_TYPE_SHELF:
-                data['shelf'] = data['feed'].pop(index)
-                break
-        return response.Response(data, status=status.HTTP_200_OK)
+        index = [
+            settings.ES_INDEXES['mkt_feed_app'],
+            settings.ES_INDEXES['mkt_feed_brand'],
+            settings.ES_INDEXES['mkt_feed_collection'],
+            settings.ES_INDEXES['mkt_feed_shelf']
+        ]
+
+        # Fetch feed elements to attach to FeedItems later.
+        sq = self.get_es_feed_element_query(feed_items)
+        feed_elms = Search(using=es, index=index).filter(sq).execute().hits
+        for feed_elm in feed_elms:
+            # Store the feed elements to attach to FeedItems later.
+            feed_element_map[feed_elm['item_type']][feed_elm['id']] = feed_elm
+            # Store the apps to retrieve later.
+            if feed_elm.get('app'):
+                apps.append(feed_elm['app'])
+            elif feed_elm.get('apps'):
+                apps += feed_elm['apps']
+
+        # Fetch apps to attach to feed elements later (with mget).
+        app_map = {}
+        apps = es.mget(body={'ids': apps}, index=WebappIndexer.get_index(),
+                       doc_type=WebappIndexer.get_mapping_type_name())
+        for app in apps['docs']:
+            # Store the apps to attach to feed elements later.
+            app = app['_source']
+            app_map[app['id']] = app
+
+        # Super serialize.
+        feed_items = FeedItemESSerializer(feed_items, many=True, context={
+            'app_map': app_map,
+            'feed_element_map': feed_element_map,
+            'request': request
+        }).data
+
+        return response.Response({'objects': feed_items},
+                                 status=status.HTTP_200_OK)
