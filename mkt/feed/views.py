@@ -305,16 +305,16 @@ class FeedElementSearchView(CORSMixin, APIView):
         }
 
         feed_app_ids = ([pk[0] for pk in S(FeedAppIndexer).query(
-            name__fuzzy=q, **query).values_list('id')])
+            search_names__fuzzy=q, **query).values_list('id')])
 
         feed_brand_ids = [pk[0] for pk in S(FeedBrandIndexer).query(
             **query).values_list('id')]
 
         feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
-            name__fuzzy=q, **query).values_list('id')])
+            search_names__fuzzy=q, **query).values_list('id')])
 
         feed_shelf_ids = ([pk[0] for pk in S(FeedShelfIndexer).query(
-            name__fuzzy=q, slug__fuzzy=q, carrier__prefix=q, region=q,
+            search_names__fuzzy=q, slug__fuzzy=q, carrier__prefix=q, region=q,
             should=True).values_list('id')])
 
         # Dehydrate.

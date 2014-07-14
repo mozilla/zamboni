@@ -197,19 +197,10 @@ class WebappIndexer(BaseIndexer):
                 {'popularity_%s' % region: {'type': 'long'}})
 
         # Add fields that we expect to return all translations.
-        for field in ('banner_message', 'description', 'homepage', 'name',
-                      'release_notes', 'support_email', 'support_url'):
-            mapping[doc_type]['properties'].update({
-                '%s_translations' % field: {
-                    'type': 'object',
-                    'properties': {
-                        'lang': {'type': 'string',
-                                 'index': 'not_analyzed'},
-                        'string': {'type': 'string',
-                                   'index': 'not_analyzed'},
-                    }
-                }
-            })
+        cls.attach_translation_mappings(
+            mapping, ('banner_message', 'description', 'homepage',
+                      'name', 'release_notes', 'support_email',
+                      'support_url'))
 
         # Add room for language-specific indexes.
         for analyzer in amo.SEARCH_ANALYZER_MAP:
@@ -231,12 +222,19 @@ class WebappIndexer(BaseIndexer):
     @classmethod
     def extract_document(cls, pk, obj=None):
         """Extracts the ElasticSearch index document for this instance."""
-        from mkt.webapps.models import (AppFeatures, Geodata, Installed,
-                                        RatingDescriptors, RatingInteractives,
-                                        Webapp)
+        from mkt.webapps.models import (AppFeatures, attach_devices,
+                                        attach_prices, attach_tags,
+                                        attach_translations, Geodata,
+                                        Installed, RatingDescriptors,
+                                        RatingInteractives, Webapp)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
+
+        # Attach everything we need to index apps.
+        for transform in (attach_devices, attach_prices, attach_tags,
+                          attach_translations):
+            transform([obj])
 
         latest_version = obj.latest_version
         version = obj.current_version
@@ -435,8 +433,7 @@ class WebappIndexer(BaseIndexer):
         from mkt.webapps.models import Webapp
         sys.stdout.write('Indexing %s webapps\n' % len(ids))
 
-        qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache()
-                                         .filter(id__in=ids))
+        qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
 
         docs = []
         for obj in qs:
