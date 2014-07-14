@@ -3,7 +3,9 @@ import sys
 
 from django.conf import settings
 
+import elasticsearch
 from elasticutils.contrib.django import Indexable, MappingType
+from elasticsearch import helpers
 
 import amo
 from amo.decorators import write
@@ -22,7 +24,72 @@ class BaseIndexer(MappingType, Indexable):
     - get_model(cls)
     - get_mapping(cls)
     - extract_document(cls, obj_id, obj=None)
+
     """
+
+    _es = {}
+
+    @classmethod
+    def _key(cls, es_settings):
+        """
+        Create a hashed key based on settings.
+
+        This allows us to cache Elasticsearch objects based on settings.
+
+        """
+        es_settings = sorted(es_settings.items(), key=lambda item: item[0])
+        es_settings = repr([(k, v) for k, v in es_settings])
+        return tuple(es_settings)
+
+    @classmethod
+    def get_es(cls, **overrides):
+        """
+        Returns an Elasticsearch object using Django settings.
+
+        We override elasticutil's `get_es` because we're using the official
+        elasticsearch client library.
+
+        """
+        defaults = {
+            'hosts': settings.ES_HOSTS,
+            'timeout': getattr(settings, 'ES_TIMEOUT', 10),
+        }
+        defaults.update(overrides)
+
+        key = cls._key(defaults)
+        if key in cls._es:
+            return cls._es[key]
+
+        es = elasticsearch.Elasticsearch(**defaults)
+        cls._es[key] = es
+        return es
+
+    @classmethod
+    def index(cls, document, id_=None, es=None, index=None):
+        """
+        We override elasticutil's index because we're using the official
+        elasticsearch client library.
+        """
+        es = es or cls.get_es()
+        index = index or cls.get_index()
+        es.index(index=index, doc_type=cls.get_mapping_type_name(),
+                 body=document, id=id_)
+
+    @classmethod
+    def bulk_index(cls, documents, id_field='id', es=None, index=None):
+        """
+        We override elasticutil's bulk_index because we're using the official
+        elasticsearch client library.
+        """
+        es = es or cls.get_es()
+        index = index or cls.get_index()
+        type = cls.get_mapping_type_name()
+
+        actions = [
+            {'_index': index, '_type': type, '_id': d['id'], '_source': d}
+            for d in documents]
+
+        helpers.bulk(es, actions)
 
     @classmethod
     def get_index(cls):
@@ -118,9 +185,9 @@ class BaseIndexer(MappingType, Indexable):
     @classmethod
     def setup_mapping(cls):
         """Creates the ES index/mapping."""
-        cls.get_es().create_index(cls.get_index(),
-                                  {'mappings': cls.get_mapping(),
-                                   'settings': cls.get_settings()})
+        cls.get_es().indices.create(
+            index=cls.get_index(), body={'mappings': cls.get_mapping(),
+                                         'settings': cls.get_settings()})
 
     @classmethod
     def get_indexable(cls):

@@ -22,8 +22,8 @@ from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
+import elasticsearch
 import mock
-import pyelasticsearch
 from elasticutils.contrib.django import S
 from mock import Mock, patch
 from nose.tools import eq_, ok_, raises
@@ -2507,8 +2507,8 @@ class TestSearchSignals(amo.tests.ESTestCase):
     def cleanup(self):
         for index in settings.ES_INDEXES.values():
             try:
-                self.es.delete_index(index)
-            except pyelasticsearch.ElasticHttpNotFoundError:
+                self.es.indices.delete(index=index)
+            except elasticsearch.NotFoundError:
                 pass
 
     def test_create(self):

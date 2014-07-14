@@ -13,12 +13,12 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template import Context, loader
 
+import elasticsearch
 import pytz
 import requests
 from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task
-from pyelasticsearch.exceptions import ElasticHttpNotFoundError
 from requests.exceptions import RequestException
 from test_utils import RequestFactory
 from tower import ugettext as _
@@ -346,7 +346,7 @@ def index_webapps(ids, **kw):
     for obj in qs:
         doc = WebappIndexer.extract_document(obj.id, obj)
         for idx in indices:
-            WebappIndexer.index(doc, id_=obj.id, es=es, index=idx)
+            WebappIndexer.index(doc, id_=obj.id, index=idx)
 
 
 @post_request_task(acks_late=True)
@@ -367,7 +367,7 @@ def unindex_webapps(ids, **kw):
         for idx in indices:
             try:
                 WebappIndexer.unindex(id_=id_, es=es, index=idx)
-            except ElasticHttpNotFoundError:
+            except elasticsearch.NotFoundError:
                 # Ignore if it's not there.
                 task_log.info(
                     u'[Webapp:%s] Unindexing app but not found in index' % id_)

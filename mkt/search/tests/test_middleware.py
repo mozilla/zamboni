@@ -1,6 +1,6 @@
+import elasticsearch
 import mock
 from nose.tools import eq_
-from pyelasticsearch import exceptions
 from test_utils import RequestFactory
 
 import amo.tests
@@ -15,9 +15,11 @@ class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
     @mock.patch('mkt.search.middleware.render')
     def test_exceptions_we_catch(self, render_mock):
         # These are instantiated with an error string.
-        for e in [exceptions.ElasticHttpNotFoundError,
-                  exceptions.IndexAlreadyExistsError,
-                  exceptions.ElasticHttpError]:
+        for e in [elasticsearch.ElasticsearchException,
+                  elasticsearch.SerializationError,
+                  elasticsearch.TransportError,
+                  elasticsearch.NotFoundError,
+                  elasticsearch.RequestError]:
             ESM().process_exception(self.request, e(503, 'ES ERROR'))
             render_mock.assert_called_with(self.request, 'search/down.html',
                                            status=503)

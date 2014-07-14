@@ -4,13 +4,12 @@ adds them.
 """
 import sys
 
-from pyelasticsearch.exceptions import ElasticHttpNotFoundError
+import elasticsearch
 
 from django.core.management.base import BaseCommand
 
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
-from mkt.webapps.tasks import index_webapps
 
 
 class Command(BaseCommand):
@@ -21,20 +20,20 @@ class Command(BaseCommand):
         doctype = WebappIndexer.get_mapping_type_name()
         es = WebappIndexer.get_es()
 
-        apps = Webapp.objects.values_list('id', flat=True)
+        app_ids = Webapp.objects.values_list('id', flat=True)
 
         missing_ids = []
 
-        for app in apps:
+        for app_id in app_ids:
             try:
-                es.get(index, doctype, app, fields='id')
-            except ElasticHttpNotFoundError:
+                es.get(index, app_id, doctype, fields='id')
+            except elasticsearch.NotFoundError:
                 # App doesn't exist in our index, add it to `missing_ids`.
-                missing_ids.append(app)
+                missing_ids.append(app_id)
 
         if missing_ids:
             sys.stdout.write('Adding %s doc(s) to the index.'
                              % len(missing_ids))
-            index_webapps.delay(missing_ids)
+            WebappIndexer().run_indexing(missing_ids, es)
         else:
             sys.stdout.write('No docs missing from index.')

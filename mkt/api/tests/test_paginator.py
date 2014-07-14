@@ -16,6 +16,9 @@ from mkt.webapps.indexers import WebappIndexer
 
 class TestSearchPaginator(TestCase):
 
+    # TODO: When we update searching update this also.
+    # @mock.patch('elasticsearch.connection.http_requests'
+    #             '.RequestsHttpConnection.perform_request')
     @mock.patch('pyelasticsearch.client.ElasticSearch.send_request')
     def test_single_hit(self, _mock):
         """Test the ES paginator only queries ES one time."""
