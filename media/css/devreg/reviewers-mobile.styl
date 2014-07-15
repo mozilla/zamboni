@@ -539,3 +539,14 @@ $mobileborder = #d7d2c3;
         display: none;
     }
 }
+
+@media $mobile-landscape {
+    #queue-tab-overlay, #log-tab-overlay {
+        overflow: scroll;
+
+        > .nav-action-menu {
+            top: 5rem;
+            padding-top: 15px;
+        }
+    }
+}
