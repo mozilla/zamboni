@@ -28,7 +28,6 @@ database:
         - download_counts
         - editor_subscriptions
         - email_preview
-        - eventlog
         - fake_email
         - favorites
         - global_stats
