@@ -154,7 +154,7 @@
             {% if editable %}
               {{ select_cats(amo.MAX_CATEGORIES, cat_form) }}
             {% else %}
-              {% set categories = addon.categories.all() %}
+              {% set categories = addon.categories|categories_names %}
               {% call empty_unless(categories) %}
                 {{ categories|join(', ') }}
               {% endcall %}

@@ -4,11 +4,20 @@ from django.core.validators import EMPTY_VALUES
 from django_filters.filters import ChoiceFilter, ModelChoiceFilter
 from django_filters.filterset import FilterSet
 
-import amo
 import mkt
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.collections.models import Collection
-from mkt.webapps.models import Category
+from mkt.constants.categories import CATEGORY_CHOICES
+
+
+class ChoiceFilter(ChoiceFilter):
+    """
+    Like ChoiceFilter, but considering '' as None.
+    """
+    def filter(self, qs, value):
+        if value == '' or value is None:
+            return qs.filter(**{self.name: None})
+        return super(ChoiceFilter, self).filter(qs, value)
 
 
 class SlugChoiceFilter(ChoiceFilter):
@@ -47,9 +56,7 @@ class CollectionFilterSet(FilterSet):
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceFilter(name='region',
         choices_dict=mkt.regions.REGION_LOOKUP)
-    cat = SlugModelChoiceFilter(name='category',
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP),
-        sluggable_to_field_name='slug',)
+    cat = ChoiceFilter(name='category', choices=CATEGORY_CHOICES)
 
     class Meta:
         model = Collection

@@ -54,7 +54,7 @@ from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import update_search_index as app_update_search_index
-from mkt.webapps.models import Addon, Category, Webapp
+from mkt.webapps.models import Addon, Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -717,9 +717,8 @@ def app_factory(**kw):
         make_rated(app)
 
     if complete:
-        cat, _ = Category.objects.get_or_create(slug='utilities',
-                                                type=amo.ADDON_WEBAPP)
-        app.addoncategory_set.create(category=cat)
+        if not app.categories:
+            app.update(categories=['utilities'])
         app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
         app.previews.create()
 
@@ -882,9 +881,7 @@ class WebappTestCase(TestCase):
 
 
 def make_game(app, rated):
-    cat, created = Category.objects.get_or_create(slug='games',
-        type=amo.ADDON_WEBAPP)
-    app.addoncategory_set.create(category=cat)
+    app.update(categories=['games'])
     if rated:
         make_rated(app)
     app = app.reload()

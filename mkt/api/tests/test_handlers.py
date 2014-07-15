@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import tempfile
@@ -27,8 +28,7 @@ from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
-                                AddonUpsell, AddonUser, Category, Preview,
-                                Webapp)
+                                AddonUpsell, AddonUser, Preview, Webapp)
 
 
 class CreateHandler(RestOAuth):
@@ -40,16 +40,7 @@ class CreateHandler(RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.file = tempfile.NamedTemporaryFile('w', suffix='.webapp').name
         self.manifest_copy_over(self.file, 'mozball-nice-slug.webapp')
-        self.categories = []
-        for x in range(0, 2):
-            self.categories.append(Category.objects.create(
-                name='cat-%s' % x,
-                slug='cat-%s' % x,
-                type=amo.ADDON_WEBAPP))
-            self.categories.append(Category.objects.create(
-                name='cat-%s' % x,
-                slug='cat-%s' % x,
-                type=amo.ADDON_EXTENSION))
+        self.categories = ['games', 'books']
 
     def create(self, fil=None):
         if fil is None:
@@ -255,8 +246,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
             'privacy_policy': 'wat',
             'homepage': 'http://www.whatever.com',
             'name': 'mozball',
-            'categories': [c.slug for c in
-                           Category.objects.filter(type=amo.ADDON_WEBAPP)],
+            'categories': self.categories,
             'description': 'wat...',
             'premium_type': 'free',
             'regions': ['us'],
@@ -292,8 +282,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(set([c.pk for c in app.categories.all()]),
-            set([c.pk for c in Category.objects.filter(type=amo.ADDON_WEBAPP)]))
+        eq_(set(app.categories), set(self.categories))
 
     def test_post_content_ratings(self):
         """Test the @action on AppViewSet to attach the content ratings."""
@@ -321,8 +310,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
         res = self.client.get(self.get_url + '?lang=en')
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        self.assertSetEqual(data['categories'],
-                            [c.slug for c in app.categories.all()])
+        eq_(set(app.reload().categories), set(data['categories']))
         eq_(data['current_version'], app.current_version.version)
         self.assertSetEqual(data['device_types'],
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
@@ -351,10 +339,8 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
     def test_put_wrong_category(self):
         self.create_app()
-        wrong = Category.objects.create(name='wrong', slug='wrong',
-                                        type=amo.ADDON_EXTENSION)
         data = self.base_data()
-        data['categories'] = [wrong.slug]
+        data['categories'] = ['nonexistent']
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
 
@@ -542,11 +528,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.file = tempfile.NamedTemporaryFile('w', suffix='.zip').name
         self.packaged_copy_over(self.file, 'mozball.zip')
-        self.categories = []
-        for x in range(0, 2):
-            self.categories.append(Category.objects.create(
-                name='cat-%s' % x,
-                type=amo.ADDON_WEBAPP))
+        self.categories = ['utilities', 'social']
 
     def create(self):
         return FileUpload.objects.create(user=self.user, path=self.file,
@@ -698,17 +680,10 @@ class TestCategoryHandler(RestOAuth):
 
     def setUp(self):
         super(TestCategoryHandler, self).setUp()
-        self.cat = Category.objects.create(name='Webapp',
-                                           type=amo.ADDON_WEBAPP,
-                                           slug='thewebapp')
-        self.cat.name = {'fr': 'Le Webapp'}
-        self.cat.save()
-        self.other = Category.objects.create(name='other',
-                                             type=amo.ADDON_EXTENSION)
-
+        self.cat = 'education'
         self.list_url = reverse('app-category-list')
         self.get_url = reverse('app-category-detail',
-                               kwargs={'pk': self.cat.pk})
+                               kwargs={'pk': self.cat})
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ['get'])
@@ -717,42 +692,30 @@ class TestCategoryHandler(RestOAuth):
     def test_has_cors(self):
         self.assertCORS(self.client.get(self.list_url), 'get')
 
-    def test_weight(self):
-        self.cat.update(weight=-1)
-        res = self.anon.get(self.list_url)
-        data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 0)
-
-    def test_get_slug(self):
-        url = reverse('app-category-detail', kwargs={'pk': self.cat.slug})
-        res = self.client.get(url)
-        data = json.loads(res.content)
-        eq_(data['id'], self.cat.pk)
-
     def test_get_categories(self):
         res = self.anon.get(self.list_url)
         data = json.loads(res.content)
-        eq_(data['meta']['total_count'], 1)
-        eq_(data['objects'][0]['name'], 'Webapp')
-        eq_(data['objects'][0]['slug'], 'thewebapp')
+        eq_(data['meta']['total_count'], 18)
+        eq_(data['objects'][0]['name'], 'Books')
+        eq_(data['objects'][0]['slug'], 'books')
 
     def test_get_category(self):
         res = self.anon.get(self.get_url)
         data = json.loads(res.content)
-        eq_(data['name'], 'Webapp')
+        eq_(data['name'], 'Education')
 
     def test_get_category_localised(self):
         res = self.anon.get(self.get_url, HTTP_ACCEPT_LANGUAGE='fr')
         data = json.loads(res.content)
-        eq_(data['name'], 'Le Webapp')
+        eq_(data['name'], u'Éducation')
 
         res = self.anon.get(self.get_url, HTTP_ACCEPT_LANGUAGE='en-US')
         data = json.loads(res.content)
-        eq_(data['name'], 'Webapp')
+        eq_(data['name'], 'Education')
 
-    def test_get_other_category(self):
+    def test_get_404(self):
         res = self.anon.get(reverse('app-category-detail',
-                                    kwargs={'pk': self.other.pk}))
+                                    kwargs={'pk': 'nonexistent'}))
         eq_(res.status_code, 404)
 
 

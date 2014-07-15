@@ -36,12 +36,4 @@ class AddonAdmin(admin.ModelAdmin):
         return models.Addon.objects.filter(type__in=amo.MARKETPLACE_TYPES)
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addons',)
-    list_display = ('name', 'type', 'count')
-    list_filter = ('type',)
-    exclude = ('count',)
-
-
 admin.site.register(models.Addon, AddonAdmin)
-admin.site.register(models.Category, CategoryAdmin)

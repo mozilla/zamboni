@@ -15,11 +15,12 @@ from django.core.files.storage import default_storage as storage
 
 import amo
 import mkt
-from mkt.api.fields import (SlugChoiceField, SlugModelChoiceField,
-                            TranslationSerializerField)
+from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
+                            UnicodeChoiceField)
+from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
 from mkt.search.serializers import SimpleESAppSerializer
-from mkt.webapps.models import Category, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.users.models import UserProfile
 
@@ -152,8 +153,8 @@ class CollectionSerializer(serializers.ModelSerializer):
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False, empty=None,
         choices_dict=mkt.regions.REGION_LOOKUP)
-    category = SlugModelChoiceField(required=False,
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
+    category = UnicodeChoiceField(required=False, empty=None,
+        choices=CATEGORY_CHOICES)
 
     class Meta:
         fields = ('apps', 'author', 'background_color', 'can_be_hero',

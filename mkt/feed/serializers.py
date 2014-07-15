@@ -4,16 +4,15 @@ from django.utils.text import slugify
 from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
 
-import amo
 import mkt.carriers
 import mkt.regions
-from mkt.api.fields import SplitField, TranslationSerializerField
+from mkt.api.fields import (SlugChoiceField, SplitField,
+                            TranslationSerializerField, UnicodeChoiceField)
 from mkt.api.serializers import URLSerializerMixin
 from mkt.carriers import CARRIER_CHOICE_DICT
-from mkt.collections.serializers import SlugChoiceField, SlugModelChoiceField
+from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.submit.serializers import PreviewSerializer
-from mkt.webapps.models import Category
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
@@ -223,8 +222,8 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
         choices_dict=mkt.regions.REGION_LOOKUP)
-    category = SlugModelChoiceField(required=False,
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
+    category = UnicodeChoiceField(required=False, 
+        choices=CATEGORY_CHOICES)
     item_type = serializers.SerializerMethodField('get_item_type')
 
     # Types of objects that are allowed to be a feed item.

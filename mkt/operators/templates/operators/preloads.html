@@ -34,14 +34,11 @@
           </td>
           <td>
             {% set cats = preload.addon.categories %}
-            {% if cats.exists() %}
-              {% set cats = cats.all() %}
-              {% if cats.count() > 1 %}
-                {# L10N: {0} and {1} are category names. #}
-                {{ _('{0}, {1}')|f(cats[0], cats[1]) }}
-              {% else %}
-                {{ cats[0] }}
-              {% endif %}
+            {% if cats and cats|length > 1 %}
+              {# L10N: {0} and {1} are category names. #}
+              {{ _('{0}, {1}')|fe(cats[0], cats[1]) }}
+            {% else %}
+              {{ cats[0] }}
             {% endif %}
           </td>
           <td><time datetime="{{ preload.last_submission }}">{{ preload.last_submission|datetime }}</time></td>

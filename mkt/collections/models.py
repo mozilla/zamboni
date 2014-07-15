@@ -9,12 +9,14 @@ import mkt.regions
 from amo.decorators import use_master
 from amo.models import SlugField
 from amo.utils import to_language
+from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.translations.fields import PurifiedField, save_signal
+from mkt.webapps.models import Addon, clean_slug, Webapp
+from mkt.webapps.tasks import index_webapps
+
 from .constants import COLLECTION_TYPES
 from .fields import ColorField
 from .managers import PublicCollectionsManager
-from mkt.translations.fields import PurifiedField, save_signal
-from mkt.webapps.models import Addon, Category, clean_slug, Webapp
-from mkt.webapps.tasks import index_webapps
 
 
 class Collection(amo.models.ModelBase):
@@ -23,9 +25,8 @@ class Collection(amo.models.ModelBase):
     description = PurifiedField()
     name = PurifiedField()
     is_public = models.BooleanField(default=False)
-    # FIXME: add better / composite indexes that matches the query we are
-    # going to make.
-    category = models.ForeignKey(Category, null=True, blank=True)
+    category = models.CharField(default=None, null=True, blank=True,
+                                max_length=30, choices=CATEGORY_CHOICES)
     region = models.PositiveIntegerField(default=None, null=True, blank=True,
         choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
     carrier = models.IntegerField(default=None, null=True, blank=True,

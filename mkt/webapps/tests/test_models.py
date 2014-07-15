@@ -55,11 +55,10 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import update_status, Version
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (Addon, AddonCategory, AddonDeviceType,
-                                AddonExcludedRegion, AddonUpsell, AppFeatures,
-                                AppManifest, BlacklistedSlug, Category,
-                                ContentRating, Geodata, get_excluded_in,
-                                IARCInfo, Installed, Preview,
+from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
+                                AddonUpsell, AppFeatures, AppManifest,
+                                BlacklistedSlug, ContentRating, Geodata,
+                                get_excluded_in, IARCInfo, Installed, Preview,
                                 RatingDescriptors, RatingInteractives,
                                 version_changed, Webapp)
 from mkt.webapps.signals import version_changed as version_changed_signal
@@ -202,22 +201,6 @@ class TestCleanSlug(amo.tests.TestCase):
             Addon.objects.create(slug=long_slug)
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
-
-
-class TestCategoryModel(amo.tests.TestCase):
-
-    def test_category_url(self):
-        cat = Category(slug='omg')
-        assert cat.get_url_path()
-
-    @patch('mkt.webapps.tasks.index_webapps')
-    def test_reindex_on_change(self, index_mock):
-        c = Category.objects.create(type=amo.ADDON_WEBAPP, slug='keyboardcat')
-        app = amo.tests.app_factory()
-        AddonCategory.objects.create(addon=app, category=c)
-        c.update(slug='nyancat')
-        assert index_mock.called
-        eq_(index_mock.call_args[0][0], [app.id])
 
 
 class TestPreviewModel(amo.tests.TestCase):
@@ -1903,7 +1886,6 @@ class TestDetailsComplete(amo.tests.TestCase):
 
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
-        self.cat = Category.objects.create(name='c', type=amo.ADDON_WEBAPP)
         self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP,
                                             status=amo.STATUS_NULL)
 
@@ -1927,7 +1909,7 @@ class TestDetailsComplete(amo.tests.TestCase):
         self.webapp.save()
         self.fail('category')
 
-        AddonCategory.objects.create(addon=self.webapp, category=self.cat)
+        self.webapp.update(categories=['books'])
         self.fail('screenshot')
 
         self.webapp.previews.create()
@@ -2038,26 +2020,15 @@ class TestContentRatingsIn(amo.tests.WebappTestCase):
                                                region=region.id)
             eq_(self.get_app().content_ratings_in(region=region), [])
 
-    def test_in_for_region_and_category(self):
-        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
-        for region in mkt.regions.ALL_REGIONS:
-            eq_(self.app.content_ratings_in(region=region, category='games'),
-                [])
-            eq_(self.app.content_ratings_in(region=region, category=cat), [])
-
     def test_in_region_and_category(self):
         self.make_game()
-        cat = Category.objects.get(slug='games')
+        cat = 'games'
         for region in mkt.regions.ALL_REGIONS:
-            eq_(self.app.listed_in(region=region, category='games'), True)
-            eq_(self.app.listed_in(region=region, category=cat),
-                True)
+            eq_(self.app.listed_in(region=region, category=cat), True)
 
     def test_in_region_and_not_in_category(self):
-        cat = Category.objects.create(slug='games', type=amo.ADDON_WEBAPP)
+        cat = 'games'
         for region in mkt.regions.ALL_REGIONS:
-            eq_(self.app.content_ratings_in(region=region, category='games'),
-                [])
             eq_(self.app.content_ratings_in(region=region, category=cat), [])
 
     @mock.patch.object(mkt.regions.CO, 'ratingsbody', None)

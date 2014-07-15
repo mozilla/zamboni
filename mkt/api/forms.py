@@ -11,7 +11,6 @@ from tower import ugettext_lazy as _lazy
 import amo
 from mkt.developers.forms import JSONField, NewPackagedAppForm
 from mkt.developers.utils import check_upload
-from mkt.webapps.models import Category
 
 
 class SluggableModelChoiceField(forms.ModelChoiceField):
@@ -102,13 +101,6 @@ class IconJSONForm(FileJSONForm):
         self.upload_type = 'icon'
         self.hash_name = 'icon_upload_hash'
         super(IconJSONForm, self).__init__(*args, **kwargs)
-
-
-class CategoryForm(happyforms.Form):
-    # The CategoryFormSet is far too complicated, I don't follow it.
-    # Hopefully this is easier.
-    categories = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.filter(type=amo.ADDON_WEBAPP))
 
 
 class CustomNullBooleanSelect(forms.Select):

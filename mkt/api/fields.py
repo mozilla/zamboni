@@ -371,6 +371,18 @@ class SlugChoiceField(serializers.ChoiceField):
         return super(SlugChoiceField, self).from_native(value)
 
 
+class UnicodeChoiceField(serializers.ChoiceField):
+    """
+    A ChoiceField that forces its choice values to be rendered with unicode()
+    when displaying metadata (information about available choices, for OPTIONS)
+    """
+    def metadata(self):
+        data = super(UnicodeChoiceField, self).metadata()
+        data['choices'] = [{'display_name': k, 'value': unicode(v)}
+                           for k, v in self.choices]
+        return data
+
+
 class SlugModelChoiceField(serializers.PrimaryKeyRelatedField):
     def field_to_native(self, obj, field_name):
         attr = self.source or field_name

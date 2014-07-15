@@ -20,7 +20,7 @@ from mkt.collections.serializers import (CollectionMembershipField,
 from mkt.constants.features import FeatureProfile
 from mkt.search.views import FeaturedSearchView
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonUser, Category
+from mkt.webapps.models import AddonUser
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.users.models import UserProfile
 
@@ -363,8 +363,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         return self.serializer.validate(kwargs)
 
     def test_validation_operatorshelf_category(self):
-        category = Category.objects.create(name='BastaCorp', slug='basta',
-                                           type=amo.ADDON_WEBAPP)
+        category = 'games'
         ok_(self.validate(collection_type=COLLECTIONS_TYPE_BASIC,
                           category=category))
         ok_(self.validate(collection_type=COLLECTIONS_TYPE_OPERATOR))

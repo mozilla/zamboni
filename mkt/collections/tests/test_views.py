@@ -30,7 +30,7 @@ from mkt.collections.tests.test_serializers import (CollectionDataMixin,
                                                     IMAGE_DATA)
 from mkt.collections.views import CollectionViewSet
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Category, Webapp
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -63,8 +63,7 @@ class BaseCollectionViewSetTest(RestOAuth):
         Additional setup required to test collection category/region/carrier
         uniqueness constraints.
         """
-        self.category = Category.objects.create(type=amo.ADDON_WEBAPP,
-            name='Grumpy', slug='grumpy-cat')
+        self.category = 'utilities'
         self.collection_data = {
             'collection_type': COLLECTIONS_TYPE_FEATURED,
             'name': 'Featured Apps are cool',
@@ -115,12 +114,8 @@ class BaseCollectionViewSetTest(RestOAuth):
         """
         Creates two additional categories and three additional collections.
         """
-        self.category = Category.objects.create(slug='ccc', name='CatCatCat',
-                                                type=amo.ADDON_WEBAPP)
-        self.empty_category = Category.objects.create(slug='emptycat',
-                                                      name='Empty Cat',
-                                                      type=amo.ADDON_WEBAPP)
-        eq_(Category.objects.count(), 2)
+        self.category = 'games'
+        self.empty_category = 'social'
 
         collection_data = {
             'collection_type': COLLECTIONS_TYPE_BASIC,
@@ -398,19 +393,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         self.create_additional_data()
         self.make_publisher()
 
-        res = self.client.get(self.list_url, {'cat': self.category.slug})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        collections = data['objects']
-        eq_(len(collections), 1)
-        eq_(collections[0]['id'], self.collection4.pk)
-        ok_('API-Fallback' not in res)
-
-    def test_listing_filtering_category_id(self):
-        self.create_additional_data()
-        self.make_publisher()
-
-        res = self.client.get(self.list_url, {'cat': self.category.pk})
+        res = self.client.get(self.list_url, {'cat': self.category})
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         collections = data['objects']
@@ -437,7 +420,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         self.make_publisher()
 
         res = self.client.get(self.list_url, {
-            'cat': self.category.slug,
+            'cat': self.category,
             'region': mkt.regions.SPAIN.slug,
             'carrier': mkt.carriers.TELEFONICA.slug
         })
@@ -458,7 +441,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         # again not find anything, then category + region=NULL + carrier=NULL,
         # and stop there, still finding no results.
         res = self.client.get(self.list_url, {
-            'cat': self.empty_category.slug,
+            'cat': self.empty_category,
             'region': mkt.regions.SPAIN.slug,
             'carrier': mkt.carriers.SPRINT.slug
         })
@@ -494,11 +477,8 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         self.create_additional_data()
         self.make_publisher()
 
-        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
-                                       slug='nyan-cat')
-
         Collection.objects.all().update(carrier=None, region=None,
-                                        category=nyan)
+                                        category='books')
         self.collection.update(category=self.category)
 
         # Test filtering with a non-existant carrier and region. It should
@@ -507,7 +487,7 @@ class TestCollectionViewSetListing(BaseCollectionViewSetTest):
         res = self.client.get(self.list_url, {
             'region': mkt.regions.UK.slug,
             'carrier': mkt.carriers.SPRINT.slug,
-            'cat': self.category.pk
+            'cat': self.category
         })
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -633,11 +613,10 @@ class TestCollectionViewSetCreate(BaseCollectionViewSetTest):
         eq_(new_collection.description, data['description']['en-US'])
 
     def test_create_validation_operatorshelf_category(self):
-        self.category = Category.objects.create(type=amo.ADDON_WEBAPP,
-            name='Grumpy', slug='grumpy-cat')
+        self.category = 'books'
         self.make_publisher()
         self.collection_data.update({
-            'category': self.category.pk,
+            'category': self.category,
             'collection_type': COLLECTIONS_TYPE_OPERATOR
         })
         res, data = self.create(self.client)
@@ -699,7 +678,6 @@ class TestCollectionViewSetCreate(BaseCollectionViewSetTest):
         when creating a new collection.
         """
         self.setup_unique()
-        self.collection_data['category'] = self.collection_data['category'].pk
         res, data = self.create(self.client)
         eq_(res.status_code, 400)
         ok_('collection_uniqueness' in data)
@@ -710,9 +688,8 @@ class TestCollectionViewSetCreate(BaseCollectionViewSetTest):
         featured collection, this time changing the category.
         """
         self.setup_unique()
-        nyan = Category.objects.create(type=amo.ADDON_WEBAPP, name='Nyan Cat',
-                                       slug='nyan-cat')
-        self.collection_data['category'] = nyan.pk
+        different_category = 'books'
+        self.collection_data['category'] = different_category
         res, data = self.create(self.client)
         eq_(res.status_code, 201)
 
@@ -1209,15 +1186,14 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_has_perms(self):
         self.make_publisher()
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
-                                      slug='grumpy-cat')
+        cat = 'books'
         updates = {
             'author': u'Nöt Me!',
             'region': mkt.regions.SPAIN.id,
             'is_public': False,
             'name': {'en-US': u'clôuserw soundboard'},
             'description': {'en-US': u'Gèt off my lawn!'},
-            'category': cat.pk,
+            'category': cat,
             'carrier': mkt.carriers.TELEFONICA.id,
         }
         res, data = self.edit_collection(self.client, **updates)
@@ -1239,7 +1215,7 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
         eq_(data['description'], updates['description'])
         eq_(collection.description, updates['description']['en-US'])
 
-        eq_(data['category'], cat.slug)
+        eq_(data['category'], cat)
         eq_(collection.category, cat)
 
         eq_(data['region'], mkt.regions.SPAIN.slug)
@@ -1250,11 +1226,10 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_with_slugs(self):
         self.make_publisher()
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
-                                      slug='grumpy-cat')
+        cat = 'books'
         updates = {
             'region': mkt.regions.SPAIN.slug,
-            'category': cat.slug,
+            'category': cat,
             'carrier': mkt.carriers.TELEFONICA.slug,
         }
         res, data = self.edit_collection(self.client, **updates)
@@ -1270,7 +1245,7 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
         eq_(data['carrier'], mkt.carriers.TELEFONICA.slug)
         eq_(collection.carrier, mkt.carriers.TELEFONICA.id)
 
-        eq_(data['category'], cat.slug)
+        eq_(data['category'], cat)
         eq_(collection.category, cat)
 
     def test_edit_collection_invalid_carrier_slug(self):
@@ -1289,8 +1264,7 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_null_values(self):
         self.make_publisher()
-        cat = Category.objects.create(type=amo.ADDON_WEBAPP, name='Grumpy',
-                                      slug='grumpy-cat')
+        cat = 'books'
         self.collection.update(**{
             'carrier': mkt.carriers.UNKNOWN_CARRIER.id,
             'region': mkt.regions.SPAIN.id,
@@ -1331,7 +1305,6 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_invalid_category(self):
         self.make_publisher()
-        eq_(Category.objects.count(), 0)
         # Invalid (non-existant) category.
         updates = {'category': 1}
         res, data = self.edit_collection(self.client, **updates)
@@ -1339,7 +1312,6 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_invalid_category_slug(self):
         self.make_publisher()
-        eq_(Category.objects.count(), 0)
         # Invalid (non-existant) category slug.
         updates = {'category': 'nosuchcat'}
         res, data = self.edit_collection(self.client, **updates)
@@ -1413,10 +1385,9 @@ class TestCollectionViewSetEditCollection(BaseCollectionViewSetTest):
 
     def test_edit_collection_validation_operatorshelf_category(self):
         self.make_publisher()
-        category = Category.objects.create(type=amo.ADDON_WEBAPP,
-            name='Grumpy', slug='grumpy-cat')
+        category = 'books'
         updates = {
-            'category': category.pk,
+            'category': category,
             'collection_type': COLLECTIONS_TYPE_OPERATOR
         }
         res, data = self.edit_collection(self.client, **updates)

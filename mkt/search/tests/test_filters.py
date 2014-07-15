@@ -14,7 +14,7 @@ from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
                               TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _filter_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Category, Webapp
+from mkt.webapps.models import Webapp
 
 
 class TestSearchFilters(BaseOAuth):
@@ -25,8 +25,6 @@ class TestSearchFilters(BaseOAuth):
         self.req = test_utils.RequestFactory().get('/')
         self.req.user = AnonymousUser()
 
-        self.category = Category.objects.create(name='games', slug='games',
-                                                type=amo.ADDON_WEBAPP)
         # Pick a region that has relatively few filters.
         set_region(regions.UK.slug)
 
@@ -94,12 +92,13 @@ class TestSearchFilters(BaseOAuth):
         ok_(u'Select a valid choice' in qs['status'][0])
 
     def test_category(self):
-        qs = self._filter(self.req, {'cat': self.category.slug})
-        ok_({'in': {'category': [self.category.slug]}} in qs['filter']['and'])
+        qs = self._filter(self.req, {'cat': 'games'})
+        ok_({'in': {'category': ['games']}} in qs['filter']['and'])
 
     def test_tag(self):
         qs = self._filter(self.req, {'tag': 'tarako'})
-        ok_({'term': {'tags': 'tarako'}} in qs['filter']['and'], qs['filter']['and'])
+        ok_({'term': {'tags': 'tarako'}} in qs['filter']['and'],
+            qs['filter']['and'])
 
     def test_tarako_categories(self):
         qs = self._filter(self.req, {'cat': 'tarako-lifestyle'})

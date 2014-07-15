@@ -24,8 +24,7 @@ from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
-from mkt.webapps.models import (Addon, AddonCategory, Category, Geodata,
-                                IARCInfo, Webapp)
+from mkt.webapps.models import Addon, Geodata, IARCInfo, Webapp
 
 
 class TestPreviewForm(amo.tests.TestCase):
@@ -86,30 +85,31 @@ class TestCategoryForm(amo.tests.WebappTestCase):
         self.request = RequestFactory()
         self.request.user = self.user
         self.request.groups = ()
-
-        self.cat = Category.objects.create(type=amo.ADDON_WEBAPP)
+        self.cat = 'social'
 
     def _make_form(self, data=None):
         self.form = forms.CategoryForm(
             data, product=self.app, request=self.request)
 
-    def _cat_count(self):
-        return self.form.fields['categories'].queryset.count()
-
     def test_has_no_cats(self):
         self._make_form()
-        eq_(self._cat_count(), 1)
+        eq_(self.form.initial['categories'], [])
         eq_(self.form.max_categories(), 2)
 
     def test_save_cats(self):
-        self._make_form({'categories':
-            map(str, Category.objects.filter(type=amo.ADDON_WEBAPP)
-                                     .values_list('id', flat=True))})
+        self._make_form({'categories': ['books', 'social']})
         assert self.form.is_valid(), self.form.errors
         self.form.save()
-        eq_(AddonCategory.objects.filter(addon=self.app).count(),
-            Category.objects.count())
+        eq_(self.app.reload().categories, ['books', 'social'])
         eq_(self.form.max_categories(), 2)
+
+    def test_save_too_many_cats(self):
+        self._make_form({'categories': ['books', 'social', 'games']})
+        ok_(self.form.errors)
+
+    def test_save_non_existent_cat(self):
+        self._make_form({'categories': ['nonexistent']})
+        ok_(self.form.errors)
 
 
 class TestRegionForm(amo.tests.WebappTestCase):

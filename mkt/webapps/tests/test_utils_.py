@@ -23,8 +23,7 @@ from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (AddonCategory, AddonDeviceType, Category,
-                                Installed, Preview, Webapp)
+from mkt.webapps.models import AddonDeviceType, Installed, Preview, Webapp
 from mkt.webapps.serializers import AppSerializer
 from mkt.webapps.utils import dehydrate_content_rating, get_supported_locales
 
@@ -146,12 +145,9 @@ class TestAppSerializer(amo.tests.TestCase):
                             res['versions'].keys())
 
     def test_categories(self):
-        cat1 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat1')
-        cat2 = Category.objects.create(type=amo.ADDON_WEBAPP, slug='cat2')
-        AddonCategory.objects.create(addon=self.app, category=cat1)
-        AddonCategory.objects.create(addon=self.app, category=cat2)
+        self.app.update(categories=['books', 'social'])
         res = self.serialize(self.app)
-        self.assertSetEqual(res['categories'], ['cat1', 'cat2'])
+        self.assertSetEqual(res['categories'], ['books', 'social'])
 
     def test_content_ratings(self):
         self.app.set_content_ratings({
@@ -340,9 +336,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.request.amo_user = self.profile
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
-        self.category = Category.objects.create(name='cattest', slug='testcat',
-                                                type=amo.ADDON_WEBAPP)
-        AddonCategory.objects.create(addon=self.app, category=self.category)
+        self.app.update(categories=['books', 'social'])
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
         self.app.description = {
@@ -367,7 +361,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
             'app_type': 'hosted',
             'author': 'Mozilla Tester',
             'banner_regions': [],
-            'categories': [self.category.slug],
+            'categories': ['books', 'social'],
             'created': self.app.created,
             'current_version': '1.0',
             'default_locale': u'en-US',
