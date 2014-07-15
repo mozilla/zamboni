@@ -357,7 +357,7 @@ class SlugChoiceField(serializers.ChoiceField):
         return data
 
     def to_native(self, value):
-        if value:
+        if value != self.empty:
             choice = self.ids_choices_dict.get(value, None)
             if choice is not None:
                 value = choice.slug
