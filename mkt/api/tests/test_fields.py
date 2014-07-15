@@ -8,9 +8,10 @@ from test_utils import RequestFactory
 
 import amo
 from amo.tests import TestCase
-from mkt.api.fields import (ESTranslationSerializerField,
+from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
                             SlugOrPrimaryKeyRelatedField, SplitField,
                             TranslationSerializerField)
+from mkt.carriers import CARRIER_MAP
 from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
 from mkt.webapps.models import Webapp
@@ -306,6 +307,30 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         field.field_from_native({'apps': [self.app.app_slug, app2.app_slug]},
                                 None, 'apps', into)
         eq_(into, {'apps': [self.app, app2]})
+
+
+class TestSlugChoiceField(amo.tests.TestCase):
+    field_class = SlugChoiceField
+
+    def setUp(self):
+        super(TestSlugChoiceField, self).setUp()
+        self.factory = APIRequestFactory()
+
+    def field(self, **kwargs):
+        self.field = self.field_class(**kwargs)
+        return self.field
+
+    def test_to_native(self):
+        field = self.field(choices_dict=CARRIER_MAP)
+        eq_(field.to_native(1), 'telefonica')
+
+    def test_to_native_none(self):
+        field = self.field(choices_dict=CARRIER_MAP)
+        eq_(field.to_native(None), None)
+
+    def test_to_native_zero(self):
+        field = self.field(choices_dict=CARRIER_MAP)
+        eq_(field.to_native(0), 'carrierless')
 
 
 class Spud(object):
