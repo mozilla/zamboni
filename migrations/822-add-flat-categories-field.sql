@@ -1,5 +1,5 @@
 -- Add categories json field on addons. JSONField is a TextField, so use a longtext.
-ALTER TABLE `addons` ADD COLUMN `categories` longtext DEFAULT '';
+ALTER TABLE `addons` ADD COLUMN `categories` longtext;
 
 -- Update categories by manually building the json array from the categories slugs.
 UPDATE addons SET addons.categories =
