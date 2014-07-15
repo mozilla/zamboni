@@ -100,7 +100,8 @@ class ESAppSerializer(AppSerializer):
         obj._latest_version.is_privileged = is_privileged
         obj._geodata = Geodata()
         obj.all_previews = [Preview(id=p['id'], modified=p['modified'],
-            filetype=p['filetype']) for p in data['previews']]
+            filetype=p['filetype'], sizes=p['sizes'])
+            for p in data['previews']]
         obj.categories = data['category']
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
 
