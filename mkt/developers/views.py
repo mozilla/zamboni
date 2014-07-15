@@ -51,7 +51,8 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
 from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
-from mkt.developers.utils import check_upload, handle_vip
+from mkt.developers.utils import (
+    check_upload, escalate_prerelease_permissions, handle_vip)
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
@@ -221,17 +222,17 @@ def status(request, addon_id, addon):
             return redirect(addon.get_dev_url('versions'))
 
         elif 'upload-version' in request.POST and upload_form.is_valid():
-            mobile_only = (addon.latest_version and
-                           addon.latest_version.features.has_qhd)
-
-            ver = Version.from_upload(upload_form.cleaned_data['upload'],
-                                      addon, [amo.PLATFORM_ALL])
+            upload = upload_form.cleaned_data['upload']
+            ver = Version.from_upload(upload, addon, [amo.PLATFORM_ALL])
 
             # Update addon status now that the new version was saved.
             addon.update_status()
 
             res = run_validator(ver.all_files[0].file_path)
             validation_result = json.loads(res)
+
+            # Escalate the version if it uses prerelease permissions.
+            escalate_prerelease_permissions(addon, validation_result, ver)
 
             # Set all detected features as True and save them.
             keys = ['has_%s' % feature.lower()
@@ -242,6 +243,8 @@ def status(request, addon_id, addon):
             qhd_devices = (set((amo.DEVICE_GAIA,)),
                            set((amo.DEVICE_MOBILE,)),
                            set((amo.DEVICE_GAIA, amo.DEVICE_MOBILE,)))
+            mobile_only = (addon.latest_version and
+                           addon.latest_version.features.has_qhd)
             if set(addon.device_types) in qhd_devices or mobile_only:
                 data['has_qhd'] = True
 
@@ -250,7 +253,7 @@ def status(request, addon_id, addon):
 
             messages.success(request, _('New version successfully added.'))
             log.info('[Webapp:%s] New version created id=%s from upload: %s'
-                     % (addon, ver.pk, upload_form.cleaned_data['upload']))
+                     % (addon, ver.pk, upload))
 
             if addon.vip_app:
                 handle_vip(addon, ver, request.amo_user)

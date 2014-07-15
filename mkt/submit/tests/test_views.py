@@ -19,6 +19,7 @@ from amo.tests import formset, initial
 from amo.tests.test_helpers import get_image_path
 from constants.applications import DEVICE_TYPES
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
+from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
@@ -471,12 +472,15 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
 
-        self.package = self.packaged_app_path('mozball.zip')
         self.upload = self.get_upload(abspath=self.package)
         self.upload.update(name='mozball.zip')
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
+
+    @property
+    def package(self):
+        return self.packaged_app_path('mozball.zip')
 
     def post_addon(self, data=None):
         eq_(Addon.objects.count(), 1)
@@ -503,6 +507,34 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                 pass
             shutil.copyfile(self.packaged_app_path(filename),
                             self.file.signed_file_path)
+
+
+class TestEscalatePrereleaseWebApp(BasePackagedAppTest):
+    def setUp(self):
+        super(TestEscalatePrereleaseWebApp, self).setUp()
+        UserProfile.objects.create(email=settings.NOBODY_EMAIL_ADDRESS)
+
+    def post(self):
+        super(TestEscalatePrereleaseWebApp, self).post(data={
+            'free_platforms': ['free-firefoxos'],
+            'packaged': True,
+        })
+
+    def test_prerelease_permissions_get_escalated(self):
+        validation = json.loads(self.upload.validation)
+        validation['permissions'] = ['moz-attention']
+        self.upload.update(validation=json.dumps(validation))
+        eq_(EscalationQueue.objects.count(), 0)
+        self.post()
+        eq_(EscalationQueue.objects.count(), 1)
+
+    def test_normal_permissions_dont_get_escalated(self):
+        validation = json.loads(self.upload.validation)
+        validation['permissions'] = ['contacts']
+        self.upload.update(validation=json.dumps(validation))
+        eq_(EscalationQueue.objects.count(), 0)
+        self.post()
+        eq_(EscalationQueue.objects.count(), 0)
 
 
 class TestCreatePackagedApp(BasePackagedAppTest):
