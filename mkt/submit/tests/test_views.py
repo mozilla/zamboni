@@ -160,7 +160,7 @@ class TestTerms(TestSubmit):
         f = mock.Mock()
         f.__name__ = 'function'
         request = mock.Mock()
-        request.amo_user.read_dev_agreement = None
+        request.user.read_dev_agreement = None
         request.get_full_path.return_value = self.url
         func = read_dev_agreement_required(f)
         res = func(request)

@@ -47,12 +47,7 @@ class AllowSelf(BasePermission):
         return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        try:
-            return obj.pk == request.amo_user.pk
-
-        # Appropriately handles AnonymousUsers when `amo_user` is None.
-        except AttributeError:
-            return False
+        return obj.pk == request.user.pk
 
 
 class AllowNone(BasePermission):
@@ -77,28 +72,23 @@ class AllowOwner(BasePermission):
         return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        return ((obj == request.amo_user) or
-                (getattr(obj, 'user', None) == request.amo_user))
+        return ((obj == request.user) or
+                (getattr(obj, 'user', None) == request.user))
 
 
 class AllowAppOwner(BasePermission):
 
     def has_permission(self, request, view):
-        return not request.user.is_anonymous()
+        return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        try:
-            return obj.authors.filter(pk=request.amo_user.pk).exists()
-
-        # Appropriately handles AnonymousUsers when `amo_user` is None.
-        except AttributeError:
-            return False
+        return obj.authors.filter(pk=request.user.pk).exists()
 
 
 class AllowRelatedAppOwner(BasePermission):
 
     def has_permission(self, request, view):
-        return not request.user.is_anonymous()
+        return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
         return AllowAppOwner().has_object_permission(request, view, obj.addon)
@@ -118,7 +108,7 @@ class AllowAuthor(BasePermission):
     authors."""
 
     def has_permission(self, request, view):
-        user_pk = getattr(request.amo_user, 'pk', False)
+        user_pk = getattr(request.user, 'pk', False)
         return user_pk and view.get_authors().filter(pk=user_pk).exists()
 
 

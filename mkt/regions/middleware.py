@@ -13,7 +13,7 @@ log = commonware.log.getLogger('mkt.regions')
 
 class RegionMiddleware(object):
     """Figure out the user's region and set request.REGION accordingly, storing
-    it on the request.amo_user if there is one."""
+    it on the request.user if there is one."""
 
     def __init__(self):
         self.geoip = GeoIP(settings)
@@ -49,10 +49,10 @@ class RegionMiddleware(object):
                      .format(user_region.slug))
 
         # Update the region on the user object if it changed.
-        amo_user = getattr(request, 'amo_user', None)
-        if amo_user and amo_user.region != user_region.slug:
-            amo_user.region = user_region.slug
-            amo_user.save()
+        if (request.user.is_authenticated() and
+                request.user.region != user_region.slug):
+            request.user.region = user_region.slug
+            request.user.save()
 
         # Persist the region on the request / local thread.
         request.REGION = user_region

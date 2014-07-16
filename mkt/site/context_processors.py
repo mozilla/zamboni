@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 
 from tower import ugettext as _
@@ -20,8 +19,8 @@ def global_settings(request):
 
     tools_title = _('Tools')
 
-    if request.user.is_authenticated() and getattr(request, 'amo_user', None):
-        amo_user = request.amo_user
+    context['user'] = request.user
+    if request.user.is_authenticated():
         context['is_reviewer'] = acl.check_reviewer(request)
         account_links = [
             # TODO: Coming soon with payments.
@@ -35,7 +34,7 @@ def global_settings(request):
         if '/developers/' not in request.path:
             tools_links.append({'text': _('Developer Hub'),
                                 'href': reverse('ecosystem.landing')})
-            if amo_user.is_developer:
+            if request.user.is_developer:
                 tools_links.append({'text': _('My Submissions'),
                                     'href': reverse('mkt.developers.apps')})
         if '/reviewers/' not in request.path and context['is_reviewer']:
@@ -51,11 +50,8 @@ def global_settings(request):
                                 'href': reverse('zadmin.home')})
 
         tools_links += footer_links
-
-        context['amo_user'] = amo_user
         logged = True
     else:
-        context['amo_user'] = AnonymousUser()
         logged = False
 
     DESKTOP = (getattr(request, 'TABLET', None) or

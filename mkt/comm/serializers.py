@@ -46,7 +46,7 @@ class NoteSerializer(ModelSerializer):
 
     def is_read_by_user(self, obj):
         return obj.read_by_users.filter(
-            pk=self.context['request'].amo_user.id).exists()
+            pk=self.context['request'].user.id).exists()
 
     class Meta:
         model = CommunicationNote
@@ -87,13 +87,13 @@ class ThreadSerializer(ModelSerializer):
         view_name = 'comm-thread-detail'
 
     def get_recent_notes(self, obj):
-        notes = (obj.notes.with_perms(self.get_request().amo_user, obj)
+        notes = (obj.notes.with_perms(self.get_request().user, obj)
                           .order_by('-created')[:5])
         return NoteSerializer(
             notes, many=True, context={'request': self.get_request()}).data
 
     def get_notes_count(self, obj):
-        return (obj.notes.with_perms(self.get_request().amo_user, obj)
+        return (obj.notes.with_perms(self.get_request().user, obj)
                          .count())
 
     def get_version_number(self, obj):

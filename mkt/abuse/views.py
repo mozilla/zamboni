@@ -31,8 +31,8 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
             return fail
         # Immutable? *this* *is* PYYYYTHONNNNNNNNNN!
         request.DATA._mutable = True
-        if request.amo_user:
-            request.DATA['reporter'] = request.amo_user.pk
+        if request.user.is_authenticated():
+            request.DATA['reporter'] = request.user.pk
         else:
             request.DATA['reporter'] = None
         request.DATA['ip_address'] = request.META.get('REMOTE_ADDR', '')

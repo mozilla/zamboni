@@ -49,7 +49,7 @@ class TestMine(TestCase):
 
     def setUp(self):
         self.request = Mock()
-        self.request.amo_user = UserProfile.objects.get(id=2519)
+        self.request.user = UserProfile.objects.get(id=2519)
 
     @patch.object(FakeResourceBase, 'get_object', create=True)
     def test_get_object(self, mocked_get_object):

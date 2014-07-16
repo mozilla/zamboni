@@ -32,7 +32,7 @@ def read_dev_agreement_required(f):
     def decorator(f):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            if not request.amo_user.read_dev_agreement:
+            if not request.user.read_dev_agreement:
                 return redirect('submit.app')
             return f(request, *args, **kw)
         return wrapper

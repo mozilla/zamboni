@@ -84,7 +84,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         pk = ident
         if pk == 'mine':
             user = amo.get_user()
-            if not user:
+            if not user or not user.is_authenticated():
                 # You must be logged in to use "mine".
                 raise NotAuthenticated()
             pk = user.pk
@@ -110,7 +110,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         response = super(RatingViewSet, self).list(request, *args, **kwargs)
         app = getattr(self, 'app', None)
         if app:
-            user, info = self.get_extra_data(app, request.amo_user)
+            user, info = self.get_extra_data(app, request.user)
             response.data['user'] = user
             response.data['info'] = info
         return response
@@ -119,7 +119,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         obj = self.get_object()
         amo.log(amo.LOG.DELETE_REVIEW, obj.addon, obj)
         log.debug('[Review:%s] Deleted by %s' %
-            (obj.pk, self.request.amo_user.id))
+            (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)
 
     def post_save(self, obj, created=False):
@@ -127,31 +127,31 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
         if created:
             amo.log(amo.LOG.ADD_REVIEW, app, obj)
             log.debug('[Review:%s] Created by user %s ' %
-                      (obj.pk, self.request.amo_user.id))
+                      (obj.pk, self.request.user.id))
             record_action('new-review', self.request, {'app-id': app.id})
         else:
             amo.log(amo.LOG.EDIT_REVIEW, app, obj)
             log.debug('[Review:%s] Edited by %s' %
-                      (obj.pk, self.request.amo_user.id))
+                      (obj.pk, self.request.user.id))
 
     def partial_update(self, *args, **kwargs):
         # We don't need/want PATCH for now.
         raise MethodNotAllowed('PATCH is not supported for this endpoint.')
 
-    def get_extra_data(self, app, amo_user):
+    def get_extra_data(self, app, user):
         extra_user = None
 
-        if amo_user and not amo_user.is_anonymous():
+        if user.is_authenticated():
             if app.is_premium():
                 # If the app is premium, you need to purchase it to rate it.
-                can_rate = app.has_purchased(amo_user)
+                can_rate = app.has_purchased(user)
             else:
                 # If the app is free, you can not be one of the authors.
-                can_rate = not app.has_author(amo_user)
+                can_rate = not app.has_author(user)
 
             filters = {
                 'addon': app,
-                'user': amo_user
+                'user': user
             }
             if app.is_packaged:
                 filters['version'] = app.current_version

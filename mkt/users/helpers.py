@@ -29,11 +29,11 @@ def emaillink(email, title=None, klass=None):
 
 
 @register.function
-def user_data(amo_user):
+def user_data(user):
     anonymous, currency, pre_auth, email = True, 'USD', False, ''
-    if hasattr(amo_user, 'is_anonymous'):
-        anonymous = amo_user.is_anonymous()
+    if hasattr(user, 'is_anonymous'):
+        anonymous = user.is_anonymous()
     if not anonymous:
-        email = amo_user.email
+        email = user.email
 
     return {'anonymous': anonymous, 'currency': currency, 'email': email}

@@ -10,6 +10,7 @@ from urlparse import SplitResult, urlsplit, urlunsplit
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models.signals import post_save
@@ -744,9 +745,10 @@ def req_factory_factory(url, user=None, post=False, data=None, **kwargs):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = UserProfile.objects.get(id=user.id)
-        req.user = user
+        req.user = UserProfile.objects.get(id=user.id)
         req.groups = user.groups.all()
+    else:
+        req.user = AnonymousUser()
     req.check_ownership = partial(check_ownership, req)
     req.REGION = kwargs.pop('region', mkt.regions.REGIONS_CHOICES[0][1])
     req.API_VERSION = 2

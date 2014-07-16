@@ -23,7 +23,7 @@ def progress(request, addon, step):
     completed = []
 
     # TODO: Hide "Developer Account" step if user already read Dev Agreement.
-    #if request.amo_user.read_dev_agreement:
+    # if request.user.read_dev_agreement:
     #    steps = del_by_key(steps, 'terms')
 
     if addon:

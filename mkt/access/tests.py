@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.http import HttpRequest
 
 import mock
@@ -66,8 +67,7 @@ class TestHasPerm(amo.tests.TestCase):
 
         self.request = mock.Mock()
         self.request.groups = ()
-        self.request.amo_user = self.user
-        self.request.user.is_authenticated.return_value = True
+        self.request.user = self.user
 
     def login_admin(self):
         user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -75,13 +75,13 @@ class TestHasPerm(amo.tests.TestCase):
         return user
 
     def test_anonymous(self):
-        self.request.user.is_authenticated.return_value = False
+        self.request.user = AnonymousUser()
         self.client.logout()
         assert not check_addon_ownership(self.request, self.app)
 
     def test_admin(self):
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request.user = self.login_admin()
+        self.request.groups = self.request.user.groups.all()
         assert check_addon_ownership(self.request, self.app)
         assert check_addon_ownership(self.request, self.app, admin=True)
         assert not check_addon_ownership(self.request, self.app, admin=False)
@@ -92,8 +92,8 @@ class TestHasPerm(amo.tests.TestCase):
 
     def test_require_author_when_admin(self):
         self.login(self.user)
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request.user = self.login_admin()
+        self.request.groups = self.request.user.groups.all()
         assert check_ownership(self.request, self.app, require_author=False)
 
         assert not check_ownership(self.request, self.app,
@@ -109,8 +109,8 @@ class TestHasPerm(amo.tests.TestCase):
         self.login(self.user)
         self.app.update(status=amo.STATUS_DELETED)
         assert not check_addon_ownership(self.request, self.app)
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request.user = self.login_admin()
+        self.request.groups = self.request.user.groups.all()
         assert not check_addon_ownership(self.request, self.app)
 
     def test_ignore_disabled(self):

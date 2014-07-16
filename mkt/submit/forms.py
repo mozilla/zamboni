@@ -348,7 +348,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
     def save(self, *args, **kw):
         if self.data['notes']:
             create_comm_note(self.instance, self.instance.versions.latest(),
-                             self.request.amo_user, self.data['notes'],
+                             self.request.user, self.data['notes'],
                              note_type=comm.SUBMISSION)
         self.instance = super(AppDetailsBasicForm, self).save(commit=True)
         uses_flash = self.cleaned_data.get('flash')

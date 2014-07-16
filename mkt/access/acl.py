@@ -51,7 +51,7 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
 def check_addon_ownership(request, addon, viewer=False, dev=False,
                           support=False, admin=True, ignore_disabled=False):
     """
-    Check request.amo_user's permissions for the addon.
+    Check request.user's permissions for the addon.
 
     If user is an admin they can do anything.
     If the app is disabled only admins have permission.
@@ -83,7 +83,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     # Support can do support.
     elif support:
         roles += (amo.AUTHOR_ROLE_SUPPORT,)
-    return addon.authors.filter(pk=request.amo_user.pk,
+    return addon.authors.filter(pk=request.user.pk,
                                 addonuser__role__in=roles).exists()
 
 

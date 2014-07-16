@@ -503,9 +503,8 @@ class TestTransactionRefund(TestCase):
 
     def request(self, data):
         req = RequestFactory().post(self.url, data)
-        req.user = req.amo_user = UserProfile.objects.get(
-            username='support_staff')
-        req.groups = req.amo_user.groups.all()
+        req.user = UserProfile.objects.get(username='support_staff')
+        req.groups = req.user.groups.all()
         return req
 
     def refund_tx_ret(self):

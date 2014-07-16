@@ -64,15 +64,15 @@ def market_button(context, product, receipt_type=None, classes=None):
 
     installed = None
 
-    if request.amo_user:
-        installed_set = request.amo_user.installed_set
+    if request.user.is_authenticated():
+        installed_set = request.user.installed_set
         installed = installed_set.filter(addon=product).exists()
 
     # Handle premium apps.
     if product.has_premium():
         # User has purchased app.
-        purchased = (request.amo_user and
-                     product.pk in request.amo_user.purchase_ids())
+        purchased = (request.user.is_authenticated() and
+                     product.pk in request.user.purchase_ids())
 
         # App authors are able to install their apps free of charge.
         if (not purchased and
@@ -122,7 +122,7 @@ def product_as_dict(request, product, purchased=None, receipt_type=None,
             'priceLocale': product.get_price_locale(region=request.REGION.id),
         })
 
-        if request.amo_user:
+        if request.user.is_authenticated():
             ret['isPurchased'] = purchased
 
     # Jinja2 escape everything except this whitelist so that bool is retained

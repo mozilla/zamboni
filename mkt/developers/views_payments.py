@@ -47,13 +47,13 @@ def disable_payments(request, addon_id, addon):
 def payments(request, addon_id, addon, webapp=False):
     premium_form = forms_payments.PremiumForm(
         request.POST or None, request=request, addon=addon,
-        user=request.amo_user)
+        user=request.user)
 
     region_form = forms.RegionForm(
         request.POST or None, product=addon, request=request)
 
     upsell_form = forms_payments.UpsellForm(
-        request.POST or None, addon=addon, user=request.amo_user)
+        request.POST or None, addon=addon, user=request.user)
 
     providers = get_providers()
 
@@ -64,7 +64,7 @@ def payments(request, addon_id, addon, webapp=False):
     account_list_formset = forms_payments.AccountListFormSet(
         data=formset_data,
         provider_data=[
-            {'addon': addon, 'user': request.amo_user, 'provider': provider}
+            {'addon': addon, 'user': request.user, 'provider': provider}
             for provider in providers])
 
     if request.method == 'POST':
@@ -202,7 +202,7 @@ def payment_accounts(request):
     else:
         app_name = ''
     accounts = PaymentAccount.objects.filter(
-        user=request.amo_user,
+        user=request.user,
         provider__in=[p.provider for p in get_providers()],
         inactive=False)
 
@@ -249,7 +249,7 @@ def payment_accounts_form(request):
     provider = get_provider(name=request.GET.get('provider'))
     account_list_formset = forms_payments.AccountListFormSet(
         provider_data=[
-            {'user': request.amo_user, 'addon': webapp, 'provider': p}
+            {'user': request.user, 'addon': webapp, 'provider': p}
             for p in get_providers()])
     account_list_form = next(form for form in account_list_formset.forms
                              if form.provider.name == provider.name)
@@ -269,7 +269,7 @@ def payments_accounts_add(request):
         return json_view.error(form.errors)
 
     try:
-        obj = provider.account_create(request.amo_user, form.cleaned_data)
+        obj = provider.account_create(request.user, form.cleaned_data)
     except HttpClientError as e:
         log.error('Client error create {0} account: {1}'.format(
             provider.name, e))
@@ -317,7 +317,7 @@ def in_app_keys(request):
     This key cannot be used for real payments.
     """
     keys = UserInappKey.objects.no_cache().filter(
-        solitude_seller__user=request.amo_user
+        solitude_seller__user=request.user
     )
 
     # TODO(Kumar) support multiple test keys. For now there's only one.
@@ -341,7 +341,7 @@ def in_app_keys(request):
             key.reset()
             messages.success(request, _('Secret was reset successfully.'))
         else:
-            UserInappKey.create(request.amo_user)
+            UserInappKey.create(request.user)
             messages.success(request,
                              _('Key and secret were created successfully.'))
         return redirect(reverse('mkt.developers.apps.in_app_keys'))
@@ -353,7 +353,7 @@ def in_app_keys(request):
 @login_required
 def in_app_key_secret(request, pk):
     key = (UserInappKey.objects.no_cache()
-           .filter(solitude_seller__user=request.amo_user, pk=pk))
+           .filter(solitude_seller__user=request.user, pk=pk))
     if not key.count():
         # Either the record does not exist or it's not owned by the
         # logged in user.

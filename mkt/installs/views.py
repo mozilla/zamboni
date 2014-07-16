@@ -35,11 +35,11 @@ def install(request):
             log.info('App not public: {0}'.format(app.pk))
             raise PermissionDenied
 
-        if not request.amo_user:
+        if not request.user.is_authenticated():
             record(request, app)
         else:
             installed, created = Installed.objects.get_or_create(
-                addon=app, user=request.amo_user, install_type=type_)
+                addon=app, user=request.user, install_type=type_)
             record(request, app)
             if not created:
                 return Response(status=202)

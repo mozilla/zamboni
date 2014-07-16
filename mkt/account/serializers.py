@@ -37,7 +37,10 @@ class FeedbackSerializer(PotatoCaptchaSerializer):
 
         if not attrs.get('platform'):
             attrs['platform'] = self.request.GET.get('dev', '')
-        attrs['user'] = self.request.amo_user
+        if self.request.user.is_authenticated():
+            attrs['user'] = self.request.user
+        else:
+            attrs['user'] = None
 
         return attrs
 
@@ -65,7 +68,7 @@ class PermissionsSerializer(serializers.Serializer):
         allowed = partial(acl.action_allowed, request)
         permissions = {
             'admin': allowed('Admin', '%'),
-            'developer': request.amo_user.is_developer,
+            'developer': request.user.is_developer,
             'localizer': allowed('Localizers', '%'),
             'lookup': allowed('AccountLookup', '%'),
             'curator': allowed('Collections', 'Curate') or

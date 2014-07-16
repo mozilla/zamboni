@@ -36,7 +36,7 @@ class AppStatusSerializer(serializers.ModelSerializer):
 
         # Admins can change any status, skip validation for them.
         # It's dangerous, but with great powers comes great responsability.
-        if ('request' in self.context and self.context['request'].amo_user and
+        if ('request' in self.context and self.context['request'].user and
             acl.action_allowed(self.context['request'], 'Admin', '%')):
             return attrs
 

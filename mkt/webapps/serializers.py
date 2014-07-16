@@ -241,8 +241,9 @@ class AppSerializer(serializers.ModelSerializer):
             return False
 
     def get_user_info(self, app):
-        user = getattr(self.context.get('request'), 'amo_user', None)
-        if user:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated():
+            user = request.user
             return {
                 'developed': app.addonuser_set.filter(
                     user=user, role=amo.AUTHOR_ROLE_OWNER).exists(),

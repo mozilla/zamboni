@@ -5,12 +5,13 @@ from datetime import datetime
 from functools import partial
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test.client import FakePayload
 from django.utils.encoding import iri_to_uri, smart_str
 
 from django_browserid.tests import mock_browserid
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from oauthlib import oauth1
 from pyquery import PyQuery as pq
 from rest_framework.request import Request
@@ -215,8 +216,10 @@ class Test3LeggedOAuthFlow(TestCase):
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
         req.API = True
+        req.user = AnonymousUser()
         RestOAuthMiddleware().process_request(req)
-        assert auth.authenticate(Request(req))
+        ok_(auth.authenticate(Request(req)))
+        ok_(req.user.is_authenticated())
         eq_(req.user, self.user2)
 
     def test_bad_access_token(self):
@@ -231,8 +234,10 @@ class Test3LeggedOAuthFlow(TestCase):
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
         req.API = True
+        req.user = AnonymousUser()
         RestOAuthMiddleware().process_request(req)
-        assert not auth.authenticate(Request(req))
+        ok_(not auth.authenticate(Request(req)))
+        ok_(not req.user.is_authenticated())
 
     def test_get_authorize_page(self):
         t = Token.generate_new(REQUEST_TOKEN, self.access)
@@ -367,8 +372,10 @@ class Test2LeggedOAuthFlow(TestCase):
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
         req.API = True
+        req.user = AnonymousUser()
         RestOAuthMiddleware().process_request(req)
-        assert auth.authenticate(Request(req))
+        ok_(auth.authenticate(Request(req)))
+        ok_(req.user.is_authenticated())
         eq_(req.user, self.user)
 
     def test_fail(self):
@@ -381,6 +388,7 @@ class Test2LeggedOAuthFlow(TestCase):
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=auth_header)
         req.API = True
+        req.user = AnonymousUser()
         RestOAuthMiddleware().process_request(req)
-        assert not auth.authenticate(Request(req))
-        assert not hasattr(req, 'user')
+        ok_(not auth.authenticate(Request(req)))
+        ok_(not req.user.is_authenticated())

@@ -41,7 +41,7 @@ class RatingSerializer(serializers.ModelSerializer):
         else:
             self.request = None
 
-        if not self.request or not self.request.amo_user:
+        if not self.request or not self.request.user.is_authenticated():
             self.fields.pop('is_author')
             self.fields.pop('has_flagged')
 
@@ -53,11 +53,11 @@ class RatingSerializer(serializers.ModelSerializer):
         return reverse('ratings-flag', kwargs={'pk': obj.pk})
 
     def get_is_author(self, obj):
-        return obj.user.pk == self.request.amo_user.pk
+        return obj.user.pk == self.request.user.pk
 
     def get_has_flagged(self, obj):
         return (not self.get_is_author(obj) and
-                obj.reviewflag_set.filter(user=self.request.amo_user).exists())
+                obj.reviewflag_set.filter(user=self.request.user).exists())
 
     def validate(self, attrs):
         if not getattr(self, 'object'):
@@ -67,7 +67,8 @@ class RatingSerializer(serializers.ModelSerializer):
 
             # Assign user and ip_address. It won't change once the review is
             # created.
-            attrs['user'] = self.request.amo_user
+            user = self.request.user
+            attrs['user'] = user
             attrs['ip_address'] = self.request.META.get('REMOTE_ADDR', '')
 
             # If the app is packaged, add in the current version.
@@ -76,8 +77,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
             # Return 409 if the user has already reviewed this app.
             app = attrs['addon']
-            amo_user = self.request.amo_user
-            qs = self.context['view'].queryset.filter(addon=app, user=amo_user)
+            qs = self.context['view'].queryset.filter(addon=app, user=user)
             if app.is_packaged:
                 qs = qs.filter(version=attrs['version'])
             if qs.exists():
@@ -88,11 +88,11 @@ class RatingSerializer(serializers.ModelSerializer):
                 raise PermissionDenied('The app requested is not public.')
 
             # Return 403 if the user is attempting to review their own app.
-            if app.has_author(amo_user):
+            if app.has_author(user):
                 raise PermissionDenied('You may not review your own app.')
 
             # Return 403 if not a free app and the user hasn't purchased it.
-            if app.is_premium() and not app.is_purchased(amo_user):
+            if app.is_premium() and not app.is_purchased(user):
                 raise PermissionDenied("You may not review paid apps you "
                                        "haven't purchased.")
 
@@ -120,7 +120,8 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         fields = ('review_id', 'flag', 'note', 'user')
 
     def validate(self, attrs):
-        attrs['user'] = self.context['request'].amo_user
+        user = self.context['request'].user
+        attrs['user'] = user if user.is_authenticated() else None
         attrs['review_id'] = self.context['view'].kwargs['review']
         if 'note' in attrs and attrs['note'].strip():
             attrs['flag'] = ReviewFlag.OTHER

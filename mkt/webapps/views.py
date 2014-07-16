@@ -144,17 +144,17 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         if not upload.valid:
             raise exceptions.ParseError('Upload not valid.')
 
-        if not request.amo_user.read_dev_agreement:
+        if not request.user.read_dev_agreement:
             log.info(u'Attempt to use API without dev agreement: %s'
-                     % request.amo_user.pk)
+                     % request.user.pk)
             raise exceptions.PermissionDenied('Terms of Service not accepted.')
-        if not (upload.user and upload.user.pk == request.amo_user.pk):
+        if not (upload.user and upload.user.pk == request.user.pk):
             raise exceptions.PermissionDenied('You do not own that app.')
         plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
         # Create app, user and fetch the icon.
         obj = Webapp.from_upload(upload, plats, is_packaged=is_packaged)
-        AddonUser(addon=obj, user=request.amo_user).save()
+        AddonUser(addon=obj, user=request.user).save()
         tasks.fetch_icon.delay(obj)
         record_action('app-submitted', request, {'app-id': obj.pk})
 
@@ -176,12 +176,12 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return r
 
     def list(self, request, *args, **kwargs):
-        if not request.amo_user:
+        if not request.user.is_authenticated():
             log.info('Anonymous listing not allowed')
             raise exceptions.PermissionDenied('Anonymous listing not allowed.')
 
         self.object_list = self.filter_queryset(self.get_queryset().filter(
-            authors=request.amo_user))
+            authors=request.user))
         page = self.paginate_queryset(self.object_list)
         serializer = self.get_pagination_serializer(page)
         return response.Response(serializer.data)

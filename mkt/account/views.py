@@ -56,7 +56,7 @@ class MineMixin(object):
     def get_object(self, queryset=None):
         pk = self.kwargs.get('pk')
         if pk == 'mine':
-            self.kwargs['pk'] = self.request.amo_user.pk
+            self.kwargs['pk'] = self.request.user.pk
         return super(MineMixin, self).get_object(queryset)
 
 
@@ -69,7 +69,7 @@ class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
 
     def get_queryset(self):
         return Webapp.objects.no_cache().filter(
-            installed__user=self.request.amo_user,
+            installed__user=self.request.user,
             installed__install_type=INSTALL_TYPE_USER).order_by(
                 '-installed__created')
 
@@ -125,7 +125,7 @@ class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
         self.send_email(request, context_data)
 
     def send_email(self, request, context_data):
-        sender = getattr(request.amo_user, 'email', settings.NOBODY_EMAIL)
+        sender = getattr(request.user, 'email', settings.NOBODY_EMAIL)
         send_mail_jinja(u'Marketplace Feedback', 'account/email/feedback.txt',
                         context_data, from_email=sender,
                         recipient_list=[settings.MKT_FEEDBACK_EMAIL])
@@ -136,7 +136,7 @@ class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
             'ip_address': request.META.get('REMOTE_ADDR', '')
         }
         context_data.update(serializer.data)
-        context_data['user'] = request.amo_user
+        context_data['user'] = request.user
         return context_data
 
 
@@ -167,15 +167,15 @@ class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
         if profile is None:
             raise AuthenticationFailed('No profile.')
 
-        request.user, request.amo_user = profile, profile
+        request.user = profile
         request.groups = profile.groups.all()
         # We want to return completely custom data, not the serializer's.
         data = {
             'error': None,
-            'token': commonplace_token(request.amo_user.email),
+            'token': commonplace_token(request.user.email),
             'settings': {
-                'display_name': request.amo_user.display_name,
-                'email': request.amo_user.email,
+                'display_name': request.user.display_name,
+                'email': request.user.email,
             }
         }
         # Serializers give up if they aren't passed an instance, so we
@@ -208,7 +208,7 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
             log.info('No profile: %s' % (msg or ''))
             raise AuthenticationFailed('No profile.')
 
-        request.user, request.amo_user = profile, profile
+        request.user = profile
         request.groups = profile.groups.all()
 
         auth.login(request, profile)
@@ -219,10 +219,10 @@ class LoginView(CORSMixin, CreateAPIViewWithoutModel):
         # We want to return completely custom data, not the serializer's.
         data = {
             'error': None,
-            'token': commonplace_token(request.amo_user.email),
+            'token': commonplace_token(request.user.email),
             'settings': {
-                'display_name': request.amo_user.display_name,
-                'email': request.amo_user.email,
+                'display_name': request.user.display_name,
+                'email': request.user.email,
             }
         }
         # Serializers give up if they aren't passed an instance, so we

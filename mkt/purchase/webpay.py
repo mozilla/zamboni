@@ -32,7 +32,7 @@ app_view = app_view_factory(qs=Webapp.objects.valid)
 @json_view
 @can_be_purchased
 def prepare_pay(request, addon):
-    if addon.is_premium() and addon.has_purchased(request.amo_user):
+    if addon.is_premium() and addon.has_purchased(request.user):
         log.info('Already purchased: %d' % addon.pk)
         raise AlreadyPurchased
 
@@ -40,7 +40,7 @@ def prepare_pay(request, addon):
                     'Preparing JWT for: %s' % (addon.pk), severity=3)
 
     log.debug('Starting purchase of app: {0} by user: {1}'.format(
-        addon.pk, request.amo_user))
+        addon.pk, request.user))
 
     contribution = Contribution.objects.create(
         addon_id=addon.pk,
@@ -50,7 +50,7 @@ def prepare_pay(request, addon):
         source=request.REQUEST.get('src', ''),
         source_locale=request.LANG,
         type=amo.CONTRIB_PENDING,
-        user=request.amo_user,
+        user=request.user,
         uuid=str(uuid.uuid4()),
     )
 
@@ -72,9 +72,8 @@ def pay_status(request, addon, contrib_uuid):
     JWT postback. After that the UI is free to call app/purchase/record
     to generate a receipt.
     """
-    au = request.amo_user
     qs = Contribution.objects.filter(uuid=contrib_uuid,
-                                     addon__addonpurchase__user=au,
+                                     addon__addonpurchase__user=request.user,
                                      type=amo.CONTRIB_PURCHASE)
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
