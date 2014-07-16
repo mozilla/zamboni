@@ -41,6 +41,9 @@ define('reviewersCommbadge', ['login'], function(login) {
 
             $.get(_userArg(commNoteUrl), getNoteHandler($table));
         }
+    }).fail(function(e) {
+        $('table.activity').html('<p class="error">' + gettext('Sorry! We had an error fetching the review history. Please try logging in again.' + '<p>'));
+        console.log('Login failed. Token: ' + require('login').userToken());
     });
 
     function appendNotesToTable(notes, $table) {
