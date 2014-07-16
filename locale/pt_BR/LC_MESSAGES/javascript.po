@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:45-0700\n"
+"POT-Creation-Date: 2014-07-16 09:13-0700\n"
 "PO-Revision-Date: 2014-06-01 21:12+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Enviando {0}"
 msgid "Error with {0}"
 msgstr "Erro com {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Seu aplicativo falhou na validação com {0} erro."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Ver o relatório de validação completo"
 
@@ -139,51 +139,51 @@ msgstr "Erro interno do servidor durante a instalação do aplicativo."
 msgid "Install failed. Please try again later."
 msgstr "A instalação falhou. Por favor, tente mais tarde."
 
-#: media/js/devreg/devhub.js:190
+#: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
 msgstr[1] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
 
-#: media/js/devreg/devhub.js:204
+#: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Seu aplicativo passou pela validação sem erros e com {0} alerta."
 msgstr[1] "Seu aplicativo passou pela validação sem erros e com {0} alertas."
 
-#: media/js/devreg/devhub.js:209
+#: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
 msgstr "Seu aplicativo passou pela validação sem erros ou alertas."
 
-#: media/js/devreg/devhub.js:423
+#: media/js/devreg/devhub.js:433
 msgid "Changes Saved"
 msgstr "Alterações salvas"
 
-#: media/js/devreg/devhub.js:439
+#: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
 msgstr "Digite o endereço de e-mail de um novo membro da equipe"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:457
+#: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:638
+#: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Ocorreu um erro ao enviar seu arquivo."
 
-#: media/js/devreg/devhub.js:908
+#: media/js/devreg/devhub.js:918
 msgid "Learn more"
 msgstr "Saiba mais"
 
-#: media/js/devreg/devhub.js:912
+#: media/js/devreg/devhub.js:922
 msgid "Example"
 msgstr "Exemplo"
 
-#: media/js/devreg/devhub.js:1214
+#: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Processando alterações na imagem"
 
@@ -207,11 +207,11 @@ msgstr "Esse recurso está desativado temporariamente enquanto realizamos a manu
 msgid "Remove this localization"
 msgstr "Remover essa tradução"
 
-#: media/js/devreg/login.js:76
+#: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "O login com Persona falhou. Será que você tem uma conta com este e-mail?"
 
-#: media/js/devreg/login.js:81
+#: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
 msgstr "O login com Persona falhou. O servidor está passando por problemas."
 

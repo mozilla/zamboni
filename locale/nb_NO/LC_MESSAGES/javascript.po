@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:45-0700\n"
+"POT-Creation-Date: 2014-07-16 09:13-0700\n"
 "PO-Revision-Date: 2014-07-06 19:45+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Laster opp {0}"
 msgid "Error with {0}"
 msgstr "Feil med {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Validering av app mislykket med {0} feil."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;og {0} flere"
 msgstr[1] "&hellip;og {0} flere"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Se fullstendig valideringsrapport"
 
@@ -139,51 +139,51 @@ msgstr "Intern serverfeil ved app-installasjon."
 msgid "Install failed. Please try again later."
 msgstr "Installering mislykket. Prøv igjen senere."
 
-#: media/js/devreg/devhub.js:190
+#: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 msgstr[1] "Validering av app var mislykket med {0} feil og {1} melding(er)."
 
-#: media/js/devreg/devhub.js:204
+#: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Appen fullførte validering uten feil og med {0} melding."
 msgstr[1] "Appen fullførte validering uten feil og med {0} meldinger."
 
-#: media/js/devreg/devhub.js:209
+#: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
 msgstr "Appen fullførte validering uten feil eller meldinger."
 
-#: media/js/devreg/devhub.js:423
+#: media/js/devreg/devhub.js:433
 msgid "Changes Saved"
 msgstr "Endringer lagret"
 
-#: media/js/devreg/devhub.js:439
+#: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
 msgstr "Skriv inn e-postadresse til nytt teammedlem"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:457
+#: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:638
+#: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "En feil oppstod under opplasting av fil."
 
-#: media/js/devreg/devhub.js:908
+#: media/js/devreg/devhub.js:918
 msgid "Learn more"
 msgstr "Les mer"
 
-#: media/js/devreg/devhub.js:912
+#: media/js/devreg/devhub.js:922
 msgid "Example"
 msgstr "Eksempel"
 
-#: media/js/devreg/devhub.js:1214
+#: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Endringer på bilde blir behandlet"
 
@@ -207,13 +207,11 @@ msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemes
 msgid "Remove this localization"
 msgstr "Fjern denne oversettelsen"
 
-#: media/js/devreg/login.js:76
+#: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Persona-innlogging mislykket. Du har kanskje ikke en konto med den "
-"e-postadressen registrert?"
+msgstr "Persona-innlogging mislykket. Du har kanskje ikke en konto med den e-postadressen registrert?"
 
-#: media/js/devreg/login.js:81
+#: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona-innlogging mislykket. En serverfeil oppstod."
 

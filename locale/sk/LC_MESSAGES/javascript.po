@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:45-0700\n"
+"POT-Creation-Date: 2014-07-16 09:13-0700\n"
 "PO-Revision-Date: 2014-03-27 15:01+0000\n"
 "Last-Translator: bimbimka <barboradur@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -64,7 +64,7 @@ msgstr "Odosiela sa {0}"
 msgid "Error with {0}"
 msgstr "Chyba pre {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip; a jedna ďalšia"
 msgstr[1] "&hellip; a {0} ďalšie"
 msgstr[2] "&hellip; a {0} ďalších"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
@@ -142,53 +142,53 @@ msgstr "Pri inštalácii aplikácie nastala vnútorná chyba servera."
 msgid "Install failed. Please try again later."
 msgstr "Inštalácia zlyhala. Skúste to, prosím, neskôr."
 
-#: media/js/devreg/devhub.js:190
+#: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Overenie vašej aplikácie zlyhalo s {0} chybou a upozorneniami ({1})."
 msgstr[1] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 msgstr[2] "Overenie vašej aplikácie zlyhalo s {0} chybami a upozorneniami ({1})."
 
-#: media/js/devreg/devhub.js:204
+#: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozornením."
 msgstr[1] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 msgstr[2] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozorneniami."
 
-#: media/js/devreg/devhub.js:209
+#: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
 msgstr "Overenie vašej aplikácie bolo úspešné bez chýb a upozornení."
 
-#: media/js/devreg/devhub.js:423
+#: media/js/devreg/devhub.js:433
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: media/js/devreg/devhub.js:439
+#: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
 msgstr "Zadajte e-mailovú adresu nového člena tímu"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:457
+#: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:638
+#: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: media/js/devreg/devhub.js:908
+#: media/js/devreg/devhub.js:918
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: media/js/devreg/devhub.js:912
+#: media/js/devreg/devhub.js:922
 msgid "Example"
 msgstr "Príklad"
 
-#: media/js/devreg/devhub.js:1214
+#: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
@@ -212,11 +212,11 @@ msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe ser
 msgid "Remove this localization"
 msgstr "Odstrániť túto lokalizáciu"
 
-#: media/js/devreg/login.js:76
+#: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Možno pod touto e-mailovou adresou nemáte účet?"
 
-#: media/js/devreg/login.js:81
+#: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Nastala chyba servera."
 

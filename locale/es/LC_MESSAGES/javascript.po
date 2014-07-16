@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:45-0700\n"
+"POT-Creation-Date: 2014-07-16 09:13-0700\n"
 "PO-Revision-Date: 2014-06-21 20:21+0000\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Subiendo {0}"
 msgid "Error with {0}"
 msgstr "Error con {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "La validación de tu aplicación ha fallado con {0} error."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;y {0} más"
 msgstr[1] "&hellip;y {0} más"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Ver el informe completo de la validación"
 
@@ -139,51 +139,51 @@ msgstr "Error interno del servidor al instalar la aplicación."
 msgid "Install failed. Please try again later."
 msgstr "Error en la instalación. Inténtalo de nuevo pasados unos minutos."
 
-#: media/js/devreg/devhub.js:190
+#: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
 msgstr[1] "La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
 
-#: media/js/devreg/devhub.js:204
+#: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Tu aplicación se ha validado sin errores y con {0} mensaje."
 msgstr[1] "Tu aplicación se ha validado sin errores y con {0} mensajes."
 
-#: media/js/devreg/devhub.js:209
+#: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
 msgstr "Tu aplicación se ha validado sin errores ni mensajes."
 
-#: media/js/devreg/devhub.js:423
+#: media/js/devreg/devhub.js:433
 msgid "Changes Saved"
 msgstr "Se han guardado los cambios"
 
-#: media/js/devreg/devhub.js:439
+#: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
 msgstr "Escribe la dirección de correo electrónico de un nuevo miembro del equipo"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:457
+#: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:638
+#: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Ha habido un error al subir tu archivo."
 
-#: media/js/devreg/devhub.js:908
+#: media/js/devreg/devhub.js:918
 msgid "Learn more"
 msgstr "Más información"
 
-#: media/js/devreg/devhub.js:912
+#: media/js/devreg/devhub.js:922
 msgid "Example"
 msgstr "Ejemplo"
 
-#: media/js/devreg/devhub.js:1214
+#: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Se están procesando los cambios en la imagen"
 
@@ -207,11 +207,11 @@ msgstr "Esta característica está desactivada temporalmente mientras realizamos
 msgid "Remove this localization"
 msgstr "Eliminar esta localización"
 
-#: media/js/devreg/login.js:76
+#: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Error al identificarse con Mozilla Persona. ¿Tal vez no tienes una cuenta con esa dirección de correo?"
 
-#: media/js/devreg/login.js:81
+#: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
 msgstr "Error al identificarse con Mozilla Persona. Se encontró un error del servidor."
 

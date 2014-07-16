@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:45-0700\n"
+"POT-Creation-Date: 2014-07-16 09:13-0700\n"
 "PO-Revision-Date: 2013-08-25 10:49+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -65,7 +65,7 @@ msgstr "Przesyłanie {0}"
 msgid "Error with {0}"
 msgstr "Błąd z {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:185
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Program nie przeszedł weryfikacji z powodu {0} błędu."
@@ -79,7 +79,7 @@ msgstr[0] "&hellip;i {0} więcej"
 msgstr[1] "&hellip;i {0} więcej"
 msgstr[2] "&hellip;i {0} więcej"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:147
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Zobacz pełny raport"
 
@@ -143,53 +143,53 @@ msgstr "Wewnętrzny błąd serwera podczas instalacji aplikacji."
 msgid "Install failed. Please try again later."
 msgstr "Instalacja nie powiodła się. Spróbuj ponownie później."
 
-#: media/js/devreg/devhub.js:190
+#: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 msgstr[1] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 msgstr[2] "Twoja aplikacja nie przeszła weryfikacji – błędy: {0}, wiadomości: {1}."
 
-#: media/js/devreg/devhub.js:204
+#: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniem."
 msgstr[1] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
 msgstr[2] "Program przeszedł proces sprawdzania bez błędów, ale z {0} ostrzeżeniami."
 
-#: media/js/devreg/devhub.js:209
+#: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
 msgstr "Program przeszedł proces sprawdzania bez błędów i ostrzeżeń."
 
-#: media/js/devreg/devhub.js:423
+#: media/js/devreg/devhub.js:433
 msgid "Changes Saved"
 msgstr "Zmiany zostały zapisane"
 
-#: media/js/devreg/devhub.js:439
+#: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
 msgstr "Wprowadź adres e-mail nowego członka zespołu"
 
-#: media/js/devreg/devhub.js:452
+#: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:457
+#: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:638
+#: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
 msgstr "Wystąpił problem z przesłaniem twojego pliku."
 
-#: media/js/devreg/devhub.js:908
+#: media/js/devreg/devhub.js:918
 msgid "Learn more"
 msgstr "Dowiedz się więcej"
 
-#: media/js/devreg/devhub.js:912
+#: media/js/devreg/devhub.js:922
 msgid "Example"
 msgstr "Przykład"
 
-#: media/js/devreg/devhub.js:1214
+#: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Przetwarzanie zmian obrazka…"
 
@@ -213,11 +213,11 @@ msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłąc
 msgid "Remove this localization"
 msgstr "Usuń tę lokalizację"
 
-#: media/js/devreg/login.js:76
+#: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Logowanie Persona nie powiodło się. Być może nie masz konta pod tym adresem e-mail."
 
-#: media/js/devreg/login.js:81
+#: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
 msgstr "Logowanie Persona nie powiodło się. Wystąpił błąd serwera"
 
