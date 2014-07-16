@@ -17,7 +17,7 @@
         <dt>{{ _('Username') }}</dt>
         <dd>{{ account.username }}</dd>
         <dt>{{ _('Email') }}</dt>
-        <dd>{{ account.email }}</dd>
+        <dd>{{ emaillink(account.email) }}</dd>
         <dt>{{ _('Registered') }}</dt>
         <dd>{{ account.created|babel_datetime }}</dd>
         <dt>UGC</dt>
