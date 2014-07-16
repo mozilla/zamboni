@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-06-30 19:55+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2014-07-16 22:06+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404158103.0\n"
+"X-POOTLE-MTIME: 1405548409.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -448,11 +448,11 @@ msgstr "URL-wijziging manifest"
 
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} automatisch geëscaleerd omdat het een prerelease-app is."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Automatische escalatie van prerelease"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -2832,15 +2832,15 @@ msgstr "Promotieprijs"
 
 #: mkt/developers/forms_payments.py:140
 msgid "Only supports carrier billing"
-msgstr "Ondersteunt uitsluitend facturatie via provider"
+msgstr "Ondersteunt uitsluitend facturering via provider"
 
 #: mkt/developers/forms_payments.py:143
 msgid "Only supports credit-card billing"
-msgstr "Ondersteunt uitsluitend facturatie via creditcard"
+msgstr "Ondersteunt uitsluitend facturering via creditcard"
 
 #: mkt/developers/forms_payments.py:147
 msgid "Supports all billing methods"
-msgstr "Ondersteunt alle facturatiemethoden"
+msgstr "Ondersteunt alle factureringsmethoden"
 
 #: mkt/developers/forms_payments.py:224
 msgid "If app is Free, in-app payments must be enabled"
@@ -3124,11 +3124,11 @@ msgstr "Gefeliciteerd, uw app is nu ingediend en zal binnenkort worden beoordeel
 
 #: mkt/developers/views.py:303
 msgid "Content ratings successfully saved."
-msgstr "Inhoudswaardering succesvol opgeslagen."
+msgstr "Inhoudswaardering met succes opgeslagen."
 
 #: mkt/developers/views.py:428
 msgid "Application for preload successfully submitted."
-msgstr "Aanvraag vooruit laden succesvol ingediend."
+msgstr "Aanvraag vooruit laden met succes ingediend."
 
 #: mkt/developers/views.py:431
 msgid "There was an error with the form."
@@ -3140,7 +3140,7 @@ msgstr "Versie met succes bewerkt."
 
 #: mkt/developers/views.py:503
 msgid "Version successfully made public."
-msgstr "Versie succesvol gepubliceerd."
+msgstr "Versie met succes gepubliceerd."
 
 #: mkt/developers/views.py:518
 msgid "Version \"{0}\" deleted."
@@ -3885,7 +3885,7 @@ msgstr "Een e-mailadres (of -adressen gescheiden door komma’s) van de Mozilla-
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr "Voer e-mailadressen gescheiden door komma’s in"
+msgstr "Voer e-mailadressen in, gescheiden door komma’s"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
@@ -4721,7 +4721,7 @@ msgstr "lokale valuta"
 
 #: mkt/developers/templates/developers/payments/premium.html:233
 msgid "Billing method"
-msgstr "Facturatiemethode"
+msgstr "Factureringsmethode"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Other regions"
@@ -5336,7 +5336,10 @@ msgstr "<strong>Het web is het platform</strong> &ndash; schrijf éénmaal uw HT
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:51
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
-msgstr "<strong>Naadloze betalingen</strong> &ndash; met meerdere betalingsmodellen en facturatie via de provider brengen we u weerstandsloze betalingen voor uw app."
+msgstr ""
+"<strong>Naadloze betalingen</strong> &ndash; met meerdere betalingsmodellen "
+"en facturering via de provider brengen we u weerstandsloze betalingen voor "
+"uw app."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
@@ -6324,7 +6327,7 @@ msgstr "Goedkeuren"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "Hierdoor wordt de app goedgekeurd en kan de schrijver deze publiceren."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6333,6 +6336,8 @@ msgstr "Afwijzen"
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Hierdoor wordt de app afgewezen, uit de beoordelingswachtrij gehaald en "
+"mogelijke publicatie ongedaan gemaakt."
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6349,10 +6354,14 @@ msgstr "Escaleren"
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Markeer deze app voor beoordeling door een beheerder. De opmerkingen worden "
+"naar de beheerders verzonden, niet de schrijver(s)."
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr ""
+"Plaats een opmerking over deze app. Deze opmerkingen zijn niet zichtbaar "
+"voor de schrijver(s)."
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6361,6 +6370,8 @@ msgstr "Escalatie wissen"
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Wis deze app uit de escalatiewachtrij. De schrijvers ontvangen geen "
+"e-mailbericht en zien hier geen opmerkingen.."
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6369,6 +6380,8 @@ msgstr "Herbeoordeling wissen"
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Wis deze app uit de wachtrij herbeoordeling. De schrijvers ontvangen geen "
+"e-mailbericht en zien hier geen opmerkingen."
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6377,6 +6390,8 @@ msgstr "App uitschakelen"
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Schakel de app uit, hetzelfde als Afwijzen, maar de schrijver kan deze niet "
+"opnieuw indienen. Alleen in extreme gevallen te gebruiken."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6417,7 +6432,7 @@ msgstr "Door beoordelaar gewijzigde vereisten: {0}"
 
 #: mkt/reviewers/views.py:387
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr "“{0}” succesvol verwerkt (+{1} punten, totaal {2})."
+msgstr "“{0}” met succes verwerkt (+{1} punten, totaal {2})."
 
 #: mkt/reviewers/views.py:389
 msgid "Review successfully processed."

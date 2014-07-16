@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-06-30 19:56+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2014-07-16 22:22+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404158193.0\n"
+"X-POOTLE-MTIME: 1405549336.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -133,7 +133,7 @@ msgstr "Interne serverfout."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Interne serverfout bij installatie app."
+msgstr "Interne serverfout bij installatie van app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -142,8 +142,10 @@ msgstr "Installatie mislukt. Probeer het later nog eens."
 #: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Uw app heeft de validatie niet doorstaan met {0} fout en {1} bericht(en)."
-msgstr[1] "Uw app heeft de validatie niet doorstaan met {0} fouten en {1} bericht(en)."
+msgstr[0] ""
+"Uw app heeft de validatie met {0} fout en {1} bericht(en) niet doorstaan."
+msgstr[1] ""
+"Uw app heeft de validatie met {0} fouten en {1} bericht(en) niet doorstaan."
 
 #: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
@@ -261,7 +263,7 @@ msgstr "Spaanse bankencode"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "Ierse Sort code"
+msgstr "Ierse Sort-code"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
@@ -361,7 +363,7 @@ msgstr[1] "{0} tekens resterend."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr "Alle tests succesvol doorstaan."
+msgstr "Alle tests met succes doorstaan."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
