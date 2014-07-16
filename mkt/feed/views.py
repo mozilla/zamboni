@@ -12,8 +12,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
-from mkt.api.base import (CORSMixin, MarketplaceView,
-                          MultiSerializerViewSetMixin, SlugOrIdMixin)
+from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
 from mkt.collections.views import CollectionImageViewSet
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer, FeedShelfIndexer)
@@ -22,15 +21,12 @@ from mkt.webapps.models import Webapp
 from .authorization import FeedAuthorization
 from .constants import FEED_TYPE_SHELF
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
-from .serializers import (FeedAppSerializer, FeedAppSearchSerializer,
-                          FeedBrandSerializer, FeedBrandSearchSerializer,
-                          FeedCollectionSerializer,
-                          FeedCollectionSearchSerializer, FeedItemSerializer,
-                          FeedShelfSerializer, FeedShelfSearchSerializer)
+from .serializers import (FeedAppSerializer, FeedBrandSerializer,
+                          FeedCollectionSerializer, FeedItemSerializer,
+                          FeedShelfSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
-                                MultiSerializerViewSetMixin,
                                 viewsets.ModelViewSet):
     """
     Base viewset for subclasses of BaseFeedCollection.
@@ -166,8 +162,8 @@ class FeedBuilderView(CORSMixin, APIView):
         return response.Response(status=status.HTTP_201_CREATED)
 
 
-class FeedAppViewSet(MultiSerializerViewSetMixin, CORSMixin, MarketplaceView,
-                     SlugOrIdMixin, viewsets.ModelViewSet):
+class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
+                     viewsets.ModelViewSet):
     """
     A viewset for the FeedApp class, which highlights a single app and some
     additional metadata (e.g. a review or a screenshot).
@@ -181,9 +177,6 @@ class FeedAppViewSet(MultiSerializerViewSetMixin, CORSMixin, MarketplaceView,
     queryset = FeedApp.objects.all()
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedAppSerializer
-    serializer_classes = {
-        'search': FeedAppSearchSerializer,
-    }
 
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
@@ -199,9 +192,6 @@ class FeedBrandViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedBrand.objects.all()
     serializer_class = FeedBrandSerializer
-    serializer_classes = {
-        'search': FeedBrandSearchSerializer,
-    }
 
 
 class FeedCollectionViewSet(BaseFeedCollectionViewSet):
@@ -210,9 +200,6 @@ class FeedCollectionViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedCollection.objects.all()
     serializer_class = FeedCollectionSerializer
-    serializer_classes = {
-        'search': FeedCollectionSearchSerializer,
-    }
 
     def set_apps_grouped(self, obj, apps):
         if apps:
@@ -238,9 +225,6 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedShelf.objects.all()
     serializer_class = FeedShelfSerializer
-    serializer_classes = {
-        'search': FeedShelfSearchSerializer,
-    }
 
 
 class FeedShelfPublishView(CORSMixin, APIView):
@@ -341,12 +325,12 @@ class FeedElementSearchView(CORSMixin, APIView):
 
         # Serialize.
         ctx = {'request': request}
-        apps = [FeedAppSearchSerializer(app, context=ctx).data for app in apps]
-        brands = [FeedBrandSearchSerializer(brand, context=ctx).data
+        apps = [FeedAppSerializer(app, context=ctx).data for app in apps]
+        brands = [FeedBrandSerializer(brand, context=ctx).data
                   for brand in brands]
-        collections = [FeedCollectionSearchSerializer(coll, context=ctx).data
+        collections = [FeedCollectionSerializer(coll, context=ctx).data
                        for coll in colls]
-        shelves = [FeedShelfSearchSerializer(shelf, context=ctx).data
+        shelves = [FeedShelfSerializer(shelf, context=ctx).data
                    for shelf in shelves]
 
         # Return.

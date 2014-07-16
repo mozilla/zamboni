@@ -436,14 +436,6 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         res, data = self._test_detail(self.client)
         assert data.get('background_image')
 
-    def test_multi_serializer(self):
-        self.feedapp = self.create_feedapps()[0]
-        self.url = reverse('api-v2:feedapps-detail',
-                           kwargs={'pk': self.feedapp.pk})
-        res = self.client.get(self.url, data={'serializer': 'search'})
-        eq_(res.status_code, 200)
-        assert 'background_image' not in json.loads(res.content)
-
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
     """
@@ -713,14 +705,6 @@ class BaseTestFeedCollection(object):
         self.feed_permission()
         res, data = self.delete(self.client)
         eq_(res.status_code, 204)
-
-    def test_multi_serializer(self):
-        self.make_item()
-        res = self.client.get(self.detail_url, {'serializer': 'search'})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        assert 'app_count' in data
-        assert not 'apps' in data
 
 
 class TestFeedBrandViewSet(BaseTestFeedCollection, RestOAuth):

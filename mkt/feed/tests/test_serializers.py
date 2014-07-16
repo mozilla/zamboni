@@ -8,14 +8,9 @@ import amo.tests
 from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
 from mkt.feed.models import FeedBrand, FeedShelf
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
-from mkt.feed.serializers import (FeedAppSerializer, FeedAppSearchSerializer,
-                                  FeedBrandSerializer,
-                                  FeedBrandSearchSerializer,
+from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
                                   FeedCollectionSerializer,
-                                  FeedCollectionSearchSerializer,
-                                  FeedShelfSerializer,
-                                  FeedShelfSearchSerializer,
-                                  FeedItemSerializer)
+                                  FeedShelfSerializer, FeedItemSerializer)
 from mkt.regions import RESTOFWORLD
 
 
@@ -87,12 +82,6 @@ class TestFeedAppSerializer(FeedTestMixin, amo.tests.TestCase):
         serializer = FeedAppSerializer(data=data)
         assert serializer.is_valid()
 
-    def test_search_serializer(self):
-        feed_app = self.feed_app_factory()
-        data = FeedAppSearchSerializer(feed_app).data
-        assert 'background_color' not in data
-        assert 'type' in data
-
 
 class TestFeedBrandSerializer(FeedTestMixin, amo.tests.TestCase):
 
@@ -107,12 +96,6 @@ class TestFeedBrandSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data['layout'], self.brand.layout)
         eq_(data['type'], self.brand.type)
         self.assertSetEqual([app['id'] for app in data['apps']], self.app_ids)
-
-    def test_search_serializer(self):
-        data = FeedBrandSearchSerializer(self.brand).data
-        assert not 'apps' in data
-        eq_(data['app_count'], 3)
-        assert data['preview_icon']
 
 
 class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
@@ -147,13 +130,6 @@ class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
         del self.data['background_color']
         self.validate()
 
-    def test_search_serializer(self):
-        data = FeedCollectionSearchSerializer(
-            self.feed_collection_factory()).data
-        assert not 'apps' in data
-        eq_(data['app_count'], 1)
-        assert data['preview_icon']
-
 
 class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
 
@@ -166,9 +142,3 @@ class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
         data = FeedShelfSerializer(self.shelf).data
         eq_(data['slug'], self.shelf.slug)
         self.assertSetEqual([app['id'] for app in data['apps']], self.app_ids)
-
-    def test_search_serializer(self):
-        data = FeedShelfSearchSerializer(self.shelf).data
-        assert not 'apps' in data
-        eq_(data['app_count'], 3)
-        assert data['preview_icon']

@@ -96,15 +96,6 @@ class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
         url_basename = 'feedapps'
 
 
-class FeedAppSearchSerializer(FeedAppSerializer):
-    """
-    A simpler serializer for the FeedApp class that does not include extra
-    fields.
-    """
-    class Meta(FeedAppSerializer.Meta):
-        fields = ('app', 'id', 'slug', 'type', 'url')
-
-
 class FeedBrandSerializer(BaseFeedCollectionSerializer):
     """
     A serializer for the FeedBrand class, a type of collection that allows
@@ -119,15 +110,6 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
         fields = ('apps', 'id', 'layout', 'slug', 'type', 'url')
         model = FeedBrand
         url_basename = 'feedbrands'
-
-
-class FeedBrandSearchSerializer(FeedBrandSerializer):
-    """
-    A simpler serializer for the FeedBrand class that does not include apps.
-    """
-    class Meta(FeedBrandSerializer.Meta):
-        fields = ('app_count', 'id', 'layout', 'preview_icon', 'slug', 'type',
-                  'url')
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -147,15 +129,6 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
                   'description', 'id', 'name', 'region', 'slug', 'url')
         model = FeedShelf
         url_basename = 'feedshelves'
-
-
-class FeedShelfSearchSerializer(FeedShelfSerializer):
-    """
-    A simpler serializer for the FeedShelf class that does not include apps.
-    """
-    class Meta(FeedShelfSerializer.Meta):
-        fields = ('app_count', 'carrier', 'id', 'name', 'preview_icon',
-                  'region', 'slug', 'url')
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
@@ -203,16 +176,6 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         return ret
 
 
-class FeedCollectionSearchSerializer(FeedCollectionSerializer):
-    """
-    A simpler serializer for the FeedCollection class that does not include
-    apps.
-    """
-    class Meta(FeedCollectionSerializer.Meta):
-        fields = ('app_count', 'id', 'name', 'preview_icon', 'slug', 'type',
-                  'url')
-
-
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     """
     A serializer for the FeedItem class, which wraps all items that live on the
@@ -222,7 +185,7 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         choices_dict=mkt.carriers.CARRIER_MAP)
     region = SlugChoiceField(required=False,
         choices_dict=mkt.regions.REGION_LOOKUP)
-    category = UnicodeChoiceField(required=False, 
+    category = UnicodeChoiceField(required=False,
         choices=CATEGORY_CHOICES)
     item_type = serializers.SerializerMethodField('get_item_type')
 
