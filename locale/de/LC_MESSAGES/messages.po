@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-06-30 18:46+0000\n"
+"PO-Revision-Date: 2014-07-16 18:15+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404153976.0\n"
+"X-POOTLE-MTIME: 1405534526.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -443,10 +443,14 @@ msgstr "Änderung der Manifest-URL"
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"{addon} automatisch an nächsthöhere Stelle weitergereicht, weil es eine App "
+"zur Vorab-Veröffentlichung ist."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
 msgstr ""
+"Automatische Weitergabe an nächsthöhere Stelle von Apps zur Vorab-"
+"Veröffentlichung"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -6328,6 +6332,8 @@ msgstr "Freischalten"
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr ""
+"Dadurch wird die App freigeschaltet und der/die Autor(en) dürfen sie "
+"veröffentlichen."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6336,6 +6342,8 @@ msgstr "Ablehnen"
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Dadurch wird die App abgelehnt, aus der Warteschlange für Überprüfungen "
+"entfernt und nicht mehr veröffentlicht, wenn sie bereits veröffentlicht war."
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6352,10 +6360,14 @@ msgstr "An nächsthöhere Stelle weitergeben"
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Diese App zur Überprüfung durch einen Administrator melden. Die Kommentare "
+"werden an die Administratoren gesendet, nicht an den/die Autor(en)."
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr ""
+"Einen Kommentar zur App abgeben. Der/die Autor(en) können diese Kommentare "
+"nicht sehen."
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6364,6 +6376,9 @@ msgstr "Weitergabe an nächsthöhere Stelle freigeben"
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Diese App aus der Warteschlange zur Weitergabe an nächsthöhere Stelle "
+"entfernen. Der/die Autor(en) erhalten weder eine E-Mail, noch sehen sie hier "
+"Kommentare."
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6372,6 +6387,8 @@ msgstr "Erneute Überprüfung löschen"
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Diese App aus der Warteschlange zur erneuten Überprüfung entfernen. Der/die "
+"Autor(en) erhalten weder eine E-Mail, noch sehen sie hier Kommentare."
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6380,6 +6397,8 @@ msgstr "App deaktivieren"
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Die App deaktivieren. Bewirkt das gleiche wie eine Ablehnung, aber der/die "
+"Autor(en) können sie nicht erneut einreichen. Nur für Extremfälle."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
