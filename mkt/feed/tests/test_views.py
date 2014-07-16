@@ -920,6 +920,14 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(us_items[2].item_type, 'brand')
         eq_(us_items[3].item_type, 'app')
 
+        # Test China feed.
+        cn_items = FeedItem.objects.filter(
+            region=mkt.regions.CN.id).order_by('order')
+        eq_(cn_items.count(), 3)
+        eq_(cn_items[0].item_type, 'brand')
+        eq_(cn_items[1].item_type, 'app')
+        eq_(cn_items[2].item_type, 'collection')
+
     def test_update_feed(self):
         self.feed_permission()
         self._set_feed_items(self.data)

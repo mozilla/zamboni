@@ -112,7 +112,7 @@ class FeedItemViewSet(CORSMixin, viewsets.ModelViewSet):
     permission_classes = [AnyOf(AllowReadOnly,
                                 GroupPermission('Feed', 'Curate'))]
     filter_backends = (OrderingFilter, RegionCarrierFilter)
-    queryset = FeedItem.objects.all()
+    queryset = FeedItem.objects.no_cache().all()
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedItemSerializer
 
