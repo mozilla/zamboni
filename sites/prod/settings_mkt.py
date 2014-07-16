@@ -114,6 +114,7 @@ MONOLITH_PASSWORD = private_mkt.MONOLITH_PASSWORD
 # Payment settings.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
+APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
 # This must match private.SECRET in webpay settings.
 APP_PURCHASE_SECRET = private_mkt.APP_PURCHASE_SECRET
 

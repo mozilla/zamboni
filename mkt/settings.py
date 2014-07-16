@@ -503,7 +503,7 @@ APP_PURCHASE_SECRET = 'please change this'
 # This is the typ for app purchase JWTs.
 # It must match that of the pay server that processes nav.mozPay().
 # On B2G this must match a provider in the whitelist.
-APP_PURCHASE_TYP = 'mozilla/payments/pay/v1'
+APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
 
 # Base URL to the Bango Vendor Portal (keep the trailing question mark).
 BANGO_BASE_PORTAL_URL = 'http://mozilla.com.test.bango.org/login/al.aspx?'
