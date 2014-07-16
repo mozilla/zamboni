@@ -81,7 +81,9 @@
       <span class="hint-inline">{{ _('Pick one or two categories.') }}</span>
     </label>
     {{ form.application }}
-    {{ form.categories }}
+    <div class="checkbox-choices addon-categories">
+      {{ form.categories }}
+    </div>
     {{ form.categories.errors }}
   </div>
 {% endmacro %}
