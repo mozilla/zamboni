@@ -310,7 +310,8 @@ class WebappIndexer(BaseIndexer):
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
         d['popularity'] = d['_boost'] = len(installed_ids)
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
-                          'id': p.id} for p in obj.previews.all()]
+                          'id': p.id, 'sizes': p.sizes}
+                         for p in obj.previews.all()]
         try:
             p = obj.addonpremium.price
             d['price_tier'] = p.name

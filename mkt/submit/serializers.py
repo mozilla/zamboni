@@ -70,21 +70,21 @@ class FileUploadSerializer(serializers.ModelSerializer):
 class PreviewSerializer(serializers.ModelSerializer):
     filetype = serializers.CharField()
     id = serializers.IntegerField(source='pk')
+    image_size = serializers.Field(source='image_size')
     image_url = serializers.CharField(read_only=True)
     resource_uri = serializers.SerializerMethodField('get_resource_uri')
     thumbnail_url = serializers.CharField(read_only=True)
 
     class Meta:
         model = Preview
-        fields = ['filetype', 'image_url', 'id', 'resource_uri',
+        fields = ['filetype', 'image_size', 'image_url', 'id', 'resource_uri',
                   'thumbnail_url']
 
-    def get_resource_uri(self, request):
-        if self.object is None:
-            return None
-        return reverse('app-preview-detail', kwargs={'pk': self.object.pk})
+    def get_resource_uri(self, obj):
+        if obj:
+            return reverse('app-preview-detail', kwargs={'pk': obj})
 
 
 class SimplePreviewSerializer(PreviewSerializer):
     class Meta(PreviewSerializer.Meta):
-        fields = ['id', 'image_url', 'thumbnail_url']
+        fields = ['id', 'image_size', 'image_url', 'thumbnail_url']
