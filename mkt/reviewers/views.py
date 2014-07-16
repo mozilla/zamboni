@@ -1014,7 +1014,7 @@ def attachment(request, attachment):
     else:
         filename = urllib.quote(a.filename())
         response = http.HttpResponse(fsock,
-                                     mimetype='application/force-download')
+                                     content_type='application/force-download')
         response['Content-Disposition'] = 'attachment; filename=%s' % filename
         response['Content-Length'] = os.path.getsize(full_path)
     return response

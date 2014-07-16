@@ -92,7 +92,7 @@ def appcache_manifest(request):
     if not repo or repo not in settings.COMMONPLACE_REPOS_APPCACHED:
         return HttpResponseNotFound()
     template = appcache_manifest_template(repo)
-    return HttpResponse(template, mimetype='text/cache-manifest')
+    return HttpResponse(template, content_type='text/cache-manifest')
 
 
 @memoize('appcache-manifest-template')

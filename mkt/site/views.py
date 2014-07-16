@@ -95,7 +95,7 @@ def manifest(request):
     @etag(lambda r: manifest_etag)
     def _inner_view(request):
         response = HttpResponse(manifest_content,
-                                mimetype='application/x-web-app-manifest+json')
+            content_type='application/x-web-app-manifest+json')
         return response
 
     return _inner_view(request)
@@ -118,7 +118,7 @@ def yogafire_minifest(request):
 def robots(request):
     """Generate a `robots.txt`."""
     template = render(request, 'site/robots.txt')
-    return HttpResponse(template, mimetype='text/plain')
+    return HttpResponse(template, content_type='text/plain')
 
 
 @csrf_exempt
