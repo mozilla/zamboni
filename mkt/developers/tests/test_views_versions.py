@@ -295,6 +295,27 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
             'App not in escalation queue')
 
 
+class TestAddVersionNoPermissions(BaseAddVersionTest):
+    @property
+    def package(self):
+        return self.packaged_app_path('no_permissions.zip')
+
+    def test_no_escalate_on_blank_permissions(self):
+        """Test that apps that do not use permissions are not escalated."""
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App in escalation queue')
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        self.app.update_status()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App in escalation queue')
+
+
 class TestVersionPackaged(amo.tests.WebappTestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
