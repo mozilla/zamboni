@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1405549336.0\n"
 
 #: media/js/common/upload-base.js:61
@@ -30,7 +30,8 @@ msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 msgid "Videos must be in WebM."
 msgstr "Video’s dienen in WebM te zijn."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de server."
 
@@ -64,7 +65,8 @@ msgstr "Uploaden {0}"
 msgid "Error with {0}"
 msgstr "Fout met {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:195
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Uw app kon niet worden gevalideerd met {0} fout."
@@ -76,7 +78,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "… en nog {0}"
 msgstr[1] "… en nog {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325
+#: media/js/devreg/devhub.js:157
 msgid "See full validation report"
 msgstr "Volledig validatierapport bekijken"
 
@@ -100,8 +104,10 @@ msgstr "Validatie van {0} afgerond"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
-msgstr[1] "Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
+msgstr[0] ""
+"Uw app heeft de validatie zonder fouten en met {0} waarschuwing doorstaan."
+msgstr[1] ""
+"Uw app heeft de validatie zonder fouten en met {0} waarschuwingen doorstaan."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -202,16 +208,24 @@ msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. "
+"Probeer het later nog eens."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Deze vertaling verwijderen"
 
 #: media/js/devreg/login.js:109
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona-aanmelding mislukt. Misschien hebt u geen account met dat e-mailadres?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Persona-aanmelding mislukt. Misschien hebt u geen account met dat "
+"e-mailadres?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
@@ -231,7 +245,8 @@ msgstr "Alle resultaten weergeven"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr "Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
+msgstr ""
+"Meer dan {0} resultaten gevonden, overweeg uw zoekopdracht te verfijnen."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -291,7 +306,9 @@ msgstr "Griekse HEBIC/Indonesische Bank code"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-code"
+msgstr ""
+"UK/Ierse Sort code of Nieuw-Zeelandse Account-prefix of Australische BSB-"
+"code"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -316,21 +333,39 @@ msgstr "Gedetecteerd: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende app. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
-msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende apps. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount "
+"verwijderd uit de volgende app. Toepassingen zonder betalingsaccount zijn "
+"niet meer beschikbaar voor verkoop."
+msgstr[1] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount "
+"verwijderd uit de volgende apps. Toepassingen zonder betalingsaccount zijn "
+"niet meer beschikbaar voor verkoop."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Betalingsaccounts {appName}:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:161
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fout"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:99
+#: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de betalingsserver."
 
@@ -365,11 +400,13 @@ msgstr[1] "{0} tekens resterend."
 msgid "All tests passed successfully."
 msgstr "Alle tests met succes doorstaan."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Deze tests zijn niet uitgevoerd."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Tests"
 
