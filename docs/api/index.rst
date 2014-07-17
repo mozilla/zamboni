@@ -10,9 +10,14 @@ This documentation covers APIs related to the `Firefox Marketplace`_.
 Quickstart
 ==========
 
-Details on an app: https://marketplace.firefox.com/api/v1/apps/app/twitter/?format=JSON
+Read the :ref:`overview <overview>` first to understand how the API works. If
+you want to look at typical responses, use the following endpoints:
 
-Search for all hosted apps about Twitter: https://marketplace.firefox.com/api/v1/apps/search/?q=twitter&app_type=hosted&format=JSON
+ * Details on an app: https://marketplace.firefox.com/api/v1/apps/app/twitter/?format=JSON
+ * Search for all hosted apps about Twitter: https://marketplace.firefox.com/api/v1/apps/search/?q=twitter&app_type=hosted&format=JSON
+
+Have a look at the table of contents below to see what other endpoints are
+available.
 
 
 Questions
@@ -36,7 +41,8 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
+   topics/overview
    topics/*
