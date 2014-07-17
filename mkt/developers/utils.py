@@ -162,9 +162,10 @@ def handle_vip(addon, version, user):
 
 def escalate_prerelease_permissions(app, validation, version):
     """Escalate the app if it uses prerelease permissions."""
-    app_permissions = validation.get('permissions', [])
-    permissions = set(app_permissions)
-    if any(pre_perm in permissions for pre_perm in PRERELEASE_PERMISSIONS):
+    # When there are no permissions `validation['permissions']` will be
+    # `False` so we should default to an empty list if `get` is falsey.
+    app_permissions = validation.get('permissions') or []
+    if any(perm in PRERELEASE_PERMISSIONS for perm in app_permissions):
         nobody = UserProfile.objects.get(email=settings.NOBODY_EMAIL_ADDRESS)
         escalate_app(
             app, version, nobody, 'App uses prerelease permissions',
