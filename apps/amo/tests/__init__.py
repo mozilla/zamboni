@@ -38,12 +38,14 @@ import amo
 import mkt
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from constants.applications import DEVICE_TYPES
+from lib.es.management.commands import reindex_mkt
 from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer, FeedShelfIndexer)
+                               FeedCollectionIndexer, FeedItemIndexer,
+                               FeedShelfIndexer)
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, Platform
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
@@ -734,7 +736,7 @@ def file_factory(**kw):
     return f
 
 
-def req_factory_factory(url, user=None, post=False, data=None):
+def req_factory_factory(url, user=None, post=False, data=None, **kwargs):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory()
     if post:
@@ -746,6 +748,11 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req.user = user
         req.groups = user.groups.all()
     req.check_ownership = partial(check_ownership, req)
+    req.REGION = kwargs.pop('region', mkt.regions.REGIONS_CHOICES[0][1])
+    req.API_VERSION = 2
+
+    for key in kwargs:
+        setattr(req, key, kwargs[key])
     return req
 
 
@@ -825,8 +832,7 @@ class ESTestCase(TestCase):
             except elasticsearch.NotFoundError as e:
                 print 'Could not delete index %r: %s' % (index, e)
 
-        for indexer in (WebappIndexer, FeedAppIndexer, FeedBrandIndexer,
-                        FeedCollectionIndexer, FeedShelfIndexer):
+        for index, indexer, batch in reindex_mkt.INDEXES:
             indexer.setup_mapping()
 
     @classmethod

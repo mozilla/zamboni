@@ -1,7 +1,7 @@
 """
 Marketplace ElasticSearch Indexer.
 
-Currently indexes apps and feed elements.
+Currently creates the indexes and re-indexes apps and feed elements.
 """
 import logging
 import os
@@ -28,26 +28,29 @@ logger = logging.getLogger('z.elasticsearch')
 # logging.getLogger('elasticsearch').setLevel(logging.DEBUG)
 # logging.getLogger('elasticsearch.trace').setLevel(logging.DEBUG)
 
-
 # The subset of settings.ES_INDEXES we are concerned with.
+# Referenced from amo.tests.ESTestCase so update that if you are modifying the
+# structure of INDEXES.
+ES_INDEXES = settings.ES_INDEXES
 INDEXES = (
     # Index, Indexer, chunk size.
-    (settings.ES_INDEXES['webapp'], WebappIndexer, 100),
+    (ES_INDEXES['webapp'], WebappIndexer, 100),
     # Currently using 500 since these are manually created by a curator and
     # there will probably never be this many.
-    (settings.ES_INDEXES['mkt_feed_app'], f_indexers.FeedAppIndexer, 500),
-    (settings.ES_INDEXES['mkt_feed_brand'], f_indexers.FeedBrandIndexer, 500),
-    (settings.ES_INDEXES['mkt_feed_collection'],
-     f_indexers.FeedCollectionIndexer, 500),
-    (settings.ES_INDEXES['mkt_feed_shelf'], f_indexers.FeedShelfIndexer, 500),
+    (ES_INDEXES['mkt_feed_app'], f_indexers.FeedAppIndexer, 500),
+    (ES_INDEXES['mkt_feed_brand'], f_indexers.FeedBrandIndexer, 500),
+    (ES_INDEXES['mkt_feed_collection'], f_indexers.FeedCollectionIndexer, 500),
+    (ES_INDEXES['mkt_feed_shelf'], f_indexers.FeedShelfIndexer, 500),
+    # Currently using 1000 since FeedItem documents are pretty small.
+    (ES_INDEXES['mkt_feed_item'], f_indexers.FeedItemIndexer, 1000),
 )
 
 INDEX_DICT = {
     # In case we want to index only a subset of indexes.
-    'webapp': [INDEXES[0]],
-    'feed': [INDEXES[1], INDEXES[2], INDEXES[3], INDEXES[4]],
+    'apps': [INDEXES[0]],
+    'feed': [INDEXES[1], INDEXES[2], INDEXES[3], INDEXES[4], INDEXES[5]],
+    'feeditems': [INDEXES[5]],
 }
-
 
 ES = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
 

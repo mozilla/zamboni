@@ -1413,6 +1413,10 @@ class Webapp(Addon):
             if not hasattr(self, '_geodata'):
                 Geodata.objects.create(addon=self)
 
+    @classmethod
+    def get_indexer(cls):
+        return WebappIndexer
+
     @staticmethod
     def transformer(apps):
         if not apps:
@@ -1471,15 +1475,6 @@ class Webapp(Addon):
             app.all_versions = v_dict.get(app.id, [])
 
         return apps
-
-    @staticmethod
-    def indexing_transformer(apps):
-        """Attach everything we need to index apps."""
-        transforms = (attach_devices, attach_prices, attach_tags,
-                      attach_translations)
-        for t in transforms:
-            qs = apps.transform(t)
-        return qs
 
     @property
     def geodata(self):

@@ -39,7 +39,8 @@ class FeedTestMixin(object):
         count = FeedCollection.objects.count()
         coll = FeedCollection.objects.create(
             name=name, slug='feed-coll-%s' % count, type=coll_type, **kwargs)
-        coll.set_apps(app_ids or [337141])
+        app_ids = app_ids or [337141]
+        coll.set_apps(app_ids)
 
         if grouped:
             for i, mem in enumerate(coll.feedcollectionmembership_set.all()):
