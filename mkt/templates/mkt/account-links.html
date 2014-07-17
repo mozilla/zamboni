@@ -6,9 +6,6 @@
         <em>{{ request.user.email }}</em>
         {{ _('Edit Account Settings') }}</a>
     </li>
-    {% if user.is_developer %}
-      <li><a href="{{ url('mkt.developers.apps') }}">{{ _('My Submissions') }}</a></li>
-    {% endif %}
     {% if in_devhub %}
       <li><a href="{{ url('home') }}">{{ _('Return to the Marketplace') }}</a></li>
     {% endif %}
