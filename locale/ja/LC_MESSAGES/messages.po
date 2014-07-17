@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-06-30 20:03-0400\n"
+"PO-Revision-Date: 2014-07-16 14:46-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -434,7 +434,7 @@ msgstr "{addon} は VIP アプリのため自動的に管理者審査へ回さ�
 
 #: apps/amo/log.py:529
 msgid "VIP auto-escalation"
-msgstr "VIP 自動管理者審査指定"
+msgstr "VIP 自動管理者審査依頼"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
@@ -446,11 +446,11 @@ msgstr "マニフェスト URL 変更"
 
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} は、プレリリースアプリのため、自動的に管理者審査へ回されました。"
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "プレリリース自動管理者審査依頼"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -6295,7 +6295,7 @@ msgstr "承認"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "これによりアプリは承認され、作者による公開が許可されます。"
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6303,7 +6303,7 @@ msgstr "却下"
 
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
-msgstr ""
+msgstr "これによりアプリは却下され、審査待ちが取り消されるとともに、公開済みの場合は非公開となります。"
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6319,11 +6319,11 @@ msgstr "上級審査を依頼"
 
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr ""
+msgstr "このアプリにフラグを立て、管理者審査へ回します。コメントは作者ではなく管理者に送られます。"
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr ""
+msgstr "このアプリにコメントを付けます。作者がこのコメントを見ることはできません。"
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6331,7 +6331,7 @@ msgstr "上級審査をクリア"
 
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "このアプリの管理者審査待ちを取り消します。作者がメールを受け取ったりこのコメントを見たりすることはありません。"
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6339,7 +6339,7 @@ msgstr "再審査をクリア"
 
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "このアプリの再審査待ちを取り消します。作者がメールを受け取ったりこのコメントを見たりすることはありません。"
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6347,7 +6347,7 @@ msgstr "アプリを無効化"
 
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
+msgstr "アプリを無効化します。却下と同じですが、作者による再登録が禁止されます。極端な場合に限って使用してください。"
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
