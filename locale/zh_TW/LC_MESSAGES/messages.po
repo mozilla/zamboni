@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-07-01 05:15+0000\n"
+"PO-Revision-Date: 2014-07-17 01:02+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404191750.0\n"
+"X-POOTLE-MTIME: 1405558930.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -445,11 +445,11 @@ msgstr "安裝資訊網址變更"
 
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "因為是預先發行應用程式，自動將 {addon} 進行提升審核。"
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "提升審核預先發行程式"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -6300,7 +6300,7 @@ msgstr "同意"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "將會通過此應用程式並允許作者發布。"
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6308,7 +6308,7 @@ msgstr "退回"
 
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
-msgstr ""
+msgstr "將會退回應用程式、自審核佇列中移除、若已發布也將會下架。"
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6325,11 +6325,11 @@ msgstr "向上呈報"
 
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr ""
+msgstr "標示此應用程式交由管理員審查。留言將傳送給管理員，而非程式作者。"
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr ""
+msgstr "對此程式留言，程式作者不會看到這些留言。"
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6337,7 +6337,7 @@ msgstr "清除向上呈報"
 
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "將此應用程式自提升審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6345,7 +6345,7 @@ msgstr "清除再次審核"
 
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr ""
+msgstr "將此應用程式自重新審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
 # 90%
 #: mkt/reviewers/utils.py:470
@@ -6354,7 +6354,7 @@ msgstr "停用這個應用程式"
 
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
+msgstr "停用此應用程式，行為與退回相同但作者將無法重新送交審查，僅在極端情況時使用。"
 
 # 80%
 #: mkt/reviewers/views.py:124
