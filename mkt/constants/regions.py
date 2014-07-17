@@ -317,6 +317,16 @@ class FR(REGION):
     ratingsbody = ratingsbodies.PEGI
 
 
+class KR(REGION):
+    id = 999
+    name = _lazy(u'Krupalandia')
+    slug = 'kr'
+    default_currency = 'USD'
+    default_language = 'en'
+    mcc = 310
+    ratingsbody = ratingsbodies.ESRB
+
+
 # Note: When adding a new region, don't forget to include the country code to
 # the file: media/css/devreg/payments.styl
 
