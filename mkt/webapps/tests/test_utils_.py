@@ -338,6 +338,7 @@ class TestESAppToDict(amo.tests.ESTestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
         self.app.update(categories=['books', 'social'])
+        Preview.objects.all().delete()
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
         self.preview.update(sizes={'image': [50, 50]})
