@@ -35,33 +35,6 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
 
 
-class EventLog(models.Model):
-    type = models.CharField(max_length=60)
-    action = models.CharField(max_length=120)
-    field = models.CharField(max_length=60, blank=True)
-    user = models.ForeignKey(UserProfile)
-    changed_id = models.IntegerField()
-    added = models.CharField(max_length=765, blank=True)
-    removed = models.CharField(max_length=765, blank=True)
-    notes = models.TextField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = u'eventlog'
-
-    @staticmethod
-    def new_editors():
-        action = amo.LOG.GROUP_USER_ADDED
-        group = Group.objects.get(name='Add-on Reviewers')
-        items = (ActivityLog.objects.for_group(group)
-                            .filter(action=action.id)
-                            .order_by('-created')[:5])
-
-        return [dict(user=i.arguments[1],
-                     created=i.created)
-                for i in items]
-
-
 class EditorSubscription(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Addon)

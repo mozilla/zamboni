@@ -131,8 +131,6 @@ def home(request):
         request,
         reviews_total=ActivityLog.objects.total_reviews(webapp=True)[:5],
         reviews_monthly=ActivityLog.objects.monthly_reviews(webapp=True)[:5],
-        #new_editors=EventLog.new_editors(),  # Bug 747035
-        #eventlog=ActivityLog.objects.editor_events()[:6],  # Bug 746755
         progress=progress,
         percentage=percentage,
         durations=durations
