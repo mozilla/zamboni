@@ -10,7 +10,7 @@
         {{ _('Resume') }}</a>
       </li>
     {% else %}
-      {% if waffle.switch('iarc') and not addon.is_rated() %}
+      {% if not addon.is_rated() %}
         {# The app needs content ratings. #}
         <li>
           <a href="{{ addon.get_dev_url('ratings_edit') }}" class="tooltip"
@@ -60,15 +60,13 @@
       {{ _('Status &amp; Versions') if addon.is_packaged else _('Status') }}</a>
   </li>
 
-  {% if waffle.switch('iarc') %}
-    <li>
-      {% set rated = addon.is_pending() and addon.is_rated() %}
-      {% set unrated = not addon.is_rated() %}
-      <a class="action-link {% if unrated %} not-done{% endif%}{% if rated %} done{% endif %}"
-         href="{{ addon.get_dev_url('ratings') }}">
-        {{ _('Content Ratings') }}</a>
-    </li>
-  {% endif %}
+  <li>
+    {% set rated = addon.is_pending() and addon.is_rated() %}
+    {% set unrated = not addon.is_rated() %}
+    <a class="action-link {% if unrated %} not-done{% endif%}{% if rated %} done{% endif %}"
+       href="{{ addon.get_dev_url('ratings') }}">
+      {{ _('Content Ratings') }}</a>
+  </li>
 
   {% if addon.is_premium() %}
     <li/>

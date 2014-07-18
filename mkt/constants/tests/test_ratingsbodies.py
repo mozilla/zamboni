@@ -21,7 +21,6 @@ class TestRatingsBodies(amo.tests.TestCase):
         assert ratingsbodies.USK_0 not in ratings
 
     def test_all_ratings_waffle_on(self):
-        self.create_switch('iarc')
         ratings = ratingsbodies.ALL_RATINGS()
 
         # Assert all ratings bodies are present.
@@ -34,7 +33,6 @@ class TestRatingsBodies(amo.tests.TestCase):
     def test_ratings_by_name_waffle(self):
         without_waffle = ratingsbodies.RATINGS_BY_NAME()
 
-        self.create_switch('iarc', db=True)
         with_waffle = ratingsbodies.RATINGS_BY_NAME()
 
         # Test waffle off excludes ratings.
@@ -52,7 +50,6 @@ class TestRatingsBodies(amo.tests.TestCase):
         eq_(ratingsbodies.PEGI_3.ratingsbody, ratingsbodies.PEGI)
 
     def test_dehydrate_rating(self):
-        self.create_switch('iarc')
 
         for rating in ratingsbodies.ALL_RATINGS():
             rating = ratingsbodies.dehydrate_rating(rating)
@@ -60,7 +57,6 @@ class TestRatingsBodies(amo.tests.TestCase):
             assert rating.label and rating.label != str(None), rating
 
     def test_dehydrate_ratings_body(self):
-        self.create_switch('iarc')
 
         for k, body in ratingsbodies.RATINGS_BODIES.iteritems():
             body = ratingsbodies.dehydrate_ratings_body(body)
@@ -77,8 +73,6 @@ class TestRatingsBodies(amo.tests.TestCase):
             activate('en-US')
 
     def test_dehydrate_rating_language(self):
-        self.create_switch('iarc')
-
         with self.tower_activate('es'):
             rating = ratingsbodies.dehydrate_rating(ratingsbodies.ESRB_T)
             eq_(rating.name, 'Adolescente')

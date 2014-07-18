@@ -17,6 +17,7 @@ from mkt.constants import ratingsbodies, regions
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.prices.models import PriceCurrency
+from mkt.regions.middleware import RegionMiddleware
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -30,7 +31,6 @@ class TestAppSerializer(amo.tests.TestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        self.create_switch('iarc')
         self.app = amo.tests.app_factory(version_kw={'version': '1.8'})
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
@@ -328,7 +328,6 @@ class TestESAppSerializer(amo.tests.ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
-        self.create_switch('iarc')
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
         self.request.REGION = mkt.regions.US

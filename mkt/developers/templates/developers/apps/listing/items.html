@@ -55,8 +55,7 @@
             <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
           </li>
 
-          {# Content ratings disable message. #}
-          {% if not addon.content_ratings_complete() and addon.is_public() or addon.is_approved() %}
+          {% if not addon.is_rated() and addon.is_public() or addon.is_approved() %}
             <li class="ratings">
               {% trans rating_url=addon.get_dev_url('ratings') %}
                 <a href="{{ rating_url }}">Set up Content Ratings</a>

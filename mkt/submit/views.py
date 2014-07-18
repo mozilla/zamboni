@@ -7,7 +7,6 @@ from django.shortcuts import redirect, render
 from django.utils.translation.trans_real import to_language
 
 import commonware.log
-import waffle
 from rest_framework import mixins
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny
@@ -207,14 +206,10 @@ def details(request, addon_id, addon):
                        else amo.PUBLISH_PRIVATE)
 
         if addon.premium_type == amo.ADDON_FREE:
-            if waffle.switch_is_active('iarc'):
-                # Free apps get STATUS_NULL until content ratings has been
-                # entered.
-                # TODO: set to STATUS_PENDING once app gets an IARC rating.
-                addon.update(publish_type=publish_type)
-            else:
-                addon.update(status=amo.STATUS_PENDING,
-                             publish_type=publish_type)
+            # Free apps are set to STATUS_NULL until content ratings has been
+            # entered. They will not bump to STATUS_PENDING until they get
+            # content ratings.
+            addon.update(publish_type=publish_type)
         else:
             # Paid apps get STATUS_NULL until payment information and content
             # ratings has been entered.
@@ -245,12 +240,8 @@ def details(request, addon_id, addon):
 @dev_required
 def done(request, addon_id, addon):
     # No submit step forced on this page, we don't really care.
-    if waffle.switch_is_active('iarc'):
-        return render(request, 'submit/next_steps.html',
-                      {'step': 'next_steps', 'addon': addon})
-    else:
-        return render(request, 'submit/done.html',
-                      {'step': 'done', 'addon': addon})
+    return render(request, 'submit/next_steps.html',
+                  {'step': 'next_steps', 'addon': addon})
 
 
 @dev_required
