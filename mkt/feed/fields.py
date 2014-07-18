@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
 from mkt.api.fields import ESTranslationSerializerField
-from mkt.search.serializers import ESAppSerializer
-from mkt.webapps.serializers import AppSerializer
+from mkt.webapps.serializers import AppSerializer, ESAppSerializer
 
 
 class FeedCollectionMembershipField(serializers.RelatedField):

@@ -2,8 +2,7 @@ from rest_framework.serializers import SerializerMethodField
 
 from mkt.collections.serializers import (CollectionSerializer,
                                          CollectionMembershipField)
-from mkt.search.serializers import SimpleESAppSerializer
-from mkt.webapps.serializers import SimpleAppSerializer
+from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
 
 class BaseFireplaceAppSerializer(object):

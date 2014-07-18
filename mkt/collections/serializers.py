@@ -19,9 +19,8 @@ from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
                             UnicodeChoiceField)
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
-from mkt.search.serializers import SimpleESAppSerializer
 from mkt.webapps.models import Webapp
-from mkt.webapps.serializers import SimpleAppSerializer
+from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 from mkt.users.models import UserProfile
 
 from .models import Collection

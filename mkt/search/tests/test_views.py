@@ -28,7 +28,6 @@ from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.forms import DEVICE_CHOICES_IDS
-from mkt.search.serializers import SimpleESAppSerializer
 from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
@@ -1158,22 +1157,3 @@ class TestRocketbarApi(ESTestCase):
 
         for size in (128, 64, 48, 32):
             eq_(parsed[0]['icons'][str(size)], self.app2.get_icon_url(size))
-
-
-class TestSimpleESAppSerializer(amo.tests.ESTestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
-        self.request = RequestFactory().get('/')
-        RegionMiddleware().process_request(self.request)
-        self.reindex(Webapp, 'webapp')
-        self.indexer = S(WebappIndexer).filter(id=337141).execute().objects[0]
-        self.serializer = SimpleESAppSerializer(self.indexer,
-            context={'request': self.request})
-
-    def test_regions_present(self):
-        # Regression test for bug 964802.
-        ok_('regions' in self.serializer.data)
-        eq_(len(self.serializer.data['regions']),
-            len(self.webapp.get_regions()))
