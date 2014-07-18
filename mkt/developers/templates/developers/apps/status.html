@@ -107,13 +107,13 @@
                   {% endif %}
                 </p>
               {% endif %}
-              {% if not addon.is_packaged and addon.is_rated() or not waffle.switch('iarc') %}
+              {% if not addon.is_packaged and addon.is_rated() %}
                 <form method="post">
                   {{ csrf() }}
                   {{ form_field(form.notes, opt=True) }}
                   <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
                 </form>
-              {% elif waffle.switch('iarc') and not addon.is_rated() %}
+              {% elif not addon.is_rated() %}
                 {% trans ratings_url=addon.get_dev_url('ratings') %}
                   You must <a href="{{ ratings_url }}">obtain content ratings</a>
                   before resubmitting your app.

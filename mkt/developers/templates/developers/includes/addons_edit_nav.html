@@ -8,11 +8,9 @@
   {% do urls.append((addon.get_dev_url('versions'), _('Status'))) %}
 {% endif %}
 
-{% if waffle.switch('iarc') %}
-  {% do urls.append(
-    (addon.get_dev_url('ratings'), _('Content Ratings'))
-  ) %}
-{% endif %}
+{% do urls.append(
+  (addon.get_dev_url('ratings'), _('Content Ratings'))
+) %}
 
 {% if addon.needs_payment() %}
   {% do urls.append((addon.get_dev_url('payments'),

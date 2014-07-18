@@ -318,12 +318,9 @@ def ALL_RATINGS():
     """
     List of all ratings with waffled bodies.
     """
-    import waffle
-
     ALL_RATINGS = []
     for rb in RATINGS_BODIES.values():
-        if rb in (CLASSIND, GENERIC) or waffle.switch_is_active('iarc'):
-            ALL_RATINGS.extend(rb.ratings)
+        ALL_RATINGS.extend(rb.ratings)
     return ALL_RATINGS
 
 
@@ -332,17 +329,14 @@ def RATINGS_BY_NAME():
     Create a list of tuples (choices) after we know the locale since this
     attempts to concatenate two lazy translations in constants file.
     """
-    import waffle
-
     all_ratings = ALL_RATINGS()
 
     ratings_choices = []
     for rb in RATINGS_BODIES.values():
-        if rb in (CLASSIND, GENERIC) or waffle.switch_is_active('iarc'):
-            for r in rb.ratings:
-                ratings_choices.append(
-                    (all_ratings.index(r),
-                     u'%s - %s' % (rb.name, dehydrate_rating(r).name)))
+        for r in rb.ratings:
+            ratings_choices.append(
+                (all_ratings.index(r),
+                 u'%s - %s' % (rb.name, dehydrate_rating(r).name)))
     return ratings_choices
 
 

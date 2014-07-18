@@ -1029,10 +1029,9 @@ class TestWebapp(amo.tests.TestCase):
         assert app.is_fully_complete()
 
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
-    @mock.patch('mkt.webapps.models.Webapp.content_ratings_complete')
+    @mock.patch('mkt.webapps.models.Webapp.is_rated')
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     def test_next_step(self, detail_step, rating_step, pay_step):
-        self.create_switch('iarc')
         for step in (detail_step, rating_step, pay_step):
             step.return_value = False
         app = app_factory(status=amo.STATUS_NULL)
@@ -1136,14 +1135,12 @@ class TestWebapp(amo.tests.TestCase):
 class TestWebappContentRatings(amo.tests.TestCase):
 
     def test_rated(self):
-        self.create_switch('iarc')
         assert app_factory(rated=True).is_rated()
         assert not app_factory().is_rated()
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
     def test_set_content_ratings(self, pay_mock, detail_mock):
-        self.create_switch('iarc')
         detail_mock.return_value = True
         pay_mock.return_value = True
 
@@ -1182,7 +1179,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
         eq_(app.reload().status, amo.STATUS_PENDING)
 
     def test_app_delete_clears_iarc_data(self):
-        self.create_switch('iarc')
         app = app_factory(rated=True)
 
         # Ensure we have some data to start with.
@@ -1295,7 +1291,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.render_xml')
     def test_set_iarc_storefront_data(self, render_mock, storefront_mock):
         # Set up ratings/descriptors/interactives.
-        self.create_switch('iarc')
         app = app_factory(name='LOL', app_slug='ha')
         app.current_version.reviewed = datetime(2013, 1, 1, 12, 34, 56)
         app.current_version._developer_name = 'Lex Luthor'
@@ -1347,14 +1342,12 @@ class TestWebappContentRatings(amo.tests.TestCase):
 
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_not_rated_by_iarc(self, storefront_mock):
-        self.create_switch('iarc')
         app_factory().set_iarc_storefront_data()
         assert not storefront_mock.called
 
     @mock.patch('mkt.webapps.models.Webapp.current_version', new=None)
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_no_version(self, storefront_mock):
-        self.create_switch('iarc')
         app = app_factory(rated=True, status=amo.STATUS_PUBLIC)
         ok_(not app.current_version)
         app.set_iarc_storefront_data()
@@ -1362,7 +1355,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
 
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_invalid_status(self, storefront_mock):
-        self.create_switch('iarc')
         app = app_factory()
         for status in (amo.STATUS_NULL, amo.STATUS_PENDING):
             app.update(status=status)
@@ -1373,7 +1365,6 @@ class TestWebappContentRatings(amo.tests.TestCase):
     @mock.patch('lib.iarc.client.MockClient.call')
     def test_set_iarc_storefront_data_disable(self, storefront_mock,
                                               render_mock):
-        self.create_switch('iarc')
         app = app_factory(name='LOL', rated=True)
         app.current_version.update(_developer_name='Lex Luthor')
         app.set_iarc_info(123, 'abc')
@@ -1402,29 +1393,14 @@ class TestWebappContentRatings(amo.tests.TestCase):
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_delete_with_iarc(self, storefront_mock):
-        self.create_switch('iarc')
         app = app_factory(rated=True)
         app.delete()
         eq_(app.status, amo.STATUS_DELETED)
         assert storefront_mock.called
 
-    @mock.patch('mkt.webapps.models.Webapp.is_rated')
-    def test_content_ratings_complete(self, is_rated_mock):
-        # Default to complete if it's not needed.
-        is_rated_mock.return_value = False
-        app = app_factory()
-        assert app.content_ratings_complete()
-
-        self.create_switch('iarc', db=True)
-        assert not app.content_ratings_complete()
-
-        is_rated_mock.return_value = True
-        assert app.content_ratings_complete()
-
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
     def test_completion_errors_ignore_ratings(self, mock1, mock2):
-        self.create_switch('iarc')
         app = app_factory()
         for mock in (mock1, mock2):
             mock.return_value = True
@@ -1576,7 +1552,6 @@ class TestWebappManager(amo.tests.TestCase):
             Webapp.objects.by_identifier('fake')
 
     def test_rated(self):
-        self.create_switch('iarc')
         rated = app_factory(rated=True)
         app_factory()
         eq_(Webapp.objects.count(), 2)
@@ -1947,7 +1922,6 @@ class TestContentRating(amo.tests.WebappTestCase):
 
     def setUp(self):
         self.app = self.get_app()
-        self.create_switch('iarc')
 
     @mock.patch.object(mkt.regions.BR, 'ratingsbody',
                        mkt.ratingsbodies.CLASSIND)

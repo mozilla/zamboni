@@ -87,6 +87,7 @@ class TestVersion(amo.tests.TestCase):
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
+        amo.tests.make_rated(self.webapp)
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))
 
@@ -113,7 +114,6 @@ class TestVersion(amo.tests.TestCase):
                 "Didn't find `%s` action in logs." % action.short)
 
     def test_no_ratings_no_resubmit(self):
-        self.create_switch('iarc')
         self.webapp.update(status=amo.STATUS_REJECTED)
         r = self.client.post(self.url, {'notes': 'lol',
                                         'resubmit-app': ''})
@@ -127,6 +127,7 @@ class TestVersion(amo.tests.TestCase):
     def test_comm_thread_after_resubmission(self):
         self.create_switch('comm-dashboard')
         self.webapp.update(status=amo.STATUS_REJECTED)
+        amo.tests.make_rated(self.webapp)
         amo.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))

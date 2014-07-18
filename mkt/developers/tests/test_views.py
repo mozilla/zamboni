@@ -42,7 +42,7 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
-                                ContentRating, Webapp)
+                                Webapp)
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -177,7 +177,6 @@ class TestAppDashboard(AppHubTest):
             'Pending Version: 1.24')
 
     def test_action_links(self):
-        self.create_switch('iarc')
         self.create_switch('comm-dashboard')
         self.create_switch('view-transactions')
         app = self.get_app()
@@ -422,7 +421,6 @@ class TestPublicise(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.create_switch('iarc')
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_APPROVED)
         self.file = self.webapp.versions.latest().all_files[0]
@@ -1220,7 +1218,6 @@ class TestContentRatings(amo.tests.TestCase):
     fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
-        self.create_switch('iarc')
         self.app = app_factory()
         self.app.latest_version.update(
             _developer_name='Lex Luthor <lex@kryptonite.org>')
