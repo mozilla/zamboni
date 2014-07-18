@@ -133,7 +133,7 @@
       <dt>{{ _('Team Members') }}</dt>
       <dd>
         {% for author in product.authors.all() %}
-          <a href="{{ author.get_url_path() }}">
+          <a href="{{ url('lookup.user_activity', author.id) }}">
             {{ author.name }}</a>{% if not loop.last %}, {% endif %}
         {% endfor %}
       </dd>
