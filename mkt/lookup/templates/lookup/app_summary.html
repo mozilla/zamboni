@@ -17,8 +17,8 @@
         <dt>{{ _('Authors') }}</dt>
         <dd>
           <ol>
-            {% for usr in authors %}
-              <li><a href="{{ url('lookup.user_summary', user.id) }}">{{ usr.name }}</a></li>
+            {% for author in authors %}
+              <li><a href="{{ url('lookup.user_summary', author.id) }}">{{ author.name }}</a></li>
             {% endfor %}
           </ol>
         </dd>
