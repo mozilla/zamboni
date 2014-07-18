@@ -443,6 +443,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
                         'support_email', 'support_url'))
         if 'group_translations' in data:
             self._attach_translations(obj, data, ('group',))  # Feed group.
+        else:
+            obj.group_translations = None
         self._attach_translations(obj._geodata, data, ('banner_message',))
 
         # Set attributes that have a different name in ES.

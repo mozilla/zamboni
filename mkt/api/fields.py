@@ -205,8 +205,6 @@ class ESTranslationSerializerField(TranslationSerializerField):
     def field_to_native(self, obj, field_name):
         if field_name:
             field_name = '%s%s' % (field_name, self.suffix)
-        if not hasattr(obj, field_name):
-            return
         return super(ESTranslationSerializerField, self).field_to_native(obj,
             field_name)
 
