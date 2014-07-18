@@ -1181,6 +1181,9 @@ class Preview(amo.models.ModelBase):
 
     def _image_url(self, url_template):
         if self.modified is not None:
+            if isinstance(self.modified, unicode):
+                self.modified = datetime.datetime.strptime(self.modified,
+                                                           '%Y-%m-%dT%H:%M:%S')
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0

@@ -17,7 +17,70 @@ from mkt.webapps.serializers import AppSerializer, SimpleAppSerializer
 from mkt.webapps.utils import dehydrate_content_rating
 
 
-class ESAppSerializer(AppSerializer):
+class BaseESSerializer(serializers.ModelSerializer):
+    """
+    A base deserializer that handles ElasticSearch data for a specific model.
+    When deserializing, an unbound instance of the model (as defined by
+    fake_object) is populated with the ES data in order to work well with
+    the parent model serializer (e.g., AppSerializer).
+    """
+    def __init__(self, *args, **kwargs):
+        super(BaseESSerializer, self).__init__(*args, **kwargs)
+
+        # Set all fields as read_only just in case.
+        for field_name in self.fields:
+            self.fields[field_name].read_only = True
+
+        if getattr(self, 'context'):
+            for field_name in self.fields:
+                self.fields[field_name].context = self.context
+
+    @property
+    def data(self):
+        """
+        Returns the serialized data on the serializer.
+        """
+        if self._data is None:
+            if self.many:
+                self._data = [self.to_native(item) for item in self.object]
+            else:
+                self._data = self.to_native(self.object)
+        return self._data
+
+    def field_to_native(self, obj, field_name):
+        # DRF's field_to_native calls .all(), which we want to avoid, so we
+        # provide a simplified version that doesn't and just iterates on the
+        # object list.
+        if hasattr(obj, 'object_list'):
+            return [self.to_native(item) for item in obj.object_list]
+        return super(BaseESSerializer, self).field_to_native(obj, field_name)
+
+    def to_native(self, data):
+        obj = self.fake_object(data.get('_source', data))
+        return super(BaseESSerializer, self).to_native(obj)
+
+    def fake_object(self, data):
+        """
+        Create a fake instance from ES data which serializer fields will source
+        from.
+        """
+        raise NotImplementedError
+
+    def _attach_fields(self, obj, data, field_names):
+        """Attach fields to fake instance."""
+        for field_name in field_names:
+            setattr(obj, field_name, data.get(field_name))
+        return obj
+
+    def _attach_translations(self, obj, data, field_names):
+        """Deserialize ES translation fields."""
+        for field_name in field_names:
+            ESTranslationSerializerField.attach_translations(
+                obj, data, field_name)
+        return obj
+
+
+class ESAppSerializer(BaseESSerializer, AppSerializer):
     # Fields specific to search.
     absolute_url = serializers.SerializerMethodField('get_absolute_url')
     reviewed = serializers.DateField()
@@ -36,13 +99,16 @@ class ESAppSerializer(AppSerializer):
     description = ESTranslationSerializerField()
     homepage = ESTranslationSerializerField()
     name = ESTranslationSerializerField()
-    release_notes = ESTranslationSerializerField(
-        source='current_version.releasenotes')
+    release_notes = ESTranslationSerializerField(source='release_notes')
     support_email = ESTranslationSerializerField()
     support_url = ESTranslationSerializerField()
 
+    # Feed collection.
+    group = ESTranslationSerializerField(required=False)
+
     class Meta(AppSerializer.Meta):
-        fields = AppSerializer.Meta.fields + ['absolute_url', 'reviewed']
+        fields = AppSerializer.Meta.fields + ['absolute_url', 'group',
+                                              'reviewed']
 
     def __init__(self, *args, **kwargs):
         super(ESAppSerializer, self).__init__(*args, **kwargs)
@@ -50,33 +116,7 @@ class ESAppSerializer(AppSerializer):
         # Remove fields that we don't have in ES at the moment.
         self.fields.pop('upsold', None)
 
-        # Set all fields as read_only just in case.
-        for field_name in self.fields:
-            self.fields[field_name].read_only = True
-
-    @property
-    def data(self):
-        """
-        Returns the serialized data on the serializer.
-        """
-        if self._data is None:
-            if self.many:
-                self._data = [self.to_native(item) for item in self.object]
-            else:
-                self._data = self.to_native(self.object)
-        return self._data
-
-    def field_to_native(self, obj, field_name):
-        # DRF's field_to_native calls .all(), which we want to avoid, so we
-        # provide a simplified version that doesn't and just iterates on the
-        # object list.
-        return [self.to_native(item) for item in obj.object_list]
-
-    def to_native(self, obj):
-        app = self.create_fake_app(obj._source)
-        return super(ESAppSerializer, self).to_native(app)
-
-    def create_fake_app(self, data):
+    def fake_object(self, data):
         """Create a fake instance of Webapp and related models from ES data."""
         is_packaged = data['app_type'] != amo.ADDON_WEBAPP_HOSTED
         is_privileged = data['app_type'] == amo.ADDON_WEBAPP_PRIVILEGED
@@ -106,31 +146,27 @@ class ESAppSerializer(AppSerializer):
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
 
         # Set base attributes on the "fake" app using the data from ES.
-        # It doesn't mean they'll get exposed in the serializer output, that
-        # depends on what the fields/exclude attributes in Meta.
-        for field_name in ('created', 'modified', 'default_locale',
-                           'icon_hash', 'is_escalated', 'is_offline',
-                           'manifest_url', 'premium_type', 'regions',
-                           'reviewed', 'status', 'weekly_downloads'):
-            setattr(obj, field_name, data.get(field_name))
+        self._attach_fields(
+            obj, data, ('created', 'modified', 'default_locale', 'icon_hash',
+                        'is_escalated', 'is_offline', 'manifest_url',
+                        'premium_type', 'regions', 'reviewed', 'status',
+                        'weekly_downloads'))
 
         # Attach translations for all translated attributes.
-        for field_name in ('name', 'description', 'homepage', 'support_email',
-                           'support_url'):
-            ESTranslationSerializerField.attach_translations(obj,
-                data, field_name)
-        ESTranslationSerializerField.attach_translations(obj._geodata,
-            data, 'banner_message')
-        ESTranslationSerializerField.attach_translations(obj._current_version,
-            data, 'release_notes', target_name='releasenotes')
+        self._attach_translations(
+            obj, data, ('name', 'description', 'homepage', 'release_notes',
+                        'support_email', 'support_url'))
+        if 'group_translations' in data:
+            self._attach_translations(obj, data, ('group',))  # Feed group.
+        self._attach_translations(obj._geodata, data, ('banner_message',))
 
         # Set attributes that have a different name in ES.
         obj.public_stats = data['has_public_stats']
 
         # Override obj.get_region() with a static list of regions generated
         # from the region_exclusions stored in ES.
-        obj.get_regions = obj.get_regions(obj.get_region_ids(restofworld=True,
-            excluded=data['region_exclusions']))
+        obj.get_regions = obj.get_regions(obj.get_region_ids(
+            restofworld=True, excluded=data['region_exclusions']))
 
         # Some methods below will need the raw data from ES, put it on obj.
         obj.es_data = data
