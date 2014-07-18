@@ -15,7 +15,7 @@ from mkt.carriers import CARRIER_CHOICE_DICT
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.search.serializers import BaseESSerializer
-from mkt.submit.serializers import PreviewSerializer
+from mkt.submit.serializers import FeedPreviewESSerializer
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
@@ -94,7 +94,7 @@ class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
         source='*', view_name='api-v2:feed-app-image-detail', format='png')
     description = TranslationSerializerField(required=False)
     preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                         PreviewSerializer())
+                         FeedPreviewESSerializer())
     pullquote_rating = serializers.IntegerField(required=False)
     pullquote_text = TranslationSerializerField(required=False)
 
@@ -115,7 +115,7 @@ class FeedAppESSerializer(FeedAppSerializer, BaseESSerializer):
     background_image = FeedImageField(
         source='*', view_name='api-v2:feed-app-image-detail', format='png')
     description = ESTranslationSerializerField(required=False)
-    preview = serializers.Field(source='preview')
+    preview = FeedPreviewESSerializer(source='_preview')
     pullquote_text = ESTranslationSerializerField(required=False)
 
     def fake_object(self, data):
@@ -123,6 +123,7 @@ class FeedAppESSerializer(FeedAppSerializer, BaseESSerializer):
             'id', 'background_color', 'image_hash', 'pullquote_attribution',
             'pullquote_rating', 'slug', 'type'
         ))
+        feed_app._preview = data.get('preview')
         feed_app = self._attach_translations(feed_app, data, (
             'description', 'pullquote_text'
         ))

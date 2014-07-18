@@ -16,6 +16,7 @@ from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
                                   FeedCollectionSerializer,
                                   FeedShelfSerializer, FeedItemSerializer)
 from mkt.regions import RESTOFWORLD
+from mkt.webapps.models import Preview
 from mkt.webapps.indexers import WebappIndexer
 
 
@@ -40,6 +41,9 @@ class TestFeedAppESSerializer(FeedTestMixin, amo.tests.TestCase):
     def setUp(self):
         self.feedapp = self.feed_app_factory(
             app_type=feed.FEEDAPP_DESC, description={'en-US': 'test'})
+        self.feedapp.update(preview=Preview.objects.create(
+            addon=self.feedapp.app, sizes={'thumbnail': [50, 50]}))
+
         self.data_es = self.feedapp.get_indexer().extract_document(
             None, obj=self.feedapp)
 
@@ -55,6 +59,10 @@ class TestFeedAppESSerializer(FeedTestMixin, amo.tests.TestCase):
         }).data
         eq_(data['app']['id'], self.feedapp.app_id)
         eq_(data['description']['en-US'], 'test')
+        eq_(data['preview'], {
+            'id': self.feedapp.preview.id,
+            'thumbnail_size': [50, 50],
+            'thumbnail_url': self.feedapp.preview.thumbnail_url})
 
     def test_deserialize_many(self):
         data = serializers.FeedAppESSerializer(

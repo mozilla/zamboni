@@ -68,7 +68,7 @@ class FeedAppIndexer(BaseIndexer):
             'has_image': obj.has_image,
             'item_type': feed.FEED_TYPE_APP,
             'preview': {'id': obj.preview.id,
-                        'image_url': obj.preview.image_url,
+                        'thumbnail_size': obj.preview.thumbnail_size,
                         'thumbnail_url': obj.preview.thumbnail_url}
                        if getattr(obj, 'preview') else None,
             'pullquote_attribution': obj.pullquote_attribution,

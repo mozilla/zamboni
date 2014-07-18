@@ -76,9 +76,8 @@ class TestAppSerializer(amo.tests.TestCase):
             'filetype': 'image/png', 'thumbtype': 'image/png',
             'addon': self.app})
         preview = self.serialize(self.app)['previews'][0]
-        self.assertSetEqual(preview, ['filetype', 'id', 'image_size',
-                                      'image_url', 'thumbnail_url',
-                                      'resource_uri'])
+        self.assertSetEqual(preview, ['filetype', 'id', 'image_url',
+                                      'thumbnail_url', 'resource_uri'])
         eq_(int(preview['id']), obj.pk)
 
     def test_no_rating(self):
@@ -338,7 +337,6 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         Preview.objects.all().delete()
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
-        self.preview.update(sizes={'image': [50, 50]})
         self.app.description = {
             'en-US': u'XSS attempt <script>alert(1)</script>',
             'fr': u'Déscriptîon in frènch'
@@ -382,7 +380,6 @@ class TestESAppSerializer(amo.tests.ESTestCase):
             'payment_required': False,
             'premium_type': 'free',
             'previews': [{'id': self.preview.id,
-                          'image_size': [50, 50],
                           'image_url': self.preview.image_url,
                           'thumbnail_url': self.preview.thumbnail_url,
                         }],

@@ -8,7 +8,7 @@ import mkt.regions
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.feed.tests.test_models import FeedTestMixin
-from mkt.webapps.models import Webapp
+from mkt.webapps.models import Preview, Webapp
 
 
 class BaseFeedIndexerTest(object):
@@ -40,6 +40,9 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
             description=self._get_test_l10n(), pullquote_attribution='mscott',
             pullquote_rating=4, pullquote_text=self._get_test_l10n(),
             app_type=feed.FEEDAPP_QUOTE)
+        self.obj.update(preview=Preview.objects.create(
+            addon=self.app, sizes={'thumbnail': [50, 50]}))
+
         self.indexer = self.obj.get_indexer()()
         self.model = FeedApp
 
@@ -51,6 +54,9 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
         self._assert_test_l10n(doc['description_translations'])
         eq_(doc['has_image'], True)
         eq_(doc['item_type'], feed.FEED_TYPE_APP)
+        eq_(doc['preview'], {'id': self.obj.preview.id,
+                             'thumbnail_size': [50, 50],
+                             'thumbnail_url': self.obj.preview.thumbnail_url})
         eq_(doc['pullquote_attribution'], 'mscott')
         eq_(doc['pullquote_rating'], 4)
         self._assert_test_l10n(doc['pullquote_text_translations'])
