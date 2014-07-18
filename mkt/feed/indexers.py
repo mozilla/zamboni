@@ -210,6 +210,8 @@ class FeedShelfIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
+                    'background_color': {'type': 'string',
+                                         'index': 'not_analyzed'},
                     'carrier': {'type': 'string', 'index': 'not_analyzed'},
                     'has_image': {'type': 'boolean'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
@@ -236,6 +238,7 @@ class FeedShelfIndexer(BaseIndexer):
         doc = {
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
+            'background_color': obj.background_color,
             'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
             'has_image': obj.has_image,
             'item_type': feed.FEED_TYPE_SHELF,

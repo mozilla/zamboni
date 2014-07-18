@@ -56,8 +56,9 @@ class FeedTestMixin(object):
                            carrier=1, region=1, **kwargs):
         count = FeedShelf.objects.count()
         shelf = FeedShelf.objects.create(
-            name=name, slug='feed-shelf-%s' % count, carrier=carrier,
-            region=region, **kwargs)
+            background_color='#FF4E00', name=name,
+            slug='feed-shelf-%s' % count, carrier=carrier, region=region,
+            **kwargs)
         shelf.set_apps(app_ids or [337141])
         return shelf
 
