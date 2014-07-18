@@ -234,9 +234,8 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
         collection._app_ids = data.get('apps')
 
         # Attach groups.
-        if data.get('group_apps'):
-            for app_id, app in self.context['app_map'].items():
-                app.update(data['group_names'][data['group_apps'][app_id]])
+        self.context['group_apps'] = data.get('group_apps')
+        self.context['group_names'] = data.get('group_names')
 
         return collection
 

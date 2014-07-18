@@ -30,12 +30,30 @@ class AppESField(serializers.Field):
         self.many = kwargs.pop('many', False)
         super(AppESField, self).__init__(*args, **kwargs)
 
+    def _attach_group(self, app):
+        """Attach feed collection grouped apps (for 'mega collection')."""
+        if self.context.get('group_apps'):
+            group_index = self.context['group_apps'].get(unicode(app['id']))
+            if group_index is None:
+                # ES seems to sometimes return ID keyed on string and integer.
+                group_index = self.context['group_apps'].get(app['id'])
+            if group_index is not None:
+                app.update(self.context['group_names'][group_index])
+        return app
+
     def to_native(self, app_ids):
         """App ID to serialized app."""
+        app_map = self.context['app_map']
+        if self.context.get('group_apps'):
+            # Attach groups.
+            app_map = dict(self.context['app_map'])
+            for app_id, app in app_map.items():
+                app = self._attach_group(app)
+
         if self.many:
             # Deserialize app ID to ES app data.
             partially_deserialized_apps = [
-                self.context['app_map'][app_id] for app_id in app_ids]
+                app_map[app_id] for app_id in app_ids]
             # Deserialize ES app data to full data.
             apps = ESAppSerializer(
                 partially_deserialized_apps, many=True,
@@ -43,8 +61,7 @@ class AppESField(serializers.Field):
             return apps
         else:
             # Single object, app_ids is only one app ID.
-            app = ESAppSerializer(self.context['app_map'][app_ids],
-                                  context=self.context).data
+            app = ESAppSerializer(app_map[app_ids], context=self.context).data
             return app
 
     def from_native(self, data):

@@ -55,7 +55,7 @@ class FeedAppIndexer(BaseIndexer):
     def extract_document(cls, obj_id, obj=None):
         """Converts this instance into an Elasticsearch document"""
         if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=obj_id)
 
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
@@ -112,7 +112,7 @@ class FeedBrandIndexer(BaseIndexer):
     @classmethod
     def extract_document(cls, obj_id, obj=None):
         if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=obj_id)
 
         return {
             'id': obj.id,
@@ -138,6 +138,8 @@ class FeedCollectionIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
+                    'background_color': {'type': 'string',
+                                         'index': 'not_analyzed'},
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
                     'has_image': {'type': 'boolean'},
@@ -158,13 +160,14 @@ class FeedCollectionIndexer(BaseIndexer):
         from mkt.feed.models import FeedCollection, FeedCollectionMembership
 
         if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=obj_id)
 
         attach_trans_dict(cls.get_model(), [obj])
 
         doc = {
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
+            'background_color': obj.background_color,
             'group_apps': {},  # Map of app IDs to index in group_names below.
             'group_names': [],  # List of ES-serialized group names.
             'has_image': obj.has_image,
@@ -185,8 +188,8 @@ class FeedCollectionIndexer(BaseIndexer):
                 if grp_translation not in doc['group_names']:
                     doc['group_names'].append(grp_translation)
 
-                doc['group_apps'][member.app_id] = doc['group_names'].index(
-                    grp_translation)
+                doc['group_apps'][member.app_id] = (
+                    doc['group_names'].index(grp_translation))
 
         # Handle localized fields.
         for field in ('description', 'name'):
@@ -286,7 +289,7 @@ class FeedItemIndexer(BaseIndexer):
         from mkt.feed.models import FeedItem
 
         if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=obj_id)
 
         return {
             'id': obj.id,
