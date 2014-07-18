@@ -56,7 +56,9 @@ class BaseESSerializer(serializers.ModelSerializer):
         return super(BaseESSerializer, self).field_to_native(obj, field_name)
 
     def to_native(self, data):
-        obj = self.fake_object(data.get('_source', data))
+        data = (data._source if hasattr(data, '_source') else
+                data.get('_source', data))
+        obj = self.fake_object(data)
         return super(BaseESSerializer, self).to_native(obj)
 
     def fake_object(self, data):
