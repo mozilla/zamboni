@@ -202,7 +202,7 @@ def _progress():
     public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
     base_filters = {
-        'pending': (Webapp.objects.rated()
+        'pending': (Webapp.objects
                           .exclude(id__in=excluded_ids)
                           .filter(status=amo.STATUS_PENDING,
                                   disabled_by_user=False,

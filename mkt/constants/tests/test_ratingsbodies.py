@@ -10,17 +10,7 @@ import mkt.constants.ratingsbodies as ratingsbodies
 
 class TestRatingsBodies(amo.tests.TestCase):
 
-    def test_all_ratings_waffle_off(self):
-        ratings = ratingsbodies.ALL_RATINGS()
-
-        # Assert only CLASSIND and GENERIC ratings are present.
-        assert ratingsbodies.CLASSIND_L in ratings
-        assert ratingsbodies.GENERIC_3 in ratings
-        assert ratingsbodies.ESRB_E not in ratings
-        assert ratingsbodies.PEGI_3 not in ratings
-        assert ratingsbodies.USK_0 not in ratings
-
-    def test_all_ratings_waffle_on(self):
+    def test_all_ratings(self):
         ratings = ratingsbodies.ALL_RATINGS()
 
         # Assert all ratings bodies are present.
@@ -29,14 +19,6 @@ class TestRatingsBodies(amo.tests.TestCase):
         assert ratingsbodies.ESRB_E in ratings
         assert ratingsbodies.PEGI_3 in ratings
         assert ratingsbodies.USK_0 in ratings
-
-    def test_ratings_by_name_waffle(self):
-        without_waffle = ratingsbodies.RATINGS_BY_NAME()
-
-        with_waffle = ratingsbodies.RATINGS_BY_NAME()
-
-        # Test waffle off excludes ratings.
-        assert len(without_waffle) < len(with_waffle)
 
     def test_ratings_by_name_lazy_translation(self):
         generic_3_choice = ratingsbodies.RATINGS_BY_NAME()[6]

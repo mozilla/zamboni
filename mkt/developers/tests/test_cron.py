@@ -92,6 +92,7 @@ class TestIARCChangesCron(amo.tests.TestCase):
             'has_pegi_language', 'has_pegi_online',
             'has_usk_lang',
         ])
+        app.set_interactives([])
         app.set_content_ratings({
             mkt.ratingsbodies.CLASSIND: mkt.ratingsbodies.CLASSIND_L
         })
