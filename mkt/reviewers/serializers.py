@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from mkt.search.serializers import ESAppSerializer
 from mkt.webapps.models import Webapp
+from mkt.webapps.serializers import ESAppSerializer
 
 
 class ReviewingSerializer(serializers.ModelSerializer):

@@ -190,9 +190,7 @@ def publicise(request, addon_id, addon):
         # Call to update names and locales if changed.
         addon.update_name_from_package_manifest()
         addon.update_supported_locales()
-
-        if waffle.switch_is_active('iarc'):
-            addon.set_iarc_storefront_data()
+        addon.set_iarc_storefront_data()
 
     return redirect(addon.get_dev_url('versions'))
 
@@ -205,7 +203,7 @@ def status(request, addon_id, addon):
 
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and form.is_valid():
-            if waffle.switch_is_active('iarc') and not addon.is_rated():
+            if not addon.is_rated():
                 # Cannot resubmit without content ratings.
                 return http.HttpResponseForbidden(
                     'This app must obtain content ratings before being '
@@ -327,7 +325,6 @@ def _ratings_success_msg(app, old_status, old_modified):
         return _submission_msgs()['content_ratings_saved']
 
 
-@waffle_switch('iarc')
 @dev_required
 def content_ratings(request, addon_id, addon):
     if not addon.is_rated():
@@ -348,7 +345,6 @@ def content_ratings(request, addon_id, addon):
                   {'addon': addon})
 
 
-@waffle_switch('iarc')
 @dev_required
 def content_ratings_edit(request, addon_id, addon):
     initial = {}

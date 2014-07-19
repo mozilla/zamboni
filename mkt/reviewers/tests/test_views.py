@@ -1162,7 +1162,6 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def setUp(self):
         super(TestReviewApp, self).setUp()
-        self.create_switch('iarc', db=True)
 
         self.mozilla_contact = 'contact@mozilla.com'
         self.app = self.get_app()
@@ -3314,7 +3313,6 @@ class TestReviewPage(amo.tests.TestCase):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.create_switch('iarc')
         self.app = app_factory(status=amo.STATUS_PENDING)
         self.reviewer = UserProfile.objects.get(username='editor')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])

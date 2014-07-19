@@ -43,8 +43,7 @@ class TestWebappIndexer(amo.tests.TestCase):
             ok_(k in keys, 'Key %s not found in mapping properties' % k)
 
     def _get_doc(self):
-        qs = Webapp.indexing_transformer(
-            Webapp.objects.no_cache().filter(id__in=[self.app.pk]))
+        qs = Webapp.objects.no_cache().filter(id__in=[self.app.pk])
         obj = qs[0]
         return obj, WebappIndexer.extract_document(obj.pk, obj)
 

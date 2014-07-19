@@ -18,7 +18,7 @@
 
   {# Notification box for next step of app submission. #}
   {% block submit_next_step %}
-    {% if waffle.switch('iarc') and next_step %}
+    {% if next_step %}
       <div class="notification-box">
         <p>
           {% if addon.has_incomplete_status() %}

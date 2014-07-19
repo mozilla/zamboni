@@ -341,8 +341,7 @@ def index_webapps(ids, **kw):
     indices = Reindexing.get_indices(index)
 
     es = WebappIndexer.get_es(urls=settings.ES_URLS)
-    qs = Webapp.indexing_transformer(Webapp.with_deleted.no_cache().filter(
-        id__in=ids))
+    qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
     for obj in qs:
         doc = WebappIndexer.extract_document(obj.id, obj)
         for idx in indices:

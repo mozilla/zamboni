@@ -602,7 +602,6 @@ class TestAppDetail(RestOAuth):
         super(TestAppDetail, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.get_url = reverse('app-detail', kwargs={'pk': self.app.app_slug})
-        self.create_switch('iarc')
 
     def test_price(self):
         res = self.client.get(self.get_url)

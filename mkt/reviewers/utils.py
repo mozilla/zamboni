@@ -266,8 +266,7 @@ class ReviewApp(ReviewBase):
         self.addon.update_supported_locales()
         self.addon.resend_version_changed_signal = True
 
-        if waffle.switch_is_active('iarc'):
-            self.addon.set_iarc_storefront_data()
+        self.addon.set_iarc_storefront_data()
 
         self.create_note(amo.LOG.APPROVE_VERSION)
         self.notify_email('pending_to_public', u'App approved: %s')

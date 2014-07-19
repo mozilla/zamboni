@@ -87,6 +87,7 @@ class TestVersion(amo.tests.TestCase):
                 self.webapp.current_version, user_id=999,
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=amo.STATUS_REJECTED)
+        amo.tests.make_rated(self.webapp)
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))
 
@@ -113,7 +114,6 @@ class TestVersion(amo.tests.TestCase):
                 "Didn't find `%s` action in logs." % action.short)
 
     def test_no_ratings_no_resubmit(self):
-        self.create_switch('iarc')
         self.webapp.update(status=amo.STATUS_REJECTED)
         r = self.client.post(self.url, {'notes': 'lol',
                                         'resubmit-app': ''})
@@ -127,6 +127,7 @@ class TestVersion(amo.tests.TestCase):
     def test_comm_thread_after_resubmission(self):
         self.create_switch('comm-dashboard')
         self.webapp.update(status=amo.STATUS_REJECTED)
+        amo.tests.make_rated(self.webapp)
         amo.set_user(UserProfile.objects.get(username='admin'))
         (self.webapp.versions.latest()
                              .all_files[0].update(status=amo.STATUS_DISABLED))
@@ -293,6 +294,27 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
         eq_(self.app.status, amo.STATUS_PUBLIC)
         ok_(EscalationQueue.objects.filter(addon=self.app).exists(),
             'App not in escalation queue')
+
+
+class TestAddVersionNoPermissions(BaseAddVersionTest):
+    @property
+    def package(self):
+        return self.packaged_app_path('no_permissions.zip')
+
+    def test_no_escalate_on_blank_permissions(self):
+        """Test that apps that do not use permissions are not escalated."""
+        self.app.current_version.update(version='0.9',
+                                        created=self.days_ago(1))
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App in escalation queue')
+        self._post(302)
+        version = self.app.versions.latest()
+        eq_(version.version, '1.0')
+        eq_(version.all_files[0].status, amo.STATUS_PENDING)
+        self.app.update_status()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
+            'App in escalation queue')
 
 
 class TestVersionPackaged(amo.tests.WebappTestCase):

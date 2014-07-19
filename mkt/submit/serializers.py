@@ -70,14 +70,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
 class PreviewSerializer(serializers.ModelSerializer):
     filetype = serializers.CharField()
     id = serializers.IntegerField(source='pk')
-    image_size = serializers.Field(source='image_size')
     image_url = serializers.CharField(read_only=True)
     resource_uri = serializers.SerializerMethodField('get_resource_uri')
     thumbnail_url = serializers.CharField(read_only=True)
 
     class Meta:
         model = Preview
-        fields = ['filetype', 'image_size', 'image_url', 'id', 'resource_uri',
+        fields = ['filetype', 'image_url', 'id', 'resource_uri',
                   'thumbnail_url']
 
     def get_resource_uri(self, obj):
@@ -87,4 +86,16 @@ class PreviewSerializer(serializers.ModelSerializer):
 
 class SimplePreviewSerializer(PreviewSerializer):
     class Meta(PreviewSerializer.Meta):
-        fields = ['id', 'image_size', 'image_url', 'thumbnail_url']
+        fields = ['id', 'image_url', 'thumbnail_url']
+
+
+class FeedPreviewESSerializer(PreviewSerializer):
+    """
+    Preview serializer for feed where we want to know the image orientation to
+    scale feed app tiles appropriately.
+    """
+    id = serializers.IntegerField(source='id')
+    thumbnail_size = serializers.Field(source='thumbnail_size')
+
+    class Meta(PreviewSerializer.Meta):
+        fields = ['id', 'thumbnail_size', 'thumbnail_url']

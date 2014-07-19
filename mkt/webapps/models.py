@@ -1181,6 +1181,9 @@ class Preview(amo.models.ModelBase):
 
     def _image_url(self, url_template):
         if self.modified is not None:
+            if isinstance(self.modified, unicode):
+                self.modified = datetime.datetime.strptime(self.modified,
+                                                           '%Y-%m-%dT%H:%M:%S')
             modified = int(time.mktime(self.modified.timetuple()))
         else:
             modified = 0
@@ -1365,9 +1368,7 @@ class WebappManager(amo.models.ManagerBase):
 
     def rated(self):
         """IARC."""
-        if waffle.switch_is_active('iarc'):
-            return self.exclude(content_ratings__isnull=True)
-        return self
+        return self.exclude(content_ratings__isnull=True)
 
     def by_identifier(self, identifier):
         """
@@ -1412,6 +1413,10 @@ class Webapp(Addon):
             # Create Geodata object (a 1-to-1 relationship).
             if not hasattr(self, '_geodata'):
                 Geodata.objects.create(addon=self)
+
+    @classmethod
+    def get_indexer(cls):
+        return WebappIndexer
 
     @staticmethod
     def transformer(apps):
@@ -1471,15 +1476,6 @@ class Webapp(Addon):
             app.all_versions = v_dict.get(app.id, [])
 
         return apps
-
-    @staticmethod
-    def indexing_transformer(apps):
-        """Attach everything we need to index apps."""
-        transforms = (attach_devices, attach_prices, attach_tags,
-                      attach_translations)
-        for t in transforms:
-            qs = apps.transform(t)
-        return qs
 
     @property
     def geodata(self):
@@ -1684,10 +1680,6 @@ class Webapp(Addon):
     def is_rated(self):
         return self.content_ratings.exists()
 
-    def content_ratings_complete(self):
-        """Checks for waffle."""
-        return not waffle.switch_is_active('iarc') or self.is_rated()
-
     def all_payment_accounts(self):
         # TODO: cache this somehow. Using @cached_property was hard because
         # there's no easy way to invalidate something that should be
@@ -1739,7 +1731,7 @@ class Webapp(Addon):
 
         if not self.details_complete():
             errors['details'] = self.details_errors()
-        if not ignore_ratings and not self.content_ratings_complete():
+        if not ignore_ratings and not self.is_rated():
             errors['content_ratings'] = _('You must set up content ratings.')
         if not self.payments_complete():
             errors['payments'] = _('You must set up a payment account.')
@@ -1771,7 +1763,7 @@ class Webapp(Addon):
                                  'fully completed.'),
                 'url': self.get_dev_url(),
             }
-        elif not self.content_ratings_complete():
+        elif not self.is_rated():
             return {
                 'name': _('Content Ratings'),
                 'description': _('This app needs to get a content rating.'),
@@ -2467,9 +2459,6 @@ class Webapp(Addon):
 
     def set_iarc_storefront_data(self, disable=False):
         """Send app data to IARC for them to verify."""
-        if not waffle.switch_is_active('iarc'):
-            return
-
         try:
             iarc_info = self.iarc_info
         except IARCInfo.DoesNotExist:
@@ -2768,8 +2757,7 @@ class ContentRating(amo.models.ModelBase):
         """Gives us a list of Region classes that use this rating body."""
         # All regions w/o specified ratings bodies fallback to Generic.
         generic_regions = []
-        if (waffle.switch_is_active('iarc') and
-            self.get_body_class() == mkt.ratingsbodies.GENERIC):
+        if self.get_body_class() == mkt.ratingsbodies.GENERIC:
             generic_regions = mkt.regions.ALL_REGIONS_WITHOUT_CONTENT_RATINGS()
 
         return ([x for x in mkt.regions.ALL_REGIONS_WITH_CONTENT_RATINGS()
@@ -2778,8 +2766,7 @@ class ContentRating(amo.models.ModelBase):
 
     def get_region_slugs(self):
         """Gives us the region slugs that use this rating body."""
-        if (waffle.switch_is_active('iarc') and
-            self.get_body_class() == mkt.ratingsbodies.GENERIC):
+        if self.get_body_class() == mkt.ratingsbodies.GENERIC:
             # For the generic rating body, we just pigeonhole all of the misc.
             # regions into one region slug, GENERIC. Reduces redundancy in the
             # final data structure. Rather than

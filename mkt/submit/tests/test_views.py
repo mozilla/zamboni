@@ -728,23 +728,6 @@ class TestDetails(TestSubmit):
         self.webapp = self.get_webapp()
         self.assert3xx(r, self.get_url('done'))
 
-        eq_(self.webapp.status, amo.STATUS_PENDING)
-
-        assert record_action.called
-
-    @mock.patch('mkt.submit.views.record_action')
-    def test_success_iarc(self, record_action):
-        """TODO: delete the above test when cleaning up waffle."""
-        self.create_switch('iarc')
-
-        self._step()
-        data = self.get_dict()
-        r = self.client.post(self.url, data)
-        self.assertNoFormErrors(r)
-        self.check_dict(data=data)
-        self.webapp = self.get_webapp()
-        self.assert3xx(r, self.get_url('done'))
-
         eq_(self.webapp.status, amo.STATUS_NULL)
 
         assert record_action.called
@@ -863,17 +846,6 @@ class TestDetails(TestSubmit):
             preview_uri)
 
     def test_unique_allowed(self):
-        self._step()
-        r = self.client.post(self.url, self.get_dict(name=self.webapp.name))
-        self.assertNoFormErrors(r)
-        app = Webapp.objects.exclude(app_slug=self.webapp.app_slug)[0]
-        self.assert3xx(r, reverse('submit.app.done', args=[app.app_slug]))
-        eq_(self.get_webapp().status, amo.STATUS_PENDING)
-
-    def test_unique_allowed_iarc(self):
-        """TODO: delete the above test when cleaning up waffle."""
-        self.create_switch('iarc')
-
         self._step()
         r = self.client.post(self.url, self.get_dict(name=self.webapp.name))
         self.assertNoFormErrors(r)
@@ -1018,7 +990,8 @@ class TestDone(TestSubmit):
 
     def test_progress_display(self):
         self._step()
-        self._test_progress_display(['terms', 'manifest', 'details'], 'done')
+        self._test_progress_display(['terms', 'manifest', 'details'],
+                                    'next_steps')
 
     def test_done(self):
         self._step()
@@ -1031,8 +1004,6 @@ class TestNextSteps(amo.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.create_switch('iarc')
-
         self.user = UserProfile.objects.get(username='regularuser')
         assert self.client.login(username=self.user.email, password='password')
         self.webapp = Webapp.objects.get(id=337141)

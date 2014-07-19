@@ -693,6 +693,7 @@ ES_INDEXES = {
     'mkt_feed_brand': 'feed_brands',
     'mkt_feed_collection': 'feed_collections',
     'mkt_feed_shelf': 'feed_shelves',
+    'mkt_feed_item': 'feed_items',
     # Adding an index? Don't forget to add the indexer to ESTestCase.
     # Also add the index to reindex_mkt.py.
 }

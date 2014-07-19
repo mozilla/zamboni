@@ -197,8 +197,9 @@ class ESTranslationSerializerField(TranslationSerializerField):
 
     def fetch_single_translation(self, obj, source, field):
         translations = self.fetch_all_translations(obj, source, field) or {}
+
         return (translations.get(self.requested_language) or
-                translations.get(obj.default_locale) or
+                translations.get(getattr(obj, 'default_locale', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
 
     def field_to_native(self, obj, field_name):
