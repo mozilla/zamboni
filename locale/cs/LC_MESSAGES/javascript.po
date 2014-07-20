@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-05-29 08:01+0000\n"
+"PO-Revision-Date: 2014-07-20 20:55+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401350494.0\n"
+"X-POOTLE-MTIME: 1405889758.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -170,11 +170,11 @@ msgstr "Vložte e-mailovou adresu nového člena týmu"
 
 #: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest obnoven"
 
 #: media/js/devreg/devhub.js:467
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Obnovení manifestu se nezdařilo. Zkuste to znovu později."
 
 #: media/js/devreg/devhub.js:648
 msgid "There was an error uploading your file."
@@ -222,11 +222,11 @@ msgstr "Přihlášení pomocí Persona selhalo. Nastala chyba serveru."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Stav úspěšně změněn na \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Nelze změnit stav na \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
