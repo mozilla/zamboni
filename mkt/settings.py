@@ -196,11 +196,14 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
+        'elasticsearch': {'level': logging.DEBUG},
+        # Set to DEBUG if you want pretty printed ES queries and responses.
+        'elasticsearch.trace': {'handlers': ['null']},
         'nose': {'level': logging.WARNING},
         's.client': {'level': logging.INFO},
         'suds': {'handlers': ['null']},
         'z.heka': {'level': logging.INFO},
-        'z.es': {'level': logging.INFO},
+        'z.elasticsearch': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
     },
 }

@@ -5,7 +5,7 @@ from django.shortcuts import render
 import elasticsearch
 
 
-log = logging.getLogger('z.es')
+log = logging.getLogger('z.elasticsearch')
 
 
 class ElasticsearchExceptionMiddleware(object):
