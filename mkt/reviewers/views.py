@@ -23,7 +23,7 @@ import commonware.log
 import jinja2
 import requests
 from cache_nuggets.lib import Token
-from elasticutils import F
+from elasticsearch_dsl.filter import F
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
@@ -60,7 +60,6 @@ from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
-from mkt.search.utils import S
 from mkt.search.views import SearchView
 from mkt.site import messages
 from mkt.site.helpers import product_as_dict
@@ -1086,10 +1085,9 @@ class ReviewersSearchView(SearchView):
     def search(self, request):
         form_data = self.get_search_data(request)
         query = form_data.get('q', '')
-        base_filters = {'type': form_data['type']}
+        qs = WebappIndexer.search()
         if form_data.get('status') != 'any':
-            base_filters['status'] = form_data.get('status')
-        qs = S(WebappIndexer).filter(**base_filters)
+            qs = qs.filter('term', status=form_data.get('status'))
         qs = self.apply_filters(request, qs, data=form_data)
         qs = apply_reviewer_filters(request, qs, data=form_data)
         page = self.paginate_queryset(qs)
@@ -1098,18 +1096,16 @@ class ReviewersSearchView(SearchView):
 
 def apply_reviewer_filters(request, qs, data=None):
     for k in ('has_info_request', 'has_editor_comment'):
-        if data.get(k, None) is not None:
-            qs = qs.filter(**{
-                'latest_version.%s' % k: data[k]
-            })
-    if data.get('is_escalated', None) is not None:
-        qs = qs.filter(is_escalated=data['is_escalated'])
+        if data.get(k) is not None:
+            qs = qs.filter('term', **{'latest_version.%s' % k: data[k]})
+    if data.get('is_escalated') is not None:
+        qs = qs.filter('term', is_escalated=data['is_escalated'])
     is_tarako = data.get('is_tarako')
     if is_tarako is not None:
         if is_tarako:
-            qs = qs.filter(tags='tarako')
+            qs = qs.filter('term', tags='tarako')
         else:
-            qs = qs.filter(~F(tags='tarako'))
+            qs = qs.filter(~F('term', tags='tarako'))
     return qs
 
 

@@ -11,7 +11,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import NoReverseMatch, reverse
 from django.db import models, transaction
@@ -24,9 +24,10 @@ import commonware.log
 import json_field
 import waffle
 from cache_nuggets.lib import memoize, memoize_key
-from elasticutils.contrib.django import F
+from elasticsearch_dsl import F, filter as es_filter
 from jinja2.filters import do_dictsort
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
+from tower import ugettext_lazy as _lazy
 
 import amo
 import amo.models
@@ -34,9 +35,9 @@ import mkt
 from amo.decorators import skip_cache, use_master, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
-                       send_mail, slugify, smart_path, sorted_groupby, timer,
-                       to_language, urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
+                       slugify, smart_path, sorted_groupby, timer, to_language,
+                       urlparams)
 from constants.applications import DEVICE_TYPES
 from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
@@ -2041,9 +2042,8 @@ class Webapp(Addon):
                     mobile=False, tablet=False, filter_overrides=None):
 
         filters = {
-            'type': amo.ADDON_WEBAPP,
-            'status': amo.STATUS_PUBLIC,
-            'is_disabled': False,
+            'status': F('term', status=amo.STATUS_PUBLIC),
+            'is_disabled': F('term', is_disabled=False),
         }
 
         # Special handling if status is 'any' to remove status filter.
@@ -2056,18 +2056,18 @@ class Webapp(Addon):
             filters.update(filter_overrides)
 
         if cat:
-            filters.update(category=cat.slug)
+            filters.update({'category': F('term', category=cat.slug)})
 
-        srch = WebappIndexer.search().filter(**filters)
+        sq = WebappIndexer.search().filter(
+            es_filter.Bool(must=filters.values()))
 
-        if (region and
-            not waffle.flag_is_active(request, 'override-region-exclusion')):
-            srch = srch.filter(~F(region_exclusions=region.id))
+        if region:
+            sq = sq.filter(~F('term', region_exclusions=region.id))
 
         if mobile or gaia:
-            srch = srch.filter(uses_flash=False)
+            sq = sq.filter('term', uses_flash=False)
 
-        return srch
+        return sq
 
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()

@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 from nose.tools import eq_
 
 import amo
-import amo.tests
-
 from mkt.webapps.utils import get_supported_locales
 
 

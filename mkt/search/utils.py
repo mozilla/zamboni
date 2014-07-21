@@ -1,11 +1,11 @@
-from elasticutils.contrib.django import S as eu_S
+from elasticsearch_dsl.search import Search as dslSearch
 from statsd import statsd
 
 
-class S(eu_S):
+class Search(dslSearch):
 
-    def raw(self):
-        with statsd.timer('search.raw'):
-            hits = super(S, self).raw()
-            statsd.timing('search.took', hits['took'])
-            return hits
+    def execute(self):
+        with statsd.timer('search.execute'):
+            results = super(Search, self).execute()
+            statsd.timing('search.took', results['took'])
+            return results

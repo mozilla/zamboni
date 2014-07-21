@@ -19,8 +19,17 @@ SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
 
 
 class ReviewersESAppSerializer(ESAppSerializer):
-    latest_version = serializers.Field(source='es_data.latest_version')
+    latest_version = serializers.SerializerMethodField('get_latest_version')
     is_escalated = serializers.BooleanField()
 
     class Meta(ESAppSerializer.Meta):
         fields = SEARCH_FIELDS + ['latest_version', 'is_escalated']
+
+    def get_latest_version(self, obj):
+        v = obj.es_data.latest_version
+        return {
+            'has_editor_comment': v.has_editor_comment,
+            'has_info_request': v.has_info_request,
+            'is_privileged': v.is_privileged,
+            'status': v.status,
+        }

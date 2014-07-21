@@ -59,9 +59,14 @@ class WebappIndexer(BaseIndexer):
             doc_type: {
                 # Disable _all field to reduce index size.
                 '_all': {'enabled': False},
+                # TODO: Remove when we upgrade to Elasticsearch 1.0+.
                 # Add a boost field to enhance relevancy of a document.
                 '_boost': {'name': '_boost', 'null_value': 1.0},
                 'properties': {
+                    # TODO: When we upgrade to Elasticsearch 1.0+.
+                    # Add a boost field to enhance relevancy of a document.
+                    # This is used during queries in a function scoring query.
+                    # '_boost': {'type': 'long'},
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
@@ -256,6 +261,7 @@ class WebappIndexer(BaseIndexer):
                  'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
+        d['_boost'] = len(installed_ids) or 1
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -306,7 +312,7 @@ class WebappIndexer(BaseIndexer):
         d['name_sort'] = unicode(obj.name).lower()
         d['owners'] = [au.user.id for au in
                        obj.addonuser_set.filter(role=amo.AUTHOR_ROLE_OWNER)]
-        d['popularity'] = d['_boost'] = len(installed_ids)
+        d['popularity'] = len(installed_ids)
         d['previews'] = [{'filetype': p.filetype, 'modified': p.modified,
                           'id': p.id, 'sizes': p.sizes}
                          for p in obj.previews.all()]

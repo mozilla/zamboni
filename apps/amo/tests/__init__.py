@@ -21,7 +21,6 @@ from django.utils import translation
 
 import caching
 import elasticsearch
-import elasticutils.contrib.django as elasticutils
 import mock
 import test_utils
 import tower
@@ -44,9 +43,6 @@ from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
-from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer, FeedItemIndexer,
-                               FeedShelfIndexer)
 from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, Platform
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
@@ -55,7 +51,6 @@ from mkt.site.fixtures import fixture
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import update_search_index as app_update_search_index
 from mkt.webapps.models import Addon, Webapp
 from mkt.webapps.tasks import unindex_webapps
@@ -175,8 +170,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-ES_patchers = [mock.patch('elasticutils.contrib.django', spec=True),
-               mock.patch('elasticsearch.Elasticsearch'),
+ES_patchers = [mock.patch('elasticsearch.Elasticsearch'),
                mock.patch('mkt.webapps.tasks.WebappIndexer', spec=True),
                mock.patch('mkt.webapps.tasks.Reindexing', spec=True,
                           side_effect=lambda i: [i])]
@@ -190,9 +184,6 @@ def start_es_mock():
 def stop_es_mock():
     for patch in ES_patchers:
         patch.stop()
-
-    if hasattr(elasticutils, '_local') and hasattr(elasticutils._local, 'es'):
-        delattr(elasticutils._local, 'es')
 
     # Reset cached Elasticsearch objects.
     BaseIndexer._es = {}

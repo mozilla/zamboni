@@ -1,15 +1,49 @@
+from datetime import date, datetime
+
 from rest_framework import serializers
 
 from mkt.api.fields import ESTranslationSerializerField
 
 
+def es_to_datetime(value):
+    """
+    Returns a datetime given an Elasticsearch date/datetime field.
+    """
+    if not value or isinstance(value, (date, datetime)):
+        return
+
+    if len(value) == 26:
+        try:
+            return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+        except (TypeError, ValueError):
+            pass
+    elif len(value) == 19:
+        try:
+            return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
+        except (TypeError, ValueError):
+            pass
+    elif len(value) == 10:
+        try:
+            return datetime.strptime(value, '%Y-%m-%d')
+        except (TypeError, ValueError):
+            pass
+
+    return value
+
+
 class BaseESSerializer(serializers.ModelSerializer):
     """
     A base deserializer that handles ElasticSearch data for a specific model.
+
     When deserializing, an unbound instance of the model (as defined by
     fake_object) is populated with the ES data in order to work well with
     the parent model serializer (e.g., AppSerializer).
+
     """
+    # In base classes add the field names we want converted to Python
+    # date/datetime from the Elasticsearch date strings.
+    datetime_fields = ()
+
     def __init__(self, *args, **kwargs):
         super(BaseESSerializer, self).__init__(*args, **kwargs)
 
@@ -57,7 +91,10 @@ class BaseESSerializer(serializers.ModelSerializer):
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""
         for field_name in field_names:
-            setattr(obj, field_name, data.get(field_name))
+            value = data.get(field_name)
+            if field_name in self.datetime_fields:
+                value = self.to_datetime(value)
+            setattr(obj, field_name, value)
         return obj
 
     def _attach_translations(self, obj, data, field_names):
@@ -66,3 +103,6 @@ class BaseESSerializer(serializers.ModelSerializer):
             ESTranslationSerializerField.attach_translations(
                 obj, data, field_name)
         return obj
+
+    def to_datetime(self, value):
+        return es_to_datetime(value)

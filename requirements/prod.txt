@@ -41,7 +41,6 @@ django-waffle==0.9.2
 drf-compound-fields==0.2.1
 easy-thumbnails==1.4
 elasticsearch==1.1.1
-elasticutils==0.8.2
 email-reply-parser==0.2.0
 fastchardet==0.2.0
 feedparser==5.1.3
@@ -73,7 +72,6 @@ polib==1.0.3
 protobuf==2.5.0
 pyasn1==0.1.7
 PyBrowserID==0.6
-pyelasticsearch==0.6.1
 PyJWT-mozilla==0.1.4.2
 PyMySQL==0.5
 pymemcache==1.2
@@ -101,6 +99,7 @@ urllib3==1.8.2
 -e git+https://github.com/mozilla/app-validator.git@e4fdcb90b79728bf5e78789f2496d81d6ed20500#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
+-e git+https://github.com/elasticsearch/elasticsearch-dsl-py.git@9b638a3e9ec3d2cf9de058068b861012614d4def#egg=elasticsearch-dsl
 
 # Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify

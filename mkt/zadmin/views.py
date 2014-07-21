@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import debug
 
 import commonware.log
-import elasticutils.contrib.django as elasticutils
+import elasticsearch
 import jinja2
 
 import amo
@@ -249,14 +249,14 @@ def manifest_revalidation(request):
 
 @admin_required
 def elastic(request):
-    es = elasticutils.get_es()
+    es = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
 
     indexes = set(settings.ES_INDEXES.values())
-    es_mappings = es.get_mapping(None, indexes)
     ctx = {
-        'aliases': es.aliases(),
-        'health': es.health(),
-        'state': es.cluster_state(),
-        'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
+        'aliases': es.indices.get_aliases(),
+        'health': es.cluster.health(),
+        'state': es.cluster.state(),
+        'mappings': [(index, es.indices.get_mapping(index=index))
+                      for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)

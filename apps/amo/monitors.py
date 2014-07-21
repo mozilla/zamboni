@@ -8,7 +8,7 @@ import traceback
 from django.conf import settings
 
 import commonware.log
-import elasticutils.contrib.django as elasticutils
+import elasticsearch
 import requests
 from cache_nuggets.lib import memoize
 from PIL import Image
@@ -105,14 +105,15 @@ def libraries():
 
 
 def elastic():
+    es = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
     elastic_results = None
     status = ''
     try:
-        health = elasticutils.get_es().health()
+        health = es.cluster.health()
         if health['status'] == 'red':
             status = 'ES is red'
         elastic_results = health
-    except Exception:
+    except elasticsearch.ElasticsearchException:
         monitor_log.exception('Failed to communicate with ES')
         elastic_results = {'error': traceback.format_exc()}
         status = 'traceback'

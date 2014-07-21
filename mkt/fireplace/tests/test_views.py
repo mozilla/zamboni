@@ -4,6 +4,7 @@ from urlparse import urlparse
 from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
 
+from elasticsearch_dsl.search import Search
 from mock import patch
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
@@ -15,7 +16,6 @@ from mkt.api.tests.test_oauth import RestOAuth
 from mkt.collections.constants import COLLECTIONS_TYPE_BASIC
 from mkt.collections.models import Collection
 from mkt.fireplace.serializers import FireplaceAppSerializer
-from mkt.search.utils import S
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
@@ -145,7 +145,7 @@ class TestCollectionViewSet(RestOAuth, ESTestCase):
         eq_(res.json['apps'], [])
 
         eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], S))
+        ok_(isinstance(mock_field_to_native.call_args[0][0], Search))
         eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
 
 

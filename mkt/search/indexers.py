@@ -6,19 +6,18 @@ from django.conf import settings
 import elasticsearch
 from celeryutils import task
 from elasticsearch import helpers
-from elasticutils.contrib.django import Indexable, MappingType
+from elasticsearch_dsl import Search
 
 import amo
 from amo.decorators import write
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
-from mkt.search.utils import S
 
 
 task_log = logging.getLogger('z.task')
 
 
-class BaseIndexer(MappingType, Indexable):
+class BaseIndexer(object):
     """
     A class inheriting from BaseIndexer should implement:
 
@@ -93,19 +92,39 @@ class BaseIndexer(MappingType, Indexable):
         helpers.bulk(es, actions)
 
     @classmethod
+    def unindex(cls, id_, es=None, index=None):
+        """
+        Remove a document from the index.
+        """
+        es = es or cls.get_es()
+        index = index or cls.get_index()
+        es.delete(index=index, doc_type=cls.get_mapping_type_name(), id=id_)
+
+    @classmethod
+    def refresh_index(cls, es=None, index=None):
+        """
+        Refresh the index.
+        """
+        es = es or cls.get_es()
+        index = index or cls.get_index()
+        es.indices.refresh(index=index)
+
+    @classmethod
+    def search(cls):
+        """
+        Returns a `Search` object from elasticsearch_dsl.
+        """
+        return Search(using=cls.get_es(),
+                      index=cls.get_index(),
+                      doc_type=cls.get_mapping_type_name())
+
+    @classmethod
     def get_index(cls):
         return settings.ES_INDEXES[cls.get_mapping_type_name()]
 
     @classmethod
     def get_mapping_type_name(cls):
         return cls.get_model()._meta.db_table
-
-    @classmethod
-    def search(cls):
-        """
-        Returns an elasticutils `S` object to start chaining search methods on.
-        """
-        return S(cls)
 
     @classmethod
     def get_settings(cls, settings_override=None):

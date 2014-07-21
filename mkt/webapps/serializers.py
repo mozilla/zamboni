@@ -1,5 +1,4 @@
 import json
-from datetime import datetime
 from decimal import Decimal
 
 from django.conf import settings
@@ -22,7 +21,7 @@ from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.features import FeatureProfile
 from mkt.prices.models import AddonPremium, Price
-from mkt.search.serializers import BaseESSerializer
+from mkt.search.serializers import BaseESSerializer, es_to_datetime
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.versions.models import Version
@@ -84,6 +83,7 @@ class AppSerializer(serializers.ModelSerializer):
     is_packaged = serializers.BooleanField(read_only=True)
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
+    modified = serializers.DateField(read_only=True)
     name = TranslationSerializerField(required=False)
     package_path = serializers.CharField(source='get_package_path',
                                          read_only=True)
@@ -392,6 +392,9 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
     # Feed collection.
     group = ESTranslationSerializerField(required=False)
 
+    # The fields we want converted to Python date/datetimes.
+    datetime_fields = ('created', 'modified', 'reviewed')
+
     class Meta(AppSerializer.Meta):
         fields = AppSerializer.Meta.fields + ['absolute_url', 'group',
                                               'reviewed']
@@ -425,7 +428,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         obj._latest_version = Version()
         obj._latest_version.is_privileged = is_privileged
         obj._geodata = Geodata()
-        obj.all_previews = [Preview(id=p['id'], modified=p['modified'],
+        obj.all_previews = [
+            Preview(id=p['id'], modified=self.to_datetime(p['modified']),
             filetype=p['filetype'], sizes=p.get('sizes', {}))
             for p in data['previews']]
         obj.categories = data['category']
@@ -442,7 +446,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         self._attach_translations(
             obj, data, ('name', 'description', 'homepage', 'release_notes',
                         'support_email', 'support_url'))
-        if 'group_translations' in data:
+        if data.get('group_translations'):
             self._attach_translations(obj, data, ('group',))  # Feed group.
         else:
             obj.group_translations = None
@@ -567,7 +571,7 @@ class RocketbarESAppSerializer(serializers.Serializer):
             id=obj['id'], icon_type='image/png', type=amo.ADDON_WEBAPP,
             default_locale=obj.get('default_locale', settings.LANGUAGE_CODE),
             icon_hash=obj.get('icon_hash'),
-            modified=datetime.strptime(obj['modified'], '%Y-%m-%dT%H:%M:%S'))
+            modified=es_to_datetime(obj['modified']))
         ESTranslationSerializerField.attach_translations(
             self.fake_app, obj, 'name')
         return {

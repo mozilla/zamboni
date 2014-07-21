@@ -9,8 +9,8 @@ from django.http import QueryDict
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from elasticsearch_dsl import Search
 from mock import patch
-from nose import SkipTest
 from nose.tools import eq_, ok_
 
 import amo
@@ -28,7 +28,6 @@ from mkt.constants import regions
 from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.forms import DEVICE_CHOICES_IDS
-from mkt.search.utils import S
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
@@ -322,7 +321,6 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_q_num_requests(self):
-        raise SkipTest('Unskip when we implement elasticsearch-dsl queries')
         es = WebappIndexer.get_es()
         orig_search = es.search
         es.counter = 0
@@ -346,7 +344,6 @@ class TestApi(RestOAuth, ESTestCase):
         es.search = orig_search
 
     def test_q_num_requests_no_results(self):
-        raise SkipTest('Unskip when we implement elasticsearch-dsl queries')
         es = WebappIndexer.get_es()
         orig_search = es.search
         es.counter = 0
@@ -827,7 +824,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # Make sure we are using the simplified representation for apps.
         eq_(apps[0]['name'], {u'en-US': u'Something Something Steamcube!',
                               u'es': u'Algo Algo Steamcube!'})
-        ok_(not 'app_type' in apps[0])
+        ok_('app_type' not in apps[0])
 
         return res, json
 
@@ -861,7 +858,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name
-        ok_(not header in res)
+        ok_(header not in res)
 
     def test_only_this_type(self):
         """
@@ -876,13 +873,13 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name
-        ok_(not header in res)
+        ok_(header not in res)
 
     @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
     def test_limit(self, mock_field_to_native):
         """
         Add a second collection, then ensure than the old one is not present
-        in the results since we are limiting at 1 collection of each type
+        in the results since we are limiting at 1 collection of each type.
         """
         mock_field_to_native.return_value = None
         self.col.add_app(self.app)
@@ -897,7 +894,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         # Make sure to_native() was called only once, with ES data, with the
         # use_es argument.
         eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], S))
+        ok_(isinstance(mock_field_to_native.call_args[0][0], Search))
         eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
 
     @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
@@ -972,7 +969,7 @@ class TestFeaturedCollections(BaseFeaturedTests):
         """
         self.qs['cat'] = 'tarako-lifestyle'
         res, json = self.make_request()
-        ok_(not self.prop_name in res.json)
+        ok_(self.prop_name not in res.json)
 
 
 class TestFeaturedOperator(TestFeaturedCollections):

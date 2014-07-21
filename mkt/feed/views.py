@@ -1,6 +1,6 @@
 from django.db.models import Q
 
-from elasticutils.contrib.django import S
+from elasticsearch_dsl import query
 from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
@@ -297,25 +297,31 @@ class FeedElementSearchView(CORSMixin, APIView):
     def get(self, request, *args, **kwargs):
         q = request.GET.get('q')
 
-        # Gather.
-        query = {
-            'slug__match': self._phrase(q),
-            'type__match': self._phrase(q),
-            'should': True
-        }
+        match_query = (
+            query.Q('match', slug=self._phrase(q)),
+            query.Q('match', type=self._phrase(q)),
+        )
+        fuzzy_query = match_query + (query.Q('fuzzy', search_names=q),)
 
-        feed_app_ids = ([pk[0] for pk in S(FeedAppIndexer).query(
-            search_names__fuzzy=q, **query).values_list('id')])
+        feed_app_ids = [
+            hit.id for hit in FeedAppIndexer.search().query(
+                query.Bool(should=fuzzy_query)).execute().hits]
 
-        feed_brand_ids = [pk[0] for pk in S(FeedBrandIndexer).query(
-            **query).values_list('id')]
+        feed_brand_ids = [
+            hit.id for hit in FeedBrandIndexer.search().query(
+                query.Bool(should=match_query)).execute().hits]
 
-        feed_collection_ids = ([pk[0] for pk in S(FeedCollectionIndexer).query(
-            search_names__fuzzy=q, **query).values_list('id')])
+        feed_collection_ids = [
+            hit.id for hit in FeedCollectionIndexer.search().query(
+                query.Bool(should=fuzzy_query)).execute().hits]
 
-        feed_shelf_ids = ([pk[0] for pk in S(FeedShelfIndexer).query(
-            search_names__fuzzy=q, slug__fuzzy=q, carrier__prefix=q, region=q,
-            should=True).values_list('id')])
+        feed_shelf_ids = [
+            hit.id for hit in FeedShelfIndexer.search().query(
+                query.Bool(should=(
+                    query.Q('fuzzy', search_names=q),
+                    query.Q('fuzzy', slug=q),
+                    query.Q('prefix', carrier=q),
+                    query.Q('term', region=q)))).execute().hits]
 
         # Dehydrate.
         apps = FeedApp.objects.filter(id__in=feed_app_ids)

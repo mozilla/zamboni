@@ -64,7 +64,7 @@ LOGGING['loggers'].update({
     'z.task': { 'level': logging.DEBUG },
     'z.redis': { 'level': logging.DEBUG },
     'z.receipt': {'level': logging.ERROR },
-    'elasticutils': {'level': logging.INFO },
+    'elasticsearch': {'level': logging.INFO },
     'caching': {'level': logging.ERROR },
 })
 

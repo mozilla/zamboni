@@ -6,7 +6,6 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
-from elasticutils.contrib.django import S
 from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
@@ -346,7 +345,8 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         self.refresh('webapp')
 
     def get_obj(self):
-        return S(WebappIndexer).filter(id=self.app.pk).execute().results[0]
+        return WebappIndexer.search().filter(
+            'term', id=self.app.pk).execute().hits[0]
 
     def serialize(self):
         serializer = ESAppSerializer(self.get_obj(),
@@ -382,8 +382,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
             'premium_type': 'free',
             'previews': [{'id': self.preview.id,
                           'image_url': self.preview.image_url,
-                          'thumbnail_url': self.preview.thumbnail_url,
-                        }],
+                          'thumbnail_url': self.preview.thumbnail_url}],
             'privacy_policy': reverse('app-privacy-policy-detail',
                                       kwargs={'pk': self.app.id}),
             'public_stats': False,
@@ -677,7 +676,8 @@ class TestSimpleESAppSerializer(amo.tests.ESTestCase):
         self.request.user = AnonymousUser()
         RegionMiddleware().process_request(self.request)
         self.reindex(Webapp, 'webapp')
-        self.indexer = S(WebappIndexer).filter(id=337141).execute().objects[0]
+        self.indexer = WebappIndexer.search().filter(
+            'term', id=self.webapp.id).execute().hits[0]
         self.serializer = SimpleESAppSerializer(self.indexer,
             context={'request': self.request})
 

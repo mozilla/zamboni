@@ -39,44 +39,37 @@ class TestSearchFilters(BaseOAuth):
         if form.is_valid():
             qs = Webapp.from_search(self.req, **kwargs)
             return _filter_search(
-                self.req, qs, form.cleaned_data)._build_query()
+                self.req, qs, form.cleaned_data).to_dict()
         else:
             return form.errors.copy()
 
     def test_q(self):
         qs = self._filter(self.req, {'q': 'search terms'})
-        qs_str = json.dumps(qs)
-        ok_('"query": "search terms"' in qs_str)
-        # TODO: Could do more checking here.
+        ok_(qs['query']['filtered']['query'])
+        # Spot check a few queries.
+        ok_({'match': {'name': {'query': 'search terms', 'boost': 4,
+                                'slop': 1, 'type': 'phrase'}}}
+            in qs['query']['filtered']['query']['bool']['should'])
+        ok_({'prefix': {'name': {'boost': 1.5, 'value': 'search terms'}}}
+            in qs['query']['filtered']['query']['bool']['should'])
+        ok_({'match': {'name_english': {'query': 'search terms',
+                                        'boost': 2.5}}}
+            in qs['query']['filtered']['query']['bool']['should'])
 
     def test_fuzzy_single_word(self):
         qs = self._filter(self.req, {'q': 'term'})
-        qs_str = json.dumps(qs)
-        ok_('fuzzy' in qs_str)
+        ok_({'fuzzy': {'tags': {'prefix_length': 1, 'value': 'term'}}}
+            in qs['query']['filtered']['query']['bool']['should'])
 
     def test_no_fuzzy_multi_word(self):
         qs = self._filter(self.req, {'q': 'search terms'})
         qs_str = json.dumps(qs)
         ok_('fuzzy' not in qs_str)
 
-    def _addon_type_check(self, query, expected=amo.ADDON_WEBAPP):
-        qs = self._filter(self.req, query)
-        ok_({'term': {'type': expected}} in qs['filter']['and'],
-            'Unexpected type. Expected: %s.' % expected)
-
-    def test_addon_type(self):
-        # Test all that should end up being ADDON_WEBAPP.
-        # Note: Addon type permission can't be checked here b/c the acl check
-        # happens in the view, not the _filter_search call.
-        self._addon_type_check({})
-        self._addon_type_check({'type': 'app'})
-        # Test a bad value.
-        qs = self._filter(self.req, {'type': 'vindaloo'})
-        ok_(u'Select a valid choice' in qs['type'][0])
-
     def _status_check(self, query, expected=amo.STATUS_PUBLIC):
         qs = self._filter(self.req, query)
-        ok_({'term': {'status': expected}} in qs['filter']['and'],
+        ok_({'term': {'status': expected}}
+            in qs['query']['filtered']['filter']['bool']['must'],
             'Unexpected status. Expected: %s.' % expected)
 
     def test_status(self):
@@ -93,102 +86,107 @@ class TestSearchFilters(BaseOAuth):
 
     def test_category(self):
         qs = self._filter(self.req, {'cat': 'games'})
-        ok_({'in': {'category': ['games']}} in qs['filter']['and'])
+        ok_({'terms': {'category': ['games']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_tag(self):
         qs = self._filter(self.req, {'tag': 'tarako'})
-        ok_({'term': {'tags': 'tarako'}} in qs['filter']['and'],
-            qs['filter']['and'])
+        ok_({'term': {'tags': 'tarako'}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_tarako_categories(self):
         qs = self._filter(self.req, {'cat': 'tarako-lifestyle'})
-        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-lifestyle']}}
-            in qs['filter']['and'])
+        ok_({'terms':
+             {'category': TARAKO_CATEGORIES_MAPPING['tarako-lifestyle']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
         qs = self._filter(self.req, {'cat': 'tarako-games'})
-        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-games']}}
-            in qs['filter']['and'])
+        ok_({'terms': {'category': TARAKO_CATEGORIES_MAPPING['tarako-games']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
         qs = self._filter(self.req, {'cat': 'tarako-tools'})
-        ok_({'in': {'category': TARAKO_CATEGORIES_MAPPING['tarako-tools']}}
-            in qs['filter']['and'])
+        ok_({'terms': {'category': TARAKO_CATEGORIES_MAPPING['tarako-tools']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_device(self):
         qs = self._filter(self.req, {'device': 'desktop'})
-        ok_({'term': {
-            'device': DEVICE_CHOICES_IDS['desktop']}} in qs['filter']['and'])
+        ok_({'term': {'device': DEVICE_CHOICES_IDS['desktop']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_premium_types(self):
         ptype = lambda p: amo.ADDON_PREMIUM_API_LOOKUP.get(p)
         # Test a single premium type.
         qs = self._filter(self.req, {'premium_types': ['free']})
-        ok_({'in': {'premium_type': [ptype('free')]}} in qs['filter']['and'])
+        ok_({'terms': {'premium_type': [ptype('free')]}}
+            in qs['query']['filtered']['filter']['bool']['must'])
         # Test many premium types.
         qs = self._filter(self.req, {'premium_types': ['free', 'free-inapp']})
-        ok_({'in': {'premium_type': [ptype('free'), ptype('free-inapp')]}}
-            in qs['filter']['and'])
+        ok_({'terms': {'premium_type': [ptype('free'), ptype('free-inapp')]}}
+            in qs['query']['filtered']['filter']['bool']['must'])
         # Test a non-existent premium type.
         qs = self._filter(self.req, {'premium_types': ['free', 'platinum']})
         ok_(u'Select a valid choice' in qs['premium_types'][0])
 
     def test_app_type(self):
         qs = self._filter(self.req, {'app_type': ['hosted']})
-        ok_({'in': {'app_type': [1]}} in qs['filter']['and'])
+        ok_({'terms': {'app_type': [1]}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_app_type_packaged(self):
         """Test packaged also includes privileged."""
         qs = self._filter(self.req, {'app_type': ['packaged']})
-        ok_({'in': {'app_type': [2, 3]}} in qs['filter']['and'], qs)
+        ok_({'terms': {'app_type': [2, 3]}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_manifest_url(self):
         url = 'http://hy.fr/manifest.webapp'
         qs = self._filter(self.req, {'manifest_url': url})
-        ok_({'term': {'manifest_url': url}} in qs['filter']['and'])
+        ok_({'term': {'manifest_url': url}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_offline(self):
         """Ensure we are filtering by offline-capable apps."""
         qs = self._filter(self.req, {'offline': 'True'})
-        ok_({'term': {'is_offline': True}} in qs['filter']['and'])
+        ok_({'term': {'is_offline': True}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_online(self):
         """Ensure we are filtering by apps that require online access."""
         qs = self._filter(self.req, {'offline': 'False'})
-        ok_({'term': {'is_offline': False}} in qs['filter']['and'])
+        ok_({'term': {'is_offline': False}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_offline_and_online(self):
         """Ensure we are not filtering by offline/online by default."""
         qs = self._filter(self.req, {})
-        ok_({'term': {'is_offline': True}} not in qs['filter']['and'])
-        ok_({'term': {'is_offline': False}} not in qs['filter']['and'])
+        ok_({'term': {'is_offline': True}}
+            not in qs['query']['filtered']['filter']['bool']['must'])
+        ok_({'term': {'is_offline': False}}
+            not in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_languages(self):
         qs = self._filter(self.req, {'languages': 'fr'})
-        ok_({'in': {'supported_locales': ['fr']}} in qs['filter']['and'])
+        ok_({'terms': {'supported_locales': ['fr']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
         qs = self._filter(self.req, {'languages': 'ar,en-US'})
-        ok_({'in': {'supported_locales': ['ar', 'en-US']}}
-            in qs['filter']['and'])
+        ok_({'terms': {'supported_locales': ['ar', 'en-US']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_region_exclusions(self):
         qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
-        ok_({'not': {'filter': {'term': {'region_exclusions': regions.CO.id}}}}
-            in qs['filter']['and'])
-
-    def test_region_exclusions_override(self):
-        self.create_flag('override-region-exclusion')
-        qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
-        ok_({'not': {'filter': {'term': {'region_exclusions': regions.CO.id}}}}
-            not in qs['filter']['and'])
+        ok_({'term': {'region_exclusions': regions.CO.id}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
 
     def test_sort(self):
         for api_sort, es_sort in DEFAULT_SORTING.items():
             qs = self._filter(self.req, {'sort': [api_sort]})
             if es_sort.startswith('-'):
-                ok_({es_sort[1:]: 'desc'} in qs['sort'], qs)
+                ok_({es_sort[1:]: {'order': 'desc'}} in qs['sort'], qs)
             else:
                 eq_([es_sort], qs['sort'], qs)
 
     def test_sort_multiple(self):
         qs = self._filter(self.req, {'sort': ['rating', 'created']})
-        ok_({'bayesian_rating': 'desc'} in qs['sort'])
-        ok_({'created': 'desc'} in qs['sort'])
+        ok_({'bayesian_rating': {'order': 'desc'}} in qs['sort'])
+        ok_({'created': {'order': 'desc'}} in qs['sort'])

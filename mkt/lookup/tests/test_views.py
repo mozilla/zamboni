@@ -651,6 +651,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
         eq_(data['results'][0]['id'], self.app.pk)
         eq_(data['results'][0]['url'], reverse('lookup.app_summary',
                                                args=[self.app.pk]))
+        eq_(data['results'][0]['app_slug'], self.app.app_slug)
 
     def test_by_name_part(self):
         self.app.name = 'This is Steamcube'

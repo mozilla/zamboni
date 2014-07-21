@@ -45,13 +45,11 @@ class ESPaginator(Paginator):
 
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
-        # directly fetch the count from _results_cache instead of calling
-        # page.object_list.count().
-        # FIXME: replace by simply calling page.object_list.count() when
-        # https://github.com/mozilla/elasticutils/pull/212 is merged and
-        # released.
-        page.object_list.execute()
-        self._count = page.object_list._results_cache.count
+        # directly fetch the count from hits.
+        # Overwrite `object_list` with the list of ES results.
+        page.object_list = page.object_list.execute().hits
+        # Update the `_count`.
+        self._count = page.object_list.total
 
         return page
 

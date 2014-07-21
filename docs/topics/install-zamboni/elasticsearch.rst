@@ -82,20 +82,11 @@ If you need to use another settings file and add arguments::
 Querying Elasticsearch in Django
 --------------------------------
 
-We use `elasticutils <http://github.com/mozilla/elasticutils>`_, a Python
-library that gives us a search API to elasticsearch.
-
-We attach elasticutils to Django models with a mixin. This lets us do things
-like ``.search()`` which returns an object which acts a lot like Django's ORM's
-object manager. ``.filter(**kwargs)`` can be run on this search object::
-
-    query_results = list(
-        MyModel.search().filter(my_field=a_str.lower())
-        .values_dict('that_field'))
+We use `Elasticsearch DSL <https://github.com/elasticsearch/elasticsearch-dsl-py>`_,
+a Python library that gives us a search API to elasticsearch.
 
 On Marketplace, apps use ``mkt/webapps/indexers:WebappIndexer`` as its
-interface to Elasticsearch. Search is done a little differently using
-this and results are a list of ``WebappIndexer`` objects::
+interface to Elasticsearch::
 
     query_results = WebappIndexer.search().filter(...)
 

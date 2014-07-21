@@ -44,11 +44,12 @@ class CollectionMembershipField(serializers.RelatedField):
     def to_native(self, qs, use_es=False):
         if use_es:
             serializer_class = self.app_serializer_classes['es']
+            # To work around elasticsearch default limit of 10, hardcode a
+            # higher limit.
+            qs = qs[:100].execute()
         else:
             serializer_class = self.app_serializer_classes['normal']
-        # To work around elasticsearch default limit of 10, hardcode a higher
-        # limit.
-        return serializer_class(qs[:100], context=self.context, many=True).data
+        return serializer_class(qs, context=self.context, many=True).data
 
     def _get_device(self, request):
         # Fireplace sends `dev` and `device`. See the API docs. When
@@ -63,7 +64,7 @@ class CollectionMembershipField(serializers.RelatedField):
         return amo.DEVICE_LOOKUP.get(dev)
 
     def field_to_native(self, obj, field_name):
-        if not hasattr(self, 'context') or not 'request' in self.context:
+        if not hasattr(self, 'context') or 'request' not in self.context:
             raise ImproperlyConfigured('Pass request in self.context when'
                                        ' using CollectionMembershipField.')
 
@@ -105,12 +106,13 @@ class CollectionMembershipField(serializers.RelatedField):
         _rget = lambda d: getattr(request, d, False)
         qs = Webapp.from_search(request, region=region, gaia=_rget('GAIA'),
                                 mobile=_rget('MOBILE'), tablet=_rget('TABLET'))
-        filters = {'collection.id': obj.pk}
+        qs = qs.filter('term', **{'collection.id': obj.pk})
         if device and device != amo.DEVICE_DESKTOP:
-            filters['device'] = device.id
+            qs = qs.filter('term', device=device.id)
         if profile:
-            filters.update(**profile.to_kwargs(prefix='features.has_'))
-        qs = qs.filter(**filters).order_by({
+            for k, v in profile.to_kwargs(prefix='features.has_').items():
+                qs = qs.filter('term', **{k: v})
+        qs = qs.sort({
             'collection.order': {
                 'order': 'asc',
                 'nested_filter': {

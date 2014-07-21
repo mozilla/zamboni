@@ -34,7 +34,6 @@ from django.utils.http import urlquote
 
 import bleach
 import chardet
-import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
 import pytz
@@ -42,6 +41,7 @@ from babel import Locale
 from cef import log_cef as _log_cef
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
+from elasticsearch_dsl.search import Search
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
 from PIL import Image, ImageFile, PngImagePlugin
@@ -120,7 +120,7 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = (ESPaginator if isinstance(queryset, elasticutils.S)
+    p = (ESPaginator if isinstance(queryset, Search)
          else paginator.Paginator)(queryset, per_page)
 
     if count is not None:
