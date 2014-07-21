@@ -2,6 +2,7 @@
 import hashlib
 import json
 
+from django.contrib.auth.models import AnonymousUser
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
@@ -53,6 +54,7 @@ class BaseTestCollectionMembershipField(object):
         request = RequestFactory().get('/', data)
         request.REGION = mkt.regions.RESTOFWORLD
         request.API = True
+        request.user = AnonymousUser()
         return request
 
     def test_to_native(self):
@@ -226,6 +228,7 @@ class TestCollectionSerializer(CollectionDataMixin, amo.tests.TestCase):
         minimal_context = {
             'request': RequestFactory().get('/whatever')
         }
+        minimal_context['request'].user = AnonymousUser()
         self.collection = Collection.objects.create(**self.collection_data)
         self.serializer = CollectionSerializer(self.collection,
                                                context=minimal_context)

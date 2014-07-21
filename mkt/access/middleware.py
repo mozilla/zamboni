@@ -23,9 +23,6 @@ class ACLMiddleware(object):
         if request.user.is_authenticated():
             amo.set_user(request.user)
             request.groups = request.user.groups.all()
-            request.amo_user = request.user
-        else:
-            request.amo_user = None
 
     def process_response(self, request, response):
         amo.set_user(None)

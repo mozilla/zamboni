@@ -106,7 +106,7 @@ def user_delete(request, user_id):
     user.save()  # Must call the save function to delete user.
     amo.log(amo.LOG.DELETE_USER_LOOKUP, user,
             details={'reason': delete_form.cleaned_data['delete_reason']},
-            user=request.amo_user)
+            user=request.user)
 
     return HttpResponseRedirect(reverse('lookup.user_summary', args=[user_id]))
 
@@ -207,7 +207,7 @@ def transaction_refund(request, tx_uuid):
     if res['status'] == PENDING:
         # Create pending Refund.
         refund_contrib.enqueue_refund(
-            amo.REFUND_PENDING, request.amo_user,
+            amo.REFUND_PENDING, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund pending: %s' % tx_uuid)
         email_buyer_refund_pending(contrib)
@@ -216,7 +216,7 @@ def transaction_refund(request, tx_uuid):
     elif res['status'] == COMPLETED:
         # Create approved Refund.
         refund_contrib.enqueue_refund(
-            amo.REFUND_APPROVED, request.amo_user,
+            amo.REFUND_APPROVED, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund approved: %s' % tx_uuid)
         email_buyer_refund_approved(contrib)
@@ -240,7 +240,7 @@ def app_summary(request, addon_id):
         app.update(priority_review=True)
         msg = u'Priority Review Requested'
         # Create notes and log entries.
-        create_comm_note(app, app.latest_version, request.amo_user, msg,
+        create_comm_note(app, app.latest_version, request.user, msg,
                          note_type=comm.NO_ACTION)
         amo.log(amo.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
                 created=datetime.now(), details={'comments': msg})
@@ -336,7 +336,7 @@ def user_activity(request, user_id):
         action__in=amo.LOG_HIDE_DEVELOPER)
     admin_items = ActivityLog.objects.for_user(user).filter(
         action__in=amo.LOG_HIDE_DEVELOPER)
-    amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.amo_user, user=user)
+    amo.log(amo.LOG.ADMIN_VIEWED_LOG, request.user, user=user)
     return render(request, 'lookup/user_activity.html',
                   {'pager': products, 'account': user, 'is_admin': is_admin,
                    'listing_filter': listing,

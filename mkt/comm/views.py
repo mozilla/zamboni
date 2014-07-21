@@ -60,7 +60,7 @@ class ReadUnreadFilter(BaseFilterBackend):
             return queryset
 
         show_read = BooleanField().from_native(val)
-        return filter_notes_by_read_status(queryset, request.amo_user,
+        return filter_notes_by_read_status(queryset, request.user,
                                            show_read)
 
 
@@ -81,7 +81,7 @@ class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
         val = BooleanField().from_native(request.DATA.get('is_read'))
 
         if val:
-            self.mark_as_read(request.amo_user)
+            self.mark_as_read(request.user)
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return Response('Requested update operation not supported',
@@ -101,7 +101,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
     @skip_cache
     def list(self, request):
         self.serializer_class = ThreadSerializer
-        profile = request.amo_user
+        profile = request.user
         # We list all the threads where the user has been CC'd.
         cc = list(profile.comm_thread_cc.values_list('thread', flat=True))
 
@@ -158,7 +158,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         app = form.cleaned_data['app']
         version = form.cleaned_data['version']
         thread, note = create_comm_note(
-            app, version, request.amo_user, form.cleaned_data['body'],
+            app, version, request.user, form.cleaned_data['body'],
             note_type=form.cleaned_data['note_type'])
 
         return Response(
@@ -181,7 +181,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
     def get_queryset(self):
         return CommunicationNote.objects.with_perms(
-            self.request.amo_user, self.comm_thread)
+            self.request.user, self.comm_thread)
 
     def create(self, request, *args, **kwargs):
         if not waffle.switch_is_active('comm-dashboard'):
@@ -196,7 +196,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         note_type = form.cleaned_data['note_type']
 
         if (note_type == comm.DEVELOPER_COMMENT and not
-            request.amo_user.addonuser_set.filter(
+            request.user.addonuser_set.filter(
                 addon=thread.addon).exists()):
             # Developer comment only for developers.
             return Response('Only developers can make developer comments',
@@ -209,7 +209,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
         # Create notes.
         thread, note = create_comm_note(
-            thread.addon, thread.version, self.request.amo_user,
+            thread.addon, thread.version, self.request.user,
             form.cleaned_data['body'], note_type=note_type)
 
         return Response(
@@ -243,7 +243,7 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
 
     def create(self, request, note_id, *args, **kwargs):
         note = get_object_or_404(CommunicationNote, id=note_id)
-        if not note.author.id == request.amo_user.id:
+        if not note.author.id == request.user.id:
             return Response(
                 [{'non_field_errors':
                   'You must be owner of the note to attach a file.'}],
@@ -303,7 +303,7 @@ class ThreadCCViewSet(DestroyModelMixin, CommViewSet):
 
         CommunicationThreadCC.objects.filter(
             thread=form.cleaned_data['pk'],
-            user=request.amo_user).delete()
+            user=request.user).delete()
 
         return Response("Successfully un-cc'ed from thread.",
                         status=status.HTTP_204_NO_CONTENT)

@@ -173,7 +173,7 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
 
     def setUp(self):
         self.request = mock.Mock()
-        self.request.amo_user = UserProfile.objects.get(id=999)
+        self.request.user = UserProfile.objects.get(id=999)
 
     def test_slug(self):
         app = Webapp.objects.get(pk=337141)

@@ -64,8 +64,8 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
                 'switches': switches,
             }
         }
-        if request.amo_user:
-            data['apps'] = user_relevant_apps(request.amo_user)
+        if request.user.is_authenticated():
+            data['apps'] = user_relevant_apps(request.user)
         if switch_is_active('firefox-accounts'):
             data['fxa_auth_state'], data['fxa_auth_url'] = fxa_auth_info()
 

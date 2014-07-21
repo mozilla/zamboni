@@ -85,7 +85,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
         account they don't have access to exists, we'll return 404 for them.)
         """
         qs = super(PaymentAccountViewSet, self).get_queryset()
-        return qs.filter(user=self.request.amo_user, inactive=False)
+        return qs.filter(user=self.request.user, inactive=False)
 
     def create(self, request, *args, **kwargs):
         provider = get_provider()
@@ -93,7 +93,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
         if form.is_valid():
             try:
                 provider = get_provider()
-                obj = provider.account_create(request.amo_user, form.data)
+                obj = provider.account_create(request.user, form.data)
             except HttpClientError as e:
                 log.error('Client error creating Bango account; %s' % e)
                 return Response(e.content,
@@ -185,16 +185,16 @@ class AddonPaymentAccountPermission(BasePermission):
 
     def check(self, request, app, account):
         if AllowAppOwner().has_object_permission(request, '', app):
-            if account.shared or account.user.pk == request.amo_user.pk:
+            if account.shared or account.user.pk == request.user.pk:
                 return True
             else:
                 log.info('AddonPaymentAccount access %(account)s denied '
                          'for %(user)s: wrong user, not shared.'.format(
-                         {'account': account.pk, 'user': request.amo_user.pk}))
+                         {'account': account.pk, 'user': request.user.pk}))
         else:
             log.info('AddonPaymentAccount access %(account)s denied '
                      'for %(user)s: no app permission.'.format(
-                     {'account': account.pk, 'user': request.amo_user.pk}))
+                     {'account': account.pk, 'user': request.user.pk}))
         return False
 
     def has_object_permission(self, request, view, object):

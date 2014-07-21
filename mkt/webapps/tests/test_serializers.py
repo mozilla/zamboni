@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from decimal import Decimal
 
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
@@ -36,7 +37,7 @@ class TestAppSerializer(amo.tests.TestCase):
         self.request = RequestFactory().get('/')
 
     def serialize(self, app, profile=None):
-        self.request.amo_user = profile
+        self.request.user = profile if profile else AnonymousUser()
         a = AppSerializer(instance=app, context={'request': self.request})
         return a.data
 
@@ -261,7 +262,7 @@ class TestAppSerializerPrices(amo.tests.TestCase):
     def serialize(self, app, profile=None, region=None, request=None):
         if request is None:
             request = self.request
-        request.amo_user = self.profile
+        request.user = self.profile
         request.REGION = region
         a = AppSerializer(instance=app, context={'request': request})
         return a.data
@@ -330,7 +331,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         self.profile = UserProfile.objects.get(pk=2519)
         self.request = RequestFactory().get('/')
         self.request.REGION = mkt.regions.US
-        self.request.amo_user = self.profile
+        self.request.user = self.profile
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
         self.app.update(categories=['books', 'social'])
@@ -400,7 +401,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
             'weekly_downloads': None,
         }
 
-        if self.request.amo_user:
+        if self.request.user.is_authenticated():
             expected['user'] = {
                 'developed': False,
                 'installed': False,
@@ -424,7 +425,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
     def test_basic_no_queries(self):
         # If we don't pass a UserProfile, a free app shouldn't have to make any
         # db queries at all.
-        self.request.amo_user = None
+        self.request.user = AnonymousUser()
         with self.assertNumQueries(0):
             self.test_basic()
 
@@ -433,6 +434,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         # empty strings instead of None if the strings don't exist.
         self.request = RequestFactory().get('/?lang=es')
         self.request.REGION = mkt.regions.US
+        self.request.user = AnonymousUser()
         res = self.serialize()
         expected = {
             'id': 337141,
@@ -586,6 +588,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
 
         self.request = RequestFactory().get('/?lang=whatever')
         self.request.REGION = mkt.regions.US
+        self.request.user = AnonymousUser()
         res = self.serialize()
         eq_(res['release_notes'], unicode(version.releasenotes))
 
@@ -671,6 +674,7 @@ class TestSimpleESAppSerializer(amo.tests.ESTestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
         self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
         RegionMiddleware().process_request(self.request)
         self.reindex(Webapp, 'webapp')
         self.indexer = S(WebappIndexer).filter(id=337141).execute().objects[0]

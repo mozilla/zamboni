@@ -105,7 +105,7 @@ class TestPremiumDecorators(amo.tests.TestCase):
         self.func.return_value = True
         self.func.__name__ = 'mock_function'
         self.request = RequestFactory().get('/')
-        self.request.amo_user = mock.Mock()
+        self.request.user = mock.Mock()
 
     def test_cant_become_premium(self):
         self.addon.can_become_premium.return_value = False

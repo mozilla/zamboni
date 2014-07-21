@@ -211,10 +211,10 @@ def status(request, addon_id, addon):
 
             form.save()
             create_comm_note(addon, addon.latest_version,
-                             request.amo_user, form.data['notes'],
+                             request.user, form.data['notes'],
                              note_type=comm.RESUBMISSION)
             if addon.vip_app:
-                handle_vip(addon, addon.current_version, request.amo_user)
+                handle_vip(addon, addon.current_version, request.user)
 
             messages.success(request, _('App successfully resubmitted.'))
             return redirect(addon.get_dev_url('versions'))
@@ -254,7 +254,7 @@ def status(request, addon_id, addon):
                      % (addon, ver.pk, upload))
 
             if addon.vip_app:
-                handle_vip(addon, ver, request.amo_user)
+                handle_vip(addon, ver, request.user)
 
             return redirect(addon.get_dev_url('versions.edit', args=[ver.pk]))
 
@@ -452,7 +452,7 @@ def version_edit(request, addon_id, addon, version_id):
 
         if f.data.get('approvalnotes'):
             create_comm_note(addon, addon.current_version,
-                             request.amo_user, f.data['approvalnotes'],
+                             request.user, f.data['approvalnotes'],
                              note_type=comm.REVIEWER_COMMENT)
 
         messages.success(request, _('Version successfully edited.'))
@@ -569,10 +569,10 @@ def validate_app(request):
 
 @post_required
 def _upload(request, addon=None, is_standalone=False):
-
+    user = request.user
     # If there is no user, default to None (saves the file upload as anon).
     form = NewPackagedAppForm(request.POST, request.FILES,
-                              user=getattr(request, 'amo_user', None),
+                              user=user if user.is_authenticated() else None,
                               addon=addon)
     if form.is_valid():
         tasks.validator.delay(form.file_upload.pk)
@@ -975,21 +975,21 @@ def docs(request, doc_name=None, doc_page=None):
 @login_required
 def terms(request):
     form = forms.DevAgreementForm({'read_dev_agreement': True},
-                                  instance=request.amo_user)
+                                  instance=request.user)
     if request.POST and form.is_valid():
         form.save()
-        log.info('Dev agreement agreed for user: %s' % request.amo_user.pk)
+        log.info('Dev agreement agreed for user: %s' % request.user.pk)
         if request.GET.get('to') and request.GET['to'].startswith('/'):
             return redirect(request.GET['to'])
         messages.success(request, _('Terms of service accepted.'))
     return render(request, 'developers/terms.html',
-                  {'accepted': request.amo_user.read_dev_agreement,
+                  {'accepted': request.user.read_dev_agreement,
                    'agreement_form': form})
 
 
 @login_required
 def api(request):
-    roles = request.amo_user.groups.filter(name='Admins').exists()
+    roles = request.user.groups.filter(name='Admins').exists()
     f = APIConsumerForm()
     if roles:
         messages.error(request,
@@ -1004,8 +1004,8 @@ def api(request):
                 messages.error(request, _('No such API key.'))
         else:
             key = 'mkt:%s:%s:%s' % (
-                request.amo_user.pk,
-                request.amo_user.email,
+                request.user.pk,
+                request.user.email,
                 Access.objects.filter(user=request.user).count())
             access = Access.objects.create(key=key,
                                            user=request.user,

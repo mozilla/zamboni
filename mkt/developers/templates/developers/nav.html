@@ -2,12 +2,12 @@
   <div class="pad">
     <nav class="menu-nav app-nav no-img" role="navigation">
       <ul class="c">
-        {% if request.user.is_authenticated() and request.amo_user.is_developer %}
+        {% if request.user.is_authenticated() and request.user.is_developer %}
           <li id="submissions" class="top">
             <a href="{{ url('mkt.developers.apps')|urlparams(src='nav') }}">
               {{ _('My Submissions') }}</a>
             <ul>
-              {% set my_apps = request.amo_user.my_apps() %}
+              {% set my_apps = request.user.my_apps() %}
               {% for addon in my_apps %}
                 {% if loop.index == 8 %}
                   <li><a href="{{ url('mkt.developers.apps')|urlparams(src='nav') }}">

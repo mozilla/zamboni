@@ -185,7 +185,7 @@ def version_status(addon, version):
 @register.inclusion_tag('reviewers/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
 def reviewers_score_bar(context, types=None, addon_type=None):
-    user = context.get('amo_user')
+    user = context.get('user')
 
     return new_context(dict(
         request=context.get('request'),

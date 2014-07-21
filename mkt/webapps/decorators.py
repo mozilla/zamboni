@@ -19,7 +19,7 @@ def has_purchased(f):
     """
     @functools.wraps(f)
     def wrapper(request, addon, *args, **kw):
-        if addon.is_premium() and not addon.has_purchased(request.amo_user):
+        if addon.is_premium() and not addon.has_purchased(request.user):
             log.info('Not purchased: %d' % addon.pk)
             raise PermissionDenied
         return f(request, addon, *args, **kw)

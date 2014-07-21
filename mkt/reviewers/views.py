@@ -273,7 +273,7 @@ def _review(request, addon, version):
 
     if (not settings.ALLOW_SELF_REVIEWS and
         not acl.action_allowed(request, 'Admin', '%') and
-        addon.has_author(request.amo_user)):
+        addon.has_author(request.user)):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
@@ -364,7 +364,7 @@ def _review(request, addon, version):
 
         if form.cleaned_data.get('notify'):
             # TODO: bug 741679 for implementing notifications in Marketplace.
-            EditorSubscription.objects.get_or_create(user=request.amo_user,
+            EditorSubscription.objects.get_or_create(user=request.user,
                                                      addon=addon)
 
         is_tarako = form.cleaned_data.get('is_tarako', False)
@@ -375,14 +375,14 @@ def _review(request, addon, version):
 
         # Success message.
         if score:
-            score = ReviewerScore.objects.filter(user=request.amo_user)[0]
+            score = ReviewerScore.objects.filter(user=request.user)[0]
             # L10N: {0} is the type of review. {1} is the points they earned.
             #       {2} is the points they now have total.
             success = _(
                u'"{0}" successfully processed (+{1} points, {2} total).'
                 .format(unicode(amo.REVIEWED_CHOICES[score.note_key]),
                         score.score,
-                        ReviewerScore.get_total(request.amo_user)))
+                        ReviewerScore.get_total(request.user)))
         else:
             success = _('Review successfully processed.')
         messages.success(request, success)
@@ -936,14 +936,14 @@ def performance(request, username=None):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
     if username:
-        if username == request.amo_user.username:
-            user = request.amo_user
+        if username == request.user.username:
+            user = request.user
         elif is_admin:
             user = get_object_or_404(UserProfile, username=username)
         else:
             raise http.Http404
     else:
-        user = request.amo_user
+        user = request.user
 
     today = datetime.date.today()
     month_ago = today - datetime.timedelta(days=30)
@@ -1161,7 +1161,7 @@ class GenerateToken(SlugOrIdMixin, CreateAPIView):
         token.save()
 
         log.info('Generated token on app:%s for user:%s' % (
-            app.id, request.amo_user.id))
+            app.id, request.user.id))
 
         return Response({'token': token.token})
 
@@ -1184,7 +1184,7 @@ def review_viewing(request):
         return {}
 
     addon_id = request.POST['addon_id']
-    user_id = request.amo_user.id
+    user_id = request.user.id
     current_name = ''
     is_user = 0
     key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
@@ -1199,7 +1199,7 @@ def review_viewing(request):
         # just to account for latency and the like.
         cache.set(key, user_id, interval * 2)
         currently_viewing = user_id
-        current_name = request.amo_user.name
+        current_name = request.user.name
         is_user = 1
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -1218,7 +1218,7 @@ def queue_viewing(request):
         return {}
 
     viewing = {}
-    user_id = request.amo_user.id
+    user_id = request.user.id
 
     for addon_id in request.POST['addon_ids'].split(','):
         addon_id = addon_id.strip()

@@ -82,9 +82,8 @@ class RestOAuthMiddleware(object):
                 token_type=ACCESS_TOKEN,
                 key=oauth_req.resource_owner_key).values_list(
                     'user_id', flat=True)[0]
-            request.amo_user = UserProfile.objects.select_related(
+            request.user = UserProfile.objects.select_related(
                 'user').get(pk=uid)
-            request.user = request.amo_user
         else:
             # This is 2-legged OAuth.
             log.info('Trying 2 legged OAuth')
@@ -102,21 +101,20 @@ class RestOAuthMiddleware(object):
             uid = Access.objects.filter(
                 key=client_key).values_list(
                     'user_id', flat=True)[0]
-            request.amo_user = UserProfile.objects.select_related(
+            request.user = UserProfile.objects.select_related(
                 'user').get(pk=uid)
-            request.user = request.amo_user
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])
-        roles = set(request.amo_user.groups.values_list('name', flat=True))
+        roles = set(request.user.groups.values_list('name', flat=True))
         if roles and roles.intersection(denied_groups):
             log.info(u'Attempt to use API with denied role, user: %s'
-                     % request.amo_user.pk)
-            # Set request attributes back to None.
-            request.user = request.amo_user = None
+                     % request.user.pk)
+            # Set request user back to Anonymous.
+            request.user = AnonymousUser()
             return
 
-        if request.user:
+        if request.user.is_authenticated():
             request.authed_from.append('RestOAuth')
 
         log.info('Successful OAuth with user: %s' % request.user)
@@ -184,8 +182,7 @@ class RestSharedSecretMiddleware(object):
                                consumer_id, hashlib.sha512).hexdigest() == hm
             if matches:
                 try:
-                    request.amo_user = UserProfile.objects.get(email=email)
-                    request.user = request.amo_user
+                    request.user = UserProfile.objects.get(email=email)
                     request.authed_from.append('RestSharedSecret')
                 except UserProfile.DoesNotExist:
                     log.info('Auth token matches absent user (%s)' % email)

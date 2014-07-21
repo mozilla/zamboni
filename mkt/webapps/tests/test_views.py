@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 
 from nose.tools import eq_, ok_
@@ -22,6 +23,7 @@ class TestAppFeaturesSerializer(BaseOAuth):
     def setUp(self):
         self.features = Webapp.objects.get(pk=337141).latest_version.features
         self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
 
     def get_native(self, **kwargs):
         self.features.update(**kwargs)
@@ -48,6 +50,7 @@ class TestSimpleAppSerializer(amo.tests.TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
         self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
 
     def app(self):
         return AppSerializer(self.webapp,

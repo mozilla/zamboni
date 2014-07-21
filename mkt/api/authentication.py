@@ -16,7 +16,7 @@ class RestOAuthAuthentication(BaseAuthentication):
 
     def authenticate(self, request):
         # Most of the work here is in the RestOAuthMiddleware.
-        if (getattr(request._request, 'user', None) and
+        if (request._request.user.is_authenticated() and
             'RestOAuth' in getattr(request._request, 'authed_from', [])):
             request.user = request._request.user
             return request.user, None
@@ -26,7 +26,7 @@ class RestSharedSecretAuthentication(BaseAuthentication):
 
     def authenticate(self, request):
         # Most of the work here is in the RestSharedSecretMiddleware.
-        if (getattr(request._request, 'user', None) and
+        if (request._request.user.is_authenticated() and
             'RestSharedSecret' in getattr(
                 request._request, 'authed_from', [])):
             request.user = request._request.user

@@ -43,6 +43,7 @@ class TestRestOAuthAuthentication(TestCase):
         req = RequestFactory().post(url,
             HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=client.sign('POST', url)[1]['Authorization'])
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
         return req
@@ -104,17 +105,20 @@ class TestSharedSecretAuthentication(TestCase):
             '/api/?_user=cfinke@m.com,56b6f1a3dd735d962c56ce7d8f46e02ec1d4748d'
             '2c00c407d75f0969d08bb9c68c31b3371aa8130317815c89e5072e31bb94b4121'
             'c5c165f3515838d4d6c60c4,165d631d3c3045458b4516242dad7ae')
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
         ok_(self.auth.authenticate(Request(req)))
-        eq_(self.profile.pk, req.amo_user.pk)
+        ok_(req.user.is_authenticated())
+        eq_(self.profile.pk, req.user.pk)
 
     def test_failed_session_auth_query(self):
         req = RequestFactory().post('/api/?_user=bogus')
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
         ok_(not self.auth.authenticate(Request(req)))
-        assert not getattr(req, 'amo_user', None)
+        ok_(not req.user.is_authenticated())
 
     def test_session_auth(self):
         req = RequestFactory().post(
@@ -125,26 +129,30 @@ class TestSharedSecretAuthentication(TestCase):
             '9c68c31b3371aa8130317815c89e5072e31bb94b4'
             '121c5c165f3515838d4d6c60c4,165d631d3c3045'
             '458b4516242dad7ae')
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
         ok_(self.auth.authenticate(Request(req)))
-        eq_(self.profile.pk, req.amo_user.pk)
+        ok_(req.user.is_authenticated())
+        eq_(self.profile.pk, req.user.pk)
 
     def test_failed_session_auth(self):
         req = RequestFactory().post(
             '/api/',
             HTTP_AUTHORIZATION='mkt-shared-secret bogus')
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
         ok_(not self.auth.authenticate(Request(req)))
-        assert not getattr(req, 'amo_user', None)
+        ok_(not req.user.is_authenticated())
 
     def test_session_auth_no_post(self):
         req = RequestFactory().post('/api/')
+        req.user = AnonymousUser()
         for m in self.middlewares:
             m().process_request(req)
-        req.user = self.profile
-        assert not self.auth.authenticate(Request(req))
+        ok_(not self.auth.authenticate(Request(req)))
+        ok_(not req.user.is_authenticated())
 
 
 @patch.object(settings, 'SECRET_KEY', 'gubbish')
@@ -163,6 +171,7 @@ class TestMultipleAuthenticationDRF(TestCase):
             '9c68c31b3371aa8130317815c89e5072e31bb94b4'
             '121c5c165f3515838d4d6c60c4,165d631d3c3045'
             '458b4516242dad7ae')
+        request.user = AnonymousUser()
         drf_request = Request(request)
 
         # Start with an AnonymousUser on the request, because that's a classic
@@ -184,11 +193,12 @@ class TestMultipleAuthenticationDRF(TestCase):
         eq_(drf_request._request.user, self.profile)
         eq_(drf_request.user.is_authenticated(), True)
         eq_(drf_request._request.user.is_authenticated(), True)
-        eq_(drf_request.amo_user.pk, self.profile.pk)
-        eq_(drf_request._request.amo_user.pk, self.profile.pk)
+        eq_(drf_request.user.pk, self.profile.pk)
+        eq_(drf_request._request.user.pk, self.profile.pk)
 
     def test_multiple_fail(self):
         request = RequestFactory().post('/api')
+        request.user = AnonymousUser()
         drf_request = Request(request)
         request.user = AnonymousUser()
         drf_request.authenticators = (

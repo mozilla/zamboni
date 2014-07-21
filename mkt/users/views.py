@@ -16,12 +16,10 @@ from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
 from requests_oauthlib import OAuth2Session
 from tower import ugettext as _
-import waffle
 
 import amo
 from amo.decorators import json_view, login_required, post_required
-from amo.helpers import absolutify
-from amo.urlresolvers import get_url_prefix, reverse
+from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
 
@@ -42,9 +40,9 @@ def user_view(f):
         else:
             key = 'username'
             # If the username is `me` then show the current user's profile.
-            if (user_id == 'me' and request.amo_user and
-                request.amo_user.username):
-                user_id = request.amo_user.username
+            if (user_id == 'me' and request.user.is_authenticated() and
+                request.user.username):
+                user_id = request.user.username
         user = get_object_or_404(UserProfile, **{key: user_id})
         return f(request, user, *args, **kw)
     return wrapper

@@ -160,10 +160,9 @@ class LocaleMiddleware(object):
         # Update cookie if values have changed.
         if lang != stored_lang or ov_lang != stored_ov_lang:
             request.LANG_COOKIE = ','.join([lang, ov_lang])
-        if (getattr(request, 'amo_user', None)
-            and request.amo_user.lang != lang):
-            request.amo_user.lang = lang
-            request.amo_user.save()
+        if request.user.is_authenticated() and request.user.lang != lang:
+            request.user.lang = lang
+            request.user.save()
         request.LANG = lang
         tower.activate(lang)
 

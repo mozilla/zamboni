@@ -2,7 +2,7 @@ The following feedback was submitted to the Marketplace:
 
 User:
 
-{% if user %}
+{% if user and user.is_authenticated() %}
   username: {{ user.username }} (id={{ user.id }})
   name: {{ user.name }}
   email: {{ user.email }}

@@ -58,7 +58,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
             return Response('Payments are limited and flag not enabled',
                             status=status.HTTP_403_FORBIDDEN)
 
-        if app.is_premium() and app.has_purchased(request._request.amo_user):
+        if app.is_premium() and app.has_purchased(request._request.user):
             log.info('Already purchased: {0}'.format(app.pk))
             return Response({'reason': u'Already purchased app.'},
                             status=status.HTTP_409_CONFLICT)
@@ -67,7 +67,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
                         'Preparing JWT for: {0}'.format(app.pk), severity=3)
 
         log.debug('Starting purchase of app: {0} by user: {1}'.format(
-            app.pk, request._request.amo_user))
+            app.pk, request._request.user))
 
         contribution = Contribution.objects.create(
             addon_id=app.pk,
@@ -77,7 +77,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
             source=request._request.REQUEST.get('src', ''),
             source_locale=request._request.LANG,
             type=amo.CONTRIB_PENDING,
-            user=request._request.amo_user,
+            user=request._request.user,
             uuid=str(uuid.uuid4()),
         )
 

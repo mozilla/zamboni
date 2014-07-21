@@ -54,7 +54,7 @@ class TestGetRegion(TestCase):
         req.API = True
         req.LANG = ''
         req.user = self.user
-        req.amo_user = self.profile
+        req.user = self.profile
         RegionMiddleware().process_request(req)
         ACLMiddleware().process_request(req)
         return self.resource.get_region_from_request(req)
@@ -179,7 +179,7 @@ class TestApi(RestOAuth, ESTestCase):
 
         def fakeauth(auth, req, **kw):
             req.user = user
-            req.amo_user = user
+            req.user = user
 
         with patch('mkt.api.middleware.RestSharedSecretMiddleware'
                    '.process_request', fakeauth):

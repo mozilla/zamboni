@@ -31,7 +31,7 @@ class TestReviewing(RestOAuth):
         self.list_url = reverse('reviewing-list')
         self.user = UserProfile.objects.get(pk=2519)
         self.req = RequestFactory().get('/')
-        self.req.amo_user = self.user
+        self.req.user = self.user
 
     def test_verbs(self):
         self._allowed_verbs(self.list_url, ('get'))
@@ -360,7 +360,7 @@ class TestGenerateToken(RestOAuth):
         self.url = reverse('generate-reviewer-token', args=[self.app.app_slug])
         self.user = UserProfile.objects.get(pk=2519)
         self.req = RequestFactory().get('/')
-        self.req.amo_user = self.user
+        self.req.user = self.user
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ('post'))

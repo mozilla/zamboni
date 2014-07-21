@@ -22,7 +22,7 @@
           {{ _('Additional Marketplace Policies') }}</a>
       </li>
     </ol>
-    {% if not accepted or not dev_agreement_ok(amo_user) %}
+    {% if not accepted or not dev_agreement_ok(user) %}
       <form id="agreement-form" method="post">
         {{ csrf() }}
         {{ agreement_form.read_dev_agreement }}

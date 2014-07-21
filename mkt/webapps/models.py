@@ -1861,7 +1861,7 @@ class Webapp(Addon):
         by the developer.
         """
         # Let developers see it always.
-        can_see = (self.has_author(request.amo_user) or
+        can_see = (self.has_author(request.user) or
                    action_allowed(request, 'Apps', 'Edit'))
 
         # Let app reviewers see it only when it's pending.

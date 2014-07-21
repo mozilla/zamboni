@@ -31,7 +31,7 @@ class ThreadPermission(BasePermission):
         if not request.user.is_authenticated() or obj.read_permission_public:
             return obj.read_permission_public
 
-        return user_has_perm_thread(obj, request.amo_user)
+        return user_has_perm_thread(obj, request.user)
 
 
 class NotePermission(ThreadPermission):
@@ -51,7 +51,7 @@ class NotePermission(ThreadPermission):
 
     def has_object_permission(self, request, view, obj):
         # Has thread obj-level permission AND note obj-level permission.
-        return user_has_perm_note(obj, request.amo_user)
+        return user_has_perm_note(obj, request.user)
 
 
 class AttachmentPermission(NotePermission):
