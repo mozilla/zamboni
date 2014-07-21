@@ -88,7 +88,6 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
     'elasticsearch': {'level': logging.DEBUG},
-    'elasticsearch.trace': {'level': logging.DEBUG},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.DEBUG},
