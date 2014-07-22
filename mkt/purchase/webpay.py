@@ -4,17 +4,23 @@ import uuid
 from decimal import Decimal
 
 from django import http
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 
 import amo
 from amo.decorators import json_view, login_required, post_required, write
+from amo.utils import log_cef
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
+from lib.metrics import record_action
+from lib.pay_server import client as solitude
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.decorators import can_be_purchased
 from mkt.purchase.models import Contribution
+from mkt.users.models import UserProfile
+from mkt.users.utils import autocreate_username
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 from mkt.webpay.webpay_jwt import get_product_jwt, WebAppProduct
@@ -125,20 +131,58 @@ def postback(request):
                                  data['response']['transactionID'],
                                  contrib_uuid, contrib.transaction_id))
 
+    try:
+        transaction_data = (solitude.api.generic
+                                        .transaction
+                                        .get_object_or_404)(uuid=trans_id)
+    except ObjectDoesNotExist:
+        raise LookupError('Unable to look up transaction: '
+                          '{trans_id} in Solitude'.format(
+                              trans_id=trans_id))
+
+    buyer_uri = transaction_data['buyer']
+
+    try:
+        buyer_data = solitude.api.by_url(buyer_uri).get_object_or_404()
+    except ObjectDoesNotExist:
+        raise LookupError('Unable to look up buyer: '
+                          '{buyer_uri} in Solitude'.format(
+                              buyer_uri=buyer_uri))
+
+    buyer_email = buyer_data['email']
+
+    user_profile = UserProfile.objects.filter(email=buyer_email)
+
+    if user_profile.exists():
+        user_profile = user_profile.get()
+    else:
+        buyer_username = autocreate_username(buyer_email.partition('@')[0])
+        source = amo.LOGIN_SOURCE_WEBPAY
+        user_profile = UserProfile.objects.create(display_name=buyer_username,
+                                                  email=buyer_email,
+                                                  is_verified=False,
+                                                  source=source,
+                                                  username=buyer_username)
+
+        log_cef('New Account', 5, request, username=buyer_username,
+                signature='AUTHNOTICE',
+                msg='A new account was created from Webpay (using Persona)')
+        record_action('new-user', request)
+
     log.info('webpay postback: fulfilling purchase for contrib %s with '
              'transaction %s' % (contrib, trans_id))
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
                     'Purchase complete for: %s' % (contrib.addon.pk),
                     severity=3)
-    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE,
+
+    contrib.update(transaction_id=trans_id,
+                   type=amo.CONTRIB_PURCHASE,
+                   user=user_profile,
                    amount=Decimal(data['response']['price']['amount']),
                    currency=data['response']['price']['currency'])
 
-    if contrib.user:
-        tasks.send_purchase_receipt.delay(contrib.pk)
-    else:
-        log.info('No user for contribution {c}; not sending receipt'
-                 .format(c=contrib))
+    tasks.send_purchase_receipt.delay(contrib.pk)
+
     return http.HttpResponse(trans_id)
 
 
