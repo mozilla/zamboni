@@ -18,7 +18,7 @@ class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     cors_allowed_methods = ('get', 'post', 'put', 'patch' 'delete')
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
-        'get': AllowAuthor,
+        'get': AllowAny,
         'post': AllowAuthor,
         'put': AllowAuthor,
         'patch': AllowAuthor,
@@ -38,8 +38,8 @@ class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
     def get_app(self):
         if not hasattr(self, 'app'):
-            app_slug = self.kwargs['app_slug']
-            self.app = get_object_or_404(Webapp, app_slug=app_slug)
+            self.app = get_object_or_404(Webapp,
+                                         app_domain=self.kwargs['origin'])
         return self.app
 
     def get_authors(self):

@@ -36,34 +36,35 @@
           Your app must define an <a href="{{ origin }}">origin</a> in your manifest so that receipts can be verified properly.
         {% endtrans %}
       </div>
+    {% else %}
+      <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', origin=addon.origin) }}"
+           data-detail-url-format="{{ url('in-app-products-detail', origin=addon.origin, pk="{id}") }}">
+        <table id="version-list">
+          <thead>
+            <tr>
+              <th>{{ _('Icon') }}</th>
+              <th>{{ _('Name') }}</th>
+              <th>{{ _('Price Point') }}</th>
+              <th>{{ _('Product ID') }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+              {% include "developers/payments/in-app-product-row.html" %}
+            {% endfor %}
+          </tbody>
+        </table>
+        <p class="listing-footer">
+          <button id="add-in-app-product">{{ _('Add a product') }}</button>
+        </p>
+      </div>
+      <script id="in-app-product-row-template" type="x-template">
+        {% with product=new_product %}
+          {% include "developers/payments/in-app-product-row.html" %}
+        {% endwith %}
+      </script>
     {% endif %}
-
-    <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', app_slug=addon.app_slug) }}" data-detail-url-format="{{ url('in-app-products-detail', app_slug=addon.app_slug, pk="{id}") }}">
-      <table id="version-list">
-        <thead>
-          <tr>
-            <th>{{ _('Icon') }}</th>
-            <th>{{ _('Name') }}</th>
-            <th>{{ _('Price Point') }}</th>
-            <th>{{ _('Product ID') }}</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for product in products %}
-            {% include "developers/payments/in-app-product-row.html" %}
-          {% endfor %}
-        </tbody>
-      </table>
-      <p class="listing-footer">
-        <button id="add-in-app-product">{{ _('Add a product') }}</button>
-      </p>
-    </div>
-    <script id="in-app-product-row-template" type="x-template">
-      {% with product=new_product %}
-        {% include "developers/payments/in-app-product-row.html" %}
-      {% endwith %}
-    </script>
   </section>
 
   {% include "developers/includes/addons_edit_nav.html" %}

@@ -61,7 +61,7 @@ app_detail_patterns = patterns('',
     url('^status$', views.status, name='mkt.developers.apps.versions'),
     url('^blocklist$', views.blocklist, name='mkt.developers.apps.blocklist'),
 
-     # Only present if DEBUG=True.
+    # Only present if DEBUG=True.
     url('^debug/', views.debug, name='mkt.developers.debug'),
 
     # IARC content ratings.
@@ -196,7 +196,7 @@ app_payments.register(r'payments/debug', PaymentDebugViewSet,
 
 payments_api_patterns = patterns('',
     url(r'^payments/', include(api_payments.urls)),
-    url(r'^payments/(?P<app_slug>[^\/]+)/', include(in_app_products.urls)),
+    url(r'^payments/(?P<origin>(app|https?)://[^/]+)/', include(in_app_products.urls)),
     url(r'^apps/app/', include(app_payments.urls)),
 )
 
