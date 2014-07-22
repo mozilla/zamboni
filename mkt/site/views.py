@@ -83,8 +83,7 @@ def manifest(request):
             'marketplace-app-rating': {'href': '/'},
             'marketplace-category': {'href': '/'},
             'marketplace-search': {'href': '/'},
-        },
-        'orientation': ['portrait-primary']
+        }
     }
     if get_carrier():
         data['launch_path'] = urlparams('/', carrier=get_carrier())
