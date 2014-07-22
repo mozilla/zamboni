@@ -228,11 +228,15 @@ In-app products are used for setting up in-app payments without the need to
 host your own JWT signer. This API is for managing your in-app products for use
 with the in-app payment service.
 
+The **origin** refers to the
+`origin <https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin>`_ of the
+packaged app. For example: ``app://foo-app.com``.
+
 .. note:: Feature not complete.
 
-.. note:: Authentication is required.
+.. http:post:: /api/v1/payments/(string:origin)/in-app/
 
-.. http:post:: /api/v1/payments/(string:app_slug)/in-app/
+    .. note:: Authentication is required.
 
     Creates a new in-app product for sale.
 
@@ -259,7 +263,7 @@ with the in-app payment service.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/(string:app_slug)/in-app/
+.. http:get:: /api/v1/payments/(string:origin)/in-app/
 
     List the in-app products for this app.
 
@@ -281,7 +285,7 @@ with the in-app payment service.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/(string:app_slug)/in-app/(int:id)/
+.. http:get:: /api/v1/payments/(string:origin)/in-app/(int:id)/
 
     Details of an in-app product.
 
@@ -303,7 +307,9 @@ with the in-app payment service.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:put:: /api/v1/payments/(string:app_slug)/in-app/(int:id)/
+.. http:put:: /api/v1/payments/(string:origin)/in-app/(int:id)/
+
+    .. note:: Authentication is required.
 
     Update an in-app product.
 
@@ -517,6 +523,8 @@ Developers
 
 Developers of the app will get a special developer receipt that is valid for
 24 hours and does not require payment. See also `Test Receipts`_.
+
+.. _`Test Receipts`: https://developer.mozilla.org/en-US/Marketplace/Monetization/Validating_a_receipt#Test_receipts
 
 Reviewers
 ~~~~~~~~~

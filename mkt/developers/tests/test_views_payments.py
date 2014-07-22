@@ -190,7 +190,7 @@ class TestInAppProductsView(InappTest):
         eq_(self.get().status_code, 404)
 
     def test_origin(self):
-        self.app.update(is_packaged=True, app_domain='http://f.c/')
+        self.app.update(is_packaged=True, app_domain='http://f.c')
         doc = pq(self.get().content)
         ok_(not doc('section.primary div.notification-box'))
 
