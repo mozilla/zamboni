@@ -1,4 +1,5 @@
 import logging
+import sys
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
@@ -38,6 +39,14 @@ class Command(BaseCommand):
         if kw['webapps']:
             pks = [int(a.strip()) for a in kw['webapps'].split(',')]
             qs = qs.filter(pk__in=pks)
-        ts = [sign.subtask(args=[webapp.current_version.pk],
-                           kwargs={'resign': True}) for webapp in qs]
-        TaskSet(ts).apply_async()
+
+        tasks = []
+        for app in qs:
+            if not app.current_version:
+                sys.stdout.write('Public app [id:%s] with no current version'
+                                 % app.pk)
+                continue
+
+            tasks.append(sign.subtask(args=[app.current_version.pk],
+                                      kwargs={'resign': True}))
+        TaskSet(tasks).apply_async()
