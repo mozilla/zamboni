@@ -125,7 +125,6 @@ class TestVersion(amo.tests.TestCase):
         self.assert3xx(r, self.webapp.get_dev_url('versions'))
 
     def test_comm_thread_after_resubmission(self):
-        self.create_switch('comm-dashboard')
         self.webapp.update(status=amo.STATUS_REJECTED)
         amo.tests.make_rated(self.webapp)
         amo.set_user(UserProfile.objects.get(username='admin'))

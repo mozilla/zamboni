@@ -212,7 +212,7 @@ def status(request, addon_id, addon):
             form.save()
             create_comm_note(addon, addon.latest_version,
                              request.user, form.data['notes'],
-                             note_type=comm.RESUBMISSION)
+                             note_type=comm.RESUBMISSION, no_switch=True)
             if addon.vip_app:
                 handle_vip(addon, addon.current_version, request.user)
 
