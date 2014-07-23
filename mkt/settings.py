@@ -959,7 +959,7 @@ PRE_GENERATE_APK_URL = (
 
 
 PREINSTALL_CONTACT_EMAIL = 'app-reviewers@mozilla.org'
-PREINSTALL_TEST_PLAN_URL = 'docs/app-test-template/v1'
+PREINSTALL_TEST_PLAN_URL = 'docs/app-test-template/v2'
 PREINSTALL_TEST_PLAN_PATH = os.path.join(
     MEDIA_ROOT, PREINSTALL_TEST_PLAN_URL + '/en-US.xlsx')
 PREINSTALL_TEST_PLAN_LATEST = datetime.datetime.fromtimestamp(
