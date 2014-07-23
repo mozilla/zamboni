@@ -148,7 +148,7 @@
                       <button data-api-url="{{ url('version-status', pk=v.pk) }}" class="button disabled">{{ _('OK') }}</button>
                     </div>
                   {% else %}
-                    {{ amo.MKT_STATUS_CHOICES[app.status] }}
+                    {{ amo.MKT_STATUS_CHOICES[file.status] }}
                   {% endif %}
                 </td>
               {% endwith %}
