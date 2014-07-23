@@ -191,7 +191,6 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         eq_(app.app_slug, 'thisisaslug')
 
     def test_comm_thread(self):
-        self.create_switch('comm-dashboard')
         app = Webapp.objects.get(pk=337141)
         note_body = 'please approve this app'
         data = {
