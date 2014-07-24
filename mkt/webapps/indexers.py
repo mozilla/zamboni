@@ -59,14 +59,11 @@ class WebappIndexer(BaseIndexer):
             doc_type: {
                 # Disable _all field to reduce index size.
                 '_all': {'enabled': False},
-                # TODO: Remove when we upgrade to Elasticsearch 1.0+.
-                # Add a boost field to enhance relevancy of a document.
-                '_boost': {'name': '_boost', 'null_value': 1.0},
                 'properties': {
-                    # TODO: When we upgrade to Elasticsearch 1.0+.
                     # Add a boost field to enhance relevancy of a document.
                     # This is used during queries in a function scoring query.
-                    # '_boost': {'type': 'long'},
+                    'boost': {'type': 'long'},
+                    # App fields.
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
@@ -220,8 +217,6 @@ class WebappIndexer(BaseIndexer):
             mapping[doc_type]['properties'].update(
                 _locale_field_mapping('description', analyzer))
 
-        # TODO: reviewer flags (bug 848446)
-
         return mapping
 
     @classmethod
@@ -261,7 +256,7 @@ class WebappIndexer(BaseIndexer):
                  'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        d['_boost'] = len(installed_ids) or 1
+        d['boost'] = len(installed_ids) or 1
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -388,7 +383,7 @@ class WebappIndexer(BaseIndexer):
 
         # Bump the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC:
-            d['_boost'] = max(d['_boost'], 1) * 4
+            d['boost'] = max(d['boost'], 1) * 4
 
         # If the app is compatible with Firefox OS, push suggestion data in the
         # index - This will be used by RocketbarView API, which is specific to
@@ -397,7 +392,7 @@ class WebappIndexer(BaseIndexer):
             d['name_suggest'] = {
                 'input': d['name'],
                 'output': unicode(obj.id),  # We only care about the payload.
-                'weight': d['_boost'],
+                'weight': d['boost'],
                 'payload': {
                     'default_locale': d['default_locale'],
                     'icon_hash': d['icon_hash'],

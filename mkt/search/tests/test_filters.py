@@ -47,19 +47,23 @@ class TestSearchFilters(BaseOAuth):
         qs = self._filter(self.req, {'q': 'search terms'})
         ok_(qs['query']['filtered']['query'])
         # Spot check a few queries.
+        should = (qs['query']['filtered']['query']['function_score']['query']
+                  ['bool']['should'])
         ok_({'match': {'name': {'query': 'search terms', 'boost': 4,
                                 'slop': 1, 'type': 'phrase'}}}
-            in qs['query']['filtered']['query']['bool']['should'])
+            in should)
         ok_({'prefix': {'name': {'boost': 1.5, 'value': 'search terms'}}}
-            in qs['query']['filtered']['query']['bool']['should'])
+            in should)
         ok_({'match': {'name_english': {'query': 'search terms',
                                         'boost': 2.5}}}
-            in qs['query']['filtered']['query']['bool']['should'])
+            in should)
 
     def test_fuzzy_single_word(self):
         qs = self._filter(self.req, {'q': 'term'})
+        should = (qs['query']['filtered']['query']['function_score']['query']
+                  ['bool']['should'])
         ok_({'fuzzy': {'tags': {'prefix_length': 1, 'value': 'term'}}}
-            in qs['query']['filtered']['query']['bool']['should'])
+            in should)
 
     def test_no_fuzzy_multi_word(self):
         qs = self._filter(self.req, {'q': 'search terms'})

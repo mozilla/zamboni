@@ -2442,16 +2442,6 @@ class TestPreGenAPKs(amo.tests.WebappTestCase):
 
 
 class TestSearchSignals(amo.tests.ESTestCase):
-    """
-    Note: This will start failing when we upgrade to Elasticsearch 1.0+.
-
-    The count API changed from Elasticsearch 0.9.xx to 1.0+. Prior to 1.0 the
-    body would not accept a root level "query". So this test sends raw counts.
-    Update to use the simpler code post 1.0+::
-
-        WebappIndexer.search().count()
-
-    """
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
@@ -2464,32 +2454,22 @@ class TestSearchSignals(amo.tests.ESTestCase):
             except elasticsearch.NotFoundError:
                 pass
 
-    def _count(self, body=None):
-        return WebappIndexer.get_es().count(
-            index=WebappIndexer.get_index(),
-            doc_type=WebappIndexer.get_mapping_type_name(),
-            body=body)['count']
-
     def test_create(self):
-        eq_(self._count(), 0)
+        eq_(WebappIndexer.search().count(), 0)
         amo.tests.app_factory()
         self.refresh()
-        eq_(self._count(), 1)
+        eq_(WebappIndexer.search().count(), 1)
 
     def test_update(self):
         app = amo.tests.app_factory()
         self.refresh()
-        eq_(self._count(), 1)
+        eq_(WebappIndexer.search().count(), 1)
 
         prev_name = unicode(app.name)
         app.name = 'yolo'
         app.save()
         self.refresh()
 
-        eq_(self._count(), 1)
-        # TODO:
-        # eq_(WebappIndexer.search().query('term', name=prev_name).count(), 0)
-        eq_(self._count({'term': {'name': prev_name}}), 0)
-        # TODO:
-        # eq_(WebappIndexer.search().query('term', name='yolo').count(), 1)
-        eq_(self._count({'term': {'name': 'yolo'}}), 1)
+        eq_(WebappIndexer.search().count(), 1)
+        eq_(WebappIndexer.search().query('term', name=prev_name).count(), 0)
+        eq_(WebappIndexer.search().query('term', name='yolo').count(), 1)

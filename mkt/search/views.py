@@ -122,14 +122,14 @@ def _filter_search(request, qs, data, region=None, profile=None):
     # Elasticsearch.
     order_by = []
 
-    # Queries including function score using field value factor on `_boost`.
+    # Queries with function score using field value factor on `boost` for
+    # popularity boosting.
     if data.get('q'):
-        # TODO: Enable function score queries when were're on 1.0+.
-        # qs = qs.query(
-        #     Q('function_score',
-        #       query=name_query(data['q'].lower()),
-        #       functions=[SF('field_value_factor', field='_boost')]))
-        qs = qs.query(name_query(data['q'].lower()))
+        # Note: {'score_mode': 'multiply'} is the default and is excluded.
+        qs = qs.query(
+            'function_score',
+            query=name_query(data['q'].lower()),
+            functions=[query.SF('field_value_factor', field='boost')])
     else:
         # When querying we want to sort by relevance. If no query is provided,
         # i.e. we are only applying filters which don't affect the relevance,
