@@ -31,10 +31,17 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertEquals(res.context['repo'], 'transonic')
 
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
-        # Temporarily enabling include.js shim (bug 992334).
-        raise SkipTest
-
         for url in ('/server.html?mccs=blah',
+                    '/server.html?mcc=blah&mnc=blah',
+                    '/server.html?nativepersona=true'):
+            res = self.client.get(url)
+            self.assertNotContains(res, 'login.persona.org/include.js')
+
+    def test_fireplace_persona_js_not_included_for_firefox_accounts(self):
+        self.create_switch('firefox-accounts')
+        for url in ('/server.html',
+                    '/server.html?mcc=blah',
+                    '/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah',
                     '/server.html?nativepersona=true'):
             res = self.client.get(url)
