@@ -52,13 +52,6 @@ def commonplace(request, repo, **kwargs):
 
     BUILD_ID = get_build_id(repo)
 
-    if not waffle.switch_is_active('firefox-accounts'):
-        site_settings = {
-            'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
-        }
-    else:
-        site_settings = {}
-
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
 
     include_persona = True
@@ -67,6 +60,17 @@ def commonplace(request, repo, **kwargs):
             'mccs' in request.GET or
             ('mcc' in request.GET and 'mnc' in request.GET)):
             include_persona = False
+
+    if waffle.switch_is_active('firefox-accounts'):
+        # We never want to include persona shim if firefox accounts is enabled:
+        # native fxa already provides navigator.id, and fallback fxa doesn't
+        # need it.
+        include_persona = False
+        site_settings = {}
+    else:
+        site_settings = {
+            'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
+        }
 
     ctx = {
         'BUILD_ID': BUILD_ID,
