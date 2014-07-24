@@ -4,6 +4,7 @@ import time
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 
 import fudge
@@ -17,6 +18,7 @@ import amo
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.prices.models import AddonPurchase
 from mkt.purchase.models import Contribution
+from mkt.users.models import UserProfile
 from utils import PurchaseTest
 
 
@@ -116,8 +118,24 @@ class TestPostback(PurchaseTest):
             type=amo.CONTRIB_PENDING,
             user=self.user
         )
+        self.buyer_email = 'buyer@example.com'
         self.webpay_dev_id = '<stored in solitude>'
         self.webpay_dev_secret = '<stored in solitude>'
+
+        solitude_patcher = mock.patch('mkt.purchase.webpay.solitude')
+        self.solitude = solitude_patcher.start()
+        self.addCleanup(solitude_patcher.stop)
+
+        (self.solitude.api.generic.transaction.get_object_or_404
+                                              .return_value) = {
+            'buyer': 'buyer-uri',
+        }
+
+        self.solitude_by_url = mock.MagicMock()
+        self.solitude.api.by_url.return_value = self.solitude_by_url
+        self.solitude_by_url.get_object_or_404.return_value = {
+            'email': self.buyer_email,
+        }
 
     def post(self, req=None):
         if not req:
@@ -173,6 +191,21 @@ class TestPostback(PurchaseTest):
         tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
     @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_user_created_after_purchase(self, decode, tasks):
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+        self.contrib.user = None
+        self.contrib.save()
+        eq_(UserProfile.objects.filter(email=self.buyer_email).count(), 0)
+        resp = self.post(req=jwt_encoded)
+        eq_(resp.status_code, 200)
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        user = UserProfile.objects.get(email=self.buyer_email)
+        eq_(cn.user, user)
+        eq_(cn.user.source, amo.LOGIN_SOURCE_WEBPAY)
+
+    @mock.patch('lib.crypto.webpay.jwt.decode')
     def test_valid_duplicate(self, decode, tasks):
         jwt_dict = self.jwt_dict()
         jwt_encoded = self.jwt(req=jwt_dict)
@@ -201,23 +234,6 @@ class TestPostback(PurchaseTest):
 
         assert not tasks.send_purchase_receipt.delay.called
 
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_anonymous_purchase(self, decode, tasks):
-        # Create a new anonymous transaction.
-        self.contrib.update(user=None, transaction_id=None)
-        jwt_dict = self.jwt_dict()
-        jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
-
-        resp = self.post(req=jwt_encoded)
-
-        eq_(resp.status_code, 200)
-        eq_(resp.content, '<webpay-trans-id>')
-        assert not tasks.send_purchase_receipt.delay.called, (
-            'send_purchase_receipt should not be called')
-        # Purchase record should not be created:
-        eq_(list(AddonPurchase.objects.all()), [])
-
     def test_invalid(self, tasks):
         resp = self.post()
         eq_(resp.status_code, 400)
@@ -243,3 +259,23 @@ class TestPostback(PurchaseTest):
 
         parse_from_webpay.expects_call().returns(example)
         self.post()
+
+    @raises(LookupError)
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_no_transaction_found_fails(self, decode, tasks):
+        (self.solitude.api.generic.transaction
+                                  .get_object_or_404
+                                  .side_effect) = ObjectDoesNotExist
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+        self.post(req=jwt_encoded)
+
+    @raises(LookupError)
+    @mock.patch('lib.crypto.webpay.jwt.decode')
+    def test_no_buyer_found_fails(self, decode, tasks):
+        self.solitude_by_url.get_object_or_404.side_effect = ObjectDoesNotExist
+        jwt_dict = self.jwt_dict()
+        jwt_encoded = self.jwt(req=jwt_dict)
+        decode.return_value = jwt_dict
+        self.post(req=jwt_encoded)
