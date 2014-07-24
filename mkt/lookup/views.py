@@ -243,7 +243,7 @@ def app_summary(request, addon_id):
         msg = u'Priority Review Requested'
         # Create notes and log entries.
         create_comm_note(app, app.latest_version, request.user, msg,
-                         note_type=comm.NO_ACTION)
+                         note_type=comm.PRIORITY_REVIEW_REQUESTED)
         amo.log(amo.LOG.PRIORITY_REVIEW_REQUESTED, app, app.latest_version,
                 created=datetime.now(), details={'comments': msg})
 

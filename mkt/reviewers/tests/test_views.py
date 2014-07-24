@@ -35,6 +35,7 @@ from lib.crypto.tests import mock_sign
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.comm.models import CommunicationNote
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm, MANIFEST_CONTENT_TYPE
 from mkt.constants.features import FeatureProfile
@@ -1278,6 +1279,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert url in body, 'Could not find apps detail URL in %s' % msg
 
     def _check_log(self, action):
+        assert CommunicationNote.objects.filter(
+            note_type=comm.ACTION_MAP(action.id)).exists(), action
         assert AppLog.objects.filter(
             addon=self.app, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)

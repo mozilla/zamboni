@@ -349,7 +349,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         if self.data['notes']:
             create_comm_note(self.instance, self.instance.versions.latest(),
                              self.request.user, self.data['notes'],
-                             note_type=comm.SUBMISSION, no_switch=True)
+                             note_type=comm.SUBMISSION)
         self.instance = super(AppDetailsBasicForm, self).save(commit=True)
         uses_flash = self.cleaned_data.get('flash')
         af = self.instance.get_latest_file()
