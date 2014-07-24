@@ -58,11 +58,11 @@
         <dd>{{ app.created|babel_datetime }}</dd>
         <dt>{{ _('Status') }}</dt>
         <dd>
-          {% if app.disabled_by_user %}
-            <p class="status-disabled">App is <b>disabled by user</b>.</p>
-          {% else %}
-            <form method="post">
-              {{ csrf() }}
+          <form method="post">
+            {{ csrf() }}
+            {% if app.disabled_by_user %}
+              <p class="status-disabled">App is <b>disabled by user</b>.</p>
+            {% else %}
               {% if action_allowed('Admin', '%') %}
                 <div class="change-status">
                   {{ status_form.status }}
@@ -71,13 +71,13 @@
               {% else %}
                 {{ amo.MKT_STATUS_CHOICES[app.status] }}
               {% endif %}
-            </form>
-          {% endif %}
-          {% if app.priority_review %}
-            <button class="button disabled" name="prioritize">{{ _('Review Prioritized') }}</button>
-          {% else %}
-            <button class="button" type="submit" name="prioritize" value="true">{{ _('Prioritize Review?') }}</button>
-          {% endif %}
+            {% endif %}
+            {% if app.priority_review %}
+              <button class="button disabled" name="prioritize">{{ _('Review Prioritized') }}</button>
+            {% else %}
+              <button class="button" type="submit" name="prioritize" value="true">{{ _('Prioritize Review?') }}</button>
+            {% endif %}
+          </form>
         </dd>
         <dt>{{ _('Abuse Reports') }}</dt>
         <dd>{{ abuse_reports }}</dd>
