@@ -3,14 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-24 20:39+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1406234399.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -34,7 +37,7 @@ msgstr "Виникла проблема при спробі зв'язатись 
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Оберіть файл..."
+msgstr "Виберіть файл..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
@@ -67,6 +70,7 @@ msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою."
 msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками."
+msgstr[2] "Ваша програма не пройшла перевірку з {0} помилками."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
@@ -85,7 +89,7 @@ msgstr "Перевірка {0}"
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Отримано порожню відвідь з серверу; стан: {0}"
+msgstr "Отримано порожню відповідь з серверу; стан: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
@@ -100,6 +104,7 @@ msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} попередженням."
 msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
+msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -107,15 +112,15 @@ msgstr "Ваша програма пройшла перевірку без по�
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr "Не вдалось знайти маніфест у вказаному розташуванні."
+msgstr "Не вдалося знайти маніфест у вказаному розташуванні."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Не вдалося зв'язатись із хостом програми."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Неможливо проаналізувати маніфест програми."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
@@ -140,14 +145,19 @@ msgstr "Встановлення невдале. Спробуйте ще раз 
 #: media/js/devreg/devhub.js:200
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
-msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
+msgstr[0] ""
+"Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
+msgstr[1] ""
+"Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
+msgstr[2] ""
+"Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 
 #: media/js/devreg/devhub.js:214
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
+msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 
 #: media/js/devreg/devhub.js:219
 msgid "Your app passed validation with no errors or messages."
@@ -159,7 +169,7 @@ msgstr "Зміни збережено"
 
 #: media/js/devreg/devhub.js:449
 msgid "Enter a new team member's email address"
-msgstr "Введіть ел. адресу нового члена команди"
+msgstr "Введіть адресу ел. пошти нового члена команди"
 
 #: media/js/devreg/devhub.js:462
 msgid "Manifest refreshed"
@@ -179,11 +189,11 @@ msgstr "Дізнатись більше"
 
 #: media/js/devreg/devhub.js:922
 msgid "Example"
-msgstr ""
+msgstr "Приклад"
 
 #: media/js/devreg/devhub.js:1216
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Обробка змін зображення"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -228,26 +238,27 @@ msgstr "Показати всі результати"
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
+"Знайдено більше {0} результатів. Спробуйте уточнити ваш пошуковий запит."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Запитані дозволи:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Сертифіковано"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Привілейовано"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Непревілейований"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Не вказано причину"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
@@ -316,6 +327,7 @@ msgid "Deleting payment account \"{0}\" will remove the payment account from the
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
