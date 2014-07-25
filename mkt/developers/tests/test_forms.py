@@ -636,8 +636,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         data.update(kwargs)
         return forms.IARCGetAppInfoForm(data=data, app=app or self.app)
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_good(self, storefront_mock):
+    def test_good(self):
         with self.assertRaises(IARCInfo.DoesNotExist):
             self.app.iarc_info
 
@@ -648,7 +647,6 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         iarc_info = IARCInfo.objects.get(addon=self.app)
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
-        assert storefront_mock.called
 
     @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
     def test_iarc_cert_reuse_on_self(self):
@@ -678,8 +676,7 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         form = self._get_form()
         ok_(form.is_valid())
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_changing_cert(self, storefront_mock):
+    def test_changing_cert(self):
         self.app.set_iarc_info(1, 'a')
         form = self._get_form(submission_id=2, security_code='b')
         ok_(form.is_valid(), form.errors)
@@ -688,7 +685,6 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         iarc_info = self.app.iarc_info.reload()
         eq_(iarc_info.submission_id, 2)
         eq_(iarc_info.security_code, 'b')
-        assert storefront_mock.called
 
     def test_iarc_unexclude(self):
         geodata, created = Geodata.objects.get_or_create(addon=self.app)
@@ -712,17 +708,13 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         eq_(iarc_info.submission_id, 1231)
         eq_(iarc_info.security_code, 'a')
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_bad_submission_id(self, storefront_mock):
+    def test_bad_submission_id(self):
         form = self._get_form(submission_id='subwayeatfresh-133')
         assert not form.is_valid()
-        assert not storefront_mock.called
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_incomplete(self, storefront_mock):
+    def test_incomplete(self):
         form = self._get_form(submission_id=None)
         assert not form.is_valid(), 'Form was expected to be invalid.'
-        assert not storefront_mock.called
 
     @mock.patch('lib.iarc.utils.IARC_XML_Parser.parse_string')
     def test_rating_not_found(self, _mock):
