@@ -1,5 +1,5 @@
 {% extends 'developers/base_impala.html' %}
-{% set title = _('API') %}
+{% set title = _('Marketplace API') %}
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
@@ -22,8 +22,10 @@
       {% endif %}
       {% trans %}
         <p>
-          Please read the <a href="https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth">documentation</a> on how to create a keypair and use it with the Marketplace API.
-          Any testing should occur on the development server and not the production server.
+          There are two main uses for the Marketplace API. From another web site
+          using a traditional OAuth flow or from a command line tool.
+
+          The difference is discussed in the  <a href="https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth">Marketplace documentation</a>. Any testing should occur on the <a href="https://marketplace-dev.allizom.org">development server</a> and not the production server.
         </p>
       {% endtrans %}
       {% if not roles %}
@@ -32,9 +34,12 @@
           <table>
             <tbody>
               <tr>
+                <th><strong>{{ _('Client type') }}</strong></th><td>{{ form.oauth_leg.errors }}{{ form.oauth_leg }}</td>
+              </tr>
+              <tr class="api-oauth-website">
                 <th><strong>{{ _('Application Name') }}</strong></th><td>{{ form.app_name.errors }}{{ form.app_name }}</td>
               </tr>
-              <tr>
+              <tr class="api-oauth-website">
                 <th><strong>{{ _('Redirect URI') }}</strong></th><td>{{ form.redirect_uri.errors }}{{ form.redirect_uri }}</td>
               </tr>
             </tbody>
@@ -45,8 +50,9 @@
         </form>
       {% endif %}
     </div>
-    <div class="island devhub-form">
-      {% for consumer in consumers %}
+    <h3>{{ _('OAuth Keys') }}</h3>
+    {% for consumer in consumers %}
+      <div class="island devhub-form">
         <table>
           <tbody>
             <tr>
@@ -55,12 +61,16 @@
             <tr>
               <th><strong>{{ _('Secret') }}</strong></th><td><textarea readonly>{{ consumer.secret }}</textarea></td>
             </tr>
-            <tr>
-              <th><strong>{{ _('Application Name') }}</strong></th><td>{{ consumer.app_name }}</td>
-            </tr>
-            <tr>
-              <th><strong>{{ _('Redirect URI') }}</strong></th><td>{{ consumer.redirect_uri }}</td>
-            </tr>
+            {% if consumer.app_name %}
+              <tr>
+                <th><strong>{{ _('Application Name') }}</strong></th><td>{{ consumer.app_name }}</td>
+              </tr>
+            {% endif %}
+            {% if consumer.redirect_uri %}
+              <tr>
+                <th><strong>{{ _('Redirect URI') }}</strong></th><td>{{ consumer.redirect_uri }}</td>
+              </tr>
+            {% endif %}
           </tbody>
          </table>
          <div class="listing-footer">
@@ -70,9 +80,25 @@
              <button name="delete" class="cancel" value="delete">{{ _('Delete') }}</button>
            </form>
          </div>
-      {% else %}
+      </div>
+    {% else %}
+      <div class="island devhub-form">
         <p><strong>{{ _('You currently do not have an API key.') }}</strong></p>
-      {% endfor %}
-     </div>
+      </div>
+    {% endfor %}
+    {% if consumers %}
+      <h3>{{ _('OAuth Example') }}</h3>
+      <div class="island devhub-form">
+        {% trans %}
+          <p>Example using a Python library for the command-line on Mac OS X using
+          your OAuth credentials:</p>
+        {% endtrans %}
+        <pre>
+pip install curling
+echo '{"{{ settings.DOMAIN }}": {"key": "{{ consumers[0].key }}", "secret": "{{ consumers[0].secret }}"}}' > .curling
+curling {{ settings.SITE_URL }}/api/v1/settings/mine/
+        </pre>
+      </div>
+    {% endif %}
   </section>
 {% endblock %}

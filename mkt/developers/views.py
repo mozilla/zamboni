@@ -992,7 +992,7 @@ def terms(request):
 @login_required
 def api(request):
     roles = request.user.groups.filter(name='Admins').exists()
-    f = APIConsumerForm()
+    form = APIConsumerForm()
     if roles:
         messages.error(request,
                        _('Users with the admin role cannot use the API.'))
@@ -1012,15 +1012,16 @@ def api(request):
             access = Access.objects.create(key=key,
                                            user=request.user,
                                            secret=generate())
-            f = APIConsumerForm(request.POST, instance=access)
-            if f.is_valid():
-                f.save()
+            form = APIConsumerForm(request.POST, instance=access)
+            if form.is_valid():
+                form.save()
                 messages.success(request, _('New API key generated.'))
             else:
                 access.delete()
     consumers = list(Access.objects.filter(user=request.user))
     return render(request, 'developers/api.html',
-                  {'consumers': consumers, 'roles': roles, 'form': f})
+                  {'consumers': consumers, 'roles': roles, 'form': form,
+                   'domain': settings.DOMAIN, 'site_url': settings.SITE_URL})
 
 
 @app_view
