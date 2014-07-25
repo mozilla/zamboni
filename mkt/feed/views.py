@@ -431,8 +431,13 @@ class FeedView(CORSMixin, APIView):
         sq = self.get_es_feed_query(region=region, carrier=carrier)
         feed_items = FeedItemIndexer.search(using=es).query(sq).execute().hits
         if not feed_items:
-            return response.Response({'objects': []},
-                                     status=status.HTTP_404_NOT_FOUND)
+            # Fallback to RoW.
+            sq = self.get_es_feed_query()
+            feed_items = (FeedItemIndexer.search(using=es).query(sq)
+                                                          .execute().hits)
+            if not feed_items:
+                return response.Response({'objects': []},
+                                         status=status.HTTP_404_NOT_FOUND)
 
         # Set up serializer context and index name.
         apps = []

@@ -2,7 +2,7 @@ settings_local.py*
 settings_local_*.py
 shellng_local.py
 *.py[co]
-*.sw[po]
+*.sw[pon]
 .coverage
 .vagrant
 pip-log.txt

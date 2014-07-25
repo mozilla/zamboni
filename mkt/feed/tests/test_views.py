@@ -1116,11 +1116,12 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
             feed.FEED_TYPE_SHELF)
 
     def test_region_filter(self):
-        """Test that changing region affects the whole feed."""
+        """Test that changing region gives different feed."""
         feed_items = self.feed_factory()
+        self.feed_item_factory(region=2)
         self._refresh()
         res, data = self._get(region='us')
-        eq_(len(data['objects']), 0)
+        eq_(len(data['objects']), 1)
 
     def test_carrier_filter(self):
         """Test that changing carrier affects the opshelf."""
@@ -1145,6 +1146,12 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
                 ok_(len(feed_elm['apps']))
                 for app in feed_elm['apps']:
                     ok_(app['id'])
+
+    def test_restofworld_fallback(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(region='us')
+        eq_(len(data['objects']), len(feed_items))
 
 
 class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
