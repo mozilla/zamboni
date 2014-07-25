@@ -22,7 +22,6 @@ from django.utils.translation import trans_real as translation
 import caching.base as caching
 import commonware.log
 import json_field
-import waffle
 from cache_nuggets.lib import memoize, memoize_key
 from elasticsearch_dsl import F, filter as es_filter
 from jinja2.filters import do_dictsort
@@ -312,17 +311,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
-        # Check for soft deletion path. Happens only if the addon status isn't
-        # 0 (STATUS_INCOMPLETE), or when we are in Marketplace.
+
         if self.status == amo.STATUS_DELETED:
-            # We're already done.
-            return
+            return  # We're already done.
 
         id = self.id
 
         # Tell IARC this app is delisted from the set_iarc_storefront_data.
-        if self.type == amo.ADDON_WEBAPP:
-            self.set_iarc_storefront_data(disable=True)
+        tasks.set_storefront_data.delay(self.pk, disable=True)
 
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
@@ -343,7 +339,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             'msg': msg,
             'reason': reason,
             'name': self.name,
-            'slug': self.slug,
+            'slug': self.app_slug,
             'total_downloads': self.total_downloads,
             'url': absolutify(self.get_url_path()),
             'user_str': ("%s, %s (%s)" % (user.display_name or
@@ -2393,8 +2389,6 @@ class Webapp(Addon):
 
         log.info('IARC content ratings set for app:%s:%s' %
                  (self.id, self.app_slug))
-
-        self.set_iarc_storefront_data()  # Ratings updated, sync with IARC.
 
         geodata, c = Geodata.objects.get_or_create(addon=self)
         save = False

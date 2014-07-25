@@ -51,8 +51,8 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
 from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
-from mkt.developers.utils import (
-    check_upload, escalate_prerelease_permissions, handle_vip)
+from mkt.developers.utils import (check_upload, escalate_prerelease_permissions,
+                                  handle_vip)
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
@@ -62,7 +62,8 @@ from mkt.users.views import _login
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
 from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
-from mkt.webapps.tasks import _update_manifest, update_manifests
+from mkt.webapps.tasks import (_update_manifest, set_storefront_data,
+                               update_manifests)
 from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 
@@ -190,7 +191,8 @@ def publicise(request, addon_id, addon):
         # Call to update names and locales if changed.
         addon.update_name_from_package_manifest()
         addon.update_supported_locales()
-        addon.set_iarc_storefront_data()
+
+        set_storefront_data.delay(addon.pk)
 
     return redirect(addon.get_dev_url('versions'))
 
@@ -366,7 +368,7 @@ def content_ratings_edit(request, addon_id, addon):
             pass  # Fall through to show the form error.
 
     # Save some information for _ratings_success_msg.
-    if not 'ratings_edit' in request.session:
+    if 'ratings_edit' not in request.session:
         request.session['ratings_edit'] = {}
     last_rated = addon.last_rated_time()
     request.session['ratings_edit'][str(addon.id)] = {

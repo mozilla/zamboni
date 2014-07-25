@@ -340,7 +340,6 @@ def index_webapps(ids, **kw):
     # more than one index.
     indices = Reindexing.get_indices(index)
 
-    es = WebappIndexer.get_es(urls=settings.ES_URLS)
     qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
     for obj in qs:
         doc = WebappIndexer.extract_document(obj.id, obj)
@@ -851,3 +850,17 @@ def pre_generate_apk(app_id, **kw):
     # The factory returns a binary APK blob but we don't need it.
     res.close()
     del res
+
+
+@task
+@use_master
+def set_storefront_data(app_id, disable=False, **kw):
+    """
+    Call IARC's SET_STOREFRONT_DATA endpoint.
+    """
+    try:
+        app = Webapp.with_deleted.get(pk=app_id)
+    except Webapp.DoesNotExist:
+        return
+
+    app.set_iarc_storefront_data(disable=disable)
