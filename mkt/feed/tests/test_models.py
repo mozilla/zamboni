@@ -63,10 +63,10 @@ class FeedTestMixin(object):
         return shelf
 
     def feed_item_factory(self, carrier=1, region=1,
-                          item_type=feed.FEED_TYPE_APP):
+                          item_type=feed.FEED_TYPE_APP, **kw):
         """Creates a single FeedItem of any feed element type specified."""
         feed_item = FeedItem(carrier=carrier, region=region,
-                             item_type=item_type)
+                             item_type=item_type, **kw)
 
         if item_type == feed.FEED_TYPE_APP:
             feed_item.app = self.feed_app_factory()

@@ -376,23 +376,32 @@ class FeedView(CORSMixin, APIView):
         """
         Build ES query for feed.
         Weights on region and carrier if passed in.
-        Operator shelf on top if region and carrier passed in.
+        Orders by FeedItem.order.
+        Operator shelf always on top if region and carrier passed in.
 
         region -- region ID (integer)
         carrier -- carrier ID (integer)
         """
-        # Filter by only region.
-        region_filter = es_filter.Bool(must=[es_filter.Term(region=region)])
-        if carrier is None:
-            return region_filter.to_dict()  # Why doesn't work w/o to_dict()?
-
-        # Filter by both region and carrier.
+        # Filter by region.
+        region_filter = es_filter.Term(region=region)
         shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
+        functions = [
+            # Order the non-shelf feed items by their order attribute.
+            es_function.ScriptScore(
+                # Invert the order; Order attr orders by smallest first, but
+                # boost score orders by biggest first.
+                script="1.0 / doc['order'].value * _score",
+                filter=es_filter.Bool(must=[region_filter],
+                                      must_not=[shelf_filter]))
+        ]
+        if carrier is None:
+            return query.FunctionScore(functions=functions,
+                                       filter=region_filter)
 
-        # Boost shelf to top.
-        functions = [es_function.BoostFactor(value=10000.0,
-                                             filter=shelf_filter)]
-
+        # Filter by carrier. Boost shelf to top.
+        functions.append(
+            es_function.BoostFactor(value=10000.0, filter=shelf_filter),
+        )
         # Exclude shelves that may match the region, but NOT the carrier.
         bad_shelf_filter = es_filter.Bool(
             must=[shelf_filter],
