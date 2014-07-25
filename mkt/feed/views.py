@@ -166,6 +166,13 @@ class FeedBuilderView(CORSMixin, APIView):
                 feed_items.append(FeedItem(**feed_item))
 
         FeedItem.objects.bulk_create(feed_items)
+
+        # Index the feed items created. bulk_create doesn't call save or
+        # post_save so get the IDs manually.
+        feed_item_ids = (FeedItem.objects.filter(region__in=regions)
+                                         .values_list('id', flat=True))
+        FeedItem.get_indexer().index_ids(feed_item_ids)
+
         return response.Response(status=status.HTTP_201_CREATED)
 
 

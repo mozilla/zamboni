@@ -65,10 +65,7 @@ class BaseIndexer(object):
 
     @classmethod
     def index(cls, document, id_=None, es=None, index=None):
-        """
-        We override elasticutil's index because we're using the official
-        elasticsearch client library.
-        """
+        """Index one document."""
         es = es or cls.get_es()
         index = index or cls.get_index()
         es.index(index=index, doc_type=cls.get_mapping_type_name(),
@@ -76,10 +73,7 @@ class BaseIndexer(object):
 
     @classmethod
     def bulk_index(cls, documents, id_field='id', es=None, index=None):
-        """
-        We override elasticutil's bulk_index because we're using the official
-        elasticsearch client library.
-        """
+        """Index of a bunch of documents."""
         es = es or cls.get_es()
         index = index or cls.get_index()
         type = cls.get_mapping_type_name()
@@ -89,6 +83,14 @@ class BaseIndexer(object):
             for d in documents]
 
         helpers.bulk(es, actions)
+
+    @classmethod
+    def index_ids(cls, ids):
+        """
+        Start task to index instances of indexer class matching the IDs.
+        Calls the helper method outside this BaseIndexer class.
+        """
+        index.delay(ids, cls)
 
     @classmethod
     def unindex(cls, id_, es=None, index=None):
