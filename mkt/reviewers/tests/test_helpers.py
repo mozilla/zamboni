@@ -12,7 +12,8 @@ class TestGetPosition(amo.tests.TestCase):
         # Add a public, reviewed app for measure. It took 4 days for this app
         # to get reviewed.
         self.public_app = amo.tests.app_factory(
-            version_kw={'nomination': self.days_ago(7),
+            version_kw={'created': self.days_ago(7),
+                        'nomination': self.days_ago(7),
                         'reviewed': self.days_ago(3)})
 
         # Took 8 days for another public app to get reviewed.
