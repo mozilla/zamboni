@@ -10,6 +10,7 @@ import amo.tests
 from amo.tests import app_factory
 
 import mkt.carriers
+import mkt.feed.constants as feed
 import mkt.regions
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.carriers import CARRIER_MAP
@@ -17,6 +18,7 @@ from mkt.constants.regions import REGIONS_DICT
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
+from mkt.feed.views import FeedView
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Preview, Webapp
 
@@ -122,6 +124,7 @@ class TestFeedItemViewSetCreate(FeedAppMixin, BaseTestFeedItemViewSet):
     def test_create_with_permission(self):
         self.feed_permission()
         res, data = self.create(self.client, app=self.feedapps[0].pk,
+                                item_type=feed.FEED_TYPE_APP,
                                 carrier=mkt.carriers.TELEFONICA.id,
                                 region=mkt.regions.BR.id)
         eq_(res.status_code, 201)
@@ -198,7 +201,8 @@ class TestFeedItemViewSetUpdate(FeedAppMixin, BaseTestFeedItemViewSet):
 
     def test_update_with_permission(self):
         self.feed_permission()
-        res, data = self.update(self.client, region=mkt.regions.US.id)
+        res, data = self.update(self.client, item_type=feed.FEED_TYPE_APP,
+                                region=mkt.regions.US.id)
         eq_(res.status_code, 200)
         eq_(data['id'], self.item.pk)
         eq_(data['region'], mkt.regions.US.slug)
@@ -1026,81 +1030,147 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         eq_(res.status_code, 404)
 
 
-class TestFeedView(FeedTestMixin, RestOAuth):
-    fixtures = fixture('webapp_337141') + RestOAuth.fixtures
+class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
         super(TestFeedView, self).setUp()
         self.url = reverse('api-v2:feed.get')
-        self.carrier = 'tmn'
-        self.carrier_id = CARRIER_MAP[self.carrier].id
-        self.region = 'us'
-        self.region_id = REGIONS_DICT[self.region].id
+        self.carrier = 'telefonica'
+        self.region = 'restofworld'
 
-    def create_feed(self, n):
-        self.feed_items = []
-        for i in xrange(n):
-            app = app_factory()
-            feedapp = self.feed_app_factory(app_id=app.id)
-            feeditem = FeedItem.objects.create(carrier=self.carrier_id,
-                app=feedapp, region=self.region_id, item_type='app')
-            self.feed_items.append(feeditem)
+    def tearDown(self):
+        for model in (FeedApp, FeedBrand, FeedCollection, FeedShelf,
+                      FeedItem):
+            model.get_indexer().unindexer(_all=True)
+        super(TestFeedView, self).tearDown()
 
-    def create_shelf(self):
-        feedshelf = self.feed_shelf_factory(carrier=self.carrier_id,
-                                            region=self.region_id)
-        self.shelf = FeedItem.objects.create(
-            carrier=self.carrier_id, region=self.region_id, item_type='shelf',
-            shelf=feedshelf)
+    def _refresh(self):
+        self.refresh('mkt_feed_app')
+        self.refresh('mkt_feed_brand')
+        self.refresh('mkt_feed_collection')
+        self.refresh('mkt_feed_shelf')
+        self.refresh('mkt_feed_item')
+        self.refresh('webapp')
 
-    def get(self, client, **kwargs):
-        res = client.get(self.url, kwargs)
+    def _get(self, client=None, **kwargs):
+        client = client or self.anon
+        kwargs['carrier'] = kwargs.get('carrier', self.carrier)
+        kwargs['region'] = kwargs.get('region', self.region)
+
+        if kwargs.get('no_assert_queries'):
+            # For auth tests, where a bunch of user-related queries are dne.
+            res = client.get(self.url, kwargs)
+        else:
+            with self.assertNumQueries(0):
+                res = client.get(self.url, kwargs)
         data = json.loads(res.content)
         return res, data
 
-    def test_get_anon(self):
-        res, data = self.get(self.anon, carrier=self.carrier,
-                             region=self.region)
+    def test_200(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get()
         eq_(res.status_code, 200)
-        return res, data
+        eq_(len(data['objects']), len(feed_items))
 
-    def test_get_authed(self):
-        res, data = self.get(self.client, carrier=self.carrier,
-                             region=self.region)
+    def test_200_authed(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(self.client, no_assert_queries=True)
         eq_(res.status_code, 200)
-        return res, data
+        eq_(len(data['objects']), len(feed_items))
 
-    def test_get_shelf(self):
-        self.create_shelf()
-        res, data = self.test_get_anon()
-        eq_(data['shelf']['id'], self.shelf.id)
-        eq_(data['feed'], [])
+    def test_404(self):
+        self._refresh()
+        res, data = self._get(self.client, no_assert_queries=True)
+        eq_(len(data['objects']), 0)
+        eq_(res.status_code, 404)
 
-    def test_get_feed(self):
-        feed_size = 3
-        self.create_feed(feed_size)
-        res, data = self.test_get_anon()
-        eq_(data['shelf'], None)
-        eq_(len(data['feed']), feed_size)
+    def test_region_only(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(carrier=None)
+        eq_(len(data['objects']), len(feed_items))
 
-    def test_get_both(self):
-        feed_size = 3
-        self.create_shelf()
-        self.create_feed(feed_size)
-        res, data = self.test_get_anon()
-        eq_(data['shelf']['id'], self.shelf.id)
-        eq_(len(data['feed']), feed_size)
-        return res, data
+    def test_carrier_only(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(region=None)
+        eq_(len(data['objects']), len(feed_items))
 
-    def test_shelf_mismatch(self):
-        self.test_get_both()
-        self.shelf.update(region=0)
-        res, data = self.test_get_anon()
-        eq_(data['shelf'], None)
+    def test_shelf_top(self):
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get()
+        eq_(data['objects'][0]['item_type'],
+            feed.FEED_TYPE_SHELF)
 
-    def test_feed_mismatch(self):
-        self.test_get_both()
-        for item in self.feed_items:
-            item.update(region=0)
-        res, data = self.test_get_anon()
-        eq_(data['feed'], [])
+    def test_region_filter(self):
+        """Test that changing region affects the whole feed."""
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(region='us')
+        eq_(len(data['objects']), 0)
+
+    def test_carrier_filter(self):
+        """Test that changing carrier affects the opshelf."""
+        feed_items = self.feed_factory()
+        self._refresh()
+        res, data = self._get(carrier='tmn')
+        eq_(len(data['objects']), 3)
+        ok_(data['objects'][0]['item_type'] != feed.FEED_TYPE_SHELF)
+
+    def test_deserialized(self):
+        """Test that feed elements and apps are deserialized."""
+        feed_items = self.feed_factory()
+        self._refresh()
+        with self.assertNumQueries(0):
+            res, data = self._get()
+        for feed_item in data['objects']:
+            item_type = feed_item['item_type']
+            feed_elm = feed_item[item_type]
+            if feed_elm.get('app'):
+                ok_(feed_elm['app']['id'])
+            else:
+                ok_(len(feed_elm['apps']))
+                for app in feed_elm['apps']:
+                    ok_(app['id'])
+
+
+class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        self.fv = FeedView()
+
+    def test_feed_query(self):
+        # Region default to RoW.
+        sq = self.fv.get_es_feed_query().to_dict()
+        eq_(sq['bool']['must'][0]['term']['region'], 1)
+
+        # With region only.
+        sq = self.fv.get_es_feed_query(region=2).to_dict()
+        eq_(sq['bool']['must'][0]['term']['region'], 2)
+
+        # Region and carrier.
+        sq = self.fv.get_es_feed_query(region=2, carrier=1).to_dict()
+        eq_(sq['function_score']['filter']['bool']['must'][0]['term']
+            ['region'], 2)
+
+        # With carrier.
+        sq = self.fv.get_es_feed_query(carrier=1).to_dict()
+        assert 'boost_factor' in sq['function_score']['functions'][0]
+        eq_(sq['function_score']['functions'][0]['filter']['term']
+            ['item_type'], 'shelf')
+        eq_(sq['function_score']['filter']['bool']['must_not'][0]['bool']
+            ['must_not'][0]['term']['carrier'], 1)
+
+    def test_feed_element_query(self):
+        feed_item = self.feed_item_factory()
+        item = feed_item.get_indexer().extract_document(None, obj=feed_item)
+        sq = self.fv.get_es_feed_element_query([item]).to_dict()
+        eq_(sq['bool']['should'][0]['bool']['must'][0]['term']['id'],
+            feed_item.app_id)
+        eq_(sq['bool']['should'][0]['bool']['must'][1]['term']['item_type'],
+            feed_item.item_type)

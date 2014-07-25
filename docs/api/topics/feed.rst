@@ -35,7 +35,9 @@ Feed
     which currently includes:
 
     - All the :ref:`feed items <feed-items>`.
-    - The :ref:`operator shelf <feed-shelves>`, if available.
+
+    If an operator shelf is available for the passed in carrier + region, it
+    appear first in the list of feed items in the respnse.
 
 
     **Request**
@@ -50,30 +52,23 @@ Feed
 
     **Response**
 
-    :param feed: An ordered list of :ref:`feed items <feed-items>` for the
+    :param objects: An ordered list of :ref:`feed items <feed-items>` for the
         user.
-    :type feed: array
-    :param shelf: The :ref:`operator shelf <feed-shelves>` for the passed
-        region and carrier pair.
-    :type shelf: object
+    :type objects: array
 
     .. code-block:: json
 
         {
-            "feed": [
+            "objects": [
                 {
                     "id": 343,
-                    "other": "data"
+                    ...
                 },
                 {
                     "id": 518,
-                    "other": "data"
+                    ...
                 }
             ],
-            "shelf": {
-                "id": 101,
-                "other": "data"
-            }
         }
 
 
@@ -279,52 +274,6 @@ Delete
     **Response**
 
     :status 204: successfully deleted.
-    :status 403: not authorized.
-
-
-Builder
-=======
-
-.. http:put:: /api/v2/feed/builder/
-
-    Sets feeds by region. For each region passed in, the builder
-    will delete all of the carrier-less :ref:`feed items <feed-items>` for
-    that region and then batch create feed items in the order that feed
-    element IDs are passed in for that region.
-
-    **Request**
-
-    .. code-block:: json
-
-        {
-            'us': [
-                ['collection', 52],
-                ['app', 36],
-                ['brand, 123],
-                ['app', 66]
-            ],
-            'cn': [
-                ['app', 36],
-                ['collection', 52],
-                ['brand', 2313]
-                ['brand, 123],
-            ],
-            'hu': [],  // Passing in an empty array will empty that feed.
-        }
-
-    - The keys of the request are region slugs.
-    - The region slugs point to two-element arrays.
-    - The first element of the array is the item type. It can be
-        ``app``, ``collection``, or ``brand``.
-    - The second element of the array is the ID of a feed element.
-    - It can be the ID of a :ref:`FeedApp  <feed-apps>`, or
-        :ref:`FeedBrand <feed-brands>`.
-    - Order matters.
-
-    **Response**
-
-    :status 201: success.
-    :status 400: bad request.
     :status 403: not authorized.
 
 
@@ -785,7 +734,7 @@ Feed collections are represented thusly:
                     'en-US': 'Games',
                     'fr': 'Jeux'
                 },
-                'other_fields': 'other_values'
+                ...
             },
             {
                 'id': 2,
@@ -793,7 +742,7 @@ Feed collections are represented thusly:
                     'en-US': 'Games',
                     'fr': 'Jeux'
                 },
-                'other_fields': 'other_values'
+                ...
             },
             {
                 'id': 3,
@@ -801,7 +750,7 @@ Feed collections are represented thusly:
                     'en-US': 'Tools',
                     'fr': 'Outils'
                 },
-                'other_fields': 'other_values'
+                ...
             }
         ],
         'background_color': '#00AACC',
@@ -867,14 +816,14 @@ two forms:
                 'apps': [1, 18, 3],
                 'name': {
                     'en-US': 'Games',
-                    'fr': 'Jeux' 
+                    'fr': 'Jeux'
                 }
             },
             {
                 'apps': [111, 98, 231],
                 'name': {
                     'en-US': 'Tools',
-                    'fr': 'Outils' 
+                    'fr': 'Outils'
                 }
             }
         ]
@@ -1288,3 +1237,107 @@ shelf.
 .. http:delete:: /api/v2/feed/shelves/(int:id|string:slug)/image/
 
     Delete the image for an operator shelf.
+
+
+-------
+Builder
+-------
+
+.. http:put:: /api/v2/feed/builder/
+
+    Sets feeds by region. For each region passed in, the builder
+    will delete all of the carrier-less :ref:`feed items <feed-items>` for
+    that region and then batch create feed items in the order that feed
+    element IDs are passed in for that region.
+
+    **Request**
+
+    .. code-block:: json
+
+        {
+            'us': [
+                ['collection', 52],
+                ['app', 36],
+                ['brand, 123],
+                ['app', 66]
+            ],
+            'cn': [
+                ['app', 36],
+                ['collection', 52],
+                ['brand', 2313]
+                ['brand, 123],
+            ],
+            'hu': [],  // Passing in an empty array will empty that feed.
+        }
+
+    - The keys of the request are region slugs.
+    - The region slugs point to two-element arrays.
+    - The first element of the array is the item type. It can be
+        ``app``, ``collection``, or ``brand``.
+    - The second element of the array is the ID of a feed element.
+    - It can be the ID of a :ref:`FeedApp  <feed-apps>`, or
+        :ref:`FeedBrand <feed-brands>`.
+    - Order matters.
+
+    **Response**
+
+    :status 201: success.
+    :status 400: bad request.
+    :status 403: not authorized.
+
+
+.. _feed-search:
+
+-------------------
+Feed Element Search
+-------------------
+
+.. http:get:: /api/v2/feed/elements/search?q=(str:q)
+
+    Search for feed elements given a search parameter.
+
+    **Request**
+
+    :param q: searches names and slugs
+    :type q: str
+
+
+    **Response**
+
+    :param apps: :ref:`feed apps <feed-apps>`
+    :type apps: array
+    :param brands: :ref:`feed brands <feed-brands>`
+    :type brands: array
+    :param collections: :ref:`feed collections <feed-collections>`
+    :type collections: array
+    :param shelves: :ref:`feed shelves <feed-shelves>`
+    :type shelves: array
+
+    .. code-block:: json
+
+        {
+            "apps": [
+                {
+                    "id": 343,
+                    ...
+                },
+            ],
+            "brands": [
+                {
+                    "id": 143,
+                    ...
+                },
+            ],
+            "collections": [
+                {
+                    "id": 543,
+                    ...
+                },
+            ],
+            "shelves": [
+                {
+                    "id": 643,
+                    ...
+                },
+            ],
+        }

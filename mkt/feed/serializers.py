@@ -373,6 +373,7 @@ class FeedItemESSerializer(FeedItemSerializer, BaseESSerializer):
     collection = FeedCollectionESSerializer(required=False,
                                             source='_collection')
     shelf = FeedShelfESSerializer(required=False, source='_shelf')
+    item_type = serializers.CharField(source='item_type')
 
     def fake_object(self, data):
         feed_item = self._attach_fields(FeedItem(), data, (
