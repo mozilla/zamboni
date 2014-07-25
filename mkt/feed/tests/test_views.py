@@ -4,6 +4,7 @@ import json
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
+import mock
 from nose.tools import eq_, ok_
 
 import amo.tests
@@ -955,6 +956,14 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         self.data['us'][0] = ['app']
         r = self._set_feed_items(self.data)
         eq_(r.status_code, 400)
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
+    def test_index(self, index_mock):
+        self.feed_permission()
+        r = self._set_feed_items(self.data)
+        assert index_mock.called
+        self.assertSetEqual(index_mock.call_args_list[0][0][0],
+                            FeedItem.objects.values_list('id', flat=True))
 
 
 class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
