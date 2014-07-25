@@ -3,7 +3,8 @@
 
   <table id="review-files" class="item-history"
          data-slug="{{ product.app_slug }}" data-note-types="{{ mkt.comm.U_NOTE_TYPES()|json }}"
-         data-comm-thread-url="{{ url('comm-thread-list')|urlparams(app=product.app_slug) }}"
+         {# Don't use urlparams because we don't want to urlencode the slug. #}
+         data-comm-thread-url="{{ url('comm-thread-list') + '?app=' + product.app_slug }}"
          data-thread-id-placeholder="0" data-comm-note-url="{{ url('comm-note-list', 0) }}">
     {# Results populated below by reviewers_commbadge.js (Commbadge API) #}
 
