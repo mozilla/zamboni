@@ -317,8 +317,17 @@ class FR(REGION):
     ratingsbody = ratingsbodies.PEGI
 
 
-# Note: When adding a new region, don't forget to include the country code to
-# the file: media/css/devreg/payments.styl
+class BD(REGION):
+    id = 31
+    name = _lazy(u'Bangladesh')
+    slug = 'bd'
+    default_currency = 'BDT'
+    default_language = 'en'
+    mcc = 470
+
+
+# Please adhere to the new region checklist when adding a new region:
+# https://mana.mozilla.org/wiki/display/MARKET/How+to+add+a+new+region
 
 
 # Create a list of tuples like so (in alphabetical order):
