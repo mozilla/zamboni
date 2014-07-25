@@ -278,6 +278,7 @@ class FeedItemIndexer(BaseIndexer):
                     'category': {'type': 'integer'},
                     'collection': {'type': 'long'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
+                    'order': {'type': 'integer'},
                     'region': {'type': 'integer'},
                     'shelf': {'type': 'long'},
                 }
@@ -302,6 +303,8 @@ class FeedItemIndexer(BaseIndexer):
             'collection': obj.collection_id if
                           obj.item_type == feed.FEED_TYPE_COLL else None,
             'item_type': obj.item_type,
+            # TODO: better way to do this? What happens if user colls come in?
+            'order': obj.order or 100,  # If no order, try to put it at end.
             'region': obj.region,
             'shelf': obj.shelf_id if obj.item_type == feed.FEED_TYPE_SHELF
                      else None,

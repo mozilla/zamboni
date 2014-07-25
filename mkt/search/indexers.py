@@ -248,7 +248,7 @@ class BaseIndexer(object):
             for idx in indices:
                 try:
                     cls.unindex(id_=id_, es=es, index=idx)
-                except elasticsearch.ElasticHttpNotFoundError:
+                except elasticsearch.exceptions.NotFoundError:
                     # Ignore if it's not there.
                     task_log.info(u'[%s:%s] object not found in index' %
                                   (cls.get_model()._meta.model_name, id_))

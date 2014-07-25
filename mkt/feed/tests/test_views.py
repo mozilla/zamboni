@@ -1135,8 +1135,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         """Test that feed elements and apps are deserialized."""
         feed_items = self.feed_factory()
         self._refresh()
-        with self.assertNumQueries(0):
-            res, data = self._get()
+        res, data = self._get()
         for feed_item in data['objects']:
             item_type = feed_item['item_type']
             feed_elm = feed_item[item_type]
@@ -1153,6 +1152,18 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         res, data = self._get(region='us')
         eq_(len(data['objects']), len(feed_items))
 
+    def test_order(self):
+        """Test feed elements are ordered by their order attribute."""
+        shelf = self.feed_item_factory(item_type=feed.FEED_TYPE_SHELF)
+        feed_items = [shelf]
+        for i in xrange(1, 4):
+            feed_items.append(self.feed_item_factory(order=i))
+
+        self._refresh()
+        res, data = self._get()
+        for i, feed_item in enumerate(feed_items):
+            eq_(data['objects'][i]['id'], feed_item.id)
+
 
 class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
@@ -1160,29 +1171,43 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
     def setUp(self):
         self.fv = FeedView()
 
-    def test_feed_query(self):
-        # Region default to RoW.
+    def test_region_default(self):
+        """Region default to RoW."""
         sq = self.fv.get_es_feed_query().to_dict()
-        eq_(sq['bool']['must'][0]['term']['region'], 1)
+        eq_(sq['function_score']['filter']['term']['region'], 1)
 
-        # With region only.
+    def test_region(self):
+        """With region only."""
         sq = self.fv.get_es_feed_query(region=2).to_dict()
-        eq_(sq['bool']['must'][0]['term']['region'], 2)
+        eq_(sq['function_score']['filter']['term']['region'], 2)
 
-        # Region and carrier.
+    def test_carrier(self):
+        """Region and carrier."""
         sq = self.fv.get_es_feed_query(region=2, carrier=1).to_dict()
-        eq_(sq['function_score']['filter']['bool']['must'][0]['term']
-            ['region'], 2)
+        eq_(sq['function_score']['filter']['term']['region'], 2)
 
-        # With carrier.
+    def test_carrier(self):
+        """With carrier."""
         sq = self.fv.get_es_feed_query(carrier=1).to_dict()
-        assert 'boost_factor' in sq['function_score']['functions'][0]
-        eq_(sq['function_score']['functions'][0]['filter']['term']
+        assert 'boost_factor' in sq['function_score']['functions'][1]
+        eq_(sq['function_score']['functions'][1]['filter']['term']
             ['item_type'], 'shelf')
         eq_(sq['function_score']['filter']['bool']['must_not'][0]['bool']
             ['must_not'][0]['term']['carrier'], 1)
 
-    def test_feed_element_query(self):
+    def test_order(self):
+        """Order script scoring."""
+        sq = self.fv.get_es_feed_query().to_dict()
+        assert 'script_score' in sq['function_score']['functions'][0]
+        eq_(sq['function_score']['functions'][0]['filter']['bool']['must'][0]
+            ['term']['region'], 1)
+        eq_(sq['function_score']['functions'][0]['filter']['bool']
+            ['must_not'][0]['term']['item_type'], 'shelf')
+        eq_("doc['order'].value" in
+            sq['function_score']['functions'][0]['script_score']['script'],
+            True)
+
+    def test_element_query(self):
         feed_item = self.feed_item_factory()
         item = feed_item.get_indexer().extract_document(None, obj=feed_item)
         sq = self.fv.get_es_feed_element_query([item]).to_dict()

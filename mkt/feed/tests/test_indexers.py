@@ -147,7 +147,8 @@ class TestFeedItemIndexer(FeedTestMixin, BaseFeedIndexerTest,
                           amo.tests.TestCase):
 
      def setUp(self):
-        self.obj = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
+        self.obj = self.feed_item_factory(item_type=feed.FEED_TYPE_APP,
+                                          order=5)
         self.indexer = self.obj.get_indexer()()
         self.model = FeedItem
 
@@ -157,6 +158,7 @@ class TestFeedItemIndexer(FeedTestMixin, BaseFeedIndexerTest,
         eq_(doc['carrier'], self.obj.carrier)
         eq_(doc['category'], None)
         eq_(doc['item_type'], feed.FEED_TYPE_APP)
+        eq_(doc['order'], self.obj.order)
         eq_(doc['region'], self.obj.region)
         eq_(doc['app'], self.obj.app_id)
         eq_(doc['brand'], None)
