@@ -1,3 +1,4 @@
+import base64
 import os.path
 
 from django.conf import settings
@@ -21,6 +22,9 @@ from mkt.site.fixtures import fixture
 
 sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
                             'email.txt')
+
+multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
+                           'email_multipart.txt')
 
 
 class TestEmailReplySaving(TestCase):
@@ -84,6 +88,13 @@ class TestEmailParser(TestCase):
 
     def test_body(self):
         eq_(self.parser.get_body(), 'test note 5\n')
+
+    def test_multipart(self):
+        multipart_email = open(multi_email).read()
+        payload = base64.standard_b64encode(multipart_email)
+        parser = CommEmailParser(payload)
+        eq_(parser.get_body(), 'this is the body text\n')
+        eq_(parser.get_uuid(), 'abc123')
 
 
 class TestCreateCommNote(TestCase, AttachmentManagementMixin):

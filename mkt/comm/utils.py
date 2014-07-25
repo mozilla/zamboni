@@ -37,7 +37,16 @@ class CommEmailParser(object):
             return
 
         self.email = message_from_string(email_text)
-        self.reply_text = EmailReplyParser.read(self.email.get_payload()).reply
+
+        payload = self.email.get_payload()  # If not multipart, it's a string.
+        if isinstance(payload, list):
+            # If multipart, get the plaintext part.
+            for part in payload:
+                if part.get_content_type() == 'text/plain':
+                    payload = part.get_payload()
+                    break
+
+        self.reply_text = EmailReplyParser.read(payload).reply
 
     def _get_address_line(self):
         return parseaddr(self.email['to'])
