@@ -103,6 +103,7 @@ class FeedBrandIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
+                    'layout': {'type': 'string', 'index': 'not_analyzed'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
                     'slug': {'type': 'string'},
                     'type': {'type': 'string'},
@@ -118,10 +119,11 @@ class FeedBrandIndexer(BaseIndexer):
         return {
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
+            'layout': obj.layout,
             'item_type': feed.FEED_TYPE_BRAND,
-        'slug': obj.slug,
-        'type': obj.type,
-    }
+            'slug': obj.slug,
+            'type': obj.type,
+        }
 
 
 class FeedCollectionIndexer(BaseIndexer):

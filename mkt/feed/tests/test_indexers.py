@@ -76,11 +76,11 @@ class TestFeedBrandIndexer(FeedTestMixin, BaseFeedIndexerTest,
     def test_extract(self):
         doc = self._get_doc()
         eq_(doc['id'], self.obj.id)
-        eq_(doc['slug'], self.obj.slug)
-        eq_(doc['type'], self.obj.type)
-
         eq_(doc['apps'], list(self.obj.apps().values_list('id', flat=True)))
         eq_(doc['item_type'], feed.FEED_TYPE_BRAND)
+        eq_(doc['layout'], self.obj.layout)
+        eq_(doc['slug'], self.obj.slug)
+        eq_(doc['type'], self.obj.type)
 
 
 class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
