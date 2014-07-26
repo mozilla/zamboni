@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db.models import Q
 
+from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
@@ -423,7 +424,7 @@ class FeedView(CORSMixin, APIView):
 
         return sq.filter(es_filter.Bool(should=filters))
 
-    def get(self, request, *args, **kwargs):
+    def _get(self, request, *args, **kwargs):
         es = FeedItemIndexer.get_es()
 
         # Parse carrier and region.
@@ -490,3 +491,7 @@ class FeedView(CORSMixin, APIView):
 
         return response.Response({'objects': feed_items},
                                  status=status.HTTP_200_OK)
+
+    def get(self, request, *args, **kwargs):
+        with statsd.timer('mkt.feed.view'):
+            return self._get(request, *args, **kwargs)
