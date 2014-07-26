@@ -108,7 +108,7 @@ class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
                                       'string': 'first-group'}]},
              {'group_translations': [{'lang': 'en-US',
                                       'string': 'second-group'}]}])
-        eq_(doc['image_hash'], True)
+        eq_(doc['image_hash'], 'LOL')
         eq_(doc['item_type'], feed.FEED_TYPE_COLL)
         self._assert_test_l10n(doc['name_translations'])
         assert self.obj.name.localized_string in doc['search_names']
