@@ -23,7 +23,7 @@ class BaseIndexer(object):
 
     - get_model(cls)
     - get_mapping(cls)
-    - extract_document(cls, obj_id, obj=None)
+    - extract_document(cls, pk=None, obj=None)
 
     """
     _es = {}
@@ -212,6 +212,7 @@ class BaseIndexer(object):
 
     @classmethod
     def get_indexable(cls):
+        """Returns base queryset that is able to be indexed."""
         return cls.get_model().objects.order_by('-id')
 
     @classmethod

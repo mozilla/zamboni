@@ -332,43 +332,15 @@ def update_supported_locales(ids, **kw):
 @post_request_task(acks_late=True)
 @write
 def index_webapps(ids, **kw):
-    """TODO: use search/indexers.py:index."""
-    task_log.info('Indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-
-    index = kw.pop('index', WebappIndexer.get_index())
-    # Note: If reindexing is currently occurring, `get_indices` will return
-    # more than one index.
-    indices = Reindexing.get_indices(index)
-
-    qs = Webapp.with_deleted.no_cache().filter(id__in=ids)
-    for obj in qs:
-        doc = WebappIndexer.extract_document(obj.id, obj)
-        for idx in indices:
-            WebappIndexer.index(doc, id_=obj.id, index=idx)
+    # DEPRECATED: call WebappIndexer.index_ids directly.
+    WebappIndexer.index_ids(ids)
 
 
 @post_request_task(acks_late=True)
 @write
 def unindex_webapps(ids, **kw):
-    if not ids:
-        return
-
-    task_log.info('Un-indexing apps %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-
-    index = kw.pop('index', WebappIndexer.get_index())
-    # Note: If reindexing is currently occurring, `get_indices` will return
-    # more than one index.
-    indices = Reindexing.get_indices(index)
-
-    es = WebappIndexer.get_es(urls=settings.ES_URLS)
-    for id_ in ids:
-        for idx in indices:
-            try:
-                WebappIndexer.unindex(id_=id_, es=es, index=idx)
-            except elasticsearch.NotFoundError:
-                # Ignore if it's not there.
-                task_log.info(
-                    u'[Webapp:%s] Unindexing app but not found in index' % id_)
+    # DEPRECATED: call WebappIndexer.unindexer directly.
+    WebappIndexer.unindexer(ids)
 
 
 @task
