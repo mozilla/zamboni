@@ -4,6 +4,7 @@ import string
 
 from django.core.exceptions import ValidationError
 
+import mock
 from nose.tools import eq_, ok_
 
 import amo.tests
@@ -237,3 +238,20 @@ class TestFeedBrand(amo.tests.TestCase):
         self.test_add_app_sort_order_respected()
         with self.assertRaises(Webapp.DoesNotExist):
             self.brand.set_apps([99999])
+
+
+class TestESReceivers(FeedTestMixin, amo.tests.TestCase):
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
+    def test_update_search_index(self, update_mock):
+        self.feed_factory()
+        # FeedItems + each feed element they wrap.
+        eq_(update_mock.call_count, FeedItem.objects.count() * 2)
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.unindex')
+    def test_delete_search_index(self, delete_mock):
+        for x in xrange(4):
+            self.feed_item_factory()
+        count = FeedItem.objects.count()
+        FeedItem.objects.all().delete()
+        eq_(delete_mock.call_count, count)

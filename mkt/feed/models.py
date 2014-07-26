@@ -422,7 +422,22 @@ class FeedItem(amo.models.ModelBase):
 @receiver(models.signals.post_save, sender=FeedItem,
           dispatch_uid='feeditem.search.index')
 def update_search_index(sender, instance, **kw):
-    index.delay([instance.id], instance.get_indexer())
+    instance.get_indexer().index_ids([instance.id])
+
+
+# Delete ElasticSearch index on delete.
+@receiver(models.signals.post_delete, sender=FeedApp,
+          dispatch_uid='feedapp.search.unindex')
+@receiver(models.signals.post_delete, sender=FeedBrand,
+          dispatch_uid='feedbrand.search.unindex')
+@receiver(models.signals.post_delete, sender=FeedCollection,
+          dispatch_uid='feedcollection.search.unindex')
+@receiver(models.signals.post_delete, sender=FeedShelf,
+          dispatch_uid='feedshelf.search.unindex')
+@receiver(models.signals.post_delete, sender=FeedItem,
+          dispatch_uid='feeditem.search.unindex')
+def delete_search_index(sender, instance, **kw):
+    instance.get_indexer().unindex(instance.id)
 
 
 # Save translations when saving instance with translated fields.
