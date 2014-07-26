@@ -52,7 +52,7 @@ class TestFeedAppIndexer(FeedTestMixin, BaseFeedIndexerTest,
         eq_(doc['app'], self.app.id)
         eq_(doc['background_color'], '#DDDDDD')
         self._assert_test_l10n(doc['description_translations'])
-        eq_(doc['has_image'], True)
+        eq_(doc['image_hash'], 'LOL')
         eq_(doc['item_type'], feed.FEED_TYPE_APP)
         eq_(doc['preview'], {'id': self.obj.preview.id,
                              'thumbnail_size': [50, 50],
@@ -108,7 +108,7 @@ class TestFeedCollectionIndexer(FeedTestMixin, BaseFeedIndexerTest,
                                       'string': 'first-group'}]},
              {'group_translations': [{'lang': 'en-US',
                                       'string': 'second-group'}]}])
-        eq_(doc['has_image'], True)
+        eq_(doc['image_hash'], True)
         eq_(doc['item_type'], feed.FEED_TYPE_COLL)
         self._assert_test_l10n(doc['name_translations'])
         assert self.obj.name.localized_string in doc['search_names']
@@ -135,7 +135,7 @@ class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
         eq_(doc['carrier'],
             mkt.carriers.CARRIER_CHOICE_DICT[self.obj.carrier].slug)
         self._assert_test_l10n(doc['description_translations'])
-        eq_(doc['has_image'], True)
+        eq_(doc['image_hash'], 'LOL')
         self._assert_test_l10n(doc['name_translations'])
         eq_(doc['region'],
             mkt.regions.REGIONS_CHOICES_ID_DICT[self.obj.region].slug)

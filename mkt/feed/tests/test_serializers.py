@@ -73,6 +73,20 @@ class TestFeedAppESSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data[0]['app']['id'], self.feedapp.app_id)
         eq_(data[1]['description']['en-US'], 'test')
 
+    def test_background_image(self):
+        self.feedapp.update(type=feed.FEEDAPP_IMAGE, image_hash='LOL')
+        self.data_es = self.feedapp.get_indexer().extract_document(
+            None, obj=self.feedapp)
+        self.app_map = {
+            self.feedapp.app_id: WebappIndexer.extract_document(
+                self.feedapp.app_id)
+        }
+        data = serializers.FeedAppESSerializer(self.data_es, context={
+            'app_map': self.app_map,
+            'request': amo.tests.req_factory_factory('')
+        }).data
+        assert data['background_image'].endswith('image.png?LOL')
+
 
 class TestFeedBrandSerializer(FeedTestMixin, amo.tests.TestCase):
 
@@ -186,6 +200,16 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
             else:
                 eq_(group, 'second-group')
 
+    def test_background_image(self):
+        self.collection.update(type=feed.COLLECTION_PROMO, image_hash='LOL')
+        self.data_es = self.collection.get_indexer().extract_document(
+            None, obj=self.collection)
+        data = serializers.FeedCollectionESSerializer(self.data_es, context={
+            'app_map': self.app_map,
+            'request': amo.tests.req_factory_factory('')
+        }).data
+        assert data['background_image'].endswith('image.png?LOL')
+
 
 class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
 
@@ -226,6 +250,16 @@ class TestFeedShelfESSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data['region'], 'restofworld')
         eq_(data['description']['de'], 'test')
         eq_(data['name']['en-US'], 'test')
+
+    def test_background_image(self):
+        self.shelf.update(image_hash='LOL')
+        self.data_es = self.shelf.get_indexer().extract_document(
+            None, obj=self.shelf)
+        data = serializers.FeedShelfESSerializer(self.data_es, context={
+            'app_map': self.app_map,
+            'request': amo.tests.req_factory_factory('')
+        }).data
+        assert data['background_image'].endswith('image.png?LOL')
 
 
 class TestFeedItemSerializer(FeedAppMixin, amo.tests.TestCase):

@@ -33,7 +33,8 @@ class FeedAppIndexer(BaseIndexer):
                     'app': {'type': 'long'},
                     'background_color': {'type': 'string',
                                          'index': 'not_analyzed'},
-                    'has_image': {'type': 'boolean'},
+                    'image_hash': {'type': 'string',
+                                   'index': 'not_analyzed'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
                     'preview': {'type': 'object', 'dynamic': 'true'},
                     'pullquote_attribution': {'type': 'string',
@@ -65,7 +66,7 @@ class FeedAppIndexer(BaseIndexer):
             'id': obj.id,
             'app': obj.app_id,
             'background_color': obj.background_color,
-            'has_image': obj.has_image,
+            'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_APP,
             'preview': {'id': obj.preview.id,
                         'thumbnail_size': obj.preview.thumbnail_size,
@@ -142,7 +143,8 @@ class FeedCollectionIndexer(BaseIndexer):
                                          'index': 'not_analyzed'},
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
-                    'has_image': {'type': 'boolean'},
+                    'image_hash': {'type': 'string',
+                                   'index': 'not_analyzed'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
@@ -170,7 +172,7 @@ class FeedCollectionIndexer(BaseIndexer):
             'background_color': obj.background_color,
             'group_apps': {},  # Map of app IDs to index in group_names below.
             'group_names': [],  # List of ES-serialized group names.
-            'has_image': obj.has_image,
+            'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_COLL,
             'search_names': list(
                 set(string for _, string
@@ -216,7 +218,8 @@ class FeedShelfIndexer(BaseIndexer):
                     'background_color': {'type': 'string',
                                          'index': 'not_analyzed'},
                     'carrier': {'type': 'string', 'index': 'not_analyzed'},
-                    'has_image': {'type': 'boolean'},
+                    'image_hash': {'type': 'string',
+                                   'index': 'not_analyzed'},
                     'item_type': {'type': 'string', 'index': 'not_analyzed'},
                     'region': {'type': 'string', 'index': 'not_analyzed'},
                     'search_names': {'type': 'string',
@@ -243,7 +246,7 @@ class FeedShelfIndexer(BaseIndexer):
             'apps': list(obj.apps().values_list('id', flat=True)),
             'background_color': obj.background_color,
             'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
-            'has_image': obj.has_image,
+            'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_SHELF,
             'region': mkt.regions.REGIONS_CHOICES_ID_DICT[obj.region].slug,
             'search_names': list(set(string for _, string
