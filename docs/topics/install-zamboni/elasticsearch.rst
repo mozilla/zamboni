@@ -8,27 +8,25 @@ Elasticsearch is a search server. Documents (key-values) get stored,
 configurable queries come in, Elasticsearch scores these documents, and returns
 the most relevant hits.
 
-Also check out `elasticsearch-head <http://mobz.github.io/elasticsearch-head/>`_,
-a plugin with web front-end to elasticsearch that can be easier than talking to
-elasticsearch over curl.
-
 Installation
 ------------
 
-For the moment our code will not work with Elasticsearch 1.0 or later. For
-that reason we must install the latest version 0.90.x. We are working on
-updating our code to work with 1.0+ and then you can use your favorite
-package manager to install Elasticsearch. Until then, you can install by
+You can download the Elasticsearch code and run elasticsearch directly
+from this folder. This makes it easy to upgrade or test new versions as
+needed. Optionally you can install Elasticsearch using your preferred
+system package manager.
+
+We are currently using Elasticsearch version 1.2.3. You can install by
 doing the following::
 
-    curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.13.tar.gz
-    tar -xvzf elasticsearch-0.90.13.tar.gz
-    cd elasticsearch-0.90.13
+    curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.3.tar.gz
+    tar -xvzf elasticsearch-1.2.3.tar.gz
+    cd elasticsearch-1.2.3
 
 For running Marketplace you must install the
 `ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_::
 
-    ./bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
+    ./bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.2.0
 
 For more about the ICU plugin, see the
 `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_.
@@ -69,7 +67,7 @@ post_save and post_delete hooks.
 
 Use this to create the apps index and index apps::
 
-    ./manage.py reindex_mkt
+    ./manage.py reindex_mkt --index=apps
 
 Or you could use the makefile target (using the ``settings_local.py`` file)::
 
@@ -77,7 +75,7 @@ Or you could use the makefile target (using the ``settings_local.py`` file)::
 
 If you need to use another settings file and add arguments::
 
-    make SETTINGS=settings_other ARGS='--with-stats --wipe --force' reindex
+    make SETTINGS=settings_other ARGS='--force' reindex
 
 Querying Elasticsearch in Django
 --------------------------------
@@ -88,7 +86,7 @@ a Python library that gives us a search API to elasticsearch.
 On Marketplace, apps use ``mkt/webapps/indexers:WebappIndexer`` as its
 interface to Elasticsearch::
 
-    query_results = WebappIndexer.search().filter(...)
+    query_results = WebappIndexer.search().query(...).filter(...).execute()
 
 Testing with Elasticsearch
 --------------------------
@@ -114,4 +112,3 @@ analyzed::
 
     'my_field': {'type': 'string', 'index': 'not_analyzed'}
 
-Try running .values_dict on the query as mentioned above.
