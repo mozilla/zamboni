@@ -225,7 +225,7 @@ class WebappIndexer(BaseIndexer):
         return mapping
 
     @classmethod
-    def extract_document(cls, pk, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         """Extracts the ElasticSearch index document for this instance."""
         from mkt.webapps.models import (AppFeatures, attach_devices,
                                         attach_prices, attach_tags,
@@ -430,8 +430,7 @@ class WebappIndexer(BaseIndexer):
     def get_indexable(cls):
         """Returns the queryset of ids of all things to be indexed."""
         from mkt.webapps.models import Webapp
-        return (Webapp.with_deleted.all()
-                .order_by('-id').values_list('id', flat=True))
+        return Webapp.with_deleted.all()
 
     @classmethod
     def run_indexing(cls, ids, ES, index=None, **kw):
