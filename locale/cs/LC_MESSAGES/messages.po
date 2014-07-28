@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-07-20 20:58+0000\n"
+"PO-Revision-Date: 2014-07-28 15:04+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405889933.0\n"
+"X-POOTLE-MTIME: 1406559860.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -441,6 +441,7 @@ msgstr "VIP priorita"
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr ""
+"Doplněk {addon} byl znovu zkontrolován, protože se změnilo URL manifestu."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
@@ -449,10 +450,12 @@ msgstr "Změna URL manifestu"
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"Doplňku {addon} byla automaticky zvýšena priorita, protože je "
+"předinstalováván."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Automatické zvýšení priority"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -4411,6 +4414,13 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Můžete přidat svou aplikaci a nabídnout ji mobilním operátorům k "
+"<strong>předinstalaci na prodávaná zařízení s Firefox OS</strong>.  Pro "
+"nabídnutí musíte stáhnout zkušební šablonu níže, otestovat svou aplikaci  a "
+"vyplněnou šablonu s výsledky nahrát zpět pomocí <a href=\"%"
+"(submit_url)s\">odesílacího formuláře</a>. My uchováme výsledky vašeho "
+"testování na našich serverech, kde budou prohlédnuty zájemci ze stran "
+"mobilních operátorů. Pokud máte otázky, můžete napsat na e-mail %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4499,7 +4509,7 @@ msgstr "Ujednání s vývojářem"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:26 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
+msgstr "Produkty v aplikaci"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:32
 msgid "Compatibility"
@@ -4611,10 +4621,14 @@ msgstr "Uložit"
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Pro využívání plateb v aplikaci musí být vaše aplikace zabalena a musí u ní "
+"být určen <a href=\"%(origin)s\">origin</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Vaše aplikace musí mít ve svém manifestu uveden <a href=\"%"
+"(origin)s\">origin</a>, aby mohly být příjmy korektně ověřeny."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4865,6 +4879,9 @@ msgstr "Vytvořit název pro tento účet"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:43
 msgid "Alpha-numeric id listed under Service Name on Boku website. Learn more on the <a href=\"%(boku_docs_url)s\" target=\"_blank\">MDN Boku page</a>."
 msgstr ""
+"Alfanumerické id uvedené pod Service Name na webové stránce Boku. Pro více "
+"informací si přečtěte <a href=\"%(boku_docs_url)s\" target=\"_blank\">stránku o "
+"Boku na MDN Boku</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:55 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -6316,7 +6333,7 @@ msgstr "Schválit"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "Provede schválení aplikace a umožní ji autorům publikovat."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6325,6 +6342,8 @@ msgstr "Zamítnout"
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Zamítne aplikaci, odebere ji z fronty pro schválení a zruší její publikaci, "
+"pokud již byla publikována."
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6343,10 +6362,12 @@ msgstr "Zvýšen důraz"
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Označí aplikaci pro kontrolu administrátorem. Komentáře budou odeslány "
+"administrátorům, nikoliv autorům aplikace."
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr ""
+msgstr "Přidá komentář k aplikaci. Autoři aplikace tyto komentáře neuvidí."
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6355,6 +6376,8 @@ msgstr "Zrušit detailní kontrolu"
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Odstraní aplikaci z prioritní fronty. Autoři aplikace o tomto kroku neobdrží "
+"žádný e-mail a neuvidí o tom též žádné komentáře."
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6363,6 +6386,8 @@ msgstr "Vymazat opětovnou kontrolu"
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Odebere aplikaci z fronty pro opětovnou kontrolu. Autoři aplikace o tomto "
+"kroku neobdrží žádný e-mail a neuvidí o tom též žádné komentáře."
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6371,6 +6396,9 @@ msgstr "Zakázat aplikaci"
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Zakáže aplikaci. Jedná se stejnou akci jako Zamítnutí s tím rozdílem, že "
+"autoři nemohou aplikaci znovu nabídnout ke kontrole. Tuto funkci používejte "
+"pouze v extrémních situacích."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
