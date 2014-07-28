@@ -5,22 +5,19 @@ from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
 import mock
+from elasticsearch_dsl.search import Search
 from nose.tools import eq_, ok_
 
 import amo.tests
-from amo.tests import app_factory
-
 import mkt.carriers
 import mkt.feed.constants as feed
 import mkt.regions
+from amo.tests import app_factory
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.constants.carriers import CARRIER_MAP
-from mkt.constants.regions import REGIONS_DICT
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
-from mkt.site.fixtures import fixture
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -960,7 +957,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
     @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
     def test_index(self, index_mock):
         self.feed_permission()
-        r = self._set_feed_items(self.data)
+        self._set_feed_items(self.data)
         assert index_mock.called
         self.assertSetEqual(index_mock.call_args_list[0][0][0],
                             FeedItem.objects.values_list('id', flat=True))
@@ -1109,7 +1106,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         eq_(len(data['objects']), len(feed_items))
 
     def test_shelf_top(self):
-        feed_items = self.feed_factory()
+        self.feed_factory()
         self._refresh()
         res, data = self._get()
         eq_(data['objects'][0]['item_type'],
@@ -1117,7 +1114,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
 
     def test_region_filter(self):
         """Test that changing region gives different feed."""
-        feed_items = self.feed_factory()
+        self.feed_factory()
         self.feed_item_factory(region=2)
         self._refresh()
         res, data = self._get(region='us')
@@ -1125,7 +1122,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
 
     def test_carrier_filter(self):
         """Test that changing carrier affects the opshelf."""
-        feed_items = self.feed_factory()
+        self.feed_factory()
         self._refresh()
         res, data = self._get(carrier='tmn')
         eq_(len(data['objects']), 3)
@@ -1133,7 +1130,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
 
     def test_deserialized(self):
         """Test that feed elements and apps are deserialized."""
-        feed_items = self.feed_factory()
+        self.feed_factory()
         self._refresh()
         res, data = self._get()
         for feed_item in data['objects']:
@@ -1170,48 +1167,58 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
 
     def setUp(self):
         self.fv = FeedView()
+        self.sq = Search()
 
     def test_region_default(self):
         """Region default to RoW."""
-        sq = self.fv.get_es_feed_query().to_dict()
-        eq_(sq['function_score']['filter']['term']['region'], 1)
+        sq = self.fv.get_es_feed_query(self.sq).to_dict()
+        eq_(sq['query']['function_score']['filter']['term']['region'], 1)
 
     def test_region(self):
         """With region only."""
-        sq = self.fv.get_es_feed_query(region=2).to_dict()
-        eq_(sq['function_score']['filter']['term']['region'], 2)
+        sq = self.fv.get_es_feed_query(self.sq, region=2).to_dict()
+        eq_(sq['query']['function_score']['filter']['term']['region'], 2)
 
-    def test_carrier(self):
-        """Region and carrier."""
-        sq = self.fv.get_es_feed_query(region=2, carrier=1).to_dict()
-        eq_(sq['function_score']['filter']['term']['region'], 2)
+    def test_carrier_with_region(self):
+        sq = self.fv.get_es_feed_query(self.sq, region=2, carrier=1).to_dict()
+        # Test filter.
+        ok_({'term': {'region': 2}}
+            in sq['query']['function_score']['filter']['bool']['must'])
+        ok_({'bool': {'must_not': [{'term': {'carrier': 1}}],
+                      'must': [{'term': {'item_type': 'shelf'}}]}}
+            in sq['query']['function_score']['filter']['bool']['must_not'])
+        # Test functions.
+        ok_({'filter': {'term': {'item_type': 'shelf'}},
+             'boost_factor': 10000.0}
+            in sq['query']['function_score']['functions'])
+        ok_({'filter': {'bool': {
+            'must_not': [{'term': {'item_type': 'shelf'}}],
+            'must': [{'term': {'region': 2}}]}},
+            'script_score': {'script': "1.0 / doc['order'].value * _score"}}
+            in sq['query']['function_score']['functions'])
 
-    def test_carrier(self):
-        """With carrier."""
-        sq = self.fv.get_es_feed_query(carrier=1).to_dict()
-        assert 'boost_factor' in sq['function_score']['functions'][1]
-        eq_(sq['function_score']['functions'][1]['filter']['term']
-            ['item_type'], 'shelf')
-        eq_(sq['function_score']['filter']['bool']['must_not'][0]['bool']
-            ['must_not'][0]['term']['carrier'], 1)
+    def test_carrier_default_region(self):
+        sq = self.fv.get_es_feed_query(self.sq, carrier=1).to_dict()
+        # Test filter.
+        ok_({'term': {'region': 1}}
+            in sq['query']['function_score']['filter']['bool']['must'])
 
     def test_order(self):
         """Order script scoring."""
-        sq = self.fv.get_es_feed_query().to_dict()
-        assert 'script_score' in sq['function_score']['functions'][0]
-        eq_(sq['function_score']['functions'][0]['filter']['bool']['must'][0]
-            ['term']['region'], 1)
-        eq_(sq['function_score']['functions'][0]['filter']['bool']
-            ['must_not'][0]['term']['item_type'], 'shelf')
-        eq_("doc['order'].value" in
-            sq['function_score']['functions'][0]['script_score']['script'],
-            True)
+        sq = self.fv.get_es_feed_query(self.sq).to_dict()
+        ok_({'term': {'region': 1}}
+            in sq['query']['function_score']['functions'][0]
+            ['filter']['bool']['must'])
+        ok_({'term': {'item_type': 'shelf'}}
+             in sq['query']['function_score']['functions'][0]
+             ['filter']['bool']['must_not'])
+        eq_(sq['query']['function_score']['functions'][0]['script_score'],
+            {'script': "1.0 / doc['order'].value * _score"})
 
     def test_element_query(self):
         feed_item = self.feed_item_factory()
         item = feed_item.get_indexer().extract_document(None, obj=feed_item)
-        sq = self.fv.get_es_feed_element_query([item]).to_dict()
-        eq_(sq['bool']['should'][0]['bool']['must'][0]['term']['id'],
-            feed_item.app_id)
-        eq_(sq['bool']['should'][0]['bool']['must'][1]['term']['item_type'],
-            feed_item.item_type)
+        sq = self.fv.get_es_feed_element_query(self.sq, [item]).to_dict()
+        ok_({'bool': {'must': [{'term': {'id': feed_item.app_id}},
+                               {'term': {'item_type': 'app'}}]}}
+            in sq['query']['filtered']['filter']['bool']['should'])

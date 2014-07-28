@@ -5,7 +5,6 @@ from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
 
 import mkt.carriers
-import mkt.feed.constants as feed
 import mkt.regions
 from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
                             SplitField, TranslationSerializerField,

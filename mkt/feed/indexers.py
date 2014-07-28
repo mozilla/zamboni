@@ -2,8 +2,6 @@
 Indexers for FeedApp, FeedBrand, FeedCollection, FeedShelf, FeedItem for
 feed homepage and curation tool search.
 """
-from collections import defaultdict
-
 from amo.utils import attach_trans_dict
 
 import mkt.carriers
@@ -161,7 +159,7 @@ class FeedCollectionIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, obj_id, obj=None):
-        from mkt.feed.models import FeedCollection, FeedCollectionMembership
+        from mkt.feed.models import FeedCollectionMembership
 
         if obj is None:
             obj = cls.get_model().objects.get(pk=obj_id)
@@ -236,8 +234,6 @@ class FeedShelfIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, obj_id, obj=None):
-        from mkt.feed.models import FeedShelf
-
         if obj is None:
             obj = cls.get_model().get(pk=obj_id)
 
@@ -292,8 +288,6 @@ class FeedItemIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, obj_id, obj=None):
-        from mkt.feed.models import FeedItem
-
         if obj is None:
             obj = cls.get_model().objects.get(pk=obj_id)
 

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from mkt.api.fields import ESTranslationSerializerField
 from mkt.webapps.serializers import AppSerializer, ESAppSerializer
 
 
