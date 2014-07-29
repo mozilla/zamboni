@@ -10,14 +10,11 @@ import amo.tests
 import mkt.feed.constants as feed
 from mkt.feed import serializers
 from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
-from mkt.feed.models import FeedBrand, FeedShelf
+from mkt.feed.models import FeedShelf
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
-from mkt.feed.serializers import (FeedAppSerializer, FeedBrandSerializer,
-                                  FeedCollectionSerializer,
-                                  FeedShelfSerializer, FeedItemSerializer)
 from mkt.regions import RESTOFWORLD
-from mkt.webapps.models import Preview
 from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.models import Preview
 
 
 class TestFeedAppSerializer(FeedTestMixin, amo.tests.TestCase):

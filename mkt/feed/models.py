@@ -23,16 +23,14 @@ from amo.decorators import use_master
 from amo.models import SlugField
 
 import mkt.carriers
-import mkt.feed.constants as feed
 import mkt.regions
 from mkt.collections.fields import ColorField
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
-from mkt.search.indexers import index
+from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import Addon, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
-from mkt.translations.fields import PurifiedField, save_signal
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
                         COLLECTION_TYPE_CHOICES,

@@ -42,6 +42,12 @@ class ETISALAT(CARRIER):
     slug = 'etisalat'
 
 
+class GRAMEENPHONE(CARRIER):
+    id = 18
+    name = 'GrameenPhone'
+    slug = 'grameenphone'
+
+
 class HUTCHINSON_THREE_GROUP(CARRIER):
     id = 6
     name = u'Hutchinson Three Group'

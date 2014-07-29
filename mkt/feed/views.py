@@ -1,11 +1,9 @@
-import string
-
 from django.conf import settings
 from django.db.models import Q
 
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
-from elasticsearch_dsl import F, query, Search
+from elasticsearch_dsl import query, Search
 from rest_framework import response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
@@ -17,7 +15,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
-from mkt.api.base import (CORSMixin, MarketplaceView, SlugOrIdMixin)
+from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.collections.views import CollectionImageViewSet
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer, FeedItemIndexer,
@@ -26,11 +24,10 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
-from .constants import FEED_TYPE_SHELF
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppSerializer, FeedBrandSerializer,
-                          FeedCollectionSerializer, FeedItemSerializer,
-                          FeedItemESSerializer, FeedShelfSerializer)
+                          FeedCollectionSerializer, FeedItemESSerializer,
+                          FeedItemSerializer, FeedShelfSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
@@ -170,7 +167,7 @@ class FeedBuilderView(CORSMixin, APIView):
         # Index the feed items created. bulk_create doesn't call save or
         # post_save so get the IDs manually.
         feed_item_ids = list(FeedItem.objects.filter(region__in=regions)
-                                         .values_list('id', flat=True))
+                             .values_list('id', flat=True))
         FeedItem.get_indexer().index_ids(feed_item_ids)
 
         return response.Response(status=status.HTTP_201_CREATED)
@@ -371,7 +368,7 @@ class FeedView(CORSMixin, APIView):
     permission_classes = []
     cors_allowed_methods = ('get',)
 
-    def get_es_feed_query(self, region=mkt.regions.RESTOFWORLD.id,
+    def get_es_feed_query(self, sq, region=mkt.regions.RESTOFWORLD.id,
                           carrier=None):
         """
         Build ES query for feed.
@@ -382,36 +379,37 @@ class FeedView(CORSMixin, APIView):
         region -- region ID (integer)
         carrier -- carrier ID (integer)
         """
-        # Filter by region.
         region_filter = es_filter.Term(region=region)
         shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
-        functions = [
-            # Order the non-shelf feed items by their order attribute.
-            es_function.ScriptScore(
-                # Invert the order; Order attr orders by smallest first, but
-                # boost score orders by biggest first.
-                script="1.0 / doc['order'].value * _score",
-                filter=es_filter.Bool(must=[region_filter],
-                                      must_not=[shelf_filter]))
-        ]
+
+        # Once we upgrade to 1.2 use a field value factor function for speed.
+        # ordering_fn = es_function.FieldValueFactor(
+        #     field='order', modifier='reciprocal',
+        #     filter=es_filter.Bool(must=[region_filter],
+        #                           must_not=[shelf_filter]))
+        ordering_fn = es_function.ScriptScore(
+            script="1.0 / doc['order'].value * _score",
+            filter=es_filter.Bool(must=[region_filter],
+                                  must_not=[shelf_filter]))
+        boost_fn = es_function.BoostFactor(value=10000.0,
+                                           filter=shelf_filter)
+
         if carrier is None:
-            return query.FunctionScore(functions=functions,
-                                       filter=region_filter)
+            return sq.query('function_score',
+                            functions=[ordering_fn],
+                            filter=region_filter)
 
-        # Filter by carrier. Boost shelf to top.
-        functions.append(
-            es_function.BoostFactor(value=10000.0, filter=shelf_filter),
+        return sq.query(
+            'function_score',
+            functions=[boost_fn, ordering_fn],
+            filter=es_filter.Bool(
+                must=[es_filter.Term(region=region)],
+                must_not=[es_filter.Bool(
+                    must=[shelf_filter],
+                    must_not=[es_filter.Term(carrier=carrier)])])
         )
-        # Exclude shelves that may match the region, but NOT the carrier.
-        bad_shelf_filter = es_filter.Bool(
-            must=[shelf_filter],
-            must_not=[es_filter.Term(carrier=carrier)])
-        shelf_filter = es_filter.Bool(must_not=[bad_shelf_filter])
 
-        return query.FunctionScore(functions=functions,
-                                   filter=region_filter + shelf_filter)
-
-    def get_es_feed_element_query(self, feed_items):
+    def get_es_feed_element_query(self, sq, feed_items):
         """
         From a list of FeedItems with normalized feed element IDs,
         return an ES query that fetches the feed elements for each feed item.
@@ -419,12 +417,11 @@ class FeedView(CORSMixin, APIView):
         filters = []
         for feed_item in feed_items:
             item_type = feed_item['item_type']
-            filters.append(es_filter.Bool(must=[
-                es_filter.Term(id=feed_item[item_type]),
-                es_filter.Term(item_type=item_type)
-            ]))
+            filters.append(es_filter.Bool(
+                must=[es_filter.Term(id=feed_item[item_type]),
+                      es_filter.Term(item_type=item_type)]))
 
-        return es_filter.Bool(should=filters)
+        return sq.filter(es_filter.Bool(should=filters))
 
     def get(self, request, *args, **kwargs):
         es = FeedItemIndexer.get_es()
@@ -437,13 +434,13 @@ class FeedView(CORSMixin, APIView):
             carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
 
         # Fetch FeedItems.
-        sq = self.get_es_feed_query(region=region, carrier=carrier)
-        feed_items = FeedItemIndexer.search(using=es).query(sq).execute().hits
+        sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
+                                    region=region, carrier=carrier)
+        feed_items = sq.execute().hits
         if not feed_items:
             # Fallback to RoW.
-            sq = self.get_es_feed_query()
-            feed_items = (FeedItemIndexer.search(using=es).query(sq)
-                                                          .execute().hits)
+            sq = self.get_es_feed_query(FeedItemIndexer.search(using=es))
+            feed_items = sq.execute().hits
             if not feed_items:
                 return response.Response({'objects': []},
                                          status=status.HTTP_404_NOT_FOUND)
@@ -464,9 +461,9 @@ class FeedView(CORSMixin, APIView):
         ]
 
         # Fetch feed elements to attach to FeedItems later.
-        sq = self.get_es_feed_element_query(feed_items)
-        feed_elms = Search(using=es, index=index).filter(sq).execute().hits
-        for feed_elm in feed_elms:
+        sq = self.get_es_feed_element_query(Search(using=es, index=index),
+                                            feed_items)
+        for feed_elm in sq.execute().hits:
             # Store the feed elements to attach to FeedItems later.
             feed_element_map[feed_elm['item_type']][feed_elm['id']] = feed_elm
             # Store the apps to retrieve later.

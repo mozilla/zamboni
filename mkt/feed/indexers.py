@@ -2,8 +2,6 @@
 Indexers for FeedApp, FeedBrand, FeedCollection, FeedShelf, FeedItem for
 feed homepage and curation tool search.
 """
-from collections import defaultdict
-
 from amo.utils import attach_trans_dict
 
 import mkt.carriers
@@ -53,10 +51,10 @@ class FeedAppIndexer(BaseIndexer):
         return cls.attach_translation_mappings(mapping, ('description',))
 
     @classmethod
-    def extract_document(cls, obj_id, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         """Converts this instance into an Elasticsearch document"""
         if obj is None:
-            obj = cls.get_model().objects.get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=pk)
 
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
@@ -112,9 +110,9 @@ class FeedBrandIndexer(BaseIndexer):
         }
 
     @classmethod
-    def extract_document(cls, obj_id, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         if obj is None:
-            obj = cls.get_model().objects.get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=pk)
 
         return {
             'id': obj.id,
@@ -160,11 +158,11 @@ class FeedCollectionIndexer(BaseIndexer):
                                                          'name'))
 
     @classmethod
-    def extract_document(cls, obj_id, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         from mkt.feed.models import FeedCollection, FeedCollectionMembership
 
         if obj is None:
-            obj = cls.get_model().objects.get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=pk)
 
         attach_trans_dict(cls.get_model(), [obj])
 
@@ -235,11 +233,11 @@ class FeedShelfIndexer(BaseIndexer):
                                                          'name'))
 
     @classmethod
-    def extract_document(cls, obj_id, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         from mkt.feed.models import FeedShelf
 
         if obj is None:
-            obj = cls.get_model().get(pk=obj_id)
+            obj = cls.get_model().get(pk=pk)
 
         attach_trans_dict(cls.get_model(), [obj])
 
@@ -291,11 +289,11 @@ class FeedItemIndexer(BaseIndexer):
         }
 
     @classmethod
-    def extract_document(cls, obj_id, obj=None):
+    def extract_document(cls, pk=None, obj=None):
         from mkt.feed.models import FeedItem
 
         if obj is None:
-            obj = cls.get_model().objects.get(pk=obj_id)
+            obj = cls.get_model().objects.get(pk=pk)
 
         return {
             'id': obj.id,
