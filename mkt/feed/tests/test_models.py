@@ -246,9 +246,12 @@ class TestESReceivers(FeedTestMixin, amo.tests.TestCase):
 
     @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
     def test_update_search_index(self, update_mock):
-        self.feed_factory()
-        # FeedItems + each feed element they wrap.
-        eq_(update_mock.call_count, FeedItem.objects.count() * 2)
+        feed_items = self.feed_factory()
+        calls = [update_call[0][0][0] for update_call in
+                 update_mock.call_args_list]
+        for feed_item in feed_items:
+            assert feed_item.id in calls
+            assert getattr(feed_item, feed_item.item_type).id in calls
 
     @mock.patch('mkt.search.indexers.BaseIndexer.unindex')
     def test_delete_search_index(self, delete_mock):
