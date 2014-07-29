@@ -307,7 +307,8 @@ class FeedItemIndexer(BaseIndexer):
                           obj.item_type == feed.FEED_TYPE_COLL else None,
             'item_type': obj.item_type,
             # TODO: better way to do this? What happens if user colls come in?
-            'order': obj.order or 100,  # If no order, try to put it at end.
+            # If no order, put it at end.
+            'order': obj.order if obj.order is not None else 100,
             'region': obj.region,
             'shelf': obj.shelf_id if obj.item_type == feed.FEED_TYPE_SHELF
                      else None,
