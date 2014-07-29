@@ -1105,6 +1105,12 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         res, data = self._get(region=None)
         eq_(len(data['objects']), len(feed_items))
 
+    def test_feed_app_only(self):
+        self.feed_item_factory()
+        self._refresh()
+        res, data = self._get()
+        eq_(len(data['objects']), 1)
+
     def test_shelf_top(self):
         self.feed_factory()
         self._refresh()
@@ -1151,11 +1157,7 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
 
     def test_order(self):
         """Test feed elements are ordered by their order attribute."""
-        shelf = self.feed_item_factory(item_type=feed.FEED_TYPE_SHELF)
-        feed_items = [shelf]
-        for i in xrange(1, 4):
-            feed_items.append(self.feed_item_factory(order=i))
-
+        feed_items = [self.feed_item_factory(order=i) for i in xrange(4)]
         self._refresh()
         res, data = self._get()
         for i, feed_item in enumerate(feed_items):
