@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-07-02 05:35+0000\n"
+"PO-Revision-Date: 2014-07-29 22:46+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404279344.0\n"
+"X-POOTLE-MTIME: 1406673963.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -444,10 +444,12 @@ msgstr "Alteração da URL do manifesto"
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"{addon} foi escalado de forma automática porque é uma aplicação em "
+"pré-lançamento."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Auto-escalamento de pré-lançamento"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -6346,7 +6348,7 @@ msgstr "Aprovar"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "Isto irá aprovar a aplicação e permitir que o(s) autor(es) a publiquem."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6355,6 +6357,8 @@ msgstr "Rejeitar"
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Isto irá rejeitar a aplicação, removendo-a da fila de revisão, deixando a "
+"mesma de estar publicada caso seja este o seu estado."
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6371,10 +6375,14 @@ msgstr "Encaminhar para análise superior"
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Marcar esta aplicação para ser revista por um administrador. Os comentários "
+"são enviados para os administradores e não para o(s) autor(es). "
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr ""
+"Fazer um comentário nesta aplicação. O(s) autor(es) não conseguirão ver "
+"estes comentários."
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6383,6 +6391,8 @@ msgstr "Remover encaminhamento para análise superior"
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Limpar esta aplicação da fila de escalamento. O(s) autor(es) não irão "
+"receber nenhum email nem conseguirão ver os comentários aqui."
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6391,6 +6401,8 @@ msgstr "Remover reanálise"
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Limpar esta aplicação da fila de re-revisão. O(s) autor(es) não irão receber "
+"nenhum email nem conseguirão ver os comentários aqui."
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6399,6 +6411,9 @@ msgstr "Desativar aplicação"
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Desativar a aplicação, o mesmo que Rejeitar, mas o(s) autor(es) não "
+"conseguirão submeter novamente a aplicação. Apenas para ser utilizado em "
+"casos extremos."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
