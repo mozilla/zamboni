@@ -1073,12 +1073,15 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         data = json.loads(res.content)
         return res, data
 
-    def test_200(self):
+    @mock.patch('mkt.feed.views.statsd.timer')
+    def test_200(self, statsd_mock):
         feed_items = self.feed_factory()
         self._refresh()
         res, data = self._get()
         eq_(res.status_code, 200)
         eq_(len(data['objects']), len(feed_items))
+
+        assert statsd_mock.called
 
     def test_200_authed(self):
         feed_items = self.feed_factory()
