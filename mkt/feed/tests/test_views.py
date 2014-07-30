@@ -33,6 +33,27 @@ class BaseTestFeedItemViewSet(RestOAuth, FeedTestMixin):
         self.grant_permission(self.profile, 'Feed:Curate')
 
 
+class BaseTestFeedESView(amo.tests.ESTestCase):
+    def setUp(self):
+        Webapp.get_indexer().index_ids(
+            list(Webapp.objects.values_list('id', flat=True)))
+        super(BaseTestFeedESView, self).setUp()
+
+    def tearDown(self):
+        for model in (FeedApp, FeedBrand, FeedCollection, FeedShelf,
+                      FeedItem):
+            model.get_indexer().unindexer(_all=True)
+        super(BaseTestFeedESView, self).tearDown()
+
+    def _refresh(self):
+        self.refresh('mkt_feed_app')
+        self.refresh('mkt_feed_brand')
+        self.refresh('mkt_feed_collection')
+        self.refresh('mkt_feed_shelf')
+        self.refresh('mkt_feed_item')
+        self.refresh('webapp')
+
+
 class TestFeedItemViewSetList(FeedAppMixin, BaseTestFeedItemViewSet):
     """
     Tests the handling of GET requests to the list endpoint of FeedItemViewSet.
@@ -1036,7 +1057,7 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         eq_(res.status_code, 404)
 
 
-class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
+class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
@@ -1044,20 +1065,6 @@ class TestFeedView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         self.url = reverse('api-v2:feed.get')
         self.carrier = 'telefonica'
         self.region = 'restofworld'
-
-    def tearDown(self):
-        for model in (FeedApp, FeedBrand, FeedCollection, FeedShelf,
-                      FeedItem):
-            model.get_indexer().unindexer(_all=True)
-        super(TestFeedView, self).tearDown()
-
-    def _refresh(self):
-        self.refresh('mkt_feed_app')
-        self.refresh('mkt_feed_brand')
-        self.refresh('mkt_feed_collection')
-        self.refresh('mkt_feed_shelf')
-        self.refresh('mkt_feed_item')
-        self.refresh('webapp')
 
     def _get(self, client=None, **kwargs):
         client = client or self.anon
@@ -1227,3 +1234,60 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_({'bool': {'must': [{'term': {'id': feed_item.app_id}},
                                {'term': {'item_type': 'app'}}]}}
             in sq['query']['filtered']['filter']['bool']['should'])
+
+
+class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedElementGetView, self).setUp()
+
+    def _get(self, url, **kwargs):
+        self._refresh()
+        with self.assertNumQueries(0):
+            res = self.anon.get(url, kwargs)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def _assert(self, obj, result):
+        eq_(obj.id, result['id'])
+        if hasattr(obj, 'app_id'):
+            eq_(obj.app_id, result['app']['id'])
+        else:
+            self.assertSetEqual(obj.apps().values_list('id', flat=True),
+                                [app['id'] for app in result['apps']])
+
+    def test_app(self):
+        app = self.feed_app_factory()
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['apps', app.slug])
+        res, data = self._get(url)
+        self._assert(app, data)
+
+    def test_brand(self):
+        brand = self.feed_brand_factory()
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['brands', brand.slug])
+        res, data = self._get(url)
+        self._assert(brand, data)
+
+    def test_collection(self):
+        collection = self.feed_collection_factory()
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['collections', collection.slug])
+        res, data = self._get(url)
+        self._assert(collection, data)
+
+    def test_shelf(self):
+        shelf = self.feed_shelf_factory()
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['shelves', shelf.slug])
+        res, data = self._get(url)
+        self._assert(shelf, data)
+
+    def test_404(self):
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['shelves', 'tehshrike'])
+        res = self.anon.get(url)
+        eq_(res.status_code, 404)
