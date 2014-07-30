@@ -145,7 +145,7 @@ class TestOpensearch(amo.tests.TestCase):
         elm = pq(response.content)(
             'link[rel=search][type="application/opensearchdescription+xml"]')
         eq_(elm.attr('href'), reverse('opensearch'))
-        eq_(elm.attr('title'), 'Firefox Marketplace')
+        eq_(elm.attr('title'), 'Firefox Apps')
 
     def test_opensearch(self):
         response = self.client.get(reverse('opensearch'))
@@ -153,7 +153,7 @@ class TestOpensearch(amo.tests.TestCase):
         eq_(response.status_code, 200)
         doc = etree.fromstring(response.content)
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
-        eq_(e.text, 'Firefox Marketplace')
+        eq_(e.text, 'Firefox Apps')
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}Url')
         wanted = '%s?q={searchTerms}' % urljoin(settings.SITE_URL, '/search')
         eq_(e.attrib['template'], wanted)
