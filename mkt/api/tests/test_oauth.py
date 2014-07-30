@@ -1,4 +1,3 @@
-import json
 import urllib
 import urlparse
 from datetime import datetime
@@ -18,7 +17,7 @@ from rest_framework.request import Request
 from test_utils import RequestFactory
 
 from amo.helpers import absolutify, urlparams
-from amo.tests import TestCase, TestClient
+from amo.tests import JSONClient, TestCase
 from mkt.api import authentication
 from mkt.api.middleware import RestOAuthMiddleware
 from mkt.api.models import Access, ACCESS_TOKEN, generate, REQUEST_TOKEN, Token
@@ -38,21 +37,7 @@ def get_absolute_url(url, api_name='apps', absolute=True):
     return res
 
 
-def wrap(response):
-    """Wrapper around responses to add additional info."""
-    def _json(self):
-        """Will return parsed JSON on response if there is any."""
-        if self.content and 'application/json' in self['Content-Type']:
-            if not hasattr(self, '_content_json'):
-                self._content_json = json.loads(self.content)
-            return self._content_json
-
-    if not hasattr(response.__class__, 'json'):
-        response.__class__.json = property(_json)
-    return response
-
-
-class OAuthClient(TestClient):
+class OAuthClient(JSONClient):
     """
     OAuthClient can do all the requests the Django test client,
     but even more. And it can magically sign requests.
@@ -98,8 +83,7 @@ class OAuthClient(TestClient):
             urlstring = '?'.join([urlstring,
                                   urllib.urlencode(data, doseq=True)])
         url, headers, _ = self.sign('GET', urlstring)
-        return wrap(super(OAuthClient, self)
-                    .get(url, **self.kw(headers, **kw)))
+        return super(OAuthClient, self).get(url, **self.kw(headers, **kw))
 
     def delete(self, url, data={}, **kw):
         if isinstance(url, tuple) and len(url) > 2 and data:
@@ -110,20 +94,19 @@ class OAuthClient(TestClient):
             urlstring = '?'.join([urlstring,
                                   urllib.urlencode(data, doseq=True)])
         url, headers, _ = self.sign('DELETE', urlstring)
-        return wrap(super(OAuthClient, self)
-                    .delete(url, **self.kw(headers, **kw)))
+        return super(OAuthClient, self).delete(url, **self.kw(headers, **kw))
 
     def post(self, url, data='', content_type='application/json', **kw):
         url, headers, _ = self.sign('POST', self.get_absolute_url(url))
-        return wrap(super(OAuthClient, self).post(url, data=data,
-                    content_type=content_type,
-                    **self.kw(headers, **kw)))
+        return super(OAuthClient, self).post(
+            url, data=data, content_type=content_type,
+            **self.kw(headers, **kw))
 
     def put(self, url, data='', content_type='application/json', **kw):
         url, headers, body = self.sign('PUT', self.get_absolute_url(url))
-        return wrap(super(OAuthClient, self).put(url, data=data,
-                    content_type=content_type,
-                    **self.kw(headers, **kw)))
+        return super(OAuthClient, self).put(
+            url, data=data, content_type=content_type,
+            **self.kw(headers, **kw))
 
     def patch(self, url, data='', **kw):
         url, headers, body = self.sign('PATCH', self.get_absolute_url(url))
@@ -140,7 +123,7 @@ class OAuthClient(TestClient):
 
     def options(self, url):
         url, headers, body = self.sign('OPTIONS', self.get_absolute_url(url))
-        return wrap(super(OAuthClient, self).options(url, **self.kw(headers)))
+        return super(OAuthClient, self).options(url, **self.kw(headers))
 
 
 class BaseOAuth(BaseAPI):

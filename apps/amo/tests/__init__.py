@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import time
@@ -168,6 +169,53 @@ class TestClient(Client):
             return partial(method, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         else:
             raise AttributeError
+
+
+class _JSONifiedResponse(object):
+
+    def __init__(self, response):
+        self._orig_response = response
+
+    def __getattr__(self, n):
+        return getattr(self._orig_response, n)
+
+    def __getitem__(self, n):
+        return self._orig_response[n]
+
+    def __iter__(self):
+        return iter(self._orig_response)
+
+    @property
+    def json(self):
+        """Will return parsed JSON on response if there is any."""
+        if self.content and 'application/json' in self['Content-Type']:
+            if not hasattr(self, '_content_json'):
+                self._content_json = json.loads(self.content)
+            return self._content_json
+
+
+class JSONClient(TestClient):
+
+    def _with_json(self, response):
+        if hasattr(response, 'json'):
+            return response
+        else:
+            return _JSONifiedResponse(response)
+
+    def get(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).get(*args, **kw))
+
+    def delete(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).delete(*args, **kw))
+
+    def post(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).post(*args, **kw))
+
+    def put(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).put(*args, **kw))
+
+    def options(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).options(*args, **kw))
 
 
 ES_patchers = [mock.patch('elasticsearch.Elasticsearch'),

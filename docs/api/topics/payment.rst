@@ -336,6 +336,27 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
+.. http:get:: /api/v1/payments/stub-in-app-products/
+
+    List some stub in-app products that can be used for testing.
+    These products can only be purchased in simulation mode.
+
+    **Request**
+
+    None
+
+    **Response**
+
+    :status 200: successfully completed.
+    :param id: The in-app product ID.
+    :type id: int
+    :param name: The name for the in-app product.
+    :type name: string
+    :param logo_url: URL to a logo for the product.
+    :type logo_url: string
+    :param price_id: ID for the :ref:`price tier <price-tiers>`.
+    :type price_id: int
+
 
 Preparing payment
 =================

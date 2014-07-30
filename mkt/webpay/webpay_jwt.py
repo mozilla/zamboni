@@ -132,6 +132,7 @@ class InAppProduct(object):
         )}
 
     def description(self):
+        # FIXME: return in-app product description. Bug 972886.
         return self.inapp.webapp.description
 
     def application_size(self):
