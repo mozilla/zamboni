@@ -31,7 +31,7 @@ Search
     :type pro: string
     :param optional premium_types: Filters by whether the app is free or
         premium or has in-app purchasing. Any of 'free', 'free-inapp',
-        'premium', 'premium-inapp', or 'other'.
+        'premium', 'premium-inapp', or 'other' [1]_.
     :type premium_types: string
     :param optional app_type: Filters by types of web apps. Any of 'hosted',
         'packaged', or 'privileged'.
@@ -201,3 +201,6 @@ feature profile signature::
 
     440088000000.47.4
 
+.. [1] `other` denotes a payment system other than the Firefox Marketplace
+  payments. This field is not currently populated by the Marketplace Developer
+  Hub.
