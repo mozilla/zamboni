@@ -1155,6 +1155,9 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
             if feed_elm.get('app'):
                 ok_(feed_elm['app']['id'])
             else:
+                if feed_item['item_type'] == feed.FEED_TYPE_SHELF:
+                    # Shelves don't display app data on feed.
+                    continue
                 ok_(len(feed_elm['apps']))
                 for app in feed_elm['apps']:
                     ok_(app['id'])

@@ -524,6 +524,40 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         return obj.es_data['tags']
 
 
+class BaseESAppFeedSerializer(ESAppSerializer):
+    icons = serializers.SerializerMethodField('get_icons')
+
+    def get_icons(self, obj):
+        """Only need the 64px icon."""
+        return {
+            '64': obj.get_icon_url(64)
+        }
+
+
+class ESAppFeedSerializer(BaseESAppFeedSerializer):
+    """
+    App serializer targetted towards the Feed, Fireplace's homepage.
+    Specifically for Feed Apps, Collections, Shelves that only need app icons.
+    """
+    class Meta(ESAppSerializer.Meta):
+        fields = [
+            'icons', 'id', 'slug'
+        ]
+
+
+class ESAppFeedBrandSerializer(BaseESAppFeedSerializer):
+    """
+    App serializer targetted towards the Feed, Fireplace's homepage.
+    Specifically for Feed Brands that feature the whole app tile rather than
+    just an icon.
+    """
+    class Meta(ESAppSerializer.Meta):
+        fields = [
+            'content_ratings', 'icons', 'id', 'is_packaged', 'manifest_url',
+            'name', 'ratings', 'slug'
+        ]
+
+
 class SimpleAppSerializer(AppSerializer):
     """
     App serializer with fewer fields (and fewer db queries as a result).
@@ -539,7 +573,6 @@ class SimpleAppSerializer(AppSerializer):
 
 
 class SimpleESAppSerializer(ESAppSerializer):
-
     class Meta(SimpleAppSerializer.Meta):
         pass
 

@@ -353,5 +353,5 @@ class TestFeedItemESSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data[2]['collection']['apps'][0]['id'],
             self.feed[2].collection.apps()[0].id)
 
-        eq_(data[3]['shelf']['apps'][0]['id'],
-            self.feed[3].shelf.apps()[0].id)
+        assert data[3]['shelf']['carrier']
+        assert data[3]['shelf']['region']
