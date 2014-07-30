@@ -14,7 +14,7 @@ Two options for authentication are available: shared-secret and OAuth.
 Shared Secret
 =============
 
-The Marketplace frontend uses a server-supplied token for authentication,
+The Marketplace front end uses a server-supplied token for authentication,
 stored as a cookie.
 
 .. http:post:: /api/v1/account/login/
@@ -76,24 +76,37 @@ OAuth
 =====
 
 Marketplace provides OAuth 1.0a, allowing third-party apps to interact with its
-API.
-
+API. It provides it in two flavours: 2-legged OAuth, designed for command line
+tools and 3-legged OAuth designed for web sites.
 
 See the `OAuth Guide <http://hueniverse.com/oauth/guide/>`_ and this `authentication flow diagram <http://oauth.net/core/diagram.png>`_ for an overview of OAuth concepts.
-The "Application Name" and "Redirect URI" fields are used by Marketplace when prompting users for authorization, allowing your application to make API requests on their behalf.
-"Application Name" should contain the name of your app, for Marketplace to show users when asking them for authorization.
-"Redirect URI" should contain the URI to redirect the user to, after the user grants access to your app (step D in the diagram linked above).
-These fields can be left blank if this key will only be used to access your own Marketplace account.
-When you are first developing your API to communicate with the Marketplace, you
-should use the development server to test your API.
 
-OAuth URLs
-----------
+Web sites
+---------
+
+Web sites that want to use the Marketplace API on behalf of a user should
+use the 3-legged flow to get an access token per user.
+
+When creating your API token, you should provide two extra fields used by the Marketplace when prompting users for authorization, allowing your application to make API requests on their behalf.
+
+* `Application Name` should contain the name of your app, for Marketplace to show users when asking them for authorization.
+* `Redirect URI` should contain the URI to redirect the user to, after the user grants access to your app (step D in the diagram linked above).
+
+The OAuth URLs on the Marketplace are:
 
  * The Temporary Credential Request URL path is `/oauth/register/`.
  * The Resource Owner Authorization URL path is `/oauth/authorize/`.
  * The Token Request URL path is `/oauth/token/`.
 
+Command-line tools
+------------------
+
+If you would like to use the Marketplace API from a command-line tool you don't
+need to set up the full 3 legged flow. In this case you just need to sign the
+request. Some discussion of this can be found `here <http://blog.nerdbank.net/2011/06/what-is-2-legged-oauth.html>`_.
+
+Once you've created an API key and secret you can use the key and secret in
+your command-line tools.
 
 Production server
 =================
@@ -147,5 +160,12 @@ a reason contained in the response. For example:
         .. code-block:: json
 
             {"reason": "Terms of service not accepted."}
+
+Example clients
+~~~~~~~~~~~~~~~
+
+* The `Marketplace.Python <https://github.com/mozilla/Marketplace.Python/>`_ library uses 2-legged OAuth to authenticate requests.
+
+* Curling is a command library to do requests using `Python <https://github.com/mozilla/Marketplace.Python/>`_.
 
 .. _`example marketplace client`: https://github.com/mozilla/Marketplace.Python

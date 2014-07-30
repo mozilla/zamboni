@@ -31,18 +31,12 @@ class TestAPI(amo.tests.TestCase):
         self.client.logout()
         self.assertLoginRequired(self.client.get(self.url))
 
-    def test_non_url(self):
-        res = self.client.post(
-            self.url,
-            {'app_name': 'test', 'redirect_uri': 'mailto:cvan@example.com'})
-        self.assertFormError(res, 'form', 'redirect_uri',
-                             ['Enter a valid URL.'])
-
     def test_create(self):
         Access.objects.create(user=self.user, key='foo', secret='bar')
         res = self.client.post(
             self.url,
-            {'app_name': 'test', 'redirect_uri': 'https://example.com/myapp'})
+            {'app_name': 'test', 'redirect_uri': 'https://example.com/myapp',
+             'oauth_leg': 'website'})
         self.assertNoFormErrors(res)
         eq_(res.status_code, 200)
         consumers = Access.objects.filter(user=self.user)
@@ -60,14 +54,6 @@ class TestAPI(amo.tests.TestCase):
         res = self.client.post(self.url)
         eq_(res.status_code, 200)
         eq_(Access.objects.filter(user=self.user).count(), 0)
-
-    def test_other(self):
-        self.grant_permission(self.profile, 'What:ever')
-        res = self.client.post(
-            self.url,
-            {'app_name': 'test', 'redirect_uri': 'http://example.com/myapp'})
-        eq_(res.status_code, 200)
-        eq_(Access.objects.filter(user=self.user).count(), 1)
 
 
 class TestContentRating(amo.tests.TestCase):

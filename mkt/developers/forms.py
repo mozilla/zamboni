@@ -898,7 +898,7 @@ class CategoryForm(happyforms.Form):
         self.product = kw.pop('product', None)
         super(CategoryForm, self).__init__(*args, **kw)
 
-        self.cats_before = (list(self.product.categories) 
+        self.cats_before = (list(self.product.categories)
                             if self.product.categories else [])
 
         self.initial['categories'] = self.cats_before
@@ -1012,13 +1012,22 @@ class TransactionFilterForm(happyforms.Form):
 
 
 class APIConsumerForm(happyforms.ModelForm):
-    app_name = forms.CharField(required=True)
-    redirect_uri = forms.CharField(validators=[URLValidator()],
-                                   required=True)
+    app_name = forms.CharField(required=False)
+    oauth_leg = forms.ChoiceField(choices=(
+        ('website', _lazy('Web site')),
+        ('command', _lazy('Command line')))
+    )
+    redirect_uri = forms.CharField(validators=[URLValidator()], required=False)
 
     class Meta:
         model = Access
         fields = ('app_name', 'redirect_uri')
+
+    def __init__(self, *args, **kwargs):
+        super(APIConsumerForm, self).__init__(*args, **kwargs)
+        if self.data.get('oauth_leg') == 'website':
+            for field in ['app_name', 'redirect_uri']:
+                self.fields[field].required = True
 
 
 class AppVersionForm(happyforms.ModelForm):

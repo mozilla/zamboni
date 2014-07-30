@@ -31,6 +31,10 @@ $(document).ready(function() {
         initPayments();
     }
 
+    if ($('#submit-api').length) {
+        initAPI();
+    }
+
     // Submission process
     if ($('.addon-submission-process').length) {
         initLicenseFields();
@@ -898,6 +902,21 @@ function generateErrorList(o) {
         list.append($(format('<li>{0}</li>', v)));
     });
     return list;
+}
+
+
+function initAPI() {
+    // As the "Client type" changes, alter the form.
+    var leg = $('#id_oauth_leg');
+    var update = function update() {
+      if (leg.val() === 'command') {
+        $('tr.api-oauth-website').hide();
+      } else {
+        $('tr.api-oauth-website').show();
+      }
+    };
+    leg.on('change', update);
+    update();
 }
 
 

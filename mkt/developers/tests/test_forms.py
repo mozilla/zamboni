@@ -725,3 +725,39 @@ class TestIARCGetAppInfoForm(amo.tests.WebappTestCase):
         assert form.is_valid(), form.errors
         with self.assertRaises(django_forms.ValidationError):
             form.save()
+
+
+class TestAPIForm(amo.tests.WebappTestCase):
+
+    def setUp(self):
+        super(TestAPIForm, self).setUp()
+        self.form = forms.APIConsumerForm
+
+    def test_non_url(self):
+        form = self.form({
+            'app_name': 'test',
+            'redirect_uri': 'mailto:cvan@example.com',
+            'oauth_leg': 'website'
+        })
+        assert not form.is_valid()
+        eq_(form.errors['redirect_uri'], ['Enter a valid URL.'])
+
+    def test_non_app_name(self):
+        form = self.form({
+            'redirect_uri': 'mailto:cvan@example.com',
+            'oauth_leg': 'website'
+        })
+        assert not form.is_valid()
+        eq_(form.errors['app_name'], ['This field is required.'])
+
+    def test_command(self):
+        form = self.form({'oauth_leg': 'command'})
+        assert form.is_valid()
+
+    def test_website(self):
+        form = self.form({
+            'app_name': 'test',
+            'redirect_uri': 'https://f.com',
+            'oauth_leg': 'website'
+        })
+        assert form.is_valid()
