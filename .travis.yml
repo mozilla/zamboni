@@ -16,7 +16,7 @@ install:
   - pip install --no-deps -r requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
 before_script:
   - mysql -e 'create database zamboni;'
-script: ./manage.py test --noinput -s --logging-clear-handlers --with-blockage
+script: ./manage.py test lib mkt --noinput -s --logging-clear-handlers --with-blockage
 notifications:
   irc:
     channels:
