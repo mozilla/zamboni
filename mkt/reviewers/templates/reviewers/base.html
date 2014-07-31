@@ -56,7 +56,7 @@
 {% block outer_content %}
   {% block breadcrumbs %}{% endblock %}
   {% if motd %}
-    <div class="featured daily-message island">
+    <div class="featured daily-message island" data-message-type="reviewer">
       <h2>{{ _('Announcement') }}</h2>
       <p>{{ motd }}</p>
       <a class="close" href="#" title="{{ _('Dismiss this announcement') }}">&times;</a>

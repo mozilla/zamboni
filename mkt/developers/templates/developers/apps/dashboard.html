@@ -5,6 +5,19 @@
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
 {% block content %}
+  {% if motd %}
+    <div class="featured daily-message island" data-message-type="developer">
+      <h2>{{ _('Announcement') }}</h2>
+      <p>{{ motd }}</p>
+      <a class="close" href="#" title="{{ _('Dismiss this announcement') }}">&times;</a>
+      {% if action_allowed('DeveloperMOTD', 'Edit') %}
+        <span class="subtle">
+          <a href="{{ url('mkt.developers.motd') }}">{{ _('Edit') }}</a>
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
   <header class="hero">
     {#{{ hub_breadcrumbs(items=[(None, _('My Submissions'))]) }}#}
     <h1>{{ title }}</h1>

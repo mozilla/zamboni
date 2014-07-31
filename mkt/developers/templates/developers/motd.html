@@ -1,0 +1,19 @@
+{% extends 'developers/base_impala.html' %}
+
+{% set title = _('Message of the Day') %}
+
+{% block title %}{{ hub_page_title(title) }}{% endblock %}
+
+{% block content %}
+  <div id="editor-motd">
+    {% if form %}
+      <form action="{{ url('mkt.developers.motd') }}" method="post">
+        <h1>{{ _('Update Message of the Day') }}</h1>
+        {{ form.errors.motd }}
+        {{ form.motd }}
+        <div class="buttons"><button type="submit" class="consumer-submit">{{ _('Save') }}</button></div>
+        {{ csrf() }}
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}

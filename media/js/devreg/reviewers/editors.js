@@ -1,7 +1,4 @@
 (function() {
-    if($('.daily-message').length) {
-        initDailyMessage();
-    }
 
     var show_comments = function(e) {
         e.preventDefault();
@@ -219,27 +216,6 @@ function insertAtCursor(textarea, text) {
     }
     // restore scrollbar location
     area.scrollTop = scrollPos;
-}
-
-
-function initDailyMessage(doc) {
-    var $motd = $('.daily-message', doc),
-        storage = z.Storage();
-    if ($('#editor-motd', doc).length) {
-        // The message on the MOTD page should never be closable, so don't
-        // show close button nor attach handlers.
-        return;
-    }
-    $motd.find('.close').show();
-    if (storage.get('motd_closed') != $('p', $motd).text()) {
-        // You haven't read this spam yet? Here, I have something to show you.
-        $motd.slideDown();
-    }
-    $motd.find('.close').click(function(e) {
-        e.stopPropagation();
-        storage.set('motd_closed', $('.daily-message p').text());
-        $motd.slideUp();
-    });
 }
 
 

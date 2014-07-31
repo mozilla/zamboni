@@ -43,6 +43,7 @@ from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
                                 Webapp)
+from mkt.zadmin.models import get_config, set_config
 
 
 class AppHubTest(amo.tests.TestCase):
@@ -1400,3 +1401,59 @@ class TestContentRatingsSuccessMsg(amo.tests.TestCase):
         eq_(_ratings_success_msg(self.app, amo.STATUS_PENDING,
                                  self.days_ago(5).isoformat()),
             _submission_msgs()['content_ratings_saved'])
+
+
+class TestMessageOfTheDay(amo.tests.TestCase):
+    fixtures = fixture('user_editor', 'user_999')
+
+    def setUp(self):
+        self.login('editor')
+        self.url = reverse('mkt.developers.motd')
+        self.key = u'mkt_developers_motd'
+        set_config(self.key, u'original value')
+
+    def test_not_logged_in(self):
+        self.client.logout()
+        req = self.client.get(self.url, follow=True)
+        self.assertLoginRedirects(req, self.url)
+
+    def test_perms_not_editor(self):
+        self.client.logout()
+        self.login('regular')
+        eq_(self.client.get(self.url).status_code, 403)
+
+    def test_perms_not_motd(self):
+        # You can't see the edit page if you can't edit it.
+        req = self.client.get(self.url)
+        eq_(req.status_code, 403)
+
+    def test_motd_form_initial(self):
+        # Only users in the MOTD group can POST.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'DeveloperMOTD:Edit')
+
+        # Get is a 200 with a form.
+        req = self.client.get(self.url)
+        eq_(req.status_code, 200)
+        eq_(req.context['form'].initial['motd'], u'original value')
+
+    def test_motd_empty_post(self):
+        # Only users in the MOTD group can POST.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'DeveloperMOTD:Edit')
+
+        # Empty post throws an error.
+        req = self.client.post(self.url, dict(motd=''))
+        eq_(req.status_code, 200)  # Didn't redirect after save.
+        eq_(pq(req.content)('#editor-motd .errorlist').text(),
+            'This field is required.')
+
+    def test_motd_real_post(self):
+        # Only users in the MOTD group can POST.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'DeveloperMOTD:Edit')
+
+        # A real post now.
+        req = self.client.post(self.url, dict(motd='new motd'))
+        self.assert3xx(req, self.url)
+        eq_(get_config(self.key), u'new motd')
