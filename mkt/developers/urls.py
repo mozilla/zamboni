@@ -12,7 +12,7 @@ from mkt.developers.api_payments import (
     AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
     PaymentDebugViewSet, UpsellViewSet)
 from mkt.developers.views import ContentRatingList, ContentRatingsPingback
-from mkt.inapp.views import InAppProductViewSet
+from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
 from mkt.receipts.urls import test_patterns
 
 from . import views
@@ -183,6 +183,8 @@ api_payments.register(r'account', PaymentAccountViewSet,
 api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
 api_payments.register(r'app', AddonPaymentAccountViewSet,
                       base_name='app-payment-account')
+api_payments.register(r'stub-in-app-products', StubInAppProductViewSet,
+                      base_name='stub-in-app-products')
 
 in_app_products = SimpleRouter()
 in_app_products.register(r'in-app', InAppProductViewSet,
