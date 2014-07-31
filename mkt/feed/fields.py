@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
-                                     ESAppFeedBrandSerializer, ESAppSerializer)
+                                     ESAppFeedCollectionSerializer,
+                                     ESAppSerializer)
 
 
 class FeedCollectionMembershipField(serializers.RelatedField):
@@ -85,18 +86,20 @@ class AppESField(serializers.Field):
 class AppESHomeField(AppESField):
     """
     Like AppESField, except using ESAppFeedSerializer instead of
-    ESAppSerializer. For a slimmer homepage.
+    ESAppSerializer. For a slimmer homepage since apps/brands only need
+    enough to render the market tile.
     """
     @property
     def serializer_class(self):
         return ESAppFeedSerializer
 
 
-class AppESHomeBrandField(AppESField):
+class AppESHomeCollectionField(AppESField):
     """
-    Like AppESField, except using ESAppFeedSerializer instead of
-    ESAppSerializer. For a slimmer homepage.
+    Like AppESField, except using ESAppFeedCollectionSerializer instead of
+    ESAppSerializer. For a slimmer homepage since collection/shelves only
+    need icons.
     """
     @property
     def serializer_class(self):
-        return ESAppFeedBrandSerializer
+        return ESAppFeedCollectionSerializer

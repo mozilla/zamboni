@@ -537,24 +537,24 @@ class BaseESAppFeedSerializer(ESAppSerializer):
 class ESAppFeedSerializer(BaseESAppFeedSerializer):
     """
     App serializer targetted towards the Feed, Fireplace's homepage.
-    Specifically for Feed Apps, Collections, Shelves that only need app icons.
-    """
-    class Meta(ESAppSerializer.Meta):
-        fields = [
-            'icons', 'id', 'slug'
-        ]
-
-
-class ESAppFeedBrandSerializer(BaseESAppFeedSerializer):
-    """
-    App serializer targetted towards the Feed, Fireplace's homepage.
     Specifically for Feed Brands that feature the whole app tile rather than
     just an icon.
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'content_ratings', 'icons', 'id', 'is_packaged', 'manifest_url',
-            'name', 'ratings', 'slug'
+            'author', 'icons', 'id', 'is_packaged', 'manifest_url', 'name',
+            'ratings', 'slug'
+        ]
+
+
+class ESAppFeedCollectionSerializer(BaseESAppFeedSerializer):
+    """
+    App serializer targetted towards the Feed, Fireplace's homepage.
+    Specifically for Feed Apps, Collections, Shelves that only need app icons.
+    """
+    class Meta(ESAppSerializer.Meta):
+        fields = [
+            'icons', 'id', 'slug'
         ]
 
 

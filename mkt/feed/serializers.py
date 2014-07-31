@@ -19,7 +19,7 @@ from mkt.submit.serializers import FeedPreviewESSerializer
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
-from .fields import (AppESField, AppESHomeField, AppESHomeBrandField,
+from .fields import (AppESField, AppESHomeCollectionField, AppESHomeField,
                      FeedCollectionMembershipField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
@@ -173,8 +173,8 @@ class FeedBrandESHomeSerializer(FeedBrandESSerializer):
     Different from the other Feed*ESHomeSerializers because it uses its own
     app field.
     """
-    apps = AppESHomeBrandField(source='_app_ids', many=True,
-                               limit=feed.HOME_NUM_APPS_BRAND)
+    apps = AppESHomeField(source='_app_ids', many=True,
+                          limit=feed.HOME_NUM_APPS_BRAND)
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
@@ -249,8 +249,8 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
 
 class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
     """Stripped down FeedCollectionESSerializer targeted for the homepage."""
-    apps = AppESHomeField(source='_app_ids', many=True,
-                          limit=feed.HOME_NUM_APPS_COLL)
+    apps = AppESHomeCollectionField(source='_app_ids', many=True,
+                                    limit=feed.HOME_NUM_APPS_COLL)
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -295,8 +295,8 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
 class FeedShelfESHomeSerializer(FeedShelfESSerializer):
     """Stripped down FeedShelfESSerializer targeted for the homepage."""
-    apps = AppESHomeField(source='_app_ids', many=True,
-                          limit=feed.HOME_NUM_APPS_SHELF)
+    apps = AppESHomeCollectionField(source='_app_ids', many=True,
+                                    limit=feed.HOME_NUM_APPS_SHELF)
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
