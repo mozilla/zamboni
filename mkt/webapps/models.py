@@ -612,29 +612,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return static_url('ADDON_ICON_URL') % (
                 split_id.group(2) or 0, self.id, size, suffix)
 
-    @write
-    def update_status(self):
-        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
-            self.is_disabled):
-            return
-
-        def logit(reason, old=self.status):
-            log.info('Changing addon status [%s]: %s => %s (%s).'
-                     % (self.id, old, self.status, reason))
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
-        versions = self.versions.all()
-        if not versions.exists():
-            self.update(status=amo.STATUS_NULL)
-            logit('no versions')
-        elif not (versions.filter(files__isnull=False).exists()):
-            self.update(status=amo.STATUS_NULL)
-            logit('no versions with files')
-        elif (self.status == amo.STATUS_PUBLIC and
-              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-            self.update(status=amo.STATUS_PENDING)
-            logit('no reviewed files')
-
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
         if addon_dict is None:
@@ -1784,8 +1761,7 @@ class Webapp(Addon):
         self.update(status=amo.WEBAPPS_UNREVIEWED_STATUS)
 
     def update_status(self, **kwargs):
-        if (self.is_deleted or self.is_disabled or
-            self.status == amo.STATUS_BLOCKED):
+        if self.is_deleted or self.status == amo.STATUS_BLOCKED:
             return
 
         def _log(reason, old=self.status):

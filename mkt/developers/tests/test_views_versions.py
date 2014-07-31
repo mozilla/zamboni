@@ -387,6 +387,17 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(str(version[0].status[0]),
             str(amo.MKT_STATUS_CHOICES[amo.STATUS_DELETED]))
 
+    def test_delete_version_while_disabled(self):
+        self.app.update(disabled_by_user=True)
+        version = self.app.latest_version
+
+        res = self.client.post(self.delete_url, {'version_id': version.pk})
+        eq_(res.status_code, 302)
+
+        eq_(self.get_app().status, amo.STATUS_NULL)
+        version = Version.with_deleted.get(pk=version.pk)
+        assert version.deleted
+
     def test_anonymous_delete_redirects(self):
         self.client.logout()
         version = self.app.versions.latest()
