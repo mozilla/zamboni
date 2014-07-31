@@ -1,4 +1,5 @@
 import calendar
+import json
 import time
 from urllib import urlencode
 from urlparse import urljoin
@@ -22,7 +23,8 @@ def get_product_jwt(product, contribution):
 
     issued_at = calendar.timegm(time.gmtime())
     product_data = product.product_data(contribution)
-    if not product_data.get('public_id'):
+    simulation = product.simulation()
+    if not simulation and not product_data.get('public_id'):
         raise ValueError(
             'Cannot create JWT without a cached public_id for '
             'app {a}'.format(a=product.addon()))
@@ -44,11 +46,13 @@ def get_product_jwt(product, contribution):
             'postbackURL': absolutify(reverse('webpay.postback')),
         }
     }
+    if simulation:
+        token_data['request']['simulation'] = simulation
 
     token = sign_webpay_jwt(token_data)
 
-    log.debug('Preparing webpay JWT for self.product {0}: {1}'.format(
-        product.id(), token))
+    log.debug('Preparing webpay JWT for product {p}, contrib {c}: {t}'
+              .format(p=product.id(), t=token_data, c=contribution))
 
     return {
         'webpayJWT': token,
@@ -76,6 +80,9 @@ class WebAppProduct(object):
 
     def addon(self):
         return self.webapp
+
+    def simulation(self):
+        return None
 
     def price(self):
         return self.webapp.premium.price
@@ -120,6 +127,9 @@ class InAppProduct(object):
     def addon(self):
         return self.inapp.webapp
 
+    def simulation(self):
+        return None
+
     def price(self):
         return self.inapp.price
 
@@ -147,4 +157,30 @@ class InAppProduct(object):
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
             'public_id': self.addon().solitude_public_id,
+        }
+
+
+class SimulatedInAppProduct(InAppProduct):
+
+    def __init__(self, *args, **kw):
+        super(SimulatedInAppProduct, self).__init__(*args, **kw)
+        if not self.inapp.simulate:
+            raise ValueError('This product cannot be simulated')
+
+    def addon(self):
+        return None
+
+    def description(self):
+        # Simulated products currently do not have descriptions.
+        # This cannot be blank though.
+        return 'This is a stub product for testing only'
+
+    def simulation(self):
+        return json.loads(self.inapp.simulate)
+
+    def product_data(self, contribution):
+        return {
+            'inapp_id': self.inapp.pk,
+            'contrib_uuid': contribution.uuid,
+            'application_size': self.application_size(),
         }

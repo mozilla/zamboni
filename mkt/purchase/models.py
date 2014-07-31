@@ -26,7 +26,7 @@ class ContributionError(Exception):
 
 
 class Contribution(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon')
+    addon = models.ForeignKey('webapps.Addon', blank=True, null=True)
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
                                       blank=True, null=True)
@@ -60,7 +60,8 @@ class Contribution(amo.models.ModelBase):
         db_table = 'stats_contributions'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.addon.name, self.amount)
+        return u'App {app}: in-app: {inapp}: {amount}'.format(
+            app=self.addon, amount=self.amount, inapp=self.inapp_product)
 
     @property
     def date(self):

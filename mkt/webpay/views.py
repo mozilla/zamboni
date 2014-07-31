@@ -30,7 +30,8 @@ from mkt.webpay.forms import FailureForm, PrepareInAppForm, PrepareWebAppForm
 from mkt.webpay.models import ProductIcon
 from mkt.webpay.serializers import ProductIconSerializer
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
-                                   sign_webpay_jwt, WebAppProduct)
+                                   sign_webpay_jwt, SimulatedInAppProduct,
+                                   WebAppProduct)
 
 from . import tasks
 
@@ -117,7 +118,7 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
         log.debug('Starting purchase of in app: {0}'.format(inapp.pk))
 
         contribution = Contribution.objects.create(
-            addon_id=inapp.webapp.pk,
+            addon_id=inapp.webapp and inapp.webapp.pk,
             inapp_product=inapp,
             # In-App payments are unauthenticated so we have no user
             # and therefore can't determine a meaningful region.
@@ -131,9 +132,16 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
             uuid=str(uuid.uuid4()),
         )
 
-        log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
+        log.info('Storing contrib for uuid: {0}'.format(contribution.uuid))
 
-        token = get_product_jwt(InAppProduct(inapp), contribution)
+        if inapp.simulate:
+            log.info('Preparing in-app JWT simulation for {i}'
+                     .format(i=inapp))
+            product = SimulatedInAppProduct(inapp)
+        else:
+            log.info('Preparing in-app JWT for {i}'.format(i=inapp))
+            product = InAppProduct(inapp)
+        token = get_product_jwt(product, contribution)
 
         return Response(token, status=status.HTTP_201_CREATED)
 

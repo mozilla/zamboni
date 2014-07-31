@@ -23,9 +23,9 @@ class InAppProduct(ModelBase):
         db_table = 'inapp_products'
 
     def __unicode__(self):
-        return u'{app}: {name}'.format(
+        return u'<{cls} {id}: {app}: {name}>'.format(
             app=self.webapp and self.webapp.name,
-            name=self.name)
+            name=self.name, id=self.pk, cls=self.__class__.__name__)
 
     @property
     def icon_url(self):
