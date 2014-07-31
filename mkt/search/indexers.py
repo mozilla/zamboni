@@ -204,6 +204,11 @@ class BaseIndexer(object):
         }
 
     @classmethod
+    def get_not_analyzed(cls):
+        """Returns {'type': 'string', 'index': 'not_analyzed'} as shorthand."""
+        return {'type': 'string', 'index': 'not_analyzed'}
+
+    @classmethod
     def setup_mapping(cls):
         """Creates the ES index/mapping."""
         cls.get_es().indices.create(

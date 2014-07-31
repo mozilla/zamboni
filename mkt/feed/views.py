@@ -26,9 +26,11 @@ from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
-from .serializers import (FeedAppSerializer, FeedBrandSerializer,
-                          FeedCollectionSerializer, FeedItemESSerializer,
-                          FeedItemSerializer, FeedShelfSerializer)
+from .serializers import (FeedAppESSerializer, FeedAppSerializer,
+                          FeedBrandESSerializer, FeedBrandSerializer,
+                          FeedCollectionESSerializer, FeedCollectionSerializer,
+                          FeedItemESSerializer, FeedItemSerializer,
+                          FeedShelfESSerializer, FeedShelfSerializer)
 
 
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
@@ -360,10 +362,43 @@ class FeedElementSearchView(CORSMixin, APIView):
         })
 
 
-class FeedView(CORSMixin, APIView):
+class BaseFeedESView(CORSMixin, APIView):
+    def get_feed_element_index(self):
+        """Return a list of index to query all at once."""
+        return [
+            settings.ES_INDEXES['mkt_feed_app'],
+            settings.ES_INDEXES['mkt_feed_brand'],
+            settings.ES_INDEXES['mkt_feed_collection'],
+            settings.ES_INDEXES['mkt_feed_shelf']
+        ]
+
+    def get_app_ids(self, feed_element):
+        if hasattr(feed_element, 'app'):
+            return [feed_element.app]
+        return feed_element.apps
+
+    def mget_apps(self, app_ids):
+        """
+        Takes a list of app_ids. Does an ES mget.
+        Returns an app_map for serializer context.
+        """
+        app_map = {}
+        es = WebappIndexer.get_es()
+        apps = es.mget(body={'ids': app_ids}, index=WebappIndexer.get_index(),
+                       doc_type=WebappIndexer.get_mapping_type_name())
+        for app in apps['docs']:
+            # Store the apps to attach to feed elements later.
+            app = app['_source']
+            app_map[app['id']] = app
+        return app_map
+
+
+class FeedView(BaseFeedESView):
     """
-    Streamlined view for a feed, separating operator shelves for ease of
-    consumer display.
+    THE feed view. It hits ES with:
+    - a weighted function score query to get feed items
+    - a filter to deserialize feed elements
+    - a mget to deserialize apps
     """
     authentication_classes = []
     permission_classes = []
@@ -446,41 +481,26 @@ class FeedView(CORSMixin, APIView):
                 return response.Response({'objects': []},
                                          status=status.HTTP_404_NOT_FOUND)
 
-        # Set up serializer context and index name.
-        apps = []
+        # Set up serializer context.
         feed_element_map = {
             feed.FEED_TYPE_APP: {},
             feed.FEED_TYPE_BRAND: {},
             feed.FEED_TYPE_COLL: {},
             feed.FEED_TYPE_SHELF: {},
         }
-        index = [
-            settings.ES_INDEXES['mkt_feed_app'],
-            settings.ES_INDEXES['mkt_feed_brand'],
-            settings.ES_INDEXES['mkt_feed_collection'],
-            settings.ES_INDEXES['mkt_feed_shelf']
-        ]
 
         # Fetch feed elements to attach to FeedItems later.
-        sq = self.get_es_feed_element_query(Search(using=es, index=index),
-                                            feed_items)
+        apps = []
+        sq = self.get_es_feed_element_query(
+            Search(using=es, index=self.get_feed_element_index()), feed_items)
         for feed_elm in sq.execute().hits:
             # Store the feed elements to attach to FeedItems later.
             feed_element_map[feed_elm['item_type']][feed_elm['id']] = feed_elm
             # Store the apps to retrieve later.
-            if feed_elm.get('app'):
-                apps.append(feed_elm['app'])
-            elif feed_elm.get('apps'):
-                apps += feed_elm['apps']
+            apps += self.get_app_ids(feed_elm)
 
         # Fetch apps to attach to feed elements later (with mget).
-        app_map = {}
-        apps = es.mget(body={'ids': apps}, index=WebappIndexer.get_index(),
-                       doc_type=WebappIndexer.get_mapping_type_name())
-        for app in apps['docs']:
-            # Store the apps to attach to feed elements later.
-            app = app['_source']
-            app_map[app['id']] = app
+        app_map = self.mget_apps(apps)
 
         # Super serialize.
         feed_items = FeedItemESSerializer(feed_items, many=True, context={
@@ -495,3 +515,59 @@ class FeedView(CORSMixin, APIView):
     def get(self, request, *args, **kwargs):
         with statsd.timer('mkt.feed.view'):
             return self._get(request, *args, **kwargs)
+
+
+class FeedElementGetView(BaseFeedESView):
+    """
+    Fetches individual feed elements from ES.
+    """
+    authentication_classes = []
+    permission_classes = []
+    cors_allowed_methods = ('get',)
+
+    def __init__(self):
+        self.ITEM_TYPES = {
+            'apps': feed.FEED_TYPE_APP,
+            'brands': feed.FEED_TYPE_BRAND,
+            'collections': feed.FEED_TYPE_COLL,
+            'shelves': feed.FEED_TYPE_SHELF,
+        }
+        self.SERIALIZERS = {
+            'apps': FeedAppESSerializer,
+            'brands': FeedBrandESSerializer,
+            'collections': FeedCollectionESSerializer,
+            'shelves': FeedShelfESSerializer,
+        }
+        self.INDICES = {
+            'apps': settings.ES_INDEXES['mkt_feed_app'],
+            'brands': settings.ES_INDEXES['mkt_feed_brand'],
+            'collections': settings.ES_INDEXES['mkt_feed_collection'],
+            'shelves': settings.ES_INDEXES['mkt_feed_shelf'],
+        }
+
+    def get_feed_element_filter(self, sq, item_type, slug):
+        """Matches a single feed element."""
+        bool_filter = es_filter.Bool(must=[
+            es_filter.Term(item_type=item_type),
+            es_filter.Term(**{'slug.raw': slug})
+        ])
+        return sq.filter(bool_filter)
+
+    def get(self, request, item_type, slug, **kwargs):
+        # Hit ES.
+        sq = self.get_feed_element_filter(
+            Search(using=FeedItemIndexer.get_es(),
+                   index=self.INDICES[item_type]),
+            self.ITEM_TYPES[item_type], slug)
+        try:
+            feed_element = sq.execute().hits[0]
+        except IndexError:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+        # Deserialize.
+        data = self.SERIALIZERS[item_type](feed_element, context={
+            'app_map': self.mget_apps(self.get_app_ids(feed_element)),
+            'request': request
+        }).data
+
+        return response.Response(data, status=status.HTTP_200_OK)

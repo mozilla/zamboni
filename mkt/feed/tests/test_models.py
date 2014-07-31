@@ -79,8 +79,6 @@ class FeedTestMixin(object):
             feed_item.shelf = self.feed_shelf_factory()
 
         feed_item.save()
-        Webapp.get_indexer().index_ids(
-            list(Webapp.objects.values_list('id', flat=True)))
         return feed_item
 
     def feed_factory(self, carrier=1, region=1, item_types=None):

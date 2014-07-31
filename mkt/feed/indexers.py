@@ -12,6 +12,17 @@ from mkt.translations.utils import format_translation_es
 from mkt.webapps.models import Webapp
 
 
+def get_slug_multifield():
+    # TODO: convert to new syntax on ES 1.0+.
+    return {
+        'type': 'multi_field',
+        'fields': {
+            'slug': {'type': 'string'},
+            'raw': {'type': 'string', 'index': 'not_analyzed'},
+        }
+    }
+
+
 class FeedAppIndexer(BaseIndexer):
     @classmethod
     def get_model(cls):
@@ -29,21 +40,18 @@ class FeedAppIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'app': {'type': 'long'},
-                    'background_color': {'type': 'string',
-                                         'index': 'not_analyzed'},
-                    'image_hash': {'type': 'string',
-                                   'index': 'not_analyzed'},
-                    'item_type': {'type': 'string', 'index': 'not_analyzed'},
+                    'background_color': cls.get_not_analyzed(),
+                    'image_hash': cls.get_not_analyzed(),
+                    'item_type':  cls.get_not_analyzed(),
                     'preview': {'type': 'object', 'dynamic': 'true'},
-                    'pullquote_attribution': {'type': 'string',
-                                              'index': 'not_analyzed'},
+                    'pullquote_attribution': cls.get_not_analyzed(),
                     'pullquote_rating': {'type': 'short'},
                     'pullquote_text': {'type': 'string',
                                        'analyzer': 'default_icu'},
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
-                    'slug': {'type': 'string'},
-                    'type': {'type': 'string', 'index': 'not_analyzed'},
+                    'slug': get_slug_multifield(),
+                    'type': cls.get_not_analyzed(),
                 }
             }
         }
@@ -101,9 +109,9 @@ class FeedBrandIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
-                    'layout': {'type': 'string', 'index': 'not_analyzed'},
-                    'item_type': {'type': 'string', 'index': 'not_analyzed'},
-                    'slug': {'type': 'string'},
+                    'layout': cls.get_not_analyzed(),
+                    'item_type': cls.get_not_analyzed(),
+                    'slug': get_slug_multifield(),
                     'type': {'type': 'string'},
                 }
             }
@@ -139,17 +147,15 @@ class FeedCollectionIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
-                    'background_color': {'type': 'string',
-                                         'index': 'not_analyzed'},
+                    'background_color': cls.get_not_analyzed(),
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
-                    'image_hash': {'type': 'string',
-                                   'index': 'not_analyzed'},
-                    'item_type': {'type': 'string', 'index': 'not_analyzed'},
+                    'image_hash': cls.get_not_analyzed(),
+                    'item_type': cls.get_not_analyzed(),
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
-                    'slug': {'type': 'string'},
-                    'type': {'type': 'string', 'index': 'not_analyzed'},
+                    'slug': get_slug_multifield(),
+                    'type': cls.get_not_analyzed(),
                 }
             }
         }
@@ -215,16 +221,14 @@ class FeedShelfIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
-                    'background_color': {'type': 'string',
-                                         'index': 'not_analyzed'},
-                    'carrier': {'type': 'string', 'index': 'not_analyzed'},
-                    'image_hash': {'type': 'string',
-                                   'index': 'not_analyzed'},
-                    'item_type': {'type': 'string', 'index': 'not_analyzed'},
-                    'region': {'type': 'string', 'index': 'not_analyzed'},
+                    'background_color': cls.get_not_analyzed(),
+                    'carrier': cls.get_not_analyzed(),
+                    'image_hash': cls.get_not_analyzed(),
+                    'item_type': cls.get_not_analyzed(),
+                    'region': cls.get_not_analyzed(),
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
-                    'slug': {'type': 'string'},
+                    'slug': get_slug_multifield(),
                 }
             }
         }
@@ -280,7 +284,7 @@ class FeedItemIndexer(BaseIndexer):
                     'carrier': {'type': 'integer'},
                     'category': {'type': 'integer'},
                     'collection': {'type': 'long'},
-                    'item_type': {'type': 'string', 'index': 'not_analyzed'},
+                    'item_type': cls.get_not_analyzed(),
                     'order': {'type': 'integer'},
                     'region': {'type': 'integer'},
                     'shelf': {'type': 'long'},
