@@ -5,6 +5,7 @@ from rest_framework import relations, serializers
 from rest_framework.reverse import reverse
 
 import mkt.carriers
+import mkt.feed.constants as feed
 import mkt.regions
 from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
                             SplitField, TranslationSerializerField,
@@ -18,7 +19,8 @@ from mkt.submit.serializers import FeedPreviewESSerializer
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
-from .fields import AppESField, FeedCollectionMembershipField
+from .fields import (AppESField, AppESHomeField, AppESHomeBrandField,
+                     FeedCollectionMembershipField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
 
@@ -131,6 +133,11 @@ class FeedAppESSerializer(FeedAppSerializer, BaseESSerializer):
         return feed_app
 
 
+class FeedAppESHomeSerializer(FeedAppESSerializer):
+    """Stripped down FeedAppESSerializer targeted for the homepage."""
+    app = AppESHomeField(source='_app_id')
+
+
 class FeedBrandSerializer(BaseFeedCollectionSerializer):
     """
     A serializer for the FeedBrand class, a type of collection that allows
@@ -160,13 +167,14 @@ class FeedBrandESSerializer(FeedBrandSerializer,
         return brand
 
 
-class FeedBrandSearchSerializer(FeedBrandSerializer):
+class FeedBrandESHomeSerializer(FeedBrandESSerializer):
     """
-    A simpler serializer for the FeedBrand class that does not include apps.
+    Stripped down FeedBrandESSerializer targeted for the homepage.
+    Different from the other Feed*ESHomeSerializers because it uses its own
+    app field.
     """
-    class Meta(FeedBrandSerializer.Meta):
-        fields = ('app_count', 'id', 'layout', 'preview_icon', 'slug', 'type',
-                  'url')
+    apps = AppESHomeBrandField(source='_app_ids', many=True,
+                               limit=feed.HOME_NUM_APPS_BRAND)
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
@@ -239,6 +247,12 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
         return collection
 
 
+class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
+    """Stripped down FeedCollectionESSerializer targeted for the homepage."""
+    apps = AppESHomeField(source='_app_ids', many=True,
+                          limit=feed.HOME_NUM_APPS_COLL)
+
+
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
     """
     A serializer for the FeedBrand class, a type of collection that allows
@@ -277,6 +291,12 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
         shelf._app_ids = data.get('apps')
         return shelf
+
+
+class FeedShelfESHomeSerializer(FeedShelfESSerializer):
+    """Stripped down FeedShelfESSerializer targeted for the homepage."""
+    apps = AppESHomeField(source='_app_ids', many=True,
+                          limit=feed.HOME_NUM_APPS_SHELF)
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
@@ -367,11 +387,11 @@ class FeedItemESSerializer(FeedItemSerializer, BaseESSerializer):
                                         element objects.
     self.context['request'] -- Django request, mainly for translations.
     """
-    app = FeedAppESSerializer(required=False, source='_app')
-    brand = FeedBrandESSerializer(required=False, source='_brand')
-    collection = FeedCollectionESSerializer(required=False,
+    app = FeedAppESHomeSerializer(required=False, source='_app')
+    brand = FeedBrandESHomeSerializer(required=False, source='_brand')
+    collection = FeedCollectionESHomeSerializer(required=False,
                                             source='_collection')
-    shelf = FeedShelfESSerializer(required=False, source='_shelf')
+    shelf = FeedShelfESHomeSerializer(required=False, source='_shelf')
     item_type = serializers.CharField(source='item_type')
 
     def fake_object(self, data):

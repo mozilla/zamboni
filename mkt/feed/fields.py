@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from mkt.webapps.serializers import AppSerializer, ESAppSerializer
+from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
+                                     ESAppFeedBrandSerializer, ESAppSerializer)
 
 
 class FeedCollectionMembershipField(serializers.RelatedField):
@@ -25,8 +26,13 @@ class AppESField(serializers.Field):
 
     self.context['app_map'] -- mapping from app ID to app ES object
     """
+    @property
+    def serializer_class(self):
+        return ESAppSerializer
+
     def __init__(self, *args, **kwargs):
         self.many = kwargs.pop('many', False)
+        self.limit = kwargs.pop('limit', None)
         super(AppESField, self).__init__(*args, **kwargs)
 
     def _attach_group(self, app):
@@ -50,17 +56,23 @@ class AppESField(serializers.Field):
                 app = self._attach_group(app)
 
         if self.many:
+            if self.limit is not None:
+                # If limit is specified, limit the number of apps.
+                app_ids = app_ids[:self.limit]
+
             # Deserialize app ID to ES app data.
             partially_deserialized_apps = [
                 app_map[app_id] for app_id in app_ids]
+
             # Deserialize ES app data to full data.
-            apps = ESAppSerializer(
+            apps = self.serializer_class(
                 partially_deserialized_apps, many=True,
                 context=self.context).data
             return apps
         else:
             # Single object, app_ids is only one app ID.
-            app = ESAppSerializer(app_map[app_ids], context=self.context).data
+            app = self.serializer_class(app_map[app_ids],
+                                        context=self.context).data
             return app
 
     def from_native(self, data):
@@ -68,3 +80,23 @@ class AppESField(serializers.Field):
             return [app['id'] for app in data['apps']]
         else:
             return data['id']
+
+
+class AppESHomeField(AppESField):
+    """
+    Like AppESField, except using ESAppFeedSerializer instead of
+    ESAppSerializer. For a slimmer homepage.
+    """
+    @property
+    def serializer_class(self):
+        return ESAppFeedSerializer
+
+
+class AppESHomeBrandField(AppESField):
+    """
+    Like AppESField, except using ESAppFeedSerializer instead of
+    ESAppSerializer. For a slimmer homepage.
+    """
+    @property
+    def serializer_class(self):
+        return ESAppFeedBrandSerializer
