@@ -4,7 +4,6 @@ import os
 import shutil
 import socket
 import tempfile
-import urllib2
 from contextlib import contextmanager
 from cStringIO import StringIO
 

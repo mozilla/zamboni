@@ -6,7 +6,7 @@ service:
   - redis-server
 before_install:
   - sudo apt-get update
-  - sudo apt-get install swig
+  - sudo apt-get install swig pngcrush
   - wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.13.deb && sudo dpkg -i elasticsearch-0.90.13.deb
   - sudo service elasticsearch restart
   - sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
