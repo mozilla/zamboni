@@ -418,15 +418,10 @@ class FeedView(BaseFeedESView):
         region_filter = es_filter.Term(region=region)
         shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
 
-        # Once we upgrade to 1.2 use a field value factor function for speed.
-        # ordering_fn = es_function.FieldValueFactor(
-        #     field='order', modifier='reciprocal',
-        #     filter=es_filter.Bool(must=[region_filter],
-        #                           must_not=[shelf_filter]))
-        ordering_fn = es_function.ScriptScore(
-            script="1.0 / doc['order'].value * _score",
-            filter=es_filter.Bool(must=[region_filter],
-                                  must_not=[shelf_filter]))
+        ordering_fn = es_function.FieldValueFactor(
+             field='order', modifier='reciprocal',
+             filter=es_filter.Bool(must=[region_filter],
+                                   must_not=[shelf_filter]))
         boost_fn = es_function.BoostFactor(value=10000.0,
                                            filter=shelf_filter)
 
