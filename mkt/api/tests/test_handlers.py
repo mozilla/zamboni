@@ -797,7 +797,7 @@ class TestRefreshManifest(RestOAuth):
 
 
 class TestPriceTier(RestOAuth):
-    fixtures = ['data/user_2519', 'data/admin'] + fixture('prices2')
+    fixtures = fixture('user_2519', 'prices2')
 
     def setUp(self):
         self.permission = 'Prices:Edit'
@@ -880,7 +880,7 @@ class TestPriceTier(RestOAuth):
 
 
 class TestPriceCurrency(RestOAuth):
-    fixtures = ['data/user_2519', 'data/admin'] + fixture('prices2')
+    fixtures = fixture('user_2519', 'prices2')
 
     def setUp(self):
         self.permission = 'Prices:Edit'

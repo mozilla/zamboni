@@ -13,8 +13,8 @@ from mkt.submit.tests.test_views import BasePackagedAppTest
 
 
 class TestDownload(BasePackagedAppTest):
-    fixtures = ['base/apps', 'base/users', 'base/platforms'
-    ] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'user_999',
+                       'user_admin', 'group_admin', 'user_admin_group')
 
     def setUp(self):
         super(TestDownload, self).setUp()

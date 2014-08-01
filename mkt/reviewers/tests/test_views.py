@@ -1110,9 +1110,10 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
     @mock.patch('lib.crypto.packaged.sign_app')
     def test_public_sign(self, sign_mock, json_mock, update_cached_manifests):
         self.app = self.get_app()
-        self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
-        self.version = self.app.current_version
+        self.version = self.app.latest_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
+        self.app.update(status=amo.STATUS_PENDING, is_packaged=True,
+                        _current_version=None, _signal=False)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
         sign_mock.return_value = None  # Didn't fail.
@@ -1123,27 +1124,30 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         resp = self.client.post(
-            reverse('reviewers.apps.review', args=[self.app.app_slug]),
-            data)
+            reverse('reviewers.apps.review', args=[self.app.app_slug]), data)
         eq_(resp.status_code, 302)
 
         eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(update_cached_manifests.delay.call_count, 1)
 
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
     @mock.patch('lib.crypto.packaged.sign_app')
-    def test_public_sign_failure(self, sign_mock):
-        # Test fails only on Jenkins, so skipping when run there for now.
+    def test_public_sign_failure(self, sign_mock, json_mock,
+                                 update_cached_manifests):
+        # Test fails on Jenkins, skipping for now.
         if os.environ.get('JENKINS_HOME'):
             raise SkipTest()
 
         self.app = self.get_app()
-        self.app.update(status=amo.STATUS_PENDING, is_packaged=True)
-        self.version = self.app.current_version
+        self.version = self.app.latest_version
         self.version.files.all().update(status=amo.STATUS_PENDING)
-        # Test fails on Jenkins on the line below; status is STATUS_PUBLIC.
+        self.app.update(status=amo.STATUS_PENDING, is_packaged=True,
+                        _current_version=None, _signal=False)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
-        sign_mock.side_effect = packaged.SigningError('Bad things happened.')
+        sign_mock.side_effect = packaged.SigningError
+        json_mock.return_value = {'name': 'Something'}
 
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
@@ -1154,6 +1158,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
         eq_(resp.status_code, 302)
 
         eq_(self.get_app().status, amo.STATUS_PENDING)
+        eq_(update_cached_manifests.delay.call_count, 0)
 
 
 class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
@@ -1465,11 +1470,11 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
 
-        assert not original_name in msg.subject
-        assert not es_translation in msg.subject
+        assert original_name not in msg.subject
+        assert es_translation not in msg.subject
         assert fr_translation in msg.subject
-        assert not original_name in msg.body
-        assert not es_translation in msg.body
+        assert original_name not in msg.body
+        assert es_translation not in msg.body
         assert fr_translation in msg.body
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -2124,7 +2129,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_idn_app_domain(self):
         response = self.client.get(self.url)
-        assert not 'IDN domain!' in response.content
+        assert 'IDN domain!' not in response.content
 
         self.get_app().update(app_domain=u'http://www.allïzom.org')
         response = self.client.get(self.url)
@@ -3356,10 +3361,11 @@ class TestAbusePage(AppReviewerTest):
 
 
 class TestReviewTranslate(RestOAuth):
-    fixtures = ['base/users']
+    fixtures = fixture('group_editor', 'user_editor', 'user_editor_group')
 
     def setUp(self):
-        self.profile = self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.profile = UserProfile.objects.get(email='editor@mozilla.com')
+        self.user = self.profile
         self.login_user()
         self.create_switch('reviews-translate')
         user = UserProfile.objects.create(username='diego')
