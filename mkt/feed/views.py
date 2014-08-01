@@ -289,80 +289,29 @@ class FeedShelfImageViewSet(CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
 
 
-class FeedElementSearchView(CORSMixin, APIView):
-    """
-    Search view for the Curation Tools.
-
-    Returns an object keyed by feed element type
-    ('apps', 'brands', 'collections').
-    """
-    authentication_classes = [RestOAuthAuthentication,
-                              RestSharedSecretAuthentication]
-    permission_classes = [GroupPermission('Feed', 'Curate')]
-    cors_allowed_methods = ('get',)
-
-    def _phrase(self, q):
-        return {
-            'query': q,
-            'type': 'phrase',
-            'slop': 4,
-        }
-
-    def get(self, request, *args, **kwargs):
-        q = request.GET.get('q')
-
-        match_query = (
-            query.Q('match', slug=self._phrase(q)),
-            query.Q('match', type=self._phrase(q)),
-        )
-        fuzzy_query = match_query + (query.Q('fuzzy', search_names=q),)
-
-        feed_app_ids = [
-            hit.id for hit in FeedAppIndexer.search().query(
-                query.Bool(should=fuzzy_query)).execute().hits]
-
-        feed_brand_ids = [
-            hit.id for hit in FeedBrandIndexer.search().query(
-                query.Bool(should=match_query)).execute().hits]
-
-        feed_collection_ids = [
-            hit.id for hit in FeedCollectionIndexer.search().query(
-                query.Bool(should=fuzzy_query)).execute().hits]
-
-        feed_shelf_ids = [
-            hit.id for hit in FeedShelfIndexer.search().query(
-                query.Bool(should=(
-                    query.Q('fuzzy', search_names=q),
-                    query.Q('fuzzy', slug=q),
-                    query.Q('prefix', carrier=q),
-                    query.Q('term', region=q)))).execute().hits]
-
-        # Dehydrate.
-        apps = FeedApp.objects.filter(id__in=feed_app_ids)
-        brands = FeedBrand.objects.filter(id__in=feed_brand_ids)
-        colls = FeedCollection.objects.filter(id__in=feed_collection_ids)
-        shelves = FeedShelf.objects.filter(id__in=feed_shelf_ids)
-
-        # Serialize.
-        ctx = {'request': request}
-        apps = [FeedAppSerializer(app, context=ctx).data for app in apps]
-        brands = [FeedBrandSerializer(brand, context=ctx).data
-                  for brand in brands]
-        collections = [FeedCollectionSerializer(coll, context=ctx).data
-                       for coll in colls]
-        shelves = [FeedShelfSerializer(shelf, context=ctx).data
-                   for shelf in shelves]
-
-        # Return.
-        return response.Response({
-            'apps': apps,
-            'brands': brands,
-            'collections': collections,
-            'shelves': shelves
-        })
-
-
 class BaseFeedESView(CORSMixin, APIView):
+    def __init__(self, *args, **kw):
+        self.ITEM_TYPES = {
+            'apps': feed.FEED_TYPE_APP,
+            'brands': feed.FEED_TYPE_BRAND,
+            'collections': feed.FEED_TYPE_COLL,
+            'shelves': feed.FEED_TYPE_SHELF,
+        }
+        self.PLURAL_TYPES = dict((v, k) for k, v in self.ITEM_TYPES.items())
+        self.SERIALIZERS = {
+            feed.FEED_TYPE_APP: FeedAppESSerializer,
+            feed.FEED_TYPE_BRAND: FeedBrandESSerializer,
+            feed.FEED_TYPE_COLL: FeedCollectionESSerializer,
+            feed.FEED_TYPE_SHELF: FeedShelfESSerializer,
+        }
+        self.INDICES = {
+            feed.FEED_TYPE_APP: settings.ES_INDEXES['mkt_feed_app'],
+            feed.FEED_TYPE_BRAND: settings.ES_INDEXES['mkt_feed_brand'],
+            feed.FEED_TYPE_COLL: settings.ES_INDEXES['mkt_feed_collection'],
+            feed.FEED_TYPE_SHELF: settings.ES_INDEXES['mkt_feed_shelf'],
+        }
+        super(BaseFeedESView, self).__init__(*args, **kw)
+
     def get_feed_element_index(self):
         """Return a list of index to query all at once."""
         return [
@@ -391,6 +340,63 @@ class BaseFeedESView(CORSMixin, APIView):
             app = app['_source']
             app_map[app['id']] = app
         return app_map
+
+
+class FeedElementSearchView(BaseFeedESView):
+    """
+    Search view for the Curation Tools.
+
+    Returns an object keyed by feed element type
+    ('apps', 'brands', 'collections').
+    """
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Feed', 'Curate')]
+    cors_allowed_methods = ('get',)
+
+    def _phrase(self, q):
+        return {
+            'query': q,
+            'type': 'phrase',
+            'slop': 2,
+        }
+
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get('q')
+
+        # Make search.
+        queries = [
+            query.Q('match', slug=self._phrase(q)),  # Slug.
+            query.Q('match', type=self._phrase(q)),  # Type.
+            query.Q('match', search_names=self._phrase(q)),  # Name.
+            query.Q('prefix', carrier=q),  # Shelf carrier.
+            query.Q('term', region=q)  # Shelf region.
+        ]
+        sq = query.Bool(should=queries)
+
+        # Search.
+        res = {'apps': [], 'brands': [], 'collections': [], 'shelves': []}
+        es = Search(using=FeedItemIndexer.get_es(),
+                    index=self.get_feed_element_index())
+        feed_elements = es.query(sq).execute().hits
+        if not feed_elements:
+            return response.Response(res, status=status.HTTP_404_NOT_FOUND)
+
+        app_ids = []
+        for elm in feed_elements:
+            app_ids += self.get_app_ids(elm)
+        app_map = self.mget_apps(app_ids)
+
+        # Deserialize.
+        ctx = {'app_map': app_map, 'request': request}
+        for feed_element in feed_elements:
+            item_type = feed_element.item_type
+            serializer = self.SERIALIZERS[item_type]
+            data = serializer(feed_element, context=ctx).data
+            res[self.PLURAL_TYPES[item_type]].append(data)
+
+        # Return.
+        return response.Response(res, status=status.HTTP_200_OK)
 
 
 class FeedView(BaseFeedESView):
@@ -520,26 +526,6 @@ class FeedElementGetView(BaseFeedESView):
     permission_classes = []
     cors_allowed_methods = ('get',)
 
-    def __init__(self):
-        self.ITEM_TYPES = {
-            'apps': feed.FEED_TYPE_APP,
-            'brands': feed.FEED_TYPE_BRAND,
-            'collections': feed.FEED_TYPE_COLL,
-            'shelves': feed.FEED_TYPE_SHELF,
-        }
-        self.SERIALIZERS = {
-            'apps': FeedAppESSerializer,
-            'brands': FeedBrandESSerializer,
-            'collections': FeedCollectionESSerializer,
-            'shelves': FeedShelfESSerializer,
-        }
-        self.INDICES = {
-            'apps': settings.ES_INDEXES['mkt_feed_app'],
-            'brands': settings.ES_INDEXES['mkt_feed_brand'],
-            'collections': settings.ES_INDEXES['mkt_feed_collection'],
-            'shelves': settings.ES_INDEXES['mkt_feed_shelf'],
-        }
-
     def get_feed_element_filter(self, sq, item_type, slug):
         """Matches a single feed element."""
         bool_filter = es_filter.Bool(must=[
@@ -549,11 +535,13 @@ class FeedElementGetView(BaseFeedESView):
         return sq.filter(bool_filter)
 
     def get(self, request, item_type, slug, **kwargs):
+        item_type = self.ITEM_TYPES[item_type]
+
         # Hit ES.
         sq = self.get_feed_element_filter(
             Search(using=FeedItemIndexer.get_es(),
                    index=self.INDICES[item_type]),
-            self.ITEM_TYPES[item_type], slug)
+            item_type, slug)
         try:
             feed_element = sq.execute().hits[0]
         except IndexError:

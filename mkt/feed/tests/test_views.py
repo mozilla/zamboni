@@ -984,7 +984,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
                             FeedItem.objects.values_list('id', flat=True))
 
 
-class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
+class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
     def setUp(self):
@@ -998,16 +998,10 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         self.feed_permission()
         self.url = reverse('api-v2:feed.element-search')
 
-        self._refresh_feed_es()
-
-    def _refresh_feed_es(self):
-        self.refresh(FeedApp._meta.db_table)
-        self.refresh(FeedBrand._meta.db_table)
-        self.refresh(FeedCollection._meta.db_table)
-        self.refresh(FeedShelf._meta.db_table)
+        self._refresh()
 
     def _search(self, q):
-        res = self.client.get(self.url, data={'q': 'feed'})
+        res = self.client.get(self.url, data={'q': q or 'feed'})
         return res, json.loads(res.content)
 
     def test_query_slug(self):
@@ -1018,6 +1012,33 @@ class TestFeedElementSearchView(BaseTestFeedItemViewSet, amo.tests.ESTestCase):
         eq_(data['brands'][0]['id'], self.brand.id)
         eq_(data['collections'][0]['id'], self.collection.id)
         eq_(data['shelves'][0]['id'], self.shelf.id)
+
+    def test_query_name(self):
+        res, data = self._search('Super Collection')
+        eq_(res.status_code, 200)
+
+        eq_(data['collections'][0]['id'], self.collection.id)
+        assert not data['apps']
+        assert not data['brands']
+        assert not data['shelves']
+
+    def test_query_type(self):
+        res, data = self._search('mystery')
+        eq_(res.status_code, 200)
+
+        eq_(data['brands'][0]['id'], self.brand.id)
+        assert not data['apps']
+        assert not data['collections']
+        assert not data['shelves']
+
+    def test_query_carrier(self):
+        res, data = self._search('restofworld')
+        eq_(res.status_code, 200)
+
+        eq_(data['shelves'][0]['id'], self.shelf.id)
+        assert not data['apps']
+        assert not data['brands']
+        assert not data['collections']
 
 
 class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
