@@ -41,6 +41,7 @@ class FeedAppIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'app': {'type': 'long'},
                     'background_color': cls.get_not_analyzed(),
+                    'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'image_hash': cls.get_not_analyzed(),
                     'item_type':  cls.get_not_analyzed(),
                     'preview': {'type': 'object', 'dynamic': 'true'},
@@ -72,6 +73,7 @@ class FeedAppIndexer(BaseIndexer):
             'id': obj.id,
             'app': obj.app_id,
             'background_color': obj.background_color,
+            'created': obj.created,
             'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_APP,
             'preview': {'id': obj.preview.id,
@@ -109,6 +111,7 @@ class FeedBrandIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
+                    'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'layout': cls.get_not_analyzed(),
                     'item_type': cls.get_not_analyzed(),
                     'slug': get_slug_multifield(),
@@ -125,6 +128,7 @@ class FeedBrandIndexer(BaseIndexer):
         return {
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
+            'created': obj.created,
             'layout': obj.layout,
             'item_type': feed.FEED_TYPE_BRAND,
             'slug': obj.slug,
@@ -147,6 +151,7 @@ class FeedCollectionIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
+                    'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'background_color': cls.get_not_analyzed(),
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
@@ -176,6 +181,7 @@ class FeedCollectionIndexer(BaseIndexer):
             'id': obj.id,
             'apps': list(obj.apps().values_list('id', flat=True)),
             'background_color': obj.background_color,
+            'created': obj.created,
             'group_apps': {},  # Map of app IDs to index in group_names below.
             'group_names': [],  # List of ES-serialized group names.
             'image_hash': obj.image_hash,
@@ -223,6 +229,7 @@ class FeedShelfIndexer(BaseIndexer):
                     'apps': {'type': 'long'},
                     'background_color': cls.get_not_analyzed(),
                     'carrier': cls.get_not_analyzed(),
+                    'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'image_hash': cls.get_not_analyzed(),
                     'item_type': cls.get_not_analyzed(),
                     'region': cls.get_not_analyzed(),
@@ -250,6 +257,7 @@ class FeedShelfIndexer(BaseIndexer):
             'apps': list(obj.apps().values_list('id', flat=True)),
             'background_color': obj.background_color,
             'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
+            'created': obj.created,
             'image_hash': obj.image_hash,
             'item_type': feed.FEED_TYPE_SHELF,
             'region': mkt.regions.REGIONS_CHOICES_ID_DICT[obj.region].slug,

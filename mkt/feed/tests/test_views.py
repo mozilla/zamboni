@@ -1265,9 +1265,6 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
 class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
-    def setUp(self):
-        super(TestFeedElementGetView, self).setUp()
-
     def _get(self, url, **kwargs):
         self._refresh()
         with self.assertNumQueries(0):
@@ -1317,3 +1314,53 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
                       args=['shelves', 'tehshrike'])
         res = self.anon.get(url)
         eq_(res.status_code, 404)
+
+
+class TestFeedElementListView(BaseTestFeedESView, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedElementListView, self).setUp()
+        self.feed_permission()
+
+    def _get(self, url, data=None, **kwargs):
+        self._refresh()
+        res = self.client.get(url, data=data)
+        data = json.loads(res.content)
+        return res, data
+
+    def test_404(self):
+        res, data = self._get(reverse('api-v2:feed.feed_element_list',
+                                      args=['apps']))
+        eq_(res.status_code, 404)
+        eq_(data['objects'], [])
+
+    def test_apps(self):
+        n = 5
+        apps = [self.feed_app_factory() for i in range(n)]
+        [apps[i].update(created=self.days_ago(i)) for i in reversed(range(n))]
+
+        res, data = self._get(reverse('api-v2:feed.feed_element_list',
+                                      args=['apps']))
+        eq_(res.status_code, 200)
+        [eq_(data['objects'][i]['id'], apps[i].id) for i in range(n)]
+
+    def test_paginate(self):
+        n = 6
+        brands = [self.feed_brand_factory() for i in range(n)]
+        [brands[i].update(created=self.days_ago(i)) for i in
+         reversed(range(n))]
+
+        # Offset only.
+        res, data = self._get(reverse('api-v2:feed.feed_element_list',
+                                      args=['brands']),
+                              data={'offset': 5})
+        eq_(len(data), 1)
+        eq_(data['objects'][0]['id'], brands[n - 1].id)
+
+        # Offset and limit.
+        res, data = self._get(reverse('api-v2:feed.feed_element_list',
+                                      args=['brands']),
+                              data={'offset': 1, 'limit': 1})
+        eq_(len(data), 1)
+        eq_(data['objects'][0]['id'], brands[1].id)

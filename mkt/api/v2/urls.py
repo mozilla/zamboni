@@ -47,4 +47,6 @@ urlpatterns = patterns('',
         name='feed-shelf-publish'),
     url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
+    url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
+        views.FeedElementListView.as_view(), name='feed.feed_element_list'),
 ) + v1_urls

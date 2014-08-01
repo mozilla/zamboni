@@ -326,6 +326,12 @@ class BaseFeedESView(CORSMixin, APIView):
             return [feed_element.app]
         return feed_element.apps
 
+    def get_app_ids_all(self, feed_elements):
+        app_ids = []
+        for elm in feed_elements:
+            app_ids += self.get_app_ids(elm)
+        return app_ids
+
     def mget_apps(self, app_ids):
         """
         Takes a list of app_ids. Does an ES mget.
@@ -382,13 +388,9 @@ class FeedElementSearchView(BaseFeedESView):
         if not feed_elements:
             return response.Response(res, status=status.HTTP_404_NOT_FOUND)
 
-        app_ids = []
-        for elm in feed_elements:
-            app_ids += self.get_app_ids(elm)
-        app_map = self.mget_apps(app_ids)
-
         # Deserialize.
-        ctx = {'app_map': app_map, 'request': request}
+        ctx = {'app_map': self.mget_apps(self.get_app_ids_all(feed_elements)),
+               'request': request}
         for feed_element in feed_elements:
             item_type = feed_element.item_type
             serializer = self.SERIALIZERS[item_type]
@@ -554,3 +556,42 @@ class FeedElementGetView(BaseFeedESView):
         }).data
 
         return response.Response(data, status=status.HTTP_200_OK)
+
+
+class FeedElementListView(BaseFeedESView):
+    """
+    Fetches the five most recent of a feed element type for Curation Tools.
+    With pagination.
+    """
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [GroupPermission('Feed', 'Curate')]
+    cors_allowed_methods = ('get',)
+
+    def get_recent_feed_elements(self, sq):
+        """Matches all sorted by recent."""
+        return sq.sort('-created').query(query.MatchAll())
+
+    def get(self, request, item_type, **kwargs):
+        item_type = self.ITEM_TYPES[item_type]
+
+        # Hit ES.
+        sq = self.get_recent_feed_elements(
+            Search(extra={'from': int(request.GET.get('offset', 0)),
+                          # Paginate!
+                          'size': int(request.GET.get('limit', 5))},
+                   using=FeedItemIndexer.get_es(),
+                   index=self.INDICES[item_type]))
+        feed_elements = sq.execute().hits
+        if not feed_elements:
+            return response.Response({'objects': []},
+                                     status=status.HTTP_404_NOT_FOUND)
+
+        # Deserialize.
+        data = self.SERIALIZERS[item_type](feed_elements, context={
+            'app_map': self.mget_apps(self.get_app_ids_all(feed_elements)),
+            'request': request
+        }, many=True).data
+
+        return response.Response({'objects': data},
+                                 status=status.HTTP_200_OK)
