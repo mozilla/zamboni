@@ -15,21 +15,21 @@ from nose.tools import eq_, ok_
 import mkt
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
-from constants.payments import PROVIDER_BANGO
 from lib.crypto.receipt import crack
 from mkt.access.models import GroupUser
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import regions
+from mkt.constants.payments import PROVIDER_BANGO
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import Price, PriceCurrency
 from mkt.prices.views import PricesViewSet
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.webpay.models import ProductIcon
-from mkt.users.models import UserProfile
 
 
 @patch('mkt.regions.middleware.RegionMiddleware.region_from_request',

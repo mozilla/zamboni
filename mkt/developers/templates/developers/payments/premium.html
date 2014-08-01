@@ -19,7 +19,7 @@
                   (' selected' if form.device_data[item[0]] else '') +
                   (' unclickable' if not can_change else ''),
          'data-value': item[0],
-         'title': DEVICE_LOOKUP[item[0]]
+         'title': PLATFORMS_NAMES[item[0]]
         }|xmlattr }}>
       <h3>{{ item[1] }}</h3>
       {%- if can_change -%}

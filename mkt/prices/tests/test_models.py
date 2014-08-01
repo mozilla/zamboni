@@ -8,15 +8,15 @@ from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.constants import apps
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.constants.regions import (ALL_REGION_IDS, BR, HU, RESTOFWORLD, SPAIN,
                                    UK, US)
 from mkt.prices.models import AddonPremium, Price, PriceCurrency, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import AddonUser, Webapp
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestPremium(amo.tests.TestCase):

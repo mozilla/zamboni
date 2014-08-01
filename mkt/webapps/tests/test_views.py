@@ -5,16 +5,16 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
-from constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import APP_FEATURES
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import (AppSerializer, AppFeaturesSerializer,
                                      SimpleAppSerializer)
-from mkt.users.models import UserProfile
 
 
 class TestAppFeaturesSerializer(BaseOAuth):

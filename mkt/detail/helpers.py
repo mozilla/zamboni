@@ -1,10 +1,9 @@
-from jingo import env, register
 import jinja2
-
+from jingo import env, register
 from tower import ungettext as ngettext
 
 from amo.helpers import numberfmt
-from constants.applications import DEVICE_TYPES
+from mkt.constants.applications import DEVICE_TYPES
 
 
 @register.function

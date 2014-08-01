@@ -6,13 +6,12 @@ from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_, raises
 
 from amo.tests import app_factory, TestCase
-from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
+from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
                                 PROVIDER_REFERENCE)
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
                                       Reference)
 from mkt.site.fixtures import fixture
-
 from mkt.users.models import UserProfile
 
 

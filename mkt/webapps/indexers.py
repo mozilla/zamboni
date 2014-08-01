@@ -2,18 +2,17 @@ import math
 import sys
 from operator import attrgetter
 
-from django.db.models import Max, Min
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db.models import Max, Min
 
 import commonware.log
 
 import amo
-from amo.utils import to_language
-from constants.applications import DEVICE_GAIA
-
 import mkt
+from amo.utils import to_language
 from mkt.constants import APP_FEATURES
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.versions.models import Version

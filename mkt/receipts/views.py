@@ -17,7 +17,6 @@ from tower import ugettext as _
 import amo
 import amo.log
 from amo.decorators import json_view, post_required, write
-from constants.payments import CONTRIB_NO_CHARGE
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
 from lib.metrics import record_action
@@ -26,18 +25,19 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import cors_api_view
 from mkt.constants import apps
+from mkt.constants.payments import CONTRIB_NO_CHARGE
 from mkt.developers.models import AppLog
-from mkt.installs.utils import record as utils_record
 from mkt.installs.utils import install_type
+from mkt.installs.utils import record as utils_record
 from mkt.prices.models import AddonPurchase
 from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.reviewers.views import reviewer_required
+from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Addon, Installed, Webapp
 from services.verify import get_headers, Verify
-from mkt.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.receipts')

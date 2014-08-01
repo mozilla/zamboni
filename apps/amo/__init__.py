@@ -9,12 +9,11 @@ from caching.base import CachingQuerySet
 
 from product_details import product_details
 
-from constants.applications import *
-from constants.base import *
-from constants.licenses import *
-from constants.payments import *
-from constants.platforms import *
-from constants.search import *
+from mkt.constants.applications import *
+from mkt.constants.base import *
+from mkt.constants.payments import *
+from mkt.constants.platforms import *
+from mkt.constants.search import *
 from mkt.versions.compare import version_re
 
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
