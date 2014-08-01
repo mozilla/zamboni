@@ -528,8 +528,12 @@ class BaseESAppFeedSerializer(ESAppSerializer):
     icons = serializers.SerializerMethodField('get_icons')
 
     def get_icons(self, obj):
-        """Only need the 64px icon."""
+        """
+        Only need the 64px icon for Fireplace.
+        Throw in 32px for Transonic.
+        """
         return {
+            '32': obj.get_icon_url(32),
             '64': obj.get_icon_url(64)
         }
 
