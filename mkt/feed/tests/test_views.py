@@ -1191,7 +1191,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_order(self):
         """Test feed elements are ordered by their order attribute."""
-        feed_items = [self.feed_item_factory(order=i) for i in xrange(4)]
+        feed_items = [self.feed_item_factory(order=i + 1) for i in xrange(4)]
         self._refresh()
         res, data = self._get()
         for i, feed_item in enumerate(feed_items):
@@ -1230,7 +1230,8 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_({'filter': {'bool': {
             'must_not': [{'term': {'item_type': 'shelf'}}],
             'must': [{'term': {'region': 2}}]}},
-            'script_score': {'script': "1.0 / doc['order'].value * _score"}}
+            'field_value_factor': {'field': 'order',
+                                   'modifier': 'reciprocal'}}
             in sq['query']['function_score']['functions'])
 
     def test_carrier_default_region(self):
@@ -1248,8 +1249,9 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_({'term': {'item_type': 'shelf'}}
              in sq['query']['function_score']['functions'][0]
              ['filter']['bool']['must_not'])
-        eq_(sq['query']['function_score']['functions'][0]['script_score'],
-            {'script': "1.0 / doc['order'].value * _score"})
+        eq_(sq['query']['function_score']['functions'][0]
+            ['field_value_factor'], {'field': 'order',
+                                     'modifier': 'reciprocal'})
 
     def test_element_query(self):
         feed_item = self.feed_item_factory()

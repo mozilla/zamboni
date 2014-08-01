@@ -310,9 +310,9 @@ class FeedItemIndexer(BaseIndexer):
             'collection': obj.collection_id if
                           obj.item_type == feed.FEED_TYPE_COLL else None,
             'item_type': obj.item_type,
-            # TODO: better way to do this? What happens if user colls come in?
-            # If no order, put it at end.
-            'order': obj.order if obj.order is not None else 100,
+            # If no order, put it at end. Make sure order > 0 since we do a
+            # ES reciprocal modifier query.
+            'order': obj.order + 1 if obj.order is not None else 100,
             'region': obj.region,
             'shelf': obj.shelf_id if obj.item_type == feed.FEED_TYPE_SHELF
                      else None,

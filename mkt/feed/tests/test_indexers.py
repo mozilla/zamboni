@@ -158,7 +158,7 @@ class TestFeedItemIndexer(FeedTestMixin, BaseFeedIndexerTest,
         eq_(doc['carrier'], self.obj.carrier)
         eq_(doc['category'], None)
         eq_(doc['item_type'], feed.FEED_TYPE_APP)
-        eq_(doc['order'], self.obj.order)
+        eq_(doc['order'], self.obj.order + 1)
         eq_(doc['region'], self.obj.region)
         eq_(doc['app'], self.obj.app_id)
         eq_(doc['brand'], None)
