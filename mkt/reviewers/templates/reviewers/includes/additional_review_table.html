@@ -1,0 +1,43 @@
+{% from 'reviewers/includes/macros.html' import app_flags with context %}
+
+{% macro additional_review_table(table_class="additional-review-queue",
+                                 app_detail_src="additional-review-queue",
+                                 approve_text=None,
+                                 reject_text=None) %}
+  {# table_class (optional): The class name for the table, defaults to "additional-review".
+     app_detail_src (optional): The name of this page for linking to the app page, defaults to "additional-review".
+     approve_text (optional): The text to put in the approve button, defaults to _("Approve").
+     reject_text (optional): The text to put in the reject button, defaults to _("Reject"). #}
+  <table id="addon-queue" class="data-grid items {{ table_class }}">
+    <thead>
+      <tr class="listing-header">
+        <th>{{ sort_link(_('App'), 'name')|safe }}</th>
+        <th>{{ _('Flags') }}</th>
+        <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
+        <th>{{ _('Devices') }}</th>
+        <th class="payments">{{ _('Payments') }}</th>
+        <th class="action">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for qa in addons %}
+      <tr id="addon-{{ qa.app.id }}" class="addon-row"
+          data-addon="{{ qa.app.id }}" data-action-url="{{ qa.action_url }}">
+        <td class="app-name">
+          <a href="{{ qa.app.get_url_path(src=app_detail_src) }}" target="_blank">
+            {{ qa.app.name }}
+          </a>
+        </td>
+        <td class="flags">{{ app_flags(qa.app) }}</td>
+        <td class="waiting-time">{{ qa.created|timelabel }}</td>
+        <td>{{ device_list(qa.app) }}</td>
+        <td class="payments">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+        <td class="action">
+          <a class="button approve" data-action="approve">{{ approve_text or _("Approve") }}</button>
+          <a class="button reject" data-action="reject">{{ reject_text or _("Reject") }}</button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endmacro %}

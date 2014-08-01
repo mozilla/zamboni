@@ -17,7 +17,7 @@ import mkt
 from amo.helpers import impala_breadcrumbs
 from mkt.access import acl
 from mkt.developers.helpers import mkt_page_title
-from mkt.reviewers.models import EscalationQueue, ReviewerScore
+from mkt.reviewers.models import EscalationQueue, ReviewerScore, QUEUE_TARAKO
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
 from mkt.versions.models import Version
@@ -115,6 +115,11 @@ def queue_tabnav(context):
                            args=[mkt.regions.CN.slug])
             rv.append((url_, 'region',
                       _('China ({0})').format(counts['region_cn'])))
+        if acl.action_allowed(request, 'Apps', 'ReviewTarako'):
+            url_ = reverse('reviewers.apps.additional_review',
+                           args=[QUEUE_TARAKO])
+            rv.append((url_, 'additional',
+                      _('Tarako ({0})').format(counts['additional_tarako'])))
     else:
         rv = []
 
