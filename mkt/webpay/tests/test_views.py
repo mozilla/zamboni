@@ -129,6 +129,24 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
         ok_(res.json['webpayJWT'])
 
+    def test_get_simulated_jwt(self):
+        self.inapp.webapp = None
+        self.inapp.simulate = json.dumps({'result': 'postback'})
+        self.inapp.stub = True
+        self.inapp.save()
+
+        res = self._post()
+        eq_(res.status_code, 201, res.content)
+
+        contribution = Contribution.objects.get()
+        eq_(contribution.addon, None)
+        eq_(contribution.inapp_product, self.inapp)
+        eq_(res.json['contribStatusURL'],
+            reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
+
+        token = jwt.decode(res.json['webpayJWT'].encode('utf8'), verify=False)
+        eq_(token['request']['simulation'], {'result': 'postback'})
+
 
 class TestStatus(BaseAPI):
     fixtures = fixture('prices', 'webapp_337141', 'user_2519')

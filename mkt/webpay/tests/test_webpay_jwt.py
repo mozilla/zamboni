@@ -1,3 +1,4 @@
+import json
 import urlparse
 from urllib import urlencode
 
@@ -15,7 +16,7 @@ from amo.urlresolvers import reverse
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
-                                   WebAppProduct)
+                                   SimulatedInAppProduct, WebAppProduct)
 
 
 class TestPurchaseJWT(PurchaseTest):
@@ -87,6 +88,7 @@ class BaseTestWebAppProduct(PurchaseTest):
 
 
 class TestWebAppProduct(BaseTestWebAppProduct):
+
     def test_external_id_with_no_domain(self):
         with self.settings(DOMAIN=None):
             eq_(self.product.external_id(),
@@ -107,6 +109,7 @@ class TestWebAppProduct(BaseTestWebAppProduct):
         eq_(self.product.description(), self.addon.description)
         eq_(self.product.application_size(),
             self.addon.current_version.all_files[0].size)
+        eq_(self.product.simulation(), None)
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
@@ -164,6 +167,7 @@ class TestInAppProduct(InAppPurchaseTest):
         eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
         eq_(self.product.description(), self.inapp.webapp.description)
         eq_(self.product.application_size(), None)
+        eq_(self.product.simulation(), None)
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
@@ -176,3 +180,31 @@ class TestInAppProduct(InAppPurchaseTest):
         self.inapp.logo_url = None
         eq_(self.product.icons()[64],
             'http://testserver/img/mkt/icons/rocket-64.png')
+
+
+class TestSimulatedInAppProduct(InAppPurchaseTest):
+
+    def setUp(self):
+        super(TestSimulatedInAppProduct, self).setUp()
+        self.contribution = Contribution.objects.create()
+        self.inapp.webapp = None
+        self.inapp.simulate = json.dumps({'result': 'postback'})
+        self.inapp.stub = True
+        self.inapp.save()
+        self.product = SimulatedInAppProduct(self.inapp)
+
+    def test_inapp_product(self):
+        eq_(self.product.id(), self.inapp.pk)
+        eq_(self.product.name(), unicode(self.inapp.name))
+        eq_(self.product.addon(), None)
+        eq_(self.product.price(), self.inapp.price)
+        eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
+        eq_(self.product.application_size(), None)
+        eq_(self.product.description(),
+            'This is a stub product for testing only')
+        eq_(self.product.simulation(), {'result': 'postback'})
+
+        product_data = self.product.product_data(self.contribution)
+        eq_(product_data['contrib_uuid'], self.contribution.uuid)
+        eq_(product_data['inapp_id'], self.product.id())
+        eq_(product_data['application_size'], self.product.application_size())
