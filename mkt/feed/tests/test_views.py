@@ -1343,6 +1343,7 @@ class TestFeedElementListView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(reverse('api-v2:feed.feed_element_list',
                                       args=['apps']))
         eq_(res.status_code, 200)
+        eq_(data['meta']['total_count'], 5)
         [eq_(data['objects'][i]['id'], apps[i].id) for i in range(n)]
 
     def test_paginate(self):
@@ -1354,13 +1355,17 @@ class TestFeedElementListView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         # Offset only.
         res, data = self._get(reverse('api-v2:feed.feed_element_list',
                                       args=['brands']),
-                              data={'offset': 5})
-        eq_(len(data), 1)
+                              data={'limit': 5, 'offset': 5})
+        eq_(data['meta']['total_count'], 6)
+        eq_(data['meta']['limit'], 5)
+        eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['id'], brands[n - 1].id)
 
         # Offset and limit.
         res, data = self._get(reverse('api-v2:feed.feed_element_list',
                                       args=['brands']),
-                              data={'offset': 1, 'limit': 1})
-        eq_(len(data), 1)
+                              data={'limit': 1, 'offset': 1})
+        eq_(data['meta']['total_count'], 6)
+        eq_(data['meta']['limit'], 1)
+        eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['id'], brands[1].id)

@@ -5,7 +5,7 @@ from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
-from rest_framework import response, status, viewsets
+from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
@@ -17,6 +17,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
+from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer, FeedItemIndexer,
@@ -558,7 +559,8 @@ class FeedElementGetView(BaseFeedESView):
         return response.Response(data, status=status.HTTP_200_OK)
 
 
-class FeedElementListView(BaseFeedESView):
+class FeedElementListView(BaseFeedESView, MarketplaceView,
+                          generics.GenericAPIView):
     """
     Fetches the five most recent of a feed element type for Curation Tools.
     With pagination.
@@ -567,6 +569,7 @@ class FeedElementListView(BaseFeedESView):
                               RestSharedSecretAuthentication]
     permission_classes = [GroupPermission('Feed', 'Curate')]
     cors_allowed_methods = ('get',)
+    paginator_class = ESPaginator
 
     def get_recent_feed_elements(self, sq):
         """Matches all sorted by recent."""
@@ -577,21 +580,21 @@ class FeedElementListView(BaseFeedESView):
 
         # Hit ES.
         sq = self.get_recent_feed_elements(
-            Search(extra={'from': int(request.GET.get('offset', 0)),
-                          # Paginate!
-                          'size': int(request.GET.get('limit', 5))},
-                   using=FeedItemIndexer.get_es(),
+            Search(using=FeedItemIndexer.get_es(),
                    index=self.INDICES[item_type]))
-        feed_elements = sq.execute().hits
+        feed_elements = self.paginate_queryset(sq)
         if not feed_elements:
             return response.Response({'objects': []},
                                      status=status.HTTP_404_NOT_FOUND)
 
-        # Deserialize.
-        data = self.SERIALIZERS[item_type](feed_elements, context={
+        # Deserialize. Manually use pagination serializer because this view
+        # uses multiple serializers.
+        meta = mkt.api.paginator.CustomPaginationSerializer(
+            feed_elements, context={'request': request}).data['meta']
+        objects = self.SERIALIZERS[item_type](feed_elements, context={
             'app_map': self.mget_apps(self.get_app_ids_all(feed_elements)),
             'request': request
         }, many=True).data
 
-        return response.Response({'objects': data},
+        return response.Response({'meta': meta, 'objects': objects},
                                  status=status.HTTP_200_OK)
