@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-07-01 22:11+0000\n"
+"PO-Revision-Date: 2014-08-03 09:46+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1404252690.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1407059204.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -448,10 +448,11 @@ msgstr "Modifica url del manifesto"
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr ""
+"{addon} messa automaticamente in escalation in quanto versione provvisoria."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Escalation automatica versione provvisoria"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -6334,7 +6335,7 @@ msgstr "Approva"
 
 #: mkt/reviewers/utils.py:426
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "Questa opzione approva l’app e permette all’autore di pubblicarla."
 
 #: mkt/reviewers/utils.py:430 mkt/reviewers/templates/reviewers/queue_region.html:43
 msgid "Reject"
@@ -6343,6 +6344,8 @@ msgstr "Respingi"
 #: mkt/reviewers/utils.py:432
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
+"Questa opzione rifiuta l’app, la elimina dalla coda di revisione e, nel caso "
+"sia già stata pubblicata, la rimuove dalle liste del Marketplace."
 
 #: mkt/reviewers/utils.py:437
 msgid "Request more information"
@@ -6359,10 +6362,14 @@ msgstr "Metti in escalation"
 #: mkt/reviewers/utils.py:445
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
+"Segnala questa app perché venga revisionata da un amministratore. I commenti "
+"verranno inviati agli amministratori, ma non all’autore."
 
 #: mkt/reviewers/utils.py:452
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr ""
+"Inserisci un commento su questa app. Il commento non sarà visibile "
+"all’autore."
 
 #: mkt/reviewers/utils.py:456
 msgid "Clear Escalation"
@@ -6371,6 +6378,8 @@ msgstr "Elimina escalation"
 #: mkt/reviewers/utils.py:458
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Elimina l’app dalla coda di escalation. L’autore non riceverà notifiche via "
+"email né sarà in grado di leggere i commenti."
 
 #: mkt/reviewers/utils.py:463
 msgid "Clear Re-review"
@@ -6379,6 +6388,8 @@ msgstr "Elimina riesame"
 #: mkt/reviewers/utils.py:465
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Elimina l’app dalla coda di riesame. L’autore non riceverà notifiche via "
+"email né sarà in grado di leggere i commenti."
 
 #: mkt/reviewers/utils.py:470
 msgid "Disable app"
@@ -6387,6 +6398,8 @@ msgstr "Disattiva app"
 #: mkt/reviewers/utils.py:472
 msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Disattiva l’app. È simile a Rifiuta, con la differenza che l’autore non sarà "
+"più in grado di reinviare l’app. Da utilizzare solo in casi estremi."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
