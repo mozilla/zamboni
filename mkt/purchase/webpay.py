@@ -8,6 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
+import waffle
 
 import amo
 from amo.decorators import json_view, login_required, post_required, write
@@ -158,11 +159,12 @@ def postback(request):
     else:
         buyer_username = autocreate_username(buyer_email.partition('@')[0])
         source = amo.LOGIN_SOURCE_WEBPAY
-        user_profile = UserProfile.objects.create(display_name=buyer_username,
-                                                  email=buyer_email,
-                                                  is_verified=False,
-                                                  source=source,
-                                                  username=buyer_username)
+        user_profile = UserProfile.objects.create(
+            display_name=buyer_username,
+            email=buyer_email,
+            is_verified=waffle.switch_is_active('firefox-accounts'),
+            source=source,
+            username=buyer_username)
 
         log_cef('New Account', 5, request, username=buyer_username,
                 signature='AUTHNOTICE',
