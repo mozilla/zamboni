@@ -172,7 +172,7 @@ class FeedBuilderView(CORSMixin, APIView):
         # post_save so get the IDs manually.
         feed_item_ids = list(FeedItem.objects.filter(region__in=regions)
                              .values_list('id', flat=True))
-        FeedItem.get_indexer().index_ids(feed_item_ids)
+        FeedItem.get_indexer().index_ids(feed_item_ids, no_delay=True)
 
         return response.Response(status=status.HTTP_201_CREATED)
 

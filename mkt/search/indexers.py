@@ -85,12 +85,15 @@ class BaseIndexer(object):
         helpers.bulk(es, actions)
 
     @classmethod
-    def index_ids(cls, ids):
+    def index_ids(cls, ids, no_delay=False):
         """
         Start task to index instances of indexer class matching the IDs.
         Calls the helper method outside this BaseIndexer class.
         """
-        index.delay(ids, cls)
+        if no_delay:
+            index(ids, cls)
+        else:
+            index.delay(ids, cls)
 
     @classmethod
     def unindex(cls, id_, es=None, index=None):
