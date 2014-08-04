@@ -37,8 +37,6 @@ from amo.storage_utils import copy_stored_file
 from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
                        slugify, smart_path, sorted_groupby, timer, to_language,
                        urlparams)
-from constants.applications import DEVICE_TYPES
-from constants.payments import PROVIDER_CHOICES
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
@@ -46,6 +44,8 @@ from lib.utils import static_url
 from mkt.access import acl
 from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps, iarc_mappings
+from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.payments import PROVIDER_CHOICES
 from mkt.files.models import File, nfd_str, Platform
 from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
@@ -1131,13 +1131,6 @@ class AddonType(amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-    def get_url_path(self):
-        try:
-            type = amo.ADDON_SLUGS[self.id]
-        except KeyError:
-            return None
-        return reverse('browse.%s' % type)
 
 
 dbsignals.pre_save.connect(save_signal, sender=AddonType,

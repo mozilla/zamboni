@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from constants.payments import PROVIDER_LOOKUP
-
+from mkt.constants.payments import PROVIDER_LOOKUP
 from mkt.prices.models import Price, price_locale
 
 

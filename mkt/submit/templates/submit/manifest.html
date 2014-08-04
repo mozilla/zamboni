@@ -13,7 +13,7 @@
     <a href="#" class="island choice{{ ' selected' if form.data[item[0]] == 'on' }}"
        id="{{ item[0] }}" data-value="{{ item[0] }}">
       <h3>{{ item[1] }}</h3>
-      <div>{{ DEVICE_LOOKUP[item[0]] }}</div>
+      <div>{{ PLATFORMS_NAMES[item[0]] }}</div>
       <div class="listing-footer"><input type="checkbox"></div>
     </a>
   </div>

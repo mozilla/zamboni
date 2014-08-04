@@ -17,13 +17,13 @@ from waffle.decorators import waffle_switch
 import amo
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
-from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
-                                PROVIDER_CHOICES)
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access import acl
-from mkt.constants import DEVICE_LOOKUP, PAID_PLATFORMS
+from mkt.constants import PAID_PLATFORMS, PLATFORMS_NAMES
+from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                    PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
+                                    PROVIDER_CHOICES)
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
 from mkt.developers.models import CantCancel, PaymentAccount, UserInappKey
@@ -169,7 +169,7 @@ def payments(request, addon_id, addon, webapp=False):
                   {'addon': addon, 'webapp': webapp, 'premium': addon.premium,
                    'form': premium_form, 'upsell_form': upsell_form,
                    'tier_zero_id': tier_zero_id, 'region_form': region_form,
-                   'DEVICE_LOOKUP': DEVICE_LOOKUP,
+                   'PLATFORMS_NAMES': PLATFORMS_NAMES,
                    'is_paid': (addon.premium_type in amo.ADDON_PREMIUMS
                                or addon.premium_type == amo.ADDON_FREE_INAPP),
                    'cannot_be_paid': cannot_be_paid,

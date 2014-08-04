@@ -20,7 +20,7 @@ import sqlalchemy.pool as pool
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
-from constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
+from mkt.constants.payments import (CONTRIB_CHARGEBACK, CONTRIB_NO_CHARGE,
                                 CONTRIB_PURCHASE, CONTRIB_REFUND)
 
 from lib.log_settings_base import formatters, handlers

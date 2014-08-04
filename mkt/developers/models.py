@@ -19,11 +19,11 @@ from tower import ugettext as _
 
 import amo
 import amo.models
-from constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access.models import Group
 from mkt.constants.payments import ACCESS_SIMULATE
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from mkt.ratings.models import Review
 from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile

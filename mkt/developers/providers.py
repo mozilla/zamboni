@@ -8,15 +8,14 @@ from django.core.urlresolvers import reverse
 
 import bleach
 import commonware
-from curling.lib import HttpClientError
 from tower import ugettext_lazy as _
 
-from constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
-                                PROVIDER_REFERENCE)
 from lib.crypto import generate_key
 # Because client is used in the classes, renaming here for clarity.
 from lib.pay_server import client as pay_client
 from mkt.constants.payments import ACCESS_PURCHASE
+from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
+                                PROVIDER_REFERENCE)
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk

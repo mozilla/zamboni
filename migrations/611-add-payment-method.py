@@ -1,5 +1,5 @@
-from constants.payments import PAYMENT_METHOD_CARD, PAYMENT_METHOD_OPERATOR
 from market.models import Price, PriceCurrency
+from mkt.constants.payments import PAYMENT_METHOD_CARD, PAYMENT_METHOD_OPERATOR
 from mkt.regions import SPAIN, PL, CO, VE
 
 

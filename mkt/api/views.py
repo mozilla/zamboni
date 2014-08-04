@@ -8,7 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 import raven.base
 import waffle
-
 from cache_nuggets.lib import memoize
 from rest_framework import generics
 from rest_framework.decorators import permission_classes
@@ -22,7 +21,6 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
                                      ReadOnlyModelViewSet)
 
-from constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from lib.constants import ALL_CURRENCIES
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
@@ -32,6 +30,7 @@ from mkt.api.serializers import (CarrierSerializer, CategorySerializer,
                                  RegionSerializer)
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.constants.categories import CATEGORY_CHOICES, CATEGORY_CHOICES_DICT
+from mkt.constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.prices.models import Price, PriceCurrency
 from mkt.regions.utils import parse_region

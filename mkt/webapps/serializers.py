@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 
 import commonware.log
-from drf_compound_fields.fields import ListField
 from rest_framework import response, serializers
 from tower import ungettext as ngettext
 
@@ -13,13 +12,14 @@ import amo
 import mkt
 from amo.helpers import absolutify
 from amo.utils import no_translation
-from constants.applications import DEVICE_TYPES
-from constants.payments import PROVIDER_BANGO
+from drf_compound_fields.fields import ListField
 from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
                             ReverseChoiceField, SemiSerializerMethodField,
                             TranslationSerializerField)
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.features import FeatureProfile
+from mkt.constants.payments import PROVIDER_BANGO
 from mkt.prices.models import AddonPremium, Price
 from mkt.search.serializers import BaseESSerializer, es_to_datetime
 from mkt.submit.forms import mark_for_rereview

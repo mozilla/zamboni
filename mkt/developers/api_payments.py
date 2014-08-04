@@ -17,13 +17,13 @@ from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
 
 import amo
-from constants.payments import PROVIDER_BANGO
 from lib.pay_server import get_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, GroupPermission, switch
 from mkt.api.base import MarketplaceView
 from mkt.constants.payments import PAYMENT_STATUSES
+from mkt.constants.payments import PROVIDER_BANGO
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
                                            PaymentCheckForm)
 from mkt.developers.models import (AddonPaymentAccount, CantCancel,

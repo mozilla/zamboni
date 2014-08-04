@@ -1,29 +1,14 @@
-import re
-
 from tower import ugettext_lazy as _
 
-from mkt.versions.compare import version_int as vint
+
+class PLATFORM_ALL:
+    id = 1
+    name = _(u'All Platforms')
+    shortname = 'all'
+    api_name = u'ALL'
 
 
-# These are the minimum versions required for `navigator.mozApps` support.
-APP_PLATFORMS = [
-    # Firefox for Desktop.
-    (
-        [
-            re.compile('Firefox/([\d.]+)')
-        ],
-        vint('16.0')
-    ),
-    # Firefox for Android.
-    (
-        [
-            re.compile('Fennec/([\d.]+)'),
-            re.compile('Android; Mobile; rv:([\d.]+)'),
-            re.compile('Mobile; rv:([\d.]+)')
-        ],
-        vint('17.0')
-    )
-]
+PLATFORMS = {PLATFORM_ALL.id: PLATFORM_ALL}
 
 
 def FREE_PLATFORMS(request=None, is_packaged=False):
@@ -73,7 +58,7 @@ def PAID_PLATFORMS(request=None, is_packaged=False):
 
 
 # Extra information about those values for display in the page.
-DEVICE_LOOKUP = {
+PLATFORMS_NAMES = {
     'free-firefoxos': _('Fully open mobile ecosystem'),
     'free-desktop': _('Windows, Mac and Linux'),
     'free-android-mobile': _('Android smartphones'),

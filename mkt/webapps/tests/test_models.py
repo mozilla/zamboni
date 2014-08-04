@@ -31,14 +31,14 @@ import amo.tests
 import mkt
 from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
-from constants.applications import DEVICE_TYPES
-from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from lib.utils import static_url
 from mkt.constants import apps, MANIFEST_CONTENT_TYPE
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
                                          REVERSE_INTERACTIVES)
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.files.models import File, Platform

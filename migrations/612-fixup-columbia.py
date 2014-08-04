@@ -1,7 +1,6 @@
-from constants.payments import PAYMENT_METHOD_CARD
-
 from market.models import Price, PriceCurrency
 from mkt.constants import regions
+from mkt.constants.payments import PAYMENT_METHOD_CARD
 
 
 def run():

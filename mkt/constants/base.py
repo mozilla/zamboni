@@ -1,6 +1,3 @@
-import re
-from datetime import datetime
-
 from tower import ugettext_lazy as _
 
 
@@ -35,15 +32,6 @@ STATUS_CHOICES = {
     # The need to go to the marketplace and actualy make it public.
     STATUS_APPROVED: _(u'Approved but waiting'),
     STATUS_BLOCKED: _(u'Blocked'),
-    # Deprecated.
-    # _STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
-    # _STATUS_NOMINATED: _(u'Awaiting Full Review'),
-    # _STATUS_BETA: _(u'Beta'),
-    # _STATUS_LITE: _(u'Preliminarily Reviewed'),
-    # _STATUS_LITE_AND_NOMINATED: _(
-    #     u'Preliminarily Reviewed and Awaiting Full Review'),
-    # _STATUS_PURGATORY: _(u'Pending a review choice'),
-    # _STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
 }
 
 
@@ -174,19 +162,6 @@ ADDON_TYPES = {
     ADDON_WEBAPP: _(u'Apps'),
 }
 
-# Searchable Add-on Types
-ADDON_SEARCH_TYPES = [
-    ADDON_ANY,
-    ADDON_EXTENSION,
-    ADDON_THEME,
-    ADDON_DICT,
-    ADDON_SEARCH,
-    ADDON_LPAPP,
-    ADDON_PERSONA,
-]
-
-ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
-
 MARKETPLACE_TYPES = [ADDON_WEBAPP]
 
 # ADDON_WEBAPP Types
@@ -200,48 +175,6 @@ ADDON_WEBAPP_TYPES = {
     ADDON_WEBAPP_PRIVILEGED: 'privileged',
 }
 ADDON_WEBAPP_TYPES_LOOKUP = dict((v, k) for k, v in ADDON_WEBAPP_TYPES.items())
-
-# Icons
-ADDON_ICONS = {
-    ADDON_ANY: 'default-addon.png',
-    ADDON_THEME: 'default-theme.png',
-}
-
-# We use these slugs in browse page urls.
-ADDON_SLUGS = {
-    ADDON_EXTENSION: 'extensions',
-    ADDON_THEME: 'themes',
-    ADDON_DICT: 'language-tools',
-    ADDON_LPAPP: 'language-tools',
-    ADDON_PERSONA: 'personas',
-    ADDON_SEARCH: 'search-tools',
-    ADDON_WEBAPP: 'apps',
-}
-
-# These are used in the update API.
-ADDON_SLUGS_UPDATE = {
-    ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
-    ADDON_DICT: 'extension',
-    ADDON_SEARCH: 'search',
-    ADDON_LPAPP: 'item',
-    ADDON_LPADDON: 'extension',
-    ADDON_PERSONA: 'background-theme',
-    ADDON_PLUGIN: 'plugin',
-    ADDON_WEBAPP: 'app',
-}
-
-# A slug to ID map for the search API. Included are all ADDON_TYPES that are
-# found in ADDON_SEARCH_TYPES.
-ADDON_SEARCH_SLUGS = {
-    'any': ADDON_ANY,
-    'extension': ADDON_EXTENSION,
-    'theme': ADDON_THEME,
-    'dictionary': ADDON_DICT,
-    'search': ADDON_SEARCH,
-    'language': ADDON_LPAPP,
-    'persona': ADDON_PERSONA,
-}
 
 # Marketplace search API addon types.
 MKT_ADDON_TYPES_API = {
@@ -297,69 +230,10 @@ ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
 VIDEO_TYPES = ('video/webm',)
 
-# Contributions
-CONTRIB_NONE = 0
-CONTRIB_PASSIVE = 1
-CONTRIB_AFTER = 2
-CONTRIB_ROADBLOCK = 3
-
-CONTRIB_CHOICES = (
-    (CONTRIB_PASSIVE,
-     _(u"Only ask on this add-on's page and developer profile")),
-    (CONTRIB_AFTER, _(u"Ask after users start downloading this add-on")),
-    (CONTRIB_ROADBLOCK, _(u"Ask before users can download this add-on")),
-)
-
-# Collections.
-COLLECTION_NORMAL = 0
-COLLECTION_SYNCHRONIZED = 1
-COLLECTION_FEATURED = 2
-COLLECTION_RECOMMENDED = 3
-COLLECTION_FAVORITES = 4
-COLLECTION_MOBILE = 5
-COLLECTION_ANONYMOUS = 6
-
-COLLECTIONS_NO_CONTRIB = (COLLECTION_SYNCHRONIZED, COLLECTION_FAVORITES)
-
-COLLECTION_SPECIAL_SLUGS = {
-    COLLECTION_MOBILE: 'mobile',
-    COLLECTION_FAVORITES: 'favorites',
-}
-
-COLLECTION_CHOICES = {
-    COLLECTION_NORMAL: 'Normal',
-    COLLECTION_SYNCHRONIZED: 'Synchronized',
-    COLLECTION_FEATURED: 'Featured',
-    COLLECTION_RECOMMENDED: 'Generated Recommendations',
-    COLLECTION_FAVORITES: 'Favorites',
-    COLLECTION_MOBILE: 'Mobile',
-    COLLECTION_ANONYMOUS: 'Anonymous',
-}
-
-COLLECTION_SEARCH_CHOICES = [
-    COLLECTION_NORMAL,
-    COLLECTION_FEATURED,
-    COLLECTION_RECOMMENDED,
-    COLLECTION_MOBILE,
-    COLLECTION_ANONYMOUS,
-]
-
-COLLECTION_ROLE_PUBLISHER = 0
-COLLECTION_ROLE_ADMIN = 1
-
-COLLECTION_AUTHOR_CHOICES = {
-    COLLECTION_ROLE_PUBLISHER: 'Publisher',
-    COLLECTION_ROLE_ADMIN: 'Admin',
-}
-
-VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
-VERSION_SEARCH = re.compile('\.(\d+)$')
-
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 
 # For use in urls.
-ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 

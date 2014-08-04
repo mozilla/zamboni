@@ -26,7 +26,7 @@ from mkt.api.authorization import (AllowAppOwner, AllowRelatedAppOwner, AnyOf,
                                    GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.forms import NewPackagedForm, PreviewJSONForm
-from mkt.constants import DEVICE_LOOKUP
+from mkt.constants import PLATFORMS_NAMES
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
@@ -148,7 +148,7 @@ def manifest(request):
 
     return render(request, 'submit/manifest.html',
                   {'step': 'manifest', 'features_form': features_form,
-                   'form': form, 'DEVICE_LOOKUP': DEVICE_LOOKUP})
+                   'form': form, 'PLATFORMS_NAMES': PLATFORMS_NAMES})
 
 
 @dev_required

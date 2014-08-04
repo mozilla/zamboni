@@ -13,12 +13,12 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 from amo.utils import raise_required
-from constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR)
 from lib.pay_server import client
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
+from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                    PAYMENT_METHOD_OPERATOR)
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue

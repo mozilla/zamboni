@@ -21,10 +21,11 @@ import amo
 import amo.tests
 from amo.tests import (addon_factory, app_factory, ESTestCase,
                        req_factory_factory, TestCase)
-from constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
-from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
+from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
+                                    SOLITUDE_REFUND_STATUSES)
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
@@ -434,7 +435,7 @@ class TestTransactionSummary(TestCase):
         self.create_test_refund()
         data = _transaction_summary(self.uuid)
 
-        eq_(data['refund_status'], REFUND_STATUSES[PENDING])
+        eq_(data['refund_status'], SOLITUDE_REFUND_STATUSES[PENDING])
 
     @mock.patch('mkt.lookup.views.client')
     def test_is_refundable(self, solitude):

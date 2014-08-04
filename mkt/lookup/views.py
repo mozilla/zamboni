@@ -26,7 +26,8 @@ from mkt.access import acl
 from mkt.account.utils import purchase_list
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
-from mkt.constants.payments import COMPLETED, FAILED, PENDING, REFUND_STATUSES
+from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
+                                    SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
@@ -137,8 +138,9 @@ def _transaction_summary(tx_uuid):
     refund_status = None
     if refund_contrib and refund_contrib.refund.status == amo.REFUND_PENDING:
         try:
-            refund_status = REFUND_STATUSES[client.api.bango.refund.status.get(
-                data={'uuid': refund_contrib.transaction_id})['status']]
+            status = client.api.bango.refund.status.get(
+                    data={'uuid': refund_contrib.transaction_id})['status']
+            refund_status = SOLITUDE_REFUND_STATUSES[status]
         except HttpServerError:
             refund_status = _('Currently unable to retrieve refund status.')
 

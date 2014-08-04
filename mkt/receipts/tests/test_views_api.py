@@ -7,15 +7,14 @@ from nose.tools import eq_, ok_
 from receipts.receipts import Receipt
 
 import amo.tests
-
-from constants.payments import CONTRIB_NO_CHARGE
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import apps
+from mkt.constants.payments import CONTRIB_NO_CHARGE
 from mkt.developers.models import AppLog
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon, AddonUser
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Addon, AddonUser
 
 
 class TestAPI(RestOAuth):

@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import amo.tests
-from amo.utils import to_language
-from constants.applications import DEVICE_TYPES
-
 from nose.tools import eq_, ok_
 
+import amo.tests
 import mkt
+from amo.utils import to_language
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
