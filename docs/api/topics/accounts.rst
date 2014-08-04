@@ -149,10 +149,14 @@ Feedback
 Newsletter signup
 =================
 
-This resource requests that the current user be subscribed to the
-Marketplace newsletter.
-
 .. http:post:: /api/v1/account/newsletter/
+
+    This resource requests that the email passed in the request parameters be
+    subscribed to the Marketplace newsletter.
+
+    .. note:: Authentication is optional.
+
+    .. note:: This endpoint is rate-limited at 30 requests per hour per user/IP.
 
    **Request**
 
@@ -162,3 +166,4 @@ Marketplace newsletter.
    **Response**
 
    :status 204: Successfully signed up.
+   :status 429: exceeded rate limit.

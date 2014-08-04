@@ -74,7 +74,7 @@ class InstalledView(CORSMixin, MarketplaceView, ListAPIView):
                 '-installed__created')
 
 
-class CreateAPIViewWithoutModel(CreateAPIView):
+class CreateAPIViewWithoutModel(MarketplaceView, CreateAPIView):
     """
     A base class for APIs that need to support a create-like action, but
     without being tied to a Django Model.
@@ -250,8 +250,14 @@ class LogoutView(CORSMixin, DestroyAPIView):
 
 
 class NewsletterView(CORSMixin, CreateAPIViewWithoutModel):
-    permission_classes = (IsAuthenticated,)
+    class NewsletterThrottle(UserRateThrottle):
+        scope = 'newsletter'
+        THROTTLE_RATES = {
+            'newsletter': '30/hour',
+        }
+
     serializer_class = NewsletterSerializer
+    throttle_classes = (NewsletterThrottle,)
 
     def response_success(self, request, serializer, data=None):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
