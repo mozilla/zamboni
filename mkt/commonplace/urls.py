@@ -64,6 +64,10 @@ urlpatterns = patterns('',
     url('^statistics/.*$', views.commonplace, {'repo': 'marketplace-stats'},
         name='commonplace.stats'),
 
+    # Discoplace:
+    url('^discovery/.*$', views.commonplace, {'repo': 'discoplace'},
+        name='commonplace.discoplace'),
+
     url('^manifest.appcache$', views.appcache_manifest,
         name='commonplace.appcache'),
 )

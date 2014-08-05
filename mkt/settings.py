@@ -563,7 +563,7 @@ CLEANCSS_BIN = path('node_modules/clean-css/bin/cleancss')
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
-                     'rocketfuel', 'transonic']
+                     'rocketfuel', 'transonic', 'discoplace']
 COMMONPLACE_REPOS_APPCACHED = []
 
 # CSP Settings

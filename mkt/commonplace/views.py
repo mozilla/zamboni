@@ -5,7 +5,7 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 
 import jingo
@@ -48,7 +48,7 @@ def get_imgurls(repo):
 
 def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
-        return HttpResponseNotFound
+        raise Http404
 
     BUILD_ID = get_build_id(repo)
 
@@ -94,7 +94,7 @@ def appcache_manifest(request):
     """Serves the appcache manifest."""
     repo = request.GET.get('repo')
     if not repo or repo not in settings.COMMONPLACE_REPOS_APPCACHED:
-        return HttpResponseNotFound()
+        raise Http404
     template = appcache_manifest_template(repo)
     return HttpResponse(template, content_type='text/cache-manifest')
 
