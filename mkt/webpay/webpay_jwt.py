@@ -47,7 +47,7 @@ def get_product_jwt(product, contribution):
         }
     }
     if simulation:
-        token_data['request']['simulation'] = simulation
+        token_data['request']['simulate'] = simulation
 
     token = sign_webpay_jwt(token_data)
 

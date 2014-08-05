@@ -145,7 +145,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
 
         token = jwt.decode(res.json['webpayJWT'].encode('utf8'), verify=False)
-        eq_(token['request']['simulation'], {'result': 'postback'})
+        eq_(token['request']['simulate'], {'result': 'postback'})
 
 
 class TestStatus(BaseAPI):
