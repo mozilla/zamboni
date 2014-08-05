@@ -1022,6 +1022,7 @@ Operator shelves are represented thusly:
             "en-US": "A description of my collection."
         },
         "id": 19,
+        "is_published": false,
         "name": {
             "en-US": "My awesome collection"
         },
@@ -1046,6 +1047,8 @@ Operator shelves are represented thusly:
     the operator shelf.
 ``id``
     *int* - the ID of this operator shelf.
+``is_published``
+    *boolean* - whether the shelf is published on a feed in its carrier/region.
 ``name``
     *string* - a :ref:`translated <overview-translations>` name for the
     operator shelf.

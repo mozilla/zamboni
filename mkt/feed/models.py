@@ -330,6 +330,10 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
                             str(self.pk / 1000),
                             'feed_shelf_%s.png' % (self.pk,))
 
+    @property
+    def is_published(self):
+        return self.feeditem_set.exists()
+
 
 class FeedApp(BaseFeedImage, amo.models.ModelBase):
     """

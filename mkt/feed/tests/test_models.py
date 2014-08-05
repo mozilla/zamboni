@@ -258,3 +258,12 @@ class TestESReceivers(FeedTestMixin, amo.tests.TestCase):
         count = FeedItem.objects.count()
         FeedItem.objects.all().delete()
         eq_(delete_mock.call_count, count)
+
+
+class TestFeedShelf(FeedTestMixin, amo.tests.TestCase):
+
+    def test_is_published(self):
+        shelf = self.feed_shelf_factory()
+        assert not shelf.is_published
+        shelf.feeditem_set.create()
+        assert shelf.is_published

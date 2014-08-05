@@ -6,6 +6,7 @@ shellng_local.py
 .coverage
 .vagrant
 pip-log.txt
+docs/_build
 docs/_gh-pages
 docs/api/_build
 dreadnot-stage.ini

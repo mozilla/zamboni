@@ -220,6 +220,13 @@ class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data['slug'], self.shelf.slug)
         self.assertSetEqual([app['id'] for app in data['apps']], self.app_ids)
 
+    def test_is_published(self):
+        data = serializers.FeedShelfSerializer(self.shelf).data
+        assert not data['is_published']
+        self.shelf.feeditem_set.create()
+        data = serializers.FeedShelfSerializer(self.shelf).data
+        assert data['is_published']
+
 
 class TestFeedShelfESSerializer(FeedTestMixin, amo.tests.TestCase):
 
