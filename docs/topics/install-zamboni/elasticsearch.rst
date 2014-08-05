@@ -56,7 +56,7 @@ Launching and Setting Up
 
 Launch the Elasticsearch service::
 
-    ./bin/elasticsearch -f -D elasticsearch.yml
+    ./bin/elasticsearch -Des.config=elasticsearch.yml
 
 Zamboni has commands that sets up mappings and indexes for you. Setting up
 the mappings is analagous to defining the structure of a table, indexing
