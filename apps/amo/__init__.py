@@ -1,25 +1,21 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import re
 import threading
 
 import commonware.log
 from caching.base import CachingQuerySet
-
-from product_details import product_details
 
 from mkt.constants.applications import *
 from mkt.constants.base import *
 from mkt.constants.payments import *
 from mkt.constants.platforms import *
 from mkt.constants.search import *
-from mkt.versions.compare import version_re
 
+# This is used in multiple other files to access logging, do not remove.
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
-
 
 logger_log = commonware.log.getLogger('z.amo')
 
