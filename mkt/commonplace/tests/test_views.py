@@ -30,6 +30,11 @@ class TestCommonplace(amo.tests.TestCase):
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
 
+    def test_discoplace(self):
+        res = self.client.get('/discovery/')
+        self.assertTemplateUsed(res, 'commonplace/index.html')
+        self.assertEquals(res.context['repo'], 'discoplace')
+
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
         for url in ('/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah',
