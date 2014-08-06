@@ -653,9 +653,12 @@ class TestNewsletter(RestOAuth):
 
     @patch('basket.subscribe')
     def test_signup_anonymous(self, subscribe):
-        res = self.anon.post(self.url)
-        eq_(res.status_code, 403)
-        ok_(not subscribe.called)
+        res = self.anon.post(self.url,
+                               data=json.dumps({'email': 'bob@example.com'}))
+        eq_(res.status_code, 204)
+        subscribe.assert_called_with(
+            'bob@example.com', 'marketplace', lang='en-US',
+            country='restofworld', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
