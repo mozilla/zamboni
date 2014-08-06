@@ -94,7 +94,7 @@ class AppESHomeField(AppESField):
         return ESAppFeedSerializer
 
 
-class AppESHomeCollectionField(AppESField):
+class AppESHomePromoCollectionField(AppESField):
     """
     Like AppESField, except using ESAppFeedCollectionSerializer instead of
     ESAppSerializer. For a slimmer homepage since collection/shelves only

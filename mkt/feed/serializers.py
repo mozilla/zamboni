@@ -19,7 +19,7 @@ from mkt.submit.serializers import FeedPreviewESSerializer
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
-from .fields import (AppESField, AppESHomeCollectionField, AppESHomeField,
+from .fields import (AppESField, AppESHomeField, AppESHomePromoCollectionField,
                      FeedCollectionMembershipField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
@@ -249,8 +249,20 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
 
 class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
     """Stripped down FeedCollectionESSerializer targeted for the homepage."""
-    apps = AppESHomeCollectionField(source='_app_ids', many=True,
-                                    limit=feed.HOME_NUM_APPS_COLL)
+    apps = serializers.SerializerMethodField('get_apps')
+
+    def get_apps(self, obj):
+        if obj.type == feed.COLLECTION_PROMO:
+            # Only need app icons.
+            app_field = AppESHomePromoCollectionField(
+                many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
+        elif obj.type == feed.COLLECTION_LISTING:
+            # Needs minimal app serialization like FeedBrand.
+            app_field = AppESHomePromoCollectionField(
+                many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
+
+        app_field.context = self.context
+        return app_field.to_native(obj._app_ids)
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -301,8 +313,8 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
 class FeedShelfESHomeSerializer(FeedShelfESSerializer):
     """Stripped down FeedShelfESSerializer targeted for the homepage."""
-    apps = AppESHomeCollectionField(source='_app_ids', many=True,
-                                    limit=feed.HOME_NUM_APPS_SHELF)
+    apps = AppESHomePromoCollectionField(source='_app_ids', many=True,
+                                         limit=feed.HOME_NUM_APPS_SHELF)
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
@@ -396,7 +408,7 @@ class FeedItemESSerializer(FeedItemSerializer, BaseESSerializer):
     app = FeedAppESHomeSerializer(required=False, source='_app')
     brand = FeedBrandESHomeSerializer(required=False, source='_brand')
     collection = FeedCollectionESHomeSerializer(required=False,
-                                            source='_collection')
+                                                source='_collection')
     shelf = FeedShelfESHomeSerializer(required=False, source='_shelf')
     item_type = serializers.CharField(source='item_type')
 
