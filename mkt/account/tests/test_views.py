@@ -13,6 +13,7 @@ from django.utils.http import urlencode
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
+import amo
 from amo.tests import TestCase, app_factory
 from amo.utils import urlparams
 
@@ -476,6 +477,7 @@ class TestFxaLoginHandler(TestCase):
         self.grant_permission(profile, 'Apps:Review')
 
         data = self._test_login()
+        eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
         eq_(data['permissions'],
             {'admin': False,
              'developer': False,
