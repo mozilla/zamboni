@@ -11,10 +11,46 @@
     <link rel="icon" href="{{ media('fireplace/img/logos/128.png') }}" sizes="128x128">
     <link rel="icon" href="{{ media('fireplace/img/logos/64.png') }}" sizes="64x64">
     <link rel="icon" href="{{ media('fireplace/img/logos/32.png') }}" sizes="32x32">
-    {% if repo == 'fireplace' -%}
-      <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
-    {% endif -%}
-    <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
+
+    {% if settings.DEBUG and repo == 'fireplace' %}
+      <link rel="stylesheet" href="{{ media('fireplace/css/splash.styl.css') }}">
+
+      <!-- These styles need to come first. -->
+      <link rel="stylesheet" href="{{ media('fireplace/css/reset.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/typography.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/site.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/header.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/cat-dropdown.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/listing.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/infobox.styl.css') }}">
+
+      <!-- These styles don't need to be in an order. -->
+      <link rel="stylesheet" href="{{ media('fireplace/css/account.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/buttons.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/collections.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/detail-content-ratings.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/detail.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/feedback.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/forms.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/form-modal.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/incompatible.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/lightbox.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/menu.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/modal.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/nominate.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/notification.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/paginator.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/promo-grid.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/purchase.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/ratings.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/search.styl.css') }}">
+    {% else %}
+      {% if repo == 'fireplace' -%}
+        <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
+      {% endif -%}
+      <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
+    {% endif %}
+
     <link title="Firefox Apps"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('opensearch') }}">
@@ -58,7 +94,12 @@
       <script src="{{ settings.BROWSERID_JS_URL or 'https://login.persona.org/include.js' }}" {{ 'async' if repo == 'fireplace' else 'defer' }}></script>
     {% endif -%}
     <script type="text/javascript" src="{{ media(repo + '/js/l10n.js') }}"></script>
-    <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
+
+    {% if settings.DEBUG and repo == 'fireplace' %}
+      <script type="text/javascript" data-main="/media/fireplace/js/main" src="{{ media('fireplace/js/lib/require.js') }}"></script>
+    {% else %}
+      <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
+    {% endif %}
     {{ newrelic_footer()|safe if repo == 'fireplace' }}
   </body>
 </html>

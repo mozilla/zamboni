@@ -33,11 +33,12 @@ WORKDIR /srv/zamboni-node
 RUN npm install
 
 # Override env vars for setup.
-ENV SOLITUDE_URL http://solitude_1:2602
-ENV ZAMBONI_DATABASE mysql://root:@mysql_1:3306/zamboni
+ENV CLEANCSS_BIN /srv/zamboni-node/node_modules/clean-css/bin/cleancss
+ENV ES_HOST elasticsearch_1:9200
 ENV MEMCACHE_URL memcache_1:11211
+ENV SOLITUDE_URL http://solitude_1:2602
 ENV STYLUS_PATH /srv/zamboni-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_PATH /srv/zamboni-node/node_modules/uglify-js/bin/uglifyjs
-ENV CLEANCSS_BIN /srv/zamboni-node/node_modules/clean-css/bin/cleancss
+ENV ZAMBONI_DATABASE mysql://root:@mysql_1:3306/zamboni
 
 EXPOSE 2600

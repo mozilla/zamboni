@@ -690,7 +690,7 @@ ENGAGE_ROBOTS = True
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
-ES_HOSTS = ['127.0.0.1:9200']
+ES_HOSTS = [os.environ.get('ES_HOST', '127.0.0.1:9200')]
 ES_INDEXES = {
     'webapp': 'apps',
     'mkt_feed_app': 'feed_apps',
