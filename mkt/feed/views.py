@@ -244,23 +244,28 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
 
 class FeedShelfPublishView(CORSMixin, APIView):
     """
-    Create a FeedItem for a FeedShelf with respective carrier/region pair.
-    Deletes any currently existing FeedItems with the carrier/region pair to
-    effectively "unpublish" it since only one shelf can be toggled at a time
-    for a carrier/region.
+    put -- creates a FeedItem for a FeedShelf with respective carrier/region
+        pair.  Deletes any currently existing FeedItems with the carrier/region
+        pair to effectively "unpublish" it since only one shelf can be toggled
+        at a time for a carrier/region.
+
+    delete -- deletes the FeedItem for a FeedShelf with respective
+        carrier/region.
     """
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
     permission_classes = [GroupPermission('Feed', 'Curate')]
-    cors_allowed_methods = ('put',)
+    cors_allowed_methods = ('delete', 'put',)
+
+    def get_object(self, pk):
+        if pk.isdigit():
+            return FeedShelf.objects.get(pk=pk)
+        else:
+            return FeedShelf.objects.get(slug=pk)
 
     def put(self, request, *args, **kwargs):
-        pk = self.kwargs['pk']
         try:
-            if pk.isdigit():
-                shelf = FeedShelf.objects.get(pk=pk)
-            else:
-                shelf = FeedShelf.objects.get(slug=pk)
+            shelf = self.get_object(self.kwargs['pk'])
         except FeedShelf.DoesNotExist:
             return response.Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -276,6 +281,22 @@ class FeedShelfPublishView(CORSMixin, APIView):
         # Return.
         return response.Response(FeedItemSerializer(feed_item).data,
                                  status=status.HTTP_201_CREATED)
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            shelf = self.get_object(self.kwargs['pk'])
+        except FeedShelf.DoesNotExist:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+        feed_item_kwargs = {
+            'item_type': feed.FEED_TYPE_SHELF,
+            'carrier': shelf.carrier,
+            'region': shelf.region
+        }
+        FeedItem.objects.filter(**feed_item_kwargs).delete()
+
+        # Return.
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class FeedAppImageViewSet(CollectionImageViewSet):

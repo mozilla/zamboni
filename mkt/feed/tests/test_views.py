@@ -1072,9 +1072,23 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
         eq_(FeedItem.objects.count(), 1)
         assert FeedItem.objects.filter(shelf_id=new_shelf.id).exists()
 
+    def test_unpublish(self):
+        # Publish.
+        self.client.put(self.url)
+        eq_(FeedItem.objects.count(), 1)
+        assert FeedItem.objects.filter(shelf_id=self.shelf.id).exists()
+
+        # Unpublish.
+        res = self.client.delete(self.url)
+        eq_(FeedItem.objects.count(), 0)
+        eq_(res.status_code, 204)
+
     def test_404(self):
         self.url = reverse('api-v2:feed-shelf-publish', args=[8008135])
         res = self.client.put(self.url)
+        eq_(res.status_code, 404)
+
+        res = self.client.delete(self.url)
         eq_(res.status_code, 404)
 
 
