@@ -2,7 +2,7 @@ from django.conf import settings
 
 import mock
 from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo.tests
 from amo.utils import reverse
@@ -14,26 +14,36 @@ class TestCommonplace(amo.tests.TestCase):
         res = self.client.get('/server.html')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'fireplace')
+        self.assertContains(res, 'splash.css')
+        self.assertContains(res, 'login.persona.org/include.js')
 
     def test_commbadge(self):
         res = self.client.get('/comm/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'commbadge')
+        self.assertNotContains(res, 'splash.css')
+        self.assertContains(res, 'login.persona.org/include.js')
 
     def test_rocketfuel(self):
         res = self.client.get('/curation/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
+        self.assertNotContains(res, 'splash.css')
+        self.assertContains(res, 'login.persona.org/include.js')
 
     def test_transonic(self):
         res = self.client.get('/curate/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
+        self.assertNotContains(res, 'splash.css')
+        self.assertContains(res, 'login.persona.org/include.js')
 
     def test_discoplace(self):
         res = self.client.get('/discovery/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'discoplace')
+        self.assertContains(res, 'splash.css')
+        self.assertNotContains(res, 'login.persona.org/include.js')
 
     def test_fireplace_persona_js_not_included_on_firefox_os(self):
         for url in ('/server.html?mccs=blah',

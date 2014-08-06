@@ -45,7 +45,7 @@
       <link rel="stylesheet" href="{{ media('fireplace/css/ratings.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/search.styl.css') }}">
     {% else %}
-      {% if repo == 'fireplace' -%}
+      {% if include_splash -%}
         <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">
       {% endif -%}
       <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
