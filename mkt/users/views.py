@@ -135,6 +135,8 @@ def _fxa_authorize(fxa, client_secret, request, auth_response):
                     signature='AUTHNOTICE',
                     msg='User created a new account (from FxA)')
             record_action('new-user', request)
+        if profile.source != amo.LOGIN_SOURCE_FXA:
+            profile.update(source=amo.LOGIN_SOURCE_FXA)
         auth.login(request, profile)
         profile.log_login_attempt(True)
         auth.signals.user_logged_in.send(
