@@ -207,6 +207,37 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
         }).data
         assert data['background_image'].endswith('image.png?LOL')
 
+    def test_home_serializer_listing_coll(self):
+        """Test the listing collection is using ESAppFeedSerializer."""
+        self.collection.update(type=feed.COLLECTION_LISTING)
+        self.data_es = self.collection.get_indexer().extract_document(
+            None, obj=self.collection)
+        data = serializers.FeedCollectionESHomeSerializer(self.data_es,
+            context={'app_map': self.app_map,
+                     'request': amo.tests.req_factory_factory('')}
+        ).data
+        assert 'author' in data['apps'][0]
+        assert data['apps'][0]['name']
+        assert data['apps'][0]['ratings']
+        assert data['apps'][0]['icons']
+
+    def test_home_serializer_promo_coll(self):
+        """
+        Test the listing collection is using
+        ESAppFeedCollectionSerializer.
+        """
+        self.collection.update(type=feed.COLLECTION_PROMO)
+        self.data_es = self.collection.get_indexer().extract_document(
+            None, obj=self.collection)
+        data = serializers.FeedCollectionESHomeSerializer(self.data_es,
+            context={'app_map': self.app_map,
+                     'request': amo.tests.req_factory_factory('')}
+        ).data
+        assert 'author' not in data['apps'][0]
+        assert 'name' not in data['apps'][0]
+        assert 'ratings' not in data['apps'][0]
+        assert data['apps'][0]['icons']
+
 
 class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
 

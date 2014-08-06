@@ -258,8 +258,8 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
                 many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
         elif obj.type == feed.COLLECTION_LISTING:
             # Needs minimal app serialization like FeedBrand.
-            app_field = AppESHomePromoCollectionField(
-                many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
+            app_field = AppESField(many=True,
+                                   limit=feed.HOME_NUM_APPS_PROMO_COLL)
 
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)
