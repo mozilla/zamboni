@@ -552,7 +552,8 @@ except ImportError:
     build_id = ""
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = path('node_modules/clean-css/bin/cleancss')
+CLEANCSS_BIN = os.environ.get('CLEANCSS_BIN',
+                              path('node_modules/clean-css/bin/cleancss'))
 
 # Name of our Commonplace repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
@@ -682,7 +683,7 @@ ENGAGE_ROBOTS = True
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 5
-ES_HOSTS = ['127.0.0.1:9200']
+ES_HOSTS = [os.environ.get('ES_HOST', '127.0.0.1:9200')]
 ES_INDEXES = {
     'webapp': 'apps',
     'mkt_feed_app': 'feed_apps',
@@ -1116,7 +1117,8 @@ STATSD_RECORD_KEYS = [
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
 # Path to stylus (to compile .styl files).
-STYLUS_BIN = path('node_modules/stylus/bin/stylus')
+STYLUS_BIN = os.environ.get('STYLUS_BIN',
+                            path('node_modules/stylus/bin/stylus'))
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
@@ -1142,7 +1144,8 @@ TOWER_KEYWORDS = {
 TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
+UGLIFY_BIN = os.environ.get('UGLIFY_BIN',
+                            path('node_modules/uglify-js/bin/uglifyjs'))
 
 # Feature flags
 UNLINK_SITE_STATS = True
