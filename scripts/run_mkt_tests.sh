@@ -69,10 +69,6 @@ SETTINGS
 
 export DJANGO_SETTINGS_MODULE=settings_local
 
-# Update product details to pull in any changes (namely, 'dbg' locale)
-echo "Updating product details..."
-python manage.py update_product_details
-
 echo "Starting tests..." `date`
 export FORCE_DB='yes sir'
 

@@ -12,7 +12,6 @@ from django.utils import translation
 
 import mock
 from nose.tools import assert_raises, eq_, ok_, raises
-from product_details import product_details
 
 import amo
 from amo.utils import (attach_trans_dict, cache_ns_key, escape_all,
@@ -104,15 +103,6 @@ def test_find_language():
         eq_(find_language(a), b)
     for a, b in tests:
         yield check, a, b
-
-
-def test_spotcheck():
-    """Check a couple product-details files to make sure they're available."""
-    languages = product_details.languages
-    eq_(languages['el']['English'], 'Greek')
-    eq_(languages['el']['native'], u'Ελληνικά')
-
-    eq_(product_details.firefox_history_major_releases['1.0'], '2004-11-09')
 
 
 def test_no_translation():

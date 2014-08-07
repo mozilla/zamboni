@@ -16,7 +16,7 @@ import commonware
 import happyforms
 import waffle
 from jinja2 import escape as jinja2_escape
-from product_details import product_details
+from mpconstants import regions as mpconstants_regions
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
@@ -959,7 +959,7 @@ class DevNewsletterForm(happyforms.Form):
     country = forms.ChoiceField(label=_lazy(u'Country'))
 
     def __init__(self, locale, *args, **kw):
-        regions = product_details.get_regions(locale)
+        regions = mpconstants_regions.get_region(locale).REGIONS
         regions = sorted(regions.iteritems(), key=lambda x: x[1])
 
         super(DevNewsletterForm, self).__init__(*args, **kw)

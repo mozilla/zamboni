@@ -8,6 +8,7 @@ from urlparse import urlparse
 from django.utils.functional import lazy
 
 import dj_database_url
+from mpconstants import mozilla_languages
 from heka.config import client_from_dict_config
 
 from mkt import asset_bundles
@@ -90,7 +91,6 @@ INSTALLED_APPS = (
     'csp',
     'jingo_minify',
     'lib.es',
-    'product_details',
     'tower',  # for ./manage.py extract
     'mkt.translations',
 
@@ -458,20 +458,13 @@ AMO_LANGUAGES = (
 )
 
 
-def lazy_langs(languages):
-    from product_details import product_details
-    if not product_details.languages:
-        return {}
-    # Here we have to ignore any language that exists in `languages` but not
-    # yet in `product_details.languages`, because otherwise we'll get an
-    # `IndexError`, causing `manage.py update_product_details` to fail
-    # during deployment.
-    return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in languages if i in product_details.languages])
+def langs(languages):
+    return dict([i.lower(), mozilla_languages.LANGUAGES[i]['native']]
+                 for i in languages if i in mozilla_languages.LANGUAGES)
 
 # Override Django's built-in with our native names, this is a Django setting
 # but we are putting it here because its being overridden.
-LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 
 # The currently-recommended version of the API. Any requests to versions older
 # than this will include the `API-Status: Deprecated` header.

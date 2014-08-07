@@ -51,11 +51,6 @@ def loadtest(repo=''):
 
 
 @task
-def update_products():
-    managecmd('update_product_details')
-
-
-@task
 def compress_assets(arg=''):
     managecmd('compress_assets -t %s' % arg)
 
@@ -156,7 +151,6 @@ def pre_update(ref=settings.UPDATE_REF):
 def update():
     execute(create_virtualenv, getattr(settings, 'DEV', False))
     execute(update_locales)
-    execute(update_products)
     execute(compress_assets, arg='--settings=settings_local_mkt')
     execute(schematic)
     managecmd('statsd_ping --key=update')
