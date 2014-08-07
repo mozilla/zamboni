@@ -92,7 +92,7 @@ if getattr(private_mkt, 'LOAD_TESTING', False):
     # secrets used for them
     API_PASSWORD = getattr(private_mkt, 'API_PASSWORD', FAKEAUTH_TOKEN)
 AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
-LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGES = lazy(langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 BLUEVIA_SECRET = private_mkt.BLUEVIA_SECRET
