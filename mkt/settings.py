@@ -1014,9 +1014,8 @@ REST_FRAMEWORK = {
 
 RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
-# Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-# Flip this on in your local settings to experience the joy of ES tests.
-RUN_ES_TESTS = False
+# Flip this on in your local settings to disable Elasticsearch tests.
+RUN_ES_TESTS = True
 
 # If this is False, tasks and other jobs that send non-critical emails should
 # use a fake email backend.
