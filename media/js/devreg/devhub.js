@@ -9,6 +9,12 @@
 })(require);
 
 $(document).ready(function() {
+
+    // Show daily message if it hasn't been seen yet
+    if ($('.daily-message').length) {
+        initDailyMessage();
+    }
+
     // Edit Add-on
     if (document.getElementById('edit-addon')) {
         initEditAddon();
@@ -1327,6 +1333,28 @@ function hideSameSizedIcons() {
     //     }
     //     icon_sizes.push(size);
     // });
+}
+
+function initDailyMessage() {
+    var motd = $('.daily-message');
+    if (!motd.length || $('#editor-motd').length) {
+        // We don't show the message on the page where we edit the message
+        // so no point in adding the close button or handler.
+        // Nor, of course, if we don't have a daily-message on the page.
+        return;
+    }
+    var storage = z.Storage();
+    var messageText = $('p', motd).text();
+    var messageType = motd.data('message-type');
+    var messageKey = 'motd_closed_' + messageType;
+    motd.find('.close').show().click(_pd(function(e) {
+        storage.set(messageKey, messageText);
+        motd.slideUp();
+    }));
+    if (storage.get(messageKey) !== messageText) {
+        // You haven't read this spam yet? Here, I have something to show you.
+        motd.slideDown();
+    }
 }
 
 

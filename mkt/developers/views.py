@@ -32,7 +32,7 @@ import amo.utils
 import lib.iarc
 from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
-                            post_required, skip_cache, write)
+                            permission_required, post_required, skip_cache, write)
 from amo.utils import escape_all
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
@@ -45,7 +45,8 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
                                   AppFormMedia, AppFormSupport,
                                   AppFormTechnical, AppVersionForm,
                                   CategoryForm, ContentRatingForm,
-                                  IARCGetAppInfoForm, NewPackagedAppForm,
+                                  IARCGetAppInfoForm, MOTDForm,
+                                  NewPackagedAppForm,
                                   PreloadTestPlanForm, PreviewFormSet,
                                   TransactionFilterForm, trap_duplicate)
 from mkt.developers.models import AppLog, PreloadTestPlan
@@ -66,6 +67,7 @@ from mkt.webapps.tasks import (_update_manifest, set_storefront_data,
                                update_manifests)
 from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
+from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms, tasks
 
@@ -112,7 +114,9 @@ def dashboard(request):
     addons, filter = addon_listing(request)
     addons = amo.utils.paginate(request, addons, per_page=10)
     data = dict(addons=addons, sorting=filter.field, filter=filter,
-                sort_opts=filter.opts)
+                sort_opts=filter.opts,
+                motd=unmemoized_get_config('mkt_developers_motd')
+    )
     return render(request, 'developers/apps/dashboard.html', data)
 
 
@@ -294,6 +298,17 @@ def status(request, addon_id, addon):
         ctx['test_plan'] = test_plan
 
     return render(request, 'developers/apps/status.html', ctx)
+
+
+@permission_required('DeveloperMOTD', 'Edit')
+def motd(request):
+    message = unmemoized_get_config('mkt_developers_motd')
+    form = MOTDForm(request.POST or None, initial={'motd': message})
+    if request.method == 'POST' and form and form.is_valid():
+        set_config('mkt_developers_motd', form.cleaned_data['motd'])
+        messages.success(request, _('Changes successfully saved.'))
+        return redirect(reverse('mkt.developers.motd'))
+    return render(request, 'developers/motd.html', {'form': form})
 
 
 def _submission_msgs():

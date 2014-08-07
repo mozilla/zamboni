@@ -8,6 +8,7 @@ from zipfile import ZipFile
 from django import forms
 from django.conf import settings
 from django.core.validators import URLValidator
+from django.forms import widgets
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import modelformset_factory
 from django.template.defaultfilters import filesizeformat
@@ -1185,3 +1186,7 @@ class IARCGetAppInfoForm(happyforms.Form):
 
 class ContentRatingForm(happyforms.Form):
     since = forms.DateTimeField()
+
+
+class MOTDForm(happyforms.Form):
+    motd = forms.CharField(widget=widgets.Textarea())

@@ -161,6 +161,9 @@ urlpatterns = decorate(write, patterns('',
     url('^terms$', views.terms, name='mkt.developers.apps.terms'),
     url('^api$', views.api, name='mkt.developers.apps.api'),
 
+    # Set the developer Message of the Day.
+    url('^motd$', views.motd, name='mkt.developers.motd'),
+
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+)?$',
         views.docs, name='mkt.developers.docs'),

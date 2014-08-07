@@ -183,6 +183,7 @@ JS = {
         'js/common/upload-image.js',
 
         'js/devreg/l10n.js',
+        'js/zamboni/storage.js',  # Used by editors.js, devhub.js
 
         # jQuery UI
         'js/lib/jquery-ui/jquery-ui-1.10.1.custom.js',
@@ -213,7 +214,6 @@ JS = {
     ),
     'mkt/reviewers': (
         'js/lib/moment-with-langs.min.js',  # JS date lib.
-        'js/zamboni/storage.js',  # Used by editors.js
         'js/common/buckets.js',
         'js/devreg/reviewers/editors.js',
         'js/devreg/apps.js',  # Used by install.js
