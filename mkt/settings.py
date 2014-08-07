@@ -1124,7 +1124,7 @@ STATSD_RECORD_KEYS = [
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
 # Path to stylus (to compile .styl files).
-STYLUS_BIN = os.environ.get('STYLUS_PATH',
+STYLUS_BIN = os.environ.get('STYLUS_BIN',
                             path('node_modules/stylus/bin/stylus'))
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
@@ -1151,7 +1151,7 @@ TOWER_KEYWORDS = {
 TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = os.environ.get('UGLIFY_PATH',
+UGLIFY_BIN = os.environ.get('UGLIFY_BIN',
                             path('node_modules/uglify-js/bin/uglifyjs'))
 
 # Feature flags
