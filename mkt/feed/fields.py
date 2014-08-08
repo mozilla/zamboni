@@ -1,5 +1,12 @@
-from rest_framework import serializers
+import hashlib
+import StringIO
 
+import requests
+from PIL import Image
+from rest_framework import exceptions, serializers
+from tower import ugettext as _
+
+from mkt.collections.serializers import DataURLImageField
 from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
                                      ESAppFeedCollectionSerializer,
                                      ESAppSerializer)
@@ -103,3 +110,40 @@ class AppESHomePromoCollectionField(AppESField):
     @property
     def serializer_class(self):
         return ESAppFeedCollectionSerializer
+
+
+class ImageURLField(serializers.Field):
+    """
+    Takes a URL pointing to an image (intended to be from Aviary's Feather).
+    Passes it to DataImageURLField which saves to a tmp directory and hashes.
+    """
+    write_only = True
+
+    def from_native(self, image_url):
+        try:
+            res = requests.get(image_url)
+        except:
+            raise exceptions.ParseError(
+                _('Invalid URL %(url)s').format(url=image_url))
+
+        # Check response code from image download.
+        if res.status_code != 200:
+            raise exceptions.ParseError(
+                _('Error downloading image from %(url)s').format(
+                    url=image_url))
+
+        # Validate the image.
+        try:
+            Image.open(StringIO.StringIO(res.content))
+        except IOError:
+            raise exceptions.ParseError(
+                _('Image from %(url)s could not be parsed').format(
+                    url=image_url))
+
+        # Encode image to base64.
+        img_data = StringIO.StringIO(res.content)
+        img_data_uri = ('data:image/jpg;base64,' +
+                        img_data.read().encode('base64'))
+
+        # Return image file object and hash.
+        return DataURLImageField().from_native(img_data_uri)

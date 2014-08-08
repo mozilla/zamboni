@@ -20,7 +20,7 @@ from mkt.webapps.serializers import AppSerializer
 
 from . import constants
 from .fields import (AppESField, AppESHomeField, AppESHomePromoCollectionField,
-                     FeedCollectionMembershipField)
+                     FeedCollectionMembershipField, ImageURLField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
 

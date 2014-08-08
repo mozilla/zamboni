@@ -1,11 +1,13 @@
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 
 from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
-from rest_framework import generics, response, status, viewsets
+from PIL import Image
+from rest_framework import generics, response, serializers, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
@@ -26,6 +28,7 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 from .authorization import FeedAuthorization
+from .fields import ImageURLField
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .serializers import (FeedAppESSerializer, FeedAppSerializer,
                           FeedBrandESSerializer, FeedBrandSerializer,
@@ -34,8 +37,33 @@ from .serializers import (FeedAppESSerializer, FeedAppSerializer,
                           FeedShelfESSerializer, FeedShelfSerializer)
 
 
+class ImageURLUploadMixin(viewsets.ModelViewSet):
+    """
+    Attaches a pre_save that downloads an image from a URL and validates.
+    Attaches a post_save that saves the image in feed element's directory.
+    """
+    def pre_save(self, obj):
+        """Download and validate background image upload URL."""
+        if self.request.DATA.get('background_image_upload_url'):
+            img, hash_ = ImageURLField().from_native(
+                self.request.DATA['background_image_upload_url'])
+            # Store img for post_save where we have access to the pk so we can
+            # save img in appropriate directory.
+            obj._background_image_upload = img
+            obj.image_hash = hash_
+        return super(ImageURLUploadMixin, self).pre_save(obj)
+
+    def post_save(self, obj, created=True):
+        """Store background image that we attached to the obj in pre_save."""
+        if hasattr(obj, '_background_image_upload'):
+            i = Image.open(obj._background_image_upload)
+            with storage.open(obj.image_path(), 'wb') as f:
+                i.save(f, 'png')
+        return super(ImageURLUploadMixin, self).post_save(obj, created)
+
+
 class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
-                                viewsets.ModelViewSet):
+                                ImageURLUploadMixin):
     """
     Base viewset for subclasses of BaseFeedCollection.
     """
@@ -178,7 +206,7 @@ class FeedBuilderView(CORSMixin, APIView):
 
 
 class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
-                     viewsets.ModelViewSet):
+                     ImageURLUploadMixin):
     """
     A viewset for the FeedApp class, which highlights a single app and some
     additional metadata (e.g. a review or a screenshot).

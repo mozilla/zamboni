@@ -389,6 +389,8 @@ Create
     :type app: int|null
     :param background_color: color in six-digit hex (with hash prefix)
     :type background_color: string
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
@@ -416,6 +418,7 @@ Create
         {
             "app": 710,
             "background_color": "#A90000",
+            "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "description": {
                 "en-US": "A featured app",
                 "fr": "Une application sélectionnée"
@@ -451,6 +454,8 @@ Update
     :type app: int|null
     :param background_color: color in six-digit hex (with hash prefix)
     :type background_color: string
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param description: a :ref:`translated <overview-translations>` description
         of the app being featured.
     :type description: object|null
@@ -876,6 +881,8 @@ Create
 
     :param apps: a grouped or ungrouped
         :ref:`app list <feed-collections-grouped>`.
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param color: a hex color used in display of the collection. Currently must
         be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
         ``#5F9B0A``, or ``#2C393B``.
@@ -895,7 +902,8 @@ Create
     .. code-block:: json
 
         {
-            "apps": [984, 19, 345, 981]
+            "apps": [984, 19, 345, 981],
+            "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "color": "#B90000",
             "description": {
                 "en-US": "A description of my collection."
@@ -932,6 +940,8 @@ Update
         :ref:`app list <feed-collections-grouped>`. If included in PATCH
         requests, it will delete from the collection all apps not included.
     :type apps: array
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param color: a hex color used in display of the collection. Currently must
         be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
         ``#5F9B0A``, or ``#2C393B``.
@@ -953,6 +963,7 @@ Update
         {
             "apps": [912, 42, 112],
             "color": "#B90000"
+            "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "description": {
                 "en-US": "A description of my collection."
             },
@@ -1109,6 +1120,8 @@ Create
         one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
         or ``#2C393B``.
     :type background_color: string
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
     :type carrier: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -1127,6 +1140,7 @@ Create
         {
             "apps": [19, 1, 44],
             "background_color": "#B90000",
+            "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "carrier": "telefonica",
             "description": {
                 "en-US": "A list of Telefonica's Favorite apps."
@@ -1163,6 +1177,8 @@ Update
         one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
         or ``#2C393B``.
     :type background_color: string
+    :param background_image_upload_url: a URL pointing to an image
+    :type background_image_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
     :type carrier: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -1181,6 +1197,7 @@ Update
         {
             "apps": [19, 1, 44],
             "background_color": "#B90000",
+            "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "carrier": "telefonica",
             "description": {
                 "en-US": "A list of Telefonica's Favorite apps."

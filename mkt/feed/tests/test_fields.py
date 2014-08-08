@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_
+import os
+
+from django.core.files.base import File
+from rest_framework.exceptions import ParseError
+
+import mock
+from rest_framework import serializers
 
 import amo.tests
 
 import mkt.feed.constants as feed
-from mkt.feed.fields import AppESField
+from mkt.feed.fields import AppESField, ImageURLField
 from mkt.feed.tests.test_models import FeedTestMixin
 from mkt.webapps.indexers import WebappIndexer
+
+
+TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+FILES_DIR = os.path.join(TEST_DIR, 'files')
 
 
 class TestAppESField(amo.tests.TestCase):
@@ -51,3 +62,42 @@ class TestAppESField(amo.tests.TestCase):
         field.limit = 0
         data = field.to_native([app.id for app in apps])
         eq_(len(data), 0)
+
+
+class TestImageURLField(amo.tests.TestCase):
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_basic(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = open(
+            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
+        download_mock.return_value = res_mock
+
+        img, hash_ = ImageURLField().from_native('http://ngokevin.com')  # SEO.
+        assert isinstance(img, File)
+        assert isinstance(hash_, str)
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_404(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 404
+        res_mock.content = ''
+        download_mock.return_value = res_mock
+
+        with self.assertRaises(ParseError):
+            img, hash_ = ImageURLField().from_native('http://ngokevin.com')
+
+    def test_invalid_url(self):
+        with self.assertRaises(ParseError):
+            img, hash_ = ImageURLField().from_native('@#$%^&*()_')
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_invalid_image(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = 'dalskdjasldkas'
+        download_mock.return_value = res_mock
+
+        with self.assertRaises(ParseError):
+            img, hash_ = ImageURLField().from_native('http://ngokevin.com')
