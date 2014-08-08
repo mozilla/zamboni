@@ -23,7 +23,7 @@ from django.utils import translation
 
 import elasticsearch
 import mock
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_, ok_, raises
 
 import amo
@@ -340,44 +340,41 @@ class TestUpdateNames(amo.tests.TestCase):
 
 
 class TestAddonWatchDisabled(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.addon = Webapp.objects.create(disabled_by_user=False,
-                                           status=amo.STATUS_PUBLIC)
+        self.app = Webapp.objects.get(pk=337141)
 
-    @patch('mkt.webapps.models.File.objects.filter')
-    def test_no_disabled_change(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.save()
-        assert not mock.unhide_disabled_file.called
-        assert not mock.hide_disabled_file.called
+    @patch('mkt.webapps.models.File.hide_disabled_file')
+    @patch('mkt.webapps.models.File.unhide_disabled_file')
+    def test_no_disabled_change(self, unhide, hide):
+        self.app.save()
+        assert not unhide.called
+        assert not hide.called
 
-    @patch('mkt.webapps.models.File.objects.filter')
-    def test_disable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(disabled_by_user=True)
-        assert not mock.unhide_disabled_file.called
-        assert mock.hide_disabled_file.called
+    @patch('mkt.webapps.models.File.hide_disabled_file')
+    @patch('mkt.webapps.models.File.unhide_disabled_file')
+    def test_disable_addon(self, unhide, hide):
+        self.app.update(disabled_by_user=True)
+        assert not unhide.called
+        assert hide.called
 
-    @patch('mkt.webapps.models.File.objects.filter')
-    def test_admin_disable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(status=amo.STATUS_DISABLED)
-        assert not mock.unhide_disabled_file.called
-        assert mock.hide_disabled_file.called
+    @patch('mkt.webapps.models.File.hide_disabled_file')
+    @patch('mkt.webapps.models.File.unhide_disabled_file')
+    def test_admin_disable_addon(self, unhide, hide):
+        self.app.update(status=amo.STATUS_DISABLED)
+        assert not unhide.called
+        assert hide.called
 
-    @patch('mkt.webapps.models.File.objects.filter')
-    def test_enable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(status=amo.STATUS_DISABLED)
-        mock.reset_mock()
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        assert mock.unhide_disabled_file.called
-        assert not mock.hide_disabled_file.called
+    @patch('mkt.webapps.models.File.hide_disabled_file')
+    @patch('mkt.webapps.models.File.unhide_disabled_file')
+    def test_enable_addon(self, unhide, hide):
+        self.app.update(status=amo.STATUS_DISABLED)
+        unhide.reset_mock()
+        hide.reset_mock()
+        self.app.update(status=amo.STATUS_PUBLIC)
+        assert unhide.called
+        assert not hide.called
 
 
 class TestAddonUpsell(amo.tests.TestCase):
