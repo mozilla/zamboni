@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
@@ -19,6 +21,10 @@ from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
 from mkt.webapps.models import Preview, Webapp
+
+
+TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+FILES_DIR = os.path.join(TEST_DIR, 'files')
 
 
 class BaseTestFeedItemViewSet(RestOAuth, FeedTestMixin):
@@ -410,6 +416,22 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         res, data = self.create(self.client, **self.feedapp_data)
         eq_(res.status_code, 400)
         ok_('pullquote_rating' in data)
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_create_with_background_image_upload_url(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = open(
+            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        self.feedapp_data.update(
+            {'background_image_upload_url': 'ngokevin.com'})  # SEO.
+        res, data = self.create(self.client, **self.feedapp_data)
+
+        assert data['background_image'].endswith(
+            FeedApp.objects.all()[0].image_hash)
 
     def test_create_no_data(self):
         self.feed_permission()
@@ -840,6 +862,22 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         data = json.loads(res.content)
         self.assertSetEqual(
             apps, [app['id'] for app in data['apps']])
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_create_with_background_image_upload_url(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = open(
+            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        data = dict(self.obj_data)
+        data.update({'background_image_upload_url': 'ngokevin.com'})  # SEO.
+        res, data = self.create(self.client, **data)
+
+        assert data['background_image'].endswith(
+            FeedCollection.objects.all()[0].image_hash)
 
 
 class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
