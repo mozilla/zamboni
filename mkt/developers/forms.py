@@ -30,7 +30,8 @@ from amo.utils import remove_icons, slug_validator, slugify
 from lib.video import tasks as vtasks
 from mkt.access import acl
 from mkt.api.models import Access
-from mkt.constants import CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE
+from mkt.constants import (CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE,
+                           ratingsbodies)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
@@ -1147,6 +1148,13 @@ class IARCGetAppInfoForm(happyforms.Form):
         app = self.app
         iarc_id = self.cleaned_data['submission_id']
         iarc_code = self.cleaned_data['security_code']
+        if settings.DEBUG and iarc_id == 0:
+            # A local developer is being lazy. Skip the hard work.
+            app.set_iarc_info(iarc_id, iarc_code)
+            app.set_descriptors([])
+            app.set_interactives([])
+            app.set_content_ratings({ratingsbodies.ESRB: ratingsbodies.ESRB_E})
+            return
 
         # Generate XML.
         xml = lib.iarc.utils.render_xml(
