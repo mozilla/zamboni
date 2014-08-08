@@ -262,7 +262,8 @@ def install(request):
                 AddonPurchase.objects.get_or_create(addon=obj,
                     user=request.user, type=CONTRIB_NO_CHARGE)
             else:
-                log.info('App not purchased: %s' % obj.pk)
+                log.info('App not purchased: app ID={a}; user={u}'
+                         .format(a=obj.pk, u=request.user))
                 return Response('You have not purchased this app.', status=402)
         receipt = install_record(obj, request, type_)
     utils_record(request, obj)
