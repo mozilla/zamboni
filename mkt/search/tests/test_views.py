@@ -955,8 +955,11 @@ class TestFeaturedCollections(BaseFeaturedTests):
         res, json = self.test_added_to_results()
 
         header = 'API-Fallback-%s' % self.prop_name
-        ok_(header in res)
-        eq_(res[header], 'region,carrier')
+        res_header = res._orig_response._headers[header.lower()]
+
+        ok_(res._orig_response.has_header(header),
+            '%s not found in headers' % header)
+        eq_(res_header[1], 'region,carrier')
 
     @patch('mkt.search.views.FeaturedSearchView.get_region_from_request')
     def test_region_None(self, get_region_from_request):
