@@ -3,7 +3,7 @@ import StringIO
 
 import requests
 from PIL import Image
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from tower import ugettext as _
 
 from mkt.collections.serializers import DataURLImageField
@@ -123,23 +123,27 @@ class ImageURLField(serializers.Field):
         try:
             res = requests.get(image_url)
         except:
-            raise serializers.ValidationError(
+            raise exceptions.ParseError(
                 _('Invalid URL %(url)s').format(url=image_url))
 
-        # Validate the image.
+        # Check response code from image download.
         if res.status_code != 200:
-            raise serializers.ValidationError(
+            raise exceptions.ParseError(
                 _('Error downloading image from %(url)s').format(
                     url=image_url))
 
-        # Encode image to base64.
+        # Validate the image.
         try:
-            img_data = StringIO.StringIO(res.content).read().encode('base64')
-            img_data = 'data:image/png;base64,' + img_data
+            Image.open(StringIO.StringIO(res.content))
         except IOError:
-            raise serializers.ValidationError(
+            raise exceptions.ParseError(
                 _('Image from %(url)s could not be parsed').format(
                     url=image_url))
 
-        # Save the image.
-        return DataURLImageField().from_native(img_data)
+        # Encode image to base64.
+        img_data = StringIO.StringIO(res.content)
+        img_data_uri = ('data:image/jpg;base64,' +
+                        img_data.read().encode('base64'))
+
+        # Return image file object and hash.
+        return DataURLImageField().from_native(img_data_uri)

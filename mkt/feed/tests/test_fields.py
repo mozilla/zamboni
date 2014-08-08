@@ -3,6 +3,7 @@ from nose.tools import eq_
 import os
 
 from django.core.files.base import File
+from rest_framework.exceptions import ParseError
 
 import mock
 from rest_framework import serializers
@@ -84,11 +85,11 @@ class TestImageURLField(amo.tests.TestCase):
         res_mock.content = ''
         download_mock.return_value = res_mock
 
-        with self.assertRaises(serializers.ValidationError):
+        with self.assertRaises(ParseError):
             img, hash_ = ImageURLField().from_native('http://ngokevin.com')
 
     def test_invalid_url(self):
-        with self.assertRaises(serializers.ValidationError):
+        with self.assertRaises(ParseError):
             img, hash_ = ImageURLField().from_native('@#$%^&*()_')
 
     @mock.patch('mkt.feed.fields.requests.get')
@@ -98,6 +99,5 @@ class TestImageURLField(amo.tests.TestCase):
         res_mock.content = 'dalskdjasldkas'
         download_mock.return_value = res_mock
 
-        with self.assertRaises(serializers.ValidationError):
+        with self.assertRaises(ParseError):
             img, hash_ = ImageURLField().from_native('http://ngokevin.com')
-

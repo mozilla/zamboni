@@ -433,6 +433,20 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         assert data['background_image'].endswith(
             FeedApp.objects.all()[0].image_hash)
 
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_background_image_404(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 404
+        res_mock.content = ''
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        self.feedapp_data.update(
+            {'background_image_upload_url': 'ngokevin.com'})  # SEO.
+        res, data = self.create(self.client, **self.feedapp_data)
+
+        eq_(res.status_code, 400)
+
     def test_create_no_data(self):
         self.feed_permission()
         res, data = self.create(self.client)
@@ -878,6 +892,20 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
 
         assert data['background_image'].endswith(
             FeedCollection.objects.all()[0].image_hash)
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_background_image_404(self, download_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 404
+        res_mock.content = ''
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        data = dict(self.obj_data)
+        data.update({'background_image_upload_url': 'ngokevin.com'})
+        res, data = self.create(self.client, **data)
+
+        eq_(res.status_code, 400)
 
 
 class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):

@@ -7,7 +7,7 @@ from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
 from PIL import Image
-from rest_framework import generics, response, status, viewsets
+from rest_framework import generics, response, serializers, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
