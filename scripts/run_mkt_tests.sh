@@ -8,7 +8,7 @@ cd $WORKSPACE
 VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
-ES_HOST='jenkins-es20'
+ES_HOST='elasticsearch-1.2'
 SETTINGS=mkt
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
