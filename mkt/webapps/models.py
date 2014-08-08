@@ -446,6 +446,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         lang = translation.to_language(self.default_locale)
         return settings.LANGUAGES.get(lang)
 
+    def update_status(self, **kwargs):
+        # Kept here as a placeholder for Addons. Remove or ignore when Addon
+        # and Webapp models are merged.
+        return
+
     @property
     def valid_file_statuses(self):
         if self.status == amo.STATUS_PUBLIC:
