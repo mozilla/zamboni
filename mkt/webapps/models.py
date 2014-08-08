@@ -2572,11 +2572,13 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
 def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
+    qs = (File.objects.filter(version__addon=instance.id)
+                      .exclude(version__deleted=True))
     if Addon(**attrs).is_disabled and not instance.is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
+        for f in qs:
             f.unhide_disabled_file()
     if instance.is_disabled and not Addon(**attrs).is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
+        for f in qs:
             f.hide_disabled_file()
 
 

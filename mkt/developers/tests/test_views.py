@@ -1084,6 +1084,17 @@ class TestEnableDisable(amo.tests.TestCase):
         self.client.post(self.disable_url)
         eq_(self.webapp.reload().disabled_by_user, True)
 
+    def test_disable_deleted_versions(self):
+        """
+        Test when we disable an app with deleted versions we don't include
+        the deleted version's files when calling `hide_disabled_file` or we'll
+        cause server errors b/c we can't query the version.
+        """
+        self.webapp.update(is_packaged=True)
+        self.webapp.latest_version.update(deleted=True)
+        self.client.post(self.disable_url)
+        eq_(self.webapp.reload().disabled_by_user, True)
+
 
 class TestRemoveLocale(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
