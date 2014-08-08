@@ -1132,7 +1132,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
 
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
-    @mock.patch('lib.crypto.packaged.sign_app')
+    @mock.patch('lib.crypto.packaged.sign')
     def test_public_sign_failure(self, sign_mock, json_mock,
                                  update_cached_manifests):
         # Test fails on Jenkins, skipping for now.
