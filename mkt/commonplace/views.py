@@ -55,11 +55,16 @@ def commonplace(request, repo, **kwargs):
     ua = request.META.get('HTTP_USER_AGENT', '').lower()
 
     include_persona = True
+    include_splash = False
     if repo == 'fireplace':
+        include_splash = True
         if (request.GET.get('nativepersona') or
             'mccs' in request.GET or
             ('mcc' in request.GET and 'mnc' in request.GET)):
             include_persona = False
+    elif repo == 'discoplace':
+        include_persona = False
+        include_splash = True
 
     if waffle.switch_is_active('firefox-accounts'):
         # We never want to include persona shim if firefox accounts is enabled:
@@ -76,6 +81,7 @@ def commonplace(request, repo, **kwargs):
         'BUILD_ID': BUILD_ID,
         'appcache': repo in settings.COMMONPLACE_REPOS_APPCACHED,
         'include_persona': include_persona,
+        'include_splash': include_splash,
         'repo': repo,
         'robots': 'googlebot' in ua,
         'site_settings': site_settings,
