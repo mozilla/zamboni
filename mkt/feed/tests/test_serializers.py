@@ -224,7 +224,7 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
     def test_home_serializer_promo_coll(self):
         """
         Test the listing collection is using
-        ESAppFeedCollectionSerializer.
+        ESAppFeedCollectionSerializer if no background image.
         """
         self.collection.update(type=feed.COLLECTION_PROMO)
         self.data_es = self.collection.get_indexer().extract_document(
@@ -237,6 +237,19 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
         assert 'name' not in data['apps'][0]
         assert 'ratings' not in data['apps'][0]
         assert data['apps'][0]['icons']
+
+    def test_home_serializer_promo_coll_bg_image(self):
+        """
+        Test the listing collection does not return apps if background image.
+        """
+        self.collection.update(type=feed.COLLECTION_PROMO, image_hash='#swag')
+        self.data_es = self.collection.get_indexer().extract_document(
+            None, obj=self.collection)
+        data = serializers.FeedCollectionESHomeSerializer(self.data_es,
+            context={'app_map': self.app_map,
+                     'request': amo.tests.req_factory_factory('')}
+        ).data
+        assert not data['apps']
 
 
 class TestFeedShelfSerializer(FeedTestMixin, amo.tests.TestCase):
