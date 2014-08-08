@@ -93,8 +93,8 @@ def _uploader(resize_size, final_size):
         eq_(dest_image.size[0], fsize[0])
         # Assert that the height can be a wee bit fuzzy.
         assert -1 <= dest_image.size[1] - fsize[1] <= 1, (
-            'Got width %d, expected %d' %
-                (fsize[1], dest_image.size[1]))
+            'Got width %d, expected %d' % (
+                fsize[1], dest_image.size[1]))
 
         if os.path.exists(dest_image.filename):
             os.remove(dest_image.filename)
@@ -456,17 +456,19 @@ class TestFetchIcon(BaseWebAppTest):
     def test_no_icons(self):
         path = os.path.join(self.apps_path, 'noicon.webapp')
         iconless_app = self.webapp_from_path(path)
-        tasks.fetch_icon(iconless_app)
+        tasks.fetch_icon(iconless_app,
+                         iconless_app.latest_version.all_files[0])
         assert not self.requests_mock.called
 
     def test_bad_icons(self):
         path = os.path.join(self.apps_path, 'badicon.webapp')
         iconless_app = self.webapp_from_path(path)
-        tasks.fetch_icon(iconless_app)
+        tasks.fetch_icon(iconless_app,
+                         iconless_app.latest_version.all_files[0])
         assert not self.requests_mock.called
 
-    def check_icons(self, webapp):
-        manifest = webapp.get_manifest_json()
+    def check_icons(self, webapp, file_obj=None):
+        manifest = webapp.get_manifest_json(file_obj)
         biggest = max([int(size) for size in manifest['icons']])
 
         icon_dir = webapp.get_icon_dir()
@@ -483,22 +485,24 @@ class TestFetchIcon(BaseWebAppTest):
     def test_data_uri(self):
         app_path = os.path.join(self.apps_path, 'dataicon.webapp')
         webapp = self.webapp_from_path(app_path)
+        file_obj = webapp.latest_version.all_files[0]
 
-        tasks.fetch_icon(webapp)
+        tasks.fetch_icon(webapp, file_obj)
         eq_(webapp.icon_type, self.content_type)
 
-        self.check_icons(webapp)
+        self.check_icons(webapp, file_obj)
 
     def test_hosted_icon(self):
         app_path = os.path.join(self.apps_path, 'mozball.webapp')
         webapp = self.webapp_from_path(app_path)
+        file_obj = webapp.latest_version.all_files[0]
 
         img_path = os.path.join(self.apps_path, 'mozball-128.png')
         with open(img_path, 'r') as content:
             tasks.save_icon(webapp, content.read())
         eq_(webapp.icon_type, self.content_type)
 
-        self.check_icons(webapp)
+        self.check_icons(webapp, file_obj)
 
     @mock.patch('mkt.developers.tasks._fetch_content')
     @mock.patch('mkt.developers.tasks.save_icon')
@@ -509,7 +513,9 @@ class TestFetchIcon(BaseWebAppTest):
         webapp.is_packaged = False
         url = 'http://foo.com/bar'
         webapp.get_manifest_json.return_value = {'icons': {'128': url}}
-        tasks.fetch_icon(webapp)
+        # Pass anything here for the `file_obj` argument to avoid it trying to
+        # get the `current_version`.
+        tasks.fetch_icon(webapp, mock.Mock())
         assert url in fetch.call_args[0][0]
 
     @mock.patch('mkt.developers.tasks.SafeUnzip')
@@ -521,9 +527,11 @@ class TestFetchIcon(BaseWebAppTest):
         zip.return_value = zf
         webapp = mock.Mock()
         webapp.is_packaged = True
+        file_obj = mock.Mock()
+        file_obj.file_path = '/path/to/icon/'
         url = '/path/to/icon.png'
         webapp.get_manifest_json.return_value = {'icons': {'128': url}}
-        tasks.fetch_icon(webapp)
+        tasks.fetch_icon(webapp, file_obj)
         assert url[1:] in zf.extract_path.call_args[0][0]
 
 
@@ -543,7 +551,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert ' added a new ' in msg.body
         assert ' for Brazil.' in msg.body
         # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
-        #assert 'Unsubscribe' in msg.body
+        # assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_two_new_regions(self):
@@ -560,7 +568,7 @@ class TestRegionEmail(amo.tests.WebappTestCase):
         assert ' added two new ' in msg.body
         assert ': Brazil and United Kingdom.' in msg.body
         # TODO: Re-enable this when we bring back Unsubscribe (bug 802379).
-        #assert 'Unsubscribe' in msg.body
+        # assert 'Unsubscribe' in msg.body
 
     @mock.patch.object(settings, 'SITE_URL', 'http://omg.org/')
     def test_email_for_several_new_regions(self):

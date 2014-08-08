@@ -290,7 +290,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # 1st user reviews 2, 2nd user only 1.
         users = cycle(reviewers)
         for app in self.apps:
-            amo.log(amo.LOG.APPROVE_VERSION, app, app.current_version,
+            amo.log(amo.LOG.APPROVE_VERSION, app, app.latest_version,
                     user=users.next(), details={'comments': 'hawt'})
 
         doc = pq(self.client.get(self.url).content.decode('utf-8'))
@@ -343,7 +343,7 @@ class FlagsMixin(object):
         eq_(tds('div.sprite-reviewer-premium.inapp').length, 1)
 
     def test_flag_info(self):
-        self.apps[0].current_version.update(has_info_request=True)
+        self.apps[0].latest_version.update(has_info_request=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -351,7 +351,7 @@ class FlagsMixin(object):
         eq_(flags.length, 1)
 
     def test_flag_comment(self):
-        self.apps[0].current_version.update(has_editor_comment=True)
+        self.apps[0].latest_version.update(has_editor_comment=True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -404,7 +404,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
-        apps = Webapp.objects.pending().order_by('created')
+        apps = Webapp.objects.filter(
+            status=amo.STATUS_PENDING).order_by('created')
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
@@ -1117,6 +1118,7 @@ class TestReviewTransaction(AttachmentManagementMixin, amo.tests.MockEsMixin,
                         _current_version=None, _signal=False)
         eq_(self.get_app().status, amo.STATUS_PENDING)
 
+        update_cached_manifests.reset_mock()
         sign_mock.return_value = None  # Didn't fail.
         json_mock.return_value = {'name': 'Something'}
 
@@ -1174,10 +1176,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.app = amo.tests.make_game(self.app, True)
         self.app.update(status=amo.STATUS_PENDING,
                         mozilla_contact=self.mozilla_contact)
-        self.version = self.app.current_version
-        self.version.files.all().update(status=amo.STATUS_PENDING)
-        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
+        self.version = self.app.latest_version
         self.file = self.version.all_files[0]
+        self.file.update(status=amo.STATUS_PENDING)
+        self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.setup_files()
 
     def get_app(self):
@@ -1344,10 +1346,10 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         data = {'action': 'public', 'comments': 'something',
                 'has_sms': True}
         data.update(self._attachment_management_form(num=0))
-        assert not self.app.current_version.features.has_sms
+        assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
-        assert app.current_version.features.has_sms
+        assert app.latest_version.features.has_sms
         eq_(app.publish_type, amo.PUBLISH_PRIVATE)
         eq_(app.status, amo.STATUS_APPROVED)
         self._check_log(amo.LOG.REVIEW_FEATURES_OVERRIDE)
@@ -1365,9 +1367,9 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         assert not self.app.latest_version.features.has_sms
         self.post(data)
         app = self.get_app()
+        assert not app.latest_version.features.has_sms
         eq_(app.publish_type, amo.PUBLISH_IMMEDIATE)
         eq_(app.status, amo.STATUS_REJECTED)
-        assert not app.latest_version.features.has_sms
 
     def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
         self.version.features.update(has_sms=True)
@@ -1563,7 +1565,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, amo.STATUS_APPROVED)
-        eq_(app._current_version.files.all()[0].status, amo.STATUS_APPROVED)
+        eq_(app.latest_version.all_files[0].status, amo.STATUS_APPROVED)
         self._check_log(amo.LOG.APPROVE_VERSION_WAITING)
 
         eq_(len(mail.outbox), 1)
@@ -1582,14 +1584,14 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         eq_(index_webapps.delay.call_count, 1)
 
     @mock.patch('lib.crypto.packaged.sign')
-    def test_approved_signs(self, sign):
-        self.get_app().update(is_packaged=True,
-                              publish_type=amo.PUBLISH_PRIVATE)
+    @mock.patch('mkt.webapps.models.Webapp.get_cached_manifest')
+    def test_approved_signs(self, manifest, sign):
+        self.get_app().update(is_packaged=True)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
 
-        eq_(self.get_app().status, amo.STATUS_APPROVED)
+        eq_(self.get_app().status, amo.STATUS_PUBLIC)
         eq_(sign.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_reject(self):
@@ -1623,6 +1625,8 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
                                       file_kw={'status': amo.STATUS_PENDING})
 
         index_webapps.delay.reset_mock()
+        update_cached_manifests.reset_mock()
+
         eq_(sign_app_mock.call_count, 0)
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -1655,7 +1659,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_packaged_multiple_versions_reject(self):
         self.app.update(status=amo.STATUS_PUBLIC, is_packaged=True)
-        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         new_version = version_factory(addon=self.app)
         new_version.files.all().update(status=amo.STATUS_PENDING)
         data = {'action': 'reject', 'device_types': '', 'browsers': '',
@@ -1695,7 +1699,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
         self.login_as_senior_reviewer()
 
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
@@ -1708,7 +1712,7 @@ class TestReviewApp(AppReviewerTest, AccessMixin, AttachmentManagementMixin,
 
     def test_pending_to_disable(self):
         self.app.update(status=amo.STATUS_PUBLIC)
-        self.app.current_version.files.update(status=amo.STATUS_PUBLIC)
+        self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'disabled ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data)
@@ -2230,10 +2234,10 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
 
     def make_approvals(self):
         for app in self.apps:
-            amo.log(amo.LOG.REJECT_VERSION, app, app.current_version,
+            amo.log(amo.LOG.REJECT_VERSION, app, app.latest_version,
                     user=self.get_user(), details={'comments': 'youwin'})
             # Throw in a few tasks logs that shouldn't get queried.
-            amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, app, app.current_version,
+            amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, app, app.latest_version,
                     user=self.task_user, details={'comments': 'foo'})
 
     def make_an_approval(self, action, comment='youwin', username=None,
@@ -2244,7 +2248,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
             user = self.get_user()
         if not app:
             app = self.apps[0]
-        amo.log(action, app, app.current_version, user=user,
+        amo.log(action, app, app.latest_version, user=user,
                 details={'comments': comment})
 
     def test_basic(self):
@@ -2282,7 +2286,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         a = self.apps[0]
         a.name = '<script>alert("xss")</script>'
         a.save()
-        amo.log(amo.LOG.REJECT_VERSION, a, a.current_version,
+        amo.log(amo.LOG.REJECT_VERSION, a, a.latest_version,
                 user=self.get_user(), details={'comments': 'xss!'})
 
         r = self.client.get(self.url)
@@ -2402,7 +2406,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
             'Reviewer escalation')
 
     def test_no_double_encode(self):
-        version = self.apps[0].current_version
+        version = self.apps[0].latest_version
         version.update(version='<foo>')
         self.make_an_approval(amo.LOG.ESCALATE_MANUAL)
         r = self.client.get(self.url)
@@ -2517,7 +2521,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         """
         poster = user_factory()
         thread, note = create_comm_note(
-            self.app, self.app.current_version, poster, 'lgtm')
+            self.app, self.app.latest_version, poster, 'lgtm')
 
         data = {'action': 'public', 'comments': 'gud jerb'}
         data.update(self._attachment_management_form(num=0))

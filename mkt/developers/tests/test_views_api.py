@@ -206,7 +206,8 @@ class TestContentRatingPingback(RestOAuth):
                     {
                         'TYPE': 'string',
                         'NAME': 'interactive_elements',
-                        'VALUE': 'Shares Info,Shares Location,Digital Purchases,Users Interact'
+                        'VALUE': ('Shares Info,Shares Location,'
+                                  'Digital Purchases,Users Interact')
                     }
                 ]
             }
@@ -270,7 +271,7 @@ class TestContentRatingPingback(RestOAuth):
              'has_digital_purchases', 'has_users_interact'])
 
         eq_(app.status, amo.STATUS_PENDING)
-        assert app.current_version.nomination
+        assert app.latest_version.nomination
 
     @override_settings(SECRET_KEY='foo')
     def test_token_mismatch(self):

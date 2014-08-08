@@ -100,7 +100,7 @@ class TestUpdateManifest(amo.tests.TestCase):
 
         # Not using app factory since it creates translations with an invalid
         # locale of "en-us".
-        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.addon = Webapp.objects.create()
         self.version = Version.objects.create(addon=self.addon,
                                               _developer_name='Mozilla')
         self.file = File.objects.create(
@@ -114,6 +114,8 @@ class TestUpdateManifest(amo.tests.TestCase):
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.manifest_url = 'http://nowhere.allizom.org/manifest.webapp'
         self.addon.save()
+
+        self.addon.update_version()
 
         self.addon.addonuser_set.create(user_id=999)
 
@@ -161,7 +163,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         old_file = self.addon.get_latest_file()
         self._run()
 
-        app = Webapp.objects.get(pk=self.addon.pk)
+        app = self.addon.reload()
         version = app.current_version
         file_ = app.get_latest_file()
 
@@ -184,7 +186,7 @@ class TestUpdateManifest(amo.tests.TestCase):
         self._hash = 'foo'
         self._run()
 
-        app = Webapp.objects.get(pk=self.addon.pk)
+        app = self.addon.reload()
         eq_(app.versions.latest().version, '1.1')
 
     def test_not_log(self):

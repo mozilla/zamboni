@@ -290,12 +290,13 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         assert data['user']['can_rate']
         assert not data['user']['has_rated']
 
-    def _create(self, data=None, anonymous=False):
+    def _create(self, data=None, anonymous=False, version=None):
+        version = version or self.app.current_version
         default_data = {
             'app': self.app.id,
             'body': 'Rocking the free web.',
             'rating': 5,
-            'version': self.app.current_version.id
+            'version': version.id
         }
         if data:
             default_data.update(data)
@@ -356,7 +357,7 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
 
     def test_create_for_nonpublic(self):
         self.app.update(status=amo.STATUS_PENDING)
-        res, data = self._create()
+        res, data = self._create(version=self.app.latest_version)
         eq_(403, res.status_code)
 
     def test_create_duplicate_rating(self):

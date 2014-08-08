@@ -248,7 +248,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         qs = {'q': 'something', 'pro': feature_profile, 'dev': 'firefoxos'}
 
         # Enable an app feature that doesn't match one in our profile.
-        self.webapp.current_version.features.update(has_pay=True)
+        self.webapp.latest_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
 
@@ -259,9 +259,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_filtering(self):
-        f = self.webapp.get_latest_file()
-        f.uses_flash = True
-        f.save()
+        self.webapp.latest_version.all_files[0].update(uses_flash=True)
         self.webapp.save()
         self.refresh('webapp')
         res = self.client.get(self.url, {'dev': 'firefoxos'})

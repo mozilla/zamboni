@@ -61,7 +61,7 @@ class TestUserProfile(amo.tests.TestCase):
         """
         addon = Webapp.objects.get(id=337141)
         u = UserProfile.objects.get(pk=999)
-        version = addon.get_version()
+        version = addon.current_version
         new_review = Review(version=version, user=u, rating=2, body='hello',
                             addon=addon)
         new_review.save()

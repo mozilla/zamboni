@@ -306,12 +306,16 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     def test_dehydrate(self):
         app = self.create_app()
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
+        app = app.reload()
+        version = app.current_version
+
         eq_(res.status_code, 202)
         res = self.client.get(self.get_url + '?lang=en')
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(set(app.reload().categories), set(data['categories']))
-        eq_(data['current_version'], app.current_version.version)
+
+        eq_(set(app.categories), set(data['categories']))
+        eq_(data['current_version'], version and version.version)
         self.assertSetEqual(data['device_types'],
                             [n.api_name for n in amo.DEVICE_TYPES.values()])
         eq_(data['homepage'], u'http://www.whatever.com')

@@ -17,24 +17,25 @@ from mkt.site.fixtures import fixture
 
 
 class TestPackagedManifest(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'group_editor', 'user_editor',
+                       'user_editor_group')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
         # Create a fake package to go along with the app.
-        latest_file = self.app.get_latest_file()
-        with storage.open(latest_file.file_path,
+        self.latest_file = self.app.get_latest_file()
+        with storage.open(self.latest_file.file_path,
                           mode='w') as package:
             test_package = zipfile.ZipFile(package, 'w')
             test_package.writestr('manifest.webapp', 'foobar')
             test_package.close()
-            latest_file.update(hash=latest_file.generate_hash())
+            self.latest_file.update(hash=self.latest_file.generate_hash())
 
         self.url = self.app.get_manifest_url()
 
     def tearDown(self):
-        storage.delete(self.app.get_latest_file().file_path)
+        storage.delete(self.latest_file.file_path)
 
     def get_digest_from_manifest(self, manifest=None):
         if manifest is None:

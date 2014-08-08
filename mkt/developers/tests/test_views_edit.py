@@ -517,7 +517,7 @@ class TestEditBasic(TestEdit):
         self.webapp.save()
         data = self.get_dict(releasenotes=u'I can hâz release notes')
         res = self.client.post(self.edit_url, data)
-        releasenotes = self.webapp.current_version.reload().releasenotes
+        releasenotes = self.webapp.reload().latest_version.releasenotes
         eq_(res.status_code, 200)
         eq_(releasenotes, data['releasenotes'])
         # Make sure publish_type wasn't reset by accident.
@@ -570,7 +570,7 @@ class TestEditCountryLanguage(TestEdit):
         for c in countries.split(', '):
             clean_countries.append(strip_whitespace(c))
 
-        ## eq_(langs, u'English (US) (default), Deutsch, Espa\xf1ol')
+        # eq_(langs, u'English (US) (default), Deutsch, Espa\xf1ol')
         # XXX The above line is correct. But if Jenkins is wrong, I
         # don't wanna be right.
         eq_(langs, u'English (US) (default), Deutsch, Espa\xc3\xb1ol')

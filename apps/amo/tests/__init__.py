@@ -723,8 +723,8 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     # Save 1.
     a = Addon.objects.create(type=type_, **kwargs)
     version = version_factory(file_kw, addon=a, **version_kw)  # Save 2.
-    a.update_version()
     a.status = status
+    a.update_version()
 
     # Put signals back.
     post_save.connect(app_update_search_index, sender=Webapp,

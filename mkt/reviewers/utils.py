@@ -640,7 +640,7 @@ def device_queue_search(request):
     if sig:
         profile = FeatureProfile.from_signature(sig)
         filters.update(dict(
-            **profile.to_kwargs(prefix='_current_version__features__has_')
+            **profile.to_kwargs(prefix='_latest_version__features__has_')
         ))
     return Webapp.version_and_file_transformer(
         Webapp.objects.filter(**filters))

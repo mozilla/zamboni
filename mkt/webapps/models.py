@@ -451,34 +451,22 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # and Webapp models are merged.
         return
 
-    @property
-    def valid_file_statuses(self):
-        if self.status == amo.STATUS_PUBLIC:
-            return [amo.STATUS_PUBLIC]
+    def get_public_version(self):
+        """Retrieves the latest PUBLIC version of an addon."""
+        if self.status not in amo.WEBAPPS_APPROVED_STATUSES:
+            # Apps that aren't in an approved status have no current version.
+            return None
 
-        if self.status == amo.STATUS_APPROVED:
-            # For approved apps, accept both public and approved statuses,
-            # because the file status might be changed from APPROVED to PUBLIC
-            # just before the app's is.
-            return amo.WEBAPPS_APPROVED_STATUSES
-
-        return amo.VALID_STATUSES
-
-    def get_version(self):
-        """Retrieves the latest public version of an addon."""
         try:
-            status = self.valid_file_statuses
-
-            status_list = ','.join(map(str, status))
-            fltr = {'files__status__in': status}
-            return self.versions.no_cache().filter(**fltr).extra(
-                where=["""
-                    NOT EXISTS (
-                        SELECT 1 FROM versions as v2
-                        INNER JOIN files AS f2 ON (f2.version_id = v2.id)
-                        WHERE v2.id = versions.id
-                        AND f2.status NOT IN (%s))
-                    """ % status_list])[0]
+            return (self.versions.no_cache()
+                    .filter(files__status=amo.STATUS_PUBLIC)
+                    .extra(where=[
+                        """
+                        NOT EXISTS (
+                            SELECT 1 FROM versions as v2
+                            INNER JOIN files AS f2 ON (f2.version_id = v2.id)
+                            WHERE v2.id = versions.id
+                            AND f2.status != %s)""" % amo.STATUS_PUBLIC])[0])
 
         except (IndexError, Version.DoesNotExist):
             return None
@@ -488,14 +476,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         Returns true if we updated the field.
 
-        The optional ``ignore`` parameter, if present, is a a version
-        to not consider as part of the update, since it may be in the
-        process of being deleted.
+        The optional ``ignore`` parameter, if present, is a version to not
+        consider as part of the update, since it may be in the process of being
+        deleted.
 
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        current = self.get_version()
+        current = self.get_public_version()
 
         try:
             latest_qs = self.versions.all()
@@ -761,15 +749,21 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    @property
-    def is_under_review(self):
-        return self.status in amo.STATUS_UNDER_REVIEW
-
     def is_public(self):
-        return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
+        """
+        True if the app is not disabled and the status is STATUS_PUBLIC.
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
 
     def is_approved(self):
-        return self.status == amo.STATUS_APPROVED
+        """
+        True if the app has status equal to amo.STATUS_APPROVED.
+
+        This app has been approved by a reviewer but is currently private and
+        only visitble to the app authors.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
 
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
@@ -1308,17 +1302,8 @@ class WebappManager(amo.models.ManagerBase):
                            disabled_by_user=False)
 
     def visible(self):
-        return self.filter(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    @skip_cache
-    def pending(self):
-        # - Holding
-        # ** Approved   -- PUBLIC
-        # ** Unapproved -- PENDING
-        # - Open
-        # ** Reviewed   -- PUBLIC
-        # ** Rejected   -- REJECTED
-        return self.filter(status=amo.WEBAPPS_UNREVIEWED_STATUS)
+        return self.filter(status__in=amo.LISTED_STATUSES,
+                           disabled_by_user=False)
 
     @skip_cache
     def pending_in_region(self, region):
@@ -1571,7 +1556,7 @@ class Webapp(Addon):
     def get_manifest_json(self, file_obj=None):
         file_ = file_obj or self.get_latest_file()
         if not file_:
-            return
+            return {}
 
         try:
             return file_.version.manifest
@@ -2260,7 +2245,7 @@ class Webapp(Addon):
 
         """
         languages = []
-        version = self.current_version
+        version = self.current_version or self.latest_version
 
         if version:
             for locale in version.supported_locales.split(','):
@@ -2277,8 +2262,9 @@ class Webapp(Addon):
     @property
     def developer_name(self):
         """This is the developer name extracted from the manifest."""
-        if self.current_version:
-            return self.current_version.developer_name
+        version = self.current_version or self.latest_version
+        if version:
+            return version.developer_name
 
     def get_trending(self, region=None):
         """

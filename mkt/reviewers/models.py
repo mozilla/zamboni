@@ -8,12 +8,9 @@ import commonware.log
 
 import amo
 import amo.models
-from amo.utils import cache_ns_key
-
 import mkt.constants.comm as comm
-from mkt.access.models import Group
+from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
-from mkt.developers.models import ActivityLog
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Addon
@@ -83,13 +80,13 @@ class ReviewerScore(amo.models.ModelBase):
 
         """
         if addon.is_packaged:
-            if status == amo.STATUS_PUBLIC:
+            if status in amo.WEBAPPS_APPROVED_STATUSES:
                 return amo.REVIEWED_WEBAPP_UPDATE
             else:  # If it's not PUBLIC, assume it's a new submission.
                 return amo.REVIEWED_WEBAPP_PACKAGED
         else:  # It's a hosted app.
             in_rereview = kwargs.pop('in_rereview', False)
-            if status == amo.STATUS_PUBLIC and in_rereview:
+            if status in amo.WEBAPPS_APPROVED_STATUSES and in_rereview:
                 return amo.REVIEWED_WEBAPP_REREVIEW
             else:
                 return amo.REVIEWED_WEBAPP_HOSTED

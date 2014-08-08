@@ -113,7 +113,7 @@ def manifest(request):
             if form.is_packaged():
                 validation = json.loads(upload.validation)
                 escalate_prerelease_permissions(
-                    addon, validation, addon.current_version)
+                    addon, validation, addon.latest_version)
 
             # Set the device type.
             for device in form.get_devices():
@@ -138,11 +138,11 @@ def manifest(request):
                                                   manifest=True, details=False)
 
             # Create feature profile.
-            addon.current_version.features.update(**features_form.cleaned_data)
+            addon.latest_version.features.update(**features_form.cleaned_data)
 
         # Call task outside of `commit_on_success` to avoid it running before
         # the transaction is committed and not finding the app.
-        tasks.fetch_icon.delay(addon)
+        tasks.fetch_icon.delay(addon, addon.latest_version.all_files[0])
 
         return redirect('submit.app.details', addon.app_slug)
 
