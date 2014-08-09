@@ -31,7 +31,6 @@ from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
-import mkt
 from amo.decorators import (any_permission_required, json_view, login_required,
                             permission_required)
 from amo.helpers import absolutify, urlparams
@@ -39,6 +38,9 @@ from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
 from lib.crypto.packaged import SigningError
+
+import mkt
+import mkt.constants.comm as comm
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -46,6 +48,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
+from mkt.comm.utils import create_comm_note
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.files.models import File
@@ -79,6 +82,12 @@ from .models import CannedResponse
 
 QUEUE_PER_PAGE = 100
 log = commonware.log.getLogger('z.reviewers')
+
+
+def log_reviewer_action(addon, user, msg, action):
+    create_comm_note(addon, addon.current_version, user, msg,
+                     note_type=comm.ACTION_MAP(action.id))
+    amo.log(action, addon, addon.current_version, details={'comments': msg})
 
 
 def reviewer_required(region=None):
@@ -336,8 +345,9 @@ def _review(request, addon, version):
                     [_(u'Removed {0}').format(
                      unicode(amo.DEVICE_TYPES[d].name))
                      for d in removed_devices]))
-                amo.log(amo.LOG.REVIEW_DEVICE_OVERRIDE, addon,
-                        addon.current_version, details={'comments': msg})
+
+                log_reviewer_action(addon, request.user, msg,
+                                    amo.LOG.REVIEW_DEVICE_OVERRIDE)
 
             if old_features != new_features:
                 # The reviewer overrode the requirements. We need to not
@@ -356,8 +366,9 @@ def _review(request, addon, version):
                       [_(u'Removed {0}').format(f) for f in removed_features])
                 # L10n: {0} is the list of requirements changes.
                 msg = _(u'Requirements changed by reviewer: {0}').format(fmt)
-                amo.log(amo.LOG.REVIEW_FEATURES_OVERRIDE, addon,
-                        addon.current_version, details={'comments': msg})
+
+                log_reviewer_action(addon, request.user, msg,
+                                    amo.LOG.REVIEW_FEATURES_OVERRIDE)
 
         score = form.helper.process()
 

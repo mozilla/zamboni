@@ -181,7 +181,8 @@ class CommunicationNoteManager(models.Manager):
 
 class CommunicationNote(CommunicationPermissionModel):
     thread = models.ForeignKey(CommunicationThread, related_name='notes')
-    author = models.ForeignKey('users.UserProfile', related_name='comm_notes')
+    author = models.ForeignKey('users.UserProfile', related_name='comm_notes',
+                               null=True, blank=True)
     note_type = models.IntegerField(default=comm.NO_ACTION)
     body = models.TextField(null=True)
     reply_to = models.ForeignKey(

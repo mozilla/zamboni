@@ -13,7 +13,7 @@ from mkt.constants.platforms import *
 from mkt.constants.search import *
 
 # This is used in multiple other files to access logging, do not remove.
-from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
+from .log import (_LOG, LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
 
