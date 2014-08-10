@@ -215,7 +215,7 @@ def send_mail_comm(note):
 
 
 def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
-                     perms=None, no_switch=False, attachments=None):
+                     perms=None, attachments=None):
     """
     Creates a note on an app version's thread.
     Creates a thread if a thread doesn't already exist.
@@ -229,20 +229,13 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
                  (e.g. comm.APPROVAL, comm.REJECTION, comm.NO_ACTION).
     perms -- object of groups to grant permission to, will set flags on Thread.
              (e.g. {'developer': False, 'staff': True}).
-    no_switch -- whether to ignore comm switch, needed after we migrate
-                 reviewer tools from ActivityLog to notes.
     attachments -- formset of attachment files
 
     """
-    if not no_switch and not waffle.switch_is_active('comm-dashboard'):
-        return None, None
-
-    # Dict of {'read_permission_GROUP_TYPE': boolean}.
     # Perm for reviewer, senior_reviewer, moz_contact, staff True by default.
-    # Perm for developer False if is escalation or reviewer comment by default.
+    # Perm for developer False if is reviewer-only comment by default.
     perms = perms or {}
-    if 'developer' not in perms and note_type in (comm.ESCALATION,
-                                                  comm.REVIEWER_COMMENT):
+    if 'developer' not in perms and note_type in comm.REVIEWER_NOTE_TYPES:
         perms['developer'] = False
     create_perms = dict(('read_permission_%s' % key, has_perm)
                         for key, has_perm in perms.iteritems())
@@ -280,10 +273,11 @@ def post_create_comm_note(note):
 
     # Add note author to thread.
     author = note.author
-    cc, created_cc = thread.join_thread(author)
-    if not created_cc:
-        # Mark their own note as read.
-        note.mark_read(note.author)
+    if author:
+        cc, created_cc = thread.join_thread(author)
+        if not created_cc:
+            # Mark their own note as read.
+            note.mark_read(note.author)
 
     # Send out emails.
     send_mail_comm(note)

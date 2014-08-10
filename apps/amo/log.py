@@ -676,6 +676,10 @@ class PRIORITY_REVIEW_REQUESTED(_LOG):
     review_queue = True
 
 
+# Adding a log type? If it's a review_queue log type, you have to add a
+# note_type to constants/comm.py.
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

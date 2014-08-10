@@ -309,20 +309,6 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.status_code, 201)
         assert self.addon.threads.count()
 
-    @mock.patch('waffle.switch_is_active')
-    def test_create_no_switch(self, waffle_mock):
-        waffle_mock.return_value = False
-        version_factory(addon=self.addon, version='1.1')
-        data = {
-            'app': self.addon.app_slug,
-            'version': '1.1',
-            'note_type': '0',
-            'body': 'flylikebee'
-        }
-        self.addon.addonuser_set.create(user=self.user)
-        res = self.client.post(self.list_url, data=json.dumps(data))
-        eq_(res.status_code, 403)
-
 
 class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
     fixtures = fixture('webapp_337141', 'user_2519', 'user_999',
@@ -448,13 +434,6 @@ class TestNote(NoteSetupMixin):
 
     def test_create_no_perm(self):
         self.thread.update(read_permission_developer=False)
-        res = self.client.post(self.list_url, data=json.dumps(
-            {'note_type': '0', 'body': 'something'}))
-        eq_(res.status_code, 403)
-
-    @mock.patch('waffle.switch_is_active')
-    def test_create_no_switch(self, waffle_mock):
-        waffle_mock.return_value = False
         res = self.client.post(self.list_url, data=json.dumps(
             {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 403)

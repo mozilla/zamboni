@@ -107,16 +107,10 @@ class ReviewBase(object):
             details['files'] = [f.id for f in self.files]
 
         # Commbadge (the future).
-        perm_overrides = {
-            comm.ESCALATION: {'developer': False},
-            comm.REVIEWER_COMMENT: {'developer': False},
-        }
         note_type = comm.ACTION_MAP(action.id)
         self.comm_thread, self.comm_note = create_comm_note(
             self.addon, self.version, self.request.user,
             self.data['comments'], note_type=note_type,
-            # Ignore switch so we don't have to re-migrate new notes.
-            perms=perm_overrides.get(note_type), no_switch=True,
             attachments=self.attachment_formset)
 
         # ActivityLog (ye olde).

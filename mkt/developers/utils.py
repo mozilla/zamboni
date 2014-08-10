@@ -131,8 +131,8 @@ def escalate_app(app, version, user, msg, email_template, log_type):
     EscalationQueue.objects.get_or_create(addon=app)
 
     # Create comm note
-    create_comm_note(app, version, user, msg, note_type=comm.ESCALATION,
-                     perms={'developer': False})
+    create_comm_note(app, version, user, msg,
+                     note_type=comm.ACTION_MAP(log_type))
 
     # Log action
     amo.log(log_type, app, version, created=datetime.now(),

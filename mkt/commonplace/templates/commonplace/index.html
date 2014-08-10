@@ -95,6 +95,11 @@
     {% endif -%}
     <script type="text/javascript" src="{{ media(repo + '/js/l10n.js') }}"></script>
 
+    {% if repo == 'transonic' %}
+      {# Aviary. #}
+      <script src="https://dme0ih8comzn4.cloudfront.net/js/feather.js"></script>
+    {% endif %}
+
     {% if settings.DEBUG and repo == 'fireplace' %}
       <script type="text/javascript" data-main="/media/fireplace/js/main" src="{{ media('fireplace/js/lib/require.js') }}"></script>
     {% else %}

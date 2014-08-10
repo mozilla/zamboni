@@ -9,7 +9,10 @@ import commonware.log
 import amo
 import amo.models
 from amo.utils import cache_ns_key
+
+import mkt.constants.comm as comm
 from mkt.access.models import Group
+from mkt.comm.utils import create_comm_note
 from mkt.developers.models import ActivityLog
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
@@ -353,6 +356,12 @@ class RereviewQueue(amo.models.ModelBase):
                     details={'comments': message})
         else:
             amo.log(event, addon, addon.current_version)
+
+        # TODO: if we ever get rid of ActivityLog for reviewer notes, replace
+        # all flag calls to use the comm constant and not have to use
+        # ACTION_MAP.
+        create_comm_note(addon, addon.current_version, None, message,
+                         note_type=comm.ACTION_MAP(event))
 
 
 def cleanup_queues(sender, instance, **kwargs):
