@@ -158,6 +158,19 @@ class TestCreateCommNote(TestCase, AttachmentManagementMixin):
         eq_(note.read_by_users.count(), 3)
         eq_(last_word.read_by_users.count(), 1)
 
+    def test_create_note_no_author(self):
+        thread, note = create_comm_note(
+            self.app, self.app.current_version, None, 'huehue')
+        eq_(note.author, None)
+
+    @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)
+    def test_create_note_reviewer_type(self):
+        for note_type in comm.REVIEWER_NOTE_TYPES:
+            thread, note = create_comm_note(
+                self.app, self.app.current_version, None, 'huehue',
+                note_type=note_type)
+            eq_(note.read_permission_developer, False)
+
     @mock.patch('mkt.comm.utils.post_create_comm_note', new=mock.Mock)
     def test_custom_perms(self):
         thread, note = create_comm_note(

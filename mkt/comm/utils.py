@@ -168,8 +168,11 @@ def get_recipients(note):
     if not note.read_permission_developer:
         # Exclude developer.
         excludes += thread.addon.authors.values_list('id', 'email')
-    # Exclude note author.
-    excludes.append((note.author.id, note.author.email))
+
+    if note.author:
+        # Exclude note author.
+        excludes.append((note.author.id, note.author.email))
+
     # Remove excluded people from the recipients.
     recipients = [r for r in recipients if r not in excludes]
 
@@ -197,7 +200,7 @@ def send_mail_comm(note):
     name = note.thread.addon.name
     data = {
         'name': name,
-        'sender': note.author.name,
+        'sender': note.author.name if note.author else 'System',
         'comments': note.body,
         'thread_id': str(note.thread.id)
     }
