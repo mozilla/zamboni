@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import random
 import string
+from itertools import cycle
 
 from django.core.exceptions import ValidationError
 
@@ -81,19 +82,23 @@ class FeedTestMixin(object):
         feed_item.save()
         return feed_item
 
-    def feed_factory(self, carrier=1, region=1, item_types=None):
+    def feed_factory(self, carrier=1, region=1, item_types=None, num_items=None):
         """
-        Takes a list of feed element types and creates FeedItems with those
-        types. Returns a list of FeedItems.
+        Iterates over a list of feed element types and creates `num_items`
+        FeedItems, cycling over those types. By default, creates one of each
+        type. Returns a list of FeedItems.
         """
         item_types = item_types or [feed.FEED_TYPE_APP, feed.FEED_TYPE_BRAND,
                                     feed.FEED_TYPE_COLL, feed.FEED_TYPE_SHELF]
+        if not num_items:
+            num_items = len(item_types)
+        item_types = cycle(item_types)
 
         feed_items = []
-        for item_type in item_types:
+        for i in xrange(num_items):
             feed_items.append(
                 self.feed_item_factory(carrier=carrier, region=region,
-                                       item_type=item_type))
+                                       item_type=item_types.next()))
         return feed_items
 
 

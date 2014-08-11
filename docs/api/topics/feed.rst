@@ -52,6 +52,8 @@ Feed
 
     **Response**
 
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
     :param objects: An ordered list of :ref:`feed items <feed-items>` for the
         user.
     :type objects: array
