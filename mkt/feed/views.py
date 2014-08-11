@@ -21,6 +21,7 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
+from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
                                FeedCollectionIndexer, FeedItemIndexer,
                                FeedShelfIndexer)
@@ -59,6 +60,8 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
             i = Image.open(obj._background_image_upload)
             with storage.open(obj.image_path(), 'wb') as f:
                 i.save(f, 'png')
+            pngcrush_image.delay(obj.image_path(), set_modified_on=[obj])
+
         return super(ImageURLUploadMixin, self).post_save(obj, created)
 
 
