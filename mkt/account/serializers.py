@@ -3,6 +3,7 @@ from functools import partial
 from rest_framework import fields, serializers
 
 from mkt.access import acl
+from mkt.api.fields import ReverseChoiceField
 from mkt.api.serializers import PotatoCaptchaSerializer
 from mkt.users.models import UserProfile
 
@@ -57,7 +58,20 @@ class FxaLoginSerializer(serializers.Serializer):
 
 
 class NewsletterSerializer(serializers.Serializer):
+    NEWSLETTER_CHOICES_API = {
+        # string passed to the API : actual string passed to basket.
+        'about:apps': 'mozilla-and-you,marketplace-desktop',
+        'marketplace': 'marketplace'
+    }
     email = fields.EmailField()
+    newsletter = fields.ChoiceField(required=False, default='marketplace',
+                                    choices=NEWSLETTER_CHOICES_API.items())
+
+    def transform_newsletter(self, obj, value):
+        # Transform from the string the API receives to the one we need to pass
+        # to basket.
+        default = self.fields['newsletter'].default
+        return self.NEWSLETTER_CHOICES_API.get(value, default)
 
 
 class PermissionsSerializer(serializers.Serializer):
