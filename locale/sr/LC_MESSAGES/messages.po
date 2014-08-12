@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-08-11 13:46+0000\n"
+"PO-Revision-Date: 2014-08-12 04:32+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407764796.0\n"
+"X-POOTLE-MTIME: 1407817955.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -446,7 +446,7 @@ msgstr "Промена URL манифеста"
 
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} је аутоматски ескалирао зато што је пробна верзија."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
@@ -2408,6 +2408,8 @@ msgstr "WebRTC PeerConnection"
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Апликација захтева да платформа дозволи комуникацију стриминг података "
+"између колега."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
@@ -2542,7 +2544,7 @@ msgstr "Генерички"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Забавни софтвер само регулационог тела"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
@@ -2572,7 +2574,7 @@ msgstr "Све америчке земље осим Бразила"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Табла за оцењивање забавног софтвера"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
@@ -2830,6 +2832,10 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Молим Вас да узмете у обзир моју апликацију као кандидат да буде унапред "
+"учитан на Firefox OS уређајима. Слажем се са горе наведеним условима "
+"коришћења. Разумем да овај документ није обавеза да се моја апликација "
+"унапред учита."
 
 #: mkt/developers/forms.py:1062
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -2854,6 +2860,8 @@ msgstr "Молимо унесите валидан ID за подношење."
 #: mkt/developers/forms.py:1131
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Овај IARC сертификат је већ употребљен за другу апликацију. Молимо Вас "
+"направите нови IARC Ratings сертификат."
 
 #: mkt/developers/forms.py:1159 mkt/developers/forms.py:1171
 msgid "Invalid submission ID or security code."
@@ -2873,11 +2881,11 @@ msgstr "Промотивне цене"
 
 #: mkt/developers/forms_payments.py:140
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Подржава само наплату преко оператера"
 
 #: mkt/developers/forms_payments.py:143
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Подржава само наплату кредитном картицом"
 
 #: mkt/developers/forms_payments.py:147
 msgid "Supports all billing methods"
@@ -2886,6 +2894,8 @@ msgstr "Подржава све методе плаћања"
 #: mkt/developers/forms_payments.py:224
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
+"Ако је апликација бесплатна, плаћања у оквиру апликације морају бити "
+"омогућена"
 
 #: mkt/developers/forms_payments.py:231
 msgid "Not a valid choice"
@@ -2893,7 +2903,7 @@ msgstr "Није валидан избор"
 
 #: mkt/developers/forms_payments.py:335 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "Ово је плаћена надоградња"
 
 #: mkt/developers/forms_payments.py:336
 msgid "Not an upgrade"
@@ -3026,7 +3036,7 @@ msgstr "ID сервиса није исправан"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
-msgstr ""
+msgstr "Рачун за уплату није подешен за ту апликацију"
 
 #: mkt/developers/helpers.py:32 mkt/developers/helpers.py:61
 msgid "Developers"
@@ -3252,15 +3262,15 @@ msgstr "Десила се грешка на серверу приликом пр
 
 #: mkt/developers/views_payments.py:342
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "Тајна је успешно обновљена."
 
 #: mkt/developers/views_payments.py:346
 msgid "Key and secret were created successfully."
-msgstr ""
+msgstr "Кључ и тајна су успешно направљени."
 
 #: mkt/developers/views_payments.py:372
 msgid "Your app is not configured for in-app payments."
-msgstr ""
+msgstr "Ваша апликација није подешена за плаћање у оквиру апликације."
 
 #: mkt/developers/views_payments.py:375
 msgid "No payment account for this app."
@@ -3287,6 +3297,11 @@ msgid ""
 "<p> Please read the <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentation</a> on how to create a keypair and use it with the "
 "Marketplace API. Any testing should occur on the development server and not the production server. </p>"
 msgstr ""
+"<p> Молимо Вас прочитајте <a href=\"https://firefox-marketplace-api.readthedo"
+"cs.org/en/latest/topics/authentication.html#oauth\">документацију</a> о томе "
+"како да направите кључну комбинацију и да је користите са Marketplace "
+"API-јем. Свако тестирање би требало да буде на развојном серверу, а не на "
+"серверу производње. </p>"
 
 #: mkt/developers/templates/developers/api.html:35 mkt/developers/templates/developers/api.html:59
 msgid "Application Name"
@@ -3518,6 +3533,11 @@ msgid ""
 "The validator is a tool which can help test your app for errors, best practices, and compliance with Marketplace guidelines before actually submitting your app for review. If you're interested in "
 "how it works or would like to run a copy of your own, the source code is available <a href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"Валидатор је алат који Вам може помоћи при тестирању Ваше апликације ради "
+"откривања грешака, најбољим праксама и усклађености са Marketplace "
+"смерницама пре него што пошаљете Вашу апликацију на преглед. Ако сте "
+"заинтерсовани како то функционише или би сте хтели да покренете Вашу копију, "
+"изворни код је доступан <a href=\"%(repo)s\">на Github-у</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -3543,6 +3563,9 @@ msgstr "Добродошни на контролну таблу програме
 #: mkt/developers/templates/developers/apps/dashboard.html:16
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Још увек нисте поднели апликацију за Firefox Marketplace. Једном када <a "
+"href=\"%(app_url)s\">направите Вашу апликацију</a>, притисните Submit Your App "
+"испод."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:24
 msgid "Submit An App"
@@ -3594,11 +3617,13 @@ msgstr "О улогама чланова тима"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr ""
+msgstr "Апликације могу имати било који број чланова тима са 4 могуће улоге:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
 msgstr ""
+"Могу да управљају свим аспектима листинга апликације, укључујући и додавање "
+"и уклањање других чланова тима"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
@@ -3607,6 +3632,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
 msgstr ""
+"Можете видети подешавања апликације али не можете направити било какве "
+"промене"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings and manage refund requests"
@@ -3629,7 +3656,7 @@ msgstr "Тренутни статус"
 
 #: mkt/developers/templates/developers/apps/status.html:27
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "Ви сте <b>уклонили</b> ову апликацију са листе."
 
 #: mkt/developers/templates/developers/apps/status.html:31
 msgid "This app is <b>incomplete</b>."
@@ -3660,6 +3687,9 @@ msgstr "Апликације је онемогућена од стране <b>Mo
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
 msgstr ""
+"Ваша апликација је онемогућена зато што јој недостају оцене садржаја. Биће "
+"аутоматски поново омогућена након <a href=\"%(ratings_url)s\">добијања оцене "
+"садржаја</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
@@ -3700,10 +3730,14 @@ msgstr "Прегледао <b>%(reviewer)s</b>"
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
 msgstr ""
+"Једном када решите ове проблеме, можете <a href=\"%(resubmit_url)s\">поново "
+"послати Вашу апликацију испод</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Once you have addressed these concerns, you may resubmit your app below."
 msgstr ""
+"Једном када решите ове проблеме, можете поново послати Вашу апликацију "
+"испод."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Resubmit App"
@@ -3739,7 +3773,7 @@ msgstr "Нова верзија тест плана је доступна"
 
 #: mkt/developers/templates/developers/apps/status.html:154
 msgid "View your most recently submitted test plan"
-msgstr ""
+msgstr "Видите Ваш недавно поднет тест план"
 
 #: mkt/developers/templates/developers/apps/status.html:157
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
@@ -3753,20 +3787,24 @@ msgstr "Ажурирај план за тестирање"
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:191
 msgid "List App"
-msgstr ""
+msgstr "Стави апликацију на листу"
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:194 mkt/developers/templates/developers/apps/status.html:342
 #: mkt/developers/templates/developers/apps/status.html:347
 msgid "Delist App"
-msgstr ""
+msgstr "Уклони апликацију са листе"
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
+"Ваш листинг апликација је онемогућен и неће се појавити на Firefox "
+"Marketplace-у. Можете га поново навести у било ком тренутку."
 
 #: mkt/developers/templates/developers/apps/status.html:182
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
+"Уклањање Ваше апликације са листе ће спречити њено појављивање било где на "
+"Marketplace-у."
 
 #: mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
@@ -3776,6 +3814,8 @@ msgstr "Избриши апликацију"
 #: mkt/developers/templates/developers/apps/status.html:207
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
+"Уклањање Ваше апликације са листе ће је трајно избрисати са сајта. "
+"<strong>Након тога нема повратка.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:222
 msgid "Packaged Versions"
@@ -3805,6 +3845,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:282
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr ""
+"Запамтите да ажурирате <a href=\"%(ratings_url)s\">оцене садржаја</a> "
+"апликације ако је већи део садржаја апликације промењен."
 
 #: mkt/developers/templates/developers/apps/status.html:298 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:166
 #: mkt/submit/templates/submit/manifest.html:117 mkt/submit/templates/submit/next_steps.html:99
