@@ -6,6 +6,7 @@ import tempfile
 from contextlib import contextmanager
 
 from django.conf import settings
+from django.contrib.messages.storage import default_storage
 from django.core.files.storage import default_storage as storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
@@ -1302,6 +1303,7 @@ class TestContentRatings(amo.tests.TestCase):
                        IARC_STOREFRONT_ID=1, IARC_PLATFORM='Firefox',
                        IARC_PASSWORD='s3kr3t')
     def test_edit(self):
+        self.req._messages = default_storage(self.req)
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
 
@@ -1325,6 +1327,7 @@ class TestContentRatings(amo.tests.TestCase):
 
     def test_edit_default_locale(self):
         """Ensures the form uses the app's default locale."""
+        self.req._messages = default_storage(self.req)
         self.app.name = {'es': u'Español', 'en-US': 'English'}
         self.app.default_locale = 'es'
         self.app.save()
@@ -1366,6 +1369,7 @@ class TestContentRatings(amo.tests.TestCase):
                             ['Users Interact'])
 
     def test_edit_iarc_app_form(self):
+        self.req._messages = default_storage(self.req)
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
         assert not doc('#id_submission_id').attr('value')
