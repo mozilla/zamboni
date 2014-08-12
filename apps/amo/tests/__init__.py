@@ -580,6 +580,11 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
         group = Group.objects.create(name=name, rules=rules)
         GroupUser.objects.create(group=group, user=user_obj)
 
+    def remove_permission(self, user_obj, rules):
+        """Remove a permission from a user."""
+        group = Group.objects.get(rules=rules)
+        GroupUser.objects.filter(user=user_obj, group=group).delete()
+
     def days_ago(self, days):
         return days_ago(days)
 

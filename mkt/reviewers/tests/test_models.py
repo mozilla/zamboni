@@ -1,13 +1,19 @@
 # -*- coding: utf8 -*-
 import time
+from datetime import datetime, timedelta
 
-from nose.tools import eq_
+import mock
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from mkt.reviewers.models import RereviewQueue, ReviewerScore
+from mkt.reviewers.models import (AdditionalReview, RereviewQueue,
+                                  ReviewerScore, QUEUE_TARAKO, tarako_passed,
+                                  tarako_failed)
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 class TestReviewerScore(amo.tests.TestCase):
@@ -191,3 +197,81 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)
+
+
+class TestAdditionalReview(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.review = AdditionalReview.objects.create(
+            app=self.app, queue=QUEUE_TARAKO)
+        passed_patcher = mock.patch('mkt.reviewers.models.tarako_passed')
+        self.tarako_passed = passed_patcher.start()
+        self.addCleanup(passed_patcher.stop)
+        failed_patcher = mock.patch('mkt.reviewers.models.tarako_failed')
+        self.tarako_failed = failed_patcher.start()
+        self.addCleanup(failed_patcher.stop)
+
+    def test_review_passed_sets_passed(self):
+        eq_(self.review.passed, None, 'expected passed to be None')
+        self.review.review_passed()
+        eq_(self.review.reload().passed, True, 'expected passed to be True')
+
+    def test_review_passed_sets_review_completed(self):
+        eq_(self.review.review_completed, None,
+            'expected review_completed to be None')
+        self.review.review_passed()
+        review_completed = self.review.reload().review_completed
+        ok_(review_completed - datetime.now() < timedelta(seconds=1),
+            'expected review_completed to be close to now')
+
+    def test_review_passed_calls_tarako_passed(self):
+        ok_(not self.tarako_passed.called,
+            'expected tarako_passed to be not called')
+        self.review.review_passed()
+        self.tarako_passed.assert_called_with(self.review)
+
+    def test_review_failed_sets_passed(self):
+        eq_(self.review.passed, None, 'expected passed to be None')
+        self.review.review_failed()
+        eq_(self.review.reload().passed, False, 'expected passed to be False')
+
+    def test_review_failed_sets_review_completed(self):
+        eq_(self.review.review_completed, None,
+            'expected review_completed to be None')
+        self.review.review_failed()
+        review_completed = self.review.reload().review_completed
+        ok_(review_completed - datetime.now() < timedelta(seconds=1),
+            'expected review_completed to be close to now')
+
+    def test_review_failed_calls_tarako_failed(self):
+        ok_(not self.tarako_failed.called,
+            'expected tarako_failed to be not called')
+        self.review.review_failed()
+        self.tarako_failed.assert_called_with(self.review)
+
+
+class TestTarakoFunctions(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.review = AdditionalReview.objects.create(
+            app=self.app, queue=QUEUE_TARAKO)
+        self.tag, _ = Tag.objects.get_or_create(tag_text='tarako')
+
+    def tag_exists(self):
+        return (self.tag.addons.filter(addon_tags__addon_id=self.app.id)
+                               .exists())
+
+    def test_tarako_passed_adds_tarako_tag(self):
+        ok_(not self.tag_exists(), 'expected no tarako tag')
+        tarako_passed(self.review)
+        ok_(self.tag_exists(), 'expected the tarako tag')
+
+    def test_tarako_failed_removed_tarako_tag(self):
+        self.tag.save_tag(self.app)
+        ok_(self.tag_exists(), 'expected the tarako tag')
+        tarako_failed(self.review)
+        ok_(not self.tag_exists(), 'expected no tarako tag')

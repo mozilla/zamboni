@@ -1,4 +1,6 @@
 import json
+import mock
+from contextlib import nested
 from datetime import datetime
 
 from django.conf import settings
@@ -6,7 +8,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
 from cache_nuggets.lib import Token
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo
@@ -378,3 +380,60 @@ class TestGenerateToken(RestOAuth):
 
         # Check data in token.
         assert Token.valid(data['token'], data={'app_id': self.app.id})
+
+
+class TestUpdateAdditionalReview(RestOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestUpdateAdditionalReview, self).setUp()
+        self.grant_permission(self.profile, 'Apps:ReviewTarako')
+        self.app = Webapp.objects.get(pk=337141)
+        self.review = self.app.additionalreview_set.create(queue='my-queue')
+
+    def patch(self, data, pk=None):
+        if pk is None:
+            pk = self.review.pk
+        return self.client.patch(
+            reverse('additionalreview-detail', args=[pk]),
+            data=json.dumps(data),
+            content_type='application/json')
+
+    def test_review_tarako_required(self):
+        self.remove_permission(self.profile, 'Apps:ReviewTarako')
+        response = self.patch({'passed': True})
+        eq_(response.status_code, 403)
+
+    def test_404_with_invalid_id(self):
+        response = self.patch({'passed': True}, pk=self.review.pk + 1)
+        eq_(response.status_code, 404)
+
+    @mock.patch(
+        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
+    def test_review_passed_when_passed(self, get_object_or_none):
+        get_object_or_none.return_value = self.review
+        with mock.patch.object(self.review, 'review_passed') as review_passed:
+            response = self.patch({'passed': True})
+            eq_(response.status_code, 200)
+            ok_(review_passed.called)
+
+    @mock.patch(
+        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
+    def test_review_failed_when_failed(self, get_object_or_none):
+        get_object_or_none.return_value = self.review
+        with mock.patch.object(self.review, 'review_failed') as review_failed:
+            response = self.patch({'passed': False})
+            eq_(response.status_code, 200)
+            ok_(review_failed.called)
+
+    @mock.patch(
+        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
+    def test_no_changes_without_pass_or_fail(self, get_object_or_none):
+        get_object_or_none.return_value = self.review
+        with nested(mock.patch.object(self.review, 'review_failed'),
+                    mock.patch.object(self.review, 'review_passed')) as \
+                (review_failed, review_passed):
+            response = self.patch({})
+            eq_(response.status_code, 400)
+            ok_(not review_failed.called)
+            ok_(not review_passed.called)
