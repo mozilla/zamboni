@@ -4,11 +4,11 @@
 {% from 'reviewers/includes/additional_review_table.html' import additional_review_table with context %}
 
 {% block breadcrumbs %}
-  {{ reviewers_breadcrumbs(items=[(None, _('Regional Queues')),
-                                  (None, region.name)]) }}
+  {{ reviewers_breadcrumbs(items=[(None, _('Additional Queues')),
+                                  (None, queue|capitalize)]) }}
 {% endblock %}
 
-{% set page_title = _('{region} Review Queue').format(region=region.name) %}
+{% set page_title = _('{queue} Review Queue').format(queue=queue.capitalize()) %}
 
 {% block title %}
   {{ page_title }} | {{ super() }}
@@ -19,9 +19,8 @@
 
   <section id="queue-island" class="island search-toggle">
     {% if addons %}
-      {{ additional_review_table(
-            table_class="regional-queue",
-            app_detail_src="queue-region-{slug}".format(slug=region.slug)) }}
+        {{ additional_review_table(
+            approve_text=_("Pass"), reject_text=_("Fail")) }}
     {% else %}
       {{ no_results() }}
     {% endif %}

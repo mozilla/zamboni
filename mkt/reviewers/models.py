@@ -11,12 +11,14 @@ import amo.models
 import mkt.constants.comm as comm
 from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
+from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Addon
 
 
 user_log = commonware.log.getLogger('z.users')
+QUEUE_TARAKO = 'tarako'
 
 
 class CannedResponse(amo.models.ModelBase):
@@ -359,6 +361,48 @@ class RereviewQueue(amo.models.ModelBase):
         # ACTION_MAP.
         create_comm_note(addon, addon.current_version, None, message,
                          note_type=comm.ACTION_MAP(event))
+
+
+def tarako_passed(review):
+    """Add the tarako tag to the app."""
+    tag = Tag(tag_text='tarako')
+    tag.save_tag(review.app)
+
+
+def tarako_failed(review):
+    """Remove the tarako tag from the app."""
+    tag = Tag(tag_text='tarako')
+    tag.remove_tag(review.app)
+
+
+class AdditionalReview(amo.models.ModelBase):
+    app = models.ForeignKey(Addon)
+    queue = models.CharField(max_length=30)
+    passed = models.NullBooleanField()
+    review_completed = models.DateTimeField(null=True)
+
+    class Meta:
+        db_table = 'additional_review'
+
+    def review_passed(self):
+        """
+        Set the review status to passed and perform any queue-specific tasks.
+        """
+        self.passed = True
+        self.review_completed = datetime.datetime.now()
+        self.save()
+        # TODO: Pull this function from somewhere based on self.queue.
+        tarako_passed(self)
+
+    def review_failed(self):
+        """
+        Set the review status to failed and perform any queue-specific tasks.
+        """
+        self.passed = False
+        self.review_completed = datetime.datetime.now()
+        self.save()
+        # TODO: Pull this function from somewhere based on self.queue.
+        tarako_failed(self)
 
 
 def cleanup_queues(sender, instance, **kwargs):

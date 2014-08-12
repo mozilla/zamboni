@@ -18,6 +18,7 @@ require(['prefetchManifest']);
     initClearSearch();
 
     initRegionalQueue();
+    initAdditionalReviewQueue();
 
     initMoreAppInfo();
 
@@ -272,6 +273,51 @@ function initRegionalQueue() {
             var msg = approved ? format(gettext('Error approving app: {app}'), fmt) :
                                  format(gettext('Error rejecting app: {app}'), fmt);
             require('notification')({message: msg, timeout: 1000});
+            $buttons.removeClass('disabled');
+        });
+    }));
+}
+
+
+function initAdditionalReviewQueue() {
+    /* Setup the pass/fail buttons for the additional review queue. */
+    if (!$('.additional-review-queue').length) {
+        return;
+    }
+
+    z.doc.on('click', '.approve, .reject', _pd(function(e) {
+        var $this = $(this);
+        var $tr = $this.closest('tr');
+        var $buttons = $tr.find('.button');
+        var url = $tr.data('actionUrl');
+        var appName = $tr.find('.app-name').text();
+        var fmt = {app: appName};
+        var passed = $this.data('action') == 'approve';
+        var msgTimeout = 3000;
+
+        $buttons.addClass('disabled');
+
+        $.ajax({
+            type: 'patch',
+            url: url,
+            data: JSON.stringify({'passed': passed}),
+            contentType: 'application/json',
+        }).done(function() {
+            var msg;
+            var classes;
+            if (passed) {
+                msg = format(gettext('Passed app: {app}'), fmt);
+                classes = 'good';
+            } else {
+                msg = format(gettext('Failed app: {app}'), fmt);
+                classes = 'bad';
+            }
+            require('notification')({message: msg, timeout: msgTimeout, classes: classes});
+            $tr.hide();
+        }).fail(function() {
+            var msg = passed ? format(gettext('Error passing app: {app}'), fmt) :
+                               format(gettext('Error failing app: {app}'), fmt);
+            require('notification')({message: msg, timeout: msgTimeout});
             $buttons.removeClass('disabled');
         });
     }));

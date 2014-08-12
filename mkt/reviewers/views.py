@@ -24,9 +24,11 @@ import jinja2
 import requests
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
+from rest_framework import status
 from rest_framework.exceptions import ParseError
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
 from rest_framework.response import Response
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -57,8 +59,9 @@ from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  MOTDForm)
-from mkt.reviewers.models import (EditorSubscription, EscalationQueue,
-                                  RereviewQueue, ReviewerScore)
+from mkt.reviewers.models import (AdditionalReview, EditorSubscription,
+                                  EscalationQueue, RereviewQueue,
+                                  ReviewerScore, QUEUE_TARAKO)
 from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
@@ -184,6 +187,8 @@ def queue_counts(request):
                                    editorreview=True)
                            .count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
+        'additional_tarako': AdditionalReview.objects.filter(
+            queue=QUEUE_TARAKO, passed=None).count(),
     }
 
     if 'pro' in request.GET:
@@ -498,6 +503,8 @@ def app_review(request, addon):
 
 
 QueuedApp = collections.namedtuple('QueuedApp', 'app created')
+ActionableQueuedApp = collections.namedtuple(
+    'QueuedApp', 'app created action_url')
 
 
 def _queue(request, apps, tab, pager_processor=None, date_sort='created',
@@ -611,12 +618,31 @@ def queue_region(request, region=None):
 
     qs = Webapp.objects.pending_in_region(region)
 
-    apps = [QueuedApp(app, app.geodata.get_nominated_date(region))
+    apps = [ActionableQueuedApp(app,
+                                app.geodata.get_nominated_date(region),
+                                reverse('approve-region',
+                                        args=[app.id, region.slug]))
             for app in _do_sort(request, qs, date_sort=column)]
 
     return _queue(request, apps, 'region', date_sort=column,
                   template='reviewers/queue_region.html',
                   data={'region': region})
+
+
+@reviewer_required
+def additional_review(request, queue):
+    """HTML page for an additional review queue."""
+    # TODO: Add `.select_related('app')`. Currently it won't load the name.
+    additional_reviews = AdditionalReview.objects.filter(
+        queue=queue, passed=None)
+    apps = [ActionableQueuedApp(additional_review.app,
+                                additional_review.created,
+                                reverse('additionalreview-detail',
+                                        args=[additional_review.pk]))
+            for additional_review in additional_reviews]
+    return _queue(request, apps, queue, date_sort='created',
+                  template='reviewers/additional_review.html',
+                  data={'queue': queue, 'region': parse_region('cn')})
 
 
 @reviewer_required
@@ -1148,6 +1174,46 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         form.save()
 
         return Response({'approved': bool(form.cleaned_data['approve'])})
+
+
+class AdditionalReviewSerializer(ModelSerializer):
+    """A read-only serializer for AdditionalReview."""
+
+    app = PrimaryKeyRelatedField(read_only=True)
+
+    class Meta:
+        model = AdditionalReview
+        fields = ['id', 'app', 'queue', 'passed', 'created', 'modified',
+                  'review_completed']
+        # Everything is read-only.
+        read_only_fields = ['id', 'queue', 'passed', 'created', 'modified',
+                            'review_completed']
+
+
+class AdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
+    """
+    API ViewSet for setting pass/fail of an AdditionalReview. This does not
+    follow the DRF convention but instead calls review_passed() or
+    review_failed() on the AdditionalReview based on request.DATA['passed'].
+    """
+
+    model = AdditionalReview
+    serializer_class = AdditionalReviewSerializer
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    # TODO: Change this when there is more than just the Tarako queue.
+    permission_classes = [GroupPermission('Apps', 'ReviewTarako')]
+
+    def update(self, request, **kwargs):
+        if 'passed' in request.DATA:
+            additional_review = self.get_object_or_none()
+            if request.DATA['passed']:
+                additional_review.review_passed()
+            else:
+                additional_review.review_failed()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class GenerateToken(SlugOrIdMixin, CreateAPIView):

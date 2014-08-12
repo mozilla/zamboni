@@ -636,6 +636,10 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
 
 
 class TestNewsletter(RestOAuth):
+    VALID_EMAIL = 'bob@example.com'
+    VALID_PLUS_EMAIL = 'bob+totally+real@example.com'
+    INVALID_EMAIL = '!not_an_email'
+
     def setUp(self):
         super(TestNewsletter, self).setUp()
         self.url = reverse('account-newsletter')
@@ -643,7 +647,7 @@ class TestNewsletter(RestOAuth):
     @patch('basket.subscribe')
     def test_signup_bad(self, subscribe):
         res = self.client.post(self.url,
-                               data=json.dumps({'email': '!not_an_email'}))
+                               data=json.dumps({'email': self.INVALID_EMAIL}))
         eq_(res.status_code, 400)
         ok_(not subscribe.called)
 
@@ -654,29 +658,47 @@ class TestNewsletter(RestOAuth):
         ok_(not subscribe.called)
 
     @patch('basket.subscribe')
+    def test_signup_invalid_newsletter(self, subscribe):
+        res = self.client.post(self.url, data={'email': self.VALID_EMAIL,
+                                               'newsletter': 'invalid'})
+        eq_(res.status_code, 400)
+        ok_(not subscribe.called)
+
+    @patch('basket.subscribe')
     def test_signup_anonymous(self, subscribe):
         res = self.anon.post(self.url,
-                               data=json.dumps({'email': 'bob@example.com'}))
+                               data=json.dumps({'email': self.VALID_EMAIL}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
-            'bob@example.com', 'marketplace', lang='en-US',
+            self.VALID_EMAIL, 'marketplace', lang='en-US',
             country='restofworld', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup(self, subscribe):
         res = self.client.post(self.url,
-                               data=json.dumps({'email': 'bob@example.com'}))
+                               data=json.dumps({'email': self.VALID_EMAIL}))
         eq_(res.status_code, 204)
         subscribe.assert_called_with(
-            'bob@example.com', 'marketplace', lang='en-US',
+            self.VALID_EMAIL, 'marketplace', lang='en-US',
             country='restofworld', trigger_welcome='Y', optin='Y', format='H')
 
     @patch('basket.subscribe')
     def test_signup_plus(self, subscribe):
         res = self.client.post(
             self.url,
-            data=json.dumps({'email': 'bob+totally+real@example.com'}))
+            data=json.dumps({'email': self.VALID_PLUS_EMAIL}))
         subscribe.assert_called_with(
-            'bob+totally+real@example.com', 'marketplace', lang='en-US',
+            self.VALID_PLUS_EMAIL, 'marketplace', lang='en-US',
             country='restofworld', trigger_welcome='Y', optin='Y', format='H')
         eq_(res.status_code, 204)
+
+    @patch('basket.subscribe')
+    def test_signup_about_apps(self, subscribe):
+        res = self.client.post(self.url,
+                               data=json.dumps({'email': self.VALID_EMAIL,
+                                                'newsletter': 'about:apps'}))
+        eq_(res.status_code, 204)
+        subscribe.assert_called_with(
+            self.VALID_EMAIL, 'mozilla-and-you,marketplace-desktop',
+            lang='en-US', country='restofworld', trigger_welcome='Y',
+            optin='Y', format='H')
