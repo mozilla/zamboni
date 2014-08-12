@@ -33,7 +33,7 @@
               <strong>{{ _('Packaged App Version:') }}</strong>
               {{ addon.current_version }}
             </li>
-            {% if addon.current_version != addon.latest_version %}
+            {% if addon.is_pending() or addon.current_version != addon.latest_version %}
               <li class="item-latest-version">
                 <strong>{{ _('Pending Version:') }}</strong>
                 {{ addon.latest_version }}

@@ -75,21 +75,18 @@ PUBLISH_PRIVATE = 2
 REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
 UNREVIEWED_STATUSES = (STATUS_PENDING,)
 VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_APPROVED)
-# We don't show addons/versions with UNREVIEWED_STATUS in public.
-LISTED_STATUSES = tuple(st for st in VALID_STATUSES
-                        if st not in (STATUS_PENDING, STATUS_APPROVED))
-
-# An addon in one of these statuses is awaiting a review.
-STATUS_UNDER_REVIEW = (STATUS_PENDING,)
+# LISTED_STATUSES are statuses that should return a 200 on the app detail page
+# for anonymous users.
+LISTED_STATUSES = (STATUS_PUBLIC,)
 
 # An add-on in one of these statuses can become premium.
-PREMIUM_STATUSES = (STATUS_NULL,) + STATUS_UNDER_REVIEW
+PREMIUM_STATUSES = (STATUS_NULL, STATUS_PENDING)
 
 # Newly submitted apps begin life at this status.
 WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
 
 # These apps have been approved and are listed; or could be without further
-# review
+# review.
 WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
 
 # An app with this status makes its detail page "invisible".

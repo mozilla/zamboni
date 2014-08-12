@@ -344,8 +344,8 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(addon.app_domain, u'http://allizom.org')
         eq_(Translation.objects.get(id=addon.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        eq_(addon.current_version.developer_name, 'Mozilla Labs')
-        eq_(addon.current_version.manifest,
+        eq_(addon.latest_version.developer_name, 'Mozilla Labs')
+        eq_(addon.latest_version.manifest,
             json.loads(open(self.manifest).read()))
 
     def test_manifest_with_any_extension(self):
@@ -357,11 +357,11 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_version_from_uploaded_manifest(self):
         addon = self.post_addon()
-        eq_(addon.current_version.version, '1.0')
+        eq_(addon.latest_version.version, '1.0')
 
     def test_file_from_uploaded_manifest(self):
         addon = self.post_addon()
-        files = addon.current_version.files.all()
+        files = addon.latest_version.files.all()
         eq_(len(files), 1)
         eq_(files[0].status, amo.STATUS_PENDING)
 
@@ -410,7 +410,7 @@ class TestCreateWebApp(BaseWebAppTest):
             'free_platforms': ['free-desktop'],
             'has_contacts': 'on'
         })
-        features = addon.current_version.features
+        features = addon.latest_version.features
         ok_(isinstance(features, AppFeatures))
         field_names = [f.name for f in AppFeaturesForm().all_fields()]
         for field in field_names:
@@ -468,7 +468,7 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         super(BasePackagedAppTest, self).setUp()
         self.app = Webapp.objects.get(pk=337141)
         self.app.update(is_packaged=True)
-        self.version = self.app.current_version
+        self.version = self.app.latest_version
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
 
@@ -552,7 +552,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         addon = self.post_addon(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
         eq_(addon.type, amo.ADDON_WEBAPP)
-        eq_(addon.current_version.version, '1.0')
+        eq_(addon.latest_version.version, '1.0')
         eq_(addon.is_packaged, True)
         assert addon.guid is not None, (
             'Expected app to have a UUID assigned to guid')
@@ -564,7 +564,7 @@ class TestCreatePackagedApp(BasePackagedAppTest):
         eq_(addon.app_domain, 'app://hy.fr')
         eq_(Translation.objects.get(id=addon.description.id, locale='it'),
             u'Azione aperta emozionante di sviluppo di fotoricettore!')
-        eq_(addon.current_version.developer_name, 'Mozilla Labs')
+        eq_(addon.latest_version.developer_name, 'Mozilla Labs')
 
         assert _verify.called, (
             '`verify_app_domain` should be called for packaged apps with '
@@ -710,13 +710,15 @@ class TestDetails(TestSubmit):
         if expected:
             expected_data.update(expected)
 
+        uses_flash = expected_data.pop('uses_flash')
+        eq_(addon.latest_version.all_files[0].uses_flash, uses_flash)
+        self.assertSetEqual(addon.device_types, self.device_types)
+
         for field, expected in expected_data.iteritems():
             got = unicode(getattr(addon, field))
             expected = unicode(expected)
             eq_(got, expected,
                 'Expected %r for %r. Got %r.' % (expected, field, got))
-
-        self.assertSetEqual(addon.device_types, self.device_types)
 
     @mock.patch('mkt.submit.views.record_action')
     def test_success(self, record_action):

@@ -135,7 +135,7 @@
                 {{ some_html_tip() }}
               {% else %}
                 <div id="addon-releasenotes" class="prose">
-                  {{ addon.current_version|all_locales('releasenotes', nl2br=True, prettify_empty=True) }}
+                  {{ version|all_locales('releasenotes', nl2br=True, prettify_empty=True) }}
                 </div>
               {% endif %}
             </td>

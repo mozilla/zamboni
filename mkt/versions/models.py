@@ -151,11 +151,26 @@ class Version(amo.models.ModelBase):
     def delete(self):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
+
+        models.signals.pre_delete.send(sender=Version, instance=self)
+
+        was_current = False
+        if self == self.addon.current_version:
+            was_current = True
+
         self.update(deleted=True)
+
         # Set file status to disabled.
         f = self.all_files[0]
         f.update(status=amo.STATUS_DISABLED, _signal=False)
         f.hide_disabled_file()
+
+        # If version deleted was the current version and there now exists
+        # another current_version, we need to call some extra methods to update
+        # various bits for packaged apps.
+        if was_current and self.addon.current_version:
+            self.addon.update_name_from_package_manifest()
+            self.addon.update_supported_locales()
 
         if self.addon.is_packaged:
             # Unlink signed packages if packaged app.
@@ -163,6 +178,8 @@ class Version(amo.models.ModelBase):
             log.info(u'Unlinked file: %s' % f.signed_file_path)
             storage.delete(f.signed_reviewer_file_path)
             log.info(u'Unlinked file: %s' % f.signed_reviewer_file_path)
+
+        models.signals.post_delete.send(sender=Version, instance=self)
 
     @amo.cached_property(writable=True)
     def all_activity(self):

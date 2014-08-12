@@ -86,10 +86,10 @@
     <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
   {% endif %}
 
-  {% if app.current_version.has_info_request %}
+  {% if app.latest_version.has_info_request %}
     <div class="sprite-reviewer sprite-reviewer-info" title="{{ _('More Information Requested') }}"></div>
   {% endif %}
-  {% if app.current_version.has_editor_comment %}
+  {% if app.latest_version.has_editor_comment %}
     <div class="sprite-reviewer sprite-reviewer-editor" title="{{ _('Contains Editor Comment') }}"></div>
   {% endif %}
 {% endmacro %}

@@ -220,7 +220,7 @@ def status(request, addon_id, addon):
                              request.user, form.data['notes'],
                              note_type=comm.RESUBMISSION)
             if addon.vip_app:
-                handle_vip(addon, addon.current_version, request.user)
+                handle_vip(addon, addon.latest_version, request.user)
 
             messages.success(request, _('App successfully resubmitted.'))
             return redirect(addon.get_dev_url('versions'))
@@ -468,8 +468,8 @@ def version_edit(request, addon_id, addon, version_id):
         [f.save() for f in all_forms]
 
         if f.data.get('approvalnotes'):
-            create_comm_note(addon, addon.current_version,
-                             request.user, f.data['approvalnotes'],
+            create_comm_note(addon, version, request.user,
+                             f.data['approvalnotes'],
                              note_type=comm.REVIEWER_COMMENT)
 
         messages.success(request, _('Version successfully edited.'))

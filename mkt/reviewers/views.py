@@ -87,7 +87,7 @@ log = commonware.log.getLogger('z.reviewers')
 def log_reviewer_action(addon, user, msg, action):
     create_comm_note(addon, addon.current_version, user, msg,
                      note_type=comm.ACTION_MAP(action.id))
-    amo.log(action, addon, addon.current_version, details={'comments': msg})
+    amo.log(action, addon, addon.latest_version, details={'comments': msg})
 
 
 def reviewer_required(region=None):

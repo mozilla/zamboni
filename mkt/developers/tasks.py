@@ -306,13 +306,22 @@ def save_icon(webapp, content):
 
 @task_with_callbacks
 @write
-def fetch_icon(webapp, **kw):
-    """Downloads a webapp icon from the location specified in the manifest.
+def fetch_icon(webapp, file_obj=None, **kw):
+    """
+    Downloads a webapp icon from the location specified in the manifest.
+
     Returns False if icon was not able to be retrieved
+
+    If `file_obj` is not provided it will use the file from the app's
+    `current_version`.
+
     """
     log.info(u'[1@None] Fetching icon for webapp %s.' % webapp.name)
-    manifest = webapp.get_manifest_json()
-    if not manifest or not 'icons' in manifest:
+    file_obj = (file_obj or
+                webapp.current_version and webapp.current_version.all_files[0])
+    manifest = webapp.get_manifest_json(file_obj)
+
+    if not manifest or 'icons' not in manifest:
         # Set the icon type to empty.
         webapp.update(icon_type='')
         return
@@ -333,7 +342,7 @@ def fetch_icon(webapp, **kw):
             if icon_url.startswith('/'):
                 icon_url = icon_url[1:]
             try:
-                zf = SafeUnzip(webapp.get_latest_file().file_path)
+                zf = SafeUnzip(file_obj.file_path)
                 zf.is_valid()
                 content = zf.extract_path(icon_url)
             except (KeyError, forms.ValidationError):  # Not found in archive.

@@ -514,7 +514,7 @@ class TestAppVersionForm(amo.tests.TestCase):
     def test_post_publish_not_pending(self):
         # Using the current_version, which is public.
         form = self._get_form(self.app.current_version,
-                             data={'publish_immediately': False})
+                              data={'publish_immediately': False})
         eq_(form.is_valid(), True)
         form.save()
         self.app.reload()

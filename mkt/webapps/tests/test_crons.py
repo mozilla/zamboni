@@ -215,7 +215,7 @@ class TestSignApps(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.app = Addon.objects.get(id=337141)
+        self.app = Webapp.objects.get(id=337141)
         self.app.update(is_packaged=True)
         self.app2 = amo.tests.app_factory(
             name=u'Mozillaball ょ', app_slug='test',
@@ -227,15 +227,15 @@ class TestSignApps(amo.tests.TestCase):
                                           'created': None})
 
     def test_by_webapp(self, sign_mock):
-        v1 = self.app.get_version()
+        v1 = self.app.current_version
         call_command('sign_apps', webapps=str(v1.pk))
         file1 = v1.all_files[0]
         assert sign_mock.called_with(((file1.file_path,
                                        file1.signed_file_path),))
 
     def test_all(self, sign_mock):
-        v1 = self.app.get_version()
-        v2 = self.app2.get_version()
+        v1 = self.app.current_version
+        v2 = self.app2.current_version
         call_command('sign_apps')
         file1 = v1.all_files[0]
         file2 = v2.all_files[0]

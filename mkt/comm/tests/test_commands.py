@@ -16,7 +16,7 @@ class TestMigrateActivityLog(amo.tests.TestCase):
 
     def setUp(self):
         self.app = amo.tests.app_factory(status=amo.STATUS_PENDING)
-        self.version = self.app.current_version
+        self.version = self.app.latest_version
         self.user = UserProfile.objects.get()
 
     def _assert(self, cmb_action):

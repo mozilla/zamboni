@@ -465,53 +465,7 @@ class TestNewAddonVsWebapp(amo.tests.TestCase):
         assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
-class TestWebapp(amo.tests.TestCase):
-    fixtures = fixture('prices')
-
-    def test_icon_url(self):
-        app = Webapp.objects.create(id=337141, status=amo.STATUS_PUBLIC,
-                                    icon_type='image/png')
-        expected = (static_url('ADDON_ICON_URL')
-                    % (str(app.id)[0:3], app.id, 32, 'never'))
-        assert app.icon_url.endswith(expected), (
-            'Expected %s, got %s' % (expected, app.icon_url))
-
-        app.icon_hash = 'abcdef'
-        assert app.icon_url.endswith('?modified=abcdef')
-
-        app.icon_type = None
-        assert app.icon_url.endswith('hub/default-32.png')
-
-    def test_thumbnail_url_no_preview(self):
-        app = Webapp.objects.create()
-        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
-            'No match for %s' % app.thumbnail_url)
-
-    def test_thumbnail_url(self):
-        app = Webapp.objects.create()
-        preview = Preview.objects.create(addon=app, filetype='image/png',
-                                         position=0)
-        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
-                                       % (preview.id / 1000, preview.id))
-
-    def test_is_public(self):
-        app = Webapp(status=amo.STATUS_PUBLIC)
-        assert app.is_public(), 'public app should be is_pulic()'
-
-        # Public, disabled.
-        app.disabled_by_user = True
-        assert not app.is_public(), (
-            'public, disabled app should not be is_public()')
-
-        # Any non-public status
-        app.status = amo.STATUS_PENDING
-        app.disabled_by_user = False
-        assert not app.is_public(), 'pending, app should not be is_public()'
-
-    def _newlines_helper(self, app, string_before):
-        app.privacy_policy = string_before
-        app.save()
-        return app.privacy_policy.localized_string_clean
+class TestWebapp(amo.tests.WebappTestCase):
 
     def add_payment_account(self, app, provider_id, user=None):
         if not user:
@@ -526,49 +480,94 @@ class TestWebapp(amo.tests.TestCase):
         return AddonPaymentAccount.objects.create(
             addon=app, payment_account=payment, product_uri=uuid.uuid4())
 
+    def test_icon_url(self):
+        app = self.get_app()
+        expected = (static_url('ADDON_ICON_URL')
+                    % (str(app.id)[0:3], app.id, 32, 'never'))
+        assert app.icon_url.endswith(expected), (
+            'Expected %s, got %s' % (expected, app.icon_url))
+
+        app.icon_hash = 'abcdef'
+        assert app.icon_url.endswith('?modified=abcdef')
+
+        app.icon_type = None
+        assert app.icon_url.endswith('hub/default-32.png')
+
+    def test_thumbnail_url_no_preview(self):
+        app = self.get_app()
+        assert app.thumbnail_url.endswith('/icons/no-preview.png'), (
+            'No match for %s' % app.thumbnail_url)
+
+    def test_thumbnail_url(self):
+        app = self.get_app()
+        preview = Preview.objects.create(addon=app, filetype='image/png',
+                                         position=0)
+        assert app.thumbnail_url.index('/previews/thumbs/%s/%s.png?modified='
+                                       % (preview.id / 1000, preview.id))
+
+    def test_has_payment_account(self):
+        app = self.get_app()
+        assert not app.has_payment_account()
+
+        self.add_payment_account(app, PROVIDER_BANGO)
+        assert app.has_payment_account()
+
+    def test_has_multiple_payment_accounts(self):
+        app = self.get_app()
+        assert not app.has_multiple_payment_accounts(), 'no accounts'
+
+        account = self.add_payment_account(app, PROVIDER_BANGO)
+        assert not app.has_multiple_payment_accounts(), 'one account'
+
+        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
+        ok_(app.has_multiple_payment_accounts(), 'two accounts')
+
+    def test_no_payment_account(self):
+        app = self.get_app()
+        assert not app.has_payment_account()
+        with self.assertRaises(app.PayAccountDoesNotExist):
+            app.payment_account(PROVIDER_BANGO)
+
+    def test_get_payment_account(self):
+        app = self.get_app()
+        acct = self.add_payment_account(app, PROVIDER_BANGO)
+        fetched_acct = app.payment_account(PROVIDER_BANGO)
+        eq_(acct, fetched_acct)
+
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
+        app = self.get_app()
         reason = u'trêason'
-        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
-        w.name = u'é'
         eq_(len(mail.outbox), 0)
-        w.delete(msg='bye', reason=reason)
+        app.delete(msg='bye', reason=reason)
         eq_(len(mail.outbox), 1)
         assert reason in mail.outbox[0].body
 
     def test_soft_deleted(self):
-        w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
-                                  app_domain='http://omg.org/yes',
-                                  status=amo.STATUS_PENDING)
+        app = self.get_app()
+
         eq_(len(Webapp.objects.all()), 1)
         eq_(len(Webapp.with_deleted.all()), 1)
 
-        w.delete('boom shakalakalaka')
+        app.delete('boom shakalakalaka')
         eq_(len(Webapp.objects.all()), 0)
         eq_(len(Webapp.with_deleted.all()), 1)
 
         # When an app is deleted its slugs and domain should get relinquished.
-        post_mortem = Webapp.with_deleted.filter(id=w.id)
+        post_mortem = Webapp.with_deleted.filter(id=app.id)
         eq_(post_mortem.count(), 1)
         for attr in ('slug', 'app_slug', 'app_domain'):
             eq_(getattr(post_mortem[0], attr), None)
 
-    def test_with_deleted_count(self):
-        w = Webapp.objects.create(slug='ballin', app_slug='app-ballin',
-                                  app_domain='http://omg.org/yes',
-                                  status=amo.STATUS_PENDING)
-        w.delete()
-        eq_(Webapp.with_deleted.count(), 1)
-
     def test_soft_deleted_valid(self):
-        w = Webapp.objects.create(status=amo.STATUS_PUBLIC)
+        app = self.get_app()
         Webapp.objects.create(status=amo.STATUS_DELETED)
-        eq_(list(Webapp.objects.valid()), [w])
-        eq_(sorted(Webapp.with_deleted.valid()), [w])
+        eq_(list(Webapp.objects.valid()), [app])
+        eq_(list(Webapp.with_deleted.valid()), [app])
 
     def test_delete_incomplete_with_deleted_version(self):
         """Test deleting incomplete add-ons with no public version attached."""
-        app = app_factory()
+        app = self.get_app()
         app.current_version.delete()
         eq_(Version.objects.count(), 0)
         eq_(Version.with_deleted.count(), 1)
@@ -588,10 +587,132 @@ class TestWebapp(amo.tests.TestCase):
         eq_(Webapp.objects.count(), 0)
         eq_(Webapp.with_deleted.count(), 1)
 
+    def test_get_price(self):
+        app = self.get_app()
+        self.make_premium(app)
+        eq_(app.get_price(region=mkt.regions.US.id), 1)
+
+    def test_get_price_tier(self):
+        app = self.get_app()
+        self.make_premium(app)
+        eq_(str(app.get_tier().price), '1.00')
+        ok_(app.get_tier_name())
+
+    def test_get_price_tier_no_charge(self):
+        app = self.get_app()
+        self.make_premium(app, 0)
+        eq_(str(app.get_tier().price), '0')
+        ok_(app.get_tier_name())
+
+    @mock.patch('mkt.versions.models.Version.is_privileged', True)
+    def test_app_type_privileged(self):
+        app = self.get_app()
+        app.update(is_packaged=True)
+        eq_(app.app_type, 'privileged')
+
+    def test_excluded_in(self):
+        app = self.get_app()
+        region = mkt.regions.BR
+        AddonExcludedRegion.objects.create(addon=app, region=region.id)
+        self.assertSetEqual(get_excluded_in(region.id), [app.id])
+
+    def test_supported_locale_property(self):
+        app = self.get_app()
+        eq_(app.supported_locales,
+            (u'English (US)', [u'English (US)', u'Espa\xf1ol',
+                               u'Portugu\xeas (do\xa0Brasil)']))
+
+    def test_supported_locale_property_empty(self):
+        app = self.get_app()
+        app.current_version.update(supported_locales='')
+        eq_(app.supported_locales, (u'English (US)', []))
+
+    def test_supported_locale_property_bad(self):
+        app = self.get_app()
+        app.current_version.update(supported_locales='de,xx', _signal=False)
+        eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
+
+    def test_supported_locale_app_non_public(self):
+        """
+        Test supported locales falls back to latest_version when not public.
+        """
+        app = self.get_app()
+        app.update(status=amo.STATUS_PENDING)
+        app.latest_version.files.update(status=amo.STATUS_PENDING)
+        app.update_version()
+        eq_(app.supported_locales,
+            (u'English (US)',
+             [u'English (US)', u'Espa\xf1ol', u'Portugu\xeas (do\xa0Brasil)']))
+
+    def test_get_trending(self):
+        # Test no trending record returns zero.
+        app = self.get_app()
+        eq_(app.get_trending(), 0)
+
+        # Add a region specific trending and test the global one is returned
+        # because the region is not mature.
+        region = mkt.regions.REGIONS_DICT['me']
+        app.trending.create(value=20.0, region=0)
+        app.trending.create(value=10.0, region=region.id)
+        eq_(app.get_trending(region=region), 20.0)
+
+        # Now test the regional trending is returned when adolescent=False.
+        region.adolescent = False
+        eq_(app.get_trending(region=region), 10.0)
+
+    def test_is_offline_when_appcache_path(self):
+        app = self.get_app()
+
+        # If there's no appcache_path defined, ain't an offline-capable app.
+        am = AppManifest.objects.get(version=app.current_version)
+        eq_(app.is_offline, False)
+
+        # If there's an appcache_path defined, this is an offline-capable app.
+        manifest = json.loads(am.manifest)
+        manifest['appcache_path'] = '/manifest.appcache'
+        am.update(manifest=json.dumps(manifest))
+        # reload isn't enough, it doesn't clear cached_property.
+        app = self.get_app()
+        eq_(app.is_offline, True)
+
+    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
+    def test_payments_complete(self, pay_mock):
+        # Default to complete if it's not needed.
+        pay_mock.return_value = False
+        app = self.get_app()
+        assert app.payments_complete()
+
+        self.make_premium(app)
+        assert not app.payments_complete()
+
+        pay_mock.return_value = True
+        assert app.payments_complete()
+
+
+class TestWebappLight(amo.tests.TestCase):
+    """
+    Tests that don't require saving a Webapp to the database or want an empty
+    database with no existing apps.
+    """
+    fixtures = fixture('prices')
+
+    def test_is_public(self):
+        app = Webapp(status=amo.STATUS_PUBLIC)
+        assert app.is_public(), 'public app should be is_pulic()'
+
+        # Public, disabled.
+        app.disabled_by_user = True
+        assert not app.is_public(), (
+            'public, disabled app should not be is_public()')
+
+        # Any non-public status
+        app.status = amo.STATUS_PENDING
+        app.disabled_by_user = False
+        assert not app.is_public(), 'pending, app should not be is_public()'
+
     def test_webapp_type(self):
-        webapp = Webapp()
-        webapp.save()
-        eq_(webapp.type, amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
+        eq_(app.type, amo.ADDON_WEBAPP)
 
     def test_app_slugs_separate_from_addon_slugs(self):
         Addon.objects.create(type=1, slug='slug')
@@ -639,8 +760,8 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_get_comm_thread_url(self):
         self.create_switch('comm-dashboard')
-        app = app_factory(app_slug='putain')
-        eq_(app.get_comm_thread_url(), '/comm/app/putain')
+        app = Webapp(app_slug='foo')
+        eq_(app.get_comm_thread_url(), '/comm/app/foo')
 
     def test_get_origin(self):
         url = 'http://www.xx.com:4000/randompath/manifest.webapp'
@@ -707,7 +828,7 @@ class TestWebapp(amo.tests.TestCase):
 
     def test_no_version(self):
         webapp = Webapp()
-        eq_(webapp.get_manifest_json(), None)
+        eq_(webapp.get_manifest_json(), {})
         eq_(webapp.current_version, None)
 
     def test_has_premium(self):
@@ -723,23 +844,6 @@ class TestWebapp(amo.tests.TestCase):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
         eq_(webapp.get_price(), None)
         eq_(webapp.get_price_locale(), None)
-
-    def test_get_price(self):
-        webapp = amo.tests.app_factory()
-        self.make_premium(webapp)
-        eq_(webapp.get_price(region=mkt.regions.US.id), 1)
-
-    def test_get_price_tier(self):
-        webapp = amo.tests.app_factory()
-        self.make_premium(webapp)
-        eq_(str(webapp.get_tier().price), '1.00')
-        ok_(webapp.get_tier_name())
-
-    def test_get_price_tier_no_charge(self):
-        webapp = amo.tests.app_factory()
-        self.make_premium(webapp, 0)
-        eq_(str(webapp.get_tier().price), '0')
-        ok_(webapp.get_tier_name())
 
     def test_has_no_premium(self):
         webapp = Webapp(premium_type=amo.ADDON_PREMIUM)
@@ -800,16 +904,6 @@ class TestWebapp(amo.tests.TestCase):
         eq_(sorted(Webapp.objects.get(id=w2.id).get_regions()),
             sorted(w2_regions))
 
-    def test_package_helpers(self):
-        app1 = app_factory()
-        eq_(app1.is_packaged, False)
-        app2 = app_factory(is_packaged=True)
-        eq_(app2.is_packaged, True)
-
-    def test_package_no_version(self):
-        webapp = Webapp.objects.create(manifest_url='http://foo.com')
-        eq_(webapp.is_packaged, False)
-
     def test_assign_uuid(self):
         app = Webapp()
         eq_(app.guid, None)
@@ -860,12 +954,6 @@ class TestWebapp(amo.tests.TestCase):
     def test_app_type_packaged(self):
         eq_(Webapp(is_packaged=True).app_type, 'packaged')
 
-    @mock.patch('mkt.versions.models.Version.is_privileged', True)
-    def test_app_type_privileged(self):
-        # Have to use `app_factory` because we need a `latest_version`
-        # to make it a privileged version.
-        eq_(app_factory(is_packaged=True).app_type, 'privileged')
-
     def test_nomination_new(self):
         app = app_factory()
         app.update(status=amo.STATUS_NULL)
@@ -909,12 +997,6 @@ class TestWebapp(amo.tests.TestCase):
         v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
 
-    def test_excluded_in(self):
-        app1 = app_factory()
-        region = mkt.regions.BR
-        AddonExcludedRegion.objects.create(addon=app1, region=region.id)
-        self.assertSetEqual(get_excluded_in(region.id), [app1.id])
-
     def test_excluded_in_iarc(self):
         app = app_factory()
         geodata = app._geodata
@@ -938,76 +1020,11 @@ class TestWebapp(amo.tests.TestCase):
         self.assertSetEqual(get_excluded_in(mkt.regions.BR.id), [])
         self.assertSetEqual(get_excluded_in(mkt.regions.DE.id), [app.id])
 
-    def test_supported_locale_property(self):
-        app = app_factory()
-        app.versions.latest().update(supported_locales='de,fr', _signal=False)
-        app.reload()
-        eq_(app.supported_locales,
-            (u'English (US)', [u'Deutsch', u'Fran\xe7ais']))
-
-    def test_supported_locale_property_empty(self):
-        app = app_factory()
-        eq_(app.supported_locales, (u'English (US)', []))
-
-    def test_supported_locale_property_bad(self):
-        app = app_factory()
-        app.versions.latest().update(supported_locales='de,xx', _signal=False)
-        app.reload()
-        eq_(app.supported_locales, (u'English (US)', [u'Deutsch']))
-
-    def test_supported_locale_app_rejected(self):
-        """
-        Simulate an app being rejected, which sets the
-        app.current_version to None, and verify supported_locales works
-        as expected -- which is that if there is no current version we
-        can't report supported_locales for it, so we return an empty
-        list.
-        """
-        app = app_factory()
-        app.versions.latest().update(supported_locales='de', _signal=False)
-        app.update(status=amo.STATUS_REJECTED)
-        app.versions.latest().all_files[0].update(status=amo.STATUS_REJECTED)
-        app.update_version()
-        app.reload()
-        eq_(app.supported_locales, (u'English (US)', []))
-
-    def test_get_trending(self):
-        # Test no trending record returns zero.
-        app = app_factory()
-        eq_(app.get_trending(), 0)
-
-        # Add a region specific trending and test the global one is returned
-        # because the region is not mature.
-        region = mkt.regions.REGIONS_DICT['me']
-        app.trending.create(value=20.0, region=0)
-        app.trending.create(value=10.0, region=region.id)
-        eq_(app.get_trending(region=region), 20.0)
-
-        # Now test the regional trending is returned when adolescent=False.
-        region.adolescent = False
-        eq_(app.get_trending(region=region), 10.0)
-
     @mock.patch('mkt.webapps.models.cache.get')
     def test_is_offline_when_packaged(self, mock_get):
         mock_get.return_value = ''
         eq_(Webapp(is_packaged=True).is_offline, True)
         eq_(Webapp(is_packaged=False).is_offline, False)
-
-    def test_is_offline_when_appcache_path(self):
-        app = app_factory()
-        manifest = {'name': 'Swag'}
-
-        # If there's no appcache_path defined, ain't an offline-capable app.
-        am = AppManifest.objects.create(version=app.current_version,
-                                        manifest=json.dumps(manifest))
-        eq_(app.is_offline, False)
-
-        # If there's an appcache_path defined, this is an offline-capable app.
-        manifest['appcache_path'] = '/manifest.appcache'
-        am.update(manifest=json.dumps(manifest))
-        # reload isn't enough, it doesn't clear cached_property.
-        app = Webapp.objects.get(pk=app.pk)
-        eq_(app.is_offline, True)
 
     @mock.patch('mkt.webapps.models.Webapp.completion_errors')
     def test_completion_errors(self, complete_mock):
@@ -1076,48 +1093,6 @@ class TestWebapp(amo.tests.TestCase):
             field_id_name = app._meta.get_field(field_name).attname
             ok_(getattr(app, field_name, None))
             ok_(getattr(app, field_id_name, None))
-
-    def test_has_payment_account(self):
-        app = app_factory()
-        assert not app.has_payment_account()
-
-        self.add_payment_account(app, PROVIDER_BANGO)
-        assert app.has_payment_account()
-
-    def test_has_multiple_payment_accounts(self):
-        app = app_factory()
-        assert not app.has_multiple_payment_accounts(), 'no accounts'
-
-        account = self.add_payment_account(app, PROVIDER_BANGO)
-        assert not app.has_multiple_payment_accounts(), 'one account'
-
-        self.add_payment_account(app, PROVIDER_BOKU, user=account.user)
-        ok_(app.has_multiple_payment_accounts(), 'two accounts')
-
-    def test_no_payment_account(self):
-        app = app_factory()
-        assert not app.has_payment_account()
-        with self.assertRaises(app.PayAccountDoesNotExist):
-            app.payment_account(PROVIDER_BANGO)
-
-    def test_get_payment_account(self):
-        app = app_factory()
-        acct = self.add_payment_account(app, PROVIDER_BANGO)
-        fetched_acct = app.payment_account(PROVIDER_BANGO)
-        eq_(acct, fetched_acct)
-
-    @mock.patch('mkt.webapps.models.Webapp.has_payment_account')
-    def test_payments_complete(self, pay_mock):
-        # Default to complete if it's not needed.
-        pay_mock.return_value = False
-        app = app_factory()
-        assert app.payments_complete()
-
-        self.make_premium(app)
-        assert not app.payments_complete()
-
-        pay_mock.return_value = True
-        assert app.payments_complete()
 
     def test_version_and_file_transformer_with_empty_query(self):
         # When we process a query, don't return a list just because
@@ -1557,11 +1532,12 @@ class TestManifest(BaseWebAppTest):
 
     def test_get_manifest_json(self):
         webapp = self.post_addon()
-        assert webapp.current_version
-        assert webapp.current_version.has_files
+        assert webapp.latest_version
+        assert webapp.latest_version.has_files
         with open(self.manifest, 'r') as mf:
             manifest_json = json.load(mf)
-            eq_(webapp.get_manifest_json(), manifest_json)
+            eq_(webapp.get_manifest_json(webapp.latest_version.all_files[0]),
+                manifest_json)
 
 
 class PackagedFilesMixin(amo.tests.AMOPaths):
@@ -1644,32 +1620,29 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     def test_get_manifest_json(self):
         webapp = self.post_addon()
-        eq_(webapp.status, amo.STATUS_NULL)
+        webapp.update(status=amo.STATUS_PUBLIC)
+        file_ = webapp.latest_version.all_files[0]
+        file_.update(status=amo.STATUS_PUBLIC)
         assert webapp.current_version
         assert webapp.current_version.has_files
+        # Test without file argument.
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(), mf)
-
-    def test_get_manifest_json_w_file(self):
-        webapp = self.post_addon()
-        eq_(webapp.status, amo.STATUS_NULL)
-        assert webapp.current_version
-        assert webapp.current_version.has_files
-        file_ = webapp.current_version.all_files[0]
+        # Test with file argument.
         mf = self._get_manifest_json()
         eq_(webapp.get_manifest_json(file_), mf)
 
     def test_get_manifest_json_multiple_versions(self):
-        # Post the real app/version, but backfill an older version.
+        """Test `get_manifest_json` gets the right version."""
         webapp = self.post_addon()
+        webapp.update(status=amo.STATUS_PUBLIC)
         latest_version = webapp.latest_version
-        webapp.current_version.files.update(status=amo.STATUS_PUBLIC)
+        latest_version.files.update(status=amo.STATUS_PUBLIC)
         version = version_factory(addon=webapp, version='0.5',
-                                  created=self.days_ago(1))
+                                  created=self.days_ago(1),
+                                  file_kw={'status': amo.STATUS_PENDING})
         version.files.update(created=self.days_ago(1))
         webapp = Webapp.objects.get(pk=webapp.pk)
-        webapp._current_version = None  # update_version() should find the 1.0.
-        webapp.update_version()
         eq_(webapp.current_version, latest_version)
         assert webapp.current_version.has_files
         mf = self._get_manifest_json()
@@ -1683,7 +1656,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         webapp.latest_version.update(created=self.days_ago(1))
         webapp.update(status=amo.STATUS_REJECTED, _current_version=None)
         version = version_factory(addon=webapp, version='2.0',
-                                  file_kw=dict(status=amo.STATUS_PENDING))
+                                  file_kw={'status': amo.STATUS_PENDING})
         mf = self._get_manifest_json()
         AppManifest.objects.create(version=version,
                                    manifest=json.dumps(mf))
@@ -1692,7 +1665,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(webapp.latest_version, version)
         self.file = version.all_files[0]
         self.setup_files()
-        eq_(webapp.get_manifest_json(), mf)
+        eq_(webapp.get_manifest_json(self.file), mf)
 
     def test_cached_manifest_is_cached(self):
         webapp = self.post_addon()
@@ -1713,12 +1686,14 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_cached_manifest_contents(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
-        version = webapp.current_version
+        webapp.update(status=amo.STATUS_PUBLIC)
+        version = webapp.latest_version
         self.file = version.all_files[0]
+        self.file.update(status=amo.STATUS_PUBLIC)
         self.setup_files()
         manifest = self._get_manifest_json()
 
-        data = json.loads(webapp.get_cached_manifest())
+        data = json.loads(webapp.get_cached_manifest(self.file))
         eq_(data['name'], webapp.name)
         eq_(data['version'], webapp.current_version.version)
         eq_(data['size'], self.file.size)
@@ -1734,8 +1709,10 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_package_path(self):
         webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
-        version = webapp.current_version
+        webapp.update(status=amo.STATUS_PUBLIC)
+        version = webapp.latest_version
         file = version.all_files[0]
+        file.update(status=amo.STATUS_PUBLIC)
         res = self.client.get(file.get_url_path('manifest'))
         eq_(res.status_code, 200)
         eq_(res['content-type'], 'application/zip')
@@ -2096,14 +2073,14 @@ class TestUpdateStatus(amo.tests.TestCase):
 
     def test_only_version_deleted(self):
         app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
-        app.current_version.delete()
+        app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_NULL)
 
     def test_other_version_deleted(self):
         app = amo.tests.app_factory(status=amo.STATUS_REJECTED)
         amo.tests.version_factory(addon=app)
-        app.current_version.delete()
+        app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_REJECTED)
 
@@ -2144,7 +2121,7 @@ class TestUpdateStatus(amo.tests.TestCase):
 
     def test_blocklisted(self):
         app = amo.tests.app_factory(status=amo.STATUS_BLOCKED)
-        app.current_version.delete()
+        app.latest_version.delete()
         app.update_status()
         eq_(app.status, amo.STATUS_BLOCKED)
 

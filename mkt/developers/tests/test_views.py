@@ -425,7 +425,8 @@ class TestPublicise(amo.tests.TestCase):
         self.webapp = self.get_webapp()
         self.webapp.update(status=amo.STATUS_APPROVED)
         self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=amo.STATUS_APPROVED)
+        # Use `_signal=False` to avoid extra work and triggering extra calls.
+        self.file.update(status=amo.STATUS_APPROVED, _signal=False)
         self.publicise_url = self.webapp.get_dev_url('publicise')
         self.status_url = self.webapp.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -451,10 +452,13 @@ class TestPublicise(amo.tests.TestCase):
     def test_publicise(self, update_name, update_locales,
                        update_cached_manifests, index_webapps,
                        storefront_mock):
+
         index_webapps.delay.reset_mock()
+
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
+        eq_(index_webapps.delay.call_count, 0)
         eq_(storefront_mock.call_count, 0)
         eq_(self.get_webapp().status, amo.STATUS_APPROVED)
 
@@ -467,10 +471,9 @@ class TestPublicise(amo.tests.TestCase):
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
-
+        eq_(storefront_mock.call_count, 1)
         # App is not packaged, no need to call update_cached_manifests.
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(storefront_mock.call_count, 1)
 
     def test_status(self):
         res = self.client.get(self.status_url)

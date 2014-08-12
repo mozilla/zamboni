@@ -155,7 +155,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         # Create app, user and fetch the icon.
         obj = Webapp.from_upload(upload, plats, is_packaged=is_packaged)
         AddonUser(addon=obj, user=request.user).save()
-        tasks.fetch_icon.delay(obj)
+        tasks.fetch_icon.delay(obj, obj.latest_version.all_files[0])
         record_action('app-submitted', request, {'app-id': obj.pk})
 
         log.info('App created: %s' % obj.pk)
