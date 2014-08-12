@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-07-16 22:06+0000\n"
+"PO-Revision-Date: 2014-08-12 17:08+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1405548409.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1407863320.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -548,11 +548,11 @@ msgstr "Gebruiker {0.name} {0.id} verwijderd via zoekhulpmiddel."
 
 #: apps/amo/log.py:662
 msgid "{addon} content rating changed to Adult."
-msgstr "Inhoudswaardering {addon} gewijzigd in Volwassen."
+msgstr "Inhoudsbeoordeling van {addon} gewijzigd naar Volwassen."
 
 #: apps/amo/log.py:668
 msgid "{addon} content rating changed."
-msgstr "Inhoudwaardering {addon} gewijzigd."
+msgstr "Inhoudsbeoordeling van {addon} gewijzigd."
 
 #: apps/amo/log.py:673
 msgid "Priority review requested for {addon}."
@@ -2772,11 +2772,11 @@ msgstr "Leeftijd %d+"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr "Waardering afgewezen"
+msgstr "Beoordeling afgewezen"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr "Wacht op waardering"
+msgstr "Wacht op beoordeling"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -2819,7 +2819,7 @@ msgstr "Amerika’s met uitzondering van Brazilië"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr "Waarderingspanel entertainmentsoftware"
+msgstr "Beoordelingspanel voor entertainmentsoftware"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
@@ -2892,7 +2892,7 @@ msgstr "Kan gedeelde account niet verwijderen"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
-msgstr "Inhoudswaardering gewijzigd in Volwassen."
+msgstr "Inhoudsbeoordeling gewijzigd naar Volwassen."
 
 #: mkt/developers/forms.py:58
 msgid "You cannot select {region}."
@@ -3152,7 +3152,7 @@ msgid ""
 "new IARC Ratings Certificate."
 msgstr ""
 "Dit IARC-certificaat wordt al voor een andere app gebruikt. Maak een nieuw "
-"IARC-waarderingscertificaat."
+"IARC-beoordelingscertificaat."
 
 #: mkt/developers/forms.py:1159
 #: mkt/developers/forms.py:1171
@@ -3492,7 +3492,7 @@ msgstr ""
 
 #: mkt/developers/views.py:303
 msgid "Content ratings successfully saved."
-msgstr "Inhoudswaardering met succes opgeslagen."
+msgstr "Inhoudsbeoordelingen met succes opgeslagen."
 
 #: mkt/developers/views.py:428
 msgid "Application for preload successfully submitted."
@@ -4120,9 +4120,9 @@ msgid ""
 "automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining "
 "content ratings</a>."
 msgstr ""
-"Uw app is uitgeschakeld omdat de inhoudswaardering ontbreekt. De app wordt "
+"Uw app is uitgeschakeld, omdat de inhoudsbeoordeling ontbreekt. De app wordt "
 "automatisch weer ingeschakeld na <a href=\"%(ratings_url)s\">verkrijgen van "
-"inhoudswaardering</a>."
+"inhoudsbeoordeling</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:60
 msgid ""
@@ -4188,7 +4188,7 @@ msgid ""
 "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before "
 "resubmitting your app."
 msgstr ""
-"U dient <a href=\"%(ratings_url)s\">een inhoudswaardering verkrijgen</a> "
+"U moet <a href=\"%(ratings_url)s\">een inhoudsbeoordeling verkrijgen</a> "
 "voordat u uw app opnieuw indient."
 
 #: mkt/developers/templates/developers/apps/status.html:127
@@ -4308,8 +4308,8 @@ msgid ""
 "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> "
 "if a large portion of the app's content has changed."
 msgstr ""
-"Vergeet niet de <a href=\"%(ratings_url)s\">inhoudswaardering</a> van de app "
-"bij te werken als een groot gedeelte van de inhoud is gewijzigd."
+"Vergeet niet de <a href=\"%(ratings_url)s\">inhoudsbeoordelingen</a> van de "
+"app bij te werken als een groot gedeelte van de inhoud is gewijzigd."
 
 #: mkt/developers/templates/developers/apps/status.html:298
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:171
@@ -5035,11 +5035,11 @@ msgstr "Het indieningsproces voor deze app hervatten."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
 msgid "Get content ratings for the app."
-msgstr "Verkrijg inhoudswaarderingen voor de app."
+msgstr "Verkrijg inhoudsbeoordelingen voor de app."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
-msgstr "Inhoudswaarderingen instellen"
+msgstr "Inhoudsbeoordelingen instellen"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
 msgid "Provide payment information for the app."
@@ -5081,7 +5081,7 @@ msgstr "Status en versies"
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:13
 #: mkt/webapps/models.py:1776
 msgid "Content Ratings"
-msgstr "Inhoudswaarderingen"
+msgstr "Inhoudsbeoordelingen"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:86
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:22
@@ -5137,7 +5137,7 @@ msgstr "Apparaten wijzigen"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:61
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr "<a href=\"%(rating_url)s\">Inhoudswaardering instellen</a>"
+msgstr "<a href=\"%(rating_url)s\">Inhoudsbeoordelingen instellen</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10
 #: mkt/developers/templates/developers/apps/preload/submit.html:10
@@ -5208,8 +5208,8 @@ msgid ""
 "href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of "
 "Service agreement</a>."
 msgstr ""
-"Door gebruik te maken van het waarderingscertificeringhulpmiddel van de IARC "
-"geeft u aan dat u instemt met hun <a href=\"%"
+"Door gebruik te maken van het certificeringhulpmiddel voor IARC-"
+"beoordelingen geeft u aan dat u instemt met hun <a href=\"%"
 "(privacy_url)s\">privacybeleid</a> en <a href=\"%"
 "(tos_url)s\">servicevoorwaarden</a>."
 
@@ -5218,8 +5218,8 @@ msgid ""
 "IARC content rating process complete, you will be redirected to your app's "
 "<a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
-"IARC-inhoudswaarderingsproces afgerond, u wordt doorgeleid naar de <a href=\""
-"%(ratings_url)s\">inhoudswaarderingspagina</a> van uw app."
+"IARC-inhoudsbeoordelingsproces voltooid, u wordt doorgeleid naar de <a "
+"href=\"%(ratings_url)s\">inhoudsbeoordelingspagina</a> van uw app."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid ""
@@ -5227,12 +5227,12 @@ msgid ""
 "keep trying or try again later."
 msgstr ""
 "Sorry, er is een fout aan onze kant opgetreden tijdens het verwerken van de "
-"inhoudswaardering. U kunt het blijven proberen of het later nog eens "
+"inhoudsbeoordeling. U kunt het blijven proberen of het later nog eens "
 "proberen."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr "IARC-waarderingscertificaat aanmaken"
+msgstr "IARC-beoordelingscertificaat aanmaken"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
 msgid "Already Have Your App Rated?"
@@ -5245,7 +5245,7 @@ msgid ""
 "here."
 msgstr ""
 "Als u uw app al hebt gewaardeerd met behulp van het bovenstaande algemene "
-"IARC-waarderingshulpmiddel en al een IARC-beveiligingscode hebt, dan kunt u "
+"IARC-beoordelingshulpmiddel en al een IARC-beveiligingscode hebt, kunt u "
 "deze hier handmatig ingeven."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
@@ -5279,7 +5279,7 @@ msgstr "Samenvatting"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
 msgid "Rating System"
-msgstr "Waarderingssysteem"
+msgstr "Beoordelingssysteem"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 #: mkt/developers/templates/developers/payments/premium.html:230
@@ -5288,7 +5288,7 @@ msgstr "Regio"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
-msgstr "Waarderingscategorie"
+msgstr "Beoordelingscategorie"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "Descriptors"
@@ -8689,7 +8689,8 @@ msgstr "Voer app-details in"
 
 #: mkt/submit/templates/submit/next_steps.html:31
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr "<span><a href=\"%(rating_url)s\">Inhoudswaardering</a> instellen</span>"
+msgstr ""
+"<span><a href=\"%(rating_url)s\">Inhoudsbeoordelingen</a> instellen</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:37
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
@@ -9025,7 +9026,7 @@ msgstr "U dient ten minste één categorie op te geven."
 
 #: mkt/webapps/models.py:1743
 msgid "You must set up content ratings."
-msgstr "U dient inhoudswaarderingen in te stellen."
+msgstr "U moet inhoudsbeoordelingen instellen."
 
 #: mkt/webapps/models.py:1745
 msgid "You must set up a payment account."
@@ -9037,7 +9038,7 @@ msgstr "Het indieningsproces van deze app is niet volledig afgerond."
 
 #: mkt/webapps/models.py:1777
 msgid "This app needs to get a content rating."
-msgstr "Deze app moet een inhoudswaardering krijgen."
+msgstr "Deze app moet een inhoudsbeoordeling krijgen."
 
 #: mkt/webapps/models.py:1783
 msgid "This app needs a payment account set up."
