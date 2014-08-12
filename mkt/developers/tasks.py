@@ -165,8 +165,14 @@ def resize_icon(src, dst, sizes, locally=False, **kw):
 
 @task
 @set_modified_on
-def pngcrush_image(src, **kw):
-    """Optimizes a PNG image by running it through Pngcrush."""
+def pngcrush_image(src, hash_field='image_hash', **kw):
+    """
+    Optimizes a PNG image by running it through Pngcrush. Returns hash.
+
+    src -- filesystem image path
+    hash_field -- field name to save the new hash on instance if passing
+                  instance through set_modified_on
+    """
     log.info('[1@None] Optimizing image: %s' % src)
     try:
         # pngcrush -ow has some issues, use a temporary file and do the final
@@ -180,14 +186,21 @@ def pngcrush_image(src, **kw):
         stdout, stderr = sp.communicate()
 
         if sp.returncode != 0:
-            log.error('Error optimizing image: %s; %s' % (src,
-                                                               stderr.strip()))
+            log.error('Error optimizing image: %s; %s' % (src, stderr.strip()))
             pngcrush_image.retry(args=[src], kwargs=kw, max_retries=3)
             return False
 
         shutil.move(tmp_path, src)
         log.info('Image optimization completed for: %s' % src)
-        return True
+
+        # Return hash for set_modified_on.
+        with open(src) as fd:
+            image_hash = _hash_file(fd)
+
+        return {
+            hash_field: image_hash
+        }
+
     except Exception, e:
         log.error('Error optimizing image: %s; %s' % (src, e))
 
