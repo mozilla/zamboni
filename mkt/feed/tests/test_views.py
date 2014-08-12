@@ -1229,6 +1229,60 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(data['objects'][0]['item_type'],
             feed.FEED_TYPE_SHELF)
 
+    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
+    def test_limit_honored(self, mock_paginate_by):
+        PAGINATE_BY = 3
+        TOTAL = PAGINATE_BY+1
+        mock_paginate_by.return_value = PAGINATE_BY
+
+        self.feed_factory(num_items=TOTAL)
+        self._refresh()
+        res, data = self._get(limit=PAGINATE_BY, offset=0)
+
+        eq_(data['meta']['total_count'], TOTAL)
+        eq_(data['meta']['limit'], PAGINATE_BY)
+        ok_(not data['meta']['previous'])
+        ok_(data['meta']['next'])
+        eq_(len(data['objects']), PAGINATE_BY)
+
+    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
+    def test_offset_honored(self, mock_paginate_by):
+        PAGINATE_BY = 3
+        TOTAL = PAGINATE_BY*2+1  # Three pages.
+        mock_paginate_by.return_value = TOTAL
+
+        self.feed_factory(num_items=TOTAL)
+        self._refresh()
+
+        res_all, data_all = self._get()
+        mock_paginate_by.return_value = PAGINATE_BY
+        res, data = self._get(offset=PAGINATE_BY)
+
+        eq_(data['meta']['total_count'], TOTAL)
+        eq_(data['meta']['limit'], PAGINATE_BY)
+        eq_(data['meta']['offset'], PAGINATE_BY)
+        eq_(len(data['objects']), PAGINATE_BY)
+        ok_(data['meta']['previous'])
+        ok_(data['meta']['next'])
+        eq_(data_all['objects'][PAGINATE_BY], data['objects'][0])
+
+    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
+    def test_page_honored(self, mock_paginate_by):
+        PAGINATE_BY = 3
+        TOTAL = PAGINATE_BY + 1
+        mock_paginate_by.return_value = TOTAL
+        self.feed_factory(num_items=TOTAL)
+        self._refresh()
+
+        res_all, data_all = self._get()
+        mock_paginate_by.return_value = PAGINATE_BY
+        res, data = self._get(page=2)
+
+        ok_(data['meta']['previous'])
+        ok_(not data['meta']['next'])
+        eq_(data['meta']['offset'], PAGINATE_BY)
+        eq_(data_all['objects'][-1], data['objects'][0])
+
     def test_region_filter(self):
         """Test that changing region gives different feed."""
         self.feed_factory()

@@ -451,7 +451,7 @@ class FeedElementSearchView(BaseFeedESView):
         return response.Response(res, status=status.HTTP_200_OK)
 
 
-class FeedView(BaseFeedESView):
+class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
     """
     THE feed view. It hits ES with:
     - a weighted function score query to get feed items
@@ -459,8 +459,9 @@ class FeedView(BaseFeedESView):
     - a mget to deserialize apps
     """
     authentication_classes = []
-    permission_classes = []
     cors_allowed_methods = ('get',)
+    paginator_class = ESPaginator
+    permission_classes = []
 
     def get_es_feed_query(self, sq, region=mkt.regions.RESTOFWORLD.id,
                           carrier=None):
@@ -525,14 +526,28 @@ class FeedView(BaseFeedESView):
         # Fetch FeedItems.
         sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
                                     region=region, carrier=carrier)
-        feed_items = sq.execute().hits
+        feed_items = self.paginate_queryset(sq)
+
+        # No items returned; try to fall back to RoW.
         if not feed_items:
-            # Fallback to RoW.
-            sq = self.get_es_feed_query(FeedItemIndexer.search(using=es))
-            feed_items = sq.execute().hits
-            if not feed_items:
-                return response.Response({'objects': []},
+            world_sq = self.get_es_feed_query(FeedItemIndexer.search(using=es))
+            world_feed_items = self.paginate_queryset(world_sq)
+
+            # No RoW feed items, either. Let's 404.
+            if not world_feed_items:
+                world_meta = mkt.api.paginator.CustomPaginationSerializer(
+                    world_feed_items, context={'request': request}).data['meta']
+                return response.Response({'meta': world_meta, 'objects': []},
                                          status=status.HTTP_404_NOT_FOUND)
+
+            # Return RoW items.
+            else:
+                feed_items = world_feed_items
+
+        # Build the meta object.
+        meta = mkt.api.paginator.CustomPaginationSerializer(
+            feed_items, context={'request': request}).data['meta']
+
 
         # Set up serializer context.
         feed_element_map = {
@@ -562,7 +577,7 @@ class FeedView(BaseFeedESView):
             'request': request
         }).data
 
-        return response.Response({'objects': feed_items},
+        return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
 
     def get(self, request, *args, **kwargs):
