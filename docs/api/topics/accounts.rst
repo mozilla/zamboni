@@ -162,6 +162,9 @@ Newsletter signup
 
    :param email: The email address to send newsletters to.
    :type email: string
+   :param newsletter: The newsletter to subscribe to. Can be either 'marketplace'
+                      or 'about:apps'.
+   :type newsletter: string
 
    **Response**
 
