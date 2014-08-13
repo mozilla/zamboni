@@ -2233,12 +2233,17 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         return UserProfile.objects.all()[0]
 
     def make_approvals(self):
+        d = 1
         for app in self.apps:
+            days_ago = self.days_ago(d)
             amo.log(amo.LOG.REJECT_VERSION, app, app.latest_version,
-                    user=self.get_user(), details={'comments': 'youwin'})
+                    user=self.get_user(), details={'comments': 'youwin'},
+                    created=days_ago)
             # Throw in a few tasks logs that shouldn't get queried.
             amo.log(amo.LOG.REREVIEW_MANIFEST_CHANGE, app, app.latest_version,
-                    user=self.task_user, details={'comments': 'foo'})
+                    user=self.task_user, details={'comments': 'foo'},
+                    created=days_ago)
+            d += 1
 
     def make_an_approval(self, action, comment='youwin', username=None,
                          app=None):
