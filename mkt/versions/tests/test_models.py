@@ -4,7 +4,6 @@ import os.path
 from django.conf import settings
 
 import mock
-import path
 from nose.tools import eq_
 
 import amo
@@ -60,7 +59,6 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'platform_all')
 
     def setUp(self):
-        self._rename = path.path.rename
         self.version = Version.objects.latest('id')
 
     def test_developer_name(self):
