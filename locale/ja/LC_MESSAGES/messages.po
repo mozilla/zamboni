@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-16 14:46-0400\n"
+"PO-Revision-Date: 2014-08-13 15:02-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2028,47 +2028,47 @@ msgstr "開発者のコメント"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "審査担当者によって端末が変更されました"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "審査担当者によって要件が変更されました"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "マニフェストの変更による再審査"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "マニフェスト URL の変更による再審査"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "有料版への変更による再審査"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "対応端末の追加による再審査"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "要件の変更による再審査"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "成人向けコンテンツレーティングによる再審査"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "VIP アプリ指定による上級審査"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "プレリリースアプリ指定による上級審査"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "事前審査申請済み"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2783,11 +2783,11 @@ msgstr "終了日"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "Web サイト"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "コマンドライン"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3225,7 +3225,7 @@ msgstr "このアプリの決済用アカウントは設定されていません
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3241,10 +3241,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> Marketplace API には主に 2 つの用途があります。従来の OAuth フローを用いている他の Web サイトからの使用、あるいはコマンドラインからの使用です。これらの違いは <a href=\"https://firefox-marketplace-api."
+"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace ドキュメント</a> の中で解説されています。テストを行う場合は公開サーバではなく <a href=\"https://marketplace-dev."
+"allizom.org\">開発サーバ</a> 上で行ってください。 </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "クライアントの種類"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3260,7 +3263,7 @@ msgstr "作成"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth キー"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3282,11 +3285,11 @@ msgstr "あなたはまだ API キーを生成していません。"
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth サンプル"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr ""
+msgstr "<p>Mac OS X 上でのコマンドライン向け Python ライブラリと OAuth 認証の使用例です。</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3316,7 +3319,7 @@ msgstr "今日のメッセージ"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "今日のメッセージを更新"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5502,15 +5505,15 @@ msgstr "Mozilla Web apps (ブラジル、ポルトガル語)"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "不正な URL %(url)s"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "%(url)s からの画像ダウンロード中に問題が発生しました"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "%(url)s からの画像を解析できませんでした"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6331,7 +6334,7 @@ msgstr "中国 ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6464,19 +6467,19 @@ msgstr "<i>匿名</i> / %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "追加レビュー待ち"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} レビュー待ち"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "合格"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "不合格"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
