@@ -8,7 +8,6 @@ from django.core.exceptions import ValidationError
 import happyforms
 from tower import ugettext_lazy as _lazy
 
-import amo
 from mkt.developers.forms import JSONField, NewPackagedAppForm
 from mkt.developers.utils import check_upload
 

@@ -499,9 +499,7 @@ class NewPackagedAppForm(happyforms.Form):
 
         # Everything passed validation.
         self.file_upload = FileUpload.from_post(
-            upload, upload.name, upload.size)
-        self.file_upload.user = self.user
-        self.file_upload.save()
+            upload, upload.name, upload.size, user=self.user)
 
     def persist_errors(self, errors, upload):
         """

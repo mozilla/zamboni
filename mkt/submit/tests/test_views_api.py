@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import json
 import os
 
@@ -94,7 +95,9 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         super(TestPackagedValidation, self).setUp()
         name = 'mozball.zip'
         path = self.packaged_app_path(name)
-        self.file = base64.b64encode(open(path).read())
+        contents = open(path).read()
+        self.hash = hashlib.sha256(contents).hexdigest()
+        self.file = base64.b64encode(contents)
         self.data = {'data': self.file, 'name': name,
                      'type': 'application/zip'}
 
@@ -118,6 +121,7 @@ class TestPackagedValidation(amo.tests.AMOPaths, ValidationHandler):
         eq_(content['processed'], False)
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
+        eq_(obj.hash, 'sha256:%s' % self.hash)
 
     @patch('mkt.developers.forms.MAX_PACKAGED_APP_SIZE', 2)
     def test_too_big(self):
