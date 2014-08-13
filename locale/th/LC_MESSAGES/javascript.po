@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:13-0700\n"
+"POT-Creation-Date: 2014-08-13 09:38-0700\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "กำลังอัปโหลด {0}"
 msgid "Error with {0}"
 msgstr "เกิดข้อผิดพลาดกับ {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "แอพของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
@@ -74,7 +74,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และอื่นๆ {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "ดูรายงานการตรวจสอบ"
 
@@ -136,49 +136,49 @@ msgstr "ข้อผิดพลาดภายในเซอร์เวอร
 msgid "Install failed. Please try again later."
 msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 
-#: media/js/devreg/devhub.js:214
+#: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือน"
 
-#: media/js/devreg/devhub.js:219
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
 msgstr "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือน"
 
-#: media/js/devreg/devhub.js:433
+#: media/js/devreg/devhub.js:443
 msgid "Changes Saved"
 msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:459
 msgid "Enter a new team member's email address"
 msgstr ""
 
-#: media/js/devreg/devhub.js:462
+#: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:467
+#: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:648
+#: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
 msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
 
-#: media/js/devreg/devhub.js:918
+#: media/js/devreg/devhub.js:943
 msgid "Learn more"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: media/js/devreg/devhub.js:922
+#: media/js/devreg/devhub.js:947
 msgid "Example"
 msgstr "ตัวอย่าง"
 
-#: media/js/devreg/devhub.js:1216
+#: media/js/devreg/devhub.js:1241
 msgid "Image changes being processed"
 msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
@@ -410,43 +410,43 @@ msgstr "ซื้อแล้ว"
 msgid "Launch"
 msgstr "เริ่ม"
 
-#: media/js/devreg/reviewers/editors.js:141
+#: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
-#: media/js/devreg/reviewers/editors.js:191
+#: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
 msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
 
-#: media/js/devreg/reviewers/editors.js:193
+#: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
 msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
 
-#: media/js/devreg/reviewers/editors.js:264
+#: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: media/js/devreg/reviewers/editors.js:275
+#: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
 msgstr "กำลังโหลด&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280
+#: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
-#: media/js/devreg/reviewers/editors.js:285
+#: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
-#: media/js/devreg/reviewers/editors.js:290
+#: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
-#: media/js/devreg/reviewers/editors.js:315
+#: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
 msgstr "เลือกแอพพลิเคชั่นก่อน"
 
-#: media/js/devreg/reviewers/editors.js:379
+#: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
 msgstr ""
 
@@ -474,55 +474,75 @@ msgstr ""
 msgid "Payment failed. Try again later."
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:106
+#: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:113
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
 msgstr "ต้องการข้อมูลเพิ่มเติม"
 
-#: media/js/devreg/reviewers/reviewers.js:116
+#: media/js/devreg/reviewers/reviewers.js:117
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:120
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:123
+#: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:128
+#: media/js/devreg/reviewers/reviewers.js:129
 msgid "Free"
 msgstr "ฟรี"
 
-#: media/js/devreg/reviewers/reviewers.js:236
+#: media/js/devreg/reviewers/reviewers.js:237
 msgid "Any"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:263
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:272
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:273
+#: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr ""
 
+#: media/js/devreg/reviewers/reviewers.js:309
+msgid "Passed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:312
+msgid "Failed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:318
+msgid "Error passing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:319
+msgid "Error failing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers_commbadge.js:45
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr ""
+
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:62
+#: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
 msgstr ""

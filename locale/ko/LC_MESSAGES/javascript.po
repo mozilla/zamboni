@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:13-0700\n"
+"POT-Creation-Date: 2014-08-13 09:38-0700\n"
 "PO-Revision-Date: 2013-12-01 22:48+0000\n"
 "Last-Translator: Seong-Wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} 업로드 중"
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "{0}개의 오류로 인해 앱 검사 시험을 통과하지 못했습니다."
@@ -74,7 +74,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
@@ -136,49 +136,49 @@ msgstr "앱 설치중 내부 서버 오류가 발생했습니다."
 msgid "Install failed. Please try again later."
 msgstr "설치를 할 수 없습니다. 나중에 다시 시도해 주세요."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "앱이 {0}개의 오류와 {1}개의 메세지로 인해 유효성 검사를 통과하지 못했습니다."
 
-#: media/js/devreg/devhub.js:214
+#: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "앱이 오류 없이 메시지 {0}개와 함께 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:219
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
 msgstr "앱이 아무런 오류나 메시지 없이 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:433
+#: media/js/devreg/devhub.js:443
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:459
 msgid "Enter a new team member's email address"
 msgstr "새 팀 멤버의 이메일 주소를 입력하세요"
 
-#: media/js/devreg/devhub.js:462
+#: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:467
+#: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:648
+#: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:918
+#: media/js/devreg/devhub.js:943
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: media/js/devreg/devhub.js:922
+#: media/js/devreg/devhub.js:947
 msgid "Example"
 msgstr "예"
 
-#: media/js/devreg/devhub.js:1216
+#: media/js/devreg/devhub.js:1241
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -410,43 +410,43 @@ msgstr "구입했습니다"
 msgid "Launch"
 msgstr "실행하기"
 
-#: media/js/devreg/reviewers/editors.js:141
+#: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: media/js/devreg/reviewers/editors.js:191
+#: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
 msgstr "앱이 영수증을 확인했습니다."
 
-#: media/js/devreg/reviewers/editors.js:193
+#: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
-#: media/js/devreg/reviewers/editors.js:264
+#: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: media/js/devreg/reviewers/editors.js:275
+#: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280
+#: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
 msgstr "버전 기록서"
 
-#: media/js/devreg/reviewers/editors.js:285
+#: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "심사자의 메모"
 
-#: media/js/devreg/reviewers/editors.js:290
+#: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: media/js/devreg/reviewers/editors.js:315
+#: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
-#: media/js/devreg/reviewers/editors.js:379
+#: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
 msgstr "번역 결과를 불러오는 과정에서 오류 발생"
 
@@ -474,55 +474,75 @@ msgstr "넘어가기"
 msgid "Payment failed. Try again later."
 msgstr "지불에 실패했습니다. 잠시 후 다시 시도해보세요."
 
-#: media/js/devreg/reviewers/reviewers.js:106
+#: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
 msgstr "패키지형 앱"
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
 msgstr "특별권한 앱"
 
-#: media/js/devreg/reviewers/reviewers.js:113
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
 msgstr "추가 정보 입력 필요"
 
-#: media/js/devreg/reviewers/reviewers.js:116
+#: media/js/devreg/reviewers/reviewers.js:117
 msgid "Contains Editor Comment"
 msgstr "편집자 코멘트 있음"
 
-#: media/js/devreg/reviewers/reviewers.js:120
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
 msgstr "유료 앱"
 
-#: media/js/devreg/reviewers/reviewers.js:123
+#: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
 msgstr "승급됨"
 
-#: media/js/devreg/reviewers/reviewers.js:128
+#: media/js/devreg/reviewers/reviewers.js:129
 msgid "Free"
 msgstr "무료"
 
-#: media/js/devreg/reviewers/reviewers.js:236
+#: media/js/devreg/reviewers/reviewers.js:237
 msgid "Any"
 msgstr "모두"
 
-#: media/js/devreg/reviewers/reviewers.js:263
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
 msgstr "승인된 앱: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
 msgstr "승인 거부된 앱: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:272
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
 msgstr "승인 도중 오류가 발생한 앱: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:273
+#: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "승인 거부 도중 오류가 발생한 앱: {app}"
 
+#: media/js/devreg/reviewers/reviewers.js:309
+msgid "Passed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:312
+msgid "Failed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:318
+msgid "Error passing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:319
+msgid "Error failing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers_commbadge.js:45
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr ""
+
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:62
+#: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
 msgstr ""

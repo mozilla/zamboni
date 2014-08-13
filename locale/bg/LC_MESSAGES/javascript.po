@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:13-0700\n"
+"POT-Creation-Date: 2014-08-13 09:38-0700\n"
 "PO-Revision-Date: 2013-08-22 17:33+0200\n"
 "Last-Translator: Mihail Chilyashev <chilyashev@gmail.com>\n"
 "Language-Team: none\n"
@@ -63,7 +63,7 @@ msgstr "Качване {0}"
 msgid "Error with {0}"
 msgstr "Грешка с {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Приложението ви не премина валидацията с {0} грешка."
@@ -75,7 +75,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и {0} още"
 msgstr[1] "&hellip;и {0} още"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "Виж целия доклад за валидацията"
 
@@ -138,51 +138,51 @@ msgstr "Сървърна грешка при инсталиране на при�
 msgid "Install failed. Please try again later."
 msgstr "Инсталацията се провали. Моля, опитайте отново по-късно."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Приложението ви не премина валидацията с {0} грешки и {1} съобщение."
 msgstr[1] "Приложението ви не премина валидацията с {0} грешки и {1} съобщения."
 
-#: media/js/devreg/devhub.js:214
+#: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Приложението ви премина валидацията без грешки и {0} съобщение."
 msgstr[1] "Приложението ви премина валидацията без грешки и {0} съобщения."
 
-#: media/js/devreg/devhub.js:219
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
 msgstr "Приложението ви премина валидацията без грешки или съобщения."
 
-#: media/js/devreg/devhub.js:433
+#: media/js/devreg/devhub.js:443
 msgid "Changes Saved"
 msgstr "Промените са запазени"
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:459
 msgid "Enter a new team member's email address"
 msgstr "Въведете имейлът на нов участник в екипа"
 
-#: media/js/devreg/devhub.js:462
+#: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:467
+#: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:648
+#: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
 msgstr "Стана грешка при качването на файла ви."
 
-#: media/js/devreg/devhub.js:918
+#: media/js/devreg/devhub.js:943
 msgid "Learn more"
 msgstr "Научи още"
 
-#: media/js/devreg/devhub.js:922
+#: media/js/devreg/devhub.js:947
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1216
+#: media/js/devreg/devhub.js:1241
 msgid "Image changes being processed"
 msgstr "Обработват се промените по изображението"
 
@@ -418,43 +418,43 @@ msgstr "Закупено"
 msgid "Launch"
 msgstr "Стартирай"
 
-#: media/js/devreg/reviewers/editors.js:141
+#: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
 msgstr "{name} разглеждаше тази страница първо."
 
-#: media/js/devreg/reviewers/editors.js:191
+#: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
 msgstr "Разписката проверена от приложението."
 
-#: media/js/devreg/reviewers/editors.js:193
+#: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
 msgstr "Разписката не е проверена от приложението."
 
-#: media/js/devreg/reviewers/editors.js:264
+#: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} първи гледаше тази добавка."
 
-#: media/js/devreg/reviewers/editors.js:275
+#: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Зареждане&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280
+#: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
 msgstr "Бележки по версията"
 
-#: media/js/devreg/reviewers/editors.js:285
+#: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Бележки за рецензенти"
 
-#: media/js/devreg/reviewers/editors.js:290
+#: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
 msgstr "Няма намерени бележки по версията"
 
-#: media/js/devreg/reviewers/editors.js:315
+#: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
 msgstr "Първо изберете приложение"
 
-#: media/js/devreg/reviewers/editors.js:379
+#: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
 msgstr ""
 
@@ -482,55 +482,75 @@ msgstr "Прескочи засега"
 msgid "Payment failed. Try again later."
 msgstr "Плащането се провали. Опитайте отново по-късно."
 
-#: media/js/devreg/reviewers/reviewers.js:106
+#: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
 msgstr "Пакетирано приложение"
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
 msgstr "Привилегировано приложение"
 
-#: media/js/devreg/reviewers/reviewers.js:113
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
 msgstr "Нужна е още информация"
 
-#: media/js/devreg/reviewers/reviewers.js:116
+#: media/js/devreg/reviewers/reviewers.js:117
 msgid "Contains Editor Comment"
 msgstr "Съдържа коментар от редактор"
 
-#: media/js/devreg/reviewers/reviewers.js:120
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
 msgstr "Премиум приложение"
 
-#: media/js/devreg/reviewers/reviewers.js:123
+#: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
 msgstr "Ескалиран"
 
-#: media/js/devreg/reviewers/reviewers.js:128
+#: media/js/devreg/reviewers/reviewers.js:129
 msgid "Free"
 msgstr "Безплатно"
 
-#: media/js/devreg/reviewers/reviewers.js:236
+#: media/js/devreg/reviewers/reviewers.js:237
 msgid "Any"
 msgstr "Който и да е"
 
-#: media/js/devreg/reviewers/reviewers.js:263
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:272
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:273
+#: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr ""
 
+#: media/js/devreg/reviewers/reviewers.js:309
+msgid "Passed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:312
+msgid "Failed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:318
+msgid "Error passing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:319
+msgid "Error failing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers_commbadge.js:45
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr ""
+
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:62
+#: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
 msgstr ""

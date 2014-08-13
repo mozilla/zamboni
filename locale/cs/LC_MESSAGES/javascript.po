@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-16 09:13-0700\n"
+"POT-Creation-Date: 2014-08-13 09:38-0700\n"
 "PO-Revision-Date: 2014-07-20 20:55+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -64,7 +64,7 @@ msgstr "Probíhá nahrávání {0}"
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:195
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Kontrola vaší aplikace skončila s {0} chybou."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:157
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
@@ -142,53 +142,53 @@ msgstr "Při instalaci aplikace nastala interní chyba serveru."
 msgid "Install failed. Please try again later."
 msgstr "Instalace selhala. Zkuste to prosím později."
 
-#: media/js/devreg/devhub.js:200
+#: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "U vaší aplikace selhala kontrola s {0} chybou. Počet zpráv: {1}"
 msgstr[1] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
 msgstr[2] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
 
-#: media/js/devreg/devhub.js:214
+#: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Vaše aplikace prošla kontrolou bez chyby a {0} informační zprávou."
 msgstr[1] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
 msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
 
-#: media/js/devreg/devhub.js:219
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
 msgstr "Vaše aplikace prošla kontrolou bez chyb či informačních zpráv."
 
-#: media/js/devreg/devhub.js:433
+#: media/js/devreg/devhub.js:443
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
-#: media/js/devreg/devhub.js:449
+#: media/js/devreg/devhub.js:459
 msgid "Enter a new team member's email address"
 msgstr "Vložte e-mailovou adresu nového člena týmu"
 
-#: media/js/devreg/devhub.js:462
+#: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
 msgstr "Manifest obnoven"
 
-#: media/js/devreg/devhub.js:467
+#: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
 msgstr "Obnovení manifestu se nezdařilo. Zkuste to znovu později."
 
-#: media/js/devreg/devhub.js:648
+#: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: media/js/devreg/devhub.js:918
+#: media/js/devreg/devhub.js:943
 msgid "Learn more"
 msgstr "Dozvědět se více"
 
-#: media/js/devreg/devhub.js:922
+#: media/js/devreg/devhub.js:947
 msgid "Example"
 msgstr "Příklad"
 
-#: media/js/devreg/devhub.js:1216
+#: media/js/devreg/devhub.js:1241
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku."
 
@@ -428,43 +428,43 @@ msgstr "Zakoupeno"
 msgid "Launch"
 msgstr "Spustit"
 
-#: media/js/devreg/reviewers/editors.js:141
+#: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
 msgstr "Uživatel {name} shlédl tuto stránku jako první."
 
-#: media/js/devreg/reviewers/editors.js:191
+#: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
 msgstr "Potvrzení bylo aplikací zkontrolováno."
 
-#: media/js/devreg/reviewers/editors.js:193
+#: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
 msgstr "Potvrzení nebylo aplikací zkontrolováno."
 
-#: media/js/devreg/reviewers/editors.js:264
+#: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} prohlédl tento doplněk jako první"
 
-#: media/js/devreg/reviewers/editors.js:275
+#: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Načítání&hellip;"
 
-#: media/js/devreg/reviewers/editors.js:280
+#: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
 msgstr "Poznámky k verzi"
 
-#: media/js/devreg/reviewers/editors.js:285
+#: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Poznámky pro redaktory"
 
-#: media/js/devreg/reviewers/editors.js:290
+#: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
 msgstr "Nebyla nalezena žádná verze poznámek."
 
-#: media/js/devreg/reviewers/editors.js:315
+#: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
 
-#: media/js/devreg/reviewers/editors.js:379
+#: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
 msgstr "Chyba při načítání překladu"
 
@@ -492,55 +492,75 @@ msgstr "Nyní přeskočit"
 msgid "Payment failed. Try again later."
 msgstr "Platba selhala. Zkuste to prosím později."
 
-#: media/js/devreg/reviewers/reviewers.js:106
+#: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
 msgstr "Zabalená aplikace"
 
-#: media/js/devreg/reviewers/reviewers.js:110
+#: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
 msgstr "Privilegovaná aplikace"
 
-#: media/js/devreg/reviewers/reviewers.js:113
+#: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
 msgstr "Požadováno více informací"
 
-#: media/js/devreg/reviewers/reviewers.js:116
+#: media/js/devreg/reviewers/reviewers.js:117
 msgid "Contains Editor Comment"
 msgstr "Obsahuje komentář redaktora"
 
-#: media/js/devreg/reviewers/reviewers.js:120
+#: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
 msgstr "Placená aplikace"
 
-#: media/js/devreg/reviewers/reviewers.js:123
+#: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
 msgstr "Detailní kontrola"
 
-#: media/js/devreg/reviewers/reviewers.js:128
+#: media/js/devreg/reviewers/reviewers.js:129
 msgid "Free"
 msgstr "Zdarma"
 
-#: media/js/devreg/reviewers/reviewers.js:236
+#: media/js/devreg/reviewers/reviewers.js:237
 msgid "Any"
 msgstr "Libovolné"
 
-#: media/js/devreg/reviewers/reviewers.js:263
+#: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
 msgstr "Schválená aplikace: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:266
+#: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
 msgstr "Zamítnutá aplikace: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:272
+#: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
 msgstr "Chyba při schválení aplikace: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:273
+#: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "Chyba při zamítnutí aplikace: {app}"
 
+#: media/js/devreg/reviewers/reviewers.js:309
+msgid "Passed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:312
+msgid "Failed app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:318
+msgid "Error passing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers.js:319
+msgid "Error failing app: {app}"
+msgstr ""
+
+#: media/js/devreg/reviewers/reviewers_commbadge.js:45
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr ""
+
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:62
+#: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
 msgstr "Od {0} dne {1}"
