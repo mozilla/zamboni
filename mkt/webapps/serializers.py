@@ -541,13 +541,14 @@ class BaseESAppFeedSerializer(ESAppSerializer):
 class ESAppFeedSerializer(BaseESAppFeedSerializer):
     """
     App serializer targetted towards the Feed, Fireplace's homepage.
-    Specifically for Feed Brands that feature the whole app tile rather than
-    just an icon.
+    Specifically for Feed Apps/Brands that feature the whole app tile and an
+    install button rather than just an icon.
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'author', 'icons', 'id', 'is_packaged', 'manifest_url', 'name',
-            'ratings', 'slug'
+            'author', 'device_types', 'icons', 'id', 'is_packaged',
+            'manifest_url', 'name', 'payment_required', 'price', 'ratings',
+            'slug'
         ]
 
 
