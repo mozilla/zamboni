@@ -192,11 +192,12 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
             None, obj=self.collection)
         data = self.test_deserialize()
         for i, app in enumerate(data['apps']):
-            group = app['group']['en-US']
-            if not i == 2:
-                eq_(group, 'first-group')
+            actual = app['group']['en-US']
+            if (i + 1) == len(self.app_ids):
+                expected = 'second-group'
             else:
-                eq_(group, 'second-group')
+                expected = 'first-group'
+            eq_(expected, actual, 'Expected %s, got %s' % (expected, actual))
 
     def test_background_image(self):
         self.collection.update(type=feed.COLLECTION_PROMO, image_hash='LOL')
