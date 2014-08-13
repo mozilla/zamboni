@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import amo
-from mkt.versions.models import Version
 from mkt.webapps.models import Addon
 
 
@@ -56,16 +55,13 @@ class Command(BaseCommand):
                 print 'rm %s' % preview.thumbnail_path
                 print 'rm %s' % preview.image_path
 
-            # Files.
-            for version in Version.with_deleted.filter(addon=addon):
-                for file in version.files.all():
-                    if file.status != amo.STATUS_DISABLED:
-                        print 'rm %s' % file.file_path
-                    else:
-                        print 'rm %s' % file.guarded_file_path
-
             # Remove the addon files themselves.
+            #
             # If this is a persona theme this removes all files within the
             # directory. If it is an extension this removes the .xpi file(s).
             print 'rm -rf %s' % os.path.join(settings.ADDONS_PATH,
-                                             str(addon.id))
+                                             str(addon.pk))
+
+            # Similar to above but remove the guarded addons files.
+            print 'rm -rf %s' % os.path.join(settings.GUARDED_ADDONS_PATH,
+                                             str(addon.pk))
