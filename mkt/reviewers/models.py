@@ -14,6 +14,7 @@ from mkt.comm.utils import create_comm_note
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Addon
 
 
@@ -367,12 +368,14 @@ def tarako_passed(review):
     """Add the tarako tag to the app."""
     tag = Tag(tag_text='tarako')
     tag.save_tag(review.app)
+    WebappIndexer.index_ids([review.app.pk])
 
 
 def tarako_failed(review):
     """Remove the tarako tag from the app."""
     tag = Tag(tag_text='tarako')
     tag.remove_tag(review.app)
+    WebappIndexer.index_ids([review.app.pk])
 
 
 class AdditionalReview(amo.models.ModelBase):
