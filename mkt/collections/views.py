@@ -21,6 +21,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.collections.serializers import DataURLImageField
+from mkt.developers.tasks import pngcrush_image
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
@@ -282,6 +283,8 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             i.save(f, 'png')
         # Store the hash of the original image data sent.
         obj.update(image_hash=hash_)
+
+        pngcrush_image.delay(obj.image_path())
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, *args, **kwargs):

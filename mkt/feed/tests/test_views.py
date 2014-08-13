@@ -8,6 +8,7 @@ from django.utils.text import slugify
 
 import mock
 from elasticsearch_dsl.search import Search
+from nose import SkipTest
 from nose.tools import eq_, ok_
 
 import amo.tests
@@ -417,8 +418,9 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(res.status_code, 400)
         ok_('pullquote_rating' in data)
 
+    @mock.patch('mkt.feed.views.pngcrush_image.delay')
     @mock.patch('mkt.feed.fields.requests.get')
-    def test_create_with_background_image_upload_url(self, download_mock):
+    def test_create_with_background_image(self, download_mock, crush_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 200
         res_mock.content = open(
@@ -430,8 +432,9 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
             {'background_image_upload_url': 'ngokevin.com'})  # SEO.
         res, data = self.create(self.client, **self.feedapp_data)
 
-        assert data['background_image'].endswith(
-            FeedApp.objects.all()[0].image_hash)
+        feedapp = FeedApp.objects.all()[0]
+        ok_(data['background_image'].endswith(feedapp.image_hash))
+        eq_(crush_mock.call_args_list[0][0][0], feedapp.image_path())
 
     @mock.patch('mkt.feed.fields.requests.get')
     def test_background_image_404(self, download_mock):
@@ -493,7 +496,7 @@ class TestFeedAppViewSetDetail(BaseTestFeedAppViewSet):
         self.url = reverse('api-v2:feedapps-detail',
                            kwargs={'pk': self.feedapp.pk})
         res, data = self._test_detail(self.client)
-        assert data.get('background_image')
+        ok_(data.get('background_image'))
 
 
 class TestFeedAppViewSetUpdate(BaseTestFeedAppViewSet):
@@ -877,8 +880,10 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         self.assertSetEqual(
             apps, [app['id'] for app in data['apps']])
 
+    @mock.patch('mkt.feed.views.pngcrush_image.delay')
     @mock.patch('mkt.feed.fields.requests.get')
-    def test_create_with_background_image_upload_url(self, download_mock):
+    def test_background_image(self, download_mock, crush_mock):
+        """Tests with mocking the pngcrush."""
         res_mock = mock.Mock()
         res_mock.status_code = 200
         res_mock.content = open(
@@ -890,8 +895,32 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         data.update({'background_image_upload_url': 'ngokevin.com'})  # SEO.
         res, data = self.create(self.client, **data)
 
-        assert data['background_image'].endswith(
-            FeedCollection.objects.all()[0].image_hash)
+        coll = FeedCollection.objects.all()[0]
+        eq_(coll.image_hash, 'e83ad266')
+        ok_(data['background_image'].endswith(coll.image_hash))
+        eq_(crush_mock.call_args_list[0][0][0], coll.image_path())
+        eq_(crush_mock.call_args_list[0][1]['set_modified_on'][0], coll)
+
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_background_image_crush(self, download_mock):
+        if os.environ.get('JENKINS_HOME'):
+            # This integration test is pretty slow (5s). Keep it around local.
+            raise SkipTest()
+
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = open(
+            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        data = dict(self.obj_data)
+        data.update({'background_image_upload_url': 'ngokevin.com'})  # SEO.
+        res, data = self.create(self.client, **data)
+
+        coll = FeedCollection.objects.all()[0]
+        ok_(coll.image_hash != 'e83ad266')  # Hash of the original bacon image.
+        ok_(os.path.getsize(coll.image_path()) < 312000)  # Size of bacon.
 
     @mock.patch('mkt.feed.fields.requests.get')
     def test_background_image_404(self, download_mock):
@@ -1045,7 +1074,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
     def test_index(self, index_mock):
         self.feed_permission()
         self._set_feed_items(self.data)
-        assert index_mock.called
+        ok_(index_mock.called)
         self.assertSetEqual(index_mock.call_args_list[0][0][0],
                             FeedItem.objects.values_list('id', flat=True))
 
@@ -1084,27 +1113,27 @@ class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
 
         eq_(data['collections'][0]['id'], self.collection.id)
-        assert not data['apps']
-        assert not data['brands']
-        assert not data['shelves']
+        ok_(not data['apps'])
+        ok_(not data['brands'])
+        ok_(not data['shelves'])
 
     def test_query_type(self):
         res, data = self._search('mystery')
         eq_(res.status_code, 200)
 
         eq_(data['brands'][0]['id'], self.brand.id)
-        assert not data['apps']
-        assert not data['collections']
-        assert not data['shelves']
+        ok_(not data['apps'])
+        ok_(not data['collections'])
+        ok_(not data['shelves'])
 
     def test_query_carrier(self):
         res, data = self._search('restofworld')
         eq_(res.status_code, 200)
 
         eq_(data['shelves'][0]['id'], self.shelf.id)
-        assert not data['apps']
-        assert not data['brands']
-        assert not data['collections']
+        ok_(not data['apps'])
+        ok_(not data['brands'])
+        ok_(not data['collections'])
 
 
 class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
@@ -1130,19 +1159,19 @@ class TestFeedShelfPublishView(BaseTestFeedItemViewSet, amo.tests.TestCase):
     def test_publish_overwrite(self):
         self.client.put(self.url)
         eq_(FeedItem.objects.count(), 1)
-        assert FeedItem.objects.filter(shelf_id=self.shelf.id).exists()
+        ok_(FeedItem.objects.filter(shelf_id=self.shelf.id).exists())
 
         new_shelf = self.feed_shelf_factory()
         new_url = reverse('api-v2:feed-shelf-publish', args=[new_shelf.id])
         self.client.put(new_url)
         eq_(FeedItem.objects.count(), 1)
-        assert FeedItem.objects.filter(shelf_id=new_shelf.id).exists()
+        ok_(FeedItem.objects.filter(shelf_id=new_shelf.id).exists())
 
     def test_unpublish(self):
         # Publish.
         self.client.put(self.url)
         eq_(FeedItem.objects.count(), 1)
-        assert FeedItem.objects.filter(shelf_id=self.shelf.id).exists()
+        ok_(FeedItem.objects.filter(shelf_id=self.shelf.id).exists())
 
         # Unpublish.
         res = self.client.delete(self.url)
@@ -1189,7 +1218,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         eq_(len(data['objects']), len(feed_items))
 
-        assert statsd_mock.called
+        ok_(statsd_mock.called)
 
     def test_200_authed(self):
         feed_items = self.feed_factory()
@@ -1394,6 +1423,8 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_({'bool': {'must': [{'term': {'id': feed_item.app_id}},
                                {'term': {'item_type': 'app'}}]}}
             in sq['query']['filtered']['filter']['bool']['should'])
+        eq_(sq['from'], 0)
+        eq_(sq['size'], 1)
 
 
 class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):

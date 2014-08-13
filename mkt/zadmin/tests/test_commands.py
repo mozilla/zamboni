@@ -1,5 +1,3 @@
-from nose.exc import SkipTest
-
 import amo.tests
 
 from mkt.access.acl import action_allowed_user
@@ -13,9 +11,6 @@ class TestCommand(amo.tests.TestCase):
     fixtures = fixture('group_admin', 'user_10482')
 
     def test_group_management(self):
-        #TODO. I don't know how to override caching in tests --clouserw
-        raise SkipTest('Fails due to caching of groups.all()')
-
         x = UserProfile.objects.get(pk=10482)
         assert not action_allowed_user(x, 'Admin', '%')
         do_adduser('10482', '1')

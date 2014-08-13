@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
-import path
 from nose.tools import eq_
 
 import amo
@@ -23,13 +22,6 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
-    def setUp(self):
-        self._rename = path.path.rename
-        path.path.rename = path.path.copy
-
-    def tearDown(self):
-        path.path.rename = self._rename
-
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
 

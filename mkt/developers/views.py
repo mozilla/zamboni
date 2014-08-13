@@ -371,7 +371,8 @@ def content_ratings_edit(request, addon_id, addon):
         initial['security_code'] = app_info.security_code
     except IARCInfo.DoesNotExist:
         pass
-    messages.debug("DEBUG mode on; you may use IARC id 0 with any code")
+    messages.debug(request,
+                   "DEBUG mode on; you may use IARC id 0 with any code")
     form = IARCGetAppInfoForm(data=request.POST or None, initial=initial,
                               app=addon)
 

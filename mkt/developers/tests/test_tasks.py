@@ -14,7 +14,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from PIL import Image, ImageChops
 from requests import RequestException
 
@@ -120,7 +120,7 @@ class TestPngcrushImage(amo.tests.TestCase):
         shutil.copyfile(self.src.name, src_crushed.name)
 
         rval = tasks.pngcrush_image(src_crushed.name)
-        eq_(rval, True)
+        ok_(rval)
 
         crushed_size = os.path.getsize(src_crushed.name)
         orig_size = os.path.getsize(self.src.name)
@@ -130,6 +130,22 @@ class TestPngcrushImage(amo.tests.TestCase):
         crushed_image = Image.open(src_crushed.name)
         eq_(ImageChops.difference(crushed_image, orig_image).getbbox(), None)
         os.remove(src_crushed.name)
+
+    def test_set_modified(self):
+        """Test passed instance is updated with the hash."""
+        src_crushed = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+                                                  delete=False)
+        shutil.copyfile(self.src.name, src_crushed.name)
+
+        instance_mock = mock.Mock()
+        update_mock = mock.Mock()
+        instance_mock.update = update_mock
+
+        ret = tasks.pngcrush_image(src_crushed.name, 'some_hash',
+                                   set_modified_on=[instance_mock])
+        ok_('some_hash' in ret)
+        eq_(update_mock.call_args_list[0][1]['some_hash'], ret['some_hash'])
+        ok_('modified' in update_mock.call_args_list[0][1])
 
 
 class TestValidator(amo.tests.TestCase):

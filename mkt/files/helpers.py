@@ -16,8 +16,8 @@ import jinja2
 from cache_nuggets.lib import memoize, Message
 from jingo import env, register
 from tower import ugettext as _
-from validator.testcases.packagelayout import (blacklisted_extensions,
-                                               blacklisted_magic_numbers)
+from appvalidator.testcases.packagelayout import (blacklisted_extensions,
+                                                  blacklisted_magic_numbers)
 
 import amo
 from amo.utils import rm_local_tmp_dir

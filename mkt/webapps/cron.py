@@ -10,12 +10,11 @@ from django.db.models import Q
 
 import commonware.log
 import cronjobs
-import path
 from celery import chord
 
 import amo
 from amo.decorators import write
-from amo.utils import chunked
+from amo.utils import chunked, walkfiles
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File
@@ -111,7 +110,7 @@ def unhide_disabled_files():
          | Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
-    for filepath in path.path(settings.GUARDED_ADDONS_PATH).walkfiles():
+    for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
             log.warning('File that should not be guarded: %s.' % filepath)

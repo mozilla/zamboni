@@ -718,7 +718,7 @@ FFMPEG_BINARY = 'ffmpeg'
 
 FXA_CLIENT_ID = '56fc6da8d185c8e3'
 FXA_CLIENT_SECRET = 'd1a8f0088e565d066c3d9f28587f5875a800e0a1618a4aaeabd00e162ac583a3'
-FXA_OAUTH_URL = 'https://oauth-marketplace.dev.lcip.org'
+FXA_OAUTH_URL = 'https://oauth-stable.dev.lcip.org'
 
 if DEBUG:
     # In DEBUG mode, don't require HTTPS for FxA oauth redirects.
