@@ -385,6 +385,12 @@ class AdditionalReviewManager(amo.models.ManagerBase):
             queue=queue,
             app__status__in=amo.WEBAPPS_APPROVED_STATUSES)
 
+    def latest_for_queue(self, queue):
+        try:
+            return self.get_queryset().filter(queue=queue).latest()
+        except AdditionalReview.DoesNotExist:
+            return None
+
 
 class AdditionalReview(amo.models.ModelBase):
     app = models.ForeignKey(Addon)
@@ -398,6 +404,15 @@ class AdditionalReview(amo.models.ModelBase):
 
     class Meta:
         db_table = 'additional_review'
+        get_latest_by = 'created'
+
+    @property
+    def pending(self):
+        return self.passed is None
+
+    @property
+    def failed(self):
+        return self.passed is False
 
     def __init__(self, *args, **kwargs):
         super(AdditionalReview, self).__init__(*args, **kwargs)
