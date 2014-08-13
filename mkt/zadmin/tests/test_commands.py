@@ -1,5 +1,3 @@
-from nose.exc import SkipTest
-
 import amo.tests
 
 from mkt.access.acl import action_allowed_user
