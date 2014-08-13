@@ -1423,6 +1423,8 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         ok_({'bool': {'must': [{'term': {'id': feed_item.app_id}},
                                {'term': {'item_type': 'app'}}]}}
             in sq['query']['filtered']['filter']['bool']['should'])
+        eq_(sq['from'], 0)
+        eq_(sq['size'], 1)
 
 
 class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):

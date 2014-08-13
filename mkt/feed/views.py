@@ -7,7 +7,7 @@ from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search
 from PIL import Image
-from rest_framework import generics, response, serializers, status, viewsets
+from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
@@ -22,9 +22,7 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
 from mkt.developers.tasks import pngcrush_image
-from mkt.feed.indexers import (FeedAppIndexer, FeedBrandIndexer,
-                               FeedCollectionIndexer, FeedItemIndexer,
-                               FeedShelfIndexer)
+from mkt.feed.indexers import FeedItemIndexer
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
@@ -514,7 +512,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
                 must=[es_filter.Term(id=feed_item[item_type]),
                       es_filter.Term(item_type=item_type)]))
 
-        return sq.filter(es_filter.Bool(should=filters))
+        return sq.filter(es_filter.Bool(should=filters))[0:len(feed_items)]
 
     def _get(self, request, *args, **kwargs):
         es = FeedItemIndexer.get_es()
@@ -539,7 +537,8 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             # No RoW feed items, either. Let's 404.
             if not world_feed_items:
                 world_meta = mkt.api.paginator.CustomPaginationSerializer(
-                    world_feed_items, context={'request': request}).data['meta']
+                    world_feed_items,
+                    context={'request': request}).data['meta']
                 return response.Response({'meta': world_meta, 'objects': []},
                                          status=status.HTTP_404_NOT_FOUND)
 
@@ -550,7 +549,6 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         # Build the meta object.
         meta = mkt.api.paginator.CustomPaginationSerializer(
             feed_items, context={'request': request}).data['meta']
-
 
         # Set up serializer context.
         feed_element_map = {
