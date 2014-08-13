@@ -260,6 +260,34 @@ class TestAdditionalReview(amo.tests.TestCase):
         self.tarako_failed.assert_called_with(self.review)
 
 
+class TestAdditionalReviewManager(amo.tests.TestCase):
+
+    def setUp(self):
+        self.unreviewed = AdditionalReview.objects.create(
+            app=Webapp.objects.create(), queue='queue-one')
+        self.unreviewed_too = AdditionalReview.objects.create(
+            app=Webapp.objects.create(), queue='queue-one')
+        self.passed = AdditionalReview.objects.create(
+            app=Webapp.objects.create(), queue='queue-one', passed=True)
+        self.other_queue = AdditionalReview.objects.create(
+            app=Webapp.objects.create(), queue='queue-two')
+
+    def test_unreviewed_none_approved(self):
+        eq_([], list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+    def test_unreviewed_and_approved_all_approved(self):
+        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=amo.STATUS_APPROVED)
+        eq_([self.unreviewed, self.unreviewed_too],
+            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+    def test_unreviewed_and_approved_one_approved(self):
+        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
+        eq_([self.unreviewed],
+            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+
 class TestTarakoFunctions(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 

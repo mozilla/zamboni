@@ -19,8 +19,9 @@
 
   <section id="queue-island" class="island search-toggle">
     {% if addons %}
-        {{ additional_review_table(
-            approve_text=_("Pass"), reject_text=_("Fail")) }}
+        {{ additional_review_table(approve_text=_("Pass"),
+                                   reject_text=_("Fail"),
+                                   can_sort_by_name=False) }}
     {% else %}
       {{ no_results() }}
     {% endif %}
