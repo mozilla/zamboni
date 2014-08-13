@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-13 15:02-0400\n"
+"PO-Revision-Date: 2014-08-13 15:09-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -525,7 +525,7 @@ msgstr "アプリの却下中にエラーが発生しました: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr "合格となったアプリ: {app}"
+msgstr "合格したアプリ: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
