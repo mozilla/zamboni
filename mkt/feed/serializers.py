@@ -274,7 +274,7 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
         return app_field.to_native(obj._app_ids)
 
     def get_app_count(self, obj):
-        return len(obj.apps())
+        return len(obj._app_ids)
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
