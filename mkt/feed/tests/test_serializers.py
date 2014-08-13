@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from rest_framework.serializers import ValidationError
 
 import amo
@@ -9,7 +9,8 @@ import amo.tests
 
 import mkt.feed.constants as feed
 from mkt.feed import serializers
-from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
+from mkt.feed.constants import (COLLECTION_LISTING, COLLECTION_PROMO,
+                                HOME_NUM_APPS_PROMO_COLL)
 from mkt.feed.models import FeedShelf
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.regions import RESTOFWORLD
@@ -160,7 +161,7 @@ class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
 class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
 
     def setUp(self):
-        self.apps = [amo.tests.app_factory() for i in range(3)]
+        self.apps = [amo.tests.app_factory() for i in range(4)]
         self.app_ids = [app.id for app in self.apps]
 
         self.collection = self.feed_collection_factory(
@@ -216,10 +217,13 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
             context={'app_map': self.app_map,
                      'request': amo.tests.req_factory_factory('')}
         ).data
-        assert 'author' in data['apps'][0]
-        assert data['apps'][0]['name']
-        assert data['apps'][0]['ratings']
-        assert data['apps'][0]['icons']
+        ok_('author' in data['apps'][0])
+        ok_(data['apps'][0]['name'])
+        ok_(data['apps'][0]['ratings'])
+        ok_(data['apps'][0]['icons'])
+        eq_(data['app_count'], len(self.app_map))
+        eq_(len(data['apps']), HOME_NUM_APPS_PROMO_COLL)
+
 
     def test_home_serializer_promo_coll(self):
         """

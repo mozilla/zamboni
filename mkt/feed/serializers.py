@@ -250,6 +250,10 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
 class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
     """Stripped down FeedCollectionESSerializer targeted for the homepage."""
     apps = serializers.SerializerMethodField('get_apps')
+    app_count = serializers.SerializerMethodField('get_app_count')
+
+    class Meta(FeedCollectionESSerializer.Meta):
+        fields = FeedCollectionESSerializer.Meta.fields + ('app_count',)
 
     def get_apps(self, obj):
         if obj.type == feed.COLLECTION_PROMO:
@@ -268,6 +272,9 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
 
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)
+
+    def get_app_count(self, obj):
+        return len(obj.apps())
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
