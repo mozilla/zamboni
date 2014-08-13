@@ -260,6 +260,10 @@ class TestTarakoFunctions(amo.tests.TestCase):
         self.review = AdditionalReview.objects.create(
             app=self.app, queue=QUEUE_TARAKO)
         self.tag, _ = Tag.objects.get_or_create(tag_text='tarako')
+        index_patcher = mock.patch(
+            'mkt.reviewers.models.WebappIndexer.index_ids')
+        self.index = index_patcher.start()
+        self.addCleanup(index_patcher.stop)
 
     def tag_exists(self):
         return (self.tag.addons.filter(addon_tags__addon_id=self.app.id)
@@ -270,8 +274,18 @@ class TestTarakoFunctions(amo.tests.TestCase):
         tarako_passed(self.review)
         ok_(self.tag_exists(), 'expected the tarako tag')
 
+    def test_tarako_passed_reindexes_the_app(self):
+        ok_(not self.index.called)
+        tarako_passed(self.review)
+        self.index.assert_called_with([self.app.pk])
+
     def test_tarako_failed_removed_tarako_tag(self):
         self.tag.save_tag(self.app)
         ok_(self.tag_exists(), 'expected the tarako tag')
         tarako_failed(self.review)
         ok_(not self.tag_exists(), 'expected no tarako tag')
+
+    def test_tarako_failed_reindexes_the_app(self):
+        ok_(not self.index.called)
+        tarako_failed(self.review)
+        self.index.assert_called_with([self.app.pk])
