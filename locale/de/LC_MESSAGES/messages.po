@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-16 18:15+0000\n"
+"PO-Revision-Date: 2014-08-13 17:17+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405534526.0\n"
+"X-POOTLE-MTIME: 1407950253.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2024,47 +2024,47 @@ msgstr "Entwicklerkommentar"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Gerät(e) durch Überprüfer geändert"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Anforderung(en) durch Überprüfer geändert"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Erneute Überprüfung wegen Manifest-Änderung"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Erneute Überprüfung wegen Manifest-URL-Änderung"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Erneute Überprüfung wegen Premium-Typ-Upgrade"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Erneute Überprüfung wegen hinzugefügten Geräten"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Erneute Überprüfung wegen geänderten Anforderungen"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Erneute Überprüfung wegen Alterseinstufung für Erwachsene"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Weitergabe an höhere Ebene wegen VIP-App"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Weitergabe an höhere Ebene wegen App zur Vorabveröffentlichung"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "Prioritätsüberprüfung angefordert"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2782,11 +2782,11 @@ msgstr "Bis"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "Website"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "Kommandozeile"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3226,7 +3226,7 @@ msgstr "Kein Zahlungskonto für diese App."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace-API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3242,10 +3242,18 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p>Es gibt zwei Hauptanwendungszwecke für die Marketplace-API. Von einer "
+"anderen Website mittels traditioneller OAuth-Ablauf oder von einem "
+"Kommandozeilenwerkzeug. Der Unterschied wird in der <a href=\"https"
+"://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace-"
+"Dokumentation</a> diskutiert. Alle Tests sollten auf dem <a href=\"https"
+"://marketplace-dev.allizom.org\">Entwicklerserver</a> stattfinden, und nicht "
+"auf dem Produktionsserver.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Client-Typ"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3261,7 +3269,7 @@ msgstr "Erstellen"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth-Schlüssel"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3283,11 +3291,13 @@ msgstr "Sie haben derzeit keinen API-Schlüssel."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth-Beispiel"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Beispiel mit einer Python-Bibliothek für die Kommandozeile auf Mac OS X "
+"mit Ihren OAuth-Zugangsdaten:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3317,7 +3327,7 @@ msgstr "Nachricht des Tages"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Nachricht des Tages aktualisieren"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5533,15 +5543,15 @@ msgstr "Mozilla Web-Apps (Brasilianisches Portugiesisch)"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "Ungültige URL %(url)s"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Fehler beim Herunterladen der Grafik von %(url)s"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Grafik von %(url)s konnte nicht geparst werden"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6363,7 +6373,7 @@ msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6496,19 +6506,19 @@ msgstr "<i>Anonym</i> am %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Weitere Warteschlangen"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} Warteschlange für Überprüfungen"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "Genehmigt"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Durchgefallen"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."

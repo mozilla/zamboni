@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-06-30 18:37+0000\n"
+"PO-Revision-Date: 2014-08-13 17:05+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404153461.0\n"
+"X-POOTLE-MTIME: 1407949538.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -533,23 +533,25 @@ msgstr "Fehler beim Ablehnen der App: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Genehmigte App: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Durchgefallene App: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Fehler der genehmigten App: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Fehler der durchgefallenen App: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Es tut uns Leid! Beim Abrufen der Prüfungschronik ist ein Fehler "
+"aufgetreten. Bitte versuchen Sie, sich erneut anzumelden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
