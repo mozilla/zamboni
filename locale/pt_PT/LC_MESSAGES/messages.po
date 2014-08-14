@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-29 22:46+0000\n"
+"PO-Revision-Date: 2014-08-14 04:54+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1406673963.0\n"
+"X-POOTLE-MTIME: 1407992062.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2027,47 +2027,47 @@ msgstr "Comentário do programador"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Dispositivo(s) alterado(s) pelo revisor"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Requisito(s) alterado(s) pelo revisor"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Nova revisão devido a Alteração do Manifesto"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Nova revisão devido a Alteração da URL do Manifesto"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Nova revisão devido a Atualização do Tipo de Premium"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Nova revisão devido à Adição de Dispositivos"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Nova revisão devido a Alteração dos Requisitos"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Nova revisão devido a Classificaçao de Conteúdo para Adulto"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Escalado devido a Aplicação VIP"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Escalado devido a Pré-lançamento da Aplicação"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "Revisão prioritária solicitada"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2787,11 +2787,11 @@ msgstr "Para"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "Site Web"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "Linha de comandos"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3236,7 +3236,7 @@ msgstr "Nenhuma conta de pagamento para esta aplicação."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "API do Marketplace"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3252,10 +3252,18 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> Existem dois tipos de utilização principal da API do Marketplace. A "
+"partir de outro site web utilizando um fluxo OAuth tradicional ou de uma "
+"linha de comandos. A diferença é discutida na <a href=\"https://firefox-"
+"marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">documentação "
+"do Marketplace</a>. Quaisquer testes devem ser feitos no <a href=\"https"
+"://marketplace-dev.allizom.org\">servidor de desenvolvimento</a> e não no "
+"servidor de produção. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Tipo de cliente"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3271,7 +3279,7 @@ msgstr "Criar"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Chaves OAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3293,11 +3301,13 @@ msgstr "Atualmente você não possui uma chave da API."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Exemplo OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemplo com recurso a uma biblioteca Python para a linha de comandos num "
+"Mac OS X utilizando as suas credenciais OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3327,7 +3337,7 @@ msgstr "Mensagem do dia"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Atualizar Mensagem do Dia"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5549,15 +5559,15 @@ msgstr "Aplicações Web da Mozilla (em Português Brasileiro)"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "URL %(url)s inválida"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Erro ao transferir a imagem de %(url)s"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Não foi possível processar a imagem de %(url)s"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6382,7 +6392,7 @@ msgstr "China ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6515,19 +6525,19 @@ msgstr "<i>anônimo</i> em %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Filas adicionais"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "Fila de revisão {queue}"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "Validada"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Inválida"
 
 # 88%
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
