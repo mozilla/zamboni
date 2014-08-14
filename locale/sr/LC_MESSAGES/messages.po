@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-14 08:05+0000\n"
+"PO-Revision-Date: 2014-08-14 12:32+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408003519.0\n"
+"X-POOTLE-MTIME: 1408019559.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2036,27 +2036,27 @@ msgstr "Услов(и) промењен/и од стране рецезента"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Поновни преглед због промене манифеста"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Поновни преглед због промене URL адресе манифеста"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Поновни преглед због премијум надоградње"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Поновни преглед због додавања уређаја"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Поновни преглед због промене захтева"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Поновни преглед због оцена садржаја за одрасле"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
@@ -4110,6 +4110,8 @@ msgstr "Подразумевани локал"
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
 msgstr ""
+"Информације о Вашој апликацији се приказују у овом локалитету, осим ако их "
+"не замените са локално-специфичним преводом."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
@@ -4266,6 +4268,8 @@ msgstr "32x32 пиксела"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:56
 msgid "Used in listings of apps, like search results and featured apps."
 msgstr ""
+"Користи се у листингу апликација, као резултати претраге и истакнутих "
+"апликација."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:66
 msgid "Upload a Custom Icon..."
@@ -4459,7 +4463,7 @@ msgstr "Промени уређаје"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Подеси оцене садржаја</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
@@ -4487,6 +4491,14 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can email %(email)s."
 msgstr ""
+"Можете послати Вашу апликацију на разматрање да буде <strong>унапред "
+"инсталирана и послата са FirefoxOS уређајем</strong> од стране телефонског "
+"оператера. Да би се одлучили за то, морате од нас преузети пробни образац "
+"испод, тестирајте Вашу апликацију, попуните образац и отпремите Ваше "
+"резултате код нас на <a href=\"%(submit_url)s\">Форми за унапред инсталирање "
+"апликација</a>. Ми ће сачувати Ваше резултате на нашем серверу где ће бити "
+"прегледани од стане заинтересованих телефонских оператера. Ако имате додатна "
+"питања, можете нам писати на е-пошту %(email)s."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4494,13 +4506,18 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Преузми рејтинг моје апликације"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
 msgstr ""
+"Да би Ваша апликација била приказана на Marketplace-у, морате прво да "
+"добијете International Age Rating Coalition (IARC) сертификат. Притиском на "
+"дугме испод, отворићете нови прозор у којем можете попунити кратак да-не "
+"упитник о садржају Ваше апликације. Након што завршите, прозор ће се "
+"затворити и Ваша апликација ће онда имати старосни рејтинг."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
@@ -4516,6 +4533,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Извињавамо се, дошло је до грешке приликом обраде оцена садржаја. Можете и "
+"даље покушавати или покушати поново касније."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
@@ -4536,6 +4555,8 @@ msgstr "ID подношења"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
+"Поднешен ID може бити нађен на сертификату који Вам је послат. Има нумеричку "
+"вредност као &quot;14&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Security Code"
@@ -4544,6 +4565,8 @@ msgstr "Сигурносна лозинка"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
+"Сигурносни код може бити нађен на сертификату који Вам је послат. То је "
+"мешавина слова и бројева као &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15
 msgid "Summary"
@@ -4643,6 +4666,9 @@ msgstr "Тест плаћање унутар апликације"
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"The Firefox Marketplace Вам омогућава да Ваша апликација има плаћање у "
+"оквиру ње. <a href=\"{guide}\">Водич за плаћања у оквиру апликације</a> "
+"објашњава како да подесите Вашу апликацију за плаћања са параметрима испод."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4663,17 +4689,22 @@ msgstr "Прикажи тајну"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:52 mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Reset secret"
-msgstr ""
+msgstr "Обнови тајну"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
+msgstr "Сазнајте више о <b>плаћањима у оквиру апликације</b> на MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
+"Следећи/а кључ/тајна ће Вам само омогућити да симулирате плаћања у оквиру "
+"апликације док развијате Вашу апликацију. Да би сте створили кључеве за "
+"реална плаћања у оквиру апликације, морате <a href=\"%"
+"(submit)s\">пријавити</a> Вашу апликацију, подесити акредативе плаћања и "
+"створити нови кључ специфичан за ту апликацију."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -4682,10 +4713,15 @@ msgstr "Генериши кључеве"
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Ваша апликација мора бити упакована и наведите <a href=\"%"
+"(origin)s\">порекло</a> да би сте користили овај систем плаћања у оквиру "
+"апликације."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Ваша апликација мора дефинисати <a href=\"%(origin)s\">порекло</a> у "
+"манифесту, тако да се приходи могу правилно верификовати."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:45
 msgid "Icon"
@@ -4693,7 +4729,7 @@ msgstr "Иконица"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "Price Point"
-msgstr ""
+msgstr "Цена"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Product ID"
@@ -4717,11 +4753,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:88
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "Мод за плаћање захтева да Ваша апликација подржава само:"
 
 #: mkt/developers/templates/developers/payments/premium.html:89 mkt/developers/templates/developers/payments/premium.html:91 mkt/submit/templates/submit/manifest.html:44
 msgid "Paid / In-app"
-msgstr ""
+msgstr "Плаћено / у оквиру апликације"
 
 #: mkt/developers/templates/developers/payments/premium.html:100
 msgid "Change to Paid"
@@ -4734,6 +4770,9 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:109
 msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
+"Сазнајте о <a href=\"%(payments_url)s\" target=\"_blank\">различитим начинима "
+"плаћања</a>.<br /> Сазнајте о <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">потврђивању прихода</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:120 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
@@ -4742,6 +4781,8 @@ msgstr "Налози за плаћање"
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
 msgstr ""
+"Ваша апликација је тренутно непотпуна. Изаберите налог за плаћање и цену да "
+"би сте је вратили."
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -4749,7 +4790,7 @@ msgstr "Државе"
 
 #: mkt/developers/templates/developers/payments/premium.html:160
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Додајте, управљајте или погледајте трансакције за Ваш рачун за плаћање"
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "Prices and Countries"
@@ -4758,6 +4799,8 @@ msgstr "Цене и државе"
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr ""
+"Да ли Ваша апликација користи Mozilla-ину платформу за плаћање у оквиру "
+"апликације?"
 
 #: mkt/developers/templates/developers/payments/premium.html:196
 msgid "A server error occurred. Please try again later."
@@ -4765,7 +4808,7 @@ msgstr "Десила се грешка на серверу. Молимо пок�
 
 #: mkt/developers/templates/developers/payments/premium.html:202
 msgid "Not applicable"
-msgstr ""
+msgstr "Није применљиво"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
