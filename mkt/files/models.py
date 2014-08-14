@@ -297,6 +297,9 @@ class FileUpload(amo.models.ModelBase):
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         hash = hashlib.sha256()
+        # The buffer might have been read before, so rewind back at the start.
+        if hasattr(chunks, 'seek'):
+            chunks.seek(0)
         with storage.open(loc, 'wb') as fd:
             for chunk in chunks:
                 hash.update(chunk)
@@ -307,8 +310,8 @@ class FileUpload(amo.models.ModelBase):
         self.save()
 
     @classmethod
-    def from_post(cls, chunks, filename, size):
-        fu = FileUpload()
+    def from_post(cls, chunks, filename, size, **kwargs):
+        fu = FileUpload(**kwargs)
         fu.add_file(chunks, filename, size)
         return fu
 
