@@ -298,7 +298,8 @@ class FileUpload(amo.models.ModelBase):
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         hash = hashlib.sha256()
         # The buffer might have been read before, so rewind back at the start.
-        chunks.seek(0)
+        if hasattr(chunks, 'seek'):
+            chunks.seek(0)
         with storage.open(loc, 'wb') as fd:
             for chunk in chunks:
                 hash.update(chunk)
