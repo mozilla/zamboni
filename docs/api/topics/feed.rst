@@ -316,7 +316,9 @@ Feed apps are represented thusly:
 ``app``
     *object* - the full representation of an :ref:`app <app>`.
 ``background_color``
-    *string* - background color in 6-digit hex format prepending by a hash
+    *string* - background color in 6-digit hex format prepended by a hash. Must
+    be one of ``#CE001C``, ``#F78813``, ``#00953F``, ``#0099D0``, ``#1E1E9C``,
+    ``#5A197E``, ``#A20D55``.
 ``description``
     *string|null* - a :ref:`translated <overview-translations>` description of
     the app being featured.
@@ -454,7 +456,9 @@ Update
 
     :param app: the ID of a :ref:`feed app <feed-apps>`.
     :type app: int|null
-    :param background_color: color in six-digit hex (with hash prefix)
+    :param background_color: background color in 6-digit hex format prepended
+        by a hash. Must be one of ``#CE001C``, ``#F78813``, ``#00953F``,
+        ``#0099D0``, ``#1E1E9C``, ``#5A197E``, ``#A20D55``.
     :type background_color: string
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
@@ -776,9 +780,9 @@ Feed collections are represented thusly:
 ``apps``
     *array* - a list of serializations of the member :ref:`apps <app>`.
 ``background_color``
-    *string* - a hex color used in display of the collection. Currently must be
-    one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
-    or ``#2C393B``.
+    *string* - background color in 6-digit hex format prepended by a hash. Must
+    be one of ``#CE001C``, ``#F78813``, ``#00953F``, ``#0099D0``, ``#1E1E9C``,
+    ``#5A197E``, ``#A20D55``.
 ``description``
     *object|null* a :ref:`translated <overview-translations>` description of
     the collection.
@@ -1028,7 +1032,7 @@ Operator shelves are represented thusly:
                 "id": 2
             }
         ],
-        "background_color": "#A90000",
+        "background_color": "#B90000",
         "background_image": "http://somecdn.com/someimage.png",
         "carrier": "telefonica",
         "description": {

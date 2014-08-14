@@ -34,7 +34,7 @@ from mkt.webapps.tasks import index_webapps
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
                         COLLECTION_TYPE_CHOICES,
-                        FEEDAPP_TYPE_CHOICES, FEED_COLOR_CHOICES)
+                        FEEDAPP_TYPE_CHOICES)
 
 
 class BaseFeedCollection(amo.models.ModelBase):
@@ -234,8 +234,7 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
     """
     _apps = models.ManyToManyField(Webapp, through=FeedCollectionMembership,
                                    related_name='app_feed_collections')
-    background_color = models.CharField(choices=FEED_COLOR_CHOICES,
-                                        max_length=7, null=True, blank=True)
+    background_color = models.CharField(max_length=7, null=True, blank=True)
     name = PurifiedField()
     description = PurifiedField(blank=True, null=True)
     type = models.CharField(choices=COLLECTION_TYPE_CHOICES, max_length=30,

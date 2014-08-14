@@ -197,11 +197,14 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         url_basename = 'feedcollections'
 
     def validate_background_color(self, attrs, source):
-        background_color = attrs.get(source, None)
-        if (attrs.get('type') == constants.COLLECTION_PROMO and not
-            background_color):
+        color = attrs.get(source, None)
+        if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
             raise serializers.ValidationError(
                 '`background_color` is required for `promo` collections.'
+            )
+        if color and color not in dict(constants.FEED_COLOR_CHOICES):
+            raise serializers.ValidationError(
+                '`Not a valid value for `background_color`.'
             )
         return attrs
 
