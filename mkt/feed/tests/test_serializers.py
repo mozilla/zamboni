@@ -129,7 +129,7 @@ class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
     def setUp(self):
         super(TestFeedCollectionSerializer, self).setUp()
         self.data = {
-            'background_color': '#FF4E00',
+            'background_color': feed.FEED_COLOR_CHOICES[0][0],
             'name': {'en-US': 'Potato'},
             'description': {'en-US': 'Potato, tomato'},
             'type': COLLECTION_PROMO
@@ -156,6 +156,11 @@ class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
         self.data['type'] = COLLECTION_LISTING
         del self.data['background_color']
         self.validate()
+
+    def test_invalid_bg_color(self):
+        self.data['background_color'] = '#FFFFFF'
+        with self.assertRaises(ValidationError):
+            self.validate()
 
 
 class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):

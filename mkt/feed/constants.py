@@ -83,12 +83,13 @@ BRAND_LAYOUTS = (
 BRAND_LAYOUT_CHOICES = [(c, c) for c in BRAND_LAYOUTS]
 
 FEED_COLOR_CHOICES = (
-    ('#B90000', 'Raring Red'),
-    ('#FF4E00', 'Oneric Orange'),
-    ('#CD6723', 'Breezy Brown'),
-    ('#00AACC', 'Blistering Blue'),
-    ('#5F9B0A', 'Gusty Green'),
-    ('#2C393B', 'Intrepid Indigo'),
+    ('#CE001C', 'Ruby',),
+    ('#F78813', 'Amber',),
+    ('#00953F', 'Emerald',),
+    ('#0099D0', 'Topaz',),
+    ('#1E1E9C', 'Sapphire',),
+    ('#5A197E', 'Amethyst',),
+    ('#A20D55', 'Garnet',)
 )
 
 COLLECTION_PROMO = 'promo'
