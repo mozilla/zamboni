@@ -359,9 +359,10 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         return res, data
 
     def test_create_with_background_color(self):
-        self.feedapp_data.update(background_color='#00AACC')
+        color = feed.FEED_COLOR_CHOICES[0][0]
+        self.feedapp_data.update(background_color=color)
         res, data = self.test_create_with_permission()
-        eq_(data['background_color'], '#00AACC')
+        eq_(data['background_color'], color)
 
     def test_create_with_preview(self):
         preview = Preview.objects.create(addon=self.app, position=0)
@@ -783,7 +784,7 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
     obj_data = {
         'slug': 'potato',
         'type': 'promo',
-        'background_color': '#00AACC',
+        'background_color': feed.FEED_COLOR_CHOICES[0][0],
         'description': {'en-US': 'Potato french fries'},
         'name': {'en-US': 'Deep Fried'}
     }
@@ -939,7 +940,7 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
 
 class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
     obj_data = {
-        'background_color': '#00AACC',
+        'background_color': feed.FEED_COLOR_CHOICES[0][0],
         'carrier': 'telefonica',
         'description': {'en-US': 'Potato french fries'},
         'region': 'br',
