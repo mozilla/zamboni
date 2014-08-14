@@ -113,6 +113,9 @@ def postback(request):
 
     trans_id = data['response']['transactionID']
 
+    if contrib.is_inapp_simulation():
+        return simulated_postback(contrib, trans_id)
+
     if contrib.transaction_id is not None:
         if contrib.transaction_id == trans_id:
             app_pay_cef.log(request, 'Repeat postback', 'repeat_postback',
@@ -185,6 +188,20 @@ def postback(request):
 
     tasks.send_purchase_receipt.delay(contrib.pk)
 
+    return http.HttpResponse(trans_id)
+
+
+def simulated_postback(contrib, trans_id):
+    simulate = contrib.inapp_product.simulate_data()
+    log.info('Got simulated payment postback; contrib={c}; '
+             'trans={t}; simulate={s}'.format(c=contrib, t=trans_id,
+                                              s=simulate))
+    if simulate['result'] != 'postback':
+        raise NotImplementedError(
+            'Not sure how exactly to update contibutions for '
+            'non-successful simulations')
+
+    contrib.update(transaction_id=trans_id, type=amo.CONTRIB_PURCHASE)
     return http.HttpResponse(trans_id)
 
 

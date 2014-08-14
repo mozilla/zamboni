@@ -176,7 +176,7 @@ class SimulatedInAppProduct(InAppProduct):
         return 'This is a stub product for testing only'
 
     def simulation(self):
-        return json.loads(self.inapp.simulate)
+        return self.inapp.simulate_data()
 
     def product_data(self, contribution):
         return {

@@ -60,8 +60,9 @@ class Contribution(amo.models.ModelBase):
         db_table = 'stats_contributions'
 
     def __unicode__(self):
-        return u'App {app}: in-app: {inapp}: {amount}'.format(
-            app=self.addon, amount=self.amount, inapp=self.inapp_product)
+        return (u'<{cls} {pk}; app: {app}; in-app: {inapp}; amount: {amount}>'
+                .format(app=self.addon, amount=self.amount, pk=self.pk,
+                        inapp=self.inapp_product, cls=self.__class__.__name__))
 
     @property
     def date(self):
@@ -85,6 +86,10 @@ class Contribution(amo.models.ModelBase):
         body = template.render(context)
         send_mail(subject, body, settings.MARKETPLACE_EMAIL,
                   [self.user.email], fail_silently=True)
+
+    def is_inapp_simulation(self):
+        """True if this purchase is for a simulated in-app product."""
+        return self.inapp_product and self.inapp_product.simulate
 
     def record_failed_refund(self, e, user):
         self.enqueue_refund(amo.REFUND_FAILED, user,

@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 
-import fudge
 import jwt
 import mock
 from mock import ANY
@@ -16,7 +15,8 @@ from nose.tools import eq_, raises
 
 import amo
 from mkt.api.exceptions import AlreadyPurchased
-from mkt.prices.models import AddonPurchase
+from mkt.inapp.models import InAppProduct
+from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
 from mkt.users.models import UserProfile
 from utils import PurchaseTest
@@ -105,11 +105,10 @@ class TestWebAppPurchase(PurchaseTest):
 
 
 @mock.patch.object(settings, 'SOLITUDE_HOSTS', ['host'])
-@mock.patch('mkt.purchase.webpay.tasks')
-class TestPostback(PurchaseTest):
+class PostbackTest(PurchaseTest):
 
     def setUp(self):
-        super(TestPostback, self).setUp()
+        super(PostbackTest, self).setUp()
         self.client.logout()
         self.contrib = Contribution.objects.create(
             addon_id=self.addon.id,
@@ -136,6 +135,10 @@ class TestPostback(PurchaseTest):
         self.solitude_by_url.get_object_or_404.return_value = {
             'email': self.buyer_email,
         }
+
+        p = mock.patch('mkt.purchase.webpay.tasks')
+        self.tasks = p.start()
+        self.addCleanup(p.stop)
 
     def post(self, req=None):
         if not req:
@@ -174,13 +177,45 @@ class TestPostback(PurchaseTest):
             req = self.jwt_dict(**kw)
         return jwt.encode(req, self.webpay_dev_secret)
 
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_valid(self, decode, tasks):
+
+class TestPostbackWithDecoding(PostbackTest):
+
+    def test_invalid(self):
+        resp = self.post()
+        eq_(resp.status_code, 400)
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        eq_(cn.type, amo.CONTRIB_PENDING)
+
+    def test_empty_notice(self):
+        resp = self.client.post(reverse('webpay.postback'), data={})
+        eq_(resp.status_code, 400)
+
+
+class TestPostback(PostbackTest):
+
+    def setUp(self):
+        super(TestPostback, self).setUp()
+
+        p = mock.patch('lib.crypto.webpay.jwt.decode')
+        self.decode = p.start()
+        self.addCleanup(p.stop)
+
+    def post(self, *args, **kw):
+        fake_decode = kw.pop('fake_decode', False)
+        if fake_decode:
+            jwt_dict = self.jwt_dict()
+            jwt_encoded = self.jwt(req=jwt_dict)
+            self.decode.return_value = jwt_dict
+            kw['req'] = jwt_encoded
+
+        return super(TestPostback, self).post(*args, **kw)
+
+    def test_valid(self):
         jwt_dict = self.jwt_dict()
         jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
+        self.decode.return_value = jwt_dict
         resp = self.post(req=jwt_encoded)
-        decode.assert_called_with(jwt_encoded, ANY)
+        self.decode.assert_called_with(jwt_encoded, ANY)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<webpay-trans-id>')
         cn = Contribution.objects.get(pk=self.contrib.pk)
@@ -188,43 +223,61 @@ class TestPostback(PurchaseTest):
         eq_(cn.transaction_id, '<webpay-trans-id>')
         eq_(cn.amount, Decimal('10.99'))
         eq_(cn.currency, 'BRL')
-        tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
+        self.tasks.send_purchase_receipt.delay.assert_called_with(cn.pk)
 
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_user_created_after_purchase(self, decode, tasks):
+    def test_simulation(self):
+        inapp = InAppProduct.objects.create(
+            name='Test Product',
+            price=Price.objects.all()[0],
+            simulate=json.dumps({'result': 'postback'}))
+        self.contrib.update(inapp_product=inapp, addon=None,
+                            user=None)
+
+        # Because Webpay doesn't make a real Solitude transaction for
+        # simulations, we'll get a 404 when looking it up by ID.
+        get = self.solitude.api.generic.transaction.get_object_or_404
+        get.side_effect = ObjectDoesNotExist
+
+        response_trans_id = '<simulate-uuid>'
         jwt_dict = self.jwt_dict()
+        jwt_dict['response']['transactionID'] = response_trans_id
         jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
+        self.decode.return_value = jwt_dict
+        resp = self.post(req=jwt_encoded)
+
+        eq_(resp.status_code, 200)
+        eq_(resp.content, response_trans_id)
+
+        cn = Contribution.objects.get(pk=self.contrib.pk)
+        eq_(cn.type, amo.CONTRIB_PURCHASE)
+
+        assert not self.tasks.send_purchase_receipt.delay.called
+
+    def test_user_created_after_purchase(self):
         self.contrib.user = None
         self.contrib.save()
         eq_(UserProfile.objects.filter(email=self.buyer_email).count(), 0)
-        resp = self.post(req=jwt_encoded)
+        resp = self.post(fake_decode=True)
         eq_(resp.status_code, 200)
         cn = Contribution.objects.get(pk=self.contrib.pk)
         user = UserProfile.objects.get(email=self.buyer_email)
         eq_(cn.user, user)
         eq_(cn.user.source, amo.LOGIN_SOURCE_WEBPAY)
 
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_valid_duplicate(self, decode, tasks):
-        jwt_dict = self.jwt_dict()
-        jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
-
+    def test_valid_duplicate(self):
         self.contrib.update(type=amo.CONTRIB_PURCHASE,
                             transaction_id='<webpay-trans-id>')
 
-        resp = self.post(req=jwt_encoded)
+        resp = self.post(fake_decode=True)
         eq_(resp.status_code, 200)
         eq_(resp.content, '<webpay-trans-id>')
-        assert not tasks.send_purchase_receipt.delay.called
+        assert not self.tasks.send_purchase_receipt.delay.called
 
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_invalid_duplicate(self, decode, tasks):
+    def test_invalid_duplicate(self):
         jwt_dict = self.jwt_dict()
         jwt_dict['response']['transactionID'] = '<some-other-trans-id>'
         jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
+        self.decode.return_value = jwt_dict
 
         self.contrib.update(type=amo.CONTRIB_PURCHASE,
                             transaction_id='<webpay-trans-id>')
@@ -232,50 +285,31 @@ class TestPostback(PurchaseTest):
         with self.assertRaises(LookupError):
             self.post(req=jwt_encoded)
 
-        assert not tasks.send_purchase_receipt.delay.called
-
-    def test_invalid(self, tasks):
-        resp = self.post()
-        eq_(resp.status_code, 400)
-        cn = Contribution.objects.get(pk=self.contrib.pk)
-        eq_(cn.type, amo.CONTRIB_PENDING)
-
-    def test_empty_notice(self, tasks):
-        resp = self.client.post(reverse('webpay.postback'), data={})
-        eq_(resp.status_code, 400)
+        assert not self.tasks.send_purchase_receipt.delay.called
 
     @raises(RequestExpired)
-    @fudge.patch('lib.crypto.webpay.jwt.decode')
-    def test_invalid_claim(self, tasks, decode):
+    def test_invalid_claim(self):
         iat = calendar.timegm(time.gmtime()) - 3601  # too old
-        decode.expects_call().returns(self.jwt_dict(issued_at=iat))
+        self.decode.return_value = self.jwt_dict(issued_at=iat)
         self.post()
 
     @raises(LookupError)
-    @fudge.patch('mkt.purchase.webpay.parse_from_webpay')
-    def test_unknown_contrib(self, tasks, parse_from_webpay):
+    @mock.patch('mkt.purchase.webpay.parse_from_webpay')
+    def test_unknown_contrib(self, parse_from_webpay):
         example = self.jwt_dict()
         example['request']['productData'] = 'contrib_uuid=<bogus>'
 
-        parse_from_webpay.expects_call().returns(example)
+        parse_from_webpay.return_value = example
         self.post()
 
     @raises(LookupError)
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_no_transaction_found_fails(self, decode, tasks):
+    def test_no_transaction_found_fails(self):
         (self.solitude.api.generic.transaction
                                   .get_object_or_404
                                   .side_effect) = ObjectDoesNotExist
-        jwt_dict = self.jwt_dict()
-        jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
-        self.post(req=jwt_encoded)
+        self.post(fake_decode=True)
 
     @raises(LookupError)
-    @mock.patch('lib.crypto.webpay.jwt.decode')
-    def test_no_buyer_found_fails(self, decode, tasks):
+    def test_no_buyer_found_fails(self):
         self.solitude_by_url.get_object_or_404.side_effect = ObjectDoesNotExist
-        jwt_dict = self.jwt_dict()
-        jwt_encoded = self.jwt(req=jwt_dict)
-        decode.return_value = jwt_dict
-        self.post(req=jwt_encoded)
+        self.post(fake_decode=True)
