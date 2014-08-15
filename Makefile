@@ -67,13 +67,14 @@ tagz.py:
 
 release: tagz.py
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
-	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/rocketfuel,mozilla/zamboni -c create -t $(RELEASE_DATE)
+	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/rocketfuel,mozilla/discoplace,mozilla/zamboni -c create -t $(RELEASE_DATE)
 	$(PYTHON) scripts/dreadnot-deploy.py			\
 	-c dreadnot-stage.ini -e stage -r $(RELEASE_DATE)	\
 		payments.allizom.org-solitude			\
 		payments-proxy.allizom.org-solitude		\
 		marketplace.allizom.org-webpay			\
 		monolith.allizom.org-aggregator			\
+		marketplace.allizom.org-discoplace		\
 		marketplace.allizom.org-rocketfuel		\
 		marketplace.allizom.org-marketplace-stats	\
 		marketplace.allizom.org-commbadge		\
