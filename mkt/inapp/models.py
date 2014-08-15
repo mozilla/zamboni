@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 
 from amo.models import ModelBase
@@ -30,6 +32,11 @@ class InAppProduct(ModelBase):
     @property
     def icon_url(self):
         return self.logo_url or (self.webapp and self.webapp.get_icon_url(64))
+
+    def simulate_data(self):
+        if not self.simulate:
+            return None
+        return json.loads(self.simulate)
 
 
 models.signals.pre_save.connect(save_signal, sender=InAppProduct,

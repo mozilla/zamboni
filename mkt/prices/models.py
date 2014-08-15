@@ -327,9 +327,16 @@ def create_addon_purchase(sender, instance, **kw):
         # Whitelist the types we care about. Forget about the rest.
         return
 
-    log.debug('Processing addon purchase type: %s, addon %s, user %s'
-              % (unicode(amo.CONTRIB_TYPES[instance.type]),
-                 instance.addon.pk, instance.user.pk))
+    log.info('Processing addon purchase type: {t}, addon {a}, user {u}'
+             .format(t=unicode(amo.CONTRIB_TYPES[instance.type]),
+                     a=instance.addon and instance.addon.pk,
+                     u=instance.user and instance.user.pk))
+
+    if instance.is_inapp_simulation():
+        log.info('Simulated in-app product {i} for contribution {c}: '
+                 'not adding a purchase record'.format(i=instance.inapp_product,
+                                                       c=instance))
+        return
 
     if instance.type == amo.CONTRIB_PURCHASE:
         log.debug('Creating addon purchase: addon %s, user %s'

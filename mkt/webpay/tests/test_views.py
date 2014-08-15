@@ -157,17 +157,20 @@ class TestStatus(BaseAPI):
         self.price = Price.objects.get(pk=1)
         self.user = UserProfile.objects.get(pk=2519)
 
-    def get_inapp_product(self):
-        return InAppProduct.objects.create(
-            logo_url='logo.png',
-            name='Magical Unicorn',
-            price=self.price,
-            webapp=self.webapp
-        )
+    def get_inapp_product(self, **kw):
+        params = dict(logo_url='logo.png',
+                      name='Magical Unicorn',
+                      price=self.price,
+                      webapp=self.webapp)
+        params.update(kw)
+        return InAppProduct.objects.create(**params)
 
-    def get_contribution(self, user=None, inapp=None):
+    def get_contribution(self, user=None, inapp=None, **kw):
+        if 'addon' not in kw:
+            kw['addon'] = self.webapp
+        addon = kw.pop('addon')
         return Contribution.objects.create(
-            addon=self.webapp,
+            addon=addon,
             inapp_product=inapp,
             type=CONTRIB_PURCHASE,
             user=user or self.user,
@@ -209,6 +212,23 @@ class TestStatus(BaseAPI):
         eq_(data['status'], 'complete')
         receipt = crack(data['receipt'])[0]
         self.validate_inapp_receipt(receipt, contribution)
+
+    def test_completed_inapp_simulation(self):
+        inapp = self.get_inapp_product(
+            webapp=None, simulate=json.dumps({'result': 'postback'}))
+        contribution = self.get_contribution(inapp=inapp, addon=None)
+
+        data = self.get_status(self.get_contribution_url(contribution))
+        eq_(data['status'], 'complete')
+
+        receipt = crack(data['receipt'])[0]
+        eq_(receipt['typ'], 'test-receipt')
+        eq_(receipt['product']['url'], settings.SITE_URL)
+
+        storedata = parse_qs(receipt['product']['storedata'])
+        eq_(storedata['id'][0], '0')
+        eq_(storedata['contrib'][0], str(contribution.pk))
+        eq_(storedata['inapp_id'][0], str(contribution.inapp_product_id))
 
     def test_no_contribution(self):
         contribution = self.get_contribution()

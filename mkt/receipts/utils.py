@@ -112,6 +112,12 @@ def create_inapp_receipt(contrib):
 
     :params contrib: the Contribution object for the purchase.
     """
+    if contrib.is_inapp_simulation():
+        storedata = {'id': 0, 'contrib': int(contrib.pk),
+                     'inapp_id': int(contrib.inapp_product_id)}
+        return create_test_receipt(settings.SITE_URL, 'ok',
+                                   storedata=storedata)
+
     return create_receipt(contrib.addon, None, 'anonymous-user',
                           flavour='inapp', contrib=contrib)
 
@@ -136,7 +142,9 @@ def reissue_receipt(receipt):
 
 
 @nottest
-def create_test_receipt(root, status):
+def create_test_receipt(root, status, storedata=None):
+    if not storedata:
+        storedata = {'id': 0}
     time_ = calendar.timegm(time.gmtime())
     detail = absolutify(reverse('receipt.test.details'))
     receipt = {
@@ -146,7 +154,7 @@ def create_test_receipt(root, status):
         'iss': settings.SITE_URL,
         'nbf': time_,
         'product': {
-            'storedata': urlencode({'id': 0}),
+            'storedata': urlencode(storedata),
             'url': root,
         },
         'reissue': detail,
