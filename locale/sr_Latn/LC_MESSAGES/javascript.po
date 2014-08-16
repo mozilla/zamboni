@@ -3,20 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-06-02 16:58+0000\n"
-"Last-Translator: Marko <smrzlicm@gmail.com>\n"
+"PO-Revision-Date: 2014-08-14 05:09+0000\n"
+"Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401728318.0\n"
+"X-POOTLE-MTIME: 1407992994.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Tip datoteke koju ste poslali nije prepoznat."
+msgstr "Tip datoteke koju ste postavili nije prepoznat."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
@@ -24,7 +25,7 @@ msgstr "Otkazali ste otpremanje."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr "Slike moraju biti PNG ili JPG."
+msgstr "Slike moraju biti u PNG ili JPG formatu."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
@@ -97,7 +98,7 @@ msgstr "Neočekivana greška na serveru tokom provere."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr "Završena provera {0}"
+msgstr "Provera završena {0}"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
@@ -152,9 +153,9 @@ msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} message(s)
 #: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
-msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
-msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} message(s)."
+msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} porukom."
+msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruke."
+msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruka."
 
 #: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
@@ -170,11 +171,11 @@ msgstr "Unesite adresu e-pošte novog člana tima"
 
 #: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest osvežen"
 
 #: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Ne možemo da osvežimo manifest. Pokušajte ponovo kasnije."
 
 #: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
@@ -194,11 +195,11 @@ msgstr "Izmene na slici se obrađuju"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke"
+msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "ili <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe"
+msgstr "ili <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
@@ -206,7 +207,7 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo Vas probajte malo kasnije."
+msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo održavanja sajta. Molimo probajte malo kasnije."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -222,11 +223,11 @@ msgstr "Prijava putem Persona sistema je neuspešna. Došlo je do greške na ser
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status uspešno promenjen u \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Nemoguće promeniti status u \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -234,7 +235,7 @@ msgstr "Prikaži sve rezultate"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr "Preko {0} rezultata je nađeno, tačnije definišite Vašu pretragu."
+msgstr "Preko {0} rezultata je nađeno, pokušajte da definišete Vašu pretragu."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -321,9 +322,9 @@ msgstr "Otkriveno: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledećih aplikacija. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
+msgstr[1] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
+msgstr[2] "Brisanjem naloga za plaćanje \"{0}\", ono će biti uklonjeno sa sledeće aplikacije. Aplikacije bez platnog naloga više neće biti dostupne za prodaju."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -372,7 +373,7 @@ msgstr "Svi testovi su uspešno završeni."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr "Ovi testovi nisu izvršeni."
+msgstr "Ovi testovi nisu pokrenuti."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
@@ -388,11 +389,11 @@ msgstr "Testovi kompatibilnosti"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "Aplikacija nije prošla validaciju."
+msgstr "Aplikacija nije prošla proveru."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr "Aplikacija je prošla validaciju."
+msgstr "Aplikacija je prošla proveru."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
@@ -430,7 +431,7 @@ msgstr "Pokreni"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr "{name} je prvi gledao ovu stranicu."
+msgstr "{name} je prvi pregledavao ovu stranicu."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
@@ -542,15 +543,15 @@ msgstr "Greška prilikom odbijanja aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Propuštene aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Neuspele aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Greška pri prolaženju aplikacije: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
@@ -559,6 +560,8 @@ msgstr ""
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Izvinjavamo se! Imali smo grešku pri preuzimanju istorije pregleda. Molimo Vas "
+"pokušajte ponovo da se prijavite.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
