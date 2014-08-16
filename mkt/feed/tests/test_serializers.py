@@ -7,6 +7,7 @@ from rest_framework.serializers import ValidationError
 import amo
 import amo.tests
 
+import mkt
 import mkt.feed.constants as feed
 from mkt.feed import serializers
 from mkt.feed.constants import (COLLECTION_LISTING, COLLECTION_PROMO,
@@ -161,6 +162,16 @@ class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
         self.data['background_color'] = '#FFFFFF'
         with self.assertRaises(ValidationError):
             self.validate()
+
+    def test_with_price(self):
+        app = amo.tests.app_factory()
+        self.make_premium(app)
+        coll = self.feed_collection_factory(app_ids=[app.id])
+        data = serializers.FeedCollectionSerializer(coll, context={
+            'request': amo.tests.req_factory_factory('',
+                                                     REGION=mkt.regions.US)
+        }).data
+        eq_(data['apps'][0]['price'], 1)
 
 
 class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):

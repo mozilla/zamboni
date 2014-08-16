@@ -20,7 +20,7 @@ from mkt.webapps.serializers import AppSerializer
 
 from . import constants
 from .fields import (AppESField, AppESHomeField, AppESHomePromoCollectionField,
-                     FeedCollectionMembershipField, ImageURLField)
+                     FeedCollectionMembershipField)
 from .models import (FeedApp, FeedBrand, FeedCollection,
                      FeedCollectionMembership, FeedItem, FeedShelf)
 
@@ -219,7 +219,7 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         field.initialize(self, 'group')
         field.context = self.context
         for member in memberships:
-            data = AppSerializer(member.app).data
+            data = AppSerializer(member.app, context=self.context).data
             data['group'] = field.field_to_native(member, 'group')
             ret.append(data)
         return ret
