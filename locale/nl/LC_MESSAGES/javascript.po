@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-16 22:22+0000\n"
+"PO-Revision-Date: 2014-08-16 13:26+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -11,8 +11,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1405549336.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1408195599.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -58,7 +58,7 @@ msgstr "Annuleren"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr "Uploaden {0}"
+msgstr "{0} wordt geüpload"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
@@ -316,12 +316,18 @@ msgstr "Gedetecteerd: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende app. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
-msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount verwijderd uit de volgende apps. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgstr[0] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
+"de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet "
+"meer beschikbaar voor verkoop."
+msgstr[1] ""
+"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
+"de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet "
+"meer beschikbaar voor verkoop."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr "Betalingsaccounts {appName}:"
+msgstr "Betalingsaccounts voor {appName}:"
 
 #: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
@@ -381,11 +387,11 @@ msgstr "Compatibiliteitstests"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "Validatie app mislukt."
+msgstr "Validatie van app mislukt."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr "Validatie app gelukt."
+msgstr "Validatie van app gelukt."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
@@ -401,7 +407,7 @@ msgstr[1] "{0} waarschuwingen"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr "De validatietaak is niet afgerond of afgerond met fouten"
+msgstr "De validatietaak is niet voltooid of voltooid met fouten"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
@@ -421,7 +427,7 @@ msgstr "Starten"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr "{name} heeft eerst deze pagina bekeken."
+msgstr "{name} heeft deze pagina eerst bekeken."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
@@ -433,7 +439,7 @@ msgstr "Ontvangst niet gecontroleerd door app."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
-msgstr "{name} bekeek deze add-on eerst."
+msgstr "{name} heeft deze add-on eerst bekeken."
 
 #: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
@@ -457,7 +463,7 @@ msgstr "Selecteer eerst een toepassing"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
-msgstr "Fout bij laden vertaling"
+msgstr "Fout bij laden van vertaling"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -485,7 +491,7 @@ msgstr "Betaling mislukt. Probeer het later nog eens."
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
-msgstr "Verpakte app"
+msgstr "App-pakket"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
@@ -525,31 +531,33 @@ msgstr "Afgewezen app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
-msgstr "Fout bij goedkeuring app: {app}"
+msgstr "Fout bij goedkeuren van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
-msgstr "Fout bij afwijzen app: {app}"
+msgstr "Fout bij afwijzen van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Geslaagde app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Mislukte app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Fout bij slagen van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Fout bij mislukken van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Sorry! Er is een fout opgetreden bij het ophalen van de "
+"beoordelingsgeschiedenis. Probeer u opnieuw aan te melden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
