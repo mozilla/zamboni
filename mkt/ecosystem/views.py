@@ -80,12 +80,6 @@ def installation(request):
                   {'page': 'installation', 'category': 'publish'})
 
 
-def dev_phone(request):
-    """Landing page for the developer phone."""
-    return render(request, 'ecosystem/dev_phone.html',
-                  {'page': 'dev_phone'})
-
-
 def publish_badges(request):
     """Publish - Marketplace badges."""
     return render(request, 'ecosystem/publish_badges.html',
