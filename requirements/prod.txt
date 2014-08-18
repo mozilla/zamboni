@@ -98,7 +98,7 @@ urllib3==1.8.2
 -e git+https://github.com/mozilla/app-validator.git@e4fdcb90b79728bf5e78789f2496d81d6ed20500#egg=app-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
--e git+https://github.com/elasticsearch/elasticsearch-dsl-py.git@6e521f456cec8db597949981abd49ec171f6ba34#egg=elasticsearch-dsl
+-e git+https://github.com/elasticsearch/elasticsearch-dsl-py.git@c6245b53eff6092ef72482e8a8d1dc2819138cf3#egg=elasticsearch-dsl
 
 # Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
