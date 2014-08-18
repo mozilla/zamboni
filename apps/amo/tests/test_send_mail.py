@@ -12,6 +12,7 @@ import mkt.users.notifications
 from amo.models import FakeEmail
 from amo.utils import send_html_mail_jinja, send_mail
 from mkt.users.models import UserNotification, UserProfile
+from mkt.zadmin.models import get_config
 
 
 class TestSendMail(test.TestCase):
@@ -31,27 +32,53 @@ class TestSendMail(test.TestCase):
 
     def test_blacklist(self):
         to = 'nobody@mozilla.org'
+        to2 = 'somebody@mozilla.org'
         settings.EMAIL_BLACKLIST = (to,)
         success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False)
+                            recipient_list=[to, to2], fail_silently=False)
 
         assert success
-        eq_(len(mail.outbox), 0)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [to2])
 
     def test_blacklist_flag(self):
         to = 'nobody@mozilla.org'
+        to2 = 'somebody@mozilla.org'
         settings.EMAIL_BLACKLIST = (to,)
         success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False,
+                            recipient_list=[to, to2], fail_silently=False,
                             use_blacklist=True)
         assert success
-        eq_(len(mail.outbox), 0)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [to2])
 
+    def test_blacklist_flag_off(self):
+        to = 'nobody@mozilla.org'
+        to2 = 'somebody@mozilla.org'
+        settings.EMAIL_BLACKLIST = (to,)
         success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False,
+                            recipient_list=[to, to2], fail_silently=False,
+                            use_blacklist=False)
+        assert success
+        eq_(len(mail.outbox), 2)
+
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    def test_real_list(self):
+        to = 'nobody@mozilla.org'
+        to2 = 'somebody@mozilla.org'
+        to3 = 'reallywantsemail@mozilla.org'
+        set_config('real_email_whitelist', to3)
+        success = send_mail('test subject', 'test body',
+                            recipient_list=[to, to2, to3], fail_silently=False,
                             use_blacklist=False)
         assert success
         eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [to3])
+        eq_(FakeEmail.objects.count(), 2)
+        eq_(FakeEmail.objects.get(0).message.endswith('test body'), True)
+        assert 'To: ' + to in FakeEmail.objects.get(0).message
+        assert 'To: ' + to2 in FakeEmail.objects.get(1).message
 
     def test_user_setting_default(self):
         user = UserProfile.objects.all()[0]

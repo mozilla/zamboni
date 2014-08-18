@@ -50,6 +50,7 @@ from amo import APP_ICON_SIZES
 from amo.urlresolvers import linkify_with_outgoing, reverse
 from mkt.translations.models import Translation
 from mkt.users.models import UserNotification
+from mkt.zadmin.models import get_config
 
 from . import logger_log as log
 
@@ -144,7 +145,7 @@ def paginate(request, queryset, per_page=20, count=None):
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
-              manage_url=None, headers=None, cc=None, real_email=False,
+              manage_url=None, headers=None, cc=None,
               html_message=None, attachments=None, async=False,
               max_retries=None):
     """
@@ -176,14 +177,37 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     # Prune blacklisted emails.
     if use_blacklist:
-        white_list = []
+        notblacklisted_list = []
         for email in recipient_list:
             if email and email.lower() in settings.EMAIL_BLACKLIST:
                 log.debug('Blacklisted email removed from list: %s' % email)
             else:
-                white_list.append(email)
+                notblacklisted_list.append(email)
+        recipient_list = notblacklisted_list
+
+    # We're going to call send_email twice, once for fake emails, the other real.
+    if settings.SEND_REAL_EMAIL:
+        # Send emails out to all recipients.
+        fake_recipient_list = []
+        real_recipient_list = recipient_list
     else:
-        white_list = recipient_list
+        # SEND_REAL_EMAIL is False so need to split out the fake from real mails.
+        real_email_cs_string = get_config('real_email_whitelist')
+        if real_email_cs_string is not None:
+            # We have a whitelist set in the config so use it.
+            real_white_list = [x.strip() for x in real_email_cs_string.split(',')]
+            fake_recipient_list = []
+            real_recipient_list = []
+            for email in recipient_list:
+                if email and email.lower() in real_white_list:
+                    log.debug('Real email encountered: %s - sending.' % email)
+                    real_recipient_list.append(email)
+                else:
+                    fake_recipient_list.append(email)
+        else:
+            # No whitelist in the config so all emails are fake.
+            fake_recipient_list = recipient_list
+            real_recipient_list = []
 
     if not from_email:
         from_email = settings.DEFAULT_FROM_EMAIL
@@ -196,7 +220,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not headers:
         headers = {}
 
-    def send(recipient, message, **options):
+    def send(recipient, message, real_email, **options):
         kwargs = {
             'async': async,
             'attachments': attachments,
@@ -216,11 +240,17 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         else:
             return send_email(*args, **kwargs)
 
-    if white_list:
-        result = send(recipient_list, message=message,
+    if fake_recipient_list:
+        # Send fake emails to these recipients (i.e. don't actually send them).
+        result = send(fake_recipient_list, message=message, real_email=False,
                       html_message=html_message, attachments=attachments)
     else:
         result = True
+
+    if result and real_recipient_list:
+        # And then send emails out to these recipients.
+        result = send(real_recipient_list, message=message, real_email=True,
+                      html_message=html_message, attachments=attachments)
 
     return result
 
@@ -625,18 +655,6 @@ def cache_ns_key(namespace, increment=False):
             ns_val = epoch(datetime.datetime.now())
             cache.set(ns_key, ns_val, None)
     return '%s:%s' % (ns_val, ns_key)
-
-
-def get_email_backend(real_email=False):
-    """Get a connection to an email backend.
-
-    If settings.SEND_REAL_EMAIL is False, a debugging backend is returned.
-    """
-    if real_email or settings.SEND_REAL_EMAIL:
-        backend = None
-    else:
-        backend = 'amo.mail.FakeEmailBackend'
-    return django.core.mail.get_connection(backend)
 
 
 class ESPaginator(paginator.Paginator):

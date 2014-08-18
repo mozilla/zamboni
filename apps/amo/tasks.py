@@ -1,13 +1,12 @@
 import datetime
 
-from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.mail import EmailMessage, EmailMultiAlternatives, get_connection
 
 import commonware.log
 from celeryutils import task
 
 import amo
 from amo.decorators import set_task_user
-from amo.utils import get_email_backend
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.prices.models import Refund
@@ -19,15 +18,17 @@ log = commonware.log.getLogger('z.task')
 
 
 @task
-def send_email(recipient, subject, message, from_email=None,
-               html_message=None, attachments=None, real_email=False,
+def send_email(recipient, subject, message, real_email, from_email=None,
+               html_message=None, attachments=None,
                cc=None, headers=None, fail_silently=False, async=False,
                max_retries=None, **kwargs):
-    backend = EmailMultiAlternatives if html_message else EmailMessage
-    connection = get_email_backend(real_email)
-    result = backend(subject, message,
-                     from_email, recipient, cc=cc, connection=connection,
-                     headers=headers, attachments=attachments)
+    email_backend = EmailMultiAlternatives if html_message else EmailMessage
+
+    connection_backend = None if real_email else 'amo.mail.FakeEmailBackend'
+    connection = get_connection(connection_backend)
+    result = email_backend(subject, message,
+                           from_email, recipient, cc=cc, connection=connection,
+                           headers=headers, attachments=attachments)
     if html_message:
         result.attach_alternative(html_message, 'text/html')
     try:
