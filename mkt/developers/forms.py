@@ -12,6 +12,9 @@ from django.forms import widgets
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.models import modelformset_factory
 from django.template.defaultfilters import filesizeformat
+from django.utils import six
+from django.utils.functional import lazy
+from django.utils.safestring import mark_safe
 
 import commonware
 import happyforms
@@ -366,10 +369,13 @@ class AdminSettingsForm(PreviewForm):
         elif self.cleaned_data.get('upload_hash'):
             super(AdminSettingsForm, self).save(addon, True)
 
+        updates = {
+            'vip_app': self.cleaned_data.get('vip_app'),
+            'priority_review': self.cleaned_data.get('priority_review'),
+        }
         contact = self.cleaned_data.get('mozilla_contact')
-        updates = {} if contact is None else {'mozilla_contact': contact}
-        updates.update({'vip_app': self.cleaned_data.get('vip_app')})
-        updates.update({'priority_review': self.cleaned_data.get('priority_review')})
+        if contact is not None:
+            updates['mozilla_contact'] = contact
         addon.update(**updates)
 
         tags_new = self.cleaned_data['tags']
@@ -739,6 +745,74 @@ class AppAppealForm(happyforms.Form):
         return version
 
 
+class PublishForm(happyforms.Form):
+    # Publish choice wording is slightly different here than with the
+    # submission flow because the app may have already been published.
+    mark_safe_lazy = lazy(mark_safe, six.text_type)
+    PUBLISH_CHOICES = (
+        (amo.PUBLISH_IMMEDIATE,
+         mark_safe_lazy(_lazy(
+             u'<b>Published</b>: Visible to everyone in the Marketplace and '
+             u'included in search results and listing pages.'))),
+        (amo.PUBLISH_HIDDEN,
+         mark_safe_lazy(_lazy(
+             u'<b>Unlisted</b>: Visible to only people with the URL and '
+             u'does not appear in search results and listing pages.'))),
+    )
+
+    # Used for setting initial form values.
+    PUBLISH_MAPPING = {
+        amo.STATUS_PUBLIC: amo.PUBLISH_IMMEDIATE,
+        amo.STATUS_UNLISTED: amo.PUBLISH_HIDDEN,
+        amo.STATUS_APPROVED: amo.PUBLISH_PRIVATE,
+    }
+    # Use in form processing to set status.
+    STATUS_MAPPING = dict((v, k) for k, v in PUBLISH_MAPPING.items())
+
+    publish_type = forms.TypedChoiceField(
+        label=_lazy('App Visibility:'), choices=PUBLISH_CHOICES,
+        widget=forms.RadioSelect(), initial=0, coerce=int)
+    limited = forms.BooleanField(
+        required=False, label=mark_safe(
+            _lazy('<b>Limit to my team</b>: Visible to only Team Members.')))
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon')
+        super(PublishForm, self).__init__(*args, **kwargs)
+
+        limited = False
+        publish = self.PUBLISH_MAPPING.get(self.addon.status,
+                                           amo.PUBLISH_IMMEDIATE)
+        if self.addon.status == amo.STATUS_APPROVED:
+            # Special case if app is currently private.
+            limited = True
+            publish = amo.PUBLISH_HIDDEN
+
+        # Determine the current selection via STATUS to publish choice mapping.
+        self.fields['publish_type'].initial = publish
+        self.fields['limited'].initial = limited
+
+    def save(self):
+        publish = self.cleaned_data['publish_type']
+        limited = self.cleaned_data['limited']
+
+        if publish == amo.PUBLISH_HIDDEN and limited:
+            publish = amo.PUBLISH_PRIVATE
+
+        status = self.STATUS_MAPPING[publish]
+        self.addon.update(status=status)
+
+        amo.log(amo.LOG.CHANGE_STATUS, self.addon.get_status_display(),
+                self.addon)
+        # Call update_version, so various other bits of data update.
+        self.addon.update_version()
+        # Call to update names and locales if changed.
+        self.addon.update_name_from_package_manifest()
+        self.addon.update_supported_locales()
+
+        self.addon.set_iarc_storefront_data()
+
+
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(required=False,
         label=_lazy(u'Choose the regions your app will be listed in:'),
@@ -1034,7 +1108,10 @@ class AppVersionForm(happyforms.ModelForm):
     releasenotes = TransField(widget=TransTextarea(), required=False)
     approvalnotes = forms.CharField(
         widget=TranslationTextarea(attrs={'rows': 4}), required=False)
-    publish_immediately = forms.BooleanField(required=False)
+    publish_immediately = forms.BooleanField(
+        required=False,
+        label=_lazy(u'Make this the Active version of my app as soon as it '
+                    u'has been reviewed and approved.'))
 
     class Meta:
         model = Version
@@ -1048,8 +1125,7 @@ class AppVersionForm(happyforms.ModelForm):
     def save(self, *args, **kwargs):
         rval = super(AppVersionForm, self).save(*args, **kwargs)
         if self.instance.all_files[0].status == amo.STATUS_PENDING:
-            # If version is pending, allow changes to publish_type, which lives
-            # on the app itself.
+            # If version is pending, allow changes to publish_type.
             if self.cleaned_data.get('publish_immediately'):
                 publish_type = amo.PUBLISH_IMMEDIATE
             else:

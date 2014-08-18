@@ -116,6 +116,27 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(set(res.json.keys()), set(['objects', 'meta']))
         eq_(res.json['meta']['total_count'], 1)
 
+    def test_search_published_apps(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['slug'], self.webapp.app_slug)
+
+    def test_search_no_approved_apps(self):
+        self.webapp.update(status=amo.STATUS_APPROVED)
+        self.refresh('webapp')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'], [])
+
+    def test_search_no_unlisted_apps(self):
+        self.webapp.update(status=amo.STATUS_UNLISTED)
+        self.refresh('webapp')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'], [])
+
     def test_wrong_category(self):
         res = self.client.get(self.url,
                               data={'cat': self.category + 'xq'})

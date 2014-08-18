@@ -141,7 +141,7 @@ def clean_old_signed(seconds=60 * 60):
 @cronjobs.register
 def update_app_trending():
     """
-    Update trending for all apps.
+    Update trending for all published apps.
 
     Spread these tasks out successively by 15 seconds so they don't hit
     Monolith all at once.

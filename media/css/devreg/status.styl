@@ -38,6 +38,11 @@
     }
 }
 
+.field-limited {
+    display: none;
+    margin: -15px 0 0 20px;
+}
+
 .status-info {
     .status {
         display: block;
@@ -64,9 +69,6 @@
     color: $medium-gray;
 }
 
-.status-lite-nominated i,
-.status-nominated b,
-.status-unreviewed b,
 .status-pending b {
     font-style: normal;
     color: #3e7987;
@@ -74,16 +76,14 @@
 
 .status-incomplete b,
 .status-disabled b,
-.status-admin-disabled b,
-.status-purgatory b {
+.status-admin-disabled b {
     color: #851006;
 }
 
-.status-fully-approved b,
 .status-public b,
-.status-lite b,
-.status-lite-nom b,
-.status-waiting b {
+.status-unlisted b,
+.status-waiting b,
+.status-approved b {
     color: #329902;
 }
 
@@ -99,6 +99,9 @@
     table-layout: auto;
     width: 100%;
 
+    tr.current {
+        background-color: $faint-blue;
+    }
     td {
         border-top: 1px dotted $border-taupe;
         padding: 5px 0 5px 5px;

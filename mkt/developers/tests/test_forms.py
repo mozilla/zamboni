@@ -521,6 +521,129 @@ class TestAppVersionForm(amo.tests.TestCase):
         eq_(self.app.publish_type, amo.PUBLISH_IMMEDIATE)
 
 
+class TestPublishForm(amo.tests.TestCase):
+
+    def setUp(self):
+        self.app = app_factory(status=amo.STATUS_PUBLIC)
+        self.form = forms.PublishForm
+
+    def test_initial(self):
+        app = Webapp(status=amo.STATUS_PUBLIC)
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_IMMEDIATE)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
+
+        app.status = amo.STATUS_UNLISTED
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_HIDDEN)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
+
+        app.status = amo.STATUS_APPROVED
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_HIDDEN)
+        eq_(self.form(None, addon=app).fields['limited'].initial, True)
+
+    def test_go_public(self):
+        self.app.update(status=amo.STATUS_APPROVED)
+        form = self.form({'publish_type': amo.PUBLISH_IMMEDIATE,
+                          'limited': False}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+
+    def test_go_unlisted(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+                          'limited': False}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_UNLISTED)
+
+    def test_go_private(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+                          'limited': True}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_APPROVED)
+
+    def test_invalid(self):
+        form = self.form({'publish_type': 999}, addon=self.app)
+        assert not form.is_valid()
+
+
+class TestPublishFormPackaged(amo.tests.TestCase):
+    """
+    Test that changing the app visibility doesn't affect the version statuses
+    in weird ways.
+    """
+
+    def setUp(self):
+        self.app = app_factory(status=amo.STATUS_PUBLIC, is_packaged=True)
+        self.ver1 = self.app.current_version
+        self.ver1.update(created=self.days_ago(1))
+        self.ver2 = version_factory(addon=self.app, version='2.0',
+                                    file_kw=dict(status=amo.STATUS_APPROVED))
+        self.app.update(_latest_version=self.ver2)
+        self.form = forms.PublishForm
+
+    def test_initial(self):
+        app = Webapp(status=amo.STATUS_PUBLIC)
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_IMMEDIATE)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
+
+        app.status = amo.STATUS_UNLISTED
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_HIDDEN)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
+
+        app.status = amo.STATUS_APPROVED
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
+            amo.PUBLISH_HIDDEN)
+        eq_(self.form(None, addon=app).fields['limited'].initial, True)
+
+    def test_go_public(self):
+        self.app.update(status=amo.STATUS_APPROVED)
+        form = self.form({'publish_type': amo.PUBLISH_IMMEDIATE,
+                          'limited': False}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.current_version, self.ver1)
+        eq_(self.app.latest_version, self.ver2)
+
+    def test_go_private(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+                          'limited': True}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.current_version, self.ver1)
+        eq_(self.app.latest_version, self.ver2)
+
+    def test_go_unlisted(self):
+        self.app.update(status=amo.STATUS_PUBLIC)
+        form = self.form({'publish_type': amo.PUBLISH_HIDDEN,
+                          'limited': False}, addon=self.app)
+        assert form.is_valid()
+        form.save()
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_UNLISTED)
+        eq_(self.app.current_version, self.ver1)
+        eq_(self.app.latest_version, self.ver2)
+
+    def test_invalid(self):
+        form = self.form({'publish_type': 999}, addon=self.app)
+        assert not form.is_valid()
+
+
 class TestAdminSettingsForm(TestAdmin):
 
     def setUp(self):

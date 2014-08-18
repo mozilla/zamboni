@@ -44,12 +44,20 @@ class TestReviewerScore(amo.tests.TestCase):
         RereviewQueue.objects.create(addon=self.app)
         self.check_event(self.app.type, amo.STATUS_PUBLIC,
                          amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        self.check_event(self.app.type, amo.STATUS_UNLISTED,
+                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
+        self.check_event(self.app.type, amo.STATUS_APPROVED,
+                         amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
         RereviewQueue.objects.all().delete()
 
         self.app.is_packaged = True
         self.check_event(self.app.type, amo.STATUS_PENDING,
                          amo.REVIEWED_WEBAPP_PACKAGED)
         self.check_event(self.app.type, amo.STATUS_PUBLIC,
+                         amo.REVIEWED_WEBAPP_UPDATE)
+        self.check_event(self.app.type, amo.STATUS_UNLISTED,
+                         amo.REVIEWED_WEBAPP_UPDATE)
+        self.check_event(self.app.type, amo.STATUS_APPROVED,
                          amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_award_points(self):

@@ -18,9 +18,13 @@ class AppStatusSerializer(serializers.ModelSerializer):
 
     allowed_statuses = {
         # You can push to the pending queue.
-        amo.STATUS_NULL: amo.STATUS_PENDING,
-        # You can push to public if you've been reviewed.
-        amo.STATUS_APPROVED: amo.STATUS_PUBLIC,
+        amo.STATUS_NULL: [amo.STATUS_PENDING],
+        # Approved apps can be public or unlisted.
+        amo.STATUS_APPROVED: [amo.STATUS_PUBLIC, amo.STATUS_UNLISTED],
+        # Public apps can choose to become private (APPROVED) or unlisted.
+        amo.STATUS_PUBLIC: [amo.STATUS_APPROVED, amo.STATUS_UNLISTED],
+        # Unlisted apps can become private or public.
+        amo.STATUS_UNLISTED: [amo.STATUS_APPROVED, amo.STATUS_PUBLIC],
     }
 
     class Meta:
@@ -31,7 +35,7 @@ class AppStatusSerializer(serializers.ModelSerializer):
         if not self.object:
             raise serializers.ValidationError(u'Error getting app.')
 
-        if not source in attrs:
+        if source not in attrs:
             return attrs
 
         # Admins can change any status, skip validation for them.
@@ -48,7 +52,7 @@ class AppStatusSerializer(serializers.ModelSerializer):
         # Only some specific changes are possible depending on the app current
         # status.
         if (self.object.status not in self.allowed_statuses or
-            attrs[source] != self.allowed_statuses[self.object.status]):
+            attrs[source] not in self.allowed_statuses[self.object.status]):
                 raise serializers.ValidationError(
                     'App status can not be changed to the one you specified.')
 

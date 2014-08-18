@@ -106,8 +106,6 @@
         {{ form_field(form_basic.support_email, hint=True) }}
       </div>
 
-      {{ form_field(form_basic.flash) }}
-
       <div>
         <label>
           {{ _('Screenshot or video of your app:') }}
@@ -159,8 +157,10 @@
           </span>
         </div>
       </div>
+      {{ form_field(form_basic.flash) }}
+      {{ form_field(form_basic.publish_type) }}
+
       {{ form_field(form_basic.notes, hint=True) }}
-      {{ form_field(form_basic.publish, tooltip=True) }}
 
       <button class="prominent continue" type="submit">
         {{ _('Continue') }}

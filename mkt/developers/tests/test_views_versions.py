@@ -11,6 +11,7 @@ import amo
 import amo.tests
 from amo.tests import req_factory_factory
 from mkt.comm.models import CommunicationNote
+from mkt.constants.applications import DEVICE_TYPES
 from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
 from mkt.developers.views import preload_submit, status
 from mkt.files.models import File
@@ -325,6 +326,13 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
                                  password='password')
         self.app.update(is_packaged=True)
         self.app = self.get_app()
+        # Needed for various status checking routines on fully complete apps.
+        amo.tests.make_rated(self.app)
+        if not self.app.categories:
+            self.app.update(categories=['utilities'])
+        self.app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+        self.app.previews.create()
+
         self.url = self.app.get_dev_url('versions')
         self.delete_url = self.app.get_dev_url('versions.delete')
 
@@ -359,33 +367,137 @@ class TestVersionPackaged(amo.tests.WebappTestCase):
         eq_(doc('#version-list a.download').eq(1).attr('href'),
             self.app.versions.all()[1].all_files[0].get_url_path(''))
 
-    def test_delete_version(self):
+    def test_delete_version_xss(self):
         version = self.app.versions.latest()
         version.update(version='<script>alert("xss")</script>')
 
         res = self.client.get(self.url)
-        assert not '<script>alert(' in res.content
+        assert '<script>alert(' not in res.content
         assert '&lt;script&gt;alert(' in res.content
         # Now do the POST to delete.
-        res = self.client.post(self.delete_url, dict(version_id=version.pk),
+        res = self.client.post(self.delete_url, {'version_id': version.pk},
                                follow=True)
+        assert not Version.objects.filter(pk=version.pk).exists()
+        # Check xss in success flash message.
+        assert '<script>alert(' not in res.content
+        assert '&lt;script&gt;alert(' in res.content
+
+    def test_delete_only_version(self):
+        eq_(self.app.versions.count(), 1)
+        version = self.app.latest_version
+
+        self.client.post(self.delete_url, {'version_id': version.pk})
         assert not Version.objects.filter(pk=version.pk).exists()
         eq_(ActivityLog.objects.filter(action=amo.LOG.DELETE_VERSION.id)
                                .count(), 1)
         # Since this was the last version, the app status should be incomplete.
         eq_(self.get_app().status, amo.STATUS_NULL)
-        # Check xss in success flash message.
-        assert not '<script>alert(' in res.content
-        assert '&lt;script&gt;alert(' in res.content
 
-        # Test that the soft deletion works pretty well.
-        eq_(self.app.versions.count(), 0)
-        # We can't use `.reload()` :(
-        version = Version.with_deleted.filter(addon=self.app)
-        eq_(version.count(), 1)
-        # Test that the status of the "deleted" version is STATUS_DELETED.
-        eq_(str(version[0].status[0]),
-            str(amo.MKT_STATUS_CHOICES[amo.STATUS_DELETED]))
+    def test_delete_last_public_version(self):
+        """
+        Test that deleting the last PUBLIC version but there is an APPROVED
+        version marks the app as APPROVED.
+        Similar to the above test but ensures APPROVED versions don't get
+        confused with PUBLIC versions.
+        """
+        eq_(self.app.versions.count(), 1)
+        ver1 = self.app.latest_version
+        ver1.all_files[0].update(status=amo.STATUS_APPROVED)
+        ver2 = amo.tests.version_factory(
+            addon=self.app, version='2.0',
+            file_kw=dict(status=amo.STATUS_PUBLIC))
+
+        self.client.post(self.delete_url, {'version_id': ver2.pk})
+
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.latest_version, ver1)
+        eq_(self.app.current_version, None)
+        eq_(self.app.versions.count(), 1)
+        eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
+            amo.STATUS_DISABLED)
+
+    def test_delete_version_app_public(self):
+        """Test deletion of current_version when app is PUBLIC."""
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        ver1 = self.app.latest_version
+        ver2 = amo.tests.version_factory(
+            addon=self.app, version='2.0',
+            file_kw=dict(status=amo.STATUS_PUBLIC))
+        eq_(self.app.latest_version, ver2)
+        eq_(self.app.current_version, ver2)
+
+        self.client.post(self.delete_url, {'version_id': ver2.pk})
+
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_PUBLIC)
+        eq_(self.app.latest_version, ver1)
+        eq_(self.app.current_version, ver1)
+        eq_(self.app.versions.count(), 1)
+        eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
+            amo.STATUS_DISABLED)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_delete_version_app_hidden(self, update_name_mock,
+                                       update_manifest_mock, index_mock):
+        """Test deletion of current_version when app is UNLISTED."""
+        self.app.update(status=amo.STATUS_UNLISTED)
+        ver1 = self.app.latest_version
+        ver2 = amo.tests.version_factory(
+            addon=self.app, version='2.0',
+            file_kw=dict(status=amo.STATUS_PUBLIC))
+        eq_(self.app.latest_version, ver2)
+        eq_(self.app.current_version, ver2)
+
+        update_manifest_mock.reset_mock()
+        index_mock.reset_mock()
+
+        self.client.post(self.delete_url, {'version_id': ver2.pk})
+
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_UNLISTED)
+        eq_(self.app.latest_version, ver1)
+        eq_(self.app.current_version, ver1)
+        eq_(self.app.versions.count(), 1)
+        eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
+            amo.STATUS_DISABLED)
+
+        eq_(update_name_mock.call_count, 1)
+        eq_(update_manifest_mock.delay.call_count, 1)
+        eq_(index_mock.delay.call_count, 1)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_delete_version_app_private(self, update_name_mock,
+                                        update_manifest_mock, index_mock):
+        """Test deletion of current_version when app is APPROVED."""
+        self.app.update(status=amo.STATUS_APPROVED)
+        ver1 = self.app.latest_version
+        ver2 = amo.tests.version_factory(
+            addon=self.app, version='2.0',
+            file_kw=dict(status=amo.STATUS_PUBLIC))
+        eq_(self.app.latest_version, ver2)
+        eq_(self.app.current_version, ver2)
+
+        update_manifest_mock.reset_mock()
+        index_mock.reset_mock()
+
+        self.client.post(self.delete_url, {'version_id': ver2.pk})
+
+        self.app.reload()
+        eq_(self.app.status, amo.STATUS_APPROVED)
+        eq_(self.app.latest_version, ver1)
+        eq_(self.app.current_version, ver1)
+        eq_(self.app.versions.count(), 1)
+        eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
+            amo.STATUS_DISABLED)
+
+        eq_(update_name_mock.call_count, 1)
+        eq_(update_manifest_mock.delay.call_count, 1)
+        eq_(index_mock.delay.call_count, 1)
 
     def test_delete_version_while_disabled(self):
         self.app.update(disabled_by_user=True)

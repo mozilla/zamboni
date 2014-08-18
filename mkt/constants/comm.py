@@ -16,7 +16,7 @@ MORE_INFO_REQUIRED = 4
 ESCALATION = 5
 REVIEWER_COMMENT = 6
 RESUBMISSION = 7
-APPROVE_VERSION_WAITING = 8
+APPROVE_VERSION_PRIVATE = 8
 ESCALATION_HIGH_ABUSE = 9
 ESCALATION_HIGH_REFUNDS = 10
 ESCALATION_CLEARED = 11
@@ -44,7 +44,7 @@ NOTE_TYPES = {
     ESCALATION: _('Escalated'),
     REVIEWER_COMMENT: _('Comment'),
     RESUBMISSION: _('App resubmission'),
-    APPROVE_VERSION_WAITING: _('Approved but waiting to be made public'),
+    APPROVE_VERSION_PRIVATE: _('Approved but private'),
     ESCALATION_CLEARED: _('Escalation cleared'),
     ESCALATION_HIGH_ABUSE: _('Escalated due to High Abuse Reports'),
     ESCALATION_HIGH_REFUNDS: _('Escalated due to High Refund Requests'),
@@ -103,7 +103,7 @@ def ACTION_MAP(activity_action):
 
     return {
         amo.LOG.APPROVE_VERSION.id: APPROVAL,
-        amo.LOG.APPROVE_VERSION_WAITING.id: APPROVE_VERSION_WAITING,
+        amo.LOG.APPROVE_VERSION_PRIVATE.id: APPROVE_VERSION_PRIVATE,
         amo.LOG.APP_DISABLED.id: DISABLED,
         amo.LOG.ESCALATE_MANUAL.id: ESCALATION,
         amo.LOG.ESCALATE_VERSION.id: ESCALATION,

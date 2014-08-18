@@ -95,6 +95,11 @@ $(document).ready(function() {
     // Prechecked requirements should get initialised.
     $('.feature-choices input:checked').trigger('change');
 
+    // Show app visibility limited checkbox if 'Unlisted' is chosen.
+    $('input[name=publish_type]').on('change', function() {
+        $('.field-limited').toggle($('#id_publish_type_1').is(':checked'));
+    }).trigger('change');
+
     if ($webapp_url.length) {
         if (!$webapp_url.val() && z.capabilities.sessionStorage) {
             $webapp_url.val(window.sessionStorage['manifest_url']);

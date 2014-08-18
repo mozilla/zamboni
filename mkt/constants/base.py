@@ -10,6 +10,7 @@ STATUS_DELETED = 11
 STATUS_REJECTED = 12
 STATUS_APPROVED = 13
 STATUS_BLOCKED = 15
+STATUS_UNLISTED = 16
 
 # AMO-only statuses. Kept here only for memory and to not re-use the IDs.
 _STATUS_UNREVIEWED = 1
@@ -24,25 +25,23 @@ _STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
     STATUS_PENDING: _(u'Pending approval'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_PUBLIC: _(u'Published'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
-    STATUS_APPROVED: _(u'Approved but waiting'),
+    STATUS_APPROVED: _(u'Approved but private'),
     STATUS_BLOCKED: _(u'Blocked'),
+    STATUS_UNLISTED: _(u'Unlisted'),
 }
 
 
-# Marketplace app status terms.
-MKT_STATUS_CHOICES = STATUS_CHOICES.copy()
-MKT_STATUS_CHOICES[STATUS_PUBLIC] = _(u'Published')
-MKT_STATUS_CHOICES[STATUS_APPROVED] = _(u'Approved but unpublished')
-
 # Marketplace file status terms.
-MKT_STATUS_FILE_CHOICES = MKT_STATUS_CHOICES.copy()
+MKT_STATUS_FILE_CHOICES = STATUS_CHOICES.copy()
 MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
+MKT_STATUS_FILE_CHOICES[STATUS_APPROVED] = _(u'Approved')
+MKT_STATUS_FILE_CHOICES[STATUS_PUBLIC] = _(u'Published')
 
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
@@ -52,8 +51,9 @@ STATUS_CHOICES_API = {
     STATUS_DISABLED: 'disabled',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
-    STATUS_APPROVED: 'waiting',
+    STATUS_APPROVED: 'waiting',  # TODO: Change to 'private' for API v2.
     STATUS_BLOCKED: 'blocked',
+    STATUS_UNLISTED: 'unlisted',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -63,8 +63,9 @@ STATUS_CHOICES_API_LOOKUP = {
     'disabled': STATUS_DISABLED,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
-    'waiting': STATUS_APPROVED,
+    'waiting': STATUS_APPROVED,  # TODO: Change to 'private' for API v2.
     'blocked': STATUS_BLOCKED,
+    'unlisted': STATUS_UNLISTED,
 }
 
 # Publishing types.
@@ -72,12 +73,13 @@ PUBLISH_IMMEDIATE = 0
 PUBLISH_HIDDEN = 1
 PUBLISH_PRIVATE = 2
 
-REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
+REVIEWED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED, STATUS_UNLISTED)
 UNREVIEWED_STATUSES = (STATUS_PENDING,)
-VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_APPROVED)
+VALID_STATUSES = (STATUS_PENDING, STATUS_PUBLIC, STATUS_UNLISTED,
+                  STATUS_APPROVED)
 # LISTED_STATUSES are statuses that should return a 200 on the app detail page
 # for anonymous users.
-LISTED_STATUSES = (STATUS_PUBLIC,)
+LISTED_STATUSES = (STATUS_PUBLIC, STATUS_UNLISTED)
 
 # An add-on in one of these statuses can become premium.
 PREMIUM_STATUSES = (STATUS_NULL, STATUS_PENDING)
@@ -87,16 +89,11 @@ WEBAPPS_UNREVIEWED_STATUS = STATUS_PENDING
 
 # These apps have been approved and are listed; or could be without further
 # review.
-WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_APPROVED)
+WEBAPPS_APPROVED_STATUSES = (STATUS_PUBLIC, STATUS_UNLISTED, STATUS_APPROVED)
 
 # An app with this status makes its detail page "invisible".
-WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING,
-                             STATUS_APPROVED, STATUS_REJECTED)
-
-# The only statuses we use in the marketplace.
-MARKET_STATUSES = (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC, STATUS_DISABLED,
-                   STATUS_DELETED, STATUS_REJECTED, STATUS_APPROVED,
-                   STATUS_BLOCKED)
+WEBAPPS_UNLISTED_STATUSES = (STATUS_DISABLED, STATUS_PENDING, STATUS_APPROVED,
+                             STATUS_REJECTED)
 
 # These apps shouldn't be considered anymore in mass-emailing etc.
 WEBAPPS_EXCLUDED_STATUSES = (STATUS_DISABLED, STATUS_DELETED, STATUS_REJECTED)

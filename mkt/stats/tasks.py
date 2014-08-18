@@ -141,7 +141,7 @@ def _get_monolith_jobs(date=None):
 
     # Add various "Apps Available" for all the dimensions we need.
     apps = Webapp.objects.filter(_current_version__reviewed__lt=next_date,
-                                 status=amo.STATUS_PUBLIC,
+                                 status__in=amo.LISTED_STATUSES,
                                  disabled_by_user=False)
     package_counts = []
     premium_counts = []

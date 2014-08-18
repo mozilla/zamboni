@@ -198,21 +198,10 @@ def details(request, addon_id, addon):
 
         AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 
-        # `publish_type` if the developer doesn't want the app published
-        # immediately upon review.
-        publish_type = (amo.PUBLISH_IMMEDIATE
-                       if form_basic.cleaned_data.get('publish')
-                       else amo.PUBLISH_PRIVATE)
-
-        if addon.premium_type == amo.ADDON_FREE:
-            # Free apps are set to STATUS_NULL until content ratings has been
-            # entered. They will not bump to STATUS_PENDING until they get
-            # content ratings.
-            addon.update(publish_type=publish_type)
-        else:
+        if addon.needs_payment():
             # Paid apps get STATUS_NULL until payment information and content
-            # ratings has been entered.
-            addon.update(status=amo.STATUS_NULL, publish_type=publish_type,
+            # ratings entered.
+            addon.update(status=amo.STATUS_NULL,
                          highest_status=amo.STATUS_PENDING)
 
         # Mark as pending in special regions (i.e., China).

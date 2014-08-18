@@ -419,77 +419,12 @@ class TestMarketplace(amo.tests.TestCase):
         eq_(upsell[0].free, new)
 
 
-class TestPublicise(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.webapp = self.get_webapp()
-        self.webapp.update(status=amo.STATUS_APPROVED)
-        self.file = self.webapp.versions.latest().all_files[0]
-        # Use `_signal=False` to avoid extra work and triggering extra calls.
-        self.file.update(status=amo.STATUS_APPROVED, _signal=False)
-        self.publicise_url = self.webapp.get_dev_url('publicise')
-        self.status_url = self.webapp.get_dev_url('versions')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-
-    def get_webapp(self):
-        return Addon.objects.no_cache().get(id=337141)
-
-    def test_logout(self):
-        self.client.logout()
-        res = self.client.post(self.publicise_url)
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
-
-    def test_publicise_get(self):
-        eq_(self.client.get(self.publicise_url).status_code, 405)
-
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
-    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
-    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_publicise(self, update_name, update_locales,
-                       update_cached_manifests, index_webapps,
-                       storefront_mock):
-
-        index_webapps.delay.reset_mock()
-
-        eq_(update_name.call_count, 0)
-        eq_(update_locales.call_count, 0)
-        eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(index_webapps.delay.call_count, 0)
-        eq_(storefront_mock.call_count, 0)
-        eq_(self.get_webapp().status, amo.STATUS_APPROVED)
-
-        res = self.client.post(self.publicise_url)
-        eq_(res.status_code, 302)
-        eq_(self.get_webapp().status, amo.STATUS_PUBLIC)
-        eq_(self.get_webapp().versions.latest().all_files[0].status,
-            amo.STATUS_PUBLIC)
-
-        eq_(update_name.call_count, 1)
-        eq_(update_locales.call_count, 1)
-        eq_(index_webapps.delay.call_count, 1)
-        eq_(storefront_mock.call_count, 1)
-        # App is not packaged, no need to call update_cached_manifests.
-        eq_(update_cached_manifests.delay.call_count, 0)
-
-    def test_status(self):
-        res = self.client.get(self.status_url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        eq_(doc('#version-status form').attr('action'), self.publicise_url)
-        eq_(len(doc('strong.status-waiting')), 1)
-
-
 class TestPubliciseVersion(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        Addon.objects.filter(pk=337141).update(is_packaged=True)
         self.app = self.get_webapp()
+        self.app.update(is_packaged=True)
         self.url = self.app.get_dev_url('versions.publicise')
         self.status_url = self.app.get_dev_url('versions')
         assert self.client.login(username='steamcube@mozilla.com',
@@ -498,7 +433,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
     def get_webapp(self):
         return Addon.objects.no_cache().get(pk=337141)
 
-    def get_version_status(self):
+    def get_latest_version_status(self):
         v = Version.objects.no_cache().get(pk=self.app.latest_version.pk)
         return v.all_files[0].status
 
@@ -515,7 +450,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
         self.client.logout()
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_version_status(), amo.STATUS_APPROVED)
+        eq_(self.get_latest_version_status(), amo.STATUS_APPROVED)
 
     def test_publicise_get(self):
         eq_(self.client.get(self.url).status_code, 405)
@@ -542,7 +477,36 @@ class TestPubliciseVersion(amo.tests.TestCase):
 
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(ver.reload().all_files[0].status, amo.STATUS_PUBLIC)
+        eq_(self.get_webapp().current_version, ver)
+
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_new_unlisted(
+            self, update_name, update_locales, update_cached_manifests,
+            index_webapps):
+        """ Test publishing the latest, approved version when the app is
+        unlisted, with a current version also already public. """
+        self.app.update(status=amo.STATUS_UNLISTED)
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=amo.STATUS_APPROVED))
+        eq_(self.app.latest_version, ver)
+        ok_(self.app.current_version != ver)
+
+        index_webapps.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+
+        res = self.post()
+        eq_(res.status_code, 302)
+        eq_(ver.reload().all_files[0].status, amo.STATUS_PUBLIC)
         eq_(self.get_webapp().current_version, ver)
 
         eq_(update_name.call_count, 1)
@@ -554,16 +518,17 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_cur_approved_app_public(
-        self, update_name, update_locales, update_cached_manifests,
-        index_webapps):
+            self, update_name, update_locales, update_cached_manifests,
+            index_webapps):
         """ Test publishing when the app is in a weird state: public but with
         only one version, which is approved. """
-        File.objects.filter(version__addon=self.app).update(
-            status=amo.STATUS_APPROVED)
+        self.app.latest_version.all_files[0].update(status=amo.STATUS_APPROVED,
+                                                   _signal=False)
         eq_(self.app.current_version, self.app.latest_version)
         eq_(self.app.status, amo.STATUS_PUBLIC)
 
         index_webapps.delay.reset_mock()
+        update_cached_manifests.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
@@ -571,12 +536,12 @@ class TestPubliciseVersion(amo.tests.TestCase):
         res = self.post()
         eq_(res.status_code, 302)
         eq_(self.app.current_version, self.app.latest_version)
-        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
         eq_(self.app.reload().status, amo.STATUS_PUBLIC)
 
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
-        # only one version, update_version() won't change it, the mini-manifest
+        # Only one version, update_version() won't change it, the mini-manifest
         # doesn't need to be updated.
         eq_(update_cached_manifests.delay.call_count, 0)
 
@@ -587,7 +552,8 @@ class TestPubliciseVersion(amo.tests.TestCase):
     def test_publicise_version_cur_approved(self, update_name, update_locales,
                                             update_cached_manifests,
                                             index_webapps):
-        """ Test publishing when the only version of the app is approved. """
+        """ Test publishing when the only version of the app is approved
+        doesn't change the app status. """
         self.app.update(status=amo.STATUS_APPROVED)
         File.objects.filter(version__addon=self.app).update(
             status=amo.STATUS_APPROVED)
@@ -601,14 +567,41 @@ class TestPubliciseVersion(amo.tests.TestCase):
         res = self.post()
         eq_(res.status_code, 302)
         eq_(self.app.current_version, self.app.latest_version)
-        eq_(self.get_version_status(), amo.STATUS_PUBLIC)
-        eq_(self.app.reload().status, amo.STATUS_PUBLIC)
+        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
+        eq_(self.app.reload().status, amo.STATUS_APPROVED)
 
         eq_(update_name.call_count, 1)
         eq_(update_locales.call_count, 1)
-        # only one version, update_version() won't change it, the mini-manifest
-        # doesn't need to be updated.
         eq_(update_cached_manifests.delay.call_count, 0)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_publicise_version_cur_unlisted(self, update_name, update_locales,
+                                            update_cached_manifests,
+                                            index_webapps):
+        """ Test publishing a version of an unlisted app when the only
+        version of the app is approved. """
+        self.app.update(status=amo.STATUS_UNLISTED, _current_version=None)
+        File.objects.filter(version__addon=self.app).update(
+            status=amo.STATUS_APPROVED)
+
+        index_webapps.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(update_cached_manifests.delay.call_count, 0)
+
+        res = self.post()
+        eq_(res.status_code, 302)
+        app = self.app.reload()
+        eq_(app.current_version, self.app.latest_version)
+        eq_(self.get_latest_version_status(), amo.STATUS_PUBLIC)
+        eq_(app.status, amo.STATUS_UNLISTED)
+
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -616,13 +609,13 @@ class TestPubliciseVersion(amo.tests.TestCase):
     @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
     def test_publicise_version_pending(self, update_name, update_locales,
                                        update_cached_manifests, index_webapps):
-        """ Test publishing a pending version """
-        version_factory(addon=self.app, version='2.0',
-                        file_kw=dict(status=amo.STATUS_PENDING))
-        self.app.reload()
+        """ Test publishing a pending version isn't allowed. """
+        ver = version_factory(addon=self.app, version='2.0',
+                              file_kw=dict(status=amo.STATUS_PENDING))
         res = self.post()
         eq_(res.status_code, 302)
-        eq_(self.get_version_status(), amo.STATUS_PENDING)
+        eq_(self.get_latest_version_status(), amo.STATUS_PENDING)
+        assert self.app.current_version != ver
         assert not update_name.called
         assert not update_locales.called
 
@@ -687,23 +680,17 @@ class TestStatus(amo.tests.TestCase):
         eq_(doc('#delete-addon').length, 1)
         eq_(doc('#blocklist-app').length, 0)
 
-
-class TestDelete(amo.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.webapp = self.get_webapp()
-        self.url = self.webapp.get_dev_url('delete')
-        assert self.client.login(username='steamcube@mozilla.com',
-                                 password='password')
-
-    def get_webapp(self):
-        return Addon.objects.no_cache().get(id=337141)
-
-    def test_post(self):
-        r = self.client.post(self.url, follow=True)
-        eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
-        self.assertRaises(Addon.DoesNotExist, self.get_webapp)
+    def test_xss(self):
+        version = self.webapp.versions.latest()
+        self.webapp.update(is_packaged=True, _current_version=version,
+                           _latest_version=version)
+        self.file.update(status=amo.STATUS_PUBLIC)
+        version.update(version='<script>alert("xss")</script>')
+        res = self.client.get(self.status_url)
+        eq_(res.status_code, 200)
+        doc = pq(res.content)('#version-status')
+        assert '&lt;script&gt;' in doc.html()
+        assert '<script>' not in doc.html()
 
 
 class TestResumeStep(amo.tests.TestCase):
@@ -1054,10 +1041,18 @@ class TestDeleteApp(amo.tests.TestCase):
 
     def test_form_action_on_status_page(self):
         # If we started on app's Manage Status page, upon deletion we should
-        # be redirecte to the Dashboard.
+        # be redirected to the Dashboard.
         r = self.client.get(self.versions_url)
         eq_(pq(r.content)('.modal-delete form').attr('action'), self.url)
         self.check_delete_redirect('', self.dev_url)
+
+    def test_owner_deletes(self):
+        self.client.login(username='steamcube@mozilla.com',
+                          password='password')
+        r = self.client.post(self.url, follow=True)
+        eq_(pq(r.content)('.notification-box').text(), 'App deleted.')
+        with self.assertRaises(Webapp.DoesNotExist):
+            Webapp.objects.get(pk=self.webapp.pk)
 
 
 class TestEnableDisable(amo.tests.TestCase):

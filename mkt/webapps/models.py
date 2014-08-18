@@ -42,7 +42,6 @@ from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
 from lib.utils import static_url
 from mkt.access import acl
-from mkt.access.acl import action_allowed, check_reviewer
 from mkt.constants import APP_FEATURES, apps, iarc_mappings
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.payments import PROVIDER_CHOICES
@@ -751,9 +750,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def is_public(self):
         """
-        True if the app is not disabled and the status is STATUS_PUBLIC.
+        True if the app is not disabled and the status is either STATUS_PUBLIC
+        or STATUS_UNLISTED.
+
+        Both statuses are "public" in that they should result in a 200 to the
+        app detail page.
+
         """
-        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
+        return (not self.disabled_by_user and
+                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNLISTED))
 
     def is_approved(self):
         """
@@ -764,6 +769,16 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         """
         return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
+
+    def is_published(self):
+        """
+        True if the app status is amo.STATUS_PUBLIC.
+
+        This means we can display the app in listing pages and index it in our
+        search backend.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
 
     def is_incomplete(self):
         return self.status == amo.STATUS_NULL
@@ -1777,13 +1792,22 @@ class Webapp(Addon):
 
         # If there are no public versions and at least one pending, set status
         # to pending.
-        public_statuses = amo.WEBAPPS_APPROVED_STATUSES
-        has_public = (
-            self.versions.filter(files__status__in=public_statuses).exists()
-        )
-        has_pending = (
-            self.versions.filter(files__status=amo.STATUS_PENDING).exists())
-        # Check for self.is_pending() first to prevent possible recursion.
+        has_public = self.versions.filter(
+            files__status=amo.STATUS_PUBLIC).exists()
+        has_approved = self.versions.filter(
+            files__status=amo.STATUS_APPROVED).exists()
+        has_pending = self.versions.filter(
+            files__status=amo.STATUS_PENDING).exists()
+
+        # If no public versions but there are approved versions, set app to
+        # approved.
+        if not has_public and has_approved:
+            _log('has approved but no public files')
+            self.update(status=amo.STATUS_APPROVED)
+            return
+
+        # If no public versions but there are pending versions, set app to
+        # pending.
         if not has_public and has_pending and not self.is_pending():
             self.update(status=amo.STATUS_PENDING)
             _log('has pending but no public files')
@@ -1808,33 +1832,6 @@ class Webapp(Addon):
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
-
-    def is_visible(self, request):
-        """Returns whether the app has a visible search result listing. Its
-        detail page will always be there.
-
-        This does not consider whether an app is excluded in the current region
-        by the developer.
-        """
-        # Let developers see it always.
-        can_see = (self.has_author(request.user) or
-                   action_allowed(request, 'Apps', 'Edit'))
-
-        # Let app reviewers see it only when it's pending.
-        if check_reviewer(request) and self.is_pending():
-            can_see = True
-
-        visible = False
-
-        if can_see:
-            # Developers and reviewers should see it always.
-            visible = True
-        elif self.is_public():
-            # Everyone else can see it only if it's public -
-            # and if it's a game, it must have a content rating.
-            visible = True
-
-        return visible
 
     def has_premium(self):
         """If the app is premium status and has a premium object."""
@@ -3039,7 +3036,7 @@ class Geodata(amo.models.ModelBase):
 for region in mkt.regions.SPECIAL_REGIONS:
     help_text = _('{region} approval status').format(region=region.name)
     field = models.PositiveIntegerField(help_text=help_text,
-        choices=amo.MKT_STATUS_CHOICES.items(), db_index=True,
+        choices=amo.STATUS_CHOICES.items(), db_index=True,
         default=amo.STATUS_PENDING)
     field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
 

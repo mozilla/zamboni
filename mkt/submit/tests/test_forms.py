@@ -175,38 +175,48 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         self.request = mock.Mock()
         self.request.user = UserProfile.objects.get(id=999)
 
-    def test_slug(self):
-        app = Webapp.objects.get(pk=337141)
-        data = {
+    def get_app(self):
+        return Webapp.objects.get(pk=337141)
+
+    def get_data(self, **kwargs):
+        default = {
             'app_slug': 'thisIsAslug',
-            'description': '.',
-            'privacy_policy': '.',
+            'description': '...',
+            'privacy_policy': '...',
             'support_email': 'test@example.com',
             'notes': '',
+            'publish_type': amo.PUBLISH_IMMEDIATE,
         }
-        form = forms.AppDetailsBasicForm(data, request=self.request,
+        default.update(kwargs)
+        return default
+
+    def test_slug(self):
+        app = self.get_app()
+        form = forms.AppDetailsBasicForm(self.get_data(), request=self.request,
                                          instance=app)
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         form.save()
         eq_(app.app_slug, 'thisisaslug')
 
     def test_comm_thread(self):
-        app = Webapp.objects.get(pk=337141)
+        app = self.get_app()
         note_body = 'please approve this app'
-        data = {
-            'app_slug': 'thisIsAslug',
-            'description': '.',
-            'privacy_policy': '.',
-            'support_email': 'test@example.com',
-            'notes': note_body,
-        }
-        form = forms.AppDetailsBasicForm(data, request=self.request,
-                                         instance=app)
-        assert form.is_valid()
+        form = forms.AppDetailsBasicForm(self.get_data(notes=note_body),
+                                         request=self.request, instance=app)
+        assert form.is_valid(), form.errors
         form.save()
         notes = CommunicationNote.objects.all()
         eq_(notes.count(), 1)
         eq_(notes[0].body, note_body)
+
+    def test_publish_type(self):
+        app = self.get_app()
+        form = forms.AppDetailsBasicForm(
+            self.get_data(publish_type=amo.PUBLISH_PRIVATE),
+            request=self.request, instance=app)
+        assert form.is_valid(), form.errors
+        form.save()
+        eq_(app.publish_type, amo.PUBLISH_PRIVATE)
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):

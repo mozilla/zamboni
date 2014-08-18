@@ -102,8 +102,9 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
             # App owners and admin can see the app even if it's not public
             # or not available in the current region. Regular users or
             # anonymous users can't.
-            raise PermissionDenied('The app requested is not public or not '
-                'available in region "%s".' % current_region.slug)
+            raise PermissionDenied(
+                'The app requested is not public or not available in region '
+                '"%s".' % current_region.slug)
         return app
 
     def list(self, request, *args, **kwargs):

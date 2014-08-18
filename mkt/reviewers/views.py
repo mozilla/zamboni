@@ -88,7 +88,7 @@ log = commonware.log.getLogger('z.reviewers')
 
 
 def log_reviewer_action(addon, user, msg, action):
-    create_comm_note(addon, addon.current_version, user, msg,
+    create_comm_note(addon, addon.latest_version, user, msg,
                      note_type=comm.ACTION_MAP(action.id))
     amo.log(action, addon, addon.latest_version, details={'comments': msg})
 
@@ -444,7 +444,7 @@ def _review(request, addon, version):
     ctx = context(request, version=version, product=addon, pager=pager,
                   num_pages=num_pages, count=count,
                   form=form, canned=canned, is_admin=is_admin,
-                  status_types=amo.MKT_STATUS_CHOICES, show_diff=show_diff,
+                  status_types=amo.STATUS_CHOICES, show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   tab=queue_type, product_attrs=product_attrs,

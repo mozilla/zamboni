@@ -23,6 +23,8 @@
     <section>
       <div class="island" id="version-status" data-status="{{ addon.status }}">
         <div class="status-info">
+
+          {# Show important app status changes regardless of packaged or hosted. #}
           {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
             {{ status(_('You have <b>delisted</b> this app.')) }}
 
@@ -36,18 +38,6 @@
               {% endtrans %}
             {% endif %}
 
-          {% elif addon.status == amo.STATUS_PENDING %}
-            <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
-            {{ queue_position(addon, 'p') }}
-            <p>{{ _('You will receive an email when the review is complete.') }}</p>
-          {% elif addon.status == amo.STATUS_PUBLIC %}
-            <p>
-              {{ status(_('This app is <b>public</b>.')) }}
-              {% if addon.latest_version != addon.current_version and addon.latest_version.all_files[0].status == amo.STATUS_PENDING %}
-                <strong class="status status-pending">{{ _('Its latest version is <b>pending review</b> by a Firefox Marketplace reviewer.') }}</strong>
-                {{ queue_position(addon, 'p') }}
-              {% endif %}
-            </p>
           {% elif addon.status == amo.STATUS_DISABLED %}
             {{ status(_('This app has been <b>disabled by Mozilla</b>.')) }}
             {% if addon.iarc_purged %}
@@ -62,22 +52,92 @@
                 questions, please email {{ email }}.
               {% endtrans %}
             {% endif %}
+
           {% elif addon.status == amo.STATUS_BLOCKED %}
             {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
             {% trans email=emaillink(settings.MKT_REVIEWERS_EMAIL) %}
               Your app was blocked by a site administrator. If you have any
               questions, please email {{ email }}.
             {% endtrans %}
+
           {% elif addon.status == amo.STATUS_REJECTED %}
             {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')) }}
+
+          {% endif %}
+
+          {# Showing version information for packaged apps in approved statuses. #}
+          {% if addon.is_packaged and addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+            {# Display some extra information about the status of the versions. #}
+            {% if addon.current_version %}
+              {% set file_status = addon.current_version.all_files[0].status %}
+              <p>
+                {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+                {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+              </p>
+            {% endif %}
+            {% if addon.current_version and addon.latest_version != addon.current_version %}
+              {% set file_status = addon.latest_version.all_files[0].status %}
+              {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+              <p>
+                {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+                {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+              </p>
+              {% if file_status == amo.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
+            {% endif %}
+          {% endif %}
+
+          {% if addon.status == amo.STATUS_PENDING %}
+            <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
+            {{ queue_position(addon, 'p') }}
+            <p>{{ _('You will receive an email when the review is complete.') }}</p>
+
+          {% elif addon.status == amo.STATUS_PUBLIC and not addon.is_packaged %}
+            <p>
+              {{ status(_('This app is <b>published</b>.')) }}
+            </p>
+
+          {% elif addon.status == amo.STATUS_UNLISTED %}
+            {% if not addon.is_packaged %}
+              {{ status(_('Your app has been <b>approved</b> and is currently <b>unlisted</b>.')) }}
+            {% endif %}
+            <p>
+              {% trans app_url=addon.get_detail_url()|absolutify %}
+                Only those with the following URL can view and install this app:<br>
+                <a href="{{ app_url }}">{{ app_url }}</a>.
+              {% endtrans %}
+            </p>
+
           {% elif addon.status == amo.STATUS_APPROVED %}
-            {{ status(_('Your app has been <b>approved but not yet published</b>.')) }}
-            {{ _('This app is waiting for your approval to be published.') }}
+            {% if not addon.is_packaged %}
+              {{ status(_('Your app has been <b>approved</b> and is currently only visible to team members.')) }}
+            {% endif %}
+            <p>
+              {% trans app_url=addon.get_detail_url()|absolutify %}
+                Only <b>team members</b> with the following URL can view and install this app:<br>
+                <a href="{{ app_url }}">{{ app_url }}</a>.
+              {% endtrans %}
+            </p>
+
           {% endif %}
-          {% if not (addon.is_disabled or addon.has_incomplete_status()) %}
+
+          {% if not addon.is_disabled and addon.status not in amo.WEBAPPS_APPROVED_STATUSES %}
             <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
-               target="_blank">{{ _('Learn more') }}</a></p>
+               target="_blank">{{ _('Learn about Review Criteria for apps') }}</a></p>
           {% endif %}
+
+          {# If app is in an approved status, show the app visibility form. #}
+          {% if addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+            <form method="post">
+              {{ form_field(publish_form.publish_type) }}
+              {{ form_field(publish_form.limited, cls='field-limited') }}
+              {{ publish_form.publish_type.errors }}
+              <p>
+                <button type="submit" name="publish-app">{{ _('Update App Visibility') }}</button>
+              </p>
+              {{ csrf() }}
+            </form>
+          {% endif %}
+
           {% if addon.status == amo.STATUS_REJECTED %}
               {% if rejection %}
                 <div class="island swagger" id="rejection">
@@ -110,7 +170,7 @@
               {% if not addon.is_packaged and addon.is_rated() %}
                 <form method="post">
                   {{ csrf() }}
-                  {{ form_field(form.notes, opt=True) }}
+                  {{ form_field(appeal_form.notes, opt=True) }}
                   <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
                 </form>
               {% elif not addon.is_rated() %}
@@ -121,14 +181,102 @@
               {% endif %}
           {% endif %}
         </div>
-        {% if addon.status == amo.STATUS_APPROVED %}
-          <form method="post" action="{{ addon.get_dev_url('publicise') }}">
-            {{ csrf() }}
-            <p class="listing-footer"><button type="submit">{{ _('Publish App') }}</button></p>
-          </form>
-        {% endif %}
       </div>
     </section>
+
+    {% if addon.is_packaged %}
+      {% set versions = addon.versions.all() %}
+      {% if versions %}
+        <h2>{{ _('Packaged Versions') }}</h2>
+
+        <section>
+          <div class="island c">
+            <table id="version-list">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>{{ _('Status') }} </th>
+                  <th class="date">{{ _('Submission date') }}</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for version in versions %}
+                  <tr{% if version == addon.current_version %} class="current"{% endif %}>
+                    <td><h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">{{ version.version }}</a></h4></td>
+                    <td>
+                      {% if addon.disabled_by_user %}
+                        <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
+                      {% else %}
+                        <span class="{{ mkt_file_status_class(addon, version) }}">
+                          {% if version == addon.current_version %}
+                            <b>{{ version.status|join(', ') }} | Active</b>
+                          {% else %}
+                            <b>{{ version.status|join(', ') }}</b>
+                          {% endif %}
+                        </span>
+                      {% endif %}
+                    </td>
+                    <td class="date" title="{{ version.created|isotime }}">{{ version.created|babel_date('long') }}</td>
+                    <td>
+                      {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
+                        <div class="buttons">
+                          <a href="{{ version.all_files[0].get_url_path('') }}" class="download">{{ _('Download') }}</a>
+                          {% if version.all_files[0].status == amo.STATUS_APPROVED %}
+                            <form method="post" action="{{ addon.get_dev_url('versions.publicise') }}">
+                              {{ csrf() }}
+                              <input type="hidden" name="version_id" value="{{ version.id }}">
+                              <button type="submit">{{ _('Make Active') }}</button>
+                            </form>
+                          {% endif %}
+                          <a href="#" class="button bad delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
+                        </div>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      {% endif %}
+
+      <h2 id="upload-new-version">{{ _('Upload New Version') }}</h2>
+      <section>
+        <div class="island">
+          <form method="post" id="upload-webapp" class="item">
+            <p>
+              {% trans %}
+                Upload a new version of this packaged app. New versions must be
+                reviewed before they will be available for installation.
+              {% endtrans %}
+            </p>
+            <p>
+              {% trans ratings_url=addon.get_dev_url('ratings') %}
+                Remember to update the app's <a href="{{ ratings_url }}">content ratings</a>
+                if a large portion of the app's content has changed.
+              {% endtrans %}
+            </p>
+            <div id="upload-file">
+              <div class="hidden">{{ upload_form.upload }}</div>
+              <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_addon', addon.app_slug) }}">
+              {% if upload_form.non_field_errors() or upload_form.upload.errors %}
+                <div class="post-validation-errors">
+                  {{ upload_form.non_field_errors() }}
+                  {{ upload_form.upload.errors }}
+                </div>
+              {% endif %}
+              <div class="submission-buttons addon-submission-field">
+                <button class="prominent upload-file-submit" disabled id="submit-upload-file-finish" type="submit" name="upload-version">
+                  {{ _('Continue') }}
+                </button>
+              </div>
+            </div>
+            {{ csrf() }}
+          </form>
+        </div>
+      </section>
+    {% endif %}
 
     {% if waffle.switch('preload-apps') %}
       <section id="preload">
@@ -170,7 +318,6 @@
       {% set is_disabled = addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
       <section>
         <h2>{{ _('List App') if is_disabled else _('Delist App') }}</h2>
-
         <div class="island c">
           <p>
             {% if is_disabled %}
@@ -216,116 +363,28 @@
       </section>
     {% endif %}
 
-    {% if addon.is_packaged %}
-      {% set versions = addon.versions.all() %}
-      {% if versions %}
-        <h2>{{ _('Packaged Versions') }}</h2>
+    {% if addon.is_packaged and addon.status == amo.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
+      <h2>{{ _('Blocklist App') }}</h2>
 
-        <section>
-          <div class="island c">
-            <table id="version-list">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>{{ _('Status') }} </th>
-                  <th class="date">{{ _('Submission date') }}</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for version in versions %}
-                  <tr{% if version == addon.current_version %} class="current"{% endif %}>
-                    <td><h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">{{ version.version }}</a></h4></td>
-                    <td>
-                      {% if addon.disabled_by_user %}
-                        <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
-                      {% else %}
-                        <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ version.status|join(', ') }}</b></span>
-                      {% endif %}
-                    </td>
-                    <td class="date" title="{{ version.created|isotime }}">{{ version.created|babel_date('long') }}</td>
-                    <td>
-                      {% if version.all_files[0].status != amo.STATUS_BLOCKED %}
-                        <div class="buttons">
-                          <a href="{{ version.all_files[0].get_url_path('') }}" class="download">{{ _('Download') }}</a>
-                          {% if version.all_files[0].status == amo.STATUS_APPROVED %}
-                            <form method="post" action="{{ addon.get_dev_url('versions.publicise') }}">
-                              {{ csrf() }}
-                              <input type="hidden" name="version_id" value="{{ version.id }}">
-                              <button type="submit">{{ _('Publish') }}</button>
-                            </form>
-                          {% endif %}
-                          <a href="#" class="button bad delete-button delete-version" data-version="{{ version.id }}">{{ _('Delete') }}</a>
-                        </div>
-                      {% endif %}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      {% endif %}
-
-      <h2 id="upload-new-version">{{ _('Upload New Version') }}</h2>
       <section>
         <div class="island">
-          <form method="post" id="upload-webapp" class="item">
-            {{ csrf() }}
+          <form method="post" id="blocklist-app" action="{{ addon.get_dev_url('blocklist') }}">
             <p>
             {% trans %}
-              Upload a new version of this packaged app. New versions must be
-              reviewed before they will be available for install.
+              Blocklisting an app will upgrade the users to a special version
+              which will make the app unusable on their Firefox OS devices.
+              This will also remove this app from public pages until a new
+              version is submitted and approved. These changes cannot be
+              undone. Please proceed with caution.
             {% endtrans %}
             </p>
-            <p>
-              {% trans ratings_url=addon.get_dev_url('ratings') %}
-                Remember to update the app's <a href="{{ ratings_url }}">content ratings</a>
-                if a large portion of the app's content has changed.
-              {% endtrans %}
-            </p>
-            <div id="upload-file">
-              <div class="hidden">{{ upload_form.upload }}</div>
-              <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_addon', addon.app_slug) }}">
-              {% if upload_form.non_field_errors() or upload_form.upload.errors %}
-                <div class="post-validation-errors">
-                  {{ upload_form.non_field_errors() }}
-                  {{ upload_form.upload.errors }}
-                </div>
-              {% endif %}
-              <div class="submission-buttons addon-submission-field">
-                <button class="prominent upload-file-submit" disabled id="submit-upload-file-finish" type="submit" name="upload-version">
-                  {{ _('Continue') }}
-                </button>
-              </div>
-            </div>
+            {{ csrf() }}
+            <input type="submit" value="{{ _('Blocklist') }}">
           </form>
         </div>
       </section>
-
-      {% if addon.is_packaged and addon.status == amo.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
-        <h2>{{ _('Blocklist App') }}</h2>
-
-        <section>
-          <div class="island">
-            <form method="post" id="blocklist-app" action="{{ addon.get_dev_url('blocklist') }}">
-              <p>
-              {% trans %}
-                Blocklisting an app will upgrade the users to a special version
-                which will make the app unusable on their Firefox OS devices.
-                This will also remove this app from public pages until a new
-                version is submitted and approved. These changes cannot be
-                undone. Please proceed with caution.
-              {% endtrans %}
-              </p>
-              {{ csrf() }}
-              <input type="submit" value="{{ _('Blocklist') }}">
-            </form>
-          </div>
-        </section>
-      {% endif %}
-
     {% endif %}
+
   </section>
 
   <div id="modals">
