@@ -74,14 +74,14 @@ class WebappIndexer(BaseIndexer):
                 'properties': {
                     # Add a boost field to enhance relevancy of a document.
                     # This is used during queries in a function scoring query.
-                    'boost': {'type': 'long'},
+                    'boost': {'type': 'long', 'doc_values': True},
                     # App fields.
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string', 'analyzer': 'default_icu'},
                     'banner_regions': cls.string_not_indexed(),
-                    'bayesian_rating': {'type': 'float'},
+                    'bayesian_rating': {'type': 'float', 'doc_values': True},
                     'category': cls.string_not_analyzed(),
                     'collection': {
                         'type': 'nested',
@@ -96,7 +96,8 @@ class WebappIndexer(BaseIndexer):
                         'type': 'object',
                         'dynamic': 'true',
                     },
-                    'created': {'format': 'dateOptionalTime', 'type': 'date'},
+                    'created': {'format': 'dateOptionalTime', 'type': 'date',
+                                'doc_values': True},
                     'current_version': cls.string_not_indexed(),
                     'default_locale': cls.string_not_indexed(),
                     'description': {'type': 'string',
@@ -131,12 +132,12 @@ class WebappIndexer(BaseIndexer):
                     # Name for searching.
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     # Name for sorting.
-                    'name_sort': cls.string_not_analyzed(),
+                    'name_sort': cls.string_not_analyzed(doc_values=True),
                     # Name for suggestions.
                     'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
                     'package_path': cls.string_not_indexed(),
-                    'popularity': {'type': 'long'},
+                    'popularity': {'type': 'long', 'doc_values': True},
                     'premium_type': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
@@ -151,7 +152,8 @@ class WebappIndexer(BaseIndexer):
                         }
                     },
                     'region_exclusions': {'type': 'short'},
-                    'reviewed': {'format': 'dateOptionalTime', 'type': 'date'},
+                    'reviewed': {'format': 'dateOptionalTime', 'type': 'date',
+                                 'doc_values': True},
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
@@ -174,7 +176,7 @@ class WebappIndexer(BaseIndexer):
                             'resource_uri': cls.string_not_indexed(),
                         }
                     },
-                    'weekly_downloads': {'type': 'long'},
+                    'weekly_downloads': {'type': 'long', 'doc_values': True},
                     'weight': {'type': 'short'},
                 }
             }
