@@ -207,9 +207,14 @@ class BaseIndexer(object):
         }
 
     @classmethod
-    def get_not_analyzed(cls):
-        """Returns {'type': 'string', 'index': 'not_analyzed'} as shorthand."""
+    def string_not_analyzed(cls):
+        """Shorthand for a non-analyzed string."""
         return {'type': 'string', 'index': 'not_analyzed'}
+
+    @classmethod
+    def string_not_indexed(cls):
+        """Shorthand for a non-indexed string."""
+        return {'type': 'string', 'index': 'no'}
 
     @classmethod
     def setup_mapping(cls):
@@ -289,7 +294,7 @@ class BaseIndexer(object):
         """
         For each field in field name, attach a mapping property to the ES
         mapping that appends "_translations" to the key, and has type string
-        that is not_analyzed.
+        that is not indexed.
         """
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
@@ -297,10 +302,8 @@ class BaseIndexer(object):
                 '%s_translations' % field_name: {
                     'type': 'object',
                     'properties': {
-                        'lang': {'type': 'string',
-                                 'index': 'not_analyzed'},
-                        'string': {'type': 'string',
-                                   'index': 'not_analyzed'},
+                        'lang': cls.string_not_indexed(),
+                        'string': cls.string_not_indexed(),
                     }
                 }
             })

@@ -40,19 +40,19 @@ class FeedAppIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'app': {'type': 'long'},
-                    'background_color': cls.get_not_analyzed(),
+                    'background_color': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
-                    'image_hash': cls.get_not_analyzed(),
-                    'item_type':  cls.get_not_analyzed(),
+                    'image_hash': cls.string_not_analyzed(),
+                    'item_type': cls.string_not_analyzed(),
                     'preview': {'type': 'object', 'dynamic': 'true'},
-                    'pullquote_attribution': cls.get_not_analyzed(),
+                    'pullquote_attribution': cls.string_not_analyzed(),
                     'pullquote_rating': {'type': 'short'},
                     'pullquote_text': {'type': 'string',
                                        'analyzer': 'default_icu'},
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
                     'slug': get_slug_multifield(),
-                    'type': cls.get_not_analyzed(),
+                    'type': cls.string_not_analyzed(),
                 }
             }
         }
@@ -112,8 +112,8 @@ class FeedBrandIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
-                    'layout': cls.get_not_analyzed(),
-                    'item_type': cls.get_not_analyzed(),
+                    'layout': cls.string_not_analyzed(),
+                    'item_type': cls.string_not_analyzed(),
                     'slug': get_slug_multifield(),
                     'type': {'type': 'string'},
                 }
@@ -152,15 +152,15 @@ class FeedCollectionIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
-                    'background_color': cls.get_not_analyzed(),
+                    'background_color': cls.string_not_analyzed(),
                     'group_apps': {'type': 'object', 'dynamic': 'true'},
                     'group_names': {'type': 'object', 'dynamic': 'true'},
-                    'image_hash': cls.get_not_analyzed(),
-                    'item_type': cls.get_not_analyzed(),
+                    'image_hash': cls.string_not_analyzed(),
+                    'item_type': cls.string_not_analyzed(),
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
                     'slug': get_slug_multifield(),
-                    'type': cls.get_not_analyzed(),
+                    'type': cls.string_not_analyzed(),
                 }
             }
         }
@@ -170,7 +170,7 @@ class FeedCollectionIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, pk=None, obj=None):
-        from mkt.feed.models import FeedCollection, FeedCollectionMembership
+        from mkt.feed.models import FeedCollectionMembership
 
         if obj is None:
             obj = cls.get_model().objects.get(pk=pk)
@@ -227,12 +227,12 @@ class FeedShelfIndexer(BaseIndexer):
                 'properties': {
                     'id': {'type': 'long'},
                     'apps': {'type': 'long'},
-                    'background_color': cls.get_not_analyzed(),
-                    'carrier': cls.get_not_analyzed(),
+                    'background_color': cls.string_not_analyzed(),
+                    'carrier': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
-                    'image_hash': cls.get_not_analyzed(),
-                    'item_type': cls.get_not_analyzed(),
-                    'region': cls.get_not_analyzed(),
+                    'image_hash': cls.string_not_analyzed(),
+                    'item_type': cls.string_not_analyzed(),
+                    'region': cls.string_not_analyzed(),
                     'search_names': {'type': 'string',
                                      'analyzer': 'default_icu'},
                     'slug': get_slug_multifield(),
@@ -245,8 +245,6 @@ class FeedShelfIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, pk=None, obj=None):
-        from mkt.feed.models import FeedShelf
-
         if obj is None:
             obj = cls.get_model().get(pk=pk)
 
@@ -292,7 +290,7 @@ class FeedItemIndexer(BaseIndexer):
                     'carrier': {'type': 'integer'},
                     'category': {'type': 'integer'},
                     'collection': {'type': 'long'},
-                    'item_type': cls.get_not_analyzed(),
+                    'item_type': cls.string_not_analyzed(),
                     'order': {'type': 'integer'},
                     'region': {'type': 'integer'},
                     'shelf': {'type': 'long'},
@@ -302,8 +300,6 @@ class FeedItemIndexer(BaseIndexer):
 
     @classmethod
     def extract_document(cls, pk=None, obj=None):
-        from mkt.feed.models import FeedItem
-
         if obj is None:
             obj = cls.get_model().objects.get(pk=pk)
 

@@ -79,16 +79,10 @@ class WebappIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
-                    'author': {'type': 'string'},
-                    'banner_regions': {
-                        'type': 'string',
-                        'index': 'not_analyzed'
-                    },
+                    'author': {'type': 'string', 'analyzer': 'default_icu'},
+                    'banner_regions': cls.string_not_indexed(),
                     'bayesian_rating': {'type': 'float'},
-                    'category': {
-                        'type': 'string',
-                        'index': 'not_analyzed'
-                    },
+                    'category': cls.string_not_analyzed(),
                     'collection': {
                         'type': 'nested',
                         'include_in_parent': True,
@@ -97,19 +91,14 @@ class WebappIndexer(BaseIndexer):
                             'order': {'type': 'short'}
                         }
                     },
-                    'content_descriptors': {
-                        'type': 'string',
-                        'index': 'not_analyzed'
-                    },
+                    'content_descriptors': cls.string_not_indexed(),
                     'content_ratings': {
                         'type': 'object',
                         'dynamic': 'true',
                     },
                     'created': {'format': 'dateOptionalTime', 'type': 'date'},
-                    'current_version': {'type': 'string',
-                                        'index': 'not_analyzed'},
-                    'default_locale': {'type': 'string',
-                                       'index': 'not_analyzed'},
+                    'current_version': cls.string_not_indexed(),
+                    'default_locale': cls.string_not_indexed(),
                     'description': {'type': 'string',
                                     'analyzer': 'default_icu'},
                     'device': {'type': 'byte'},
@@ -120,12 +109,8 @@ class WebappIndexer(BaseIndexer):
                             for f in APP_FEATURES)
                     },
                     'has_public_stats': {'type': 'boolean'},
-                    'icon_hash': {'type': 'string',
-                                  'index': 'not_analyzed'},
-                    'interactive_elements': {
-                        'type': 'string',
-                        'index': 'not_analyzed'
-                    },
+                    'icon_hash': cls.string_not_indexed(),
+                    'interactive_elements': cls.string_not_indexed(),
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
                     'is_offline': {'type': 'boolean'},
@@ -140,28 +125,24 @@ class WebappIndexer(BaseIndexer):
                             'has_info_request': {'type': 'boolean'},
                         },
                     },
-                    'manifest_url': {'type': 'string',
-                                     'index': 'not_analyzed'},
+                    'manifest_url': cls.string_not_analyzed(),
                     'modified': {'format': 'dateOptionalTime',
-                                 'type': 'date',
-                                 'index': 'not_analyzed'},
+                                 'type': 'date'},
                     # Name for searching.
                     'name': {'type': 'string', 'analyzer': 'default_icu'},
                     # Name for sorting.
-                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'name_sort': cls.string_not_analyzed(),
                     # Name for suggestions.
                     'name_suggest': {'type': 'completion', 'payloads': True},
                     'owners': {'type': 'long'},
-                    'package_path': {'type': 'string',
-                                     'index': 'not_analyzed'},
+                    'package_path': cls.string_not_indexed(),
                     'popularity': {'type': 'long'},
                     'premium_type': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
                         'dynamic': 'true',
                     },
-                    'price_tier': {'type': 'string',
-                                   'index': 'not_analyzed'},
+                    'price_tier': cls.string_not_indexed(),
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -172,20 +153,16 @@ class WebappIndexer(BaseIndexer):
                     'region_exclusions': {'type': 'short'},
                     'reviewed': {'format': 'dateOptionalTime', 'type': 'date'},
                     'status': {'type': 'byte'},
-                    'supported_locales': {'type': 'string',
-                                          'index': 'not_analyzed'},
+                    'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
                     'type': {'type': 'byte'},
                     'upsell': {
                         'type': 'object',
                         'properties': {
                             'id': {'type': 'long'},
-                            'app_slug': {'type': 'string',
-                                         'index': 'not_analyzed'},
-                            'icon_url': {'type': 'string',
-                                         'index': 'not_analyzed'},
-                            'name': {'type': 'string',
-                                     'index': 'not_analyzed'},
+                            'app_slug': cls.string_not_indexed(),
+                            'icon_url': cls.string_not_indexed(),
+                            'name': cls.string_not_indexed(),
                             'region_exclusions': {'type': 'short'},
                         }
                     },
@@ -193,10 +170,8 @@ class WebappIndexer(BaseIndexer):
                     'versions': {
                         'type': 'object',
                         'properties': {
-                            'version': {'type': 'string',
-                                        'index': 'not_analyzed'},
-                            'resource_uri': {'type': 'string',
-                                             'index': 'not_analyzed'},
+                            'version': cls.string_not_indexed(),
+                            'resource_uri': cls.string_not_indexed(),
                         }
                     },
                     'weekly_downloads': {'type': 'long'},
