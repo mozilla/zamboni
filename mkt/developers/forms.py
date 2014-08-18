@@ -50,7 +50,8 @@ from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
 from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, IARCInfo,
                                 Preview, Webapp)
-from mkt.webapps.tasks import index_webapps, update_manifests
+from mkt.webapps.tasks import (index_webapps, set_storefront_data,
+                               update_manifests)
 from mkt.webapps.widgets import IconWidgetRenderer
 
 from . import tasks
@@ -810,7 +811,7 @@ class PublishForm(happyforms.Form):
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
 
-        self.addon.set_iarc_storefront_data()
+        set_storefront_data.delay(self.addon.pk)
 
 
 class RegionForm(forms.Form):

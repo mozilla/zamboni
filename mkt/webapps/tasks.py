@@ -13,7 +13,6 @@ from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
 from django.template import Context, loader
 
-import elasticsearch
 import pytz
 import requests
 from celery import chord
@@ -28,7 +27,6 @@ import mkt
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
-from lib.es.models import Reindexing
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants.regions import RESTOFWORLD
