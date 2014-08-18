@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-19 09:14+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2014-08-18 01:11+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405761253.0\n"
+"X-POOTLE-MTIME: 1408324314.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -1876,7 +1876,7 @@ msgstr "网页应用审核"
 
 #: mkt/constants/base.py:249
 msgid "Packaged App Review"
-msgstr "打包应用审核"
+msgstr "封装应用审核"
 
 #: mkt/constants/base.py:250
 msgid "Web App Re-review"
@@ -1884,7 +1884,7 @@ msgstr "网络应用重审核"
 
 #: mkt/constants/base.py:251
 msgid "Updated Packaged App Review"
-msgstr "更新打包应用审核"
+msgstr "更新封装应用审核"
 
 #: mkt/constants/base.py:252
 msgid "Moderated App Review"
@@ -2024,47 +2024,47 @@ msgstr "开发者留言"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "审核者更改了支持设备"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "审核者更改了需求"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "因清单变更而重新审核"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "因清单 URL 变更而重新审核"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "因收费类型升级而重新审核"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "因新增支持设备而重新审核"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "因需求变更而重新审核"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "因成人内容评级而重新审核"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "因 VIP 应用而提升审核"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "因是预先发行应用而提升审核"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "已请求优先审核"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2076,11 +2076,11 @@ msgstr "这个应用程序需要 `navigator.mozApps` API 以安装并管理其�
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr "已打包应用程序安装 API"
+msgstr "封装应用程序安装 API"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
-msgstr "这个应用程序需要 `navigator.mozApps.installPackage` API 以安装其他应用程序。"
+msgstr "这个应用程序需要 `navigator.mozApps.installPackage` API 以安装其他封装应用。"
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
@@ -2569,7 +2569,7 @@ msgstr "已托管应用"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:90
 msgid "Packaged"
-msgstr "已打包应用"
+msgstr "已封装"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
@@ -2777,11 +2777,11 @@ msgstr "到"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "网站"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "命令行"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3219,7 +3219,7 @@ msgstr "这个应用没有支付帐号。"
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "应用市场 API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3235,10 +3235,14 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> 应用市场 API 主要有两种用途。分别是另一个网站使用传统的 OAuth 工作流，或者通过命令行工具使用。不同之处已列于<a "
+"href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authe"
+"ntication.html#oauth\">应用市场文档</a>中。任何测试只应在 <a href=\"https://marketplace-"
+"dev.allizom.org\">开发服务器</a>上进行，而不应在生产服务器上进行。 </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "客户端类型"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3254,11 +3258,11 @@ msgstr "创建"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth 密钥"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr "关键词"
+msgstr "密钥"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
@@ -3276,11 +3280,11 @@ msgstr "您目前没有 API 密钥。"
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth 范例"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr ""
+msgstr "<p>在 Mac OS X 上的命令行中通过一个 Python 库使用您的 OAuth 凭证的范例：</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3310,7 +3314,7 @@ msgstr "每日消息"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "更新每日消息"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5467,15 +5471,15 @@ msgstr "Mozilla 网络应用（巴西葡萄牙语）"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "无效的 URL %(url)s"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "从 %(url)s 下载图像出错"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "来自 %(url)s 的图像无法被解析"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6295,7 +6299,7 @@ msgstr "中国 ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6428,19 +6432,19 @@ msgstr "<i>匿名</i> 来自 %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "额外队列"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} 审核队列"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "通过"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "失败"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
