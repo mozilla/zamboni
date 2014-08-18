@@ -116,6 +116,11 @@ class TestApi(RestOAuth, ESTestCase):
         eq_(set(res.json.keys()), set(['objects', 'meta']))
         eq_(res.json['meta']['total_count'], 1)
 
+    @patch('mkt.search.utils.statsd.timer')
+    def test_statsd(self, _mock):
+        self.client.get(self.url)
+        assert _mock.called
+
     def test_search_published_apps(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

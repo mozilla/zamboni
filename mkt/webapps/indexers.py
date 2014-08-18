@@ -15,6 +15,7 @@ from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
+from mkt.search.utils import Search
 from mkt.versions.models import Version
 
 
@@ -28,6 +29,18 @@ class WebappIndexer(BaseIndexer):
     By default we will return these objects rather than hit the database so
     include here all the things we need to avoid hitting the database.
     """
+
+    @classmethod
+    def search(cls, using=None):
+        """
+        Returns a `Search` object.
+
+        We override this to use our patched version which adds statsd timing.
+
+        """
+        return Search(using=using or cls.get_es(),
+                      index=cls.get_index(),
+                      doc_type=cls.get_mapping_type_name())
 
     @classmethod
     def get_mapping_type_name(cls):
