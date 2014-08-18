@@ -38,10 +38,10 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
         return reverse('in-app-products-list',
                        kwargs={'origin': self.webapp.origin})
 
-    def detail_url(self, pk):
+    def detail_url(self, guid):
         return reverse('in-app-products-detail',
                        kwargs={'origin': self.webapp.origin,
-                               'pk': pk})
+                               'guid': guid})
 
     def create_product(self):
         product_data = {'webapp': self.webapp}
@@ -79,7 +79,7 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
-        response = self.put(self.detail_url(product.id),
+        response = self.put(self.detail_url(product.guid),
                             self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(response.json['name'], 'Orange Gems')
@@ -87,7 +87,7 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
 
     def test_delete(self):
         product = self.create_product()
-        delete_response = self.delete(self.detail_url(product.id))
+        delete_response = self.delete(self.detail_url(product.guid))
         eq_(delete_response.status_code, status.HTTP_403_FORBIDDEN)
 
 
@@ -107,7 +107,7 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
-        response = self.put(self.detail_url(product.id),
+        response = self.put(self.detail_url(product.guid),
                             self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
@@ -116,18 +116,18 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
         product2 = self.create_product()
         response = self.get(self.list_url())
         eq_(response.status_code, status.HTTP_200_OK)
-        eq_(sorted([p['id'] for p in response.json['objects']]),
-            [product1.id, product2.id])
+        eq_(sorted([p['guid'] for p in response.json['objects']]),
+            sorted([product1.guid, product2.guid]))
 
     def test_detail(self):
         product = self.create_product()
-        response = self.get(self.detail_url(product.id))
+        response = self.get(self.detail_url(product.guid))
         eq_(response.status_code, status.HTTP_200_OK)
-        eq_(response.json['id'], product.id)
+        eq_(response.json['guid'], product.guid)
 
     def test_delete(self):
         product = self.create_product()
-        response = self.delete(self.detail_url(product.id))
+        response = self.delete(self.detail_url(product.guid))
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
@@ -147,13 +147,13 @@ class TestInAppProductViewSetAuthorizedCookie(BaseInAppProductViewSetTests):
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
-        response = self.put(self.detail_url(product.id),
+        response = self.put(self.detail_url(product.guid),
                             self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete(self):
         product = self.create_product()
-        response = self.delete(self.detail_url(product.id))
+        response = self.delete(self.detail_url(product.guid))
         eq_(response.status_code, status.HTTP_403_FORBIDDEN)
 
 

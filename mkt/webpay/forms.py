@@ -13,7 +13,8 @@ class PrepareWebAppForm(happyforms.Form):
 
 
 class PrepareInAppForm(happyforms.Form):
-    inapp = forms.ModelChoiceField(queryset=InAppProduct.objects.all())
+    inapp = forms.ModelChoiceField(queryset=InAppProduct.objects.all(),
+                                   to_field_name='guid')
 
 
 class FailureForm(happyforms.Form):
