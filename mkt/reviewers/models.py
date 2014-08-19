@@ -378,11 +378,21 @@ def tarako_failed(review):
     WebappIndexer.index_ids([review.app.pk])
 
 
+class AdditionalReviewManager(amo.models.ManagerBase):
+    def unreviewed(self, queue):
+        return self.get_queryset().filter(
+            passed=None,
+            queue=queue,
+            app__status__in=amo.WEBAPPS_APPROVED_STATUSES)
+
+
 class AdditionalReview(amo.models.ModelBase):
     app = models.ForeignKey(Addon)
     queue = models.CharField(max_length=30)
     passed = models.NullBooleanField()
     review_completed = models.DateTimeField(null=True)
+
+    objects = AdditionalReviewManager()
 
     class Meta:
         db_table = 'additional_review'

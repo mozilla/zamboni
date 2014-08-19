@@ -3,7 +3,8 @@
 {% macro additional_review_table(table_class="additional-review-queue",
                                  app_detail_src="additional-review-queue",
                                  approve_text=None,
-                                 reject_text=None) %}
+                                 reject_text=None,
+                                 can_sort_by_name=True) %}
   {# table_class (optional): The class name for the table, defaults to "additional-review".
      app_detail_src (optional): The name of this page for linking to the app page, defaults to "additional-review".
      approve_text (optional): The text to put in the approve button, defaults to _("Approve").
@@ -11,7 +12,13 @@
   <table id="addon-queue" class="data-grid items {{ table_class }}">
     <thead>
       <tr class="listing-header">
-        <th>{{ sort_link(_('App'), 'name')|safe }}</th>
+        <th>
+            {% if can_sort_by_name %}
+                {{ sort_link(_('App'), 'name')|safe }}
+            {% else %}
+                {{ _('App') }}
+            {% endif %}
+        </th>
         <th>{{ _('Flags') }}</th>
         <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
         <th>{{ _('Devices') }}</th>

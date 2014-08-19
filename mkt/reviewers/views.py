@@ -187,8 +187,10 @@ def queue_counts(request):
                                    editorreview=True)
                            .count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
-        'additional_tarako': AdditionalReview.objects.filter(
-            queue=QUEUE_TARAKO, passed=None).count(),
+        'additional_tarako': (
+            AdditionalReview.objects
+                            .unreviewed(queue=QUEUE_TARAKO)
+                            .count()),
     }
 
     if 'pro' in request.GET:
@@ -632,9 +634,12 @@ def queue_region(request, region=None):
 @reviewer_required
 def additional_review(request, queue):
     """HTML page for an additional review queue."""
+    order_by = 'created'
+    if request.GET.get('order') == 'desc':
+        order_by = '-' + order_by
     # TODO: Add `.select_related('app')`. Currently it won't load the name.
-    additional_reviews = AdditionalReview.objects.filter(
-        queue=queue, passed=None)
+    additional_reviews = (AdditionalReview.objects.unreviewed(queue=queue)
+                                                  .order_by(order_by))
     apps = [ActionableQueuedApp(additional_review.app,
                                 additional_review.created,
                                 reverse('additionalreview-detail',
@@ -642,7 +647,7 @@ def additional_review(request, queue):
             for additional_review in additional_reviews]
     return _queue(request, apps, queue, date_sort='created',
                   template='reviewers/additional_review.html',
-                  data={'queue': queue, 'region': parse_region('cn')})
+                  data={'queue': queue})
 
 
 @reviewer_required
