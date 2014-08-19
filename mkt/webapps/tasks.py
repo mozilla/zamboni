@@ -1,8 +1,11 @@
 import datetime
 import hashlib
+import itertools
 import json
 import logging
 import os
+import random
+import StringIO
 import shutil
 import subprocess
 import time
@@ -18,6 +21,7 @@ import requests
 from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task
+from PIL import Image
 from requests.exceptions import RequestException
 from test_utils import RequestFactory
 from tower import ugettext as _
@@ -29,9 +33,10 @@ from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
+from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
-                                  resize_preview, validator)
+                                  resize_preview, save_icon, validator)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import RereviewQueue
@@ -834,3 +839,53 @@ def set_storefront_data(app_id, disable=False, **kw):
         return
 
     app.set_iarc_storefront_data(disable=disable)
+
+
+adjectives = ['Exquisite', 'Delicious', 'Elegant', 'Swanky', 'Spicy',
+              'Food Truck', 'Artisanal', 'Tasty']
+nouns = ['Sandwich', 'Pizza', 'Curry', 'Pierogi', 'Sushi', 'Salad', 'Stew',
+         'Pasta', 'Barbeque', 'Bacon', 'Pancake', 'Waffle', 'Chocolate',
+         'Gyro', 'Cookie', 'Burrito', 'Pie']
+fake_app_names = list(itertools.product(adjectives, nouns))[:-1]
+
+
+def generate_app_data(num):
+    repeats, tailsize = divmod(num, len(fake_app_names))
+    if repeats:
+        apps = fake_app_names[:]
+        for i in range(repeats - 1):
+            for a in fake_app_names:
+                apps.append(a + (str(i + 1),))
+        for a in fake_app_names[:tailsize]:
+            apps.append(a + (str(i + 2),))
+    else:
+        apps = random.sample(fake_app_names, tailsize)
+    # Let's have at least 3 apps in each category, if we can.
+    if num < (len(CATEGORY_CHOICES) * 3):
+        num_cats = max(num // 3, 1)
+    else:
+        num_cats = len(CATEGORY_CHOICES)
+    catsize = num // num_cats
+    ia = iter(apps)
+    for cat_slug, cat_name in CATEGORY_CHOICES[:num_cats]:
+        for n in range(catsize):
+            appname = ' '.join(next(ia))
+            yield (appname, cat_slug)
+    for i, app in enumerate(ia):
+        appname = ' '.join(app)
+        cat_slug, cat_name = CATEGORY_CHOICES[i % len(CATEGORY_CHOICES)]
+        yield (appname, cat_slug)
+
+
+def generate_apps(num):
+    # Let's not make production code depend on stuff in the test package --
+    # importing it only when called in local dev is fine.
+    from amo.tests import app_factory
+    for appname, cat_slug in generate_app_data(num):
+        app = app_factory(categories=[cat_slug], name=appname, complete=True,
+                          rated=True)
+        im = Image.new("RGB", (128, 128),
+                       "#" + hashlib.md5(appname + cat_slug).hexdigest()[:6])
+        f = StringIO.StringIO()
+        im.save(f, 'png')
+        save_icon(app, f.getvalue())

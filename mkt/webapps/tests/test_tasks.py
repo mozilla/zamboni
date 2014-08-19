@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import datetime
 import hashlib
 import json
@@ -29,6 +30,7 @@ from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
+                               fake_app_names, generate_app_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests,
                                zip_apps)
@@ -719,3 +721,42 @@ class TestExportData(amo.tests.TestCase):
         collection_file = tarball.extractfile(self.collection_path)
         collection_data = json.loads(collection_file.read())
         eq_(collection_data['apps'][0]['filepath'], self.app_path)
+
+
+class AppGeneratorTests(amo.tests.TestCase):
+    def test_tinyset(self):
+        size = 4
+        data = list(generate_app_data(size))
+        eq_(len(data), size)
+        ctr = collections.Counter(cat for appname, cat in data)
+        # Apps are binned into categories, at least 3 in each.
+        eq_(ctr.values(), [4])
+        # Names are unique.
+        eq_(len(set(appname for appname, cat in data)), size)
+        # Size is smaller than name list, so no names end in numbers.
+        ok_(not any(appname[-1].isdigit() for appname, cat in data))
+
+    def test_smallset(self):
+        size = 60
+        data = list(generate_app_data(size))
+        eq_(len(data), size)
+        ctr = collections.Counter(cat for appname, cat in data)
+        eq_(set(ctr.values()), set([3, 4]))
+        eq_(len(set(appname for appname, cat in data)), size)
+        ok_(not any(appname[-1].isdigit() for appname, cat in data))
+
+    def test_bigset(self):
+        size = 300
+        data = list(generate_app_data(size))
+        eq_(len(data), size)
+        ctr = collections.Counter(cat for appname, cat in data)
+        # Apps are spread between categories evenly - the difference between
+        # the largest and smallest category is less than 2.
+        ok_(max(ctr.values()) - min(ctr.values()) < 2)
+        eq_(len(set(appname for appname, cat in data)), size)
+        # Every name is used without a suffix.
+        eq_(sum(1 for appname, cat in data if not appname[-1].isdigit()),
+            len(fake_app_names))
+        # Every name is used with ' 1' as a suffix.
+        eq_(sum(1 for appname, cat in data if appname.endswith(' 1')),
+            len(fake_app_names))
