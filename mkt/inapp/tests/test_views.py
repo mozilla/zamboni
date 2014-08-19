@@ -164,6 +164,10 @@ class TestStubInAppProductViewSet(BaseInAppProductViewSetTests):
         super(TestStubInAppProductViewSet, self).setUp()
         self.client = JSONClient()
 
+    def detail_url(self, guid):
+        return reverse('stub-in-app-products-detail',
+                       kwargs={'guid': guid})
+
     def list_url(self):
         return reverse('stub-in-app-products-list')
 
@@ -183,11 +187,25 @@ class TestStubInAppProductViewSet(BaseInAppProductViewSetTests):
         stub = InAppProduct.objects.create(stub=True,
                                            name='Test Product',
                                            price=Price.objects.all()[0])
+        stub.save()  # generate GUID
 
         res = self.get(self.list_url())
         eq_(res.status_code, status.HTTP_200_OK)
         objects = self.objects(res)
+        eq_(objects[0]['guid'], stub.guid)
         eq_(objects[0]['name'], stub.name)
         eq_(objects[0]['price_id'], stub.price.pk)
         eq_(InAppProduct.objects.all().count(), 1,
             'No new stubs should have been created')
+
+    def test_get_existing_stub_detail(self):
+        stub = InAppProduct.objects.create(stub=True,
+                                           name='Test Product',
+                                           price=Price.objects.all()[0])
+        stub.save()  # generate GUID
+
+        res = self.get(self.detail_url(stub.guid))
+        eq_(res.status_code, status.HTTP_200_OK)
+        eq_(res.json['guid'], stub.guid)
+        eq_(res.json['name'], stub.name)
+        eq_(res.json['price_id'], stub.price.pk)

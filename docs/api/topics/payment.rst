@@ -347,6 +347,33 @@ packaged app. For example: ``app://foo-app.com``.
 
     **Response**
 
+    .. code-block:: json
+
+        {"meta": {"next": null, "previous": null, "total_count": 2,
+                  "offset": 0, "limit": 25},
+         "objects": [{"guid": "d3182953-feed-44dd-a3be-e17ae7fe6a2c",
+                      "app": null, "price_id": 237, "name": "Kiwi",
+                      "logo_url": null},
+                     {"guid": "8b3fa156-354a-47a9-b862-0f02b56d0e3d",
+                      "app": null, "price_id": 238, "name": "Unicorn",
+                      "logo_url": null}]}
+
+    :status 200: successfully completed.
+    :objects: list of stub products.
+        See :ref:`get stub product <get-stub-product>`.
+
+.. _get-stub-product:
+
+.. http:get:: /api/v1/payments/stub-in-app-products/(string:guid)/
+
+    Get detailed info for a specific stub product.
+
+    **Request**
+
+    None
+
+    **Response**
+
     :status 200: successfully completed.
     :param guid: The in-app product ID.
     :type guid: string
