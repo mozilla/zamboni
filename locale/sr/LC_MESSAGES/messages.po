@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-18 08:55+0000\n"
-"Last-Translator: Marko <marko.andrejic93@gmail.com>\n"
+"PO-Revision-Date: 2014-08-19 11:56+0000\n"
+"Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408352137.0\n"
+"X-POOTLE-MTIME: 1408449414.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -3143,7 +3143,7 @@ msgstr "Оцене садржаја су успешно снимљене."
 
 #: mkt/developers/views.py:442
 msgid "Application for preload successfully submitted."
-msgstr ""
+msgstr "Апликација је успешно послата за напредно учитавање."
 
 #: mkt/developers/views.py:445
 msgid "There was an error with the form."
@@ -3711,7 +3711,7 @@ msgstr "Објави апликацију"
 
 #: mkt/developers/templates/developers/apps/status.html:135
 msgid "Pre-Installed App Status"
-msgstr ""
+msgstr "Статус унапред инсталиране апликације"
 
 #: mkt/developers/templates/developers/apps/status.html:141
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
@@ -3787,6 +3787,8 @@ msgstr "Отпреми нову верзију"
 #: mkt/developers/templates/developers/apps/status.html:276
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for install."
 msgstr ""
+"Отпремите нову верзију ове спаковане апликације. Нова верзија мора бити "
+"прегледана пре него што буде доступна за инсталирање."
 
 #: mkt/developers/templates/developers/apps/status.html:282
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -4407,7 +4409,7 @@ msgstr "Избриши ову апликацију."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
-msgstr ""
+msgstr "Измени детаље за ову листинг страницу апликације."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
@@ -4497,7 +4499,7 @@ msgstr "Тестирање завршено?"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr ""
+msgstr "Пошаљите Вашу апликацију за напредно учитавање"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -5002,6 +5004,8 @@ msgstr "Иди на Boku документацију на MDN"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
 msgstr ""
+"Да ли сте се пријавили за Boku налог и да ли Вам је налог одобрен? Молимо "
+"Вас направите име налога и Ваш Boku service id испод."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
@@ -5271,6 +5275,15 @@ msgid ""
 "In addition, you are always welcome to ask questions and share feedback and resources on <a href=\"%(b2g_irc_url)s\" target=\"_blank\">IRC</a> and <a href=\"%(b2g_mail_url)s\" target=\"_blank\">e-"
 "mail</a>."
 msgstr ""
+"Конкретно ми би смо волели да <a href=\"%(mdn_hackingfxos_url)s\" "
+"target=\"_blank\">додате савете и трикове за хаковање самог Firefox OS-а</a>, "
+"<a href=\"%(mdn_fxosapps_url)s\" target=\"_blank\">додате савете и трикове за "
+"развој Firefox OS апликација</a>и додате информације о Вашем <a href=\"%"
+"(mdn_devphone_url)s\" target=\"_blank\">искуству користећи Firefox OS на "
+"различитим уређајима</a>. Осим тога, увек сте добродошли да поставите питање "
+"и поделите повратне информације и ресурсе на <a href=\"%(b2g_irc_url)s\" "
+"target=\"_blank\">IRC</a> и <a href=\"%(b2g_mail_url)s\" "
+"target=\"_blank\">е-пошти</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -5554,7 +5567,7 @@ msgstr "Android таблети"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
-msgstr ""
+msgstr "Ви + Mozilla = Супер"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
@@ -5583,6 +5596,9 @@ msgstr "Значке, банери и иконице"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
+"\"Get it in the Firefox Marketplace\" су значке које можете користити на Вашем "
+"веб сајту и промотивним материјалима да укажете на Ваше производе на "
+"Firefox Marketplace-у."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -5590,11 +5606,14 @@ msgstr "Упутства"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "Не можете изменизи значку ни на који начин"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid "When used alongside logos for other marketplaces (\"Get it on Google Play\", \"Download on the App Store\"), the Firefox Marketplace badge should be of equal or greater size"
 msgstr ""
+"Када се користи заједно са логотипима за друге маркете (\"Get it on Google "
+"Play\", \"Download on the App Store\"), Firefox Marketplace значка би требала "
+"бити исте или веће величине"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid "The badge should link to an app details page within the Firefox Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
@@ -5619,6 +5638,8 @@ msgstr "Лого"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
+"Да погледате и преузмете Firefox Marketplace логотип, молимо Вас посетите <a "
+"href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -5646,7 +5667,7 @@ msgstr "Како уплате функционишу?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Како да управљам таксама мојих плата?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Known issues"
@@ -5659,6 +5680,9 @@ msgstr "Да ли још увек имате питања?"
 #: mkt/ecosystem/templates/ecosystem/support.html:55
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
 msgstr ""
+"Док ми радимо на томе да направимо сет канала да Вам помогнемо са Вашим "
+"проблемима можете посетити StackOverflow да решите сва Ваша питања везана за "
+"развој веб апликација."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:63 mkt/ecosystem/templates/ecosystem/support.html:65
 msgid "Stack Overflow"
@@ -5686,7 +5710,7 @@ msgstr "Грешка при преузимању слике са %(url)s"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Слике са %(url)s нису могле бити рашчлањене"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -5787,11 +5811,11 @@ msgstr "Крени"
 
 #: mkt/files/templates/fileviewer/viewer.html:34
 msgid "App being processed, please wait."
-msgstr ""
+msgstr "Апликација се обрађује, молимо Вас сачекајте."
 
 #: mkt/files/templates/fileviewer/viewer.html:38
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Преузимање резултата валидације..."
 
 #: mkt/files/templates/fileviewer/viewer.html:46
 msgid "Files:"
@@ -5803,15 +5827,15 @@ msgstr "Избрисане датотеке:"
 
 #: mkt/files/templates/fileviewer/viewer.html:67
 msgid "Tab stops:"
-msgstr ""
+msgstr "Картица се зауставља:"
 
 #: mkt/files/templates/fileviewer/viewer.html:73 mkt/files/templates/fileviewer/viewer.html:74
 msgid "Up file"
-msgstr ""
+msgstr "Горња датотека"
 
 #: mkt/files/templates/fileviewer/viewer.html:78 mkt/files/templates/fileviewer/viewer.html:79
 msgid "Down file"
-msgstr ""
+msgstr "Доња датотека"
 
 #: mkt/files/templates/fileviewer/viewer.html:84 mkt/files/templates/fileviewer/viewer.html:85
 msgid "Previous diff"
@@ -5851,15 +5875,15 @@ msgstr "Преузимам датотеку."
 
 #: mkt/lookup/forms.py:28
 msgid "Transaction Lookup"
-msgstr ""
+msgstr "Претрагa трансакција"
 
 #: mkt/lookup/forms.py:36
 msgid "Process a manual refund"
-msgstr ""
+msgstr "Обрадити ручно повраћај новца"
 
 #: mkt/lookup/forms.py:39
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Унесите детаље за повраћај новца ради трансакције исте"
 
 #: mkt/lookup/forms.py:52
 msgid "Reason for Deletion"
@@ -5867,11 +5891,11 @@ msgstr "Разлози за брисање"
 
 #: mkt/lookup/views.py:145
 msgid "Currently unable to retrieve refund status."
-msgstr ""
+msgstr "Тренутно није могуће преузети статус повраћаја новца."
 
 #: mkt/lookup/views.py:172
 msgid "A refund has already been processed."
-msgstr ""
+msgstr "Повраћај новца је већ обрађен."
 
 #: mkt/lookup/views.py:195
 msgid "You cannot make a refund request for this transaction."
@@ -5879,7 +5903,7 @@ msgstr ""
 
 #: mkt/lookup/views.py:217
 msgid "Refund for this transaction now pending."
-msgstr ""
+msgstr "Повраћај новца за ову трансакцију је у току."
 
 #: mkt/lookup/views.py:226
 msgid "Refund for this transaction successfully approved."
@@ -6018,6 +6042,8 @@ msgstr "<small>Marketplace</small> алат за претрагу"
 #: mkt/lookup/templates/lookup/transaction_summary.html:11
 msgid "Transaction Lookup results for <a href=\"%(tx_url)s\">Transaction %(uuid)s</a>"
 msgstr ""
+"Резултати претраге трансакције за <a href=\"%(tx_url)s\">Трансакцију %"
+"(uuid)s</a>"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:22
 msgid "Buyer"
@@ -6025,11 +6051,11 @@ msgstr "Купац"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:30
 msgid "Price Tier"
-msgstr ""
+msgstr "Основна цена"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:32
 msgid "Related Transaction"
-msgstr ""
+msgstr "Повезане трансакције"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:47
 msgid "Refund Status"
@@ -6045,11 +6071,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:66
 msgid "Refund this transaction"
-msgstr ""
+msgstr "Поврати новац ове трансакције"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
-msgstr ""
+msgstr "Разултати активноси налога за"
 
 #: mkt/lookup/templates/lookup/user_activity.html:14
 msgid "Account Updates"
