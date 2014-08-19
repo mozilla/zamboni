@@ -107,6 +107,11 @@ redirect_patterns = patterns('',
     url('^docs/dev_tools$',
         redirect_doc('/Tools'),
         name='ecosystem.build_dev_tools'),
+
+    # Doesn't start with docs/, but still redirects to MDN.
+    url('^dev_phone$',
+        redirect_doc('/Mozilla/Firefox_OS/Developer_phone_guide/Flame'),
+        name='ecosystem.dev_phone'),
 )
 
 
@@ -114,7 +119,5 @@ urlpatterns = redirect_patterns + patterns('',
     url('^$', views.landing, name='ecosystem.landing'),
     url('^partners$', views.partners, name='ecosystem.partners'),
     url('^support$', views.support, name='ecosystem.support'),
-    url('^dev_phone$', views.dev_phone, name='ecosystem.dev_phone'),
-    url('^docs/badges$', views.publish_badges,
-        name='ecosystem.publish_badges'),
+    url('^docs/badges$', views.publish_badges, name='ecosystem.publish_badges')
 )

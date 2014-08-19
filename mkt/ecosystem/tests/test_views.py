@@ -11,19 +11,18 @@ from mkt.ecosystem.urls import APP_SLUGS
 
 
 VIEW_PAGES = (
-    'dev_phone', 'partners', 'support'
+    'partners', 'support'
 )
 
 REDIRECT_PAGES = (
-    'build_apps_offline', 'build_ffos',
-    'build_game_apps', 'build_intro',
-    'build_manifests', 'build_mobile_developers', 'build_quick',
-    'build_reference', 'build_web_developers', 'design_concept',
-    'design_fundamentals', 'design_patterns', 'design_ui', 'ffos_guideline',
-    'publish_deploy',  'publish_hosted', 'publish_packaged', 'publish_review',
-    'publish_submit', 'responsive_design', 'firefox_os_simulator',
-    'build_payments', 'publish_payments', 'build_app_generator',
-    'build_dev_tools', 'build_tools', 'app_manager'
+    'app_manager', 'build_app_generator', 'build_apps_offline',
+    'build_dev_tools', 'build_ffos', 'build_game_apps', 'build_intro',
+    'build_manifests', 'build_mobile_developers', 'build_payments',
+    'build_quick', 'build_reference', 'build_tools', 'build_web_developers',
+    'design_concept', 'design_fundamentals', 'design_patterns', 'design_ui',
+    'dev_phone', 'ffos_guideline', 'firefox_os_simulator', 'publish_deploy',
+    'publish_hosted', 'publish_packaged', 'publish_payments', 'publish_review',
+    'publish_submit', 'responsive_design'
 )
 
 
