@@ -124,6 +124,13 @@ class TestFeedBrandESSerializer(FeedTestMixin, amo.tests.TestCase):
                             [app.id for app in self.apps])
         eq_(data['type'], self.brand.type)
 
+    def test_home_serializer_app_count(self):
+        data = serializers.FeedBrandESHomeSerializer(self.data_es, context={
+            'app_map': self.app_map,
+            'request': amo.tests.req_factory_factory('')
+        }).data
+        eq_(data['app_count'], 3)
+
 
 class TestFeedCollectionSerializer(FeedTestMixin, amo.tests.TestCase):
 
@@ -240,7 +247,6 @@ class TestFeedCollectionESSerializer(FeedTestMixin, amo.tests.TestCase):
         ok_(data['apps'][0]['icons'])
         eq_(data['app_count'], len(self.app_map))
         eq_(len(data['apps']), HOME_NUM_APPS_PROMO_COLL)
-
 
     def test_home_serializer_promo_coll(self):
         """

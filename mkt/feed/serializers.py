@@ -175,6 +175,13 @@ class FeedBrandESHomeSerializer(FeedBrandESSerializer):
     """
     apps = AppESHomeField(source='_app_ids', many=True,
                           limit=feed.HOME_NUM_APPS_BRAND)
+    app_count = serializers.SerializerMethodField('get_app_count')
+
+    class Meta(FeedBrandESSerializer.Meta):
+        fields = FeedBrandESSerializer.Meta.fields + ('app_count',)
+
+    def get_app_count(self, obj):
+        return len(obj._app_ids)
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
