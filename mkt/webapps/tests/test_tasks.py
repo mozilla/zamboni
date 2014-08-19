@@ -728,7 +728,9 @@ class AppGeneratorTests(amo.tests.TestCase):
         size = 4
         data = list(generate_app_data(size))
         eq_(len(data), size)
-        ctr = collections.Counter(cat for appname, cat in data)
+        ctr = collections.defaultdict(int)
+        for appname, cat in data:
+            ctr[cat] += 1
         # Apps are binned into categories, at least 3 in each.
         eq_(ctr.values(), [4])
         # Names are unique.
@@ -740,7 +742,9 @@ class AppGeneratorTests(amo.tests.TestCase):
         size = 60
         data = list(generate_app_data(size))
         eq_(len(data), size)
-        ctr = collections.Counter(cat for appname, cat in data)
+        ctr = collections.defaultdict(int)
+        for appname, cat in data:
+            ctr[cat] += 1
         eq_(set(ctr.values()), set([3, 4]))
         eq_(len(set(appname for appname, cat in data)), size)
         ok_(not any(appname[-1].isdigit() for appname, cat in data))
@@ -749,7 +753,9 @@ class AppGeneratorTests(amo.tests.TestCase):
         size = 300
         data = list(generate_app_data(size))
         eq_(len(data), size)
-        ctr = collections.Counter(cat for appname, cat in data)
+        ctr = collections.defaultdict(int)
+        for appname, cat in data:
+            ctr[cat] += 1
         # Apps are spread between categories evenly - the difference between
         # the largest and smallest category is less than 2.
         ok_(max(ctr.values()) - min(ctr.values()) < 2)
