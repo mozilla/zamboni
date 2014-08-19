@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import random
+import StringIO
 import shutil
 import subprocess
 import time
@@ -20,6 +21,7 @@ import requests
 from celery import chord
 from celery.exceptions import RetryTaskError
 from celeryutils import task
+from PIL import Image
 from requests.exceptions import RequestException
 from test_utils import RequestFactory
 from tower import ugettext as _
@@ -34,7 +36,7 @@ from lib.post_request_task.task import task as post_request_task
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
-                                  resize_preview, validator)
+                                  resize_preview, save_icon, validator)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import RereviewQueue
@@ -880,5 +882,10 @@ def generate_apps(num):
     # importing it only when called in local dev is fine.
     from amo.tests import app_factory
     for appname, cat_slug in generate_app_data(num):
-        app_factory(categories=[cat_slug], name=appname, complete=True,
-                    rated=True)
+        app = app_factory(categories=[cat_slug], name=appname, complete=True,
+                          rated=True)
+        im = Image.new("RGB", (128, 128),
+                       "#" + hashlib.md5(appname + cat_slug).hexdigest()[:6])
+        f = StringIO.StringIO()
+        im.save(f, 'png')
+        save_icon(app, f.getvalue())
