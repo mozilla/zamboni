@@ -1094,7 +1094,6 @@ class TestFeedElementSearchView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self.shelf = self.feed_shelf_factory()
         self.feed_permission()
         self.url = reverse('api-v2:feed.element-search')
-
         self._refresh()
 
     def _search(self, q):
@@ -1199,6 +1198,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self.region = 'restofworld'
 
     def _get(self, client=None, **kwargs):
+        self._refresh()
         client = client or self.anon
         kwargs['carrier'] = kwargs.get('carrier', self.carrier)
         kwargs['region'] = kwargs.get('region', self.region)
@@ -1215,47 +1215,39 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     @mock.patch('mkt.feed.views.statsd.timer')
     def test_200(self, statsd_mock):
         feed_items = self.feed_factory()
-        self._refresh()
         res, data = self._get()
         eq_(res.status_code, 200)
         eq_(len(data['objects']), len(feed_items))
-
         ok_(statsd_mock.called)
 
     def test_200_authed(self):
         feed_items = self.feed_factory()
-        self._refresh()
         res, data = self._get(self.client, no_assert_queries=True)
         eq_(res.status_code, 200)
         eq_(len(data['objects']), len(feed_items))
 
     def test_404(self):
-        self._refresh()
         res, data = self._get(self.client, no_assert_queries=True)
         eq_(len(data['objects']), 0)
         eq_(res.status_code, 404)
 
     def test_region_only(self):
         feed_items = self.feed_factory()
-        self._refresh()
         res, data = self._get(carrier=None)
         eq_(len(data['objects']), len(feed_items))
 
     def test_carrier_only(self):
         feed_items = self.feed_factory()
-        self._refresh()
         res, data = self._get(region=None)
         eq_(len(data['objects']), len(feed_items))
 
     def test_feed_app_only(self):
         self.feed_item_factory()
-        self._refresh()
         res, data = self._get()
         eq_(len(data['objects']), 1)
 
     def test_shelf_top(self):
         self.feed_factory()
-        self._refresh()
         res, data = self._get()
         eq_(data['objects'][0]['item_type'],
             feed.FEED_TYPE_SHELF)
@@ -1267,7 +1259,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         mock_paginate_by.return_value = PAGINATE_BY
 
         self.feed_factory(num_items=TOTAL)
-        self._refresh()
         res, data = self._get(limit=PAGINATE_BY, offset=0)
 
         eq_(data['meta']['total_count'], TOTAL)
@@ -1283,7 +1274,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         mock_paginate_by.return_value = TOTAL
 
         self.feed_factory(num_items=TOTAL)
-        self._refresh()
 
         res_all, data_all = self._get()
         mock_paginate_by.return_value = PAGINATE_BY
@@ -1303,7 +1293,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         TOTAL = PAGINATE_BY + 1
         mock_paginate_by.return_value = TOTAL
         self.feed_factory(num_items=TOTAL)
-        self._refresh()
 
         res_all, data_all = self._get()
         mock_paginate_by.return_value = PAGINATE_BY
@@ -1318,14 +1307,12 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         """Test that changing region gives different feed."""
         self.feed_factory()
         self.feed_item_factory(region=2)
-        self._refresh()
         res, data = self._get(region='us')
         eq_(len(data['objects']), 1)
 
     def test_carrier_filter(self):
         """Test that changing carrier affects the opshelf."""
         self.feed_factory()
-        self._refresh()
         res, data = self._get(carrier='tmn')
         eq_(len(data['objects']), 3)
         ok_(data['objects'][0]['item_type'] != feed.FEED_TYPE_SHELF)
@@ -1333,7 +1320,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_deserialized(self):
         """Test that feed elements and apps are deserialized."""
         self.feed_factory()
-        self._refresh()
         res, data = self._get()
         for feed_item in data['objects']:
             item_type = feed_item['item_type']
@@ -1350,14 +1336,12 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_restofworld_fallback(self):
         feed_items = self.feed_factory()
-        self._refresh()
         res, data = self._get(region='us')
         eq_(len(data['objects']), len(feed_items))
 
     def test_order(self):
         """Test feed elements are ordered by their order attribute."""
         feed_items = [self.feed_item_factory(order=i + 1) for i in xrange(4)]
-        self._refresh()
         res, data = self._get()
         for i, feed_item in enumerate(feed_items):
             eq_(data['objects'][i]['id'], feed_item.id)
@@ -1371,6 +1355,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self.url = reverse('api-v2:feed.get')
 
     def _get(self, **kwargs):
+        self._refresh()
         res = self.anon.get(self.url, kwargs)
         data = json.loads(res.content)
         eq_(res.status_code, 200)
@@ -1380,7 +1365,6 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
         feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
-        self._refresh()
 
         # Mobile doesn't show desktop apps.
         res, data = self._get(device='firefoxos')
@@ -1410,7 +1394,6 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         # Wrap in FeedItem.
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL,
                                 collection=coll, region=1)
-        self._refresh()
 
         # FirefoxOS doesn't show Android-only app.
         res, data = self._get(device='firefoxos')
@@ -1436,7 +1419,6 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
             device_type=applications.DEVICE_DESKTOP.id)
         feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
-        self._refresh()
 
         # Shows up on Desktop and Gaia.
         res, data = self._get(device='desktop')
@@ -1450,7 +1432,6 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_bad_device_type(self):
         self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
-        self._refresh()
         res, data = self._get(device='wut')
         ok_(data['objects'])
 
@@ -1587,7 +1568,6 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
             app_ids=[app_gaia.id, app_android.id])
         url = reverse('api-v2:feed.feed_element_get',
                       args=['collections', coll.slug])
-        self._refresh()
 
         res, data = self._get(url, device='firefoxos')
         eq_(len(data['apps']), 1)
