@@ -391,31 +391,35 @@ class AdditionalReview(amo.models.ModelBase):
     queue = models.CharField(max_length=30)
     passed = models.NullBooleanField()
     review_completed = models.DateTimeField(null=True)
+    comment = models.CharField(null=True, blank=True, max_length=255)
+    reviewer = models.ForeignKey('users.UserProfile', null=True, blank=True)
 
     objects = AdditionalReviewManager()
 
     class Meta:
         db_table = 'additional_review'
 
-    def review_passed(self):
-        """
-        Set the review status to passed and perform any queue-specific tasks.
-        """
-        self.passed = True
-        self.review_completed = datetime.datetime.now()
-        self.save()
-        # TODO: Pull this function from somewhere based on self.queue.
-        tarako_passed(self)
+    def __init__(self, *args, **kwargs):
+        super(AdditionalReview, self).__init__(*args, **kwargs)
+        from mkt.reviewers.utils import log_reviewer_action
+        self.log_reviewer_action = log_reviewer_action
 
-    def review_failed(self):
+    def execute_post_review_task(self):
         """
-        Set the review status to failed and perform any queue-specific tasks.
+        Call the correct post-review function for the queue.
         """
-        self.passed = False
-        self.review_completed = datetime.datetime.now()
-        self.save()
         # TODO: Pull this function from somewhere based on self.queue.
-        tarako_failed(self)
+        if self.passed is None:
+            raise ValueError('cannot execute post-review task when unreviewed')
+        elif self.passed:
+            tarako_passed(self)
+            action = amo.LOG.PASS_ADDITIONAL_REVIEW
+        else:
+            tarako_failed(self)
+            action = amo.LOG.FAIL_ADDITIONAL_REVIEW
+        self.log_reviewer_action(
+            self.app, self.reviewer, self.comment or '', action,
+            queue=self.queue)
 
 
 def cleanup_queues(sender, instance, **kwargs):

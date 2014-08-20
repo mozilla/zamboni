@@ -1,7 +1,6 @@
 import json
 import mock
-from contextlib import nested
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
@@ -390,6 +389,11 @@ class TestUpdateAdditionalReview(RestOAuth):
         self.grant_permission(self.profile, 'Apps:ReviewTarako')
         self.app = Webapp.objects.get(pk=337141)
         self.review = self.app.additionalreview_set.create(queue='my-queue')
+        self.get_object_patcher = mock.patch(
+            'mkt.reviewers.views.UpdateAdditionalReviewViewSet.get_object')
+        self.get_object = self.get_object_patcher.start()
+        self.get_object.return_value = self.review
+        self.addCleanup(self.get_object_patcher.stop)
 
     def patch(self, data, pk=None):
         if pk is None:
@@ -405,35 +409,72 @@ class TestUpdateAdditionalReview(RestOAuth):
         eq_(response.status_code, 403)
 
     def test_404_with_invalid_id(self):
+        self.get_object_patcher.stop()
         response = self.patch({'passed': True}, pk=self.review.pk + 1)
         eq_(response.status_code, 404)
+        self.get_object_patcher.start()
 
-    @mock.patch(
-        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
-    def test_review_passed_when_passed(self, get_object_or_none):
-        get_object_or_none.return_value = self.review
-        with mock.patch.object(self.review, 'review_passed') as review_passed:
+    def test_post_review_task_called_when_passed(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
             response = self.patch({'passed': True})
             eq_(response.status_code, 200)
-            ok_(review_passed.called)
+            ok_(execute_post_review_task.called)
 
-    @mock.patch(
-        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
-    def test_review_failed_when_failed(self, get_object_or_none):
-        get_object_or_none.return_value = self.review
-        with mock.patch.object(self.review, 'review_failed') as review_failed:
+    def test_post_review_task_called_when_failed(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
             response = self.patch({'passed': False})
             eq_(response.status_code, 200)
-            ok_(review_failed.called)
+            ok_(execute_post_review_task.called)
 
-    @mock.patch(
-        'mkt.reviewers.views.AdditionalReviewViewSet.get_object_or_none')
-    def test_no_changes_without_pass_or_fail(self, get_object_or_none):
-        get_object_or_none.return_value = self.review
-        with nested(mock.patch.object(self.review, 'review_failed'),
-                    mock.patch.object(self.review, 'review_passed')) as \
-                (review_failed, review_passed):
+    def test_no_changes_without_pass_or_fail(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
             response = self.patch({})
             eq_(response.status_code, 400)
-            ok_(not review_failed.called)
-            ok_(not review_passed.called)
+            eq_(response.json,
+                {'non_field_errors': ['passed must be a boolean value']})
+            ok_(not execute_post_review_task.called)
+
+    def test_comment_is_not_required(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
+            response = self.patch({'passed': False})
+            eq_(response.status_code, 200)
+            ok_(execute_post_review_task.called)
+
+    def test_comment_can_be_set(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
+            response = self.patch({'passed': False, 'comment': 'no work'})
+            eq_(response.status_code, 200)
+            eq_(self.review.reload().comment, 'no work')
+            ok_(execute_post_review_task.called)
+
+    def test_reviewer_gets_set_to_current_user(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
+            response = self.patch({'passed': False})
+            eq_(response.status_code, 200)
+            eq_(self.review.reload().reviewer, self.profile)
+            ok_(execute_post_review_task.called)
+
+    def test_review_completed_gets_set(self):
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
+            response = self.patch({'passed': False})
+            eq_(response.status_code, 200)
+            ok_(self.review.reload().review_completed - datetime.now()
+                < timedelta(seconds=1))
+            ok_(execute_post_review_task.called)
+
+    def test_review_can_only_happen_once(self):
+        self.review.update(passed=True)
+        with mock.patch.object(self.review, 'execute_post_review_task') as \
+                execute_post_review_task:
+            response = self.patch({'passed': False})
+            eq_(response.status_code, 400)
+            eq_(response.json,
+                {'non_field_errors': ['has already been reviewed']})
+            ok_(not execute_post_review_task.called)

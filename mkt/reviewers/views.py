@@ -25,11 +25,11 @@ import jinja2
 import requests
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
-from rest_framework import status
+from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
+from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
@@ -43,7 +43,6 @@ from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
 from lib.crypto.packaged import SigningError
 
 import mkt
-import mkt.constants.comm as comm
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -51,7 +50,6 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.authorization import GroupPermission
 from mkt.api.base import SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
-from mkt.comm.utils import create_comm_note
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
 from mkt.files.models import File
@@ -66,7 +64,7 @@ from mkt.reviewers.models import (AdditionalReview, EditorSubscription,
 from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
-                                 device_queue_search)
+                                 device_queue_search, log_reviewer_action)
 from mkt.search.views import SearchView
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
@@ -75,7 +73,7 @@ from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, Version, Webapp
+from mkt.webapps.models import AddonUser, AddonDeviceType, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -85,12 +83,6 @@ from .models import CannedResponse
 
 QUEUE_PER_PAGE = 100
 log = commonware.log.getLogger('z.reviewers')
-
-
-def log_reviewer_action(addon, user, msg, action):
-    create_comm_note(addon, addon.latest_version, user, msg,
-                     note_type=comm.ACTION_MAP(action.id))
-    amo.log(action, addon, addon.latest_version, details={'comments': msg})
 
 
 def reviewer_required(region=None):
@@ -110,7 +102,7 @@ def reviewer_required(region=None):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             if (acl.check_reviewer(request, region=kw.get('region')) or
-                _view_on_get(request)):
+                    _view_on_get(request)):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -161,10 +153,10 @@ def queue_counts(request):
                                  disabled_by_user=False,
                                  status=amo.STATUS_PENDING)
                          .count(),
-        'rereview': RereviewQueue.objects.no_cache()
-                                 .exclude(addon__in=excluded_ids)
-                                 .filter(addon__disabled_by_user=False)
-                                 .count(),
+        'rereview': (RereviewQueue.objects.no_cache()
+                                  .exclude(addon__in=excluded_ids)
+                                  .filter(addon__disabled_by_user=False)
+                                  .count()),
         # This will work as long as we disable files of existing unreviewed
         # versions when a new version is uploaded.
         'updates': File.objects.no_cache()
@@ -288,12 +280,12 @@ def _review(request, addon, version):
 
     if (not settings.ALLOW_SELF_REVIEWS and
         not acl.action_allowed(request, 'Admin', '%') and
-        addon.has_author(request.user)):
+            addon.has_author(request.user)):
         messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.home'))
 
     if (addon.status == amo.STATUS_BLOCKED and
-        not acl.action_allowed(request, 'Apps', 'ReviewEscalated')):
+            not acl.action_allowed(request, 'Apps', 'ReviewEscalated')):
         messages.warning(
             request, _('Only senior reviewers can review blocklisted apps.'))
         return redirect(reverse('reviewers.home'))
@@ -346,7 +338,7 @@ def _review(request, addon, version):
                 added_devices = new_types - old_types
                 removed_devices = old_types - new_types
                 msg = _(u'Device(s) changed by '
-                         'reviewer: {0}').format(', '.join(
+                        u'reviewer: {0}').format(', '.join(
                     [_(u'Added {0}').format(unicode(amo.DEVICE_TYPES[d].name))
                      for d in added_devices] +
                     [_(u'Removed {0}').format(
@@ -396,7 +388,7 @@ def _review(request, addon, version):
             # L10N: {0} is the type of review. {1} is the points they earned.
             #       {2} is the points they now have total.
             success = _(
-               u'"{0}" successfully processed (+{1} points, {2} total).'
+                u'"{0}" successfully processed (+{1} points, {2} total).'
                 .format(unicode(amo.REVIEWED_CHOICES[score.note_key]),
                         score.score,
                         ReviewerScore.get_total(request.user)))
@@ -1181,21 +1173,60 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         return Response({'approved': bool(form.cleaned_data['approve'])})
 
 
-class AdditionalReviewSerializer(ModelSerializer):
-    """A read-only serializer for AdditionalReview."""
+class AdditionalReviewSerializer(serializers.ModelSerializer):
+    """Developer facing AdditionalReview serializer."""
 
-    app = PrimaryKeyRelatedField(read_only=True)
+    app = serializers.PrimaryKeyRelatedField()
+    comment = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
         model = AdditionalReview
         fields = ['id', 'app', 'queue', 'passed', 'created', 'modified',
-                  'review_completed']
+                  'review_completed', 'comment']
         # Everything is read-only.
-        read_only_fields = ['id', 'queue', 'passed', 'created', 'modified',
-                            'review_completed']
+        read_only_fields = ['id', 'passed', 'created', 'modified',
+                            'review_completed', 'reviewer']
+
+    def pending_review_exists(self, queue, app_id):
+        return (AdditionalReview.objects.unreviewed(queue=queue)
+                                        .filter(app_id=app_id)
+                                        .exists())
+
+    def validate_queue(self, attrs, source):
+        if attrs[source] != QUEUE_TARAKO:
+            raise serializers.ValidationError('is not a valid choice')
+        return attrs
+
+    def validate_app(self, attrs, source):
+        queue = attrs.get('queue')
+        app = attrs.get('app')
+        if queue and app and self.pending_review_exists(queue, app):
+            raise serializers.ValidationError('has a pending review')
+        return attrs
 
 
-class AdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
+class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
+    """Reviewer facing AdditionalReview serializer."""
+
+    comment = serializers.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = AdditionalReview
+        fields = AdditionalReviewSerializer.Meta.fields
+        read_only_fields = list(
+            set(AdditionalReviewSerializer.Meta.read_only_fields) -
+            set(['passed', 'reviewer']))
+
+    def validate(self, attrs):
+        if self.object.passed is not None:
+            raise serializers.ValidationError('has already been reviewed')
+        elif attrs.get('passed') not in (True, False):
+            raise serializers.ValidationError('passed must be a boolean value')
+        else:
+            return attrs
+
+
+class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
     """
     API ViewSet for setting pass/fail of an AdditionalReview. This does not
     follow the DRF convention but instead calls review_passed() or
@@ -1203,22 +1234,18 @@ class AdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
     """
 
     model = AdditionalReview
-    serializer_class = AdditionalReviewSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
+    serializer_class = ReviewerAdditionalReviewSerializer
     # TODO: Change this when there is more than just the Tarako queue.
     permission_classes = [GroupPermission('Apps', 'ReviewTarako')]
 
-    def update(self, request, **kwargs):
-        if 'passed' in request.DATA:
-            additional_review = self.get_object_or_none()
-            if request.DATA['passed']:
-                additional_review.review_passed()
-            else:
-                additional_review.review_failed()
-            return Response(status=status.HTTP_200_OK)
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    def pre_save(self, additional_review):
+        additional_review.reviewer = self.request.user
+        additional_review.review_completed = datetime.datetime.now()
+
+    def post_save(self, additional_review, created):
+        additional_review.execute_post_review_task()
 
 
 class GenerateToken(SlugOrIdMixin, CreateAPIView):

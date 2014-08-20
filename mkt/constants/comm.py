@@ -34,6 +34,7 @@ REREVIEW_CONTENT_RATING_ADULT = 22
 ESCALATION_VIP_APP = 22
 ESCALATION_PRERELEASE_APP = 23
 PRIORITY_REVIEW_REQUESTED = 24
+ADDITIONAL_REVIEW = 25
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -61,7 +62,8 @@ NOTE_TYPES = {
     REREVIEW_CONTENT_RATING_ADULT: _('Rereview due to Adult Content Rating'),
     ESCALATION_VIP_APP: _('Escalation due to VIP App'),
     ESCALATION_PRERELEASE_APP: _('Escalation due to Prelease App'),
-    PRIORITY_REVIEW_REQUESTED: _('Priority review requested')
+    PRIORITY_REVIEW_REQUESTED: _('Priority review requested'),
+    ADDITIONAL_REVIEW: _('Additional review completed'),
 }
 
 # Note types only visible by reviewers and not developers.
@@ -128,7 +130,9 @@ def ACTION_MAP(activity_action):
             REREVIEW_CONTENT_RATING_ADULT,
         amo.LOG.ESCALATION_VIP_APP.id: ESCALATION_VIP_APP,
         amo.LOG.ESCALATION_PRERELEASE_APP.id: ESCALATION_PRERELEASE_APP,
-        amo.LOG.PRIORITY_REVIEW_REQUESTED.id: PRIORITY_REVIEW_REQUESTED
+        amo.LOG.PRIORITY_REVIEW_REQUESTED.id: PRIORITY_REVIEW_REQUESTED,
+        amo.LOG.PASS_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW,
+        amo.LOG.FAIL_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW,
     }.get(activity_action, NO_ACTION)
 
 

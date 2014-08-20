@@ -658,3 +658,10 @@ def device_queue_search(request):
         ))
     return Webapp.version_and_file_transformer(
         Webapp.objects.filter(**filters))
+
+
+def log_reviewer_action(addon, user, msg, action, **kwargs):
+    create_comm_note(addon, addon.latest_version, user, msg,
+                     note_type=comm.ACTION_MAP(action.id))
+    amo.log(action, addon, addon.latest_version, details={'comments': msg},
+            **kwargs)

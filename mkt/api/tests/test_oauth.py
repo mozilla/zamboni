@@ -108,18 +108,11 @@ class OAuthClient(JSONClient):
             url, data=data, content_type=content_type,
             **self.kw(headers, **kw))
 
-    def patch(self, url, data='', **kw):
+    def patch(self, url, data='', content_type='application/json', **kw):
         url, headers, body = self.sign('PATCH', self.get_absolute_url(url))
-        parsed = urlparse.urlparse(url)
-        kw.update(**self.kw(headers, **{
-            'CONTENT_LENGTH': len(data),
-            'CONTENT_TYPE': 'application/json',
-            'PATH_INFO': urllib.unquote(parsed[2]),
-            'REQUEST_METHOD': 'PATCH',
-            'wsgi.input': FakePayload(data),
-        }))
-        response = self.request(**kw)
-        return response
+        return super(OAuthClient, self).patch(
+            url, data=data, content_type=content_type,
+            **self.kw(headers, **kw))
 
     def options(self, url):
         url, headers, body = self.sign('OPTIONS', self.get_absolute_url(url))

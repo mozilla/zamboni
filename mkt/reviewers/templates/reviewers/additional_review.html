@@ -21,7 +21,8 @@
     {% if addons %}
         {{ additional_review_table(approve_text=_("Pass"),
                                    reject_text=_("Fail"),
-                                   can_sort_by_name=False) }}
+                                   can_sort_by_name=False,
+                                   comments=True) }}
     {% else %}
       {{ no_results() }}
     {% endif %}

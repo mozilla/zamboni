@@ -676,6 +676,20 @@ class PRIORITY_REVIEW_REQUESTED(_LOG):
     review_queue = True
 
 
+class PASS_ADDITIONAL_REVIEW(_LOG):
+    id = 129
+    action_class = 'review'
+    format = _(u'{addon} {version} passed the {queue} review.')
+    review_queue = True
+
+
+class FAIL_ADDITIONAL_REVIEW(_LOG):
+    id = 130
+    action_class = 'review'
+    format = _(u'{addon} {version} failed the {queue} review.')
+    review_queue = True
+
+
 # Adding a log type? If it's a review_queue log type, you have to add a
 # note_type to constants/comm.py.
 
@@ -758,7 +772,6 @@ def log(action, *args, **kw):
             elif arg[0] == Group:
                 GroupLog(group_id=arg[1], activity_log=al).save()
 
-        # Webapp first since Webapp subclasses Addon.
         if isinstance(arg, Webapp):
             AppLog(addon=arg, activity_log=al).save()
         elif isinstance(arg, Version):
