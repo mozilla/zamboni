@@ -5,6 +5,7 @@ from tower import ugettext_lazy as _lazy
 import amo
 from mkt.constants import (CATEGORY_CHOICES, TARAKO_CATEGORY_CHOICES,
                            TARAKO_CATEGORIES_MAPPING)
+from mkt.constants.applications import DEVICE_CHOICES_IDS
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
@@ -44,13 +45,6 @@ DEVICE_CHOICES = [
     ('tablet', _lazy(u'Tablet')),
     ('firefoxos', _lazy(u'Firefox OS')),
 ]
-
-DEVICE_CHOICES_IDS = {
-    'desktop': amo.DEVICE_DESKTOP.id,
-    'mobile': amo.DEVICE_MOBILE.id,
-    'tablet': amo.DEVICE_TABLET.id,
-    'firefoxos': amo.DEVICE_GAIA.id,
-}
 
 CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
 

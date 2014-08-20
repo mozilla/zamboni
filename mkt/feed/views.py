@@ -23,9 +23,9 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
 from mkt.constants import applications
+from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
-from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 

@@ -8,10 +8,10 @@ from django.contrib.auth.models import AnonymousUser
 import amo
 from mkt import regions
 from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
-from mkt.search.forms import (ApiSearchForm, DEVICE_CHOICES_IDS,
-                              TARAKO_CATEGORIES_MAPPING)
+from mkt.search.forms import (ApiSearchForm, TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _filter_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp

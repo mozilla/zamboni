@@ -33,3 +33,11 @@ DEVICE_TYPE_LIST = [DEVICE_DESKTOP, DEVICE_MOBILE, DEVICE_TABLET, DEVICE_GAIA]
 DEVICE_TYPES = dict((d.id, d) for d in DEVICE_TYPE_LIST)
 REVERSE_DEVICE_LOOKUP = dict((d.id, d.api_name) for d in DEVICE_TYPE_LIST)
 DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
+
+# For search and feed.
+DEVICE_CHOICES_IDS = {
+    'desktop': DEVICE_DESKTOP.id,
+    'mobile': DEVICE_MOBILE.id,
+    'tablet': DEVICE_TABLET.id,
+    'firefoxos': DEVICE_GAIA.id,
+}
