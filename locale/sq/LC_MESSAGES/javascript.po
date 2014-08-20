@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-04-17 12:32+0200\n"
+"PO-Revision-Date: 2014-08-20 14:19+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -33,7 +33,8 @@ msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 
@@ -67,7 +68,8 @@ msgstr "Po ngarkohet {0}"
 msgid "Error with {0}"
 msgstr "Gabim me {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimi."
@@ -79,7 +81,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325
+#: media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
@@ -168,11 +172,11 @@ msgstr "Jepni adresën email të një anëtari të ri të ekipit"
 
 #: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifesti u rifreskua"
 
 #: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Nuk rifreskoi dot manifestin. Riprovoni më vonë."
 
 #: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
@@ -220,11 +224,11 @@ msgstr "Hyrja me Persona-n dështoi. U has një gabim shërbyesi."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Gjendja u ndryshua me sukses si \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Nuk u ndryshua dot gjendja si \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -319,19 +323,25 @@ msgstr "U zbulua: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimeve vijuese. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
+msgstr[1] "Fshirja e llogarisë së pagesave \"{0}\" do ta heqë llogarinë e pagesave prej zbatimit vijues. Zbatimet pa një llogari pagesash nuk do të jepen më për shitje."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Llogari pagesash për {appName}:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:161
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Gabim"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:99
+#: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Pati një problem gjatë lidhjes me shërbyesin e pagesave."
 
@@ -366,11 +376,13 @@ msgstr[1] "edhe {0} shenja."
 msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Këto prova nuk u xhiruan."
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Prova"
 
@@ -460,7 +472,7 @@ msgstr "Përzgjidhni së pari një zbatim"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
-msgstr ""
+msgstr "Gabim në ngarkimin e përkthimit"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
@@ -520,41 +532,42 @@ msgstr "Çfarëdo"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Zbatim i miratuar: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Zbatim i hedhur tej: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Gabim në miratim zbatimi: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Gabim në hedhje tej zbatimi: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Zbatim kalues: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Zbatim ngelës: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Gabim në kalimin e zbatimit: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Gabim në ngeljen e zbatimit: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
+msgstr "Na ndjeni! Patëm një gabim në prurjen e historikut të shqyrtimeve. Ju lutemi, riprovoni hyrjen.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Nga {0} më {1}"
+
