@@ -781,7 +781,7 @@ def file_factory(**kw):
     return f
 
 
-def req_factory_factory(url, user=None, post=False, data=None, **kwargs):
+def req_factory_factory(url='', user=None, post=False, data=None, **kwargs):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory()
     if post:
