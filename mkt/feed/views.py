@@ -12,6 +12,7 @@ from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
 
+import amo
 import mkt
 import mkt.feed.constants as feed
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -21,8 +22,10 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
+from mkt.constants import applications
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
+from mkt.search.forms import DEVICE_CHOICES_IDS
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
@@ -398,6 +401,55 @@ class BaseFeedESView(CORSMixin, APIView):
             app_map[app['id']] = app
         return app_map
 
+    def filter_device_feed_element(self, request, feed_element):
+        """
+        Checks request.dev to filter apps from a deserialized ES feed element.
+
+        Returns feed element intact if all of its apps are compatible.
+        Returns feed element with apps filtered if some apps incompatible.
+        Returns None if none of the apps are compatible.
+        """
+        device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
+        device = applications.REVERSE_DEVICE_LOOKUP.get(device)
+
+        if (not device or device == applications.DEVICE_DESKTOP.api_name):
+            # TODO: remove desktop clause when we enable desktop feed filtering.
+            # If dev not in request, then we don't filter.
+            return feed_element
+
+        if 'app' in feed_element:
+            if device in feed_element['app']['device_types']:
+                return feed_element
+            # If the feedapp's app is not compatible, return None to exclude.
+            return None
+
+        # Filter apps from collectional feed elements.
+        feed_element['apps'] = [
+            app for app in feed_element['apps'] if
+            'device_types' not in app or device in app['device_types']]
+        # HACK: fudge the app count.
+        feed_element['app_count'] = len(feed_element['apps'])
+
+        if feed_element['apps']:
+            # Return feed element if some apps are left, else None.
+            return feed_element
+
+    def filter_device_feed_items(self, request, feed_items):
+        """
+        Given a list of FeedItems, filter apps that are incompatible from
+        each feed element.
+
+        If a feed element has no compatible apps, remove it from the feed
+        completely.
+        """
+        for feed_item in feed_items:
+            item_type = feed_item['item_type']
+            feed_item[item_type] = self.filter_device_feed_element(
+                request, feed_item[item_type])
+
+        # Filter feed elements that have NO compatible apps.
+        return filter(lambda item: item[item['item_type']], feed_items)
+
 
 class FeedElementSearchView(BaseFeedESView):
     """
@@ -578,6 +630,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             'request': request
         }).data
 
+        feed_items = self.filter_device_feed_items(request, feed_items)
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
 
@@ -588,7 +641,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
 
 class FeedElementGetView(BaseFeedESView):
     """
-    Fetches individual feed elements from ES.
+    Fetches individual feed elements from ES. Detail views.
     """
     authentication_classes = []
     permission_classes = []
@@ -620,6 +673,11 @@ class FeedElementGetView(BaseFeedESView):
             'app_map': self.mget_apps(self.get_app_ids(feed_element)),
             'request': request
         }).data
+
+        # Filter data. If None of the apps are compatible, show everything
+        # non-filtered since they must have navigated to the feed element
+        # manually.
+        data = self.filter_device_feed_element(request, dict(data)) or data
 
         return response.Response(data, status=status.HTTP_200_OK)
 
