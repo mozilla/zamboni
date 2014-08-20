@@ -34,9 +34,9 @@ import mkt
 from amo.decorators import skip_cache, use_master, write
 from amo.helpers import absolutify
 from amo.storage_utils import copy_stored_file
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder, send_mail,
-                       slugify, smart_path, sorted_groupby, timer, to_language,
-                       urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
+                       send_mail, slugify, smart_path, sorted_groupby, timer,
+                       to_language, urlparams)
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
@@ -1357,10 +1357,40 @@ class WebappManager(amo.models.ManagerBase):
             return self.get(app_slug=identifier)
 
 
+class UUIDModelMixin(object):
+    """
+    A mixin responsible for assigning a uniquely generated
+    UUID at save time.
+    """
+
+    def save(self, *args, **kwargs):
+        self.assign_uuid()
+        return super(UUIDModelMixin, self).save(*args, **kwargs)
+
+    def assign_uuid(self):
+        """Generates a UUID if self.guid is not already set."""
+        if not hasattr(self, 'guid'):
+            raise AttributeError('A UUIDModel must contain a charfield called guid')
+
+        if not self.guid:
+            max_tries = 10
+            tried = 1
+            guid = str(uuid.uuid4())
+            while tried <= max_tries:
+                if not type(self).objects.filter(guid=guid).exists():
+                    self.guid = guid
+                    break
+                else:
+                    guid = str(uuid.uuid4())
+                    tried += 1
+            else:
+                raise ValueError('Could not auto-generate a unique UUID')
+
+
 # We use super(Addon, self) on purpose to override expectations in Addon that
 # are not true for Webapp. Webapp is just inheriting so it can share the db
 # table.
-class Webapp(Addon):
+class Webapp(UUIDModelMixin, Addon):
 
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)
@@ -1375,9 +1405,8 @@ class Webapp(Addon):
         # Make sure we have the right type.
         self.type = amo.ADDON_WEBAPP
         self.clean_slug(slug_field='app_slug')
-        self.assign_uuid()
         creating = not self.id
-        super(Addon, self).save(**kw)
+        super(Webapp, self).save(**kw)
         if creating:
             # Set the slug once we have an id to keep things in order.
             self.update(slug='app-%s' % self.id)
@@ -2104,22 +2133,6 @@ class Webapp(Addon):
         if not self.is_packaged:
             return
         return packaged.sign(version_pk, reviewer=reviewer)
-
-    def assign_uuid(self):
-        """Generates a UUID if self.guid is not already set."""
-        if not self.guid:
-            max_tries = 10
-            tried = 1
-            guid = str(uuid.uuid4())
-            while tried <= max_tries:
-                if not Webapp.objects.filter(guid=guid).exists():
-                    self.guid = guid
-                    break
-                else:
-                    guid = str(uuid.uuid4())
-                    tried += 1
-            else:
-                raise ValueError('Could not auto-generate a unique UUID')
 
     def is_premium_type_upgrade(self, premium_type):
         """

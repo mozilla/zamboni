@@ -159,14 +159,14 @@
             saveSelector: '.in-app-product-save',
             editSelector: '.in-app-product-edit',
             deleteSelector: '.in-app-product-delete',
-            productIdSelector: '.in-app-product-pk',
+            productIdSelector: '.in-app-product-guid',
             errorSelector: '.in-app-product-error',
         });
 
         this.url = function () {
             var url;
-            if (this.product.id) {
-                url = format(this.detailUrlFormat, {id: this.product.id});
+            if (this.product.guid) {
+                url = format(this.detailUrlFormat, {guid: this.product.guid});
             } else {
                 url = this.listUrl;
             }
@@ -177,7 +177,7 @@
             var self = this;
             self.error.text('');
             self.saveButton.attr('disabled', true);
-            var method = self.product.id ? 'patch' : 'post';
+            var method = self.product.guid ? 'patch' : 'post';
             console.log('saving product', method.toUpperCase(), self.url(),
                         self.product);
             $.ajax({
@@ -211,18 +211,18 @@
             this.detailUrlFormat = decodeURIComponent(this.$rootData.detailUrlFormat);
             this.name = this.select('nameSelector');
             this.price = this.select('priceSelector');
-            this.pk = this.select('productIdSelector');
+            this.guid = this.select('productIdSelector');
             this.logoUrl = this.select('logoUrlSelector');
             this.saveButton = this.select('saveSelector');
             this.editButton = this.select('editSelector');
             this.error = this.select('errorSelector');
             this.product = {
-                id: this.pk.text().trim(),
+                guid: this.guid.text().trim(),
             };
             this.components = {
                 logo_url: this.logoUrl,
                 name: this.name,
-                pk: this.pk,
+                guid: this.guid,
                 price_id: this.price,
             };
 
@@ -265,8 +265,8 @@
                 name: 'name',
                 startEditing: this.attr.startEditing,
             });
-            InlineTextComponent.attachTo(this.pk, {
-                name: 'id',
+            InlineTextComponent.attachTo(this.guid, {
+                name: 'guid',
                 dataSource: this,
             });
 

@@ -23,6 +23,7 @@ log = commonware.log.getLogger('z.inapp')
 class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     serializer_class = InAppProductSerializer
     cors_allowed_methods = ('get', 'post', 'put', 'patch', 'delete')
+    lookup_field = 'guid'
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
         'get': AllowAny,
@@ -55,6 +56,7 @@ class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
 class StubInAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     serializer_class = InAppProductSerializer
+    lookup_field = 'guid'
     cors_allowed_methods = ('get',)
     allowed_methods = ('GET',)
     permission_classes = [AllowAny]

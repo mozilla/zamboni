@@ -38,7 +38,7 @@
       </div>
     {% else %}
       <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', origin=addon.origin) }}"
-           data-detail-url-format="{{ url('in-app-products-detail', origin=addon.origin, pk="{id}") }}">
+           data-detail-url-format="{{ url('in-app-products-detail', origin=addon.origin, guid="{guid}") }}">
         <table id="version-list">
           <thead>
             <tr>

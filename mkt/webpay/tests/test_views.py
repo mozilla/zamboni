@@ -105,18 +105,18 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         self.setup_public_id()
         self.list_url = reverse('webpay-prepare-inapp')
 
-    def _post(self, inapp_id=None, extra_headers=None):
-        inapp_id = inapp_id or self.inapp.pk
+    def _post(self, inapp_guid=None, extra_headers=None):
+        inapp_guid = inapp_guid or self.inapp.guid
         extra_headers = extra_headers or {}
         return self.anon.post(self.list_url,
-                              data=json.dumps({'inapp': inapp_id}),
+                              data=json.dumps({'inapp': inapp_guid}),
                               **extra_headers)
 
     def test_allowed(self):
         self._allowed_verbs(self.list_url, ['post'])
 
     def test_bad_id_raises_400(self):
-        res = self._post(inapp_id='invalid id')
+        res = self._post(inapp_guid='invalid id')
         eq_(res.status_code, 400, res.content)
 
     def test_get_jwt(self, extra_headers=None):
@@ -193,7 +193,7 @@ class TestStatus(BaseAPI):
         storedata = parse_qs(receipt['product']['storedata'])
         eq_(storedata['id'][0], str(contribution.addon.pk))
         eq_(storedata['contrib'][0], str(contribution.pk))
-        eq_(storedata['inapp_id'][0], str(contribution.inapp_product_id))
+        eq_(storedata['inapp_id'][0], str(contribution.inapp_product.guid))
         assert 'user' in receipt, (
             'The web platform requires a user value')
 
