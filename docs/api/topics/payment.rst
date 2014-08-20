@@ -274,8 +274,8 @@ packaged app. For example: ``app://foo-app.com``.
     **Response**
 
     :status 200: successfully completed.
-    :param id: The in-app product ID.
-    :type id: int
+    :param guid: The in-app product ID.
+    :type guid: string
     :param app: The slug for the app.
     :type app: string
     :param name: The name for the in-app product.
@@ -285,7 +285,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/(string:origin)/in-app/(int:id)/
+.. http:get:: /api/v1/payments/(string:origin)/in-app/(string:id)/
 
     Details of an in-app product.
 
@@ -296,8 +296,8 @@ packaged app. For example: ``app://foo-app.com``.
     **Response**
 
     :status 200: successfully completed.
-    :param id: The in-app product ID.
-    :type id: int
+    :param guid: The in-app product ID.
+    :type guid: string
     :param app: The slug for the app.
     :type app: string
     :param name: The name for the in-app product.
@@ -307,7 +307,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:put:: /api/v1/payments/(string:origin)/in-app/(int:id)/
+.. http:put:: /api/v1/payments/(string:origin)/in-app/(string:id)/
 
     .. note:: Authentication is required.
 
@@ -325,8 +325,8 @@ packaged app. For example: ``app://foo-app.com``.
     **Response**
 
     :status 200: successfully completed.
-    :param id: The in-app product ID.
-    :type id: int
+    :param guid: The in-app product ID.
+    :type guid: string
     :param app: The slug for the app.
     :type app: string
     :param name: The name for the in-app product.
@@ -348,8 +348,8 @@ packaged app. For example: ``app://foo-app.com``.
     **Response**
 
     :status 200: successfully completed.
-    :param id: The in-app product ID.
-    :type id: int
+    :param guid: The in-app product ID.
+    :type guid: string
     :param name: The name for the in-app product.
     :type name: string
     :param logo_url: URL to a logo for the product.
@@ -405,7 +405,7 @@ Produces the JWT for purchasing an in-app product that is passed to `navigator.m
 
     **Request**
 
-    :param int inapp: the id the in-app product to be purchased.
+    :param string inapp: the guid the in-app product to be purchased.
 
     **Response**
 
