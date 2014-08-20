@@ -121,7 +121,7 @@ def user_has_perm_note(note, profile):
     Moreover, other object permissions are also checked agaisnt the ACLs
     of the user.
     """
-    if note.author.id == profile.id:
+    if note.author and note.author.id == profile.id:
         # Let the dude access his own note.
         return True
 

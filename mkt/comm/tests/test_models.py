@@ -86,6 +86,10 @@ class TestCommunicationNote(PermissionTestMixin, amo.tests.TestCase):
         self.obj.update(author=self.user)
         self._eq_obj_perm(True)
 
+    def test_has_perm_no_author(self):
+        self.obj.update(author=None)
+        self._eq_obj_perm(False)
+
     def test_manager(self):
         eq_(CommunicationNote.objects.count(), 1)
         eq_(CommunicationNote.objects.with_perms(self.user,
