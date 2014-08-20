@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.contrib import messages
 from django.shortcuts import redirect, render
 
 import basket
@@ -7,7 +8,6 @@ import commonware.log
 from session_csrf import anonymous_csrf
 from tower import ugettext as _
 
-from amo import messages
 from mkt.developers.forms import DevNewsletterForm
 
 

@@ -65,7 +65,7 @@ class TestLanding(amo.tests.TestCase):
              'country': 'us'}
         r = self.client.post(self.url, d)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.notification-box.error h2').text(),
+        eq_(pq(r.content)('.notification-box.error').text(),
             'We apologize, but an error occurred in our '
             'system. Please try again later.')
         assert subscribe_mock.called

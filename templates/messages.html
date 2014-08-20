@@ -1,8 +1,7 @@
 {% if messages %}
   {% for message in messages %}
     <div class="notification-box {{ message.tags }}">
-      {# The message is actually formatted inside of message_content.html #}
-      {{ message|safe }}
+      {{ message }}
     </div>
   {% endfor %}
 {% endif %}
