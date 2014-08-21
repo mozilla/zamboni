@@ -688,6 +688,15 @@ class TestWebapp(amo.tests.WebappTestCase):
         pay_mock.return_value = True
         assert app.payments_complete()
 
+    def test_get_region_ids_no_exclusions(self):
+        # This returns IDs for the *included* regions.
+        eq_(self.get_app().get_region_ids(), mkt.regions.REGION_IDS)
+
+    def test_get_regions_no_exclusions(self):
+        # This returns the class definitions for the *included* regions.
+        eq_(sorted(self.get_app().get_regions()),
+            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
+
 
 class TestWebappLight(amo.tests.TestCase):
     """
@@ -857,10 +866,6 @@ class TestWebappLight(amo.tests.TestCase):
     def test_not_premium(self):
         eq_(Webapp().has_premium(), False)
 
-    def test_get_region_ids_no_exclusions(self):
-        # This returns IDs for the *included* regions.
-        eq_(Webapp().get_region_ids(), mkt.regions.REGION_IDS)
-
     def test_get_region_ids_with_exclusions(self):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
@@ -880,11 +885,6 @@ class TestWebappLight(amo.tests.TestCase):
             sorted(w1_regions))
         eq_(sorted(Webapp.objects.get(id=w2.id).get_region_ids()),
             sorted(w2_regions))
-
-    def test_get_regions_no_exclusions(self):
-        # This returns the class definitions for the *included* regions.
-        eq_(sorted(Webapp().get_regions()),
-            sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
 
     def test_get_regions_with_exclusions(self):
         w1 = Webapp.objects.create()

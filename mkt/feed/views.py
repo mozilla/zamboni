@@ -401,54 +401,129 @@ class BaseFeedESView(CORSMixin, APIView):
             app_map[app['id']] = app
         return app_map
 
-    def filter_device_feed_element(self, request, feed_element):
+    def limit_apps_feed_items(self, feed_items):
         """
-        Checks request.dev to filter apps from a deserialized ES feed element.
-
-        Returns feed element intact if all of its apps are compatible.
-        Returns feed element with apps filtered if some apps incompatible.
-        Returns None if none of the apps are compatible.
-        """
-        device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
-        device = applications.REVERSE_DEVICE_LOOKUP.get(device)
-
-        if (not device or device == applications.DEVICE_DESKTOP.api_name):
-            # TODO: remove desktop clause when we enable desktop feed filtering.
-            # If dev not in request, then we don't filter.
-            return feed_element
-
-        if 'app' in feed_element:
-            if device in feed_element['app']['device_types']:
-                return feed_element
-            # If the feedapp's app is not compatible, return None to exclude.
-            return None
-
-        # Filter apps from collectional feed elements.
-        feed_element['apps'] = [
-            app for app in feed_element['apps'] if
-            'device_types' not in app or device in app['device_types']]
-        # HACK: fudge the app count.
-        feed_element['app_count'] = len(feed_element['apps'])
-
-        if feed_element['apps']:
-            # Return feed element if some apps are left, else None.
-            return feed_element
-
-    def filter_device_feed_items(self, request, feed_items):
-        """
-        Given a list of FeedItems, filter apps that are incompatible from
-        each feed element.
-
-        If a feed element has no compatible apps, remove it from the feed
-        completely.
+        Limit the number of apps for each feed element to the feed.
+        This is not done in the serializers because we need all the apps for
+        the filtering stage.
         """
         for feed_item in feed_items:
             item_type = feed_item['item_type']
-            feed_item[item_type] = self.filter_device_feed_element(
+            if item_type == feed.FEED_TYPE_BRAND:
+                # Brand.
+                limit = feed.HOME_NUM_APPS_BRAND
+            elif item_type == feed.FEED_TYPE_COLL:
+                # Coll.
+                if feed_item['collection']['type'] == feed.COLLECTION_LISTING:
+                    limit = feed.HOME_NUM_APPS_LISTING_COLL
+                if feed_item['collection']['type'] == feed.COLLECTION_PROMO:
+                    limit = feed.HOME_NUM_APPS_PROMO_COLL
+            elif item_type == feed.FEED_TYPE_SHELF:
+                # Shelf.
+                limit = feed.HOME_NUM_APPS_SHELF
+            else:
+                continue
+
+            # Limit the apps.
+            feed_elm = feed_item[item_type]
+            feed_elm['apps'] = feed_elm['apps'][:limit]
+        return feed_items
+
+    def filter_apps_feed_items(self, request, feed_items):
+        """Master filter method for the feed."""
+        for feed_item in feed_items:
+            item_type = feed_item['item_type']
+            feed_item[item_type] = self.filter_apps_feed_element(
                 request, feed_item[item_type])
 
         # Filter feed elements that have NO compatible apps.
+        # We replace the feed elements with None if they're to be filtered.
         return filter(lambda item: item[item['item_type']], feed_items)
+
+    def filter_apps_feed_element(self, request, feed_element):
+        """
+        Runs multiple filters for apps of feed elements.
+        Each filter will return None if all of the apps becomes excluded.
+        """
+        if feed_element.get('apps') == []:
+            # No empty collections.
+            return
+
+        if feed_element:
+            # Device filtering.
+            device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
+            device = applications.REVERSE_DEVICE_LOOKUP.get(device)
+            if device and device != applications.DEVICE_DESKTOP.api_name:
+                # TODO: remove desktop clause when we want desktop filtering.
+                # If dev not in request, then we don't filter.
+                feed_element = self._filter(device, 'device_types',
+                                            feed_element, check_member=True)
+
+        if feed_element:
+            # Region filtering.
+            region = request.QUERY_PARAMS.get('region')
+            if region and region in dict(mkt.regions.REGIONS_CHOICES_SLUG):
+                # Turn list of region objects into list of slugs.
+                feed_element = self._filter(region, 'regions',
+                                            feed_element, check_member=True,
+                                            map_field='slug')
+
+        if feed_element:
+            # Status public filtering.
+            feed_element = self._filter(amo.STATUS_PUBLIC, 'status',
+                                        feed_element)
+
+        if feed_element:
+            feed_element = self._pop_filter_fields(feed_element)
+
+        return feed_element
+
+    def _filter(self, param, field, feed_element, check_member=False,
+                map_field=None):
+        """
+        param -- value to filter by.
+        field -- field name of app to filter on.
+        feed_element -- feed element of which to filter its apps.
+        check_member -- whether we filter by checking membership or equality.
+        map_field -- if field needs to be flattened, we flatten to map_field.
+        """
+        def _do_app_filter(app):
+            """Helper method to determine what apps to filter."""
+            if map_field:
+                app[field] = map(lambda x: x[map_field], app[field])
+            if check_member:
+                return field not in app or param in app[field]
+            return param == app[field]
+
+        if 'app' in feed_element:
+            # For Feed Apps.
+            # If the app is not compatible, return None to exclude.
+            app = feed_element['app']
+            return feed_element if _do_app_filter(app) else None
+
+        else:
+            # For Collections.
+            # Filter apps.
+            feed_element['apps'] = [
+                app for app in feed_element['apps'] if _do_app_filter(app)]
+
+            # Update app count.
+            feed_element['app_count'] = len(feed_element['apps'])
+
+            # Return None if there are no apps, to exclude from feed.
+            return feed_element if feed_element['apps'] else None
+
+    def _pop_filter_fields(self, feed_element):
+        """
+        Remove fields we only deserialized because they were needed for
+        filtering.
+        """
+        apps = feed_element.get('apps') or [feed_element['app']]
+        for app in apps:
+            for field in ('device_types', 'regions', 'status'):
+                if field in app:
+                    del app[field]
+        return feed_element
 
 
 class FeedElementSearchView(BaseFeedESView):
@@ -630,7 +705,15 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             'request': request
         }).data
 
-        feed_items = self.filter_device_feed_items(request, feed_items)
+        # Filter excluded apps. If there are feed items that have all their
+        # apps excluded, they will be removed from the feed.
+        feed_items = self.filter_apps_feed_items(request, feed_items)
+
+        # Slice AFTER filtering so that filtering works correctly.
+        self.limit_apps_feed_items(feed_items)
+
+        # TODO (chuck): paginate after filtering/slicing.
+
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
 
@@ -677,7 +760,7 @@ class FeedElementGetView(BaseFeedESView):
         # Filter data. If None of the apps are compatible, show everything
         # non-filtered since they must have navigated to the feed element
         # manually.
-        data = self.filter_device_feed_element(request, dict(data)) or data
+        data = self.filter_apps_feed_element(request, dict(data)) or data
 
         return response.Response(data, status=status.HTTP_200_OK)
 
