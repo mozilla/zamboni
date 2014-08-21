@@ -401,7 +401,31 @@ class BaseFeedESView(CORSMixin, APIView):
             app_map[app['id']] = app
         return app_map
 
-    def filter_device_feed_element(self, request, feed_element):
+    def filter_apps_feed_items(self, request, feed_items):
+        """Master filter method for the feed."""
+        for feed_item in feed_items:
+            item_type = feed_item['item_type']
+            feed_item[item_type] = self.filter_apps_feed_element(
+                request, feed_item[item_type])
+
+        # Filter feed elements that have NO compatible apps.
+        # We replace the feed elements with None if they're to be filtered.
+        return filter(lambda item: item[item['item_type']], feed_items)
+
+    def filter_apps_feed_element(self, request, feed_element):
+        """
+        Runs multiple filters for apps of feed elements.
+        Each filter will return None if all of the apps becomes excluded.
+        """
+        if feed_element:
+            feed_element = self._filter_devices(request, feed_element)
+
+        if feed_element:
+            feed_element = self._filter_regions(request, feed_element)
+
+        return feed_element
+
+    def _filter_devices(self, request, feed_element):
         """
         Checks request.dev to filter apps from a deserialized ES feed element.
 
@@ -424,31 +448,28 @@ class BaseFeedESView(CORSMixin, APIView):
             return None
 
         # Filter apps from collectional feed elements.
+        old_app_length = len(feed_element['apps'])
         feed_element['apps'] = [
             app for app in feed_element['apps'] if
             'device_types' not in app or device in app['device_types']]
-        # HACK: fudge the app count.
-        feed_element['app_count'] = len(feed_element['apps'])
+
+        if 'app_count' in feed_element:
+            # HACK: fudge the app count.
+            # Subtract from app count the number of apps we filtered.
+            # Not a perfect method since we don't have access to all the apps,
+            # but better than nothing.
+            feed_element['app_count'] = feed_element['app_count'] - (
+                old_app_length - len(feed_element['apps'])
+            )
 
         if feed_element['apps']:
             # Return feed element if some apps are left, else None.
             return feed_element
 
-    def filter_device_feed_items(self, request, feed_items):
-        """
-        Given a list of FeedItems, filter apps that are incompatible from
-        each feed element.
-
-        If a feed element has no compatible apps, remove it from the feed
-        completely.
-        """
-        for feed_item in feed_items:
-            item_type = feed_item['item_type']
-            feed_item[item_type] = self.filter_device_feed_element(
-                request, feed_item[item_type])
-
-        # Filter feed elements that have NO compatible apps.
-        return filter(lambda item: item[item['item_type']], feed_items)
+    def _filter_regions(self, request, feed_element):
+        """Region exclusions."""
+        # Not yet implemented.
+        return feed_element
 
 
 class FeedElementSearchView(BaseFeedESView):
@@ -630,7 +651,10 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             'request': request
         }).data
 
-        feed_items = self.filter_device_feed_items(request, feed_items)
+        # Filter excluded apps. If there are feed items that have all their
+        # apps excluded, they will be removed from the feed.
+        feed_items = self.filter_apps_feed_items(request, feed_items)
+
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
 
@@ -677,7 +701,7 @@ class FeedElementGetView(BaseFeedESView):
         # Filter data. If None of the apps are compatible, show everything
         # non-filtered since they must have navigated to the feed element
         # manually.
-        data = self.filter_device_feed_element(request, dict(data)) or data
+        data = self.filter_apps_feed_element(request, dict(data)) or data
 
         return response.Response(data, status=status.HTTP_200_OK)
 
