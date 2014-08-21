@@ -1930,8 +1930,7 @@ class Webapp(UUIDModelMixin, Addon):
         else:
             all_ids = mkt.regions.REGION_IDS
         if excluded is None:
-            excluded = list(self.addonexcludedregion
-                                .values_list('region', flat=True))
+            excluded = self.get_excluded_region_ids()
 
         return sorted(set(all_ids) - set(excluded or []))
 

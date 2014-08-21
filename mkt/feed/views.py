@@ -455,6 +455,8 @@ class BaseFeedESView(CORSMixin, APIView):
             feed_element = self._filter_regions(request, feed_element)
         if feed_element:
             feed_element = self._filter_published(feed_element)
+        if feed_element:
+            feed_element = self._pop_filter_fields(feed_element)
         return feed_element
 
     def _filter_devices(self, request, feed_element):
@@ -501,7 +503,31 @@ class BaseFeedESView(CORSMixin, APIView):
 
     def _filter_regions(self, request, feed_element):
         """Region exclusions."""
-        # Not yet implemented.
+        region = request.QUERY_PARAMS.get('region')
+        if not region or region not in dict(mkt.regions.REGIONS_CHOICES_SLUG):
+            return feed_element
+
+        if 'app' in feed_element:
+            # Feed app.
+            app = feed_element['app']
+            if region in map(lambda region: region['slug'], app['regions']):
+                return feed_element
+            return None
+
+        # Collections.
+        old_app_length = len(feed_element['apps'])
+        feed_element['apps'] = [
+            app for app in feed_element['apps'] if
+            region in map(lambda region: region['slug'], app['regions'])]
+
+        if 'app_count' in feed_element:
+            feed_element['app_count'] = feed_element['app_count'] - (
+                old_app_length - len(feed_element['apps'])
+            )
+
+        if feed_element['apps']:
+            # Return feed element if some apps are left, else None.
+            return feed_element
         return feed_element
 
     def _filter_published(self, feed_element):
@@ -526,6 +552,18 @@ class BaseFeedESView(CORSMixin, APIView):
         if feed_element['apps']:
             # Return feed element if some apps are left, else None.
             return feed_element
+
+    def _pop_filter_fields(self, feed_element):
+        """
+        Remove fields we only deserialized because they were needed for
+        filtering.
+        """
+        apps = feed_element.get('apps') or [feed_element['app']]
+        for app in apps:
+            for field in ('device_types', 'regions', 'status'):
+                if field in app:
+                    del app[field]
+        return feed_element
 
 
 class FeedElementSearchView(BaseFeedESView):
