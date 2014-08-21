@@ -47,9 +47,9 @@ def exclude_new_region(regions):
     """
     Update regional blacklist based on a list of regions to exclude.
     """
-    excluded = (AddonExcludedRegion.objects
-                .filter(region__in=[r.id for r in regions])
-                .values_list('addon', flat=True))
+    excluded = set(AddonExcludedRegion.objects
+                   .filter(region__in=[r.id for r in regions])
+                   .values_list('addon', flat=True))
     ids = (Webapp.objects.exclude(id__in=excluded)
            .filter(enable_new_regions=False)
            .values_list('id', flat=True))

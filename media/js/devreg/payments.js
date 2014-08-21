@@ -337,10 +337,6 @@ define('payments', [], function() {
                 var restricted = !!+$(this).val();
                 $('.restricted').toggle(restricted);
                 $('.unrestricted').toggle(!restricted);
-                if (!restricted) {
-                    $('input.restricted:not([disabled]):not(.special)').prop('checked', true);
-                    $('input[name="enable_new_regions"]').prop('checked', true);
-                }
                 if (!init) {
                     window.location.hash = 'regions-island';
                 }

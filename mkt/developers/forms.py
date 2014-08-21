@@ -943,24 +943,28 @@ class RegionForm(forms.Form):
                     region=region).delete()
                 log.info(u'[Webapp:%s] No longer exluded from region (%s).'
                          % (self.product, region))
+
+            # If restricted, check how we should handle new regions.
+            if self.cleaned_data['enable_new_regions']:
+                self.product.update(enable_new_regions=True)
+                log.info(u'[Webapp:%s] will be added to future regions.'
+                         % self.product)
+            else:
+                self.product.update(enable_new_regions=False)
+                log.info(u'[Webapp:%s] will not be added to future regions.'
+                         % self.product)
         else:
+            # If not restricted, set `enable_new_regions` to True and remove
+            # currently excluded regions.
+            self.product.update(enable_new_regions=True)
             self.product.addonexcludedregion.all().delete()
-            log.info(u'[Webapp:%s] App mark as unrestricted.' % self.product)
+            log.info(u'[Webapp:%s] App marked as unrestricted.' % self.product)
 
         self.product.geodata.update(restricted=restricted)
 
         # Toggle region exclusions/statuses for special regions (e.g., China).
         toggle_app_for_special_regions(self.request, self.product,
                                        special_regions)
-
-        if self.cleaned_data['enable_new_regions']:
-            self.product.update(enable_new_regions=True)
-            log.info(u'[Webapp:%s] will be added to future regions.'
-                     % self.product)
-        else:
-            self.product.update(enable_new_regions=False)
-            log.info(u'[Webapp:%s] will not be added to future regions.'
-                     % self.product)
 
 
 class CategoryForm(happyforms.Form):
