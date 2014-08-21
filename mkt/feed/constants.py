@@ -106,7 +106,7 @@ FEED_TYPE_COLL = 'collection'
 FEED_TYPE_SHELF = 'shelf'
 
 # Number of apps we need to deserialize for the homepage/actual feed.
-HOME_NUM_APPS_BRAND = 7
-HOME_NUM_APPS_LISTING_COLL = 7
+HOME_NUM_APPS_BRAND = 6
+HOME_NUM_APPS_LISTING_COLL = 6
 HOME_NUM_APPS_PROMO_COLL = 3
 HOME_NUM_APPS_SHELF = 0
