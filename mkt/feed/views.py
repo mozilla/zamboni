@@ -401,6 +401,34 @@ class BaseFeedESView(CORSMixin, APIView):
             app_map[app['id']] = app
         return app_map
 
+    def limit_apps_feed_items(self, feed_items):
+        """
+        Limit the number of apps for each feed element to the feed.
+        This is not done in the serializers because we need all the apps for
+        the filtering stage.
+        """
+        for feed_item in feed_items:
+            item_type = feed_item['item_type']
+            if item_type == feed.FEED_TYPE_BRAND:
+                # Brand.
+                limit = feed.HOME_NUM_APPS_BRAND
+            elif item_type == feed.FEED_TYPE_COLL:
+                # Coll.
+                if feed_item['collection']['type'] == feed.COLLECTION_LISTING:
+                    limit = feed.HOME_NUM_APPS_LISTING_COLL
+                if feed_item['collection']['type'] == feed.COLLECTION_PROMO:
+                    limit = feed.HOME_NUM_APPS_PROMO_COLL
+            elif item_type == feed.FEED_TYPE_SHELF:
+                # Shelf.
+                limit = feed.HOME_NUM_APPS_SHELF
+            else:
+                continue
+
+            # Limit the apps.
+            feed_elm = feed_item[item_type]
+            feed_elm['apps'] = feed_elm['apps'][:limit]
+        return feed_items
+
     def filter_apps_feed_items(self, request, feed_items):
         """Master filter method for the feed."""
         for feed_item in feed_items:
@@ -417,12 +445,16 @@ class BaseFeedESView(CORSMixin, APIView):
         Runs multiple filters for apps of feed elements.
         Each filter will return None if all of the apps becomes excluded.
         """
+        if feed_element.get('apps') == []:
+            # No empty collections.
+            return
+
         if feed_element:
             feed_element = self._filter_devices(request, feed_element)
-
         if feed_element:
             feed_element = self._filter_regions(request, feed_element)
-
+        if feed_element:
+            feed_element = self._filter_published(feed_element)
         return feed_element
 
     def _filter_devices(self, request, feed_element):
@@ -441,13 +473,14 @@ class BaseFeedESView(CORSMixin, APIView):
             # If dev not in request, then we don't filter.
             return feed_element
 
+        # Feed app.
         if 'app' in feed_element:
             if device in feed_element['app']['device_types']:
                 return feed_element
             # If the feedapp's app is not compatible, return None to exclude.
             return None
 
-        # Filter apps from collectional feed elements.
+        # Collections.
         old_app_length = len(feed_element['apps'])
         feed_element['apps'] = [
             app for app in feed_element['apps'] if
@@ -470,6 +503,29 @@ class BaseFeedESView(CORSMixin, APIView):
         """Region exclusions."""
         # Not yet implemented.
         return feed_element
+
+    def _filter_published(self, feed_element):
+        """Public apps only."""
+        if 'app' in feed_element:
+            # Feed app.
+            if feed_element['app']['status'] == amo.STATUS_PUBLIC:
+                return feed_element
+            return None
+
+        # Collections.
+        old_app_length = len(feed_element['apps'])
+        feed_element['apps'] = [
+            app for app in feed_element['apps'] if
+            app['status'] == amo.STATUS_PUBLIC]
+
+        if 'app_count' in feed_element:
+            feed_element['app_count'] = feed_element['app_count'] - (
+                old_app_length - len(feed_element['apps'])
+            )
+
+        if feed_element['apps']:
+            # Return feed element if some apps are left, else None.
+            return feed_element
 
 
 class FeedElementSearchView(BaseFeedESView):
@@ -654,6 +710,11 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         # Filter excluded apps. If there are feed items that have all their
         # apps excluded, they will be removed from the feed.
         feed_items = self.filter_apps_feed_items(request, feed_items)
+
+        # Slice AFTER filtering so that filtering works correctly.
+        self.limit_apps_feed_items(feed_items)
+
+        # TODO (chuck): paginate after filtering/slicing.
 
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)

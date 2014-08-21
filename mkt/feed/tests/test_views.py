@@ -1436,6 +1436,43 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['objects'])
 
 
+class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedViewStatusFiltering, self).setUp()
+        self.url = reverse('api-v2:feed.get')
+
+    def _get(self, **kwargs):
+        self._refresh()
+        res = self.anon.get(self.url, kwargs)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def test_feedapp(self):
+        feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
+        app = feed_item.app.app
+        app.update(status=amo.STATUS_PENDING)
+        res, data = self._get()
+        ok_(not data['objects'])
+
+    def test_coll(self):
+        app_pending = amo.tests.app_factory(status=amo.STATUS_PENDING)
+        app_public = amo.tests.app_factory(status=amo.STATUS_PUBLIC)
+
+        coll = self.feed_collection_factory(
+            app_ids=[app_pending.id, app_public.id])
+
+        # Wrap in FeedItem.
+        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL,
+                                collection=coll, region=1)
+
+        res, data = self._get()
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['collection']['apps'][0]['id'], app_public.id)
+
+
 class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 

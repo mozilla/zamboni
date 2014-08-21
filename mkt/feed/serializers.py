@@ -173,8 +173,7 @@ class FeedBrandESHomeSerializer(FeedBrandESSerializer):
     Different from the other Feed*ESHomeSerializers because it uses its own
     app field.
     """
-    apps = AppESHomeField(source='_app_ids', many=True,
-                          limit=feed.HOME_NUM_APPS_BRAND)
+    apps = AppESHomeField(source='_app_ids', many=True)
     app_count = serializers.SerializerMethodField('get_app_count')
 
     class Meta(FeedBrandESSerializer.Meta):
@@ -273,12 +272,11 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
             else:
                 # Need app icons if not background image.
                 app_field = AppESHomePromoCollectionField(
-                    many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
+                    many=True)
 
         elif obj.type == feed.COLLECTION_LISTING:
             # Needs minimal app serialization like FeedBrand.
-            app_field = AppESField(many=True,
-                                   limit=feed.HOME_NUM_APPS_PROMO_COLL)
+            app_field = AppESField(many=True)
 
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)
@@ -335,8 +333,7 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
 class FeedShelfESHomeSerializer(FeedShelfESSerializer):
     """Stripped down FeedShelfESSerializer targeted for the homepage."""
-    apps = AppESHomePromoCollectionField(source='_app_ids', many=True,
-                                         limit=feed.HOME_NUM_APPS_SHELF)
+    apps = AppESHomePromoCollectionField(source='_app_ids', many=True)
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
