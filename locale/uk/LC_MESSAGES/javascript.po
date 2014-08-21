@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-24 20:39+0000\n"
+"PO-Revision-Date: 2014-08-21 07:03+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1406234399.0\n"
+"X-POOTLE-MTIME: 1408604619.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -169,11 +170,11 @@ msgstr "Введіть адресу ел. пошти нового члена к�
 
 #: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Маніфест оновлено"
 
 #: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Неможливо оновити маніфест. Спробуйте знову пізніше."
 
 #: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
@@ -221,11 +222,11 @@ msgstr "Вхід за допомогою Persona невдалий. Сталас�
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Статус успішно змінено на \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Неможливо змінити статус на \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -257,55 +258,57 @@ msgstr "Не вказано причину"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "ОК"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Іспанський банківський код"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Ірландський код сортування"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Бельгійський код сортування"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Іспанський/Французький/Італійський/Голландський банківський код"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Код сортування Голландії/США"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Канадський транзитний номер/Німецький код маршрутизації"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Корейський банк і відділення/Індонезійський банківський код"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Грецький HEBIC/Індонезійський банківський код"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
 msgstr ""
+"Британський/Ірландський код сортування або префікс Новозеландського рахунку "
+"або Австралійський BSB код"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Австрійський/Швейцарський банківський код"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Датський/Швейцарський банківський код"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Швейцарський/Іракський банківський код"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
@@ -321,12 +324,18 @@ msgstr "Виявлено: {0}"
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступної програми. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
 msgstr[1] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
 msgstr[2] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Платіжні рахунки {appName}:"
 
 #: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
@@ -339,11 +348,11 @@ msgstr "Сталась помилка з'єднання з сервером оп
 
 #: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
-msgstr ""
+msgstr "Помилка автентифікації"
 
 #: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "В даний момент у вас немає жодного платіжного рахунку."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
@@ -425,27 +434,27 @@ msgstr "Придбано"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Запустити"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} переглядав цю сторінку першим."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Чек перевірено програмою."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Чек не було перевірено програмою."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} переглядав цей додаток першим."
 
 #: media/js/devreg/reviewers/editors.js:251
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Завантаження&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:256
 msgid "Version Notes"
@@ -453,7 +462,7 @@ msgstr "Примітки до версії"
 
 #: media/js/devreg/reviewers/editors.js:261
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Примітки для рецензентів"
 
 #: media/js/devreg/reviewers/editors.js:266
 msgid "No version notes found"
@@ -477,11 +486,11 @@ msgstr "менше..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Залишити відгук / Прибрати прапорці"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Вилучити відгук"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
@@ -501,11 +510,11 @@ msgstr "Привілейована програма"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
-msgstr ""
+msgstr "Запитано більше інформації"
 
 #: media/js/devreg/reviewers/reviewers.js:117
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Містить коментар редактора"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
@@ -513,7 +522,7 @@ msgstr "Преміум програма"
 
 #: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
-msgstr ""
+msgstr "Передано вище"
 
 #: media/js/devreg/reviewers/reviewers.js:129
 msgid "Free"
@@ -541,25 +550,27 @@ msgstr "Помилка відхилення програми: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Програма, яка пройшла перевірку: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Програма, яка не пройшла перевірку: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Помилка проходження перевірки програми: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Помилка не проходження перевірки програми: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте "
+"увійти знову.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "По {0} на {1}"
