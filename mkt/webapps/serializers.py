@@ -548,7 +548,7 @@ class ESAppFeedSerializer(BaseESAppFeedSerializer):
         fields = [
             'author', 'device_types', 'icons', 'id', 'is_packaged',
             'manifest_url', 'name', 'payment_required', 'premium_type',
-            'price', 'price_locale', 'ratings', 'slug'
+            'price', 'price_locale', 'ratings', 'slug', 'user'
         ]
 
 
