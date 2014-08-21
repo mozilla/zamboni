@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-21 20:04+0000\n"
-"Last-Translator: Martin <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2014-08-21 21:23+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -12,27 +12,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408651469.0\n"
+"X-POOTLE-MTIME: 1408656235.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Filtypen du laddade upp är okänd."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Du avbröt uppladdningen."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Bilder måste vara antingen PNG eller JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videor måste ha formatet WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Det gick inte att kontakta servern."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -40,12 +40,12 @@ msgstr "Välj en fil..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Din komprimerade app ska sluta på <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% klart"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: media/js/common/upload-packaged-app.js:92
@@ -58,214 +58,218 @@ msgstr "Avbryt"
 
 #: media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Laddar upp {0}"
 
 #: media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
-msgstr ""
+msgstr "Fel med {0}"
 
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din app misslyckades validering med {0} fel."
+msgstr[1] "Din app misslyckades validering med {0} fel."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;och {0} mer"
+msgstr[1] "&hellip;och {0} fler"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
 msgid "See full validation report"
-msgstr ""
+msgstr "Se fullständig valideringsrapport"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validerar {0}"
 
 #. L10n: first argument is an HTTP status code
 #: media/js/common/upload-packaged-app.js:247
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Tog emot ett tomt svar från servern; status: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Oväntat serverfel vid validering."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Klar med validering av {0}"
 
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din app passerade validering med inga fel och {0} varning."
+msgstr[1] "Din app passerade validering med inga fel och {0} varningar."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Din app passerade validering med inga fel eller varningar."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Manifestet kunde inte hittas på den angivna platsen."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "App-värd kunde inte nås."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "App-manifestet går inte att parsa."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "App-manifestet är ogiltigt."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Appen är redan installerad."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "Internt serverfel."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Internt serverfel vid installation av app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Installering misslyckades. Vänligen försök igen senare."
 
 #: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din app misslyckades validering med {0} fel och {1} meddelande(n)."
+msgstr[1] "Din app misslyckades validering med {0} fel och {1} meddelande(n)."
 
 #: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din app passerade validering utan fel och {0} meddelande."
+msgstr[1] "Din app passerade validering utan fel och {0} meddelanden."
 
 #: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors or messages."
-msgstr ""
+msgstr "Din app passerade validering utan fel eller meddelanden."
 
 #: media/js/devreg/devhub.js:443
 msgid "Changes Saved"
-msgstr ""
+msgstr "Ändringar sparade"
 
 #: media/js/devreg/devhub.js:459
 msgid "Enter a new team member's email address"
-msgstr ""
+msgstr "Lägg till en ny gruppmedlems e-postadress"
 
 #: media/js/devreg/devhub.js:472
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest uppdaterad"
 
 #: media/js/devreg/devhub.js:477
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Kunde inte uppdatera manifest. Försök igen senare."
 
 #: media/js/devreg/devhub.js:658
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Ett fel uppstod vid uppladdning av din fil."
 
 #: media/js/devreg/devhub.js:943
 msgid "Learn more"
-msgstr ""
+msgstr "Läs mer"
 
 #: media/js/devreg/devhub.js:947
 msgid "Example"
-msgstr ""
+msgstr "Exempel"
 
 #: media/js/devreg/devhub.js:1241
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Bearbetar bildändringar"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Denna video kräver en webbläsare med stöd för open video "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "eller <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a>."
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
+"Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll "
+"på webbplatsen. Vänligen kom tillbaka lite senare."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Ta bort denna översättning"
 
 #: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"Persona-inloggning misslyckades. Du kanske inte har ett konto med den "
+"e-postadressen registrerad?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Persona-inloggning misslyckades. Ett serverfel uppstod."
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status har ändrats till \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Kunde inte ändra status till \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
-msgstr ""
+msgstr "Visa alla träffar"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Över {0} träffar hittades, överväga att förfina din sökning."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Begärda rättigheter:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Certifierad"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Privilegierad"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Oprivilegierad"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Ingen anledning ges"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Spansk bankkod"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Irländskt clearingnummer"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belgiskt clearingnummer"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
