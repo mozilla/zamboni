@@ -450,108 +450,68 @@ class BaseFeedESView(CORSMixin, APIView):
             return
 
         if feed_element:
-            feed_element = self._filter_devices(request, feed_element)
+            # Device filtering.
+            device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
+            device = applications.REVERSE_DEVICE_LOOKUP.get(device)
+            if device and device != applications.DEVICE_DESKTOP.api_name:
+                # TODO: remove desktop clause when we want desktop filtering.
+                # If dev not in request, then we don't filter.
+                feed_element = self._filter(device, 'device_types',
+                                            feed_element, check_member=True)
+
         if feed_element:
-            feed_element = self._filter_regions(request, feed_element)
+            # Region filtering.
+            region = request.QUERY_PARAMS.get('region')
+            if region and region in dict(mkt.regions.REGIONS_CHOICES_SLUG):
+                # Turn list of region objects into list of slugs.
+                feed_element = self._filter(region, 'regions',
+                                            feed_element, check_member=True,
+                                            map_field='slug')
+
         if feed_element:
-            feed_element = self._filter_published(feed_element)
+            # Status public filtering.
+            feed_element = self._filter(amo.STATUS_PUBLIC, 'status',
+                                        feed_element)
+
         if feed_element:
             feed_element = self._pop_filter_fields(feed_element)
+
         return feed_element
 
-    def _filter_devices(self, request, feed_element):
+    def _filter(self, param, field, feed_element, check_member=False,
+                map_field=None):
         """
-        Checks request.dev to filter apps from a deserialized ES feed element.
-
-        Returns feed element intact if all of its apps are compatible.
-        Returns feed element with apps filtered if some apps incompatible.
-        Returns None if none of the apps are compatible.
+        param -- value to filter by.
+        field -- field name of app to filter on.
+        feed_element -- feed element of which to filter its apps.
+        check_member -- whether we filter by checking membership or equality.
+        map_field -- if field needs to be flattened, we flatten to map_field.
         """
-        device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
-        device = applications.REVERSE_DEVICE_LOOKUP.get(device)
-
-        if (not device or device == applications.DEVICE_DESKTOP.api_name):
-            # TODO: remove desktop clause when we enable desktop feed filtering.
-            # If dev not in request, then we don't filter.
-            return feed_element
-
-        # Feed app.
-        if 'app' in feed_element:
-            if device in feed_element['app']['device_types']:
-                return feed_element
-            # If the feedapp's app is not compatible, return None to exclude.
-            return None
-
-        # Collections.
-        old_app_length = len(feed_element['apps'])
-        feed_element['apps'] = [
-            app for app in feed_element['apps'] if
-            'device_types' not in app or device in app['device_types']]
-
-        if 'app_count' in feed_element:
-            # HACK: fudge the app count.
-            # Subtract from app count the number of apps we filtered.
-            # Not a perfect method since we don't have access to all the apps,
-            # but better than nothing.
-            feed_element['app_count'] = feed_element['app_count'] - (
-                old_app_length - len(feed_element['apps'])
-            )
-
-        if feed_element['apps']:
-            # Return feed element if some apps are left, else None.
-            return feed_element
-
-    def _filter_regions(self, request, feed_element):
-        """Region exclusions."""
-        region = request.QUERY_PARAMS.get('region')
-        if not region or region not in dict(mkt.regions.REGIONS_CHOICES_SLUG):
-            return feed_element
+        def _do_app_filter(app):
+            """Helper method to determine what apps to filter."""
+            if map_field:
+                app[field] = map(lambda x: x[map_field], app[field])
+            if check_member:
+                return field not in app or param in app[field]
+            return param == app[field]
 
         if 'app' in feed_element:
-            # Feed app.
+            # For Feed Apps.
+            # If the app is not compatible, return None to exclude.
             app = feed_element['app']
-            if region in map(lambda region: region['slug'], app['regions']):
-                return feed_element
-            return None
+            return feed_element if _do_app_filter(app) else None
 
-        # Collections.
-        old_app_length = len(feed_element['apps'])
-        feed_element['apps'] = [
-            app for app in feed_element['apps'] if
-            region in map(lambda region: region['slug'], app['regions'])]
+        else:
+            # For Collections.
+            # Filter apps.
+            feed_element['apps'] = [
+                app for app in feed_element['apps'] if _do_app_filter(app)]
 
-        if 'app_count' in feed_element:
-            feed_element['app_count'] = feed_element['app_count'] - (
-                old_app_length - len(feed_element['apps'])
-            )
+            # Update app count.
+            feed_element['app_count'] = len(feed_element['apps'])
 
-        if feed_element['apps']:
-            # Return feed element if some apps are left, else None.
-            return feed_element
-        return feed_element
-
-    def _filter_published(self, feed_element):
-        """Public apps only."""
-        if 'app' in feed_element:
-            # Feed app.
-            if feed_element['app']['status'] == amo.STATUS_PUBLIC:
-                return feed_element
-            return None
-
-        # Collections.
-        old_app_length = len(feed_element['apps'])
-        feed_element['apps'] = [
-            app for app in feed_element['apps'] if
-            app['status'] == amo.STATUS_PUBLIC]
-
-        if 'app_count' in feed_element:
-            feed_element['app_count'] = feed_element['app_count'] - (
-                old_app_length - len(feed_element['apps'])
-            )
-
-        if feed_element['apps']:
-            # Return feed element if some apps are left, else None.
-            return feed_element
+            # Return None if there are no apps, to exclude from feed.
+            return feed_element if feed_element['apps'] else None
 
     def _pop_filter_fields(self, feed_element):
         """
