@@ -1436,6 +1436,63 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['objects'])
 
 
+class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
+    fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
+
+    def setUp(self):
+        super(TestFeedViewRegionFiltering, self).setUp()
+        self.url = reverse('api-v2:feed.get')
+
+    def _get(self, **kwargs):
+        self._refresh()
+        res = self.anon.get(self.url, kwargs)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def test_feedapp(self):
+        feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
+        app = feed_item.app.app
+        # Exclude from Germany.
+        app.addonexcludedregion.create(region=mkt.regions.DE.id)
+        res, data = self._get()
+        ok_(data['objects'])
+        res, data = self._get(region='de')
+        ok_(not data['objects'])
+
+        res, data = self._get(region='us')
+        ok_(data['objects'])
+
+    def test_coll(self):
+        app_excluded_br = amo.tests.app_factory()
+        app_excluded_de = amo.tests.app_factory()
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
+        app_excluded_de.addonexcludedregion.create(region=mkt.regions.DE.id)
+
+        coll = self.feed_collection_factory(
+            app_ids=[app_excluded_br.id, app_excluded_de.id])
+
+        # Wrap in FeedItem.
+        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL,
+                                collection=coll, region=1)
+
+        # Other regions can see both.
+        res, data = self._get(region='restofworld')
+        eq_(len(data['objects'][0]['collection']['apps']), 2)
+
+        # Test DE exclusion.
+        res, data = self._get(region='de')
+        eq_(len(data['objects'][0]['collection']['apps']), 1)
+        eq_(data['objects'][0]['collection']['apps'][0]['id'],
+            app_excluded_br.id)
+
+        # Test BR exclusion.
+        res, data = self._get(region='br')
+        eq_(len(data['objects'][0]['collection']['apps']), 1)
+        eq_(data['objects'][0]['collection']['apps'][0]['id'],
+            app_excluded_de.id)
+
+
 class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
