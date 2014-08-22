@@ -117,13 +117,19 @@ class VIMPELCOM(CARRIER):
 class GRAMEENPHONE(CARRIER):
     id = 18
     name = 'GrameenPhone'
-    slug = 'grameenphone'    
+    slug = 'grameenphone'
 
 
 class CONGSTAR(CARRIER):
     id = 19
     name = u'Congstar'
     slug = 'congstar'
+
+
+class O2(CARRIER):
+    id = 19
+    name = u'O2'
+    slug = 'o2'
 
 
 CARRIER_MAP = dict((c.slug, c) for name, c in locals().items() if
