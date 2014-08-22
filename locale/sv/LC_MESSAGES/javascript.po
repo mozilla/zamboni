@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-21 21:23+0000\n"
+"PO-Revision-Date: 2014-08-22 21:04+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408656235.0\n"
+"X-POOTLE-MTIME: 1408741472.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -100,12 +100,12 @@ msgstr "Klar med validering av {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Din app passerade validering med inga fel och {0} varning."
-msgstr[1] "Din app passerade validering med inga fel och {0} varningar."
+msgstr[0] "Din app passerade validering utan fel och {0} varning."
+msgstr[1] "Din app passerade validering utan fel och {0} varningar."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Din app passerade validering med inga fel eller varningar."
+msgstr "Din app passerade validering utan fel eller varningar."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -233,7 +233,7 @@ msgstr "Visa alla träffar"
 
 #: media/js/devreg/lookup-tool.js:101
 msgid "Over {0} results found, consider refining your search."
-msgstr "Över {0} träffar hittades, överväga att förfina din sökning."
+msgstr "Över {0} träffar hittades, överväg att förfina din sökning."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -265,56 +265,58 @@ msgstr "Spansk bankkod"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr "Irländskt clearingnummer"
+msgstr "Irländsk clearingnummer"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr "Belgiskt clearingnummer"
+msgstr "Belgisk clearingnummer"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Spansk/fransk/italiensk/holländsk bankkod"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Holländsk/amerikansk clearingnummer"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Kanadensisk transitnummer/Tysk routingnummer"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
+msgstr "Koreansk bank och kontor/indonesisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:23
 msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
+msgstr "Grekisk HEBIC/indonesisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
 msgstr ""
+"Brittisk/irländsk clearingnummer eller nyzeeländsk kontoprefix eller "
+"australisk bank, delstat och kontor"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
-msgstr ""
+msgstr "Österrikisk/schweizisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Dansk/schweizisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Schweizisk/irakisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
-msgstr ""
+msgstr "Irakisk bankkod"
 
 #. L10n: {0} is the name of a bank detected from the bank account code.
 #: media/js/devreg/payments-enroll.js:136
 msgid "Detected: {0}"
-msgstr ""
+msgstr "Identifierade: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
@@ -330,15 +332,15 @@ msgstr ""
 #: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
 #: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Det gick inte att kontakta betalningsservern."
 
 #: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
-msgstr ""
+msgstr "Autentiseringsfel"
 
 #: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
@@ -360,8 +362,8 @@ msgstr ""
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tecken kvar."
+msgstr[1] "{0} tecken kvar."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
