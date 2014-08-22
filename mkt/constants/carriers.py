@@ -127,7 +127,7 @@ class CONGSTAR(CARRIER):
 
 
 class O2(CARRIER):
-    id = 19
+    id = 20
     name = u'O2'
     slug = 'o2'
 
