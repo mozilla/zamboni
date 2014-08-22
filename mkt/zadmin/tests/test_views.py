@@ -121,6 +121,7 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_free_apps_with_new_regions(self):
+        self.addon.update(enable_new_regions=False)
         res = self.post(recipients='free_apps_region_enabled')
         self.assertNoFormErrors(res)
         eq_(len(mail.outbox), 0)
@@ -140,6 +141,7 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_apps_with_payments_and_new_regions(self):
+        self.addon.update(enable_new_regions=False)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         res = self.post(recipients='payments_region_enabled')
         self.assertNoFormErrors(res)

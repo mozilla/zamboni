@@ -445,11 +445,14 @@ class BaseFeedESView(CORSMixin, APIView):
         Runs multiple filters for apps of feed elements.
         Each filter will return None if all of the apps becomes excluded.
         """
+        # Don't filter device/regions if filtering == 0.
+        filtering = request.QUERY_PARAMS.get('filtering', '1') != '0'
+
         if feed_element.get('apps') == []:
             # No empty collections.
             return
 
-        if feed_element:
+        if feed_element and filtering:
             # Device filtering.
             device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
             device = applications.REVERSE_DEVICE_LOOKUP.get(device)
@@ -459,7 +462,7 @@ class BaseFeedESView(CORSMixin, APIView):
                 feed_element = self._filter(device, 'device_types',
                                             feed_element, check_member=True)
 
-        if feed_element:
+        if feed_element and filtering:
             # Region filtering.
             region = request.QUERY_PARAMS.get('region')
             if region and region in dict(mkt.regions.REGIONS_CHOICES_SLUG):
@@ -520,7 +523,7 @@ class BaseFeedESView(CORSMixin, APIView):
         """
         apps = feed_element.get('apps') or [feed_element['app']]
         for app in apps:
-            for field in ('device_types', 'regions', 'status'):
+            for field in ('regions', 'status'):
                 if field in app:
                     del app[field]
         return feed_element
@@ -757,10 +760,10 @@ class FeedElementGetView(BaseFeedESView):
             'request': request
         }).data
 
-        # Filter data. If None of the apps are compatible, show everything
-        # non-filtered since they must have navigated to the feed element
-        # manually.
-        data = self.filter_apps_feed_element(request, dict(data)) or data
+        # Filter data. If None of the apps are compatible, only run the
+        # public apps filter.
+        data = (self.filter_apps_feed_element(request, dict(data)) or
+                self._filter(amo.STATUS_PUBLIC, 'status', feed_element))
 
         return response.Response(data, status=status.HTTP_200_OK)
 

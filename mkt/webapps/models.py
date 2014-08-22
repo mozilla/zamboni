@@ -261,7 +261,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Whether the app is packaged or not (aka hosted).
     is_packaged = models.BooleanField(default=False, db_index=True)
 
-    enable_new_regions = models.BooleanField(default=False, db_index=True)
+    enable_new_regions = models.BooleanField(default=True, db_index=True)
 
     # Annotates disabled apps from the Great IARC purge for auto-reapprove.
     # Note: for currently PUBLIC apps only.
