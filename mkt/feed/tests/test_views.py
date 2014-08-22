@@ -1435,6 +1435,20 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(device='wut')
         ok_(data['objects'])
 
+    def test_no_filtering(self):
+        app_gaia = amo.tests.app_factory()
+        app_gaia.addondevicetype_set.create(
+            device_type=applications.DEVICE_GAIA.id)
+        coll = self.feed_collection_factory(app_ids=[app_gaia.id])
+        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
+                                region=1)
+
+        res, data = self._get(device='mobile')
+        eq_(len(data['objects']), 0)
+
+        res, data = self._get(device='mobile', filtering=0)
+        eq_(len(data['objects']), 1)
+
 
 class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
@@ -1468,13 +1482,12 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app_excluded_de = amo.tests.app_factory()
         app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
         app_excluded_de.addonexcludedregion.create(region=mkt.regions.DE.id)
-
-        coll = self.feed_collection_factory(
-            app_ids=[app_excluded_br.id, app_excluded_de.id])
+        coll = self.feed_collection_factory(app_ids=[app_excluded_br.id,
+                                                     app_excluded_de.id])
 
         # Wrap in FeedItem.
-        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL,
-                                collection=coll, region=1)
+        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
+                                region=1)
 
         # Other regions can see both.
         res, data = self._get(region='restofworld')
@@ -1491,6 +1504,19 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(len(data['objects'][0]['collection']['apps']), 1)
         eq_(data['objects'][0]['collection']['apps'][0]['id'],
             app_excluded_de.id)
+
+    def test_no_filtering(self):
+        app_excluded_br = amo.tests.app_factory()
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BR.id)
+        coll = self.feed_collection_factory(app_ids=[app_excluded_br.id])
+        FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
+                                region=1)
+
+        res, data = self._get(region='br')
+        eq_(len(data['objects']), 0)
+
+        res, data = self._get(region='br', filtering=0)
+        eq_(len(data['objects']), 1)
 
 
 class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
