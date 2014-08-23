@@ -21,6 +21,7 @@ from requests.exceptions import RequestException
 
 import amo
 import amo.tests
+import mkt
 from amo.helpers import absolutify
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
@@ -30,10 +31,10 @@ from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
 from mkt.webapps.tasks import (dump_app, dump_user_installs, export_data,
-                               fake_app_names, generate_app_data,
-                               notify_developers_of_failure, pre_generate_apk,
-                               PreGenAPKError, rm_directory, update_manifests,
-                               zip_apps)
+                               fake_app_names, fix_excluded_regions,
+                               generate_app_data, notify_developers_of_failure,
+                               pre_generate_apk, PreGenAPKError, rm_directory,
+                               update_manifests, zip_apps)
 
 
 original = {
@@ -766,3 +767,55 @@ class AppGeneratorTests(amo.tests.TestCase):
         # Every name is used with ' 1' as a suffix.
         eq_(sum(1 for appname, cat in data if appname.endswith(' 1')),
             len(fake_app_names))
+
+
+class TestFixExcludedRegions(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_ignore_restricted(self, _mock):
+        """Set up exclusions and verify they still exist after the call."""
+        self.app.geodata.update(restricted=True)
+        self.app.addonexcludedregion.create(region=mkt.regions.PE.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.FR.id)
+        fix_excluded_regions([self.app.pk])
+        self.assertSetEqual(self.app.get_excluded_region_ids(),
+                            [mkt.regions.PE.id, mkt.regions.FR.id])
+        eq_(self.app.addonexcludedregion.count(), 2)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_free_iarc_excluded(self, _mock):
+        # Set a few exclusions that shouldn't survive.
+        self.app.addonexcludedregion.create(region=mkt.regions.PE.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.FR.id)
+        # Set IARC settings to influence region exclusions.
+        self.app.geodata.update(region_de_iarc_exclude=True,
+                                region_br_iarc_exclude=True)
+        fix_excluded_regions([self.app.pk])
+        self.assertSetEqual(self.app.get_excluded_region_ids(),
+                            [mkt.regions.DE.id, mkt.regions.BR.id])
+        eq_(self.app.addonexcludedregion.count(), 0)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_paid(self, _mock):
+        self.make_premium(self.app)
+        # `make_premium` adds a price in a US region. Excluded is everything
+        # but US and RESTOFWORLD.
+        excluded = (set(mkt.regions.ALL_REGION_IDS) -
+                    set([mkt.regions.RESTOFWORLD.id, mkt.regions.US.id]))
+        fix_excluded_regions([self.app.pk])
+        self.assertSetEqual(self.app.get_excluded_region_ids(), excluded)
+        eq_(self.app.addonexcludedregion.count(), 0)
+
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    def test_free_special_excluded(self, _mock):
+        for region in mkt.regions.SPECIAL_REGION_IDS:
+            self.app.addonexcludedregion.create(region=region)
+        fix_excluded_regions([self.app.pk])
+        self.assertSetEqual(self.app.get_excluded_region_ids(),
+                            mkt.regions.SPECIAL_REGION_IDS)
+        eq_(self.app.addonexcludedregion.count(),
+            len(mkt.regions.SPECIAL_REGION_IDS))

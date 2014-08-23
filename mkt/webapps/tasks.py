@@ -889,3 +889,29 @@ def generate_apps(num):
         f = StringIO.StringIO()
         im.save(f, 'png')
         save_icon(app, f.getvalue())
+
+
+@task
+@write
+def fix_excluded_regions(ids, **kw):
+    """
+    Task to fix an app's excluded_region set.
+
+    This will remove all excluded regions (minus special regions).
+
+    Note: We only do this on apps with `_geodata__restricted` as false because
+    restricted apps have user defined region exclusions.
+
+    """
+    apps = Webapp.objects.filter(id__in=ids).filter(_geodata__restricted=False)
+    for app in apps:
+        # Delete all excluded regions, except special regions.
+        #
+        # TODO: Add special region logic to `get_excluded_region_ids`?
+        app.addonexcludedregion.exclude(
+            region__in=mkt.regions.SPECIAL_REGION_IDS).delete()
+
+        task_log.info(u'[Webapp:%s] Excluded Regions cleared.' % app.pk)
+
+    # Trigger a re-index to update `region_exclusions` in ES.
+    index_webapps([app.pk for app in apps])

@@ -26,28 +26,25 @@ def create_user(email, password, group_name=None, overwrite=False):
         username=email, email=email, source=amo.LOGIN_SOURCE_UNKNOWN,
         display_name=email)
 
-    if created:
-        profile.create_django_user()
-
     if not profile.read_dev_agreement:
         profile.read_dev_agreement = datetime.now()
         profile.save()
 
     # Now, find the group we want.
-    if (group_name and not
-        profile.groups.filter(groupuser__group__name=group_name).exists()):
-            group = Group.objects.get(name=group_name)
-            GroupUser.objects.create(group=group, user=profile)
+    if (group_name and not profile.groups.filter(
+            groupuser__group__name=group_name).exists()):
+        group = Group.objects.get(name=group_name)
+        GroupUser.objects.create(group=group, user=profile)
 
     # We also want to grant these users access, so let's create tokens for
     # them.
     if overwrite:
         Access.objects.filter(user=profile.user).delete()
 
-    if not Access.objects.filter(user=profile.user).exists():
+    if not Access.objects.filter(user=profile).exists():
         key = hashlib.sha512(password + email + 'key').hexdigest()
         secret = hashlib.sha512(password + email + 'secret').hexdigest()
-        Access.objects.create(key=key, secret=secret, user=profile.user)
+        Access.objects.create(key=key, secret=secret, user=profile)
 
 
 class Command(BaseCommand):
@@ -60,7 +57,7 @@ class Command(BaseCommand):
             help='Clear the user access tokens before recreating them'),)
 
     def handle(self, *args, **kw):
-        options = {'password': settings.API_PASSWORD}
+        options = {'password': 'fake_password'}
 
         if kw['clear']:
             options['overwrite'] = True
