@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-16 13:27+0000\n"
+"PO-Revision-Date: 2014-08-24 11:01+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408195626.0\n"
+"X-POOTLE-MTIME: 1408878081.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -1964,7 +1964,7 @@ msgstr "Nieuws en weer"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr "Foto’s en media"
+msgstr "Foto en video"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
