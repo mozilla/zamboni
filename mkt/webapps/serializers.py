@@ -79,6 +79,7 @@ class AppSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField(required=False)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
+    is_disabled = serializers.BooleanField(read_only=True)
     is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
     manifest_url = serializers.CharField(source='get_manifest_url',
@@ -126,14 +127,14 @@ class AppSerializer(serializers.ModelSerializer):
         fields = [
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
-            'default_locale', 'description', 'device_types', 'homepage',
-            'icons', 'id', 'is_offline', 'is_packaged', 'manifest_url',
-            'name', 'package_path', 'payment_account', 'payment_required',
-            'premium_type', 'previews', 'price', 'price_locale',
-            'privacy_policy', 'public_stats', 'release_notes', 'ratings',
-            'regions', 'resource_uri', 'slug', 'status', 'support_email',
-            'support_url', 'supported_locales', 'tags', 'upsell', 'upsold',
-            'user', 'versions', 'weekly_downloads'
+            'default_locale', 'description', 'device_types',
+            'homepage', 'icons', 'id', 'is_disabled', 'is_offline',
+            'is_packaged', 'manifest_url', 'name', 'package_path',
+            'payment_account', 'payment_required', 'premium_type', 'previews',
+            'price', 'price_locale', 'privacy_policy', 'public_stats',
+            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
+            'status', 'support_email', 'support_url', 'supported_locales',
+            'tags', 'upsell', 'upsold', 'user', 'versions', 'weekly_downloads'
         ]
 
     def _get_region_id(self):
@@ -376,6 +377,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     # Override those, because we want a different source. Also, related fields
     # will call self.queryset early if they are not read_only, so force that.
+    is_disabled = serializers.BooleanField(source='_is_disabled')
     manifest_url = serializers.CharField(source='manifest_url')
     package_path = serializers.SerializerMethodField('get_package_path')
 
@@ -434,13 +436,14 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
             for p in data['previews']]
         obj.categories = data['category']
         obj._device_types = [DEVICE_TYPES[d] for d in data['device']]
+        obj._is_disabled = data['is_disabled']
 
         # Set base attributes on the "fake" app using the data from ES.
         self._attach_fields(
-            obj, data, ('created', 'modified', 'default_locale', 'icon_hash',
-                        'is_escalated', 'is_offline', 'manifest_url',
-                        'premium_type', 'regions', 'reviewed', 'status',
-                        'weekly_downloads'))
+            obj, data, ('created', 'modified', 'default_locale',
+                        'icon_hash', 'is_escalated', 'is_offline',
+                        'manifest_url', 'premium_type', 'regions', 'reviewed',
+                        'status', 'weekly_downloads'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(
@@ -546,10 +549,10 @@ class ESAppFeedSerializer(BaseESAppFeedSerializer):
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'author', 'device_types', 'icons', 'id', 'is_packaged',
-            'manifest_url', 'name', 'payment_required', 'premium_type',
-            'price', 'price_locale', 'ratings', 'regions', 'status', 'slug',
-            'user'
+            'author', 'device_types', 'icons', 'id', 'is_disabled',
+            'is_packaged', 'manifest_url', 'name', 'payment_required',
+            'premium_type', 'price', 'price_locale', 'ratings', 'regions',
+            'status', 'slug', 'user'
         ]
 
 
@@ -560,7 +563,8 @@ class ESAppFeedCollectionSerializer(BaseESAppFeedSerializer):
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'device_types', 'icons', 'id', 'slug', 'regions', 'status'
+            'device_types', 'icons', 'id', 'is_disabled', 'slug', 'regions',
+            'status'
         ]
 
 
