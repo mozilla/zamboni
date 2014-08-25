@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-20 07:25+0000\n"
+"PO-Revision-Date: 2014-08-25 14:56+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408519531.0\n"
+"X-POOTLE-MTIME: 1408978593.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -242,7 +242,7 @@ msgstr "{0} {1} је додат."
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} улога корисника је промењена у {1} за {addon}."
+msgstr "{0.name} улога је промењена у {1} за {addon}."
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
@@ -561,7 +561,9 @@ msgstr "Резултати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</str
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Страна <a href=\"%(current_pg_url)s\">%(current_pg)s</a> од <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr ""
+"Страница <a href=\"%(current_pg_url)s\">%(current_pg)s</a> од <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 msgid "Jump to first page"
@@ -686,7 +688,7 @@ msgstr "Прилог премашује максималну величину о
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
-msgstr "Firefox Marketplace је званични извор апликација за мрежну платформу."
+msgstr "Firefox Marketplace је званични извор апликација за веб платформу."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
@@ -1888,7 +1890,7 @@ msgstr "Поновна рецензија веб апликације"
 
 #: mkt/constants/base.py:251
 msgid "Updated Packaged App Review"
-msgstr "Ажурирана рецензија паковане апликације"
+msgstr "Ажурирана рецензија упаковане апликације"
 
 #: mkt/constants/base.py:252
 msgid "Moderated App Review"
@@ -2184,7 +2186,7 @@ msgstr "Апликације захтева сензор за близину (`o
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
-msgstr "Једноставно гурање"
+msgstr "Једноставан Push"
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
@@ -2700,7 +2702,7 @@ msgstr "Назив url адресе не може бити \"%s\". Молимо 
 
 #: mkt/developers/forms.py:627
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr "URL манифеста се промени са {before_url} на {after_url}"
+msgstr "URL манифеста се променио са {before_url} на {after_url}"
 
 #: mkt/developers/forms.py:647
 msgid "Please specify your app's Privacy Policy"
@@ -2800,8 +2802,10 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
-"Молим Вас да узмете у обзир моју апликацију као кандидат да буде унапред учитан на Firefox OS уређајима. Слажем се са горе наведеним условима коришћења. Разумем да овај документ није обавеза да се "
-"моја апликација унапред учита."
+"Молим Вас да узмете у обзир моју апликацију као кандидата да буде унапред "
+"учитана на Firefox OS уређајима. Слажем се са горе наведеним условима "
+"коришћења. Разумем да овај документ није обавеза да се моја апликација "
+"унапред учита."
 
 #: mkt/developers/forms.py:1073
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -3067,7 +3071,7 @@ msgstr "Видео подршка није омогућена."
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
-msgstr "Иконе морају бити или PNG или JPG формата."
+msgstr "Иконице морају бити или PNG или JPG формата."
 
 #: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
@@ -3366,7 +3370,7 @@ msgstr "Омогући"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr "Одби"
+msgstr "Одбиј"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:60 templates/base.html:61
 msgid "Firefox Marketplace Developers"
@@ -3564,7 +3568,7 @@ msgstr "Чланови тима"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr "Само власнiк(ци) апликације могу уредити ову апликацију."
+msgstr "Само власници апликације могу уредити ову апликацију."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
@@ -3635,7 +3639,7 @@ msgstr "Ви сте <b>уклонили</b> ову апликацију са л�
 
 #: mkt/developers/templates/developers/apps/status.html:31
 msgid "This app is <b>incomplete</b>."
-msgstr "Апликације је <b>непотпуна</b>."
+msgstr "Апликација је <b>непотпуна</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:40
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3655,7 +3659,7 @@ msgstr "Најновија верзија <b>чека на преглед</b> Fi
 
 #: mkt/developers/templates/developers/apps/status.html:52
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr "Апликације је онемогућена од стране <b>Mozilla-е</b>."
+msgstr "Апликација је онемогућена од стране <b>Mozilla-е</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:54
 msgid "Your app was disabled because it is missing content ratings. It will automatically be re-enabled after <a href=\"%(ratings_url)s\">obtaining content ratings</a>."
@@ -3791,7 +3795,7 @@ msgstr "Отпреми нову верзију"
 #: mkt/developers/templates/developers/apps/status.html:276
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for install."
 msgstr ""
-"Отпремите нову верзију ове спаковане апликације. Нова верзија мора бити "
+"Отпремите нову верзију ове упаковане апликације. Нова верзија мора бити "
 "прегледана пре него што буде доступна за инсталирање."
 
 #: mkt/developers/templates/developers/apps/status.html:282
@@ -4138,7 +4142,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
-msgstr "Почетна страна"
+msgstr "Почетна"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
 msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
@@ -4150,7 +4154,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:52 mkt/reviewers/templates/reviewers/includes/mobile_details.html:141
 #: mkt/templates/mkt/footer.html:15
 msgid "Privacy Policy"
-msgstr "Полиса о приватности"
+msgstr "Полиса приватности"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:57
 msgid "A privacy policy is required that explains what data is transmitted from a user's computer and how it is used."
@@ -4277,7 +4281,9 @@ msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
-msgstr "Користи се на страницама за претрагу, станицама за преглед и почетној страници."
+msgstr ""
+"Користи се на страницама за претрагу, страницама за преглед и почетној "
+"страници."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -4551,7 +4557,7 @@ msgstr ""
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
 "Коришћењем IARC рејтинг сертификата алата, пристајете да испоштујете њихову "
-"<a href=\"%(privacy_url)s\">полису о приватности</a> и <a href=\"%"
+"<a href=\"%(privacy_url)s\">полису приватности</a> и <a href=\"%"
 "(tos_url)s\">услове коришћења сервиса</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
@@ -4684,7 +4690,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
-msgstr "Погледајте све"
+msgstr "Погледај све"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
@@ -5731,7 +5737,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
 msgid "Mozilla Web apps (English)"
-msgstr "Mozilla Web апликације (енглеско)"
+msgstr "Mozilla Web апликације (енглески)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:81
 msgid "Mozilla Web apps (Brazilian Portuguese)"
@@ -6676,7 +6682,7 @@ msgstr "Касни (преко 10 дана)"
 
 #: mkt/reviewers/views.py:290
 msgid "Self-reviews are not allowed."
-msgstr "Не можете прегледат свој рад."
+msgstr "Не можете прегледати свој рад."
 
 #: mkt/reviewers/views.py:296
 msgid "Only senior reviewers can review blocklisted apps."
@@ -6794,7 +6800,7 @@ msgstr "Назад на алате за преглед"
 msgid "{num} Pending App Review"
 msgid_plural "{num} Pending App Reviews"
 msgstr[0] "{num} апликација чека на преглед"
-msgstr[1] "{num} апликација чека на преглед"
+msgstr[1] "{num} апликације чекају на преглед"
 msgstr[2] "{num} апликација чека на преглед"
 
 #: mkt/reviewers/templates/reviewers/home.html:24
@@ -6826,7 +6832,7 @@ msgstr "Тренутно време чекања:"
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] "{0} апликација"
-msgstr[1] "{0} апликација"
+msgstr[1] "{0} апликације"
 msgstr[2] "{0} апликација"
 
 #: mkt/reviewers/templates/reviewers/home.html:54
@@ -7384,7 +7390,9 @@ msgstr "Ако сте укуцали адресу, молимо Вас да пр
 
 #: mkt/site/templates/site/404.html:19
 msgid "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front page</a>."
-msgstr "Посетите <a class=\"sync\" href=\"%(home)s\">почетну страну Firefox Marketplace-а</a>."
+msgstr ""
+"Посетите <a class=\"sync\" href=\"%(home)s\">почетну страницу Firefox "
+"Marketplace-а</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
@@ -7983,7 +7991,7 @@ msgstr "Пријави се / Региструј се"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
-msgstr "потребан"
+msgstr "потребно"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"

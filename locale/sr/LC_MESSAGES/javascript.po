@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-21 10:42+0000\n"
+"PO-Revision-Date: 2014-08-25 14:56+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408617775.0\n"
+"X-POOTLE-MTIME: 1408978593.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -103,9 +103,9 @@ msgstr "Провера завршена {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Ваша апликацијa је прошла проверу без грешака и {0} упозорењем."
-msgstr[1] "Ваша апликацијa је прошла проверу без грешака и {0} упозорења."
-msgstr[2] "Ваша апликацијa је прошла проверу без грешака и {0} упозорења."
+msgstr[0] "Ваша апликацијa је прошла проверу без грешака и са {0} упозорењем."
+msgstr[1] "Ваша апликацијa је прошла проверу без грешака и са {0} упозорења."
+msgstr[2] "Ваша апликацијa је прошла проверу без грешака и са {0} упозорења."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -146,9 +146,9 @@ msgstr "Инсталација је неуспешна. Молимо Вас по
 #: media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ваша апликацијa није прошла проверу - {0} грешка и {1} message(s)."
-msgstr[1] "Ваша апликацијa није прошла проверу - {0} грешке и {1} message(s)."
-msgstr[2] "Ваша апликацијa није прошла проверу - {0} грешака и {1} message(s)."
+msgstr[0] "Ваша апликацијa није прошла проверу - {0} грешка и {1} порука."
+msgstr[1] "Ваша апликацијa није прошла проверу - {0} грешке и {1} порука."
+msgstr[2] "Ваша апликацијa није прошла проверу - {0} грешака и {1} порука."
 
 #: media/js/devreg/devhub.js:224
 msgid "Your app passed validation with no errors and {0} message."
@@ -495,7 +495,7 @@ msgstr "Плаћање неуспешно. Покушајте касније."
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
-msgstr "Спакована апликација"
+msgstr "Упакована апликација"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
