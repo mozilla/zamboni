@@ -84,6 +84,7 @@ App
                 "128": "/tmp/uploads/addon_icons/0/24-128.png?modified=1362762723"
             },
             "id": "24",
+            "is_disabled": false,
             "is_packaged": false,
             "manifest_url": "http://zrnktefoptje.test-manifest.herokuapp.com/manifest.webapp",
             "name": {
@@ -206,6 +207,8 @@ App
     :type icons: object
     :param id: The app ID.
     :type id: int
+    :param is_disabled: Boolean indicating whether the app is disabled or not.
+    :type is_disabled: boolean
     :param is_packaged: Boolean indicating whether the app is packaged or not.
     :type is_packaged: boolean
     :param manifest_url: URL for the app manifest. If the app is not an hosted

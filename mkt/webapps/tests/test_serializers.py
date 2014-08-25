@@ -373,6 +373,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
             'icons': dict((size, self.app.get_icon_url(size))
                           for size in (32, 48, 64, 128)),
             'id': 337141,
+            'is_disabled': False,
             'is_offline': False,
             'is_packaged': False,
             'manifest_url': 'http://micropipes.com/temp/steamcube.webapp',
