@@ -476,6 +476,12 @@ class BaseFeedESView(CORSMixin, APIView):
             feed_element = self._filter(amo.STATUS_PUBLIC, 'status',
                                         feed_element)
 
+        if feed_element and filtering:
+            if (feed_element.get('apps') and
+                feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
+                # Enforce minimum apps on collections.
+                feed_element = None
+
         if feed_element:
             feed_element = self._filter(False, 'is_disabled', feed_element)
 
