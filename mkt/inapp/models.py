@@ -43,6 +43,8 @@ class InAppProduct(UUIDModelMixin, ModelBase):
     def is_purchasable(self):
         return self.stub or (self.webapp and self.webapp.is_public())
 
+    def delete(self):
+        raise models.ProtectedError('Inapp products may not be deleted.', self)
 
 models.signals.pre_save.connect(save_signal, sender=InAppProduct,
                                 dispatch_uid='inapp_products_translations')
