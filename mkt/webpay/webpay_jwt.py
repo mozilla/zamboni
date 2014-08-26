@@ -138,7 +138,7 @@ class InAppProduct(object):
         # https://bugzilla.mozilla.org/show_bug.cgi?id=981093
         return {64: absolutify(
             self.inapp.logo_url or
-            urljoin(settings.MEDIA_URL, '/img/mkt/icons/rocket-64.png')
+            urljoin(settings.MEDIA_URL, 'img/mkt/icons/rocket-64.png')
         )}
 
     def description(self):

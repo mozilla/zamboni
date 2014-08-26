@@ -178,8 +178,9 @@ class TestInAppProduct(InAppPurchaseTest):
 
     def test_no_url(self):
         self.inapp.logo_url = None
-        eq_(self.product.icons()[64],
-            'http://testserver/img/mkt/icons/rocket-64.png')
+        with self.settings(MEDIA_URL='/media/'):
+            eq_(self.product.icons()[64],
+                'http://testserver/media/img/mkt/icons/rocket-64.png')
 
 
 class TestSimulatedInAppProduct(InAppPurchaseTest):
