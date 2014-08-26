@@ -131,14 +131,14 @@ class TestRequireInAppPayments(amo.tests.TestCase):
                                       addon_id=None)
         eq_(response, 'The view was rendered')
 
-    @mock.patch('amo.messages.error')
+    @mock.patch('django.contrib.messages.error')
     def test_not_inapp(self, error):
         addon = self.good_app()
         addon.premium_type = amo.ADDON_FREE
         response = render_in_app_view(addon=addon, request=None, addon_id=None)
         eq_(response.status_code, 302)
 
-    @mock.patch('amo.messages.error')
+    @mock.patch('django.contrib.messages.error')
     def test_no_pay_account(self, error):
         addon = self.good_app()
         addon.has_payment_account.return_value = False

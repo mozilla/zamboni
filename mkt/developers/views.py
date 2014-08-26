@@ -9,6 +9,7 @@ from datetime import datetime
 
 from django import forms as django_forms
 from django import http
+from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
@@ -30,7 +31,6 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-from amo import messages
 from amo.decorators import (any_permission_required, json_view, login_required,
                             permission_required, post_required, skip_cache, write)
 from amo.utils import escape_all

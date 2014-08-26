@@ -2,7 +2,7 @@ import csv
 
 from django import http
 from django.conf import settings
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
@@ -14,7 +14,6 @@ import elasticsearch
 import jinja2
 
 import amo
-from amo import messages
 from amo.decorators import any_permission_required, json_view, post_required
 from amo.mail import FakeEmailBackend
 from amo.urlresolvers import reverse
@@ -242,7 +241,7 @@ def manifest_revalidation(request):
         for pks in chunked(webapp_pks, 100):
             update_manifests.delay(list(pks), check_hash=False)
 
-        amo.messages.success(request, 'Manifest revalidation queued')
+        messages.success(request, 'Manifest revalidation queued')
 
     return render(request, 'zadmin/manifest.html')
 

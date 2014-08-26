@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db import connection
 from django.db.models import Count, Q, Sum
@@ -37,7 +38,6 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
-from mkt.site import messages
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
