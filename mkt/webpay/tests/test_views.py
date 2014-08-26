@@ -228,7 +228,7 @@ class TestStatus(BaseAPI):
         storedata = parse_qs(receipt['product']['storedata'])
         eq_(storedata['id'][0], '0')
         eq_(storedata['contrib'][0], str(contribution.pk))
-        eq_(storedata['inapp_id'][0], str(contribution.inapp_product_id))
+        eq_(storedata['inapp_id'][0], str(contribution.inapp_product.guid))
 
     def test_no_contribution(self):
         contribution = self.get_contribution()

@@ -319,8 +319,8 @@ class TestVerify(amo.tests.TestCase):
         receipt = get_sample_inapp_receipt(contribution)
         receipt['product']['storedata'] = urlencode({
             'contrib': contribution.id,
-            # Set the inapp_id to the wrong id
-            'inapp_id': contribution.inapp_product_id + 1,
+            # Set the inapp_id to the wrong guid
+            'inapp_id': 'incorrect-guid',
         })
 
         res = self.verify_receipt_data(receipt)

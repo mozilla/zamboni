@@ -114,7 +114,7 @@ def create_inapp_receipt(contrib):
     """
     if contrib.is_inapp_simulation():
         storedata = {'id': 0, 'contrib': int(contrib.pk),
-                     'inapp_id': int(contrib.inapp_product_id)}
+                     'inapp_id': contrib.inapp_product.guid}
         return create_test_receipt(settings.SITE_URL, 'ok',
                                    storedata=storedata)
 
