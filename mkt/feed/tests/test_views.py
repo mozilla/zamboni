@@ -1555,6 +1555,13 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['collection']['apps'][0]['id'], app_public.id)
 
+    def test_is_disabled(self):
+        feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
+        app = feed_item.app.app
+        app.update(disabled_by_user=True)
+        res, data = self._get()
+        ok_(not data['objects'])
+
 
 class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures

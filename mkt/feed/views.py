@@ -477,6 +477,9 @@ class BaseFeedESView(CORSMixin, APIView):
                                         feed_element)
 
         if feed_element:
+            feed_element = self._filter(False, 'is_disabled', feed_element)
+
+        if feed_element:
             feed_element = self._pop_filter_fields(feed_element)
 
         return feed_element
@@ -523,7 +526,7 @@ class BaseFeedESView(CORSMixin, APIView):
         """
         apps = feed_element.get('apps') or [feed_element['app']]
         for app in apps:
-            for field in ('regions', 'status'):
+            for field in ('is_disabled', 'regions', 'status'):
                 if field in app:
                     del app[field]
         return feed_element
