@@ -19,9 +19,7 @@ import amo.tests
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
-from mkt.receipts.tests.utils import (get_sample_app_receipt,
-                                      get_sample_inapp_receipt)
-from mkt.receipts.utils import create_receipt
+from mkt.receipts.utils import create_receipt, create_receipt_data
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Addon
 from services import utils, verify
@@ -35,13 +33,7 @@ def get_response(data, status):
     return response
 
 
-# There are two "different" settings files that need to be patched,
-# even though they are the same file.
-@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
-                   amo.tests.AMOPaths.sample_key())
-@mock.patch.object(settings, 'SITE_URL', 'http://foo.com/')
-@mock.patch.object(settings, 'WEBAPPS_RECEIPT_URL', '/verifyme/')
-class TestVerify(amo.tests.TestCase):
+class ReceiptTest(amo.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141', 'user_999')
 
     def setUp(self):
@@ -50,7 +42,27 @@ class TestVerify(amo.tests.TestCase):
                                                  name='Kiwii',
                                                  price=Price.objects.get(pk=1),
                                                  webapp=self.app)
+        self.inapp.save()  # generates a GUID
         self.user = UserProfile.objects.get(pk=999)
+
+    def sample_app_receipt(self):
+        return create_receipt_data(self.app, self.user, 'some-uuid')
+
+    def sample_inapp_receipt(self, contribution):
+        return create_receipt_data(contribution.addon,
+                                   contribution.user,
+                                   'some-uuid',
+                                   flavour='inapp',
+                                   contrib=contribution)
+
+
+# There are two "different" settings files that need to be patched,
+# even though they are the same file.
+@mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_KEY',
+                   amo.tests.AMOPaths.sample_key())
+@mock.patch.object(settings, 'SITE_URL', 'http://foo.com/')
+@mock.patch.object(settings, 'WEBAPPS_RECEIPT_URL', '/verifyme/')
+class TestVerify(ReceiptTest):
 
     def verify_signed_receipt(self, signed_receipt, check_purchase=True):
         # Ensure that the verify code is using the test database cursor.
@@ -104,7 +116,7 @@ class TestVerify(amo.tests.TestCase):
 
     @mock.patch('services.verify.receipt_cef.log')
     def test_no_user(self, log):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         del receipt_data['user']
         res = self.verify_receipt_data(receipt_data)
         eq_(res['status'], 'invalid')
@@ -112,28 +124,28 @@ class TestVerify(amo.tests.TestCase):
         ok_(log.called)
 
     def test_no_app(self):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         del receipt_data['product']
         res = self.verify_receipt_data(receipt_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'WRONG_STOREDATA')
 
     def test_user_type_incorrect(self):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['user']['type'] = 'nope'
         res = self.verify_receipt_data(receipt_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_DIRECTED_IDENTIFIER')
 
     def test_type(self):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['typ'] = 'anything'
         res = self.verify_receipt_data(receipt_data)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'WRONG_TYPE')
 
     def test_user_incorrect(self):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['user']['value'] = 'ugh'
         res = self.verify_receipt_data(receipt_data)
         eq_(res['status'], 'invalid')
@@ -141,7 +153,7 @@ class TestVerify(amo.tests.TestCase):
 
     def test_user_deleted(self):
         self.user.delete()
-        res = self.verify_receipt_data(get_sample_app_receipt())
+        res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
 
@@ -149,7 +161,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch('services.verify.receipt_cef.log')
     def test_expired(self, log, sign):
         sign.return_value = ''
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_purchase()
         res = self.verify_receipt_data(receipt_data)
@@ -159,7 +171,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch('services.verify.sign')
     def test_garbage_expired(self, sign):
         sign.return_value = ''
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['exp'] = 'a'
         self.make_purchase()
         res = self.verify_receipt_data(receipt_data)
@@ -169,7 +181,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch('services.verify.sign')
     def test_expired_has_receipt(self, sign):
         sign.return_value = ''
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['exp'] = calendar.timegm(time.gmtime()) - 1000
         self.make_purchase()
         res = self.verify_receipt_data(receipt_data)
@@ -186,7 +198,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch.object(utils.settings, 'WEBAPPS_RECEIPT_EXPIRED_SEND', True)
     @mock.patch('services.verify.sign')
     def test_new_expiry(self, sign):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['exp'] = old = calendar.timegm(time.gmtime()) - 10000
         self.make_purchase()
         sign.return_value = ''
@@ -194,7 +206,7 @@ class TestVerify(amo.tests.TestCase):
         assert sign.call_args[0][0]['exp'] > old
 
     def test_expired_not_signed(self):
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['exp'] = calendar.timegm(time.gmtime()) - 10000
         self.make_purchase()
         res = self.verify_receipt_data(receipt_data)
@@ -202,14 +214,14 @@ class TestVerify(amo.tests.TestCase):
 
     def test_premium_app_not_purchased(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
-        res = self.verify_receipt_data(get_sample_app_receipt())
+        res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
 
     def test_premium_dont_check(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         res = self.verify_receipt_data(
-            get_sample_app_receipt(),
+            self.sample_app_receipt(),
             check_purchase=False
         )
         # Because the receipt is the wrong type for skipping purchase.
@@ -219,7 +231,7 @@ class TestVerify(amo.tests.TestCase):
     @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
-        receipt_data = get_sample_app_receipt()
+        receipt_data = self.sample_app_receipt()
         receipt_data['typ'] = 'developer-receipt'
         res = self.verify_receipt_data(receipt_data, check_purchase=False)
         eq_(res['status'], 'ok', res)
@@ -227,19 +239,19 @@ class TestVerify(amo.tests.TestCase):
     def test_premium_app_purchased(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         self.make_purchase()
-        res = self.verify_receipt_data(get_sample_app_receipt())
+        res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
 
     def test_inapp_purchased(self):
         contribution = self.make_inapp_contribution()
-        res = self.verify_receipt_data(get_sample_inapp_receipt(contribution))
+        res = self.verify_receipt_data(self.sample_inapp_receipt(contribution))
         eq_(res['status'], 'ok', res)
 
     def test_premium_app_contribution(self):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         # There's no purchase, but the last entry we have is a sale.
         self.make_contribution()
-        res = self.verify_receipt_data(get_sample_app_receipt())
+        res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
 
     @mock.patch('services.verify.receipt_cef.log')
@@ -248,7 +260,7 @@ class TestVerify(amo.tests.TestCase):
         purchase = self.make_purchase()
         for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
             purchase.update(type=type)
-            res = self.verify_receipt_data(get_sample_app_receipt())
+            res = self.verify_receipt_data(self.sample_app_receipt())
             eq_(res['status'], 'refunded')
         eq_(log.call_count, 2)
 
@@ -257,7 +269,7 @@ class TestVerify(amo.tests.TestCase):
         for type in [amo.CONTRIB_REFUND, amo.CONTRIB_CHARGEBACK]:
             contribution = self.make_inapp_contribution(type=type)
             res = self.verify_receipt_data(
-                get_sample_inapp_receipt(contribution))
+                self.sample_inapp_receipt(contribution))
             eq_(res['status'], 'refunded')
         eq_(log.call_count, 2)
 
@@ -265,31 +277,31 @@ class TestVerify(amo.tests.TestCase):
         self.app.update(premium_type=amo.ADDON_PREMIUM)
         purchase = self.make_purchase()
         purchase.update(type=amo.CONTRIB_NO_CHARGE)
-        res = self.verify_receipt_data(get_sample_app_receipt())
+        res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
 
     def test_inapp_no_charge(self):
         contribution = self.make_inapp_contribution(type=amo.CONTRIB_NO_CHARGE)
-        res = self.verify_receipt_data(get_sample_inapp_receipt(contribution))
+        res = self.verify_receipt_data(self.sample_inapp_receipt(contribution))
         eq_(res['status'], 'ok', res)
 
     def test_other_premiums(self):
         self.make_purchase()
         for k in (amo.ADDON_PREMIUM, amo.ADDON_PREMIUM_INAPP):
             self.app.update(premium_type=k)
-            res = self.verify_receipt_data(get_sample_app_receipt())
+            res = self.verify_receipt_data(self.sample_app_receipt())
             eq_(res['status'], 'ok', res)
 
     def test_product_wrong_store_data(self):
         self.make_purchase()
-        data = get_sample_app_receipt()
+        data = self.sample_app_receipt()
         data['product'] = {'url': 'http://f.com',
                            'storedata': urlencode({'id': 123})}
         eq_(self.verify_receipt_data(data)['status'], 'invalid')
 
     def test_product_ok_store_data(self):
         self.make_purchase()
-        data = get_sample_app_receipt()
+        data = self.sample_app_receipt()
         data['product'] = {'url': 'http://f.com',
                            'storedata': urlencode({'id': 337141})}
         eq_(self.verify_receipt_data(data)['status'], 'ok')
@@ -297,7 +309,7 @@ class TestVerify(amo.tests.TestCase):
     def test_product_barf_store_data_for_app(self):
         self.make_purchase()
         for storedata in (urlencode({'id': 'NaN'}), 'NaN'):
-            data = get_sample_app_receipt()
+            data = self.sample_app_receipt()
             data['product'] = {'url': 'http://f.com', 'storedata': storedata}
             res = self.verify_receipt_data(data)
             eq_(res['status'], 'invalid')
@@ -308,7 +320,7 @@ class TestVerify(amo.tests.TestCase):
         for storedata in (urlencode({'id': 'NaN'}),
                           urlencode({'id': '123', 'contrib': 'NaN'}),
                           'NaN'):
-            data = get_sample_inapp_receipt(contribution)
+            data = self.sample_inapp_receipt(contribution)
             data['product'] = {'url': 'http://f.com', 'storedata': storedata}
             res = self.verify_receipt_data(data)
             eq_(res['status'], 'invalid')
@@ -316,7 +328,7 @@ class TestVerify(amo.tests.TestCase):
 
     def test_inapp_product_matches_contribution(self):
         contribution = self.make_inapp_contribution()
-        receipt = get_sample_inapp_receipt(contribution)
+        receipt = self.sample_inapp_receipt(contribution)
         receipt['product']['storedata'] = urlencode({
             'contrib': contribution.id,
             # Set the inapp_id to the wrong guid
@@ -326,18 +338,6 @@ class TestVerify(amo.tests.TestCase):
         res = self.verify_receipt_data(receipt)
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
-
-    def test_invalid_inapp_id_returns_invalid(self):
-        contribution = self.make_inapp_contribution()
-        receipt = get_sample_inapp_receipt(contribution)
-        receipt['product']['storedata'] = urlencode({
-            'contrib': contribution.id,
-            'inapp_id': 'not_an_id',
-        })
-
-        res = self.verify_receipt_data(receipt)
-        eq_(res['status'], 'invalid')
-        eq_(res['reason'], 'WRONG_STOREDATA')
 
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
