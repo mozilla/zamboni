@@ -10,7 +10,7 @@ from mkt.webapps.models import UUIDModelMixin
 
 class InAppProduct(UUIDModelMixin, ModelBase):
     """
-    An item which is purchaseable from within a marketplace app.
+    An item which is purchasable from within a marketplace app.
     """
     guid = models.CharField(max_length=255, unique=True, null=True, blank=True)
     webapp = models.ForeignKey('webapps.WebApp', null=True, blank=True)
@@ -39,6 +39,9 @@ class InAppProduct(UUIDModelMixin, ModelBase):
         if not self.simulate:
             return None
         return json.loads(self.simulate)
+
+    def is_purchasable(self):
+        return self.stub or (self.webapp and self.webapp.is_public())
 
 
 models.signals.pre_save.connect(save_signal, sender=InAppProduct,

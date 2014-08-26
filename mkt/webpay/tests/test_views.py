@@ -12,6 +12,7 @@ import jwt
 from mock import patch
 from nose.tools import eq_, ok_
 
+import amo
 import mkt
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
@@ -117,6 +118,11 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
 
     def test_bad_id_raises_400(self):
         res = self._post(inapp_guid='invalid id')
+        eq_(res.status_code, 400, res.content)
+
+    def test_non_public_parent_app_fails(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        res = self._post()
         eq_(res.status_code, 400, res.content)
 
     def test_get_jwt(self, extra_headers=None):
