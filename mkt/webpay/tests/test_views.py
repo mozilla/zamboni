@@ -125,6 +125,18 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         res = self._post()
         eq_(res.status_code, 400, res.content)
 
+    def test_simulated_app_with_non_public_parent_succeeds(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        self.inapp.update(simulate=json.dumps({'result': 'postback'}))
+        res = self._post()
+        eq_(res.status_code, 201, res.content)
+
+    def test_simulated_app_without_parent_succeeds(self):
+        self.inapp.update(simulate=json.dumps({'result': 'postback'}),
+                          webapp=None)
+        res = self._post()
+        eq_(res.status_code, 201, res.content)
+
     def test_get_jwt(self, extra_headers=None):
         res = self._post(extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
