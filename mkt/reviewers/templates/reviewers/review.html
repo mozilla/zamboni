@@ -33,6 +33,9 @@
           {% if product.in_escalation_queue() %}
             <li>&middot; <b id="queue-escalation">{{ _('In escalation queue') }}</b></li>
           {% endif %}
+          {% if product.in_tarako_queue() %}
+            <li>&middot; <b id="queue-tarako">{{ _('In Tarako queue') }}</b></li>
+          {% endif %}
         </ul>
       </li>
     </ul>
