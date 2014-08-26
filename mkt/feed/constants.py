@@ -110,3 +110,6 @@ HOME_NUM_APPS_BRAND = 6
 HOME_NUM_APPS_LISTING_COLL = 6
 HOME_NUM_APPS_PROMO_COLL = 3
 HOME_NUM_APPS_SHELF = 0
+
+# Minimum number of apps needed after filtering to be displayed for colls.
+MIN_APPS_COLLECTION = 3
