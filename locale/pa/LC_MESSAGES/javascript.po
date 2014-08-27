@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1403817904.0\n"
 
 #: media/js/common/upload-base.js:61
@@ -30,7 +30,8 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀ�
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ।"
 
@@ -64,7 +65,8 @@ msgstr "{0} ਅੱਪਲੋਡ ਜਾਰੀ"
 msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਗਲਤੀ"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169
+#: media/js/devreg/devhub.js:205
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ ਨਾਲ {0} ਗਲਤੀ।"
@@ -76,7 +78,9 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325
+#: media/js/devreg/devhub.js:167
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਰਿਪੋਰਟ ਵੇਖੋ"
 
@@ -200,16 +204,23 @@ msgid "Flash Player</a>."
 msgstr "ਫਲੈਸ਼ ਪਲੇਅਰ</a> ਲਈ ਸਹਾਇਕ ਹੋਵੇ।"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ਇਹ ਫੀਚਰ ਆਰਜ਼ੀ ਰੂਪ ਵਿੱਚ ਬੰਦ ਕੀਤਾ ਹੋਇਆ ਹੈ, ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਸਾਈਟ ਨੂੰ ਠੀਕ ਕਰ ਰਹੇ ਹਾਂ। ਛੇਤੀ ਹੀ ਮੁੜ-ਜਾਂਚ ਕਰੋ।"
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"ਇਹ ਫੀਚਰ ਆਰਜ਼ੀ ਰੂਪ ਵਿੱਚ ਬੰਦ ਕੀਤਾ ਹੋਇਆ ਹੈ, ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਸਾਈਟ ਨੂੰ ਠੀਕ ਕਰ ਰਹੇ "
+"ਹਾਂ। ਛੇਤੀ ਹੀ ਮੁੜ-ਜਾਂਚ ਕਰੋ।"
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "ਇਹ ਅਨੁਵਾਦ ਹਟਾਓ"
 
 #: media/js/devreg/login.js:109
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "ਪਰਸੋਨਾ ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੈ।  ਸ਼ਾਇਦ ਤੁਹਾਡੇ ਕੋਲ ਉਸ ਈਮੇਲ ਸਿਰਨਾਵੇਂ ਨਾਲ ਖਾਤਾ ਨਹੀਂ ਹੈ?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"ਪਰਸੋਨਾ ਲਾਗਇਨ ਫੇਲ੍ਹ ਹੈ।  ਸ਼ਾਇਦ ਤੁਹਾਡੇ ਕੋਲ ਉਸ ਈਮੇਲ ਸਿਰਨਾਵੇਂ ਨਾਲ ਖਾਤਾ ਨਹੀਂ ਹੈ?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
@@ -314,21 +325,37 @@ msgstr "ਖੋਜਿਆ: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "\"{0}\" ਖਾਤੇ ਲਈ ਭੁਗਤਾਨ ਖਾਤਾ ਹਟਾਉਣਾ ਨਾਲ ਹੇਠ ਦਿੱਤੇ ਐਪਸ ਤੋਂ ਭੁਗਤਾਨ ਖਾਤਾ ਹੋਇਆ ਜਾਵੇਗਾ। ਬਿਨਾਂ ਭੁਗਤਾਨ ਖਾਤੇ ਦੇ ਐਪਲੀਕੇਸ਼ਨ ਵਿਕਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੋਣਗੀਆਂ।"
-msgstr[1] "\"{0}\" ਖਾਤੇ ਲਈ ਭੁਗਤਾਨ ਖਾਤਾ ਹਟਾਉਣਾ ਨਾਲ ਹੇਠ ਦਿੱਤੇ ਐਪਸ ਤੋਂ ਭੁਗਤਾਨ ਖਾਤਾ ਹੋਇਆ ਜਾਵੇਗਾ। ਬਿਨਾਂ ਭੁਗਤਾਨ ਖਾਤੇ ਦੇ ਐਪਲੀਕੇਸ਼ਨ ਵਿਕਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੋਣਗੀਆਂ।"
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"\"{0}\" ਖਾਤੇ ਲਈ ਭੁਗਤਾਨ ਖਾਤਾ ਹਟਾਉਣਾ ਨਾਲ ਹੇਠ ਦਿੱਤੇ ਐਪਸ ਤੋਂ ਭੁਗਤਾਨ ਖਾਤਾ ਹੋਇਆ "
+"ਜਾਵੇਗਾ। ਬਿਨਾਂ ਭੁਗਤਾਨ ਖਾਤੇ ਦੇ ਐਪਲੀਕੇਸ਼ਨ ਵਿਕਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੋਣਗੀਆਂ।"
+msgstr[1] ""
+"\"{0}\" ਖਾਤੇ ਲਈ ਭੁਗਤਾਨ ਖਾਤਾ ਹਟਾਉਣਾ ਨਾਲ ਹੇਠ ਦਿੱਤੇ ਐਪਸ ਤੋਂ ਭੁਗਤਾਨ ਖਾਤਾ ਹੋਇਆ "
+"ਜਾਵੇਗਾ। ਬਿਨਾਂ ਭੁਗਤਾਨ ਖਾਤੇ ਦੇ ਐਪਲੀਕੇਸ਼ਨ ਵਿਕਰੀ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੋਣਗੀਆਂ।"
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} ਭੁਗਤਾਨ ਖਾਤੇ:"
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:161
+#: media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437
+#: media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "ਗਲਤੀ"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:99
+#: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "ਭੁਗਤਾਨ ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਆਈ।"
 
@@ -363,11 +390,13 @@ msgstr[1] "{0} ਅੱਖਰ ਬਾਕੀ ਹਨ।"
 msgid "All tests passed successfully."
 msgstr "ਸਭ ਟੈਸਟ ਠੀਕ ਤਰ੍ਹਾਂ ਪਾਸ ਹੋ ਗਏ ਹਨ।"
 
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74
+#: media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਏ ਗਏ।"
 
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117
+#: media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "ਟੈਸਟ"
 
@@ -548,7 +577,9 @@ msgid "Error failing app: {app}"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
 msgstr ""
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
