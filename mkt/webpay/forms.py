@@ -16,6 +16,15 @@ class PrepareInAppForm(happyforms.Form):
     inapp = forms.ModelChoiceField(queryset=InAppProduct.objects.all(),
                                    to_field_name='guid')
 
+    def clean_inapp(self):
+        inapp = self.cleaned_data['inapp']
+
+        if not inapp.is_purchasable():
+            raise forms.ValidationError(
+                'Can not start a purchase on this inapp product.')
+
+        return inapp
+
 
 class FailureForm(happyforms.Form):
     url = forms.CharField()

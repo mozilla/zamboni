@@ -10,6 +10,7 @@ import urllib
 
 from django import http
 from django.conf import settings
+from django.contrib import messages
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
@@ -67,7 +68,6 @@ from mkt.reviewers.serializers import (ReviewersESAppSerializer,
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search)
 from mkt.search.views import SearchView
-from mkt.site import messages
 from mkt.site.helpers import product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag

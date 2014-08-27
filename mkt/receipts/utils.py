@@ -44,8 +44,13 @@ def sign(data):
 
 
 def create_receipt(webapp, user, uuid, flavour=None, contrib=None):
+    return sign(create_receipt_data(webapp, user, uuid, flavour=flavour,
+                                    contrib=contrib))
+
+
+def create_receipt_data(webapp, user, uuid, flavour=None, contrib=None):
     """
-    Creates a receipt for use in payments.
+    Creates receipt data for use in payments.
 
     :params app: the app record.
     :params user: the UserProfile record.
@@ -103,7 +108,7 @@ def create_receipt(webapp, user, uuid, flavour=None, contrib=None):
                    user={'type': 'directed-identifier',
                          'value': uuid},
                    verify=verify)
-    return sign(receipt)
+    return receipt
 
 
 def create_inapp_receipt(contrib):
@@ -114,7 +119,7 @@ def create_inapp_receipt(contrib):
     """
     if contrib.is_inapp_simulation():
         storedata = {'id': 0, 'contrib': int(contrib.pk),
-                     'inapp_id': int(contrib.inapp_product_id)}
+                     'inapp_id': contrib.inapp_product.guid}
         return create_test_receipt(settings.SITE_URL, 'ok',
                                    storedata=storedata)
 

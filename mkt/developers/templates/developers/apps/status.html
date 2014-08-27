@@ -65,80 +65,82 @@
 
           {% endif %}
 
-          {# Showing version information for packaged apps in approved statuses. #}
-          {% if addon.is_packaged and addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
-            {# Display some extra information about the status of the versions. #}
-            {% if addon.current_version %}
-              {% set file_status = addon.current_version.all_files[0].status %}
-              <p>
+          {% if not addon.disabled_by_user %}
+
+            {# Showing version information for packaged apps in approved statuses. #}
+            {% if addon.is_packaged and addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+              {# Display some extra information about the status of the versions. #}
+              {% if addon.current_version %}
+                {% set file_status = addon.current_version.all_files[0].status %}
+                <p>
+                  {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                </p>
+              {% endif %}
+              {% if addon.current_version and addon.latest_version != addon.current_version %}
+                {% set file_status = addon.latest_version.all_files[0].status %}
                 {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
-              </p>
+                <p>
+                  {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                </p>
+                {% if file_status == amo.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
+              {% endif %}
             {% endif %}
-            {% if addon.current_version and addon.latest_version != addon.current_version %}
-              {% set file_status = addon.latest_version.all_files[0].status %}
-              {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
+
+            {% if addon.status == amo.STATUS_PENDING %}
+              <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
+              {{ queue_position(addon, 'p') }}
+              <p>{{ _('You will receive an email when the review is complete.') }}</p>
+
+            {% elif addon.status == amo.STATUS_PUBLIC and not addon.is_packaged %}
               <p>
-                {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, amo.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                {{ status(_('This app is <b>published</b>.')) }}
               </p>
-              {% if file_status == amo.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
-            {% endif %}
-          {% endif %}
 
-          {% if addon.status == amo.STATUS_PENDING %}
-            <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
-            {{ queue_position(addon, 'p') }}
-            <p>{{ _('You will receive an email when the review is complete.') }}</p>
-
-          {% elif addon.status == amo.STATUS_PUBLIC and not addon.is_packaged %}
-            <p>
-              {{ status(_('This app is <b>published</b>.')) }}
-            </p>
-
-          {% elif addon.status == amo.STATUS_UNLISTED %}
-            {% if not addon.is_packaged %}
-              {{ status(_('Your app has been <b>approved</b> and is currently <b>unlisted</b>.')) }}
-            {% endif %}
-            <p>
-              {% trans app_url=addon.get_detail_url()|absolutify %}
-                Only those with the following URL can view and install this app:<br>
-                <a href="{{ app_url }}">{{ app_url }}</a>.
-              {% endtrans %}
-            </p>
-
-          {% elif addon.status == amo.STATUS_APPROVED %}
-            {% if not addon.is_packaged %}
-              {{ status(_('Your app has been <b>approved</b> and is currently only visible to team members.')) }}
-            {% endif %}
-            <p>
-              {% trans app_url=addon.get_detail_url()|absolutify %}
-                Only <b>team members</b> with the following URL can view and install this app:<br>
-                <a href="{{ app_url }}">{{ app_url }}</a>.
-              {% endtrans %}
-            </p>
-
-          {% endif %}
-
-          {% if not addon.is_disabled and addon.status not in amo.WEBAPPS_APPROVED_STATUSES %}
-            <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
-               target="_blank">{{ _('Learn about Review Criteria for apps') }}</a></p>
-          {% endif %}
-
-          {# If app is in an approved status, show the app visibility form. #}
-          {% if addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
-            <form method="post">
-              {{ form_field(publish_form.publish_type) }}
-              {{ form_field(publish_form.limited, cls='field-limited') }}
-              {{ publish_form.publish_type.errors }}
+            {% elif addon.status == amo.STATUS_UNLISTED %}
+              {% if not addon.is_packaged %}
+                {{ status(_('Your app has been <b>approved</b> and is currently <b>unlisted</b>.')) }}
+              {% endif %}
               <p>
-                <button type="submit" name="publish-app">{{ _('Update App Visibility') }}</button>
+                {% trans app_url=addon.get_detail_url()|absolutify %}
+                  Only those with the following URL can view and install this app:<br>
+                  <a href="{{ app_url }}">{{ app_url }}</a>.
+                {% endtrans %}
               </p>
-              {{ csrf() }}
-            </form>
-          {% endif %}
 
-          {% if addon.status == amo.STATUS_REJECTED %}
+            {% elif addon.status == amo.STATUS_APPROVED %}
+              {% if not addon.is_packaged %}
+                {{ status(_('Your app has been <b>approved</b> and is currently only visible to team members.')) }}
+              {% endif %}
+              <p>
+                {% trans app_url=addon.get_detail_url()|absolutify %}
+                  Only <b>team members</b> with the following URL can view and install this app:<br>
+                  <a href="{{ app_url }}">{{ app_url }}</a>.
+                {% endtrans %}
+              </p>
+
+            {% endif %}
+
+            {% if addon.status not in amo.WEBAPPS_APPROVED_STATUSES %}
+              <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
+                 target="_blank">{{ _('Learn about Review Criteria for apps') }}</a></p>
+            {% endif %}
+
+            {# If app is in an approved status, show the app visibility form. #}
+            {% if addon.status in amo.WEBAPPS_APPROVED_STATUSES %}
+              <form method="post">
+                {{ form_field(publish_form.publish_type) }}
+                {{ form_field(publish_form.limited, cls='field-limited') }}
+                {{ publish_form.publish_type.errors }}
+                <p>
+                  <button type="submit" name="publish-app">{{ _('Update App Visibility') }}</button>
+                </p>
+                {{ csrf() }}
+              </form>
+            {% endif %}
+
+            {% if addon.status == amo.STATUS_REJECTED %}
               {% if rejection %}
                 <div class="island swagger" id="rejection">
                   <h3>
@@ -179,6 +181,7 @@
                   before resubmitting your app.
                 {% endtrans %}
               {% endif %}
+            {% endif %}
           {% endif %}
         </div>
       </div>

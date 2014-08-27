@@ -336,7 +336,7 @@ def update_supported_locales(ids, **kw):
 @write
 def index_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.index_ids directly.
-    WebappIndexer.index_ids(ids)
+    WebappIndexer.index_ids(ids, no_delay=True)
 
 
 @post_request_task(acks_late=True)

@@ -211,13 +211,7 @@ class Verify:
         Attempt to retrieve the inapp id
         from the storedata in the receipt.
         """
-        try:
-            return int(self.get_storedata()['inapp_id'])
-        except Exception, e:
-            # There was some value for storedata but it was invalid.
-            log_info('Invalid store data for inapp id: {err}'.format(
-                err=e))
-            raise InvalidReceipt('WRONG_STOREDATA')
+        return self.get_storedata()['inapp_id']
 
     def setup_db(self):
         """
@@ -244,15 +238,16 @@ class Verify:
         Verifies that the inapp has been purchased.
         """
         self.setup_db()
-        sql = """SELECT inapp_product_id, type FROM stats_contributions
-                 WHERE id = %(contribution_id)s LIMIT 1;"""
+        sql = """SELECT i.guid, c.type FROM stats_contributions c
+                 JOIN inapp_products i ON i.id=c.inapp_product_id
+                 WHERE c.id = %(contribution_id)s LIMIT 1;"""
         self.cursor.execute(
             sql,
             {'contribution_id': self.get_contribution_id()}
         )
         result = self.cursor.fetchone()
         if not result:
-            log_info('Invalid receipt, no purchase')
+            log_info('Invalid in-app receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
 
         contribution_inapp_id, purchase_type = result
@@ -260,7 +255,7 @@ class Verify:
         self.check_inapp_product(contribution_inapp_id)
 
     def check_inapp_product(self, contribution_inapp_id):
-        if int(contribution_inapp_id) != self.get_inapp_id():
+        if contribution_inapp_id != self.get_inapp_id():
             log_info('Invalid receipt, inapp_id does not match')
             raise InvalidReceipt('NO_PURCHASE')
 
@@ -276,7 +271,7 @@ class Verify:
                                   'uuid': self.get_user()})
         result = self.cursor.fetchone()
         if not result:
-            log_info('Invalid receipt, no purchase')
+            log_info('Invalid app receipt, no purchase')
             raise InvalidReceipt('NO_PURCHASE')
 
         self.check_purchase_type(result[0])

@@ -2052,6 +2052,10 @@ class Webapp(UUIDModelMixin, Addon):
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 
+    def in_tarako_queue(self):
+        from mkt.reviewers.models import QUEUE_TARAKO
+        return self.additionalreview_set.unreviewed(queue=QUEUE_TARAKO)
+
     def get_package_path(self):
         """Returns the `package_path` if the app is packaged."""
         if not self.is_packaged:

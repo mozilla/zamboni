@@ -12,6 +12,7 @@ import jwt
 from mock import patch
 from nose.tools import eq_, ok_
 
+import amo
 import mkt
 from amo import CONTRIB_PENDING, CONTRIB_PURCHASE
 from amo.tests import TestCase
@@ -118,6 +119,23 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
     def test_bad_id_raises_400(self):
         res = self._post(inapp_guid='invalid id')
         eq_(res.status_code, 400, res.content)
+
+    def test_non_public_parent_app_fails(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        res = self._post()
+        eq_(res.status_code, 400, res.content)
+
+    def test_simulated_app_with_non_public_parent_succeeds(self):
+        self.addon.update(status=amo.STATUS_PENDING)
+        self.inapp.update(simulate=json.dumps({'result': 'postback'}))
+        res = self._post()
+        eq_(res.status_code, 201, res.content)
+
+    def test_simulated_app_without_parent_succeeds(self):
+        self.inapp.update(simulate=json.dumps({'result': 'postback'}),
+                          webapp=None)
+        res = self._post()
+        eq_(res.status_code, 201, res.content)
 
     def test_get_jwt(self, extra_headers=None):
         res = self._post(extra_headers=extra_headers)
@@ -228,7 +246,7 @@ class TestStatus(BaseAPI):
         storedata = parse_qs(receipt['product']['storedata'])
         eq_(storedata['id'][0], '0')
         eq_(storedata['contrib'][0], str(contribution.pk))
-        eq_(storedata['inapp_id'][0], str(contribution.inapp_product_id))
+        eq_(storedata['inapp_id'][0], str(contribution.inapp_product.guid))
 
     def test_no_contribution(self):
         contribution = self.get_contribution()

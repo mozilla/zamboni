@@ -4,6 +4,7 @@ import urllib
 
 from django import http
 from django.conf import settings
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -15,7 +16,6 @@ from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
-from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from lib.crypto import generate_key
 from lib.pay_server import client
