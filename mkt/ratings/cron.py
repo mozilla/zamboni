@@ -6,7 +6,7 @@ import commonware.log
 import cronjobs
 
 import amo
-from amo.utils import send_mail_jinja
+from mkt.site.mail import send_mail_jinja
 from mkt.ratings.models import Review
 
 

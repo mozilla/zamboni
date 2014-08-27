@@ -1,6 +1,6 @@
 from celeryutils import task
 
-from amo.utils import send_mail_jinja
+from mkt.site.mail import send_mail_jinja
 
 
 @task

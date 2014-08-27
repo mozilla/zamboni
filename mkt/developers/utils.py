@@ -18,7 +18,7 @@ from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
-from mkt.reviewers.utils import send_mail
+from mkt.reviewers.utils import send_reviewer_mail
 from mkt.users.models import UserProfile
 
 
@@ -146,10 +146,8 @@ def escalate_app(app, version, user, msg, email_template, log_type):
                                                     args=[app.app_slug],
                                                     add_prefix=False)),
                    'SITE_URL': settings.SITE_URL}
-        send_mail(u'%s: %s' % (msg, app.name),
-                  email_template,
-                  context,
-                  [settings.MKT_SENIOR_EDITORS_EMAIL])
+        send_reviewer_mail(u'%s: %s' % (msg, app.name), email_template, context,
+                           [settings.MKT_SENIOR_EDITORS_EMAIL])
 
 
 def handle_vip(addon, version, user):

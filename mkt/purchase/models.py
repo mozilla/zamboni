@@ -13,8 +13,8 @@ from tower import ugettext as _
 import amo
 from amo.fields import DecimalCharField
 from amo.helpers import absolutify, urlparams
-from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
-
+from amo.utils import get_locale_from_lang
+from mkt.site.mail import send_mail, send_mail_jinja
 
 class ContributionError(Exception):
 

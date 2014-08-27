@@ -29,10 +29,11 @@ from tower import ugettext as _
 import amo
 from amo.decorators import set_modified_on, write
 from amo.helpers import absolutify
-from amo.utils import remove_icons, resize_image, send_mail_jinja, strip_bom
+from amo.utils import remove_icons, resize_image, strip_bom
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
+from mkt.site.mail import send_mail_jinja
 from mkt.webapps.models import Addon, AddonExcludedRegion, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 

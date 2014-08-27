@@ -30,7 +30,7 @@ import amo
 import mkt
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
-from amo.utils import chunked, days_ago, JSONEncoder, send_mail_jinja
+from amo.utils import chunked, days_ago, JSONEncoder
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants.categories import CATEGORY_CHOICES
@@ -40,6 +40,7 @@ from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
 from mkt.reviewers.models import RereviewQueue
+from mkt.site.mail import send_mail_jinja
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer

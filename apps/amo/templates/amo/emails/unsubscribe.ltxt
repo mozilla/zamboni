@@ -1,6 +1,0 @@
-{{ message }}
-{% if show_unsubscribe %}
-
-===================================================================
-You received this email because you're subscribed to:
-   * email me when {{ perm_setting }}

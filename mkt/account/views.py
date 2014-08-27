@@ -20,7 +20,6 @@ from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
 import amo
-from amo.utils import send_mail_jinja
 from mkt.users.models import UserProfile
 from mkt.users.views import browserid_authenticate
 
@@ -34,6 +33,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.authorization import AllowSelf, AllowOwner
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.constants.apps import INSTALL_TYPE_USER
+from mkt.site.mail import send_mail_jinja
 from mkt.users.views import _fxa_authorize, get_fxa_session
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.webapps.models import Webapp
