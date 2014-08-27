@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/mozilla/zamboni.png?branch=master)](https://travis-ci.org/mozilla/zamboni)
+[![Build Status](https://travis-ci.org/mozilla/zamboni.svg?branch=master)](https://travis-ci.org/mozilla/zamboni)
 [![Coverage Status](https://img.shields.io/coveralls/mozilla/zamboni.svg)](https://coveralls.io/r/mozilla/zamboni)
 
 Welcome to Zamboni!  This is the current version of [marketplace.firefox.com](https://marketplace.firefox.com).
