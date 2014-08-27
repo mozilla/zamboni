@@ -421,7 +421,7 @@ CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
     'lib.es.management.commands.reindex_mkt.run_indexing': {
-        'soft': 60 * 20,  # 20 mins to reindex.
+        'soft': 60 * 60,  # 60 mins to reindex.
         'hard': 60 * 120,  # 120 mins hard limit.
     },
 }
