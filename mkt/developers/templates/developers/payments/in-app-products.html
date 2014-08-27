@@ -37,6 +37,11 @@
         {% endtrans %}
       </div>
     {% else %}
+      <div class="island notification-box">
+        {% trans  link='https://bugzilla.mozilla.org/enter_bug.cgi?product=Marketplace' %}
+          This feature is under active development. <a target="_blank" href="{{ link }}">Click here</a> to report a bug.
+        {% endtrans %}
+      </div>
       <div id="in-app-products" class="devhub-form island" data-list-url="{{ url('in-app-products-list', origin=addon.origin) }}"
            data-detail-url-format="{{ url('in-app-products-detail', origin=addon.origin, guid="{guid}") }}">
         <table id="version-list">
