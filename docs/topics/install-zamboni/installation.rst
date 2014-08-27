@@ -139,28 +139,11 @@ they affect zamboni.
 6. Setting up a Mysql Database
 ------------------------------
 
-Instead of running ``manage.py syncdb`` your best bet is to grab a snapshot of
-our production DB which has been redacted and pruned for development use.
-Development snapshots are hosted over at
-https://landfill-mkt.allizom.org/db/.
+Django provides commands to create the database and tables needed, and load essential data::
 
-There is a management command that download and install the landfill
-database. You have to create the database first using the following
-command filling in the database name from your ``settings_local.py``
-(Defaults to ``zamboni``)::
+    ./manage.py syncdb
+    ./manage.py loaddata init
 
-    mysqladmin -uroot create $DB_NAME
-
-Then you can just run the following command to install the landfill
-database. You can also use it whenever you want to restore back to the
-base landfill database::
-
-    ./manage.py install_landfill
-
-Here are the shell commands to pull down and set up the latest
-snapshot manually (ie without the management command)::
-
-Issues at this point? See :doc:`./troubleshooting`.
 
 Database Migrations
 ~~~~~~~~~~~~~~~~~~
