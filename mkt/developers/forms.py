@@ -839,9 +839,20 @@ class RegionForm(forms.Form):
         super(RegionForm, self).__init__(*args, **kw)
 
         self.fields['regions'].choices = REGIONS_CHOICES_SORTED_BY_NAME()
+
+        # This is the list of the user's exclusions as we don't
+        # want the user's choices to be altered by external
+        # exclusions e.g. payments availability.
+        user_exclusions = list(
+            self.product.addonexcludedregion.values_list('region', flat=True)
+        )
+
         # If we have excluded regions, uncheck those.
         # Otherwise, default to everything checked.
-        self.regions_before = self.product.get_region_ids(restofworld=True)
+        self.regions_before = self.product.get_region_ids(
+            restofworld=True,
+            excluded=user_exclusions
+        )
 
         self.initial = {
             'regions': sorted(self.regions_before),
@@ -925,7 +936,7 @@ class RegionForm(forms.Form):
             before = set(self.regions_before)
             after = set(regions)
 
-            log.info(u'[Webapp:%s] App mark as restricted.' % self.product)
+            log.info(u'[Webapp:%s] App marked as restricted.' % self.product)
 
             # Add new region exclusions.
             to_add = before - after
@@ -941,7 +952,7 @@ class RegionForm(forms.Form):
             for region in to_remove:
                 self.product.addonexcludedregion.filter(
                     region=region).delete()
-                log.info(u'[Webapp:%s] No longer exluded from region (%s).'
+                log.info(u'[Webapp:%s] No longer excluded from region (%s).'
                          % (self.product, region))
 
             # If restricted, check how we should handle new regions.
