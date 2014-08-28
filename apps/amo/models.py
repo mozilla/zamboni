@@ -387,10 +387,3 @@ class SlugField(models.SlugField):
     keeps the old behaviour of not checking contents.
     """
     default_validators = []
-
-
-class FakeEmail(ModelBase):
-    message = models.TextField()
-
-    class Meta:
-        db_table = 'fake_email'

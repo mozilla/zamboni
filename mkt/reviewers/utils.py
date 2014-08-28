@@ -14,7 +14,7 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 from amo.helpers import absolutify
-from amo.utils import JSONEncoder, send_mail_jinja, to_language
+from amo.utils import JSONEncoder, to_language
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -22,6 +22,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.files.models import File
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
 from mkt.site.helpers import product_as_dict
+from mkt.site.mail import send_mail_jinja
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import set_storefront_data
 
@@ -29,7 +30,7 @@ from mkt.webapps.tasks import set_storefront_data
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_mail(subject, template, context, emails, perm_setting=None, cc=None,
+def send_reviewer_mail(subject, template, context, emails, perm_setting=None, cc=None,
               attachments=None, reply_to=None):
     if not reply_to:
         reply_to = settings.MKT_REVIEWERS_EMAIL
@@ -139,10 +140,10 @@ class ReviewBase(object):
         cc_email = self.addon.get_mozilla_contacts()
 
         log.info(u'Sending email for %s' % self.addon)
-        send_mail(subject % data['name'],
-                  'reviewers/emails/decisions/%s.txt' % template, data,
-                  emails, perm_setting='app_reviewed', cc=cc_email,
-                  attachments=self.get_attachments())
+        send_reviewer_mail(subject % data['name'],
+                           'reviewers/emails/decisions/%s.txt' % template, data,
+                           emails, perm_setting='app_reviewed', cc=cc_email,
+                           attachments=self.get_attachments())
 
     def get_context_data(self):
         # We need to display the name in some language that is relevant to the
@@ -330,10 +331,10 @@ class ReviewApp(ReviewBase):
         # Special senior reviewer email.
         if not waffle.switch_is_active('comm-dashboard'):
             data = self.get_context_data()
-            send_mail(u'Escalated Review Requested: %s' % data['name'],
-                       'reviewers/emails/super_review.txt', data,
-                       [settings.MKT_SENIOR_EDITORS_EMAIL],
-                       attachments=self.get_attachments())
+            send_reviewer_mail(u'Escalated Review Requested: %s' % data['name'],
+                               'reviewers/emails/super_review.txt', data,
+                               [settings.MKT_SENIOR_EDITORS_EMAIL],
+                               attachments=self.get_attachments())
 
     def process_comment(self):
         """

@@ -191,7 +191,7 @@ def send_mail_comm(note):
     Given a note (its actions and permissions), recipients are determined and
     emails are sent to appropriate people.
     """
-    from mkt.reviewers.utils import send_mail
+    from mkt.reviewers.utils import send_reviewer_mail
 
     if not waffle.switch_is_active('comm-dashboard'):
         return
@@ -213,8 +213,9 @@ def send_mail_comm(note):
     for email, tok in recipients:
         reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
                                        settings.POSTFIX_DOMAIN)
-        send_mail(subject, 'reviewers/emails/decisions/post.txt', data,
-                  [email], perm_setting='app_reviewed', reply_to=reply_to)
+        send_reviewer_mail(subject, 'reviewers/emails/decisions/post.txt', data,
+                           [email], perm_setting='app_reviewed',
+                           reply_to=reply_to)
 
 
 def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
