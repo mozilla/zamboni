@@ -22,11 +22,9 @@ from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
 from mkt.collections.filters import CollectionFilterSetWithFallback
 from mkt.collections.models import Collection
 from mkt.collections.serializers import CollectionSerializer
-from mkt.features.utils import get_feature_profile
 from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
 from mkt.translations.helpers import truncate
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                      RocketbarESAppSerializerV2,
                                      SuggestionsESAppSerializer)
@@ -109,77 +107,37 @@ def name_query(q):
     return query.Bool(should=should)
 
 
-def _filter_search(request, qs, data, region=None, profile=None):
+def _sort_search(request, sq, data):
     """
-    Filter an ES queryset based on a list of filters.
+    Sort webapp search based on query + region.
 
-    If `profile` (a FeatureProfile object) is provided we filter by the
-    profile. If you don't want to filter by these don't pass it. I.e. do the
-    device detection for when this happens elsewhere.
-
+    data -- form data.
     """
-    # An empty `order_by` will result in a sort by relevance, the default for
-    # Elasticsearch.
-    order_by = []
+    from mkt.api.base import get_region_from_request
 
-    # Queries with function score using field value factor on `boost` for
-    # popularity boosting.
-    if data.get('q'):
-        # Note: {'score_mode': 'multiply'} is the default and is excluded.
-        qs = qs.query(
-            'function_score',
-            query=name_query(data['q'].lower()),
-            functions=[query.SF('field_value_factor', field='boost')])
-    else:
-        # When querying we want to sort by relevance. If no query is provided,
-        # i.e. we are only applying filters which don't affect the relevance,
-        # we sort by popularity descending.
-        order_by = ['-popularity']
+    # When querying we want to sort by relevance. If no query is provided,
+    # i.e. we are only applying filters which don't affect the relevance,
+    # we sort by popularity descending.
+    order_by = [] if request.GET.get('q') else ['-popularity']
 
-    # Mapping form field name to Elasticsearch mapping name.
-    form_to_es = {
-        'cat': 'category',
-        'tag': 'tags',
-        'device': 'device',
-        'premium_types': 'premium_type',
-        'app_type': 'app_type',
-        'manifest_url': 'manifest_url',
-        'languages': 'supported_locales',
-    }
-    # Which fields need a 'terms' query vs a 'term' query.
-    terms_fields = ('category', 'premium_type', 'app_type',
-                    'supported_locales')
-
-    # If a value was given add it to the Elasticsearch filters.
-    for k, field in form_to_es.items():
-        value = data.get(k)
-        if value:
-            filter_type = 'terms' if field in terms_fields else 'term'
-            qs = qs.filter(filter_type, **{field: value})
-
-    # Handle the NullBooleanField.
-    if data.get('offline') in (True, False):
-        qs = qs.filter('term', is_offline=data['offline'])
-
-    if profile:
-        for k, v in profile.to_kwargs(prefix='features.has_').items():
-            qs = qs.filter('term', **{k: v})
-
-    # Sorting.
     if data.get('sort'):
+        region = get_region_from_request(request)
         if 'popularity' in data['sort'] and region and not region.adolescent:
             # Mature regions sort by their popularity field.
             order_by = ['-popularity_%s' % region.id]
         else:
             order_by = [DEFAULT_SORTING[name] for name in data['sort']
                         if name in DEFAULT_SORTING]
-    if order_by:
-        qs = qs.sort(*order_by)
 
-    return qs
+    if order_by:
+        sq = sq.sort(*order_by)
+    return sq
 
 
 class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
+    """
+    Base app search view based on a single-string query.
+    """
     cors_allowed_methods = ['get']
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
@@ -189,37 +147,39 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
     paginator_class = ESPaginator
 
     def search(self, request):
-        form_data = self.get_search_data(request)
-        query = form_data.get('q', '')
-
-        qs = self.get_query(request,
-                            region=self.get_region_from_request(request))
-        profile = get_feature_profile(request)
-        qs = self.apply_filters(request, qs, data=form_data,
-                                profile=profile)
-        page = self.paginate_queryset(qs)
-        return self.get_pagination_serializer(page), query
-
-    def get(self, request, *args, **kwargs):
-        serializer, _ = self.search(request)
-        return Response(serializer.data)
-
-    def get_search_data(self, request):
+        """
+        Takes a request (expecting request.GET.q), and returns the serializer
+        and search query.
+        """
+        # Parse form.
         form = self.form_class(request.GET if request else None)
         if not form.is_valid():
             raise form_errors(form)
-        return form.cleaned_data
+        form_data = form.cleaned_data
 
-    def get_query(self, request, region=None):
-        return WebappIndexer.from_search(
-            request, region=region, gaia=request.GAIA, mobile=request.MOBILE,
-            tablet=request.TABLET)
+        # Query and filter.
+        sq = WebappIndexer.get_app_filter(request, {
+            'app_type': form_data['app_type'],
+            'category': form_data['cat'],
+            'device': form_data['device'],
+            'is_offline': form_data['offline'],
+            'manifest_url': form_data['manifest_url'],
+            'q': form_data['q'],
+            'premium_type': form_data['premium_types'],
+            'supported_locales': form_data['languages'],
+            'tags': form_data['tag'],
+        })
 
-    def apply_filters(self, request, qs, data=None, profile=None):
-        # Build region filter.
-        region = self.get_region_from_request(request)
-        return _filter_search(request, qs, data, region=region,
-                              profile=profile)
+        # Sort.
+        sq = _sort_search(request, sq, form_data)
+
+        # Done.
+        page = self.paginate_queryset(sq)
+        return self.get_pagination_serializer(page), form_data.get('q', '')
+
+    def get(self, request):
+        serializer, _ = self.search(request)
+        return Response(serializer.data)
 
 
 class FeaturedSearchView(SearchView):
