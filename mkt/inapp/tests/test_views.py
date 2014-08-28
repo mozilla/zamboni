@@ -1,7 +1,9 @@
 import json
+import os
 
 from django.core.urlresolvers import reverse
 
+import mock
 from nose.tools import eq_
 from rest_framework import status
 
@@ -17,6 +19,7 @@ from mkt.prices.models import Price
 
 
 class BaseInAppProductViewSetTests(amo.tests.TestCase):
+    fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):
         self.webapp = Webapp.objects.get(pk=337141)
@@ -29,10 +32,24 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
             'price_id': price.id,
         }
 
+        p = mock.patch('mkt.inapp.serializers.requests')
+        self.requests = p.start()
+        self.addCleanup(p.stop)
+
     def setup_client(self, user):
         access = Access.objects.create(key='test_oauth_key_owner',
                                        secret=generate(), user=user)
         return RestOAuthClient(access)
+
+    def mock_logo_url(self, resource='logo-64.png', url_side_effect=None):
+        response = mock.Mock()
+        img = open(os.path.join(os.path.dirname(__file__),
+                                'resources', resource), 'rb')
+        response.iter_content.return_value = [img.read()]
+        if url_side_effect:
+            response.iter_content.side_effect = url_side_effect
+        self.addCleanup(img.close)
+        self.requests.get.return_value = response
 
     def list_url(self):
         return reverse('in-app-products-list',
@@ -64,10 +81,10 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
 
 
 class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
-    fixtures = fixture('webapp_337141', 'prices')
 
     def setUp(self):
         super(TestInAppProductViewSetAuthorized, self).setUp()
+        self.mock_logo_url()
         user = self.webapp.authors.all()[0]
         self.client = self.setup_client(user)
 
@@ -96,6 +113,7 @@ class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
 
     def setUp(self):
         super(TestInAppProductViewSetUnauthorized, self).setUp()
+        self.mock_logo_url()
         user = UserProfile.objects.get(id=999)
         self.client = self.setup_client(user)
 
@@ -136,6 +154,7 @@ class TestInAppProductViewSetAuthorizedCookie(BaseInAppProductViewSetTests):
 
     def setUp(self):
         super(TestInAppProductViewSetAuthorizedCookie, self).setUp()
+        self.mock_logo_url()
         user = UserProfile.objects.get(id=31337)
         self.login(user)
 
@@ -162,6 +181,7 @@ class TestStubInAppProductViewSet(BaseInAppProductViewSetTests):
 
     def setUp(self):
         super(TestStubInAppProductViewSet, self).setUp()
+        self.mock_logo_url()
         self.client = JSONClient()
 
     def detail_url(self, guid):
