@@ -98,20 +98,15 @@ class CollectionMembershipField(serializers.RelatedField):
         Relies on a FeaturedSearchView instance in self.context['view']
         to properly rehydrate results returned by ES.
         """
-        profile = get_feature_profile(request)
-        region = self.context['view'].get_region_from_request(request)
         device = self._get_device(request)
 
-        _rget = lambda d: getattr(request, d, False)
-        qs = WebappIndexer.from_search(
-            request, region=region, gaia=_rget('GAIA'), mobile=_rget('MOBILE'),
-            tablet=_rget('TABLET'))
-        qs = qs.filter('term', **{'collection.id': obj.pk})
+        app_filters = {'profile': get_feature_profile(request)}
         if device and device != amo.DEVICE_DESKTOP:
-            qs = qs.filter('term', device=device.id)
-        if profile:
-            for k, v in profile.to_kwargs(prefix='features.has_').items():
-                qs = qs.filter('term', **{k: v})
+            app_filters['device'] = device.id
+
+        qs = WebappIndexer.get_app_filter(request, app_filters)
+        qs = qs.filter('term', **{'collection.id': obj.pk})
+
         qs = qs.sort({
             'collection.order': {
                 'order': 'asc',

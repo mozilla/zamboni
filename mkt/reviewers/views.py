@@ -47,7 +47,7 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import GroupPermission
-from mkt.api.base import SlugOrIdMixin
+from mkt.api.base import form_errors, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
@@ -64,7 +64,7 @@ from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
-from mkt.search.views import SearchView
+from mkt.search.views import search_form_to_es_fields, SearchView
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
@@ -1120,15 +1120,24 @@ class ReviewersSearchView(SearchView):
     serializer_class = ReviewersESAppSerializer
 
     def search(self, request):
-        form_data = self.get_search_data(request)
-        query = form_data.get('q', '')
-        qs = WebappIndexer.search()
+        # Parse form.
+        form = self.form_class(request.GET if request else None)
+        if not form.is_valid():
+            raise form_errors(form)
+        form_data = form.cleaned_data
+
+        # Status filter.
+        data = search_form_to_es_fields(form_data)
         if form_data.get('status') != 'any':
-            qs = qs.filter('term', status=form_data.get('status'))
-        qs = self.apply_filters(request, qs, data=form_data)
-        qs = apply_reviewer_filters(request, qs, data=form_data)
-        page = self.paginate_queryset(qs)
-        return self.get_pagination_serializer(page), query
+            data.update(status=form_data.get('status'))
+
+        # Do filter.
+        sq = apply_reviewer_filters(request, WebappIndexer.search(),
+                                    data=form_data)
+        sq = WebappIndexer.get_app_filter(request, data, sq=sq, reviewers=True)
+
+        page = self.paginate_queryset(sq)
+        return self.get_pagination_serializer(page), request.GET.get('q', '')
 
 
 def apply_reviewer_filters(request, qs, data=None):
