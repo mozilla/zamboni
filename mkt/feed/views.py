@@ -53,7 +53,7 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
             # save img in appropriate directory.
             obj._background_image_upload = img
             obj.image_hash = hash_
-        elif getattr(obj, 'type') == feed.COLLECTION_PROMO:
+        elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
             # Remove background images for promo collections.
             obj.image_hash = ''
         return super(ImageURLUploadMixin, self).pre_save(obj)
