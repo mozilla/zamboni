@@ -1,0 +1,1846 @@
+[
+    {
+        "fields": {
+            "active": true,
+            "created": "2012-10-17T15:51:18",
+            "modified": "2012-10-17T15:51:18",
+            "name": "allow-refund",
+            "note": "Allow refund of paypal payments"
+        },
+        "model": "waffle.switch",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2012-10-17T15:51:18",
+            "modified": "2012-10-17T15:51:18",
+            "name": "webapps-unique-by-domain",
+            "note": "Allow only one app per domain."
+        },
+        "model": "waffle.switch",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2012-10-17T15:51:18",
+            "modified": "2012-10-17T15:51:18",
+            "name": "video-encode",
+            "note": "Encode videos when they get uploaded."
+        },
+        "model": "waffle.switch",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2013-01-25T10:19:45",
+            "modified": "2013-01-25T10:19:45",
+            "name": "view-transactions",
+            "note": "Enable transaction pages on Marketplace."
+        },
+        "model": "waffle.switch",
+        "pk": 37
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2013-09-13T12:54:58",
+            "modified": "2013-09-13T12:54:58",
+            "name": "comm-dashboard",
+            "note": "Communication dashboard for reviewer tools."
+        },
+        "model": "waffle.switch",
+        "pk": 45
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-04-04T15:43:05",
+            "modified": "2014-04-04T15:43:05",
+            "name": "preload-apps",
+            "note": "Submission process for preinstalled apps."
+        },
+        "model": "waffle.switch",
+        "pk": 48
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-04-04T15:43:09",
+            "modified": "2014-04-04T15:43:09",
+            "name": "iarc",
+            "note": "Unleash the IARC app ratings."
+        },
+        "model": "waffle.switch",
+        "pk": 52
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-04-04T15:43:10",
+            "modified": "2014-04-04T15:43:10",
+            "name": "marketplace-feed",
+            "note": "Enables the Feed features of Marketplace"
+        },
+        "model": "waffle.switch",
+        "pk": 54
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-04-04T15:43:10",
+            "modified": "2014-04-04T15:43:10",
+            "name": "reviews-translate",
+            "note": "This adds a \"translate\" button for addons reviews and enables reviews translations on click."
+        },
+        "model": "waffle.switch",
+        "pk": 56
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-04-04T15:43:15",
+            "modified": "2014-04-04T15:43:15",
+            "name": "in-app-products",
+            "note": "Enable in-app product management in the devhub."
+        },
+        "model": "waffle.switch",
+        "pk": 60
+    },
+    {
+        "fields": {
+            "active": false,
+            "created": "2014-06-10T17:18:31",
+            "modified": "2014-06-10T17:18:31",
+            "name": "firefox-accounts",
+            "note": "This switches us to using Firefox Accounts instead of Persona."
+        },
+        "model": "waffle.switch",
+        "pk": 62
+    },
+    {
+        "fields": {
+            "created": "2012-10-17T15:51:18",
+            "modified": "2012-10-17T15:51:18",
+            "name": "csp-store-reports",
+            "note": "",
+            "percent": "0.0"
+        },
+        "model": "waffle.sample",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "created": "2012-10-17T15:51:18",
+            "modified": "2012-10-17T15:51:18",
+            "name": "paypal-disabled-limit",
+            "note": "Sanity check limit on paypal cron",
+            "percent": "10.0"
+        },
+        "model": "waffle.sample",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:02",
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "name": "0",
+            "price": "0.00"
+        },
+        "model": "prices.price",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:02",
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "name": "1",
+            "price": "0.10"
+        },
+        "model": "prices.price",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "5",
+            "price": "0.25"
+        },
+        "model": "prices.price",
+        "pk": 8
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "7",
+            "price": "0.50"
+        },
+        "model": "prices.price",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "10",
+            "price": "0.99"
+        },
+        "model": "prices.price",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "20",
+            "price": "1.99"
+        },
+        "model": "prices.price",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "30",
+            "price": "2.99"
+        },
+        "model": "prices.price",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "40",
+            "price": "3.99"
+        },
+        "model": "prices.price",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "50",
+            "price": "4.99"
+        },
+        "model": "prices.price",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "60",
+            "price": "6.99"
+        },
+        "model": "prices.price",
+        "pk": 15
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "70",
+            "price": "9.99"
+        },
+        "model": "prices.price",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "80",
+            "price": "12.49"
+        },
+        "model": "prices.price",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "90",
+            "price": "14.99"
+        },
+        "model": "prices.price",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "100",
+            "price": "19.99"
+        },
+        "model": "prices.price",
+        "pk": 19
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "110",
+            "price": "24.99"
+        },
+        "model": "prices.price",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "active": true,
+            "created": "2013-06-25T12:31:03",
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "name": "120",
+            "price": "29.99"
+        },
+        "model": "prices.price",
+        "pk": 21
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "COP",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 6
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1338
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.00",
+            "provider": 1,
+            "region": 8,
+            "tier": 6
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1339
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.00",
+            "provider": 1,
+            "region": 11,
+            "tier": 6
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1340
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.00",
+            "provider": 1,
+            "region": 2,
+            "tier": 6
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1341
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "EUR",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.10",
+            "provider": 1,
+            "region": 8,
+            "tier": 7
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1342
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "PLN",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 7
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1343
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:02",
+            "currency": "USD",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:02",
+            "paid": true,
+            "price": "0.10",
+            "provider": 1,
+            "region": 2,
+            "tier": 7
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1344
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.25",
+            "provider": 1,
+            "region": 8,
+            "tier": 8
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1345
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 8
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1346
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.25",
+            "provider": 1,
+            "region": 2,
+            "tier": 8
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1347
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.45",
+            "provider": 1,
+            "region": 8,
+            "tier": 9
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1348
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 0,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "1.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 9
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1349
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.50",
+            "provider": 1,
+            "region": 2,
+            "tier": 9
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1350
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "2060.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 10
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1351
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.89",
+            "provider": 1,
+            "region": 8,
+            "tier": 10
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1352
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "3.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 10
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1353
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "0.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 10
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1354
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "4150.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 11
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1355
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "1.89",
+            "provider": 1,
+            "region": 8,
+            "tier": 11
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1356
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "7.69",
+            "provider": 1,
+            "region": 11,
+            "tier": 11
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1357
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "1.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 11
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1358
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "6240.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 12
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1359
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "2.79",
+            "provider": 1,
+            "region": 8,
+            "tier": 12
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1360
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "11.59",
+            "provider": 1,
+            "region": 11,
+            "tier": 12
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1361
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "2.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 12
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1362
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "8320.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 13
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1363
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "3.79",
+            "provider": 1,
+            "region": 8,
+            "tier": 13
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1364
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "15.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 13
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1365
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "3.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 13
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1366
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "10420.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 14
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1367
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "4.69",
+            "provider": 1,
+            "region": 8,
+            "tier": 14
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1368
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "19.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 14
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1369
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "4.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 14
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1370
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "14600.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 15
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1371
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "6.59",
+            "provider": 1,
+            "region": 8,
+            "tier": 15
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1372
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "26.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 15
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1373
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "6.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 15
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1374
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "20840.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 16
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1375
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "9.49",
+            "provider": 1,
+            "region": 8,
+            "tier": 16
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1376
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "38.79",
+            "provider": 1,
+            "region": 11,
+            "tier": 16
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1377
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "9.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 16
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1378
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "26070.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 17
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1379
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "11.59",
+            "provider": 1,
+            "region": 8,
+            "tier": 17
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1380
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "48.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 17
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1381
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "12.49",
+            "provider": 1,
+            "region": 2,
+            "tier": 17
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1382
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "31280.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 18
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1383
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "14.19",
+            "provider": 1,
+            "region": 8,
+            "tier": 18
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1384
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "57.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 18
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1385
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "14.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 18
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1386
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "41720.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 19
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1387
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "18.99",
+            "provider": 1,
+            "region": 8,
+            "tier": 19
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1388
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "77.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 19
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1389
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "19.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 19
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1390
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "52160.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 20
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1391
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "23.59",
+            "provider": 1,
+            "region": 8,
+            "tier": 20
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1392
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "96.99",
+            "provider": 1,
+            "region": 11,
+            "tier": 20
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1393
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "24.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 20
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1394
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "COP",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "62580.00",
+            "provider": 1,
+            "region": 9,
+            "tier": 21
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1395
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "EUR",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "28.39",
+            "provider": 1,
+            "region": 8,
+            "tier": 21
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1396
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "PLN",
+            "dev": true,
+            "method": 1,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "116.49",
+            "provider": 1,
+            "region": 11,
+            "tier": 21
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1397
+    },
+    {
+        "fields": {
+            "carrier": null,
+            "created": "2013-06-25T12:31:03",
+            "currency": "USD",
+            "dev": true,
+            "method": 2,
+            "modified": "2013-06-25T12:31:03",
+            "paid": true,
+            "price": "29.99",
+            "provider": 1,
+            "region": 2,
+            "tier": 21
+        },
+        "model": "prices.pricecurrency",
+        "pk": 1398
+    },
+    {
+        "fields": {
+            "created": "2011-03-01T20:17:12",
+            "modified": "2013-03-13T09:28:57",
+            "name": "Admins",
+            "notes": "",
+            "rules": "*:*"
+        },
+        "model": "access.group",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "created": "2012-04-19T18:43:22",
+            "modified": "2012-04-19T18:43:22",
+            "name": "Staff",
+            "notes": "",
+            "rules": "Addons:Review,Apps:Review,Personas:Review,Reviews:Edit,Addons:Edit,Addons:Configure,Users:Edit,Stats:View,CollectionStats:View,Collections:Edit,AdminTools:View,Apps:Configure,FeaturedApps:View,FeaturedApps:Edit,Stats:View,Apps:ReviewPrivileged,Apps:Publisher,Apps:ReviewRegionCN,Apps:Edit"
+        },
+        "model": "access.group",
+        "pk": 50000
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:55",
+            "modified": "2012-04-04T17:17:55",
+            "name": "Statistic Viewers",
+            "notes": "",
+            "rules": "Stats:View,CollectionStats:View"
+        },
+        "model": "access.group",
+        "pk": 50001
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:55",
+            "modified": "2012-04-04T17:17:55",
+            "name": "Add-on Reviewers",
+            "notes": "",
+            "rules": "Addons:Review,Reviews:Edit"
+        },
+        "model": "access.group",
+        "pk": 50002
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:55",
+            "modified": "2012-04-04T17:17:55",
+            "name": "App Reviewers",
+            "notes": "",
+            "rules": "Apps:Review,Reviews:Edit"
+        },
+        "model": "access.group",
+        "pk": 50003
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:55",
+            "modified": "2012-04-04T17:17:55",
+            "name": "Persona Reviewers",
+            "notes": "",
+            "rules": "Personas:Review,Reviews:Edit"
+        },
+        "model": "access.group",
+        "pk": 50004
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:55",
+            "modified": "2012-04-04T17:17:55",
+            "name": "Senior Add-on Reviewers",
+            "notes": "",
+            "rules": "Addons:Review,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View"
+        },
+        "model": "access.group",
+        "pk": 50005
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Senior Localizers",
+            "notes": "",
+            "rules": "Locales:Edit"
+        },
+        "model": "access.group",
+        "pk": 50006
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Developers Credits",
+            "notes": "",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50046
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Past Developers Credits",
+            "notes": "",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50047
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Other Contributors Credits",
+            "notes": "",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50048
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "QA",
+            "notes": "",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50049
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Revenue Stats Viewers",
+            "notes": "",
+            "rules": "RevenueStats:View"
+        },
+        "model": "access.group",
+        "pk": 50050
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "System Administrators",
+            "notes": "Preserved through permissions migration for future use.",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50051
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Add-on Reviewer MOTD",
+            "notes": "",
+            "rules": "AddonReviewerMOTD:Edit"
+        },
+        "model": "access.group",
+        "pk": 50052
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "App Reviewer MOTD",
+            "notes": "",
+            "rules": "AppReviewerMOTD:Edit"
+        },
+        "model": "access.group",
+        "pk": 50053
+    },
+    {
+        "fields": {
+            "created": "2012-04-04T17:17:58",
+            "modified": "2012-04-04T17:17:58",
+            "name": "Persona Reviewer MOTD",
+            "notes": "",
+            "rules": "PersonaReviewerMOTD:Edit"
+        },
+        "model": "access.group",
+        "pk": 50054
+    },
+    {
+        "fields": {
+            "created": "2012-05-01T08:47:38",
+            "modified": "2012-05-01T08:47:38",
+            "name": "Developers",
+            "notes": "",
+            "rules": "AdminTools:View,Apps:ViewConfiguration"
+        },
+        "model": "access.group",
+        "pk": 50055
+    },
+    {
+        "fields": {
+            "created": "2012-05-09T15:40:07",
+            "modified": "2012-05-09T15:40:07",
+            "name": "Bulk Compatibility Updaters",
+            "notes": "",
+            "rules": "BulkValidationAdminTools:View"
+        },
+        "model": "access.group",
+        "pk": 50056
+    },
+    {
+        "fields": {
+            "created": "2012-05-22T17:12:04",
+            "modified": "2012-05-22T17:12:04",
+            "name": "Support Staff",
+            "notes": "",
+            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View"
+        },
+        "model": "access.group",
+        "pk": 50057
+    },
+    {
+        "fields": {
+            "created": "2012-08-08T14:40:39",
+            "modified": "2012-08-08T14:40:39",
+            "name": "Restricted Users",
+            "notes": "",
+            "rules": "Restricted:UGC"
+        },
+        "model": "access.group",
+        "pk": 50058
+    },
+    {
+        "fields": {
+            "created": "2012-08-08T14:40:41",
+            "modified": "2012-08-08T14:40:41",
+            "name": "Senior App Reviewers",
+            "notes": "",
+            "rules": "Apps:Review,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Apps:ReviewEscalated,Apps:ReviewPrivileged,Apps:ReviewRegionCN,Apps:Edit"
+        },
+        "model": "access.group",
+        "pk": 50059
+    },
+    {
+        "fields": {
+            "created": "2012-10-18T09:03:16",
+            "modified": "2012-10-18T09:03:16",
+            "name": "Feature Managers",
+            "notes": "For users to manage only featured apps.",
+            "rules": "FeaturedApps:View,FeaturedApps:Edit"
+        },
+        "model": "access.group",
+        "pk": 50060
+    },
+    {
+        "fields": {
+            "created": "2012-11-02T09:58:47",
+            "modified": "2012-11-02T09:58:47",
+            "name": "Engagement",
+            "notes": "",
+            "rules": "MailingLists:View"
+        },
+        "model": "access.group",
+        "pk": 50061
+    },
+    {
+        "fields": {
+            "created": "2013-04-26T09:53:58",
+            "modified": "2013-04-26T09:53:58",
+            "name": "No Reviewer Incentives",
+            "notes": "Reviewers who should not be included in incentives tables",
+            "rules": "None:None"
+        },
+        "model": "access.group",
+        "pk": 50066
+    },
+    {
+        "fields": {
+            "created": "2013-04-26T09:54:00",
+            "modified": "2013-04-26T09:54:00",
+            "name": "Payment transactions clients",
+            "notes": "Clients that can notify of failures in payments",
+            "rules": "Transaction:NotifyFailure"
+        },
+        "model": "access.group",
+        "pk": 50067
+    },
+    {
+        "fields": {
+            "created": "2013-04-26T09:54:00",
+            "modified": "2013-04-26T09:54:00",
+            "name": "Payment product icon clients",
+            "notes": "Clients that can create cached product icon URLs",
+            "rules": "ProductIcon:Create"
+        },
+        "model": "access.group",
+        "pk": 50068
+    },
+    {
+        "fields": {
+            "created": "2013-09-13T12:54:58",
+            "modified": "2013-09-13T12:54:58",
+            "name": "Operators",
+            "notes": "For operators to perform app lookups",
+            "rules": "Lookup:View,AppLookup:View,Operators:*"
+        },
+        "model": "access.group",
+        "pk": 50070
+    },
+    {
+        "fields": {
+            "created": "2013-09-13T12:56:33",
+            "modified": "2013-09-13T12:56:33",
+            "name": "Marketplace Publishers",
+            "notes": "Publishers are able to log in to the Marketplace Publishing tool.",
+            "rules": "Collections:Curate,Regions:BypassFilters"
+        },
+        "model": "access.group",
+        "pk": 50072
+    },
+    {
+        "fields": {
+            "created": "2014-04-04T15:43:10",
+            "modified": "2014-04-04T15:43:10",
+            "name": "Price currency manipulation",
+            "notes": "Clients that can modify prices",
+            "rules": "Prices:Modify"
+        },
+        "model": "access.group",
+        "pk": 50074
+    },
+    {
+        "fields": {
+            "created": "2014-04-04T15:43:10",
+            "modified": "2014-04-04T15:43:10",
+            "name": "China Reviewers",
+            "notes": "Reviewers in China are able to approve/reject apps in China.",
+            "rules": "Apps:ReviewRegionCN"
+        },
+        "model": "access.group",
+        "pk": 50076
+    },
+    {
+        "fields": {
+            "created": "2014-06-20T10:24:09",
+            "modified": "2014-06-20T10:24:09",
+            "name": "Feed Curators",
+            "notes": "Curators for the Marketplace Feed",
+            "rules": "Feed:Curate"
+        },
+        "model": "access.group",
+        "pk": 50078
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2012-10-17T15:51:18",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2012-10-17T15:51:18",
+            "name": "collect-timings",
+            "note": "Collect front end timings",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-06-25T08:49:26",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-06-25T08:49:26",
+            "name": "allow-b2g-paid-submission",
+            "note": "Enable this to allow paid apps in the submission process.",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-09-13T12:56:36",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-09-13T12:56:36",
+            "name": "android-payments",
+            "note": "ON: paid apps for Android can be submitted and show up in search results; OFF: paid apps for Android are disallowed and show up nowhere",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-09-13T12:57:02",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-09-13T12:57:02",
+            "name": "android-packaged",
+            "note": "ON: packaged apps for Android can be submitted and show up in search results; OFF: packaged apps for Android are disallowed",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 17
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2013-09-13T12:57:02",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2013-09-13T12:57:02",
+            "name": "desktop-packaged",
+            "note": "ON: packaged apps for Desktop can be submitted and show up in search results; OFF: packaged apps for Desktop are disallowed",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 18
+    },
+    {
+        "fields": {
+            "authenticated": false,
+            "created": "2014-04-04T15:43:09",
+            "everyone": false,
+            "groups": [],
+            "languages": "",
+            "modified": "2014-04-04T15:43:09",
+            "name": "special-regions",
+            "note": "ON: \"China\" appears is listed in the region list for free apps (bug 922252); OFF: \"China\" does not appear in the region list for free apps (bug 922252)",
+            "percent": null,
+            "rollout": false,
+            "staff": false,
+            "superusers": false,
+            "testing": false,
+            "users": []
+        },
+        "model": "waffle.flag",
+        "pk": 20
+    }
+]
