@@ -437,7 +437,7 @@ class WebappIndexer(BaseIndexer):
 
     @classmethod
     def from_search(cls, request, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False, filter_overrides=None):
+                    mobile=False, tablet=False):
         """
         Base ES filter for Webapp to consumer pages. By default:
         - Excludes non-public apps.
@@ -445,30 +445,21 @@ class WebappIndexer(BaseIndexer):
         - Excludes based on region exclusions.
         - TODO: Excludes based on device and platform support.
         """
-        filters = {
-            'status': F('term', status=amo.STATUS_PUBLIC),
-            'is_disabled': F('term', is_disabled=False),
-        }
-
-        # Special handling if status is 'any' to remove status filter.
-        if filter_overrides and 'status' in filter_overrides:
-            if filter_overrides['status'] is 'any':
-                del filters['status']
-                del filter_overrides['status']
-
-        if filter_overrides:
-            filters.update(filter_overrides)
+        filters = [
+            F('term', status=amo.STATUS_PUBLIC),
+            F('term', is_disabled=False),
+        ]
 
         if cat:
-            filters.update({'category': F('term', category=cat.slug)})
+            filters.append(F('term', category=cat.slug))
 
-        sq = cls.search().filter(es_filter.Bool(must=filters.values()))
+        if mobile or gaia:
+            filters.append(F('term', uses_flash=False))
+
+        sq = cls.search().filter(es_filter.Bool(must=filters))
 
         if region:
             sq = sq.filter(~F('term', region_exclusions=region.id))
-
-        if mobile or gaia:
-            sq = sq.filter('term', uses_flash=False)
 
         return sq
 
