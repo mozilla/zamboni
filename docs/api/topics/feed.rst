@@ -1032,7 +1032,6 @@ Operator shelves are represented thusly:
                 "id": 2
             }
         ],
-        "background_color": "#B90000",
         "background_image": "http://somecdn.com/someimage.png",
         "carrier": "telefonica",
         "description": {
@@ -1050,10 +1049,6 @@ Operator shelves are represented thusly:
 
 ``apps``
     *array* - a list of serializations of the member :ref:`apps <app>`.
-``background_color``
-    *string* - a hex color used in display of the operator shelf. Currently
-    must be one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``,
-    ``#5F9B0A``, or ``#2C393B``.
 ``background_image``
     *string* - the URL to an image used while displaying the operator shelf.
 ``carrier``
@@ -1122,10 +1117,6 @@ Create
 
     :param apps: an ordered array of app IDs.
     :type apps: array
-    :param background_color: color in six-digit hex (with hash prefix). Must be
-        one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
-        or ``#2C393B``.
-    :type background_color: string
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
@@ -1145,7 +1136,6 @@ Create
 
         {
             "apps": [19, 1, 44],
-            "background_color": "#B90000",
             "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "carrier": "telefonica",
             "description": {
@@ -1179,10 +1169,6 @@ Update
 
     :param apps: an ordered array of app IDs.
     :type apps: array
-    :param background_color: color in six-digit hex (with hash prefix). Must be
-        one of ``#B90000``, ``#FF4E00``, ``#CD6723``, ``#00AACC``, ``#5F9B0A``,
-        or ``#2C393B``.
-    :type background_color: string
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
@@ -1202,7 +1188,6 @@ Update
 
         {
             "apps": [19, 1, 44],
-            "background_color": "#B90000",
             "background_image_upload_url": "http://imgur.com/XXX.jpg",
             "carrier": "telefonica",
             "description": {
