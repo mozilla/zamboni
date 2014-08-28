@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-18 01:11+0000\n"
+"PO-Revision-Date: 2014-08-28 07:31+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408324314.0\n"
+"X-POOTLE-MTIME: 1409211088.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2831,7 +2831,7 @@ msgstr "优惠价格"
 
 #: mkt/developers/forms_payments.py:140
 msgid "Only supports carrier billing"
-msgstr "仅支持通过电信营运商支付"
+msgstr "仅支持通过电信运营商支付"
 
 #: mkt/developers/forms_payments.py:143
 msgid "Only supports credit-card billing"
@@ -2859,7 +2859,7 @@ msgstr "不是一个更新"
 
 #: mkt/developers/forms_payments.py:379
 msgid "Account Holder Name"
-msgstr "帐号所有者名字"
+msgstr "账户所有者名字"
 
 #: mkt/developers/forms_payments.py:381
 msgid "Company Name"
@@ -2915,7 +2915,7 @@ msgstr "增值税号"
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank Account Number"
-msgstr "银行帐号"
+msgstr "银行账号"
 
 #: mkt/developers/forms_payments.py:419
 msgid "SWIFT code"
@@ -2955,15 +2955,15 @@ msgstr "账户名称"
 
 #: mkt/developers/forms_payments.py:465
 msgid "Payment Account"
-msgstr "支付帐号"
+msgstr "支付账户"
 
 #: mkt/developers/forms_payments.py:535
 msgid "You cannot remove a payment account from an app."
-msgstr "不能从一个应用中移除支付帐号。"
+msgstr "您不能从一个应用中移除支付账户。"
 
 #: mkt/developers/forms_payments.py:539
 msgid "You are not permitted to change payment accounts."
-msgstr "您不被允许修改付款帐号。"
+msgstr "您不被允许修改支付账户。"
 
 #: mkt/developers/forms_payments.py:625 mkt/developers/forms_payments.py:641
 msgid "Account name"
@@ -2984,7 +2984,7 @@ msgstr "服务 ID 无效"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
-msgstr "该应用程序尚未设置付款帐号。"
+msgstr "该应用尚未设置支付账户。"
 
 #: mkt/developers/helpers.py:32 mkt/developers/helpers.py:61
 msgid "Developers"
@@ -3183,7 +3183,7 @@ msgstr "应用已封锁。"
 
 #: mkt/developers/views_payments.py:87 mkt/developers/views_payments.py:105
 msgid "We encountered a problem connecting to the payment server."
-msgstr "连接到支付服务器时遇到了问题。"
+msgstr "我们在连接支付服务器时遇到了问题。"
 
 #: mkt/developers/views_payments.py:184
 msgid "All"
@@ -3215,7 +3215,7 @@ msgstr "您的应用没有配置应用内支付。"
 
 #: mkt/developers/views_payments.py:375
 msgid "No payment account for this app."
-msgstr "这个应用没有支付帐号。"
+msgstr "这个应用没有支付账户。"
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
@@ -4673,11 +4673,11 @@ msgstr "了解<a href=\"%(payments_url)s\" target=\"_blank\">不同的付款类�
 
 #: mkt/developers/templates/developers/payments/premium.html:120 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr "付款帐号"
+msgstr "支付账户"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "您的应用程序目前不完整。请选择一个付款帐号以及价位来恢复它。"
+msgstr "您的应用程序目前不完整。请选择一个支付账户以及价位来恢复它。"
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -4808,11 +4808,11 @@ msgstr "您有尚未完成设置的付款账户，完成设置或者在下面新
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
 msgid "You don't have any payment accounts set up."
-msgstr "你没有设置支付帐号。"
+msgstr "你还没有设置任何支付账户。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
-msgstr "添加 Bango 帐号"
+msgstr "添加 Bango 账号"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4829,7 +4829,7 @@ msgstr "可选"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
-msgstr "注册付款帐号"
+msgstr "注册支付账号"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
@@ -4879,7 +4879,7 @@ msgstr "添加参考账户"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr "修改 Bango 帐号"
+msgstr "修改 Bango 账号"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5483,7 +5483,7 @@ msgstr "来自 %(url)s 的图像无法被解析"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
-msgstr "无法判断一个版本与他自身的差别"
+msgstr "无法判断一个版本与其自身的差别"
 
 #: mkt/files/helpers.py:151
 msgid "That file no longer exists."
@@ -5923,7 +5923,7 @@ msgstr "删除用户"
 
 #: mkt/lookup/templates/lookup/user_summary.html:100
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr "删除这个用户将会<strong>永久</strong>删除他的账户。"
+msgstr "删除这个用户将会<strong>永久</strong>删除此用户的的账户。"
 
 #: mkt/lookup/templates/lookup/user_summary.html:110
 msgid "Are you sure you wish to delete this user?"
@@ -7113,7 +7113,7 @@ msgstr "需求已更改：{0}"
 
 #: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
-msgstr "无法免费和付费。"
+msgstr "不能同时免费和付费。"
 
 #: mkt/submit/forms.py:49
 msgid "Please select a device."
@@ -7235,8 +7235,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"我们已经保存好您的应用准备后续操作了！应用目前正在等待审核，一旦完成您需要在<a href=\"%(url)s\">状态管理页面</a>手动启用应用，从而让他显示出来并可以被搜索到。到那时，就可以随意调整应用的详情和设置"
-"了。"
+"我们已经保存好您的应用准备后续操作了！应用目前正在等待审核，一旦完成您需要在<a href=\"%"
+"(url)s\">状态管理页面</a>手动启用应用，从而让它显示出来并可以被搜索到。到那时，就可以随意调整应用的详情和设置了。"
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
@@ -7314,15 +7314,15 @@ msgstr "在<a href=\"%(url)s\">我的作品</a>查看您提交过的所有作品
 
 #: mkt/submit/templates/submit/next_steps.html:63
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
-msgstr "一旦应用完成审核，您要在<a href=\"%(url)s\">状态管理</a>手动发布应用。之后他就会显示在列表页面并且可以被其他人搜索到。"
+msgstr "一旦应用完成审核，您要在<a href=\"%(url)s\">状态管理</a>手动发布应用。之后它就会显示在列表页面并且可以被其他人搜索到。"
 
 #: mkt/submit/templates/submit/next_steps.html:70
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
-msgstr "应用已经被核准！现在就去让他显示在列表页面并且被其他人搜索到。"
+msgstr "应用已经被核准！现在就去让它显示在列表页面并且被其他人搜索到。"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
-msgstr "一旦应用完成审核，就可以显示在列表页面并且被其他人搜索到。"
+msgstr "一旦应用完成审核，它就可以显示在列表页面并且被其他人搜索到。"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/submit/templates/submit/next_steps.html:88
