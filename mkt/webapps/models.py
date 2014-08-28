@@ -23,7 +23,6 @@ import caching.base as caching
 import commonware.log
 import json_field
 from cache_nuggets.lib import memoize, memoize_key
-from elasticsearch_dsl import F, filter as es_filter
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
@@ -2017,38 +2016,6 @@ class Webapp(UUIDModelMixin, Addon):
     @classmethod
     def now(cls):
         return datetime.date.today()
-
-    @classmethod
-    def from_search(cls, request, cat=None, region=None, gaia=False,
-                    mobile=False, tablet=False, filter_overrides=None):
-
-        filters = {
-            'status': F('term', status=amo.STATUS_PUBLIC),
-            'is_disabled': F('term', is_disabled=False),
-        }
-
-        # Special handling if status is 'any' to remove status filter.
-        if filter_overrides and 'status' in filter_overrides:
-            if filter_overrides['status'] is 'any':
-                del filters['status']
-                del filter_overrides['status']
-
-        if filter_overrides:
-            filters.update(filter_overrides)
-
-        if cat:
-            filters.update({'category': F('term', category=cat.slug)})
-
-        sq = WebappIndexer.search().filter(
-            es_filter.Bool(must=filters.values()))
-
-        if region:
-            sq = sq.filter(~F('term', region_exclusions=region.id))
-
-        if mobile or gaia:
-            sq = sq.filter('term', uses_flash=False)
-
-        return sq
 
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()

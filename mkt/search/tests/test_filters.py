@@ -14,6 +14,7 @@ from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import (ApiSearchForm, TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _filter_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
 
@@ -37,7 +38,7 @@ class TestSearchFilters(BaseOAuth):
     def _filter(self, req, filters, **kwargs):
         form = self.form_class(filters)
         if form.is_valid():
-            qs = Webapp.from_search(self.req, **kwargs)
+            qs = WebappIndexer.from_search(self.req, **kwargs)
             return _filter_search(
                 self.req, qs, form.cleaned_data).to_dict()
         else:

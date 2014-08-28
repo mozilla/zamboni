@@ -211,8 +211,9 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         return form.cleaned_data
 
     def get_query(self, request, region=None):
-        return Webapp.from_search(request, region=region, gaia=request.GAIA,
-                                  mobile=request.MOBILE, tablet=request.TABLET)
+        return WebappIndexer.from_search(
+            request, region=region, gaia=request.GAIA, mobile=request.MOBILE,
+            tablet=request.TABLET)
 
     def apply_filters(self, request, qs, data=None, profile=None):
         # Build region filter.

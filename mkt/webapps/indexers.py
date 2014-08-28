@@ -5,6 +5,7 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Min
+from elasticsearch_dsl import F, filter as es_filter
 
 import commonware.log
 
@@ -433,6 +434,43 @@ class WebappIndexer(BaseIndexer):
                     obj.id, e))
 
         WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
+
+    @classmethod
+    def from_search(cls, request, cat=None, region=None, gaia=False,
+                    mobile=False, tablet=False, filter_overrides=None):
+        """
+        Base ES filter for Webapp to consumer pages. By default:
+        - Excludes non-public apps.
+        - Excludes disabled apps (whether by reviewer or by developer).
+        - Excludes based on region exclusions.
+        - TODO: Excludes based on device and platform support.
+        """
+        filters = {
+            'status': F('term', status=amo.STATUS_PUBLIC),
+            'is_disabled': F('term', is_disabled=False),
+        }
+
+        # Special handling if status is 'any' to remove status filter.
+        if filter_overrides and 'status' in filter_overrides:
+            if filter_overrides['status'] is 'any':
+                del filters['status']
+                del filter_overrides['status']
+
+        if filter_overrides:
+            filters.update(filter_overrides)
+
+        if cat:
+            filters.update({'category': F('term', category=cat.slug)})
+
+        sq = cls.search().filter(es_filter.Bool(must=filters.values()))
+
+        if region:
+            sq = sq.filter(~F('term', region_exclusions=region.id))
+
+        if mobile or gaia:
+            sq = sq.filter('term', uses_flash=False)
+
+        return sq
 
 
 def reverse_version(version):
