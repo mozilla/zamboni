@@ -1,5 +1,6 @@
-import hashlib
 import StringIO
+
+from django.conf import settings
 
 import requests
 from PIL import Image
@@ -121,7 +122,9 @@ class ImageURLField(serializers.Field):
 
     def from_native(self, image_url):
         try:
-            res = requests.get(image_url)
+            res = requests.get(
+                image_url,
+                headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
         except:
             raise exceptions.ParseError(
                 _('Invalid URL %(url)s').format(url=image_url))

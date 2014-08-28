@@ -812,8 +812,10 @@ def pre_generate_apk(app_id, **kw):
         raise PreGenAPKError('Webapp {w} has an empty manifest URL'
                              .format(w=app))
     try:
-        res = requests.get(settings.PRE_GENERATE_APK_URL,
-                           params={'manifestUrl': manifest_url})
+        res = requests.get(
+            settings.PRE_GENERATE_APK_URL,
+            params={'manifestUrl': manifest_url},
+            headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
         res.raise_for_status()
     except RequestException, exc:
         raise PreGenAPKError('Error pre-generating APK for app {a} at {url}; '
