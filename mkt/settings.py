@@ -881,16 +881,26 @@ MAX_GEN_USERNAME_TRIES = 50
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
+MAX_INAPP_IMAGE_SIZE = 4 * 1024 * 1024
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 
+# In-app product images are required to be this size in pixels (squared).
+REQUIRED_INAPP_IMAGE_SIZE = 64;
+
 # This is the base filename of the `.zip` containing the packaged app for the
 # consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
 #     /media/packaged-apps/<path>
 MARKETPLACE_GUID = 'e6a59937-29e4-456a-b636-b69afa8693b4'
+
+# This is the user agent when making internal requests. For example, when
+# fetching external resources with the requests library server owners
+# would see this in their logs.
+MARKETPLACE_USER_AGENT = ('UA for marketplace.firefox.com; '
+                          'bug? http://mzl.la/1mZ9F3a')
 
 # If the users's Firefox has a version number greater than this we consider it
 # a beta.

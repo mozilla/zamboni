@@ -834,7 +834,9 @@ def app_view_manifest(request, addon):
         content, headers = u'', {}
         if addon.manifest_url:
             try:
-                req = requests.get(addon.manifest_url, verify=False)
+                req = requests.get(
+                    addon.manifest_url, verify=False,
+                    headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
                 content, headers = req.content, req.headers
                 success = True
             except Exception:
@@ -1056,7 +1058,8 @@ def _retrieve_translation(text, language):
         r = requests.get(
             settings.GOOGLE_TRANSLATE_API_URL, params={
                 'key': getattr(settings, 'GOOGLE_API_CREDENTIALS', ''),
-                'q': text, 'target': language})
+                'q': text, 'target': language},
+            headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
     except Exception, e:
         log.error(e)
         raise
