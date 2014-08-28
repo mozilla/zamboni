@@ -306,7 +306,6 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
     """
     _apps = models.ManyToManyField(Webapp, through=FeedShelfMembership,
                                    related_name='app_shelves')
-    background_color = ColorField()
     carrier = models.IntegerField(choices=mkt.carriers.CARRIER_CHOICES)
     description = PurifiedField(null=True)
     name = PurifiedField()
