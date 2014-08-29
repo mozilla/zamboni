@@ -5,9 +5,10 @@ from celeryutils import task
 from tower import ugettext as _
 
 from amo.helpers import absolutify
-from amo.utils import get_locale_from_lang, send_html_mail_jinja
+from amo.utils import get_locale_from_lang
 
 from mkt.purchase.models import Contribution
+from mkt.site.mail import send_html_mail_jinja
 
 log = logging.getLogger('z.purchase.webpay')
 notify_kw = dict(default_retry_delay=15,  # seconds

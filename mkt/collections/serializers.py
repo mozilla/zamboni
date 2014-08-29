@@ -19,6 +19,7 @@ from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
                             UnicodeChoiceField)
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 from mkt.users.models import UserProfile
@@ -104,8 +105,9 @@ class CollectionMembershipField(serializers.RelatedField):
         device = self._get_device(request)
 
         _rget = lambda d: getattr(request, d, False)
-        qs = Webapp.from_search(request, region=region, gaia=_rget('GAIA'),
-                                mobile=_rget('MOBILE'), tablet=_rget('TABLET'))
+        qs = WebappIndexer.from_search(
+            request, region=region, gaia=_rget('GAIA'), mobile=_rget('MOBILE'),
+            tablet=_rget('TABLET'))
         qs = qs.filter('term', **{'collection.id': obj.pk})
         if device and device != amo.DEVICE_DESKTOP:
             qs = qs.filter('term', device=device.id)

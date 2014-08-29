@@ -207,14 +207,20 @@ class BaseIndexer(object):
         }
 
     @classmethod
-    def string_not_analyzed(cls):
+    def string_not_analyzed(cls, **kwargs):
         """Shorthand for a non-analyzed string."""
-        return {'type': 'string', 'index': 'not_analyzed'}
+        default = {'type': 'string', 'index': 'not_analyzed'}
+        if kwargs:
+            default.update(kwargs)
+        return default
 
     @classmethod
-    def string_not_indexed(cls):
+    def string_not_indexed(cls, **kwargs):
         """Shorthand for a non-indexed string."""
-        return {'type': 'string', 'index': 'no'}
+        default = {'type': 'string', 'index': 'no'}
+        if kwargs:
+            default.update(kwargs)
+        return default
 
     @classmethod
     def setup_mapping(cls):

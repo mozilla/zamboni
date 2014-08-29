@@ -873,6 +873,13 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         eq_(res.status_code, 200)
         self.assertGroupedAppsEqual(new_grouped, data)
 
+    def test_update_no_background_image(self):
+        self.feed_permission()
+        self.obj_data['image_hash'] = 'LOL'
+        res, data = self.update(self.client,
+                                background_image_upload_url='')
+        eq_(FeedCollection.objects.all()[0].image_hash, '')
+
     def test_get_with_apps(self):
         self.feed_permission()
         apps = [app.pk for app in self.make_apps()]
@@ -945,7 +952,6 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
 
 class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
     obj_data = {
-        'background_color': feed.FEED_COLOR_CHOICES[0][0],
         'carrier': 'telefonica',
         'description': {'en-US': 'Potato french fries'},
         'region': 'br',

@@ -175,7 +175,7 @@ PAYMENT_PROVIDERS = ['reference']
 DEFAULT_PAYMENT_PROVIDER = 'reference'
 
 PRE_GENERATE_APKS = True
-PRE_GENERATE_APK_URL = 'http://dapk.net/application.apk'
+PRE_GENERATE_APK_URL = 'https://apk-controller.dev.mozaws.net/application.apk'
 
 FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')

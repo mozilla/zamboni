@@ -4,13 +4,15 @@ DJANGO = $(PYTHON) manage.py
 SETTINGS = mkt.settings
 SHELL := /usr/bin/env bash
 
-.PHONY: help docs test test_force_db tdd test_failed update_code update_deps update_db update_landfill update_commonplace full_update reindex release
+.PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db update_landfill update_commonplace full_update reindex release
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  docs                to builds the docs for Zamboni"
 	@echo "  test                to run all the test suite"
 	@echo "  test_force_db       to run all the test suite with a new database"
+	@echo "  test_api            to run all the API tests in the suite"
+	@echo "  test_api_force_db   to run all the API tests in the suite with a new database"
 	@echo "  tdd                 to run all the test suite, but stop on the first error"
 	@echo "  test_failed         to rerun the failed tests from the previous run"
 	@echo "  update_code         to update the git repository and submodules"
@@ -33,6 +35,12 @@ test:
 
 test_force_db:
 	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id $(ARGS)
+
+test_api:
+	$(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id --config=mkt/api/tests/nose.cfg $(ARGS)
+
+test_api_force_db:
+	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --config=mkt/api/tests/nose.cfg --with-id $(ARGS)
 
 tdd:
 	$(DJANGO) test --settings=$(SETTINGS) --noinput --failfast --pdb --with-id $(ARGS)

@@ -87,11 +87,12 @@ class Price(amo.models.ModelBase):
         return _('Tier %s' % self.name)
 
     def tier_locale(self, currency='USD'):
-        # A way to display the price of the tier.
+        # Display the price of the tier in locale relevant way eg: $0.99
         return price_locale(self.price, currency)
 
     def __unicode__(self):
-        return u'$%s' % self.price
+        # Display the price in unamiguous USD, eg: 0.99 USD
+        return '{0} USD'.format(self.price)
 
     @staticmethod
     def transformer(prices):

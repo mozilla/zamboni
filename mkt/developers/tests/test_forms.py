@@ -241,6 +241,25 @@ class TestRegionForm(amo.tests.WebappTestCase):
              'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
         assert form.is_valid(), form.errors
 
+    def test_paid_app_options_initial(self):
+        """Check initial regions of a paid app post-save.
+
+        Check that if we save the region form for a paid app
+        with a specific region that should *not* be excluded it is still
+        shown as a initial region when the new form instance is created.
+
+        """
+
+        self.app.update(premium_type=amo.ADDON_PREMIUM)
+        form = forms.RegionForm(
+            {'restricted': '1',
+             'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
+        assert form.is_valid(), form.errors
+        form.save()
+        new_form = forms.RegionForm(**self.kwargs)
+        self.assertIn(mkt.regions.RESTOFWORLD.id,
+                      new_form.initial.get('regions', []))
+
     def test_restofworld_valid_choice_free(self):
         form = forms.RegionForm(
             {'restricted': '1',

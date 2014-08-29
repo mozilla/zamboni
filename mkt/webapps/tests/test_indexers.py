@@ -31,7 +31,8 @@ class TestWebappIndexer(amo.tests.TestCase):
         mapping = WebappIndexer.get_mapping()
         eq_(mapping.keys(), ['webapp'])
         eq_(mapping['webapp']['_all'], {'enabled': False})
-        eq_(mapping['webapp']['properties']['boost'], {'type': 'long'})
+        eq_(mapping['webapp']['properties']['boost'],
+            {'type': 'long', 'doc_values': True})
 
     def test_mapping_properties(self):
         # Spot check a few of the key properties.

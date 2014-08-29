@@ -131,7 +131,6 @@ class TestFeedShelfIndexer(FeedTestMixin, BaseFeedIndexerTest,
         doc = self._get_doc()
         eq_(doc['id'], self.obj.id)
         self.assertSetEqual(doc['apps'], self.app_ids)
-        eq_(doc['background_color'], '#FF4E00')
         eq_(doc['carrier'],
             mkt.carriers.CARRIER_CHOICE_DICT[self.obj.carrier].slug)
         self._assert_test_l10n(doc['description_translations'])

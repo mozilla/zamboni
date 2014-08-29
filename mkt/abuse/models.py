@@ -2,11 +2,10 @@ import logging
 
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext
 
 import amo.models
-import amo.utils
 
+from mkt.site.mail import send_mail
 from mkt.webapps.models import Addon
 from mkt.users.models import UserProfile
 
@@ -36,16 +35,12 @@ class AbuseReport(amo.models.ModelBase):
         else:
             user_name = 'An anonymous coward'
 
-        with amo.utils.no_translation():
-            type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
-                     if self.addon else 'User')
-
+        type_ = ('App' if self.addon else 'User')
         subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
         msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
             user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
             self.message)
-        amo.utils.send_mail(subject, msg,
-                            recipient_list=(settings.ABUSE_EMAIL,))
+        send_mail(subject, msg, recipient_list=(settings.ABUSE_EMAIL,))
 
     @classmethod
     def recent_high_abuse_reports(cls, threshold, period, addon_id=None,

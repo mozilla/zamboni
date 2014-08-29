@@ -287,39 +287,47 @@ function initAdditionalReviewQueue() {
 
     z.doc.on('click', '.approve, .reject', _pd(function(e) {
         var $this = $(this);
-        var $tr = $this.closest('tr');
-        var $buttons = $tr.find('.button');
+        var $container = $this.closest('tr');
+        var $buttons = $container.find('.button');
+        var $tr = $($container.data('addon-selector'));
         var url = $tr.data('actionUrl');
         var appName = $tr.find('.app-name').text();
         var fmt = {app: appName};
         var passed = $this.data('action') == 'approve';
+        var $comment = $container.find('[name="comment"]');
+        var comment = $comment.val();
         var msgTimeout = 3000;
 
-        $buttons.addClass('disabled');
+        if (!passed && comment.length === 0) {
+            $comment.addClass('error');
+        } else {
+            $buttons.addClass('disabled');
 
-        $.ajax({
-            type: 'patch',
-            url: url,
-            data: JSON.stringify({'passed': passed}),
-            contentType: 'application/json',
-        }).done(function() {
-            var msg;
-            var classes;
-            if (passed) {
-                msg = format(gettext('Passed app: {app}'), fmt);
-                classes = 'good';
-            } else {
-                msg = format(gettext('Failed app: {app}'), fmt);
-                classes = 'bad';
-            }
-            require('notification')({message: msg, timeout: msgTimeout, classes: classes});
-            $tr.hide();
-        }).fail(function() {
-            var msg = passed ? format(gettext('Error passing app: {app}'), fmt) :
-                               format(gettext('Error failing app: {app}'), fmt);
-            require('notification')({message: msg, timeout: msgTimeout});
-            $buttons.removeClass('disabled');
-        });
+            $.ajax({
+                type: 'patch',
+                url: url,
+                data: JSON.stringify({'passed': passed, 'comment': comment}),
+                contentType: 'application/json',
+            }).done(function() {
+                var msg;
+                var classes;
+                if (passed) {
+                    msg = format(gettext('Passed app: {app}'), fmt);
+                    classes = 'good';
+                } else {
+                    msg = format(gettext('Failed app: {app}'), fmt);
+                    classes = 'bad';
+                }
+                require('notification')({message: msg, timeout: msgTimeout, classes: classes});
+                $tr.hide();
+                $container.hide();
+            }).fail(function() {
+                var msg = passed ? format(gettext('Error passing app: {app}'), fmt) :
+                                format(gettext('Error failing app: {app}'), fmt);
+                require('notification')({message: msg, timeout: msgTimeout});
+                $buttons.removeClass('disabled');
+            });
+        }
     }));
 }
 

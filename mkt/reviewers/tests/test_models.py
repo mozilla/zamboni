@@ -1,6 +1,5 @@
 # -*- coding: utf8 -*-
 import time
-from datetime import datetime, timedelta
 
 import mock
 from nose.tools import eq_, ok_
@@ -214,50 +213,88 @@ class TestAdditionalReview(amo.tests.TestCase):
         self.app = Webapp.objects.get(pk=337141)
         self.review = AdditionalReview.objects.create(
             app=self.app, queue=QUEUE_TARAKO)
-        passed_patcher = mock.patch('mkt.reviewers.models.tarako_passed')
-        self.tarako_passed = passed_patcher.start()
-        self.addCleanup(passed_patcher.stop)
-        failed_patcher = mock.patch('mkt.reviewers.models.tarako_failed')
-        self.tarako_failed = failed_patcher.start()
-        self.addCleanup(failed_patcher.stop)
+        self.tarako_passed = self.patch('mkt.reviewers.models.tarako_passed')
+        self.tarako_failed = self.patch('mkt.reviewers.models.tarako_failed')
+        self.log_reviewer_action = self.patch_object(
+            self.review, 'log_reviewer_action')
 
-    def test_review_passed_sets_passed(self):
-        eq_(self.review.passed, None, 'expected passed to be None')
-        self.review.review_passed()
-        eq_(self.review.reload().passed, True, 'expected passed to be True')
+    def patch(self, patch_string):
+        patcher = mock.patch(patch_string)
+        mocked = patcher.start()
+        self.addCleanup(patcher.stop)
+        return mocked
 
-    def test_review_passed_sets_review_completed(self):
-        eq_(self.review.review_completed, None,
-            'expected review_completed to be None')
-        self.review.review_passed()
-        review_completed = self.review.reload().review_completed
-        ok_(review_completed - datetime.now() < timedelta(seconds=1),
-            'expected review_completed to be close to now')
+    def patch_object(self, obj, attr):
+        patcher = mock.patch.object(obj, attr)
+        mocked = patcher.start()
+        self.addCleanup(patcher.stop)
+        return mocked
 
-    def test_review_passed_calls_tarako_passed(self):
+    def test_execute_post_review_task_calls_tarako_passed_when_passed(self):
+        self.review.passed = True
         ok_(not self.tarako_passed.called,
             'expected tarako_passed to be not called')
-        self.review.review_passed()
+        self.review.execute_post_review_task()
         self.tarako_passed.assert_called_with(self.review)
-
-    def test_review_failed_sets_passed(self):
-        eq_(self.review.passed, None, 'expected passed to be None')
-        self.review.review_failed()
-        eq_(self.review.reload().passed, False, 'expected passed to be False')
-
-    def test_review_failed_sets_review_completed(self):
-        eq_(self.review.review_completed, None,
-            'expected review_completed to be None')
-        self.review.review_failed()
-        review_completed = self.review.reload().review_completed
-        ok_(review_completed - datetime.now() < timedelta(seconds=1),
-            'expected review_completed to be close to now')
-
-    def test_review_failed_calls_tarako_failed(self):
         ok_(not self.tarako_failed.called,
             'expected tarako_failed to be not called')
-        self.review.review_failed()
+
+    def test_execute_post_review_task_calls_tarako_failed_when_failed(self):
+        self.review.passed = False
+        ok_(not self.tarako_failed.called,
+            'expected tarako_failed to be not called')
+        self.review.execute_post_review_task()
         self.tarako_failed.assert_called_with(self.review)
+        ok_(not self.tarako_passed.called,
+            'expected tarako_passed to be not called')
+
+    def test_execute_post_review_task_raises_an_error_when_unreviewed(self):
+        self.review.passed = None
+        ok_(not self.tarako_passed.called,
+            'expected tarako_passed to be not called')
+        ok_(not self.tarako_failed.called,
+            'expected tarako_failed to be not called')
+        with self.assertRaises(ValueError):
+            self.review.execute_post_review_task()
+        ok_(not self.tarako_passed.called,
+            'expected tarako_passed to be not called')
+        ok_(not self.tarako_failed.called,
+            'expected tarako_failed to be not called')
+
+    def test_log_reviewer_action_when_failed(self):
+        reviewer = UserProfile()
+        comment = 'It would not start'
+        self.review.passed = False
+        self.review.comment = comment
+        self.review.reviewer = reviewer
+        ok_(not self.log_reviewer_action.called)
+        self.review.execute_post_review_task()
+        self.log_reviewer_action.assert_called_with(
+            self.app, reviewer, comment, amo.LOG.FAIL_ADDITIONAL_REVIEW,
+            queue=QUEUE_TARAKO)
+
+    def test_log_reviewer_action_when_passed(self):
+        reviewer = UserProfile()
+        comment = 'It is totally awesome'
+        self.review.passed = True
+        self.review.comment = comment
+        self.review.reviewer = reviewer
+        ok_(not self.log_reviewer_action.called)
+        self.review.execute_post_review_task()
+        self.log_reviewer_action.assert_called_with(
+            self.app, reviewer, comment, amo.LOG.PASS_ADDITIONAL_REVIEW,
+            queue=QUEUE_TARAKO)
+
+    def test_log_reviewer_action_blank_comment_when_none(self):
+        reviewer = UserProfile()
+        self.review.passed = True
+        self.review.comment = None
+        self.review.reviewer = reviewer
+        ok_(not self.log_reviewer_action.called)
+        self.review.execute_post_review_task()
+        self.log_reviewer_action.assert_called_with(
+            self.app, reviewer, '', amo.LOG.PASS_ADDITIONAL_REVIEW,
+            queue=QUEUE_TARAKO)
 
 
 class TestAdditionalReviewManager(amo.tests.TestCase):

@@ -1,3 +1,8 @@
+from django.db import models
+
+from amo.models import ModelBase
+
+
 class DynamicBoolFieldsMixin(object):
 
     def _fields(self):
@@ -9,3 +14,10 @@ class DynamicBoolFieldsMixin(object):
 
     def to_keys(self):
         return [k for k, v in self.to_dict().iteritems() if v]
+
+
+class FakeEmail(ModelBase):
+    message = models.TextField()
+
+    class Meta:
+        db_table = 'fake_email'

@@ -214,6 +214,9 @@ class JSONClient(TestClient):
     def put(self, *args, **kw):
         return self._with_json(super(JSONClient, self).put(*args, **kw))
 
+    def patch(self, *args, **kw):
+        return self._with_json(super(JSONClient, self).patch(*args, **kw))
+
     def options(self, *args, **kw):
         return self._with_json(super(JSONClient, self).options(*args, **kw))
 

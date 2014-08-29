@@ -1,21 +1,20 @@
-from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.mail import EmailMessage
-from django.template import Context as TemplateContext
 from django.utils import translation
 
 import mock
 from nose.tools import eq_
 
 import mkt.users.notifications
-from amo.models import FakeEmail
-from amo.utils import send_html_mail_jinja, send_mail
+from amo.tests import TestCase
+from mkt.site.mail import send_mail, send_html_mail_jinja
+from mkt.site.models import FakeEmail
 from mkt.users.models import UserNotification, UserProfile
-from mkt.zadmin.models import get_config
+from mkt.zadmin.models import set_config
 
 
-class TestSendMail(test.TestCase):
+class TestSendMail(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -36,7 +35,6 @@ class TestSendMail(test.TestCase):
         settings.EMAIL_BLACKLIST = (to,)
         success = send_mail('test subject', 'test body',
                             recipient_list=[to, to2], fail_silently=False)
-
         assert success
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [to2])
@@ -56,29 +54,30 @@ class TestSendMail(test.TestCase):
         to = 'nobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
         settings.EMAIL_BLACKLIST = (to,)
-        success = send_mail('test subject', 'test body',
+        success = send_mail('test subject', 'test_blacklist_flag_off',
                             recipient_list=[to, to2], fail_silently=False,
                             use_blacklist=False)
         assert success
-        eq_(len(mail.outbox), 2)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [to, to2])
+        assert 'test_blacklist_flag_off' in mail.outbox[0].body
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_real_list(self):
-        to = 'nobody@mozilla.org'
+        to = 'nooobody@mozilla.org'
         to2 = 'somebody@mozilla.org'
         to3 = 'reallywantsemail@mozilla.org'
         set_config('real_email_whitelist', to3)
-        success = send_mail('test subject', 'test body',
-                            recipient_list=[to, to2, to3], fail_silently=False,
-                            use_blacklist=False)
+        success = send_mail('test subject', 'test_real_list',
+                            recipient_list=[to, to2, to3], fail_silently=False)
         assert success
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].to, [to3])
-        eq_(FakeEmail.objects.count(), 2)
-        eq_(FakeEmail.objects.get(0).message.endswith('test body'), True)
-        assert 'To: ' + to in FakeEmail.objects.get(0).message
-        assert 'To: ' + to2 in FakeEmail.objects.get(1).message
+        assert 'test_real_list' in mail.outbox[0].body
+        eq_(FakeEmail.objects.count(), 1) # Only one mail, two recipients.
+        fakeemail = FakeEmail.objects.get()
+        eq_(fakeemail.message.endswith('test_real_list'), True)
+        assert ('To: %s, %s' % (to, to2)) in fakeemail.message
 
     def test_user_setting_default(self):
         user = UserProfile.objects.all()[0]
@@ -88,7 +87,7 @@ class TestSendMail(test.TestCase):
         eq_(UserNotification.objects.count(), 0)
 
         # Make sure that this is True by default
-        setting = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        setting = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['reply']
         eq_(setting.default_checked, True)
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
@@ -97,12 +96,10 @@ class TestSendMail(test.TestCase):
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 1)
 
-        eq_(mail.outbox[0].body.count('users/unsubscribe'), 1)  # bug 676601
-
     def test_user_setting_checked(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(notification_id=n.id,
                 user=user, enabled=True)
 
@@ -112,15 +109,13 @@ class TestSendMail(test.TestCase):
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to], fail_silently=False)
 
-        assert "You received this email because" in mail.outbox[0].body
         assert success, "Email wasn't sent"
         eq_(len(mail.outbox), 1)
 
     def test_user_mandatory(self):
-        # Make sure there's no unsubscribe link in mandatory emails.
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
+        n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
 
         UserNotification.objects.get_or_create(notification_id=n.id,
                 user=user, enabled=True)
@@ -131,14 +126,12 @@ class TestSendMail(test.TestCase):
                             recipient_list=[to], fail_silently=False)
 
         assert success, "Email wasn't sent"
-        body = mail.outbox[0].body
-        assert "Unsubscribe:" not in body
-        assert "You can't unsubscribe from" in body
+        eq_(len(mail.outbox), 1)
 
     def test_user_setting_unchecked(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        n = mkt.users.notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(notification_id=n.id,
                 user=user, enabled=False)
 
@@ -170,26 +163,11 @@ class TestSendMail(test.TestCase):
         eq_(FakeEmail.objects.count(), 1)
         eq_(FakeEmail.objects.get().message.endswith('test body'), True)
 
-    @mock.patch('amo.utils.Context')
-    def test_dont_localize(self, fake_Context):
-        perm_setting = []
-
-        def ctx(d, autoescape):
-            perm_setting.append(unicode(d['perm_setting']))
-            return TemplateContext(d, autoescape=autoescape)
-        fake_Context.side_effect = ctx
-        user = UserProfile.objects.all()[0]
-        to = user.email
-        translation.activate('zh_TW')
-        send_mail('test subject', 'test body', perm_setting='reply',
-                             recipient_list=[to], fail_silently=False)
-        eq_(perm_setting[0], u'an add-on developer replies to my review')
-
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
         subject = u'Test'
-        html_template = 'tests/email/test.html'
-        text_template = 'tests/email/test.txt'
+        html_template = 'purchase/receipt.html'
+        text_template = 'purchase/receipt.ltxt'
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
                              from_email=settings.NOBODY_EMAIL,
@@ -216,12 +194,8 @@ class TestSendMail(test.TestCase):
         message1 = payload[0].as_string()
         message2 = payload[1].as_string()
 
-        assert '<a href' not in message1, 'text-only email contained HTML!'
-        assert '<a href' in message2, 'HTML email did not contain HTML!'
-
-        unsubscribe_msg = unicode(users.notifications.individual_contact.label)
-        assert unsubscribe_msg in message1
-        assert unsubscribe_msg in message2
+        assert '<A HREF' not in message1, 'text-only email contained HTML!'
+        assert '<A HREF' in message2, 'HTML email did not contain HTML!'
 
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
@@ -248,7 +222,7 @@ class TestSendMail(test.TestCase):
             return backend
         return make_backend
 
-    @mock.patch('amo.tasks.EmailMessage')
+    @mock.patch('mkt.site.tasks.EmailMessage')
     def test_async_will_retry(self, backend):
         backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(RuntimeError):
@@ -260,7 +234,7 @@ class TestSendMail(test.TestCase):
                           async=True,
                           recipient_list=['somebody@mozilla.org'])
 
-    @mock.patch('amo.tasks.EmailMessage')
+    @mock.patch('mkt.site.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):
         backend.side_effect = self.make_backend_class([True, True])
         with self.assertRaises(RuntimeError):

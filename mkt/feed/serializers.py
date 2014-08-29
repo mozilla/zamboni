@@ -300,9 +300,8 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     region = SlugChoiceField(choices_dict=mkt.regions.REGION_LOOKUP)
 
     class Meta:
-        fields = ['apps', 'background_color', 'background_image', 'carrier',
-                  'description', 'id', 'is_published', 'name', 'region',
-                  'slug', 'url']
+        fields = ['apps', 'background_image', 'carrier', 'description', 'id',
+                  'is_published', 'name', 'region', 'slug', 'url']
         model = FeedShelf
         url_basename = 'feedshelves'
 
@@ -321,7 +320,7 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
     def fake_object(self, data):
         shelf = self._attach_fields(FeedShelf(), data, (
-            'id', 'background_color', 'carrier', 'image_hash', 'region', 'slug'
+            'id', 'carrier', 'image_hash', 'region', 'slug'
         ))
         shelf = self._attach_translations(shelf, data, (
             'description', 'name'
