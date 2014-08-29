@@ -52,7 +52,6 @@ class REGION(object):
     weight = 0
     ratingsbody = None
     special = False
-    low_memory = False
 
 
 class RESTOFWORLD(REGION):
