@@ -1,14 +1,16 @@
 # -*- coding: utf8 -*-
 import time
 
+from django.conf import settings
+
 import mock
 from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from mkt.reviewers.models import (AdditionalReview, RereviewQueue,
-                                  ReviewerScore, QUEUE_TARAKO, tarako_passed,
-                                  tarako_failed)
+from mkt.reviewers.models import (
+    AdditionalReview, QUEUE_TARAKO, RereviewQueue, ReviewerScore,
+    send_tarako_mail, tarako_failed, tarako_passed)
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
@@ -325,7 +327,7 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
             list(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
 
-class TestTarakoFunctions(amo.tests.TestCase):
+class BaseTarakoFunctionsTestCase(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -333,10 +335,20 @@ class TestTarakoFunctions(amo.tests.TestCase):
         self.review = AdditionalReview.objects.create(
             app=self.app, queue=QUEUE_TARAKO)
         self.tag, _ = Tag.objects.get_or_create(tag_text='tarako')
-        index_patcher = mock.patch(
-            'mkt.reviewers.models.WebappIndexer.index_ids')
-        self.index = index_patcher.start()
-        self.addCleanup(index_patcher.stop)
+
+    def patch(self, patch_string):
+        patcher = mock.patch(patch_string)
+        mocked = patcher.start()
+        self.addCleanup(patcher.stop)
+        return mocked
+
+
+class TestTarakoFunctions(BaseTarakoFunctionsTestCase):
+    def setUp(self):
+        super(TestTarakoFunctions, self).setUp()
+        self.index = self.patch('mkt.reviewers.models.WebappIndexer.index_ids')
+        self.send_tarako_mail = self.patch(
+            'mkt.reviewers.models.send_tarako_mail')
 
     def tag_exists(self):
         return (self.tag.addons.filter(addon_tags__addon_id=self.app.id)
@@ -352,7 +364,12 @@ class TestTarakoFunctions(amo.tests.TestCase):
         tarako_passed(self.review)
         self.index.assert_called_with([self.app.pk])
 
-    def test_tarako_failed_removed_tarako_tag(self):
+    def test_tarako_passed_sends_tarako_mail(self):
+        ok_(not self.send_tarako_mail.called)
+        tarako_passed(self.review)
+        self.send_tarako_mail.assert_called_with(self.review)
+
+    def test_tarako_failed_removes_tarako_tag(self):
         self.tag.save_tag(self.app)
         ok_(self.tag_exists(), 'expected the tarako tag')
         tarako_failed(self.review)
@@ -362,3 +379,53 @@ class TestTarakoFunctions(amo.tests.TestCase):
         ok_(not self.index.called)
         tarako_failed(self.review)
         self.index.assert_called_with([self.app.pk])
+
+    def test_tarako_failed_sends_tarako_mail(self):
+        ok_(not self.send_tarako_mail.called)
+        tarako_failed(self.review)
+        self.send_tarako_mail.assert_called_with(self.review)
+
+
+class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
+    def setUp(self):
+        super(TestSendTarakoMail, self).setUp()
+        self.send_mail = self.patch('mkt.reviewers.models.send_mail_jinja')
+
+    def enable_comm_dashboard(self):
+        self.create_switch('comm-dashboard')
+
+    def test_send_tarako_mail_review_passed(self):
+        ok_(not self.send_mail.called)
+        self.review.passed = True
+        send_tarako_mail(self.review)
+        self.send_mail.assert_called_with(
+            'Tarako review passed',
+            'reviewers/emails/tarako_review_complete.txt',
+            {'review': self.review},
+            recipient_list=['steamcube@mozilla.com'],
+            from_email=settings.MKT_REVIEWERS_EMAIL)
+
+    def test_send_tarako_mail_passed_comm_dashboard(self):
+        self.enable_comm_dashboard()
+        ok_(not self.send_mail.called)
+        self.review.passed = True
+        send_tarako_mail(self.review)
+        ok_(not self.send_mail.called)
+
+    def test_send_tarako_mail_review_failed(self):
+        ok_(not self.send_mail.called)
+        self.review.passed = False
+        send_tarako_mail(self.review)
+        self.send_mail.assert_called_with(
+            'Tarako review failed',
+            'reviewers/emails/tarako_review_complete.txt',
+            {'review': self.review},
+            recipient_list=[u'steamcube@mozilla.com'],
+            from_email=settings.MKT_REVIEWERS_EMAIL)
+
+    def test_send_tarako_mail_failed_comm_dashboard(self):
+        self.enable_comm_dashboard()
+        ok_(not self.send_mail.called)
+        self.review.passed = False
+        send_tarako_mail(self.review)
+        ok_(not self.send_mail.called)
