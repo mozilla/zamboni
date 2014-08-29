@@ -15,7 +15,7 @@ import amo.tests
 import mkt
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
-from mkt.files.models import File
+from mkt.files.models import File, FileUpload
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -338,6 +338,27 @@ class TestGarbage(amo.tests.TestCase):
         stat_mock.return_value = StatMock(days_ago=1)
 
         mkt_gc()
+        assert not rm_mock.called
+
+    def test_old_and_new(self, rm_mock, ls_mock, stat_mock):
+        fu_new = FileUpload.objects.create(path='/tmp/bar', name='bar')
+        fu_new.created = self.days_ago(5)
+        fu_old = FileUpload.objects.create(path='/tmp/foo', name='foo')
+        fu_old.update(created=self.days_ago(91))
+
+        mkt_gc()
+
+        eq_(FileUpload.objects.count(), 1)
+        assert rm_mock.called
+        eq_(rm_mock.call_args[0][0], fu_old.path)
+
+    def test_old_no_path(self, rm_mock, ls_mock, stat_mock):
+        fu_old = FileUpload.objects.create(path='', name='foo')
+        fu_old.update(created=self.days_ago(91))
+
+        mkt_gc()
+
+        eq_(FileUpload.objects.count(), 0)
         assert not rm_mock.called
 
 

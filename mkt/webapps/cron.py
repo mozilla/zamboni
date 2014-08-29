@@ -17,7 +17,7 @@ from amo.decorators import write
 from amo.utils import chunked, walkfiles
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
-from mkt.files.models import File
+from mkt.files.models import File, FileUpload
 
 from .models import Addon, Installed, Webapp
 from .tasks import (dump_user_installs, update_downloads, update_trending,
@@ -238,3 +238,11 @@ def mkt_gc(**kw):
             settings.DUMPED_USERS_DAYS_DELETE):
             log.debug('Deleting old tarball: {0}'.format(filepath))
             os.remove(filepath)
+
+    # Delete stale FileUploads.
+    for fu in FileUpload.objects.filter(created__lte=days_ago(90)):
+        log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
+                  .format(uuid=fu.uuid, path=fu.path))
+        if fu.path:
+            os.remove(fu.path)
+        fu.delete()
