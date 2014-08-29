@@ -39,9 +39,6 @@ class REGION(object):
         Does this region need to be reviewed separately? That region is
         special.
 
-    low_memory::
-        Does this region have low-memory (Tarako) devices?
-
     """
     id = None
     name = slug = ''
@@ -327,16 +324,6 @@ class BD(REGION):
     default_currency = 'BDT'
     default_language = 'en'
     mcc = 470
-
-
-class IN(REGION):
-    id = 32
-    name = _lazy(u'India')
-    slug = 'in'
-    default_currency = 'INR'
-    default_language = 'en'
-    mcc = 405
-    low_memory = True
 
 
 # Please adhere to the new region checklist when adding a new region:

@@ -891,10 +891,6 @@ class RegionForm(forms.Form):
         return mkt.regions.SPECIAL_REGION_IDS
 
     @property
-    def low_memory_regions(self):
-        return any(region.low_memory for region in self.regions_by_id.values())
-
-    @property
     def special_region_statuses(self):
         """Returns the null/pending/public status for each region."""
         statuses = {}
