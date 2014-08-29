@@ -42,7 +42,7 @@ class InAppProduct(UUIDModelMixin, ModelBase):
         return json.loads(self.simulate)
 
     def is_purchasable(self):
-        return self.simulate or (self.webapp and self.webapp.is_public())
+        return self.active and (self.simulate or (self.webapp and self.webapp.is_public()))
 
     def delete(self):
         raise models.ProtectedError('Inapp products may not be deleted.', self)
