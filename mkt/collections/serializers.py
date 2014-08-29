@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
-import os
+import StringIO
 import uuid
 
 from rest_framework import serializers
@@ -11,7 +11,6 @@ from tower import ugettext_lazy as _
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.files.base import File
-from django.core.files.storage import default_storage as storage
 
 import amo
 import mkt
@@ -19,13 +18,12 @@ from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
                             UnicodeChoiceField)
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
-from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Webapp
-from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 from mkt.users.models import UserProfile
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
-from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
+from .models import Collection
 
 
 class CollectionMembershipField(serializers.RelatedField):
@@ -241,10 +239,9 @@ class DataURLImageField(serializers.CharField):
         parts = metadata.rsplit(';', 1)
         if parts[-1] == 'base64':
             content = encoded.decode('base64')
-            tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
-            with storage.open(tmp_dst, 'wb') as f:
-                f.write(content)
-            tmp = File(storage.open(tmp_dst))
+            f = StringIO.StringIO(content)
+            f.size = len(content)
+            tmp = File(f, name=uuid.uuid4().hex)
             hash_ = hashlib.md5(content).hexdigest()[:8]
             return serializers.ImageField().from_native(tmp), hash_
         else:
