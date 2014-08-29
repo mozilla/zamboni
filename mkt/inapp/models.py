@@ -12,6 +12,7 @@ class InAppProduct(UUIDModelMixin, ModelBase):
     """
     An item which is purchasable from within a marketplace app.
     """
+    active = models.BooleanField(default=True, db_index=True)
     guid = models.CharField(max_length=255, unique=True, null=True, blank=True)
     webapp = models.ForeignKey('webapps.WebApp', null=True, blank=True)
     price = models.ForeignKey(Price)
