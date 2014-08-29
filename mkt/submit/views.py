@@ -32,7 +32,7 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
 from mkt.developers.utils import escalate_prerelease_permissions
-from mkt.files.models import FileUpload, Platform
+from mkt.files.models import FileUpload
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
@@ -105,10 +105,7 @@ def manifest(request):
 
         with transaction.commit_on_success():
             upload = form.cleaned_data['upload']
-            addon = Addon.from_upload(
-                upload,
-                [Platform.objects.get(id=amo.PLATFORM_ALL.id)],
-                is_packaged=form.is_packaged())
+            addon = Addon.from_upload(upload, is_packaged=form.is_packaged())
 
             if form.is_packaged():
                 validation = json.loads(upload.validation)

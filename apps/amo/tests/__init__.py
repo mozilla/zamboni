@@ -45,7 +45,7 @@ from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.files.helpers import copyfileobj
-from mkt.files.models import File, Platform
+from mkt.files.models import File
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
@@ -777,10 +777,9 @@ def app_factory(**kw):
 
 def file_factory(**kw):
     v = kw['version']
-    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
     status = kw.pop('status', amo.STATUS_PUBLIC)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=p, status=status, **kw)
+                            status=status, **kw)
     return f
 
 

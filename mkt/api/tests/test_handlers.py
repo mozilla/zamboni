@@ -32,7 +32,7 @@ from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
 
 
 class CreateHandler(RestOAuth):
-    fixtures = fixture('user_2519', 'platform_all')
+    fixtures = fixture('user_2519')
 
     def setUp(self):
         super(CreateHandler, self).setUp()
@@ -56,7 +56,7 @@ def _mock_fetch_content(url):
 
 
 class TestAppCreateHandler(CreateHandler, AMOPaths):
-    fixtures = fixture('platform_all', 'user_admin', 'user_2519', 'user_999')
+    fixtures = fixture('user_admin', 'user_2519', 'user_999')
 
     def count(self):
         return Addon.objects.count()
@@ -524,7 +524,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
 
 
 class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
-    fixtures = fixture('user_2519', 'platform_all')
+    fixtures = fixture('user_2519')
 
     def setUp(self):
         super(CreatePackagedHandler, self).setUp()
@@ -541,7 +541,7 @@ class CreatePackagedHandler(amo.tests.AMOPaths, RestOAuth):
 
 @patch('mkt.versions.models.Version.is_privileged', False)
 class TestPackagedAppCreateHandler(CreatePackagedHandler):
-    fixtures = fixture('user_2519', 'platform_all')
+    fixtures = fixture('user_2519')
 
     def test_create(self):
         obj = self.create()
@@ -557,7 +557,7 @@ class TestPackagedAppCreateHandler(CreatePackagedHandler):
 
 
 class TestListHandler(CreateHandler, AMOPaths):
-    fixtures = fixture('user_2519', 'user_999', 'platform_all')
+    fixtures = fixture('user_2519', 'user_999')
 
     def create(self, users):
         app = Addon.objects.create(type=amo.ADDON_WEBAPP)
@@ -754,7 +754,7 @@ MANIFEST = """
 @patch('mkt.developers.tasks._fetch_content')
 @patch('mkt.webapps.tasks.validator')
 class TestRefreshManifest(RestOAuth):
-    fixtures = fixture('user_2519', 'webapp_337141', 'platform_all')
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         super(TestRefreshManifest, self).setUp()

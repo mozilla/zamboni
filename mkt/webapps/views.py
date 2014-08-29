@@ -19,7 +19,7 @@ from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.forms import IconJSONForm
 from mkt.developers import tasks
 from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
-from mkt.files.models import FileUpload, Platform
+from mkt.files.models import FileUpload
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
 from mkt.translations.query import order_by_translation
@@ -150,10 +150,9 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             raise exceptions.PermissionDenied('Terms of Service not accepted.')
         if not (upload.user and upload.user.pk == request.user.pk):
             raise exceptions.PermissionDenied('You do not own that app.')
-        plats = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
 
         # Create app, user and fetch the icon.
-        obj = Webapp.from_upload(upload, plats, is_packaged=is_packaged)
+        obj = Webapp.from_upload(upload, is_packaged=is_packaged)
         AddonUser(addon=obj, user=request.user).save()
         tasks.fetch_icon.delay(obj, obj.latest_version.all_files[0])
         record_action('app-submitted', request, {'app-id': obj.pk})
