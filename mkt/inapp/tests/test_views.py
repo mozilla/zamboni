@@ -96,11 +96,13 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
     def test_update(self):
         product = self.create_product()
         self.valid_in_app_product_data['name'] = 'Orange Gems'
+        self.valid_in_app_product_data['active'] = False
         response = self.put(self.detail_url(product.guid),
                             self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(response.json['name'], 'Orange Gems')
         eq_(response.json['name'], product.reload().name)
+        eq_(response.json['active'], False)
 
     def test_delete(self):
         product = self.create_product()

@@ -125,6 +125,11 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         res = self._post()
         eq_(res.status_code, 400, res.content)
 
+    def test_inactive_app_fails(self):
+        self.inapp.update(active=False)
+        res = self._post()
+        eq_(res.status_code, 400, res.content)
+
     def test_simulated_app_with_non_public_parent_succeeds(self):
         self.addon.update(status=amo.STATUS_PENDING)
         self.inapp.update(simulate=json.dumps({'result': 'postback'}))

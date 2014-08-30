@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
-import os
+import StringIO
 import uuid
 
 from rest_framework import serializers
@@ -11,7 +11,6 @@ from tower import ugettext_lazy as _
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.files.base import File
-from django.core.files.storage import default_storage as storage
 
 import amo
 import mkt
@@ -19,13 +18,12 @@ from mkt.api.fields import (SlugChoiceField, TranslationSerializerField,
                             UnicodeChoiceField)
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.features.utils import get_feature_profile
-from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Webapp
-from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 from mkt.users.models import UserProfile
+from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
 
-from .models import Collection
 from .constants import COLLECTIONS_TYPE_FEATURED, COLLECTIONS_TYPE_OPERATOR
+from .models import Collection
 
 
 class CollectionMembershipField(serializers.RelatedField):
@@ -100,20 +98,15 @@ class CollectionMembershipField(serializers.RelatedField):
         Relies on a FeaturedSearchView instance in self.context['view']
         to properly rehydrate results returned by ES.
         """
-        profile = get_feature_profile(request)
-        region = self.context['view'].get_region_from_request(request)
         device = self._get_device(request)
 
-        _rget = lambda d: getattr(request, d, False)
-        qs = WebappIndexer.from_search(
-            request, region=region, gaia=_rget('GAIA'), mobile=_rget('MOBILE'),
-            tablet=_rget('TABLET'))
-        qs = qs.filter('term', **{'collection.id': obj.pk})
+        app_filters = {'profile': get_feature_profile(request)}
         if device and device != amo.DEVICE_DESKTOP:
-            qs = qs.filter('term', device=device.id)
-        if profile:
-            for k, v in profile.to_kwargs(prefix='features.has_').items():
-                qs = qs.filter('term', **{k: v})
+            app_filters['device'] = device.id
+
+        qs = WebappIndexer.get_app_filter(request, app_filters)
+        qs = qs.filter('term', **{'collection.id': obj.pk})
+
         qs = qs.sort({
             'collection.order': {
                 'order': 'asc',
@@ -246,10 +239,9 @@ class DataURLImageField(serializers.CharField):
         parts = metadata.rsplit(';', 1)
         if parts[-1] == 'base64':
             content = encoded.decode('base64')
-            tmp_dst = os.path.join(settings.TMP_PATH, 'icon', uuid.uuid4().hex)
-            with storage.open(tmp_dst, 'wb') as f:
-                f.write(content)
-            tmp = File(storage.open(tmp_dst))
+            f = StringIO.StringIO(content)
+            f.size = len(content)
+            tmp = File(f, name=uuid.uuid4().hex)
             hash_ = hashlib.md5(content).hexdigest()[:8]
             return serializers.ImageField().from_native(tmp), hash_
         else:

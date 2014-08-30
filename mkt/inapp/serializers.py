@@ -18,6 +18,7 @@ log = commonware.log.getLogger('z.inapp')
 
 
 class InAppProductSerializer(serializers.ModelSerializer):
+    active = serializers.BooleanField(required=False)
     guid = serializers.CharField(read_only=True)
     app = serializers.SlugRelatedField(read_only=True, slug_field='app_slug',
                                        source='webapp')
@@ -29,7 +30,7 @@ class InAppProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InAppProduct
-        fields = ['guid', 'app', 'price_id', 'name', 'logo_url']
+        fields = ['active', 'guid', 'app', 'price_id', 'name', 'logo_url']
 
     def validate_logo_url(self, attrs, source):
         logo_url = attrs.get(source)

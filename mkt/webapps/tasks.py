@@ -8,6 +8,7 @@ import random
 import StringIO
 import shutil
 import subprocess
+import tempfile
 import time
 
 from django.conf import settings
@@ -30,7 +31,7 @@ import amo
 import mkt
 from amo.decorators import use_master, write
 from amo.helpers import absolutify
-from amo.utils import chunked, days_ago, JSONEncoder
+from amo.utils import chunked, days_ago, JSONEncoder, slugify
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants.categories import CATEGORY_CHOICES
@@ -39,6 +40,7 @@ from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, save_icon, validator)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
+from mkt.ratings.models import Review
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.mail import send_mail_jinja
 from mkt.users.models import UserProfile
@@ -880,18 +882,87 @@ def generate_app_data(num):
         yield (appname, cat_slug)
 
 
-def generate_apps(num):
+def generate_icon(app):
+    im = Image.new(
+        "RGB", (128, 128),
+        "#" + hashlib.md5(unicode(app.name).encode('utf8')).hexdigest()[:6])
+    f = StringIO.StringIO()
+    im.save(f, 'png')
+    save_icon(app, f.getvalue())
+
+
+def generate_preview(app, n=1):
+    im = Image.new(
+        "RGB", (320, 480),
+        "#" + hashlib.md5(
+            unicode(app.name).encode('utf8') + chr(n)).hexdigest()[:6])
+    p = Preview.objects.create(addon=app, filetype="image/png",
+                               thumbtype="image/png",
+                               caption="screenshot " + str(n),
+                               position=n)
+    f = tempfile.NamedTemporaryFile()
+    im.save(f, 'png')
+    resize_preview(f.name, p)
+
+
+def generate_translations(app):
+    fr_prefix = u'(fran\xe7ais) '
+    es_prefix = u'(espa\xf1ol) '
+    oldname = unicode(app.name)
+    app.name = {'en': oldname,
+                'fr': fr_prefix + oldname,
+                'es': es_prefix + oldname}
+    app.save()
+
+
+def generate_ratings(app, num):
+    for n in range(num):
+        email = 'testuser%s@example.com' % (n,)
+        user, _ = UserProfile.objects.get_or_create(
+            username=email, email=email, source=amo.LOGIN_SOURCE_UNKNOWN,
+            display_name=email)
+        Review.objects.create(
+            addon=app, user=user, rating=random.randrange(0, 6),
+            title="Test Review " + str(n), body="review text")
+
+
+def generate_hosted_app(name, category):
     # Let's not make production code depend on stuff in the test package --
     # importing it only when called in local dev is fine.
     from amo.tests import app_factory
+    return app_factory(categories=[category], name=name, complete=True,
+                       rated=True)
+
+
+def generate_manifest(app):
+    data = {
+        "name": unicode(app.name),
+        "description": "This app has been automatically generated",
+        "version": "1.0",
+        "icons": {
+            "16": "http://testmanifest.com/icon-16.png",
+            "48": "http://testmanifest.com/icon-48.png",
+            "128": "http://testmanifest.com/icon-128.png"
+        },
+        "installs_allowed_from": ["*"],
+        "developer": {
+            "name": "Marketplace Team",
+            "url": "https://marketplace.firefox.com/credits"
+        }
+    }
+    AppManifest.objects.create(
+        version=app.latest_version, manifest=json.dumps(data))
+    app.update(manifest_url="http://%s.testmanifest.com/manifest.webapp" %
+               (slugify(unicode(app.name)),))
+
+
+def generate_apps(num):
     for appname, cat_slug in generate_app_data(num):
-        app = app_factory(categories=[cat_slug], name=appname, complete=True,
-                          rated=True)
-        im = Image.new("RGB", (128, 128),
-                       "#" + hashlib.md5(appname + cat_slug).hexdigest()[:6])
-        f = StringIO.StringIO()
-        im.save(f, 'png')
-        save_icon(app, f.getvalue())
+        app = generate_hosted_app(appname, cat_slug)
+        generate_icon(app)
+        generate_preview(app)
+        generate_translations(app)
+        generate_ratings(app, 5)
 
 
 @task
