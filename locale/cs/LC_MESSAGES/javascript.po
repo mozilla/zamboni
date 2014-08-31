@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-20 20:55+0000\n"
+"PO-Revision-Date: 2014-08-31 16:41+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405889758.0\n"
+"X-POOTLE-MTIME: 1409503309.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -542,23 +542,25 @@ msgstr "Chyba při zamítnutí aplikace: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Schválená aplikace: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Selhávající aplikace: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Chyba při průchodu aplikace: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:319
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Error failing app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Omlouváme se! Při získávání historie kontrol nastala chyba. Zkuste se prosím "
+"přihlásit znovu.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65

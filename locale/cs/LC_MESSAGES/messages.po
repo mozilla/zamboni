@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-28 15:04+0000\n"
+"PO-Revision-Date: 2014-08-31 16:50+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1406559860.0\n"
+"X-POOTLE-MTIME: 1409503845.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2030,47 +2030,47 @@ msgstr "Komentář vývojáře"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Zařízení byla redaktorem změněna"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Požadavky byly redaktorem změněny"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu změny v manifestu"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu změny URL manifestu"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu aktualizace placené varianty"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu přidání zařízení"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu změny požadavků"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Opětovná kontrola z důvodu hodnocení obsahu"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Zvýšen důraz, protože se jedná o VIP aplikaci"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Zvýšen důraz, protože se jedná o předinstalovanou aplikaci"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "Vyžadována prioritní kontrola"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2789,11 +2789,11 @@ msgstr "Do"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "Webová stránka"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "Příkazová řádka"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3233,7 +3233,7 @@ msgstr "Pro tuto aplikaci není k dispozici žádný účet pro platby."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3249,10 +3249,16 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p>Existují dva typy použití Marketplace API. Z jiné webové stránky při "
+"použití tradičního QAuth nebo z nástrojů na příkazové řádce. Rozdíl je "
+"uveden v <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/"
+"topics/authentication.html#oauth\">dokumentaci</a>. Jakékoliv testování by "
+"mělo být prováděno na <a href=\"https://marketplace-"
+"dev.allizom.org\">vývojářském serveru</a> a nikoliv produkčním.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Typ klienta"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3268,7 +3274,7 @@ msgstr "Vytvoření"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Klíče pro QAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3290,11 +3296,13 @@ msgstr "Aktuálně nemáte klíč pro API."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Příklad QAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Příklad použití Python knihovny z příkazové řádky na Mac OS X pomocí "
+"vašeho pověření pro QAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3324,7 +3332,7 @@ msgstr "Zpráva dne"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Aktualizace zprávy dne"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5523,15 +5531,15 @@ msgstr "Mozilla Web apps (Brazilian Portuguese)"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "Neplatná URL %(url)s"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
-msgstr ""
+msgstr "Chyba při stahování obrázku z %(url)s"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Obrázek z %(url)s nebyl rozpoznán"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6353,7 +6361,7 @@ msgstr "Čína ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6488,19 +6496,19 @@ msgstr "<i>anonymní</i> dne %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Další fronty"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "Fronta {queue} "
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "Prošlo"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Selhalo"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
