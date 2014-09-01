@@ -597,6 +597,14 @@ class SuggestionsESAppSerializer(ESAppSerializer):
         return app.get_icon_url(64)
 
 
+class DiscoPlaceESAppSerializer(SuggestionsESAppSerializer):
+    class Meta(ESAppSerializer.Meta):
+        fields = ['name', 'absolute_url', 'icon', 'status', 'is_disabled']
+
+    def get_icon(self, app):
+        return app.get_icon_url(128)
+
+
 class RocketbarESAppSerializer(serializers.Serializer):
     """Used by Firefox OS's Rocketbar apps viewer."""
     name = ESTranslationSerializerField()

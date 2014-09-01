@@ -45,8 +45,12 @@ urlpatterns = patterns('',
     url(r'^feed/shelves/(?P<pk>[^/.]+)/publish/$',
         views.FeedShelfPublishView.as_view(),
         name='feed-shelf-publish'),
-    url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
+    url(r'^consumer/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
+    # Remove fireplace version once fireplace has been updated to use
+    # consumer/feed/ with ?app_serializer=fireplace.
+    url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
+        views.FeedElementGetView.as_view(), name='feed.fire_feed_element_get'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
 ) + v1_urls

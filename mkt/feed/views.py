@@ -541,11 +541,12 @@ class BaseFeedESView(CORSMixin, APIView):
     def _pop_filter_fields(self, feed_element):
         """
         Remove fields we only deserialized because they were needed for
-        filtering.
+        filtering. Don't remove 'status' though, which is used in fireplace to
+        display reviewer buttons.
         """
         apps = feed_element.get('apps') or [feed_element['app']]
         for app in apps:
-            for field in ('is_disabled', 'regions', 'status'):
+            for field in ('is_disabled', 'regions'):
                 if field in app:
                     del app[field]
         return feed_element
@@ -786,6 +787,11 @@ class FeedElementGetView(BaseFeedESView):
         # public apps filter.
         data = (self.filter_apps_feed_element(request, dict(data)) or
                 self._filter(amo.STATUS_PUBLIC, 'status', feed_element))
+
+        # Limit if necessary.
+        limit = request.GET.get('limit')
+        if limit and limit.isdigit() and 'apps' in data:
+            data['apps'] = data['apps'][:int(limit)]
 
         return response.Response(data, status=status.HTTP_200_OK)
 
