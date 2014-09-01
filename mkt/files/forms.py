@@ -25,7 +25,7 @@ class FileSelectWidget(widgets.Select):
                                      (b.status == amo.STATUS_DISABLED)))
 
             if label is None:
-                label = u', '.join(unicode(os.platform) for os in f)
+                label = _('All')
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if files[0].status == amo.STATUS_DISABLED:

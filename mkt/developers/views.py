@@ -207,7 +207,7 @@ def status(request, addon_id, addon):
 
         elif 'upload-version' in request.POST and upload_form.is_valid():
             upload = upload_form.cleaned_data['upload']
-            ver = Version.from_upload(upload, addon, [amo.PLATFORM_ALL])
+            ver = Version.from_upload(upload, addon)
 
             # Update addon status now that the new version was saved.
             addon.update_status()

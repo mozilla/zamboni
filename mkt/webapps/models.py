@@ -44,7 +44,7 @@ from mkt.access import acl
 from mkt.constants import APP_FEATURES, apps, iarc_mappings
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.payments import PROVIDER_CHOICES
-from mkt.files.models import File, nfd_str, Platform
+from mkt.files.models import File, nfd_str
 from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
@@ -376,7 +376,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False):
+    def from_upload(cls, upload, is_packaged=False):
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
@@ -395,7 +395,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addon.manifest_url = upload.name
             addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
-        Version.from_upload(upload, addon, platforms)
+        Version.from_upload(upload, addon)
 
         amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
@@ -2131,8 +2131,7 @@ class Webapp(UUIDModelMixin, Addon):
         blocklisted_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
                                         'blocklisted.zip')
         v = Version.objects.create(addon=self, version='blocklisted')
-        f = File(version=v, status=amo.STATUS_BLOCKED,
-                 platform=Platform.objects.get(id=amo.PLATFORM_ALL.id))
+        f = File(version=v, status=amo.STATUS_BLOCKED)
         f.filename = f.generate_filename()
         copy_stored_file(blocklisted_path, f.file_path)
         log.info(u'[Webapp:%s] Copied blocklisted app from %s to %s' % (

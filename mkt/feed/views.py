@@ -22,8 +22,7 @@ from mkt.api.authorization import AllowReadOnly, AnyOf, GroupPermission
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.paginator import ESPaginator
 from mkt.collections.views import CollectionImageViewSet
-from mkt.constants import applications
-from mkt.constants.applications import DEVICE_CHOICES_IDS
+from mkt.constants.applications import DEVICE_LOOKUP
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.webapps.indexers import WebappIndexer
@@ -443,6 +442,20 @@ class BaseFeedESView(CORSMixin, APIView):
         # We replace the feed elements with None if they're to be filtered.
         return filter(lambda item: item[item['item_type']], feed_items)
 
+    def _get_device(self, request):
+        """
+        Return device to filter by (or None).
+        Fireplace sends `dev` and `device`. See the API docs for more info.
+        When `dev` is 'android' we also need to check `device` to pick a device
+        object.
+        """
+        dev = request.QUERY_PARAMS.get('dev')
+        device = request.QUERY_PARAMS.get('device')
+
+        if dev == 'android' and device:
+            dev = '%s-%s' % (dev, device)
+        return DEVICE_LOOKUP.get(dev)
+
     def filter_apps_feed_element(self, request, feed_element):
         """
         Runs multiple filters for apps of feed elements.
@@ -457,12 +470,9 @@ class BaseFeedESView(CORSMixin, APIView):
 
         if feed_element and filtering:
             # Device filtering.
-            device = DEVICE_CHOICES_IDS.get(request.QUERY_PARAMS.get('device'))
-            device = applications.REVERSE_DEVICE_LOOKUP.get(device)
-            if device and device != applications.DEVICE_DESKTOP.api_name:
-                # TODO: remove desktop clause when we want desktop filtering.
-                # If dev not in request, then we don't filter.
-                feed_element = self._filter(device, 'device_types',
+            device = self._get_device(request)
+            if device:
+                feed_element = self._filter(device.api_name, 'device_types',
                                             feed_element, check_member=True)
 
         if feed_element and filtering:

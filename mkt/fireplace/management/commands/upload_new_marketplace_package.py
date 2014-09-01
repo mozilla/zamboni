@@ -43,7 +43,7 @@ class Command(BaseCommand):
     def create_version(self, addon, upload):
         """Create new Version instance from a FileUpload instance"""
         self.info('Creating new Version...')
-        version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL])
+        version = Version.from_upload(upload, addon)
         self.info('Created new Version %s.' % version)
         return version
 
