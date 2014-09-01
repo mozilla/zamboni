@@ -41,7 +41,7 @@ from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
-from mkt.files.models import File, Platform
+from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
@@ -1495,7 +1495,6 @@ class TestPackagedAppManifestUpdates(amo.tests.TestCase):
 
 
 class TestWebappVersion(amo.tests.TestCase):
-    fixtures = fixture('platform_all')
 
     def test_no_version(self):
         eq_(Webapp().get_latest_file(), None)
@@ -1508,9 +1507,9 @@ class TestWebappVersion(amo.tests.TestCase):
     def test_right_file(self):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
         version = Version.objects.create(addon=webapp)
-        old_file = File.objects.create(version=version, platform_id=1)
+        old_file = File.objects.create(version=version)
         old_file.update(created=datetime.now() - timedelta(days=1))
-        new_file = File.objects.create(version=version, platform_id=1)
+        new_file = File.objects.create(version=version)
         webapp._current_version = version
         eq_(webapp.get_latest_file().pk, new_file.pk)
 
@@ -2232,7 +2231,6 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
 
     def setUp(self):
         super(TestManifestUpload, self).setUp()
-        self.platform = Platform.objects.get(id=amo.PLATFORM_ALL.id)
         self.addCleanup(translation.deactivate)
 
     def manifest(self, name):
@@ -2273,19 +2271,19 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
 
     def test_manifest_url(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload)
         eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload)
         eq_(addon.app_domain, 'http://mozilla.com')
 
     def test_non_english_app(self):
         upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload)
         eq_(addon.default_locale, 'it')
         eq_(unicode(addon.name), 'ItalianMozBall')
         eq_(addon.name.locale, 'it')
@@ -2298,7 +2296,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload)
         eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_unsupported(self):
@@ -2309,21 +2307,21 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload, [self.platform])
+        addon = Addon.from_upload(upload)
         eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
         with translation.override('fr'):
             # Upload app with en-US as default.
             upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-            addon = Addon.from_upload(upload, [self.platform])
+            addon = Addon.from_upload(upload)
             eq_(addon.default_locale, 'en-US')  # not fr
 
     @raises(forms.ValidationError)
     def test_malformed_locales(self):
         manifest = self.manifest('malformed-locales.webapp')
         upload = self.get_upload(abspath=manifest)
-        Addon.from_upload(upload, [self.platform])
+        Addon.from_upload(upload)
 
 
 class TestGeodata(amo.tests.WebappTestCase):

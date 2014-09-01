@@ -33,7 +33,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     version = models.ForeignKey('versions.Version', related_name='files')
-    platform = models.ForeignKey('Platform', default=amo.PLATFORM_ALL.id)
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
@@ -49,11 +48,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def __unicode__(self):
         return unicode(self.id)
-
-    @property
-    def amo_platform(self):
-        # TODO: Ideally this would be ``platform``.
-        return amo.PLATFORMS[self.platform_id]
 
     @property
     def has_been_validated(self):
@@ -72,11 +66,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(urlparams(url, src=src))
 
     @classmethod
-    def from_upload(cls, upload, version, platform, parse_data={}):
+    def from_upload(cls, upload, version, parse_data={}):
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
 
-        f = cls(version=version, platform=platform)
+        f = cls(version=version)
         f.filename = f.generate_filename(extension=ext or '.zip')
         f.size = storage.size(upload.path)  # Size in bytes.
         f.status = amo.STATUS_PENDING
@@ -242,22 +236,6 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
             addon = 'unknown'
         log.info('Hash changed for file: %s, addon: %s, from: %s to: %s' %
                  (instance.pk, addon, old, new))
-
-
-class Platform(amo.models.ModelBase):
-    # `name` and `shortname` are provided in amo.__init__
-    # name = TranslatedField()
-    # shortname = TranslatedField()
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'platforms'
-
-    def __unicode__(self):
-        if self.id in amo.PLATFORMS:
-            return unicode(amo.PLATFORMS[self.id].name)
-        else:
-            log.warning('Invalid platform')
-            return ''
 
 
 class FileUpload(amo.models.ModelBase):

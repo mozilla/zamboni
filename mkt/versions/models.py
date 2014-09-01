@@ -18,7 +18,7 @@ import amo.utils
 from amo.decorators import use_master
 from .compare import version_dict, version_int
 from mkt.files import utils
-from mkt.files.models import cleanup_file, File, Platform
+from mkt.files.models import cleanup_file, File
 from mkt.translations.fields import (LinkifiedField, PurifiedField,
                                      save_signal, TranslatedField)
 from mkt.versions.tasks import update_supported_locales_single
@@ -98,7 +98,7 @@ class Version(amo.models.ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True):
+    def from_upload(cls, upload, addon, send_signal=True):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -110,8 +110,6 @@ class Version(amo.models.ModelBase):
                                license_id=license, _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
 
-        platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
-
         # To avoid circular import.
         from mkt.webapps.models import AppManifest
 
@@ -120,8 +118,7 @@ class Version(amo.models.ModelBase):
         AppManifest.objects.create(
             version=v, manifest=json.dumps(manifest))
 
-        for platform in platforms:
-            File.from_upload(upload, v, platform, parse_data=data)
+        File.from_upload(upload, v, parse_data=data)
 
         # Update supported locales from manifest.
         # Note: This needs to happen after we call `File.from_upload`.
@@ -131,7 +128,7 @@ class Version(amo.models.ModelBase):
                 datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
 
         v.disable_old_files()
-        # After the upload has been copied to all platforms, remove the upload.
+        # After the upload has been copied, remove the upload.
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
@@ -192,11 +189,6 @@ class Version(amo.models.ModelBase):
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
-
-    @amo.cached_property
-    def supported_platforms(self):
-        """Get a list of supported platform names."""
-        return list(set(amo.PLATFORMS[f.platform_id] for f in self.all_files))
 
     @property
     def status(self):

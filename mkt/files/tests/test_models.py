@@ -12,7 +12,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from mkt.files.helpers import copyfileobj
-from mkt.files.models import File, FileUpload, FileValidation, nfd_str, Platform
+from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
@@ -100,7 +100,6 @@ class TestFileFromUpload(UploadTest):
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        self.platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
         self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
                                           name='app name')
         self.version = Version.objects.create(addon=self.addon)
@@ -120,18 +119,18 @@ class TestFileFromUpload(UploadTest):
 
     def test_filename_hosted(self):
         upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         eq_(f.filename, 'app-name-0.1.webapp')
 
     def test_filename_packaged(self):
         self.addon.is_packaged = True
         upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         eq_(f.filename, 'app-name-0.1.zip')
 
     def test_file_validation(self):
         upload = self.upload('mozball')
-        file = File.from_upload(upload, self.version, self.platform)
+        file = File.from_upload(upload, self.version)
         fv = FileValidation.objects.get(file=file)
         eq_(fv.validation, upload.validation)
         eq_(fv.valid, True)
@@ -141,24 +140,24 @@ class TestFileFromUpload(UploadTest):
 
     def test_file_hash(self):
         upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         assert f.hash.startswith('sha256:')
         assert len(f.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
     def test_utf8(self):
         upload = self.upload(u'mozball')
         self.version.addon.name = u'mözball'
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         eq_(f.filename, u'app-name-0.1.webapp')
 
     def test_size(self):
         upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         eq_(f.size, 93594)
 
     def test_file_hash_paranoia(self):
         upload = self.upload('mozball')
-        f = File.from_upload(upload, self.version, self.platform)
+        f = File.from_upload(upload, self.version)
         assert f.hash.startswith('sha256:ad85d6316166d46')
 
 

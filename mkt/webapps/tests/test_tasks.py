@@ -96,7 +96,7 @@ nhash = ('sha256:'
 
 
 class TestUpdateManifest(amo.tests.TestCase):
-    fixtures = fixture('platform_all', 'user_2519', 'user_999')
+    fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
         UserProfile.objects.get_or_create(id=settings.TASK_USER_ID)

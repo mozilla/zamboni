@@ -8,7 +8,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from mkt.files.models import File, Platform
+from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.versions.compare import MAXVERSION, version_dict, version_int
@@ -56,7 +56,7 @@ def test_version_int_unicode():
 
 
 class TestVersion(BaseUploadTest, amo.tests.TestCase):
-    fixtures = fixture('webapp_337141', 'platform_all')
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
         self.version = Version.objects.latest('id')
@@ -79,8 +79,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
                             'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path)
-        platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
-        version = Version.from_upload(upload, addon, [platform])
+        version = Version.from_upload(upload, addon)
         eq_(version.version, '42.0')
         eq_(version.developer_name, u'Mýself')
 
@@ -98,8 +97,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
                             'addons', 'mozball.webapp')
         upload = self.get_upload(abspath=path)
-        platform = Platform.objects.get(pk=amo.PLATFORM_ALL.id)
-        version = Version.from_upload(upload, addon, [platform])
+        version = Version.from_upload(upload, addon)
         eq_(version.version, '42.1')
         eq_(version.developer_name, truncated_developer_name)
 
@@ -135,10 +133,6 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
         # Ensure deleted version's files get disabled.
         eq_(version.all_files[0].status, amo.STATUS_DISABLED)
-
-    def test_supported_platforms(self):
-        assert amo.PLATFORM_ALL in self.version.supported_platforms, (
-            'Missing PLATFORM_ALL')
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
