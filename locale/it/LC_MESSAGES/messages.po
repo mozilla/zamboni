@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-08-03 09:46+0000\n"
+"PO-Revision-Date: 2014-08-31 15:36+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407059204.0\n"
+"X-POOTLE-MTIME: 1409499370.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -2029,47 +2029,49 @@ msgstr "Commento dello sviluppatore"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Dispositivo o dispositivi modificati dal revisore"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Requisito o requisiti modificati dal revisore"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Sottoposta a nuova revisione a causa di modifiche al manifesto"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Sottoposta a nuova revisione per modifica all’URL del manifesto"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Sottoposta a nuova revisione perché diventata Premium"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Sottoposta a nuova revisione perché è stato aggiunto un dispositivo"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Sottoposta a nuova revisione perché sono stati modificati i requisiti"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
 msgstr ""
+"Sottoposta a nuova revisione a causa della presenza di una classificazione "
+"dei contenuti vietata ai minori"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "In escalation perché app VIP"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Messa in escalation in quanto versione preliminare dell’app"
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "È richiesta una revisione con alta priorità"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2786,11 +2788,11 @@ msgstr "A"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
-msgstr ""
+msgstr "Sito web"
 
 #: mkt/developers/forms.py:1020
 msgid "Command line"
-msgstr ""
+msgstr "Riga di comando"
 
 #: mkt/developers/forms.py:1066
 msgid ""
@@ -3230,7 +3232,7 @@ msgstr "A questa app non è associato nessun account pagamenti."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "API Marketplace"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -3246,10 +3248,18 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p>Fondamentalmente ci sono due modi per utilizzare le API del Marketplace: "
+"tramite il protocollo OAuth da sito web o utilizzando un programma da riga "
+"di comando. Le differenze fra le due procedure vengono esposte nella <a "
+"href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authe"
+"ntication.html#oauth\">documentazione del Marketplace</a>.Tutti i test devono "
+"essere effettuati utilizzando il <a href=\"https://marketplace-"
+"dev.allizom.org\">server di sviluppo del Marketplace</a> e non il server "
+"ufficiale.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Tipologia client"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3265,7 +3275,7 @@ msgstr "Crea"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "Chiavi OAuth"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3287,11 +3297,13 @@ msgstr "Al momento non disponi di una API Key."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "Esempio OAuth"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>Esempio su Mac OS utilizzando una libreria Python da riga di comando con "
+"le tue credenziali OAuth.</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:34
@@ -3320,8 +3332,9 @@ msgid "Message of the Day"
 msgstr "Messaggio del giorno"
 
 #: mkt/developers/templates/developers/motd.html:11
+#, fuzzy
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Aggiorna “Messaggio quotidiano”"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:22 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:206
@@ -5540,15 +5553,17 @@ msgstr "App web di Mozilla (portoghese brasiliano)"
 
 #: mkt/feed/fields.py:127
 msgid "Invalid URL %(url)s"
-msgstr ""
+msgstr "URL non valido %(url)s"
 
 #: mkt/feed/fields.py:132
 msgid "Error downloading image from %(url)s"
 msgstr ""
+"Si è verificato un errore durante il tentativo di download delle immagini da "
+"%(url)s"
 
 #: mkt/feed/fields.py:140
 msgid "Image from %(url)s could not be parsed"
-msgstr ""
+msgstr "Impossibile analizzare l'immagine situata su %(url)s"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
@@ -6370,7 +6385,7 @@ msgstr "Cina ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
@@ -6503,19 +6518,19 @@ msgstr "<i>anonimo</i> il %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
-msgstr ""
+msgstr "Code aggiuntive"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
 msgid "{queue} Review Queue"
-msgstr ""
+msgstr "{queue} Coda di revisione"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Pass"
-msgstr ""
+msgstr "Promossa"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:23
 msgid "Fail"
-msgstr ""
+msgstr "Respinta"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:30 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: 2014-07-01 22:14+0000\n"
+"PO-Revision-Date: 2014-08-31 15:27+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404252891.0\n"
+"X-POOTLE-MTIME: 1409498824.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -534,11 +534,11 @@ msgstr "Si è verificato un errore durante il processo di rifiuto dell’app: {a
 
 #: media/js/devreg/reviewers/reviewers.js:309
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "App promossa: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:312
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "App respinta: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Error passing app: {app}"
@@ -551,6 +551,8 @@ msgstr ""
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr ""
+"Spiacenti, si è verificato un errore tentando di recuperare lo storico delle "
+"revisioni. Riprova effettuando nuovamente l’accesso.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
