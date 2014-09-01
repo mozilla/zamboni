@@ -1393,51 +1393,59 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
             device_type=applications.DEVICE_DESKTOP.id)
 
         # Mobile doesn't show desktop apps.
-        res, data = self._get(device='firefoxos')
+        res, data = self._get(device='firefoxos', dev='firefoxos')
         ok_(not data['objects'])
-        res, data = self._get(device='mobile')
+        res, data = self._get(device='mobile', dev='android')
         ok_(not data['objects'])
-        res, data = self._get(device='tablet')
+        res, data = self._get(device='tablet', dev='android')
         ok_(not data['objects'])
 
         # Desktop shows desktop apps.
-        res, data = self._get(device='desktop')
+        res, data = self._get(dev='desktop')
         ok_(data['objects'])
 
     def test_coll(self):
         # Longest set up ever. Create apps for different devices.
         app_gaia = amo.tests.app_factory()
         app_android = amo.tests.app_factory()
+        app_desktop = amo.tests.app_factory()
         app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         app_android.addondevicetype_set.create(
             device_type=applications.DEVICE_MOBILE.id)
+        app_desktop.addondevicetype_set.create(
+            device_type=applications.DEVICE_DESKTOP.id)
 
         # Create coll containing apps for different devices.
         coll = self.feed_collection_factory(
-            app_ids=[app_gaia.id, app_android.id])
+            app_ids=[app_gaia.id, app_android.id, app_desktop.id])
 
         # Wrap in FeedItem.
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL,
                                 collection=coll, region=1)
 
-        # FirefoxOS doesn't show Android-only app.
-        res, data = self._get(device='firefoxos')
+        # No filtering.
+        res, data = self._get()
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['collection']['app_count'], 3)
+
+        # Only FirefoxOS compatible apps.
+        res, data = self._get(device='firefoxos', dev='firefoxos')
         eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['collection']['apps'][0]['id'], app_gaia.id)
         eq_(data['objects'][0]['collection']['app_count'], 1)
 
-        # Android doesn't show FirefoxOS-only app.
-        res, data = self._get(device='mobile')
+        # Only Android mobile compatible apps.
+        res, data = self._get(device='mobile', dev='android')
         eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['collection']['apps'][0]['id'], app_android.id)
         eq_(data['objects'][0]['collection']['app_count'], 1)
 
-        # Currently having desktop show everything.
-        # (Desktop doesn't even show the collection since it'd be empty).
-        res, data = self._get(device='desktop')
-        # TODO: make this `not data['objects']` when add desktop filtering.
-        ok_(data['objects'])
+        # Only Desktop compatible apps.
+        res, data = self._get(dev='desktop')
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['collection']['apps'][0]['id'], app_desktop.id)
+        eq_(data['objects'][0]['collection']['app_count'], 1)
 
     def test_multiple_device_types(self):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
@@ -1447,18 +1455,18 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
             device_type=applications.DEVICE_GAIA.id)
 
         # Shows up on Desktop and Gaia.
-        res, data = self._get(device='desktop')
+        res, data = self._get(dev='desktop')
         ok_(data['objects'])
-        res, data = self._get(device='firefoxos')
+        res, data = self._get(device='firefoxos', dev='firefoxos')
         ok_(data['objects'])
 
         # Does not shows up on Android.
-        res, data = self._get(device='tablet')
+        res, data = self._get(device='tablet', dev='android')
         ok_(not data['objects'])
 
     def test_bad_device_type(self):
         self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
-        res, data = self._get(device='wut')
+        res, data = self._get(dev='wut')
         ok_(data['objects'])
 
     def test_no_filtering(self):
@@ -1469,10 +1477,10 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
                                 region=1)
 
-        res, data = self._get(device='mobile')
+        res, data = self._get(device='mobile', dev='android')
         eq_(len(data['objects']), 0)
 
-        res, data = self._get(device='mobile', filtering=0)
+        res, data = self._get(device='mobile', dev='android', filtering=0)
         eq_(len(data['objects']), 1)
 
 
@@ -1711,30 +1719,31 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_device_filtering(self):
         app_gaia = amo.tests.app_factory()
         app_android = amo.tests.app_factory()
+        app_desktop = amo.tests.app_factory()
         app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         app_android.addondevicetype_set.create(
             device_type=applications.DEVICE_MOBILE.id)
+        app_desktop.addondevicetype_set.create(
+            device_type=applications.DEVICE_DESKTOP.id)
 
         # Create coll containing apps for different devices.
         coll = self.feed_collection_factory(
-            app_ids=[app_gaia.id, app_android.id])
+            app_ids=[app_gaia.id, app_android.id, app_desktop.id])
         url = reverse('api-v2:feed.feed_element_get',
                       args=['collections', coll.slug])
 
-        res, data = self._get(url, device='firefoxos')
+        res, data = self._get(url, device='firefoxos', dev='firefoxos')
         eq_(len(data['apps']), 1)
         eq_(data['apps'][0]['id'], app_gaia.id)
 
-        res, data = self._get(url, device='mobile')
+        res, data = self._get(url, device='mobile', dev='android')
         eq_(len(data['apps']), 1)
         eq_(data['apps'][0]['id'], app_android.id)
 
-        # If feed element detail view comes up empty, just show all the apps.
-        res, data = self._get(url, device='desktop')
-        eq_(len(data['apps']), 2)
-        eq_(data['apps'][0]['id'], app_gaia.id)
-        eq_(data['apps'][1]['id'], app_android.id)
+        res, data = self._get(url, dev='desktop')
+        eq_(len(data['apps']), 1)
+        eq_(data['apps'][0]['id'], app_desktop.id)
 
 
 class TestFeedElementListView(BaseTestFeedESView, BaseTestFeedItemViewSet):
