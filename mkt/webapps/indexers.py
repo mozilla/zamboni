@@ -5,17 +5,15 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Max, Min
-from elasticsearch_dsl import F, filter as es_filter, query
+from elasticsearch_dsl import F, filter as es_filter
 
 import commonware.log
 
 import amo
-from amo.utils import to_language
-
 import mkt
+from amo.utils import to_language
 from mkt.constants import APP_FEATURES
 from mkt.constants.applications import DEVICE_GAIA
-from mkt.features.utils import get_feature_profile
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
@@ -27,14 +25,19 @@ log = commonware.log.getLogger('z.addons')
 
 class WebappIndexer(BaseIndexer):
     """
-    Bunch of ES stuff for Webapp include mappings, indexing, search.
+    Mapping type for Webapp models.
+
+    By default we will return these objects rather than hit the database so
+    include here all the things we need to avoid hitting the database.
     """
+
     @classmethod
     def search(cls, using=None):
         """
         Returns a `Search` object.
 
         We override this to use our patched version which adds statsd timing.
+
         """
         return Search(using=using or cls.get_es(),
                       index=cls.get_index(),
@@ -433,79 +436,30 @@ class WebappIndexer(BaseIndexer):
         WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
 
     @classmethod
-    def get_app_filter(cls, request, additional_data):
+    def from_search(cls, request, cat=None, region=None, gaia=False,
+                    mobile=False, tablet=False):
         """
-        THE grand, consolidated ES filter for Webapps. By default:
+        Base ES filter for Webapp to consumer pages. By default:
         - Excludes non-public apps.
         - Excludes disabled apps (whether by reviewer or by developer).
         - Excludes based on region exclusions.
         - TODO: Excludes based on device and platform support.
-
-        additional_data -- an object with more data to allow more filtering.
         """
-        from mkt.api.base import get_region_from_request
-        from mkt.search.views import name_query
-
-        data = {
-            'app_type': [],
-            'category': None,  # Slug.
-            'device': None,  # ID.
-            'gaia': getattr(request, 'GAIA', False),
-            'is_offline': None,
-            'manifest_url': '',
-            'mobile': getattr(request, 'MOBILE', False),
-            'premium_type': [],
-            'profile': get_feature_profile(request),
-            'q': '',
-            'region': get_region_from_request(request).id,
-            'supported_locales': [],
-            'tags': '',
-            'tablet': getattr(request, 'TABLET', False),
-        }
-        data.update(additional_data)
-
-        # Fields that will be filtered with a term query.
-        term_fields = ('device', 'manifest_url', 'tags')
-        # Fields that will be filtered with a terms query.
-        terms_fields = ('category', 'premium_type', 'app_type',
-                        'supported_locales')
-
-        sq = cls.search()
-
-        # QUERY.
-        if data['q']:
-            # Function score for popularity boosting (defaults to multiply).
-            sq = sq.query(
-                'function_score',
-                query=name_query(data['q'].lower()),
-                functions=[query.SF('field_value_factor', field='boost')])
-
-        # MUST.
-        must = [
+        filters = [
             F('term', status=amo.STATUS_PUBLIC),
             F('term', is_disabled=False),
         ]
-        for field in term_fields + terms_fields:
-            # Term filters.
-            if data[field]:
-                filter_type = 'term' if field in term_fields else 'terms'
-                must.append(F(filter_type, **{field: data[field]}))
-        if data['profile']:
-            # Feature filters.
-            profile = data['profile']
-            for k, v in profile.to_kwargs(prefix='features.has_').items():
-                must.append(F('term', **{k: v}))
-        if data['mobile'] or data['gaia']:
-            # Uses flash.
-            must.append(F('term', uses_flash=False))
-        if data['is_offline'] is not None:
-            must.append(F('term', is_offline=data['is_offline']))
 
-        # FILTER.
-        sq = sq.filter(es_filter.Bool(must=must))
-        if data['region']:
-            # Region exclusions.
-            sq = sq.filter(~F('term', region_exclusions=data['region']))
+        if cat:
+            filters.append(F('term', category=cat.slug))
+
+        if mobile or gaia:
+            filters.append(F('term', uses_flash=False))
+
+        sq = cls.search().filter(es_filter.Bool(must=filters))
+
+        if region:
+            sq = sq.filter(~F('term', region_exclusions=region.id))
 
         return sq
 

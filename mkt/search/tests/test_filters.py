@@ -12,7 +12,7 @@ from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.regions import set_region
 from mkt.reviewers.forms import ApiReviewersSearchForm
 from mkt.search.forms import (ApiSearchForm, TARAKO_CATEGORIES_MAPPING)
-from mkt.search.views import _sort_search, DEFAULT_SORTING
+from mkt.search.views import _filter_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
@@ -38,19 +38,9 @@ class TestSearchFilters(BaseOAuth):
     def _filter(self, req, filters, **kwargs):
         form = self.form_class(filters)
         if form.is_valid():
-            form_data = form.cleaned_data
-            sq = WebappIndexer.get_app_filter(self.req, {
-                'app_type': form_data['app_type'],
-                'category': form_data['cat'],
-                'device': form_data['device'],
-                'is_offline': form_data['offline'],
-                'manifest_url': form_data['manifest_url'],
-                'q': form_data['q'],
-                'premium_type': form_data['premium_types'],
-                'supported_locales': form_data['languages'],
-                'tags': form_data['tag'],
-            })
-            return _sort_search(self.req, sq, form_data).to_dict()
+            qs = WebappIndexer.from_search(self.req, **kwargs)
+            return _filter_search(
+                self.req, qs, form.cleaned_data).to_dict()
         else:
             return form.errors.copy()
 
@@ -189,8 +179,7 @@ class TestSearchFilters(BaseOAuth):
             in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_region_exclusions(self):
-        self.req.REGION = regions.CO
-        qs = self._filter(self.req, {'q': 'search terms'})
+        qs = self._filter(self.req, {'q': 'search terms'}, region=regions.CO)
         ok_({'term': {'region_exclusions': regions.CO.id}}
             in qs['query']['filtered']['filter']['bool']['must_not'])
 
