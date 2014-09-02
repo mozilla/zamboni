@@ -32,7 +32,8 @@ import amo
 import amo.utils
 import lib.iarc
 from amo.decorators import (any_permission_required, json_view, login_required,
-                            permission_required, post_required, skip_cache, write)
+                            permission_required, post_required, skip_cache,
+                            write)
 from amo.utils import escape_all
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
@@ -46,9 +47,9 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
                                   AppFormTechnical, AppVersionForm,
                                   CategoryForm, ContentRatingForm,
                                   IARCGetAppInfoForm, MOTDForm,
-                                  NewPackagedAppForm,
-                                  PreloadTestPlanForm, PreviewFormSet,
-                                  TransactionFilterForm, trap_duplicate)
+                                  NewPackagedAppForm, PreloadTestPlanForm,
+                                  PreviewFormSet, TransactionFilterForm,
+                                  trap_duplicate)
 from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import run_validator, save_test_plan
@@ -185,7 +186,8 @@ def status(request, addon_id, addon):
     appeal_form = forms.AppAppealForm(request.POST, product=addon)
     upload_form = NewWebappVersionForm(request.POST or None, is_packaged=True,
                                        addon=addon, request=request)
-    publish_form = forms.PublishForm(request.POST or None, addon=addon)
+    publish_form = forms.PublishForm(
+        request.POST if 'publish-app' in request.POST else None, addon=addon)
 
     if request.method == 'POST':
         if 'resubmit-app' in request.POST and appeal_form.is_valid():

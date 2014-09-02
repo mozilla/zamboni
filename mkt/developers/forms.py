@@ -777,8 +777,8 @@ class PublishForm(happyforms.Form):
     STATUS_MAPPING = dict((v, k) for k, v in PUBLISH_MAPPING.items())
 
     publish_type = forms.TypedChoiceField(
-        label=_lazy('App Visibility:'), choices=PUBLISH_CHOICES,
-        widget=forms.RadioSelect(), initial=0, coerce=int)
+        required=False, choices=PUBLISH_CHOICES, widget=forms.RadioSelect(),
+        initial=0, coerce=int, label=_lazy('App Visibility:'))
     limited = forms.BooleanField(
         required=False, label=mark_safe(
             _lazy('<b>Limit to my team</b>: Visible to only Team Members.')))
