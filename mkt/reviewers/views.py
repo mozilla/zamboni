@@ -28,12 +28,12 @@ from elasticsearch_dsl.filter import F
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
-from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
+import mkt
 from amo.decorators import (any_permission_required, json_view, login_required,
                             permission_required)
 from amo.helpers import absolutify, urlparams
@@ -41,8 +41,6 @@ from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
 from lib.crypto.packaged import SigningError
-
-import mkt
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
@@ -59,8 +57,8 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  MOTDForm)
 from mkt.reviewers.models import (AdditionalReview, EditorSubscription,
-                                  EscalationQueue, RereviewQueue,
-                                  ReviewerScore, QUEUE_TARAKO)
+                                  EscalationQueue, QUEUE_TARAKO, RereviewQueue,
+                                  ReviewerScore)
 from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
@@ -73,7 +71,7 @@ from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonUser, AddonDeviceType, Version, Webapp
+from mkt.webapps.models import AddonDeviceType, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -738,7 +736,7 @@ def logs(request):
 
     if not data.get('start') and not data.get('end'):
         today = datetime.date.today()
-        data['start'] = datetime.date(today.year, today.month, 1)
+        data['start'] = today - datetime.timedelta(days=30)
 
     form = forms.ReviewAppLogForm(data)
 
