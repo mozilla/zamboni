@@ -204,6 +204,14 @@ def update_app_downloads():
         countdown += seconds_between
 
 
+def _remove_stale_files(path, age, msg):
+    for file_name in os.listdir(path):
+        file_path = os.path.join(path, file_name)
+        if (os.stat(file_path).st_mtime < time.time() - age):
+            log.debug(msg.format(file_path))
+            os.remove(file_path)
+
+
 @cronjobs.register
 def mkt_gc(**kw):
     """Site-wide garbage collections."""
@@ -223,26 +231,30 @@ def mkt_gc(**kw):
     Nonce.objects.filter(created__lt=days_ago(1)).delete()
 
     # Delete the dump apps over 30 days.
-    for app in os.listdir(settings.DUMPED_APPS_PATH):
-        app = os.path.join(settings.DUMPED_APPS_PATH, app)
-        if (os.stat(app).st_mtime < time.time() -
-            settings.DUMPED_APPS_DAYS_DELETE):
-            log.debug('Deleting old tarball: {0}'.format(app))
-            os.remove(app)
+    _remove_stale_files(settings.DUMPED_APPS_PATH,
+                        settings.DUMPED_APPS_DAYS_DELETE,
+                        'Deleting old tarball: {0}')
 
     # Delete the dumped user installs over 30 days.
-    tarball_path = os.path.join(settings.DUMPED_USERS_PATH, 'tarballs')
-    for filename in os.listdir(tarball_path):
-        filepath = os.path.join(tarball_path, filename)
-        if (os.stat(filepath).st_mtime < time.time() -
-            settings.DUMPED_USERS_DAYS_DELETE):
-            log.debug('Deleting old tarball: {0}'.format(filepath))
-            os.remove(filepath)
+    _remove_stale_files(settings.DUMPED_USERS_PATH,
+                        settings.DUMPED_USERS_DAYS_DELETE,
+                        'Deleting old tarball: {0}')
+
+    # Delete old files in select directories under TMP_PATH.
+    _remove_stale_files(os.path.join(settings.TMP_PATH, 'preview'),
+                        settings.TMP_PATH_DAYS_DELETE,
+                        'Deleting TMP_PATH file: {0}')
+    _remove_stale_files(os.path.join(settings.TMP_PATH, 'icon'),
+                        settings.TMP_PATH_DAYS_DELETE,
+                        'Deleting TMP_PATH file: {0}')
 
     # Delete stale FileUploads.
     for fu in FileUpload.objects.filter(created__lte=days_ago(90)):
         log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
                   .format(uuid=fu.uuid, path=fu.path))
         if fu.path:
-            os.remove(fu.path)
+            try:
+                os.remove(fu.path)
+            except OSError:
+                pass
         fu.delete()

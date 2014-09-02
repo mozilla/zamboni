@@ -668,6 +668,9 @@ DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 # Tarballs in DUMPED_USERS_PATH deleted 30 days after they have been written.
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
+# Files saved to TMP_PATH deleted 15 days after written.
+TMP_PATH_DAYS_DELETE = 3600 * 24 * 15
+
 # Please use all lowercase for the blacklist.
 EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
@@ -889,7 +892,7 @@ MAX_WEBAPP_UPLOAD_SIZE = 2 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 
 # In-app product images are required to be this size in pixels (squared).
-REQUIRED_INAPP_IMAGE_SIZE = 64;
+REQUIRED_INAPP_IMAGE_SIZE = 64
 
 # This is the base filename of the `.zip` containing the packaged app for the
 # consumer-facing pages of the Marketplace (aka Fireplace). Expected path:
