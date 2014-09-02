@@ -9,12 +9,12 @@ import jwt
 from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, raises
 
-from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from mkt.constants.payments import PROVIDER_BOKU
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
+from mkt.site.helpers import absolutify
 from mkt.webpay.webpay_jwt import (get_product_jwt, InAppProduct,
                                    SimulatedInAppProduct, WebAppProduct)
 

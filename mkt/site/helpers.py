@@ -1,16 +1,23 @@
 import json
 import uuid
+from urlparse import urljoin
 
 from django.conf import settings
+from django.forms import CheckboxInput
+from django.template import defaultfilters
+from django.utils import translation
+from django.utils.encoding import smart_unicode
 
 import commonware.log
 import jinja2
+from babel.support import Format
 from jingo import env, register
 from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 from amo.helpers import urlparams
 from amo.urlresolvers import reverse
+from amo.utils import get_locale_from_lang
 
 from mkt.translations.helpers import truncate
 from mkt.users.views import fxa_oauth_api
@@ -263,3 +270,70 @@ def fxa_auth_info(context=None):
                 client_id=settings.FXA_CLIENT_ID,
                 state=state,
                 scope='profile'))
+
+
+@register.filter
+def absolutify(url, site=None):
+    """Takes a URL and prepends the SITE_URL"""
+    if url.startswith('http'):
+        return url
+    else:
+        return urljoin(site or settings.SITE_URL, url)
+
+
+def _get_format():
+    lang = translation.get_language()
+    return Format(get_locale_from_lang(lang))
+
+
+@register.filter
+def babel_datetime(dt, format='medium'):
+    return _get_format().datetime(dt, format=format) if dt else ''
+
+
+@register.filter
+def babel_date(date, format='medium'):
+    return _get_format().date(date, format=format) if date else ''
+
+
+@register.filter
+def is_choice_field(value):
+    try:
+        return isinstance(value.field.widget, CheckboxInput)
+    except AttributeError:
+        pass
+
+
+@register.filter
+def numberfmt(num, format=None):
+    return _get_format().decimal(num, format)
+
+
+@register.function
+@jinja2.contextfunction
+def page_title(context, title):
+    title = smart_unicode(title)
+    base_title = _('Firefox Marketplace')
+    return u'%s | %s' % (title, base_title)
+
+
+@register.filter
+def timesince(time):
+    if not time:
+        return u''
+    ago = defaultfilters.timesince(time)
+    # L10n: relative time in the past, like '4 days ago'
+    return _(u'{0} ago').format(ago)
+
+
+@register.function
+def url(viewname, *args, **kwargs):
+    """Helper for Django's ``reverse`` in templates."""
+    add_prefix = kwargs.pop('add_prefix', True)
+    host = kwargs.pop('host', '')
+    src = kwargs.pop('src', '')
+    url = '%s%s' % (host, reverse(viewname, args=args, kwargs=kwargs,
+                                  add_prefix=add_prefix))
+    if src:
+        url = urlparams(url, src=src)
+    return url

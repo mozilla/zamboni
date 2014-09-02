@@ -31,8 +31,6 @@ import amo
 import amo.models
 import mkt
 from amo.decorators import skip_cache, use_master, write
-from amo.helpers import absolutify
-from amo.storage_utils import copy_stored_file
 from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
                        slugify, smart_path, sorted_groupby, timer,
                        to_language, urlparams)
@@ -50,7 +48,9 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
 from mkt.site.mail import send_mail
+from mkt.site.helpers import absolutify
 from mkt.site.models import DynamicBoolFieldsMixin
+from mkt.site.storage_utils import copy_stored_file
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)

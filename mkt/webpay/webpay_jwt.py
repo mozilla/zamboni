@@ -10,8 +10,8 @@ from django.core.urlresolvers import reverse
 import commonware.log
 
 import amo
-from amo.helpers import absolutify
 from lib.crypto.webpay import sign_webpay_jwt
+from mkt.site.helpers import absolutify
 from mkt.webpay.utils import make_external_id, strip_tags
 
 

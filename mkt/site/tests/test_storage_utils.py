@@ -8,9 +8,9 @@ from django.core.files.storage import default_storage as storage
 
 from nose.tools import eq_
 
-from amo.storage_utils import (walk_storage, copy_stored_file,
-                               move_stored_file, rm_stored_dir)
 from amo.utils import rm_local_tmp_dir
+from mkt.site.storage_utils import (walk_storage, copy_stored_file,
+                                    move_stored_file)
 
 
 def test_storage_walk():
@@ -40,29 +40,6 @@ def test_storage_walk():
         yield (eq_, results.pop(0), (jn('one/three'), set([]), set(['file1.txt'])))
         yield (eq_, results.pop(0), (jn('one/two'), set([]), set(['file1.txt'])))
         yield (eq_, len(results), 0)
-    finally:
-        rm_local_tmp_dir(tmp)
-
-
-def test_rm_stored_dir():
-    tmp = tempfile.mkdtemp()
-    jn = partial(os.path.join, tmp)
-    try:
-        storage.save(jn('file1.txt'), ContentFile('<stuff>'))
-        storage.save(jn('one/file1.txt'), ContentFile(''))
-        storage.save(jn('one/two/file1.txt'), ContentFile('moar stuff'))
-        storage.save(jn(u'one/kristi\u0107/kristi\u0107.txt'),
-                     ContentFile(''))
-
-        rm_stored_dir(jn('one'))
-
-        yield (eq_, storage.exists(jn('one')), False)
-        yield (eq_, storage.exists(jn('one/file1.txt')), False)
-        yield (eq_, storage.exists(jn('one/two')), False)
-        yield (eq_, storage.exists(jn('one/two/file1.txt')), False)
-        yield (eq_, storage.exists(jn(u'one/kristi\u0107/kristi\u0107.txt')),
-               False)
-        yield (eq_, storage.exists(jn('file1.txt')), True)
     finally:
         rm_local_tmp_dir(tmp)
 

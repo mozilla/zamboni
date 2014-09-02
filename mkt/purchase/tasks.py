@@ -4,10 +4,9 @@ import jingo.helpers
 from celeryutils import task
 from tower import ugettext as _
 
-from amo.helpers import absolutify
 from amo.utils import get_locale_from_lang
-
 from mkt.purchase.models import Contribution
+from mkt.site.helpers import absolutify
 from mkt.site.mail import send_html_mail_jinja
 
 log = logging.getLogger('z.purchase.webpay')

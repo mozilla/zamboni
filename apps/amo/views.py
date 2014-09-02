@@ -17,7 +17,7 @@ from django_statsd.clients import statsd
 
 from amo.decorators import post_required
 from amo.utils import log_cef
-from amo.context_processors import get_collect_timings
+from mkt.site.context_processors import get_collect_timings
 from . import monitors
 
 log = commonware.log.getLogger('z.amo')
@@ -96,9 +96,3 @@ def record(request):
     if get_collect_timings():
         return django_statsd_record(request)
     raise PermissionDenied
-
-
-def plugin_check_redirect(request):
-    return http.HttpResponseRedirect('%s?%s' %
-            (settings.PFS_URL,
-             iri_to_uri(request.META.get('QUERY_STRING', ''))))

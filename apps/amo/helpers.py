@@ -3,14 +3,12 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.forms import CheckboxInput
 from django.template import defaultfilters
 from django.utils import translation
 from django.utils.encoding import smart_unicode
 
 import jinja2
 import six
-from babel.support import Format
 from jingo import env, register
 # Needed to make sure our own |f filter overrides jingo's one.
 from jingo import helpers  # noqa
@@ -29,42 +27,6 @@ register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
 register.function(utils.randslice)
-
-
-@register.filter
-def xssafe(value):
-    """
-    Like |safe but for strings with interpolation.
-
-    By using |xssafe you assert that you have written tests proving an
-    XSS can't happen here.
-    """
-    return jinja2.Markup(value)
-
-
-@register.filter
-def babel_datetime(dt, format='medium'):
-    return _get_format().datetime(dt, format=format) if dt else ''
-
-
-@register.filter
-def babel_date(date, format='medium'):
-    return _get_format().date(date, format=format) if date else ''
-
-
-@register.function
-def url(viewname, *args, **kwargs):
-    """Helper for Django's ``reverse`` in templates."""
-    add_prefix = kwargs.pop('add_prefix', True)
-    host = kwargs.pop('host', '')
-    src = kwargs.pop('src', '')
-    url = '%s%s' % (host, urlresolvers.reverse(viewname,
-                                               args=args,
-                                               kwargs=kwargs,
-                                               add_prefix=add_prefix))
-    if src:
-        url = urlparams(url, src=src)
-    return url
 
 
 @register.filter
@@ -114,16 +76,6 @@ class Paginator(object):
         return jinja2.Markup(t)
 
 
-def _get_format():
-    lang = translation.get_language()
-    return Format(utils.get_locale_from_lang(lang))
-
-
-@register.filter
-def numberfmt(num, format=None):
-    return _get_format().decimal(num, format)
-
-
 @register.function
 @jinja2.contextfunction
 def login_link(context):
@@ -136,14 +88,6 @@ def login_link(context):
 
     l = urlparams(urlresolvers.reverse('users.login'), to=next)
     return l
-
-
-@register.function
-@jinja2.contextfunction
-def page_title(context, title, force_webapps=False):
-    title = smart_unicode(title)
-    base_title = _('Firefox Marketplace')
-    return u'%s :: %s' % (title, base_title)
 
 
 @register.function
@@ -177,15 +121,6 @@ def json(s):
 
 
 @register.filter
-def absolutify(url, site=None):
-    """Takes a URL and prepends the SITE_URL"""
-    if url.startswith('http'):
-        return url
-    else:
-        return urljoin(site or settings.SITE_URL, url)
-
-
-@register.filter
 def strip_controls(s):
     """
     Strips control characters from a string.
@@ -200,23 +135,6 @@ def strip_controls(s):
 def external_url(url):
     """Bounce a URL off outgoing.mozilla.org."""
     return urlresolvers.get_outgoing_url(unicode(url))
-
-
-@register.filter
-def timesince(time):
-    if not time:
-        return u''
-    ago = defaultfilters.timesince(time)
-    # L10n: relative time in the past, like '4 days ago'
-    return _(u'{0} ago').format(ago)
-
-
-@register.filter
-def is_choice_field(value):
-    try:
-        return isinstance(value.field.widget, CheckboxInput)
-    except AttributeError:
-        pass
 
 
 @register.function
@@ -240,16 +158,6 @@ def media(context, url, key='MEDIA_URL'):
 def static(context, url):
     """Get a STATIC_URL link with a cache buster querystring."""
     return media(context, url, 'STATIC_URL')
-
-
-@register.function
-@jinja2.contextfunction
-def hasOneToOne(context, obj, attr):
-    try:
-        getattr(obj, attr)
-        return True
-    except ObjectDoesNotExist:
-        return False
 
 
 @register.filter

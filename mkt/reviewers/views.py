@@ -36,7 +36,7 @@ from waffle.decorators import waffle_switch
 import amo
 from amo.decorators import (any_permission_required, json_view, login_required,
                             permission_required)
-from amo.helpers import absolutify, urlparams
+from amo.helpers import urlparams
 from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
@@ -66,7 +66,7 @@ from mkt.reviewers.serializers import (ReviewersESAppSerializer,
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
 from mkt.search.views import SearchView
-from mkt.site.helpers import product_as_dict
+from mkt.site.helpers import absolutify, product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation

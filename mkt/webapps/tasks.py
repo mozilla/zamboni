@@ -30,7 +30,6 @@ from tower import ugettext as _
 import amo
 import mkt
 from amo.decorators import use_master, write
-from amo.helpers import absolutify
 from amo.utils import chunked, days_ago, JSONEncoder, slugify
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
@@ -43,6 +42,7 @@ from mkt.files.utils import WebAppParser
 from mkt.ratings.models import Review
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.mail import send_mail_jinja
+from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer

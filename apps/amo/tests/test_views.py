@@ -12,8 +12,8 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from amo.helpers import absolutify
 from amo.urlresolvers import reverse
+from mkt.site.helpers import absolutify
 
 
 class Test403(amo.tests.TestCase):

@@ -1,13 +1,41 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.utils import translation
 
+import waffle
+from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
 import mkt
-from amo.context_processors import get_collect_timings
 from mkt.access import acl
 from mkt.zadmin.models import get_config
+
+
+def i18n(request):
+    return {'LANGUAGES': settings.LANGUAGES,
+            'LANG': settings.LANGUAGE_URL_MAP.get(translation.get_language())
+                    or translation.get_language(),
+            'DIR': 'rtl' if translation.get_language_bidi() else 'ltr',
+            }
+
+
+def static_url(request):
+    return {'STATIC_URL': settings.STATIC_URL}
+
+
+@memoize('collect-timings')
+def get_collect_timings():
+    # The flag has to be enabled for everyone and then we'll use that
+    # percentage in the pages.
+    percent = 0
+    try:
+        flag = waffle.models.Flag.objects.get(name='collect-timings')
+        if flag.everyone and flag.percent:
+            percent = float(flag.percent) / 100.0
+    except waffle.models.Flag.DoesNotExist:
+        pass
+    return percent
 
 
 def global_settings(request):

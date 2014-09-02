@@ -10,7 +10,6 @@ from tower import ungettext as ngettext
 
 import amo
 import mkt
-from amo.helpers import absolutify
 from amo.utils import no_translation
 from drf_compound_fields.fields import ListField
 from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
@@ -22,6 +21,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.constants.payments import PROVIDER_BANGO
 from mkt.prices.models import AddonPremium, Price
 from mkt.search.serializers import BaseESSerializer, es_to_datetime
+from mkt.site.helpers import absolutify
 from mkt.submit.forms import mark_for_rereview
 from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.versions.models import Version

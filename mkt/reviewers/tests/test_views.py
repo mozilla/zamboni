@@ -26,7 +26,7 @@ import amo
 import amo.tests
 import mkt
 import mkt.ratings
-from amo.helpers import absolutify, urlparams
+from amo.helpers import urlparams
 from amo.tests import (app_factory, check_links, days_ago, formset, initial,
                        req_factory_factory, user_factory, version_factory)
 from amo.utils import isotime
@@ -46,6 +46,7 @@ from mkt.reviewers.models import (CannedResponse, EscalationQueue,
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile

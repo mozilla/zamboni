@@ -13,12 +13,12 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-from amo.helpers import absolutify
 from lib.video import library as video_library
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_PREVIEW_MINIMUMS, comm, PRERELEASE_PERMISSIONS
 from mkt.reviewers.models import EscalationQueue
 from mkt.reviewers.utils import send_reviewer_mail
+from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 
 

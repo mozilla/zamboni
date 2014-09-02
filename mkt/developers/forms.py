@@ -28,7 +28,6 @@ import amo
 import lib.iarc
 import mkt
 from amo import get_user
-from amo.fields import SeparatedValuesField
 from amo.utils import remove_icons, slug_validator, slugify
 from lib.video import tasks as vtasks
 from mkt.access import acl
@@ -40,6 +39,7 @@ from mkt.files.utils import WebAppParser
 from mkt.regions import REGIONS_CHOICES_SORTED_BY_NAME
 from mkt.regions.utils import parse_region
 from mkt.reviewers.models import RereviewQueue
+from mkt.site.fields import SeparatedValuesField
 from mkt.site.forms import AddonChoiceField
 from mkt.tags.models import Tag
 from mkt.translations.fields import TransField

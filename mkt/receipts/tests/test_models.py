@@ -9,9 +9,9 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.helpers import absolutify
 from amo.tests import addon_factory
 from mkt.receipts.utils import create_receipt, get_key
+from mkt.site.helpers import absolutify
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
 
