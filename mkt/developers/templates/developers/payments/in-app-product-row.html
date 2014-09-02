@@ -17,6 +17,13 @@
     <div class="field-error error"></div>
   </td>
   <td class="in-app-product-guid">{{ product.guid }}</td>
+  <td class="in-app-product-active">
+    <span class="inline-view"></span>
+    <label>
+      <input type="checkbox" class="inline-edit" {% if product.active %} checked{% endif %}>
+      <span class="inline-edit">{{ _('Enable') }}</span>
+    </label>
+  </td>
   <td>
     <button class="in-app-product-edit button inline-view">{{ _('Edit') }}</button>
     <button class="in-app-product-save button good inline-edit">{{ _('Save') }}</button>

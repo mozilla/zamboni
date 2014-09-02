@@ -52,12 +52,13 @@
     var InlineTextEditComponent = flight.component(function () {
         this.defaultAttrs({
             name: null,
-            outputSelector: 'span',
+            outputSelector: 'span.inline-view',
             inputSelector: 'input[type="text"]',
             errorSelector: '.field-error',
             editingClass: 'editing',
             startEditing: false,
             outputFormatter: function (value) { return value; },
+            getInputValue: function (input) { return input.val(); },
         });
 
         this.setValue = function (value) {
@@ -86,7 +87,7 @@
             this.data = {};
 
             if (typeof this.attr.value === 'undefined') {
-                this.attr.value = this.input.val() || this.output.text();
+                this.attr.value = this.attr.getInputValue(this.input) || this.output.text();
             }
 
             this.on('dataInlineEditChanged', function (e, payload) {
@@ -108,19 +109,14 @@
                 this.error.text(payload.errors[0]);
             });
 
-            switch (this.input.prop('tagName')) {
-                case 'INPUT':
-                    this.on(this.input, 'keyup', function (e) {
-                        this.setValue(e.target.value);
+            this.on(this.input, 'keyup', function (e) {
+                this.setValue(this.attr.getInputValue(this.input));
 
-                    });
-                    break;
-                case 'SELECT':
-                    this.on(this.input, 'change', function (e) {
-                        this.setValue(e.target.value);
-                    });
-                    break;
-            }
+            });
+
+            this.on(this.input, 'change', function (e) {
+                this.setValue(this.attr.getInputValue(this.input));
+            });
 
             if (this.attr.startEditing) {
                 this.trigger('uiStartInlineEdit');
@@ -156,6 +152,7 @@
             nameSelector: '.in-app-product-name',
             priceSelector: '.in-app-product-price',
             logoUrlSelector: '.in-app-product-logo-url',
+            activeSelector: '.in-app-product-active',
             saveSelector: '.in-app-product-save',
             editSelector: '.in-app-product-edit',
             deleteSelector: '.in-app-product-delete',
@@ -213,6 +210,7 @@
             this.price = this.select('priceSelector');
             this.guid = this.select('productIdSelector');
             this.logoUrl = this.select('logoUrlSelector');
+            this.active = this.select('activeSelector');
             this.saveButton = this.select('saveSelector');
             this.editButton = this.select('editSelector');
             this.error = this.select('errorSelector');
@@ -224,6 +222,7 @@
                 name: this.name,
                 guid: this.guid,
                 price_id: this.price,
+                active: this.active,
             };
 
             this.on('dataInlineEditChanged', function (e, payload) {
@@ -268,6 +267,19 @@
             InlineTextComponent.attachTo(this.guid, {
                 name: 'guid',
                 dataSource: this,
+            });
+            InlineTextEditComponent.attachTo(this.active, {
+                name: 'active',
+                inputSelector: 'input[type="checkbox"]',
+                startEditing: this.attr.startEditing,
+                getInputValue: function (input) { return input.is(':checked'); },
+                outputFormatter: function (value) {
+                    if (value) {
+                        return gettext('Enabled');
+                    } else {
+                        return gettext('Disabled');
+                    }
+                },
             });
 
             this.on(this.logoUrl, 'click', function (e) {

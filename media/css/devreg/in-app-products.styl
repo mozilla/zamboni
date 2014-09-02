@@ -3,12 +3,18 @@
         display: none;
     }
 
-    &.editing .inline-edit {
-        display: block;
-    }
+    &.editing {
+        .inline-view {
+            display: none;
+        }
 
-    &.editing .inline-view {
-        display: none;
+        .inline-edit {
+            display: inline;
+
+        }
+        label {
+            width: 5em;
+        }
     }
 
     .error {
