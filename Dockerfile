@@ -24,7 +24,7 @@ ADD requirements /pip/requirements
 RUN sed -i 's/M2Crypto.*$/# Removed in favour of packaged version/' /pip/requirements/compiled.txt
 
 # This cd into /pip ensures egg-links for git installed deps are created in /pip/src
-RUN cd /pip && pip install -b /pip/build --download-cache /pip/cache -r /pip/requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
+RUN cd /pip && pip install -b /pip/build --no-deps --download-cache /pip/cache -r /pip/requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
 
 # Install the node_modules.
 RUN mkdir -p /srv/zamboni-node
