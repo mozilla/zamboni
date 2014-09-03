@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-08-01 15:12+0000\n"
+"PO-Revision-Date: 2014-09-03 20:56+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1406905938.0\n"
+"X-POOTLE-MTIME: 1409777781.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -3524,7 +3524,7 @@ msgstr "Balidazioaren emaitzak"
 
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Balioztatze-data:"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
@@ -3540,7 +3540,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:24
 msgid "Submit An App"
-msgstr ""
+msgstr "Bidali aplikazio bat"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/reviewers/templates/reviewers/review.html:54
@@ -3564,7 +3564,7 @@ msgstr "Aplikazio-jabeek soilik edita dezakete orri hau."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
-msgstr ""
+msgstr "Taldekideen rolei buruz"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:82 mkt/developers/templates/developers/apps/edit/admin.html:203
 #: mkt/developers/templates/developers/apps/edit/basic.html:168 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60
@@ -3584,11 +3584,12 @@ msgstr "itxi"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "Taldekideen rolei buruz"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
 msgstr ""
+"Aplikazioek nahi beste taldekide eduki ditzakete, 4 rol hauetariko batekin:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
@@ -3735,12 +3736,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:191
 msgid "List App"
-msgstr ""
+msgstr "Gehitu aplikazioa zerrendara"
 
 #: mkt/developers/templates/developers/apps/status.html:172 mkt/developers/templates/developers/apps/status.html:194 mkt/developers/templates/developers/apps/status.html:342
 #: mkt/developers/templates/developers/apps/status.html:347
 msgid "Delist App"
-msgstr ""
+msgstr "Kendu aplikazioa zerrendatik"
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
@@ -3818,7 +3819,7 @@ msgstr "Blokeatutakoen zerrenda"
 
 #: mkt/developers/templates/developers/apps/status.html:344
 msgid "Are you sure you wish to delist your app?"
-msgstr ""
+msgstr "Ziur aplikazioa zerrendatik kendu nahi duzula?"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
