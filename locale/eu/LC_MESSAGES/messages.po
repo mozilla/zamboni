@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:13-0700\n"
-"PO-Revision-Date: 2014-09-03 20:56+0000\n"
+"PO-Revision-Date: 2014-09-03 21:16+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1409777781.0\n"
+"X-POOTLE-MTIME: 1409778968.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
@@ -5292,48 +5292,48 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:121
 msgid "Using Apps Offline"
-msgstr ""
+msgstr "Aplikazioak lineaz kanpo erabiltzea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:125
 msgid "Developing Game Apps"
-msgstr ""
+msgstr "Joko motako aplikazioak garatzea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:96 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
 #: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/queue_region.html:28 mkt/webapps/models.py:1782
 msgid "Payments"
-msgstr ""
+msgstr "Ordainketak"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
-msgstr ""
+msgstr "Aplikazio-sortzailea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:143
 msgid "App Validator"
-msgstr ""
+msgstr "Aplikazio-balioztatzailea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:147
 msgid "App Manager"
-msgstr ""
+msgstr "Aplikazio-kudeatzailea"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
-msgstr ""
+msgstr "Firefoxen garapen-tresnak"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Marketplace Submission"
-msgstr ""
+msgstr "Marketplace-era bidalketa"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:170
 msgid "Marketplace Review Criteria"
-msgstr ""
+msgstr "Marketplace-eko berrikuspen-irizpideak"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:189
 msgid "Payments Status"
-msgstr ""
+msgstr "Ordainketen egoera"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:236
 msgid "View with subtitles"
-msgstr ""
+msgstr "Ikusi azpitituluekin"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:269
 msgid "Made in partnership with our friends at Treehouse"
@@ -5397,19 +5397,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
-msgstr ""
+msgstr "Aplikazioen bloga"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr ""
+msgstr "Firefox Marketplace-en YouTube kanala"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
@@ -5421,7 +5421,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Jarraibideak"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -5469,19 +5469,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr ""
+msgstr "Laguntza behar dut aplikazioaren manifestuarekin."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr ""
+msgstr "Nola sor dezaket aplikazio instalagarri bat?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "Nola funtzionatzen dute ordainketek?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Nola kudea ditzaket nire salmenten zergak?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Known issues"
@@ -5632,11 +5632,11 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:73 mkt/files/templates/fileviewer/viewer.html:74
 msgid "Up file"
-msgstr ""
+msgstr "Goratu fitxategia"
 
 #: mkt/files/templates/fileviewer/viewer.html:78 mkt/files/templates/fileviewer/viewer.html:79
 msgid "Down file"
-msgstr ""
+msgstr "Beheratu fitxategia"
 
 #: mkt/files/templates/fileviewer/viewer.html:84 mkt/files/templates/fileviewer/viewer.html:85
 msgid "Previous diff"
@@ -5808,17 +5808,17 @@ msgstr ""
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:114
 msgid "{0} auto-approved"
-msgstr ""
+msgstr "{0} automatikoki onartuta"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:116
 msgid "{0} approved"
-msgstr ""
+msgstr "{0} onartuta"
 
 #. number of refunds.
 #: mkt/lookup/templates/lookup/app_summary.html:118
 msgid "{0} rejected"
-msgstr ""
+msgstr "{0} baztertuta"
 
 # {0} is the add-on name
 #: mkt/lookup/templates/lookup/app_summary.html:126
@@ -5919,15 +5919,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:40
 msgid "apps purchased"
-msgstr ""
+msgstr "erositako aplikazioak"
 
 #: mkt/lookup/templates/lookup/user_summary.html:43
 msgid "requested"
-msgstr ""
+msgstr "eskatuta"
 
 #: mkt/lookup/templates/lookup/user_summary.html:44
 msgid "auto-approved"
-msgstr ""
+msgstr "automatikoki onartuta"
 
 #: mkt/lookup/templates/lookup/user_summary.html:50
 msgid "Developer Program"
@@ -5982,15 +5982,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
 msgid "App Detail"
-msgstr ""
+msgstr "Aplikazioaren xehetasunak"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
-msgstr ""
+msgstr "Berrikuspenen historia"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
-msgstr ""
+msgstr "Kontuaren laburpena"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
@@ -6040,7 +6040,7 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:52
 msgid "No preload candidates found"
@@ -6069,7 +6069,7 @@ msgstr "%s diru-itzulketa ukatuta"
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:28
 msgid "Receipt for {0}"
-msgstr ""
+msgstr "{0}(r)entzako ordainagiria"
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
@@ -6105,7 +6105,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Zure erosketen historia:"
 
 #: mkt/ratings/forms.py:68
 msgid "Keep review; remove flags"
@@ -6149,19 +6149,19 @@ msgstr "Kalifikazioa: %(rating)s / 5 izar"
 
 #: mkt/receipts/forms.py:19
 msgid "No receipt"
-msgstr ""
+msgstr "Ordainagiririk ez"
 
 #: mkt/receipts/forms.py:20
 msgid "Test receipt"
-msgstr ""
+msgstr "Probarako ordainagiria"
 
 #: mkt/receipts/forms.py:21
 msgid "Expired test receipt"
-msgstr ""
+msgstr "Iraungitako probarako ordainagiria"
 
 #: mkt/receipts/forms.py:22
 msgid "Invalid test receipt"
-msgstr ""
+msgstr "Probarako ordainagiri baliogabea"
 
 #: mkt/receipts/forms.py:23
 msgid "Refunded test receipt"
@@ -6169,7 +6169,7 @@ msgstr "Diru-itzulketa probaren ordainagiria"
 
 #: mkt/receipts/views.py:88 mkt/receipts/views.py:179
 msgid "There was a problem installing the app."
-msgstr ""
+msgstr "Arazo bat egon da aplikazioa instalatzerakoan."
 
 #: mkt/receipts/templates/receipts/test_details.html:3 mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_details.html:14
 msgid "Test receipt details"
