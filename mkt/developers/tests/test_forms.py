@@ -396,6 +396,22 @@ class TestRegionForm(amo.tests.WebappTestCase):
         eq_(self.app.listed_in(mkt.regions.CN), True)
         eq_(self.app.geodata.get_status(mkt.regions.CN), status)
 
+    def test_low_memory_regions_true(self):
+        regions = {10: mock.MagicMock(low_memory=True),
+                   20: mock.MagicMock(low_memory=False),
+                   30: mock.MagicMock(low_memory=False)}
+        form = forms.RegionForm(**self.kwargs)
+        with mock.patch.object(forms.RegionForm, 'regions_by_id', regions):
+            assert form.low_memory_regions, 'expected low memory regions'
+
+    def test_low_memory_regions_false(self):
+        regions = {10: mock.MagicMock(low_memory=False),
+                   20: mock.MagicMock(low_memory=False),
+                   30: mock.MagicMock(low_memory=False)}
+        form = forms.RegionForm(**self.kwargs)
+        with mock.patch.object(forms.RegionForm, 'regions_by_id', regions):
+            assert not form.low_memory_regions, 'expected no low memory region'
+
 
 class TestNewManifestForm(amo.tests.TestCase):
 
