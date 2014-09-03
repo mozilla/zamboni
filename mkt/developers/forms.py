@@ -269,12 +269,6 @@ class PreviewForm(happyforms.ModelForm):
                     tasks.resize_preview.delay(upload_path, self.instance,
                                                set_modified_on=[self.instance])
 
-                # Remove TMP_PATH file now that it has been processed.
-                try:
-                    os.remove(upload_path)
-                except OSError:
-                    pass
-
     class Meta:
         model = Preview
         fields = ('file_upload', 'upload_hash', 'id', 'position')

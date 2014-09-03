@@ -236,7 +236,15 @@ def resize_preview(src, instance, **kw):
         instance.sizes = sizes
         instance.save()
         log.info('Preview resized to: %s' % thumb_dst)
+
+        # Remove src file now that it has been processed.
+        try:
+            os.remove(src)
+        except OSError:
+            pass
+
         return True
+
     except Exception, e:
         log.error("Error saving preview: %s; %s" % (e, thumb_dst))
 

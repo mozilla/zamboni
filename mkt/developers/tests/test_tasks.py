@@ -219,10 +219,22 @@ class TestResizePreview(amo.tests.TestCase):
         # launching tests that depend on the files presence/absence.
         shutil.rmtree('/tmp/uploads-tests/previews/', ignore_errors=True)
 
+    def get_image(self, filename):
+        """Copy image to tmp and return tmp path.
+
+        We do this because the task `resize_preview` removes the src file when
+        finished.
+
+        """
+        src = get_image_path(filename)
+        dst = os.path.join(settings.TMP_PATH, 'preview', filename)
+        shutil.copy(src, dst)
+        return dst
+
     def test_preview(self):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
-        src = get_image_path('preview.jpg')
+        src = self.get_image('preview.jpg')
         tasks.resize_preview(src, preview)
         preview = preview.reload()
         eq_(preview.image_size, [400, 533])
@@ -238,7 +250,7 @@ class TestResizePreview(amo.tests.TestCase):
     def test_preview_rotated(self):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
-        src = get_image_path('preview_landscape.jpg')
+        src = self.get_image('preview_landscape.jpg')
         tasks.resize_preview(src, preview)
         preview = preview.reload()
         eq_(preview.image_size, [533, 400])
@@ -254,7 +266,7 @@ class TestResizePreview(amo.tests.TestCase):
     def test_preview_dont_generate_image(self):
         addon = Webapp.objects.get(pk=337141)
         preview = Preview.objects.create(addon=addon)
-        src = get_image_path('preview.jpg')
+        src = self.get_image('preview.jpg')
         tasks.resize_preview(src, preview, generate_image=False)
         preview = preview.reload()
         eq_(preview.image_size, [])
