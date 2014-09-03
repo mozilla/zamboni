@@ -132,8 +132,14 @@ def dev_agreement_ok(user):
 
     return True
 
+
 @register.filter
 def categories_names(cat_slugs):
     if cat_slugs is None:
         return []
     return sorted(unicode(CATEGORY_CHOICES_DICT.get(k)) for k in cat_slugs)
+
+
+@register.function
+def has_tarako_region(app):
+    return any(region.low_memory for region in app.get_regions())

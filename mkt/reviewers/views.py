@@ -71,7 +71,7 @@ from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import AddonDeviceType, Version, Webapp
+from mkt.webapps.models import AddonDeviceType, AddonUser, Version, Webapp
 from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -1247,6 +1247,39 @@ class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
 
     def post_save(self, additional_review, created):
         additional_review.execute_post_review_task()
+
+
+class AppOwnerPermission(BasePermission):
+    def webapp_exists(self, app_id):
+        return Webapp.objects.filter(pk=app_id).exists()
+
+    def user_is_author(self, app_id, user):
+        return AddonUser.objects.filter(user=user, addon_id=app_id).exists()
+
+    def has_permission(self, request, view):
+        app_id = request.DATA.get('app')
+        if not app_id or not self.webapp_exists(app_id):
+            # Fall through to a 400 for invalid data.
+            return True
+        else:
+            return self.user_is_author(app_id, request.user)
+
+
+class CreateAdditionalReviewViewSet(CreateAPIView):
+    """
+    API ViewSet for requesting an additional review.
+    """
+
+    model = AdditionalReview
+    serializer_class = AdditionalReviewSerializer
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    # TODO: Change this when there is more than just the Tarako queue.
+    permission_classes = [AppOwnerPermission]
+
+    def app(self, app_id):
+        self.app = Webapp.objects.get(pk=app_id)
+        return self.app
 
 
 class GenerateToken(SlugOrIdMixin, CreateAPIView):

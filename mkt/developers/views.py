@@ -58,6 +58,7 @@ from mkt.developers.utils import (check_upload, escalate_prerelease_permissions,
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
+from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.users.models import UserProfile
 from mkt.users.views import _login
@@ -250,8 +251,16 @@ def status(request, addon_id, addon):
             publish_form.save()
             return redirect(addon.get_dev_url('versions'))
 
-    ctx = {'addon': addon, 'appeal_form': appeal_form,
-           'upload_form': upload_form, 'publish_form': publish_form}
+    ctx = {
+        'addon': addon,
+        'appeal_form': appeal_form,
+        'is_tarako': addon.tags.filter(tag_text=QUEUE_TARAKO).exists(),
+        'tarako_review': addon.additionalreview_set
+                              .latest_for_queue(QUEUE_TARAKO),
+        'publish_form': publish_form,
+        'QUEUE_TARAKO': QUEUE_TARAKO,
+        'upload_form': upload_form,
+    }
 
     # Used in the delete version modal.
     if addon.is_packaged:
