@@ -19,4 +19,20 @@ jQuery(function ($) {
             }
         });
     });
+
+    var $removeTarakoModal = $('#modal-remove-tarako');
+    $removeTarakoModal.modal('#remove-tarako', {width: 400});
+    var $removeTarakoTag = $('#remove-tarako-tag');
+    $removeTarakoTag.on('click', function (e) {
+        $.ajax({
+            url: $removeTarakoTag.data('action'),
+            method: 'delete',
+        }).done(function () {
+            window.location = window.location;
+        }).fail(function () {
+            console.error('Error removing tarako tag');
+            $removeTarakoModal.find('.error').text(
+              gettext('Something went wrong. Please try again.'));
+        });
+    });
 });

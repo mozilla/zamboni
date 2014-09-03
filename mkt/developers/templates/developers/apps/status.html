@@ -320,7 +320,14 @@
                |fe(compatibility_page=url('mkt.developers.apps.payments', addon.app_slug) + '#regions-and-listings') }}
         {% endif %}
 
-        {% if not tarako_review or tarako_review.failed %}
+        {% if is_tarako %}
+          <div class="listing-footer">
+            <button id="remove-tarako">
+              {{ _("Do not show my app on low-memory devices") }}
+            </button>
+          </div>
+        {# They can request a review if they don't have a pending review. #}
+        {% elif not (tarako_review and tarako_review.pending) %}
           <p>
             {{ _('If your app <a href="{mdn_link}">works on low-memory devices</a> then you can '
                  'request a review to be shown on low-memory devices.')
@@ -496,6 +503,23 @@
             {{ _('or') }} <a href="#" class="cancel close">{{ _('Cancel') }}</a>
           </p>
         </form>
+      </div>
+    {% endif %}
+
+    {% if is_tarako %}
+      <div id="modal-remove-tarako" class="modal">
+        <h3>{{ _('Low-Memory Devices') }}</h3>
+        <p>
+          <label>{{ _('Are you sure you want to stop showing your app on low-memory devices?') }}</label>
+        </p>
+        <p class="error"></p>
+        <p class="listing-footer">
+          <button id="remove-tarako-tag" class="bad" data-action="{{ url('app-tags-detail', addon.app_slug, QUEUE_TARAKO) }}">
+            {{ _("Do not show my app on low-memory devices") }}
+          </button>
+          {{ _('or') }}
+          <a href="#" class="cancel close">{{ _('Cancel') }}</a>
+        </p>
       </div>
     {% endif %}
   </div>

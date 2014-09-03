@@ -20,7 +20,7 @@ from mkt.search.views import (FeaturedSearchView, RocketbarView, SearchView,
                             SuggestionsView)
 from mkt.stats.urls import stats_api_patterns, txn_api_patterns
 from mkt.submit.views import PreviewViewSet, StatusViewSet, ValidationViewSet
-from mkt.webapps.views import AppViewSet, PrivacyPolicyViewSet
+from mkt.webapps.views import AppTagViewSet, AppViewSet, PrivacyPolicyViewSet
 
 rocketfuel = SimpleRouter()
 rocketfuel.register(r'collections', CollectionViewSet,
@@ -42,6 +42,7 @@ subapps.register('refresh-manifest', RefreshManifestViewSet,
                  base_name='app-refresh-manifest')
 subapps.register('privacy', PrivacyPolicyViewSet,
                  base_name='app-privacy-policy')
+subapps.register('tags/(?P<tag_text>\w+)', AppTagViewSet, base_name='app-tags')
 
 services = SimpleRouter()
 

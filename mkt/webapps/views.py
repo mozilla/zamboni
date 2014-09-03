@@ -22,6 +22,7 @@ from mkt.developers.forms import AppFormMedia, IARCGetAppInfoForm
 from mkt.files.models import FileUpload
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
+from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Addon, AddonUser, get_excluded_in, Webapp
 from mkt.webapps.serializers import AppSerializer
@@ -243,3 +244,22 @@ class PrivacyPolicyViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return response.Response(
             {'privacy_policy': unicode(app.privacy_policy)},
             content_type='application/json')
+
+
+class AppTagViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                    viewsets.GenericViewSet):
+    queryset = Webapp.objects.all()
+    cors_allowed_methods = ('delete',)
+    permission_classes = [AllowAppOwner]
+    slug_field = 'app_slug'
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication,
+                              RestAnonymousAuthentication]
+
+    def destroy(self, request, pk, tag_text, **kwargs):
+        if tag_text == 'tarako':
+            app = self.get_object()
+            Tag(tag_text=tag_text).remove_tag(app)
+            return response.Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return response.Response(status=status.HTTP_403_FORBIDDEN)
