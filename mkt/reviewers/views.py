@@ -28,6 +28,7 @@ from elasticsearch_dsl.filter import F
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
+from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
