@@ -50,7 +50,7 @@
         data-native-persona-url="{{ settings.NATIVE_BROWSERID_JS_URL }}"
         data-persona-unverified-issuer="{{ settings.UNVERIFIED_ISSUER }}"
       {% endif %}
-        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
+        data-collect-timings="{{ url('mkt.timing.record') }}:{{ collect_timings_percent }}"
         data-locales="{{ ','.join(settings.LANGUAGE_URL_MAP.keys()) }}"
         {% block bodyattrs %}{% endblock %}>
     <section id="site-header">

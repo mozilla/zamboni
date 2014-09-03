@@ -1,35 +1,36 @@
 import hashlib
 import json
-import logging
 import os
 import subprocess
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.http import (HttpResponse, HttpResponseNotFound,
-                         HttpResponseServerError)
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseNotFound, HttpResponseServerError)
 from django.shortcuts import render
 from django.template import RequestContext
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.csrf import csrf_exempt, requires_csrf_token
-from django.views.decorators.http import etag
+from django.views.decorators.http import etag, require_POST
 from django.views.generic.base import TemplateView
 
+import commonware.log
 import jingo_minify
+import waffle
 from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 from jingo import render_to_string
 
 from amo.decorators import post_required
 from amo.helpers import media
-from amo.utils import urlparams
-
+from amo.utils import log_cef, urlparams
 from mkt.carriers import get_carrier
 from mkt.detail.views import manifest as mini_manifest
+from mkt.site import monitors
 from mkt.site.context_processors import get_collect_timings
 
 
-log = logging.getLogger('z.mkt.site')
+log = commonware.log.getLogger('z.mkt.site')
 
 
 # This can be called when CsrfViewMiddleware.process_view has not run,
@@ -194,3 +195,67 @@ def _open_pipe(cmd):
 class OpensearchView(TemplateView):
     content_type = 'text/xml'
     template_name = 'mkt/opensearch.xml'
+
+
+@never_cache
+def monitor(request, format=None):
+
+    # For each check, a boolean pass/fail status to show in the template
+    status_summary = {}
+    results = {}
+
+    checks = ['memcache', 'libraries', 'elastic', 'package_signer', 'path',
+              'redis', 'receipt_signer', 'settings_check', 'solitude']
+
+    for check in checks:
+        with statsd.timer('monitor.%s' % check) as timer:
+            status, result = getattr(monitors, check)()
+        # state is a string. If it is empty, that means everything is fine.
+        status_summary[check] = {'state': not status,
+                                 'status': status}
+        results['%s_results' % check] = result
+        results['%s_timer' % check] = timer.ms
+
+    # If anything broke, send HTTP 500.
+    status_code = 200 if all(a['state']
+                             for a in status_summary.values()) else 500
+
+    if format == '.json':
+        return HttpResponse(json.dumps(status_summary), status=status_code)
+    ctx = {}
+    ctx.update(results)
+    ctx['status_summary'] = status_summary
+
+    return render(request, 'services/monitor.html', ctx, status=status_code)
+
+
+def loaded(request):
+    return HttpResponse('%s' % request.META['wsgi.loaded'],
+                        content_type='text/plain')
+
+
+@csrf_exempt
+@require_POST
+def cspreport(request):
+    """Accept CSP reports and log them."""
+    report = ('blocked-uri', 'violated-directive', 'original-policy')
+
+    if not waffle.sample_is_active('csp-store-reports'):
+        return HttpResponse()
+
+    try:
+        v = json.loads(request.body)['csp-report']
+        # If possible, alter the PATH_INFO to contain the request of the page
+        # the error occurred on, spec: http://mzl.la/P82R5y
+        meta = request.META.copy()
+        meta['PATH_INFO'] = v.get('document-uri', meta['PATH_INFO'])
+        v = [(k, v[k]) for k in report if k in v]
+        log_cef('CSPViolation', 5, meta, username=request.user,
+                signature='CSPREPORT',
+                msg='A client reported a CSP violation',
+                cs6=v, cs6Label='ContentPolicy')
+    except (KeyError, ValueError), e:
+        log.debug('Exception in CSP report: %s' % e, exc_info=True)
+        return HttpResponseBadRequest()
+
+    return HttpResponse()

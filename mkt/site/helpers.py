@@ -221,7 +221,7 @@ def mkt_admin_site_links():
             ('View elasticsearch settings', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('Generate error', reverse('zadmin.generate-error')),
-            ('Site Status', reverse('amo.monitor')),
+            ('Site Status', reverse('mkt.monitor')),
             ('Force Manifest Re-validation',
              reverse('zadmin.manifest_revalidation'))
         ],
