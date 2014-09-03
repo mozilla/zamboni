@@ -2,18 +2,20 @@
   {% set region_choices = region_form[regions_field_name].field.choices %}
   {% set enable_special_regions = waffle.flag('special-regions') %}
   {% for value, text in region_choices if value not in region_form.special_region_ids or enable_special_regions %}
-    {% set special = value in region_form.special_region_ids %}
-    {% set disabled = value in region_form.disabled_regions %}
+    {% set region = region_form.regions_by_id[value] %}
     {% set checked = value in region_form.initial[regions_field_name] %}
     <li data-region="{{ value }}">
-      <label class="region-cb{{ ' special' if special }}{{ ' disabled' if disabled }}">
-        <input type="checkbox" class="restricted{{ ' special' if special }}"
-          {% if disabled %}disabled{% elif checked %}checked{% endif %}
+      <label class="region-cb{{ ' special' if region.special }}{{ ' disabled' if region.disabled }}{{ ' low-memory' if region.low_memory }}">
+        <input type="checkbox" class="restricted{{ ' special' if region.special }}"
+          {% if region.disabled %}disabled{% elif checked %}checked{% endif %}
           name="{{ regions_field_name }}" value="{{ value }}">
-        <span class="region region-{{ region_form.regions_by_id[value].slug }}">{{ text }}</span>
+        <span class="region region-{{ region.slug }}">{{ text }}</span>
       </label>
-      {% if special %}
+      {% if region.special %}
         <span class="status-label"></span>
+      {% endif %}
+      {% if region.low_memory %}
+        <span class="status-label">{{ _('low-memory devices') }}</span>
       {% endif %}
     </li>
   {% endfor %}
