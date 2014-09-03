@@ -55,6 +55,18 @@
             View a list of all of your submissions on <a href="{{ url }}">My Submissions</a>
           {% endtrans %}
         </li>
+        <li>
+          {% set status_url = addon.get_dev_url('versions') + '#low-memory-devices' %}
+          {% if addon.is_packaged %}
+            {% trans %}
+              Request that your app be shown on low-memory devices on <a href="{{ status_url }}">Status &amp; Versions</a>
+            {% endtrans %}
+          {% else %}
+            {% trans %}
+              Request that your app be shown on low-memory devices on <a href="{{ status_url }}">Status</a>
+            {% endtrans %}
+          {% endif %}
+        </li>
       </ul>
 
       <p>
