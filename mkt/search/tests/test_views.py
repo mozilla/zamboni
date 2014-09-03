@@ -16,7 +16,6 @@ from nose.tools import eq_, ok_
 import amo
 import mkt
 import mkt.regions
-from amo.helpers import absolutify
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
@@ -30,6 +29,7 @@ from mkt.constants.features import FeatureProfile
 from mkt.regions.middleware import RegionMiddleware
 from mkt.search.views import DEFAULT_SORTING, SearchView
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.tags.models import AddonTag, Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile

@@ -20,13 +20,13 @@ from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 from jingo import render_to_string
 
-from amo.context_processors import get_collect_timings
 from amo.decorators import post_required
 from amo.helpers import media
 from amo.utils import urlparams
 
 from mkt.carriers import get_carrier
 from mkt.detail.views import manifest as mini_manifest
+from mkt.site.context_processors import get_collect_timings
 
 
 log = logging.getLogger('z.mkt.site')

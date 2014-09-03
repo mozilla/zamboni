@@ -799,24 +799,6 @@ def find_language(locale):
     return None
 
 
-def has_links(html):
-    """Return True if links (text or markup) are found in the given html."""
-    # Call bleach.linkify to transform text links to real links, and add some
-    # content to the ``href`` attribute. If the result is different from the
-    # initial string, links were found.
-    class LinkFound(Exception):
-        pass
-
-    def raise_on_link(attrs, new):
-        raise LinkFound
-
-    try:
-        bleach.linkify(html, callbacks=[raise_on_link])
-    except LinkFound:
-        return True
-    return False
-
-
 def walkfiles(folder, suffix=''):
     """Iterator over files in folder, recursively."""
     return (os.path.join(basename, filename)

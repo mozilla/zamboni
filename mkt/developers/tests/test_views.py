@@ -23,7 +23,6 @@ from pyquery import PyQuery as pq
 import amo
 import amo.tests
 import mkt
-from amo.helpers import absolutify
 from amo.tests import app_factory, assert_no_validation_errors, version_factory
 from amo.tests.test_helpers import get_image_path
 from amo.utils import urlparams
@@ -38,6 +37,7 @@ from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile

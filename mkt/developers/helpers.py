@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.utils.encoding import smart_unicode
 
 import jinja2
 from jingo import register
@@ -9,7 +8,7 @@ from tower import ugettext as _
 import amo
 from mkt.access import acl
 from mkt.constants import CATEGORY_CHOICES_DICT
-from mkt.site.helpers import mkt_breadcrumbs
+from mkt.site.helpers import mkt_breadcrumbs, page_title
 from mkt.webapps.helpers import new_context
 
 
@@ -31,15 +30,7 @@ def hub_page_title(context, title=None, addon=None):
     else:
         devhub = _('Developers')
         title = '%s | %s' % (title, devhub) if title else devhub
-    return mkt_page_title(context, title)
-
-
-@register.function
-@jinja2.contextfunction
-def mkt_page_title(context, title, force_webapps=False):
-    title = smart_unicode(title)
-    base_title = _('Firefox Marketplace')
-    return u'%s | %s' % (title, base_title)
+    return page_title(context, title)
 
 
 @register.function
@@ -55,8 +46,6 @@ def hub_breadcrumbs(context, addon=None, items=None, add_default=False):
         specified then the Add-on will be linked.
     **add_default**
         Prepends trail back to home when True.  Default is False.
-    **impala**
-        Whether to use the impala_breadcrumbs helper. Default is False.
     """
     crumbs = [(reverse('ecosystem.landing'), _('Developers'))]
     title = _('My Submissions')

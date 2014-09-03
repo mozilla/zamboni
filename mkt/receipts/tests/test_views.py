@@ -13,13 +13,13 @@ from test_utils import RequestFactory
 
 import amo
 import amo.tests
-from amo.helpers import absolutify
 from mkt.constants import apps
 from mkt.developers.models import AppLog
 from mkt.receipts.tests.test_models import TEST_LEEWAY
 from mkt.receipts.utils import create_test_receipt
 from mkt.receipts.views import devhub_verify
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.webapps.models import AddonUser, Webapp
 from services.verify import settings as verify_settings
 from services.verify import decode_receipt

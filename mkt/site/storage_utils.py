@@ -74,18 +74,3 @@ def move_stored_file(src_path, dest_path, storage=default_storage,
     copy_stored_file(src_path, dest_path, storage=storage,
                      chunk_size=chunk_size)
     storage.delete(src_path)
-
-
-def rm_stored_dir(dir_path, storage=default_storage):
-    """
-    Removes a stored directory and all files stored beneath that path.
-    """
-    empty_dirs = []
-    # Delete all files first then all empty directories.
-    for root, dirs, files in walk_storage(dir_path):
-        for fn in files:
-            storage.delete('%s/%s' % (root, fn))
-        empty_dirs.insert(0, root)
-    empty_dirs.append(dir_path)
-    for dn in empty_dirs:
-        storage.delete(dn)

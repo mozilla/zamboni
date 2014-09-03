@@ -39,22 +39,6 @@ def test_slugify_spaces():
     eq_(utils.slugify(' b  ar ', spaces=True), 'b  ar')
 
 
-@patch('amo.helpers.urlresolvers.reverse')
-def test_url(mock_reverse):
-    render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
-
-    render('{{ url("viewname", 1, z=2, host="myhost") }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
-
-
-def test_url_src():
-    s = render('{{ url("addons.detail", "a3615", src="xxx") }}')
-    assert s.endswith('?src=xxx')
-
-
 def test_urlparams():
     url = '/en-US/firefox/search-tools/category'
     c = {'base': url,
@@ -225,18 +209,6 @@ def test_jinja_trans_monkeypatch():
     render('{% trans come_on=1 %}% (come_on)s{% endtrans %}')
     render('{% trans come_on=1 %}%(come_on){% endtrans %}')
     render('{% trans come_on=1 %}%(come_on)z{% endtrans %}')
-
-
-def test_absolutify():
-    eq_(helpers.absolutify('/woo'), urljoin(settings.SITE_URL, '/woo'))
-    eq_(helpers.absolutify('https://addons.mozilla.org'),
-        'https://addons.mozilla.org')
-
-
-def test_timesince():
-    month_ago = datetime.now() - timedelta(days=30)
-    eq_(helpers.timesince(month_ago), u'1 month ago')
-    eq_(helpers.timesince(None), u'')
 
 
 def test_f():

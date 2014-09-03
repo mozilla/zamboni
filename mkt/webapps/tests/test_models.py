@@ -29,7 +29,6 @@ from nose.tools import eq_, ok_, raises
 import amo
 import amo.tests
 import mkt
-from amo.helpers import absolutify
 from amo.tests import app_factory, version_factory
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
@@ -47,6 +46,7 @@ from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.site.tests import DynamicBoolFieldsTestMixin
 from mkt.submit.tests.test_views import BasePackagedAppTest, BaseWebAppTest
 from mkt.translations.models import Translation

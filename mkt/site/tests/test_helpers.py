@@ -3,11 +3,14 @@ from django.conf import settings
 
 import fudge
 import mock
+from datetime import datetime, timedelta
+from jingo import env
 from nose.tools import eq_
+from urlparse import urljoin
 
 import amo
 import amo.tests
-from mkt.site.helpers import css, js, product_as_dict
+from mkt.site.helpers import absolutify, css, js, product_as_dict, timesince
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -129,3 +132,35 @@ class TestProductAsDict(amo.tests.TestCase):
         assert recordUrl in data['recordUrl'], (
             'Invalid Record URL. Expected %s; Got %s'
             % (recordUrl, data['recordUrl']))
+
+
+def test_absolutify():
+    eq_(absolutify('/woo'), urljoin(settings.SITE_URL, '/woo'))
+    eq_(absolutify('https://marketplace.firefox.com'),
+        'https://marketplace.firefox.com')
+
+
+def test_timesince():
+    month_ago = datetime.now() - timedelta(days=30)
+    eq_(timesince(month_ago), u'1 month ago')
+    eq_(timesince(None), u'')
+
+
+def render(s, context={}):
+    return env.from_string(s).render(context)
+
+
+@mock.patch('mkt.site.helpers.reverse')
+def test_url(mock_reverse):
+    render('{{ url("viewname", 1, z=2) }}')
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
+                                     add_prefix=True)
+
+    render('{{ url("viewname", 1, z=2, host="myhost") }}')
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
+                                     add_prefix=True)
+
+
+def test_url_src():
+    s = render('{{ url("mkt.developers.apps.edit", "a3615", src="xxx") }}')
+    assert s.endswith('?src=xxx')

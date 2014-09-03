@@ -83,30 +83,6 @@ def any_permission_required(pairs):
     return decorator
 
 
-def restricted_content(f):
-    """
-    Prevent access to a view function for accounts restricted from
-    posting user-generated content.
-    """
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        from mkt.access import acl
-        if (acl.action_allowed(request, '*', '*')
-            or not acl.action_allowed(request, 'Restricted', 'UGC')):
-            return f(request, *args, **kw)
-        else:
-            raise PermissionDenied
-    return wrapper
-
-
-def modal_view(f):
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        response = f(*args, modal=True, **kw)
-        return response
-    return wrapper
-
-
 def json_response(response, has_trans=False, status_code=200):
     """
     Return a response as JSON. If you are just wrapping a view,
@@ -224,19 +200,4 @@ def set_task_user(f):
         finally:
             set_user(old_user)
         return result
-    return wrapper
-
-
-def allow_mine(f):
-    @functools.wraps(f)
-    def wrapper(request, username, *args, **kw):
-        """
-        If the author is `mine` then show the current user's collection
-        (or something).
-        """
-        if username == 'mine':
-            if not request.user.is_authenticated():
-                return redirect_for_login(request)
-            username = request.user.username
-        return f(request, username, *args, **kw)
     return wrapper

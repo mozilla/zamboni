@@ -5,9 +5,9 @@ from django.core.urlresolvers import reverse
 from rest_framework.fields import BooleanField, CharField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
-from amo.helpers import absolutify
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
+from mkt.site.helpers import absolutify
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon
 from mkt.users.models import UserProfile

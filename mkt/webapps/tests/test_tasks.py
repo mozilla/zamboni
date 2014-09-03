@@ -22,11 +22,11 @@ from requests.exceptions import RequestException
 import amo
 import amo.tests
 import mkt
-from amo.helpers import absolutify
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import Addon, AddonUser, Preview, Webapp

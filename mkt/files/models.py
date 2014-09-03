@@ -18,8 +18,8 @@ import amo
 import amo.models
 import amo.utils
 from amo.decorators import use_master
-from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
+from mkt.site.storage_utils import copy_stored_file, move_stored_file
 
 
 log = commonware.log.getLogger('z.files')
@@ -59,7 +59,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return True
 
     def get_url_path(self, src):
-        from amo.helpers import urlparams, absolutify
+        from amo.helpers import urlparams
+        from mkt.site.helpers import absolutify
         url = os.path.join(reverse('downloads.file', args=[self.id]),
                            self.filename)
         # Firefox's Add-on Manager needs absolute urls.

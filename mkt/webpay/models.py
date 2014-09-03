@@ -3,9 +3,9 @@ import os
 from django.conf import settings
 from django.db import models
 
-from amo.helpers import absolutify
 from amo.models import ModelBase
 from lib.utils import static_url
+from mkt.site.helpers import absolutify
 
 
 class ProductIcon(ModelBase):

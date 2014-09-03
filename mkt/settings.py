@@ -236,10 +236,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'session_csrf.context_processor',
     'django.contrib.messages.context_processors.messages',
-    'amo.context_processors.i18n',
-    'amo.context_processors.static_url',
     'jingo_minify.helpers.build_ids',
     'mkt.site.context_processors.global_settings',
+    'mkt.site.context_processors.i18n',
+    'mkt.site.context_processors.static_url',
     'mkt.carriers.context_processors.carrier_data',
 )
 
@@ -303,7 +303,7 @@ ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 #  File path for storing XPI/JAR files (or any files associated with an
 #  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
 ADDONS_PATH = NETAPP_STORAGE + '/addons'
-CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
+CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'mkt/site/certificates/roots.pem')
 COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
 
 # Where dumped apps will be written too.

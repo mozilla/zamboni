@@ -16,10 +16,10 @@ import amo
 import mkt
 from amo.helpers import impala_breadcrumbs
 from mkt.access import acl
-from mkt.developers.helpers import mkt_page_title
 from mkt.reviewers.models import EscalationQueue, ReviewerScore, QUEUE_TARAKO
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
+from mkt.site.helpers import page_title
 from mkt.versions.models import Version
 from mkt.webapps.helpers import new_context
 
@@ -69,7 +69,7 @@ def reviewers_page_title(context, title=None, addon=None):
     else:
         section = _lazy('Reviewer Tools')
         title = u'%s | %s' % (title, section) if title else section
-    return mkt_page_title(context, title)
+    return page_title(context, title)
 
 
 @register.function
