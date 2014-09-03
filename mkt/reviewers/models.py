@@ -1,16 +1,19 @@
 import datetime
 
+from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Sum
 
 import commonware.log
+import waffle
 
 import amo
 import amo.models
 import mkt.constants.comm as comm
 from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
+from mkt.site.mail import send_mail_jinja
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
@@ -364,11 +367,23 @@ class RereviewQueue(amo.models.ModelBase):
                          note_type=comm.ACTION_MAP(event))
 
 
+def send_tarako_mail(review):
+    if not waffle.switch_is_active('comm-dashboard'):
+        send_mail_jinja(
+            'Tarako review {passed}'.format(
+                passed='passed' if review.passed else 'failed'),
+            'reviewers/emails/tarako_review_complete.txt',
+            {'review': review},
+            recipient_list=[a.email for a in review.app.authors.all()],
+            from_email=settings.MKT_REVIEWERS_EMAIL)
+
+
 def tarako_passed(review):
     """Add the tarako tag to the app."""
     tag = Tag(tag_text='tarako')
     tag.save_tag(review.app)
     WebappIndexer.index_ids([review.app.pk])
+    send_tarako_mail(review)
 
 
 def tarako_failed(review):
@@ -376,6 +391,7 @@ def tarako_failed(review):
     tag = Tag(tag_text='tarako')
     tag.remove_tag(review.app)
     WebappIndexer.index_ids([review.app.pk])
+    send_tarako_mail(review)
 
 
 class AdditionalReviewManager(amo.models.ManagerBase):
