@@ -59,7 +59,7 @@
           href="{{ url('opensearch') }}">
     <meta name="fragment" content="!">
     {% if media_origin -%}
-      <meta name="dns-prefetch" href="{{ media_origin }}">
+      <link rel="dns-prefetch" href="{{ media_origin }}">
     {% endif -%}
     {{ newrelic_header()|safe if repo == 'fireplace' }}
   </head>
