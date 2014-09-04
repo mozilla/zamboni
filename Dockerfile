@@ -34,12 +34,12 @@ RUN npm install
 
 # Override env vars for setup.
 ENV CLEANCSS_BIN /srv/zamboni-node/node_modules/clean-css/bin/cleancss
-ENV ES_HOST elasticsearch_1:9200
+ENV ES_HOST elasticsearch:9200
 ENV MARKETPLACE_URL http://mp.dev
-ENV MEMCACHE_URL memcache_1:11211
-ENV SOLITUDE_URL http://solitude_1:2602
+ENV MEMCACHE_URL memcache:11211
+ENV SOLITUDE_URL http://solitude:2602
 ENV STYLUS_BIN /srv/zamboni-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_BIN /srv/zamboni-node/node_modules/uglify-js/bin/uglifyjs
-ENV ZAMBONI_DATABASE mysql://root:@mysql_1:3306/zamboni
+ENV ZAMBONI_DATABASE mysql://root:@mysql:3306/zamboni
 
 EXPOSE 2600
