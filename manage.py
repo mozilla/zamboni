@@ -48,9 +48,10 @@ djcelery.setup_loader()
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
-from lib.utils import validate_settings
+from lib.utils import update_csp, validate_settings
 from lib.log_settings_base import log_configure
 log_configure()
+update_csp()
 validate_settings()
 
 import django.conf
