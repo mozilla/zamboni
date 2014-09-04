@@ -1,28 +1,61 @@
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 
 from nose.tools import eq_
 
-from lib.utils import static_url, validate_settings
+from lib.utils import static_url, update_csp, validate_settings
 
 
 class TestValidate(TestCase):
 
     def test_secret_key(self):
-        with self.settings(DEBUG=True, IN_TEST_SUITE=False,
-                           SECRET_KEY='please change this'):
+        with self.settings(DEBUG=True,
+                           IN_TEST_SUITE=False,
+                           SECRET_KEY='please change this',
+                           SITE_URL='http://testserver'):
             validate_settings()
 
-        with self.settings(DEBUG=False, IN_TEST_SUITE=False,
-                           SECRET_KEY='please change this'):
+        with self.settings(DEBUG=False,
+                           IN_TEST_SUITE=False,
+                           SECRET_KEY='please change this',
+                           SITE_URL='http://testserver'):
+            update_csp()
             with self.assertRaises(ImproperlyConfigured):
                 validate_settings()
 
-        with self.settings(DEBUG=False, IN_TEST_SUITE=False,
+        with self.settings(DEBUG=False,
+                           IN_TEST_SUITE=False,
                            SECRET_KEY='so changed',
                            SESSION_COOKIE_SECURE=True,
                            APP_PURCHASE_SECRET='so changed'):
+            update_csp()
             validate_settings()
+
+    def test_http(self):
+        with self.settings(CSP_IMG_SRC=('http://f.c'), DEBUG=True,
+                           IN_TEST_SUITE=False):
+            validate_settings()
+
+    def test_http_not_debug(self):
+        with self.settings(CSP_IMG_SRC=('http://f.c'), DEBUG=False,
+                           IN_TEST_SUITE=False):
+            with self.assertRaises(ImproperlyConfigured):
+                validate_settings()
+
+    def test_update_csp(self):
+        with self.settings(CSP_IMG_SRC=('https://f.c', 'self', 'http://f.c'),
+                           DEBUG=False,
+                           IN_TEST_SUITE=False):
+            update_csp()
+            self.assertSetEqual(set(settings.CSP_IMG_SRC),
+                                set(('https://f.c', 'self')))
+
+        with self.settings(CSP_IMG_SRC=('https://f.c', 'self', 'http://f.c'),
+                           DEBUG=True):
+            update_csp()
+            self.assertSetEqual(set(settings.CSP_IMG_SRC),
+                                set(('https://f.c', 'self', 'http://f.c')))
 
 
 class TestURL(TestCase):

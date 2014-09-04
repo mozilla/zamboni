@@ -20,6 +20,13 @@ def validate_settings():
             raise ImproperlyConfigured('{0} must be changed from default'
                                        .format(key))
 
+    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
+        for url in getattr(settings, key):
+            # We will allow loading of resources from the current site.
+            if url.startswith('http://') and url != settings.SITE_URL:
+                raise ImproperlyConfigured('{0} has a http URL: {1}'
+                                           .format(key, url))
+
 
 def static_url(url):
     """
@@ -47,3 +54,29 @@ def static_url(url):
         value = '/' + value if not value.startswith('/') else value
         return urljoin(prefix[url], '/tmp' + value)
     return urljoin(prefix[url], value)
+
+
+def update_csp():
+    """
+    After settings, including DEBUG has loaded, see if we need to update CSP.
+    """
+    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
+        values = getattr(settings, key)
+        new = set()
+        for value in values:
+            # If we are in debug mode, mirror any HTTPS resources as a
+            # HTTP url.
+            if value.startswith('https://') and settings.DEBUG:
+                res = value.replace('https://', 'http://')
+                for v in value, res:
+                    new.add(v)
+                continue
+            # If there's a HTTP url in there and we are not in debug mode
+            # don't add it in.
+            elif value.startswith('http://') and not settings.DEBUG:
+                continue
+            # Add in anything like 'self'.
+            else:
+                new.add(value)
+
+        setattr(settings, key, tuple(new))

@@ -567,46 +567,30 @@ CSP_REPORT_ONLY = True
 
 CSP_ALLOW = ("'self'",)
 CSP_IMG_SRC = (
-    "'self'", SITE_URL,
-    'https://ssl.google-analytics.com',
-    'https://www.google-analytics.com',
+    "'self'",
+    'https://*.google-analytics.com',
     'https://*.newrelic.com',
     'data:'
 )
 CSP_SCRIPT_SRC = (
-    "'self'", SITE_URL,
-    'https://login.persona.org',
-    'https://firefoxos.persona.org',
-    'https://ssl.google-analytics.com',
-    'https://www.google-analytics.com',
+    "'self'",
+    'https://*.persona.org',
+    'https://*.google-analytics.com',
     'https://*.newrelic.com',
 )
-CSP_STYLE_SRC = ("'self'", SITE_URL,)
+CSP_STYLE_SRC = ("'self'",)
 CSP_OBJECT_SRC = ("'none'",)
 CSP_MEDIA_SRC = (
-    "'self'", SITE_URL,
+    "'self'",
     "https://videos-cdn.mozilla.net"
 )
 CSP_FRAME_SRC = (
     'https://s3.amazonaws.com',
     'https://ssl.google-analytics.com',
-    'https://login.persona.org',
-    'https://firefoxos.persona.org',
+    'https://*.persona.org',
     'https://www.youtube.com',
 )
 CSP_FONT_SRC = ("'self'", 'fonts.mozilla.org', 'www.mozilla.org',)
-
-# When running in DEBUG mode, we assume you are running locally
-# and are not using SSL. If that's the case, resources might load
-# as http too.
-if DEBUG:
-    for key in ('CSP_IMG_SRC', 'CSP_MEDIA_SRC', 'CSP_SCRIPT_SRC'):
-        values = locals()[key]
-        new = []
-        for value in values:
-            if value.startswith('https://'):
-                new.append(value.replace('https://', 'http://'))
-        locals()[key] = tuple(list(values) + new)
 
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
