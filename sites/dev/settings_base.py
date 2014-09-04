@@ -94,6 +94,7 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
     'z.task': {'level': logging.DEBUG},
     'z.redis': {'level': logging.DEBUG},
+    'z.users': {'level': logging.DEBUG},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
