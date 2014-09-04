@@ -12,6 +12,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.urlresolvers import reverse
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -157,3 +158,30 @@ class TestOpensearch(amo.tests.TestCase):
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}Url')
         wanted = '%s?q={searchTerms}' % urljoin(settings.SITE_URL, '/search')
         eq_(e.attrib['template'], wanted)
+
+
+@mock.patch('mkt.site.views.log_cef')
+class TestCSP(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('mkt.csp.report')
+        self.create_sample(name='csp-store-reports')
+
+    def test_get_document(self, log_cef):
+        eq_(self.client.get(self.url).status_code, 405)
+
+    def test_malformed(self, log_cef):
+        res = self.client.post(self.url, 'f', content_type='application/json')
+        eq_(res.status_code, 400)
+
+    def test_document_uri(self, log_cef):
+        url = 'http://foo.com'
+        self.client.post(self.url,
+                         json.dumps({'csp-report': {'document-uri': url}}),
+                         content_type='application/json')
+        eq_(log_cef.call_args[0][2]['PATH_INFO'], url)
+
+    def test_no_document_uri(self, log_cef):
+        self.client.post(self.url, json.dumps({'csp-report': {}}),
+                         content_type='application/json')
+        eq_(log_cef.call_args[0][2]['PATH_INFO'], '/services/csp/report')

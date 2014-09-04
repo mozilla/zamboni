@@ -7,7 +7,7 @@ from nose.tools import eq_
 import requests
 
 import amo.tests
-from amo.monitors import receipt_signer as signer, package_signer
+from mkt.site.monitors import receipt_signer as signer, package_signer
 
 
 @patch.object(settings, 'SIGNED_APPS_SERVER_ACTIVE', True)
@@ -21,25 +21,25 @@ class TestMonitor(amo.tests.TestCase):
         return [
             {'exp': now + (3600 * 36), 'iss': 'http://foo/cert.jwk'}, '']
 
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_sign_fails(self, receipt):
         from lib.crypto.receipt import SigningError
         receipt.sign.side_effect = SigningError
         eq_(signer()[0][:16], 'Error on signing')
 
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_crack_fails(self, receipt):
         receipt.crack.side_effect = ValueError
         eq_(signer()[0][:25], 'Error on cracking receipt')
 
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_expire(self, receipt):
         now = time.time()
         receipt.crack.return_value = [{'exp': now + (3600 * 12)}, '']
         eq_(signer()[0][:21], 'Cert will expire soon')
 
     @patch('requests.get')
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_good(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
@@ -47,14 +47,14 @@ class TestMonitor(amo.tests.TestCase):
         eq_(signer()[0], '')
 
     @patch('requests.get')
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_public_cert_connection_error(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.side_effect = Exception
         eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_public_cert_not_found(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = False
@@ -62,7 +62,7 @@ class TestMonitor(amo.tests.TestCase):
         eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_public_cert_no_json(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
@@ -70,7 +70,7 @@ class TestMonitor(amo.tests.TestCase):
         eq_(signer()[0][:29], 'Error on checking public cert')
 
     @patch('requests.get')
-    @patch('amo.monitors.receipt')
+    @patch('mkt.site.monitors.receipt')
     def test_public_cert_invalid_jwk(self, receipt, cert_response):
         receipt.crack.return_value = self._make_receipt()
         cert_response.return_value.ok = True
@@ -83,7 +83,7 @@ class TestMonitor(amo.tests.TestCase):
         sign_response().content = '{"zigbert.rsa": "Vm0wd2QyUXlVWGxW"}'
         eq_(package_signer()[0], '')
 
-    @patch('amo.monitors.os.unlink', new=Mock)
+    @patch('mkt.site.monitors.os.unlink', new=Mock)
     @patch('requests.post')
     def test_app_sign_fail(self, sign_response):
         sign_response().side_effect = requests.exceptions.HTTPError

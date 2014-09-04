@@ -88,9 +88,6 @@ urlpatterns = patterns('',
     # Misc pages.
     ('', include('mkt.commonplace.urls')),
     ('', include('mkt.site.urls')),
-
-    # Services.
-    ('', include('amo.urls')),
 )
 
 if settings.TEMPLATE_DEBUG:
