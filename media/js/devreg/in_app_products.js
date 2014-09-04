@@ -310,4 +310,7 @@
         component: InAppProductComponent,
         componentAttrs: {startEditing: true},
     });
+    $('#add-in-app-product').on('click', function () {
+        $('#in-app-products').removeClass('empty');
+    })
 })();
