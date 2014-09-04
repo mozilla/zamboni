@@ -14,7 +14,6 @@ STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev-cdn.allizom.org/')
 #STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev.mozflare.net/')
 
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)

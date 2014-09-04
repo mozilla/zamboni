@@ -12,7 +12,6 @@ SITE_URL = 'https://identity-stage-marketplace.allizom.org'
 BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = 'https://identity-stage-marketplace-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
