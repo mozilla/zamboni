@@ -26,9 +26,6 @@ PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
-# paths for uploaded extensions
-USERPICS_URL = 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-
 MEDIA_URL = STATIC_URL + 'media/'
 ADDON_ICONS_DEFAULT_URL = 'img/hub'
 

@@ -341,7 +341,6 @@ SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
 
 # Special reviewer signed ones for special people.
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
-USERPICS_PATH = UPLOADS_PATH + '/userpics'
 
 ###########################################
 # URLs

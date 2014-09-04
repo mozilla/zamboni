@@ -28,9 +28,6 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
-# paths for uploaded extensions
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-
 MEDIA_URL = STATIC_URL + 'media/'
 
 CACHE_PREFIX = 'marketplace.%s' % CACHE_PREFIX
@@ -61,11 +58,11 @@ CELERY_ALWAYS_EAGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.receipt': {'level': logging.ERROR },
-    'elasticsearch': {'level': logging.INFO },
-    'caching': {'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.redis': {'level': logging.DEBUG},
+    'z.receipt': {'level': logging.ERROR},
+    'elasticsearch': {'level': logging.INFO},
+    'caching': {'level': logging.ERROR},
 })
 
 STATSD_PREFIX = 'marketplace'
