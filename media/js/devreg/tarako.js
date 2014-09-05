@@ -9,7 +9,7 @@ jQuery(function ($) {
             app: $form.find('[name="app"]').val(),
             queue: $form.find('[name="queue"]').val(),
         }).done(function (review) {
-            window.location = window.location;
+            location.reload();
         }).fail(function (response) {
             var errors = response.responseJSON;
             if (errors.app) {
@@ -28,7 +28,7 @@ jQuery(function ($) {
             url: $removeTarakoTag.data('action'),
             method: 'delete',
         }).done(function () {
-            window.location = window.location;
+            location.reload();
         }).fail(function () {
             console.error('Error removing tarako tag');
             $removeTarakoModal.find('.error').text(

@@ -395,11 +395,14 @@ def tarako_failed(review):
 
 
 class AdditionalReviewManager(amo.models.ManagerBase):
-    def unreviewed(self, queue):
-        return self.get_queryset().filter(
-            passed=None,
-            queue=queue,
-            app__status__in=amo.WEBAPPS_APPROVED_STATUSES)
+    def unreviewed(self, queue, and_approved=False):
+        query = {
+            'passed': None,
+            'queue': queue,
+        }
+        if and_approved:
+            query['app__status__in'] = amo.WEBAPPS_APPROVED_STATUSES
+        return self.get_queryset().filter(**query)
 
     def latest_for_queue(self, queue):
         try:

@@ -44,7 +44,7 @@ from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
-from mkt.reviewers.models import EscalationQueue, RereviewQueue
+from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import DynamicBoolFieldsTestMixin
@@ -696,6 +696,28 @@ class TestWebapp(amo.tests.WebappTestCase):
         # This returns the class definitions for the *included* regions.
         eq_(sorted(self.get_app().get_regions()),
             sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values()))
+
+    def test_in_tarako_queue_pending_in_queue(self):
+        app = self.get_app()
+        app.update(status=amo.STATUS_PENDING)
+        app.additionalreview_set.create(queue=QUEUE_TARAKO)
+        ok_(app.in_tarako_queue())
+
+    def test_in_tarako_queue_approved_in_queue(self):
+        app = self.get_app()
+        app.update(status=amo.STATUS_APPROVED)
+        app.additionalreview_set.create(queue=QUEUE_TARAKO)
+        ok_(app.in_tarako_queue())
+
+    def test_in_tarako_queue_pending_not_in_queue(self):
+        app = self.get_app()
+        app.update(status=amo.STATUS_PENDING)
+        ok_(not app.in_tarako_queue())
+
+    def test_in_tarako_queue_approved_not_in_queue(self):
+        app = self.get_app()
+        app.update(status=amo.STATUS_APPROVED)
+        ok_(not app.in_tarako_queue())
 
 
 class TestWebappLight(amo.tests.TestCase):
