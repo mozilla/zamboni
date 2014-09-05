@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-09-05 07:03+0000\n"
 "Last-Translator: Aniruddha <aniruddha@adhikary.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "আপলোড হচ্ছে {0}"
 msgid "Error with {0}"
 msgstr "{0} টি ত্রুটি"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "আপনার অ্যাপ্লিকেশন {0} ত্রুটি সাথে বৈধতা ব্যর্থ হয়েছে। "
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;and {0} আরো"
 msgstr[1] "&hellip;and {0} আরো"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "বৈধতার সম্পূর্ণ প্রতিবেদন দেখুন"
 
@@ -100,15 +100,12 @@ msgstr "বৈধতা যাচাইকরণ শেষ {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-"আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং {0} টি সতর্কবার্তা সহ বৈধতা পেয়েছে।"
-msgstr[1] ""
-"আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং {0} টি সতর্কবার্তা সহ বৈধতা পেয়েছে।"
+msgstr[0] "আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং {0} টি সতর্কবার্তা সহ বৈধতা পেয়েছে।"
+msgstr[1] "আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং {0} টি সতর্কবার্তা সহ বৈধতা পেয়েছে।"
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
-"আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং সতর্কবার্তা ছাড়াই বৈধতা পেয়েছে।"
+msgstr "আপনার অ্যাপ্লিকেশন কোন প্রকার ত্রুটি এবং সতর্কবার্তা ছাড়াই বৈধতা পেয়েছে।"
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -142,59 +139,57 @@ msgstr "অ্যাপ ইনস্টলেশনের সময় অভ্য
 msgid "Install failed. Please try again later."
 msgstr "ইনস্টল ব্যর্থ হয়েছে। দয়া করে কিছুক্ষণ পরে আবার চেষ্টা করুন।"
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "আপনার অ্যাপ {0} ত্রুটি এবং {1} বার্তা যাচাইকরণ ব্যর্থ হয়েছে।"
 msgstr[1] "আপনার অ্যাপ {0} ত্রুটি এবং {1} বার্তা যাচাইকরণ ব্যর্থ হয়েছে।"
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "আপনার অ্যাপ কোনো ত্রুটি এবং {0} বার্তা ছাড়াই বৈধতা পাস করেছে।"
 msgstr[1] "আপনার অ্যাপ কোনো ত্রুটি এবং {0} বার্তা ছাড়াই বৈধতা পাস করেছে।"
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "আপনার অ্যাপ কোন ত্রুটি বা বার্তা ছাড়াই বৈধতা পাস করেছে।"
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "পরিবর্তন সংরক্ষিত"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "দলের নতুন সদস্যের ইমেইল এড্রেস প্রবেশ করান"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "ম্যানিফেস্ট রিফ্রেশ হয়েছে"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "ম্যানিফেস্ট রিফ্রেশ করা যায় নি। কিছুক্ষন পর আবার চেষ্টা করুন।"
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "আপনার ফাইল আপলোড করার সময় একটু ত্রুটি পাওয়া গেছে।"
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "বিস্তারিত জানুন"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "উদাহরণ"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
-"এই ভিডিওটি চালানোর জন্য মুক্ত ভিডিও দেখার সাপোর্ট আছে এমন একটি ব্রাউজার "
-"প্রয়োজন "
+msgstr "এই ভিডিওটি চালানোর জন্য মুক্ত ভিডিও দেখার সাপোর্ট আছে এমন একটি ব্রাউজার প্রয়োজন "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -204,11 +199,17 @@ msgstr "অথবা<a href=\"http://www.adobe.com/go/getflashplayer\">অ্য
 msgid "Flash Player</a>."
 msgstr "ফ্ল্যাশ প্লেয়ার</a>।"
 
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
+
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"ওয়েবসাইটটির তত্বাবধানের জন্য এই ফিচারটি সাময়িকভাবে নিষ্ক্রিয় করা হয়েছে। "
-"কিছুক্ষণ পর পুনরায় চেষ্টা করুন।"
+msgstr "ওয়েবসাইটটির তত্বাবধানের জন্য এই ফিচারটি সাময়িকভাবে নিষ্ক্রিয় করা হয়েছে। কিছুক্ষণ পর পুনরায় চেষ্টা করুন।"
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -216,9 +217,7 @@ msgstr "এই স্থানীয়করণ অপসারণ করুন
 
 #: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"পারসনা লগইন ব্যর্থ হয়েছে। হতে পারে আপনার ঐ ইমেইল ঠিকানার অধীনে কোন একাউন্ট "
-"নেই?"
+msgstr "পারসনা লগইন ব্যর্থ হয়েছে। হতে পারে আপনার ঐ ইমেইল ঠিকানার অধীনে কোন একাউন্ট নেই?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
@@ -298,9 +297,7 @@ msgstr "গ্রিক HEBIC / ইন্দোনেশীয় ব্যা�
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"যুক্তরাজ্য / আইরিশ সর্ট কোড বা নিউজিল্যান্ড অ্যাকাউন্ট প্রেফিক্স বা "
-"অস্ট্রেলিয়ান BSB কোড"
+msgstr "যুক্তরাজ্য / আইরিশ সর্ট কোড বা নিউজিল্যান্ড অ্যাকাউন্ট প্রেফিক্স বা অস্ট্রেলিয়ান BSB কোড"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -327,12 +324,8 @@ msgstr "সনাক্ত হয়েছে: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"পেমেন্ট অ্যাকাউন্ট \"{0}\" মুছে ফেললে নিচের অ্যাপ সমূহেরও পেমেন্ট অ্যাকাউন্ট "
-"মুছে যাবে।পেমেন্ট অ্যাকাউন্ট না থাকলে অ্যাপ্লিকেশন বিক্রি করা যাবেনা।"
-msgstr[1] ""
-"পেমেন্ট অ্যাকাউন্ট \"{0}\" মুছে ফেললে নিচের অ্যাপটিরও পেমেন্ট অ্যাকাউন্ট মুছে "
-"যাবে।পেমেন্ট অ্যাকাউন্ট না থাকলে অ্যাপ্লিকেশন বিক্রি করা যাবেনা।"
+msgstr[0] "পেমেন্ট অ্যাকাউন্ট \"{0}\" মুছে ফেললে নিচের অ্যাপ সমূহেরও পেমেন্ট অ্যাকাউন্ট মুছে যাবে।পেমেন্ট অ্যাকাউন্ট না থাকলে অ্যাপ্লিকেশন বিক্রি করা যাবেনা।"
+msgstr[1] "পেমেন্ট অ্যাকাউন্ট \"{0}\" মুছে ফেললে নিচের অ্যাপটিরও পেমেন্ট অ্যাকাউন্ট মুছে যাবে।পেমেন্ট অ্যাকাউন্ট না থাকলে অ্যাপ্লিকেশন বিক্রি করা যাবেনা।"
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -366,6 +359,10 @@ msgstr "<b>{0}</b> এর জন্য অ্যাপ খুঁজুন"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> এর জন্য অ্যাড-অন খুঁজুন"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -546,27 +543,25 @@ msgstr "অ্যাপ অনুমোদনে সমস্যা হচ্ছ
 msgid "Error rejecting app: {app}"
 msgstr "অ্যাপ প্রত্যাখ্যান করতে সমস্যা হচ্ছে: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "উত্তীর্ণ অ্যাপ: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "ব্যর্থ হওয়া অ্যাপঃ {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "অ্যাপ উত্তীর্ণ হিসেবে চিহ্নিত করতে সমস্যা হচ্ছেঃ {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "অ্যাপকে অনুত্তীর্ণ হিসেবে চিহ্নিত করতে সমস্যা হচ্ছেঃ {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"দুঃখিত! পর্যালোচনা ইতিহাস আনয়নে আমরা একটি ত্রুটির সম্মুখীন হয়েছি। আবার লগ "
-"ইন করার চেষ্টা করুন।<p>"
+msgstr "দুঃখিত! পর্যালোচনা ইতিহাস আনয়নে আমরা একটি ত্রুটির সম্মুখীন হয়েছি। আবার লগ ইন করার চেষ্টা করুন।<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65

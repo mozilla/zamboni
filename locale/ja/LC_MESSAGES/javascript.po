@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-08-13 15:09-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -64,7 +64,7 @@ msgstr "{0} をアップロードしています"
 msgid "Error with {0}"
 msgstr "{0} にエラーがありました"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーがあります。"
@@ -74,7 +74,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
@@ -136,49 +136,49 @@ msgstr "アプリのインストール中に内部サーバエラーが発生し
 msgid "Install failed. Please try again later."
 msgstr "インストールに失敗しました。また後で試してください。"
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "アプリは検証に失敗しました。{0} 個のエラーと {1} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "アプリは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "アプリは検証に合格しました。エラーやメッセージはありません。"
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "新しいチームメンバーのメールアドレスを入力してください"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "マニフェストが更新されました"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "マニフェストを更新できませんでした。また後で試してください。"
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "詳細"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "例"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
@@ -193,6 +193,14 @@ msgstr "<a href=\"http://get.adobe.com/jp/flashplayer/\">Adobe "
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
 msgstr "Flash Player</a> が必要です。"
+
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -346,6 +354,10 @@ msgstr "<b>{0}</b> 用アプリを検索"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 用アドオンを検索"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -523,19 +535,19 @@ msgstr "アプリの承認中にエラーが発生しました: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "アプリの却下中にエラーが発生しました: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "合格したアプリ: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "不合格となったアプリ: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "アプリの合格処理中にエラーが発生しました: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "アプリの不合格処理中にエラーが発生しました: {app}"
 

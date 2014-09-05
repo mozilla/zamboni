@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-08-18 00:59+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "正在上传 {0}"
 msgid "Error with {0}"
 msgstr "{0} 发生错误"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "您的应用验证失败，有 {0} 个错误。"
@@ -74,7 +74,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;还有 {0} 个"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "查看完整的验证报告"
 
@@ -136,49 +136,49 @@ msgstr "应用安装时发生内部服务器错误。"
 msgid "Install failed. Please try again later."
 msgstr "安装失败。请稍后重试。"
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "您的应用程序验证失败，有 {0} 个错误以及 {1} 条信息。"
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "您的应用通过了验证，没有错误，{0} 个信息。"
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "您的应用通过了验证，没有错误或信息。"
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "更改已保存"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "输入新的团队成员的电子邮件地址"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "清单已刷新"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "无法刷新清单，请稍后重试。"
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "上传您的文件时发生错误。"
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "详细了解"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "示例"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "正在处理图像更改"
 
@@ -193,6 +193,14 @@ msgstr "或者<a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>。"
+
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -345,6 +353,10 @@ msgstr "搜索包含关键字 <b>{0}</b> 的应用"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -522,19 +534,19 @@ msgstr "审核出错应用：{app}"
 msgid "Error rejecting app: {app}"
 msgstr "拒绝出错应用：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "已通过的应用：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "失败的应用：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "通过时出错的应用：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "失败时出错的应用：{app}"
 

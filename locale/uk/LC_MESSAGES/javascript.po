@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-08-21 07:03+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1408604619.0\n"
 
@@ -65,7 +64,7 @@ msgstr "Вивантаження {0}"
 msgid "Error with {0}"
 msgstr "Помилка з {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою."
@@ -78,7 +77,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "Переглянути повний звіт перевірки"
 
@@ -142,53 +141,53 @@ msgstr "Внутрішня помилка сервера при встановл
 msgid "Install failed. Please try again later."
 msgstr "Встановлення невдале. Спробуйте ще раз пізніше."
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
 msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 msgstr[2] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваша програма пройшла перевірку без помилок чи повідомлень."
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "Введіть адресу ел. пошти нового члена команди"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "Маніфест оновлено"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "Неможливо оновити маніфест. Спробуйте знову пізніше."
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "Приклад"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "Обробка змін зображення"
 
@@ -203,6 +202,14 @@ msgstr "або <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
+
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -294,9 +301,7 @@ msgstr "Грецький HEBIC/Індонезійський банківськи
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Британський/Ірландський код сортування або префікс Новозеландського рахунку "
-"або Австралійський BSB код"
+msgstr "Британський/Ірландський код сортування або префікс Новозеландського рахунку або Австралійський BSB код"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -323,15 +328,9 @@ msgstr "Виявлено: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Вилучення платіжного рахунку \"{0}\" прибере його з наступної програми. "
-"Програми без платіжного рахунку більше не будуть доступними для продажу."
-msgstr[1] ""
-"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
-"Програми без платіжного рахунку більше не будуть доступними для продажу."
-msgstr[2] ""
-"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
-"Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgstr[0] "Вилучення платіжного рахунку \"{0}\" прибере його з наступної програми. Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgstr[1] "Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgstr[2] "Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. Програми без платіжного рахунку більше не будуть доступними для продажу."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -365,6 +364,10 @@ msgstr "Шукати застосунки для <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Шукати додатки для <b>{0}</b>"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -548,27 +551,25 @@ msgstr "Помилка схвалення програми: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Помилка відхилення програми: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "Програма, яка пройшла перевірку: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "Програма, яка не пройшла перевірку: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "Помилка проходження перевірки програми: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "Помилка не проходження перевірки програми: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте "
-"увійти знову.<p>"
+msgstr "Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте увійти знову.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-08-16 13:26+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} wordt geüpload"
 msgid "Error with {0}"
 msgstr "Fout met {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Uw app kon niet worden gevalideerd met {0} fout."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "… en nog {0}"
 msgstr[1] "… en nog {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "Volledig validatierapport bekijken"
 
@@ -139,51 +139,51 @@ msgstr "Interne serverfout bij installatie van app."
 msgid "Install failed. Please try again later."
 msgstr "Installatie mislukt. Probeer het later nog eens."
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Uw app heeft de validatie met {0} fout en {1} bericht(en) niet doorstaan."
 msgstr[1] "Uw app heeft de validatie met {0} fouten en {1} bericht(en) niet doorstaan."
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Uw app is gevalideerd zonder fouten en met {0} bericht."
 msgstr[1] "Uw app is gevalideerd zonder fouten en met {0} berichten."
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "Uw app is gevalideerd zonder fouten of berichten."
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "Wijzigingen opgeslagen"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "Voer het e-mailadres van een nieuw teamlid in"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "Manifest ververst"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "Kan manifest niet verversen. Probeer het later nog eens."
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "Er is een fout opgetreden tijdens het uploaden van uw bestand."
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "Meer info"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "Voorbeeld"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "Afbeeldingswijzigingen worden verwerkt"
 
@@ -198,6 +198,14 @@ msgstr "of de <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
+
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -316,14 +324,8 @@ msgstr "Gedetecteerd: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
-"de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet "
-"meer beschikbaar voor verkoop."
-msgstr[1] ""
-"Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit "
-"de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet "
-"meer beschikbaar voor verkoop."
+msgstr[0] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende apps verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
+msgstr[1] "Door de betalingsaccount “{0}” te verwijderen wordt de betalingsaccount uit de volgende app verwijderd. Toepassingen zonder betalingsaccount zijn niet meer beschikbaar voor verkoop."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -357,6 +359,10 @@ msgstr "Apps doorzoeken op <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Add-ons doorzoeken op <b>{0}</b>"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -537,27 +543,25 @@ msgstr "Fout bij goedkeuren van app: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Fout bij afwijzen van app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "Geslaagde app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "Mislukte app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "Fout bij slagen van app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "Fout bij mislukken van app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Sorry! Er is een fout opgetreden bij het ophalen van de "
-"beoordelingsgeschiedenis. Probeer u opnieuw aan te melden.<p>"
+msgstr "Sorry! Er is een fout opgetreden bij het ophalen van de beoordelingsgeschiedenis. Probeer u opnieuw aan te melden.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:38-0700\n"
+"POT-Creation-Date: 2014-09-05 08:29-0700\n"
 "PO-Revision-Date: 2014-08-27 08:57+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "Laddar upp {0}"
 msgid "Error with {0}"
 msgstr "Fel med {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:205
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Din app misslyckades validering med {0} fel."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;och {0} mer"
 msgstr[1] "&hellip;och {0} fler"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:167
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr "Se fullständig valideringsrapport"
 
@@ -139,51 +139,51 @@ msgstr "Internt serverfel vid installation av app."
 msgid "Install failed. Please try again later."
 msgstr "Installering misslyckades. Vänligen försök igen senare."
 
-#: media/js/devreg/devhub.js:210
+#: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Din app misslyckades validering med {0} fel och {1} meddelande(n)."
 msgstr[1] "Din app misslyckades validering med {0} fel och {1} meddelande(n)."
 
-#: media/js/devreg/devhub.js:224
+#: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Din app passerade validering utan fel och {0} meddelande."
 msgstr[1] "Din app passerade validering utan fel och {0} meddelanden."
 
-#: media/js/devreg/devhub.js:229
+#: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
 msgstr "Din app passerade validering utan fel eller meddelanden."
 
-#: media/js/devreg/devhub.js:443
+#: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
 msgstr "Ändringar sparade"
 
-#: media/js/devreg/devhub.js:459
+#: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
 msgstr "Lägg till en ny gruppmedlems e-postadress"
 
-#: media/js/devreg/devhub.js:472
+#: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
 msgstr "Manifest uppdaterad"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
 msgstr "Kunde inte uppdatera manifest. Försök igen senare."
 
-#: media/js/devreg/devhub.js:658
+#: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
 msgstr "Ett fel uppstod vid uppladdning av din fil."
 
-#: media/js/devreg/devhub.js:943
+#: media/js/devreg/devhub.js:948
 msgid "Learn more"
 msgstr "Läs mer"
 
-#: media/js/devreg/devhub.js:947
+#: media/js/devreg/devhub.js:952
 msgid "Example"
 msgstr "Exempel"
 
-#: media/js/devreg/devhub.js:1241
+#: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
 msgstr "Bearbetar bildändringar"
 
@@ -199,11 +199,17 @@ msgstr "eller <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
+#: media/js/devreg/in_app_products.js:278
+msgid "Enabled"
+msgstr ""
+
+#: media/js/devreg/in_app_products.js:280
+msgid "Disabled"
+msgstr ""
+
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll "
-"på webbplatsen. Vänligen kom tillbaka lite senare."
+msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -211,9 +217,7 @@ msgstr "Ta bort denna översättning"
 
 #: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Persona-inloggning misslyckades. Du kanske inte har ett konto med den "
-"e-postadressen registrerad?"
+msgstr "Persona-inloggning misslyckades. Du kanske inte har ett konto med den e-postadressen registrerad?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
@@ -293,9 +297,7 @@ msgstr "Grekisk HEBIC/indonesisk bankkod"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Brittisk/irländsk clearingnummer eller nyzeeländsk kontoprefix eller "
-"australisk bank, delstat och kontor"
+msgstr "Brittisk/irländsk clearingnummer eller nyzeeländsk kontoprefix eller australisk bank, delstat och kontor"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -322,14 +324,8 @@ msgstr "Identifierade: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] ""
-"Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande "
-"appar. Applikationer utan ett betalkonto kommer inte längre att vara till "
-"salu."
-msgstr[1] ""
-"Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande "
-"app. Applikationer utan ett betalkonto kommer inte längre att vara till "
-"salu."
+msgstr[0] "Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande appar. Applikationer utan ett betalkonto kommer inte längre att vara till salu."
+msgstr[1] "Borttagning av betalkonto \"{0}\" kommer att ta bort betalkontot från följande app. Applikationer utan ett betalkonto kommer inte längre att vara till salu."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -363,6 +359,10 @@ msgstr "Sök appar för <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Sök tillägg för <b>{0}</b>"
+
+#: media/js/devreg/tarako.js:35
+msgid "Something went wrong. Please try again."
+msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -543,27 +543,25 @@ msgstr "Fel vid godkännande av app: {app}"
 msgid "Error rejecting app: {app}"
 msgstr "Fel vid avslag av app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:309
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
 msgstr "Validerad app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:312
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
 msgstr "Underkänd app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:318
+#: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
 msgstr "Fel vid validering av app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:319
+#: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
 msgstr "Fel vid underkännande av app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
-"Tyvärr! Vi hade ett fel vid hämtning av granskningshistorik. Försök att "
-"logga in igen.<p>"
+msgstr "Tyvärr! Vi hade ett fel vid hämtning av granskningshistorik. Försök att logga in igen.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
