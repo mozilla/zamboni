@@ -114,7 +114,7 @@ class TestSearchFilters(BaseOAuth):
             in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_device(self):
-        qs = self._filter(self.req, {'device': 'desktop'})
+        qs = self._filter(self.req, {'dev': 'desktop'})
         ok_({'term': {'device': DEVICE_CHOICES_IDS['desktop']}}
             in qs['query']['filtered']['filter']['bool']['must'])
 

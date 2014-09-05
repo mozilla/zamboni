@@ -250,6 +250,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         qs = {'q': 'something', 'pro': feature_profile, 'dev': 'firefoxos'}
 
         # Enable an app feature that doesn't match one in our profile.
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         self.webapp.latest_version.features.update(has_pay=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -261,6 +262,7 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
     def test_no_flash_filtering(self):
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         self.webapp.latest_version.all_files[0].update(uses_flash=True)
         self.webapp.save()
         self.refresh('webapp')
@@ -269,9 +271,11 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 1)
 
     def test_no_premium_filtering(self):
+        self.webapp.addondevicetype_set.create(
+            device_type=amo.DEVICE_MOBILE.id)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
         self.refresh('webapp')
-        res = self.client.get(self.url, {'dev': 'android'})
+        res = self.client.get(self.url, {'dev': 'android', 'device': 'mobile'})
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 
