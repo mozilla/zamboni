@@ -3,128 +3,130 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:38-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-09-05 07:04+0000\n"
+"Last-Translator: Aniruddha <aniruddha@adhikary.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1409900650.0\n"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "অবশ্যই বৈধ হেক্সা ডেসিমেল (hex) কালার কোড হতে হবে, যেমন #000000"
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "কমপক্ষে একটি মান লিখুন।"
 
 #: apps/amo/helpers.py:145 mkt/developers/helpers.py:41 mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:12
 #: mkt/ecosystem/templates/ecosystem/landing.html:171 mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81
 #: mkt/purchase/templates/purchase/receipt.html:59 mkt/zadmin/templates/admin/base.html:19 templates/base.html:12
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "ফায়ারফক্স মার্কেটপ্লেস"
 
 #: apps/amo/helpers.py:157
 msgid "Apps Marketplace"
-msgstr ""
+msgstr "অ্যাপ মার্কেটপ্লেস"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:211
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} আগে"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} তৈরি করা হয়েছে।"
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} এর বৈশিষ্ট্য সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} এর বর্ণনা সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য শ্রেণীবিভাগ সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{addon} এ {0.name} ({1}) যুক্ত করা হয়েছে।"
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{addon} হতে {0.name} ({1}) অপসারণ করা হয়েছে।"
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য অবদান।"
 
 #: apps/amo/log.py:65 apps/amo/log.py:440
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} নিষ্ক্রিয় করা হয়েছে।"
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} সক্রিয় হয়েছে।"
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "{addon} এর তথ্য সর্বসাধারণের জন্য উন্মুক্ত করা হয়েছে।"
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} এর তথ্য গোপন করে রাখা হয়েছে।"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} এর স্ট্যাটাস পরিবর্তন করে {0} করা হয়েছে।"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "{addon} এর নমুনা যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "{addon} এর নমুনা সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "{addon} থেকে নমুনা মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} এ {version} যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} এর {version} সংস্করণে সম্পাদনা করা হয়েছে।"
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "{addon} হতে {0} সংস্করণ মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} এর {version} এ {0.name} ফাইলটি যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "{addon} এর {version} সংস্করণ হতে {0} ফাইলটি মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} এর {version} সংস্করণ অনুমোদিত হয়েছে।"
 
 #: apps/amo/log.py:157 mkt/constants/comm.py:40 mkt/constants/payments.py:66
 msgid "Approved"
-msgstr ""
+msgstr " অনুমোদিত "
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
@@ -192,87 +194,87 @@ msgstr ""
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} {addon} এ যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{addon} থেকে {tag} অপসারণ করা হয়েছে।"
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{collection} এ {addon} যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{collection} থেকে {addon} অপসারণ করা হয়েছে।"
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{addon} এর জন্য {review} লেখা হয়েছে।"
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{0} তে {addon} ফিচার করা হয়েছে।"
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{0} তে এখন আর {addon} ফিচারড নেই।"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} এখন ফিচারড আছে।"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} আর এখন ফিচারড নয়।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} যোগ করা হয়েছে।"
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য {0.name} এর পদবি পরিবর্তন করে {1} করা হয়েছে।"
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} এখন {0.name} এর অধীনে লাইসেন্স করা।"
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} এর নীতি পরিবর্তন করা হয়েছে।"
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} এর আইকন পরিবর্তন করা হয়েছে।"
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{addon} এর জন্য {review} অনুমোদিত হয়েছে।"
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য {user} {review} অনুমোদন করেছেন।"
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "{addon} এর রিভিউ, {0} মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য {user} {0} অপসারন করা হয়েছে।"
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "অ্যাপ্লিকেশনের সর্বোচ্চ সংস্করণ {version} হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "ডেভেলপারকে {version} এর কম্প্যাটিবিলিটি সম্পর্কে মেইল করা হয়েছে।"
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
@@ -360,15 +362,17 @@ msgstr ""
 
 #: apps/amo/log.py:464
 msgid "{addon} re-reviewed because of manifest change."
-msgstr ""
+msgstr "ম্যানিফেস্ট পরিবর্তন করার কারনে {addon} পুনরায় পর্যালোচনা করা হয়েছে।"
 
 #: apps/amo/log.py:465
 msgid "Manifest Change"
-msgstr ""
+msgstr "ম্যানিফেস্ট পরিবর্তন"
 
 #: apps/amo/log.py:472
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr ""
+"অ্যাপ আপগ্রেড করে প্রিমিয়াম করা হয়েছে, তাই {addon} পুনরায় পর্যালোচনা করা "
+"হয়েছে।"
 
 #: apps/amo/log.py:473
 msgid "Premium Type Upgrade"
@@ -632,80 +636,83 @@ msgstr ""
 
 #: mkt/collections/constants.py:9
 msgid "Basic Collection"
-msgstr ""
+msgstr "মূল সংগ্রহ"
 
 #: mkt/collections/constants.py:10
 msgid "Featured App List"
-msgstr ""
+msgstr "নির্বাচিত অ্যাপের তালিকা"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "অপারেটরের তাক"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "হেক্সাডেসিমাল কালার"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "অবশ্যই একটি সঠিক হেক্সা ডেসিমেল কালার কোড হতে হবে, যেমন- #FF0035"
 
 #: mkt/collections/serializers.py:222
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"একই ক্যাটাগরি/ক্যারিয়ার/এলাকার জন্য আপনি একটির বেশি ফিচারড অ্যাপ/অপারেটর "
+"শেলফ রাখতে পারবেন না।"
 
 #: mkt/comm/forms.py:22
 msgid "Note body is empty."
-msgstr ""
+msgstr "নোটের মূল অংশ খালি।"
 
 #: mkt/comm/forms.py:26
 msgid "Invalid note type."
-msgstr ""
+msgstr "নোটের ধরন সঠিক নয়।"
 
 #: mkt/comm/forms.py:41
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "%s সংস্করণ পাওয়া যায়নি"
 
 #: mkt/comm/forms.py:45
 msgid "Attachment:"
-msgstr ""
+msgstr "সংযুক্তি:"
 
 #: mkt/comm/forms.py:46 mkt/submit/forms.py:273
 msgid "Description:"
-msgstr ""
+msgstr "বিবরণ:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "সংযুক্তির সর্বাধিক আকার %s অতিক্রম করেছে।"
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"ওয়েব প্লাটফর্মের অ্যাপের জন্য ফায়ারফক্স মার্কেটপ্লেস হচ্ছে অফিশিয়াল উৎস।"
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
-msgstr ""
+msgstr "ডেস্কটপ"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:32 mkt/constants/platforms.py:53 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:45
 #: mkt/constants/tests/test_platforms.py:58 mkt/constants/tests/test_platforms.py:75 mkt/constants/tests/test_platforms.py:96
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "ফায়ারফক্স মোবাইল"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:33 mkt/constants/platforms.py:54 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:46
 #: mkt/constants/tests/test_platforms.py:59 mkt/constants/tests/test_platforms.py:76 mkt/constants/tests/test_platforms.py:97
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "ফায়ারফক্স ট্যাবলেট"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:17 mkt/constants/platforms.py:42 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:25
 #: mkt/constants/tests/test_platforms.py:34 mkt/constants/tests/test_platforms.py:44 mkt/constants/tests/test_platforms.py:56 mkt/constants/tests/test_platforms.py:66
 #: mkt/constants/tests/test_platforms.py:74 mkt/constants/tests/test_platforms.py:85 mkt/constants/tests/test_platforms.py:95 mkt/ecosystem/templates/ecosystem/dev_phone.html:10
 #: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:45
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: mkt/constants/apps.py:9
 msgid "User"
-msgstr ""
+msgstr "ব্যবহারকারী"
 
 #: mkt/constants/apps.py:10 mkt/reviewers/templates/reviewers/logs.html:18
 msgid "Reviewer"
@@ -757,39 +764,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:29 mkt/constants/regions.py:212
 msgid "Argentina"
-msgstr ""
+msgstr "আর্জেন্টিনা"
 
 #: mkt/constants/bango.py:30
 msgid "Armenia"
-msgstr ""
+msgstr "আর্মেনিয়া"
 
 #: mkt/constants/bango.py:31
 msgid "Aruba"
-msgstr ""
+msgstr "আরুবা"
 
 #: mkt/constants/bango.py:32
 msgid "Australia"
-msgstr ""
+msgstr "অস্ট্রেলিয়া"
 
 #: mkt/constants/bango.py:33
 msgid "Austria"
-msgstr ""
+msgstr "অস্ট্রিয়া"
 
 #: mkt/constants/bango.py:34
 msgid "Azerbaijan"
-msgstr ""
+msgstr "আজারবাইজান"
 
 #: mkt/constants/bango.py:35
 msgid "Bahamas"
-msgstr ""
+msgstr "বাহামা দ্বীপপুঞ্জ"
 
 #: mkt/constants/bango.py:36
 msgid "Bahrain"
-msgstr ""
+msgstr "বাহরাইন"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:322
 msgid "Bangladesh"
-msgstr ""
+msgstr "বাংলাদেশ"
 
 #: mkt/constants/bango.py:38
 msgid "Barbados"
@@ -853,39 +860,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:53
 msgid "Bulgaria"
-msgstr ""
+msgstr "বুলগেরিয়া"
 
 #: mkt/constants/bango.py:54
 msgid "Burkina Faso"
-msgstr ""
+msgstr "বুরকিনা ফাসো"
 
 #: mkt/constants/bango.py:55
 msgid "Burundi"
-msgstr ""
+msgstr "বুরুন্ডি"
 
 #: mkt/constants/bango.py:56
 msgid "Cambodia"
-msgstr ""
+msgstr "কম্বোডিয়া"
 
 #: mkt/constants/bango.py:57
 msgid "Cameroon"
-msgstr ""
+msgstr "ক্যামেরুন"
 
 #: mkt/constants/bango.py:58
 msgid "Canada"
-msgstr ""
+msgstr "কানাডা"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr ""
+msgstr "কেপ ভার্দে"
 
 #: mkt/constants/bango.py:60
 msgid "Cayman Islands"
-msgstr ""
+msgstr "কেইম্যান দ্বীপপুঞ্জ"
 
 #: mkt/constants/bango.py:61
 msgid "Central African Republic"
-msgstr ""
+msgstr "মধ্য আফ্রিকান প্রজাতন্ত্র"
 
 #: mkt/constants/bango.py:62
 msgid "Chad"
@@ -925,39 +932,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:71
 msgid "Cook Islands"
-msgstr ""
+msgstr "কুক দ্বীপপুঞ্জ"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:282
 msgid "Costa Rica"
-msgstr ""
+msgstr "কোস্টা রিকা"
 
 #: mkt/constants/bango.py:73
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "আইভরি কোস্ট"
 
 #: mkt/constants/bango.py:74
 msgid "Croatia"
-msgstr ""
+msgstr "ক্রোয়েশিয়া"
 
 #: mkt/constants/bango.py:75
 msgid "Cuba"
-msgstr ""
+msgstr "কিউবা"
 
 #: mkt/constants/bango.py:76
 msgid "Curaçao"
-msgstr ""
+msgstr "কিউরাকাউ"
 
 #: mkt/constants/bango.py:77
 msgid "Cyprus"
-msgstr ""
+msgstr "সাইপ্রাস"
 
 #: mkt/constants/bango.py:78
 msgid "Czech Republic"
-msgstr ""
+msgstr "চেক রিপাবলিক"
 
 #: mkt/constants/bango.py:79
 msgid "Denmark Do"
-msgstr ""
+msgstr "ডেনমার্ক"
 
 #: mkt/constants/bango.py:80
 msgid "Djibouti"
@@ -997,39 +1004,39 @@ msgstr ""
 
 #: mkt/constants/bango.py:89
 msgid "Ethiopia"
-msgstr ""
+msgstr "ইথিওপিয়া"
 
 #: mkt/constants/bango.py:90
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "ফকল্যান্ড দ্বীপ (মাল্ভিনাস)"
 
 #: mkt/constants/bango.py:91
 msgid "Faroe Islands"
-msgstr ""
+msgstr "ফারো দ্বীপপুঞ্জ"
 
 #: mkt/constants/bango.py:92
 msgid "Fiji"
-msgstr ""
+msgstr "ফিজি"
 
 #: mkt/constants/bango.py:93
 msgid "Finland"
-msgstr ""
+msgstr "ফিনল্যান্ড"
 
 #: mkt/constants/bango.py:94 mkt/constants/regions.py:312
 msgid "France"
-msgstr ""
+msgstr "ফ্রান্স"
 
 #: mkt/constants/bango.py:95
 msgid "French Guiana"
-msgstr ""
+msgstr "ফরাসি গায়ানা"
 
 #: mkt/constants/bango.py:96
 msgid "French Polynesia"
-msgstr ""
+msgstr "ফরাসি পলিনেশিয়া"
 
 #: mkt/constants/bango.py:97
 msgid "French Southern Territories"
-msgstr ""
+msgstr "ফরাসি দক্ষিণ অঞ্চল"
 
 #: mkt/constants/bango.py:98
 msgid "Gabon"
@@ -1097,27 +1104,27 @@ msgstr ""
 
 #: mkt/constants/bango.py:114
 msgid "Haiti"
-msgstr ""
+msgstr "হাইতি"
 
 #: mkt/constants/bango.py:115
 msgid "Heard and McDonald Islands"
-msgstr ""
+msgstr "হার্ড এবং ম্যাকডোনাল্ড দ্বীপপুঞ্জ"
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "হোলি সি (ভ্যাটিকান সিটি)"
 
 #: mkt/constants/bango.py:117
 msgid "Honduras"
-msgstr ""
+msgstr "হন্ডুরাস"
 
 #: mkt/constants/bango.py:118
 msgid "Hong Kong"
-msgstr ""
+msgstr "হংকং"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:144
 msgid "Hungary"
-msgstr ""
+msgstr "হাঙ্গেরি"
 
 #: mkt/constants/bango.py:120
 msgid "Iceland"
@@ -1909,87 +1916,87 @@ msgstr ""
 
 #: mkt/constants/categories.py:5
 msgid "Books"
-msgstr ""
+msgstr "বই"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "ব্যবসা"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "শিক্ষা"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "বিনোদন"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "গেম"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
-msgstr ""
+msgstr "স্বাস্থ্য এবং ফিটনেস"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:40
 msgid "Lifestyle"
-msgstr ""
+msgstr "লাইফস্টাইল"
 
 #: mkt/constants/categories.py:12
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "মানচিত্র এবং দিকনির্দেশনা"
 
 #: mkt/constants/categories.py:13
 msgid "Music"
-msgstr ""
+msgstr "সঙ্গীত"
 
 #: mkt/constants/categories.py:14
 msgid "News & Weather"
-msgstr ""
+msgstr "সংবাদ ও আবহাওয়া"
 
 #: mkt/constants/categories.py:15
 msgid "Photo & Video"
-msgstr ""
+msgstr "ফটো এবং ভিডিও"
 
 #: mkt/constants/categories.py:16
 msgid "Productivity"
-msgstr ""
+msgstr "নিত্যপ্রয়োজনীয়"
 
 #: mkt/constants/categories.py:17
 msgid "Reference"
-msgstr ""
+msgstr "উৎস"
 
 #: mkt/constants/categories.py:18
 msgid "Shopping"
-msgstr ""
+msgstr "কেনাকাটা"
 
 #: mkt/constants/categories.py:19
 msgid "Social"
-msgstr ""
+msgstr "সোশ্যাল"
 
 #: mkt/constants/categories.py:20
 msgid "Sports"
-msgstr ""
+msgstr "খেলাধুলা"
 
 #: mkt/constants/categories.py:21
 msgid "Travel"
-msgstr ""
+msgstr "ভ্রমণ"
 
 #: mkt/constants/categories.py:22
 msgid "Utilities"
-msgstr ""
+msgstr "নিত্যপ্রয়োজনীয়"
 
 #: mkt/constants/categories.py:38 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:20
 msgid "Tools"
-msgstr ""
+msgstr "টুলস"
 
 #: mkt/constants/comm.py:39
 msgid "No action"
-msgstr ""
+msgstr "কাজ নেই"
 
 #: mkt/constants/comm.py:42 mkt/developers/templates/developers/apps/status.html:241 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
-msgstr ""
+msgstr "বন্ধ করা হয়েছে"
 
 #: mkt/constants/comm.py:46
 msgid "App resubmission"
@@ -1997,7 +2004,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:47
 msgid "Approved but waiting to be made public"
-msgstr ""
+msgstr "অনুমোদিত কিন্তু সবার জন্য উন্মুক্ত হবার অপেক্ষায় আছে"
 
 #: mkt/constants/comm.py:49
 msgid "Escalated due to High Abuse Reports"
@@ -2009,47 +2016,47 @@ msgstr ""
 
 #: mkt/constants/comm.py:52
 msgid "App submission notes"
-msgstr ""
+msgstr "অ্যাপ সাবমিশন নোট"
 
 #: mkt/constants/comm.py:53
 msgid "Developer comment"
-msgstr ""
+msgstr "ডেভলপারের মন্তব্য"
 
 #: mkt/constants/comm.py:54
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "পর্যালোচনাকারী ডিভাইস পরিবর্তন করেছেন"
 
 #: mkt/constants/comm.py:55
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "পর্যালোচক চাহিদা পরিবর্তন করেছেন"
 
 #: mkt/constants/comm.py:56
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "ম্যানিফেস্ট পরিবর্তনের কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "ম্যানিফেস্ট লিঙ্ক পরিবর্তনের কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:58
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "প্রিমিয়াম টাইপ আপগ্রেডের কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "নতুন ডিভাইস যুক্ত করার কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "চাহিদা পরিবর্তনের কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "বিষয়বস্তুর প্রাপ্তবয়স্ক রেটিং পাওয়ার কারনে পুনঃ পর্যালোচনা"
 
 #: mkt/constants/comm.py:62
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "ভিআইপি অ্যাপ হবার কারনে তুলে নেয়া হয়েছে"
 
 #: mkt/constants/comm.py:63
 msgid "Escalation due to Prelease App"
@@ -2057,11 +2064,11 @@ msgstr ""
 
 #: mkt/constants/comm.py:64
 msgid "Priority review requested"
-msgstr ""
+msgstr "অগ্রাধিকার পর্যালোচনার অনুরোধ করা হয়েছে"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "অ্যাপ ম্যানেজমেন্ট এপিআই"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
