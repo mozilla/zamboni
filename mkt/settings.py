@@ -605,7 +605,7 @@ DATABASE_POOL_ARGS = {
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
 # If you need to get a payment provider, which one will be the default?
-DEFAULT_PAYMENT_PROVIDER = 'bango'
+DEFAULT_PAYMENT_PROVIDER = 'reference'
 
 # When the dev. agreement gets updated and you need users to re-accept it
 # change this date. You won't want to do this for minor format changes.
@@ -924,7 +924,7 @@ NOSE_ARGS = [
 ]
 
 # The payment providers supported.
-PAYMENT_PROVIDERS = ['bango']
+PAYMENT_PROVIDERS = ['reference']
 
 # Auth token required to authorize a postfix host.
 POSTFIX_AUTH_TOKEN = 'make-sure-to-override-this-with-a-long-weird-string'

@@ -153,3 +153,6 @@ VALIDATOR_TIMEOUT = 110
 FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
 FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')
+
+DEFAULT_PAYMENT_PROVIDER = 'bango'
+PAYMENT_PROVIDERS = ['bango']
