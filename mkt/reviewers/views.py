@@ -180,7 +180,7 @@ def queue_counts(request):
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
         'additional_tarako': (
             AdditionalReview.objects
-                            .unreviewed(queue=QUEUE_TARAKO)
+                            .unreviewed(queue=QUEUE_TARAKO, and_approved=True)
                             .count()),
     }
 
@@ -629,8 +629,9 @@ def additional_review(request, queue):
     if request.GET.get('order') == 'desc':
         order_by = '-' + order_by
     # TODO: Add `.select_related('app')`. Currently it won't load the name.
-    additional_reviews = (AdditionalReview.objects.unreviewed(queue=queue)
-                                                  .order_by(order_by))
+    additional_reviews = (
+        AdditionalReview.objects.unreviewed(queue=queue, and_approved=True)
+                                .order_by(order_by))
     apps = [ActionableQueuedApp(additional_review.app,
                                 additional_review.created,
                                 reverse('additionalreview-detail',
