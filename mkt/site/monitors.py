@@ -127,12 +127,10 @@ def path():
           settings.NETAPP_STORAGE,
           settings.UPLOADS_PATH,
           settings.ADDONS_PATH,
-          settings.MIRROR_STAGE_PATH,
           settings.GUARDED_ADDONS_PATH,
           settings.ADDON_ICONS_PATH,
           settings.COLLECTIONS_ICON_PATH,
           settings.PREVIEWS_PATH,
-          settings.USERPICS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.

@@ -12,7 +12,6 @@ SITE_URL = getattr(private_mkt, 'SITE_URL', 'https://' + DOMAIN)
 BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace.cdn.mozilla.net/')
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
@@ -27,9 +26,6 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
-
-# paths for uploaded extensions
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 MEDIA_URL = STATIC_URL + 'media/'
 
@@ -61,11 +57,11 @@ CELERY_ALWAYS_EAGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.receipt': {'level': logging.ERROR },
-    'elasticsearch': {'level': logging.INFO },
-    'caching': {'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.redis': {'level': logging.DEBUG},
+    'z.receipt': {'level': logging.ERROR},
+    'elasticsearch': {'level': logging.INFO},
+    'caching': {'level': logging.ERROR},
 })
 
 STATSD_PREFIX = 'marketplace'

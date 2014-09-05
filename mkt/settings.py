@@ -322,7 +322,6 @@ IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
 
 # File path for add-on files that get rsynced to mirrors.
 # /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
-MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 
@@ -341,7 +340,6 @@ SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed-apps'
 
 # Special reviewer signed ones for special people.
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed-apps-reviewer'
-USERPICS_PATH = UPLOADS_PATH + '/userpics'
 
 ###########################################
 # URLs
@@ -355,7 +353,6 @@ ADDON_ICONS_DEFAULT_URL = 'img/hub'
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
 
 LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
-MIRROR_URL = 'http://releases.mozilla.org/pub/mozilla.org/addons'
 PREVIEW_THUMBNAIL_URL = 'img/uploads/previews/thumbs/%s/%d.png?modified=%d'
 PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 PRIVATE_MIRROR_URL = '/_privatefiles'

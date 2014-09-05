@@ -14,7 +14,6 @@ STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev-cdn.allizom.org/')
 #STATIC_URL = os.getenv('CUSTOM_CDN', 'https://marketplace-dev.mozflare.net/')
 
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
 
 CSP_STATIC_URL = STATIC_URL[:-1]
 CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
@@ -28,9 +27,6 @@ PREVIEW_FULL_URL = 'img/uploads/previews/full/%s/%d.%s?modified=%d'
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
-
-# paths for uploaded extensions
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
 
 MEDIA_URL = STATIC_URL + 'media/'
 
