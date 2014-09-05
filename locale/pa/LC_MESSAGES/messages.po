@@ -104,7 +104,7 @@ msgstr "{addon} ਦੇ {version} ਤੋਂ {0} ਫ਼ਾਈਲ ਮਿਟਾਈ ਗ�
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr "{ਐਡਆਨ} (ਵਰਜਨ} ਮਨਜੂਰ ਹੈ ।"
+msgstr "{addon} {version} ਮਨਜੂਰ ਹੈ ।"
 
 #: apps/amo/log.py:157 mkt/constants/base.py:43 mkt/constants/comm.py:41 mkt/constants/payments.py:66
 msgid "Approved"
@@ -128,7 +128,7 @@ msgstr "ਰੱਦ ਕੀਤੀ"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr "{ਐਡਆਨ} {ਵਰਜਨ} ਰੱਖੀ ਗਈ।"
+msgstr "{addon} {version} ਰੱਖੀ ਗਈ।"
 
 #: apps/amo/log.py:188
 msgid "Retained"
@@ -136,7 +136,7 @@ msgstr "ਰੱਖੀ ਗਈ"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr "{ਐਡਆਨ} {ਵਰਜਨ} ਤਰੱਕੀ'ਸ਼ਦਾ।"
+msgstr "{addon} {version} ਤਰੱਕੀ'ਸ਼ਦਾ।"
 
 #: apps/amo/log.py:198 mkt/constants/comm.py:45 mkt/reviewers/forms.py:164
 msgid "Escalated"
@@ -152,7 +152,7 @@ msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਕੀਤੀ"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr "{ਐਡਆਨ) {ਵਰਜਨ} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਕੀਤੀ ਗਈ ।"
+msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਕੀਤੀ ਗਈ ।"
 
 #: apps/amo/log.py:217 mkt/constants/comm.py:44
 msgid "More information requested"
@@ -384,7 +384,7 @@ msgstr "ਵੀਡੀਓ ਹਟਾਈ"
 
 #: apps/amo/log.py:504
 msgid "{addon} re-review because of new device(s) added."
-msgstr "{ਐਡਆਨ} ਮੁੜ-ਸਮੀਖਿਆ ਕਿਉਂਕਿ ਨਵੀਂ ਡਿਵਾਈਸ ਦਾ (s) ਸ਼ਾਮਿਲ।"
+msgstr "{addon} ਮੁੜ-ਸਮੀਖਿਆ ਕਿਉਂਕਿ ਨਵੀਂ ਡਿਵਾਈਸ ਦਾ (s) ਸ਼ਾਮਿਲ।"
 
 #: apps/amo/log.py:505
 msgid "Device(s) Added"
@@ -392,7 +392,7 @@ msgstr "ਯੰਤਰ ਜੋੜਿਆ"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
-msgstr "{ਐਡਆਨ} ਡਿਵਾਈਸ ਸਹਿਯੋਗੀ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਖੁਦ ਬਦਲਿਆ।"
+msgstr "{addon} ਡਿਵਾਈਸ ਸਹਿਯੋਗੀ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਖੁਦ ਬਦਲਿਆ।"
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
@@ -408,7 +408,7 @@ msgstr "ਐਪ ਦਬਾਰਾ ਆਧੀਨਗੀ"
 
 #: apps/amo/log.py:528
 msgid "{addon} auto-escalated because its a VIP app."
-msgstr "{ਐਡਆਨ} ਸਵੈ-ਵਾਧਾ ਕੀਤਾ ਕਿਉਂਕਿ ਇਹ ਇੱਕ ਵੀ.ਆਈ.ਪੀ ਐਪ ਹੈ।"
+msgstr "{addon} ਸਵੈ-ਵਾਧਾ ਕੀਤਾ ਕਿਉਂਕਿ ਇਹ ਇੱਕ ਵੀ.ਆਈ.ਪੀ ਐਪ ਹੈ।"
 
 #: apps/amo/log.py:529
 msgid "VIP auto-escalation"
@@ -416,7 +416,7 @@ msgstr "VIP ਸਵੈ-ਵਾਧਾ"
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr "{ਐਡਆਨ} ਮੁੜ-ਸਮੀਖਿਆ ਕਿਉਂਕਿ ਮੈਨੀਫਿਸਟ ਦਾ ਯੂਆਰਐਲ ਬਦਲਿਆ।"
+msgstr "{addon} ਮੁੜ-ਸਮੀਖਿਆ ਕਿਉਂਕਿ ਮੈਨੀਫਿਸਟ ਦਾ ਯੂਆਰਐਲ ਬਦਲਿਆ।"
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
