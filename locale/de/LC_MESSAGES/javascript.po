@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-13 17:05+0000\n"
+"PO-Revision-Date: 2014-09-05 17:43+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407949538.0\n"
+"X-POOTLE-MTIME: 1409939009.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -201,11 +201,11 @@ msgstr "Flash-Player</a>."
 
 #: media/js/devreg/in_app_products.js:278
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiviert"
 
 #: media/js/devreg/in_app_products.js:280
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -362,7 +362,7 @@ msgstr "Add-ons suchen für <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Etwas ist schiefgegangen. Bitte versuchen Sie es erneut."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
