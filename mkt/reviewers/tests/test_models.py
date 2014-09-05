@@ -311,8 +311,13 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
         self.other_queue = AdditionalReview.objects.create(
             app=Webapp.objects.create(), queue='queue-two')
 
-    def test_unreviewed_none_approved(self):
-        eq_([], list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+    def test_unreviewed_none_approved_allow_unapproved(self):
+        eq_([self.unreviewed, self.unreviewed_too],
+            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+    def test_unreviewed_none_approved_only_approved(self):
+        eq_([], list(AdditionalReview.objects.unreviewed(
+            queue='queue-one', and_approved=True)))
 
     def test_unreviewed_and_approved_all_approved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
@@ -320,11 +325,18 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
         eq_([self.unreviewed, self.unreviewed_too],
             list(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
-    def test_unreviewed_and_approved_one_approved(self):
+    def test_unreviewed_and_approved_one_approved_allow_unapproved(self):
+        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
+        self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
+        eq_([self.unreviewed, self.unreviewed_too],
+            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+    def test_unreviewed_and_approved_one_approved_only_approved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
         self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
         eq_([self.unreviewed],
-            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+            list(AdditionalReview.objects.unreviewed(
+                queue='queue-one', and_approved=True)))
 
 
 class BaseTarakoFunctionsTestCase(amo.tests.TestCase):

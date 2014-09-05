@@ -530,6 +530,7 @@ class TestCreateAdditionalReview(RestOAuth):
 
     def test_only_one_pending_review(self):
         AdditionalReview.objects.create(queue=QUEUE_TARAKO, app=self.app)
+        self.app.update(status=amo.STATUS_PENDING)
         eq_(AdditionalReview.objects.filter(app=self.app).count(), 1)
         response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
         eq_(response.status_code, 400)
