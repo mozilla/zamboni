@@ -282,7 +282,6 @@
     {% endif %}
 
     <section>
-      {% set mdn_link = "https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices" %}
       <h2 id="low-memory-devices">{{ _("Low-Memory Devices") }}</h2>
       <div class="island">
         <p>
@@ -320,19 +319,22 @@
                |fe(compatibility_page=url('mkt.developers.apps.payments', addon.app_slug) + '#regions-and-listings') }}
         {% endif %}
 
+        {% set can_request_review = not (tarako_review and tarako_review.pending) %}
+        <p>
+          {% if can_request_review %}
+            {{ _('If your app works on low-memory devices then you can request a review to be shown on low-memory devices.') }}
+          {% endif %}
+          <a href="https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices" target="_blank">
+            {{ _("Learn about low-memory devices.") }}
+          </a>
+        </p>
         {% if is_tarako %}
           <div class="listing-footer">
             <button id="remove-tarako">
               {{ _("Do not show my app on low-memory devices") }}
             </button>
           </div>
-        {# They can request a review if they don't have a pending review. #}
-        {% elif not (tarako_review and tarako_review.pending) %}
-          <p>
-            {{ _('If your app <a href="{mdn_link}">works on low-memory devices</a> then you can '
-                 'request a review to be shown on low-memory devices.')
-               |fe(mdn_link=mdn_link)}}
-          </p>
+        {% elif can_request_review %}
           <div class="listing-footer">
             <form id="request-tarako" action="{{ url('additionalreviews') }}" method="post">
               <input type="hidden" name="app" value="{{ addon.pk }}">
@@ -343,10 +345,6 @@
               </button>
             </form>
           </div>
-        {% else %}
-          <p>
-            <a href="{{ mdn_link }}">{{ _("Learn about low-memory devices.") }}</a>
-          </p>
         {% endif %}
     </section>
 
