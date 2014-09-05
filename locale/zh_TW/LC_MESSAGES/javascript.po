@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-14 01:56+0000\n"
+"PO-Revision-Date: 2014-09-05 16:33+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407981403.0\n"
+"X-POOTLE-MTIME: 1409934781.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -196,11 +196,11 @@ msgstr "Flash Player</a>。"
 
 #: media/js/devreg/in_app_products.js:278
 msgid "Enabled"
-msgstr ""
+msgstr "已啟用"
 
 #: media/js/devreg/in_app_products.js:280
 msgid "Disabled"
-msgstr ""
+msgstr "已停用"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -356,7 +356,7 @@ msgstr "搜尋含有 <b>{0}</b> 的附加元件"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "某些東西不對勁，請再試一次。"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
