@@ -1,8 +1,8 @@
 import json
 
-from django.core.urlresolvers import reverse
-
 from django import forms
+from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 from curling.lib import HttpClientError, HttpServerError
 from mock import Mock, patch
@@ -221,6 +221,8 @@ class TestSerializer(AccountCase):
         ok_(not res.is_valid())
 
 
+@override_settings(DEFAULT_PAYMENT_PROVIDER='bango',
+                   PAYMENT_PROVIDERS=['bango'])
 class TestPaymentAccount(AccountCase, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
 
@@ -330,6 +332,8 @@ class TestPaymentAccount(AccountCase, RestOAuth):
         eq_(res.status_code, 500)
 
 
+@override_settings(DEFAULT_PAYMENT_PROVIDER='bango',
+                   PAYMENT_PROVIDERS=['bango'])
 class TestAddonPaymentAccount(AccountCase, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
 

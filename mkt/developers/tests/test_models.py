@@ -89,6 +89,8 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(len(ActivityLog.objects.for_developer()), 1)
 
 
+@override_settings(DEFAULT_PAYMENT_PROVIDER='bango',
+                   PAYMENT_PROVIDERS=['bango'])
 class TestPaymentAccount(Patcher, amo.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
