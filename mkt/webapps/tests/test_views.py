@@ -5,12 +5,13 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
-from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.api.tests.test_oauth import BaseOAuth, RestOAuth
 from mkt.constants import APP_FEATURES
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import (AppSerializer, AppFeaturesSerializer,
@@ -92,3 +93,54 @@ class TestSimpleAppSerializer(amo.tests.TestCase):
         acct = self.add_pay_account()
         eq_(self.app().data['payment_account'],
             reverse('payment-account-detail', args=[acct.pk]))
+
+
+class TestAppTagViewSet(RestOAuth):
+    fixtures = fixture('user_2519', 'webapp_337141')
+
+    def setUp(self):
+        super(TestAppTagViewSet, self).setUp()
+        self.app = Webapp.objects.get(pk=337141)
+        self.app.addonuser_set.create(user=self.profile)
+        self.add_tag('other')
+        self.add_tag('tarako')
+
+    def has_tag(self, tag_text):
+        return self.app.tags.filter(tag_text=tag_text).exists()
+
+    def add_tag(self, tag_text):
+        Tag(tag_text=tag_text).save_tag(self.app)
+
+    def remove_tag(self, tag_text):
+        Tag(tag_text=tag_text).remove_tag(self.app)
+
+    def url(self, tag_text):
+        return reverse('app-tags-detail', args=[self.app.app_slug, tag_text])
+
+    def test_tarako_tag_is_removed(self):
+        ok_(self.has_tag('tarako'))
+        response = self.client.delete(self.url('tarako'))
+        eq_(response.status_code, 204)
+        ok_(not self.has_tag('tarako'))
+
+    def test_other_tag_is_not_removed(self):
+        ok_(self.has_tag('other'))
+        ok_(self.has_tag('tarako'))
+        response = self.client.delete(self.url('other'))
+        eq_(response.status_code, 403)
+        ok_(self.has_tag('other'))
+        ok_(self.has_tag('tarako'))
+
+    def test_non_author_is_forbidden(self):
+        self.app.addonuser_set.filter(user=self.profile).delete()
+        ok_(self.has_tag('tarako'))
+        response = self.client.delete(self.url('tarako'))
+        eq_(response.status_code, 403)
+        ok_(self.has_tag('tarako'))
+
+    def test_cannot_create_tags(self):
+        self.remove_tag('tarako')
+        ok_(not self.has_tag('tarako'))
+        response = self.client.post(self.url('tarako'))
+        eq_(response.status_code, 405)
+        ok_(not self.has_tag('tarako'))
