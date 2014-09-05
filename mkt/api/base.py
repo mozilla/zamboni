@@ -54,6 +54,13 @@ def check_potatocaptcha(data):
             return Response(json.dumps({'sprout': 'Invalid value'}), 400)
 
 
+def get_region_from_request(request):
+    region = request.GET.get('region')
+    if region and region == 'None':
+        return None
+    return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
+
+
 class SubRouter(SimpleRouter):
     """
     Like SimpleRouter, but with the lookup before the prefix, so that it can be
@@ -156,10 +163,7 @@ class MarketplaceView(object):
         go through the middleware and request.REGION is absent, we fall back to
         RESTOFWORLD.
         """
-        region = request.GET.get('region')
-        if region and region == 'None':
-            return None
-        return getattr(request, 'REGION', mkt.regions.RESTOFWORLD)
+        return get_region_from_request(request)
 
 
 class MultiSerializerViewSetMixin(object):
