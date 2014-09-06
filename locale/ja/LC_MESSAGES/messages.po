@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-13 15:07-0400\n"
+"PO-Revision-Date: 2014-09-05 23:45-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -279,11 +279,11 @@ msgstr "{addon} のマニフェストが更新されました。"
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} は承認されましたが非公開となっています。"
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "承認済み / 非公開"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -521,11 +521,11 @@ msgstr "優先審査"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} が {queue} 審査に合格しました。"
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} が {queue} 審査に不合格となりました。"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1715,7 +1715,7 @@ msgstr "ブロック済み"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "非掲載"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -2029,7 +2029,7 @@ msgstr "事前審査申請済み"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr ""
+msgstr "追加審査が完了しました"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2669,19 +2669,19 @@ msgstr "あなたのコメント"
 
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
-msgstr ""
+msgstr "<b>公開中</b>: Marketplace 上で誰でも参照でき、検索結果や一覧ページに表示されます。"
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr ""
+msgstr "<b>非掲載</b>: URL を知っている人のみが参照でき、検索結果や一覧ページには表示されます。"
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "アプリの公開設定:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>チームのみに制限</b>: チームメンバーのみが参照できます。"
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2693,7 +2693,7 @@ msgstr "少なくともひとつ地域を選択してください。"
 
 #: mkt/developers/forms.py:828
 msgid "Enable new regions"
-msgstr "新たな対象地域を追加"
+msgstr "新たな対応地域を追加"
 
 #: mkt/developers/forms.py:830
 msgid "Make my app available in most regions"
@@ -2764,7 +2764,7 @@ msgstr "コマンドライン"
 
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
-msgstr ""
+msgstr "審査と承認が完了次第、これを自分のアプリのアクティブなバージョンに設定します。"
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3126,7 +3126,7 @@ msgstr "バージョンの編集が完了しました。"
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "バージョンがアクティブになりました。"
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3628,12 +3628,12 @@ msgstr "このアプリは Firefox Marketplace の審査担当者によって <b
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "このアプリのバージョン <b>{0}</b> は <b>{1}</b> かつ <b>アクティブ</b> です。"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "このアプリのバージョン <b>{0}</b> は <b>{1}</b> です。"
 
 #: mkt/developers/templates/developers/apps/status.html:92
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3645,31 +3645,31 @@ msgstr "審査完了時にメールでお知らせします。"
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "このアプリは <b>公開中</b> です。"
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "このアプリは <b>承認済み</b> ですが、今のところ <b>非掲載</b> となっています。"
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
+msgstr "以下の URL を知っている人のみがこのアプリを参照、インストールできます<br> <a href=\"%(app_url)s\">%(app_url)s</a>"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
-msgstr ""
+msgstr "このアプリは <b>承認済み</b> ですが、今のところチームメンバーのみ参照可能となっています。"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
+msgstr "以下の URL を知っている <b>チームメンバー</b> のみがこのアプリを参照、インストールできます<br> <a href=\"%(app_url)s\">%(app_url)s</a>"
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "アプリの審査基準について"
 
 #: mkt/developers/templates/developers/apps/status.html:137
 msgid "Update App Visibility"
-msgstr ""
+msgstr "アプリの公開設定を更新"
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3705,7 +3705,7 @@ msgstr "ダウンロード"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
-msgstr ""
+msgstr "アクティブにする"
 
 #: mkt/developers/templates/developers/apps/status.html:247
 msgid "Upload New Version"
@@ -3713,7 +3713,7 @@ msgstr "新バージョンをアップロード"
 
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
-msgstr ""
+msgstr "このパッケージアプリの新バージョンをアップロードします。新バージョンは一般公開前に審査を受ける必要があります。"
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3726,59 +3726,59 @@ msgstr "続ける"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "低メモリ端末"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "このアプリは低メモリ端末上で表示されます。"
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "このアプリは低メモリ端末上では表示されません。"
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "このアプリの低メモリ審査はまだ申請されていません。"
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "このアプリは審査待ちです。"
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr ""
+msgstr "{review_date} の審査で、このアプリが低メモリ端末に対応していることが確認されました。"
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr ""
+msgstr "{review_date} の審査で、このアプリが低メモリ端末には対応していないことが確認されました。"
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "{request_date} に審査が申請されました。"
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr ""
+msgstr "このアプリは低メモリ端末が出荷されているどの地域でも有効になっていません。"
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
-msgstr ""
+msgstr "アプリの対応地域は <a href=\"{compatibility_page}\">互換性ページ</a> で更新できます。"
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "このアプリを低メモリ端末上で表示しない"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
-msgstr ""
+msgstr "このアプリが <a href=\"{mdn_link}\">低メモリ端末上で動作する</a> 場合、低メモリ端末上で表示されるように審査を申請できます。"
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "低メモリ審査を申請"
 
 #: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "低メモリ端末について"
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
@@ -3922,7 +3922,7 @@ msgstr "バージョンを削除"
 
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr ""
+msgstr "本当にこのアプリの低メモリ端末上での表示を中止しますか？"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4676,7 +4676,7 @@ msgstr "鍵を生成"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "有効化"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -4688,11 +4688,11 @@ msgstr "レシートを適切に検証するには、アプリのマニフェス
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr ""
+msgstr "この機能は鋭意開発中です。詳しくは <a target=\"_blank\" href=\"%(doc_link)s\">ドキュメント</a> を参照してください。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr ""
+msgstr "何か問題を見つけた場合は <a target=\"_blank\" href=\"%(bug_link)s\">バグを報告</a> してください。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -4752,7 +4752,7 @@ msgstr "このアプリは現在不完全です。決済用アカウントと価
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
-msgstr "対象地域"
+msgstr "対応地域"
 
 #: mkt/developers/templates/developers/payments/premium.html:160
 msgid "Add, manage or view transactions for your payment accounts"
@@ -4760,7 +4760,7 @@ msgstr "決済用アカウントのトランザクションを追加、管理、
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "Prices and Countries"
-msgstr "価格と対象地域"
+msgstr "価格と対応地域"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -4814,7 +4814,7 @@ msgstr "このアプリは、選択された価格帯に基づく決済が可能
 
 #: mkt/developers/templates/developers/payments/premium.html:268
 msgid "Regions and Listings"
-msgstr "対象地域と公開設定"
+msgstr "対応地域と公開設定"
 
 #: mkt/developers/templates/developers/payments/premium.html:283
 msgid "Promote as upgrade to free version"
@@ -4978,11 +4978,11 @@ msgstr "特別な配慮を必要とする地域:"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr ""
+msgstr "このアプリを低メモリ端末上で表示させるには <a href=\"{status_page}\">審査を申請</a> する必要があります。"
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "低メモリ端末"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -5620,7 +5620,7 @@ msgstr "ファイルを取得しています。"
 
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr ""
+msgstr "製品ロゴは 64x64 の画像でなければなりません。URL が正しいか確認してください。"
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6632,7 +6632,7 @@ msgstr "上級審査待ち"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "Tarako 審査待ち"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7123,11 +7123,11 @@ msgstr "バージョン %s はすでに存在しています"
 
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr ""
+msgstr "このアプリを公開し、Marketplace 上で誰でも参照できるようにします。アプリは検索結果にも表示されます。"
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr ""
+msgstr "今はこのアプリを公開しません。審査承認の通知が届いてからアプリの公開設定を行います。"
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7175,7 +7175,7 @@ msgstr "このアプリは Marketplace 上で一般に公開される前に Mozi
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "アプリが承認されたら、公開設定を選択してください:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7304,11 +7304,11 @@ msgstr "<a href=\"%(url)s\">自分の登録アプリ</a> で、登録してい�
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr ""
+msgstr "このアプリを低メモリ端末上で表示させるには、<a href=\"%(status_url)s\">ステータスとバージョン</a> ページで審査を申請します。"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr ""
+msgstr "このアプリを低メモリ端末上で表示させるには、<a href=\"%(status_url)s\">ステータス</a> ページで審査を申請します。"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
