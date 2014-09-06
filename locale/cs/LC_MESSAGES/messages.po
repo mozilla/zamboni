@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-31 16:50+0000\n"
+"PO-Revision-Date: 2014-09-06 12:18+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409503845.0\n"
+"X-POOTLE-MTIME: 1410005926.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -281,11 +281,11 @@ msgstr "Manifest doplňku {addon} byl aktualizován."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "Doplněk {addon} {version} byl schválen, ale je soukromý."
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "Schválen, ale soukromý"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -523,11 +523,11 @@ msgstr "Prioritní kontrola"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "Doplněk {addon} {version} prošel kontrolou ve frontě {queue}."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "Doplněk {addon} {version} neprošel kontrolou ve frontě {queue}."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1717,7 +1717,7 @@ msgstr "Zablokováno"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Není v seznamu"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -2031,7 +2031,7 @@ msgstr "Vyžadována prioritní kontrola"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr ""
+msgstr "Další kontrola dokončena"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2674,18 +2674,22 @@ msgstr "Vaše komentáře"
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Publikováno</b>: Viditelné pro každého na Marketplace včetně výsledků "
+"vyhledávání a stránek se seznamy."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Není v seznamu</b>: Viditelné pouze pro lidi, kteří znají URL. Není "
+"viditelné ve výsledcích vyhledávání a stránek se seznamy."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "Viditelnost aplikace:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Omezení pro můj tým</b>:  Viditelné pouze pro členy týmu"
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2771,6 +2775,8 @@ msgstr "Příkazová řádka"
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Nastavit jako aktivní verzi mé aplikace, jakmile bude zkontrolována a "
+"schválena."
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3134,7 +3140,7 @@ msgstr "Verze byla úspěšně upravena."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Verze byla úspěšně nastavena jako aktivní."
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3638,12 +3644,12 @@ msgstr "Tato aplikace byla redaktorem serveru Firefox Marketplace <b>zamítnuta<
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "Verze <b>{0}</b> mé aplikace je <b>{1}</b> a je <b>aktivní</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "Verze <b>{0}</b> mé aplikace je <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:92
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3655,31 +3661,36 @@ msgstr "Jakmile bude kontrola dokončena, obdržíte e-mail."
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Tato aplikace je <b>publikována</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "Vaše aplikace byla <b>schválena</b> a aktuálně <b>není v seznamu</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Tuto aplikaci mohou vidět a instalovat pouze ti, kteří znají následující "
+"adresu:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"Vaše aplikace byla <b>schválena</b> a je viditelná pouze pro členy týmu."
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Pouze <b>členové týmu</b> s následujícím URL mohou aplikaci vidět a "
+"instalovat:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Dozvědět se více o kritériích pro kontrolu aplikací"
 
 #: mkt/developers/templates/developers/apps/status.html:137
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Aktualizovat viditelnost aplikace"
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3715,7 +3726,7 @@ msgstr "Stáhnout"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
-msgstr ""
+msgstr "Nastavit jako aktivní"
 
 #: mkt/developers/templates/developers/apps/status.html:247
 msgid "Upload New Version"
@@ -3724,6 +3735,8 @@ msgstr "Nahrát novou verzi"
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
+"Nahrajte novou verzi této zabalené aplikace. Nové verze musí být "
+"zkontrolovány dříve, než budou k dispozici pro instalaci."
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3736,59 +3749,70 @@ msgstr "Pokračovat"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Zařízení s malým množstvím paměti"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "Vaše aplikace je dostupná pro zařízení s malým množstvím paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "Vaše aplikace není dostupná pro zařízení s malým množstvím paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Dosud jste nepožádali o kontrolu pro zařízení s malým množstvím paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "Vaše aplikace čeká na kontrolu."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"Naše kontrola dne {review_date} zjistila, že vaše aplikace podporuje "
+"zařízení s malým množstvím paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
+"Naše kontrola dne {review_date} zjistila, že vaše aplikace nepodporuje "
+"zařízení s malým množstvím paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "O kontrolu jste požádali dne {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
+"Vaše aplikace není povolena pro žádný region se zařízeními s malým množstvím "
+"paměti."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
 msgstr ""
+"Regiony můžete aktualizovat na <a href=\"{compatibility_page}\">stránce "
+"kompatibility</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Nezobrazovat mou aplikaci pro zařízení s malým množstvím paměti"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Pokud vaše aplikace <a href=\"{mdn_link}\">podporuje zařízení s malým "
+"množstvím paměti</a>, můžete požádat o kontrolu. Vaše aplikace pak bude pro "
+"tyto zařízení nabízena."
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Požádat o kontrolu pro zařízení s malou pamětí"
 
 #: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Dozvědět se více o zařízeních s malou pamětí"
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
@@ -3933,6 +3957,8 @@ msgstr "Smazat verzi"
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Jste si jist(a), že nechcete nabízet svou aplikaci pro zařízení s malým "
+"množstvím paměti?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4699,7 +4725,7 @@ msgstr "Vygenerovat klíče"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "Povolit"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -4712,10 +4738,14 @@ msgstr "Vaše aplikace musí mít ve svém manifestu uveden <a href=\"%(origin)s
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Tato funkce je ve vývoji. Pro více informací nahlédněte do <a "
+"target=\"_blank\" href=\"%(doc_link)s\">dokumentace</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Pokud naleznete chybu, <a target=\"_blank\" href=\"%(bug_link)s\">nahlaste ji "
+"prosím</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -5004,10 +5034,12 @@ msgstr "Regiony, které vyžadují extra zvažování:"
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
 msgstr ""
+"Pro dostupnost vaší aplikace pro zařízení s malým množstvím paměti musíte <a "
+"href=\"{status_page}\">požádat o kontrolu</a>."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "zařízení s malým množstvím paměti"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -5644,6 +5676,8 @@ msgstr "Probíhá stahování souboru."
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
+"Logo produktu musí být obrázek o rozměrech 64x64. Zkontrolujte, zda je URL v "
+"pořádku."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6670,7 +6704,7 @@ msgstr "Ve frontě pro detailní kontrolu"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "Ve frontě Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7162,10 +7196,14 @@ msgstr "Verze %s již existuje."
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Publikovat mou aplikaci a učinit ji viditelnou pro každého na Marketplace "
+"včetně výsledku vyhledávání."
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Nepublikovat mou aplikaci a upozornit mě na možnost upravit viditelnost po "
+"schválení."
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7215,7 +7253,7 @@ msgstr "Vaše aplikace bude Mozillou zkontrolována před tím, než bude veřej
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "Zvolte možnost publikace aplikace po jejím schválení:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7347,10 +7385,14 @@ msgstr "Pro zobrazení všech mých příspěvků zobrazte stránku <a href=\"%(
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Požádejte na stránce <a href=\"%(status_url)s\">Stav a verze</a>, aby vaše "
+"aplikace byla nabízena i pro zařízení s malým množstvím paměti."
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Požádejte na stránce <a href=\"%(status_url)s\">Stav</a>, aby vaše aplikace "
+"byla nabízena i pro zařízení s malým množstvím paměti."
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
