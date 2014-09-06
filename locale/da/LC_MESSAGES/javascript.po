@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-05-27 17:56+0100\n"
+"PO-Revision-Date: 2014-09-06 16:52+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -29,7 +29,8 @@ msgstr "Billeder skal enten være PNG eller JPG."
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
 
@@ -75,7 +76,8 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
 msgstr ""
 
@@ -207,16 +209,24 @@ msgid "Disabled"
 msgstr ""
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse "
+"af webstedet. Prøv igen lidt senere."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr ""
 
 #: media/js/devreg/login.js:109
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Log ind med Persona mislykkedes. Måske har du ikke en konto under den mailadresse?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Log ind med Persona mislykkedes. Måske har du ikke en konto under den "
+"mailadresse?"
 
 #: media/js/devreg/login.js:114
 msgid "Persona login failed. A server error was encountered."
@@ -321,8 +331,14 @@ msgstr ""
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -330,12 +346,16 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:98 media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:98
+#: media/js/devreg/payments-manage.js:161 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fejl"
 
-#: media/js/devreg/payments-manage.js:99 media/js/devreg/payments-manage.js:162
+#: media/js/devreg/payments-manage.js:99
+#: media/js/devreg/payments-manage.js:162
 msgid "There was a problem contacting the payment server."
 msgstr "Der var et problem med at kontakte betalingsserveren."
 
@@ -361,7 +381,7 @@ msgstr "Søg i tilføjelser efter <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Noget gik galt. Prøv igen."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -559,7 +579,9 @@ msgid "Error failing app: {app}"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
 msgstr ""
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
