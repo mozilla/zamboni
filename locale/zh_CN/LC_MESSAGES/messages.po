@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-28 07:31+0000\n"
+"PO-Revision-Date: 2014-09-06 04:55+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409211088.0\n"
+"X-POOTLE-MTIME: 1409979309.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -275,11 +275,11 @@ msgstr "{addon} 的清单已更新。"
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} 已通过审核，但处于隐藏状态。"
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "已通过审核但处于隐藏状态"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -517,11 +517,11 @@ msgstr "优先审核"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} 通过了 {queue} 审核。"
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} 未通过 {queue} 审核。"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1711,7 +1711,7 @@ msgstr "已阻止"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "未上架"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -2025,7 +2025,7 @@ msgstr "已请求优先审核"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr ""
+msgstr "额外审核已完成"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2663,19 +2663,19 @@ msgstr "您的评论。"
 
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
-msgstr ""
+msgstr "<b>已发布</b>：所有人都能在应用市场中看到它，并且会出现在搜索结果和列表页面。"
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr ""
+msgstr "<b>未上架</b>：只有通过特定网址访问的人可以看到，并且不会出现在搜索结果和列表页面中。"
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "应用可见度："
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>仅限于我的团队</b>：只有团队成员可见。"
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2758,7 +2758,7 @@ msgstr "命令行"
 
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
-msgstr ""
+msgstr "我的应用通过审核并被批准时设定为公开。"
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3120,7 +3120,7 @@ msgstr "版本编辑成功。"
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "版本公开成功。"
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3621,12 +3621,12 @@ msgstr "这个应用已经被火狐应用市场的审核者<b>拒绝</b>。"
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "您的应用的 <b>{0}</b> 版本 <b>{1}</b> 并 <b>已公开</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "您的应用的 <b>{0}</b> 版本 <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:92
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3638,31 +3638,32 @@ msgstr "审核完成时您将会收到邮件。"
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "此应用<b>已发布</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "您的应用已<b>通过审核</b>，但目前<b>还未上架</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
+msgstr "只有使用下列网址的人可以查看和安装此应用：<br> <a href=\"%(app_url)s\">%(app_url)s</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
-msgstr ""
+msgstr "您的应用已<b>通过审核</b>，但目前只对团队成员可见。"
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"只有使用下列网址的<b>团队成员</b>可以查看和安装此应用：<br> <a href=\"%(app_url)s\">%(app_url)s</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "详细了解应用的审核条件"
 
 #: mkt/developers/templates/developers/apps/status.html:137
 msgid "Update App Visibility"
-msgstr ""
+msgstr "更新应用可见度"
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3698,7 +3699,7 @@ msgstr "下载"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
-msgstr ""
+msgstr "设为公开"
 
 #: mkt/developers/templates/developers/apps/status.html:247
 msgid "Upload New Version"
@@ -3706,7 +3707,7 @@ msgstr "上传新版本"
 
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
-msgstr ""
+msgstr "更新此打包应用的新版本。新版本在可用于安装前必须先经过审核。"
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3719,59 +3720,59 @@ msgstr "继续"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "低内存设备"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "您的应用将显示在低内存设备上。"
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "您的应用将不显示在低内存设备上。"
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "您尚未请求低内存审核。"
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "您的应用正待审核。"
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr ""
+msgstr "我们于 {review_date} 进行的审核发现您的应用支持低内存设备。"
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr ""
+msgstr "我们于 {review_date} 进行的审核发现您的应用不支持低内存设备。"
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "您已于 {request_date} 请求审核。"
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr ""
+msgstr "您的应用尚未在任何区域中对低内存设备启用。"
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
-msgstr ""
+msgstr "您可以在<a href=\"{compatibility_page}\">兼容性页面</a>上更新您的区域设置。"
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "不要在低内存设备上显示我的应用"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
-msgstr ""
+msgstr "如果您的应用<a href=\"{mdn_link}\">在低内存设备上也能正常使用</a>，您可以请求进行一次低内存审核，以在此类设备上显示。"
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "请求进行低内存审核"
 
 #: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "了解低内存设备。"
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
@@ -3913,7 +3914,7 @@ msgstr "删除版本"
 
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
-msgstr ""
+msgstr "您确定要停止在低内存设备上显示您的应用吗？"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4662,7 +4663,7 @@ msgstr "生成密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "启用"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -4674,11 +4675,11 @@ msgstr "您的应用必须在您的清单中定义一个<a href=\"%(origin)s\">�
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr ""
+msgstr "此功能正在积极开发中。请参考<a target=\"_blank\" href=\"%(doc_link)s\">此文档</a>获知更多信息。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr ""
+msgstr "如果您发现任何问题，请<a target=\"_blank\" href=\"%(bug_link)s\">报告缺陷</a>。"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -4962,11 +4963,11 @@ msgstr "需要额外考虑的区域："
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr ""
+msgstr "您必须<a href=\"{status_page}\">先要求审核</a>才能在低内存设备上显示您的应用。"
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "低内存设备"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -5596,7 +5597,7 @@ msgstr "正在获取文件。"
 
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr ""
+msgstr "产品标志必须是 64x64 的图像。请确认 URL 是否正确。"
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6607,7 +6608,7 @@ msgstr "位于升级队列"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "在 Tarako 队列中"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7098,11 +7099,11 @@ msgstr "版本 %s 已存在"
 
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr ""
+msgstr "发布我的应用，让所有人都能在应用市场中看的，并且会出现在搜索结果中。"
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr ""
+msgstr "不要自动发布我的应用。在通过审核后通知我，我会自行调整此应用的可见度。"
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7150,7 +7151,7 @@ msgstr "您的应用在公开上架到“应用市场”之前将由 Mozilla 进
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "选择在您的应用通过审核后的发布选项："
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7277,11 +7278,11 @@ msgstr "在<a href=\"%(url)s\">我的作品</a>查看您提交过的所有作品
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr ""
+msgstr "请求您的应用显示在低内存设备上的<a href=\"%(status_url)s\">状态和版本</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr ""
+msgstr "请求您的应用显示在低内存设备上的<a href=\"%(status_url)s\">状态</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
