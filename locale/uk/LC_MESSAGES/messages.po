@@ -11,15 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2011-06-20\n"
-"Last-Translator: Tim Babych\n"
+"PO-Revision-Date: 2014-09-06 12:15+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1410005700.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -56,11 +58,11 @@ msgstr ""
 
 #: apps/amo/log.py:65 apps/amo/log.py:440
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} вимкнено."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} увімкнено."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
@@ -73,7 +75,7 @@ msgstr ""
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Статус {addon} змінений на {0}."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
@@ -89,20 +91,20 @@ msgstr ""
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} додано для {addon}."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} змінено для {addon}."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Версію {0} вилучено з {addon}."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Файл {0.name} додано до {version} {addon}."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
@@ -114,7 +116,7 @@ msgstr ""
 
 #: apps/amo/log.py:157 mkt/constants/base.py:43 mkt/constants/comm.py:41 mkt/constants/payments.py:66
 msgid "Approved"
-msgstr ""
+msgstr "Схвалено"
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
@@ -122,15 +124,15 @@ msgstr ""
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Попередньо схвалено"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} відхилено."
 
 #: apps/amo/log.py:178 mkt/constants/base.py:31 mkt/constants/comm.py:42 mkt/reviewers/helpers.py:177
 msgid "Rejected"
-msgstr ""
+msgstr "Відхилено"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
@@ -178,27 +180,27 @@ msgstr ""
 
 #: apps/amo/log.py:234 mkt/constants/comm.py:46 mkt/reviewers/utils.py:457
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} додано до {addon}."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} вилучено з {addon}."
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} додано до {collection}."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} вилучено з {collection}."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "Для {addon} було написано {review}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
@@ -242,11 +244,11 @@ msgstr ""
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} для {addon} схвалено."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} схвалив {review} для {addon}."
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
@@ -685,7 +687,6 @@ msgid "Reviewer"
 msgstr ""
 
 #: mkt/constants/apps.py:11 mkt/constants/base.py:109 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
-#, fuzzy
 msgid "Developer"
 msgstr "Розробник"
 
@@ -2989,7 +2990,7 @@ msgstr "Відгук"
 
 #: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
-msgstr " Версія {0}"
+msgstr "Версія {0}"
 
 #: mkt/developers/providers.py:284
 msgid "Reference Implementation"
