@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-06 07:16+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2014-09-07 04:27+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409987788.0\n"
+"X-POOTLE-MTIME: 1410064058.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -523,11 +523,11 @@ msgstr "Prioriteitsbeoordeling"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr "{addon} {version} heeft de beoordeling in {queue} doorstaan."
+msgstr "{addon} {version} heeft de {queue}-beoordeling doorstaan."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr "{addon} {version} heeft de beoordeling in {queue} niet doorstaan."
+msgstr "{addon} {version} heeft de {queue}-beoordeling niet doorstaan."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -2032,7 +2032,7 @@ msgstr "Prioriteitsbeoordeling gevraagd"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr "Aanvullende beoordeling afgerond"
+msgstr "Extra beoordeling voltooid"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2674,14 +2674,14 @@ msgstr "Uw opmerkingen"
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
-"<b>Gepubliceerd</b>: zichtbaar in de Marketplace voor iedereen en opgenomen "
+"<b>Gepubliceerd</b>: voor iedereen zichtbaar in de Marketplace en opgenomen "
 "in zoekresultaten en lijsten."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
-"<b>Niet vermeld</b>: alleen zichtbaar voor personen met de URL en niet "
-"opgenomen in zoekresultaten en lijsten."
+"<b>Niet vermeld</b>: alleen zichtbaar voor personen met de URL en verschijnt "
+"niet in zoekresultaten en lijsten."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
@@ -2775,7 +2775,7 @@ msgstr "Opdrachtregel"
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
 "Dit direct na beoordeling en goedkeuring de actieve versie van mijn app "
-"maken."
+"maken"
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3413,7 +3413,9 @@ msgstr "Testen"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
-msgstr "Gebruik deze hulpmiddelen voor het testen van uw apps voordat u ze indient bij de Firefox Marketplace."
+msgstr ""
+"Gebruik deze hulpmiddelen voor het testen van uw apps voordat u ze bij de "
+"Firefox Marketplace indient."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3473,7 +3475,7 @@ msgstr "Manifest-URL’s dienen te beginnen met een protocol (bijvoorbeeld <code
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:124
 msgid "Learn more about submitting an app."
-msgstr "Leer meer over het indienen van een app."
+msgstr "Lees meer over het indienen van een app."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
@@ -3522,7 +3524,9 @@ msgstr "Welkom op het Ontwikkelaarsdashboard"
 # Submit YOUR App or Submit AN App?! See next string…
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
-msgstr "U hebt nog geen app ingediend bij de Firefox Marketplace. Als u uw <a href=\"%(app_url)s\">app hebt gemaakt</a>, klik dan hieronder op Uw app indienen."
+msgstr ""
+"U hebt nog geen app bij de Firefox Marketplace ingediend. Als u uw <a href=\""
+"%(app_url)s\">app hebt gemaakt</a>, klik dan hieronder op Uw app indienen."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -3665,18 +3669,19 @@ msgstr "Deze app is <b>gepubliceerd</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr "Uw app is <b>goedgekeurd</b> en momenteel <b>niet vermeld</b>."
+msgstr "Uw app is <b>goedgekeurd</b> en wordt momenteel <b>niet vermeld</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
-"Alleen personen met de volgende URL kun deze app bekijken en "
+"Alleen personen met de volgende URL kunnen deze app bekijken en "
 "installeren:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
-"Uw app is <b>goedgekeurd</b> en momenteel alleen zichtbaar voor teamleden."
+"Uw app is <b>goedgekeurd</b> en is momenteel alleen zichtbaar voor "
+"teamleden."
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
@@ -3735,7 +3740,7 @@ msgstr "Nieuwe versie uploaden"
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
-"Een nieuwe versie van deze verpakte app uploaden. Nieuwe versies dienen te "
+"Een nieuwe versie van deze verpakte app uploaden. Nieuwe versies moeten "
 "worden beoordeeld voordat ze beschikbaar zijn voor installatie."
 
 #: mkt/developers/templates/developers/apps/status.html:258
@@ -3753,11 +3758,11 @@ msgstr "Apparaten met weinig geheugen"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr "Uw app wordt weergegeven op apparaten met weinig geheugen."
+msgstr "Uw app is zichtbaar op apparaten met weinig geheugen."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr "Uw app wordt niet weergegeven op apparaten met weinig geheugen."
+msgstr "Uw app is niet zichtbaar op apparaten met weinig geheugen."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
@@ -3776,8 +3781,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
-"Onze beoordeling op {review_date} heeft opgeleverd dat uw app apparaten met "
-"weinig geheugen niet ondersteunt."
+"Onze beoordeling op {review_date} heeft opgeleverd dat uw app geen apparaten "
+"met weinig geheugen ondersteunt."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3796,12 +3801,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr "Mijn app niet weergeven op apparaten met weinig geheugen"
+msgstr "Mijn app niet zichtbaar maken op apparaten met weinig geheugen"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
 msgstr ""
-"Als u app <a href=\"{mdn_link}\">werkt op apparaten met weinig geheugen</a> "
+"Als uw app <a href=\"{mdn_link}\">op apparaten met weinig geheugen werkt</a>, "
 "dan kunt u een beoordeling voor apparaten met weinig geheugen aanvragen."
 
 #: mkt/developers/templates/developers/apps/status.html:342
@@ -3851,7 +3856,10 @@ msgstr "App van lijst halen"
 
 #: mkt/developers/templates/developers/apps/status.html:396
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "De lijstweergave van uw app is uitgeschakeld en zal niet verschijnen op de Firefox Marketplace. U kunt de app op elk moment weer in de lijst opnemen."
+msgstr ""
+"De lijstweergave van uw app is uitgeschakeld en deze zal niet in de Firefox "
+"Marketplace verschijnen. U kunt de app op elk moment weer in de lijst "
+"opnemen."
 
 #: mkt/developers/templates/developers/apps/status.html:401
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
@@ -3955,8 +3963,8 @@ msgstr "Versie verwijderen"
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
-"Weet u zeker dat u uw app niet meer op apparaten met weinig geheugen wilt "
-"weergeven?"
+"Weet u zeker dat u uw app niet meer op apparaten met weinig geheugen "
+"zichtbaar wilt maken?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4728,7 +4736,9 @@ msgstr "Inschakelen"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
-msgstr "Uw app dient verpakt te zijn en een <a href=\"%(origin)s\">bron</a> op te geven om dit in-app-betalingssysteem te gebruiken."
+msgstr ""
+"Uw app moet verpakt zijn en een <a href=\"%(origin)s\">bron</a> opgeven om dit "
+"in-app-betalingssysteem te gebruiken."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
@@ -4737,14 +4747,14 @@ msgstr "Uw app dient een <a href=\"%(origin)s\">bron</a> in uw manifest op te ge
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
-"Deze functie wordt momenteel ontwikkeld. Lees de <a target=\"_blank\" href=\"%"
-"(doc_link)s\">documentatie</a> voor meer informatie."
+"Deze functie is in actieve ontwikkeling. Wend u tot de <a target=\"_blank\" "
+"href=\"%(doc_link)s\">documentatie</a> voor meer informatie."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
-"Als u een probleem vindt <a target=\"_blank\" href=\"%(bug_link)s\">meld dan een "
-"bug</a>."
+"Als u een probleem vindt, <a target=\"_blank\" href=\"%(bug_link)s\">meld dan "
+"een bug</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -5033,8 +5043,8 @@ msgstr "Regio’s die extra aandacht behoeven:"
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
 msgstr ""
-"U dient <a href=\"{status_page}\">een beoordeling aan te vragen</a> om uw app "
-"te laten weergeven op apparaten met weinig geheugen."
+"U moet <a href=\"{status_page}\">een beoordeling aanvragen</a> om uw app op "
+"apparaten met weinig geheugen zichtbaar te maken."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5678,7 +5688,7 @@ msgstr "Bestand ophalen."
 
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr "Productlogo dient een afbeelding van 64x64 te zijn. Controleer de URL."
+msgstr "Productlogo moet een afbeelding van 64x64 zijn. Controleer de URL."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6699,7 +6709,7 @@ msgstr "In wachtrij escalatie"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr "In de Tarako-wachtrij"
+msgstr "In Tarako-wachtrij"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7191,14 +7201,14 @@ msgstr "Versie %s bestaat al"
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
-"Mijn app publiceren en zichtbaar maken voor iedereen op de Marketplace en "
+"Mijn app publiceren, voor iedereen zichtbaar maken in de Marketplace en "
 "opnemen in zoekresultaten."
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
-"Mijn app niet publiceren. Stuur mij een bericht en ik zal de zichtbaarheid "
-"van de app na goedkeuring aanpassen."
+"Mijn app niet publiceren. Stuur mij een bericht en ik zal de app-"
+"zichtbaarheid na goedkeuring aanpassen."
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7248,7 +7258,7 @@ msgstr "Uw app wordt door Mozilla beoordeeld voordat hij op de Marketplace wordt
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr "Als uw app is goedgekeurd, kies dan een publicatie-optie:"
+msgstr "Als uw app is goedgekeurd, kies dan een publicatieoptie:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7308,8 +7318,9 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"We hebben uw app opgeslagen en startklaar! Uw app wacht momenteel op beoordeling en zal op lijsten en in zoekresultaten verschijnen zodra de beoordeling is afgerond. U kunt tot dat moment de "
-"details en instellingen van uw app aanpassen."
+"Uw app is opgeslagen en startklaar! Uw app wacht momenteel op beoordeling en "
+"zal op lijsten en in zoekresultaten verschijnen zodra deze is beoordeeld. U "
+"kunt tot dat moment de details en instellingen van uw app aanpassen."
 
 #: mkt/submit/templates/submit/done.html:53
 msgid "Manage My App"
@@ -7378,13 +7389,13 @@ msgstr "Een lijst van al uw bijdragen op <a href=\"%(url)s\">Mijn bijdragen</a> 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
-"Weergave van uw app op apparaten met weinig geheugen op <a href=\"%"
+"Zichtbaarheid van uw app op apparaten met weinig geheugen op <a href=\"%"
 "(status_url)s\">Status en versies</a> aanvragen"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
-"Weergave van uw app op apparaten met weinig geheugen op <a href=\"%"
+"Zichtbaarheid van uw app op apparaten met weinig geheugen op <a href=\"%"
 "(status_url)s\">Status</a> aanvragen"
 
 #: mkt/submit/templates/submit/next_steps.html:75
