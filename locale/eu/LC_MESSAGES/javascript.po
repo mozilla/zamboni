@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-07-05 18:24+0000\n"
+"PO-Revision-Date: 2014-09-07 20:47+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1404584662.0\n"
+"X-POOTLE-MTIME: 1410122823.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -203,11 +203,11 @@ msgstr "Flash Player</a> erreproduzitzailea."
 
 #: media/js/devreg/in_app_products.js:278
 msgid "Enabled"
-msgstr ""
+msgstr "Gaituta"
 
 #: media/js/devreg/in_app_products.js:280
 msgid "Disabled"
-msgstr ""
+msgstr "Desgaituta"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -364,7 +364,7 @@ msgstr "Bilatu <b>{0}</b>(e)rako gehigarriak"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Zerbaitek huts egin du. Saiatu berriz."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -547,19 +547,19 @@ msgstr "Errorea aplikazio hau baztertzerakoan: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "Aplikazioa onartu da: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "Aplikazioa baztertu da: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Errorea aplikazioa onartzean: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Errorea aplikazioa baztertzean: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"

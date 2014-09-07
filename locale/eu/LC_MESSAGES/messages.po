@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-03 21:16+0000\n"
+"PO-Revision-Date: 2014-09-07 20:59+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1409778968.0\n"
+"X-POOTLE-MTIME: 1410123593.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -284,11 +284,11 @@ msgstr "{addon}(r)en manifestua eguneratu da."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} onartuta baina pribatua."
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "Onartuta baina pribatua"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -526,11 +526,11 @@ msgstr "Lehentasunezko berrikuspena"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version}(e)k {queue} berrikuspena gainditu du."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version}(e)k ez du {queue} berrikuspena gainditu."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1720,7 +1720,7 @@ msgstr "Blokeatua"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Zerrendatu gabea"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -1990,23 +1990,23 @@ msgstr "Garatzaile-iruzkina"
 
 #: mkt/constants/comm.py:55
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Berrikusleak gailua(k) aldatu d(it)u"
 
 #: mkt/constants/comm.py:56
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Berrikusleak eskakizuna(k) aldatu d(it)u"
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Berriro berrikusia manifestua aldatu delako"
 
 #: mkt/constants/comm.py:58
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Berriro berrikusia manifestuaren URLa aldatu delako"
 
 #: mkt/constants/comm.py:59
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Berriro berrikusia Premium motara aldatu delako"
 
 #: mkt/constants/comm.py:60
 msgid "Rereview due to Devices Added"
@@ -2685,11 +2685,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "Aplikazioaren ikusgarritasuna:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Mugatu nire taldera</b>: taldeko kideentzat soilik ikusgarri."
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2765,11 +2765,11 @@ msgstr "Hona:"
 
 #: mkt/developers/forms.py:1111
 msgid "Web site"
-msgstr ""
+msgstr "Webgunea"
 
 #: mkt/developers/forms.py:1112
 msgid "Command line"
-msgstr ""
+msgstr "Komando-lerroa"
 
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
@@ -3248,7 +3248,7 @@ msgstr "Sortu"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth gakoak"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3270,11 +3270,13 @@ msgstr "Une honetan ez duzu API gakorik."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth adibidea"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
 msgstr ""
+"<p>OAuth kredentzialekin Mac OS Xren komando-lerrorako Python liburutegia "
+"erabiltzeko adibidea:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -3306,11 +3308,11 @@ msgstr "Hasi saioa / Eman izena"
 
 #: mkt/developers/templates/developers/motd.html:3 mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Eguneko mezua"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Eguneratu eguneko mezua"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:29 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
@@ -3495,11 +3497,11 @@ msgstr "Kudeatu nire bidalketak"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:10 mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
-msgstr ""
+msgstr "Iragarpena"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:12 mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Baztertu iragarpena"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
@@ -3652,7 +3654,7 @@ msgstr "Mezu bat jasoko duzu berrikuspena burutzen denean."
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Aplikazioa <b>argitaratua</b> dago."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
@@ -3680,7 +3682,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
-msgstr ""
+msgstr "<b>%(reviewer)s</b>(e)k berrikusia"
 
 #: mkt/developers/templates/developers/apps/status.html:160
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
