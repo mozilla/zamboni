@@ -338,6 +338,17 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
             list(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
 
+    def test_becoming_approved_lists_the_app_when_showing_approved(self):
+        self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
+        eq_([self.unreviewed],
+            list(AdditionalReview.objects.unreviewed(
+                queue='queue-one', and_approved=True)))
+        self.unreviewed_too.app.update(status=amo.STATUS_PUBLIC)
+        # Caching might return the old queryset, but we don't want it to.
+        eq_([self.unreviewed, self.unreviewed_too],
+            list(AdditionalReview.objects.unreviewed(
+                queue='queue-one', and_approved=True)))
+
 
 class BaseTarakoFunctionsTestCase(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')

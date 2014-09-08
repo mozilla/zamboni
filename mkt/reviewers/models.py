@@ -402,7 +402,7 @@ class AdditionalReviewManager(amo.models.ManagerBase):
         }
         if and_approved:
             query['app__status__in'] = amo.WEBAPPS_APPROVED_STATUSES
-        return self.get_queryset().filter(**query)
+        return self.get_queryset().no_cache().filter(**query)
 
     def latest_for_queue(self, queue):
         try:
