@@ -50,6 +50,7 @@ DEV_CHOICES = [
 # implementation below.
 DEVICE_CHOICES = [
     ('', _lazy(u'Any Device Type')),
+    ('firefoxos', _lazy(u'Firefox OS')),  # Unused, for backwards-compat.
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
 ]
