@@ -520,6 +520,14 @@ class TestCreateAdditionalReview(RestOAuth):
         eq_(response.status_code, 403)
         ok_(not self.review_exists())
 
+    def test_admin_has_access(self):
+        self.grant_permission(self.profile, 'Apps:Edit')
+        self.addon_user.delete()
+        ok_(not self.review_exists())
+        response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
+        eq_(response.status_code, 201)
+        ok_(self.review_exists())
+
     def test_passed_cannot_be_set(self):
         ok_(not self.review_exists())
         response = self.post(

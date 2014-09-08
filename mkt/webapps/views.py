@@ -13,7 +13,8 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                   AllowReviewerReadOnly, AnyOf)
+                                   AllowReviewerReadOnly, AnyOf,
+                                   GroupPermission)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.exceptions import HttpLegallyUnavailable
 from mkt.api.forms import IconJSONForm
@@ -250,7 +251,8 @@ class AppTagViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                     viewsets.GenericViewSet):
     queryset = Webapp.objects.all()
     cors_allowed_methods = ('delete',)
-    permission_classes = [AllowAppOwner]
+    permission_classes = [AnyOf(AllowAppOwner,
+                                GroupPermission('Apps', 'Edit'))]
     slug_field = 'app_slug'
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
