@@ -1358,7 +1358,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     @mock.patch.object(mkt.feed.constants, 'MIN_APPS_COLLECTION', 3)
     def test_collection_min_apps(self):
-        """Test feed elements are ordered by their order attribute."""
+        """Test collections must have minimum number of apps to be public."""
         app_ids = [app_factory().id, app_factory().id]
         coll = self.feed_collection_factory(app_ids=app_ids)
         FeedItem.objects.create(collection=coll, item_type=feed.FEED_TYPE_COLL,
@@ -1387,6 +1387,16 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         eq_(data['objects'][0]['id'], item.id)
         ok_(len(data['objects'][0]['collection']['apps']))
+
+    @mock.patch.object(mkt.feed.constants, 'MIN_APPS_COLLECTION', 3)
+    def test_brand_no_min_apps(self):
+        """Test brands have no minimum enforcement on number of apps."""
+        app_ids = [app_factory().id]
+        brand = self.feed_brand_factory(app_ids=app_ids)
+        FeedItem.objects.create(brand=brand, item_type=feed.FEED_TYPE_BRAND,
+                                region=1)
+        res, data = self._get()
+        ok_(data['objects'])
 
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):

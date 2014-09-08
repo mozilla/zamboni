@@ -436,7 +436,7 @@ class BaseFeedESView(CORSMixin, APIView):
         for feed_item in feed_items:
             item_type = feed_item['item_type']
             feed_item[item_type] = self.filter_apps_feed_element(
-                request, feed_item[item_type])
+                request, feed_item[item_type], item_type)
 
         # Filter feed elements that have NO compatible apps.
         # We replace the feed elements with None if they're to be filtered.
@@ -456,7 +456,7 @@ class BaseFeedESView(CORSMixin, APIView):
             dev = '%s-%s' % (dev, device)
         return DEVICE_LOOKUP.get(dev)
 
-    def filter_apps_feed_element(self, request, feed_element):
+    def filter_apps_feed_element(self, request, feed_element, item_type):
         """
         Runs multiple filters for apps of feed elements.
         Each filter will return None if all of the apps becomes excluded.
@@ -490,9 +490,9 @@ class BaseFeedESView(CORSMixin, APIView):
                                         feed_element)
 
         if feed_element and filtering:
-            if (feed_element.get('apps') and
+            # Enforce minimum apps on collections.
+            if (item_type == feed.FEED_TYPE_COLL and
                 feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
-                # Enforce minimum apps on collections.
                 feed_element = None
 
         if feed_element:
@@ -785,8 +785,8 @@ class FeedElementGetView(BaseFeedESView):
 
         # Filter data. If None of the apps are compatible, only run the
         # public apps filter.
-        data = (self.filter_apps_feed_element(request, dict(data)) or
-                self._filter(amo.STATUS_PUBLIC, 'status', feed_element))
+        data = (self.filter_apps_feed_element(request, dict(data), item_type)
+                or self._filter(amo.STATUS_PUBLIC, 'status', feed_element))
 
         # Limit if necessary.
         limit = request.GET.get('limit')
