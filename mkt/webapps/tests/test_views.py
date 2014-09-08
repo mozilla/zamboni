@@ -114,6 +114,9 @@ class TestAppTagViewSet(RestOAuth):
     def remove_tag(self, tag_text):
         Tag(tag_text=tag_text).remove_tag(self.app)
 
+    def remove_author(self):
+        self.app.addonuser_set.filter(user=self.profile).delete()
+
     def url(self, tag_text):
         return reverse('app-tags-detail', args=[self.app.app_slug, tag_text])
 
@@ -132,11 +135,19 @@ class TestAppTagViewSet(RestOAuth):
         ok_(self.has_tag('tarako'))
 
     def test_non_author_is_forbidden(self):
-        self.app.addonuser_set.filter(user=self.profile).delete()
+        self.remove_author()
         ok_(self.has_tag('tarako'))
         response = self.client.delete(self.url('tarako'))
         eq_(response.status_code, 403)
         ok_(self.has_tag('tarako'))
+
+    def test_admin_has_access(self):
+        self.remove_author()
+        self.grant_permission(self.profile, 'Apps:Edit')
+        ok_(self.has_tag('tarako'))
+        response = self.client.delete(self.url('tarako'))
+        eq_(response.status_code, 204)
+        ok_(not self.has_tag('tarako'))
 
     def test_cannot_create_tags(self):
         self.remove_tag('tarako')

@@ -46,7 +46,7 @@ from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import GroupPermission
+from mkt.api.authorization import AnyOf, GroupPermission
 from mkt.api.base import form_errors, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
@@ -1286,7 +1286,8 @@ class CreateAdditionalReviewViewSet(CreateAPIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     # TODO: Change this when there is more than just the Tarako queue.
-    permission_classes = [AppOwnerPermission]
+    permission_classes = [AnyOf(AppOwnerPermission,
+                                GroupPermission('Apps', 'Edit'))]
 
     def app(self, app_id):
         self.app = Webapp.objects.get(pk=app_id)
