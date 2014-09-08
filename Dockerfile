@@ -3,7 +3,7 @@
 
 # NOTE: this is not provided for production usage.
 
-FROM mozillamarketplace/centos-mysql-mkt:0.1
+FROM mozillamarketplace/centos-mysql-mkt:0.2
 
 # Fix multilib issues when installing openssl-devel.
 RUN yum install -y --enablerepo=centosplus libselinux-devel
