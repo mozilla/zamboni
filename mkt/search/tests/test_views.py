@@ -511,7 +511,7 @@ class TestApi(RestOAuth, ESTestCase):
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['desktop'])
         self.webapp.save()
         self.refresh('webapp')
-        res = self.client.get(self.url, data={'device': 'desktop'})
+        res = self.client.get(self.url, data={'dev': 'desktop'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -729,6 +729,7 @@ class TestApiFeatures(RestOAuth, ESTestCase):
         self.client = RestOAuthClient(None)
         self.url = reverse('search-api')
         self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         # Pick a few common device features.
         self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
                                       geolocation=True, indexeddb=True,

@@ -5,7 +5,7 @@ from tower import ugettext_lazy as _lazy
 import amo
 from mkt.constants import (CATEGORY_CHOICES, TARAKO_CATEGORY_CHOICES,
                            TARAKO_CATEGORIES_MAPPING)
-from mkt.constants.applications import DEVICE_CHOICES_IDS
+from mkt.constants.applications import DEVICE_LOOKUP
 
 
 ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
@@ -38,12 +38,20 @@ PREMIUM_CHOICES = [
     ('other', _lazy(u'Other System for In-App')),
 ]
 
+# Device choice.
+DEV_CHOICES = [
+    ('', _lazy(u'Any Device')),
+    ('desktop', _lazy(u'Desktop')),
+    ('android', _lazy(u'Android')),
+    ('firefoxos', _lazy(u'Firefox OS')),
+]
+
+# Device type choice, only enabled for Android for the moment, see clean()
+# implementation below.
 DEVICE_CHOICES = [
     ('', _lazy(u'Any Device Type')),
-    ('desktop', _lazy(u'Desktop')),
     ('mobile', _lazy(u'Mobile')),
     ('tablet', _lazy(u'Tablet')),
-    ('firefoxos', _lazy(u'Firefox OS')),
 ]
 
 CATEGORY_CHOICES = (('', _lazy(u'All Categories')),) + CATEGORY_CHOICES
@@ -85,6 +93,8 @@ class ApiSearchForm(forms.Form):
                              label=_lazy(u'Add-on type'))
     cat = forms.ChoiceField(required=False, label=_lazy(u'Categories'),
                             choices=CATEGORY_CHOICES + TARAKO_CATEGORY_CHOICES)
+    dev = forms.ChoiceField(
+        required=False, choices=DEV_CHOICES, label=_lazy(u'Device'))
     device = forms.ChoiceField(
         required=False, choices=DEVICE_CHOICES, label=_lazy(u'Device type'))
     premium_types = forms.MultipleChoiceField(
@@ -153,5 +163,20 @@ class ApiSearchForm(forms.Form):
         languages = self.cleaned_data.get('languages')
         return [l.strip() for l in languages.split(',')] if languages else []
 
-    def clean_device(self):
-        return DEVICE_CHOICES_IDS.get(self.cleaned_data.get('device'))
+    def clean_device_and_dev(self):
+        device = self.cleaned_data.get('dev')
+        device_type = self.cleaned_data.get('device')
+        # For android, we need to know the device type to determine the real
+        # device we are going to filter with, because we distinguish between
+        # mobile and tablets.
+        if device == 'android' and device_type:
+            device = '%s-%s' % (device, device_type)
+        if device in DEVICE_LOOKUP:
+            self.cleaned_data['device'] = DEVICE_LOOKUP.get(device).id
+            self.cleaned_data.pop('dev', None)
+        elif device:
+            raise forms.ValidationError('Invalid device or device type.')
+
+    def clean(self):
+        self.clean_device_and_dev()
+        return self.cleaned_data
