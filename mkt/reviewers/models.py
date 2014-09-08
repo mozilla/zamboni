@@ -370,7 +370,7 @@ class RereviewQueue(amo.models.ModelBase):
 def send_tarako_mail(review):
     if not waffle.switch_is_active('comm-dashboard'):
         send_mail_jinja(
-            'Tarako review {passed}'.format(
+            'Low-memory review {passed}'.format(
                 passed='passed' if review.passed else 'failed'),
             'reviewers/emails/tarako_review_complete.txt',
             {'review': review},
