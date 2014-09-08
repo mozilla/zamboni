@@ -411,7 +411,7 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         self.review.passed = True
         send_tarako_mail(self.review)
         self.send_mail.assert_called_with(
-            'Tarako review passed',
+            'Low-memory review passed',
             'reviewers/emails/tarako_review_complete.txt',
             {'review': self.review},
             recipient_list=['steamcube@mozilla.com'],
@@ -429,7 +429,7 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         self.review.passed = False
         send_tarako_mail(self.review)
         self.send_mail.assert_called_with(
-            'Tarako review failed',
+            'Low-memory review failed',
             'reviewers/emails/tarako_review_complete.txt',
             {'review': self.review},
             recipient_list=[u'steamcube@mozilla.com'],
