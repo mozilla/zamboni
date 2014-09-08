@@ -312,10 +312,10 @@ function initAdditionalReviewQueue() {
                 var msg;
                 var classes;
                 if (passed) {
-                    msg = format(gettext('Passed app: {app}'), fmt);
+                    msg = format(gettext('Approved app: {app}'), fmt);
                     classes = 'good';
                 } else {
-                    msg = format(gettext('Failed app: {app}'), fmt);
+                    msg = format(gettext('Rejected app: {app}'), fmt);
                     classes = 'bad';
                 }
                 require('notification')({message: msg, timeout: msgTimeout, classes: classes});
