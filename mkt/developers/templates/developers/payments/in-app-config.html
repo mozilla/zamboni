@@ -1,7 +1,7 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import required %}
 
-{% set title = _('In-App Payments') %}
+{% set title = _('In-App Payments Keys') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% set can_edit = check_addon_ownership(request, addon) %}
@@ -11,11 +11,12 @@
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('in_app_payments'), _('In-App Payments')), (None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 
   <section class="primary manage" role="main">
+    <h2>{{ title }}</h2>
     <div id="in-app-config" class="devhub-form island">
       <form class="item in-app-config" method="post" action="{{ request.path }}">
         <p>
