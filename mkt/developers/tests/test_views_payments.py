@@ -194,6 +194,15 @@ class TestInAppProductsView(InappTest):
         doc = pq(self.get().content)
         ok_(not doc('section.primary div#origin-notification'))
         ok_(doc('section.primary div#buglink-notification'))
+        div = doc('#in-app-products')
+
+        url = div.attr('data-list-url')
+        assert url.endswith('http%3A%2F%2Ff.c/in-app/'), (
+            'Unexpected URL: {u}'.format(u=url))
+
+        url = div.attr('data-detail-url-format')
+        assert url.endswith('http%3A%2F%2Ff.c/in-app/%7Bguid%7D/'), (
+            'Unexpected URL: {u}'.format(u=url))
 
     def test_no_origin(self):
         self.app.update(is_packaged=True, app_domain=None)
