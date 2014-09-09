@@ -30,8 +30,7 @@ class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
     weight = SerializerMethodField('get_weight')
 
     class Meta(SimpleESAppSerializer.Meta):
-        fields = sorted(FireplaceAppSerializer.Meta.fields + ['is_disabled',
-                                                              'weight'])
+        fields = sorted(FireplaceAppSerializer.Meta.fields + ['weight'])
         exclude = FireplaceAppSerializer.Meta.exclude
 
     def get_weight(self, obj):
@@ -40,6 +39,15 @@ class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
     def get_user_info(self, app):
         # Fireplace search should always be anonymous for extra-cacheability.
         return None
+
+
+class FeedFireplaceESAppSerializer(FireplaceESAppSerializer):
+    class Meta(FireplaceESAppSerializer.Meta):
+        # Feed needs status, is_disabled and regions in the serializer in
+        # order to do some filtering in the view.
+        fields = sorted(FireplaceESAppSerializer.Meta.fields + ['is_disabled',
+                                                                'regions'])
+        exclude = FireplaceESAppSerializer.Meta.exclude
 
 
 class FireplaceCollectionMembershipField(CollectionMembershipField):

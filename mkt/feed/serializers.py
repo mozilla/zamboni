@@ -13,6 +13,7 @@ from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
 from mkt.api.serializers import URLSerializerMixin
 from mkt.carriers import CARRIER_CHOICE_DICT
 from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.fireplace.serializers import FireplaceESAppSerializer
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.search.serializers import BaseESSerializer
 from mkt.submit.serializers import FeedPreviewESSerializer
