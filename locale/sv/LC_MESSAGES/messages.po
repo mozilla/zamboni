@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-01 12:17+0000\n"
+"PO-Revision-Date: 2014-09-02 08:42+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409573836.0\n"
+"X-POOTLE-MTIME: 1409647373.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -6829,11 +6829,11 @@ msgstr "<div>Av %(user)s den %(date)s</div>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
 msgid "Next Page"
-msgstr ""
+msgstr "Nästa sida"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:88
 msgid "Previous Page"
-msgstr ""
+msgstr "Föregående sida"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -6845,11 +6845,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Bästa granskare (senaste 7 dagar)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Inga bästa granskare än."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -6942,11 +6942,11 @@ msgstr "App-typ"
 
 #: mkt/search/forms.py:99
 msgid "Works offline"
-msgstr ""
+msgstr "Fungerar nedkopplad"
 
 #: mkt/search/forms.py:101
 msgid "Supported languages"
-msgstr ""
+msgstr "Språk som stöds"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -6958,15 +6958,15 @@ msgstr ""
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
-msgstr ""
+msgstr "Kontoinställningar"
 
 #: mkt/site/context_processors.py:58
 msgid "Change Password"
-msgstr ""
+msgstr "Ändra lösenord"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Logga ut"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
@@ -6974,7 +6974,7 @@ msgstr "Utvecklarcenter"
 
 #: mkt/site/context_processors.py:77
 msgid "Admin Tools"
-msgstr ""
+msgstr "Administratörsverktyg"
 
 #: mkt/site/fields.py:29
 msgid "Enter at least one value."
@@ -6990,7 +6990,7 @@ msgstr ""
 
 #: mkt/site/helpers.py:159
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:326
@@ -7051,15 +7051,15 @@ msgstr "Du kan prova att uppdatera sidan eller försök igen senare."
 
 #: mkt/stats/forms.py:9
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: mkt/stats/forms.py:10
 msgid "Week"
-msgstr ""
+msgstr "Vecka"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Kvartal"
 
 #: mkt/submit/forms.py:30
 msgid "Device(s) changed: {0}"
