@@ -23,17 +23,18 @@ log = commonware.log.getLogger('comm')
 
 class CommEmailParser(object):
     """Utility to parse email replies."""
-
     address_prefix = comm.REPLY_TO_PREFIX
 
     def __init__(self, email_text):
         """Decode base64 email and turn it into a Django email object."""
         try:
+            log.info('CommEmailParser received email: ' + email_text)
             email_text = base64.standard_b64decode(
                 urllib2.unquote(email_text.rstrip()))
         except TypeError:
             # Corrupt or invalid base 64.
             self.decode_error = True
+            log.info('Decoding error for CommEmailParser')
             return
 
         self.email = message_from_string(email_text)
