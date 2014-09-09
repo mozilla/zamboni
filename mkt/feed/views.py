@@ -464,7 +464,7 @@ class BaseFeedESView(CORSMixin, APIView):
         # Don't filter device/regions if filtering == 0.
         filtering = request.QUERY_PARAMS.get('filtering', '1') != '0'
 
-        if feed_element.get('apps') == []:
+        if 'app_count' in feed_element and feed_element['app_count'] == 0:
             # No empty collections.
             return
 

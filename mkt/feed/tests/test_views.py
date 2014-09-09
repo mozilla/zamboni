@@ -1373,6 +1373,22 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         ok_(data['objects'])
 
+    def test_collection_promo_background_image(self):
+        # Create the feed collection, a promo with a background image.
+        app_ids = [app_factory().id for i in range(3)]
+        coll = self.feed_collection_factory(app_ids=app_ids,
+                                            coll_type=feed.COLLECTION_PROMO,
+                                            image_hash='abcdefgh')
+        item = FeedItem.objects.create(collection=coll,
+                                       item_type=feed.FEED_TYPE_COLL, region=1)
+
+        # Get the feed for which the feed item should be a member.
+        res, data = self._get(filtering=0)
+        eq_(res.status_code, 200)
+        eq_(data['objects'][0]['id'], item.id)
+        ok_(len(data['objects'][0]['collection']['apps']))
+
+
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
 
