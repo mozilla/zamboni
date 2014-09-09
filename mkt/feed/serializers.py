@@ -266,13 +266,8 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
 
     def get_apps(self, obj):
         if obj.type == feed.COLLECTION_PROMO:
-            if obj.image_hash:
-                # Don't need any apps if background image.
-                return []
-            else:
-                # Need app icons if not background image.
-                app_field = AppESHomePromoCollectionField(
-                    many=True)
+            # Need app icons if not background image.
+            app_field = AppESHomePromoCollectionField(many=True)
 
         elif obj.type == feed.COLLECTION_LISTING:
             # Needs minimal app serialization like FeedBrand.
