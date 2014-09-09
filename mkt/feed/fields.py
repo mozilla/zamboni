@@ -8,11 +8,11 @@ from rest_framework import exceptions, serializers
 from tower import ugettext as _
 
 from mkt.collections.serializers import DataURLImageField
-from mkt.fireplace.serializers import FireplaceESAppSerializer
-from mkt.webapps.serializers import (AppSerializer, DiscoPlaceESAppSerializer,
-                                     ESAppFeedSerializer,
+from mkt.fireplace.serializers import FeedFireplaceESAppSerializer
+from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
                                      ESAppFeedCollectionSerializer,
-                                     ESAppSerializer)
+                                     ESAppSerializer,
+                                     FeedDiscoPlaceESAppSerializer)
 
 
 class FeedCollectionMembershipField(serializers.RelatedField):
@@ -38,8 +38,8 @@ class AppESField(serializers.Field):
     self.context['app_map'] -- mapping from app ID to app ES object
     """
     app_serializer_classes = {
-        'fireplace': FireplaceESAppSerializer,
-        'discoplace': DiscoPlaceESAppSerializer
+        'fireplace': FeedFireplaceESAppSerializer,
+        'discoplace': FeedDiscoPlaceESAppSerializer
     }
 
     @property

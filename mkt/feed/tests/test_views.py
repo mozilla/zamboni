@@ -1698,9 +1698,12 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
         url = reverse('api-v2:feed.feed_element_get',
                       args=['apps', app.slug])
-        res, data = self._get(url, app_serializer='fireplace')
+        res, data = self._get(url, app_serializer='fireplace',
+                                   region='restofworld')
         self._assert(app, data)
         assert_fireplace_app(data['app'])
+
+        self._assert(app, data)
 
     def test_app_limit(self):
         app = self.feed_app_factory()

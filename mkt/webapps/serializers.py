@@ -597,9 +597,13 @@ class SuggestionsESAppSerializer(ESAppSerializer):
         return app.get_icon_url(64)
 
 
-class DiscoPlaceESAppSerializer(SuggestionsESAppSerializer):
+class FeedDiscoPlaceESAppSerializer(SuggestionsESAppSerializer):
     class Meta(ESAppSerializer.Meta):
-        fields = ['name', 'absolute_url', 'icon', 'status', 'is_disabled']
+        # Feed needs status, is_disabled and regions in the serializer in
+        # order to do some filtering in the view. The view will drop regions
+        # and is_disabled from the serialization.
+        fields = ['name', 'absolute_url', 'icon',
+                  'regions', 'status', 'is_disabled']
 
     def get_icon(self, app):
         return app.get_icon_url(128)
