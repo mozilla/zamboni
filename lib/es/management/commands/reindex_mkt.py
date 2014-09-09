@@ -34,7 +34,9 @@ logger = logging.getLogger('z.elasticsearch')
 ES_INDEXES = settings.ES_INDEXES
 INDEXES = (
     # Index, Indexer, chunk size.
-    (ES_INDEXES['webapp'], WebappIndexer, 100),
+    # Webapp documents average about 5k. Indexing 500 at a time sends a payload
+    # of about 2.5mb to the bulk indexing API.
+    (ES_INDEXES['webapp'], WebappIndexer, 500),
     # Currently using 500 since these are manually created by a curator and
     # there will probably never be this many.
     (ES_INDEXES['mkt_feed_app'], f_indexers.FeedAppIndexer, 500),
