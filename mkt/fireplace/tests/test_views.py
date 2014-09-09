@@ -28,6 +28,13 @@ FIREPLACE_EXCLUDED_FIELDS = (
     'versions', 'weekly_downloads')
 
 
+def assert_fireplace_app(data):
+    for field in FIREPLACE_EXCLUDED_FIELDS:
+        ok_(not field in data, field)
+    for field in FireplaceAppSerializer.Meta.fields:
+        ok_(field in data, field)
+
+
 class TestAppDetail(BaseAPI):
     fixtures = fixture('webapp_337141')
 
@@ -39,10 +46,7 @@ class TestAppDetail(BaseAPI):
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['id'], 337141)
-        for field in FIREPLACE_EXCLUDED_FIELDS:
-            ok_(not field in data, field)
-        for field in FireplaceAppSerializer.Meta.fields:
-            ok_(field in data, field)
+        assert_fireplace_app(data)
 
     def test_get_slug(self):
         Webapp.objects.get(pk=337141).update(app_slug='foo')
@@ -76,18 +80,12 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         eq_(len(objects), 1)
         data = objects[0]
         eq_(data['id'], 337141)
-        for field in FIREPLACE_EXCLUDED_FIELDS:
-            ok_(not field in data, field)
-        for field in FireplaceAppSerializer.Meta.fields:
-            ok_(field in data, field)
+        assert_fireplace_app(data)
 
         ok_('collections' in res.json)
         eq_(res.json['collections'][0]['name'], {u'en-US': u'Hi'})
         data = res.json['collections'][0]['apps'][0]
-        for field in FIREPLACE_EXCLUDED_FIELDS:
-            ok_(not field in data, field)
-        for field in FireplaceAppSerializer.Meta.fields:
-            ok_(field in data, field)
+        assert_fireplace_app(data)
         ok_('featured' in res.json)
         ok_('operator' in res.json)
 
@@ -119,10 +117,7 @@ class TestCollectionViewSet(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(res.json['name'], {u'en-US': u'Hi'})
         data = res.json['apps'][0]
-        for field in FIREPLACE_EXCLUDED_FIELDS:
-            ok_(not field in data, field)
-        for field in FireplaceAppSerializer.Meta.fields:
-            ok_(field in data, field)
+        assert_fireplace_app(data)
 
     @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
     def test_get_preview(self, mock_field_to_native):
@@ -165,10 +160,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(len(objects), 1)
         data = objects[0]
         eq_(data['id'], 337141)
-        for field in FIREPLACE_EXCLUDED_FIELDS:
-            ok_(not field in data, field)
-        for field in FireplaceAppSerializer.Meta.fields:
-            ok_(field in data, field)
+        assert_fireplace_app(data)
         ok_(not 'featured' in res.json)
         ok_(not 'collections' in res.json)
         ok_(not 'operator' in res.json)

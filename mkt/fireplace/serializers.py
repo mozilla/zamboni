@@ -30,7 +30,8 @@ class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
     weight = SerializerMethodField('get_weight')
 
     class Meta(SimpleESAppSerializer.Meta):
-        fields = sorted(FireplaceAppSerializer.Meta.fields + ['weight'])
+        fields = sorted(FireplaceAppSerializer.Meta.fields + ['is_disabled',
+                                                              'weight'])
         exclude = FireplaceAppSerializer.Meta.exclude
 
     def get_weight(self, obj):

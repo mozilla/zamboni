@@ -8,7 +8,9 @@ from rest_framework import exceptions, serializers
 from tower import ugettext as _
 
 from mkt.collections.serializers import DataURLImageField
-from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
+from mkt.fireplace.serializers import FireplaceESAppSerializer
+from mkt.webapps.serializers import (AppSerializer, DiscoPlaceESAppSerializer,
+                                     ESAppFeedSerializer,
                                      ESAppFeedCollectionSerializer,
                                      ESAppSerializer)
 
@@ -35,9 +37,21 @@ class AppESField(serializers.Field):
 
     self.context['app_map'] -- mapping from app ID to app ES object
     """
+    app_serializer_classes = {
+        'fireplace': FireplaceESAppSerializer,
+        'discoplace': DiscoPlaceESAppSerializer
+    }
+
     @property
     def serializer_class(self):
-        return ESAppSerializer
+        request = self.context['request']
+        app_serializer = request.GET.get('app_serializer')
+        if app_serializer is None and '/fireplace/' in request.path:
+            # Remove the condition and the line below once fireplace has been
+            # updated to use /consumer/feed/[..] with ?app_serializer=fireplace
+            # instead of /fireplace/feed/[..].
+            app_serializer = 'fireplace'
+        return self.app_serializer_classes.get(app_serializer, ESAppSerializer)
 
     def __init__(self, *args, **kwargs):
         self.many = kwargs.pop('many', False)

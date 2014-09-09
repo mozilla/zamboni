@@ -2,7 +2,6 @@
 import json
 import os
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
@@ -22,6 +21,7 @@ from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
+from mkt.fireplace.tests.test_views import assert_fireplace_app
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -1674,19 +1674,40 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         return res, data
 
-    def _assert(self, obj, result):
+    def _assert(self, obj, result, limit=1000):
         eq_(obj.id, result['id'])
         if hasattr(obj, 'app_id'):
             eq_(obj.app_id, result['app']['id'])
         else:
-            self.assertSetEqual(obj.apps().values_list('id', flat=True),
-                                [app['id'] for app in result['apps']])
+            self.assertSetEqual(
+                obj.apps().values_list('id', flat=True)[:limit],
+                [app['id'] for app in result['apps']])
 
     def test_app(self):
         app = self.feed_app_factory()
         url = reverse('api-v2:feed.feed_element_get',
                       args=['apps', app.slug])
         res, data = self._get(url)
+        self._assert(app, data)
+
+        url = reverse('api-v2:feed.fire_feed_element_get',
+                      args=['apps', app.slug])
+        res, data = self._get(url)
+        self._assert(app, data)
+        assert_fireplace_app(data['app'])
+
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['apps', app.slug])
+        res, data = self._get(url, app_serializer='fireplace')
+        self._assert(app, data)
+        assert_fireplace_app(data['app'])
+
+    def test_app_limit(self):
+        app = self.feed_app_factory()
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['apps', app.slug])
+        # Limit should be ignored, we are not dealing with a list of apps.
+        res, data = self._get(url, limit=0)
         self._assert(app, data)
 
     def test_brand(self):
@@ -1696,6 +1717,18 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(url)
         self._assert(brand, data)
 
+        url = reverse('api-v2:feed.fire_feed_element_get',
+                      args=['brands', brand.slug])
+        res, data = self._get(url)
+        self._assert(brand, data)
+        assert_fireplace_app(data['apps'][0])
+
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['brands', brand.slug])
+        res, data = self._get(url, app_serializer='fireplace')
+        self._assert(brand, data)
+        assert_fireplace_app(data['apps'][0])
+
     def test_collection(self):
         collection = self.feed_collection_factory()
         url = reverse('api-v2:feed.feed_element_get',
@@ -1703,12 +1736,48 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(url)
         self._assert(collection, data)
 
+        url = reverse('api-v2:feed.fire_feed_element_get',
+                      args=['collections', collection.slug])
+        res, data = self._get(url)
+        self._assert(collection, data)
+        assert_fireplace_app(data['apps'][0])
+
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['collections', collection.slug])
+        res, data = self._get(url, app_serializer='fireplace')
+        self._assert(collection, data)
+        assert_fireplace_app(data['apps'][0])
+
+    def test_collection_limit(self):
+        apps = [amo.tests.app_factory(), amo.tests.app_factory(),
+                amo.tests.app_factory()]
+
+        collection = self.feed_collection_factory(
+            app_ids=[app.id for app in apps])
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['collections', collection.slug])
+        res, data = self._get(url, limit=2)
+        eq_(len(data['apps']), 2)
+        self._assert(collection, data, limit=2)
+
     def test_shelf(self):
         shelf = self.feed_shelf_factory()
         url = reverse('api-v2:feed.feed_element_get',
                       args=['shelves', shelf.slug])
         res, data = self._get(url)
         self._assert(shelf, data)
+
+        url = reverse('api-v2:feed.fire_feed_element_get',
+                      args=['shelves', shelf.slug])
+        res, data = self._get(url)
+        self._assert(shelf, data)
+        assert_fireplace_app(data['apps'][0])
+
+        url = reverse('api-v2:feed.feed_element_get',
+                      args=['shelves', shelf.slug])
+        res, data = self._get(url, app_serializer='fireplace')
+        self._assert(shelf, data)
+        assert_fireplace_app(data['apps'][0])
 
     def test_404(self):
         url = reverse('api-v2:feed.feed_element_get',
