@@ -146,6 +146,39 @@ class TestRequireInAppPayments(amo.tests.TestCase):
         eq_(response.status_code, 302)
 
 
+class TestInAppPaymentsView(InappTest):
+
+    def setUp(self):
+        super(TestInAppPaymentsView, self).setUp()
+        self.url = reverse('mkt.developers.apps.in_app_payments',
+                           args=[self.app.app_slug])
+
+        self.waffle = self.create_switch('in-app-products')
+
+    def get(self):
+        return self.client.get(self.url)
+
+    def test_ok(self):
+        res = self.get()
+        eq_(res.status_code, 200)
+
+    def test_requires_author(self):
+        self.login(self.other)
+        eq_(self.get().status_code, 403)
+
+    def test_inapp_products_enabled(self):
+        doc = pq(self.get().content)
+        ok_(doc('section.primary div#in-app-keys'))
+        ok_(doc('section.primary div#in-app-products'))
+
+    def test_inapp_products_disabled(self):
+        self.waffle.active = False
+        self.waffle.save()
+        doc = pq(self.get().content)
+        ok_(doc('section.primary div#in-app-keys'))
+        ok_(not doc('section.primary div#in-app-products'))
+
+
 class TestGetInappConfig(InappTest):
 
     def setUp(self):

@@ -380,6 +380,14 @@ def require_in_app_payments(render_view):
     return inner
 
 
+@login_required
+@dev_required(webapp=True)
+@require_in_app_payments
+def in_app_payments(request, addon_id, addon, webapp=True, account=None):
+    return render(request, 'developers/payments/in-app-payments.html',
+                  {'addon': addon})
+
+
 @waffle_switch('in-app-products')
 @login_required
 @dev_required(webapp=True)

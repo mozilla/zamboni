@@ -19,11 +19,12 @@
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(addon, items=[(addon.get_dev_url('in_app_payments'), _('In-App Payments')), (None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 
   <section class="primary manage" role="main">
+    <h2>{{ title }}</h2>
     {% if not addon.is_packaged %}
       <div id="origin-notification" class="island notification-box">
         {% trans origin='https://developer.mozilla.org/en-US/Apps/Build/Manifest#origin' %}

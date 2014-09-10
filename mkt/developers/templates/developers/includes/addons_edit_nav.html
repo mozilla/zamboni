@@ -17,13 +17,8 @@
                      _('Compatibility & Payments'))) %}
   {% if addon.premium_type in amo.ADDON_INAPPS %}
     {% do urls.insert(4,
-      (addon.get_dev_url('in_app_config'), _('In-App Payments'))
+      (addon.get_dev_url('in_app_payments'), _('In-App Payments'))
     ) %}
-    {% if waffle.switch('in-app-products') %}
-        {% do urls.insert(5,
-            (addon.get_dev_url('in_app_products'), _('In-App Products'))
-        ) %}
-    {% endif %}
   {% endif %}
 {% else %}
   {% do urls.append((addon.get_dev_url('payments'),
