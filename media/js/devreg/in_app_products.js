@@ -1,29 +1,19 @@
 (function () {
     function PricePointFormatter() {
-        // A mapping from PricePointId to FormattedPriceDeferred.
-        var pricePoints = {};
+        var rowTemplateSelector = '#in-app-product-row-template';
+        var rowTemplate = $(rowTemplateSelector).html();
+        var $options = $(rowTemplate).find('select[name="price_id"]')
+                                     .children();
+        var pricePoints = Array.prototype.reduce.call(
+            $options, makePrices, {});
 
-        var pricePointUrl = function (id) {
-            return format('/api/v1/webpay/prices/{id}/', {id: id});
-        }
+        this.format = function (price_id) {
+            return pricePoints[price_id];
+        };
 
-        var priceForCurrencyCode = function (prices, currencyCode) {
-            var price = _.find(prices, function (price) {
-                return price.currency === currencyCode;
-            });
-            return [price.price, price.currency].join(' ');
-        }
-
-        this.format = function (id) {
-            if (id && !pricePoints.hasOwnProperty(id)) {
-                // This uses `then` because it returns a modified promise. Do
-                // not change it to `done`, it will stop working.
-                pricePoints[id] = $.get(pricePointUrl(id))
-                                   .then(function (pricePoint) {
-                    return priceForCurrencyCode(pricePoint.prices, 'USD');
-                });
-            }
-            return pricePoints[id];
+        function makePrices(prices, option) {
+            prices[option.value] = option.textContent;
+            return prices;
         }
     }
     var pricePointFormatter = new PricePointFormatter().format;
@@ -44,7 +34,7 @@
 
         this.after('initialize', function () {
             this.attr.dataSource.on('dataChange', (function (e, data) {
-                this.setValue(data[this.attr.name])
+                this.setValue(data[this.attr.name]);
             }).bind(this));
         });
     });
@@ -87,7 +77,8 @@
             this.data = {};
 
             if (typeof this.attr.value === 'undefined') {
-                this.attr.value = this.attr.getInputValue(this.input) || this.output.text();
+                this.attr.value = this.attr.getInputValue(this.input) ||
+                                  this.output.text();
             }
 
             this.on('dataInlineEditChanged', function (e, payload) {
@@ -205,7 +196,8 @@
         this.after('initialize', function () {
             this.$rootData = $('#in-app-products').data();
             this.listUrl = this.$rootData.listUrl;
-            this.detailUrlFormat = decodeURIComponent(this.$rootData.detailUrlFormat);
+            this.detailUrlFormat = decodeURIComponent(
+                this.$rootData.detailUrlFormat);
             this.name = this.select('nameSelector');
             this.price = this.select('priceSelector');
             this.guid = this.select('productIdSelector');
@@ -235,12 +227,12 @@
 
             this.on('uiStartInlineEdit', function () {
                 this.$node.addClass('editing');
-            })
+            });
 
             this.on('uiDoneInlineEdit', function () {
                 this.$node.removeClass('editing');
                 this.trigger('dataChange', this.product);
-            })
+            });
 
             this.on(this.saveButton, 'click', function (e) {
                 this.trigger('uiSaveRequested');
@@ -272,7 +264,9 @@
                 name: 'active',
                 inputSelector: 'input[type="checkbox"]',
                 startEditing: this.attr.startEditing,
-                getInputValue: function (input) { return input.is(':checked'); },
+                getInputValue: function (input) {
+                    return input.is(':checked');
+                },
                 outputFormatter: function (value) {
                     if (value) {
                         return gettext('Enabled');
@@ -312,5 +306,5 @@
     });
     $('#add-in-app-product').on('click', function () {
         $('#in-app-products').removeClass('empty');
-    })
+    });
 })();
