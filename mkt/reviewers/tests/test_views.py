@@ -42,7 +42,7 @@ from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.models import (CannedResponse, EscalationQueue,
-                                  RereviewQueue, ReviewerScore)
+                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore)
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
@@ -3921,3 +3921,28 @@ class TestReviewTranslate(RestOAuth):
                                            args=[review.addon.slug, review.id,
                                                  'fr']),)
         eq_(res.status_code, 400)
+
+
+class TestAdditionalReviewListingAccess(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.login(self.user.email)
+
+    def url(self):
+        return reverse('reviewers.apps.additional_review', args=[QUEUE_TARAKO])
+
+    def listing(self):
+        return self.client.get(self.url())
+
+    def test_regular_user_has_no_access(self):
+        eq_(self.listing().status_code, 403)
+
+    def test_regular_reviewer_has_no_access(self):
+        self.grant_permission(self.user, 'Apps:Review')
+        eq_(self.listing().status_code, 403)
+
+    def test_tarako_reviewer_has_access(self):
+        self.grant_permission(self.user, 'Apps:ReviewTarako')
+        eq_(self.listing().status_code, 200)
