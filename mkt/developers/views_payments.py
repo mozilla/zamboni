@@ -389,9 +389,31 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
     products = addon.inappproduct_set.all()
     new_product = InAppProduct(webapp=addon)
     form = InAppProductForm()
+    list_url = None
+    detail_url = None
+    if addon.origin:
+        list_url = _fix_origin_link(reverse('in-app-products-list',
+                                            kwargs={'origin': addon.origin}))
+        detail_url = _fix_origin_link(reverse('in-app-products-detail',
+                                              # {guid} is replaced in JS.
+                                              kwargs={'origin': addon.origin,
+                                                      'guid': "{guid}"}))
     return render(request, 'developers/payments/in-app-products.html',
                   {'addon': addon, 'form': form, 'new_product': new_product,
-                   'owner': owner, 'products': products, 'form': form})
+                   'owner': owner, 'products': products, 'form': form,
+                   'list_url': list_url, 'detail_url': detail_url})
+
+
+def _fix_origin_link(link):
+    """
+    Return a properly URL encoded link that might contain an app origin.
+
+    App origins look like ``app://fxpay.allizom.org`` but Django does not
+    encode the double slashes. This seems to cause a problem on our
+    production web servers maybe because double slashes are normalized.
+    See https://bugzilla.mozilla.org/show_bug.cgi?id=1065006
+    """
+    return link.replace('//', '%2F%2F')
 
 
 @login_required
