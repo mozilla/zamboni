@@ -235,7 +235,6 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     perms -- object of groups to grant permission to, will set flags on Thread.
              (e.g. {'developer': False, 'staff': True}).
     attachments -- formset of attachment files
-
     """
     # Perm for reviewer, senior_reviewer, moz_contact, staff True by default.
     # Perm for developer False if is reviewer-only comment by default.

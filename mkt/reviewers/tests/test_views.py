@@ -3125,6 +3125,18 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         note = self._get_note()
         eq_(note.attachments.count(), 2)
 
+    def test_tested_with(self):
+        """Tested 'Tested with' message appended to note body."""
+        data = {'action': 'reject', 'comments': 'rubesh',
+                'device_types': 'iFun', 'browsers': 'FurFocks'}
+        data.update(self._attachment_management_form(num=0))
+        self._post(data)
+
+        # Test notes.
+        note = self._get_note()
+        eq_(note.note_type, comm.REJECTION)
+        eq_(note.body, 'rubesh\n\nTested on iFun with FurFocks')
+
 
 class TestModeratedQueue(AppReviewerTest, AccessMixin):
     fixtures = fixture('group_editor', 'user_editor', 'user_editor_group',
