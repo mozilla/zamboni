@@ -119,3 +119,7 @@ def appcache_manifest_template(repo):
 
 def iframe_install(request):
     return render(request, 'commonplace/iframe-install.html')
+
+
+def potatolytics(request):
+    return render(request, 'commonplace/potatolytics.html')

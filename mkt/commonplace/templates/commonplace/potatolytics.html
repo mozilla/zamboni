@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><body>
+<script type="text/javascript">
+(function() {
+    function setupUATracking(id, initial_url, clientID, sect, sect_index) {
+        window.GoogleAnalyticsObject = 'ga';
+        window.ga = window.ga || function() {
+            (window.ga.q = window.ga.q || []).push(arguments);
+        };
+        window.ga.l = 1 * new Date();
+
+        var ua = document.createElement('script');
+        ua.type = 'text/javascript';
+        ua.async = true;
+        ua.src = 'https://www.google-analytics.com/analytics.js';
+        document.body.appendChild(ua);
+
+        window.ga('create', id, {
+            storage: 'none',
+            clientId: clientID,
+        });
+        if (sect) {
+            window.ga('set', 'dimension' + sect_index, sect);
+        }
+        window.ga('set', 'checkProtocolTask', function(){});
+        window.ga('send', 'pageview', initial_url);
+    }
+
+    // FIXME: share the origin whitelist array & check function with 
+    // iframe-install.html. We only need to whitelist our packaged app
+    // origins, localhost is added for convenience.
+    var origin_whitelist = [
+        'app://packaged.marketplace-dev.allizom.org',
+        'app://packaged.marketplace-altdev.allizom.org',
+        'app://packaged.payments-alt.allizom.org',
+        'app://packaged.marketplace.allizom.org',
+        'app://packaged.marketplace.firefox.com',
+        'app://packaged.marketplace-feed-dev.allizom.org',
+        'app://packaged.marketplace-feed.allizom.org',
+        'app://packaged.marketplace-feed.firefox.com',
+
+        'app://marketplace.firefox.com',
+
+        'http://localhost:8675',
+        'https://localhost:8675',
+
+        'http://localhost',
+        'https://localhost',
+    ];
+
+    window.addEventListener('message', function(e) {
+        if (origin_whitelist.indexOf(e.origin) === -1) {
+            console.error('[potatolytics] message from origin ' + e.origin + ' not allowed');
+            return;
+        }
+        if (typeof window.ga === 'undefined') {
+            setupUATracking.apply(window, e.data);
+        } else {
+            window.ga.apply(window.ga, e.data);
+        }
+        window.console.error('[potatolytics] ' + e.data);
+        window.parent.postMessage(e.data, e.origin);
+    }, false);
+
+    // When everything is ready, message the parent to start receiving messages
+    // from it.
+    window.parent.postMessage({name: 'potatolytics-loaded'}, '*');
+})();
+</script>
+</body></html>

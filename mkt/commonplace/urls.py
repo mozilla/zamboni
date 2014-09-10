@@ -38,6 +38,8 @@ urlpatterns = patterns('',
     ('^app/%s/' % amo.APP_SLUG, include(fireplace_app_patterns)),
     url(r'^iframe-install.html/$', views.iframe_install,
         name='commonplace.iframe-install'),
+    url(r'^potatolytics.html$', views.potatolytics,
+        name='commonplace.potatolytics'),
 
     # Commbadge:
     url('^comm/app/%s$' % amo.APP_SLUG, views.commonplace,
