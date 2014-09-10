@@ -57,17 +57,6 @@ before running ``pip install ...``::
 
 More info: http://stackoverflow.com/questions/22334776/installing-pillow-pil-on-mavericks/22365032
 
-Landfill
---------
-
-If you are using Mac OS X, you might need to add a `.Z` suffix to the
-*.sql.gz* file, otherwise **zcat** might not recognize it::
-
-    ...
-    $ mv /tmp/landfill-`date +%Y-%m-%d`.sql.gz /tmp/landfill-`date +%Y-%m-%d`.sql.gz.Z
-    $ zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
-    ...
-
 Image processing isn't working
 ------------------------------
 
