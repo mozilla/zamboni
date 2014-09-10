@@ -4,7 +4,7 @@ DJANGO = $(PYTHON) manage.py
 SETTINGS = mkt.settings
 SHELL := /usr/bin/env bash
 
-.PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db update_landfill update_commonplace full_update reindex release
+.PHONY: help docs test test_force_db test_api test_api_force_db tdd test_failed update_code update_deps update_db update_commonplace full_update reindex release
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -20,7 +20,6 @@ help:
 	@echo "  update_db           to run the database migrations"
 	@echo "  update_commonplace  to update commonplace projects"
 	@echo "  full_update         to run a full update of zamboni and commonplace"
-	@echo "  update_landfill     to load the landfill database data"
 	@echo "  reindex             to reindex everything in elasticsearch"
 	@echo "  release             to tag and stage a weekly code release"
 	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
@@ -63,9 +62,6 @@ update_commonplace:
 	commonplace fiddle
 
 full_update: update_code update_deps update_db update_commonplace
-
-update_landfill:
-	$(DJANGO) install_landfill --settings=$(SETTINGS) $(ARGS)
 
 reindex:
 	$(DJANGO) reindex_mkt --settings=$(SETTINGS) $(ARGS)

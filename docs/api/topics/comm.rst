@@ -212,7 +212,7 @@ Note
             }],
             "author": 1,
             "author_meta": {
-                "name": "Landfill Admin"
+                "name": "Admin"
             },
             "body": "hi there",
             "created": "2013-06-14T11:54:48",

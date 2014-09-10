@@ -1115,8 +1115,8 @@ STYLUS_BIN = os.environ.get('STYLUS_BIN',
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
 
-# Default user id to use for tasks. This is the landfill admin user, or more
-# likely the first user if a developer creates a clean database.
+# Default user id to use for tasks. This is the first user if a developer
+# creates a clean database.
 TASK_USER_ID = 1
 
 # These apps are only needed in a testing environment. They are added to
