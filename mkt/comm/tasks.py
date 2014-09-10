@@ -15,6 +15,7 @@ log = logging.getLogger('z.task')
 @task
 def consume_email(email_text, **kwargs):
     """Parse emails and save notes."""
+    log.debug('Comm email: ' + email_text)
     res = save_from_email_reply(email_text)
     if not res:
         log.error('Failed to save email.')
