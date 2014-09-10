@@ -106,6 +106,10 @@ class ReviewBase(object):
         if self.files:
             details['files'] = [f.id for f in self.files]
 
+        tested = self.get_tested()  # You really should...
+        if tested:
+            self.data['comments'] += '\n\n%s' % tested
+
         # Commbadge (the future).
         note_type = comm.ACTION_MAP(action.id)
         self.comm_thread, self.comm_note = create_comm_note(
@@ -118,6 +122,22 @@ class ReviewBase(object):
                 created=datetime.now(), details=details,
                 attachments=self.attachment_formset)
 
+    def get_tested(self):
+        """
+        Get string indicating device/browser used by reviewer to test.
+        Will be automatically attached to the note body.
+        """
+        devices = self.data.get('device_types')
+        browsers = self.data.get('browsers')
+
+        if devices and browsers:
+            return 'Tested on %s with %s' % (devices, browsers)
+        elif devices and not browsers:
+            return 'Tested on %s' % devices
+        elif not devices and browsers:
+            return 'Tested with %s' % browsers
+        return ''
+
     def notify_email(self, template, subject, fresh_thread=False):
         """Notify the authors that their app has been reviewed."""
         if waffle.switch_is_active('comm-dashboard'):
@@ -126,14 +146,7 @@ class ReviewBase(object):
 
         data = self.data.copy()
         data.update(self.get_context_data())
-        data['tested'] = ''
-        dt, br = data.get('device_types'), data.get('browsers')
-        if dt and br:
-            data['tested'] = 'Tested on %s with %s' % (dt, br)
-        elif dt and not br:
-            data['tested'] = 'Tested on %s' % dt
-        elif not dt and br:
-            data['tested'] = 'Tested with %s' % br
+        data['tested'] = self.get_tested()
 
         emails = list(self.addon.authors.values_list('email', flat=True))
         cc_email = self.addon.get_mozilla_contacts()
