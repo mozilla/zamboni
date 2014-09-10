@@ -29,7 +29,6 @@
                   <li class="file-info">
                     <span class="light">
                       <div>{{ file_review_status(product, file) }}</div>
-                      <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
                       {% if not version.deleted %}
                         <a href="{{ url('mkt.developers.apps.file_validation', product.app_slug, file) }}">{{ _('Validation') }}</a>
                         &middot;
@@ -39,13 +38,6 @@
                           <a class="compare" href="{{ url('mkt.files.compare', file, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
                         {% endif %}
                       {% endif %}
-                    </span>
-                  </li>
-                {% endfor %}
-                {% for file in version_files %}
-                  <li class="file-info">
-                    <span class="light">
-                      <div>{{ file_review_status(product, file) }}</div>
                     </span>
                   </li>
                 {% endfor %}
