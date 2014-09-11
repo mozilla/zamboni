@@ -1,4 +1,5 @@
 import base64
+import logging
 import urllib2
 from email import message_from_string
 from email.utils import parseaddr
@@ -6,7 +7,6 @@ from email.utils import parseaddr
 from django.conf import settings
 from django.core.files.storage import get_storage_class
 
-import commonware.log
 import waffle
 from email_reply_parser import EmailReplyParser
 
@@ -18,7 +18,7 @@ from mkt.constants import comm
 from mkt.users.models import UserProfile
 
 
-log = commonware.log.getLogger('comm')
+log = logging.getLogger('z.comm')
 
 
 class CommEmailParser(object):
