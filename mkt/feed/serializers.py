@@ -66,6 +66,22 @@ class BaseFeedCollectionESSerializer(BaseESSerializer):
     representation.
     """
     apps = AppESField(source='_app_ids', many=True)
+    app_count = serializers.SerializerMethodField('get_app_count')
+
+    def get_apps(self, obj):
+        """
+        Manually deserialize the app field, used to get the app count.
+        The reason we don't just do len(obj._app_ids) is because ES may have
+        filtered out some apps. These apps won't exist in the app map, so it
+        will affect our total app count. This forces us to run the to_native
+        operation twice, but it is not expensive.
+        """
+        app_field = AppESField(many=True)
+        app_field.context = self.context
+        return app_field.to_native(obj._app_ids)
+
+    def get_app_count(self, obj):
+        return len(self.get_apps(obj))
 
 
 class FeedImageField(serializers.HyperlinkedRelatedField):
@@ -150,16 +166,18 @@ class FeedBrandSerializer(BaseFeedCollectionSerializer):
                                    required=True)
 
     class Meta:
-        fields = ('apps', 'id', 'layout', 'slug', 'type', 'url')
+        fields = ('app_count', 'apps', 'id', 'layout', 'slug', 'type', 'url')
         model = FeedBrand
         url_basename = 'feedbrands'
 
 
-class FeedBrandESSerializer(FeedBrandSerializer,
-                            BaseFeedCollectionESSerializer):
+class FeedBrandESSerializer(BaseFeedCollectionESSerializer,
+                            FeedBrandSerializer):
     """
     A serializer for the FeedBrand class for ES representation.
     """
+    apps = AppESField(source='_app_ids', many=True)
+
     def fake_object(self, data):
         brand = self._attach_fields(FeedBrand(), data, (
             'id', 'layout', 'slug', 'type'
@@ -174,14 +192,8 @@ class FeedBrandESHomeSerializer(FeedBrandESSerializer):
     Different from the other Feed*ESHomeSerializers because it uses its own
     app field.
     """
-    apps = AppESHomeField(source='_app_ids', many=True)
-    app_count = serializers.SerializerMethodField('get_app_count')
-
-    class Meta(FeedBrandESSerializer.Meta):
-        fields = FeedBrandESSerializer.Meta.fields + ('app_count',)
-
-    def get_app_count(self, obj):
-        return len(obj._app_ids)
+    apps = AppESHomeField(source='_app_ids', many=True,
+                          limit=feed.HOME_NUM_APPS_BRAND)
 
 
 class FeedCollectionSerializer(BaseFeedCollectionSerializer):
@@ -198,7 +210,7 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     apps = serializers.SerializerMethodField('get_apps')
 
     class Meta:
-        fields = ('apps', 'background_color', 'background_image',
+        fields = ('app_count', 'apps', 'background_color', 'background_image',
                   'description', 'id', 'name', 'slug', 'type', 'url')
         model = FeedCollection
         url_basename = 'feedcollections'
@@ -232,11 +244,12 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         return ret
 
 
-class FeedCollectionESSerializer(FeedCollectionSerializer,
-                                 BaseFeedCollectionESSerializer):
+class FeedCollectionESSerializer(BaseFeedCollectionESSerializer,
+                                 FeedCollectionSerializer):
     """
     A serializer for the FeedCollection class for ES representation.
     """
+    apps = AppESField(source='_app_ids', many=True)
     description = ESTranslationSerializerField(required=False)
     name = ESTranslationSerializerField(required=False)
 
@@ -260,25 +273,20 @@ class FeedCollectionESSerializer(FeedCollectionSerializer,
 class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
     """Stripped down FeedCollectionESSerializer targeted for the homepage."""
     apps = serializers.SerializerMethodField('get_apps')
-    app_count = serializers.SerializerMethodField('get_app_count')
-
-    class Meta(FeedCollectionESSerializer.Meta):
-        fields = FeedCollectionESSerializer.Meta.fields + ('app_count',)
 
     def get_apps(self, obj):
         if obj.type == feed.COLLECTION_PROMO:
             # Need app icons if not background image.
-            app_field = AppESHomePromoCollectionField(many=True)
+            app_field = AppESHomePromoCollectionField(
+                many=True, limit=feed.HOME_NUM_APPS_PROMO_COLL)
 
         elif obj.type == feed.COLLECTION_LISTING:
             # Needs minimal app serialization like FeedBrand.
-            app_field = AppESField(many=True)
+            app_field = AppESField(many=True,
+                                   limit=feed.HOME_NUM_APPS_LISTING_COLL)
 
         app_field.context = self.context
         return app_field.to_native(obj._app_ids)
-
-    def get_app_count(self, obj):
-        return len(obj._app_ids)
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -296,17 +304,17 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     region = SlugChoiceField(choices_dict=mkt.regions.REGION_LOOKUP)
 
     class Meta:
-        fields = ['apps', 'background_image', 'carrier', 'description', 'id',
-                  'is_published', 'name', 'region', 'slug', 'url']
+        fields = ['app_count', 'apps', 'background_image', 'carrier',
+                  'description', 'id', 'is_published', 'name', 'region',
+                  'slug', 'url']
         model = FeedShelf
         url_basename = 'feedshelves'
 
 
-class FeedShelfESSerializer(FeedShelfSerializer,
-                            BaseFeedCollectionESSerializer):
-    """
-    A serializer for the FeedShelf class for ES representation.
-    """
+class FeedShelfESSerializer(BaseFeedCollectionESSerializer,
+                            FeedShelfSerializer):
+    """A serializer for the FeedShelf class for ES representation."""
+    apps = AppESField(source='_app_ids', many=True)
     description = ESTranslationSerializerField(required=False)
     name = ESTranslationSerializerField(required=False)
 
@@ -328,7 +336,8 @@ class FeedShelfESSerializer(FeedShelfSerializer,
 
 class FeedShelfESHomeSerializer(FeedShelfESSerializer):
     """Stripped down FeedShelfESSerializer targeted for the homepage."""
-    apps = AppESHomePromoCollectionField(source='_app_ids', many=True)
+    apps = AppESHomePromoCollectionField(source='_app_ids', many=True,
+                                         limit=feed.HOME_NUM_APPS_SHELF)
 
 
 class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):

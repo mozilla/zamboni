@@ -35,6 +35,10 @@ class AppESField(serializers.Field):
     used to deserialize app IDs to app ES data. This class helps deserialize
     using that map and expects app IDs (i.e., passed through source).
 
+    If the app does not exist in the app map, we consider that the app was
+    filtered out (as a result of status, region, device filtering). In that
+    case, we just return None or exclude it.
+
     self.context['app_map'] -- mapping from app ID to app ES object
     """
     app_serializer_classes = {
@@ -46,11 +50,12 @@ class AppESField(serializers.Field):
     def serializer_class(self):
         request = self.context['request']
         app_serializer = request.GET.get('app_serializer')
+
+        # TODO: remove once fireplace is using
+        # /consumer/feed/...?app_serializer=fireplace.
         if app_serializer is None and '/fireplace/' in request.path:
-            # Remove the condition and the line below once fireplace has been
-            # updated to use /consumer/feed/[..] with ?app_serializer=fireplace
-            # instead of /fireplace/feed/[..].
             app_serializer = 'fireplace'
+
         return self.app_serializer_classes.get(app_serializer, ESAppSerializer)
 
     def __init__(self, *args, **kwargs):
@@ -59,7 +64,11 @@ class AppESField(serializers.Field):
         super(AppESField, self).__init__(*args, **kwargs)
 
     def _attach_group(self, app):
-        """Attach feed collection grouped apps (for 'mega collection')."""
+        """
+        Attach feed collection grouped apps (for 'mega collection').
+        Sets app.group_translations to something like
+            [{'lang': 'en-US', 'string': 'My Group'}].
+        """
         if self.context.get('group_apps'):
             group_index = self.context['group_apps'].get(unicode(app['id']))
             if group_index is None:
@@ -79,24 +88,27 @@ class AppESField(serializers.Field):
                 app = self._attach_group(app)
 
         if self.many:
-            if self.limit is not None:
-                # If limit is specified, limit the number of apps.
-                app_ids = app_ids[:self.limit]
-
             # Deserialize app ID to ES app data.
             partially_deserialized_apps = [
-                app_map[app_id] for app_id in app_ids]
+                app_map[app_id] for app_id in app_ids if app_map.get(app_id)]
 
             # Deserialize ES app data to full data.
             apps = self.serializer_class(
                 partially_deserialized_apps, many=True,
                 context=self.context).data
+
+            # If limit is specified, limit the number of apps.
+            if self.limit is not None:
+                apps = apps[:self.limit]
+
             return apps
         else:
             # Single object, app_ids is only one app ID.
-            app = self.serializer_class(app_map[app_ids],
-                                        context=self.context).data
-            return app
+            if not app_map.get(app_ids):
+                return None
+
+            return self.serializer_class(app_map[app_ids],
+                                         context=self.context).data
 
     def from_native(self, data):
         if self.many:

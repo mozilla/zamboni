@@ -378,73 +378,78 @@ class BaseFeedESView(CORSMixin, APIView):
         ]
 
     def get_app_ids(self, feed_element):
+        """Get a single feed element's app IDs."""
         if hasattr(feed_element, 'app'):
             return [feed_element.app]
         return feed_element.apps
 
     def get_app_ids_all(self, feed_elements):
+        """From a list of feed_elements, return a list of app IDs."""
         app_ids = []
         for elm in feed_elements:
             app_ids += self.get_app_ids(elm)
         return app_ids
 
-    def mget_apps(self, app_ids):
+    def get_apps(self, request, app_ids):
         """
-        Takes a list of app_ids. Does an ES mget.
+        Takes a list of app_ids. Gets the apps, including filters.
         Returns an app_map for serializer context.
         """
-        app_map = {}
-        es = WebappIndexer.get_es()
-        apps = es.mget(body={'ids': app_ids}, index=WebappIndexer.get_index(),
-                       doc_type=WebappIndexer.get_mapping_type_name())
-        for app in apps['docs']:
-            # Store the apps to attach to feed elements later.
-            app = app['_source']
-            app_map[app['id']] = app
-        return app_map
+        if request.QUERY_PARAMS.get('filtering', '1') == '0':
+            # Without filtering.
+            sq = WebappIndexer.search().filter(es_filter.Bool(
+                should=[es_filter.Terms(id=app_ids)]
+            ))
+        else:
+            # With filtering.
+            sq = WebappIndexer.get_app_filter(request, {
+                'device': self._get_device(request)
+            }, app_ids=app_ids)
 
-    def limit_apps_feed_items(self, feed_items):
+        # Store the apps to attach to feed elements later.
+        apps = sq.execute().hits
+        return dict((app.id, app) for app in apps)
+
+    def filter_feed_items(self, request, feed_items):
         """
-        Limit the number of apps for each feed element to the feed.
-        This is not done in the serializers because we need all the apps for
-        the filtering stage.
+        Removes feed items from the feed if they do not meet some
+        requirements like app count.
         """
         for feed_item in feed_items:
             item_type = feed_item['item_type']
-            if item_type == feed.FEED_TYPE_BRAND:
-                # Brand.
-                limit = feed.HOME_NUM_APPS_BRAND
-            elif item_type == feed.FEED_TYPE_COLL:
-                # Coll.
-                if feed_item['collection']['type'] == feed.COLLECTION_LISTING:
-                    limit = feed.HOME_NUM_APPS_LISTING_COLL
-                if feed_item['collection']['type'] == feed.COLLECTION_PROMO:
-                    limit = feed.HOME_NUM_APPS_PROMO_COLL
-            elif item_type == feed.FEED_TYPE_SHELF:
-                # Shelf.
-                limit = feed.HOME_NUM_APPS_SHELF
-            else:
-                continue
-
-            # Limit the apps.
-            feed_elm = feed_item[item_type]
-            feed_elm['apps'] = feed_elm['apps'][:limit]
-        return feed_items
-
-    def filter_apps_feed_items(self, request, feed_items):
-        """Master filter method for the feed."""
-        for feed_item in feed_items:
-            item_type = feed_item['item_type']
-            feed_item[item_type] = self.filter_apps_feed_element(
+            feed_item[item_type] = self.filter_feed_element(
                 request, feed_item[item_type], item_type)
 
-        # Filter feed elements that have NO compatible apps.
-        # We replace the feed elements with None if they're to be filtered.
+        # Filter out feed elements that did not pass the filters.
         return filter(lambda item: item[item['item_type']], feed_items)
+
+    def filter_feed_element(self, request, feed_element, item_type):
+        """
+        If a feed element does not have enough apps, return None.
+        Else return the feed element.
+        """
+        if request.QUERY_PARAMS.get('filtering', '1') == '0':
+            # Without filtering
+            return feed_element
+
+        # No empty collections.
+        if 'app_count' in feed_element and feed_element['app_count'] == 0:
+            return None
+
+        # If the app of a featured app was filtered out.
+        if item_type == feed.FEED_TYPE_APP and not feed_element['app']:
+            return None
+
+        # Enforce minimum apps on collections.
+        if (item_type == feed.FEED_TYPE_COLL and
+            feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
+            return None
+
+        return feed_element
 
     def _get_device(self, request):
         """
-        Return device to filter by (or None).
+        Return device ID for ES to filter by (or None).
         Fireplace sends `dev` and `device`. See the API docs for more info.
         When `dev` is 'android' we also need to check `device` to pick a device
         object.
@@ -454,102 +459,7 @@ class BaseFeedESView(CORSMixin, APIView):
 
         if dev == 'android' and device:
             dev = '%s-%s' % (dev, device)
-        return DEVICE_LOOKUP.get(dev)
-
-    def filter_apps_feed_element(self, request, feed_element, item_type):
-        """
-        Runs multiple filters for apps of feed elements.
-        Each filter will return None if all of the apps becomes excluded.
-        """
-        # Don't filter device/regions if filtering == 0.
-        filtering = request.QUERY_PARAMS.get('filtering', '1') != '0'
-
-        if 'app_count' in feed_element and feed_element['app_count'] == 0:
-            # No empty collections.
-            return
-
-        if feed_element and filtering:
-            # Device filtering.
-            device = self._get_device(request)
-            if device:
-                feed_element = self._filter(device.api_name, 'device_types',
-                                            feed_element, check_member=True)
-
-        if feed_element and filtering:
-            # Region filtering.
-            region = request.QUERY_PARAMS.get('region')
-            if region and region in dict(mkt.regions.REGIONS_CHOICES_SLUG):
-                # Turn list of region objects into list of slugs.
-                feed_element = self._filter(region, 'regions',
-                                            feed_element, check_member=True,
-                                            map_field='slug')
-
-        if feed_element:
-            # Status public filtering.
-            feed_element = self._filter(amo.STATUS_PUBLIC, 'status',
-                                        feed_element)
-
-        if feed_element and filtering:
-            # Enforce minimum apps on collections.
-            if (item_type == feed.FEED_TYPE_COLL and
-                feed_element['app_count'] < feed.MIN_APPS_COLLECTION):
-                feed_element = None
-
-        if feed_element:
-            feed_element = self._filter(False, 'is_disabled', feed_element)
-
-        if feed_element:
-            feed_element = self._pop_filter_fields(feed_element)
-
-        return feed_element
-
-    def _filter(self, param, field, feed_element, check_member=False,
-                map_field=None):
-        """
-        param -- value to filter by.
-        field -- field name of app to filter on.
-        feed_element -- feed element of which to filter its apps.
-        check_member -- whether we filter by checking membership or equality.
-        map_field -- if field needs to be flattened, we flatten to map_field.
-        """
-        def _do_app_filter(app):
-            """Helper method to determine what apps to filter."""
-            if map_field:
-                app[field] = map(lambda x: x[map_field], app[field])
-            if check_member:
-                return field not in app or param in app[field]
-            return param == app[field]
-
-        if 'app' in feed_element:
-            # For Feed Apps.
-            # If the app is not compatible, return None to exclude.
-            app = feed_element['app']
-            return feed_element if _do_app_filter(app) else None
-
-        else:
-            # For Collections.
-            # Filter apps.
-            feed_element['apps'] = [
-                app for app in feed_element['apps'] if _do_app_filter(app)]
-
-            # Update app count.
-            feed_element['app_count'] = len(feed_element['apps'])
-
-            # Return None if there are no apps, to exclude from feed.
-            return feed_element if feed_element['apps'] else None
-
-    def _pop_filter_fields(self, feed_element):
-        """
-        Remove fields we only deserialized because they were needed for
-        filtering. Don't remove 'status' though, which is used in fireplace to
-        display reviewer buttons.
-        """
-        apps = feed_element.get('apps') or [feed_element['app']]
-        for app in apps:
-            for field in ('is_disabled', 'regions'):
-                if field in app:
-                    del app[field]
-        return feed_element
+        return getattr(DEVICE_LOOKUP.get(dev), 'id', None)
 
 
 class FeedElementSearchView(BaseFeedESView):
@@ -593,7 +503,8 @@ class FeedElementSearchView(BaseFeedESView):
             return response.Response(res, status=status.HTTP_404_NOT_FOUND)
 
         # Deserialize.
-        ctx = {'app_map': self.mget_apps(self.get_app_ids_all(feed_elements)),
+        ctx = {'app_map': self.get_apps(request,
+                                        self.get_app_ids_all(feed_elements)),
                'request': request}
         for feed_element in feed_elements:
             item_type = feed_element.item_type
@@ -610,7 +521,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
     THE feed view. It hits ES with:
     - a weighted function score query to get feed items
     - a filter to deserialize feed elements
-    - a mget to deserialize apps
+    - a filter to deserialize apps
     """
     authentication_classes = []
     cors_allowed_methods = ('get',)
@@ -721,8 +632,8 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             # Store the apps to retrieve later.
             apps += self.get_app_ids(feed_elm)
 
-        # Fetch apps to attach to feed elements later (with mget).
-        app_map = self.mget_apps(apps)
+        # Fetch apps to attach to feed elements later.
+        app_map = self.get_apps(request, apps)
 
         # Super serialize.
         feed_items = FeedItemESSerializer(feed_items, many=True, context={
@@ -733,12 +644,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
 
         # Filter excluded apps. If there are feed items that have all their
         # apps excluded, they will be removed from the feed.
-        feed_items = self.filter_apps_feed_items(request, feed_items)
-
-        # Slice AFTER filtering so that filtering works correctly.
-        self.limit_apps_feed_items(feed_items)
-
-        # TODO (chuck): paginate after filtering/slicing.
+        feed_items = self.filter_feed_items(request, feed_items)
 
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
@@ -779,14 +685,9 @@ class FeedElementGetView(BaseFeedESView):
 
         # Deserialize.
         data = self.SERIALIZERS[item_type](feed_element, context={
-            'app_map': self.mget_apps(self.get_app_ids(feed_element)),
+            'app_map': self.get_apps(request, self.get_app_ids(feed_element)),
             'request': request
         }).data
-
-        # Filter data. If None of the apps are compatible, only run the
-        # public apps filter.
-        data = (self.filter_apps_feed_element(request, dict(data), item_type)
-                or self._filter(amo.STATUS_PUBLIC, 'status', feed_element))
 
         # Limit if necessary.
         limit = request.GET.get('limit')
@@ -829,7 +730,8 @@ class FeedElementListView(BaseFeedESView, MarketplaceView,
         meta = mkt.api.paginator.CustomPaginationSerializer(
             feed_elements, context={'request': request}).data['meta']
         objects = self.SERIALIZERS[item_type](feed_elements, context={
-            'app_map': self.mget_apps(self.get_app_ids_all(feed_elements)),
+            'app_map': self.get_apps(request,
+                                     self.get_app_ids_all(feed_elements)),
             'request': request
         }, many=True).data
 

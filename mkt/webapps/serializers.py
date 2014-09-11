@@ -549,10 +549,9 @@ class ESAppFeedSerializer(BaseESAppFeedSerializer):
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'author', 'device_types', 'icons', 'id', 'is_disabled',
+            'author', 'device_types', 'icons', 'id',
             'is_packaged', 'manifest_url', 'name', 'payment_required',
-            'premium_type', 'price', 'price_locale', 'ratings', 'regions',
-            'status', 'slug', 'user'
+            'premium_type', 'price', 'price_locale', 'ratings', 'slug', 'user'
         ]
 
 
@@ -563,8 +562,7 @@ class ESAppFeedCollectionSerializer(BaseESAppFeedSerializer):
     """
     class Meta(ESAppSerializer.Meta):
         fields = [
-            'device_types', 'icons', 'id', 'is_disabled', 'slug', 'regions',
-            'status'
+            'device_types', 'icons', 'id', 'slug',
         ]
 
 
@@ -599,11 +597,7 @@ class SuggestionsESAppSerializer(ESAppSerializer):
 
 class FeedDiscoPlaceESAppSerializer(SuggestionsESAppSerializer):
     class Meta(ESAppSerializer.Meta):
-        # Feed needs status, is_disabled and regions in the serializer in
-        # order to do some filtering in the view. The view will drop regions
-        # and is_disabled from the serialization.
-        fields = ['name', 'absolute_url', 'icon',
-                  'regions', 'status', 'is_disabled']
+        fields = ['name', 'absolute_url', 'icon']
 
     def get_icon(self, app):
         return app.get_icon_url(128)
