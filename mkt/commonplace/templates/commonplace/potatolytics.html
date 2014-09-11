@@ -50,7 +50,7 @@
 
     window.addEventListener('message', function(e) {
         if (origin_whitelist.indexOf(e.origin) === -1) {
-            console.error('[potatolytics] message from origin ' + e.origin + ' not allowed');
+            window.console.error('[potatolytics] message from origin ' + e.origin + ' not allowed');
             return;
         }
         if (typeof window.ga === 'undefined') {
@@ -58,7 +58,7 @@
         } else {
             window.ga.apply(window.ga, e.data);
         }
-        window.console.error('[potatolytics] ' + e.data);
+        window.console.log('[potatolytics] ' + e.data);
         window.parent.postMessage(e.data, e.origin);
     }, false);
 
