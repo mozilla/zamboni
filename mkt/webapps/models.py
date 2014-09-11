@@ -738,9 +738,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def is_disabled(self):
-        """True if this Addon is disabled.
+        """True if this Addon is banned/disabled.
 
-        It could be disabled by an admin or disabled by the developer
+        It could be banned by an admin or disabled by the developer
         """
         return self.status == amo.STATUS_DISABLED or self.disabled_by_user
 

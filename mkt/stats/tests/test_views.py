@@ -143,6 +143,11 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
         return reverse('app_stats', kwargs={'pk': pk, 'metric': metric})
 
     def test_owner(self):
+        self.app.update(public_stats=True)
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 200)
+        # Also test owner with public_stats=False
+        self.app.update(public_stats=False)
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
@@ -151,6 +156,18 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
+
+    def test_public_anonymous(self):
+        self.app.update(public_stats=True)
+        self.app.addonuser_set.all().delete()
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 200)
+
+    def test_non_public_anonymous(self):
+        self.app.update(public_stats=False)
+        self.app.addonuser_set.all().delete()
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 403)
 
     def test_bad_app(self):
         res = self.client.get(self.url(pk=99999999))
@@ -198,7 +215,12 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
         return reverse('app_stats_total', kwargs={'pk': pk})
 
     def test_owner(self):
+        self.app.update(public_stats=True)
         res = self.client.get(self.url())
+        eq_(res.status_code, 200)
+        # Also test owner with public_stats=False
+        self.app.update(public_stats=False)
+        res = self.client.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_perms(self):
@@ -206,6 +228,18 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
         self.grant_permission(self.profile, 'Stats:View')
         res = self.client.get(self.url())
         eq_(res.status_code, 200)
+
+    def test_public_anonymous(self):
+        self.app.update(public_stats=True)
+        self.app.addonuser_set.all().delete()
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 200)
+
+    def test_non_public_anonymous(self):
+        self.app.update(public_stats=False)
+        self.app.addonuser_set.all().delete()
+        res = self.client.get(self.url(), data=self.data)
+        eq_(res.status_code, 403)
 
     def test_bad_app(self):
         res = self.client.get(self.url(pk=99999999))

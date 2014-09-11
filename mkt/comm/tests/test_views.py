@@ -11,6 +11,7 @@ import mock
 from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
+import amo.tests
 from amo.tests import (addon_factory, req_factory_factory, user_factory,
                        version_factory)
 from mkt.users.models import UserProfile
@@ -557,9 +558,25 @@ class TestEmailApi(RestOAuth):
         req = req_factory_factory(reverse('post-email-api'), self.profile)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['HTTP_POSTFIX_AUTH_TOKEN'] = 'something'
-        req.POST = dict(data) if data else dict({})
+        req.POST = data or {}
         req.method = 'POST'
         return req
+
+    def test_basic(self):
+        sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
+                                    'email.txt')
+        req = self.get_request(data={'body': open(sample_email).read()})
+
+        app = amo.tests.app_factory()
+        user = user_factory()
+        self.grant_permission(user, 'Admin:*')
+        t = CommunicationThread.objects.create(addon=app,
+                                               version=app.current_version)
+        t.token.create(user=user, uuid='5a0b8a83d501412589cc5d562334b46b')
+
+        res = post_email(req)
+        eq_(res.status_code, 201)
+        ok_(t.notes.count())
 
     def test_allowed(self):
         assert EmailCreationPermission().has_permission(self.get_request(),

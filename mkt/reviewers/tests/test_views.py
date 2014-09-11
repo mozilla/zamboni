@@ -42,7 +42,7 @@ from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.models import (CannedResponse, EscalationQueue,
-                                  RereviewQueue, ReviewerScore)
+                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore)
 from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
                                  route_reviewer)
 from mkt.site.fixtures import fixture
@@ -465,7 +465,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         expected = [
             (u'Approve', 'public'),
             (u'Reject', 'reject'),
-            (u'Disable app', 'disable'),
+            (u'Ban app', 'disable'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -640,7 +640,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
-            (u'Disable app', 'disable'),
+            (u'Ban app', 'disable'),
             (u'Clear Re-review', 'clear_rereview'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
@@ -770,7 +770,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
-            (u'Disable app', 'disable'),
+            (u'Ban app', 'disable'),
             (u'Escalate', 'escalate'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -1044,7 +1044,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Reject', 'reject'),
-            (u'Disable app', 'disable'),
+            (u'Ban app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -1059,7 +1059,7 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         actions = pq(r.content)('#review-actions input')
         expected = [
             (u'Approve', 'public'),
-            (u'Disable app', 'disable'),
+            (u'Ban app', 'disable'),
             (u'Clear Escalation', 'clear_escalation'),
             (u'Request more information', 'info'),
             (u'Comment', 'comment'),
@@ -1469,7 +1469,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
 
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data)
         app = self.get_app()
@@ -1477,13 +1477,13 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(app.latest_version.files.all()[0].status, amo.STATUS_DISABLED)
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+        self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_pending_to_disable(self):
-        # Only senior reviewers can disable apps.
+        # Only senior reviewers can ban apps.
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data)
         eq_(res.status_code, 200)
@@ -1537,7 +1537,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         self.post(data, queue='escalated')
         app = self.get_app()
@@ -1546,13 +1546,13 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(EscalationQueue.objects.count(), 0)
         eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+        self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_escalation_to_disable(self):
         EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='escalated')
         eq_(res.status_code, 200)
@@ -1605,13 +1605,13 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         self._check_log(amo.LOG.APP_DISABLED)
         eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
         eq_(len(mail.outbox), 1)
-        self._check_email(mail.outbox[0], 'App disabled by reviewer')
+        self._check_email(mail.outbox[0], 'App banned by reviewer')
 
     def test_rereview_to_disable(self):
         RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=amo.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=amo.STATUS_PUBLIC)
-        data = {'action': 'disable', 'comments': 'disabled ur app'}
+        data = {'action': 'disable', 'comments': 'banned ur app'}
         data.update(self._attachment_management_form(num=0))
         res = self.client.post(self.url, data, queue='rereview')
         eq_(res.status_code, 200)
@@ -3100,7 +3100,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
     def test_disable(self):
         """
-        On disable, send an email to [developer, mozilla contact].
+        On banning, send an email to [developer, mozilla contact].
         """
         self.login_as_admin()
         data = {'action': 'disable', 'comments': 'u dun it'}
@@ -3921,3 +3921,28 @@ class TestReviewTranslate(RestOAuth):
                                            args=[review.addon.slug, review.id,
                                                  'fr']),)
         eq_(res.status_code, 400)
+
+
+class TestAdditionalReviewListingAccess(amo.tests.TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.login(self.user.email)
+
+    def url(self):
+        return reverse('reviewers.apps.additional_review', args=[QUEUE_TARAKO])
+
+    def listing(self):
+        return self.client.get(self.url())
+
+    def test_regular_user_has_no_access(self):
+        eq_(self.listing().status_code, 403)
+
+    def test_regular_reviewer_has_no_access(self):
+        self.grant_permission(self.user, 'Apps:Review')
+        eq_(self.listing().status_code, 403)
+
+    def test_tarako_reviewer_has_access(self):
+        self.grant_permission(self.user, 'Apps:ReviewTarako')
+        eq_(self.listing().status_code, 200)

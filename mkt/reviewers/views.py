@@ -622,7 +622,7 @@ def queue_region(request, region=None):
                   data={'region': region})
 
 
-@reviewer_required
+@permission_required('Apps', 'ReviewTarako')
 def additional_review(request, queue):
     """HTML page for an additional review queue."""
     order_by = 'created'

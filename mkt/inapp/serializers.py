@@ -10,6 +10,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ValidationError
 from tower import ugettext as _
 
+from mkt.prices.models import Price
 from mkt.api.forms import SchemeURLValidator as URLValidator
 from mkt.inapp.models import InAppProduct
 
@@ -89,3 +90,7 @@ class InAppProductForm(forms.ModelForm):
     class Meta:
         model = InAppProduct
         fields = ['price']
+
+    def __init__(self, *args, **kwargs):
+        super(InAppProductForm, self).__init__(*args, **kwargs)
+        self.fields['price'].queryset = Price.objects.active()

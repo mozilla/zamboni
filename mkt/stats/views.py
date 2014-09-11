@@ -4,13 +4,12 @@ import commonware
 import requests
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from lib.metrics import get_monolith_client
-
 import amo
-
+from lib.metrics import get_monolith_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAppOwner, AnyOf, GroupPermission
@@ -23,6 +22,18 @@ from .forms import StatsForm
 
 
 log = commonware.log.getLogger('z.stats')
+
+
+class PublicStats(BasePermission):
+    """
+    Allow for app's with `public_stats` set to True.
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        return obj.public_stats
 
 
 # Map of URL metric name to monolith metric name.
@@ -211,7 +222,7 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = [AnyOf(AllowAppOwner,
+    permission_classes = [AnyOf(PublicStats, AllowAppOwner,
                                 GroupPermission('Stats', 'View'))]
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
@@ -329,7 +340,7 @@ class AppStatsTotal(CORSMixin, SlugOrIdMixin, ListAPIView, StatsTotalBase):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = [AnyOf(AllowAppOwner,
+    permission_classes = [AnyOf(PublicStats, AllowAppOwner,
                                 GroupPermission('Stats', 'View'))]
     queryset = Webapp.objects.all()
     slug_field = 'app_slug'
