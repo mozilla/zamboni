@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-25 14:56+0000\n"
+"PO-Revision-Date: 2014-09-11 15:15+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408978593.0\n"
+"X-POOTLE-MTIME: 1410448553.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -278,11 +279,11 @@ msgstr "{addon} манифест је ажуриран."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} је одобрена али приватна."
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "Одобрено али приватно"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -520,11 +521,11 @@ msgstr "Приоритетна рецензија"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} је прошао {queue} преглед."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} није прошао {queue} преглед."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1714,7 +1715,7 @@ msgstr "Блокирано"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Није на листи"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -2028,7 +2029,7 @@ msgstr "Приоритет прегледа је затражен"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr ""
+msgstr "Додатна рецензија је завршена"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2678,7 +2679,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "Видљивост апликације:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -3733,23 +3734,23 @@ msgstr "Настави"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Уређаји који имају мало меморије"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "Ваша апликације је приказана на уређајима са мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "Ваша апликација није приказана на уређајима са мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Ви нисте затражили рецензију за уређаје који имају мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "Ваша апликација чека рецензију."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
@@ -3761,11 +3762,13 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "Захтевали сте рецензију датума {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
+"Ваша апликације није омогућена у било ком региону са уређајима који имају "
+"мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
@@ -3781,11 +3784,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Затражи рецензију за уређаје са мало меморије"
 
 #: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Сазнајте више о уређајима који имају мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
@@ -4696,7 +4699,7 @@ msgstr "Генериши кључеве"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "Омогући"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -5004,7 +5007,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "уређаји који имају мало меморије"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
