@@ -70,6 +70,8 @@ class CommEmailParser(object):
 
 
 def save_from_email_reply(reply_text):
+    log.debug("Saving from email reply")
+
     parser = CommEmailParser(reply_text)
     if hasattr(parser, 'decode_error'):
         return False
