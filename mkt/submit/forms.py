@@ -213,9 +213,9 @@ class NewWebappVersionForm(happyforms.Form):
                     verify_app_domain(origin, packaged=True,
                                       exclude=self.addon)
                 except forms.ValidationError, e:
-                    errors.append(e.messages)
+                    errors.append(e.message)
 
-                if origin != self.addon.app_domain:
+                if self.addon and origin != self.addon.app_domain:
                     errors.append(_('Changes to "origin" are not allowed.'))
 
             if errors:
