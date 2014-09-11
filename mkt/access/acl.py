@@ -69,7 +69,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     # Users with 'Apps:Edit' can do anything.
     if admin and action_allowed(request, 'Apps', 'Edit'):
         return True
-    # Only admins can edit admin-disabled addons.
+    # Only admins can edit banned addons.
     if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
         return False
     # Addon owners can do everything else.

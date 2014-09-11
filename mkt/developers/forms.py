@@ -210,7 +210,7 @@ def trap_duplicate(request, manifest_url):
                  '<a href="%s">Edit app</a>')
     elif app.status == amo.STATUS_DISABLED:
         msg = _(u'Oops, looks like you already submitted that manifest '
-                 'for %s, which is currently disabled by Mozilla. '
+                 'for %s, which is currently banned on Marketplace. '
                  '<a href="%s">Edit app</a>')
     elif app.disabled_by_user:
         msg = _(u'Oops, looks like you already submitted that manifest '

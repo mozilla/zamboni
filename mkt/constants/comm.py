@@ -40,7 +40,7 @@ NOTE_TYPES = {
     NO_ACTION: _('No action'),
     APPROVAL: _('Approved'),
     REJECTION: _('Rejected'),
-    DISABLED: _('Disabled'),
+    DISABLED: _('Banned'),
     MORE_INFO_REQUIRED: _('More information requested'),
     ESCALATION: _('Escalated'),
     REVIEWER_COMMENT: _('Comment'),

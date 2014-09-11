@@ -369,9 +369,9 @@ class ReviewApp(ReviewBase):
 
     def process_disable(self):
         """
-        Disables app, clears app from all queues.
+        Bans app from Marketplace, clears app from all queues.
         Changes status to Disabled.
-        Creates Disabled note/email.
+        Creates Banned/Disabled note/email.
         """
         if not acl.action_allowed(self.request, 'Apps', 'Edit'):
             return
@@ -388,9 +388,9 @@ class ReviewApp(ReviewBase):
 
         set_storefront_data.delay(self.addon.pk, disable=True)
 
-        self.notify_email('disabled', u'App disabled by reviewer: %s')
+        self.notify_email('disabled', u'App banned by reviewer: %s')
         self.create_note(amo.LOG.APP_DISABLED)
-        log.info(u'App %s has been disabled by a reviewer.' % self.addon)
+        log.info(u'App %s has been banned by a reviewer.' % self.addon)
 
 
 class ReviewHelper(object):
@@ -474,11 +474,11 @@ class ReviewHelper(object):
                              u'here.')}
         disable = {
             'method': self.handler.process_disable,
-            'label': _lazy(u'Disable app'),
+            'label': _lazy(u'Ban app'),
             'minimal': True,
-            'details': _lazy(u'Disable the app, the same as Reject but the '
-                             u'author(s) can\'t resubmit. To only be used in '
-                             u'extreme cases.')}
+            'details': _lazy(u'Ban the app from Marketplace. Similar to Reject '
+                             u'but the author(s) can\'t resubmit. To only be '
+                             u'used in extreme cases.')}
 
         actions = SortedDict()
 
@@ -522,7 +522,7 @@ class ReviewHelper(object):
                                          amo.STATUS_DISABLED]:
                 actions['reject'] = reject
 
-        # Disable.
+        # Ban/Disable.
         if (acl.action_allowed(self.handler.request, 'Apps', 'Edit') and (
                 self.addon.status != amo.STATUS_DISABLED or
                 amo.STATUS_DISABLED not in file_status)):

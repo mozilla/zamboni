@@ -1085,7 +1085,7 @@ class TestEnableDisable(amo.tests.TestCase):
 
     def test_disable_deleted_versions(self):
         """
-        Test when we disable an app with deleted versions we don't include
+        Test when we ban an app with deleted versions we don't include
         the deleted version's files when calling `hide_disabled_file` or we'll
         cause server errors b/c we can't query the version.
         """
