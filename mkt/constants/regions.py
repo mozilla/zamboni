@@ -3,6 +3,8 @@ import sys
 
 from tower import ugettext_lazy as _lazy
 
+from mpconstants import countries
+
 from mkt.constants import ratingsbodies
 from mkt.constants.ratingsbodies import slugify_iarc_name
 
@@ -62,283 +64,45 @@ class RESTOFWORLD(REGION):
     weight = -1
 
 
-class US(REGION):
-    id = 2
-    name = _lazy(u'United States')
-    slug = 'us'
-    mcc = 310
-    weight = 1
-    ratingsbody = ratingsbodies.ESRB
+lookup = {
+    'ARG': _lazy(u'Argentina'),
+    'BGD': _lazy(u'Bangladesh'),
+    'BRA': _lazy(u'Brazil'),
+    'CHL': _lazy(u'Chile'),
+    'CHN': _lazy(u'China'),
+    'COL': _lazy(u'Colombia'),
+    'CRI': _lazy(u'Costa Rica'),
+    'DEU': _lazy(u'Germany'),
+    'ECU': _lazy(u'Ecuador'),
+    'ESP': _lazy(u'Spain'),
+    'FRA': _lazy(u'France'),
+    'GBR': _lazy(u'United Kingdom'),
+    'GRC': _lazy(u'Greece'),
+    'GTM': _lazy(u'Guatemala'),
+    'HUN': _lazy(u'Hungary'),
+    'IND': _lazy(u'India'),
+    'ITA': _lazy(u'Italy'),
+    'MNE': _lazy(u'Montenegro'),
+    'NIC': _lazy(u'Nicaragua'),
+    'PAN': _lazy(u'Panama'),
+    'PER': _lazy(u'Peru'),
+    'POL': _lazy(u'Poland'),
+    'MEX': _lazy(u'Mexico'),
+    'SLV': _lazy(u'El Salvador'),
+    'SRB': _lazy(u'Serbia'),
+    'USD': _lazy(u'United States'),
+    'URY': _lazy(u'Uruguay'),
+    'VEN': _lazy(u'Venezuela'),
+}
 
+for k, translation in lookup.items():
+    country = countries.COUNTRY_DETAILS[k].copy()
+    country['name'] = translation
+    if country.get('ratingsbody'):
+        country['ratingsbody'] = getattr(ratingsbodies, country['ratingsbody'])
 
-class UK(REGION):
-    id = 4
-    name = _lazy(u'United Kingdom')
-    slug = 'uk'
-    default_currency = 'GBP'
-    mcc = 235
-    ratingsbody = ratingsbodies.PEGI
-
-
-class BR(REGION):
-    id = 7
-    name = _lazy(u'Brazil')
-    slug = 'br'
-    default_currency = 'BRL'
-    default_language = 'pt-BR'
-    mcc = 724
-    ratingsbody = ratingsbodies.CLASSIND
-    adolescent = False
-
-
-class SPAIN(REGION):
-    id = 8
-    name = _lazy(u'Spain')
-    slug = 'es'
-    default_currency = 'EUR'
-    default_language = 'es'
-    mcc = 214
-    ratingsbody = ratingsbodies.PEGI
-
-
-class CO(REGION):
-    id = 9
-    name = _lazy(u'Colombia')
-    slug = 'co'
-    default_currency = 'COP'
-    default_language = 'es'
-    mcc = 732
-    ratingsbody = ratingsbodies.ESRB
-    adolescent = False
-
-
-class VE(REGION):
-    id = 10
-    name = _lazy(u'Venezuela')
-    slug = 've'
-    default_currency = 'USD'
-    default_language = 'es'
-    mcc = 734
-    ratingsbody = ratingsbodies.ESRB
-
-
-class PL(REGION):
-    id = 11
-    name = _lazy(u'Poland')
-    slug = 'pl'
-    default_currency = 'PLN'
-    default_language = 'pl'
-    mcc = 260
-    ratingsbody = ratingsbodies.PEGI
-
-
-class MX(REGION):
-    id = 12
-    name = _lazy(u'Mexico')
-    slug = 'mx'
-    default_currency = 'MXN'
-    default_language = 'es'
-    mcc = 334
-    ratingsbody = ratingsbodies.ESRB
-    adolescent = False
-
-
-class HU(REGION):
-    id = 13
-    name = _lazy(u'Hungary')
-    slug = 'hu'
-    default_currency = 'HUF'
-    default_language = 'hu'
-    mcc = 216
-    ratingsbody = ratingsbodies.PEGI
-
-
-class DE(REGION):
-    id = 14
-    name = _lazy(u'Germany')
-    slug = 'de'
-    default_currency = 'EUR'
-    default_language = 'de'
-    mcc = 262
-    ratingsbody = ratingsbodies.USK
-
-
-class ME(REGION):
-    id = 15
-    name = _lazy(u'Montenegro')
-    slug = 'me'
-    default_currency = 'EUR'
-    default_language = 'srp'
-    mcc = 297
-
-
-class RS(REGION):
-    id = 16
-    name = _lazy(u'Serbia')
-    slug = 'rs'
-    default_currency = 'RSD'
-    default_language = 'sr'
-    mcc = 220
-
-
-class GR(REGION):
-    id = 17
-    name = _lazy(u'Greece')
-    slug = 'gr'
-    default_currency = 'EUR'
-    default_language = 'el'
-    mcc = 202
-    ratingsbody = ratingsbodies.PEGI
-
-
-class PE(REGION):
-    id = 18
-    name = _lazy(u'Peru')
-    slug = 'pe'
-    default_currency = 'PEN'
-    default_language = 'es'
-    mcc = 716
-    ratingsbody = ratingsbodies.ESRB
-
-
-class UY(REGION):
-    id = 19
-    name = _lazy(u'Uruguay')
-    slug = 'uy'
-    default_currency = 'UYU'
-    default_language = 'es'
-    mcc = 748
-    ratingsbody = ratingsbodies.ESRB
-
-
-class AR(REGION):
-    id = 20
-    name = _lazy(u'Argentina')
-    slug = 'ar'
-    default_currency = 'ARS'
-    default_language = 'es'
-    mcc = 722
-    ratingsbody = ratingsbodies.ESRB
-
-
-class CN(REGION):
-    id = 21
-    name = _lazy(u'China')
-    slug = 'cn'
-    default_currency = 'RMB'
-    default_language = 'zh-CN'
-    mcc = 460
-    special = True
-
-
-class IT(REGION):
-    id = 22
-    name = _lazy(u'Italy')
-    slug = 'it'
-    default_currency = 'EUR'
-    default_language = 'it'
-    mcc = 222
-    ratingsbody = ratingsbodies.PEGI
-
-
-class CL(REGION):
-    id = 23
-    name = _lazy(u'Chile')
-    slug = 'cl'
-    default_currency = 'CLP'
-    default_language = 'es'
-    mcc = 730
-    ratingsbody = ratingsbodies.ESRB
-
-
-class SV(REGION):
-    id = 24
-    name = _lazy(u'El Salvador')
-    slug = 'sv'
-    default_currency = 'USD'
-    default_language = 'es'
-    mcc = 706
-    ratingsbody = ratingsbodies.ESRB
-
-
-class GT(REGION):
-    id = 25
-    name = _lazy(u'Guatemala')
-    slug = 'gt'
-    default_currency = 'GTQ'
-    default_language = 'es'
-    mcc = 704
-    ratingsbody = ratingsbodies.ESRB
-
-
-class EC(REGION):
-    id = 26
-    name = _lazy(u'Ecuador')
-    slug = 'ec'
-    default_currency = 'USD'
-    default_language = 'es'
-    mcc = 740
-    ratingsbody = ratingsbodies.ESRB
-
-
-class CR(REGION):
-    id = 27
-    name = _lazy(u'Costa Rica')
-    slug = 'cr'
-    default_currency = 'CRC'
-    default_language = 'es'
-    mcc = 712
-    ratingsbody = ratingsbodies.ESRB
-
-
-class PA(REGION):
-    id = 28
-    name = _lazy(u'Panama')
-    slug = 'pa'
-    default_currency = 'USD'
-    default_language = 'es'
-    mcc = 714
-    ratingsbody = ratingsbodies.ESRB
-
-
-class NI(REGION):
-    id = 29
-    name = _lazy(u'Nicaragua')
-    slug = 'ni'
-    default_currency = 'NIO'
-    default_language = 'es'
-    mcc = 710
-    ratingsbody = ratingsbodies.ESRB
-
-
-class FR(REGION):
-    id = 30
-    name = _lazy(u'France')
-    slug = 'fr'
-    default_currency = 'EUR'
-    default_language = 'fr'
-    mcc = 208
-    ratingsbody = ratingsbodies.PEGI
-
-
-class BD(REGION):
-    id = 31
-    name = _lazy(u'Bangladesh')
-    slug = 'bd'
-    default_currency = 'BDT'
-    default_language = 'en'
-    mcc = 470
-
-
-class IN(REGION):
-    id = 32
-    name = _lazy(u'India')
-    slug = 'in'
-    default_currency = 'INR'
-    default_language = 'en'
-    mcc = 405
-    low_memory = True
-
+    name = country['legacy']
+    globals()[name] = type(name, (REGION,), country)
 
 # Please adhere to the new region checklist when adding a new region:
 # https://mana.mozilla.org/wiki/display/MARKET/How+to+add+a+new+region
