@@ -437,8 +437,8 @@ class ESCALATION_CLEARED(_LOG):
 
 class APP_DISABLED(_LOG):
     id = 67
-    format = _(u'{addon} disabled.')
-    short = _(u'App disabled')
+    format = _(u'{addon} banned.')
+    short = _(u'App banned')
     keep = True
     review_queue = True
 

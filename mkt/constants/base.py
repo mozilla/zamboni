@@ -26,7 +26,7 @@ STATUS_CHOICES = {
     STATUS_NULL: _(u'Incomplete'),
     STATUS_PENDING: _(u'Pending approval'),
     STATUS_PUBLIC: _(u'Published'),
-    STATUS_DISABLED: _(u'Disabled by Mozilla'),
+    STATUS_DISABLED: _(u'Banned from Marketplace'),
     STATUS_DELETED: _(u'Deleted'),
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
@@ -48,7 +48,7 @@ STATUS_CHOICES_API = {
     STATUS_NULL: 'incomplete',
     STATUS_PENDING: 'pending',
     STATUS_PUBLIC: 'public',
-    STATUS_DISABLED: 'disabled',
+    STATUS_DISABLED: 'disabled',  # TODO: Change to 'banned' for API v2.
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_APPROVED: 'waiting',  # TODO: Change to 'private' for API v2.
@@ -60,7 +60,7 @@ STATUS_CHOICES_API_LOOKUP = {
     'incomplete': STATUS_NULL,
     'pending': STATUS_PENDING,
     'public': STATUS_PUBLIC,
-    'disabled': STATUS_DISABLED,
+    'disabled': STATUS_DISABLED,  # TODO: Change to 'banned' for API v2.
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'waiting': STATUS_APPROVED,  # TODO: Change to 'private' for API v2.
