@@ -192,7 +192,7 @@ class TestAppDashboard(AppHubTest):
             ('Status & Versions', app.get_dev_url('versions')),
             ('Content Ratings', app.get_dev_url('ratings')),
             ('Compatibility & Payments', app.get_dev_url('payments')),
-            ('In-App Payments', app.get_dev_url('in_app_config')),
+            ('In-App Payments', app.get_dev_url('in_app_payments')),
             ('Team Members', app.get_dev_url('owner')),
             ('View Listing', app.get_url_path()),
 
