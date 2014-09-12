@@ -160,13 +160,13 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
     def test_public_anonymous(self):
         self.app.update(public_stats=True)
         self.app.addonuser_set.all().delete()
-        res = self.client.get(self.url(), data=self.data)
+        res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_non_public_anonymous(self):
         self.app.update(public_stats=False)
         self.app.addonuser_set.all().delete()
-        res = self.client.get(self.url(), data=self.data)
+        res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 403)
 
     def test_bad_app(self):
@@ -232,13 +232,13 @@ class TestAppStatsTotalResource(StatsAPITestMixin, RestOAuth):
     def test_public_anonymous(self):
         self.app.update(public_stats=True)
         self.app.addonuser_set.all().delete()
-        res = self.client.get(self.url(), data=self.data)
+        res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 200)
 
     def test_non_public_anonymous(self):
         self.app.update(public_stats=False)
         self.app.addonuser_set.all().delete()
-        res = self.client.get(self.url(), data=self.data)
+        res = self.anon.get(self.url(), data=self.data)
         eq_(res.status_code, 403)
 
     def test_bad_app(self):

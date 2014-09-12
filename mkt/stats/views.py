@@ -30,7 +30,8 @@ class PublicStats(BasePermission):
     """
 
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
+        # Anonymous is allowed if app.public_stats is True.
+        return True
 
     def has_object_permission(self, request, view, obj):
         return obj.public_stats
