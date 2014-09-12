@@ -82,6 +82,7 @@ lookup = {
     'HUN': _lazy(u'Hungary'),
     'IND': _lazy(u'India'),
     'ITA': _lazy(u'Italy'),
+    'JPN': _lazy(u'Japan'),
     'MNE': _lazy(u'Montenegro'),
     'NIC': _lazy(u'Nicaragua'),
     'PAN': _lazy(u'Panama'),
