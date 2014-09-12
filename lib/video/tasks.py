@@ -95,6 +95,7 @@ def _resize_video(src, instance, lib=None, **kw):
 
     # Ensure everyone has read permission on the file.
     os.chmod(instance.image_path, 0644)
+    os.chmod(instance.thumbnail_path, 0644)
     instance.sizes = {'thumbnail': amo.ADDON_PREVIEW_SIZES[0],
                       'image': amo.ADDON_PREVIEW_SIZES[1]}
     instance.save()
