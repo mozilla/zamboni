@@ -753,6 +753,7 @@ class TestUpload(BaseUploadTest):
         self.post()
         upload = FileUpload.objects.get(name='mozball.zip')
         eq_(upload.name, 'mozball.zip')
+        eq_(upload.user.pk, 999)
         data = open(self.package, 'rb').read()
         eq_(storage.open(upload.path).read(), data)
 
