@@ -1,0 +1,13 @@
+{% extends 'comm/emails/base.html' %}
+
+{% block content %}
+After reviewing your submission for {{ name }}, we have determined that it does not currently meet our requirements for approval.
+
+URL: {{ detail_url }}
+
+{% include 'comm/emails/includes/details.html' %}
+
+If you have any questions about this review, you can contact the review team by replying to this email or join us in #app-comm on irc.mozilla.org.  Technical support is available on http://stackoverflow.com/r/mozilla.
+
+Once the concerns above have been addressed, you may resubmit your app from the My Submissions page at {{ status_url }}.
+{% endblock %}

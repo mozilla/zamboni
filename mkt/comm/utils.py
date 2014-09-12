@@ -6,16 +6,24 @@ from email.utils import parseaddr
 
 from django.conf import settings
 from django.core.files.storage import get_storage_class
+from django.core.urlresolvers import reverse
+from django.utils import translation
 
 import waffle
 from email_reply_parser import EmailReplyParser
+
+import amo
+from amo.utils import to_language
 
 from mkt.access import acl
 from mkt.access.models import Group
 from mkt.comm.models import (CommunicationNoteRead, CommunicationThreadToken,
                              user_has_perm_thread)
 from mkt.constants import comm
+from mkt.site.helpers import absolutify
+from mkt.site.mail import send_mail_jinja
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.comm')
@@ -188,6 +196,40 @@ def get_recipients(note):
     return new_recipients_list
 
 
+def get_mail_context(note):
+    """
+    Get context data for comm emails, specifically for review action emails.
+    """
+    app = note.thread.addon
+
+    if app.name.locale != app.default_locale:
+        # We need to display the name in some language that is relevant to the
+        # recipient(s) instead of using the reviewer's. addon.default_locale
+        # should work.
+        lang = to_language(app.default_locale)
+        with translation.override(lang):
+            app = Webapp.objects.get(id=app.id)
+
+    return {
+        'amo': amo,
+        'app': app,
+        'comm': comm,
+        'comments': note.body,
+        'detail_url': absolutify(
+            app.get_url_path(add_prefix=False)),
+        'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
+        'name': app.name,
+        'note': note,
+        'review_url': absolutify(reverse('reviewers.apps.review',
+                                 args=[app.app_slug], add_prefix=False)),
+        'reviewer': note.author,
+        'sender': note.author.name if note.author else 'System',
+        'SITE_URL': settings.SITE_URL,
+        'status_url': absolutify(app.get_dev_url('versions')),
+        'thread_id': str(note.thread.id)
+    }
+
+
 def send_mail_comm(note):
     """
     Email utility used globally by the Communication Dashboard to send emails.
@@ -201,24 +243,21 @@ def send_mail_comm(note):
 
     recipients = get_recipients(note)
     name = note.thread.addon.name
-    data = {
-        'name': name,
-        'sender': note.author.name if note.author else 'System',
-        'comments': note.body,
-        'thread_id': str(note.thread.id)
-    }
-
-    subject = {
-        comm.ESCALATION: u'Escalated Review Requested: %s' % name,
-    }.get(note.note_type, u'Submission Update: %s' % name)
+    subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]), name)
 
     log.info(u'Sending emails for %s' % note.thread.addon)
     for email, tok in recipients:
         reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
                                        settings.POSTFIX_DOMAIN)
-        send_reviewer_mail(subject, 'reviewers/emails/decisions/post.txt', data,
-                           [email], perm_setting='app_reviewed',
-                           reply_to=reply_to)
+
+        # Get the appropriate mail template.
+        mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
+        # Send mail.
+        send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
+                        get_mail_context(note), recipient_list=[email],
+                        from_email=settings.MKT_REVIEWERS_EMAIL,
+                        perm_setting='app_reviewed',
+                        headers={'reply_to': reply_to})
 
 
 def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,

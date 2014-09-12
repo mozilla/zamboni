@@ -29,8 +29,8 @@ from mkt.webapps.tasks import set_storefront_data
 log = commonware.log.getLogger('z.mailer')
 
 
-def send_reviewer_mail(subject, template, context, emails, perm_setting=None, cc=None,
-              attachments=None, reply_to=None):
+def send_reviewer_mail(subject, template, context, emails, perm_setting=None,
+                       cc=None, attachments=None, reply_to=None):
     if not reply_to:
         reply_to = settings.MKT_REVIEWERS_EMAIL
 
