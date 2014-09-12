@@ -12,7 +12,7 @@ from django.conf import settings
 import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
-from lib.video import ffmpeg, get_library, totem
+from lib.video import dummy, ffmpeg, get_library, totem
 from lib.video.tasks import resize_video
 from mkt.developers.models import UserLog
 from mkt.users.models import UserProfile
@@ -149,26 +149,6 @@ class TestTotemVideo(amo.tests.TestCase):
         self.video.get_meta()
         assert not self.video.is_valid()
 
-    # These tests can be a little bit slow, to say the least so they are
-    # skipped. Un-skip them if you want.
-    def test_screenshot(self):
-        raise SkipTest
-        self.video.get_meta()
-        try:
-            screenshot = self.video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
-            assert os.stat(screenshot)[stat.ST_SIZE]
-        finally:
-            os.remove(screenshot)
-
-    def test_encoded(self):
-        raise SkipTest
-        self.video.get_meta()
-        try:
-            video = self.video.get_encoded(amo.ADDON_PREVIEW_SIZES[0])
-            assert os.stat(video)[stat.ST_SIZE]
-        finally:
-            os.remove(video)
-
 
 @patch('lib.video.totem.Video.library_available')
 @patch('lib.video.ffmpeg.Video.library_available')
@@ -185,8 +165,6 @@ def test_choose(ffmpeg_, totem_):
 
 
 class TestTask(amo.tests.TestCase):
-    # TODO(andym): make these more sparkly and cope with totem and not blow
-    # up all the time.
 
     def setUp(self):
         waffle.models.Switch.objects.create(name='video-encode', active=True)
@@ -200,7 +178,7 @@ class TestTask(amo.tests.TestCase):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.side_effect = ValueError
         with self.assertRaises(ValueError):
-            resize_video(files['good'], self.mock, user=user)
+            resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
         assert self.mock.delete.called
         assert UserLog.objects.filter(user=user,
                         activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
@@ -209,26 +187,26 @@ class TestTask(amo.tests.TestCase):
     def test_resize_failed(self, _resize_video):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.return_value = None
-        resize_video(files['good'], self.mock, user=user)
+        resize_video(files['good'], self.mock, user=user, lib=dummy.Video)
         assert self.mock.delete.called
 
     @patch('lib.video.ffmpeg.Video.get_encoded')
     def test_resize_video_no_encode(self, get_encoded):
-        raise SkipTest
         waffle.models.Switch.objects.update(name='video-encode', active=False)
-        resize_video(files['good'], self.mock)
+        resize_video(files['good'], self.mock, lib=dummy.Video)
         assert not get_encoded.called
-        assert isinstance(self.mock.sizes, dict)
         assert self.mock.save.called
 
-    def test_resize_video(self):
-        raise SkipTest
-        resize_video(files['good'], self.mock)
-        assert isinstance(self.mock.sizes, dict)
+    @patch('lib.video.totem.Video.get_encoded')
+    def test_resize_video(self, get_encoded):
+        name = tempfile.mkstemp()[1]
+        get_encoded.return_value = name
+        resize_video(files['good'], self.mock, lib=dummy.Video)
+        mode = oct(os.stat(self.mock.image_path)[stat.ST_MODE])
+        assert mode.endswith('644'), mode
         assert self.mock.save.called
 
     def test_resize_image(self):
-        raise SkipTest
-        resize_video(files['bad'], self.mock)
+        resize_video(files['bad'], self.mock, lib=dummy.Video)
         assert not isinstance(self.mock.sizes, dict)
         assert not self.mock.save.called
