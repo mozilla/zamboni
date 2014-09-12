@@ -192,28 +192,35 @@ class NewWebappVersionForm(happyforms.Form):
         if self.is_packaged():
             # Now run the packaged app check, done in clean, because
             # clean_packaged needs to be processed first.
+
             try:
                 pkg = parse_addon(data['upload'], self.addon)
             except forms.ValidationError, e:
                 self._errors['upload'] = self.error_class(e.messages)
                 return
 
+            # Collect validation errors so we can display them at once.
+            errors = []
+
             ver = pkg.get('version')
             if (ver and self.addon and
                 self.addon.versions.filter(version=ver).exists()):
-                self._errors['upload'] = _(u'Version %s already exists') % ver
-                return
+                errors.append(_(u'Version %s already exists.') % ver)
 
             origin = pkg.get('origin')
             if origin:
                 try:
-                    origin = verify_app_domain(origin, packaged=True,
-                                               exclude=self.addon)
+                    verify_app_domain(origin, packaged=True,
+                                      exclude=self.addon)
                 except forms.ValidationError, e:
-                    self._errors['upload'] = self.error_class(e.messages)
-                    return
-                if origin:
-                    data['origin'] = origin
+                    errors.append(e.message)
+
+                if self.addon and origin != self.addon.app_domain:
+                    errors.append(_('Changes to "origin" are not allowed.'))
+
+            if errors:
+                self._errors['upload'] = self.error_class(errors)
+                return
 
         else:
             # Throw an error if this is a dupe.

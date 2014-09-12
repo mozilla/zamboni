@@ -161,7 +161,8 @@ class BaseAddVersionTest(BasePackagedAppTest):
     def setUp(self):
         super(BaseAddVersionTest, self).setUp()
         self.app = amo.tests.app_factory(
-            complete=True, is_packaged=True, version_kw=dict(version='1.0'))
+            complete=True, is_packaged=True, app_domain='app://hy.fr',
+            version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
         self.user = UserProfile.objects.get(username='regularuser')
         AddonUser.objects.create(user=self.user, addon=self.app)
@@ -176,9 +177,14 @@ class BaseAddVersionTest(BasePackagedAppTest):
 @mock.patch('mkt.webapps.tasks.update_cached_manifests.delay', new=mock.Mock)
 class TestAddVersion(BaseAddVersionTest):
 
-    def test_post(self):
+    def setUp(self):
+        super(TestAddVersion, self).setUp()
+
+        # Update version to be < 1.0 so we don't throw validation errors.
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
+
+    def test_post(self):
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
@@ -190,22 +196,26 @@ class TestAddVersion(BaseAddVersionTest):
         reviewer = UserProfile.objects.create(email='foo@example.com')
         self.grant_permission(reviewer, 'Apps:Review')
         EditorSubscription.objects.create(addon=self.app, user=reviewer)
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
         self._post(302)
         version = self.app.versions.latest()
         eq_(version.version, '1.0')
         eq_(version.all_files[0].status, amo.STATUS_PENDING)
 
     def test_unique_version(self):
+        self.app.current_version.update(version='1.0')
         res = self._post(200)
         self.assertFormError(res, 'upload_form', 'upload',
-                             'Version 1.0 already exists')
+                             'Version 1.0 already exists.')
+
+    def test_origin_changed(self):
+        for origin in (None, 'app://yo.lo'):
+            self.app.update(app_domain=origin)
+            res = self._post(200)
+            self.assertFormError(res, 'upload_form', 'upload',
+                                 'Changes to "origin" are not allowed.')
 
     def test_pending_on_new_version(self):
         # Test app rejection, then new version, updates app status to pending.
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
         self.app.update(status=amo.STATUS_REJECTED)
         files = File.objects.filter(version__addon=self.app)
         files.update(status=amo.STATUS_DISABLED)
@@ -219,9 +229,6 @@ class TestAddVersion(BaseAddVersionTest):
     @mock.patch('mkt.developers.views.run_validator')
     def test_prefilled_features(self, run_validator_):
         run_validator_.return_value = '{"feature_profile": ["apps", "audio"]}'
-
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
 
         # All features should be disabled.
         features = self.app.current_version.features.to_dict()
@@ -237,8 +244,6 @@ class TestAddVersion(BaseAddVersionTest):
     def test_blocklist_on_new_version(self):
         # Test app blocked, then new version, doesn't update app status, and
         # app shows up in escalation queue.
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
         self.app.update(status=amo.STATUS_BLOCKED)
         files = File.objects.filter(version__addon=self.app)
         files.update(status=amo.STATUS_DISABLED)
@@ -252,8 +257,6 @@ class TestAddVersion(BaseAddVersionTest):
             'App not in escalation queue')
 
     def test_new_version_when_incomplete(self):
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
         self.app.update(status=amo.STATUS_NULL)
         files = File.objects.filter(version__addon=self.app)
         files.update(status=amo.STATUS_DISABLED)
@@ -265,8 +268,6 @@ class TestAddVersion(BaseAddVersionTest):
         eq_(self.app.status, amo.STATUS_PENDING)
 
     def test_vip_app_added_to_escalation_queue(self):
-        self.app.current_version.update(version='0.9',
-                                        created=self.days_ago(1))
         self.app.update(vip_app=True)
         self._post(302)
 

@@ -1,11 +1,11 @@
 .. _feed:
 .. versionadded:: 2
 
-================
-Marketplace Feed
-================
+====
+Feed
+====
 
-The Marketplace Feed is a stream of content relevant to the user displayed on
+The feed is a stream of content relevant to the user displayed on
 the Marketplace home page. The feed is comprised of a number of :ref:`feed items
 <feed-items>`, each containing a singular of piece of content. Currently, the
 feed may include:

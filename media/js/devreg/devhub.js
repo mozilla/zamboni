@@ -335,8 +335,6 @@ $(document).ready(function() {
                     } else if (status == 4) {  // PUBLIC
                         $('#last-version-public').show();
                     }
-                } else {
-                    $('#not-last-version').show();
                 }
             }
         });
@@ -1053,9 +1051,9 @@ function initAuthorFields() {
         overlay.html($('#author-roles-help-template').html())
                .addClass('show');
         overlay.on('click', '.close', _pd(function() {
-            overlay.trigger('overlay_dismissed')
+            overlay.trigger('overlay_dismissed');
         }));
-    }))
+    }));
 
     if (z.noEdit) return;
 

@@ -487,9 +487,7 @@
           {{ csrf() }}
           <h3 data-tmpl="{{ _('Delete Version &quot;{version}&quot;') }}"></h3>
           <p id="last-version" class="hidden">{{ _('Deleting the only version will result in the following:') }}</p>
-          <p id="not-last-version" class="hidden">{{ _('Deleting this version will result in the following:') }}</p>
           <ul class="indent">
-            <li>{{ _('all associated user reviews will be deleted') }}</li>
             <li id="last-version-other" class="hidden">{{ _('the app status will be marked as &quot;incomplete&quot;') }}</li>
             <li id="last-version-pending" class="hidden">{{ _('the app will be removed from our review queue') }}</li>
             <li id="last-version-public" class="hidden">{{ _('the app will not be listed in our public pages') }}</li>

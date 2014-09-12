@@ -165,7 +165,8 @@ class TestNewWebappVersionForm(amo.tests.TestCase):
             {'upload': self.file.uuid}, request=self.request, is_packaged=True,
             addon=app)
         assert not form.is_valid(), form.errors
-        assert 'An app already exists' in ''.join(form.errors['upload'])
+        assert ('An app already exists on this domain; '
+                'only one app per domain is allowed.' in form.errors['upload'])
 
 
 class TestAppDetailsBasicForm(amo.tests.TestCase):
