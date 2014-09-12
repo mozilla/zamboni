@@ -220,6 +220,7 @@ class TestStandaloneValidation(BaseUploadTest):
 
         uuid = json.loads(res.content)['upload']
         upload = FileUpload.objects.get(uuid=uuid)
+        eq_(upload.user.pk, 999)
         self.detail_view(self.hosted_detail, upload)
 
     def test_packaged_detail(self):

@@ -238,6 +238,9 @@ class NewWebappVersionForm(happyforms.Form):
 
 
 class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
+    ERRORS = DeviceTypeForm.ERRORS.copy()
+    ERRORS['user'] = _lazy('User submitting validation does not match.')
+
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy(
@@ -259,6 +262,11 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         data = super(NewWebappForm, self).clean()
         if not data:
             return
+
+        upload = data.get('upload')
+        if self.request and upload:
+            if not (upload.user and upload.user.pk == self.request.user.pk):
+                self._add_error('user')
 
         if self.is_packaged():
             self._set_packaged_errors()
