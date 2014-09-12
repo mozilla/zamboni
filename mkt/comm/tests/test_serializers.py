@@ -30,5 +30,5 @@ class TestNoteSerializer(amo.tests.TestCase):
         data = serializers.NoteSerializer(note, context={
             'request': amo.tests.req_factory_factory()
         }).data
-        eq_(data['author_meta']['name'], 'System')
+        eq_(data['author_meta']['name'], 'Mozilla')
         eq_(data['author_meta']['gravatar_hash'], '')

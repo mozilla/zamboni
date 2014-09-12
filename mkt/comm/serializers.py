@@ -51,7 +51,7 @@ class NoteSerializer(ModelSerializer):
         else:
             # Edge case for system messages.
             return {
-                'name': _('System'),
+                'name': _('Mozilla'),
                 'gravatar_hash': ''
             }
 
