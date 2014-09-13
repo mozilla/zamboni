@@ -1,0 +1,12 @@
+{% extends 'comm/emails/base.html' %}
+
+{% block content %}
+Someone posted on a discussion thread for {{ app.name }}.
+
+{% include "comm/emails/includes/details.html" %}
+{% endblock %}
+
+{% block footer %}
+Firefox Marketplace
+{{ settings.SITE_URL }}
+{% endblock %}

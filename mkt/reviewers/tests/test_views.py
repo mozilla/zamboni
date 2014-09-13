@@ -2966,15 +2966,17 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(thread.notes.count(), 1)
         return thread.notes.all()[0]
 
-    def _check_email(self, msg, subject, to=None):
+    def _check_email(self, msg, subject=None, to=None):
         if to:
             eq_(msg.to, to)
         else:
             eq_(msg.to, list(self.app.authors.values_list('email', flat=True)))
 
         eq_(msg.cc, [])
-        eq_(msg.subject, '%s: %s' % (subject, self.app.name))
         eq_(msg.from_email, settings.MKT_REVIEWERS_EMAIL)
+
+        if subject:
+            eq_(msg.subject, '%s: %s' % (subject, self.app.name))
 
     def _get_mail(self, username):
         return filter(lambda x: x.to[0].startswith(username),
@@ -2982,15 +2984,13 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
     def _check_email_dev_and_contact(self, outbox_len=2):
         """
-        Helper for checking developer and Mozilla contact get emailed with
-        'Submission Update' email.
+        Helper for checking developer and Mozilla contact get emailed.
         """
         eq_(len(mail.outbox), outbox_len)
-        self._check_email(  # Developer.
-            self._get_mail('dev'), 'Submission Update')
-        self._check_email(  # Mozilla contact.
-            self._get_mail('contact'), 'Submission Update',
-            to=[self.contact.email])
+        # Developer.
+        self._check_email(self._get_mail('dev'))
+        # Mozilla contact.
+        self._check_email(self._get_mail('contact'), to=[self.contact.email])
 
     def test_email_cc(self):
         """
@@ -3006,9 +3006,10 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
         # Test emails.
         self._check_email_dev_and_contact(outbox_len=5)
-        self._check_email(  # Some person who joined the thread.
-            self._get_mail(poster.username), 'Submission Update',
-            to=[poster.email])
+
+        # Some person who joined the thread.
+        self._check_email(
+            self._get_mail(poster.username), 'Approved', to=[poster.email])
 
     def test_approve(self):
         """
@@ -3078,7 +3079,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         # Test emails.
         eq_(len(mail.outbox), 1)
         self._check_email(  # Senior reviewer.
-            mail.outbox[0], 'Escalated Review Requested', to=[admin.email])
+            mail.outbox[0], 'Escalated', to=[admin.email])
 
     def test_comment(self):
         """
@@ -3095,8 +3096,9 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
         # Test emails.
         eq_(len(mail.outbox), 1)
-        self._check_email(  # Mozilla contact.
-            mail.outbox[0], 'Submission Update', to=[self.contact.email])
+
+        self._check_email(
+            mail.outbox[0], 'Reviewer comment', to=[self.contact.email])
 
     def test_disable(self):
         """

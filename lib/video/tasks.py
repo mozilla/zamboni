@@ -41,13 +41,13 @@ def _resize_error(src, instance, user):
     instance.delete()
 
 
-def _resize_video(src, instance, **kw):
+def _resize_video(src, instance, lib=None, **kw):
     """
     Given a preview object and a file somewhere: encode into the full
     preview size and generate a thumbnail.
     """
     log.info('[1@None] Encoding video %s' % instance.pk)
-    lib = library
+    lib = lib or library
     if not lib:
         log.info('Video library not available for %s' % instance.pk)
         return
@@ -93,6 +93,9 @@ def _resize_video(src, instance, **kw):
         # We didn't re-encode the file.
         shutil.copyfile(src, instance.image_path)
 
+    # Ensure everyone has read permission on the file.
+    os.chmod(instance.image_path, 0644)
+    os.chmod(instance.thumbnail_path, 0644)
     instance.sizes = {'thumbnail': amo.ADDON_PREVIEW_SIZES[0],
                       'image': amo.ADDON_PREVIEW_SIZES[1]}
     instance.save()

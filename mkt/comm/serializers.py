@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from tower import ugettext as _
 
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
@@ -40,9 +41,19 @@ class AttachmentSerializer(ModelSerializer):
 
 class NoteSerializer(ModelSerializer):
     body = CharField()
-    author_meta = AuthorSerializer(source='author', read_only=True)
+    author_meta = SerializerMethodField('get_author_meta')
     is_read = SerializerMethodField('is_read_by_user')
     attachments = AttachmentSerializer(source='attachments', read_only=True)
+
+    def get_author_meta(self, obj):
+        if obj.author:
+            return AuthorSerializer(obj.author).data
+        else:
+            # Edge case for system messages.
+            return {
+                'name': _('Mozilla'),
+                'gravatar_hash': ''
+            }
 
     def is_read_by_user(self, obj):
         return obj.read_by_users.filter(

@@ -5,9 +5,9 @@ from tower import ugettext_lazy as _
 # - assign it a incremented number (MY_NOTE_TYPE = 42)
 # - give it a translation in NOTE_TYPES
 # - if adding from amo/log.py, add it to ACTION_MAP
+# - add it to REVIEWERS_NOTE_TYPE if it should only be visible to reviewers
 # - add the translation to Commbadge settings
 
-# Faith of the seven.
 NO_ACTION = 0
 APPROVAL = 1
 REJECTION = 2
@@ -34,7 +34,8 @@ REREVIEW_CONTENT_RATING_ADULT = 22
 ESCALATION_VIP_APP = 22
 ESCALATION_PRERELEASE_APP = 23
 PRIORITY_REVIEW_REQUESTED = 24
-ADDITIONAL_REVIEW = 25
+ADDITIONAL_REVIEW_PASSED = 25
+ADDITIONAL_REVIEW_FAILED = 26
 
 NOTE_TYPES = {
     NO_ACTION: _('No action'),
@@ -43,7 +44,7 @@ NOTE_TYPES = {
     DISABLED: _('Banned'),
     MORE_INFO_REQUIRED: _('More information requested'),
     ESCALATION: _('Escalated'),
-    REVIEWER_COMMENT: _('Comment'),
+    REVIEWER_COMMENT: _('Reviewer comment'),
     RESUBMISSION: _('App resubmission'),
     APPROVE_VERSION_PRIVATE: _('Approved but private'),
     ESCALATION_CLEARED: _('Escalation cleared'),
@@ -63,7 +64,8 @@ NOTE_TYPES = {
     ESCALATION_VIP_APP: _('Escalation due to VIP App'),
     ESCALATION_PRERELEASE_APP: _('Escalation due to Prelease App'),
     PRIORITY_REVIEW_REQUESTED: _('Priority review requested'),
-    ADDITIONAL_REVIEW: _('Additional review completed'),
+    ADDITIONAL_REVIEW_PASSED: _('Additional review passed'),
+    ADDITIONAL_REVIEW_FAILED: _('Additional review failed')
 }
 
 # Note types only visible by reviewers and not developers.
@@ -90,6 +92,21 @@ API_NOTE_TYPE_WHITELIST = (
     REVIEWER_COMMENT,
     DEVELOPER_COMMENT,
 )
+
+# Maps from note type to email template names.
+# Note types not listed will default to the 'generic' email.
+COMM_MAIL_MAP = {
+    APPROVAL: 'approval',
+    REJECTION: 'rejection',
+    DISABLED: 'disabled',
+    MORE_INFO_REQUIRED: 'more_info_required',
+    ESCALATION: 'escalation',
+    APPROVE_VERSION_PRIVATE: 'approval_private',
+    ESCALATION_VIP_APP: 'escalation_vip',
+    ESCALATION_PRERELEASE_APP: 'escalation_prerelease',
+    ADDITIONAL_REVIEW_PASSED: 'tarako',
+    ADDITIONAL_REVIEW_FAILED: 'tarako',
+}
 
 
 def U_NOTE_TYPES():
@@ -131,8 +148,8 @@ def ACTION_MAP(activity_action):
         amo.LOG.ESCALATION_VIP_APP.id: ESCALATION_VIP_APP,
         amo.LOG.ESCALATION_PRERELEASE_APP.id: ESCALATION_PRERELEASE_APP,
         amo.LOG.PRIORITY_REVIEW_REQUESTED.id: PRIORITY_REVIEW_REQUESTED,
-        amo.LOG.PASS_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW,
-        amo.LOG.FAIL_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW,
+        amo.LOG.PASS_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW_PASSED,
+        amo.LOG.FAIL_ADDITIONAL_REVIEW.id: ADDITIONAL_REVIEW_FAILED,
     }.get(activity_action, NO_ACTION)
 
 

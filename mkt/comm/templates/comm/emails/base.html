@@ -1,0 +1,10 @@
+{% block content %}{% endblock %}
+
+You may reply to this email or post to {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
+
+--
+{% block footer %}
+{{ note.author.name if note.author }}
+Firefox Marketplace Reviewer
+{{ settings.SITE_URL }}
+{% endblock %}

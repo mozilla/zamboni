@@ -2,12 +2,16 @@
 import time
 
 from django.conf import settings
+from django.core import mail
 
 import mock
 from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
+
+from mkt.constants import comm
+from mkt.comm.models import CommunicationNote
 from mkt.reviewers.models import (
     AdditionalReview, QUEUE_TARAKO, RereviewQueue, ReviewerScore,
     send_tarako_mail, tarako_failed, tarako_passed)
@@ -414,9 +418,6 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         super(TestSendTarakoMail, self).setUp()
         self.send_mail = self.patch('mkt.reviewers.models.send_mail_jinja')
 
-    def enable_comm_dashboard(self):
-        self.create_switch('comm-dashboard')
-
     def test_send_tarako_mail_review_passed(self):
         ok_(not self.send_mail.called)
         self.review.passed = True
@@ -427,13 +428,6 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
             {'review': self.review},
             recipient_list=['steamcube@mozilla.com'],
             from_email=settings.MKT_REVIEWERS_EMAIL)
-
-    def test_send_tarako_mail_passed_comm_dashboard(self):
-        self.enable_comm_dashboard()
-        ok_(not self.send_mail.called)
-        self.review.passed = True
-        send_tarako_mail(self.review)
-        ok_(not self.send_mail.called)
 
     def test_send_tarako_mail_review_failed(self):
         ok_(not self.send_mail.called)
@@ -446,9 +440,34 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
             recipient_list=[u'steamcube@mozilla.com'],
             from_email=settings.MKT_REVIEWERS_EMAIL)
 
+    def test_send_tarako_mail_passed_comm_dashboard(self):
+        self.create_switch('comm-dashboard')
+        ok_(not self.send_mail.called)
+        self.review.passed = True
+        send_tarako_mail(self.review)
+        ok_(not self.send_mail.called)
+
     def test_send_tarako_mail_failed_comm_dashboard(self):
-        self.enable_comm_dashboard()
+        self.create_switch('comm-dashboard')
         ok_(not self.send_mail.called)
         self.review.passed = False
         send_tarako_mail(self.review)
         ok_(not self.send_mail.called)
+
+    def test_comm_mail_pass(self):
+        self.create_switch('comm-dashboard')
+        self.review.passed = True
+        self.review.execute_post_review_task()
+        ok_(CommunicationNote.objects.filter(
+            note_type=comm.ADDITIONAL_REVIEW_PASSED).exists())
+        ok_('Additional review passed' in mail.outbox[0].subject)
+        ok_('passed' in mail.outbox[0].body)
+
+    def test_comm_mail_pass(self):
+        self.create_switch('comm-dashboard')
+        self.review.passed = False
+        self.review.execute_post_review_task()
+        ok_(CommunicationNote.objects.filter(
+            note_type=comm.ADDITIONAL_REVIEW_FAILED).exists())
+        ok_('Additional review failed' in mail.outbox[0].subject)
+        ok_('not passed' in mail.outbox[0].body)
