@@ -116,19 +116,10 @@ def get_mail_context(note):
         'amo': amo,
         'app': app,
         'comm': comm,
-        'comments': note.body,
-        'detail_url': absolutify(
-            app.get_url_path(add_prefix=False)),
-        'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,
-        'name': app.name,
         'note': note,
         'review_url': absolutify(reverse('reviewers.apps.review',
                                  args=[app.app_slug], add_prefix=False)),
-        'reviewer': note.author,
-        'sender': note.author.name if note.author else 'System',
-        'SITE_URL': settings.SITE_URL,
-        'status_url': absolutify(app.get_dev_url('versions')),
-        'thread_id': str(note.thread.id)
+        'settings': settings
     }
 
 

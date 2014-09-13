@@ -1,11 +1,7 @@
 {% extends 'comm/emails/base.html' -%}
 
 {% block content %}
-We need additional information to complete review of your application.
+We need additional information to complete review of {{ app.name }}.
 
-App: {{ name }}
-URL: {{ detail_url }}
-
-Please reply to this email with the following information:
-{{ comments }}
+{% include 'comm/emails/includes/details.html' %}
 {% endblock %}

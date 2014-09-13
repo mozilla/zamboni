@@ -1,5 +1,9 @@
-{% if comments %}
-Reviewer comments:
+{% if note.body %}
+{{ note.author.name }} wrote:
 
-{{ comments }}
+    "{{ note.body }}"
 {% endif %}
+
+App: {{ app.name }}
+URL: {{ app.get_url_path(add_prefix=False)|absolutify }}
+

@@ -1,13 +1,12 @@
 {% extends 'comm/emails/base.html' %}
 
 {% block content %}
-A user posted on a discussion of {{ name }}.
+Someone posted on a discussion thread for {{ app.name }}.
 
-{{ sender }} wrote:
-{{ comments }}
+{% include "comm/emails/includes/details.html" %}
 {% endblock %}
 
 {% block footer %}
 Firefox Marketplace
-{{ SITE_URL }}
+{{ settings.SITE_URL }}
 {% endblock %}
