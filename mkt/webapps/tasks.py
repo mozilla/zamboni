@@ -10,6 +10,7 @@ import StringIO
 import subprocess
 import tempfile
 import time
+from zipfile import ZipFile, ZIP_DEFLATED
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -929,34 +930,107 @@ def generate_hosted_app(name, category):
     a = app_factory(categories=[category], name=name, complete=True,
                     rated=True)
     a.versions.latest().update(reviewed=datetime.datetime.now())
+    generate_hosted_manifest(a)
     return a
 
 
-def generate_manifest(app):
+def generate_hosted_manifest(app):
     data = {
-        "name": unicode(app.name),
-        "description": "This app has been automatically generated",
-        "version": "1.0",
-        "icons": {
-            "16": "http://testmanifest.com/icon-16.png",
-            "48": "http://testmanifest.com/icon-48.png",
-            "128": "http://testmanifest.com/icon-128.png"
+        'name': unicode(app.name),
+        'description': 'This app has been automatically generated',
+        'version': '1.0',
+        'icons': {
+            '16': 'http://testmanifest.com/icon-16.png',
+            '48': 'http://testmanifest.com/icon-48.png',
+            '128': 'http://testmanifest.com/icon-128.png'
         },
-        "installs_allowed_from": ["*"],
-        "developer": {
-            "name": "Marketplace Team",
-            "url": "https://marketplace.firefox.com/credits"
+        'installs_allowed_from': ['*'],
+        'developer': {
+            'name': 'Marketplace Team',
+            'url': 'https://marketplace.firefox.com/credits'
         }
     }
     AppManifest.objects.create(
         version=app.latest_version, manifest=json.dumps(data))
-    app.update(manifest_url="http://%s.testmanifest.com/manifest.webapp" %
+    app.update(manifest_url='http://%s.testmanifest.com/manifest.webapp' %
                (slugify(unicode(app.name)),))
 
 
-def generate_apps(num):
-    for appname, cat_slug in generate_app_data(num):
-        app = generate_hosted_app(appname, cat_slug)
+def generate_app_package(app, out, version='1.0'):
+    fr_prefix = u'(fran\xe7ais) '
+    es_prefix = u'(espa\xf1ol) '
+    manifest = {
+        'version': version,
+        'name': unicode(app.name),
+        'description': 'This packaged app has been automatically generated',
+        'icons': {
+            '16': '/icons/16.png',
+            '32': '/icons/32.png',
+            '256': '/icons/256.png'
+        },
+        'developer': {
+            'name': 'Marketplace Team',
+            'url': 'https://marketplace.firefox.com/credits'
+        },
+        'installs_allowed_launch': ['*'],
+        'from_path': 'index.html',
+        'locales': {
+            'es': {
+                'name': es_prefix + unicode(app.name),
+                'description': 'This packaged app has been automatically'
+                               ' generated'
+            },
+            'fr': {
+                'name': fr_prefix + unicode(app.name),
+                'description': 'This packaged app has been automatically'
+                               ' generated'
+            },
+        },
+        'default_locale': 'en',
+        'orientation': 'landscape',
+        'fullscreen': 'true'
+    }
+    with ZipFile(file=out, mode='w', compression=ZIP_DEFLATED) as outz:
+        for size in ('16', '32', '256'):
+            outz.writestr(
+                'icons/%s.png' % (size,),
+                open(os.path.join(
+                    settings.MEDIA_ROOT,
+                    'img/app-icons/%s/generic.png' % (size,))).read())
+        outz.writestr('script.js',
+                      'document.onload=function() {alert("Hello!");};')
+        outz.writestr(
+            'index.html',
+            '<title>Packaged app</title><script src="script.js"></script>'
+            '<h1>Test packaged app</h1>')
+        outz.writestr("manifest.webapp", json.dumps(manifest))
+    AppManifest.objects.create(
+        version=app.latest_version, manifest=json.dumps(manifest))
+
+
+def generate_packaged_app(name, category):
+    from amo.tests import app_factory
+    app = app_factory(categories=[category], name=name, complete=True,
+                      rated=True, is_packaged=True)
+    f = app.latest_version.all_files[0]
+    f.update(filename=f.generate_filename())
+    fp = os.path.join(app.latest_version.path_prefix, f.filename)
+    try:
+        os.makedirs(os.path.dirname(fp))
+    except OSError:
+        pass
+    with open(fp, 'w') as out:
+        generate_app_package(app, out)
+    return app
+
+
+def generate_apps(num_hosted, num_packaged=0):
+    apps = generate_app_data(num_hosted + num_packaged)
+    for i, (appname, cat_slug) in enumerate(apps):
+        if i < num_packaged:
+            app = generate_packaged_app(appname, cat_slug)
+        else:
+            app = generate_hosted_app(appname, cat_slug)
         generate_icon(app)
         generate_preview(app)
         generate_translations(app)
