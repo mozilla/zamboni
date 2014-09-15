@@ -95,7 +95,9 @@ class WebAppParser(object):
             msg = 'Error parsing manifest (encoding: utf-8): %s: %s'
             log.error(msg % (exc.__class__.__name__, exc))
             raise forms.ValidationError(
-                _('Could not decode the webapp manifest file.'))
+                _('Could not decode the webapp manifest file. '
+                  'Check your manifest file for special non-utf-8 '
+                  'characters.'))
 
         try:
             return json.loads(decoded_data)
