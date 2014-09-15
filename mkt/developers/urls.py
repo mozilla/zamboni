@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from rest_framework.routers import SimpleRouter
 
 import amo
-from amo.decorators import write
 from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
 from mkt.developers.api_payments import (
@@ -14,6 +13,7 @@ from mkt.developers.api_payments import (
 from mkt.developers.views import ContentRatingList, ContentRatingsPingback
 from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
 from mkt.receipts.urls import test_patterns
+from mkt.site.decorators import write
 
 from . import views
 from . import views_payments

@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.utils.http import is_safe_url
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 import commonware.log
 from django_browserid import BrowserIDBackend, get_audience
@@ -18,10 +19,10 @@ from requests_oauthlib import OAuth2Session
 from tower import ugettext as _
 
 import amo
-from amo.decorators import json_view, login_required, post_required
 from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
+from mkt.site.decorators import json_view, login_required
 
 from .models import UserProfile
 from .signals import logged_out
@@ -214,7 +215,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 
 
 @csrf_exempt
-@post_required
+@require_POST
 @transaction.commit_on_success
 #@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request, browserid_audience=None):

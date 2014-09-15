@@ -8,10 +8,8 @@ from django.core.exceptions import PermissionDenied
 
 import commonware.log
 
-from . import models as context
-from .utils import JSONEncoder, redirect_for_login
-
-from amo import get_user, set_user
+from amo import get_user, models, set_user
+from amo.utils import JSONEncoder, redirect_for_login
 from mkt.users.utils import get_task_user
 
 
@@ -41,34 +39,10 @@ def login_required(f=None, redirect=True):
     else:
         return decorator
 
-
-def post_required(f):
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if request.method != 'POST':
-            return http.HttpResponseNotAllowed(['POST'])
-        else:
-            return f(request, *args, **kw)
-    return wrapper
-
-
-def permission_required(app, action):
-    def decorator(f):
-        @functools.wraps(f)
-        @login_required
-        def wrapper(request, *args, **kw):
-            from mkt.access import acl
-            if acl.action_allowed(request, app, action):
-                return f(request, *args, **kw)
-            else:
-                raise PermissionDenied
-        return wrapper
-    return decorator
-
-
-def any_permission_required(pairs):
+def permission_required(pairs):
     """
-    If any permission passes, call the function. Otherwise raise 403.
+    Pairs of (app, action). If any permission passes, call the function.
+    Otherwise raise 403.
     """
     def decorator(f):
         @functools.wraps(f)
@@ -124,7 +98,7 @@ class skip_cache(object):
         functools.update_wrapper(self, f)
 
     def __call__(self, *args, **kw):
-        with context.skip_cache():
+        with models.skip_cache():
             return self.f(*args, **kw)
 
     def __repr__(self):
@@ -137,7 +111,7 @@ class skip_cache(object):
 def use_master(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        with context.use_master():
+        with models.use_master():
             return f(*args, **kw)
     return wrapper
 
@@ -155,7 +129,7 @@ def set_modified_on(f):
 
     Looks up objects defined in the set_modified_on kwarg.
     """
-    from amo.tasks import set_modified_on_object
+    from mkt.site.tasks import set_modified_on_object
 
     @functools.wraps(f)
     def wrapper(*args, **kw):

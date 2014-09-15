@@ -2,8 +2,8 @@
 
 from celeryutils import task
 
+from mkt.site.decorators import write
 from mkt.webapps.models import AddonExcludedRegion
-from amo.decorators import write
 
 
 @task

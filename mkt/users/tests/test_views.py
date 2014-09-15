@@ -7,12 +7,12 @@ from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 from waffle import helpers  # NOQA
 
 import amo
 import amo.tests
 from amo.helpers import urlparams
-from amo.pyquery_wrapper import PyQuery as pq
 from amo.urlresolvers import reverse
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile

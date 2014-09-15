@@ -5,9 +5,9 @@ import datetime
 from celeryutils import task
 
 import amo
-from amo.decorators import write
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
+from mkt.site.decorators import write
 from mkt.ratings.models import Review
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.users.models import UserProfile

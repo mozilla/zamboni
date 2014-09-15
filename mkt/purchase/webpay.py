@@ -6,12 +6,12 @@ from decimal import Decimal
 from django import http
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 import commonware.log
 import waffle
 
 import amo
-from amo.decorators import json_view, login_required, post_required, write
 from amo.utils import log_cef
 from lib.cef_loggers import app_pay_cef
 from lib.crypto.webpay import InvalidSender, parse_from_webpay
@@ -20,6 +20,7 @@ from lib.pay_server import client as solitude
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.purchase.decorators import can_be_purchased
 from mkt.purchase.models import Contribution
+from mkt.site.decorators import json_view, login_required, write
 from mkt.users.models import UserProfile
 from mkt.users.utils import autocreate_username
 from mkt.webapps.decorators import app_view_factory
@@ -35,7 +36,7 @@ app_view = app_view_factory(qs=Webapp.objects.valid)
 @login_required
 @app_view
 @write
-@post_required
+@require_POST
 @json_view
 @can_be_purchased
 def prepare_pay(request, addon):
@@ -87,7 +88,7 @@ def pay_status(request, addon, contrib_uuid):
 
 @csrf_exempt
 @write
-@post_required
+@require_POST
 def postback(request):
     """Verify signature and set contribution to paid."""
     signed_jwt = request.POST.get('notice', '')
@@ -207,7 +208,7 @@ def simulated_postback(contrib, trans_id):
 
 @csrf_exempt
 @write
-@post_required
+@require_POST
 def chargeback(request):
     """
     Verify signature from and create a refund contribution tied

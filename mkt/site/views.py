@@ -21,7 +21,6 @@ from django_statsd.clients import statsd
 from django_statsd.views import record as django_statsd_record
 from jingo import render_to_string
 
-from amo.decorators import post_required
 from amo.helpers import media
 from amo.utils import log_cef, urlparams
 from mkt.carriers import get_carrier
@@ -122,7 +121,7 @@ def robots(request):
 
 
 @csrf_exempt
-@post_required
+@require_POST
 def record(request):
     # The rate limiting is done up on the client, but if things go wrong
     # we can just turn the percentage down to zero.

@@ -6,8 +6,8 @@ from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 
 import amo
-from amo.decorators import write
 from amo.utils import chunked, resize_image
+from mkt.site.decorators import write
 from mkt.site.storage_utils import walk_storage
 from mkt.webapps.models import Addon
 

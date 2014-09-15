@@ -17,7 +17,6 @@ from rest_framework.viewsets import GenericViewSet
 
 import amo
 import mkt
-from amo.decorators import login_required, write
 from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -33,6 +32,7 @@ from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
                                   PreviewForm, PreviewFormSet)
 from mkt.developers.utils import escalate_prerelease_permissions
 from mkt.files.models import FileUpload
+from mkt.site.decorators import login_required, write
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,

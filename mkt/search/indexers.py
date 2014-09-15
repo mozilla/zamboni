@@ -9,9 +9,9 @@ from elasticsearch import helpers
 from elasticsearch_dsl import Search
 
 import amo
-from amo.decorators import write
 from lib.es.models import Reindexing
 from lib.post_request_task.task import task as post_request_task
+from mkt.site.decorators import write
 
 
 task_log = logging.getLogger('z.task')

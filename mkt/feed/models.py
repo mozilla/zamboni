@@ -19,7 +19,6 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 import amo.models
-from amo.decorators import use_master
 from amo.models import SlugField
 
 import mkt.carriers
@@ -28,6 +27,7 @@ from mkt.collections.fields import ColorField
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
+from mkt.site.decorators import use_master
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import Addon, clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps

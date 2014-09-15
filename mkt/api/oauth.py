@@ -9,9 +9,10 @@ import commonware.log
 from oauthlib import oauth1
 from oauthlib.common import safe_string_equals
 
-from amo.decorators import login_required
 from amo.utils import urlparams
 from mkt.api.models import Access, Nonce, Token, REQUEST_TOKEN, ACCESS_TOKEN
+from mkt.site.decorators import login_required
+
 
 DUMMY_CLIENT_KEY = u'DummyOAuthClientKeyString'
 DUMMY_REQUEST_TOKEN = u'DummyOAuthRequestToken'

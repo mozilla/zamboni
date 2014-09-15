@@ -7,9 +7,9 @@ from django.conf import settings
 from celeryutils import task
 
 import amo
-from amo.decorators import set_modified_on
-from lib.video import library
 import waffle
+from lib.video import library
+from mkt.site.decorators import set_modified_on
 
 log = logging.getLogger('z.devhub.task')
 time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
