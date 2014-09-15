@@ -1,5 +1,5 @@
 {% if note.body %}
-{{ note.author.name }} wrote:
+{{ note.author.name if note.author else 'Mozilla' }} wrote:
 
     "{{ note.body }}"
 {% endif %}
