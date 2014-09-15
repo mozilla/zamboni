@@ -12,6 +12,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowAuthor, ByHttpMethod
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.filters import MktFilterBackend
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductSerializer
 from mkt.prices.models import Price
@@ -34,6 +35,8 @@ class InAppProductViewSet(CORSMixin, MarketplaceView, ModelViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
+    filter_backends = (MktFilterBackend,)
+    filter_fields = filter_munge = ('active',)
 
     def destroy(self):
         raise NotImplemented('destroy is not allowed')
