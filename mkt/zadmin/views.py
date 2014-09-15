@@ -8,18 +8,19 @@ from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import debug
+from django.views.decorators.http import require_POST
 
 import commonware.log
 import elasticsearch
 import jinja2
 
 import amo
-from amo.decorators import any_permission_required, json_view, post_required
 from amo.urlresolvers import reverse
 from amo.utils import chunked
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File
 from mkt.prices.utils import update_from_csv
+from mkt.site.decorators import json_view, permission_required
 from mkt.site.mail import FakeEmailBackend
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
@@ -150,16 +151,16 @@ def email_devs(request):
                   dict(form=form, preview_csv=preview_csv))
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@permission_required([('Admin', '%'),
+                      ('AdminTools', 'View'),
+                      ('ReviewerAdminTools', 'View')])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
 
 
 @admin.site.admin_view
-@post_required
+@require_POST
 @json_view
 def recalc_hash(request, file_id):
 
@@ -197,14 +198,14 @@ def generate_error(request):
     return render(request, 'zadmin/generate-error.html', {'form': form})
 
 
-@any_permission_required([('Admin', '%'),
-                          ('MailingLists', 'View')])
+@permission_required([('Admin', '%'),
+                      ('MailingLists', 'View')])
 def export_email_addresses(request):
     return render(request, 'zadmin/export_button.html', {})
 
 
-@any_permission_required([('Admin', '%'),
-                          ('MailingLists', 'View')])
+@permission_required([('Admin', '%'),
+                      ('MailingLists', 'View')])
 def email_addresses_file(request):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/plain; charset=utf-8'

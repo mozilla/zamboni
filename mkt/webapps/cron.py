@@ -13,15 +13,15 @@ import cronjobs
 from celery import chord
 
 import amo
-from amo.decorators import write
 from amo.utils import chunked, walkfiles
 from mkt.api.models import Nonce
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
+from mkt.site.decorators import write
 
 from .models import Addon, Installed, Webapp
-from .tasks import (dump_user_installs, update_downloads, update_trending,
-                    zip_users)
+from .tasks import (delete_logs, dump_user_installs, update_downloads,
+                    update_trending, zip_users)
 
 
 log = commonware.log.getLogger('z.cron')
@@ -224,7 +224,7 @@ def mkt_gc(**kw):
     for chunk in chunked(logs, 100):
         chunk.sort()
         log.debug('Deleting log entries: %s' % str(chunk))
-        amo.tasks.delete_logs.delay(chunk)
+        delete_logs.delay(chunk)
 
     # Clear oauth nonce rows. These expire after 10 minutes but we're just
     # clearing those that are more than 1 day old.

@@ -30,7 +30,6 @@ from tower import ugettext_lazy as _lazy
 import amo
 import amo.models
 import mkt
-from amo.decorators import skip_cache, use_master, write
 from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
                        slugify, smart_path, sorted_groupby, timer,
                        to_language, urlparams)
@@ -47,6 +46,7 @@ from mkt.files.utils import parse_addon, WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
+from mkt.site.decorators import skip_cache, use_master, write
 from mkt.site.mail import send_mail
 from mkt.site.helpers import absolutify
 from mkt.site.models import DynamicBoolFieldsMixin

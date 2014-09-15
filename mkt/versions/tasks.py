@@ -2,7 +2,7 @@ import logging
 
 from celeryutils import task
 
-from amo.decorators import write
+from mkt.site.decorators import write
 
 
 log = logging.getLogger('z.task')

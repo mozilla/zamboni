@@ -15,10 +15,10 @@ import jinja2
 import amo
 import amo.models
 import amo.utils
-from amo.decorators import use_master
 from .compare import version_dict, version_int
 from mkt.files import utils
 from mkt.files.models import cleanup_file, File
+from mkt.site.decorators import use_master
 from mkt.translations.fields import (LinkifiedField, PurifiedField,
                                      save_signal, TranslatedField)
 from mkt.versions.tasks import update_supported_locales_single

@@ -82,7 +82,7 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
                 .transform(transformer.get_trans))
 
     def transform(self, fn):
-        from . import decorators
+        from mkt.site import decorators
         f = decorators.skip_cache(fn)
         return super(TransformQuerySet, self).transform(f)
 

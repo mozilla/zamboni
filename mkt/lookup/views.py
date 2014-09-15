@@ -10,6 +10,7 @@ from django.db import connection
 from django.db.models import Count, Q, Sum
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 import commonware.log
 from babel import numbers
@@ -19,8 +20,6 @@ from tower import ugettext as _
 
 import amo
 import mkt.constants.lookup as lkp
-from amo.decorators import (json_view, login_required, permission_required,
-                            post_required)
 from amo.utils import paginate
 from lib.pay_server import client
 from mkt.access import acl
@@ -38,6 +37,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
+from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
@@ -47,7 +47,7 @@ log = commonware.log.getLogger('z.lookup')
 
 
 @login_required
-@permission_required('Lookup', 'View')
+@permission_required([('Lookup', 'View')])
 def home(request):
     tx_form = TransactionSearchForm()
 
@@ -55,7 +55,7 @@ def home(request):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 def user_summary(request, user_id):
     user = get_object_or_404(UserProfile, pk=user_id)
     is_admin = acl.action_allowed(request, 'Users', 'Edit')
@@ -94,7 +94,7 @@ def user_summary(request, user_id):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 def user_delete(request, user_id):
     delete_form = DeleteUserForm(request.POST)
     if not delete_form.is_valid():
@@ -113,7 +113,7 @@ def user_delete(request, user_id):
 
 
 @login_required
-@permission_required('Transaction', 'View')
+@permission_required([('Transaction', 'View')])
 def transaction_summary(request, tx_uuid):
     tx_data = _transaction_summary(tx_uuid)
     if not tx_data:
@@ -159,9 +159,9 @@ def _transaction_summary(tx_uuid):
     }
 
 
-@post_required
+@require_POST
 @login_required
-@permission_required('Transaction', 'Refund')
+@permission_required([('Transaction', 'Refund')])
 def transaction_refund(request, tx_uuid):
     contrib = get_object_or_404(Contribution, uuid=tx_uuid,
                                 type=amo.CONTRIB_PURCHASE)
@@ -234,7 +234,7 @@ def transaction_refund(request, tx_uuid):
 
 
 @login_required
-@permission_required('AppLookup', 'View')
+@permission_required([('AppLookup', 'View')])
 def app_summary(request, addon_id):
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
 
@@ -282,7 +282,7 @@ def app_summary(request, addon_id):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 def app_activity(request, addon_id):
     """Shows the app activity age for single app."""
     app = get_object_or_404(Webapp.with_deleted, pk=addon_id)
@@ -300,7 +300,7 @@ def app_activity(request, addon_id):
 
 
 @login_required
-@permission_required('BangoPortal', 'Redirect')
+@permission_required([('BangoPortal', 'Redirect')])
 def bango_portal_from_package(request, package_id):
     response = _redirect_to_bango_portal(package_id,
                                          'package_id: %s' % package_id)
@@ -314,7 +314,7 @@ def bango_portal_from_package(request, package_id):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 def user_purchases(request, user_id):
     """Shows the purchase page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
@@ -327,7 +327,7 @@ def user_purchases(request, user_id):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 def user_activity(request, user_id):
     """Shows the user activity page for another user."""
     user = get_object_or_404(UserProfile, pk=user_id)
@@ -361,7 +361,7 @@ def _expand_query(q, fields):
 
 
 @login_required
-@permission_required('AccountLookup', 'View')
+@permission_required([('AccountLookup', 'View')])
 @json_view
 def user_search(request):
     results = []
@@ -388,7 +388,7 @@ def user_search(request):
 
 
 @login_required
-@permission_required('Transaction', 'View')
+@permission_required([('Transaction', 'View')])
 def transaction_search(request):
     tx_form = TransactionSearchForm(request.GET)
     if tx_form.is_valid():
@@ -399,7 +399,7 @@ def transaction_search(request):
 
 
 @login_required
-@permission_required('AppLookup', 'View')
+@permission_required([('AppLookup', 'View')])
 @json_view
 def app_search(request):
     results = []

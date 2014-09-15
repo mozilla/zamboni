@@ -2,8 +2,8 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from amo.decorators import login_required
 from mkt.access.acl import action_allowed
+from mkt.site.decorators import login_required
 
 
 def admin_required(reviewers=False):

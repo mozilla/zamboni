@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 import commonware.log
 from rest_framework.decorators import (authentication_classes,
@@ -16,7 +17,6 @@ from tower import ugettext as _
 
 import amo
 import amo.log
-from amo.decorators import json_view, post_required, write
 from lib.cef_loggers import receipt_cef
 from lib.crypto.receipt import SigningError
 from lib.metrics import record_action
@@ -34,6 +34,7 @@ from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.reviewers.views import reviewer_required
+from mkt.site.decorators import json_view, write
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Addon, Installed, Webapp
@@ -105,7 +106,7 @@ def _record(request, addon):
 @anonymous_csrf_exempt
 @json_view
 @app_all_view
-@post_required
+@require_POST
 @write
 def record_anon(request, addon):
     return _record(request, addon)
@@ -113,7 +114,7 @@ def record_anon(request, addon):
 
 @json_view
 @app_all_view
-@post_required
+@require_POST
 @write
 def record(request, addon):
     return _record(request, addon)
@@ -128,7 +129,7 @@ def response(data):
 
 
 @csrf_exempt
-@post_required
+@require_POST
 def verify(request, uuid):
     # Because this will be called at any point in the future,
     # use guid in the URL.
@@ -156,7 +157,7 @@ def verify(request, uuid):
 
 @app_all_view
 @json_view
-@post_required
+@require_POST
 def issue(request, addon):
     user = request.user
     review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
@@ -201,7 +202,7 @@ def devhub_install(request):
 
 @anonymous_csrf_exempt
 @json_view
-@post_required
+@require_POST
 def devhub_receipt(request):
     form = forms.TestInstall(request.POST)
     if form.is_valid():
@@ -222,7 +223,7 @@ def devhub_details(request):
 
 
 @csrf_exempt
-@post_required
+@require_POST
 def devhub_verify(request, status):
     receipt = request.read()
     verify = Verify(receipt, request.META)

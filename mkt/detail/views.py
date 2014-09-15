@@ -7,8 +7,8 @@ from django.views.decorators.http import etag
 import commonware.log
 
 import amo
-from amo.decorators import allow_cross_site_request
 from mkt.constants import MANIFEST_CONTENT_TYPE
+from mkt.site.decorators import allow_cross_site_request
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Webapp
 
