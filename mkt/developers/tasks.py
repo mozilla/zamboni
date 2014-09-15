@@ -27,11 +27,11 @@ from PIL import Image
 from tower import ugettext as _
 
 import amo
-from amo.decorators import set_modified_on, write
 from amo.utils import remove_icons, resize_image, strip_bom
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.files.models import File, FileUpload, FileValidation
 from mkt.files.utils import SafeUnzip
+from mkt.site.decorators import set_modified_on, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.webapps.models import Addon, AddonExcludedRegion, Webapp

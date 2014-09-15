@@ -30,18 +30,21 @@ from tower import ugettext as _
 
 import amo
 import mkt
-from amo.decorators import use_master, write
 from amo.utils import chunked, days_ago, JSONEncoder, slugify
 from lib.metrics import get_monolith_client
 from lib.post_request_task.task import task as post_request_task
+from mkt.abuse.models import AbuseReport
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.regions import RESTOFWORLD
+from mkt.developers.models import ActivityLog, AppLog
 from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, save_icon, validator)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
+from mkt.prices.models import Refund
 from mkt.ratings.models import Review
-from mkt.reviewers.models import RereviewQueue
+from mkt.reviewers.models import EscalationQueue, RereviewQueue
+from mkt.site.decorators import set_task_user, use_master, write
 from mkt.site.mail import send_mail_jinja
 from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
@@ -1099,3 +1102,91 @@ def destroy_addons(addon_ids, **kw):
         cursor.execute('DELETE FROM addons WHERE id=%s', [addon_id])
 
         task_log.info('[Addon:%s] Addon deleted.' % addon_id)
+
+
+@task
+def delete_logs(items, **kw):
+    task_log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
+    ActivityLog.objects.filter(pk__in=items).exclude(
+        action__in=amo.LOG_KEEP).delete()
+
+
+@task
+@set_task_user
+def find_abuse_escalations(addon_id, **kw):
+    weekago = datetime.date.today() - datetime.timedelta(days=7)
+    add_to_queue = True
+
+    for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, addon_id):
+        if EscalationQueue.objects.filter(addon=abuse.addon).exists():
+            # App is already in the queue, no need to re-add it.
+            task_log.info(u'[app:%s] High abuse reports, but already '
+                          u'escalated' % abuse.addon)
+            add_to_queue = False
+
+        # We have an abuse report... has it been detected and dealt with?
+        logs = (AppLog.objects.filter(
+            activity_log__action=amo.LOG.ESCALATED_HIGH_ABUSE.id,
+            addon=abuse.addon).order_by('-created'))
+        if logs:
+            abuse_since_log = AbuseReport.recent_high_abuse_reports(
+                1, logs[0].created, addon_id)
+            # If no abuse reports have happened since the last logged abuse
+            # report, do not add to queue.
+            if not abuse_since_log:
+                task_log.info(u'[app:%s] High abuse reports, but none since '
+                              u'last escalation' % abuse.addon)
+                continue
+
+        # If we haven't bailed out yet, escalate this app.
+        msg = u'High number of abuse reports detected'
+        if add_to_queue:
+            EscalationQueue.objects.create(addon=abuse.addon)
+        amo.log(amo.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
+                abuse.addon.current_version, details={'comments': msg})
+        task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
+
+
+@task
+@set_task_user
+def find_refund_escalations(addon_id, **kw):
+    try:
+        addon = Addon.objects.get(pk=addon_id)
+    except Addon.DoesNotExist:
+        task_log.info(u'[app:%s] Task called but no app found.' % addon_id)
+        return
+
+    refund_threshold = 0.05
+    weekago = datetime.date.today() - datetime.timedelta(days=7)
+    add_to_queue = True
+
+    ratio = Refund.recent_refund_ratio(addon.id, weekago)
+    if ratio > refund_threshold:
+        if EscalationQueue.objects.filter(addon=addon).exists():
+            # App is already in the queue, no need to re-add it.
+            task_log.info(u'[app:%s] High refunds, but already escalated' %
+                          addon)
+            add_to_queue = False
+
+        # High refunds... has it been detected and dealt with already?
+        logs = (AppLog.objects.filter(
+            activity_log__action=amo.LOG.ESCALATED_HIGH_REFUNDS.id,
+            addon=addon).order_by('-created', '-id'))
+        if logs:
+            since_ratio = Refund.recent_refund_ratio(addon.id, logs[0].created)
+            # If not high enough ratio since the last logged, do not add to
+            # the queue.
+            if not since_ratio > refund_threshold:
+                task_log.info(u'[app:%s] High refunds, but not enough since '
+                              u'last escalation. Ratio: %.0f%%' %
+                              (addon,since_ratio * 100))
+                return
+
+        # If we haven't bailed out yet, escalate this app.
+        msg = u'High number of refund requests (%.0f%%) detected.' % (
+            (ratio * 100),)
+        if add_to_queue:
+            EscalationQueue.objects.create(addon=addon)
+        amo.log(amo.LOG.ESCALATED_HIGH_REFUNDS, addon,
+                addon.current_version, details={'comments': msg})
+        task_log.info(u'[app:%s] %s' % (addon, msg))

@@ -2,8 +2,8 @@ import functools
 
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
-from amo.decorators import login_required
 from mkt.access import acl
+from mkt.site.decorators import login_required
 from mkt.webapps.decorators import app_view
 
 

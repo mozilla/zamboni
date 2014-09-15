@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 import commonware
 import jinja2
@@ -16,7 +17,6 @@ from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 import amo
-from amo.decorators import json_view, login_required, post_required, write
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access import acl
@@ -31,6 +31,7 @@ from mkt.developers.providers import get_provider, get_providers
 from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.prices.models import Price
+from mkt.site.decorators import json_view, login_required, write
 from mkt.webapps.models import Webapp
 
 
@@ -38,7 +39,7 @@ log = commonware.log.getLogger('z.devhub')
 
 
 @dev_required
-@post_required
+@require_POST
 def disable_payments(request, addon_id, addon):
     return redirect(addon.get_dev_url('payments'))
 
@@ -259,7 +260,7 @@ def payment_accounts_form(request):
 
 
 @write
-@post_required
+@require_POST
 @login_required
 @json_view
 def payments_accounts_add(request):
@@ -295,7 +296,7 @@ def payments_account(request, id):
 
 
 @write
-@post_required
+@require_POST
 @login_required
 def payments_accounts_delete(request, id):
     account = get_object_or_404(PaymentAccount, pk=id, user=request.user)

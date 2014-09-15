@@ -6,6 +6,6 @@ Hacking
    :maxdepth: 2
 
    testing
-   style
+   emails
    contributing
    branching

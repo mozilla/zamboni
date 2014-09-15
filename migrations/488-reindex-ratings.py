@@ -3,9 +3,9 @@
 from celeryutils import task
 
 from amo.utils import chunked
-from amo.decorators import write
 
 from addons.models import Addon
+from mkt.site.decorators import write
 
 
 @task

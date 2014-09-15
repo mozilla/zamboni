@@ -14,7 +14,6 @@ from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
-from amo.decorators import write
 from amo.models import ManagerBase, ModelBase
 from amo.utils import get_locale_from_lang
 from lib.constants import ALL_CURRENCIES
@@ -25,6 +24,7 @@ from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
 from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
+from mkt.site.decorators import write
 from mkt.users.models import UserProfile
 
 log = commonware.log.getLogger('z.market')
@@ -436,7 +436,7 @@ class Refund(ModelBase):
 
     @staticmethod
     def post_save(sender, instance, **kwargs):
-        from amo.tasks import find_refund_escalations
+        from mkt.webapps.tasks import find_refund_escalations
         find_refund_escalations(instance.contribution.addon_id)
 
     @classmethod

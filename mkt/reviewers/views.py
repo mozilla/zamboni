@@ -35,8 +35,6 @@ from waffle.decorators import waffle_switch
 
 import amo
 import mkt
-from amo.decorators import (any_permission_required, json_view, login_required,
-                            permission_required)
 from amo.helpers import urlparams
 from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
@@ -57,14 +55,15 @@ from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  MOTDForm)
-from mkt.reviewers.models import (AdditionalReview, EditorSubscription,
-                                  EscalationQueue, QUEUE_TARAKO, RereviewQueue,
-                                  ReviewerScore)
+from mkt.reviewers.models import (AdditionalReview, CannedResponse,
+                                  EditorSubscription, EscalationQueue,
+                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore)
 from mkt.reviewers.serializers import (ReviewersESAppSerializer,
                                        ReviewingSerializer)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
 from mkt.search.views import search_form_to_es_fields, SearchView
+from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
@@ -77,7 +76,6 @@ from mkt.webapps.signals import version_changed
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
 from . import forms
-from .models import CannedResponse
 
 
 QUEUE_PER_PAGE = 100
@@ -91,9 +89,7 @@ def reviewer_required(region=None):
     Reviewer is someone who is in one of the groups with the following
     permissions:
 
-        Addons:Review
         Apps:Review
-        Personas:Review
 
     """
     def decorator(f):
@@ -622,7 +618,7 @@ def queue_region(request, region=None):
                   data={'region': region})
 
 
-@permission_required('Apps', 'ReviewTarako')
+@permission_required([('Apps', 'ReviewTarako')])
 def additional_review(request, queue):
     """HTML page for an additional review queue."""
     order_by = 'created'
@@ -656,7 +652,7 @@ def queue_rereview(request):
     return _queue(request, apps, 'rereview')
 
 
-@permission_required('Apps', 'ReviewEscalated')
+@permission_required([('Apps', 'ReviewEscalated')])
 def queue_escalated(request):
     eqs = EscalationQueue.objects.no_cache().filter(
         addon__type=amo.ADDON_WEBAPP, addon__disabled_by_user=False)
@@ -732,7 +728,7 @@ def _get_search_form(request):
     return ApiReviewersSearchForm(get or None)
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required
 def logs(request):
     data = request.GET.copy()
 
@@ -817,7 +813,7 @@ def _get_manifest_json(addon):
     return addon.get_manifest_json(addon.versions.latest().all_files[0])
 
 
-@any_permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
+@permission_required([('AppLookup', 'View'), ('Apps', 'Review')])
 @app_view
 @json_view
 def app_view_manifest(request, addon):
@@ -941,7 +937,7 @@ def _mini_manifest(addon, version_id, token=None):
     return json.dumps(data, cls=JSONEncoder)
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required
 @app_view
 def app_abuse(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
@@ -966,7 +962,7 @@ def get_signed_packaged(request, addon, version_id):
                                 etag=file.hash.split(':')[-1])
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required
 def performance(request, username=None):
     is_admin = acl.action_allowed(request, 'Admin', '%')
 
@@ -1016,14 +1012,14 @@ def performance(request, username=None):
     return render(request, 'reviewers/performance.html', ctx)
 
 
-@any_permission_required([('Apps', 'Review')])
+@reviewer_required
 def leaderboard(request):
     return render(request, 'reviewers/leaderboard.html',
                   context(request,
                           **{'scores': ReviewerScore.all_users_by_score()}))
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required
 @json_view
 def apps_reviewing(request):
     return render(request, 'reviewers/apps_reviewing.html',
@@ -1032,7 +1028,7 @@ def apps_reviewing(request):
                              'apps': AppsReviewing(request).get_apps()}))
 
 
-@permission_required('Apps', 'Review')
+@reviewer_required
 def attachment(request, attachment):
     """
     Serve an attachment directly to the user.
@@ -1072,7 +1068,7 @@ def _retrieve_translation(text, language):
 
 
 @waffle_switch('reviews-translate')
-@permission_required('Apps', 'Review')
+@reviewer_required
 def review_translate(request, addon_slug, review_pk, language):
     review = get_object_or_404(Review, addon__slug=addon_slug, pk=review_pk)
 

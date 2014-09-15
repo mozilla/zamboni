@@ -7,8 +7,8 @@ from django.db.models import Count
 
 import amo
 from addons.models import AddonDeviceType as ADT
-from amo.decorators import write
 from amo.utils import chunked
+from mkt.site.decorators import write
 
 
 @task

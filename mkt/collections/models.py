@@ -6,10 +6,10 @@ from django.db import models
 import amo.models
 import mkt.carriers
 import mkt.regions
-from amo.decorators import use_master
 from amo.models import SlugField
 from amo.utils import to_language
 from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.site.decorators import use_master
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import Addon, clean_slug, Webapp
 from mkt.webapps.tasks import index_webapps

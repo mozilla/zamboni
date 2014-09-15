@@ -6,7 +6,6 @@ import mock
 from nose.tools import eq_
 
 import amo
-from amo.tasks import find_abuse_escalations, find_refund_escalations
 from amo.tests import app_factory
 from mkt.abuse.models import AbuseReport
 from mkt.developers.models import AppLog
@@ -15,7 +14,7 @@ from mkt.purchase.models import Contribution
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-
+from mkt.webapps.tasks import find_abuse_escalations, find_refund_escalations
 
 class TestAbuseEscalationTask(amo.tests.TestCase):
     fixtures = fixture('user_admin')

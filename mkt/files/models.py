@@ -17,9 +17,9 @@ from uuidfield.fields import UUIDField
 import amo
 import amo.models
 import amo.utils
-from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
+from mkt.site.decorators import use_master
 
 
 log = commonware.log.getLogger('z.files')

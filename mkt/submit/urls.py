@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from lib.misc.urlconf_decorator import decorate
 
 import amo
-from amo.decorators import write
+from mkt.site.decorators import write
 from . import views
 
 

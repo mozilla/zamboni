@@ -8,8 +8,8 @@ from django.db import transaction, connections
 import commonware.log
 
 import amo
-from amo.decorators import use_master
 from mkt.files.models import FileUpload
+from mkt.site.decorators import use_master
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 

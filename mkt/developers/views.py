@@ -17,6 +17,7 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 import commonware.log
 import waffle
@@ -31,9 +32,6 @@ from waffle.decorators import waffle_switch
 import amo
 import amo.utils
 import lib.iarc
-from amo.decorators import (any_permission_required, json_view, login_required,
-                            permission_required, post_required, skip_cache,
-                            write)
 from amo.utils import escape_all
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
@@ -52,13 +50,16 @@ from mkt.developers.forms import (APIConsumerForm, AppFormBasic, AppFormDetails,
                                   trap_duplicate)
 from mkt.developers.models import AppLog, PreloadTestPlan
 from mkt.developers.serializers import ContentRatingSerializer
-from mkt.developers.tasks import run_validator, save_test_plan
+from mkt.developers.tasks import (fetch_manifest, file_validator, run_validator,
+                                  save_test_plan, validator)
 from mkt.developers.utils import (check_upload, escalate_prerelease_permissions,
                                   handle_vip)
 from mkt.files.models import File, FileUpload
 from mkt.files.utils import parse_addon
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
+from mkt.site.decorators import (json_view, login_required, permission_required,
+                                 skip_cache, write)
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.users.models import UserProfile
 from mkt.users.views import _login
@@ -70,7 +71,7 @@ from mkt.webapps.views import BaseFilter
 from mkt.webpay.webpay_jwt import get_product_jwt, InAppProduct, WebAppProduct
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
-from . import forms, tasks
+from . import forms
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -142,7 +143,7 @@ def edit(request, addon_id, addon):
 
 
 @dev_required(owner_for_post=True)
-@post_required
+@require_POST
 def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
@@ -167,7 +168,7 @@ def delete(request, addon_id, addon):
 
 
 @dev_required
-@post_required
+@require_POST
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     amo.log(amo.LOG.USER_ENABLE, addon)
@@ -175,7 +176,7 @@ def enable(request, addon_id, addon):
 
 
 @dev_required
-@post_required
+@require_POST
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
@@ -296,7 +297,7 @@ def status(request, addon_id, addon):
     return render(request, 'developers/apps/status.html', ctx)
 
 
-@permission_required('DeveloperMOTD', 'Edit')
+@permission_required([('DeveloperMOTD', 'Edit')])
 def motd(request):
     message = unmemoized_get_config('mkt_developers_motd')
     form = MOTDForm(request.POST or None, initial={'motd': message})
@@ -489,7 +490,7 @@ def version_edit(request, addon_id, addon, version_id):
 
 
 @dev_required
-@post_required
+@require_POST
 def version_publicise(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
@@ -510,7 +511,7 @@ def version_publicise(request, addon_id, addon):
 
 
 @dev_required
-@post_required
+@require_POST
 @transaction.commit_on_success
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
@@ -575,7 +576,7 @@ def validate_app(request):
     })
 
 
-@post_required
+@require_POST
 def _upload(request, addon=None, is_standalone=False):
     user = request.user
     # If there is no user, default to None (saves the file upload as anon).
@@ -583,7 +584,7 @@ def _upload(request, addon=None, is_standalone=False):
                               user=user if user.is_authenticated() else None,
                               addon=addon)
     if form.is_valid():
-        tasks.validator.delay(form.file_upload.pk)
+        validator.delay(form.file_upload.pk)
 
     if addon:
         return redirect('mkt.developers.upload_detail_for_addon',
@@ -612,14 +613,14 @@ def upload_for_addon(request, addon_id, addon):
 
 
 @dev_required
-@post_required
+@require_POST
 def refresh_manifest(request, addon_id, addon):
     log.info('Manifest %s refreshed for %s' % (addon.manifest_url, addon))
     _update_manifest(addon_id, True, {})
     return http.HttpResponse(status=204)
 
 
-@post_required
+@require_POST
 @json_view
 @write
 def _upload_manifest(request, is_standalone=False):
@@ -634,7 +635,7 @@ def _upload_manifest(request, is_standalone=False):
                                   'tier': 1}]}}
     if form.is_valid():
         upload = FileUpload.objects.create()
-        tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
+        fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
         if is_standalone:
             return redirect('mkt.developers.standalone_upload_detail',
                             'hosted', upload.pk)
@@ -712,7 +713,7 @@ def json_file_validation(request, addon_id, addon, file_id):
             return http.HttpResponseNotAllowed(['POST'])
 
         try:
-            v_result = tasks.file_validator(file.id)
+            v_result = file_validator(file.id)
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
             error = "\n".join(traceback.format_exception(*sys.exc_info()))
@@ -952,7 +953,7 @@ def upload_media(request, addon_id, addon, upload_type):
 
 
 @dev_required
-@post_required
+@require_POST
 def remove_locale(request, addon_id, addon):
     locale = request.POST.get('locale')
     if locale and locale != addon.default_locale:
@@ -1031,9 +1032,8 @@ def api(request):
 
 
 @app_view
-@post_required
-@any_permission_required([('Admin', '%'),
-                          ('Apps', 'Configure')])
+@require_POST
+@permission_required([('Admin', '%'), ('Apps', 'Configure')])
 def blocklist(request, addon):
     """
     Blocklists the app by creating a new version/file.
