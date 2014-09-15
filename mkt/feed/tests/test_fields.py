@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_
 import os
 
 from django.core.files.base import File
 from rest_framework.exceptions import ParseError
 
 import mock
+from nose.tools import eq_, ok_
 from rest_framework import serializers
 
 import amo.tests
@@ -62,6 +62,35 @@ class TestAppESField(amo.tests.TestCase):
         field.limit = 0
         data = field.to_native([app.id for app in apps])
         eq_(len(data), 0)
+
+    def test_no_exist(self):
+        """
+        Handle when the app is not in the app map (as result of filtering).
+        """
+        app = amo.tests.app_factory()
+
+        field = AppESField()
+        field.context = {'app_map': {},
+                         'request': amo.tests.req_factory_factory('')}
+        data = field.to_native(app.id)
+        ok_(not data)
+
+    def test_multi_no_exist(self):
+        """
+        Handle when the app is not in the app map (as result of filtering).
+        """
+        apps = [amo.tests.app_factory(), amo.tests.app_factory()]
+        app_map = {
+            apps[0].id: apps[0].get_indexer().extract_document(apps[0].id)
+        }
+
+        field = AppESField(many=True)
+        field.context = {'app_map': app_map,
+                         'request': amo.tests.req_factory_factory('')}
+        data = field.to_native([app.id for app in apps])
+
+        eq_(len(data), 1)
+        eq_(data[0]['id'], apps[0].id)
 
 
 class TestImageURLField(amo.tests.TestCase):

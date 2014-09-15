@@ -41,13 +41,15 @@ class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
         return None
 
 
-class FeedFireplaceESAppSerializer(FireplaceESAppSerializer):
-    class Meta(FireplaceESAppSerializer.Meta):
-        # Feed needs status, is_disabled and regions in the serializer in
-        # order to do some filtering in the view.
-        fields = sorted(FireplaceESAppSerializer.Meta.fields + ['is_disabled',
-                                                                'regions'])
-        exclude = FireplaceESAppSerializer.Meta.exclude
+class FeedFireplaceESAppSerializer(BaseFireplaceAppSerializer,
+                                   SimpleESAppSerializer):
+    """
+    Serializer for Fireplace Feed pages (mostly detail pages). Needs
+    collection groups.
+    """
+    class Meta(SimpleESAppSerializer.Meta):
+        fields = sorted(FireplaceAppSerializer.Meta.fields + ['group'])
+        exclude = FireplaceAppSerializer.Meta.exclude
 
 
 class FireplaceCollectionMembershipField(CollectionMembershipField):
