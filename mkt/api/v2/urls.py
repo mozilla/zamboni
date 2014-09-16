@@ -28,6 +28,8 @@ subfeedcollection.register('image', views.FeedCollectionImageViewSet,
 subfeedshelf = SubRouterWithFormat()
 subfeedshelf.register('image', views.FeedShelfImageViewSet,
                       base_name='feed-shelf-image')
+subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
+                      base_name='feed-shelf-landing-image')
 
 urlpatterns = patterns('',
     url(r'^apps/search/rocketbar/', RocketbarViewV2.as_view(),

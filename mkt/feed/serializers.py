@@ -13,7 +13,6 @@ from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
 from mkt.api.serializers import URLSerializerMixin
 from mkt.carriers import CARRIER_CHOICE_DICT
 from mkt.constants.categories import CATEGORY_CHOICES
-from mkt.fireplace.serializers import FireplaceESAppSerializer
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.search.serializers import BaseESSerializer
 from mkt.submit.serializers import FeedPreviewESSerializer
@@ -86,18 +85,24 @@ class BaseFeedCollectionESSerializer(BaseESSerializer):
 
 class FeedImageField(serializers.HyperlinkedRelatedField):
     read_only = True
+    hash_field = 'image_hash'
 
     def get_url(self, obj, view_name, request, format):
-        if obj.has_image:
+        if getattr(obj, self.hash_field, None):
             # Always prefix with STATIC_URL to return images from our CDN.
             prefix = settings.STATIC_URL.strip('/')
             # Always append image_hash so that we can send far-future expires.
-            suffix = '?%s' % obj.image_hash
+            suffix = '?%s' % getattr(obj, self.hash_field)
             url = reverse(view_name, kwargs={'pk': obj.pk}, request=request,
                           format=format)
             return '%s%s%s' % (prefix, url, suffix)
         else:
             return None
+
+
+class FeedLandingImageField(FeedImageField):
+    read_only = True
+    hash_field = 'image_landing_hash'
 
 
 class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
@@ -296,6 +301,9 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     """
     background_image = FeedImageField(
         source='*', view_name='api-v2:feed-shelf-image-detail', format='png')
+    background_image_landing = FeedLandingImageField(
+        source='*', view_name='api-v2:feed-shelf-landing-image-detail',
+        format='png')
     carrier = SlugChoiceField(choices_dict=mkt.carriers.CARRIER_MAP)
     description = TranslationSerializerField(required=False)
     is_published = serializers.BooleanField(source='is_published',
@@ -304,9 +312,9 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     region = SlugChoiceField(choices_dict=mkt.regions.REGION_LOOKUP)
 
     class Meta:
-        fields = ['app_count', 'apps', 'background_image', 'carrier',
-                  'description', 'id', 'is_published', 'name', 'region',
-                  'slug', 'url']
+        fields = ['app_count', 'apps', 'background_image',
+                  'background_image_landing', 'carrier', 'description', 'id',
+                  'is_published', 'name', 'region', 'slug', 'url']
         model = FeedShelf
         url_basename = 'feedshelves'
 
@@ -324,7 +332,8 @@ class FeedShelfESSerializer(BaseFeedCollectionESSerializer,
 
     def fake_object(self, data):
         shelf = self._attach_fields(FeedShelf(), data, (
-            'id', 'carrier', 'image_hash', 'region', 'slug'
+            'id', 'carrier', 'image_hash', 'image_landing_hash', 'region',
+            'slug'
         ))
         shelf = self._attach_translations(shelf, data, (
             'description', 'name'

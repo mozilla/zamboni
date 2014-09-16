@@ -12,7 +12,6 @@ from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
 
-import amo
 import mkt
 import mkt.feed.constants as feed
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -40,30 +39,44 @@ from .serializers import (FeedAppESSerializer, FeedAppSerializer,
 
 class ImageURLUploadMixin(viewsets.ModelViewSet):
     """
-    Attaches a pre_save that downloads an image from a URL and validates.
-    Attaches a post_save that saves the image in feed element's directory.
+    Attaches pre/post save methods for image handling.
+
+    The pre_save downloads an image from a URL and validates. The post_save
+    saves the image in feed element's directory.
+
+    We look at the class' `image_fields` property for the list of tuples to
+    check. The tuples are the names of the the image form name, the hash field,
+    and a suffix to append to the image file name::
+
+        image_fields = ('background_image_upload_url', 'image_hash', '')
+
     """
     def pre_save(self, obj):
-        """Download and validate background image upload URL."""
-        if self.request.DATA.get('background_image_upload_url'):
-            img, hash_ = ImageURLField().from_native(
-                self.request.DATA['background_image_upload_url'])
-            # Store img for post_save where we have access to the pk so we can
-            # save img in appropriate directory.
-            obj._background_image_upload = img
-            obj.image_hash = hash_
-        elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
-            # Remove background images for promo collections.
-            obj.image_hash = ''
+        """Download and validate image URL."""
+        for image_field, hash_field, suffix in self.image_fields:
+            if self.request.DATA.get(image_field):
+                img, hash_ = ImageURLField().from_native(
+                    self.request.DATA[image_field])
+                # Store img for `post_save` where we have access to the pk so
+                # we can save img in appropriate directory.
+                setattr(obj, '_%s' % image_field, img)
+                setattr(obj, hash_field, hash_)
+            elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
+                # Remove background images for promo collections.
+                setattr(obj, hash_field, None)
+
         return super(ImageURLUploadMixin, self).pre_save(obj)
 
     def post_save(self, obj, created=True):
-        """Store background image that we attached to the obj in pre_save."""
-        if hasattr(obj, '_background_image_upload'):
-            i = Image.open(obj._background_image_upload)
-            with storage.open(obj.image_path(), 'wb') as f:
-                i.save(f, 'png')
-            pngcrush_image.delay(obj.image_path(), set_modified_on=[obj])
+        """Store image that we attached to the obj in pre_save."""
+        for image_field, hash_field, suffix in self.image_fields:
+            image = getattr(obj, '_%s' % image_field, None)
+            if image:
+                i = Image.open(image)
+                path = obj.image_path(suffix)
+                with storage.open(path, 'wb') as f:
+                    i.save(f, 'png')
+                pngcrush_image.delay(path, set_modified_on=[obj])
 
         return super(ImageURLUploadMixin, self).post_save(obj, created)
 
@@ -84,6 +97,7 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     exceptions = {
         'doesnt_exist': 'One or more of the specified `apps` do not exist.'
     }
+    image_fields = (('background_image_upload_url', 'image_hash', ''),)
 
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
@@ -227,6 +241,8 @@ class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedAppSerializer
 
+    image_fields = (('background_image_upload_url', 'image_hash', ''),)
+
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
             self.filter_queryset(self.get_queryset()))
@@ -274,6 +290,12 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedShelf.objects.all()
     serializer_class = FeedShelfSerializer
+
+    image_fields = (
+        ('background_image_upload_url', 'image_hash', ''),
+        ('background_image_landing_upload_url', 'image_landing_hash',
+         '_landing'),
+    )
 
 
 class FeedShelfPublishView(CORSMixin, APIView):
@@ -343,6 +365,12 @@ class FeedCollectionImageViewSet(CollectionImageViewSet):
 
 class FeedShelfImageViewSet(CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
+
+
+class FeedShelfLandingImageViewSet(CollectionImageViewSet):
+    queryset = FeedShelf.objects.all()
+    hash_field = 'image_landing_hash'
+    image_suffix = '_landing'
 
 
 class BaseFeedESView(CORSMixin, APIView):

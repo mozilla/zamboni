@@ -230,6 +230,7 @@ class FeedShelfIndexer(BaseIndexer):
                     'carrier': cls.string_not_analyzed(),
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'image_hash': cls.string_not_analyzed(),
+                    'image_landing_hash': cls.string_not_analyzed(),
                     'item_type': cls.string_not_analyzed(),
                     'region': cls.string_not_analyzed(),
                     'search_names': {'type': 'string',
@@ -255,6 +256,7 @@ class FeedShelfIndexer(BaseIndexer):
             'carrier': mkt.carriers.CARRIER_CHOICE_DICT[obj.carrier].slug,
             'created': obj.created,
             'image_hash': obj.image_hash,
+            'image_landing_hash': obj.image_landing_hash,
             'item_type': feed.FEED_TYPE_SHELF,
             'region': mkt.regions.REGIONS_CHOICES_ID_DICT[obj.region].slug,
             'search_names': list(set(string for _, string

@@ -7,7 +7,6 @@ from django.utils.text import slugify
 
 import mock
 from elasticsearch_dsl.search import Search
-from nose import SkipTest
 from nose.tools import eq_, ok_
 
 import amo.tests
@@ -878,7 +877,7 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
         self.obj_data['image_hash'] = 'LOL'
         res, data = self.update(self.client,
                                 background_image_upload_url='')
-        eq_(FeedCollection.objects.all()[0].image_hash, '')
+        eq_(FeedCollection.objects.all()[0].image_hash, None)
 
     def test_get_with_apps(self):
         self.feed_permission()
@@ -916,10 +915,6 @@ class TestFeedCollectionViewSet(BaseTestFeedCollection, RestOAuth):
 
     @mock.patch('mkt.feed.fields.requests.get')
     def test_background_image_crush(self, download_mock):
-        if os.environ.get('JENKINS_HOME'):
-            # This integration test is pretty slow (5s). Keep it around local.
-            raise SkipTest()
-
         res_mock = mock.Mock()
         res_mock.status_code = 200
         res_mock.content = open(
@@ -982,6 +977,28 @@ class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
         eq_(res.status_code, 201)
         for name, value in self.obj_data.iteritems():
             eq_(value, data[name])
+
+    @mock.patch('mkt.feed.views.pngcrush_image.delay')
+    @mock.patch('mkt.feed.fields.requests.get')
+    def test_create_with_multiple_images(self, download_mock, crush_mock):
+        res_mock = mock.Mock()
+        res_mock.status_code = 200
+        res_mock.content = open(
+            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
+        download_mock.return_value = res_mock
+
+        self.feed_permission()
+        req_data = self.obj_data.copy()
+        req_data.update(
+            {'background_image_upload_url': 'ngokevin.com',
+             'background_image_landing_upload_url': 'ngonekevin.com'})
+        res, data = self.create(self.client, **req_data)
+
+        obj = FeedShelf.objects.all()[0]
+        ok_(data['background_image'].endswith(obj.image_hash))
+        eq_(crush_mock.call_args_list[0][0][0], obj.image_path())
+        ok_(data['background_image_landing'].endswith(obj.image_landing_hash))
+        eq_(crush_mock.call_args_list[1][0][0], obj.image_path('_landing'))
 
 
 class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
@@ -1265,7 +1282,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
     def test_limit_honored(self, mock_paginate_by):
         PAGINATE_BY = 3
-        TOTAL = PAGINATE_BY+1
+        TOTAL = PAGINATE_BY + 1
         mock_paginate_by.return_value = PAGINATE_BY
 
         self.feed_factory(num_items=TOTAL)
@@ -1280,7 +1297,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
     def test_offset_honored(self, mock_paginate_by):
         PAGINATE_BY = 3
-        TOTAL = PAGINATE_BY*2+1  # Three pages.
+        TOTAL = PAGINATE_BY * 2 + 1  # Three pages.
         mock_paginate_by.return_value = TOTAL
 
         self.feed_factory(num_items=TOTAL)
