@@ -72,6 +72,7 @@ lookup = {
     'CHN': _lazy(u'China'),
     'COL': _lazy(u'Colombia'),
     'CRI': _lazy(u'Costa Rica'),
+    'CZE': _lazy(u'Czech Republic'),
     'DEU': _lazy(u'Germany'),
     'ECU': _lazy(u'Ecuador'),
     'ESP': _lazy(u'Spain'),
