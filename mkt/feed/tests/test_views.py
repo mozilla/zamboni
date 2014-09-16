@@ -1452,6 +1452,18 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get()
         eq_(res.status_code, 200)
 
+    def test_many_apps(self):
+        for x in range(4):
+            coll = self.feed_collection_factory(
+                app_ids=[amo.tests.app_factory().id for x in range(3)])
+            FeedItem.objects.create(collection=coll,
+                                    item_type=feed.FEED_TYPE_COLL, region=1)
+
+        res, data = self._get(region=1)
+        eq_(res.status_code, 200)
+        for obj in data['objects']:
+            eq_(obj['collection']['app_count'], 3)
+
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
