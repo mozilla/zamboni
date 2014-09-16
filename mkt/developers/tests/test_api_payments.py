@@ -83,7 +83,6 @@ class TestUpsell(RestOAuth, UpsellCase):
     def setUp(self):
         super(TestUpsell, self).setUp()
         UpsellCase.setUp(self)
-        self.create_switch('allow-b2g-paid-submission')
 
     def test_create(self):
         eq_(self.client.post(self.upsell_list, data={}).status_code, 400)

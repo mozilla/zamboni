@@ -51,8 +51,6 @@ class AppHubTest(amo.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
-        self.create_flag('allow-b2g-paid-submission')
-
         self.url = reverse('mkt.developers.apps')
         self.user = UserProfile.objects.get(username='31337')
         assert self.client.login(username=self.user.email, password='password')
@@ -322,8 +320,6 @@ class TestMarketplace(amo.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
-        self.create_flag('allow-b2g-paid-submission')
-
         self.addon = Addon.objects.get(id=337141)
         self.addon.update(status=amo.STATUS_PUBLIC,
                           highest_status=amo.STATUS_PUBLIC)

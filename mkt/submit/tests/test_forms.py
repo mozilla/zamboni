@@ -65,7 +65,6 @@ class TestNewWebappForm(amo.tests.TestCase):
         eq_(form.ERRORS['none'], form.errors['paid_platforms'])
 
     def test_paid(self):
-        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
                                     'upload': self.file.uuid},
                                    request=self.request)
@@ -73,14 +72,12 @@ class TestNewWebappForm(amo.tests.TestCase):
         eq_(form.get_paid(), amo.ADDON_PREMIUM)
 
     def test_free(self):
-        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
         eq_(form.get_paid(), amo.ADDON_FREE)
 
     def test_platform(self):
-        self.create_flag('allow-b2g-paid-submission')
         mappings = (
             ({'free_platforms': ['free-firefoxos']}, [amo.DEVICE_GAIA]),
             ({'paid_platforms': ['paid-firefoxos']}, [amo.DEVICE_GAIA]),
@@ -98,7 +95,6 @@ class TestNewWebappForm(amo.tests.TestCase):
             self.assertSetEqual(res, form.get_devices())
 
     def test_both(self):
-        self.create_flag('allow-b2g-paid-submission')
         form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
                                     'free_platforms': ['free-firefoxos']},
                                    request=self.request)

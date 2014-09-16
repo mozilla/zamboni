@@ -20,7 +20,7 @@ import amo
 from lib.pay_server import get_client
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.api.authorization import AllowAppOwner, GroupPermission, switch
+from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import MarketplaceView
 from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.constants.payments import PROVIDER_BANGO
@@ -167,8 +167,7 @@ class UpsellPermission(BasePermission):
 
 class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
                     UpdateModelMixin, MarketplaceView, GenericViewSet):
-    permission_classes = (switch('allow-b2g-paid-submission'),
-                          UpsellPermission,)
+    permission_classes = (UpsellPermission,)
     queryset = AddonUpsell.objects.filter()
     serializer_class = UpsellSerializer
 

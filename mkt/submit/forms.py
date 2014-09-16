@@ -179,8 +179,7 @@ class NewWebappVersionForm(happyforms.Form):
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
-        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
-            and 'paid_platforms' in self.fields):
+        if ('paid_platforms' in self.fields):
             del self.fields['paid_platforms']
 
     def clean(self):

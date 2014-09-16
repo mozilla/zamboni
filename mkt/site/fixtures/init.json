@@ -1713,26 +1713,6 @@
     {
         "fields": {
             "authenticated": false,
-            "created": "2013-06-25T08:49:26",
-            "everyone": false,
-            "groups": [],
-            "languages": "",
-            "modified": "2013-06-25T08:49:26",
-            "name": "allow-b2g-paid-submission",
-            "note": "Enable this to allow paid apps in the submission process.",
-            "percent": null,
-            "rollout": false,
-            "staff": false,
-            "superusers": false,
-            "testing": false,
-            "users": []
-        },
-        "model": "waffle.flag",
-        "pk": 14
-    },
-    {
-        "fields": {
-            "authenticated": false,
             "created": "2013-09-13T12:56:36",
             "everyone": false,
             "groups": [],
