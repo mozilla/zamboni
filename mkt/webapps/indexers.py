@@ -433,8 +433,8 @@ class WebappIndexer(BaseIndexer):
         WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
 
     @classmethod
-    def get_app_filter(cls, request, additional_data, sq=None,
-                       reviewers=False):
+    def get_app_filter(cls, request, additional_data=None, sq=None,
+                       app_ids=None, reviewers=False):
         """
         THE grand, consolidated ES filter for Webapps. By default:
         - Excludes non-public apps.
@@ -444,12 +444,15 @@ class WebappIndexer(BaseIndexer):
 
         additional_data -- an object with more data to allow more filtering.
         sq -- if you have an existing search object to filter off of.
+        app_ids -- if you want to filter by a list of app IDs.
         reviewers -- doesn't apply the consumer-side excludes (public/region).
         """
         from mkt.api.base import get_region_from_request
         from mkt.search.views import name_query
 
         sq = sq or cls.search()
+        additional_data = additional_data or {}
+        app_ids = app_ids or []
 
         data = {
             'app_type': [],
@@ -462,7 +465,7 @@ class WebappIndexer(BaseIndexer):
             'premium_type': [],
             'profile': get_feature_profile(request),
             'q': '',
-            'region': get_region_from_request(request).id,
+            'region': getattr(get_region_from_request(request), 'id', None),
             'status': None,
             'supported_locales': [],
             'tags': '',
@@ -508,10 +511,13 @@ class WebappIndexer(BaseIndexer):
             if data['is_offline'] is not None:
                 must.append(F('term', is_offline=data['is_offline']))
 
-        if must:
-            sq = sq.filter(es_filter.Bool(must=must))
+        # SHOULD.
+        should = [es_filter.Terms(id=app_ids)] if app_ids else []
 
         # FILTER.
+        if must or should:
+            sq = sq.filter(es_filter.Bool(must=must, should=should))
+
         if data['region'] and not reviewers:
             # Region exclusions.
             sq = sq.filter(~F('term', region_exclusions=data['region']))

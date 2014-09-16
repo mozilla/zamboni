@@ -1398,6 +1398,15 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get()
         ok_(data['objects'])
 
+    def test_groups(self):
+        """Test feed collection app groups."""
+        coll = self.feed_collection_factory(grouped=True)
+        FeedItem.objects.create(collection=coll, item_type=feed.FEED_TYPE_COLL,
+                                region=1)
+        res, data = self._get()
+        eq_(data['objects'][0]['collection']['apps'][0]['group'],
+            {'en-US': 'first-group'})
+
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures

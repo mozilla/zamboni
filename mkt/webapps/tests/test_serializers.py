@@ -667,6 +667,13 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         res = self.serialize()
         eq_(res['author'], '')
 
+    def test_feed_collection_group(self):
+        app = WebappIndexer.search().filter(
+            'term', id=self.app.pk).execute().hits[0]
+        app['group_translations'] = [{'lang': 'en-US', 'string': 'My Group'}]
+        res = ESAppSerializer(app, context={'request': self.request})
+        eq_(res.data['group'], {'en-US': 'My Group'})
+
 
 class TestSimpleESAppSerializer(amo.tests.ESTestCase):
     fixtures = fixture('webapp_337141')
