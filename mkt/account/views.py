@@ -5,6 +5,7 @@ import uuid
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
+from django.http import Http404
 
 import basket
 import commonware.log
@@ -23,9 +24,9 @@ import amo
 from mkt.users.models import UserProfile
 from mkt.users.views import browserid_authenticate
 
-from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
-                                     FxaLoginSerializer, LoginSerializer,
-                                     NewsletterSerializer,
+from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
+                                     FeedbackSerializer, FxaLoginSerializer,
+                                     LoginSerializer, NewsletterSerializer,
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -108,6 +109,24 @@ class AccountView(MineMixin, CORSMixin, RetrieveUpdateAPIView):
     model = UserProfile
     permission_classes = (AllowOwner,)
     serializer_class = AccountSerializer
+
+
+class AccountInfoView(CORSMixin, RetrieveAPIView):
+    permission_classes = []
+    cors_allowed_methods = ['get']
+    # Only select users with an FxA source, everything else will be unkown.
+    queryset = UserProfile.objects.filter(source=amo.LOGIN_SOURCE_FXA)
+    serializer_class = AccountInfoSerializer
+    lookup_field = 'email'
+
+    def get_object(self, *args, **kwargs):
+        try:
+            user = super(AccountInfoView, self).get_object(*args, **kwargs)
+        except Http404:
+            # The base get_object() will raise Http404 instead of DoesNotExist.
+            # Treat no object as an anonymous user (source: unknown).
+            user = UserProfile()
+        return user
 
 
 class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):

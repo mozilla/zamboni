@@ -25,6 +25,7 @@ lookup the logged in user account id.
         {
             "resource_uri": "/api/v2/account/settings/1/",
             "display_name": "Nice person",
+            "verified": true
         }
 
 To update account information:
