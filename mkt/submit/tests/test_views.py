@@ -255,7 +255,8 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         super(BaseWebAppTest, self).setUp()
         self.manifest = self.manifest_path('mozball.webapp')
         self.manifest_url = 'http://allizom.org/mozball.webapp'
-        self.upload = self.get_upload(abspath=self.manifest)
+        self.upload = self.get_upload(abspath=self.manifest,
+                                      user=UserProfile.objects.get(pk=999))
         self.upload.update(name=self.manifest_url)
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
@@ -351,7 +352,8 @@ class TestCreateWebApp(BaseWebAppTest):
     def test_manifest_with_any_extension(self):
         self.manifest = os.path.join(settings.ROOT, 'mkt', 'developers',
                                      'tests', 'addons', 'mozball.owa')
-        self.upload = self.get_upload(abspath=self.manifest)
+        self.upload = self.get_upload(abspath=self.manifest,
+                                      user=UserProfile.objects.get(pk=999))
         addon = self.post_addon()
         eq_(addon.type, amo.ADDON_WEBAPP)
 
@@ -391,7 +393,8 @@ class TestCreateWebApp(BaseWebAppTest):
         # This manifest has a locale code of "pt" which is in the
         # SHORTER_LANGUAGES setting and should get converted to "pt-PT".
         self.manifest = self.manifest_path('short-locale.webapp')
-        self.upload = self.get_upload(abspath=self.manifest)
+        self.upload = self.get_upload(abspath=self.manifest,
+                                      user=UserProfile.objects.get(pk=999))
         addon = self.post_addon()
         eq_(addon.default_locale, 'pt-PT')
         eq_(addon.versions.latest().supported_locales, 'es')
@@ -400,7 +403,8 @@ class TestCreateWebApp(BaseWebAppTest):
         # This manifest has a locale code of "en-GB" which is unsupported, so
         # we default to "en-US".
         self.manifest = self.manifest_path('unsupported-default-locale.webapp')
-        self.upload = self.get_upload(abspath=self.manifest)
+        self.upload = self.get_upload(abspath=self.manifest,
+                                      user=UserProfile.objects.get(pk=999))
         addon = self.post_addon()
         eq_(addon.default_locale, 'en-US')
         eq_(addon.versions.latest().supported_locales, 'es,it')
@@ -472,7 +476,8 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.file = self.version.all_files[0]
         self.file.update(filename='mozball.zip')
 
-        self.upload = self.get_upload(abspath=self.package)
+        self.upload = self.get_upload(abspath=self.package,
+                                      user=UserProfile.objects.get(pk=999))
         self.upload.update(name='mozball.zip')
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
