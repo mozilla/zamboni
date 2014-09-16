@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-11 15:15+0000\n"
+"PO-Revision-Date: 2014-09-16 12:06+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410448553.0\n"
+"X-POOTLE-MTIME: 1410869175.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -2672,10 +2672,14 @@ msgstr "Ваши коментари"
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Објављено</b>: Видљиво свима на Marketplace-у и укључено је у резултатима "
+"претраге и у листинг страницама."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Нераспоређено</b>: Видљиво само особама са URL и не појављује се у "
+"резултатима претраге и у листинг страницама."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
@@ -2683,7 +2687,7 @@ msgstr "Видљивост апликације:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Само мој тим</b>: Видљиво само члановима тима."
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2769,6 +2773,8 @@ msgstr "Командна линија"
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Направите да ова верзија Ваше апликације буде активна чим је прегледана и "
+"одобрена."
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3132,7 +3138,7 @@ msgstr "Верзија је успешно измењена."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Активна верзија је успешно направљена."
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3636,12 +3642,12 @@ msgstr "Апликацију је <b>одбио</b> Firefox Marketplace реце
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "Верзија <b>{0}</b> Ваше апликације је <b>{1}</b> и <b>активна</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "Верзија <b>{0}</b> Ваше апликације је <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:92
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3653,31 +3659,37 @@ msgstr "Ви ћете добити е-пошту кад се преглед за
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Апликација је <b>објављена</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "Ваша апликација је <b>одобрена</b> и тренутно је <b>нераспоређена</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Само они са следећим URL могу да виде и инсталирају ову апликацију:<br> <a "
+"href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"Ваша апликација је <b>одобрена </b> и тренутно је видљива само члановима "
+"тима."
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Само <b>чланови тима</b> са следећим URL могу да виде и да инсталирају ову "
+"апликацију:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Сазнајте више о критеријумима за разматрање апликације"
 
 #: mkt/developers/templates/developers/apps/status.html:137
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Ажурирај видљивост апликације"
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3713,7 +3725,7 @@ msgstr "Преузми"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
-msgstr ""
+msgstr "Направи активним"
 
 #: mkt/developers/templates/developers/apps/status.html:247
 msgid "Upload New Version"
@@ -3722,6 +3734,8 @@ msgstr "Отпреми нову верзију"
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
+"Отпремите нову верзију ове упаковане апликације . Нове верзије морају бити "
+"прегледане пре него што ће бити на располагању за инсталацију."
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3755,10 +3769,14 @@ msgstr "Ваша апликација чека рецензију."
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"Наша рецензија датума {review_date} је установила да Ваша апликација "
+"подржава уређаје који имају мало меорије."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
+"Наша рецензија датума {review_date} је установила да Ваша апликација не "
+"подржава уређаје који имају мало меорије."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3773,14 +3791,19 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
 msgstr ""
+"Можете да ажурирате регионе на <a href=\"{compatibility_page}\">страници "
+"компатибилности</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Немој приказати ову апликацију на уређајима који имају мало меморије"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Ако Ваша апликација <a href=\"{mdn_link}\">ради на уређајима који имају мало "
+"меморије</a> онда можете да затражите преглед да би она била приказана на "
+"уређајима који имају мало меморије."
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
@@ -3933,6 +3956,8 @@ msgstr "Избриши верзију"
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Да ли сте сигурни да желите да престанете да приказујете Вашу апликацију на "
+"уређајима који имају мало меморије?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4712,10 +4737,14 @@ msgstr "Ваша апликација мора дефинисати <a href=\"%(
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Ова могућност се и даље развија. Молимо погледајте <a target=\"_blank\" href=\""
+"%(doc_link)s\">документацију</a> за више информација."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Ако наиђете на проблем, молимо <a target=\"_blank\" href=\"%"
+"(bug_link)s\">пријавите грешку</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -5004,6 +5033,8 @@ msgstr "Региони који захтевају додатна разматр
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
 msgstr ""
+"Морате <a href=\"{status_page}\">затражити рецензију</a> да би Ваша апликација "
+"била приказана на уређајима који имају мало меморије."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5650,6 +5681,8 @@ msgstr "Преузимам датотеку."
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
+"Лого производа мора бити слика величине 64x64. Проверите да ли је URL "
+"исправан."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6671,7 +6704,7 @@ msgstr "У реду за ескалацију"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "У Tarako реду за чекање"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7162,10 +7195,14 @@ msgstr "Верзија %s већ постоји"
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Објави моју апликацију и нека буде видљива свима на Marketplace-у и нека "
+"буде укључена у резултатима претраге."
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Немој објавити моју апликацију. Обавести ме и ја ћу прилагодити видљивост "
+"апликације након њеног одобрења."
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7215,7 +7252,7 @@ msgstr "Ваша апликација ће бити прегледана од с
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "Једном када се апликација одобри, изаберите опцију за објављивање:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7345,10 +7382,14 @@ msgstr "Погледајте листу свих Ваших пријава на 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
+"меморије на <a href=\"%(status_url)s\">Статус &amp; Верзије</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
+"меморије на <a href=\"%(status_url)s\">Статус</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
