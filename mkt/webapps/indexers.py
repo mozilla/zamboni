@@ -512,7 +512,7 @@ class WebappIndexer(BaseIndexer):
                 must.append(F('term', is_offline=data['is_offline']))
 
         # SHOULD.
-        should = [es_filter.Terms(id=app_ids)]
+        should = [es_filter.Terms(id=app_ids)] if app_ids else []
 
         # FILTER.
         if must or should:
