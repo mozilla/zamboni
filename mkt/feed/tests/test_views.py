@@ -1236,7 +1236,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         else:
             with self.assertNumQueries(0):
                 res = client.get(self.url, kwargs)
-        data = json.loads(res.content)
+        data = json.loads(res.content) if res.content else {}
         return res, data
 
     @mock.patch('mkt.feed.views.statsd.timer')
@@ -1255,7 +1255,6 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_404(self):
         res, data = self._get(self.client, no_assert_queries=True)
-        eq_(len(data['objects']), 0)
         eq_(res.status_code, 404)
 
     def test_region_only(self):
@@ -1366,6 +1365,22 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get(region='us')
         eq_(len(data['objects']), len(feed_items))
 
+    def test_restofworld_fallback_shelf_only(self):
+        shelf = self.feed_shelf_factory()
+        shelf.feeditem_set.create(region=mkt.regions.US.id,
+                                  item_type=feed.FEED_TYPE_SHELF)
+
+        feed_items = self.feed_factory()
+        res, data = self._get(region='us')
+        eq_(len(data['objects']), len(feed_items))
+
+    def test_shelf_only_404(self):
+        shelf = self.feed_shelf_factory()
+        shelf.feeditem_set.create(region=mkt.regions.US.id,
+                                  item_type=feed.FEED_TYPE_SHELF)
+        res, data = self._get()
+        eq_(res.status_code, 404)
+
     def test_order(self):
         """Test feed elements are ordered by their order attribute."""
         feed_items = [self.feed_item_factory(order=i + 1) for i in xrange(4)]
@@ -1381,7 +1396,7 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         FeedItem.objects.create(collection=coll, item_type=feed.FEED_TYPE_COLL,
                                 region=1)
         res, data = self._get()
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
         app_ids.append(app_factory().id)
         coll.set_apps(app_ids)
@@ -1424,6 +1439,19 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(data['objects'][0]['collection']['apps'][0]['group'],
             {'en-US': 'first-group'})
 
+    def test_fallback_if_apps_filtered(self):
+        # Create fallback item.
+        coll = self.feed_collection_factory(
+            app_ids=[amo.tests.app_factory().id])
+        FeedItem.objects.create(collection=coll, item_type=feed.FEED_TYPE_COLL,
+                                region=1)
+
+        feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
+        app = feed_item.app.app
+        app.update(disabled_by_user=True)
+        res, data = self._get()
+        eq_(res.status_code, 200)
+
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
@@ -1435,8 +1463,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def _get(self, **kwargs):
         self._refresh()
         res = self.anon.get(self.url, kwargs)
-        data = json.loads(res.content)
-        eq_(res.status_code, 200)
+        data = json.loads(res.content) if res.content else {}
         return res, data
 
     def test_feedapp(self):
@@ -1446,11 +1473,11 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
         # Mobile doesn't show desktop apps.
         res, data = self._get(device='firefoxos', dev='firefoxos')
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
         res, data = self._get(device='mobile', dev='android')
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
         res, data = self._get(device='tablet', dev='android')
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
         # Desktop shows desktop apps.
         res, data = self._get(dev='desktop')
@@ -1514,7 +1541,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
         # Does not shows up on Android.
         res, data = self._get(device='tablet', dev='android')
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
     def test_bad_device_type(self):
         self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
@@ -1530,7 +1557,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
                                 region=1)
 
         res, data = self._get(device='mobile', dev='android')
-        eq_(len(data['objects']), 0)
+        eq_(res.status_code, 404)
 
         res, data = self._get(device='mobile', dev='android', filtering=0)
         eq_(len(data['objects']), 1)
@@ -1546,8 +1573,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def _get(self, **kwargs):
         self._refresh()
         res = self.anon.get(self.url, kwargs)
-        data = json.loads(res.content)
-        eq_(res.status_code, 200)
+        data = json.loads(res.content) if res.content else {}
         return res, data
 
     def test_feedapp(self):
@@ -1558,7 +1584,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res, data = self._get()
         ok_(data['objects'])
         res, data = self._get(region='de')
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
         res, data = self._get(region='us')
         ok_(data['objects'])
@@ -1599,7 +1625,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
                                 region=1)
 
         res, data = self._get(region='br')
-        eq_(len(data['objects']), 0)
+        eq_(res.status_code, 404)
 
         res, data = self._get(region='br', filtering=0)
         eq_(len(data['objects']), 1)
@@ -1615,8 +1641,7 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def _get(self, **kwargs):
         self._refresh()
         res = self.anon.get(self.url, kwargs)
-        data = json.loads(res.content)
-        eq_(res.status_code, 200)
+        data = json.loads(res.content) if res.content else {}
         return res, data
 
     def test_feedapp(self):
@@ -1624,7 +1649,7 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app = feed_item.app.app
         app.update(status=amo.STATUS_PENDING)
         res, data = self._get()
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
     def test_coll(self):
         app_pending = amo.tests.app_factory(status=amo.STATUS_PENDING)
@@ -1646,7 +1671,7 @@ class TestFeedViewStatusFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app = feed_item.app.app
         app.update(disabled_by_user=True)
         res, data = self._get()
-        ok_(not data['objects'])
+        eq_(res.status_code, 404)
 
 
 class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
@@ -1722,8 +1747,7 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         self._refresh()
         with self.assertNumQueries(0):
             res = self.anon.get(url, kwargs)
-        data = json.loads(res.content)
-        eq_(res.status_code, 200)
+        data = json.loads(res.content) if res.content else {}
         return res, data
 
     def _assert(self, obj, result, limit=1000):

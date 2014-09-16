@@ -606,37 +606,50 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
 
         return sq.filter(es_filter.Bool(should=filters))[0:len(feed_items)]
 
-    def _get(self, request, *args, **kwargs):
+    def _check_empty_feed(self, items, rest_of_world):
+        """
+        Return -1 if feed is empty and we are already falling back to RoW.
+        Return 0 if feed is empty and we are not falling back to RoW yet.
+        Return 1 if at least one feed item and the only feed item is not shelf.
+        """
+        if not items or (len(items) == 1 and items[0].get('shelf')):
+            # Empty feed.
+            if rest_of_world:
+                return -1
+            return 0
+        return 1
+
+    def _handle_empty_feed(self, empty_feed_code, request, args, kwargs):
+        """
+        If feed is empty, this method handles appropriately what to return.
+        If empty_feed_code == 0: try to fallback to RoW.
+        If empty_feed_code == -1: 404.
+        """
+        if empty_feed_code == 0:
+            return self._get(request, rest_of_world=True, *args, **kwargs)
+        return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+    def _get(self, request, rest_of_world=False, *args, **kwargs):
         es = FeedItemIndexer.get_es()
 
         # Parse carrier and region.
-        q = request.QUERY_PARAMS
-        region = request.REGION.id
-        carrier = None
-        if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
-            carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
+        if rest_of_world:
+            region = mkt.regions.RESTOFWORLD.id
+            carrier = None
+        else:
+            q = request.QUERY_PARAMS
+            region = request.REGION.id
+            carrier = None
+            if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
+                carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
 
         # Fetch FeedItems.
         sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
                                     region=region, carrier=carrier)
         feed_items = self.paginate_queryset(sq)
-
-        # No items returned; try to fall back to RoW.
-        if not feed_items:
-            world_sq = self.get_es_feed_query(FeedItemIndexer.search(using=es))
-            world_feed_items = self.paginate_queryset(world_sq)
-
-            # No RoW feed items, either. Let's 404.
-            if not world_feed_items:
-                world_meta = mkt.api.paginator.CustomPaginationSerializer(
-                    world_feed_items,
-                    context={'request': request}).data['meta']
-                return response.Response({'meta': world_meta, 'objects': []},
-                                         status=status.HTTP_404_NOT_FOUND)
-
-            # Return RoW items.
-            else:
-                feed_items = world_feed_items
+        feed_ok = self._check_empty_feed(feed_items, rest_of_world)
+        if feed_ok != 1:
+            return self._handle_empty_feed(feed_ok, request, args, kwargs)
 
         # Build the meta object.
         meta = mkt.api.paginator.CustomPaginationSerializer(
@@ -673,6 +686,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         # Filter excluded apps. If there are feed items that have all their
         # apps excluded, they will be removed from the feed.
         feed_items = self.filter_feed_items(request, feed_items)
+        feed_ok = self._check_empty_feed(feed_items, rest_of_world)
+        if feed_ok != 1:
+            return self._handle_empty_feed(feed_ok, request, args, kwargs)
 
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
