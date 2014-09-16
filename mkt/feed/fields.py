@@ -75,7 +75,12 @@ class AppESField(serializers.Field):
                 # ES seems to sometimes return ID keyed on string and integer.
                 group_index = self.context['group_apps'].get(app['id'])
             if group_index is not None:
-                app.update(self.context['group_names'][group_index])
+                if isinstance(app, dict):
+                    app.update(self.context['group_names'][group_index])
+                else:
+                    setattr(app, 'group_translations',
+                            self.context['group_names'][group_index]
+                                        ['group_translations'])
         return app
 
     def to_native(self, app_ids):
