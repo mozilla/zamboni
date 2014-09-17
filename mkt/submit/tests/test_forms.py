@@ -58,12 +58,6 @@ class TestNewWebappForm(amo.tests.TestCase):
         eq_(form.ERRORS['none'], form.errors['free_platforms'])
         eq_(form.ERRORS['none'], form.errors['paid_platforms'])
 
-    def test_not_paid(self):
-        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos']})
-        assert not form.is_valid()
-        eq_(form.ERRORS['none'], form.errors['free_platforms'])
-        eq_(form.ERRORS['none'], form.errors['paid_platforms'])
-
     def test_paid(self):
         form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
                                     'upload': self.file.uuid},
