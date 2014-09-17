@@ -291,7 +291,9 @@ packaged app. For example: ``app://foo-app.com``.
 
     **Request**
 
-    None
+    :param active: include active products, if ignored all in-app products are
+    returned. Value should be one of `0` or `1`.
+    :type active: string
 
     **Response**
 
