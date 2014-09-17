@@ -120,12 +120,6 @@ class TestVersionViewSet(RestOAuth):
         res = self.client.get(url)
         eq_(res.status_code, 404)
 
-    def test_get_non_app(self):
-        self.app.update(type=amo.ADDON_PERSONA)
-        url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
-        res = self.client.get(url)
-        eq_(res.status_code, 404)
-
     def test_delete(self):
         url = rest_reverse('version-detail', kwargs={'pk': self.version.pk})
         res = self.client.delete(url)

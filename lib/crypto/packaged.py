@@ -129,11 +129,6 @@ def sign(version_id, reviewer=False, resign=False, **kw):
     app = version.addon
     log.info('Signing version: %s of app: %s' % (version_id, app))
 
-    if not app.type == amo.ADDON_WEBAPP:
-        log.error('[Webapp:%s] Attempt to sign something other than an app.' %
-                  app.id)
-        raise SigningError('Not an app')
-
     if not app.is_packaged:
         log.error('[Webapp:%s] Attempt to sign a non-packaged app.' % app.id)
         raise SigningError('Not packaged')

@@ -3631,7 +3631,7 @@ class TestQueueSort(AppReviewerTest):
         version_1.update(nomination=days_ago(2))
 
         qs = (Version.objects.no_cache().filter(
-              files__status=amo.STATUS_PENDING, addon__type=amo.ADDON_WEBAPP,
+              files__status=amo.STATUS_PENDING,
               addon__disabled_by_user=False,
               addon__status=amo.STATUS_PENDING)
               .order_by('nomination', 'created')

@@ -79,14 +79,15 @@
         <dt>{{ _('Submissions') }}:</dt>
         <dd class="product-lookup-list">
           {% for addon in user_addons %}
-          <div><a href="{{ addon.get_url_path() }}">
-                  {% if addon.name %}
-                    {{ addon.name }}
-                  {% else %}
-                    {{ _('Unnamed') }}
-                  {% endif %}
-               </a>
-                ({{ amo.ADDON_TYPE[addon.type] }})</div>
+            <div>
+              <a href="{{ addon.get_url_path() }}">
+                {% if addon.name %}
+                  {{ addon.name }}
+                {% else %}
+                  {{ _('Unnamed') }}
+                {% endif %}
+              </a>
+            </div>
           {% endfor %}
         </dd>
       </dl>

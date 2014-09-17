@@ -413,8 +413,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         is_privileged = data['app_type'] == amo.ADDON_WEBAPP_PRIVILEGED
 
         obj = Webapp(id=data['id'], app_slug=data['app_slug'],
-                     is_packaged=is_packaged, type=amo.ADDON_WEBAPP,
-                     icon_type='image/png')
+                     is_packaged=is_packaged, icon_type='image/png')
 
         # Set relations and attributes we need on those relations.
         # The properties set on latest_version and current_version differ
@@ -617,7 +616,7 @@ class RocketbarESAppSerializer(serializers.Serializer):
         # fake_app is a fake instance because we need to access a couple
         # properties and methods on Webapp. It should never hit the database.
         self.fake_app = Webapp(
-            id=obj['id'], icon_type='image/png', type=amo.ADDON_WEBAPP,
+            id=obj['id'], icon_type='image/png',
             default_locale=obj.get('default_locale', settings.LANGUAGE_CODE),
             icon_hash=obj.get('icon_hash'),
             modified=es_to_datetime(obj['modified']))

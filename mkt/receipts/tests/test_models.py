@@ -25,14 +25,13 @@ class TestReceipt(amo.tests.TestCase):
     fixtures = ['base/users.json']
 
     def setUp(self):
-        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        self.app = Webapp.objects.create()
         self.app.update(manifest_url='http://f.c/')
         self.user = UserProfile.objects.get(pk=999)
         self.other_user = UserProfile.objects.exclude(pk=999)[0]
 
     def create_install(self, user, webapp):
-        webapp.update(type=amo.ADDON_WEBAPP,
-                      manifest_url='http://somesite.com/')
+        webapp.update(manifest_url='http://somesite.com/')
         return Installed.objects.safer_get_or_create(user=user,
                                                      addon=webapp)[0]
 

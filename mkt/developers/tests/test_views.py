@@ -59,8 +59,7 @@ class AppHubTest(amo.tests.TestCase):
         for i in xrange(num):
             addon = Webapp.objects.get(id=addon_id)
             new_addon = Webapp.objects.create(
-                type=addon.type, status=addon.status,
-                name='cloned-addon-%s-%s' % (addon_id, i))
+                status=addon.status, name='cloned-addon-%s-%s' % (addon_id, i))
             AddonUser.objects.create(user=self.user, addon=new_addon)
             ids.append(new_addon.id)
         return ids
@@ -109,7 +108,6 @@ class TestAppBreadcrumbs(AppHubTest):
 
     def test_webapp_management_breadcrumbs(self):
         webapp = Webapp.objects.get(id=337141)
-        AddonUser.objects.create(user=self.user, addon=webapp)
         r = self.client.get(webapp.get_dev_url('edit'))
         eq_(r.status_code, 200)
         expected = [
@@ -129,12 +127,8 @@ class TestAppDashboard(AppHubTest):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#dashboard .item').length, 0)
 
-    def make_mine(self):
-        AddonUser.objects.create(addon_id=337141, user=self.user)
-
     def test_public_app(self):
         app = self.get_app()
-        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid=%s]' % app.id)
         assert item.find('.price'), 'Expected price'
@@ -147,7 +141,6 @@ class TestAppDashboard(AppHubTest):
     def test_incomplete_app(self):
         app = self.get_app()
         app.update(status=amo.STATUS_NULL)
-        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid=%s] p.incomplete' % app.id), (
             'Expected message about incompleted add-on')
@@ -157,7 +150,6 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         version = Version.objects.create(addon=app, version='1.23')
         app.update(_current_version=version, is_packaged=True)
-        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         eq_(doc('.item[data-addonid=%s] .item-current-version' % app.id
                 ).text(),
@@ -168,7 +160,6 @@ class TestAppDashboard(AppHubTest):
         ucm.return_value = True
 
         app = self.get_app()
-        self.make_mine()
         app.update(is_packaged=True)
         Version.objects.create(addon=app, version='1.24')
         doc = pq(self.client.get(self.url).content)
@@ -182,7 +173,6 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         app.update(public_stats=True, is_packaged=True,
                    premium_type=amo.ADDON_PREMIUM_INAPP)
-        self.make_mine()
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
@@ -205,7 +195,6 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         app.name = u'My app é <script>alert(5)</script>'
         app.save()
-        self.make_mine()
         content = smart_unicode(self.client.get(self.url).content)
         ok_(not unicode(app.name) in content)
         ok_(unicode(escape(app.name)) in content)
@@ -1015,8 +1004,7 @@ class TestDeleteApp(amo.tests.TestCase):
         eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = amo.tests.app_factory(type=amo.ADDON_WEBAPP, name='Boop',
-                                         status=amo.STATUS_NULL)
+        webapp = amo.tests.app_factory(name='Boop', status=amo.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
         eq_(list(Webapp.objects.filter(id=webapp.id)), [],

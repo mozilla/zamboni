@@ -4,14 +4,13 @@ from django import forms
 
 from tower import ugettext_lazy as _lazy
 
-import amo
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.webapps.models import Webapp
 
 
 class ReceiptForm(forms.Form):
     app = SluggableModelChoiceField(
-        queryset=Webapp.objects.filter(type=amo.ADDON_WEBAPP),
+        queryset=Webapp.objects.all(),
         sluggable_to_field_name='app_slug')
 
 

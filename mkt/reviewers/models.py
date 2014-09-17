@@ -78,7 +78,7 @@ class ReviewerScore(amo.models.ModelBase):
     def get_event(cls, addon, status, **kwargs):
         """Return the review event type constant.
 
-        This is determined by the addon.type and the queue the addon is
+        This is determined by the app type and the queue the addon is
         currently in (which is determined from the status).
 
         Note: We're not using addon.status because this is called after the
@@ -147,7 +147,7 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def get_recent(cls, user, limit=5, addon_type=None):
+    def get_recent(cls, user, limit=5):
         """Returns most recent ReviewerScore records."""
         key = cls.get_key('get_recent:%s' % user.id)
         val = cache.get(key)
@@ -155,30 +155,25 @@ class ReviewerScore(amo.models.ModelBase):
             return val
 
         val = ReviewerScore.objects.no_cache().filter(user=user)
-        if addon_type is not None:
-            val.filter(addon__type=addon_type)
 
         val = list(val[:limit])
         cache.set(key, val, None)
         return val
 
     @classmethod
-    def get_breakdown(cls, user):
-        """Returns points broken down by addon type."""
-        # TODO: This makes less sense now that we only have apps.
-        key = cls.get_key('get_breakdown:%s' % user.id)
+    def get_performance(cls, user):
+        """Returns sum of reviewer points."""
+        key = cls.get_key('get_performance:%s' % user.id)
         val = cache.get(key)
         if val is not None:
             return val
 
         sql = """
              SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
+                    SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
              LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
              WHERE `reviewer_scores`.`user_id` = %s
-             GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
         with amo.models.skip_cache():
@@ -187,24 +182,22 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def get_breakdown_since(cls, user, since):
+    def get_performance_since(cls, user, since):
         """
-        Returns points broken down by addon type since the given datetime.
+        Returns sum of reviewer points since the given datetime.
         """
-        key = cls.get_key('get_breakdown:%s:%s' % (user.id, since.isoformat()))
+        key = cls.get_key('get_performance:%s:%s' % (user.id, since.isoformat()))
         val = cache.get(key)
         if val is not None:
             return val
 
         sql = """
              SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
+                    SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
              LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
              WHERE `reviewer_scores`.`user_id` = %s AND
                    `reviewer_scores`.`created` >= %s
-             GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
         with amo.models.skip_cache():
@@ -213,7 +206,7 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def _leaderboard_query(cls, since=None, types=None, addon_type=None):
+    def _leaderboard_query(cls, since=None, types=None):
         """
         Returns common SQL to leaderboard calls.
         """
@@ -230,13 +223,10 @@ class ReviewerScore(amo.models.ModelBase):
         if types is not None:
             query = query.filter(note_key__in=types)
 
-        if addon_type is not None:
-            query = query.filter(addon__type=addon_type)
-
         return query
 
     @classmethod
-    def get_leaderboards(cls, user, days=7, types=None, addon_type=None):
+    def get_leaderboards(cls, user, days=7, types=None):
         """Returns leaderboards with ranking for the past given days.
 
         This will return a dict of 3 items::
@@ -260,8 +250,7 @@ class ReviewerScore(amo.models.ModelBase):
         leader_top = []
         leader_near = []
 
-        query = cls._leaderboard_query(since=week_ago, types=types,
-                                       addon_type=addon_type)
+        query = cls._leaderboard_query(since=week_ago, types=types)
         scores = []
 
         user_rank = 0

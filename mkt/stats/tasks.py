@@ -73,8 +73,7 @@ def _get_monolith_jobs(date=None):
         # Marketplace reviews.
         'apps_review_count_new': [{
             'count': Review.objects.filter(
-                created__range=(date, next_date), editorreview=0,
-                addon__type=amo.ADDON_WEBAPP).count,
+                created__range=(date, next_date), editorreview=0).count,
         }],
 
         # New users
@@ -92,8 +91,7 @@ def _get_monolith_jobs(date=None):
         # New developers.
         'mmo_developer_count_total': [{
             'count': AddonUser.objects.filter(
-                user__created__lt=next_date,
-                addon__type=amo.ADDON_WEBAPP).values('user').distinct().count,
+                user__created__lt=next_date).values('user').distinct().count,
         }],
 
         # App counts.

@@ -67,11 +67,7 @@ def user_summary(request, user_id):
     appr = req.filter(status=amo.REFUND_APPROVED_INSTANT)
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
-    # TODO: This should return all `addon` types and not just webapps.
-    # -- currently get_details_url() fails on non-webapps so this is a
-    # temp fix.
-    user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
-                              .order_by('-created'))
+    user_addons = user.addons.order_by('-created')
     user_addons = paginate(request, user_addons, per_page=15)
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)

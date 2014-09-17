@@ -1,7 +1,6 @@
 {% extends 'reviewers/base.html' %}
 
 {% set pagetitle = _('Reviewer Scores for {0}')|fe(profile.name) %}
-{% set types = ('addons', 'apps') %}
 
 {% block title %}
   {{ reviewers_page_title(title=pagetitle) }}
@@ -18,37 +17,26 @@
   {% if not total %}
     <p>{{ _('No review points awarded yet.') }}</p>
   {% else %}
-    <h2>{{ _('All-time Point Breakdown by Type') }}</h2>
+    <h2>{{ _('All-time Point Breakdown') }}</h2>
     <table class="data-grid">
       <thead>
         <tr>
           <th></th>
-          <th class="number">{{ _('Add-ons') }}</th>
-          <th class="number">{{ _('Apps') }}</th>
-          <th class="number">{{ _('Total') }}</th>
+          <th class="number">{{ _('Points') }}</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>{{ _('Month') }}</th>
-          {% for type in types %}
-            <td class="number">{{ breakdown['month'][type]|numberfmt }}</td>
-          {% endfor %}
-          <td class="number">{{ breakdown['month'].values()|sum|numberfmt }}</td>
+          <td class="number">{{ performance['month']|numberfmt }}</td>
         </tr>
         <tr>
           <th>{{ _('Year') }}</th>
-          {% for type in types %}
-            <td class="number">{{ breakdown['year'][type]|numberfmt }}</td>
-          {% endfor %}
-          <td class="number">{{ breakdown['year'].values()|sum|numberfmt }}</td>
+          <td class="number">{{ performance['year']|numberfmt }}</td>
         </tr>
         <tr>
           <th>{{ _('All-Time') }}</th>
-          {% for type in types %}
-            <td class="number">{{ breakdown['total'][type]|numberfmt }}</td>
-          {% endfor %}
-          <td class="number">{{ breakdown['total'].values()|sum|numberfmt }}</td>
+          <td class="number">{{ performance['total']|numberfmt }}</td>
         </tr>
       </tbody>
     </table>

@@ -123,8 +123,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
 class TestWeeklyDownloads(amo.tests.TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP,
-                                         status=amo.STATUS_PUBLIC)
+        self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
 
     def get_app(self):
         return Webapp.objects.get(pk=self.app.pk)
@@ -249,8 +248,7 @@ class TestSignApps(amo.tests.TestCase):
 class TestUpdateTrending(amo.tests.TestCase):
 
     def setUp(self):
-        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP,
-                                         status=amo.STATUS_PUBLIC)
+        self.app = Webapp.objects.create(status=amo.STATUS_PUBLIC)
 
     @mock.patch('mkt.webapps.tasks._get_trending')
     def test_trending_saved(self, _mock):

@@ -61,7 +61,6 @@ class TestDevBreadcrumbs(amo.tests.TestCase):
         product.name = 'Steamcube'
         product.id = 9999
         product.app_slug = 'scube'
-        product.type = amo.ADDON_WEBAPP
         s = render("""{{ hub_breadcrumbs(product) }}""",
                    {'request': self.request, 'product': product})
         crumbs = pq(s)('li')
@@ -78,7 +77,6 @@ class TestDevBreadcrumbs(amo.tests.TestCase):
         product.name = 'Steamcube'
         product.id = 9999
         product.app_slug = 'scube'
-        product.type = amo.ADDON_WEBAPP
         product.get_dev_url.return_value = reverse('mkt.developers.apps.edit',
                                                  args=[product.app_slug])
         s = render("""{{ hub_breadcrumbs(product,

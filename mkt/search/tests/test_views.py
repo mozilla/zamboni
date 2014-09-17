@@ -604,17 +604,6 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['status'], amo.STATUS_PUBLIC)
         eq_('latest_version' in obj, False)
 
-    def test_addon_type_anon(self):
-        res = self.anon.get(self.url, data={'type': 'app'})
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.anon.get(self.url, data={'type': 'vindaloo'})
-        eq_(res.status_code, 400)
-        error = res.json['detail']
-        eq_(error.keys(), ['type'])
-
     def test_word_delimiter_preserves_original(self):
         self.webapp.description = {
             'en-US': 'This is testing word delimiting preservation in long '

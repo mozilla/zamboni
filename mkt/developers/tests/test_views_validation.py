@@ -22,7 +22,6 @@ from mkt.files.helpers import copyfileobj
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
-from mkt.webapps.models import AddonUser, Webapp
 from mkt.site.fixtures import fixture
 from mkt.submit.tests.test_views import BaseWebAppTest
 from mkt.users.models import UserProfile
@@ -55,7 +54,6 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_parse(self):
         wp = WebAppParser().parse(self.webapp_path)
         eq_(wp['guid'], None)
-        eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
         # UTF-8 byte string decoded to unicode.
         eq_(wp['description']['es'],
@@ -68,7 +66,6 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_parse_packaged(self):
         wp = WebAppParser().parse(self.packaged_app_path('mozball.zip'))
         eq_(wp['guid'], None)
-        eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['name']['en-US'], u'Packaged MozillaBall ょ')
         eq_(wp['description']['en-US'], u'Exciting Open Web development action!')
         eq_(wp['description']['es'],
@@ -81,7 +78,6 @@ class TestWebApps(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_parse_packaged_BOM(self):
         wp = WebAppParser().parse(self.packaged_app_path('mozBOM.zip'))
         eq_(wp['guid'], None)
-        eq_(wp['type'], amo.ADDON_WEBAPP)
         eq_(wp['name']['en-US'], u'Packaged MozBOM ょ')
         eq_(wp['description']['en-US'], u'Exciting BOM action!')
         eq_(wp['description']['es'], u'¡Acción BOM!')

@@ -160,9 +160,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     def my_apps(self, n=8):
         """Returns n apps"""
-        qs = self.addons.filter(type=amo.ADDON_WEBAPP)
-        qs = order_by_translation(qs, 'name')
-        return qs[:n]
+        return order_by_translation(self.addons.all(), 'name')[:n]
 
     @amo.cached_property
     def is_developer(self):

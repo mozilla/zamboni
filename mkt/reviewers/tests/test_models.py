@@ -35,34 +35,32 @@ class TestReviewerScore(amo.tests.TestCase):
         app = app or self.app
         ReviewerScore.award_points(user, app, status or app.status)
 
-    def check_event(self, type, status, event, **kwargs):
-        self.app.type = type
+    def check_event(self, status, event, **kwargs):
         eq_(ReviewerScore.get_event(self.app, status, **kwargs), event, (
-            'Score event for type:%s and status:%s was not %s' % (
-                type, status, event)))
+            'Score event status:%s was not %s' % (status, event)))
 
     def test_events_webapps(self):
         self.app = amo.tests.app_factory()
-        self.check_event(self.app.type, amo.STATUS_PENDING,
+        self.check_event(amo.STATUS_PENDING,
                          amo.REVIEWED_WEBAPP_HOSTED)
 
         RereviewQueue.objects.create(addon=self.app)
-        self.check_event(self.app.type, amo.STATUS_PUBLIC,
+        self.check_event(amo.STATUS_PUBLIC,
                          amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
-        self.check_event(self.app.type, amo.STATUS_UNLISTED,
+        self.check_event(amo.STATUS_UNLISTED,
                          amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
-        self.check_event(self.app.type, amo.STATUS_APPROVED,
+        self.check_event(amo.STATUS_APPROVED,
                          amo.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
         RereviewQueue.objects.all().delete()
 
         self.app.is_packaged = True
-        self.check_event(self.app.type, amo.STATUS_PENDING,
+        self.check_event(amo.STATUS_PENDING,
                          amo.REVIEWED_WEBAPP_PACKAGED)
-        self.check_event(self.app.type, amo.STATUS_PUBLIC,
+        self.check_event(amo.STATUS_PUBLIC,
                          amo.REVIEWED_WEBAPP_UPDATE)
-        self.check_event(self.app.type, amo.STATUS_UNLISTED,
+        self.check_event(amo.STATUS_UNLISTED,
                          amo.REVIEWED_WEBAPP_UPDATE)
-        self.check_event(self.app.type, amo.STATUS_APPROVED,
+        self.check_event(amo.STATUS_APPROVED,
                          amo.REVIEWED_WEBAPP_UPDATE)
 
     def test_award_points(self):
@@ -127,23 +125,20 @@ class TestReviewerScore(amo.tests.TestCase):
         assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
             'Unexpected admin user found in leaderboards.')
 
-    def test_get_breakdown(self):
+    def test_get_performance(self):
         self._give_points()
         ReviewerScore.award_moderation_points(self.user, self.app, 1)
-        breakdown = ReviewerScore.get_breakdown(self.user)
-        eq_(len(breakdown), 1)
-        eq_(set([b.atype for b in breakdown]),
-            set([amo.ADDON_WEBAPP]))
+        performance = ReviewerScore.get_performance(self.user)
+        eq_(len(performance), 1)
 
-    def test_get_breakdown_since(self):
+    def test_get_performance_since(self):
         self._give_points()
         ReviewerScore.award_moderation_points(self.user, self.app, 1)
         rs = list(ReviewerScore.objects.all())
         rs[0].update(created=self.days_ago(50))
-        breakdown = ReviewerScore.get_breakdown_since(self.user,
-                                                      self.days_ago(30))
-        eq_(len(breakdown), 1)
-        eq_([b.atype for b in breakdown], [rs[1].addon.type])
+        performance = ReviewerScore.get_performance_since(self.user,
+                                                          self.days_ago(30))
+        eq_(len(performance), 1)
 
     def test_get_leaderboards_last(self):
         users = []
@@ -195,9 +190,9 @@ class TestReviewerScore(amo.tests.TestCase):
             ReviewerScore.get_leaderboards(self.user)
 
         with self.assertNumQueries(1):
-            ReviewerScore.get_breakdown(self.user)
+            ReviewerScore.get_performance(self.user)
         with self.assertNumQueries(0):
-            ReviewerScore.get_breakdown(self.user)
+            ReviewerScore.get_performance(self.user)
 
         # New points invalidates all caches.
         self._give_points()
@@ -209,7 +204,7 @@ class TestReviewerScore(amo.tests.TestCase):
         with self.assertNumQueries(1):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
-            ReviewerScore.get_breakdown(self.user)
+            ReviewerScore.get_performance(self.user)
 
 
 class TestAdditionalReview(amo.tests.TestCase):

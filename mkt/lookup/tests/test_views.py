@@ -754,10 +754,6 @@ class TestAppSummary(AppSummaryTest):
 
     def test_authors(self):
         user = UserProfile.objects.get(username='31337')
-        role = AddonUser.objects.create(user=user,
-                                        addon=self.app,
-                                        role=amo.AUTHOR_ROLE_DEV)
-        self.app.addonuser_set.add(role)
         res = self.summary()
         eq_(res.context['authors'][0].display_name, user.display_name)
 
