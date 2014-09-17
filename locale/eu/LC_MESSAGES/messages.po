@@ -3274,9 +3274,7 @@ msgstr "OAuth adibidea"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
-msgstr ""
-"<p>OAuth kredentzialekin Mac OS Xren komando-lerrorako Python liburutegia "
-"erabiltzeko adibidea:</p>"
+msgstr "<p>OAuth kredentzialekin Mac OS Xren komando-lerrorako Python liburutegia erabiltzeko adibidea:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36

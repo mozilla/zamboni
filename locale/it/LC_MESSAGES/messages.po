@@ -2671,17 +2671,11 @@ msgstr "I tuoi commenti"
 
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
-msgstr ""
-"<b>Pubblica</b>: l’app potrà essere visualizzata da chiunque sul "
-"Marketplace, inoltre verrà inclusa nelle ricerche e nelle pagine di "
-"presentazione."
+msgstr "<b>Pubblica</b>: l’app potrà essere visualizzata da chiunque sul Marketplace, inoltre verrà inclusa nelle ricerche e nelle pagine di presentazione."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr ""
-"<b>Riservata</b>: l’app non verrà mostrata nei risultati delle ricerche e "
-"nelle pagine di presentazione, ma sarà accessibile unicamente alle persone "
-"con cui deciderai di condividere il link."
+msgstr "<b>Riservata</b>: l’app non verrà mostrata nei risultati delle ricerche e nelle pagine di presentazione, ma sarà accessibile unicamente alle persone con cui deciderai di condividere il link."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
@@ -2773,9 +2767,7 @@ msgstr "Riga di comando"
 
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
-msgstr ""
-"Rendi questa versione dell’app la versione attiva sul Marketplace non appena "
-"sarà stata approvata."
+msgstr "Rendi questa versione dell’app la versione attiva sul Marketplace non appena sarà stata approvata."
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3667,9 +3659,7 @@ msgstr "L’app è stata <b>approvata</b> e al momento è <b>non in elenco</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
-"Soltanto chi conosce il seguente URL potrà visualizzare e installare "
-"l’app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgstr "Soltanto chi conosce il seguente URL potrà visualizzare e installare l’app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
@@ -3677,9 +3667,7 @@ msgstr "L’app è stata <b>approvata</b> e al momento è privata."
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
-"Soltanto i <b>membri del team di sviluppo</b> potranno visualizzarla "
-"utilizzando il seguente URL:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
+msgstr "Soltanto i <b>membri del team di sviluppo</b> potranno visualizzarla utilizzando il seguente URL:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
@@ -3731,10 +3719,7 @@ msgstr "Carica nuova versione"
 
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
-msgstr ""
-"Carica una nuova versione di quest’app remota. Le nuove versioni dovranno "
-"essere revisionate prima di essere disponibili per il download sul "
-"Marketplace."
+msgstr "Carica una nuova versione di quest’app remota. Le nuove versioni dovranno essere revisionate prima di essere disponibili per il download sul Marketplace."
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3759,8 +3744,7 @@ msgstr "L’app non viene mostrata per i dispositivi con scarsa memoria RAM."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
-"Non hai richiesto una revisione per i dispositivi con scarsa memoria RAM."
+msgstr "Non hai richiesto una revisione per i dispositivi con scarsa memoria RAM."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
@@ -3768,15 +3752,11 @@ msgstr "L’app è in attesa di revisione."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr ""
-"La revisione del {review_date} ha rilevato che l’app è in grado di "
-"funzionare anche sui dispositivi con scarsa memoria RAM."
+msgstr "La revisione del {review_date} ha rilevato che l’app è in grado di funzionare anche sui dispositivi con scarsa memoria RAM."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr ""
-"La revisione del {review_date} ha rilevato che l’app non è in grado di "
-"funzionare sui dispositivi con scarsa memoria RAM."
+msgstr "La revisione del {review_date} ha rilevato che l’app non è in grado di funzionare sui dispositivi con scarsa memoria RAM."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3784,15 +3764,11 @@ msgstr "Hai fatto richiesta di una revisione per l’app in data {request_date}.
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr ""
-"L’app non verrà visualizzata nelle aree geografiche in cui vengono "
-"commercializzati dispositivi con scarsa memoria RAM."
+msgstr "L’app non verrà visualizzata nelle aree geografiche in cui vengono commercializzati dispositivi con scarsa memoria RAM."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
-msgstr ""
-"Puoi aggiornare le aree geografiche nella <a "
-"href=\"{compatibility_page}\">pagina di compatibilità</a>."
+msgstr "Puoi aggiornare le aree geografiche nella <a href=\"{compatibility_page}\">pagina di compatibilità</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
@@ -3800,10 +3776,7 @@ msgstr "Non mostrare l’app per dispositivi con scarsa memoria RAM"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
-msgstr ""
-"Se l’app <a href=\"{mdn_link}\">funziona su dispositivi con scarsa memoria "
-"RAM</a> allora potrai richiedere una revisione affinché venga mostrata anche "
-"per questo tipo di dispositivi."
+msgstr "Se l’app <a href=\"{mdn_link}\">funziona su dispositivi con scarsa memoria RAM</a> allora potrai richiedere una revisione affinché venga mostrata anche per questo tipo di dispositivi."
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
@@ -4738,15 +4711,11 @@ msgstr "Per una corretta verifica delle ricevute è necessario specificare una <
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr ""
-"Questa funzionalità è in fase di sviluppo. Per ulteriori informazioni "
-"consulta la <a target=\"_blank\" href=\"%(doc_link)s\">documentazione</a>."
+msgstr "Questa funzionalità è in fase di sviluppo. Per ulteriori informazioni consulta la <a target=\"_blank\" href=\"%(doc_link)s\">documentazione</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr ""
-"Se riscontri qualche problema <a target=\"_blank\" href=\"%(bug_link)s\">apri un "
-"bug</a>."
+msgstr "Se riscontri qualche problema <a target=\"_blank\" href=\"%(bug_link)s\">apri un bug</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -5036,9 +5005,7 @@ msgstr "Regioni che richiedono un trattamento particolare:"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr ""
-"Affinché l’app venga presentata ai dispositivi con scarsa memoria RAM dovrai "
-"<a href=\"{status_page}\">richiedere un’apposita revisione</a>."
+msgstr "Affinché l’app venga presentata ai dispositivi con scarsa memoria RAM dovrai <a href=\"{status_page}\">richiedere un’apposita revisione</a>."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5687,9 +5654,7 @@ msgstr "Recupero file in corso."
 
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
-msgstr ""
-"Il formato dell’immagine del logo del prodotto deve essere 64x64. Verifica "
-"che l’URL sia corretto."
+msgstr "Il formato dell’immagine del logo del prodotto deve essere 64x64. Verifica che l’URL sia corretto."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -7198,15 +7163,11 @@ msgstr "La versione %s è già presente"
 
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
-msgstr ""
-"Pubblica l’app rendendola visibile a tutti gli utenti del Marketplace, "
-"includendola anche nei risultati di ricerca."
+msgstr "Pubblica l’app rendendola visibile a tutti gli utenti del Marketplace, includendola anche nei risultati di ricerca."
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
-msgstr ""
-"Non rendere pubblica l’app. Inviami una notifica quando verrà approvata e "
-"modificherò io stesso la sua visibilità."
+msgstr "Non rendere pubblica l’app. Inviami una notifica quando verrà approvata e modificherò io stesso la sua visibilità."
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7254,8 +7215,7 @@ msgstr "Prima di essere pubblicata sul Marketplace, l’app verrà revisionata d
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
-"Scegli il tipo di pubblicazione dell’app nel momento in cui verrà approvata:"
+msgstr "Scegli il tipo di pubblicazione dell’app nel momento in cui verrà approvata:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7382,21 +7342,15 @@ msgstr "ricontrollare le informazioni dell’app nella <a href=\"%(url)s\">pagin
 
 #: mkt/submit/templates/submit/next_steps.html:54
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
-msgstr ""
-"Visualizza un elenco di tutte le tue app alla pagina <a href=\"%(url)s\">I "
-"miei progetti</a>"
+msgstr "Visualizza un elenco di tutte le tue app alla pagina <a href=\"%(url)s\">I miei progetti</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
-msgstr ""
-"Richiedi che l’app venga presentata anche ai dispositivi con scarsa memoria "
-"RAM dalla pagina <a href=\"%(status_url)s\">Stato e versioni</a>"
+msgstr "Richiedi che l’app venga presentata anche ai dispositivi con scarsa memoria RAM dalla pagina <a href=\"%(status_url)s\">Stato e versioni</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
-msgstr ""
-"Richiedi che l’app venga presentata anche ai dispositivi con scarsa memoria "
-"RAM dalla pagina <a href=\"%(status_url)s\">Stato </a>"
+msgstr "Richiedi che l’app venga presentata anche ai dispositivi con scarsa memoria RAM dalla pagina <a href=\"%(status_url)s\">Stato </a>"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."

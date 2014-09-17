@@ -2199,8 +2199,8 @@ msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
-"Aplikacija zahteva da platforma ima smartfon ekran (sa HD rezolucijom). Ova opcija znači da će aplikacija biti neupotrebljiva na većim ekranima (npr. tablet, desktop računarima ili telefonima velike "
-"rezolucije)."
+"Aplikacija zahteva da platforma ima smartfon ekran (sa HD rezolucijom). Ova opcija znači da će aplikacija biti neupotrebljiva na većim ekranima (npr. tablet, desktop računarima ili telefonima "
+"velike rezolucije)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -3850,8 +3850,8 @@ msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
-"Blokiranjem neke aplikacije će unaprediti korisnika na specijalnu verziju koja će učiniti aplikaciju nedostupnom na njihovim Firefox OS uređajima. Ovo će takođe ukloniti aplikaciju sa javnih stranica "
-"sve dok nova verzija ne bude prijavljena i odobrena. Ove promene se ne mogu poništiti. Molimo Vas da nastavite sa oprezom."
+"Blokiranjem neke aplikacije će unaprediti korisnika na specijalnu verziju koja će učiniti aplikaciju nedostupnom na njihovim Firefox OS uređajima. Ovo će takođe ukloniti aplikaciju sa javnih "
+"stranica sve dok nova verzija ne bude prijavljena i odobrena. Ove promene se ne mogu poništiti. Molimo Vas da nastavite sa oprezom."
 
 #: mkt/developers/templates/developers/apps/status.html:454
 msgid "Blocklist"
@@ -3940,8 +3940,8 @@ msgstr "Beleške o verziji"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
 msgstr ""
-"Informacije o promenama u ovom izdanju, novim mogućnostima, poznatim greškama i druge korisne informacije koje su specifične za ovo izdanje/verziju. Ova informacija je takođe prikazana u Apps Manager-"
-"u prilikom ažuriranja."
+"Informacije o promenama u ovom izdanju, novim mogućnostima, poznatim greškama i druge korisne informacije koje su specifične za ovo izdanje/verziju. Ova informacija je takođe prikazana u Apps "
+"Manager-u prilikom ažuriranja."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:56
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:73
@@ -4192,8 +4192,8 @@ msgstr "Informacije o podršci za {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
-"Adresa e-pošte se koristi od strane krajnjih korisnika da Vas kontaktiraju sa pitanjima o podršci i zahteva za povraćaj novca. Ako imate različite adrese e-pošta za svaki jezik više prevoda ovog polja "
-"može da se doda."
+"Adresa e-pošte se koristi od strane krajnjih korisnika da Vas kontaktiraju sa pitanjima o podršci i zahteva za povraćaj novca. Ako imate različite adrese e-pošta za svaki jezik više prevoda ovog "
+"polja može da se doda."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4654,8 +4654,8 @@ msgstr "Test plaćanje unutar aplikacije"
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
-"The Firefox Marketplace Vam omogućava da Vaša aplikacija ima plaćanje u okviru nje. <a href=\"{guide}\">Vodič za plaćanja u okviru aplikacije</a> objašnjava kako da podesite Vašu aplikaciju za plaćanja "
-"sa parametrima ispod."
+"The Firefox Marketplace Vam omogućava da Vaša aplikacija ima plaćanje u okviru nje. <a href=\"{guide}\">Vodič za plaćanja u okviru aplikacije</a> objašnjava kako da podesite Vašu aplikaciju za "
+"plaćanja sa parametrima ispod."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4687,8 +4687,8 @@ msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
-"Sledeći/a ključ/tajna će Vam samo omogućiti da simulirate plaćanja u okviru aplikacije dok razvijate Vašu aplikaciju. Da bi ste stvorili ključeve za realna plaćanja u okviru aplikacije, morate <a href="
-"\"%(submit)s\">prijaviti</a> Vašu aplikaciju, podesiti akredative plaćanja i stvoriti novi ključ specifičan za tu aplikaciju."
+"Sledeći/a ključ/tajna će Vam samo omogućiti da simulirate plaćanja u okviru aplikacije dok razvijate Vašu aplikaciju. Da bi ste stvorili ključeve za realna plaćanja u okviru aplikacije, morate <a "
+"href=\"%(submit)s\">prijaviti</a> Vašu aplikaciju, podesiti akredative plaćanja i stvoriti novi ključ specifičan za tu aplikaciju."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
@@ -5139,8 +5139,8 @@ msgid ""
 "Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
 "Firefox Marketplace."
 msgstr ""
-"Izgradnja aplikacija za veb omogućava programerima sa punom kontrolom nad sadržajem, funkcionalnost i kako su aplikacije distribuirane, uključujući i pristup stotinama miliona Firefox korisnika kroz "
-"Firefox Marketplace."
+"Izgradnja aplikacija za veb omogućava programerima sa punom kontrolom nad sadržajem, funkcionalnost i kako su aplikacije distribuirane, uključujući i pristup stotinama miliona Firefox korisnika "
+"kroz Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -7260,8 +7260,8 @@ msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Sačuvali smo Vašu aplikaciju i spremna je! Vaša aplikacija trenutno čeka pregled i jednom kada bude pregledana, moraćete ručno da omogućite Vašu aplikaciju iz <a href=\"%(url)s\">Upravljaj statusnom "
-"stranicom</a> da bi se prikazala na listing stranicama i u pretrazi. Do tada, slobodno radite na detaljima i podešavanjima Vaše aplikacije."
+"Sačuvali smo Vašu aplikaciju i spremna je! Vaša aplikacija trenutno čeka pregled i jednom kada bude pregledana, moraćete ručno da omogućite Vašu aplikaciju iz <a href=\"%(url)s\">Upravljaj "
+"statusnom stranicom</a> da bi se prikazala na listing stranicama i u pretrazi. Do tada, slobodno radite na detaljima i podešavanjima Vaše aplikacije."
 
 #: mkt/submit/templates/submit/done.html:31
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."

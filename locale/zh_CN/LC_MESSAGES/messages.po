@@ -3654,8 +3654,7 @@ msgstr "您的应用已<b>通过审核</b>，但目前只对团队成员可见�
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
-msgstr ""
-"只有使用下列网址的<b>团队成员</b>可以查看和安装此应用：<br> <a href=\"%(app_url)s\">%(app_url)s</a>。"
+msgstr "只有使用下列网址的<b>团队成员</b>可以查看和安装此应用：<br> <a href=\"%(app_url)s\">%(app_url)s</a>。"
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
