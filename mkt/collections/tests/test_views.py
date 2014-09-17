@@ -1620,7 +1620,6 @@ class TestCollectionImageViewSet(RestOAuth):
         eq_(res.status_code, 204)
         assert os.path.exists(self.collection.image_path())
         self.collection.reload()
-        ok_(self.collection.has_image)
         expected_hash = hashlib.md5(IMAGE_DATA.decode('base64')).hexdigest()
         eq_(self.collection.image_hash, expected_hash[:8])
         im = Image.open(self.collection.image_path())
@@ -1638,13 +1637,13 @@ class TestCollectionImageViewSet(RestOAuth):
         self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'some junk')
         eq_(res.status_code, 400)
-        ok_(not Collection.objects.get(pk=self.collection.pk).has_image)
+        ok_(not Collection.objects.get(pk=self.collection.pk).image_hash)
 
     def test_put_non_image(self):
         self.grant_permission(self.profile, 'Collections:Curate')
         res = self.client.put(self.url, 'data:text/plain;base64,AAA=')
         eq_(res.status_code, 400)
-        ok_(not Collection.objects.get(pk=self.collection.pk).has_image)
+        ok_(not Collection.objects.get(pk=self.collection.pk).image_hash)
 
     def test_put_unauthorized(self):
         res = self.client.put(self.url, 'some junk')
@@ -1695,7 +1694,7 @@ class TestCollectionImageViewSet(RestOAuth):
         img_path = self.add_img()
         res = self.client.delete(self.url)
         eq_(res.status_code, 204)
-        ok_(not self.collection.reload().has_image)
+        ok_(not self.collection.reload().image_hash)
         ok_(not storage.exists(img_path))
 
     def test_delete_slug(self):

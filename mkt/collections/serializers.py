@@ -123,7 +123,7 @@ class CollectionImageField(serializers.HyperlinkedRelatedField):
     read_only = True
 
     def get_url(self, obj, view_name, request, format):
-        if obj.has_image:
+        if getattr(obj, 'image_hash', None):
             # Always prefix with STATIC_URL to return images from our CDN.
             prefix = settings.STATIC_URL.strip('/')
             # Always append image_hash so that we can send far-future expires.

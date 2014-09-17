@@ -53,9 +53,9 @@ class Collection(amo.models.ModelBase):
 
     class Meta:
         db_table = 'app_collections'
-        ordering = ('-id',)  # This will change soon since we'll need to be
-                             # able to order collections themselves, but this
-                             # helps tests for now.
+        # This ordering will change soon since we'll need to be able to order
+        # collections themselves, but this helps tests for now.
+        ordering = ('-id',)
 
     def __unicode__(self):
         return self.name.localized_string_clean
@@ -158,10 +158,6 @@ class Collection(amo.models.ModelBase):
         ret = self.curators.remove(userprofile)
         Collection.objects.invalidate(*self.curators.all())
         return ret
-
-    @property
-    def has_image(self):
-        return bool(self.image_hash)
 
 
 class CollectionMembership(amo.models.ModelBase):

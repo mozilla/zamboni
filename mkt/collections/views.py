@@ -270,7 +270,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     @cache_control(max_age=60 * 60 * 24 * 365)
     def retrieve(self, request, *args, **kwargs):
         obj = self.get_object()
-        if not obj.has_image:
+        if not getattr(obj, 'image_hash', None):
             raise Http404
         return HttpResponseSendFile(request, obj.image_path(self.image_suffix),
                                     content_type='image/png')
@@ -292,7 +292,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
-        if obj.has_image:
+        if getattr(obj, 'image_hash', None):
             storage.delete(obj.image_path(self.image_suffix))
             obj.update(**{self.hash_field: None})
         return Response(status=status.HTTP_204_NO_CONTENT)
