@@ -27,8 +27,8 @@ from mkt.api.base import cors_api_view
 from mkt.constants import apps
 from mkt.constants.payments import CONTRIB_NO_CHARGE
 from mkt.developers.models import AppLog
-from mkt.installs.utils import install_type
 from mkt.installs.utils import record as utils_record
+from mkt.installs.utils import install_type
 from mkt.prices.models import AddonPurchase
 from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
@@ -37,7 +37,7 @@ from mkt.reviewers.views import reviewer_required
 from mkt.site.decorators import json_view, write
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
-from mkt.webapps.models import Addon, Installed, Webapp
+from mkt.webapps.models import Installed, Webapp
 from services.verify import get_headers, Verify
 
 
@@ -133,7 +133,7 @@ def response(data):
 def verify(request, uuid):
     # Because this will be called at any point in the future,
     # use guid in the URL.
-    addon = get_object_or_404(Addon, guid=uuid)
+    addon = get_object_or_404(Webapp, guid=uuid)
     receipt = request.read()
     verify = Verify(receipt, request.META)
     output = verify.check_without_purchase()
@@ -187,7 +187,7 @@ def issue(request, addon):
 def check(request, uuid):
     # Because this will be called at any point in the future,
     # use guid in the URL.
-    addon = get_object_or_404(Addon, guid=uuid)
+    addon = get_object_or_404(Webapp, guid=uuid)
     qs = (AppLog.objects.order_by('-created')
                 .filter(addon=addon,
                         activity_log__action=amo.LOG.RECEIPT_CHECKED.id))

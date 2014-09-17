@@ -2687,8 +2687,8 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
     def setUp(self):
         self.login_as_editor()
         super(TestReviewLog, self).setUp()
-        # Note: if `created` is not specified, `addon_factory`/`app_factory`
-        # uses a randomly generated timestamp.
+        # Note: if `created` is not specified, `app_factory` uses a randomly
+        # generated timestamp.
         self.apps = [app_factory(name='XXX', created=days_ago(3),
                                  status=amo.STATUS_PENDING),
                      app_factory(name='YYY', created=days_ago(2),

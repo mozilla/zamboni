@@ -7,7 +7,7 @@ from celery import chord, group
 
 import amo
 from amo.utils import chunked
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import (add_uuids, clean_apps, dump_apps,
                                fix_missing_icons, import_manifests,
                                regenerate_icons_and_thumbnails,
@@ -75,9 +75,9 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        pks = (Addon.objects.filter(*task['qs'])
-                            .values_list('pk', flat=True)
-                            .order_by('-last_updated'))
+        pks = (Webapp.objects.filter(*task['qs'])
+                             .values_list('pk', flat=True)
+                             .order_by('-last_updated'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)

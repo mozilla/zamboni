@@ -19,13 +19,11 @@ from slumber import exceptions
 
 import amo
 import amo.tests
-from amo.tests import (addon_factory, app_factory, ESTestCase,
-                       req_factory_factory, TestCase)
+from amo.tests import app_factory, ESTestCase, req_factory_factory, TestCase
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
-from mkt.constants.payments import (COMPLETED, FAILED, PENDING,
-                                    SOLITUDE_REFUND_STATUSES)
-from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_BOKU
+from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
+                                    PROVIDER_BOKU, SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
@@ -37,7 +35,7 @@ from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Addon, AddonUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class SummaryTest(TestCase):
@@ -85,7 +83,7 @@ class TestAcctSummary(SummaryTest):
     def setUp(self):
         super(TestAcctSummary, self).setUp()
         self.user = UserProfile.objects.get(username='31337')  # steamcube
-        self.steamcube = Addon.objects.get(pk=337141)
+        self.steamcube = Webapp.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
@@ -250,7 +248,7 @@ class TestBangoRedirect(TestCase):
     def setUp(self):
         super(TestBangoRedirect, self).setUp()
         self.user = UserProfile.objects.get(username='31337')  # steamcube
-        self.steamcube = Addon.objects.get(pk=337141)
+        self.steamcube = Webapp.objects.get(pk=337141)
         self.otherapp = app_factory(app_slug='otherapp')
         self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
@@ -395,7 +393,6 @@ class TestTransactionSearch(TestCase):
         eq_(r.status_code, 403)
 
 
-#@mock.patch.object(settings, 'TASK_USER_ID', 999)
 class TestTransactionSummary(TestCase):
     fixtures = fixture('user_support_staff', 'user_999', 'user_operator')
 
@@ -406,7 +403,7 @@ class TestTransactionSummary(TestCase):
         self.related_tx_uuid = 789
         self.user = UserProfile.objects.get(pk=999)
 
-        self.app = addon_factory(type=amo.ADDON_WEBAPP)
+        self.app = app_factory()
         self.contrib = Contribution.objects.create(
             addon=self.app, uuid=self.uuid, user=self.user,
             transaction_id=self.transaction_id)
@@ -643,7 +640,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
     def setUp(self):
         super(TestAppSearch, self).setUp()
         self.url = reverse('lookup.app_search')
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         assert self.client.login(username='support-staff@mozilla.com',
                                  password='password')
 
@@ -705,7 +702,7 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
     @mock.patch('mkt.constants.lookup.MAX_RESULTS', 3)
     def test_all_results(self):
         for x in range(4):
-            addon_factory(name='chr' + str(x), type=amo.ADDON_WEBAPP)
+            app_factory(name='chr' + str(x))
         self.refresh('webapp')
 
         # Test search limit.
@@ -721,7 +718,7 @@ class AppSummaryTest(SummaryTest):
     fixtures = fixture('prices', 'webapp_337141', 'user_support_staff')
 
     def _setUp(self):
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         self.url = reverse('lookup.app_summary',
                            args=[self.app.pk])
         self.user = UserProfile.objects.get(username='31337')

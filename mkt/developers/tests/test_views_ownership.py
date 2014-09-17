@@ -11,8 +11,8 @@ import amo.tests
 from amo.tests import formset
 from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon, AddonUser
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestOwnership(amo.tests.TestCase):
@@ -31,7 +31,7 @@ class TestOwnership(amo.tests.TestCase):
         return formset(*args, **kw)
 
     def get_webapp(self):
-        return Addon.objects.no_cache().get(id=337141)
+        return Webapp.objects.no_cache().get(id=337141)
 
 
 class TestEditAuthor(TestOwnership):
@@ -213,7 +213,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
 
     def setUp(self):
         self.client.login(username='admin@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.url = self.webapp.get_dev_url('owner')
 
     def test_apps_context(self):
@@ -240,7 +240,7 @@ class TestDeveloperRoleAccess(amo.tests.TestCase):
 
     def setUp(self):
         self.client.login(username='regular@mozilla.com', password='password')
-        self.webapp = Addon.objects.get(pk=337141)
+        self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.update(premium_type=amo.ADDON_PREMIUM)
 
         user = UserProfile.objects.get(email='regular@mozilla.com')

@@ -15,10 +15,10 @@ from waffle.models import Switch
 import amo
 import amo.tests
 import mkt
-from mkt.constants.payments import ACCESS_PURCHASE, ACCESS_SIMULATE
-from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
-                                PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
-                                PROVIDER_BOKU, PROVIDER_REFERENCE)
+from mkt.constants.payments import (ACCESS_PURCHASE, ACCESS_SIMULATE,
+                                    PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
+                                    PAYMENT_METHOD_OPERATOR, PROVIDER_BANGO,
+                                    PROVIDER_BOKU, PROVIDER_REFERENCE)
 from mkt.constants.regions import ALL_REGION_IDS, SPAIN, UK, US
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller, UserInappKey)
@@ -28,9 +28,9 @@ from mkt.developers.views_payments import (get_inapp_config,
 from mkt.prices.models import Price
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import (Addon, AddonDeviceType, AddonPremium,
-                                AddonUpsell, AddonUser)
 from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import (AddonDeviceType, AddonPremium, AddonUpsell,
+                                AddonUser, Webapp)
 
 
 # Id without any significance but to be different of 1.
@@ -55,7 +55,7 @@ class InappTest(amo.tests.TestCase):
         self.public_id = 'app-public-id'
         self.pay_key_secret = 'hex-secret-for-in-app-payments'
         self.generic_product_id = '1'
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         self.app.update(premium_type=amo.ADDON_FREE_INAPP,
                         solitude_public_id=self.public_id)
         self.user = UserProfile.objects.get(pk=31337)
@@ -390,7 +390,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
         self.price = Price.objects.filter()[0]
 
     def get_webapp(self):
-        return Addon.objects.get(pk=337141)
+        return Webapp.objects.get(pk=337141)
 
     def get_region_list(self):
         return list(AER.objects.values_list('region', flat=True))
@@ -467,8 +467,7 @@ class TestPayments(Patcher, amo.tests.TestCase):
 
     def test_free_with_in_app_deletes_upsell(self):
         self.make_premium(self.webapp)
-        new_upsell_app = Addon.objects.create(
-            type=self.webapp.type,
+        new_upsell_app = Webapp.objects.create(
             status=self.webapp.status,
             name='upsell-%s' % self.webapp.id,
             premium_type=amo.ADDON_FREE)
@@ -959,9 +958,9 @@ class TestPayments(Patcher, amo.tests.TestCase):
         # Checks that the owner of another app can't access the page.
         self.setup_bango_portal()
         self.login(self.other)
-        other_webapp = Addon.objects.create(type=self.webapp.type,
-            status=self.webapp.status, name='other-%s' % self.webapp.id,
-            premium_type=amo.ADDON_PREMIUM)
+        other_webapp = Webapp.objects.create(status=self.webapp.status,
+                                             name='other-%s' % self.webapp.id,
+                                             premium_type=amo.ADDON_PREMIUM)
         AddonUser.objects.create(addon=other_webapp,
                                  user=self.other, role=amo.AUTHOR_ROLE_OWNER)
         res = self.client.get(self.portal_url)
@@ -1114,7 +1113,7 @@ class TestRegions(amo.tests.TestCase):
         self.patch.stop()
 
     def get_webapp(self):
-        return Addon.objects.get(pk=337141)
+        return Webapp.objects.get(pk=337141)
 
     def get_dict(self, **kwargs):
         extension = {'regions': mkt.regions.ALL_REGION_IDS,

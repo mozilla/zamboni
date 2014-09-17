@@ -12,6 +12,7 @@ import M2Crypto
 import mock
 from browserid.errors import ExpiredSignatureError
 from nose.tools import eq_, ok_
+from services import utils, verify
 from test_utils import RequestFactory
 
 import amo
@@ -21,9 +22,8 @@ from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_receipt, create_receipt_data
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon
-from services import utils, verify
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 def get_response(data, status):
@@ -37,7 +37,7 @@ class ReceiptTest(amo.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141', 'user_999')
 
     def setUp(self):
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         self.inapp = InAppProduct.objects.create(logo_url='image.png',
                                                  name='Kiwii',
                                                  price=Price.objects.get(pk=1),

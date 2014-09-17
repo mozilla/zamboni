@@ -7,9 +7,9 @@ import amo.tests
 from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.ratings.models import Review
 from mkt.stats import tasks
-from mkt.versions.models import Version
-from mkt.webapps.models import Addon, AddonUser
 from mkt.users.models import UserProfile
+from mkt.versions.models import Version
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestMonolithStats(amo.tests.TestCase):
@@ -24,12 +24,12 @@ class TestMonolithStats(amo.tests.TestCase):
         eq_(record.objects.create.call_args[1]['value'], '{"count": 1}')
 
     def test_app_new(self):
-        Addon.objects.create(type=amo.ADDON_WEBAPP)
+        Webapp.objects.create()
         eq_(tasks._get_monolith_jobs()['apps_count_new'][0]['count'](), 1)
 
     def test_app_added_counts(self):
         today = datetime.date(2013, 1, 25)
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         app.update(created=today)
 
         package_type = 'packaged' if app.is_packaged else 'hosted'
@@ -70,16 +70,16 @@ class TestMonolithStats(amo.tests.TestCase):
 
     def test_app_avail_counts(self):
         today = datetime.date(2013, 1, 25)
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         app.update(_current_version=Version.objects.create(addon=app,
                                                            reviewed=today),
                    status=amo.STATUS_PUBLIC, created=today)
         # Create a couple more to test the counts.
-        app2 = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app2 = Webapp.objects.create()
         app2.update(_current_version=Version.objects.create(addon=app2,
                                                             reviewed=today),
                     status=amo.STATUS_PENDING, created=today)
-        app3 = Addon.objects.create(type=amo.ADDON_WEBAPP, disabled_by_user=True)
+        app3 = Webapp.objects.create(disabled_by_user=True)
         app3.update(_current_version=Version.objects.create(addon=app3,
                                                             reviewed=today),
                     status=amo.STATUS_PUBLIC, created=today)
@@ -121,7 +121,7 @@ class TestMonolithStats(amo.tests.TestCase):
                 'Got %d, expected %d.' % (r, p, count, expected_count))
 
     def test_app_reviews(self):
-        addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        addon = Webapp.objects.create()
         user = UserProfile.objects.create(username='foo')
         Review.objects.create(addon=addon, user=user)
         eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
@@ -148,11 +148,9 @@ class TestMonolithStats(amo.tests.TestCase):
                                         source=amo.LOGIN_SOURCE_MMO_BROWSERID)
         p2 = UserProfile.objects.create(username='bar',
                                         source=amo.LOGIN_SOURCE_MMO_BROWSERID)
-        a1 = amo.tests.addon_factory()
-        a2 = amo.tests.app_factory()
+        a1 = amo.tests.app_factory()
         AddonUser.objects.create(addon=a1, user=p1)
         AddonUser.objects.create(addon=a1, user=p2)
-        AddonUser.objects.create(addon=a2, user=p1)
 
-        eq_(tasks._get_monolith_jobs()['mmo_developer_count_total'][0]['count'](),
-            1)
+        eq_(tasks._get_monolith_jobs()
+            ['mmo_developer_count_total'][0]['count'](), 2)

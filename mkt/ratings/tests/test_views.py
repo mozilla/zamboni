@@ -219,19 +219,6 @@ class TestRatingResource(RestOAuth, amo.tests.AMOPaths):
         eq_(len(data['objects']), 1)
         eq_(data['objects'][0]['body'], 'yes')
 
-    def test_get_list_only_apps(self):
-        addon = amo.tests.addon_factory()
-        Review.objects.create(addon=addon, user=self.user, body='no')
-        res, data = self._get_url(self.list_url, client=self.anon)
-        eq_(res.status_code, 200)
-        eq_(len(data['objects']), 0)
-
-    def test_get_detail_only_apps(self):
-        addon = amo.tests.addon_factory()
-        Review.objects.create(addon=addon, user=self.user, body='no')
-        res, data = self._get_url(self.list_url, app=addon.pk)
-        eq_(res.status_code, 404)
-
     def test_anonymous_get_list_app(self):
         res, data = self._get_url(self.list_url, app=self.app.app_slug,
                                   client=self.anon)

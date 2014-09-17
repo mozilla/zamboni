@@ -174,7 +174,7 @@ class TestPrice(amo.tests.TestCase):
 class TestPriceCurrencyChanges(amo.tests.TestCase):
 
     def setUp(self):
-        self.addon = amo.tests.addon_factory()
+        self.addon = amo.tests.app_factory()
         self.make_premium(self.addon)
         self.currency = self.addon.premium.price.pricecurrency_set.all()[0]
 

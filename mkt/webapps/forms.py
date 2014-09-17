@@ -10,7 +10,7 @@ from amo.utils import slug_validator, slugify
 from mkt.access import acl
 from mkt.tags.models import Tag
 
-from .models import Addon, BlacklistedSlug
+from .models import BlacklistedSlug, Webapp
 
 
 log = commonware.log.getLogger('z.addons')
@@ -21,7 +21,7 @@ def clean_slug(slug, instance):
     slug_field = 'app_slug'
 
     if slug != getattr(instance, slug_field):
-        if Addon.objects.filter(**{slug_field: slug}).exists():
+        if Webapp.objects.filter(**{slug_field: slug}).exists():
             raise forms.ValidationError(
                 _('This slug is already in use. Please choose another.'))
         if BlacklistedSlug.blocked(slug):

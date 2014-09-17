@@ -28,7 +28,7 @@ from mkt.ratings.models import Review
 from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -141,7 +141,7 @@ class PaymentAccount(amo.models.ModelBase):
 
 class AddonPaymentAccount(amo.models.ModelBase):
     addon = models.ForeignKey(
-        'webapps.Addon', related_name='app_payment_accounts')
+        'webapps.Webapp', related_name='app_payment_accounts')
     payment_account = models.ForeignKey(PaymentAccount)
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
@@ -189,7 +189,7 @@ class UserInappKey(amo.models.ModelBase):
 
 
 class PreloadTestPlan(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon')
+    addon = models.ForeignKey('webapps.Webapp')
     last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
     status = models.PositiveSmallIntegerField(default=amo.STATUS_PUBLIC)
@@ -211,7 +211,7 @@ def preload_cleanup(*args, **kwargs):
     PreloadTestPlan.objects.filter(addon=instance).delete()
 
 
-models.signals.post_delete.connect(preload_cleanup, sender=Addon,
+models.signals.post_delete.connect(preload_cleanup, sender=Webapp,
                                    dispatch_uid='webapps_preload_cleanup')
 
 
@@ -219,7 +219,7 @@ class AppLog(amo.models.ModelBase):
     """
     This table is for indexing the activity log by app.
     """
-    addon = models.ForeignKey('webapps.Addon', db_constraint=False)
+    addon = models.ForeignKey('webapps.Webapp', db_constraint=False)
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
@@ -432,7 +432,7 @@ class ActivityLog(amo.models.ModelBase):
                 serialize_me.append({'int': arg})
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
-                # (Addon, 3) for Addon with pk=3
+                # (Webapp, 3) for Webapp with pk=3
                 serialize_me.append(dict(((unicode(arg[0]._meta), arg[1]),)))
             else:
                 serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
@@ -470,7 +470,7 @@ class ActivityLog(amo.models.ModelBase):
         group = None
 
         for arg in self.arguments:
-            if isinstance(arg, Addon) and not addon:
+            if isinstance(arg, Webapp) and not addon:
                 addon = self.f(u'<a href="{0}">{1}</a>',
                                arg.get_url_path(), arg.name)
                 arguments.remove(arg)

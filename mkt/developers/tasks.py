@@ -34,7 +34,7 @@ from mkt.files.utils import SafeUnzip
 from mkt.site.decorators import set_modified_on, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.webapps.models import Addon, AddonExcludedRegion, Webapp
+from mkt.webapps.models import AddonExcludedRegion, Webapp
 from mkt.webapps.utils import iarc_get_app_info
 
 
@@ -254,7 +254,7 @@ def resize_preview(src, instance, **kw):
 def get_preview_sizes(ids, **kw):
     log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
              % (len(ids), get_preview_sizes.rate_limit, ids[0]))
-    addons = Addon.objects.filter(pk__in=ids).no_transforms()
+    addons = Webapp.objects.filter(pk__in=ids).no_transforms()
 
     for addon in addons:
         previews = addon.previews.all()

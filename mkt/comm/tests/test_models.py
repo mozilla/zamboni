@@ -14,7 +14,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -26,7 +26,7 @@ class PermissionTestMixin(object):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get()
+        self.addon = Webapp.objects.get()
         self.user = UserProfile.objects.get(username='regularuser')
 
         self.thread = CommunicationThread.objects.create(addon=self.addon)
@@ -130,7 +130,7 @@ class TestThreadTokenModel(amo.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         self.thread = CommunicationThread(addon=addon)
         user = UserProfile.objects.all()[0]
         self.token = CommunicationThreadToken(thread=self.thread, user=user)
@@ -187,7 +187,7 @@ class TestCommAttachment(amo.tests.TestCase, CommTestMixin):
         self.user = amo.tests.user_factory(username='porkbelly')
         amo.set_user(self.user)
         self.profile = self.user
-        self.addon = Addon.objects.get()
+        self.addon = Webapp.objects.get()
         self.version = self.addon.latest_version
         self.thread = self._thread_factory()
         self.note = self._note_factory(self.thread)

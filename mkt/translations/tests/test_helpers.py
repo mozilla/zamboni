@@ -11,7 +11,7 @@ from mkt.translations import helpers
 from mkt.translations.fields import save_signal
 from mkt.translations.models import PurifiedTranslation
 from mkt.translations.tests.testapp.models import TranslatedModel
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 def super():
@@ -84,7 +84,7 @@ def test_l10n_menu():
     assert 'data-rm-locale="/some/url/"' in menu, menu
 
     # Use the remove_locale_url taken from the addon in the context.
-    menu = helpers.l10n_menu({'addon': Addon()},
+    menu = helpers.l10n_menu({'addon': Webapp()},
                              remove_locale_url='some/url/')
     assert 'data-rm-locale="/developers/app/None/rmlocale"' in menu, menu
 

@@ -120,11 +120,6 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         self.setup_files()
 
     @raises(packaged.SigningError)
-    def test_not_app(self):
-        self.app.update(type=amo.ADDON_EXTENSION)
-        packaged.sign(self.version.pk)
-
-    @raises(packaged.SigningError)
     def test_not_packaged(self):
         self.app.update(is_packaged=False)
         packaged.sign(self.version.pk)

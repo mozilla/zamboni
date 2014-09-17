@@ -14,9 +14,6 @@ HOME=/tmp
 # 55 * * * * %(z_cron)s unhide_disabled_files
 
 # Twice per day.
-# Use system python to use an older version of sqlalchemy than what is in our venv
-# commented out 2013-03-28, clouserw
-# 25 10,22 * * * %(z_cron)s addons_add_slugs
 25 17,5 * * * %(z_cron)s hide_disabled_files
 
 # Once per day.

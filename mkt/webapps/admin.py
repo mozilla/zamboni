@@ -5,7 +5,7 @@ import amo
 from . import models
 
 
-class AddonAdmin(admin.ModelAdmin):
+class WebappAdmin(admin.ModelAdmin):
     exclude = ('authors',)
     list_display = ('__unicode__', 'type', 'status', 'average_rating',
                     'premium_type', 'premium')
@@ -33,7 +33,7 @@ class AddonAdmin(admin.ModelAdmin):
     )
 
     def queryset(self, request):
-        return models.Addon.objects.filter(type__in=amo.MARKETPLACE_TYPES)
+        return models.Webapp.objects.filter(type__in=amo.MARKETPLACE_TYPES)
 
 
-admin.site.register(models.Addon, AddonAdmin)
+admin.site.register(models.Webapp, WebappAdmin)

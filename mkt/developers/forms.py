@@ -15,11 +15,13 @@ from django.template.defaultfilters import filesizeformat
 from django.utils import six
 from django.utils.functional import lazy
 from django.utils.safestring import mark_safe
+from django.utils.translation import trans_real as translation
 
 import commonware
 import happyforms
 import waffle
 from jinja2 import escape as jinja2_escape
+from jinja2.filters import do_dictsort
 from mpconstants import regions as mpconstants_regions
 from quieter_formset.formset import BaseModelFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
@@ -48,8 +50,8 @@ from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
 from mkt.webapps.forms import clean_slug, clean_tags, icons
-from mkt.webapps.models import (Addon, AddonUser, BlacklistedSlug, IARCInfo,
-                                Preview, Webapp)
+from mkt.webapps.models import (AddonUser, BlacklistedSlug, IARCInfo, Preview,
+                                Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
                                update_manifests)
 from mkt.webapps.widgets import IconWidgetRenderer
@@ -188,7 +190,7 @@ def trap_duplicate(request, manifest_url):
         return
     try:
         app = owned[0].addon
-    except Addon.DoesNotExist:
+    except Webapp.DoesNotExist:
         return
     error_url = app.get_dev_url()
     msg = None
@@ -534,7 +536,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         super(AddonFormBase, self).__init__(*args, **kw)
 
     class Meta:
-        models = Addon
+        models = Webapp
         fields = ('name', 'slug', 'tags')
 
     def clean_slug(self):
@@ -561,7 +563,7 @@ class AppFormBasic(AddonFormBase):
         widget=TransTextarea)
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('slug', 'manifest_url', 'description')
 
     def __init__(self, *args, **kw):
@@ -645,14 +647,16 @@ class AppFormBasic(AddonFormBase):
 
 
 class AppFormDetails(AddonFormBase):
-    default_locale = forms.TypedChoiceField(required=False,
-                                            choices=Addon.LOCALES)
+    LOCALES = [(translation.to_locale(k).replace('_', '-'), v)
+               for k, v in do_dictsort(settings.LANGUAGES)]
+
+    default_locale = forms.TypedChoiceField(required=False, choices=LOCALES)
     homepage = TransField.adapt(forms.URLField)(required=False)
     privacy_policy = TransField(widget=TransTextarea(), required=True,
         label=_lazy(u"Please specify your app's Privacy Policy"))
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('default_locale', 'homepage', 'privacy_policy')
 
     def clean(self):
@@ -684,7 +688,7 @@ class AppFormMedia(AddonFormBase):
                                         widget=forms.HiddenInput)
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('icon_upload_hash', 'icon_type')
 
     def __init__(self, *args, **kwargs):
@@ -715,7 +719,7 @@ class AppFormSupport(AddonFormBase):
     support_email = TransField.adapt(forms.EmailField)()
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('support_email', 'support_url')
 
 
@@ -1066,7 +1070,7 @@ class AppFormTechnical(AddonFormBase):
     flash = forms.BooleanField(required=False)
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('public_stats',)
 
     def __init__(self, *args, **kw):

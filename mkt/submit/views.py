@@ -38,7 +38,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Addon, AddonUser, Preview, Webapp
+from mkt.webapps.models import AddonUser, Preview, Webapp
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -105,7 +105,7 @@ def manifest(request):
 
         with transaction.commit_on_success():
             upload = form.cleaned_data['upload']
-            addon = Addon.from_upload(upload, is_packaged=form.is_packaged())
+            addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
 
             if form.is_packaged():
                 validation = json.loads(upload.validation)

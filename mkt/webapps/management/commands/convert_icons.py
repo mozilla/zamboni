@@ -9,7 +9,7 @@ import amo
 from amo.utils import chunked, resize_image
 from mkt.site.decorators import write
 from mkt.site.storage_utils import walk_storage
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 extensions = ['.png', '.jpg', '.gif']
@@ -51,7 +51,7 @@ def convert(directory, delete=False):
                 print "... converted %s" % k
 
     for chunk in chunked(pks, 100):
-        Addon.objects.filter(pk__in=chunk).update(icon_type='image/png')
+        Webapp.objects.filter(pk__in=chunk).update(icon_type='image/png')
 
 
 class Command(BaseCommand):

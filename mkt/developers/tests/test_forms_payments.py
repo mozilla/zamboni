@@ -16,7 +16,7 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Addon, AddonDeviceType, AddonUser
+from mkt.webapps.models import AddonDeviceType, AddonUser, Webapp
 
 
 class TestPremiumForm(amo.tests.TestCase):
@@ -27,7 +27,7 @@ class TestPremiumForm(amo.tests.TestCase):
         self.request = RequestFactory()
         self.request.POST = {'toggle-paid': ''}
 
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         AddonDeviceType.objects.create(
             addon=self.addon, device_type=amo.DEVICE_GAIA.id)
         self.platforms = {'free_platforms': ['free-firefoxos'],
@@ -183,7 +183,7 @@ class TestPremiumForm(amo.tests.TestCase):
         form = forms_payments.PremiumForm(self.platforms, **self.kwargs)
         assert form.is_valid(), form.errors
         form.save()
-        addon = Addon.objects.get(pk=self.addon.pk)
+        addon = Webapp.objects.get(pk=self.addon.pk)
         assert addon.premium
 
     def test_update_with_bogus_price(self):
@@ -312,7 +312,7 @@ class TestAccountListForm(Patcher, amo.tests.TestCase):
 
     def setUp(self):
         super(TestAccountListForm, self).setUp()
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
         self.provider = get_provider(name='bango')
@@ -492,7 +492,7 @@ class TestPaidRereview(Patcher, amo.tests.TestCase):
 
     def setUp(self):
         super(TestPaidRereview, self).setUp()
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.addon.update(status=amo.STATUS_NULL,
                           highest_status=amo.STATUS_PUBLIC)
         self.provider = get_provider(name='bango')
@@ -551,7 +551,7 @@ class TestRestoreAppStatus(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.addon.status = amo.STATUS_NULL
 
     def test_to_public(self):
@@ -571,7 +571,7 @@ class TestBangoAccountForm(Patcher, amo.tests.TestCase):
 
     def setUp(self):
         super(TestBangoAccountForm, self).setUp()
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         self.user = self.app.addonuser_set.get().user
         form = forms_payments.BangoPaymentAccountForm()
         self.data = {}
@@ -624,7 +624,7 @@ class TestBokuAccountForm(amo.tests.TestCase):
 
     def setUp(self):
         super(TestBokuAccountForm, self).setUp()
-        self.app = Addon.objects.get(pk=337141)
+        self.app = Webapp.objects.get(pk=337141)
         self.user = self.app.addonuser_set.get().user
 
     @mock.patch('mkt.developers.forms_payments.client')

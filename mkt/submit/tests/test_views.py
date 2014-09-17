@@ -25,11 +25,9 @@ from mkt.submit.decorators import read_dev_agreement_required
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
-from mkt.users.models import UserNotification
-from mkt.users.models import UserProfile
+from mkt.users.models import UserNotification, UserProfile
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import (Addon, AddonDeviceType, AddonUser, AppFeatures,
-                                Webapp)
+from mkt.webapps.models import AddonDeviceType, AddonUser, AppFeatures, Webapp
 
 
 class TestSubmit(amo.tests.TestCase):
@@ -263,9 +261,9 @@ class BaseWebAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                  password='password')
 
     def post_addon(self, data=None):
-        eq_(Addon.objects.count(), 0)
+        eq_(Webapp.objects.count(), 0)
         self.post(data=data)
-        return Addon.objects.get()
+        return Webapp.objects.get()
 
 
 class TestCreateWebApp(BaseWebAppTest):
@@ -487,9 +485,9 @@ class BasePackagedAppTest(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         return self.packaged_app_path('mozball.zip')
 
     def post_addon(self, data=None):
-        eq_(Addon.objects.count(), 1)
+        eq_(Webapp.objects.count(), 1)
         self.post(data=data)
-        return Addon.objects.order_by('-id')[0]
+        return Webapp.objects.order_by('-id')[0]
 
     def setup_files(self, filename='mozball.zip'):
         # Make sure the source file is there.
@@ -802,7 +800,7 @@ class TestDetails(TestSubmit):
         }))
         rp = self.client.post(self.url, data)
         eq_(rp.status_code, 302)
-        ad = Addon.objects.get(pk=self.webapp.pk)
+        ad = Webapp.objects.get(pk=self.webapp.pk)
         eq_(ad.previews.all().count(), 1)
 
     def test_icon(self):

@@ -9,7 +9,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.tests import addon_factory
+from amo.tests import app_factory
 from mkt.receipts.utils import create_receipt, get_key
 from mkt.site.helpers import absolutify
 from mkt.webapps.models import AddonUser, Installed, Webapp
@@ -122,14 +122,13 @@ class TestReceipt(amo.tests.TestCase):
                                  (60 * 60 * 24) - TEST_LEEWAY)
 
     def test_receipt_packaged(self):
-        app = addon_factory(type=amo.ADDON_WEBAPP, is_packaged=True,
-                            app_domain='app://foo.com')
+        app = app_factory(is_packaged=True, app_domain='app://foo.com')
         user = UserProfile.objects.get(pk=5497308)
         receipt = self.for_user(app, user, 'developer')
         eq_(receipt['product']['url'], 'app://foo.com')
 
     def test_receipt_packaged_no_origin(self):
-        app = addon_factory(type=amo.ADDON_WEBAPP, is_packaged=True)
+        app = app_factory(is_packaged=True)
         user = UserProfile.objects.get(pk=5497308)
         receipt = self.for_user(app, user, 'developer')
         eq_(receipt['product']['url'], settings.SITE_URL)

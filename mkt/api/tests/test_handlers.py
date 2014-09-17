@@ -27,7 +27,7 @@ from mkt.ratings.models import Review
 from mkt.site.fixtures import fixture
 from mkt.tags.models import AddonTag, Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
+from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AddonUser, Preview, Webapp)
 
 
@@ -59,7 +59,7 @@ class TestAppCreateHandler(CreateHandler, AMOPaths):
     fixtures = fixture('user_admin', 'user_2519', 'user_999')
 
     def count(self):
-        return Addon.objects.count()
+        return Webapp.objects.count()
 
     def test_verbs(self):
         self.create()
@@ -560,7 +560,7 @@ class TestListHandler(CreateHandler, AMOPaths):
     fixtures = fixture('user_2519', 'user_999')
 
     def create(self, users):
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         for user in users:
             AddonUser.objects.create(user=user, addon=app)
         return app

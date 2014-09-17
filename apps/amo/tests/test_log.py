@@ -5,7 +5,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -19,8 +19,7 @@ class LogTest(amo.tests.TestCase):
         If we get details, verify they are stored as JSON, and we get out what
         we put in.
         """
-        a = Addon.objects.create(name='kumar is awesome',
-                                type=amo.ADDON_EXTENSION)
+        a = Webapp.objects.create(name='kumar is awesome')
         magic = dict(title='no', body='way!')
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 

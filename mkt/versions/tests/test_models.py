@@ -13,7 +13,7 @@ from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
 from mkt.versions.compare import MAXVERSION, version_dict, version_int
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 def test_version_int():
@@ -73,7 +73,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
             'version': '42.0',
             'developer_name': u'Mýself'
         }
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
@@ -91,7 +91,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
             'version': '42.1',
             'developer_name': long_developer_name
         }
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         path = os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
@@ -102,7 +102,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         eq_(version.developer_name, truncated_developer_name)
 
     def test_is_privileged_hosted_app(self):
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         eq_(addon.current_version.is_privileged, False)
 
     @mock.patch('mkt.webapps.models.Webapp.get_manifest_json')
@@ -110,7 +110,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         get_manifest_json.return_value = {
             'type': 'privileged'
         }
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         addon.update(is_packaged=True)
         eq_(addon.current_version.is_privileged, True)
 
@@ -118,7 +118,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
     def test_is_privileged_non_privileged_app(self, get_manifest_json):
         get_manifest_json.return_value = {
         }
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         addon.update(is_packaged=True)
         eq_(addon.current_version.is_privileged, False)
 
@@ -175,7 +175,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
     @mock.patch('mkt.versions.models.storage')
     def test_version_delete(self, storage_mock):
         self.version.delete()
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         assert addon
 
         assert not Version.objects.filter(addon=addon).exists()
@@ -185,7 +185,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
     @mock.patch('mkt.versions.models.storage')
     def test_packaged_version_delete(self, storage_mock):
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         addon.update(is_packaged=True)
         version = addon.current_version
         version.delete()
@@ -202,7 +202,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
     @mock.patch('mkt.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         # The status doesn't change for public files.
         qs = File.objects.filter(version=addon.current_version)
         eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
@@ -219,7 +219,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
     def test_large_version_int(self):
         # This version will fail to be written to the version_int
         # table because the resulting int is bigger than mysql bigint.
-        version = Version(addon=Addon.objects.get(pk=337141))
+        version = Version(addon=Webapp.objects.get(pk=337141))
         version.version = '9223372036854775807'
         version.save()
         eq_(version.version_int, None)
@@ -229,7 +229,7 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         version.deleted = False
 
     def test_version_is_public(self):
-        addon = Addon.objects.get(id=337141)
+        addon = Webapp.objects.get(id=337141)
         version = amo.tests.version_factory(addon=addon)
 
         # Base test. Everything is in order, the version should be public.
@@ -247,11 +247,11 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
 
         # Non-public addon.
         self._reset_version(version)
-        with mock.patch('mkt.webapps.models.Addon.is_public') as is_addon_public:
+        with mock.patch('mkt.webapps.models.Webapp.is_public') as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
 
     def test_app_feature_creation_app(self):
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         ver = Version.objects.create(addon=app)
         assert ver.features, 'AppFeatures was not created with version.'

@@ -28,7 +28,7 @@ class ContributionError(Exception):
 
 
 class Contribution(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon', blank=True, null=True)
+    addon = models.ForeignKey('webapps.Webapp', blank=True, null=True)
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
                                       blank=True, null=True)

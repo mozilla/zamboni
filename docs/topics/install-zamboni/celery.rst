@@ -70,9 +70,9 @@ that it happens.  We can define it like so: ::
                      (len(data), _update_addons_current_version.rate_limit))
       for pk in data:
           try:
-              addon = Addon.objects.get(pk=pk)
+              addon = Webapp.objects.get(pk=pk)
               addon.update_version()
-          except Addon.DoesNotExist:
+          except Webapp.DoesNotExist:
               task_log.debug("Missing addon: %d" % pk)
 
 ``@task`` is a decorator for Celery to find our tasks.  We can specify a
@@ -84,12 +84,12 @@ If we run this command like so: ::
 
     from celery.task.sets import TaskSet
 
-    all_pks = Addon.objects.all().values_list('pk', flat=True)
+    all_pks = Webapp.objects.all().values_list('pk', flat=True)
     ts = [_update_addons_current_version.subtask(args=[pks])
           for pks in amo.utils.chunked(all_pks, 300)]
     TaskSet(ts).apply_async()
 
-All the Addons with ids in ``pks`` will (eventually) have their
+All the Webapps with ids in ``pks`` will (eventually) have their
 ``current_versions`` updated.
 
 Cron Jobs
@@ -101,7 +101,7 @@ jobs like so: ::
   @cronjobs.register
   def update_addons_current_version():
       """Update the current_version field of the addons."""
-      d = Addon.objects.valid().exclude(
+      d = Webapp.objects.valid().exclude(
             type=amo.ADDON_PERSONA).values_list('id', flat=True)
 
       with establish_connection() as conn:

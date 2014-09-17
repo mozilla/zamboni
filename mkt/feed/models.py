@@ -29,7 +29,7 @@ from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
 from mkt.site.decorators import use_master
 from mkt.translations.fields import PurifiedField, save_signal
-from mkt.webapps.models import Addon, clean_slug, Preview, Webapp
+from mkt.webapps.models import clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
 
 from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
@@ -467,5 +467,5 @@ def remove_deleted_app_on(cls):
 
 for cls in [FeedBrandMembership, FeedCollectionMembership,
             FeedShelfMembership]:
-    post_delete.connect(remove_deleted_app_on(cls), sender=Addon,
+    post_delete.connect(remove_deleted_app_on(cls), sender=Webapp,
                         dispatch_uid='apps_collections_cleanup')

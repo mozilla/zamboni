@@ -14,8 +14,8 @@ from amo.urlresolvers import reverse
 from mkt.access.models import Group, GroupUser
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon, AddonDeviceType
 from mkt.users.models import UserProfile
+from mkt.webapps.models import AddonDeviceType, Webapp
 
 from ..forms import DevMailerForm
 from ..models import EmailPreviewTopic
@@ -28,7 +28,7 @@ class TestEmailPreview(amo.tests.TestCase):
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         self.topic = EmailPreviewTopic(addon)
 
     def test_csv(self):
@@ -84,7 +84,7 @@ class TestEmailDevs(amo.tests.TestCase):
 
     def setUp(self):
         self.login('admin')
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
 
     def post(self, recipients=None, subject='subject', message='msg',
              preview_only=False):

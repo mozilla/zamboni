@@ -15,7 +15,6 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.core.urlresolvers import reverse
-from django.db import connections, router
 from django.template import Context, loader
 
 import pytz
@@ -50,7 +49,7 @@ from mkt.site.helpers import absolutify
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Addon, AppManifest, Preview, Webapp
+from mkt.webapps.models import AppManifest, Preview, Webapp
 from mkt.webapps.utils import get_locale_properties
 
 
@@ -64,7 +63,7 @@ def version_changed(addon_id, **kw):
 
 
 def update_last_updated(addon_id):
-    qs = Addon._last_updated_queries()
+    qs = Webapp._last_updated_queries()
     if not Webapp.objects.filter(pk=addon_id).exists():
         task_log.info(
             '[1@None] Updating last updated for %s failed, no addon found'
@@ -511,7 +510,7 @@ def dump_user_installs(ids, **kw):
         for install in user.installed_set.filter(addon__type=amo.ADDON_WEBAPP):
             try:
                 app = install.addon
-            except Addon.DoesNotExist:
+            except Webapp.DoesNotExist:
                 continue
 
             installed.append({
@@ -996,115 +995,6 @@ def fix_excluded_regions(ids, **kw):
 
 
 @task
-@write
-def destroy_addons(addon_ids, **kw):
-    """
-    Remove addon and all related records.
-
-    This avoids using Django's ORM to bypass caching, model managers, etc.
-
-    """
-    cursor = connections[router.db_for_write(Addon)].cursor()
-
-    for addon_id in addon_ids:
-
-        task_log.info('[Addon:%s] Deleting Addon...' % addon_id)
-
-        # Delete simple related fields.
-        cursor.execute(
-            'DELETE FROM abuse_reports WHERE addon_id=%s', [addon_id])
-        cursor.execute(
-            'DELETE FROM addons_users WHERE addon_id=%s', [addon_id])
-        cursor.execute(
-            'DELETE FROM editor_subscriptions WHERE addon_id=%s', [addon_id])
-        cursor.execute(
-            'DELETE FROM reviewer_scores WHERE addon_id=%s', [addon_id])
-        cursor.execute(
-            'DELETE FROM users_tags_addons WHERE addon_id=%s', [addon_id])
-
-        # Delete previews.
-        cursor.execute(
-            'SELECT caption FROM previews WHERE addon_id=%s '
-            'AND caption IS NOT NULL', [addon_id])
-        for previews in cursor.fetchall():
-            with connections['default'].constraint_checks_disabled():
-                cursor.execute('DELETE FROM translations WHERE id=%s',
-                               [previews[0]])
-        cursor.execute('DELETE FROM previews WHERE addon_id=%s', [addon_id])
-
-        # Delete contributions.
-        cursor.execute(
-            'SELECT related_id FROM stats_contributions WHERE addon_id=%s '
-            'AND related_id IS NOT NULL', [addon_id])
-        for row in cursor.fetchall():
-            cursor.execute(
-                'DELETE FROM stats_contributions WHERE id=%s', [row[0]])
-        cursor.execute(
-            'DELETE FROM stats_contributions WHERE addon_id=%s', [addon_id])
-
-        # Delete files.
-        cursor.execute('SELECT id, releasenotes, license_id FROM versions '
-                       'WHERE addon_id=%s', [addon_id])
-        for version in cursor.fetchall():
-            with connections['default'].constraint_checks_disabled():
-                cursor.execute(
-                    'DELETE FROM translations WHERE id=%s', [version[1]])
-            cursor.execute(
-                'SELECT name, text FROM licenses WHERE id=%s', [version[2]])
-            for license in cursor.fetchall():
-                with connections['default'].constraint_checks_disabled():
-                    if license[0] is not None:
-                        cursor.execute('DELETE FROM translations WHERE id=%s',
-                                       [license[0]])
-                    if license[1] is not None:
-                        cursor.execute('DELETE FROM translations WHERE id=%s',
-                                       [license[1]])
-            cursor.execute('DELETE FROM licenses WHERE id=%s', [version[1]])
-            cursor.execute(
-                'SELECT id FROM files WHERE version_id=%s', [version[0]])
-            for file in cursor.fetchall():
-                cursor.execute(
-                    'DELETE FROM file_validation WHERE file_id=%s', [file[0]])
-            cursor.execute(
-                'DELETE FROM files WHERE version_id=%s', [version[0]])
-
-        # Delete ratings (reviews).
-        cursor.execute('SELECT id, title, body FROM reviews WHERE addon_id=%s',
-                       [addon_id])
-        for rating in cursor.fetchall():
-            with connections['default'].constraint_checks_disabled():
-                if rating[1] is not None:
-                    cursor.execute(
-                        'DELETE FROM translations WHERE id=%s', [rating[1]])
-                if rating[2] is not None:
-                    cursor.execute(
-                        'DELETE FROM translations WHERE id=%s', [rating[2]])
-            cursor.execute(
-                'DELETE FROM reviews_moderation_flags WHERE review_id=%s',
-                [rating[0]])
-        cursor.execute('DELETE FROM reviews WHERE addon_id=%s', [addon_id])
-
-        # Now delete version, which was referenced on reviews.
-        cursor.execute('DELETE FROM versions WHERE addon_id=%s', [addon_id])
-
-        # Delete the translations attached to the addon.
-        cursor.execute(
-            'SELECT name, homepage, supportemail, supporturl, description, '
-            'privacypolicy FROM addons WHERE id=%s', [addon_id])
-        addon = cursor.fetchone()
-        with connections['default'].constraint_checks_disabled():
-            for tid in addon:
-                if tid is not None:
-                    cursor.execute(
-                        'DELETE FROM translations WHERE id=%s', [tid])
-
-        # Delete the addon itself.
-        cursor.execute('DELETE FROM addons WHERE id=%s', [addon_id])
-
-        task_log.info('[Addon:%s] Addon deleted.' % addon_id)
-
-
-@task
 def delete_logs(items, **kw):
     task_log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
@@ -1151,8 +1041,8 @@ def find_abuse_escalations(addon_id, **kw):
 @set_task_user
 def find_refund_escalations(addon_id, **kw):
     try:
-        addon = Addon.objects.get(pk=addon_id)
-    except Addon.DoesNotExist:
+        addon = Webapp.objects.get(pk=addon_id)
+    except Webapp.DoesNotExist:
         task_log.info(u'[app:%s] Task called but no app found.' % addon_id)
         return
 
@@ -1179,7 +1069,7 @@ def find_refund_escalations(addon_id, **kw):
             if not since_ratio > refund_threshold:
                 task_log.info(u'[app:%s] High refunds, but not enough since '
                               u'last escalation. Ratio: %.0f%%' %
-                              (addon,since_ratio * 100))
+                              (addon, since_ratio * 100))
                 return
 
         # If we haven't bailed out yet, escalate this app.

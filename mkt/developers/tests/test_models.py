@@ -17,7 +17,7 @@ from mkt.developers.models import (ActivityLog, ActivityLogAttachment,
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Addon, Webapp
+from mkt.webapps.models import Webapp
 from .test_providers import Patcher
 
 
@@ -140,7 +140,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             name='asdf', user=self.user, uri='foo', seller_uri='uri1',
             solitude_seller=self.seller)
 
-        addon = Addon.objects.get()
+        addon = Webapp.objects.get()
         AddonPaymentAccount.objects.create(
             addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
@@ -156,7 +156,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             name='asdf', user=self.user, uri='foo',
             solitude_seller=self.seller, shared=True)
 
-        addon = Addon.objects.get()
+        addon = Webapp.objects.get()
         AddonPaymentAccount.objects.create(
             addon=addon, account_uri='foo',
             payment_account=res, product_uri='bpruri')
@@ -172,7 +172,7 @@ class TestPaymentAccount(Patcher, amo.tests.TestCase):
             name='fdsa', user=self.user, uri='bar', seller_uri='uri2',
             solitude_seller=self.seller, provider=PROVIDER_BOKU)
 
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         AddonPaymentAccount.objects.create(
             addon=addon, account_uri='foo',
             payment_account=acct1, product_uri='bpruri')
@@ -230,7 +230,7 @@ class TestActivityLogAttachment(amo.tests.TestCase):
 
     def setUp(self):
         self.user = self._user()
-        addon = Addon.objects.get(pk=337141)
+        addon = Webapp.objects.get(pk=337141)
         version = addon.latest_version
         al = amo.log(amo.LOG.COMMENT_VERSION, addon, version, user=self.user)
         self.attachment1, self.attachment2 = self._attachments(al)

@@ -53,7 +53,7 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import update_status, Version
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (Addon, AddonDeviceType, AddonExcludedRegion,
+from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AppFeatures, AppManifest,
                                 BlacklistedSlug, ContentRating, Geodata,
                                 get_excluded_in, IARCInfo, Installed, Preview,
@@ -65,23 +65,23 @@ from mkt.webapps.signals import version_changed as version_changed_signal
 class TestCleanSlug(amo.tests.TestCase):
 
     def test_clean_slug_new_object(self):
-        # Make sure there's at least an addon with the "addon" slug, subsequent
-        # ones should be "addon-1", "addon-2" ...
-        a = Addon.objects.create()
-        eq_(a.slug, "addon")
+        # Make sure there's at least an addon with the "webapp" slug,
+        # subsequent ones should be "webapp-1", "webapp-2", etc.
+        a = Webapp.objects.create()
+        eq_(a.app_slug, 'webapp')
 
-        # Start with a first clash. This should give us "addon-1".
+        # Start with a first clash. This should give us "webapp-1".
         # We're not saving yet, we're testing the slug creation without an id.
-        b = Addon()
+        b = Webapp()
         b.clean_slug()
-        eq_(b.slug, 'addon-1')
+        eq_(b.app_slug, 'webapp-1')
         # Now save the instance to the database for future clashes.
         b.save()
 
         # Test on another object without an id.
-        c = Addon()
+        c = Webapp()
         c.clean_slug()
-        eq_(c.slug, 'addon-2')
+        eq_(c.app_slug, 'webapp-2')
 
         # Even if an addon is deleted, don't clash with its slug.
         c.status = amo.STATUS_DELETED
@@ -89,104 +89,104 @@ class TestCleanSlug(amo.tests.TestCase):
         c.save()
 
         # And yet another object without an id. Make sure we're not trying to
-        # assign the 'addon-2' slug from the deleted addon.
-        d = Addon()
+        # assign the 'webapp-2' slug from the deleted addon.
+        d = Webapp()
         d.clean_slug()
-        eq_(d.slug, 'addon-3')
+        eq_(d.app_slug, 'webapp-3')
 
     def test_clean_slug_with_id(self):
         # Create an addon and save it to have an id.
-        a = Addon.objects.create()
+        a = Webapp.objects.create()
         # Start over: don't use the name nor the id to generate the slug.
-        a.slug = a.name = ""
+        a.app_slug = a.name = ""
         a.clean_slug()
         # Slugs created from an id are of the form "id~", eg "123~" to avoid
         # clashing with URLs.
-        eq_(a.slug, "%s~" % a.id)
+        eq_(a.app_slug, "%s~" % a.id)
 
         # And again, this time make it clash.
-        b = Addon.objects.create()
+        b = Webapp.objects.create()
         # Set a's slug to be what should be created for b from its id.
-        a.slug = "%s~" % b.id
+        a.app_slug = "%s~" % b.id
         a.save()
 
         # Now start over for b.
-        b.slug = b.name = ""
+        b.app_slug = b.name = ""
         b.clean_slug()
-        eq_(b.slug, "%s~-1" % b.id)
+        eq_(b.app_slug, "%s~-1" % b.id)
 
     def test_clean_slug_with_name(self):
         # Make sure there's at least an addon with the "fooname" slug,
         # subsequent ones should be "fooname-1", "fooname-2" ...
-        a = Addon.objects.create(name="fooname")
-        eq_(a.slug, "fooname")
+        a = Webapp.objects.create(name="fooname")
+        eq_(a.app_slug, "fooname")
 
-        b = Addon(name="fooname")
+        b = Webapp(name="fooname")
         b.clean_slug()
-        eq_(b.slug, "fooname-1")
+        eq_(b.app_slug, "fooname-1")
 
     def test_clean_slug_with_slug(self):
         # Make sure there's at least an addon with the "fooslug" slug,
         # subsequent ones should be "fooslug-1", "fooslug-2" ...
-        a = Addon.objects.create(name="fooslug")
-        eq_(a.slug, "fooslug")
+        a = Webapp.objects.create(name="fooslug")
+        eq_(a.app_slug, "fooslug")
 
-        b = Addon(name="fooslug")
+        b = Webapp(name="fooslug")
         b.clean_slug()
-        eq_(b.slug, "fooslug-1")
+        eq_(b.app_slug, "fooslug-1")
 
     def test_clean_slug_blacklisted_slug(self):
         blacklisted_slug = 'fooblacklisted'
         BlacklistedSlug.objects.create(name=blacklisted_slug)
 
-        a = Addon(slug=blacklisted_slug)
+        a = Webapp(app_slug=blacklisted_slug)
         a.clean_slug()
         # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
         # avoid clashing with URLs.
-        eq_(a.slug, "%s~" % blacklisted_slug)
+        eq_(a.app_slug, "%s~" % blacklisted_slug)
         # Now save the instance to the database for future clashes.
         a.save()
 
-        b = Addon(slug=blacklisted_slug)
+        b = Webapp(app_slug=blacklisted_slug)
         b.clean_slug()
-        eq_(b.slug, "%s~-1" % blacklisted_slug)
+        eq_(b.app_slug, "%s~-1" % blacklisted_slug)
 
     def test_clean_slug_blacklisted_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
         BlacklistedSlug.objects.create(name=long_slug[:30])
 
         # If there's no clashing slug, just append a "~".
-        a = Addon.objects.create(slug=long_slug[:30])
-        eq_(a.slug, "%s~" % long_slug[:29])
+        a = Webapp.objects.create(app_slug=long_slug[:30])
+        eq_(a.app_slug, "%s~" % long_slug[:29])
 
         # If there's a clash, use the standard clash resolution.
-        a = Addon.objects.create(slug=long_slug[:30])
-        eq_(a.slug, "%s-1" % long_slug[:27])
+        a = Webapp.objects.create(app_slug=long_slug[:30])
+        eq_(a.app_slug, "%s-1" % long_slug[:27])
 
     def test_clean_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
 
         # If there's no clashing slug, don't over-shorten it.
-        a = Addon.objects.create(slug=long_slug)
-        eq_(a.slug, long_slug[:30])
+        a = Webapp.objects.create(app_slug=long_slug)
+        eq_(a.app_slug, long_slug[:30])
 
         # Now that there is a clash, test the clash resolution.
-        b = Addon(slug=long_slug)
+        b = Webapp(app_slug=long_slug)
         b.clean_slug()
-        eq_(b.slug, "%s-1" % long_slug[:27])
+        eq_(b.app_slug, "%s-1" % long_slug[:27])
 
     def test_clean_slug_always_slugify(self):
         illegal_chars = "some spaces and !?@"
 
         # Slugify if there's a slug provided.
-        a = Addon(slug=illegal_chars)
+        a = Webapp(app_slug=illegal_chars)
         a.clean_slug()
-        assert a.slug.startswith("some-spaces-and"), a.slug
+        assert a.app_slug.startswith("some-spaces-and"), a.app_slug
 
         # Also slugify if there's no slug provided.
-        b = Addon(name=illegal_chars)
+        b = Webapp(name=illegal_chars)
         b.clean_slug()
-        assert b.slug.startswith("some-spaces-and"), b.slug
+        assert b.app_slug.startswith("some-spaces-and"), b.app_slug
 
     def test_clean_slug_worst_case_scenario(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
@@ -196,9 +196,9 @@ class TestCleanSlug(amo.tests.TestCase):
         # avoided. Check the comment in addons.models.clean_slug, in the "else"
         # part of the "for" loop checking for available slugs not yet assigned.
         for i in range(100):
-            Addon.objects.create(slug=long_slug)
+            Webapp.objects.create(app_slug=long_slug)
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
-            Addon.objects.create(slug=long_slug)
+            Webapp.objects.create(app_slug=long_slug)
 
 
 class TestPreviewModel(amo.tests.TestCase):
@@ -404,9 +404,8 @@ class TestAddonPurchase(amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                          premium_type=amo.ADDON_PREMIUM,
-                                          name='premium')
+        self.addon = Webapp.objects.create(premium_type=amo.ADDON_PREMIUM,
+                                           name='premium')
 
     def test_no_premium(self):
         # If you've purchased something, the fact that its now free
@@ -442,27 +441,6 @@ class TestAddonPurchase(amo.tests.TestCase):
                       amo.CONTRIB_CHARGEBACK]:
             purchase.update(type=state)
             eq_(state, self.addon.get_purchase_type(self.user))
-
-
-class TestNewAddonVsWebapp(amo.tests.TestCase):
-
-    def test_addon_from_kwargs(self):
-        a = Addon(type=amo.ADDON_EXTENSION)
-        assert isinstance(a, Addon)
-
-    def test_webapp_from_kwargs(self):
-        w = Addon(type=amo.ADDON_WEBAPP)
-        assert isinstance(w, Webapp)
-
-    def test_addon_from_db(self):
-        a = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        assert isinstance(a, Addon)
-        assert isinstance(Addon.objects.get(id=a.id), Addon)
-
-    def test_webapp_from_db(self):
-        a = Addon.objects.create(type=amo.ADDON_WEBAPP)
-        assert isinstance(a, Webapp)
-        assert isinstance(Addon.objects.get(id=a.id), Webapp)
 
 
 class TestWebapp(amo.tests.WebappTestCase):
@@ -750,7 +728,7 @@ class TestWebappLight(amo.tests.TestCase):
         eq_(app.type, amo.ADDON_WEBAPP)
 
     def test_app_slugs_separate_from_addon_slugs(self):
-        Addon.objects.create(type=1, slug='slug')
+        Webapp.objects.create(type=1, slug='slug')
         webapp = Webapp(app_slug='slug')
         webapp.save()
         eq_(webapp.slug, 'app-%s' % webapp.id)
@@ -1092,8 +1070,8 @@ class TestWebappLight(amo.tests.TestCase):
         useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
                          'support_email', 'support_url')
 
-        self.assertSetEqual(Addon._meta.translated_fields,
-            [Addon._meta.get_field(f) for f in useless_fields + useful_fields])
+        self.assertSetEqual(Webapp._meta.translated_fields,
+            [Webapp._meta.get_field(f) for f in useless_fields + useful_fields])
         self.assertSetEqual(Webapp._meta.translated_fields,
             [Webapp._meta.get_field(f) for f in useful_fields])
 
@@ -1797,12 +1775,6 @@ class TestTransformer(amo.tests.TestCase):
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
 
-    @mock.patch('mkt.webapps.models.Addon.transformer')
-    def test_addon_transformer_not_called(self, transformer):
-        transformer.return_value = {}
-        list(Webapp.objects.all())
-        assert not transformer.called
-
     def test_versions(self):
         webapps = list(Webapp.objects.all())
         with self.assertNumQueries(0):
@@ -2155,7 +2127,7 @@ class TestInstalled(amo.tests.TestCase):
 
     def setUp(self):
         user = UserProfile.objects.create(email='f@f.com')
-        app = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         self.m = functools.partial(Installed.objects.safer_get_or_create,
                                    user=user, addon=app)
 
@@ -2268,7 +2240,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        app = Addon.objects.get(pk=337141)
+        app = Webapp.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
         eq_(version.version, '4.0')
@@ -2285,7 +2257,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
         # Note: we need a valid FileUpload instance, but in the end we are not
         # using its contents since we are mocking parse_addon().
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        app = Addon.objects.get(pk=337141)
+        app = Webapp.objects.get(pk=337141)
         app.manifest_updated('', upload)
         version = app.current_version.reload()
         eq_(version.version, '4.1')
@@ -2293,19 +2265,19 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
 
     def test_manifest_url(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        addon = Addon.from_upload(upload)
+        addon = Webapp.from_upload(upload)
         eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload)
+        addon = Webapp.from_upload(upload)
         eq_(addon.app_domain, 'http://mozilla.com')
 
     def test_non_english_app(self):
         upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        addon = Addon.from_upload(upload)
+        addon = Webapp.from_upload(upload)
         eq_(addon.default_locale, 'it')
         eq_(unicode(addon.name), 'ItalianMozBall')
         eq_(addon.name.locale, 'it')
@@ -2318,7 +2290,7 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload)
+        addon = Webapp.from_upload(upload)
         eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_unsupported(self):
@@ -2329,21 +2301,21 @@ class TestManifestUpload(BaseUploadTest, amo.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        addon = Addon.from_upload(upload)
+        addon = Webapp.from_upload(upload)
         eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
         with translation.override('fr'):
             # Upload app with en-US as default.
             upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-            addon = Addon.from_upload(upload)
+            addon = Webapp.from_upload(upload)
             eq_(addon.default_locale, 'en-US')  # not fr
 
     @raises(forms.ValidationError)
     def test_malformed_locales(self):
         manifest = self.manifest('malformed-locales.webapp')
         upload = self.get_upload(abspath=manifest)
-        Addon.from_upload(upload)
+        Webapp.from_upload(upload)
 
 
 class TestGeodata(amo.tests.WebappTestCase):

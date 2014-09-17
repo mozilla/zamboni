@@ -7,9 +7,8 @@ import test_utils
 from mock import patch
 from nose.tools import eq_
 
-import amo
 from lib.pay_server import filter_encoder, model_to_uid, ZamboniEncoder
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -19,7 +18,7 @@ class TestUtils(test_utils.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.create()
-        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP)
+        self.addon = Webapp.objects.create()
 
     def test_uid(self):
         eq_(model_to_uid(self.user), 'testy:users:%s' % self.user.pk)

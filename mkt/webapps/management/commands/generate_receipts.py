@@ -6,9 +6,8 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 
-import amo
-from mkt.webapps.models import Addon, Installed
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Installed, Webapp
 
 
 class Command(BaseCommand):
@@ -69,9 +68,8 @@ class Command(BaseCommand):
 
         for x in xrange(number):
             name = 'generate-receipt-%s-%s' % (stamp, x)
-            addon = Addon.objects.create(name=name,
-                                         type=amo.ADDON_WEBAPP,
-                                         manifest_url='http://a.com/m.webapp')
+            addon = Webapp.objects.create(name=name,
+                                          manifest_url='http://a.com/m.webapp')
             created['webapps'].append(addon.pk)
 
         for x in xrange(number):
@@ -89,6 +87,6 @@ class Command(BaseCommand):
         """Cleans up once the load testing is run and deletes the records."""
         data = json.loads(open(self.filename('created.json'), 'r').read())
         for obj, model in (['installed', Installed],
-                           ['webapps', Addon],
+                           ['webapps', Webapp],
                            ['users', UserProfile]):
             model.objects.filter(pk__in=data[obj]).delete()

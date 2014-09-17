@@ -289,7 +289,7 @@ def update_price_currency(sender, instance, **kw):
 
 
 class AddonPurchase(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon')
+    addon = models.ForeignKey('webapps.Webapp')
     type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
                                        choices=do_dictsort(amo.CONTRIB_TYPES),
                                        db_index=True)
@@ -369,8 +369,8 @@ def create_addon_purchase(sender, instance, **kw):
 
 
 class AddonPremium(amo.models.ModelBase):
-    """Additions to the Addon model that only apply to Premium add-ons."""
-    addon = models.OneToOneField('webapps.Addon')
+    """Additions to the Webapp model that only apply to Premium add-ons."""
+    addon = models.OneToOneField('webapps.Webapp')
     price = models.ForeignKey(Price, blank=True, null=True)
 
     class Meta:
@@ -482,7 +482,7 @@ class AddonPaymentData(ModelBase):
     #
     # I've no idea what the biggest lengths of these are, so making
     # up some aribtrary lengths.
-    addon = models.OneToOneField('webapps.Addon', related_name='payment_data')
+    addon = models.OneToOneField('webapps.Webapp', related_name='payment_data')
     # Basic.
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)

@@ -22,7 +22,7 @@ from mkt.versions.models import Version
 from mkt.webapps import cron
 from mkt.webapps.cron import (clean_old_signed, mkt_gc, update_app_trending,
                               update_downloads)
-from mkt.webapps.models import Addon, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _get_trending
 
 
@@ -35,15 +35,15 @@ class TestLastUpdated(amo.tests.TestCase):
         # catch-all.
         (File.objects.filter(status=amo.STATUS_PUBLIC)
          .update(datestatuschanged=None))
-        Addon.objects.update(last_updated=None)
+        Webapp.objects.update(last_updated=None)
 
         cron.addon_last_updated()
-        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
+        for addon in Webapp.objects.filter(status=amo.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
 
         # Make sure it's stable.
         cron.addon_last_updated()
-        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
+        for addon in Webapp.objects.filter(status=amo.STATUS_PUBLIC):
             eq_(addon.last_updated, addon.created)
 
 
@@ -69,8 +69,8 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.storage')
     def test_move_user_disabled_addon(self, m_storage, mv_mock):
-        # Use Addon.objects.update so the signal handler isn't called.
-        Addon.objects.filter(id=self.addon.id).update(
+        # Use Webapp.objects.update so the signal handler isn't called.
+        Webapp.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_PUBLIC, disabled_by_user=True)
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
@@ -84,7 +84,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.storage')
     def test_move_admin_disabled_addon(self, m_storage, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(
+        Webapp.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
@@ -97,7 +97,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(
+        Webapp.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_REJECTED)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         cron.hide_disabled_files()

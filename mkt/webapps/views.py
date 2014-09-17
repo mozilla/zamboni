@@ -7,7 +7,6 @@ from rest_framework import exceptions, response, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-import amo
 from lib.metrics import record_action
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -25,7 +24,7 @@ from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
 from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation
-from mkt.webapps.models import Addon, AddonUser, get_excluded_in, Webapp
+from mkt.webapps.models import AddonUser, get_excluded_in, Webapp
 from mkt.webapps.serializers import AppSerializer
 
 
@@ -45,7 +44,7 @@ class BaseFilter(object):
     that's used if nothing good is found in request.GET.
     """
 
-    def __init__(self, request, base, key, default, model=Addon):
+    def __init__(self, request, base, key, default, model=Webapp):
         self.opts_dict = dict(self.opts)
         self.extras_dict = dict(self.extras) if hasattr(self, 'extras') else {}
         self.request = request

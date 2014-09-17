@@ -25,7 +25,7 @@ class ReviewManager(amo.models.ManagerBase):
 
 
 class Review(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon', related_name='_reviews')
+    addon = models.ForeignKey('webapps.Webapp', related_name='_reviews')
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')

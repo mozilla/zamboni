@@ -5,7 +5,7 @@ import mkt
 
 
 class AppSubmissionChecklist(amo.models.ModelBase):
-    addon = models.OneToOneField('webapps.Addon')
+    addon = models.OneToOneField('webapps.Webapp')
     terms = models.BooleanField(default=False)
     manifest = models.BooleanField(default=False)
     details = models.BooleanField(default=False)

@@ -6,7 +6,7 @@ from django.db import models
 import amo.models
 
 from mkt.site.mail import send_mail
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -20,7 +20,7 @@ class AbuseReport(amo.models.ModelBase):
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
     # An abuse report can be for an addon or a user. Only one of these should
     # be null.
-    addon = models.ForeignKey(Addon, null=True, related_name='abuse_reports')
+    addon = models.ForeignKey(Webapp, null=True, related_name='abuse_reports')
     user = models.ForeignKey(UserProfile, null=True,
                              related_name='abuse_reports')
     message = models.TextField()
@@ -75,7 +75,7 @@ def send_abuse_report(request, obj, message):
                          message=message)
     if request.user.is_authenticated():
         report.reporter = request.user
-    if isinstance(obj, Addon):
+    if isinstance(obj, Webapp):
         report.addon = obj
     elif isinstance(obj, UserProfile):
         report.user = obj
@@ -83,6 +83,6 @@ def send_abuse_report(request, obj, message):
     report.send()
 
     # Trigger addon high abuse report detection task.
-    if isinstance(obj, Addon):
+    if isinstance(obj, Webapp):
         from mkt.webapps.tasks import find_abuse_escalations
         find_abuse_escalations.delay(obj.id)

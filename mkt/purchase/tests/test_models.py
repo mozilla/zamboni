@@ -8,16 +8,16 @@ import amo
 import amo.tests
 from mkt.prices.models import Refund
 from mkt.purchase.models import Contribution
-from mkt.webapps.models import Addon
-from mkt.users.models import UserProfile
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 class TestEmail(amo.tests.TestCase):
     fixtures = fixture('user_999', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.user = UserProfile.objects.get(pk=999)
 
     def make_contribution(self, amount, locale, type):

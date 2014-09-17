@@ -121,10 +121,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def addon(self):
         from mkt.versions.models import Version
-        from mkt.webapps.models import Addon
+        from mkt.webapps.models import Webapp
 
         version = Version.with_deleted.get(pk=self.version_id)
-        return Addon.with_deleted.get(pk=version.addon_id)
+        return Webapp.with_deleted.get(pk=version.addon_id)
 
     @property
     def guarded_file_path(self):

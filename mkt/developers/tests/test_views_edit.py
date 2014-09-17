@@ -32,8 +32,8 @@ from mkt.site.helpers import absolutify
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon, AddonDeviceType, AddonUser
 from mkt.webapps.models import AddonExcludedRegion as AER
+from mkt.webapps.models import AddonDeviceType, AddonUser, Webapp
 
 
 response_mock = mock.Mock()
@@ -74,7 +74,7 @@ class TestEdit(amo.tests.TestCase):
         assert self.client.login(username=self.user.email, password='password')
 
     def get_webapp(self):
-        return Addon.objects.no_cache().get(id=337141)
+        return Webapp.objects.no_cache().get(id=337141)
 
     def get_url(self, section, edit=False):
         return get_section_url(self.webapp, section, edit)
@@ -177,7 +177,7 @@ class TestEditBasic(TestEdit):
         self.edit_url = self.get_url('basic', edit=True)
 
     def get_webapp(self):
-        return Addon.objects.get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     def get_dict(self, **kw):
         result = {'device_types': self.dtype, 'slug': 'NeW_SluG',
@@ -212,7 +212,7 @@ class TestEditBasic(TestEdit):
             'Ensure this value has at most 30 characters (it has 31).')
 
     def test_edit_slug_dupe(self):
-        Addon.objects.create(type=amo.ADDON_WEBAPP, app_slug='dupe')
+        Webapp.objects.create(app_slug='dupe')
         r = self.client.post(self.edit_url, self.get_dict(slug='dupe'))
         self.assertFormError(r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
@@ -554,7 +554,7 @@ class TestEditBasic(TestEdit):
 class TestEditCountryLanguage(TestEdit):
 
     def get_webapp(self):
-        return Addon.objects.get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     def test_data_visible(self):
         clean_countries = []

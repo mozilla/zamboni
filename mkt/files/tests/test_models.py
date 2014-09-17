@@ -15,7 +15,7 @@ from mkt.files.helpers import copyfileobj
 from mkt.files.models import File, FileUpload, FileValidation, nfd_str
 from mkt.site.fixtures import fixture
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -103,8 +103,7 @@ class TestFileFromUpload(UploadTest):
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
-                                          name='app name')
+        self.addon = Webapp.objects.create(name='app name')
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
@@ -263,21 +262,19 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_generate_webapp_fn_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Addon(app_slug=u' フォクすけ  といっしょ',
-                                type=amo.ADDON_WEBAPP)
+        f.version.addon = Webapp(app_slug=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'app-0.1.7.webapp')
 
     def test_generate_webapp_fn_partial_non_ascii(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Addon(app_slug=u'myapp フォクすけ  といっしょ',
-                                type=amo.ADDON_WEBAPP)
+        f.version.addon = Webapp(app_slug=u'myapp フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'myapp-0.1.7.webapp')
 
     def test_generate_filename_ja(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version.addon = Addon(name=u' フォクすけ  といっしょ')
+        f.version.addon = Webapp(name=u' フォクすけ  といっしょ')
         eq_(f.generate_filename(), 'none-0.1.7.webapp')
 
     def clean_files(self, f):
@@ -294,7 +291,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_addon(self):
         f = File.objects.get()
         addon_id = f.version.addon_id
-        addon = Addon.objects.no_cache().get(pk=addon_id)
+        addon = Webapp.objects.no_cache().get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
 

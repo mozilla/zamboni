@@ -16,7 +16,7 @@ class Tag(amo.models.ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
-    addons = models.ManyToManyField('webapps.Addon', through='AddonTag',
+    addons = models.ManyToManyField('webapps.Webapp', through='AddonTag',
                                     related_name='tags')
 
     objects = TagManager()
@@ -52,7 +52,7 @@ class Tag(amo.models.ModelBase):
 
 
 class AddonTag(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon', related_name='addon_tags')
+    addon = models.ForeignKey('webapps.Webapp', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
 
     class Meta:

@@ -5,7 +5,7 @@ from django.db.models import Count, Avg, F
 import caching.base as caching
 from celeryutils import task
 
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 from .models import Review
 
@@ -42,7 +42,7 @@ def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
     using = kw.get('using')
-    addon_objs = list(Addon.objects.filter(pk__in=addons))
+    addon_objs = list(Webapp.objects.filter(pk__in=addons))
     stats = dict((x[0], x[1:]) for x in
                  Review.objects.valid().no_cache().using(using)
                  .filter(addon__in=addons, is_latest=True)
@@ -60,19 +60,19 @@ def addon_review_aggregates(*addons, **kw):
 def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
-    f = lambda: Addon.objects.aggregate(rating=Avg('average_rating'),
-                                        reviews=Avg('total_reviews'))
+    f = lambda: Webapp.objects.aggregate(rating=Avg('average_rating'),
+                                         reviews=Avg('total_reviews'))
     avg = caching.cached(f, 'task.bayes.avg', 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return
     mc = avg['reviews'] * avg['rating']
-    for addon in Addon.objects.no_cache().filter(id__in=addons):
+    for addon in Webapp.objects.no_cache().filter(id__in=addons):
         if addon.average_rating is None:
             # Ignoring addons with no average rating.
             continue
 
-        q = Addon.objects.filter(id=addon.id)
+        q = Webapp.objects.filter(id=addon.id)
         if addon.total_reviews:
             num = mc + F('total_reviews') * F('average_rating')
             denom = avg['reviews'] + F('total_reviews')

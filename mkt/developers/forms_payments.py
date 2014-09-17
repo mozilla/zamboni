@@ -24,7 +24,7 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
-from mkt.webapps.models import Addon, AddonUpsell
+from mkt.webapps.models import AddonUpsell, Webapp
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -331,7 +331,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
 
 class UpsellForm(happyforms.Form):
-    upsell_of = AddonChoiceField(queryset=Addon.objects.none(), required=False,
+    upsell_of = AddonChoiceField(queryset=Webapp.objects.none(), required=False,
                                  label=_lazy(u'This is a paid upgrade of'),
                                  empty_label=_lazy(u'Not an upgrade'))
 
@@ -654,9 +654,9 @@ class BokuAccountForm(happyforms.Form):
 
 
 class PaymentCheckForm(happyforms.Form):
-    app = SluggableModelChoiceField(queryset=
-            Addon.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS,
-                                 type=amo.ADDON_WEBAPP),
+    app = SluggableModelChoiceField(
+        queryset=Webapp.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS,
+                                       type=amo.ADDON_WEBAPP),
         sluggable_to_field_name='app_slug')
 
     def clean_app(self):

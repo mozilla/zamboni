@@ -14,7 +14,7 @@ from mkt.developers.models import AppLog
 from mkt.receipts.utils import create_receipt
 from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Addon, AddonUser
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestAPI(RestOAuth):
@@ -22,7 +22,7 @@ class TestAPI(RestOAuth):
 
     def setUp(self):
         super(TestAPI, self).setUp()
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.url = reverse('receipt.install')
         self.data = json.dumps({'app': self.addon.pk})
         self.profile = self.user
@@ -112,7 +112,7 @@ class TestReceipt(RestOAuth):
 
     def setUp(self):
         super(TestReceipt, self).setUp()
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.data = json.dumps({'app': self.addon.pk})
         self.profile = UserProfile.objects.get(pk=2519)
         self.url = reverse('receipt.install')
@@ -199,7 +199,7 @@ class TestReissue(amo.tests.TestCase):
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=2519)
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.url = reverse('receipt.reissue')
         self.data = json.dumps({'app': self.addon.pk})
 

@@ -11,7 +11,7 @@ from amo.utils import to_language
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.site.decorators import use_master
 from mkt.translations.fields import PurifiedField, save_signal
-from mkt.webapps.models import Addon, clean_slug, Webapp
+from mkt.webapps.models import clean_slug, Webapp
 from mkt.webapps.tasks import index_webapps
 
 from .constants import COLLECTION_TYPES
@@ -187,7 +187,6 @@ def remove_deleted_apps(*args, **kwargs):
 models.signals.pre_save.connect(save_signal, sender=Collection,
                                 dispatch_uid='collection_translations')
 
-# Delete collection membership when deleting an app (sender needs to be Addon,
-# not Webapp, because that's the real model underneath).
-models.signals.post_delete.connect(remove_deleted_apps, sender=Addon,
+# Delete collection membership when deleting an app.
+models.signals.post_delete.connect(remove_deleted_apps, sender=Webapp,
                                    dispatch_uid='apps_collections_cleanup')

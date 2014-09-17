@@ -8,8 +8,8 @@ from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
 from mkt.inapp.models import InAppProduct
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 class PurchaseTest(amo.tests.TestCase):
@@ -28,13 +28,13 @@ class PurchaseTest(amo.tests.TestCase):
         self.setup_public_id()
 
     def setup_base(self):
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.addon.update(premium_type=amo.ADDON_PREMIUM)
         self.price = Price.objects.get(pk=1)
         AddonPremium.objects.create(addon=self.addon, price=self.price)
 
         # Refetch addon from the database to populate addon.premium field.
-        self.addon = Addon.objects.get(pk=self.addon.pk)
+        self.addon = Webapp.objects.get(pk=self.addon.pk)
 
     def setup_package(self):
         self.seller = SolitudeSeller.objects.create(

@@ -18,7 +18,7 @@ from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 user_log = commonware.log.getLogger('z.users')
@@ -43,7 +43,7 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
 
 class EditorSubscription(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'editor_subscriptions'
@@ -51,7 +51,7 @@ class EditorSubscription(amo.models.ModelBase):
 
 class ReviewerScore(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
-    addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
+    addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
@@ -339,14 +339,14 @@ class ReviewerScore(amo.models.ModelBase):
 
 
 class EscalationQueue(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'escalation_queue'
 
 
 class RereviewQueue(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'rereview_queue'
@@ -412,7 +412,7 @@ class AdditionalReviewManager(amo.models.ManagerBase):
 
 
 class AdditionalReview(amo.models.ModelBase):
-    app = models.ForeignKey(Addon)
+    app = models.ForeignKey(Webapp)
     queue = models.CharField(max_length=30)
     passed = models.NullBooleanField()
     review_completed = models.DateTimeField(null=True)
@@ -461,5 +461,5 @@ def cleanup_queues(sender, instance, **kwargs):
     EscalationQueue.objects.filter(addon=instance).delete()
 
 
-models.signals.post_delete.connect(cleanup_queues, sender=Addon,
+models.signals.post_delete.connect(cleanup_queues, sender=Webapp,
                                    dispatch_uid='queue-addon-cleanup')

@@ -30,9 +30,8 @@ from tower import ugettext_lazy as _lazy
 import amo
 import amo.models
 import mkt
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder,
-                       slugify, smart_path, sorted_groupby, timer,
-                       to_language, urlparams)
+from amo.utils import (attach_trans_dict, find_language, JSONEncoder, slugify,
+                       smart_path, sorted_groupby, to_language, urlparams)
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
@@ -47,8 +46,8 @@ from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
 from mkt.site.decorators import skip_cache, use_master, write
-from mkt.site.mail import send_mail
 from mkt.site.helpers import absolutify
+from mkt.site.mail import send_mail
 from mkt.site.models import DynamicBoolFieldsMixin
 from mkt.site.storage_utils import copy_stored_file
 from mkt.tags.models import Tag
@@ -65,10 +64,10 @@ from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
 log = commonware.log.getLogger('z.addons')
 
 
-def clean_slug(instance, slug_field='slug'):
+def clean_slug(instance, slug_field='app_slug'):
     """Cleans a model instance slug.
 
-    This strives to be as generic as possible as it's used by Addons, Webapps
+    This strives to be as generic as possible as it's used by Webapps
     and maybe less in the future. :-D
 
     """
@@ -143,52 +142,297 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonManager(amo.models.ManagerBase):
+class AddonDeviceType(amo.models.ModelBase):
+    addon = models.ForeignKey('Webapp', db_constraint=False)
+    device_type = models.PositiveIntegerField(
+        default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
+        db_index=True)
+
+    class Meta:
+        db_table = 'addons_devicetypes'
+        unique_together = ('addon', 'device_type')
+
+    def __unicode__(self):
+        return u'%s: %s' % (self.addon.name, self.device.name)
+
+    @property
+    def device(self):
+        return amo.DEVICE_TYPES[self.device_type]
+
+
+@receiver(signals.version_changed, dispatch_uid='version_changed')
+def version_changed(sender, **kw):
+    from . import tasks
+    tasks.version_changed.delay(sender.id)
+
+
+def attach_devices(addons):
+    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+               .values_list('addon', 'device_type'))
+    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
+        addon_dict[addon].device_ids = [d[1] for d in device_types]
+
+
+def attach_prices(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    prices = (AddonPremium.objects
+              .filter(addon__in=addon_dict,
+                      addon__premium_type__in=amo.ADDON_PREMIUMS)
+              .values_list('addon', 'price__price'))
+    for addon, price in prices:
+        addon_dict[addon].price = price
+
+
+def attach_translations(addons):
+    """Put all translations into a translations dict."""
+    attach_trans_dict(Webapp, addons)
+
+
+def attach_tags(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
+          .values_list('addons__id', 'tag_text'))
+    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
+        addon_dict[addon].tag_list = [t[1] for t in tags]
+
+
+class AddonType(amo.models.ModelBase):
+    name = TranslatedField()
+    name_plural = TranslatedField()
+    description = TranslatedField()
+
+    class Meta:
+        db_table = 'addontypes'
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+
+dbsignals.pre_save.connect(save_signal, sender=AddonType,
+                           dispatch_uid='addontype_translations')
+
+
+class AddonUser(caching.CachingMixin, models.Model):
+    addon = models.ForeignKey('Webapp')
+    user = UserForeignKey()
+    role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
+                                    choices=amo.AUTHOR_CHOICES)
+    listed = models.BooleanField(_lazy(u'Listed'), default=True)
+    position = models.IntegerField(default=0)
+
+    objects = caching.CachingManager()
+
+    def __init__(self, *args, **kwargs):
+        super(AddonUser, self).__init__(*args, **kwargs)
+        self._original_role = self.role
+        self._original_user_id = self.user_id
+
+    class Meta:
+        db_table = 'addons_users'
+
+
+class Preview(amo.models.ModelBase):
+    addon = models.ForeignKey('Webapp', related_name='previews')
+    filetype = models.CharField(max_length=25)
+    thumbtype = models.CharField(max_length=25)
+    caption = TranslatedField()
+
+    position = models.IntegerField(default=0)
+    sizes = json_field.JSONField(max_length=25, default={})
+
+    class Meta:
+        db_table = 'previews'
+        ordering = ('position', 'created')
+
+    def _image_url(self, url_template):
+        if self.modified is not None:
+            if isinstance(self.modified, unicode):
+                self.modified = datetime.datetime.strptime(self.modified,
+                                                           '%Y-%m-%dT%H:%M:%S')
+            modified = int(time.mktime(self.modified.timetuple()))
+        else:
+            modified = 0
+        args = [self.id / 1000, self.id, modified]
+        if '.png' not in url_template:
+            args.insert(2, self.file_extension)
+        return url_template % tuple(args)
+
+    def _image_path(self, url_template):
+        args = [self.id / 1000, self.id]
+        if '.png' not in url_template:
+            args.append(self.file_extension)
+        return url_template % tuple(args)
+
+    def as_dict(self, src=None):
+        d = {'full': urlparams(self.image_url, src=src),
+             'thumbnail': urlparams(self.thumbnail_url, src=src),
+             'caption': unicode(self.caption)}
+        return d
+
+    @property
+    def is_landscape(self):
+        size = self.image_size
+        if not size:
+            return False
+        return size[0] > size[1]
+
+    @property
+    def file_extension(self):
+        # Assume that blank is an image.
+        if not self.filetype:
+            return 'png'
+        return self.filetype.split('/')[1]
+
+    @property
+    def thumbnail_url(self):
+        return self._image_url(static_url('PREVIEW_THUMBNAIL_URL'))
+
+    @property
+    def image_url(self):
+        return self._image_url(static_url('PREVIEW_FULL_URL'))
+
+    @property
+    def thumbnail_path(self):
+        return self._image_path(settings.PREVIEW_THUMBNAIL_PATH)
+
+    @property
+    def image_path(self):
+        return self._image_path(settings.PREVIEW_FULL_PATH)
+
+    @property
+    def thumbnail_size(self):
+        return self.sizes.get('thumbnail', []) if self.sizes else []
+
+    @property
+    def image_size(self):
+        return self.sizes.get('image', []) if self.sizes else []
+
+
+dbsignals.pre_save.connect(save_signal, sender=Preview,
+                           dispatch_uid='preview_translations')
+
+
+class BlacklistedSlug(amo.models.ModelBase):
+    name = models.CharField(max_length=255, unique=True, default='')
+
+    class Meta:
+        db_table = 'addons_blacklistedslug'
+
+    def __unicode__(self):
+        return self.name
+
+    @classmethod
+    def blocked(cls, slug):
+        return slug.isdigit() or cls.objects.filter(name=slug).exists()
+
+
+def reverse_version(version):
+    """
+    The try/except AttributeError allows this to be used where the input is
+    ambiguous, and could be either an already-reversed URL or a Version object.
+    """
+    if version:
+        try:
+            return reverse('version-detail', kwargs={'pk': version.pk})
+        except AttributeError:
+            return version
+    return
+
+
+class WebappManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
         amo.models.ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
     def get_query_set(self):
-        qs = super(AddonManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet)
+        qs = super(WebappManager, self).get_query_set()
+        qs = qs._clone(klass=query.IndexQuerySet).filter(
+            type=amo.ADDON_WEBAPP)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
-        return qs.transform(Addon.transformer)
-
-    def public(self):
-        """Get public add-ons only"""
-        return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
+        return qs.transform(Webapp.transformer)
 
     def valid(self):
-        """Get valid, enabled add-ons only"""
-        return self.filter(self.valid_q(amo.LISTED_STATUSES))
+        return self.filter(status__in=amo.LISTED_STATUSES,
+                           disabled_by_user=False)
 
-    def valid_q(self, status=[], prefix=''):
+    def visible(self):
+        return self.filter(status__in=amo.LISTED_STATUSES,
+                           disabled_by_user=False)
+
+    @skip_cache
+    def pending_in_region(self, region):
         """
-        Return a Q object that selects a valid Addon with the given statuses.
+        Apps that have been approved by reviewers but unapproved by
+        reviewers in special regions (e.g., China).
 
-        An add-on is valid if not disabled and has a current version.
-        ``prefix`` can be used if you're not working with Addon directly and
-        need to hop across a join, e.g. ``prefix='addon__'`` in
-        CollectionAddon.
         """
-        if not status:
-            status = [amo.STATUS_PUBLIC]
+        region = parse_region(region)
+        column_prefix = '_geodata__region_%s' % region.slug
+        return self.filter(**{
+            # Only nominated apps should show up.
+            '%s_nominated__isnull' % column_prefix: False,
+            'status__in': amo.WEBAPPS_APPROVED_STATUSES,
+            'disabled_by_user': False,
+            'escalationqueue__isnull': True,
+            '%s_status' % column_prefix: amo.STATUS_PENDING,
+        }).order_by('-%s_nominated' % column_prefix)
 
-        def q(*args, **kw):
-            if prefix:
-                kw = dict((prefix + k, v) for k, v in kw.items())
-            return Q(*args, **kw)
+    def rated(self):
+        """IARC."""
+        return self.exclude(content_ratings__isnull=True)
 
-        return q(q(_current_version__isnull=False),
-                 disabled_by_user=False, status__in=status)
+    def by_identifier(self, identifier):
+        """
+        Look up a single app by its `id` or `app_slug`.
+
+        If the identifier is coercable into an integer, we first check for an
+        ID match, falling back to a slug check (probably not necessary, as
+        there is validation preventing numeric slugs). Otherwise, we only look
+        for a slug match.
+        """
+        try:
+            return self.get(id=identifier)
+        except (ObjectDoesNotExist, ValueError):
+            return self.get(app_slug=identifier)
 
 
-class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
+class UUIDModelMixin(object):
+    """
+    A mixin responsible for assigning a uniquely generated
+    UUID at save time.
+    """
+
+    def save(self, *args, **kwargs):
+        self.assign_uuid()
+        return super(UUIDModelMixin, self).save(*args, **kwargs)
+
+    def assign_uuid(self):
+        """Generates a UUID if self.guid is not already set."""
+        if not hasattr(self, 'guid'):
+            raise AttributeError(
+                'A UUIDModel must contain a charfield called guid')
+
+        if not self.guid:
+            max_tries = 10
+            tried = 1
+            guid = str(uuid.uuid4())
+            while tried <= max_tries:
+                if not type(self).objects.filter(guid=guid).exists():
+                    self.guid = guid
+                    break
+                else:
+                    guid = str(uuid.uuid4())
+                    tried += 1
+            else:
+                raise ValueError('Could not auto-generate a unique UUID')
+
+
+class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
+
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
-    LOCALES = [(translation.to_locale(k).replace('_', '-'), v) for k, v in
-               do_dictsort(settings.LANGUAGES)]
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
@@ -200,7 +444,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
-
     type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
@@ -215,9 +458,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     support_email = TranslatedField(db_column='supportemail')
     support_url = TranslatedField(db_column='supporturl')
     description = PurifiedField(short=False)
-
     privacy_policy = PurifiedField(db_column='privacypolicy')
-
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')
     bayesian_rating = models.FloatField(default=0, db_index=True,
@@ -228,15 +469,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
         default=0, db_column='totaldownloads')
-
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
-
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = json_field.JSONField(default=None)
@@ -245,7 +483,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
-
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
@@ -254,57 +491,43 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         null=True, related_name='+')
     publish_type = models.PositiveIntegerField(default=0)
     mozilla_contact = models.EmailField(blank=True)
-
     vip_app = models.BooleanField(default=False)
     priority_review = models.BooleanField(default=False)
-
     # Whether the app is packaged or not (aka hosted).
     is_packaged = models.BooleanField(default=False, db_index=True)
-
     enable_new_regions = models.BooleanField(default=True, db_index=True)
-
     # Annotates disabled apps from the Great IARC purge for auto-reapprove.
     # Note: for currently PUBLIC apps only.
     iarc_purged = models.BooleanField(default=False)
-
     # This is the public_id to a Generic Solitude Product
     solitude_public_id = models.CharField(max_length=255, null=True,
                                           blank=True)
 
-    objects = AddonManager()
-    with_deleted = AddonManager(include_deleted=True)
+    objects = WebappManager()
+    with_deleted = WebappManager(include_deleted=True)
+
+    class PayAccountDoesNotExist(Exception):
+        """The app has no payment account for the query."""
 
     class Meta:
         db_table = 'addons'
-
-    @staticmethod
-    def __new__(cls, *args, **kw):
-        # Return a Webapp instead of an Addon if the `type` column says this is
-        # really a webapp.
-        try:
-            type_idx = Addon._meta._type_idx
-        except AttributeError:
-            type_idx = (idx for idx, f in enumerate(Addon._meta.fields)
-                        if f.attname == 'type').next()
-            Addon._meta._type_idx = type_idx
-        if ((len(args) == len(Addon._meta.fields) and
-                args[type_idx] == amo.ADDON_WEBAPP) or kw and
-                kw.get('type') == amo.ADDON_WEBAPP):
-            cls = Webapp
-        return object.__new__(cls)
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
 
     def save(self, **kw):
-        self.clean_slug()
-        super(Addon, self).save(**kw)
+        # Make sure we have the right type.
+        self.type = amo.ADDON_WEBAPP
+        self.clean_slug(slug_field='app_slug')
+        creating = not self.id
+        super(Webapp, self).save(**kw)
+        if creating:
+            # Set the slug once we have an id to keep things in order.
+            self.update(slug='app-%s' % self.id)
 
-    @use_master
-    def clean_slug(self, slug_field='slug'):
-        if self.status == amo.STATUS_DELETED:
-            return
-        clean_slug(self, slug_field)
+            # Create Geodata object (a 1-to-1 relationship).
+            if not hasattr(self, '_geodata'):
+                Geodata.objects.create(addon=self)
 
     @transaction.commit_on_success
     def delete(self, msg='', reason=''):
@@ -325,7 +548,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
 
-        log.debug('Deleting add-on: %s' % self.id)
+        log.debug('Deleting app: %s' % self.id)
 
         to = [settings.FLIGTAR]
         user = amo.get_user()
@@ -362,11 +585,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
 
         # Update or NULL out various fields.
-        models.signals.pre_delete.send(sender=Addon, instance=self)
-        self.update(status=amo.STATUS_DELETED,
-                    slug=None, app_slug=None, app_domain=None,
-                    _current_version=None)
-        models.signals.post_delete.send(sender=Addon, instance=self)
+        models.signals.pre_delete.send(sender=Webapp, instance=self)
+        self.update(status=amo.STATUS_DELETED, slug=None, app_slug=None,
+                    app_domain=None, _current_version=None)
+        models.signals.post_delete.send(sender=Webapp, instance=self)
 
         send_mail(subject, email_msg, recipient_list=to)
 
@@ -375,11 +597,44 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return True
 
+    @use_master
+    def clean_slug(self, slug_field='app_slug'):
+        if self.status == amo.STATUS_DELETED:
+            return
+        clean_slug(self, slug_field)
+
+    @staticmethod
+    def attach_related_versions(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        current_ids = filter(None, (a._current_version_id for a in addons))
+        latest_ids = filter(None, (a._latest_version_id for a in addons))
+        all_ids = set(current_ids) | set(latest_ids)
+
+        versions = list(Version.objects.filter(id__in=all_ids).order_by())
+        for version in versions:
+            try:
+                addon = addon_dict[version.addon_id]
+            except KeyError:
+                log.debug('Version %s has an invalid add-on id.' % version.id)
+                continue
+            if addon._current_version_id == version.id:
+                addon._current_version = version
+            if addon._latest_version_id == version.id:
+                addon._latest_version = version
+
+            version.addon = addon
+
+    @classmethod
+    def get_indexer(cls):
+        return WebappIndexer
+
     @classmethod
     def from_upload(cls, upload, is_packaged=False):
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
-        addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
+        addon = Webapp(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
@@ -402,30 +657,355 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return addon
 
-    def get_url_path(self, more=False, add_prefix=True):
-        # If more=True you get the link to the ajax'd middle chunk of the
-        # detail page.
-        view = 'addons.detail_more' if more else 'addons.detail'
-        return reverse(view, args=[self.slug], add_prefix=add_prefix)
+    @staticmethod
+    def attach_previews(addons, addon_dict=None, no_transforms=False):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-    def get_api_url(self):
-        # Used by Piston in output.
-        return absolutify(self.get_url_path())
+        qs = Preview.objects.filter(addon__in=addons,
+                                    position__gte=0).order_by()
+        if no_transforms:
+            qs = qs.no_transforms()
+        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon].all_previews = list(previews)
+        # FIXME: set all_previews to empty list on addons without previews.
 
-    def get_dev_url(self, action='edit', args=None, prefix_only=False):
-        # Either link to the "new" Marketplace Developer Hub or the old one.
-        args = args or []
-        prefix = 'mkt.developers'
-        view_name = '%s.%s' if prefix_only else '%s.apps.%s'
-        return reverse(view_name % (prefix, action),
-                       args=[self.app_slug] + args)
+    @staticmethod
+    def attach_prices(addons, addon_dict=None):
+        # FIXME: merge with attach_prices transformer below.
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-    def get_detail_url(self, action='detail', args=[]):
-        return reverse('apps.%s' % action, args=[self.app_slug] + args)
+        # There's a constrained amount of price tiers, may as well load
+        # them all and let cache machine keep them cached.
+        prices = dict((p.id, p) for p in Price.objects.all())
+        # Attach premium addons.
+        qs = AddonPremium.objects.filter(addon__in=addons)
+        premium_dict = dict((ap.addon_id, ap) for ap in qs)
 
-    def type_url(self):
-        """The url for this add-on's AddonType."""
-        return AddonType(self.type).get_url_path()
+        # Attach premiums to addons, making sure to attach None to free addons
+        # or addons where the corresponding AddonPremium is missing.
+        for addon in addons:
+            if addon.is_premium():
+                addon_p = premium_dict.get(addon.id)
+                if addon_p:
+                    price = prices.get(addon_p.price_id)
+                    if price:
+                        addon_p.price = price
+                    addon_p.addon = addon
+                addon._premium = addon_p
+            else:
+                addon._premium = None
+
+    def is_public(self):
+        """
+        True if the app is not disabled and the status is either STATUS_PUBLIC
+        or STATUS_UNLISTED.
+
+        Both statuses are "public" in that they should result in a 200 to the
+        app detail page.
+
+        """
+        return (not self.disabled_by_user and
+                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNLISTED))
+
+    def is_approved(self):
+        """
+        True if the app has status equal to amo.STATUS_APPROVED.
+
+        This app has been approved by a reviewer but is currently private and
+        only visitble to the app authors.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
+
+    def is_published(self):
+        """
+        True if the app status is amo.STATUS_PUBLIC.
+
+        This means we can display the app in listing pages and index it in our
+        search backend.
+
+        """
+        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
+
+    def is_incomplete(self):
+        return self.status == amo.STATUS_NULL
+
+    def is_pending(self):
+        return self.status == amo.STATUS_PENDING
+
+    def is_rejected(self):
+        return self.status == amo.STATUS_REJECTED
+
+    @property
+    def is_deleted(self):
+        return self.status == amo.STATUS_DELETED
+
+    @property
+    def is_disabled(self):
+        """True if this Addon is disabled.
+
+        It could be disabled by an admin or disabled by the developer
+        """
+        return self.status == amo.STATUS_DISABLED or self.disabled_by_user
+
+    def can_become_premium(self):
+        """
+        Not all addons can become premium and those that can only at
+        certain times. Webapps can become premium at any time.
+        """
+        if self.upsell:
+            return False
+        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
+            return True
+        return (self.status in amo.PREMIUM_STATUSES
+                and self.highest_status in amo.PREMIUM_STATUSES
+                and self.type in amo.ADDON_BECOME_PREMIUM)
+
+    def is_premium(self):
+        """
+        If the addon is premium. Will include addons that are premium
+        and have a price of zero. Primarily of use in the devhub to determine
+        if an app is intending to be premium.
+        """
+        return self.premium_type in amo.ADDON_PREMIUMS
+
+    def is_free(self):
+        """
+        This is the opposite of is_premium. Will not include apps that have a
+        price of zero. Primarily of use in the devhub to determine if an app is
+        intending to be free.
+        """
+        return not (self.is_premium() and self.premium and
+                    self.premium.price)
+
+    def is_free_inapp(self):
+        return self.premium_type == amo.ADDON_FREE_INAPP
+
+    def needs_payment(self):
+        return (self.premium_type not in
+                (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
+
+    def can_be_deleted(self):
+        return not self.is_deleted
+
+    @classmethod
+    def _last_updated_queries(cls):
+        """
+        Get the queries used to calculate addon.last_updated.
+        """
+        return (Webapp.objects.no_cache()
+                .filter(type=amo.ADDON_WEBAPP,
+                        status=amo.STATUS_PUBLIC,
+                        versions__files__status=amo.STATUS_PUBLIC)
+                .values('id')
+                .annotate(last_updated=Max('versions__created')))
+
+    @amo.cached_property(writable=True)
+    def all_previews(self):
+        return list(self.get_previews())
+
+    def get_previews(self):
+        """Exclude promo graphics."""
+        return self.previews.exclude(position=-1)
+
+    def remove_locale(self, locale):
+        """NULLify strings in this locale for the add-on and versions."""
+        for o in itertools.chain([self], self.versions.all()):
+            Translation.objects.remove_for(o, locale)
+
+    def get_mozilla_contacts(self):
+        return [x.strip() for x in self.mozilla_contact.split(',')]
+
+    @amo.cached_property
+    def upsell(self):
+        """Return the upsell or add-on, or None if there isn't one."""
+        try:
+            # We set unique_together on the model, so there will only be one.
+            return self._upsell_from.all()[0]
+        except IndexError:
+            pass
+
+    def has_author(self, user, roles=None):
+        """True if ``user`` is an author with any of the specified ``roles``.
+
+        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
+        not specified, has_author will return true if the user has any role.
+        """
+        if user is None or user.is_anonymous():
+            return False
+        if roles is None:
+            roles = dict(amo.AUTHOR_CHOICES).keys()
+        return AddonUser.objects.filter(addon=self, user=user,
+                                        role__in=roles).exists()
+
+    @property
+    def thumbnail_url(self):
+        """
+        Returns the addon's thumbnail url or a default.
+        """
+        try:
+            preview = self.all_previews[0]
+            return preview.thumbnail_url
+        except IndexError:
+            return settings.MEDIA_URL + '/img/icons/no-preview.png'
+
+    def get_purchase_type(self, user):
+        if user and isinstance(user, UserProfile):
+            try:
+                return self.addonpurchase_set.get(user=user).type
+            except models.ObjectDoesNotExist:
+                pass
+
+    def has_purchased(self, user):
+        return self.get_purchase_type(user) == amo.CONTRIB_PURCHASE
+
+    def is_refunded(self, user):
+        return self.get_purchase_type(user) == amo.CONTRIB_REFUND
+
+    def is_chargeback(self, user):
+        return self.get_purchase_type(user) == amo.CONTRIB_CHARGEBACK
+
+    def can_review(self, user):
+        if user and self.has_author(user):
+            return False
+        else:
+            return (not self.is_premium() or self.has_purchased(user) or
+                    self.is_refunded(user))
+
+    def get_latest_file(self):
+        """Get the latest file from the current version."""
+        cur = self.current_version
+        if cur:
+            res = cur.files.order_by('-created')
+            if res:
+                return res[0]
+
+    @property
+    def uses_flash(self):
+        """
+        Convenience property until more sophisticated per-version
+        checking is done for packaged apps.
+        """
+        f = self.get_latest_file()
+        if not f:
+            return False
+        return f.uses_flash
+
+    def in_escalation_queue(self):
+        return self.escalationqueue_set.exists()
+
+    def update_names(self, new_names):
+        """
+        Adds, edits, or removes names to match the passed in new_names dict.
+        Will not remove the translation of the default_locale.
+
+        `new_names` is a dictionary mapping of locales to names.
+
+        Returns a message that can be used in logs showing what names were
+        added or updated.
+
+        Note: This method doesn't save the changes made to the addon object.
+        Don't forget to call save() in your calling method.
+        """
+        updated_locales = {}
+        locales = dict(Translation.objects.filter(id=self.name_id)
+                                          .values_list('locale',
+                                                       'localized_string'))
+        msg_c = []  # For names that were created.
+        msg_d = []  # For deletes.
+        msg_u = []  # For updates.
+
+        # Normalize locales.
+        names = {}
+        for locale, name in new_names.iteritems():
+            loc = find_language(locale)
+            if loc and loc not in names:
+                names[loc] = name
+
+        # Null out names no longer in `names` but exist in the database.
+        for locale in set(locales) - set(names):
+            names[locale] = None
+
+        for locale, name in names.iteritems():
+
+            if locale in locales:
+                if not name and locale.lower() == self.default_locale.lower():
+                    pass  # We never want to delete the default locale.
+                elif not name:  # A deletion.
+                    updated_locales[locale] = None
+                    msg_d.append(u'"%s" (%s).' % (locales.get(locale), locale))
+                elif name != locales[locale]:
+                    updated_locales[locale] = name
+                    msg_u.append(u'"%s" -> "%s" (%s).' % (
+                        locales[locale], name, locale))
+            else:
+                updated_locales[locale] = names.get(locale)
+                msg_c.append(u'"%s" (%s).' % (name, locale))
+
+        if locales != updated_locales:
+            self.name = updated_locales
+
+        return {
+            'added': ' '.join(msg_c),
+            'deleted': ' '.join(msg_d),
+            'updated': ' '.join(msg_u),
+        }
+
+    def update_default_locale(self, locale):
+        """
+        Updates default_locale if it's different and matches one of our
+        supported locales.
+
+        Returns tuple of (old_locale, new_locale) if updated. Otherwise None.
+        """
+        old_locale = self.default_locale
+        locale = find_language(locale)
+        if locale and locale != old_locale:
+            self.update(default_locale=locale)
+            return old_locale, locale
+        return None
+
+    @property
+    def premium(self):
+        """
+        Returns the premium object which will be gotten by the transformer,
+        if its not there, try and get it. Will return None if there's nothing
+        there.
+        """
+        if not hasattr(self, '_premium'):
+            try:
+                self._premium = self.addonpremium
+            except AddonPremium.DoesNotExist:
+                self._premium = None
+        return self._premium
+
+    def has_installed(self, user):
+        if not user or not isinstance(user, UserProfile):
+            return False
+
+        return self.installed.filter(user=user).exists()
+
+    @amo.cached_property
+    def upsold(self):
+        """
+        Return what this is going to upsold from,
+        or None if there isn't one.
+        """
+        try:
+            return self._upsell_to.all()[0]
+        except IndexError:
+            pass
+
+    @property
+    def icon_url(self):
+        return self.get_icon_url(32)
+
+    @classmethod
+    def get_fallback(cls):
+        return cls._meta.get_field('default_locale')
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
@@ -433,22 +1013,98 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             addons=self,
             addonuser__listed=True).order_by('addonuser__position')
 
-    @classmethod
-    def get_fallback(cls):
-        return cls._meta.get_field('default_locale')
-
     @property
     def reviews(self):
         return Review.objects.filter(addon=self, reply_to=None)
 
-    def language_ascii(self):
-        lang = translation.to_language(self.default_locale)
-        return settings.LANGUAGES.get(lang)
+    def get_icon_dir(self):
+        return os.path.join(settings.ADDON_ICONS_PATH, str(self.id / 1000))
 
-    def update_status(self, **kwargs):
-        # Kept here as a placeholder for Addons. Remove or ignore when Addon
-        # and Webapp models are merged.
-        return
+    def get_icon_url(self, size):
+        """
+        Returns either the icon URL or a default icon.
+        """
+        icon_type_split = []
+        if self.icon_type:
+            icon_type_split = self.icon_type.split('/')
+
+        # Get the closest allowed size without going over.
+        if (size not in amo.APP_ICON_SIZES
+                and size >= amo.APP_ICON_SIZES[0]):
+            size = [s for s in amo.APP_ICON_SIZES if s < size][-1]
+        elif size < amo.APP_ICON_SIZES[0]:
+            size = amo.APP_ICON_SIZES[0]
+
+        # Figure out what to return for an image URL.
+        if not self.icon_type:
+            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
+                                     'default', size)
+        elif icon_type_split[0] == 'icon':
+            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
+                                     icon_type_split[1], size)
+        else:
+            # [1] is the whole ID, [2] is the directory.
+            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
+            # If we don't have the icon_hash set to a dummy string ("never"),
+            # when the icon is eventually changed, icon_hash will be updated.
+            suffix = getattr(self, 'icon_hash', None) or 'never'
+            return static_url('ADDON_ICON_URL') % (
+                split_id.group(2) or 0, self.id, size, suffix)
+
+    @staticmethod
+    def transformer(apps):
+        if not apps:
+            return
+        apps_dict = dict((a.id, a) for a in apps)
+
+        # Set _latest_version, _current_version
+        Webapp.attach_related_versions(apps, apps_dict)
+
+        # Attach previews. Don't use transforms, the only one present is for
+        # translations and Previews don't have captions in the Marketplace, and
+        # therefore don't have translations.
+        Webapp.attach_previews(apps, apps_dict, no_transforms=True)
+
+        # Attach prices.
+        Webapp.attach_prices(apps, apps_dict)
+
+        # FIXME: re-use attach_devices instead ?
+        for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
+            if not getattr(apps_dict[adt.addon_id], '_device_types', None):
+                apps_dict[adt.addon_id]._device_types = []
+            apps_dict[adt.addon_id]._device_types.append(
+                DEVICE_TYPES[adt.device_type])
+
+        # FIXME: attach geodata and content ratings. Maybe in a different
+        # transformer that would then be called automatically for the API ?
+
+    @staticmethod
+    def version_and_file_transformer(apps):
+        """Attach all the versions and files to the apps."""
+        # Don't just return an empty list, it will break code that expects
+        # a query object
+        if not len(apps):
+            return apps
+
+        ids = set(app.id for app in apps)
+        versions = (Version.objects.no_cache().filter(addon__in=ids)
+                    .select_related('addon'))
+        vids = [v.id for v in versions]
+        files = (File.objects.no_cache().filter(version__in=vids)
+                             .select_related('version'))
+
+        # Attach the files to the versions.
+        f_dict = dict((k, list(vs)) for k, vs in
+                      amo.utils.sorted_groupby(files, 'version_id'))
+        for version in versions:
+            version.all_files = f_dict.get(version.id, [])
+        # Attach the versions to the apps.
+        v_dict = dict((k, list(vs)) for k, vs in
+                      amo.utils.sorted_groupby(versions, 'addon_id'))
+        for app in apps:
+            app.all_versions = v_dict.get(app.id, [])
+
+        return apps
 
     def get_public_version(self):
         """Retrieves the latest PUBLIC version of an addon."""
@@ -569,915 +1225,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             pass
         return None
 
-    def get_icon_dir(self):
-        return os.path.join(settings.ADDON_ICONS_PATH,
-                            '%s' % (self.id / 1000))
-
-    def get_icon_url(self, size):
-        """
-        Returns either the icon URL or a default icon.
-        """
-        icon_type_split = []
-        if self.icon_type:
-            icon_type_split = self.icon_type.split('/')
-
-        # Get the closest allowed size without going over.
-        if (size not in amo.APP_ICON_SIZES
-                and size >= amo.APP_ICON_SIZES[0]):
-            size = [s for s in amo.APP_ICON_SIZES if s < size][-1]
-        elif size < amo.APP_ICON_SIZES[0]:
-            size = amo.APP_ICON_SIZES[0]
-
-        # Figure out what to return for an image URL.
-        if not self.icon_type:
-            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
-                                     'default', size)
-        elif icon_type_split[0] == 'icon':
-            return '%s/%s-%s.png' % (static_url('ADDON_ICONS_DEFAULT_URL'),
-                                     icon_type_split[1], size)
-        else:
-            # [1] is the whole ID, [2] is the directory.
-            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            # If we don't have the icon_hash set to a dummy string ("never"),
-            # when the icon is eventually changed, icon_hash will be updated.
-            suffix = getattr(self, 'icon_hash', None) or 'never'
-            return static_url('ADDON_ICON_URL') % (
-                split_id.group(2) or 0, self.id, size, suffix)
-
-    @staticmethod
-    def attach_related_versions(addons, addon_dict=None):
-        if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
-
-        current_ids = filter(None, (a._current_version_id for a in addons))
-        latest_ids = filter(None, (a._latest_version_id for a in addons))
-        all_ids = set(current_ids) | set(latest_ids)
-
-        versions = list(Version.objects.filter(id__in=all_ids).order_by())
-        for version in versions:
-            try:
-                addon = addon_dict[version.addon_id]
-            except KeyError:
-                log.debug('Version %s has an invalid add-on id.' % version.id)
-                continue
-            if addon._current_version_id == version.id:
-                addon._current_version = version
-            if addon._latest_version_id == version.id:
-                addon._latest_version = version
-
-            version.addon = addon
-
-    @staticmethod
-    def attach_listed_authors(addons, addon_dict=None):
-        if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
-
-        q = (UserProfile.objects.no_cache()
-             .filter(addons__in=addons, addonuser__listed=True)
-             .extra(select={'addon_id': 'addons_users.addon_id',
-                            'position': 'addons_users.position'}))
-        q = sorted(q, key=lambda u: (u.addon_id, u.position))
-        for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
-            addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors.
-
-    @staticmethod
-    def attach_previews(addons, addon_dict=None, no_transforms=False):
-        if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
-
-        qs = Preview.objects.filter(addon__in=addons,
-                                    position__gte=0).order_by()
-        if no_transforms:
-            qs = qs.no_transforms()
-        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon].all_previews = list(previews)
-        # FIXME: set all_previews to empty list on addons without previews.
-
-    @staticmethod
-    def attach_prices(addons, addon_dict=None):
-        # FIXME: merge with attach_prices transformer below.
-        if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
-
-        # There's a constrained amount of price tiers, may as well load
-        # them all and let cache machine keep them cached.
-        prices = dict((p.id, p) for p in Price.objects.all())
-        # Attach premium addons.
-        qs = AddonPremium.objects.filter(addon__in=addons)
-        premium_dict = dict((ap.addon_id, ap) for ap in qs)
-
-        # Attach premiums to addons, making sure to attach None to free addons
-        # or addons where the corresponding AddonPremium is missing.
-        for addon in addons:
-            if addon.is_premium():
-                addon_p = premium_dict.get(addon.id)
-                if addon_p:
-                    price = prices.get(addon_p.price_id)
-                    if price:
-                        addon_p.price = price
-                    addon_p.addon = addon
-                addon._premium = addon_p
-            else:
-                addon._premium = None
-
-    @staticmethod
-    @timer
-    def transformer(addons):
-        if not addons:
-            return
-
-        addon_dict = dict((a.id, a) for a in addons)
-        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
-        # Set _latest_version and _current_version.
-        Addon.attach_related_versions(addons, addon_dict=addon_dict)
-
-        # Attach listed authors.
-        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
-
-        # Attach previews.
-        Addon.attach_previews(addons, addon_dict=addon_dict)
-
-        # Attach prices.
-        Addon.attach_prices(addons, addon_dict=addon_dict)
-
-        return addon_dict
-
-    @property
-    def icon_url(self):
-        return self.get_icon_url(32)
-
-    def authors_other_addons(self, app=None):
-        """
-        Return other addons by the author(s) of this addon,
-        optionally takes an app.
-        """
-        if app:
-            qs = Addon.objects.listed(app)
-        else:
-            qs = Addon.objects.valid()
-        return (qs.exclude(id=self.id)
-                  .exclude(type=amo.ADDON_WEBAPP)
-                  .filter(addonuser__listed=True,
-                          authors__in=self.listed_authors)
-                  .distinct())
-
-    @property
-    def thumbnail_url(self):
-        """
-        Returns the addon's thumbnail url or a default.
-        """
-        try:
-            preview = self.all_previews[0]
-            return preview.thumbnail_url
-        except IndexError:
-            return settings.MEDIA_URL + '/img/icons/no-preview.png'
-
-    @property
-    def is_disabled(self):
-        """True if this Addon is banned/disabled.
-
-        It could be banned by an admin or disabled by the developer
-        """
-        return self.status == amo.STATUS_DISABLED or self.disabled_by_user
-
-    @property
-    def is_deleted(self):
-        return self.status == amo.STATUS_DELETED
-
-    def is_public(self):
-        """
-        True if the app is not disabled and the status is either STATUS_PUBLIC
-        or STATUS_UNLISTED.
-
-        Both statuses are "public" in that they should result in a 200 to the
-        app detail page.
-
-        """
-        return (not self.disabled_by_user and
-                self.status in (amo.STATUS_PUBLIC, amo.STATUS_UNLISTED))
-
-    def is_approved(self):
-        """
-        True if the app has status equal to amo.STATUS_APPROVED.
-
-        This app has been approved by a reviewer but is currently private and
-        only visitble to the app authors.
-
-        """
-        return not self.disabled_by_user and self.status == amo.STATUS_APPROVED
-
-    def is_published(self):
-        """
-        True if the app status is amo.STATUS_PUBLIC.
-
-        This means we can display the app in listing pages and index it in our
-        search backend.
-
-        """
-        return not self.disabled_by_user and self.status == amo.STATUS_PUBLIC
-
-    def is_incomplete(self):
-        return self.status == amo.STATUS_NULL
-
-    def is_pending(self):
-        return self.status == amo.STATUS_PENDING
-
-    def is_rejected(self):
-        return self.status == amo.STATUS_REJECTED
-
-    def can_become_premium(self):
-        """
-        Not all addons can become premium and those that can only at
-        certain times. Webapps can become premium at any time.
-        """
-        if self.upsell:
-            return False
-        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
-            return True
-        return (self.status in amo.PREMIUM_STATUSES
-                and self.highest_status in amo.PREMIUM_STATUSES
-                and self.type in amo.ADDON_BECOME_PREMIUM)
-
-    def is_premium(self):
-        """
-        If the addon is premium. Will include addons that are premium
-        and have a price of zero. Primarily of use in the devhub to determine
-        if an app is intending to be premium.
-        """
-        return self.premium_type in amo.ADDON_PREMIUMS
-
-    def is_free(self):
-        """
-        This is the opposite of is_premium. Will not include apps that have a
-        price of zero. Primarily of use in the devhub to determine if an app is
-        intending to be free.
-        """
-        return not (self.is_premium() and self.premium and
-                    self.premium.price)
-
-    def is_free_inapp(self):
-        return self.premium_type == amo.ADDON_FREE_INAPP
-
-    def needs_payment(self):
-        return (self.premium_type not in
-                (amo.ADDON_FREE, amo.ADDON_OTHER_INAPP))
-
-    def can_be_deleted(self):
-        return not self.is_deleted
-
-    def has_author(self, user, roles=None):
-        """True if ``user`` is an author with any of the specified ``roles``.
-
-        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
-        not specified, has_author will return true if the user has any role.
-        """
-        if user is None or user.is_anonymous():
-            return False
-        if roles is None:
-            roles = dict(amo.AUTHOR_CHOICES).keys()
-        return AddonUser.objects.filter(addon=self, user=user,
-                                        role__in=roles).exists()
-
-    @classmethod
-    def _last_updated_queries(cls):
-        """
-        Get the queries used to calculate addon.last_updated.
-        """
-        return (Addon.objects.no_cache()
-                .filter(type=amo.ADDON_WEBAPP,
-                        status=amo.STATUS_PUBLIC,
-                        versions__files__status=amo.STATUS_PUBLIC)
-                .values('id')
-                .annotate(last_updated=Max('versions__created')))
-
-    @amo.cached_property(writable=True)
-    def all_previews(self):
-        return list(self.get_previews())
-
-    def get_previews(self):
-        """Exclude promo graphics."""
-        return self.previews.exclude(position=-1)
-
-    def remove_locale(self, locale):
-        """NULLify strings in this locale for the add-on and versions."""
-        for o in itertools.chain([self], self.versions.all()):
-            Translation.objects.remove_for(o, locale)
-
-    def get_mozilla_contacts(self):
-        return [x.strip() for x in self.mozilla_contact.split(',')]
-
-    @amo.cached_property
-    def upsell(self):
-        """Return the upsell or add-on, or None if there isn't one."""
-        try:
-            # We set unique_together on the model, so there will only be one.
-            return self._upsell_from.all()[0]
-        except IndexError:
-            pass
-
-    @amo.cached_property
-    def upsold(self):
-        """
-        Return what this is going to upsold from,
-        or None if there isn't one.
-        """
-        try:
-            return self._upsell_to.all()[0]
-        except IndexError:
-            pass
-
-    def get_purchase_type(self, user):
-        if user and isinstance(user, UserProfile):
-            try:
-                return self.addonpurchase_set.get(user=user).type
-            except models.ObjectDoesNotExist:
-                pass
-
-    def has_purchased(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_PURCHASE
-
-    def is_refunded(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_REFUND
-
-    def is_chargeback(self, user):
-        return self.get_purchase_type(user) == amo.CONTRIB_CHARGEBACK
-
-    def can_review(self, user):
-        if user and self.has_author(user):
-            return False
-        else:
-            return (not self.is_premium() or self.has_purchased(user) or
-                    self.is_refunded(user))
-
-    @property
-    def premium(self):
-        """
-        Returns the premium object which will be gotten by the transformer,
-        if its not there, try and get it. Will return None if there's nothing
-        there.
-        """
-        if not hasattr(self, '_premium'):
-            try:
-                self._premium = self.addonpremium
-            except AddonPremium.DoesNotExist:
-                self._premium = None
-        return self._premium
-
-    def has_installed(self, user):
-        if not user or not isinstance(user, UserProfile):
-            return False
-
-        return self.installed.filter(user=user).exists()
-
-    def get_latest_file(self):
-        """Get the latest file from the current version."""
-        cur = self.current_version
-        if cur:
-            res = cur.files.order_by('-created')
-            if res:
-                return res[0]
-
-    @property
-    def uses_flash(self):
-        """
-        Convenience property until more sophisticated per-version
-        checking is done for packaged apps.
-        """
-        f = self.get_latest_file()
-        if not f:
-            return False
-        return f.uses_flash
-
-    def in_escalation_queue(self):
-        return self.escalationqueue_set.exists()
-
-    def in_rereview_queue(self):
-        # Rereview is part of marketplace and not AMO, so setting for False
-        # to avoid having to catch NotImplemented errors.
-        return False
-
-    def sign_if_packaged(self, version_pk, reviewer=False):
-        raise NotImplementedError('Not available for add-ons.')
-
-    def update_names(self, new_names):
-        """
-        Adds, edits, or removes names to match the passed in new_names dict.
-        Will not remove the translation of the default_locale.
-
-        `new_names` is a dictionary mapping of locales to names.
-
-        Returns a message that can be used in logs showing what names were
-        added or updated.
-
-        Note: This method doesn't save the changes made to the addon object.
-        Don't forget to call save() in your calling method.
-        """
-        updated_locales = {}
-        locales = dict(Translation.objects.filter(id=self.name_id)
-                                          .values_list('locale',
-                                                       'localized_string'))
-        msg_c = []  # For names that were created.
-        msg_d = []  # For deletes.
-        msg_u = []  # For updates.
-
-        # Normalize locales.
-        names = {}
-        for locale, name in new_names.iteritems():
-            loc = find_language(locale)
-            if loc and loc not in names:
-                names[loc] = name
-
-        # Null out names no longer in `names` but exist in the database.
-        for locale in set(locales) - set(names):
-            names[locale] = None
-
-        for locale, name in names.iteritems():
-
-            if locale in locales:
-                if not name and locale.lower() == self.default_locale.lower():
-                    pass  # We never want to delete the default locale.
-                elif not name:  # A deletion.
-                    updated_locales[locale] = None
-                    msg_d.append(u'"%s" (%s).' % (locales.get(locale), locale))
-                elif name != locales[locale]:
-                    updated_locales[locale] = name
-                    msg_u.append(u'"%s" -> "%s" (%s).' % (
-                        locales[locale], name, locale))
-            else:
-                updated_locales[locale] = names.get(locale)
-                msg_c.append(u'"%s" (%s).' % (name, locale))
-
-        if locales != updated_locales:
-            self.name = updated_locales
-
-        return {
-            'added': ' '.join(msg_c),
-            'deleted': ' '.join(msg_d),
-            'updated': ' '.join(msg_u),
-        }
-
-    def update_default_locale(self, locale):
-        """
-        Updates default_locale if it's different and matches one of our
-        supported locales.
-
-        Returns tuple of (old_locale, new_locale) if updated. Otherwise None.
-        """
-        old_locale = self.default_locale
-        locale = find_language(locale)
-        if locale and locale != old_locale:
-            self.update(default_locale=locale)
-            return old_locale, locale
-        return None
-
-    @property
-    def app_type(self):
-        # Not implemented for non-webapps.
-        return ''
-
-    def check_ownership(self, request, require_owner, require_author,
-                        ignore_disabled, admin):
-        """
-        Used by acl.check_ownership to see if request.user has permissions for
-        the addon.
-        """
-        if require_author:
-            require_owner = False
-            ignore_disabled = True
-            admin = False
-        return acl.check_addon_ownership(request, self, admin=admin,
-                                         viewer=(not require_owner),
-                                         ignore_disabled=ignore_disabled)
-
-dbsignals.pre_save.connect(save_signal, sender=Addon,
-                           dispatch_uid='addon_translations')
-
-
-class AddonDeviceType(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, db_constraint=False)
-    device_type = models.PositiveIntegerField(
-        default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
-        db_index=True)
-
-    class Meta:
-        db_table = 'addons_devicetypes'
-        unique_together = ('addon', 'device_type')
-
-    def __unicode__(self):
-        return u'%s: %s' % (self.addon.name, self.device.name)
-
-    @property
-    def device(self):
-        return amo.DEVICE_TYPES[self.device_type]
-
-
-@receiver(signals.version_changed, dispatch_uid='version_changed')
-def version_changed(sender, **kw):
-    from . import tasks
-    tasks.version_changed.delay(sender.id)
-
-
-def attach_devices(addons):
-    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
-    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
-               .values_list('addon', 'device_type'))
-    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
-        addon_dict[addon].device_ids = [d[1] for d in device_types]
-
-
-def attach_prices(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    prices = (AddonPremium.objects
-              .filter(addon__in=addon_dict,
-                      addon__premium_type__in=amo.ADDON_PREMIUMS)
-              .values_list('addon', 'price__price'))
-    for addon, price in prices:
-        addon_dict[addon].price = price
-
-
-def attach_translations(addons):
-    """Put all translations into a translations dict."""
-    attach_trans_dict(Addon, addons)
-
-
-def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
-    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
-          .values_list('addons__id', 'tag_text'))
-    for addon, tags in sorted_groupby(qs, lambda x: x[0]):
-        addon_dict[addon].tag_list = [t[1] for t in tags]
-
-
-class AddonType(amo.models.ModelBase):
-    name = TranslatedField()
-    name_plural = TranslatedField()
-    description = TranslatedField()
-
-    class Meta:
-        db_table = 'addontypes'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-
-dbsignals.pre_save.connect(save_signal, sender=AddonType,
-                           dispatch_uid='addontype_translations')
-
-
-class AddonUser(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
-    user = UserForeignKey()
-    role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
-                                    choices=amo.AUTHOR_CHOICES)
-    listed = models.BooleanField(_lazy(u'Listed'), default=True)
-    position = models.IntegerField(default=0)
-
-    objects = caching.CachingManager()
-
-    def __init__(self, *args, **kwargs):
-        super(AddonUser, self).__init__(*args, **kwargs)
-        self._original_role = self.role
-        self._original_user_id = self.user_id
-
-    class Meta:
-        db_table = 'addons_users'
-
-
-class Preview(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='previews')
-    filetype = models.CharField(max_length=25)
-    thumbtype = models.CharField(max_length=25)
-    caption = TranslatedField()
-
-    position = models.IntegerField(default=0)
-    sizes = json_field.JSONField(max_length=25, default={})
-
-    class Meta:
-        db_table = 'previews'
-        ordering = ('position', 'created')
-
-    def _image_url(self, url_template):
-        if self.modified is not None:
-            if isinstance(self.modified, unicode):
-                self.modified = datetime.datetime.strptime(self.modified,
-                                                           '%Y-%m-%dT%H:%M:%S')
-            modified = int(time.mktime(self.modified.timetuple()))
-        else:
-            modified = 0
-        args = [self.id / 1000, self.id, modified]
-        if '.png' not in url_template:
-            args.insert(2, self.file_extension)
-        return url_template % tuple(args)
-
-    def _image_path(self, url_template):
-        args = [self.id / 1000, self.id]
-        if '.png' not in url_template:
-            args.append(self.file_extension)
-        return url_template % tuple(args)
-
-    def as_dict(self, src=None):
-        d = {'full': urlparams(self.image_url, src=src),
-             'thumbnail': urlparams(self.thumbnail_url, src=src),
-             'caption': unicode(self.caption)}
-        return d
-
-    @property
-    def is_landscape(self):
-        size = self.image_size
-        if not size:
-            return False
-        return size[0] > size[1]
-
-    @property
-    def file_extension(self):
-        # Assume that blank is an image.
-        if not self.filetype:
-            return 'png'
-        return self.filetype.split('/')[1]
-
-    @property
-    def thumbnail_url(self):
-        return self._image_url(static_url('PREVIEW_THUMBNAIL_URL'))
-
-    @property
-    def image_url(self):
-        return self._image_url(static_url('PREVIEW_FULL_URL'))
-
-    @property
-    def thumbnail_path(self):
-        return self._image_path(settings.PREVIEW_THUMBNAIL_PATH)
-
-    @property
-    def image_path(self):
-        return self._image_path(settings.PREVIEW_FULL_PATH)
-
-    @property
-    def thumbnail_size(self):
-        return self.sizes.get('thumbnail', []) if self.sizes else []
-
-    @property
-    def image_size(self):
-        return self.sizes.get('image', []) if self.sizes else []
-
-
-dbsignals.pre_save.connect(save_signal, sender=Preview,
-                           dispatch_uid='preview_translations')
-
-
-class BlacklistedSlug(amo.models.ModelBase):
-    name = models.CharField(max_length=255, unique=True, default='')
-
-    class Meta:
-        db_table = 'addons_blacklistedslug'
-
-    def __unicode__(self):
-        return self.name
-
-    @classmethod
-    def blocked(cls, slug):
-        return slug.isdigit() or cls.objects.filter(name=slug).exists()
-
-
-class AddonUpsell(amo.models.ModelBase):
-    free = models.ForeignKey(Addon, related_name='_upsell_from')
-    premium = models.ForeignKey(Addon, related_name='_upsell_to')
-
-    class Meta:
-        db_table = 'addon_upsell'
-        unique_together = ('free', 'premium')
-
-    def __unicode__(self):
-        return u'Free: %s to Premium: %s' % (self.free, self.premium)
-
-    @amo.cached_property
-    def premium_addon(self):
-        """
-        Return the premium version, or None if there isn't one.
-        """
-        try:
-            return self.premium
-        except Addon.DoesNotExist:
-            pass
-
-    def cleanup(self):
-        try:
-            # Just accessing these may raise an error.
-            assert self.free and self.premium
-        except ObjectDoesNotExist:
-            log.info('Deleted upsell: from %s, to %s' %
-                     (self.free_id, self.premium_id))
-            self.delete()
-
-
-def cleanup_upsell(sender, instance, **kw):
-    if 'raw' in kw:
-        return
-
-    both = Q(free=instance) | Q(premium=instance)
-    for upsell in list(AddonUpsell.objects.filter(both)):
-        upsell.cleanup()
-
-dbsignals.post_delete.connect(cleanup_upsell, sender=Addon,
-                              dispatch_uid='addon_upsell')
-
-
-def reverse_version(version):
-    """
-    The try/except AttributeError allows this to be used where the input is
-    ambiguous, and could be either an already-reversed URL or a Version object.
-    """
-    if version:
-        try:
-            return reverse('version-detail', kwargs={'pk': version.pk})
-        except AttributeError:
-            return version
-    return
-
-
-class WebappManager(amo.models.ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        amo.models.ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-
-    def get_query_set(self):
-        qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet).filter(
-            type=amo.ADDON_WEBAPP)
-        if not self.include_deleted:
-            qs = qs.exclude(status=amo.STATUS_DELETED)
-        return qs.transform(Webapp.transformer)
-
-    def valid(self):
-        return self.filter(status__in=amo.LISTED_STATUSES,
-                           disabled_by_user=False)
-
-    def visible(self):
-        return self.filter(status__in=amo.LISTED_STATUSES,
-                           disabled_by_user=False)
-
-    @skip_cache
-    def pending_in_region(self, region):
-        """
-        Apps that have been approved by reviewers but unapproved by
-        reviewers in special regions (e.g., China).
-
-        """
-        region = parse_region(region)
-        column_prefix = '_geodata__region_%s' % region.slug
-        return self.filter(**{
-            # Only nominated apps should show up.
-            '%s_nominated__isnull' % column_prefix: False,
-            'status__in': amo.WEBAPPS_APPROVED_STATUSES,
-            'disabled_by_user': False,
-            'escalationqueue__isnull': True,
-            '%s_status' % column_prefix: amo.STATUS_PENDING,
-        }).order_by('-%s_nominated' % column_prefix)
-
-    def rated(self):
-        """IARC."""
-        return self.exclude(content_ratings__isnull=True)
-
-    def by_identifier(self, identifier):
-        """
-        Look up a single app by its `id` or `app_slug`.
-
-        If the identifier is coercable into an integer, we first check for an
-        ID match, falling back to a slug check (probably not necessary, as
-        there is validation preventing numeric slugs). Otherwise, we only look
-        for a slug match.
-        """
-        try:
-            return self.get(id=identifier)
-        except (ObjectDoesNotExist, ValueError):
-            return self.get(app_slug=identifier)
-
-
-class UUIDModelMixin(object):
-    """
-    A mixin responsible for assigning a uniquely generated
-    UUID at save time.
-    """
-
-    def save(self, *args, **kwargs):
-        self.assign_uuid()
-        return super(UUIDModelMixin, self).save(*args, **kwargs)
-
-    def assign_uuid(self):
-        """Generates a UUID if self.guid is not already set."""
-        if not hasattr(self, 'guid'):
-            raise AttributeError('A UUIDModel must contain a charfield called guid')
-
-        if not self.guid:
-            max_tries = 10
-            tried = 1
-            guid = str(uuid.uuid4())
-            while tried <= max_tries:
-                if not type(self).objects.filter(guid=guid).exists():
-                    self.guid = guid
-                    break
-                else:
-                    guid = str(uuid.uuid4())
-                    tried += 1
-            else:
-                raise ValueError('Could not auto-generate a unique UUID')
-
-
-# We use super(Addon, self) on purpose to override expectations in Addon that
-# are not true for Webapp. Webapp is just inheriting so it can share the db
-# table.
-class Webapp(UUIDModelMixin, Addon):
-
-    objects = WebappManager()
-    with_deleted = WebappManager(include_deleted=True)
-
-    class PayAccountDoesNotExist(Exception):
-        """The app has no payment account for the query."""
-
-    class Meta:
-        proxy = True
-
-    def save(self, **kw):
-        # Make sure we have the right type.
-        self.type = amo.ADDON_WEBAPP
-        self.clean_slug(slug_field='app_slug')
-        creating = not self.id
-        super(Webapp, self).save(**kw)
-        if creating:
-            # Set the slug once we have an id to keep things in order.
-            self.update(slug='app-%s' % self.id)
-
-            # Create Geodata object (a 1-to-1 relationship).
-            if not hasattr(self, '_geodata'):
-                Geodata.objects.create(addon=self)
-
-    @classmethod
-    def get_indexer(cls):
-        return WebappIndexer
-
-    @staticmethod
-    def transformer(apps):
-        if not apps:
-            return
-        apps_dict = dict((a.id, a) for a in apps)
-
-        # Only the parts relevant for Webapps are copied over from Addon. In
-        # particular this avoids fetching listed_authors, which isn't useful
-        # in most parts of the Marketplace.
-
-        # Set _latest_version, _current_version
-        Addon.attach_related_versions(apps, apps_dict)
-
-        # Attach previews. Don't use transforms, the only one present is for
-        # translations and Previews don't have captions in the Marketplace, and
-        # therefore don't have translations.
-        Addon.attach_previews(apps, apps_dict, no_transforms=True)
-
-        # Attach prices.
-        Addon.attach_prices(apps, apps_dict)
-
-        # FIXME: re-use attach_devices instead ?
-        for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
-            if not getattr(apps_dict[adt.addon_id], '_device_types', None):
-                apps_dict[adt.addon_id]._device_types = []
-            apps_dict[adt.addon_id]._device_types.append(
-                DEVICE_TYPES[adt.device_type])
-
-        # FIXME: attach geodata and content ratings. Maybe in a different
-        # transformer that would then be called automatically for the API ?
-
-    @staticmethod
-    def version_and_file_transformer(apps):
-        """Attach all the versions and files to the apps."""
-        # Don't just return an empty list, it will break code that expects
-        # a query object
-        if not len(apps):
-            return apps
-
-        ids = set(app.id for app in apps)
-        versions = (Version.objects.no_cache().filter(addon__in=ids)
-                    .select_related('addon'))
-        vids = [v.id for v in versions]
-        files = (File.objects.no_cache().filter(version__in=vids)
-                             .select_related('version'))
-
-        # Attach the files to the versions.
-        f_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(files, 'version_id'))
-        for version in versions:
-            version.all_files = f_dict.get(version.id, [])
-        # Attach the versions to the apps.
-        v_dict = dict((k, list(vs)) for k, vs in
-                      amo.utils.sorted_groupby(versions, 'addon_id'))
-        for app in apps:
-            app.all_versions = v_dict.get(app.id, [])
-
-        return apps
-
     @property
     def geodata(self):
         if hasattr(self, '_geodata'):
@@ -1572,6 +1319,10 @@ class Webapp(UUIDModelMixin, Addon):
 
         parsed = urlparse.urlparse(self.get_manifest_url())
         return '%s://%s' % (parsed.scheme, parsed.netloc)
+
+    def language_ascii(self):
+        lang = translation.to_language(self.default_locale)
+        return settings.LANGUAGES.get(lang)
 
     def get_manifest_url(self, reviewer=False):
         """
@@ -1858,9 +1609,6 @@ class Webapp(UUIDModelMixin, Addon):
 
     def is_purchased(self, user):
         return user and self.id in user.purchase_ids()
-
-    def is_pending(self):
-        return self.status == amo.STATUS_PENDING
 
     def has_premium(self):
         """If the app is premium status and has a premium object."""
@@ -2214,6 +1962,20 @@ class Webapp(UUIDModelMixin, Addon):
         """
         return amo.ADDON_WEBAPP_TYPES[self.app_type_id]
 
+    def check_ownership(self, request, require_owner, require_author,
+                        ignore_disabled, admin):
+        """
+        Used by acl.check_ownership to see if request.user has permissions for
+        the addon.
+        """
+        if require_author:
+            require_owner = False
+            ignore_disabled = True
+            admin = False
+        return acl.check_addon_ownership(request, self, admin=admin,
+                                         viewer=(not require_owner),
+                                         ignore_disabled=ignore_disabled)
+
     @property
     def supported_locales(self):
         """
@@ -2446,8 +2208,51 @@ class Webapp(UUIDModelMixin, Addon):
             return self.content_ratings.order_by('-modified')[0].modified
 
 
+class AddonUpsell(amo.models.ModelBase):
+    free = models.ForeignKey(Webapp, related_name='_upsell_from')
+    premium = models.ForeignKey(Webapp, related_name='_upsell_to')
+
+    class Meta:
+        db_table = 'addon_upsell'
+        unique_together = ('free', 'premium')
+
+    def __unicode__(self):
+        return u'Free: %s to Premium: %s' % (self.free, self.premium)
+
+    @amo.cached_property
+    def premium_addon(self):
+        """
+        Return the premium version, or None if there isn't one.
+        """
+        try:
+            return self.premium
+        except Webapp.DoesNotExist:
+            pass
+
+    def cleanup(self):
+        try:
+            # Just accessing these may raise an error.
+            assert self.free and self.premium
+        except ObjectDoesNotExist:
+            log.info('Deleted upsell: from %s, to %s' %
+                     (self.free_id, self.premium_id))
+            self.delete()
+
+
+def cleanup_upsell(sender, instance, **kw):
+    if 'raw' in kw:
+        return
+
+    both = Q(free=instance) | Q(premium=instance)
+    for upsell in list(AddonUpsell.objects.filter(both)):
+        upsell.cleanup()
+
+dbsignals.post_delete.connect(cleanup_upsell, sender=Webapp,
+                              dispatch_uid='addon_upsell')
+
+
 class Trending(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon, related_name='trending')
+    addon = models.ForeignKey(Webapp, related_name='trending')
     value = models.FloatField(default=0.0)
     # When region=0, it's trending using install counts across all regions.
     region = models.PositiveIntegerField(null=False, default=0, db_index=True)
@@ -2540,10 +2345,10 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
                  if k in ('disabled_by_user', 'status'))
     qs = (File.objects.filter(version__addon=instance.id)
                       .exclude(version__deleted=True))
-    if Addon(**attrs).is_disabled and not instance.is_disabled:
+    if Webapp(**attrs).is_disabled and not instance.is_disabled:
         for f in qs:
             f.unhide_disabled_file()
-    if instance.is_disabled and not Addon(**attrs).is_disabled:
+    if instance.is_disabled and not Webapp(**attrs).is_disabled:
         for f in qs:
             f.hide_disabled_file()
 
@@ -2575,7 +2380,7 @@ def pre_generate_apk(sender=None, instance=None, **kw):
 
 class Installed(amo.models.ModelBase):
     """Track WebApp installations."""
-    addon = models.ForeignKey(Addon, related_name='installed')
+    addon = models.ForeignKey(Webapp, related_name='installed')
     user = models.ForeignKey('users.UserProfile')
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
     # Because the addon could change between free and premium,
@@ -2606,7 +2411,7 @@ class AddonExcludedRegion(amo.models.ModelBase):
     Apps are listed in all regions by default.
     When regions are unchecked, we remember those excluded regions.
     """
-    addon = models.ForeignKey(Addon, related_name='addonexcludedregion')
+    addon = models.ForeignKey(Webapp, related_name='addonexcludedregion')
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID)
 
@@ -2660,7 +2465,7 @@ class IARCInfo(amo.models.ModelBase):
     """
     Stored data for IARC.
     """
-    addon = models.OneToOneField(Addon, related_name='iarc_info')
+    addon = models.OneToOneField(Webapp, related_name='iarc_info')
     submission_id = models.PositiveIntegerField(null=False)
     security_code = models.CharField(max_length=10)
 
@@ -2675,7 +2480,7 @@ class ContentRating(amo.models.ModelBase):
     """
     Ratings body information about an app.
     """
-    addon = models.ForeignKey(Addon, related_name='content_ratings')
+    addon = models.ForeignKey(Webapp, related_name='content_ratings')
     ratings_body = models.PositiveIntegerField(
         choices=[(k, rb.name) for k, rb in
                  mkt.ratingsbodies.RATINGS_BODIES.items()],
@@ -2749,7 +2554,7 @@ class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
     A dynamically generated model that contains a set of boolean values
     stating if an app is rated with a particular descriptor.
     """
-    addon = models.OneToOneField(Addon, related_name='rating_descriptors')
+    addon = models.OneToOneField(Webapp, related_name='rating_descriptors')
 
     class Meta:
         db_table = 'webapps_rating_descriptors'
@@ -2782,7 +2587,7 @@ class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
     A dynamically generated model that contains a set of boolean values
     stating if an app features a particular interactive element.
     """
-    addon = models.OneToOneField(Addon, related_name='rating_interactives')
+    addon = models.OneToOneField(Webapp, related_name='rating_interactives')
 
     class Meta:
         db_table = 'webapps_rating_interactives'
@@ -2812,7 +2617,7 @@ def iarc_cleanup(*args, **kwargs):
 
 # When an app is deleted we need to remove the IARC data so the certificate can
 # be re-used later.
-models.signals.post_delete.connect(iarc_cleanup, sender=Addon,
+models.signals.post_delete.connect(iarc_cleanup, sender=Webapp,
                                    dispatch_uid='webapps_iarc_cleanup')
 
 
@@ -2911,7 +2716,7 @@ class RegionListField(json_field.JSONField):
 
 class Geodata(amo.models.ModelBase):
     """TODO: Forgo AER and use bool columns for every region and carrier."""
-    addon = models.OneToOneField(Addon, related_name='_geodata')
+    addon = models.OneToOneField(Webapp, related_name='_geodata')
     restricted = models.BooleanField(default=False)
     popular_region = models.CharField(max_length=10, null=True)
     banner_regions = RegionListField(default=None, null=True)

@@ -43,7 +43,7 @@ class VersionManager(amo.models.ManagerBase):
 
 
 class Version(amo.models.ModelBase):
-    addon = models.ForeignKey('webapps.Addon', related_name='versions')
+    addon = models.ForeignKey('webapps.Webapp', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)

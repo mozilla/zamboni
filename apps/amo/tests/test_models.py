@@ -5,7 +5,7 @@ import amo.models
 from amo.models import manual_order
 from amo.tests import TestCase
 from amo import models as context
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 
 
 class ManualOrderTest(TestCase):
@@ -17,7 +17,7 @@ class ManualOrderTest(TestCase):
         in that order."""
 
         semi_arbitrary_order = [40, 5299, 3615]
-        addons = manual_order(Addon.objects.all(), semi_arbitrary_order)
+        addons = manual_order(Webapp.objects.all(), semi_arbitrary_order)
         eq_(semi_arbitrary_order, [addon.id for addon in addons])
 
 
@@ -50,7 +50,7 @@ class TestModelBase(TestCase):
         amo.models._on_change_callbacks.clear()
         self.cb = Mock()
         self.cb.__name__ = 'testing_mock_callback'
-        Addon.on_change(self.cb)
+        Webapp.on_change(self.cb)
 
     def tearDown(self):
         amo.models._on_change_callbacks = self.saved_cb
@@ -58,14 +58,14 @@ class TestModelBase(TestCase):
     def test_multiple_ignored(self):
         cb = Mock()
         cb.__name__ = 'something'
-        old = len(amo.models._on_change_callbacks[Addon])
-        Addon.on_change(cb)
-        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
-        Addon.on_change(cb)
-        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
+        old = len(amo.models._on_change_callbacks[Webapp])
+        Webapp.on_change(cb)
+        eq_(len(amo.models._on_change_callbacks[Webapp]), old + 1)
+        Webapp.on_change(cb)
+        eq_(len(amo.models._on_change_callbacks[Webapp]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
-        for create_addon in (Addon, Addon.objects.create):
+        for create_addon in (Webapp, Webapp.objects.create):
             addon = create_addon(public_stats=False, type=amo.ADDON_EXTENSION)
             addon.public_stats = True
             addon.save()
@@ -74,20 +74,20 @@ class TestModelBase(TestCase):
             eq_(kw['old_attr']['public_stats'], False)
             eq_(kw['new_attr']['public_stats'], True)
             eq_(kw['instance'].id, addon.id)
-            eq_(kw['sender'], Addon)
+            eq_(kw['sender'], Webapp)
 
     def test_change_called_on_update(self):
-        addon = Addon.objects.get(pk=3615)
+        addon = Webapp.objects.get(pk=3615)
         addon.update(public_stats=False)
         assert self.cb.called
         kw = self.cb.call_args[1]
         eq_(kw['old_attr']['public_stats'], True)
         eq_(kw['new_attr']['public_stats'], False)
         eq_(kw['instance'].id, addon.id)
-        eq_(kw['sender'], Addon)
+        eq_(kw['sender'], Webapp)
 
     def test_change_called_on_save(self):
-        addon = Addon.objects.get(pk=3615)
+        addon = Webapp.objects.get(pk=3615)
         addon.public_stats = False
         addon.save()
         assert self.cb.called
@@ -95,7 +95,7 @@ class TestModelBase(TestCase):
         eq_(kw['old_attr']['public_stats'], True)
         eq_(kw['new_attr']['public_stats'], False)
         eq_(kw['instance'].id, addon.id)
-        eq_(kw['sender'], Addon)
+        eq_(kw['sender'], Webapp)
 
     def test_change_is_not_recursive(self):
 
@@ -109,18 +109,18 @@ class TestModelBase(TestCase):
             instance.update(public_stats=False)
             instance.save()
 
-        Addon.on_change(callback)
+        Webapp.on_change(callback)
 
-        addon = Addon.objects.get(pk=3615)
+        addon = Webapp.objects.get(pk=3615)
         addon.save()
         assert fn.called
         # No exception = pass
 
     def test_safer_get_or_create(self):
         data = {'guid': '123', 'type': amo.ADDON_EXTENSION}
-        a, c = Addon.objects.safer_get_or_create(**data)
+        a, c = Webapp.objects.safer_get_or_create(**data)
         assert c
-        b, c = Addon.objects.safer_get_or_create(**data)
+        b, c = Webapp.objects.safer_get_or_create(**data)
         assert not c
         eq_(a, b)
 
@@ -128,4 +128,4 @@ class TestModelBase(TestCase):
 def test_cache_key():
     # Test that we are not taking the db into account when building our
     # cache keys for django-cache-machine. See bug 928881.
-    eq_(Addon._cache_key(1, 'default'), Addon._cache_key(1, 'slave'))
+    eq_(Webapp._cache_key(1, 'default'), Webapp._cache_key(1, 'slave'))

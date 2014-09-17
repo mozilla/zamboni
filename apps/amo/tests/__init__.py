@@ -53,7 +53,7 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import update_search_index as app_update_search_index
-from mkt.webapps.models import Addon, Webapp
+from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import unindex_webapps
 
 
@@ -311,13 +311,14 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
         # Stop nose using the test docstring and instead the test method name.
         pass
 
-    def _post_teardown(self):
-        amo.set_user(None)
-        super(TestCase, self)._post_teardown()
-
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.mock_browser_id()
+        post_request_task._discard_tasks()
+
+    def _post_teardown(self):
+        amo.set_user(None)
+        super(TestCase, self)._post_teardown()
 
     @contextmanager
     def activate(self, locale=None, app=None):
@@ -701,22 +702,34 @@ def _get_created(created):
                         random.randint(0, 59))  # Seconds
 
 
-def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
+def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
+    """
+    Create an app.
+
+    complete -- fills out app details + creates content ratings.
+    rated -- creates content ratings
+
+    """
     # Disconnect signals until the last save.
     post_save.disconnect(app_update_search_index, sender=Webapp,
                          dispatch_uid='webapp.search.index')
 
-    type_ = kw.pop('type', amo.ADDON_EXTENSION)
+    type_ = kw.pop('type', amo.ADDON_WEBAPP)
+    complete = kw.pop('complete', False)
+    rated = kw.pop('rated', False)
+    if complete:
+        kw.setdefault('support_email', 'support@example.com')
     popularity = kw.pop('popularity', None)
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
+    name = kw.pop('name',
+                  u'Webapp %s' % unicode(uuid.uuid4()).replace('-', ''))
 
     kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, , the real
+        # Set artificially the status to STATUS_PUBLIC for now, the real
         # status will be set a few lines below, after the update_version()
-        # call. This prevents issues when calling addon_factory with
+        # call. This prevents issues when calling app_factory with
         # STATUS_DELETED.
         'status': amo.STATUS_PUBLIC,
         'name': name,
@@ -729,39 +742,22 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     kwargs.update(kw)
 
     # Save 1.
-    a = Addon.objects.create(type=type_, **kwargs)
-    version = version_factory(file_kw, addon=a, **version_kw)  # Save 2.
-    a.status = status
-    a.update_version()
+    app = Webapp.objects.create(type=type_, **kwargs)
+    version = version_factory(file_kw, addon=app, **version_kw)  # Save 2.
+    app.status = status
+    app.update_version()
 
     # Put signals back.
     post_save.connect(app_update_search_index, sender=Webapp,
                       dispatch_uid='webapp.search.index')
 
-    a.save()  # Save 4.
+    app.save()  # Save 4.
 
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status() or
         # mkt.webapps.models.watch_status().
         version.save()
-    return a
-
-
-def app_factory(**kw):
-    """
-    Create an app. Keyword arguments are passed to addon_factory.
-
-    complete -- fills out app details + creates content ratings.
-    rated -- creates content ratings
-    """
-    complete = kw.pop('complete', False)
-    rated = kw.pop('rated', False)
-    if complete:
-        kw.setdefault('support_email', 'support@example.com')
-
-    kw.update(type=amo.ADDON_WEBAPP)
-    app = amo.tests.addon_factory(**kw)
 
     if rated or complete:
         make_rated(app)
@@ -887,7 +883,7 @@ class ESTestCase(TestCase):
     def tearDownClass(cls):
         try:
             if hasattr(cls, '_addons'):
-                Addon.objects.filter(
+                Webapp.objects.filter(
                     pk__in=[a.id for a in cls._addons]).delete()
                 unindex_webapps([a.id for a in cls._addons
                                  if a.type == amo.ADDON_WEBAPP])
@@ -900,6 +896,7 @@ class ESTestCase(TestCase):
 
     def tearDown(self):
         post_request_task._send_tasks()
+        super(ESTestCase, self).tearDown()
 
     @classmethod
     def setUpIndex(cls):
@@ -928,7 +925,7 @@ class WebappTestCase(TestCase):
         self.app = self.get_app()
 
     def get_app(self):
-        return Addon.objects.get(id=337141)
+        return Webapp.objects.get(id=337141)
 
     def make_game(self, app=None, rated=False):
         app = make_game(self.app or app, rated)

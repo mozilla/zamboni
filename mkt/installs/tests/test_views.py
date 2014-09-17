@@ -9,7 +9,7 @@ import amo
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.apps import INSTALL_TYPE_DEVELOPER, INSTALL_TYPE_USER
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import Addon, AddonUser, Installed
+from mkt.webapps.models import AddonUser, Installed, Webapp
 
 
 class TestAPI(RestOAuth):
@@ -17,7 +17,7 @@ class TestAPI(RestOAuth):
 
     def setUp(self):
         super(TestAPI, self).setUp()
-        self.addon = Addon.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.url = reverse('app-install-list')
         self.data = json.dumps({'app': self.addon.pk})
         self.profile = self.user

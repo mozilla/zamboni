@@ -10,7 +10,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)
 from mkt.site.helpers import absolutify
 from mkt.versions.models import Version
-from mkt.webapps.models import Addon
+from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
 
@@ -67,7 +67,7 @@ class AddonSerializer(ModelSerializer):
     review_url = SerializerMethodField('get_review_url')
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('id', 'name', 'url', 'thumbnail_url', 'app_slug', 'slug',
                   'review_url')
 

@@ -11,18 +11,15 @@ import mock
 from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 
-import amo.tests
-from amo.tests import (addon_factory, req_factory_factory, user_factory,
-                       version_factory)
-from mkt.users.models import UserProfile
-
 import mkt.constants.comm as comm
+from amo.tests import (app_factory, req_factory_factory, user_factory,
+                       version_factory)
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.comm.views import (EmailCreationPermission, post_email,
-                            ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC)
+from mkt.comm.views import EmailCreationPermission, post_email, ThreadPermission
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
@@ -151,7 +148,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
     def test_addon_dev_denied(self):
         """Test when the user is a developer of a different add-on."""
         thread = self._thread_factory(perms=['developer'])
-        self.profile.addonuser_set.create(addon=addon_factory())
+        self.profile.addonuser_set.create(addon=app_factory())
         assert not self.check_permissions(thread)
 
     def test_read_public(self):
@@ -519,7 +516,7 @@ class TestEmailApi(RestOAuth):
                                     'email.txt')
         req = self.get_request(data={'body': open(sample_email).read()})
 
-        app = amo.tests.app_factory()
+        app = app_factory()
         user = user_factory()
         self.grant_permission(user, 'Admin:*')
         t = CommunicationThread.objects.create(addon=app,

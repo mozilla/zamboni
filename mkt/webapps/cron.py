@@ -19,7 +19,7 @@ from mkt.developers.models import ActivityLog
 from mkt.files.models import File, FileUpload
 from mkt.site.decorators import write
 
-from .models import Addon, Installed, Webapp
+from .models import Installed, Webapp
 from .tasks import (delete_logs, dump_user_installs, update_downloads,
                     update_trending, zip_users)
 
@@ -31,7 +31,7 @@ task_log = logging.getLogger('z.task')
 def _change_last_updated(next):
     # We jump through some hoops here to make sure we only change the add-ons
     # that really need it, and to invalidate properly.
-    current = dict(Addon.objects.values_list('id', 'last_updated'))
+    current = dict(Webapp.objects.values_list('id', 'last_updated'))
     changes = {}
 
     for addon, last_updated in next.items():
@@ -46,7 +46,7 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    qs = Addon.objects.no_cache().filter(id__in=changes).no_transforms()
+    qs = Webapp.objects.no_cache().filter(id__in=changes).no_transforms()
     for addon in qs:
         addon.last_updated = changes[addon.id]
         addon.save()
@@ -56,29 +56,16 @@ def _change_last_updated(next):
 @write
 def addon_last_updated():
     next = {}
-    qs = Addon._last_updated_queries().values()
+    qs = Webapp._last_updated_queries().values()
     for addon, last_updated in qs.values_list('id', 'last_updated'):
         next[addon] = last_updated
 
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.no_cache().filter(last_updated__isnull=True)
+    other = (Webapp.objects.no_cache().filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
-
-
-@cronjobs.register
-def addons_add_slugs():
-    """Give slugs to any slugless addons."""
-    Addon._meta.get_field('modified').auto_now = False
-    q = Addon.objects.filter(slug=None).order_by('id')
-
-    # Chunk it so we don't do huge queries.
-    for chunk in chunked(q, 300):
-        task_log.info('Giving slugs to %s slugless addons' % len(chunk))
-        for addon in chunk:
-            addon.save()
 
 
 @cronjobs.register

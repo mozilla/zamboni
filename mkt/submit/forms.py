@@ -23,7 +23,7 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.widgets import TransInput, TransTextarea
 from mkt.users.models import UserNotification
 from mkt.users.notifications import app_surveys
-from mkt.webapps.models import Addon, AppFeatures, BlacklistedSlug, Webapp
+from mkt.webapps.models import AppFeatures, BlacklistedSlug, Webapp
 
 
 def mark_for_rereview(addon, added_devices, removed_devices):
@@ -336,7 +336,7 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         widget=forms.RadioSelect())
 
     class Meta:
-        model = Addon
+        model = Webapp
         fields = ('app_slug', 'description', 'privacy_policy', 'homepage',
                   'support_url', 'support_email', 'publish_type')
 

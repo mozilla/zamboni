@@ -42,8 +42,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import (Addon, AddonDeviceType, AddonUpsell, AddonUser,
-                                Webapp)
+from mkt.webapps.models import AddonDeviceType, AddonUpsell, AddonUser, Webapp
 from mkt.zadmin.models import get_config, set_config
 
 
@@ -58,15 +57,16 @@ class AppHubTest(amo.tests.TestCase):
     def clone_addon(self, num, addon_id=337141):
         ids = []
         for i in xrange(num):
-            addon = Addon.objects.get(id=addon_id)
-            new_addon = Addon.objects.create(type=addon.type,
-                status=addon.status, name='cloned-addon-%s-%s' % (addon_id, i))
+            addon = Webapp.objects.get(id=addon_id)
+            new_addon = Webapp.objects.create(
+                type=addon.type, status=addon.status,
+                name='cloned-addon-%s-%s' % (addon_id, i))
             AddonUser.objects.create(user=self.user, addon=new_addon)
             ids.append(new_addon.id)
         return ids
 
     def get_app(self):
-        return Addon.objects.get(id=337141)
+        return Webapp.objects.get(id=337141)
 
 
 class TestHome(amo.tests.TestCase):
@@ -124,7 +124,7 @@ class TestAppBreadcrumbs(AppHubTest):
 class TestAppDashboard(AppHubTest):
 
     def test_no_apps(self):
-        Addon.objects.all().delete()
+        Webapp.objects.all().delete()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('#dashboard .item').length, 0)
@@ -221,7 +221,7 @@ class TestAppDashboardSorting(AppHubTest):
 
     def clone(self, num=3):
         for x in xrange(num):
-            app = amo.tests.addon_factory(type=amo.ADDON_WEBAPP)
+            app = amo.tests.app_factory()
             AddonUser.objects.create(addon=app, user=self.user)
 
     def test_pagination(self):
@@ -272,7 +272,7 @@ class TestDevRequired(AppHubTest):
                        'group_admin')
 
     def setUp(self):
-        self.webapp = Addon.objects.get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.get_url = self.webapp.get_dev_url('payments')
         self.post_url = self.webapp.get_dev_url('payments.disable')
         self.user = UserProfile.objects.get(username='31337')
@@ -320,7 +320,7 @@ class TestMarketplace(amo.tests.TestCase):
     fixtures = fixture('prices', 'webapp_337141')
 
     def setUp(self):
-        self.addon = Addon.objects.get(id=337141)
+        self.addon = Webapp.objects.get(id=337141)
         self.addon.update(status=amo.STATUS_PUBLIC,
                           highest_status=amo.STATUS_PUBLIC)
 
@@ -334,8 +334,7 @@ class TestMarketplace(amo.tests.TestCase):
     def setup_premium(self):
         self.price = Price.objects.get(pk=1)
         self.price_two = Price.objects.get(pk=3)
-        self.other_addon = Addon.objects.create(type=amo.ADDON_WEBAPP,
-                                                premium_type=amo.ADDON_FREE)
+        self.other_addon = Webapp.objects.create(premium_type=amo.ADDON_FREE)
         self.other_addon.update(status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.other_addon,
                                  user=self.addon.authors.all()[0])
@@ -376,7 +375,7 @@ class TestMarketplace(amo.tests.TestCase):
             self.url, data=self.get_data(price=self.price_two.pk,
                                          regions=self.paid_regions_two))
         eq_(res.status_code, 302)
-        self.addon = Addon.objects.get(pk=self.addon.pk)
+        self.addon = Webapp.objects.get(pk=self.addon.pk)
         eq_(self.addon.addonpremium.price, self.price_two)
 
     def test_set_upsell(self):
@@ -402,9 +401,8 @@ class TestMarketplace(amo.tests.TestCase):
         upsell = AddonUpsell.objects.create(free=self.other_addon,
                                             premium=self.addon)
         # And this will become our new upsell, replacing the one above.
-        new = Addon.objects.create(type=amo.ADDON_WEBAPP,
-                                   premium_type=amo.ADDON_FREE,
-                                   status=amo.STATUS_PUBLIC)
+        new = Webapp.objects.create(premium_type=amo.ADDON_FREE,
+                                    status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
 
         eq_(self.addon._upsell_to.all()[0], upsell)
@@ -427,7 +425,7 @@ class TestPubliciseVersion(amo.tests.TestCase):
                                  password='password')
 
     def get_webapp(self):
-        return Addon.objects.no_cache().get(pk=337141)
+        return Webapp.objects.no_cache().get(pk=337141)
 
     def get_latest_version_status(self):
         v = Version.objects.no_cache().get(pk=self.app.latest_version.pk)
@@ -629,7 +627,7 @@ class TestStatus(amo.tests.TestCase):
                        'group_admin')
 
     def setUp(self):
-        self.webapp = Addon.objects.get(id=337141)
+        self.webapp = Webapp.objects.get(id=337141)
         self.file = self.webapp.versions.latest().all_files[0]
         self.file.update(status=amo.STATUS_DISABLED)
         self.status_url = self.webapp.get_dev_url('versions')
@@ -699,7 +697,7 @@ class TestResumeStep(amo.tests.TestCase):
                                  password='password')
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(pk=337141)
+        return Webapp.objects.no_cache().get(pk=337141)
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
@@ -1008,16 +1006,16 @@ class TestDeleteApp(amo.tests.TestCase):
     def test_delete_nonincomplete(self):
         r = self.client.post(self.url)
         self.assertRedirects(r, self.dev_url)
-        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
+        eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete(self):
         self.webapp.update(status=amo.STATUS_NULL)
         r = self.client.post(self.url)
         self.assertRedirects(r, self.dev_url)
-        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
+        eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_incomplete_manually(self):
-        webapp = amo.tests.addon_factory(type=amo.ADDON_WEBAPP, name='Boop',
+        webapp = amo.tests.app_factory(type=amo.ADDON_WEBAPP, name='Boop',
                                          status=amo.STATUS_NULL)
         eq_(list(Webapp.objects.filter(id=webapp.id)), [webapp])
         webapp.delete('POOF!')
@@ -1027,7 +1025,7 @@ class TestDeleteApp(amo.tests.TestCase):
     def check_delete_redirect(self, src, dst):
         r = self.client.post(urlparams(self.url, to=src))
         self.assertRedirects(r, dst)
-        eq_(Addon.objects.count(), 0, 'App should have been deleted.')
+        eq_(Webapp.objects.count(), 0, 'App should have been deleted.')
 
     def test_delete_redirect_to_dashboard(self):
         self.check_delete_redirect(self.dev_url, self.dev_url)
@@ -1096,7 +1094,7 @@ class TestRemoveLocale(amo.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.webapp = Addon.objects.no_cache().get(id=337141)
+        self.webapp = Webapp.objects.no_cache().get(id=337141)
         self.url = self.webapp.get_dev_url('remove-locale')
         assert self.client.login(username='steamcube@mozilla.com',
                                  password='password')
