@@ -2,9 +2,7 @@ import logging
 from celeryutils import task
 
 import mkt.constants.comm as cmb
-from mkt.comm.models import (CommunicationNote, CommunicationNoteRead,
-                             CommunicationThread)
-from mkt.comm.utils import filter_notes_by_read_status
+from mkt.comm.models import CommunicationNote, CommunicationThread
 from mkt.comm.utils_mail import save_from_email_reply
 from mkt.developers.models import ActivityLog
 from mkt.site.decorators import write
@@ -20,18 +18,6 @@ def consume_email(email_text, **kwargs):
     res = save_from_email_reply(email_text)
     if not res:
         log.error('Failed to save email.')
-
-
-@task
-def mark_thread_read(thread, user, **kwargs):
-    """This marks each unread note in a thread as read - in bulk."""
-    object_list = []
-    unread_notes = filter_notes_by_read_status(thread.notes, user, False)
-
-    for note in unread_notes:
-        object_list.append(CommunicationNoteRead(note=note, user=user))
-
-    CommunicationNoteRead.objects.bulk_create(object_list)
 
 
 @task

@@ -42,7 +42,6 @@ class AttachmentSerializer(ModelSerializer):
 class NoteSerializer(ModelSerializer):
     body = CharField()
     author_meta = SerializerMethodField('get_author_meta')
-    is_read = SerializerMethodField('is_read_by_user')
     attachments = AttachmentSerializer(source='attachments', read_only=True)
 
     def get_author_meta(self, obj):
@@ -55,14 +54,10 @@ class NoteSerializer(ModelSerializer):
                 'gravatar_hash': ''
             }
 
-    def is_read_by_user(self, obj):
-        return obj.read_by_users.filter(
-            pk=self.context['request'].user.id).exists()
-
     class Meta:
         model = CommunicationNote
         fields = ('id', 'created', 'attachments', 'author', 'author_meta',
-                  'body', 'is_read', 'note_type', 'thread')
+                  'body', 'note_type', 'thread')
 
 
 class AddonSerializer(ModelSerializer):

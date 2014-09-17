@@ -3,7 +3,6 @@ import logging
 from django.conf import settings
 from django.core.files.storage import get_storage_class
 
-from mkt.comm.models import CommunicationNoteRead
 from mkt.comm.utils_mail import send_mail_comm
 from mkt.constants import comm
 from mkt.users.models import UserProfile
@@ -72,9 +71,6 @@ def post_create_comm_note(note):
     author = note.author
     if author:
         cc, created_cc = thread.join_thread(author)
-        if not created_cc:
-            # Mark their own note as read.
-            note.mark_read(note.author)
 
     # Send out emails.
     send_mail_comm(note)
@@ -111,19 +107,3 @@ def _save_attachment(storage, attachment, filepath):
     filepath = storage.save(filepath, attachment)
     # In case of duplicate filename, storage suffixes filename.
     return filepath.split('/')[-1]
-
-
-def filter_notes_by_read_status(queryset, profile, read_status=True):
-    """
-    Filter read/unread notes using this method.
-    `read_status` = `True` for read notes, `False` for unread notes.
-    """
-    # Get some read notes from db.
-    notes = list(CommunicationNoteRead.objects.filter(
-    user=profile).values_list('note', flat=True))
-    if read_status:
-        # Filter and return read notes if they exist.
-        return queryset.filter(pk__in=notes) if notes else queryset.none()
-    else:
-        # Exclude read notes if they exist.
-        return queryset.exclude(pk__in=notes) if notes else queryset.all()

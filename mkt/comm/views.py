@@ -32,36 +32,17 @@ from mkt.comm.authorization import (AttachmentPermission,
                                     EmailCreationPermission, NotePermission,
                                     ThreadPermission)
 from mkt.comm.models import (CommAttachment, CommunicationNote,
-                             CommunicationNoteRead, CommunicationThread,
-                             CommunicationThreadCC)
+                             CommunicationThread, CommunicationThreadCC)
 from mkt.comm.serializers import NoteSerializer, ThreadSerializer
 from mkt.comm.models import user_has_perm_app
-from mkt.comm.tasks import consume_email, mark_thread_read
-from mkt.comm.utils import (create_attachments, create_comm_note,
-                            filter_notes_by_read_status)
+from mkt.comm.tasks import consume_email
+from mkt.comm.utils import create_attachments, create_comm_note
 from mkt.site.decorators import skip_cache
 
 
 class NoAuthentication(BaseAuthentication):
     def authenticate(self, request):
         return request._request.user, None
-
-
-class ReadUnreadFilter(BaseFilterBackend):
-    filter_param = 'show_read'
-
-    def filter_queryset(self, request, queryset, view):
-        """
-        Return only read notes if `show_read=true` is truthy and only unread
-        notes if `show_read=false.
-        """
-        val = request.GET.get('show_read')
-        if val is None:
-            return queryset
-
-        show_read = BooleanField().from_native(val)
-        return filter_notes_by_read_status(queryset, request.user,
-                                           show_read)
 
 
 class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
@@ -78,14 +59,8 @@ class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
         return original
 
     def partial_update(self, request, *args, **kwargs):
-        val = BooleanField().from_native(request.DATA.get('is_read'))
-
-        if val:
-            self.mark_as_read(request.user)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response('Requested update operation not supported',
-                status=status.HTTP_403_FORBIDDEN)
+        return Response('Requested update operation not supported',
+            status=status.HTTP_403_FORBIDDEN)
 
 
 class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
@@ -165,9 +140,6 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
             NoteSerializer(note, context={'request': self.request}).data,
             status=status.HTTP_201_CREATED)
 
-    def mark_as_read(self, profile):
-        mark_thread_read(self.get_object(), profile)
-
 
 class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
                   DestroyModelMixin, CommViewSet):
@@ -176,7 +148,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = (NotePermission,)
-    filter_backends = (OrderingFilter, ReadUnreadFilter)
+    filter_backends = (OrderingFilter,)
     cors_allowed_methods = ['get', 'patch', 'post']
 
     def get_queryset(self):
@@ -215,10 +187,6 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         return Response(
             NoteSerializer(note, context={'request': request}).data,
             status=status.HTTP_201_CREATED)
-
-    def mark_as_read(self, profile):
-        CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
-            user=profile)
 
 
 class AttachmentViewSet(CreateModelMixin, CommViewSet):
@@ -283,10 +251,6 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
         return Response(
             NoteSerializer(note, context={'request': request}).data,
             status=status.HTTP_201_CREATED)
-
-    def mark_as_read(self, profile):
-        CommunicationNoteRead.objects.get_or_create(note=self.get_object(),
-            user=profile)
 
 
 class ThreadCCViewSet(DestroyModelMixin, CommViewSet):

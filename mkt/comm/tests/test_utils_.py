@@ -46,9 +46,6 @@ class TestCreateCommNote(TestCase, AttachmentManagementMixin):
         assert thread.thread_cc.filter(user=self.contact).exists()
         assert thread.thread_cc.filter(user=self.user).exists()
 
-        # Check Reads.
-        eq_(note.read_by_users.count(), 2)
-
     def test_create_note_existing_thread(self):
         # Initial note.
         thread, note = create_comm_note(
@@ -59,18 +56,12 @@ class TestCreateCommNote(TestCase, AttachmentManagementMixin):
             self.app, self.app.current_version, self.contact, 'euheuh!',
             note_type=comm.REJECTION)
 
-        # Mark read by author.
-        eq_(reply.read_by_users.count(), 1)
-
         # Third person joins thread.
         thread, last_word = create_comm_note(
             self.app, self.app.current_version, user_factory(), 'euheuh!',
             note_type=comm.MORE_INFO_REQUIRED)
 
-        # More checking that joining a thread marks all old notes as read.
         eq_(thread.thread_cc.count(), 3)
-        eq_(note.read_by_users.count(), 3)
-        eq_(last_word.read_by_users.count(), 1)
 
     def test_create_note_no_author(self):
         thread, note = create_comm_note(
