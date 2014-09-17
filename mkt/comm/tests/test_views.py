@@ -185,18 +185,6 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         self.assertCORS(res, 'get', 'post', 'patch')
 
-    def test_mark_read(self):
-        thread = self._thread_factory()
-        note1 = self._note_factory(thread)
-        note2 = self._note_factory(thread)
-
-        res = self.client.patch(
-            reverse('comm-thread-detail', kwargs={'pk': thread.pk}),
-            data=json.dumps({'is_read': True}))
-        eq_(res.status_code, 204)
-        assert note1.read_by_users.filter(pk=self.profile.pk).exists()
-        assert note2.read_by_users.filter(pk=self.profile.pk).exists()
-
     def test_review_url(self):
         thread = self._thread_factory(note=True)
 
@@ -343,14 +331,6 @@ class TestNote(NoteSetupMixin):
             kwargs={'thread_id': self.thread.id, 'pk': note.id}))
         eq_(res.status_code, 200)
         eq_(res.json['body'], 'something')
-        eq_(res.json['is_read'], False)
-
-        # Read.
-        note.mark_read(self.profile)
-        res = self.client.get(reverse('comm-note-detail',
-                                      kwargs={'thread_id': self.thread.id,
-                                              'pk': note.id}))
-        eq_(res.json['is_read'], True)
 
         # Attachments.
         eq_(len(res.json['attachments']), 1)
@@ -359,22 +339,6 @@ class TestNote(NoteSetupMixin):
             reverse('comm-attachment-detail', args=[note.id, attach.id]))
         eq_(res.json['attachments'][0]['display_name'], 'desc')
         ok_(not res.json['attachments'][0]['is_image'])
-
-    def test_show_read_filter(self):
-        """Test `is_read` filter."""
-        note = self._note_factory(self.thread)
-        note.mark_read(self.profile)
-
-        # Test with `show_read=true`.
-        res = self.client.get(self.list_url, {'show_read': 'truey'})
-        eq_(res.json['objects'][0]['is_read'], True)
-        res = self.client.get(self.list_url, {'show_read': '0'})
-        ok_(not res.json['objects'])
-
-        # Test with `show_read=false`.
-        note.reads_set.all().delete()
-        res = self.client.get(self.list_url, {'show_read': '0'})
-        eq_(res.json['objects'][0]['is_read'], False)
 
     def test_read_perms(self):
         staff = UserProfile.objects.get(username='support_staff')
@@ -442,18 +406,6 @@ class TestNote(NoteSetupMixin):
     def test_cors_allowed(self):
         res = self.client.get(self.list_url)
         self.assertCORS(res, 'get', 'post', 'patch')
-
-    def test_mark_read(self):
-        note = self._note_factory(self.thread)
-        note.mark_read(self.profile)
-
-        res = self.client.patch(
-            reverse('comm-note-detail',
-                    kwargs={'thread_id': self.thread.id,
-                            'pk': note.id}),
-                    data=json.dumps({'is_read': True}))
-        eq_(res.status_code, 204)
-        assert note.read_by_users.filter(pk=self.profile.pk).exists()
 
 
 @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
