@@ -25,7 +25,8 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
 
-    def get_upload(self, filename=None, abspath=None, validation=None):
+    def get_upload(self, filename=None, abspath=None, validation=None,
+                   user=None):
         zip = open(abspath if abspath else self.file_path(filename)).read()
         upload = FileUpload.from_post([zip], filename=abspath or filename,
                                       size=1234)
@@ -33,6 +34,8 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
         upload.validation = (validation or
                              json.dumps(dict(errors=0, warnings=1, notices=2,
                                              metadata={}, messages=[])))
+        if user:
+            upload.user = user
         upload.save()
         return upload
 
