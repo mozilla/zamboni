@@ -1,17 +1,6 @@
 [
     {
         "fields": {
-            "active": true,
-            "created": "2012-10-17T15:51:18",
-            "modified": "2012-10-17T15:51:18",
-            "name": "allow-refund",
-            "note": "Allow refund of paypal payments"
-        },
-        "model": "waffle.switch",
-        "pk": 14
-    },
-    {
-        "fields": {
             "active": false,
             "created": "2012-10-17T15:51:18",
             "modified": "2012-10-17T15:51:18",

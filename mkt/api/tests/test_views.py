@@ -65,14 +65,14 @@ class TestConfig(RestOAuth):
         self.url = reverse('site-config')
 
     def testConfig(self):
-        self.create_switch('allow-refund', db=True)
+        self.create_switch('test-switch', db=True)
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
         eq_(data['settings']['SITE_URL'], 'http://testserver')
 
-        switch = data['waffle']['switches']['allow-refund']
-        eq_(switch['name'], 'allow-refund')
+        switch = data['waffle']['switches']['test-switch']
+        eq_(switch['name'], 'test-switch')
         eq_(switch['active'], True)
 
     def test_cors(self):

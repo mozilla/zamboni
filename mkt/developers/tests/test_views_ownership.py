@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -188,23 +187,13 @@ class TestEditAuthor(TestOwnership):
             ['Must have at least one owner.'])
 
     def test_author_support_role(self):
-        # Tests that the support role shows up when the allow-refund switch
-        # is active.
-        switch = waffle.models.Switch.objects.create(name='allow-refund',
-                                                     active=True)
+        # Tests that the support role shows up.
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         doc = pq(res.content)
         role_str = doc('#id_form-0-role').text()
         assert 'Support' in role_str, ('Support not in roles. Contained: %s' %
                                        role_str)
-        switch.active = False
-        switch.save()
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-        assert not 'Support' in doc('#id_form-0-role').text(), (
-            "Hey, the Support role shouldn't be here!")
 
 
 class TestEditWebappAuthors(amo.tests.TestCase):
