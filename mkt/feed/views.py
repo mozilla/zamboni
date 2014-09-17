@@ -427,7 +427,7 @@ class BaseFeedESView(CORSMixin, APIView):
             # Without filtering.
             sq = WebappIndexer.search().filter(es_filter.Bool(
                 should=[es_filter.Terms(id=app_ids)]
-            ))
+            ))[0:len(app_ids)]
         else:
             # With filtering.
             sq = WebappIndexer.get_app_filter(request, {

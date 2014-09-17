@@ -1464,6 +1464,11 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         for obj in data['objects']:
             eq_(obj['collection']['app_count'], 3)
 
+        res, data = self._get(region=1, filtering=0)
+        eq_(res.status_code, 200)
+        for obj in data['objects']:
+            eq_(obj['collection']['app_count'], 3)
+
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
