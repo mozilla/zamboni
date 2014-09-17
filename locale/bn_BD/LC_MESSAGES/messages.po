@@ -3870,7 +3870,7 @@ msgstr "বাতিল"
 
 #: mkt/developers/templates/developers/apps/status.html:489
 msgid "Delete Version &quot;{version}&quot;"
-msgstr "মুছে ফেলা &quot;{সংষ্করণ}&quot;"
+msgstr "মুছে ফেলা &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:490
 msgid "Deleting the only version will result in the following:"
@@ -5421,7 +5421,7 @@ msgstr "মজিলা ওয়েব অ্যাপ (ব্রাজিলী�
 
 #: mkt/feed/fields.py:130
 msgid "Invalid URL %(url)s"
-msgstr "অকার্যকর URL %(url)"
+msgstr "অকার্যকর URL %(url)s"
 
 #: mkt/feed/fields.py:135
 msgid "Error downloading image from %(url)s"
@@ -6226,7 +6226,7 @@ msgstr "অ্যাপ ({0})"
 #: mkt/reviewers/helpers.py:95
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
-msgstr "পুন-পর্যালোচনা"
+msgstr "পুন-পর্যালোচনা ({0})"
 
 #: mkt/reviewers/helpers.py:99
 msgctxt "updates"
@@ -7503,8 +7503,8 @@ msgstr[1] "অকার্যকর ট্যাগঃ {0}"
 #: mkt/webapps/forms.py:58
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{০}\" হল একটি সংরক্ষিত ট্যাগ এবং এটাকে ব্যবহার করা যাবে না।"
-msgstr[1] "\"{০}\" হল সংরক্ষিত ট্যাগ এবং এগুলোকে ব্যবহার করা যাবে না।"
+msgstr[0] "\"{0}\" হল একটি সংরক্ষিত ট্যাগ এবং এটাকে ব্যবহার করা যাবে না।"
+msgstr[1] "\"{0}\" হল সংরক্ষিত ট্যাগ এবং এগুলোকে ব্যবহার করা যাবে না।"
 
 #: mkt/webapps/forms.py:66
 msgid "You have {0} too many tags."
