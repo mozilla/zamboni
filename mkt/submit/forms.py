@@ -179,9 +179,6 @@ class NewWebappVersionForm(happyforms.Form):
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
-        if ('paid_platforms' in self.fields):
-            del self.fields['paid_platforms']
-
     def clean(self):
         data = self.cleaned_data
         if 'upload' not in self.cleaned_data:
