@@ -4,7 +4,6 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{% set payments = waffle.flag('allow-b2g-paid-submission') and addon.is_premium() %}
 {% set public = addon.is_public() %}
 
 {% block content %}

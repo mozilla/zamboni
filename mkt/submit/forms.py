@@ -179,10 +179,6 @@ class NewWebappVersionForm(happyforms.Form):
         self._is_packaged = kw.pop('is_packaged', False)
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
-        if (not waffle.flag_is_active(request, 'allow-b2g-paid-submission')
-            and 'paid_platforms' in self.fields):
-            del self.fields['paid_platforms']
-
     def clean(self):
         data = self.cleaned_data
         if 'upload' not in self.cleaned_data:
@@ -238,6 +234,9 @@ class NewWebappVersionForm(happyforms.Form):
 
 
 class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
+    ERRORS = DeviceTypeForm.ERRORS.copy()
+    ERRORS['user'] = _lazy('User submitting validation does not match.')
+
     upload = forms.ModelChoiceField(widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
         error_messages={'invalid_choice': _lazy(
@@ -259,6 +258,11 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         data = super(NewWebappForm, self).clean()
         if not data:
             return
+
+        upload = data.get('upload')
+        if self.request and upload:
+            if not (upload.user and upload.user.pk == self.request.user.pk):
+                self._add_error('user')
 
         if self.is_packaged():
             self._set_packaged_errors()

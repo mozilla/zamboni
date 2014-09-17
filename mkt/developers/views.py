@@ -634,7 +634,7 @@ def _upload_manifest(request, is_standalone=False):
                     'messages': [{'type': 'error', 'message': dup_msg,
                                   'tier': 1}]}}
     if form.is_valid():
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(user=request.user)
         fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
         if is_standalone:
             return redirect('mkt.developers.standalone_upload_detail',

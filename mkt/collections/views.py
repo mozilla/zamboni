@@ -252,6 +252,9 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'put', 'delete')
 
+    hash_field = 'image_hash'
+    image_suffix = ''
+
     # Dummy serializer to keep DRF happy when it's answering to OPTIONS.
     serializer_class = serializers.Serializer
 
@@ -269,7 +272,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         obj = self.get_object()
         if not obj.has_image:
             raise Http404
-        return HttpResponseSendFile(request, obj.image_path(),
+        return HttpResponseSendFile(request, obj.image_path(self.image_suffix),
                                     content_type='image/png')
 
     def update(self, request, *args, **kwargs):
@@ -279,17 +282,17 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         i = Image.open(img)
-        with storage.open(obj.image_path(), 'wb') as f:
+        with storage.open(obj.image_path(self.image_suffix), 'wb') as f:
             i.save(f, 'png')
         # Store the hash of the original image data sent.
-        obj.update(image_hash=hash_)
+        obj.update(**{self.hash_field: hash_})
 
-        pngcrush_image.delay(obj.image_path())
+        pngcrush_image.delay(obj.image_path(self.image_suffix))
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.has_image:
-            storage.delete(obj.image_path())
-            obj.update(image_hash=None)
+            storage.delete(obj.image_path(self.image_suffix))
+            obj.update(**{self.hash_field: None})
         return Response(status=status.HTTP_204_NO_CONTENT)

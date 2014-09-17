@@ -153,10 +153,6 @@ class BaseFeedImage(models.Model):
     class Meta:
         abstract = True
 
-    @property
-    def has_image(self):
-        return bool(self.image_hash)
-
 
 class BaseFeedCollectionMembership(amo.models.ModelBase):
     """
@@ -251,10 +247,11 @@ class FeedCollection(BaseFeedCollection, BaseFeedImage):
     def get_indexer(self):
         return indexers.FeedCollectionIndexer
 
-    def image_path(self):
+    def image_path(self, suffix=''):
         return os.path.join(settings.FEED_COLLECTION_BG_PATH,
                             str(self.pk / 1000),
-                            'feed_collection_%s.png' % (self.pk,))
+                            'feed_collection{suffix}_{pk}.png'.format(
+                                suffix=suffix, pk=self.pk))
 
     def add_app_grouped(self, app, group, order=None):
         """
@@ -312,6 +309,10 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID)
 
+    # Shelf landing image.
+    image_landing_hash = models.CharField(default=None, max_length=8,
+                                          null=True, blank=True)
+
     membership_class = FeedShelfMembership
     membership_relation = 'feedshelfmembership'
 
@@ -323,10 +324,11 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
     def get_indexer(self):
         return indexers.FeedShelfIndexer
 
-    def image_path(self):
+    def image_path(self, suffix=''):
         return os.path.join(settings.FEED_SHELF_BG_PATH,
                             str(self.pk / 1000),
-                            'feed_shelf_%s.png' % (self.pk,))
+                            'feed_shelf{suffix}_{pk}.png'.format(
+                                suffix=suffix, pk=self.pk))
 
     @property
     def is_published(self):
@@ -372,10 +374,11 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
                                   'attribution is defined.')
         super(FeedApp, self).clean()
 
-    def image_path(self):
+    def image_path(self, suffix=''):
         return os.path.join(settings.FEATURED_APP_BG_PATH,
                             str(self.pk / 1000),
-                            'featured_app_%s.png' % (self.pk,))
+                            'featured_app{suffix}_{pk}.png'.format(
+                                suffix=suffix, pk=self.pk))
 
 
 class FeedItem(amo.models.ModelBase):

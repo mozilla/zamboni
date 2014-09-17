@@ -22,6 +22,7 @@ import amo
 import amo.tests
 import mkt
 from amo.tests.test_helpers import get_image_path
+from mkt.users.models import UserProfile
 from amo.utils import ImageCheck
 from mkt.developers import tasks
 from mkt.files.models import FileUpload
@@ -471,7 +472,8 @@ class TestFetchIcon(BaseWebAppTest):
         self.addCleanup(patcher.stop)
 
     def webapp_from_path(self, path):
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path,
+                                      user=UserProfile.objects.get(pk=999))
         self.url = reverse('submit.app')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')

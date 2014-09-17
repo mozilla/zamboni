@@ -19,15 +19,15 @@ log = commonware.log.getLogger('z.inapp')
 
 
 class InAppProductSerializer(serializers.ModelSerializer):
-    active = serializers.BooleanField(required=False)
-    guid = serializers.CharField(read_only=True)
     app = serializers.SlugRelatedField(read_only=True, slug_field='app_slug',
                                        source='webapp')
-    price_id = serializers.PrimaryKeyRelatedField(source='price')
-    name = serializers.CharField()
+    guid = serializers.CharField(read_only=True)
+    include_inactive = serializers.BooleanField(read_only=True)
     logo_url = serializers.CharField(
         validators=[URLValidator(schemes=['http', 'https'])],
         required=False)
+    name = serializers.CharField()
+    price_id = serializers.PrimaryKeyRelatedField(source='price')
 
     class Meta:
         model = InAppProduct

@@ -12,7 +12,6 @@ from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.views import APIView
 
-import amo
 import mkt
 import mkt.feed.constants as feed
 from mkt.api.authentication import (RestAnonymousAuthentication,
@@ -40,30 +39,44 @@ from .serializers import (FeedAppESSerializer, FeedAppSerializer,
 
 class ImageURLUploadMixin(viewsets.ModelViewSet):
     """
-    Attaches a pre_save that downloads an image from a URL and validates.
-    Attaches a post_save that saves the image in feed element's directory.
+    Attaches pre/post save methods for image handling.
+
+    The pre_save downloads an image from a URL and validates. The post_save
+    saves the image in feed element's directory.
+
+    We look at the class' `image_fields` property for the list of tuples to
+    check. The tuples are the names of the the image form name, the hash field,
+    and a suffix to append to the image file name::
+
+        image_fields = ('background_image_upload_url', 'image_hash', '')
+
     """
     def pre_save(self, obj):
-        """Download and validate background image upload URL."""
-        if self.request.DATA.get('background_image_upload_url'):
-            img, hash_ = ImageURLField().from_native(
-                self.request.DATA['background_image_upload_url'])
-            # Store img for post_save where we have access to the pk so we can
-            # save img in appropriate directory.
-            obj._background_image_upload = img
-            obj.image_hash = hash_
-        elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
-            # Remove background images for promo collections.
-            obj.image_hash = ''
+        """Download and validate image URL."""
+        for image_field, hash_field, suffix in self.image_fields:
+            if self.request.DATA.get(image_field):
+                img, hash_ = ImageURLField().from_native(
+                    self.request.DATA[image_field])
+                # Store img for `post_save` where we have access to the pk so
+                # we can save img in appropriate directory.
+                setattr(obj, '_%s' % image_field, img)
+                setattr(obj, hash_field, hash_)
+            elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
+                # Remove background images for promo collections.
+                setattr(obj, hash_field, None)
+
         return super(ImageURLUploadMixin, self).pre_save(obj)
 
     def post_save(self, obj, created=True):
-        """Store background image that we attached to the obj in pre_save."""
-        if hasattr(obj, '_background_image_upload'):
-            i = Image.open(obj._background_image_upload)
-            with storage.open(obj.image_path(), 'wb') as f:
-                i.save(f, 'png')
-            pngcrush_image.delay(obj.image_path(), set_modified_on=[obj])
+        """Store image that we attached to the obj in pre_save."""
+        for image_field, hash_field, suffix in self.image_fields:
+            image = getattr(obj, '_%s' % image_field, None)
+            if image:
+                i = Image.open(image)
+                path = obj.image_path(suffix)
+                with storage.open(path, 'wb') as f:
+                    i.save(f, 'png')
+                pngcrush_image.delay(path, set_modified_on=[obj])
 
         return super(ImageURLUploadMixin, self).post_save(obj, created)
 
@@ -84,6 +97,7 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     exceptions = {
         'doesnt_exist': 'One or more of the specified `apps` do not exist.'
     }
+    image_fields = (('background_image_upload_url', 'image_hash', ''),)
 
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
@@ -227,6 +241,8 @@ class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedAppSerializer
 
+    image_fields = (('background_image_upload_url', 'image_hash', ''),)
+
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
             self.filter_queryset(self.get_queryset()))
@@ -274,6 +290,12 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedShelf.objects.all()
     serializer_class = FeedShelfSerializer
+
+    image_fields = (
+        ('background_image_upload_url', 'image_hash', ''),
+        ('background_image_landing_upload_url', 'image_landing_hash',
+         '_landing'),
+    )
 
 
 class FeedShelfPublishView(CORSMixin, APIView):
@@ -345,6 +367,12 @@ class FeedShelfImageViewSet(CollectionImageViewSet):
     queryset = FeedShelf.objects.all()
 
 
+class FeedShelfLandingImageViewSet(CollectionImageViewSet):
+    queryset = FeedShelf.objects.all()
+    hash_field = 'image_landing_hash'
+    image_suffix = '_landing'
+
+
 class BaseFeedESView(CORSMixin, APIView):
     def __init__(self, *args, **kw):
         self.ITEM_TYPES = {
@@ -399,7 +427,7 @@ class BaseFeedESView(CORSMixin, APIView):
             # Without filtering.
             sq = WebappIndexer.search().filter(es_filter.Bool(
                 should=[es_filter.Terms(id=app_ids)]
-            ))
+            ))[0:len(app_ids)]
         else:
             # With filtering.
             sq = WebappIndexer.get_app_filter(request, {
@@ -578,37 +606,50 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
 
         return sq.filter(es_filter.Bool(should=filters))[0:len(feed_items)]
 
-    def _get(self, request, *args, **kwargs):
+    def _check_empty_feed(self, items, rest_of_world):
+        """
+        Return -1 if feed is empty and we are already falling back to RoW.
+        Return 0 if feed is empty and we are not falling back to RoW yet.
+        Return 1 if at least one feed item and the only feed item is not shelf.
+        """
+        if not items or (len(items) == 1 and items[0].get('shelf')):
+            # Empty feed.
+            if rest_of_world:
+                return -1
+            return 0
+        return 1
+
+    def _handle_empty_feed(self, empty_feed_code, request, args, kwargs):
+        """
+        If feed is empty, this method handles appropriately what to return.
+        If empty_feed_code == 0: try to fallback to RoW.
+        If empty_feed_code == -1: 404.
+        """
+        if empty_feed_code == 0:
+            return self._get(request, rest_of_world=True, *args, **kwargs)
+        return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+    def _get(self, request, rest_of_world=False, *args, **kwargs):
         es = FeedItemIndexer.get_es()
 
         # Parse carrier and region.
-        q = request.QUERY_PARAMS
-        region = request.REGION.id
-        carrier = None
-        if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
-            carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
+        if rest_of_world:
+            region = mkt.regions.RESTOFWORLD.id
+            carrier = None
+        else:
+            q = request.QUERY_PARAMS
+            region = request.REGION.id
+            carrier = None
+            if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
+                carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
 
         # Fetch FeedItems.
         sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
                                     region=region, carrier=carrier)
         feed_items = self.paginate_queryset(sq)
-
-        # No items returned; try to fall back to RoW.
-        if not feed_items:
-            world_sq = self.get_es_feed_query(FeedItemIndexer.search(using=es))
-            world_feed_items = self.paginate_queryset(world_sq)
-
-            # No RoW feed items, either. Let's 404.
-            if not world_feed_items:
-                world_meta = mkt.api.paginator.CustomPaginationSerializer(
-                    world_feed_items,
-                    context={'request': request}).data['meta']
-                return response.Response({'meta': world_meta, 'objects': []},
-                                         status=status.HTTP_404_NOT_FOUND)
-
-            # Return RoW items.
-            else:
-                feed_items = world_feed_items
+        feed_ok = self._check_empty_feed(feed_items, rest_of_world)
+        if feed_ok != 1:
+            return self._handle_empty_feed(feed_ok, request, args, kwargs)
 
         # Build the meta object.
         meta = mkt.api.paginator.CustomPaginationSerializer(
@@ -645,6 +686,9 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         # Filter excluded apps. If there are feed items that have all their
         # apps excluded, they will be removed from the feed.
         feed_items = self.filter_feed_items(request, feed_items)
+        feed_ok = self._check_empty_feed(feed_items, rest_of_world)
+        if feed_ok != 1:
+            return self._handle_empty_feed(feed_ok, request, args, kwargs)
 
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)

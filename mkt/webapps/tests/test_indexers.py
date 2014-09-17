@@ -2,8 +2,9 @@
 from nose.tools import eq_, ok_
 
 import amo.tests
-import mkt
 from amo.utils import to_language
+
+import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
@@ -156,3 +157,18 @@ class TestWebappIndexer(amo.tests.TestCase):
             {'lang': 'en-US', 'string': release_notes['en-US']})
         eq_(doc['release_notes_translations'][1],
             {'lang': 'fr', 'string': release_notes['fr']})
+
+
+class TestAppFilter(amo.tests.ESTestCase):
+
+    def test_app_ids(self):
+        """
+        Test all apps are returned if app IDs is passed. Natural ES limit is
+        10.
+        """
+        app_ids = [amo.tests.app_factory().id for i in range(11)]
+        self.refresh('webapp')
+        sq = WebappIndexer.get_app_filter(amo.tests.req_factory_factory(),
+                                          app_ids=app_ids)
+        results = sq.execute().hits
+        eq_(len(results), 11)

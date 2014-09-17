@@ -1033,6 +1033,7 @@ Operator shelves are represented thusly:
             }
         ],
         "background_image": "http://somecdn.com/someimage.png",
+        "background_image_landing": "http://somecdn.com/some-other-image.png",
         "carrier": "telefonica",
         "description": {
             "en-US": "A description of my collection."
@@ -1051,6 +1052,9 @@ Operator shelves are represented thusly:
     *array* - a list of serializations of the member :ref:`apps <app>`.
 ``background_image``
     *string* - the URL to an image used while displaying the operator shelf.
+``background_image_landing``
+    *string* - the URL to an image used while displaying the operator
+    shelf landing page.
 ``carrier``
     *string* - the slug of the :ref:`carrier <carriers>` the operator shelf
     belongs to.
@@ -1119,6 +1123,8 @@ Create
     :type apps: array
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
+    :param background_image_landing_upload_url: a URL pointing to an image
+    :type background_image_landing_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
     :type carrier: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -1137,6 +1143,7 @@ Create
         {
             "apps": [19, 1, 44],
             "background_image_upload_url": "http://imgur.com/XXX.jpg",
+            "background_image_landing_upload_url": "http://imgur.com/YYY.jpg",
             "carrier": "telefonica",
             "description": {
                 "en-US": "A list of Telefonica's Favorite apps."
@@ -1171,6 +1178,8 @@ Update
     :type apps: array
     :param background_image_upload_url: a URL pointing to an image
     :type background_image_upload_url: string
+    :param background_image_landing_upload_url: a URL pointing to an image
+    :type background_image_landing_upload_url: string
     :param carrier: the slug of a :ref:`carrier <carriers>`.
     :type carrier: string
     :param description: a :ref:`translated <overview-translations>` description
@@ -1189,6 +1198,7 @@ Update
         {
             "apps": [19, 1, 44],
             "background_image_upload_url": "http://imgur.com/XXX.jpg",
+            "background_image_landing_upload_url": "http://imgur.com/YYY.jpg",
             "carrier": "telefonica",
             "description": {
                 "en-US": "A list of Telefonica's Favorite apps."
@@ -1229,7 +1239,7 @@ Delete
 
 
 Image
-==============
+=====
 
 One-to-one background image or header graphic used to display with the operator
 shelf.

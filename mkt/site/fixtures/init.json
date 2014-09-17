@@ -68,28 +68,6 @@
     {
         "fields": {
             "active": false,
-            "created": "2014-04-04T15:43:09",
-            "modified": "2014-04-04T15:43:09",
-            "name": "iarc",
-            "note": "Unleash the IARC app ratings."
-        },
-        "model": "waffle.switch",
-        "pk": 52
-    },
-    {
-        "fields": {
-            "active": false,
-            "created": "2014-04-04T15:43:10",
-            "modified": "2014-04-04T15:43:10",
-            "name": "marketplace-feed",
-            "note": "Enables the Feed features of Marketplace"
-        },
-        "model": "waffle.switch",
-        "pk": 54
-    },
-    {
-        "fields": {
-            "active": false,
             "created": "2014-04-04T15:43:10",
             "modified": "2014-04-04T15:43:10",
             "name": "reviews-translate",
@@ -130,17 +108,6 @@
         },
         "model": "waffle.sample",
         "pk": 2
-    },
-    {
-        "fields": {
-            "created": "2012-10-17T15:51:18",
-            "modified": "2012-10-17T15:51:18",
-            "name": "paypal-disabled-limit",
-            "note": "Sanity check limit on paypal cron",
-            "percent": "10.0"
-        },
-        "model": "waffle.sample",
-        "pk": 3
     },
     {
         "fields": {
@@ -1742,26 +1709,6 @@
         },
         "model": "waffle.flag",
         "pk": 9
-    },
-    {
-        "fields": {
-            "authenticated": false,
-            "created": "2013-06-25T08:49:26",
-            "everyone": false,
-            "groups": [],
-            "languages": "",
-            "modified": "2013-06-25T08:49:26",
-            "name": "allow-b2g-paid-submission",
-            "note": "Enable this to allow paid apps in the submission process.",
-            "percent": null,
-            "rollout": false,
-            "staff": false,
-            "superusers": false,
-            "testing": false,
-            "users": []
-        },
-        "model": "waffle.flag",
-        "pk": 14
     },
     {
         "fields": {

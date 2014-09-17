@@ -10,8 +10,7 @@ import amo.tests
 import mkt
 import mkt.feed.constants as feed
 from mkt.feed import serializers
-from mkt.feed.constants import (COLLECTION_LISTING, COLLECTION_PROMO,
-                                HOME_NUM_APPS_PROMO_COLL)
+from mkt.feed.constants import COLLECTION_LISTING, COLLECTION_PROMO
 from mkt.feed.models import FeedShelf
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.regions import RESTOFWORLD
@@ -67,8 +66,8 @@ class TestFeedAppESSerializer(FeedTestMixin, amo.tests.TestCase):
         data = serializers.FeedAppESSerializer(
             [self.data_es, self.data_es], context={
                 'app_map': self.app_map,
-                'request': amo.tests.req_factory_factory('')
-        }, many=True).data
+                'request': amo.tests.req_factory_factory('')},
+            many=True).data
         eq_(data[0]['app']['id'], self.feedapp.app_id)
         eq_(data[1]['description']['en-US'], 'test')
 
@@ -313,7 +312,7 @@ class TestFeedShelfESSerializer(FeedTestMixin, amo.tests.TestCase):
         eq_(data['name']['en-US'], 'test')
 
     def test_background_image(self):
-        self.shelf.update(image_hash='LOL')
+        self.shelf.update(image_hash='LOL', image_landing_hash='ROFL')
         self.data_es = self.shelf.get_indexer().extract_document(
             None, obj=self.shelf)
         data = serializers.FeedShelfESSerializer(self.data_es, context={
@@ -321,6 +320,8 @@ class TestFeedShelfESSerializer(FeedTestMixin, amo.tests.TestCase):
             'request': amo.tests.req_factory_factory('')
         }).data
         assert data['background_image'].endswith('image.png?LOL')
+        assert data['background_image_landing'].endswith(
+            'image_landing.png?ROFL')
 
 
 class TestFeedItemSerializer(FeedAppMixin, amo.tests.TestCase):

@@ -109,6 +109,22 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
         delete_response = self.delete(self.detail_url(product.guid))
         eq_(delete_response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_filter(self):
+        active = self.create_product()
+        inactive = self.create_product()
+        inactive.update(active=False)
+
+        response = self.get(self.list_url())
+        eq_(response.json['meta']['total_count'], 2)
+
+        response = self.get(self.list_url() + '?active=1')
+        eq_(response.json['meta']['total_count'], 1)
+        eq_(response.json['objects'][0]['guid'], active.guid)
+
+        response = self.get(self.list_url() + '?active=0')
+        eq_(response.json['meta']['total_count'], 1)
+        eq_(response.json['objects'][0]['guid'], inactive.guid)
+
 
 class TestInAppProductViewSetUnauthorized(BaseInAppProductViewSetTests):
     fixtures = fixture('user_999', 'webapp_337141', 'prices')
