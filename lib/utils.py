@@ -13,11 +13,13 @@ def validate_modules():
         jwt.rsa_load
     except AttributeError:
         raise ImproperlyConfigured(
-            'PyJWT-Mozilla not imported. This is because there is '
-            'another JWT module installed. The JWT module imported is at: {0}.'
-            'This can usually be fixed by running: "pip uninstall PyJWT" and '
-            '"pip install --force --no-deps PyJWT-mozilla"'.
-            format(jwt.__file__))
+            'PyJWT-Mozilla not imported. This is because there is another '
+            'JWT module installed. The JWT module imported is at: {0}. '
+            'This can usually be fixed by running: '
+            '`pip uninstall PyJWT` and '
+            '`pip uninstall PyJWT-mozilla` and '
+            '`pip install --force --no-deps PyJWT-mozilla`'
+            .format(jwt.__file__))
 
 
 def validate_settings():
