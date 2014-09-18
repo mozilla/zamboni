@@ -1,5 +1,3 @@
-from rest_framework.serializers import SerializerMethodField
-
 from mkt.collections.serializers import (CollectionSerializer,
                                          CollectionMembershipField)
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
@@ -27,14 +25,10 @@ class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
 
 class FireplaceESAppSerializer(BaseFireplaceAppSerializer,
                                SimpleESAppSerializer):
-    weight = SerializerMethodField('get_weight')
 
     class Meta(SimpleESAppSerializer.Meta):
-        fields = sorted(FireplaceAppSerializer.Meta.fields + ['weight'])
+        fields = FireplaceAppSerializer.Meta.fields
         exclude = FireplaceAppSerializer.Meta.exclude
-
-    def get_weight(self, obj):
-        return obj.es_data.get('weight', 1)
 
     def get_user_info(self, app):
         # Fireplace search should always be anonymous for extra-cacheability.

@@ -1,10 +1,9 @@
-import math
 import sys
 from operator import attrgetter
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.models import Max, Min
+from django.db.models import Min
 from elasticsearch_dsl import F, filter as es_filter, query
 
 import commonware.log
@@ -175,7 +174,6 @@ class WebappIndexer(BaseIndexer):
                         }
                     },
                     'weekly_downloads': {'type': 'long', 'doc_values': True},
-                    'weight': {'type': 'short'},
                 }
             }
         }
@@ -332,16 +330,6 @@ class WebappIndexer(BaseIndexer):
         d['versions'] = [dict(version=v.version,
                               resource_uri=reverse_version(v))
                          for v in obj.versions.all()]
-
-        # Calculate weight. It's similar to popularity, except that we can
-        # expose the number - it's relative to the max weekly downloads for
-        # the whole database.
-        max_downloads = float(
-            Webapp.objects.aggregate(Max('weekly_downloads')).values()[0] or 0)
-        if max_downloads:
-            d['weight'] = math.ceil(d['weekly_downloads'] / max_downloads * 5)
-        else:
-            d['weight'] = 1
 
         # Handle our localized fields.
         for field in ('description', 'homepage', 'name', 'support_email',
