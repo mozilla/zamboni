@@ -2,17 +2,23 @@ import base64
 import os.path
 
 from django.conf import settings
+from django.core import mail
 
+import mock
+from nose import SkipTest
 from nose.tools import eq_
 
 import amo
 from amo.tests import app_factory, TestCase
-from mkt.users.models import UserProfile
 
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
-from mkt.comm.utils_mail import CommEmailParser, save_from_email_reply
+from mkt.comm.tests.test_views import CommTestMixin
+from mkt.comm.utils import create_comm_note
+from mkt.comm.utils_mail import (CommEmailParser, get_recipients,
+                                 save_from_email_reply)
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 
 
 sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
@@ -20,6 +26,149 @@ sample_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
 
 multi_email = os.path.join(settings.ROOT, 'mkt', 'comm', 'tests',
                            'email_multipart.txt')
+
+
+class TestSendMailComm(TestCase, CommTestMixin):
+
+    def setUp(self):
+        self.create_switch('comm-dashboard')
+
+        self.developer = amo.tests.user_factory()
+        self.mozilla_contact = amo.tests.user_factory()
+        self.reviewer = amo.tests.user_factory()
+        self.senior_reviewer = amo.tests.user_factory()
+
+        self.grant_permission(self.senior_reviewer, '*:*',
+                              'Senior App Reviewers')
+
+        self.app = amo.tests.app_factory()
+        self.app.addonuser_set.create(user=self.developer)
+        self.app.update(mozilla_contact=self.mozilla_contact.email)
+
+    def _create(self, note_type, author=None):
+        author = author or self.reviewer
+        return create_comm_note(self.app, self.app.current_version, author,
+                                'Test Comment', note_type=note_type)
+
+    def _recipients(self, email_mock):
+        recipients = []
+        for call in email_mock.call_args_list:
+            recipients += call[1]['recipient_list']
+        return recipients
+
+    def _check_template(self, call, template):
+        eq_(call[0][1], 'comm/emails/%s.html' % template)
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_approval(self, email):
+        self._create(comm.APPROVAL)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+        assert self.mozilla_contact.email in recipients
+
+        self._check_template(email.call_args, 'approval')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_escalation(self, email):
+        self._create(comm.ESCALATION)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+        assert self.senior_reviewer.email in recipients
+
+        self._check_template(email.call_args_list[0],
+                             'escalation_senior_reviewer')
+        self._check_template(email.call_args_list[1],
+                             'escalation_developer')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_escalation_vip_app(self, email):
+        self._create(comm.ESCALATION_VIP_APP)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.senior_reviewer.email in recipients
+
+        self._check_template(email.call_args,
+                             'escalation_vip')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_escalation_prerelease_app(self, email):
+        self._create(comm.ESCALATION_PRERELEASE_APP)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.senior_reviewer.email in recipients
+
+        self._check_template(email.call_args,
+                             'escalation_prerelease_app')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_reviewer_comment(self, email):
+        another_reviewer = amo.tests.user_factory()
+        self._create(comm.REVIEWER_COMMENT, author=self.reviewer)
+        self._create(comm.REVIEWER_COMMENT, author=another_reviewer)
+        eq_(email.call_count, 3)
+
+        recipients = self._recipients(email)
+        assert self.reviewer.email in recipients
+        assert self.mozilla_contact.email in recipients
+        assert self.developer.email not in recipients
+
+        self._check_template(email.call_args, 'generic')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_developer_comment(self, email):
+        self._create(comm.REVIEWER_COMMENT)
+        self._create(comm.DEVELOPER_COMMENT, author=self.developer)
+        eq_(email.call_count, 3)
+
+        recipients = self._recipients(email)
+        assert self.mozilla_contact.email in recipients
+        assert self.reviewer.email in recipients
+        assert self.developer.email not in recipients
+
+        self._check_template(email.call_args, 'generic')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_additional_review(self, email):
+        self._create(comm.ADDITIONAL_REVIEW_PASSED)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.mozilla_contact.email in recipients
+        assert self.developer.email in recipients
+
+        self._check_template(email.call_args, 'tarako')
+
+    def test_mail_templates_exist(self):
+        for note_type in comm.COMM_MAIL_MAP:
+            self._create(note_type)
+        for note_type in comm.EMAIL_SENIOR_REVIEWERS_AND_DEV:
+            self._create(note_type)
+        self._create(comm.NO_ACTION)
+
+    def test_email_formatting(self):
+        """
+        Manually run test in case you want to spot-check if every email is
+        formatted nicely and consistently. Prints out each note type email
+        once.
+        """
+        raise SkipTest
+        for note_type in comm.COMM_MAIL_MAP:
+            self._create(note_type)
+
+        email_subjects = []
+        for email in mail.outbox:
+            if email.subject in email_subjects:
+                continue
+            email_subjects.append(email_subjects)
+
+            print '##### %s #####' % email.subject
+            print email.body
 
 
 class TestEmailReplySaving(TestCase):

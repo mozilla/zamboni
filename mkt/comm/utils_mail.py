@@ -20,6 +20,7 @@ from mkt.comm.models import CommunicationThreadToken, user_has_perm_thread
 from mkt.constants import comm
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
@@ -34,68 +35,76 @@ def send_mail_comm(note):
     """
     if not waffle.switch_is_active('comm-dashboard'):
         return
-
-    recipients = get_recipients(note)
-    name = note.thread.addon.name
-    subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]), name)
-
     log.info(u'Sending emails for %s' % note.thread.addon)
-    for email, tok in recipients:
+
+    if note.note_type in comm.EMAIL_SENIOR_REVIEWERS_AND_DEV:
+        # Email senior reviewers (such as for escalations).
+        rev_template = comm.EMAIL_SENIOR_REVIEWERS_AND_DEV[note.note_type][
+            'reviewer']
+        email_recipients(get_senior_reviewers(), note, template=rev_template)
+
+        # Email developers (such as for escalations).
+        dev_template = comm.EMAIL_SENIOR_REVIEWERS_AND_DEV[note.note_type][
+            'developer']
+        email_recipients(get_developers(note), note, template=dev_template)
+    else:
+        email_recipients(get_recipients(note), note)
+
+
+def get_recipients(note):
+    """
+    Determine email recipients mainly based on CommunicationThreadCC.
+    Returns user_id/user_email tuples.
+    """
+    if note.note_type in comm.EMAIL_SENIOR_REVIEWERS:
+        return get_senior_reviewers()
+
+    thread = note.thread
+    recipients = thread.thread_cc.values_list('user__id', 'user__email')
+
+    excludes = []
+    if not note.read_permission_developer:
+        # Exclude developer.
+        excludes += get_developers(note)
+    if note.author:
+        # Exclude note author.
+        excludes.append((note.author.id, note.author.email))
+
+    return [r for r in set(recipients) if r not in excludes]
+
+
+def tokenize_recipients(recipients, thread):
+    """[(user_id, user_email)] -> [(user_email, token)]."""
+    tokenized_recipients = []
+    for user_id, user_email in recipients:
+        tok = get_reply_token(thread, user_id)
+        tokenized_recipients.append((user_email, tok.uuid))
+    return tokenized_recipients
+
+
+def email_recipients(recipients, note, template=None):
+    """
+    Given a list of tuple of user_id/user_email, email bunch of people.
+    note -- commbadge note, the note type determines which email to use.
+    template -- override which template we use.
+    """
+    subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
+                          note.thread.addon.name)
+
+    for email, tok in tokenize_recipients(recipients, note.thread):
         reply_to = '{0}{1}@{2}'.format(comm.REPLY_TO_PREFIX, tok,
                                        settings.POSTFIX_DOMAIN)
 
         # Get the appropriate mail template.
-        mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
+        mail_template = template or comm.COMM_MAIL_MAP.get(note.note_type,
+                                                           'generic')
+
         # Send mail.
         send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
                         get_mail_context(note), recipient_list=[email],
                         from_email=settings.MKT_REVIEWERS_EMAIL,
                         perm_setting='app_reviewed',
                         headers={'reply_to': reply_to})
-
-
-def get_recipients(note):
-    """
-    Determine email recipients based on a new note based on those who are on
-    the thread_cc list and note permissions.
-    Returns reply-to-tokenized emails.
-    """
-    thread = note.thread
-    recipients = []
-
-    # Whitelist: include recipients.
-    if note.note_type == comm.ESCALATION:
-        # Email only senior reviewers on escalations.
-        seniors = Group.objects.get(name='Senior App Reviewers')
-        recipients = seniors.users.values_list('id', 'email')
-    else:
-        # Get recipients via the CommunicationThreadCC table, which is usually
-        # populated with the developer, the Mozilla contact, and anyone that
-        # posts to and reviews the app.
-        recipients = set(thread.thread_cc.values_list(
-            'user__id', 'user__email'))
-
-    # Blacklist: exclude certain people from receiving the email based on
-    # permission.
-    excludes = []
-    if not note.read_permission_developer:
-        # Exclude developer.
-        excludes += thread.addon.authors.values_list('id', 'email')
-
-    if note.author:
-        # Exclude note author.
-        excludes.append((note.author.id, note.author.email))
-
-    # Remove excluded people from the recipients.
-    recipients = [r for r in recipients if r not in excludes]
-
-    # Build reply-to-tokenized email addresses.
-    new_recipients_list = []
-    for user_id, user_email in recipients:
-        tok = get_reply_token(note.thread, user_id)
-        new_recipients_list.append((user_email, tok.uuid))
-
-    return new_recipients_list
 
 
 def get_mail_context(note):
@@ -228,3 +237,12 @@ def get_reply_token(thread, user_id):
         log.info('Created token with UUID %s for user_id: %s.' %
                  (tok.uuid, user_id))
     return tok
+
+
+def get_developers(note):
+    return list(note.thread.addon.authors.values_list('id', 'email'))
+
+
+def get_senior_reviewers():
+    return list(Group.objects.get(name='Senior App Reviewers')
+                             .users.values_list('id', 'email'))

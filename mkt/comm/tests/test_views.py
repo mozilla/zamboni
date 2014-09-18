@@ -360,10 +360,6 @@ class TestNote(NoteSetupMixin):
         eq_(res.status_code, 201)
         eq_(res.json['body'], 'something')
 
-        # Decrement authors.count() by 1 because the author of the note is
-        # one of the authors of the addon.
-        eq_(len(mail.outbox), self.thread.addon.authors.count() - 1)
-
     def test_create_dev_comment(self):
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': comm.DEVELOPER_COMMENT,

@@ -1,0 +1,13 @@
+{% extends 'comm/emails/base.html' -%}
+
+{% block content %}
+Dear Superheroes,
+
+A reviewer has escalated the following app due to security, copyright, or other administrative concerns.
+
+Please open your plethora of knowledge and wield your mighty administrative sword of decision making.
+
+{% include 'comm/emails/includes/details.html' %}
+
+Love,
+{% endblock %}

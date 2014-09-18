@@ -7,8 +7,8 @@ Congratulations! {{ app.name }} has been approved and is now published on the Fi
 Your app is approved but not published on category listing pages nor in search results. Only those with the URL can find and install your app.
 
 If you would like your app included in search results and listing pages visit its Manage Status page: {{ app.get_dev_url('versions')|absolutify }}
-{% endif %}
 
+{% endif %}
 {% include 'comm/emails/includes/details.html' %}
 {% include 'comm/emails/includes/questions.html' %}
 {% endblock %}
