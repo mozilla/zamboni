@@ -1,7 +1,23 @@
+import jwt
 from urlparse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+
+
+def validate_modules():
+    """
+    Validate that the modules that have been set up correctly.
+    """
+    try:
+        jwt.rsa_load
+    except AttributeError:
+        raise ImproperlyConfigured(
+            'PyJWT-Mozilla not imported. This is because there is '
+            'another JWT module installed. The JWT module imported is at: {0}.'
+            'This can usually be fixed by running: "pip uninstall PyJWT" and '
+            '"pip install --force --no-deps PyJWT-mozilla"'.
+            format(jwt.__file__))
 
 
 def validate_settings():
