@@ -1368,11 +1368,16 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_restofworld_fallback_shelf_only(self):
         shelf = self.feed_shelf_factory()
         shelf.feeditem_set.create(region=mkt.regions.US.id,
+                                  carrier=mkt.carriers.AMERICA_MOVIL.id,
                                   item_type=feed.FEED_TYPE_SHELF)
 
         feed_items = self.feed_factory()
-        res, data = self._get(region='us')
+        res, data = self._get(region='us', carrier='america_movil')
         eq_(len(data['objects']), len(feed_items))
+
+        # Keep the shelf, you filthy animal.
+        eq_(data['objects'][0]['item_type'], 'shelf')
+        eq_(data['objects'][0]['shelf']['id'], shelf.id)
 
     def test_shelf_only_404(self):
         shelf = self.feed_shelf_factory()
@@ -1712,7 +1717,7 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         sq = self.fv.get_es_feed_query(self.sq, region=2, carrier=1).to_dict()
         # Test filter.
         ok_({'term': {'region': 2}}
-            in sq['query']['function_score']['filter']['bool']['must'])
+            in sq['query']['function_score']['filter']['bool']['should'])
         ok_({'bool': {'must_not': [{'term': {'carrier': 1}}],
                       'must': [{'term': {'item_type': 'shelf'}}]}}
             in sq['query']['function_score']['filter']['bool']['must_not'])
@@ -1731,7 +1736,7 @@ class TestFeedViewQueries(BaseTestFeedItemViewSet, amo.tests.TestCase):
         sq = self.fv.get_es_feed_query(self.sq, carrier=1).to_dict()
         # Test filter.
         ok_({'term': {'region': 1}}
-            in sq['query']['function_score']['filter']['bool']['must'])
+            in sq['query']['function_score']['filter']['bool']['should'])
 
     def test_order(self):
         """Order script scoring."""

@@ -557,15 +557,18 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
     permission_classes = []
 
     def get_es_feed_query(self, sq, region=mkt.regions.RESTOFWORLD.id,
-                          carrier=None):
+                          carrier=None, original_region=None):
         """
         Build ES query for feed.
-        Weights on region and carrier if passed in.
+        Must match region.
         Orders by FeedItem.order.
-        Operator shelf always on top if region and carrier passed in.
+        Boosted operator shelf matching region + carrier.
+        Boosted operator shelf matching original_region + carrier.
 
         region -- region ID (integer)
         carrier -- carrier ID (integer)
+        original_region -- region from before we were falling back,
+            to keep the original shelf atop the RoW feed.
         """
         region_filter = es_filter.Term(region=region)
         shelf_filter = es_filter.Term(item_type=feed.FEED_TYPE_SHELF)
@@ -582,11 +585,21 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
                             functions=[ordering_fn],
                             filter=region_filter)
 
+        # Must match region.
+        # But also include the original region if we falling back to RoW.
+        # The only original region feed item that will be included is a shelf
+        # else we wouldn't be falling back in the first place.
+        region_filters = [region_filter]
+        if original_region:
+            region_filters.append(
+                es_filter.Bool(must=[es_filter.Term(region=original_region)])
+            )
+
         return sq.query(
             'function_score',
             functions=[boost_fn, ordering_fn],
             filter=es_filter.Bool(
-                must=[es_filter.Term(region=region)],
+                should=region_filters,
                 must_not=[es_filter.Bool(
                     must=[shelf_filter],
                     must_not=[es_filter.Term(carrier=carrier)])])
@@ -619,37 +632,42 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             return 0
         return 1
 
-    def _handle_empty_feed(self, empty_feed_code, request, args, kwargs):
+    def _handle_empty_feed(self, empty_feed_code, region, request, args,
+                           kwargs):
         """
         If feed is empty, this method handles appropriately what to return.
         If empty_feed_code == 0: try to fallback to RoW.
         If empty_feed_code == -1: 404.
         """
         if empty_feed_code == 0:
-            return self._get(request, rest_of_world=True, *args, **kwargs)
+            return self._get(request, rest_of_world=True,
+                             original_region=region, *args, **kwargs)
         return response.Response(status=status.HTTP_404_NOT_FOUND)
 
-    def _get(self, request, rest_of_world=False, *args, **kwargs):
+    def _get(self, request, rest_of_world=False, original_region=None,
+             *args, **kwargs):
         es = FeedItemIndexer.get_es()
 
-        # Parse carrier and region.
+        # Parse region.
         if rest_of_world:
             region = mkt.regions.RESTOFWORLD.id
-            carrier = None
         else:
-            q = request.QUERY_PARAMS
             region = request.REGION.id
-            carrier = None
-            if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
-                carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
+        # Parse carrier.
+        carrier = None
+        q = request.QUERY_PARAMS
+        if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
+            carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
 
         # Fetch FeedItems.
         sq = self.get_es_feed_query(FeedItemIndexer.search(using=es),
-                                    region=region, carrier=carrier)
+                                    region=region, carrier=carrier,
+                                    original_region=original_region)
         feed_items = self.paginate_queryset(sq)
         feed_ok = self._check_empty_feed(feed_items, rest_of_world)
         if feed_ok != 1:
-            return self._handle_empty_feed(feed_ok, request, args, kwargs)
+            return self._handle_empty_feed(feed_ok, region, request, args,
+                                           kwargs)
 
         # Build the meta object.
         meta = mkt.api.paginator.CustomPaginationSerializer(
@@ -688,7 +706,8 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         feed_items = self.filter_feed_items(request, feed_items)
         feed_ok = self._check_empty_feed(feed_items, rest_of_world)
         if feed_ok != 1:
-            return self._handle_empty_feed(feed_ok, request, args, kwargs)
+            return self._handle_empty_feed(feed_ok, region, request, args,
+                                           kwargs)
 
         return response.Response({'meta': meta, 'objects': feed_items},
                                  status=status.HTTP_200_OK)
