@@ -33,7 +33,9 @@ from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
+from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 
@@ -769,6 +771,29 @@ class TestAppSummary(AppSummaryTest):
         text = pq(res.content)('.column-b dd').eq(5).text()
         assert 'Published' not in text
         assert 'disabled by user' in text
+
+    def test_tarako_enabled(self):
+        tag = Tag(tag_text='tarako')
+        tag.save_tag(self.app)
+        #WebappIndexer.index_ids([self.app.pk])
+        res = self.summary()
+        text = 'Tarako enabled'
+        assert text in pq(res.content)('.column-b dd').eq(6).text()
+
+    def test_tarako_disabled_not_pending(self):
+        res = self.summary()
+        texta = 'Tarako not enabled |'
+        textb = 'Review not requested'
+        assert texta in pq(res.content)('.column-b dd').eq(6).text()
+        assert textb in pq(res.content)('.column-b dd').eq(6).text()
+
+    def test_tarako_review_pending(self):
+        self.app.additionalreview_set.create(queue=QUEUE_TARAKO)
+        res = self.summary()
+        texta = 'Tarako not enabled |'
+        textb = 'Review pending'
+        assert texta in pq(res.content)('.column-b dd').eq(6).text()
+        assert textb in pq(res.content)('.column-b dd').eq(6).text()
 
     def test_visible_authors(self):
         AddonUser.objects.all().delete()
