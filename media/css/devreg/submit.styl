@@ -104,24 +104,30 @@ h2 .soon {
 }
 
 #submit-payment-type {
+    .tab.active {
+        display: flex;
+        flex-wrap: wrap;
+    }
     .error {
         margin-bottom: 15px;
-
-        + .wrapper {
-            margin-left: -15px;
-        }
+        width: 100%;
     }
     .wrapper {
         border-box();
-        display: inline-block;
-        padding-left: 15px;
+        display: inline-block; /* helps browsers without flexbox support */
+        margin: 0;
+        padding: 0 10px;
         width: 25%;
         a.choice, span.unclickable {
-            text-decoration: none;
-            text-align: center;
-            padding: 180px 10px 20px;
+            border-box();
+            height: 100%;
             margin-bottom: 0;
             opacity: .9;
+            padding: 180px 10px 60px;
+            position: relative;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
 
             &[data-value$="-firefoxos"] {
                 background: url(../../img/developers/firefox_phone.png) no-repeat 50% 25px;
@@ -160,14 +166,24 @@ h2 .soon {
                 pointer-events: none;
             }
         }
+        span.unclickable {
+            /* if it's an unclickable span, we don't have to give some padding-bottom
+               for the listing-footer div */
+            padding-bottom: 0;
+        }
     }
     .listing-footer {
+        border-box();
         border-radius: 0 0 3px 3px;
+        bottom: 0;
         background: $faint-gray;
         border-color: $light-gray;
-        margin: 15px -10px -20px;
+        left: 0;
+        margin: 0;
         padding: 0 10px 10px;
+        position: absolute;
         text-align: center;
+        width: 100%;
     }
     input {
         margin-top: 15px;
