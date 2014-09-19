@@ -782,8 +782,7 @@ def upload_detail(request, uuid, format='html'):
 
 @dev_required(staff=True)
 def addons_section(request, addon_id, addon, section, editable=False):
-    basic = AppFormBasic
-    models = {'basic': basic,
+    models = {'basic': AppFormBasic,
               'media': AppFormMedia,
               'details': AppFormDetails,
               'support': AppFormSupport,
@@ -841,8 +840,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 not acl.action_allowed(request, 'Apps', 'Configure')):
                 raise PermissionDenied
 
-            form = models[section](formdata, request.FILES,
-                                   instance=addon, request=request)
+            form = models[section](formdata, request.FILES, instance=addon,
+                                   version=version,request=request)
 
             all_forms = [form, previews]
             for additional_form in (appfeatures_form, cat_form, version_form):
@@ -883,7 +882,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 valid_slug = addon.app_slug
         else:
-            form = models[section](instance=addon, request=request)
+            form = models[section](instance=addon, version=version,
+                                   request=request)
     else:
         form = False
 
