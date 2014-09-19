@@ -69,6 +69,7 @@ NOTE_TYPES = {
 }
 
 # Note types only visible by reviewers and not developers.
+# These will set read_permission_developer on notes to False.
 REVIEWER_NOTE_TYPES = (
     ESCALATION,
     REVIEWER_COMMENT,
@@ -100,14 +101,27 @@ COMM_MAIL_MAP = {
     REJECTION: 'rejection',
     DISABLED: 'disabled',
     MORE_INFO_REQUIRED: 'more_info_required',
-    ESCALATION: 'escalation',
     APPROVE_VERSION_PRIVATE: 'approval_private',
     ESCALATION_VIP_APP: 'escalation_vip',
-    ESCALATION_PRERELEASE_APP: 'escalation_prerelease',
+    ESCALATION_PRERELEASE_APP: 'escalation_prerelease_app',
     ADDITIONAL_REVIEW_PASSED: 'tarako',
     ADDITIONAL_REVIEW_FAILED: 'tarako',
 }
 
+# Note types to only email senior reviewers on.
+EMAIL_SENIOR_REVIEWERS = [
+    ESCALATION_VIP_APP,
+    ESCALATION_PRERELEASE_APP,
+]
+
+# Note types to email both senior reviewers and developer, but a different
+# email template to each on.
+EMAIL_SENIOR_REVIEWERS_AND_DEV = {
+    ESCALATION: {
+        'reviewer': 'escalation_senior_reviewer',
+        'developer': 'escalation_developer',
+    }
+}
 
 def U_NOTE_TYPES():
     return dict((key, unicode(value)) for (key, value) in

@@ -2940,7 +2940,7 @@ class TestMotd(AppReviewerTest, AccessMixin):
 
 class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
     """
-    Test communication threads + notes are created and that emails are
+    Integration test that notes are created and that emails are
     sent to the right groups of people.
     """
     fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
@@ -3061,7 +3061,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
 
     def test_escalate(self):
         """
-        On escalation, send an email to [senior reviewers].
+        On escalation, send an email to senior reviewers and developer.
         """
         admin = user_factory()
         group = Group.objects.create(name='Senior App Reviewers')
@@ -3077,9 +3077,10 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin):
         eq_(note.body, 'soup her man')
 
         # Test emails.
-        eq_(len(mail.outbox), 1)
+        eq_(len(mail.outbox), 2)
         self._check_email(  # Senior reviewer.
             mail.outbox[0], 'Escalated', to=[admin.email])
+        self._check_email(self._get_mail('dev'))
 
     def test_comment(self):
         """
