@@ -79,6 +79,23 @@
             {% endif %}
           </form>
         </dd>
+        <dt>{{ _('Tarako Status') }}</dt>
+        <dd>
+          {% if is_tarako %}
+            {{ _('Tarako enabled') }}
+          {% else %}
+            {{ _('Tarako not enabled') }} |
+            {% if not tarako_review or tarako_review.passed %}
+              {{ _('Review not requested') }}
+            {% else %}
+              {% if tarako_review.pending %}
+                {{ _('Review pending') }}
+              {% elif tarako_review.failed %}
+                {{ _('Review failed') }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </dd>
         <dt>{{ _('Abuse Reports') }}</dt>
         <dd>{{ abuse_reports }}</dd>
         <dt>{{ _('Permissions') }}</dt>
