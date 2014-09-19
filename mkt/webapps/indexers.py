@@ -422,7 +422,7 @@ class WebappIndexer(BaseIndexer):
 
     @classmethod
     def get_app_filter(cls, request, additional_data=None, sq=None,
-                       app_ids=None, reviewers=False):
+                       app_ids=None, no_filter=False):
         """
         THE grand, consolidated ES filter for Webapps. By default:
         - Excludes non-public apps.
@@ -433,7 +433,7 @@ class WebappIndexer(BaseIndexer):
         additional_data -- an object with more data to allow more filtering.
         sq -- if you have an existing search object to filter off of.
         app_ids -- if you want to filter by a list of app IDs.
-        reviewers -- doesn't apply the consumer-side excludes (public/region).
+        no_filter -- doesn't apply the consumer-side excludes (public/region).
         """
         from mkt.api.base import get_region_from_request
         from mkt.search.views import name_query
@@ -479,7 +479,7 @@ class WebappIndexer(BaseIndexer):
         must = [
             F('term', status=amo.STATUS_PUBLIC),
             F('term', is_disabled=False),
-        ] if not reviewers else []
+        ] if not no_filter else []
 
         for field in term_fields + terms_fields:
             # Term filters.
@@ -487,7 +487,7 @@ class WebappIndexer(BaseIndexer):
                 filter_type = 'term' if field in term_fields else 'terms'
                 must.append(F(filter_type, **{field: data[field]}))
 
-        if not reviewers:
+        if not no_filter:
             if data['profile']:
                 # Feature filters.
                 profile = data['profile']
@@ -509,7 +509,7 @@ class WebappIndexer(BaseIndexer):
         if must or should:
             sq = sq.filter(es_filter.Bool(must=must, should=should))
 
-        if data['region'] and not reviewers:
+        if data['region'] and not no_filter:
             # Region exclusions.
             sq = sq.filter(~F('term', region_exclusions=data['region']))
 

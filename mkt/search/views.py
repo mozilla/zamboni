@@ -176,8 +176,11 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
         form_data = form.cleaned_data
 
         # Query and filter.
-        sq = WebappIndexer.get_app_filter(request,
-                                          search_form_to_es_fields(form_data))
+        no_filter = (
+            request.GET.get('filtering', '1') == '0' and
+            request.user.groups.filter(rules__contains='Feed:Curate').exists())
+        sq = WebappIndexer.get_app_filter(
+            request, search_form_to_es_fields(form_data), no_filter=no_filter)
 
         # Sort.
         sq = _sort_search(request, sq, form_data)
