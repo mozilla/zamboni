@@ -69,18 +69,27 @@ reindex:
 tagz.py:
 	curl -O https://raw.githubusercontent.com/cvan/tagz/master/tagz.py
 
-release: tagz.py
+tag_release: tagz.py
 	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
-	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/rocketfuel,mozilla/discoplace,mozilla/zamboni -c create -t $(RELEASE_DATE)
+	$(PYTHON) tagz.py -r mozilla/solitude,mozilla/spartacus,mozilla/webpay,mozilla/commbadge,mozilla/fireplace,mozilla/marketplace-stats,mozilla/monolith-aggregator,mozilla/rocketfuel,mozilla/discoplace,mozilla/transonic,mozilla/zamboni -c create -t $(RELEASE_DATE)
+
+deploy_release:
+	$(eval RELEASE_DATE := $(shell $(PYTHON) -c 'import datetime; now = datetime.datetime.utcnow(); tue = now + datetime.timedelta(days=(1 - now.weekday()) % 7); print tue.strftime("%Y.%m.%d")'))
 	$(PYTHON) scripts/dreadnot-deploy.py			\
 	-c dreadnot-stage.ini -e stage -r $(RELEASE_DATE)	\
 		payments.allizom.org-solitude			\
 		payments-proxy.allizom.org-solitude		\
+                marketplace.allizom.org-spartacus               \
 		marketplace.allizom.org-webpay			\
 		monolith.allizom.org-aggregator			\
 		marketplace.allizom.org-discoplace		\
 		marketplace.allizom.org-rocketfuel		\
 		marketplace.allizom.org-marketplace-stats	\
 		marketplace.allizom.org-commbadge		\
+                marketplace.allizom.org-transonic               \
 		marketplace.allizom.org-fireplace		\
 		marketplace.allizom.org-zamboni
+
+
+release: tag_release deploy_release
+
