@@ -604,26 +604,6 @@ class TestTransactionRefund(TestCase):
                                     args=[self.uuid]))
 
     @mock.patch('mkt.lookup.views.client')
-    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-    def test_refund_pending_email(self, solitude):
-        solitude.api.bango.refund.post.return_value = self.bango_ret(PENDING)
-        solitude.get.return_value = self.refund_tx_ret()
-
-        transaction_refund(self.req, self.uuid)
-        eq_(len(mail.outbox), 1)
-        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
-
-    @mock.patch('mkt.lookup.views.client')
-    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-    def test_refund_completed_email(self, solitude):
-        solitude.api.bango.refund.post.return_value = self.bango_ret(COMPLETED)
-        solitude.get.return_value = self.refund_tx_ret()
-
-        transaction_refund(self.req, self.uuid)
-        eq_(len(mail.outbox), 1)
-        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
-
-    @mock.patch('mkt.lookup.views.client')
     def test_403_reg_user(self, solitude):
         solitude.api.bango.refund.post.return_value = self.bango_ret(PENDING)
         solitude.get.return_value = self.refund_tx_ret()

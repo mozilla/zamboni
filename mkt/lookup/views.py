@@ -33,8 +33,6 @@ from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
-from mkt.lookup.tasks import (email_buyer_refund_approved,
-                              email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.site.decorators import json_view, login_required, permission_required
@@ -212,7 +210,6 @@ def transaction_refund(request, tx_uuid):
             amo.REFUND_PENDING, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund pending: %s' % tx_uuid)
-        email_buyer_refund_pending(contrib)
         messages.success(
             request, _('Refund for this transaction now pending.'))
     elif res['status'] == COMPLETED:
@@ -221,7 +218,6 @@ def transaction_refund(request, tx_uuid):
             amo.REFUND_APPROVED, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund approved: %s' % tx_uuid)
-        email_buyer_refund_approved(contrib)
         messages.success(
             request, _('Refund for this transaction successfully approved.'))
     elif res['status'] == FAILED:
