@@ -10,16 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-05-31 13:56+0000\n"
-"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2014-09-20 14:37+0000\n"
+"Last-Translator: Killo <killoherz3@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401544561.0\n"
+"X-POOTLE-MTIME: 1411223873.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -423,19 +424,19 @@ msgstr ""
 
 #: apps/amo/log.py:536
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} повторно проверен из-за изменения URL манифеста."
 
 #: apps/amo/log.py:537
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Изменение URL манифеста"
 
 #: apps/amo/log.py:544
 msgid "{addon} auto-escalated because its a prerelease app."
-msgstr ""
+msgstr "{addon} автоэскалирован так как это пререлиз приложения."
 
 #: apps/amo/log.py:545
 msgid "Prerelease auto-escalation"
-msgstr ""
+msgstr "Автоэскалация пререлиза"
 
 #: apps/amo/log.py:562
 msgid "Created: {0}."
@@ -463,7 +464,7 @@ msgstr "Пользователь {user} ограничен."
 
 #: apps/amo/log.py:598
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Администратор {0} просмотрел лог активности {user}."
 
 #: apps/amo/log.py:605
 msgid "{review} for {addon} updated."
@@ -483,7 +484,7 @@ msgstr "Пользователь {0.name} удалён из {group}."
 
 #: apps/amo/log.py:632
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "минимальные требования {addon} вручную изменены проверяющим."
 
 #: apps/amo/log.py:633
 msgid "Requirements Changed by Reviewer"
@@ -491,7 +492,7 @@ msgstr "Требования изменены проверяющим"
 
 #: apps/amo/log.py:640
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "минимальные требования {addon} изменены вручную."
 
 #: apps/amo/log.py:641
 msgid "Requirements Changed"
@@ -506,10 +507,11 @@ msgstr "стутус {version} изменён на {0}."
 #: apps/amo/log.py:656
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr ""
+"Пользователь {0.name} {0.id} удалён через инструмент поиска.                "
 
 #: apps/amo/log.py:662
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "рейтинг содержимого {addon} изменён на Взрослый."
 
 #: apps/amo/log.py:668
 #, fuzzy
@@ -518,19 +520,19 @@ msgstr "стутус {addon} изменён на {0}."
 
 #: apps/amo/log.py:673
 msgid "Priority review requested for {addon}."
-msgstr ""
+msgstr "Для {addon} запрошена приоритетная проверка."
 
 #: apps/amo/log.py:674
 msgid "Priority Review"
-msgstr ""
+msgstr "Приоритетная проверка"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} прошёл в очередь проверки {queue}."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} не прошёл в очередь проверки {queue}."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -585,10 +587,11 @@ msgstr "Имя"
 #: mkt/api/fields.py:20
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
+"Сделайте корректный выбор. %(value)s не является одним из доступных выборов."
 
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Поле должно иметь длину не менее {num} символов."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -617,7 +620,7 @@ msgstr "Список XUL Controls"
 
 #: mkt/collections/constants.py:11
 msgid "Operator Shelf"
-msgstr ""
+msgstr "Полка оператора"
 
 #: mkt/collections/fields.py:13
 msgid "Hexadecimal color"
@@ -625,11 +628,13 @@ msgstr "Шестнадцатиричный цвет"
 
 #: mkt/collections/fields.py:18
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Должно быть корректным 16-ричным кодом цвета, например #FF0035."
 
 #: mkt/collections/serializers.py:222
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr ""
+"Вы не можете иметь более одной подборки Избранных приложений/Полки Оператора "
+"для одной и той же комбинации категории/оператора/региона."
 
 #: mkt/comm/forms.py:22
 #, fuzzy
@@ -655,11 +660,13 @@ msgstr "Описание:"
 
 #: mkt/comm/forms.py:57
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Размер приложения превышает максимальный размер в %s."
 
 #: mkt/commonplace/templates/commonplace/index.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"Firefox Marketplace является официальным источником приложений для "
+"Веб-платформы."
 
 #: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
 msgid "Desktop"
@@ -1707,7 +1714,7 @@ msgstr "В ожидании одобрения"
 
 #: mkt/constants/base.py:28 mkt/constants/base.py:44
 msgid "Published"
-msgstr ""
+msgstr "Опубликовано"
 
 #: mkt/constants/base.py:29
 msgid "Disabled by Mozilla"
@@ -1723,7 +1730,7 @@ msgstr "Заблокировано"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Не в списке"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -1837,7 +1844,7 @@ msgstr "Бесплатные с in-app платежами"
 
 #: mkt/constants/base.py:190
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Я использую мою собственную систему для оплат в приложениях"
 
 #: mkt/constants/base.py:244
 msgid "Manual Reviewer Points"
@@ -1966,7 +1973,7 @@ msgstr "Инструменты"
 
 #: mkt/constants/comm.py:40
 msgid "No action"
-msgstr ""
+msgstr "Нет действий"
 
 #: mkt/constants/comm.py:43 mkt/developers/templates/developers/apps/status.html:212 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -1974,31 +1981,31 @@ msgstr "Отключено"
 
 #: mkt/constants/comm.py:47
 msgid "App resubmission"
-msgstr ""
+msgstr "Повторное представление приложения"
 
 #: mkt/constants/comm.py:50
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Эскалировано из-за большого числа жалоб"
 
 #: mkt/constants/comm.py:51
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Эскалировано из-за большого числа запросов на возврат денег"
 
 #: mkt/constants/comm.py:53
 msgid "App submission notes"
-msgstr ""
+msgstr "Примечания при представлении приложения"
 
 #: mkt/constants/comm.py:54
 msgid "Developer comment"
-msgstr ""
+msgstr "Комментарий разработчика"
 
 #: mkt/constants/comm.py:55
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Устройство(а) изменено(ы) проверяющим."
 
 #: mkt/constants/comm.py:56
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Требование(я) изменено(ы) проверяющим."
 
 #: mkt/constants/comm.py:57
 msgid "Rereview due to Manifest Change"
