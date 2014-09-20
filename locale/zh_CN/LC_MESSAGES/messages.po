@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-06 04:55+0000\n"
+"PO-Revision-Date: 2014-09-20 01:20+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409979309.0\n"
+"X-POOTLE-MTIME: 1411176049.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -2764,7 +2764,7 @@ msgstr "我的应用通过审核并被批准时设定为公开。"
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
-msgstr "请考虑将我的应用作为预装到 Firefox OS 设备中的候选品种。我同意上述条款和条件说明。我理解这份文件并不意味着我的应用获得了预装。"
+msgstr "请考虑将我的应用作为预装到 Firefox OS 设备中的候选软件。我同意上述条款和条件说明。我理解这份文件并不意味着我的应用会被预装。"
 
 #: mkt/developers/forms.py:1167
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
@@ -3283,7 +3283,7 @@ msgstr "登录"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr "必须登录后才能处理。"
+msgstr "您必须登录后才能继续。"
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:145
 msgid "Sign in / Sign up"
@@ -3775,7 +3775,7 @@ msgstr "了解低内存设备。"
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
-msgstr "预安装应用程序状态"
+msgstr "预装应用程序的状态"
 
 #: mkt/developers/templates/developers/apps/status.html:361
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
@@ -4447,7 +4447,7 @@ msgstr "<a href=\"%(rating_url)s\">设定内容分级</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
-msgstr "已预安装"
+msgstr "预装"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:16
 msgid "Preloaded App"
@@ -4476,7 +4476,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
-msgstr "预装应用需遵守条款"
+msgstr "预装应用的条款和条件"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
