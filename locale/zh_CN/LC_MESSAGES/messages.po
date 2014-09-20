@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-20 01:20+0000\n"
+"PO-Revision-Date: 2014-09-20 01:22+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411176049.0\n"
+"X-POOTLE-MTIME: 1411176132.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -3795,7 +3795,7 @@ msgstr "查看您最近提交的测试计划"
 
 #: mkt/developers/templates/developers/apps/status.html:377
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
-msgstr "了解如何让你的程序预装在Firefox OS设备上"
+msgstr "了解如何让你的应用程序预装在 Firefox OS 设备上"
 
 #: mkt/developers/templates/developers/apps/status.html:379
 msgid "Update your test plan"
