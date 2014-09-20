@@ -15,11 +15,11 @@ import commonware
 from uuidfield.fields import UUIDField
 
 import amo
-import amo.models
 import amo.utils
 from amo.urlresolvers import reverse
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
+from mkt.site.models import ModelBase, OnChangeMixin, UncachedManagerBase
 
 
 log = commonware.log.getLogger('z.files')
@@ -29,7 +29,7 @@ log = commonware.log.getLogger('z.files')
 EXTENSIONS = ('.webapp', '.json', '.zip')
 
 
-class File(amo.models.OnChangeMixin, amo.models.ModelBase):
+class File(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
     version = models.ForeignKey('versions.Version', related_name='files')
@@ -43,7 +43,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Whether a webapp uses flash or not.
     uses_flash = models.BooleanField(default=False, db_index=True)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'files'
 
     def __unicode__(self):
@@ -239,7 +239,7 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
                  (instance.pk, addon, old, new))
 
 
-class FileUpload(amo.models.ModelBase):
+class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = UUIDField(primary_key=True, auto=True)
     path = models.CharField(max_length=255, default='')
@@ -251,9 +251,9 @@ class FileUpload(amo.models.ModelBase):
     validation = models.TextField(null=True)
     task_error = models.TextField(null=True)
 
-    objects = amo.models.UncachedManagerBase()
+    objects = UncachedManagerBase()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
 
     def __unicode__(self):
@@ -299,7 +299,7 @@ class FileUpload(amo.models.ModelBase):
         return bool(self.valid or self.validation)
 
 
-class FileValidation(amo.models.ModelBase):
+class FileValidation(ModelBase):
     file = models.OneToOneField(File, related_name='validation')
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)

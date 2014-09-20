@@ -36,7 +36,7 @@ class TestPreviewForm(amo.tests.TestCase):
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
 
-    @mock.patch('amo.models.ModelBase.update')
+    @mock.patch('mkt.site.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
         name = 'transparent.png'
         form = forms.PreviewForm({'upload_hash': name,

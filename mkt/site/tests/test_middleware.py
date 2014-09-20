@@ -3,19 +3,19 @@ import datetime
 from django.conf import settings
 from django.test.utils import override_settings
 
-import mock
 from dateutil.tz import tzutc
+from mock import patch
 from nose.tools import eq_, ok_
 
 import amo.tests
+from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
-from mkt.site.fixtures import fixture
 
 _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
 
 
-@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
+@patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
 class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
     def test_redirect_for_bad_application(self):
         r = self.client.get('/mosaic/')
@@ -85,8 +85,8 @@ class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
             eq_(got, 404, "For %r: expected '404' but got %r" % (url, got))
 
 
-@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
-@mock.patch.object(settings, 'LANGUAGE_URL_MAP',
+@patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
+@patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
 class TestLocaleMiddleware(amo.tests.TestCase):
 
@@ -232,8 +232,8 @@ class TestLocaleMiddleware(amo.tests.TestCase):
         eq_(r.cookies['lang'].value, 'fr,')
 
 
-@mock.patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
-@mock.patch.object(settings, 'LANGUAGE_URL_MAP',
+@patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
+@patch.object(settings, 'LANGUAGE_URL_MAP',
                    dict([x.lower(), x] for x in _langs))
 class TestLocaleMiddlewarePersistence(amo.tests.TestCase):
     fixtures = fixture('user_999')
@@ -269,9 +269,9 @@ class TestVaryMiddleware(amo.tests.TestCase):
         assert 'Cookie' not in vary(res), 'Should not contain "Vary: Cookie"'
 
     # Patching MIDDLEWARE_CLASSES because other middleware tweaks vary headers.
-    @mock.patch.object(settings, 'MIDDLEWARE_CLASSES', [
-        'amo.middleware.CommonMiddleware',
-        'amo.middleware.NoVarySessionMiddleware',
+    @patch.object(settings, 'MIDDLEWARE_CLASSES', [
+        'mkt.site.middleware.CommonMiddleware',
+        'mkt.site.middleware.NoVarySessionMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'mkt.site.middleware.RequestCookiesMiddleware',
         'mkt.site.middleware.LocaleMiddleware',

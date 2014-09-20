@@ -3,13 +3,13 @@ import os
 from django.conf import settings
 from django.db import models
 
-import amo.models
+import amo
 import mkt.carriers
 import mkt.regions
-from amo.models import SlugField
 from amo.utils import to_language
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.site.decorators import use_master
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import clean_slug, Webapp
 from mkt.webapps.tasks import index_webapps
@@ -19,7 +19,7 @@ from .fields import ColorField
 from .managers import PublicCollectionsManager
 
 
-class Collection(amo.models.ModelBase):
+class Collection(ModelBase):
     # `collection_type` for rocketfuel, not transonic.
     collection_type = models.IntegerField(choices=COLLECTION_TYPES)
     description = PurifiedField()
@@ -32,8 +32,8 @@ class Collection(amo.models.ModelBase):
     carrier = models.IntegerField(default=None, null=True, blank=True,
         choices=mkt.carriers.CARRIER_CHOICES, db_index=True)
     author = models.CharField(max_length=255, default='', blank=True)
-    slug = SlugField(blank=True, max_length=30,
-                     help_text='Used in collection URLs.')
+    slug = models.CharField(blank=True, max_length=30,
+                            help_text='Used in collection URLs.')
     default_language = models.CharField(max_length=10,
         choices=((to_language(lang), desc)
                  for lang, desc in settings.LANGUAGES.items()),
@@ -48,7 +48,7 @@ class Collection(amo.models.ModelBase):
     _apps = models.ManyToManyField(Webapp, through='CollectionMembership',
                                   related_name='app_collections')
 
-    objects = amo.models.ManagerBase()
+    objects = ManagerBase()
     public = PublicCollectionsManager()
 
     class Meta:
@@ -160,7 +160,7 @@ class Collection(amo.models.ModelBase):
         return ret
 
 
-class CollectionMembership(amo.models.ModelBase):
+class CollectionMembership(ModelBase):
     collection = models.ForeignKey(Collection)
     app = models.ForeignKey(Webapp)
     order = models.SmallIntegerField(null=True)

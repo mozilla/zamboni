@@ -3,10 +3,10 @@ from django import http
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.models import manual_order
 from amo.utils import paginate
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
+from mkt.site.models import manual_order
 from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Webapp
 from mkt.webapps.views import BaseFilter

@@ -996,7 +996,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
 
 
 class TestPurchases(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -1040,7 +1040,7 @@ class TestPurchases(amo.tests.TestCase):
 
 
 class TestActivity(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -1082,7 +1082,7 @@ class TestActivity(amo.tests.TestCase):
 
 
 class TestAppActivity(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)

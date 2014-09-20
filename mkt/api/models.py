@@ -5,7 +5,7 @@ from django.db import models
 
 from aesfield.field import AESField
 
-from amo.models import ModelBase
+from mkt.site.models import ModelBase
 from mkt.users.models import UserProfile
 
 

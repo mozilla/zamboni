@@ -1,18 +1,19 @@
 from django.db import models
 from django.core.urlresolvers import NoReverseMatch
 
-import amo.models
+import amo
 from amo.urlresolvers import reverse
+from mkt.site.models import ManagerBase, ModelBase
 
 
-class TagManager(amo.models.ManagerBase):
+class TagManager(ManagerBase):
 
     def not_blacklisted(self):
         """Get allowed tags only"""
         return self.filter(blacklisted=False)
 
 
-class Tag(amo.models.ModelBase):
+class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
@@ -51,7 +52,7 @@ class Tag(amo.models.ModelBase):
         amo.log(amo.LOG.REMOVE_TAG, tag, addon)
 
 
-class AddonTag(amo.models.ModelBase):
+class AddonTag(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
 

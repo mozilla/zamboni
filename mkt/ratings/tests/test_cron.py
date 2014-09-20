@@ -11,13 +11,14 @@ from nose.tools import eq_
 import amo.tests
 from mkt.ratings.cron import email_daily_ratings
 from mkt.ratings.models import Review
+from mkt.site.fixtures import fixture
 from mkt.webapps.models import AddonUser
 from mkt.users.models import UserProfile
 
 
 @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
 class TestEmailDailyRatings(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('users')
 
     def setUp(self):
         self.app = amo.tests.app_factory(name='test')

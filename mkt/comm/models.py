@@ -9,14 +9,14 @@ from django.utils.safestring import mark_safe
 import bleach
 from uuidfield.fields import UUIDField
 
-import amo.models
 from amo.utils import reverse
 from mkt.access import acl
 from mkt.constants import comm
+from mkt.site.models import ModelBase
 from mkt.translations.fields import save_signal
 
 
-class CommunicationPermissionModel(amo.models.ModelBase):
+class CommunicationPermissionModel(ModelBase):
     # Read permissions imply write permissions as well.
     read_permission_public = models.BooleanField(default=False)
     read_permission_developer = models.BooleanField(default=True)
@@ -146,7 +146,7 @@ class CommunicationThread(CommunicationPermissionModel):
         return self.thread_cc.get_or_create(user=user)
 
 
-class CommunicationThreadCC(amo.models.ModelBase):
+class CommunicationThreadCC(ModelBase):
     """
     Determines recipients of emails. Akin being joined on a thread.
     """
@@ -188,7 +188,7 @@ class CommunicationNote(CommunicationPermissionModel):
         self.thread.save()
 
 
-class CommAttachment(amo.models.ModelBase):
+class CommAttachment(ModelBase):
     """
     Model for an attachment to an CommNote instance. Used by the Marketplace
     reviewer tools, where reviewers can attach files to comments made during
@@ -242,7 +242,7 @@ class CommAttachment(amo.models.ModelBase):
                 raise
 
 
-class CommunicationThreadToken(amo.models.ModelBase):
+class CommunicationThreadToken(ModelBase):
     thread = models.ForeignKey(CommunicationThread, related_name='token')
     user = models.ForeignKey('users.UserProfile',
         related_name='comm_thread_tokens')

@@ -14,7 +14,6 @@ from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
-from amo.models import ManagerBase, ModelBase
 from amo.utils import get_locale_from_lang
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
@@ -25,6 +24,7 @@ from mkt.constants.regions import RESTOFWORLD, REGIONS_CHOICES_ID_DICT as RID
 from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
 from mkt.site.decorators import write
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.users.models import UserProfile
 
 log = commonware.log.getLogger('z.market')
@@ -69,7 +69,7 @@ class PriceManager(ManagerBase):
         return self.filter(active=True).order_by('price')
 
 
-class Price(amo.models.ModelBase):
+class Price(ModelBase):
     active = models.BooleanField(default=True)
     name = models.CharField(max_length=4)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -225,7 +225,7 @@ class Price(amo.models.ModelBase):
         return provider_regions
 
 
-class PriceCurrency(amo.models.ModelBase):
+class PriceCurrency(ModelBase):
     # The carrier for this currency.
     carrier = models.IntegerField(choices=CARRIER_CHOICES, blank=True,
                                   null=True)
@@ -288,7 +288,7 @@ def update_price_currency(sender, instance, **kw):
         index_webapps.delay(ids)
 
 
-class AddonPurchase(amo.models.ModelBase):
+class AddonPurchase(ModelBase):
     addon = models.ForeignKey('webapps.Webapp')
     type = models.PositiveIntegerField(default=amo.CONTRIB_PURCHASE,
                                        choices=do_dictsort(amo.CONTRIB_TYPES),
@@ -368,7 +368,7 @@ def create_addon_purchase(sender, instance, **kw):
     cache.delete(memoize_key('users:purchase-ids', instance.user.pk))
 
 
-class AddonPremium(amo.models.ModelBase):
+class AddonPremium(ModelBase):
     """Additions to the Webapp model that only apply to Premium add-ons."""
     addon = models.OneToOneField('webapps.Webapp')
     price = models.ForeignKey(Price, blank=True, null=True)

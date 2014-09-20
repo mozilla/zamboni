@@ -11,6 +11,7 @@ import amo
 import amo.tests
 from amo.tests import app_factory
 from mkt.receipts.utils import create_receipt, get_key
+from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
@@ -22,7 +23,7 @@ TEST_LEEWAY = 100
 
 
 class TestReceipt(amo.tests.TestCase):
-    fixtures = ['base/users.json']
+    fixtures = fixture('users')
 
     def setUp(self):
         self.app = Webapp.objects.create()

@@ -11,11 +11,12 @@ from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
 import amo
-from amo.fields import DecimalCharField
 from amo.helpers import urlparams
 from amo.utils import get_locale_from_lang
+from mkt.site.fields import DecimalCharField
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail, send_mail_jinja
+from mkt.site.models import ModelBase
 
 
 class ContributionError(Exception):
@@ -27,7 +28,7 @@ class ContributionError(Exception):
         return repr(self.value)
 
 
-class Contribution(amo.models.ModelBase):
+class Contribution(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', blank=True, null=True)
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
