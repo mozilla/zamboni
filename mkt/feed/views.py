@@ -591,9 +591,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
         # else we wouldn't be falling back in the first place.
         region_filters = [region_filter]
         if original_region:
-            region_filters.append(
-                es_filter.Bool(must=[es_filter.Term(region=original_region)])
-            )
+            region_filters.append(es_filter.Term(region=original_region))
 
         return sq.query(
             'function_score',

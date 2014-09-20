@@ -1130,7 +1130,7 @@ class ReviewersSearchView(SearchView):
         # Do filter.
         sq = apply_reviewer_filters(request, WebappIndexer.search(),
                                     data=form_data)
-        sq = WebappIndexer.get_app_filter(request, data, sq=sq, reviewers=True)
+        sq = WebappIndexer.get_app_filter(request, data, sq=sq, no_filter=True)
 
         page = self.paginate_queryset(sq)
         return self.get_pagination_serializer(page), request.GET.get('q', '')

@@ -37,6 +37,7 @@ from mkt.lookup.tasks import (email_buyer_refund_approved,
                               email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
+from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
@@ -277,6 +278,8 @@ def app_summary(request, addon_id):
         'purchases': purchases, 'refunds': refunds, 'price': price,
         'provider_portals': provider_portals,
         'status_form': status_form, 'versions': versions,
+        'is_tarako': app.tags.filter(tag_text=QUEUE_TARAKO).exists(),
+        'tarako_review': app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
         'version_status_forms': version_status_forms
     })
 

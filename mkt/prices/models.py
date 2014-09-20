@@ -434,44 +434,6 @@ class Refund(ModelBase):
     def __unicode__(self):
         return u'%s (%s)' % (self.contribution, self.get_status_display())
 
-    @staticmethod
-    def post_save(sender, instance, **kwargs):
-        from mkt.webapps.tasks import find_refund_escalations
-        find_refund_escalations(instance.contribution.addon_id)
-
-    @classmethod
-    def recent_refund_ratio(cls, addon_id, since):
-        """
-        Returns the ratio of purchases to refunds since the given datetime.
-        """
-        cursor = connection.cursor()
-        purchases = AddonPurchase.objects.filter(
-            addon=addon_id, type=amo.CONTRIB_PURCHASE).count()
-
-        if purchases == 0:
-            return 0.0
-
-        params = [addon_id, since]
-        # Hardcoded statuses for simplicity, but they are:
-        # amo.REFUND_PENDING, amo.REFUND_APPROVED, amo.REFUND_APPROVED_INSTANT
-        sql = '''
-            SELECT COUNT(DISTINCT sc.user_id) AS num
-            FROM refunds
-            LEFT JOIN stats_contributions AS sc
-                ON refunds.contribution_id = sc.id
-            WHERE sc.addon_id = %s
-            AND refunds.status IN (0,1,2)
-            AND refunds.created > %s
-        '''
-        cursor.execute(sql, params)
-        row = cursor.fetchone()
-        if row:
-            return row[0] / float(purchases)
-        return 0.0
-
-
-models.signals.post_save.connect(Refund.post_save, sender=Refund)
-
 
 class AddonPaymentData(ModelBase):
     # Store information about the app. This can be entered manually
