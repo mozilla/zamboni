@@ -743,3 +743,24 @@ class TestAccountInfoView(RestOAuth):
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'firefox-accounts')
+
+
+class TestPreverify(RestOAuth):
+    @patch('mkt.account.views.get_token_expiry', lambda: 1400000000)
+    def test_preverify(self):
+        res = self.client.post(reverse('fxa-preverify'))
+        eq_(res.status_code, 200)
+        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCIsImprdSI6Ii9hcGkvdjEvYWNjb3VudC9meGEtcHJldmVyaWZ5LWtleS8ifQ.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6Imh0dHBzOi8vc3RhYmxlLmRldi5sY2lwLm9yZy8iLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.I9UlZEJAOwTIwYeqnyaiMVYOEf1-hsbHGR7zrOKEc89ntkUWPqvBfM2nTgEqHKQ9Lj3Pr2WDGspOeS6UE3eLKY0H3yNrA7AMbEMLsG2ZNwDOzdPe-6ctq8-WnFkrB9RxbtXxbNFCdMDkVblJRh91i7b5-t9752bN_k_e8FO1-Gg')
+
+    def test_reject_unverified(self):
+        self.user.is_verified = False
+        self.user.save()
+        res = self.client.post(reverse('fxa-preverify'))
+        eq_(res.status_code, 403)
+
+    def test_preverify_key(self):
+        res = self.anon.get(reverse('fxa-preverify-key'))
+        eq_(json.loads(res.content),
+            {'keys': [{'e': 'AQAB', 'kty': 'RSA',
+                       'n': '97209xSudEskAnd-6wYd3ED5MXve29bVxssOWRW5wHECX2MO0tzzfhOgdmD0e2X0Xgsv8vnFU0w0sWFjOtBJ1r2YAtnrcgpKiVVDcWm6EcOt-xS_CvZqwX8NZFktyxv-r9dpA9uRui0xQXy7JXS13rI0kq2VcWQuldiwYfDCPjM'
+                   }]})

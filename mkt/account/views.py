@@ -1,17 +1,25 @@
+import datetime
 import hashlib
 import hmac
+import json
+import time
 import uuid
 
+from django import http
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
-from django.http import Http404
+from django.core.urlresolvers import reverse
 
 import basket
 import commonware.log
 from django_browserid import get_audience
 from django_statsd.clients import statsd
+from jwkest.jws import JWS
+from jwkest.jwk import RSAKey, import_rsa_key_from_file
 from rest_framework import status
+from rest_framework.decorators import (authentication_classes,
+                                       permission_classes)
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
                                      RetrieveAPIView, RetrieveUpdateAPIView,
@@ -25,14 +33,15 @@ from mkt.users.models import UserProfile
 from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
-                                     FeedbackSerializer, FxaLoginSerializer,
+                                     FeedbackSerializer, FxALoginSerializer,
                                      LoginSerializer, NewsletterSerializer,
+
                                      PermissionsSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AllowSelf, AllowOwner
-from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.api.base import CORSMixin, MarketplaceView, cors_api_view
 from mkt.constants.apps import INSTALL_TYPE_USER
 from mkt.site.mail import send_mail_jinja
 from mkt.users.views import _fxa_authorize, get_fxa_session
@@ -122,7 +131,7 @@ class AccountInfoView(CORSMixin, RetrieveAPIView):
     def get_object(self, *args, **kwargs):
         try:
             user = super(AccountInfoView, self).get_object(*args, **kwargs)
-        except Http404:
+        except http.Http404:
             # The base get_object() will raise Http404 instead of DoesNotExist.
             # Treat no object as an anonymous user (source: unknown).
             user = UserProfile()
@@ -169,9 +178,9 @@ def commonplace_token(email):
     return ','.join((email, hm.hexdigest(), unique_id))
 
 
-class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
+class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
     authentication_classes = []
-    serializer_class = FxaLoginSerializer
+    serializer_class = FxALoginSerializer
 
     def create_action(self, request, serializer):
         session = get_fxa_session(state=serializer.data['state'])
@@ -206,6 +215,43 @@ class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
         data['apps'] = user_relevant_apps(profile)
 
         return data
+
+
+def get_token_expiry():
+    expiry = datetime.datetime.now() + datetime.timedelta(minutes=10)
+    return time.mktime(expiry.timetuple())
+
+
+PREVERIFY_KEY = RSAKey(key=import_rsa_key_from_file(
+    settings.PREVERIFIED_ACCOUNT_KEY))
+
+
+@cors_api_view(['POST'])
+@authentication_classes([RestOAuthAuthentication,
+                         RestSharedSecretAuthentication])
+@permission_classes([IsAuthenticated])
+def fxa_preverify(request):
+    # See https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#preverifytoken
+    # for details.
+    if not request.user.is_verified:
+        return Response("User's email is not verified", status=403)
+
+    msg = {
+        'exp': get_token_expiry(),
+        'aud': settings.FXA_AUTH_SERVER,
+        'sub': request.user.email,
+        'typ': 'mozilla/fxa/preVerifyToken/v1'
+    }
+    jws = JWS(msg, cty='JWT', alg='RS256',
+              jku=reverse('fxa-preverify-key'))
+    return http.HttpResponse(jws.sign_compact([PREVERIFY_KEY]),
+                             content_type='application/jwt')
+
+
+def fxa_preverify_key(request):
+    return http.HttpResponse(
+        json.dumps({'keys': [PREVERIFY_KEY.to_dict()]}),
+        content_type='application/jwk-set+json')
 
 
 class LoginView(CORSMixin, CreateAPIViewWithoutModel):

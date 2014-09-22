@@ -122,3 +122,6 @@ PRE_GENERATE_APK_URL = 'http://you-should-never-load-this.com/'
 
 # A sample key for signing receipts.
 WEBAPPS_RECEIPT_KEY = os.path.join(ROOT, 'mkt/webapps/tests/sample.key')
+
+# A sample key for signing preverified-account assertions.
+PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
