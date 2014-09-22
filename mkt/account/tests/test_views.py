@@ -524,6 +524,11 @@ class TestFxaLoginHandler(TestCase):
         assert 'auth_response' in data
         assert 'apps' not in data
 
+    def test_login_settings(self):
+        data = self._test_login()
+        eq_(data['settings']['source'], 'firefox-accounts')
+
+
     def test_logout(self):
         UserProfile.objects.create(email='cvan@mozilla.com')
         data = self._test_login()

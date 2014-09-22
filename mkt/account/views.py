@@ -173,6 +173,7 @@ class FxaLoginView(CORSMixin, CreateAPIViewWithoutModel):
             'settings': {
                 'display_name': request.user.display_name,
                 'email': request.user.email,
+                'source': 'firefox-accounts',
             }
         }
         # Serializers give up if they aren't passed an instance, so we
