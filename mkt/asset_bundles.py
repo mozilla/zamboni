@@ -53,7 +53,6 @@ CSS = {
         'css/devreg/authors.styl',
         'css/devreg/in-app-config.styl',
         'css/devreg/payments.styl',
-        'css/devreg/refunds.styl',
         'css/devreg/transactions.styl',
         'css/devreg/status.styl',
         'css/devreg/content_ratings.styl',

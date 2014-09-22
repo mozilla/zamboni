@@ -93,39 +93,6 @@ class Contribution(amo.models.ModelBase):
         """True if this purchase is for a simulated in-app product."""
         return self.inapp_product and self.inapp_product.simulate
 
-    def record_failed_refund(self, e, user):
-        self.enqueue_refund(amo.REFUND_FAILED, user,
-                            rejection_reason=str(e))
-        self._switch_locale()
-        self._mail('users/support/emails/refund-failed.txt',
-                   # L10n: the addon name.
-                   _(u'%s refund failed' % self.addon.name),
-                   {'name': self.addon.name})
-        send_mail_jinja(
-            'Refund failed', 'purchase/email/refund-failed.txt',
-            {'name': self.user.email,
-             'error': str(e)},
-            settings.MARKETPLACE_EMAIL,
-            [str(self.addon.support_email)], fail_silently=True)
-
-    def mail_approved(self):
-        """The developer has approved a refund."""
-        locale = self._switch_locale()
-        amt = numbers.format_currency(abs(self.amount), self.currency,
-                                      locale=locale)
-        self._mail('users/support/emails/refund-approved.txt',
-                   # L10n: the adddon name.
-                   _(u'%s refund approved' % self.addon.name),
-                   {'name': self.addon.name, 'amount': amt})
-
-    def mail_declined(self):
-        """The developer has declined a refund."""
-        self._switch_locale()
-        self._mail('users/support/emails/refund-declined.txt',
-                   # L10n: the adddon name.
-                   _(u'%s refund declined' % self.addon.name),
-                   {'name': self.addon.name})
-
     def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):
         """Keep track of a contribution's refund status."""
