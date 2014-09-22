@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-03 20:06+0000\n"
+"PO-Revision-Date: 2014-09-22 20:54+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409774795.0\n"
+"X-POOTLE-MTIME: 1411419271.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -32,7 +32,7 @@ msgstr "Beskrivning för {addon} ändrades."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr "Kategorier ändrades för {addon}."
+msgstr "Kategorier redigerad för {addon}."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
@@ -275,11 +275,11 @@ msgstr "{addon} manifest uppdaterad."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} godkänd men privat."
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "Godkänd men privat"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -527,7 +527,7 @@ msgstr ""
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:41 mkt/developers/templates/developers/apps/includes/validation_test_results.html:54
 msgid "Prev"
-msgstr "Föreg"
+msgstr "Föreg."
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 mkt/developers/templates/developers/apps/includes/validation_test_results.html:29
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:43 mkt/developers/templates/developers/apps/includes/validation_test_results.html:56
@@ -1690,7 +1690,7 @@ msgstr "Zimbabwe"
 
 #: mkt/constants/base.py:26 mkt/lookup/views.py:155
 msgid "Incomplete"
-msgstr "Ej komplett"
+msgstr "Ofullständig"
 
 #: mkt/constants/base.py:27
 msgid "Pending approval"
@@ -1702,7 +1702,7 @@ msgstr "Publicerad"
 
 #: mkt/constants/base.py:29
 msgid "Disabled by Mozilla"
-msgstr "Avstängt av Mozilla"
+msgstr "Inaktiverad av Mozilla."
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1735,11 +1735,11 @@ msgstr "Hjälp"
 
 #: mkt/constants/base.py:135 mkt/constants/base.py:148
 msgid "Any"
-msgstr "Alla"
+msgstr "Någon"
 
 #: mkt/constants/base.py:136
 msgid "Extension"
-msgstr "Utökning"
+msgstr "Tillägg"
 
 #: mkt/constants/base.py:137
 msgid "Complete Theme"
@@ -1755,7 +1755,7 @@ msgstr "Sökmotor"
 
 #: mkt/constants/base.py:140
 msgid "Plugin"
-msgstr "Insticksprogram"
+msgstr "Insticksmodul"
 
 #: mkt/constants/base.py:141
 msgid "Language Pack (Application)"
@@ -1774,7 +1774,7 @@ msgstr "App"
 
 #: mkt/constants/base.py:149
 msgid "Extensions"
-msgstr "Utökningar"
+msgstr "Tillägg"
 
 #: mkt/constants/base.py:150
 msgid "Complete Themes"
@@ -1790,7 +1790,7 @@ msgstr "Sökverktyg"
 
 #: mkt/constants/base.py:153
 msgid "Plugins"
-msgstr "Insticksprogram"
+msgstr "Insticksmoduler"
 
 #: mkt/constants/base.py:154
 msgid "Language Packs (Application)"
@@ -1883,15 +1883,15 @@ msgstr ""
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Utbildning"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Underhållning"
 
 #: mkt/constants/categories.py:9 mkt/constants/categories.py:39
 msgid "Games"
-msgstr ""
+msgstr "Spel"
 
 #: mkt/constants/categories.py:10
 msgid "Health & Fitness"
@@ -1955,7 +1955,7 @@ msgstr "Ingen åtgärd"
 
 #: mkt/constants/comm.py:43 mkt/developers/templates/developers/apps/status.html:212 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
-msgstr "Avstängd"
+msgstr "Inaktiverad"
 
 #: mkt/constants/comm.py:47
 msgid "App resubmission"
@@ -2083,7 +2083,7 @@ msgstr ""
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakter"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
@@ -2425,7 +2425,7 @@ msgstr ""
 
 #: mkt/constants/platforms.py:17 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "Firefox för skrivbord"
 
 #: mkt/constants/platforms.py:52 mkt/constants/platforms.py:56
 msgid "Fully open mobile ecosystem"
@@ -2433,7 +2433,7 @@ msgstr ""
 
 #: mkt/constants/platforms.py:53
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac och Linux"
 
 #: mkt/constants/platforms.py:54 mkt/constants/platforms.py:57 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
@@ -2504,7 +2504,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2528,7 +2528,7 @@ msgstr ""
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
-msgstr ""
+msgstr "Avtal"
 
 #: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
@@ -2540,7 +2540,7 @@ msgstr "Detaljer"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Nästa steg"
 
 #: mkt/detail/helpers.py:22
 msgid "{0} weekly download"
@@ -2554,11 +2554,11 @@ msgstr ""
 
 #: mkt/developers/api_payments.py:103
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Kan inte ansluta till betalningsserver."
 
 #: mkt/developers/api_payments.py:127
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Kan inte ta bort delat konto"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
@@ -2570,63 +2570,78 @@ msgstr ""
 
 #: mkt/developers/forms.py:131
 msgid "All team members must have read and agreed to the developer agreement."
-msgstr ""
+msgstr "Alla gruppmedlemmar måste ha läst och godkänt utvecklareavtalet."
 
 #: mkt/developers/forms.py:162
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Måste minsta ha en ägare."
 
 #: mkt/developers/forms.py:165
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Minst en gruppmedlem måste anges."
 
 #: mkt/developers/forms.py:169
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "En gruppmedlem kan bara anges en gång."
 
 #: mkt/developers/forms.py:196
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"är offentlig. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:200
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"är under behandling. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:204
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"är ofullständig. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:208
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"ej är godkänd. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:212
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"är inaktiverad av Mozilla. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:216
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande "
+"är inaktiverad. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:231
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
+"En app finns redan på detta område; Endast en app per domän är tillåtet."
 
 #: mkt/developers/forms.py:344
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Ogiltig region vald."
 
 #: mkt/developers/forms.py:423 mkt/webapps/models.py:1671
 msgid "You must upload at least one screenshot or video."
-msgstr ""
+msgstr "Du måste ladda upp minst en skärmdump eller video."
 
 #: mkt/developers/forms.py:464
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
+"Paketerad app är för stor för att skicka in. Paketet måste vara mindre än %"
+"s."
 
 #: mkt/developers/forms.py:479
 msgid "Error extracting manifest from zip file."
-msgstr ""
+msgstr "Fel vid extrahering av manifest från zip-fil."
 
 #: mkt/developers/forms.py:559
 msgid "Provide a detailed description of your app"
@@ -2674,7 +2689,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Begränsad till min grupp</b>: Synlig för endast gruppmedlemmar."
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2682,19 +2697,19 @@ msgstr ""
 
 #: mkt/developers/forms.py:823 mkt/developers/forms.py:925
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Du måste välja minst en region."
 
 #: mkt/developers/forms.py:828
 msgid "Enable new regions"
-msgstr ""
+msgstr "Aktivera nya regioner"
 
 #: mkt/developers/forms.py:830
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Gör min app tillgänglig i de flesta regioner"
 
 #: mkt/developers/forms.py:831
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "Välj var min app görs tillgänglig"
 
 #: mkt/developers/forms.py:986 mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:140
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:154 mkt/search/forms.py:86
@@ -2776,7 +2791,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1190
 msgid "File too large. Keep size under %s. Current size %s."
-msgstr ""
+msgstr "Fil för stor. Håll storlek under %s. Aktuell storlek %s."
 
 #: mkt/developers/forms.py:1196
 msgid "Invalid file type {0}. Only {1} files are supported."
@@ -2860,47 +2875,47 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:395
 msgid "Address"
-msgstr ""
+msgstr "Adress"
 
 #: mkt/developers/forms_payments.py:397
 msgid "Address 2"
-msgstr ""
+msgstr "Adress 2"
 
 #: mkt/developers/forms_payments.py:399
 msgid "City/Municipality"
-msgstr ""
+msgstr "Stad/kommun"
 
 #: mkt/developers/forms_payments.py:401
 msgid "State/Province/Region"
-msgstr ""
+msgstr "Stat/provins/region"
 
 #: mkt/developers/forms_payments.py:403
 msgid "Zip/Postal Code"
-msgstr ""
+msgstr "Zip/Postnummer"
 
 #: mkt/developers/forms_payments.py:405
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: mkt/developers/forms_payments.py:410
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Jag föredrar att betalas i"
 
 #: mkt/developers/forms_payments.py:413
 msgid "VAT Number"
-msgstr ""
+msgstr "Momsnummer"
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Bankkontonummer"
 
 #: mkt/developers/forms_payments.py:419
 msgid "SWIFT code"
-msgstr ""
+msgstr "SWIFT-kod"
 
 #: mkt/developers/forms_payments.py:421
 msgid "Bank Name"
-msgstr ""
+msgstr "Banknamn"
 
 #: mkt/developers/forms_payments.py:423
 msgid "Bank Address"
@@ -2957,7 +2972,7 @@ msgstr "Service-ID"
 
 #: mkt/developers/forms_payments.py:651
 msgid "Service ID is not valid"
-msgstr "Service-Id är inte giltig"
+msgstr "Service-ID är inte giltig"
 
 #: mkt/developers/forms_payments.py:665
 msgid "No payment account set up for that app"
@@ -2978,7 +2993,7 @@ msgstr "Delat konto: {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
-msgstr "Recensera"
+msgstr "Granska"
 
 #: mkt/developers/models.py:482 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
@@ -2990,11 +3005,12 @@ msgstr ""
 
 #: mkt/developers/providers.py:368
 msgid "Boku"
-msgstr ""
+msgstr "Boku"
 
 #: mkt/developers/tasks.py:427
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
+"Ingen manifest hittades på denna URL. Kontrollera adressen och försök igen."
 
 #: mkt/developers/tasks.py:433
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
@@ -3002,7 +3018,7 @@ msgstr ""
 
 #: mkt/developers/tasks.py:442
 msgid "Your manifest must be less than %s bytes."
-msgstr ""
+msgstr "Din manifest måste vara mindre än %s byte."
 
 #: mkt/developers/tasks.py:450
 msgid "Your manifest file was not encoded as valid UTF-8."
@@ -3014,7 +3030,7 @@ msgstr ""
 
 #: mkt/developers/tasks.py:520 mkt/developers/tasks.py:526 mkt/reviewers/forms.py:36
 msgid "and"
-msgstr ""
+msgstr "och"
 
 #: mkt/developers/tasks.py:540
 msgid "{region} region added to the Firefox Marketplace"
@@ -3030,39 +3046,39 @@ msgstr ""
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
-msgstr "Ikoner måste vara antingen PNG eller JPG."
+msgstr "Ikoner måste antingen vara PNG eller JPG."
 
 #: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Bilder måste antingen vara PNG eller JPG."
 
 #: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Ikoner kan inte vara animerade."
 
 #: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Bilder kan inte vara animerade."
 
 #: mkt/developers/utils.py:91
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "Använd filer mindre än %s."
 
 #: mkt/developers/utils.py:101
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Ikon kunde inte öppnas."
 
 #: mkt/developers/utils.py:103
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Förhandsvisnings kunde inte öppnas."
 
 #: mkt/developers/utils.py:110
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Ikoner måste minst vara 128px gånger 128px."
 
 #: mkt/developers/utils.py:113
 msgid "Icons must be square."
-msgstr ""
+msgstr "Ikoner måste vara kvadratiska."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
@@ -3076,15 +3092,15 @@ msgstr "Skapad"
 
 #: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr ""
+msgstr "Betalappar kan inte raderas. Inaktivera den här appen istället."
 
 #: mkt/developers/views.py:159
 msgid "App deleted."
-msgstr ""
+msgstr "App borttagen."
 
 #: mkt/developers/views.py:164
 msgid "Password was incorrect. App was not deleted."
-msgstr ""
+msgstr "Lösenordet var felaktigt. Appen togs inte bort."
 
 #: mkt/developers/views.py:208
 msgid "App successfully resubmitted."
@@ -3096,15 +3112,15 @@ msgstr ""
 
 #: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:112 mkt/developers/views_payments.py:412 mkt/reviewers/views.py:775
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Ändringar sparade."
 
 #: mkt/developers/views.py:312
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
-msgstr ""
+msgstr "Grattis, din app är inskickad och kommer att granskas inom kort!"
 
 #: mkt/developers/views.py:314
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Innehållsklassificering sparad."
 
 #: mkt/developers/views.py:438
 msgid "Application for preload successfully submitted."
@@ -3112,19 +3128,19 @@ msgstr ""
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
-msgstr ""
+msgstr "Det uppstod ett fel med formuläret."
 
 #: mkt/developers/views.py:472
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Version redigerad."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Version gjord aktiv."
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "Version \"{0}\" borttagen."
 
 #: mkt/developers/views.py:644
 msgid "There was an error with the submission."
@@ -3136,7 +3152,7 @@ msgstr ""
 
 #: mkt/developers/views.py:992
 msgid "Terms of service accepted."
-msgstr ""
+msgstr "Användarvillkor accepterad."
 
 #: mkt/developers/views.py:1004
 msgid "Users with the admin role cannot use the API."
@@ -3164,7 +3180,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:184 mkt/files/forms.py:28
 msgid "All"
-msgstr "Alla"
+msgstr "Allt"
 
 #: mkt/developers/views_payments.py:185
 msgid "Credit card"
@@ -3192,7 +3208,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:375
 msgid "No payment account for this app."
-msgstr ""
+msgstr "Inget betalningskonto för denna app."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
@@ -3227,11 +3243,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr ""
+msgstr "Skapa"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
-msgstr ""
+msgstr "OAuth-nycklar"
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
@@ -3281,7 +3297,7 @@ msgstr "Logga in"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
-msgstr ""
+msgstr "Du måste logga in för att fortsätta."
 
 #: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:145
 msgid "Sign in / Sign up"
@@ -3322,11 +3338,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Bevilja"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Neka"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:61 templates/base.html:62
 msgid "Firefox Marketplace Developers"
@@ -3338,11 +3354,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:69 templates/base.html:70
 msgid "Submit an app"
-msgstr ""
+msgstr "Skicka in en app"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:71 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:74
 msgid "Marketplace"
-msgstr ""
+msgstr "Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:75 mkt/templates/mkt/header.html:28 templates/base.html:78
 msgid "Sign In"
@@ -3355,6 +3371,8 @@ msgstr "Inställningar"
 #: mkt/developers/templates/developers/skeleton_impala.html:99 mkt/zadmin/templates/admin/base.html:49 templates/base.html:102
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
+"Vissa funktioner inaktiveras tillfälligt eftersom vi utför underhåll på "
+"webbplatsen. Vi kommer tillbaka med full kapacitet inom kort."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:105 templates/base.html:108
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
@@ -3370,11 +3388,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/terms.html:3
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Villkor"
 
 #: mkt/developers/templates/developers/terms.html:18 mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
-msgstr ""
+msgstr "Utskriftsvänlig version"
 
 #: mkt/developers/templates/developers/terms.html:22 mkt/submit/templates/submit/terms.html:41
 msgid "Additional Marketplace Policies"
@@ -3395,21 +3413,21 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Transaktionsdetaljer "
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Filtrera transaktioner"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
 msgid_plural "{num} transactions found"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} transaktion hittades"
+msgstr[1] "{num} transaktioner hittades"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "Dina appar har för närvarande inga transaktioner."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:130 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
@@ -3439,7 +3457,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:66
 msgid "Validate"
-msgstr ""
+msgstr "Validera"
 
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:74
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
@@ -3501,7 +3519,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
-msgstr ""
+msgstr "Skicka in en app"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/reviewers/templates/reviewers/review.html:57
@@ -3517,15 +3535,15 @@ msgstr "Inga"
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:90
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:33 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
 msgid "Team Members"
-msgstr ""
+msgstr "Gruppmedlemmar"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
-msgstr ""
+msgstr "Endast ägare av appen kan redigera sidan."
 
 #: mkt/developers/templates/developers/apps/owner.html:35
 msgid "About team member roles"
-msgstr ""
+msgstr "Om gruppmedlemmars roller"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:203
 #: mkt/developers/templates/developers/apps/edit/basic.html:168 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60
@@ -3545,11 +3563,11 @@ msgstr "stäng"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "Om gruppmedlemmars roller"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
-msgstr ""
+msgstr "Appar kan ha valfritt antal gruppmedlemmar med 4 möjliga roller:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
@@ -3691,7 +3709,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:227 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/operators/templates/operators/preloads.html:47
 msgid "Download"
-msgstr "Hämta hem"
+msgstr "Hämta"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
@@ -4101,7 +4119,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/details.html:17 mkt/reviewers/templates/reviewers/includes/details.html:39 mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 #: mkt/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr "Standardlokal"
+msgstr "Standardspråk"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid "Information about your app is displayed in this locale unless you override it with a locale-specific translation."
@@ -4579,25 +4597,30 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr ""
+msgstr "Kategorier:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Köplats:</b> %(pos)s av %(total)s"
 
 #: mkt/developers/templates/developers/includes/macros.html:103
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Beräknad väntetid:</b> %(num)s arbetsdag"
+msgstr[1] "<b>Beräknad väntetid:</b> %(num)s arbetsdagar"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can send an email to %(email)s to check the status."
 msgstr ""
+"De flesta appar granskas inom en vecka. Om din granskning har tagit längre "
+"tid än så, kan du skicka e-post till %(email)s för att kontrollera status."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
 msgstr ""
+"Kryssa i rutorna för de funktioner som din app kräver för att fungera "
+"korrekt. Din app kommer att döljas från användare vars enheter inte stöder "
+"den."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -4609,15 +4632,18 @@ msgstr "Dölj alla"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3 mkt/receipts/templates/receipts/test_manifest.html:3
 msgid "Test App Installation"
-msgstr ""
+msgstr "Testa app-installation"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
 msgid "Test In-App Payments"
-msgstr ""
+msgstr "Testa in-app betalning"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:22
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"Firefox Marketplace låter din app ta in-app betalningar. <a href=\"{guide"
+"}\">In-app betalningsguiden</a> förklarar hur du konfigurerar din app för "
+"betalningar med parametrarna nedan."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4642,7 +4668,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr ""
+msgstr "Läs mer om <b>in-app betalningar</b> på MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
@@ -4656,7 +4682,7 @@ msgstr "Generera nycklar"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "Aktivera"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -4724,7 +4750,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:120 mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr ""
+msgstr "Betalkonton"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
@@ -4732,15 +4758,15 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
-msgstr ""
+msgstr "Länder"
 
 #: mkt/developers/templates/developers/payments/premium.html:160
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Lägg till, hantera eller visa transaktioner för dina betalkonton"
 
 #: mkt/developers/templates/developers/payments/premium.html:170
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Priser och länder"
 
 #: mkt/developers/templates/developers/payments/premium.html:186
 msgid "Does your app use Mozilla's in-app payments platform?"
@@ -4776,11 +4802,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:232
 msgid "local currency"
-msgstr ""
+msgstr "lokal valuta"
 
 #: mkt/developers/templates/developers/payments/premium.html:233
 msgid "Billing method"
-msgstr ""
+msgstr "Faktureringsmetod"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Other regions"
@@ -4818,7 +4844,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
-msgstr ""
+msgstr "Godkänn villkoren"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
@@ -4831,7 +4857,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Visa transaktioner"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
@@ -4847,7 +4873,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Ta bort betalningskonto"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -4863,19 +4889,19 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
-msgstr ""
+msgstr "Lägg till Bango-konto"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr ""
+msgstr "Normalt 9, 10 eller 11 siffror. Exempel: 0114584906."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:27
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr ""
+msgstr "Antingen 8 eller 11 tecken. Exempel: WFBIUS6WPDX."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
 msgid "Optional"
-msgstr ""
+msgstr "Valfri"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -5016,11 +5042,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
-msgstr ""
+msgstr "Snabbstart"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox OS Simulator"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
@@ -5028,7 +5054,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:43
 msgid "Publish"
-msgstr ""
+msgstr "Publicera"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
@@ -5068,7 +5094,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr ""
+msgstr "Skicka in din app till Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
@@ -5076,11 +5102,14 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
-msgstr ""
+msgstr "Titta vem som redan är här"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
 msgstr ""
+"Är du ett webbföretag, tredjepartstjänst eller OEM som vill samarbeta med "
+"Mozilla? <a href=\"%(partner_url)s\">Kolla in vår partnersida för mer "
+"information.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -6710,7 +6739,7 @@ msgstr "Appen är ännu inte betygsatt"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:101 mkt/reviewers/templates/reviewers/includes/mobile_details.html:96
 msgid "Updated"
-msgstr "Uppdaterat"
+msgstr "Uppdaterad"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:114 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Rating"
@@ -6910,7 +6939,7 @@ msgstr "Alla enhetstyper"
 
 #: mkt/search/forms.py:44
 msgid "Mobile"
-msgstr "Mobilt"
+msgstr "Mobil"
 
 #: mkt/search/forms.py:45
 msgid "Tablet"
@@ -6970,11 +6999,11 @@ msgstr "Logga ut"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
-msgstr "Utvecklarnav"
+msgstr "Utvecklarcenter"
 
 #: mkt/site/context_processors.py:77
 msgid "Admin Tools"
-msgstr "Adminverktyg"
+msgstr "Administratörsverktyg"
 
 #: mkt/site/fields.py:29
 msgid "Enter at least one value."
@@ -6995,7 +7024,7 @@ msgstr "Hem"
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:326
 msgid "{0} ago"
-msgstr "{0} sedan"
+msgstr "{0} sen"
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -7589,7 +7618,7 @@ msgstr "Problem med din app \"{app}\" på Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
-msgstr "Sortera på:"
+msgstr "Sortera efter:"
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
