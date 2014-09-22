@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-03 20:06+0000\n"
+"PO-Revision-Date: 2014-09-22 20:54+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409774768.0\n"
+"X-POOTLE-MTIME: 1411419271.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -32,7 +32,7 @@ msgstr "Videor måste ha formatet WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
-msgstr "Det var problem att kontakta servern."
+msgstr "Det gick inte att kontakta servern."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
@@ -78,7 +78,7 @@ msgstr[1] "&hellip;och {0} fler"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
-msgstr "Se en komplett valideringsrapport"
+msgstr "Se fullständig valideringsrapport"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
@@ -91,7 +91,7 @@ msgstr "Tog emot ett tomt svar från servern; status: {0}"
 
 #: media/js/common/upload-packaged-app.js:257
 msgid "Unexpected server error while validating."
-msgstr "Ett oväntat serverfel inträffade under valideringen."
+msgstr "Ett oväntat serverfel inträffade under validering."
 
 #: media/js/common/upload-packaged-app.js:294
 msgid "Finished validating {0}"
@@ -157,7 +157,7 @@ msgstr "Din app passerade validering utan fel eller meddelanden."
 
 #: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
-msgstr "Ändringarna är sparade"
+msgstr "Ändringar sparade"
 
 #: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
@@ -173,11 +173,11 @@ msgstr "Kunde inte uppdatera manifest. Försök igen senare."
 
 #: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
-msgstr "Det var problem med uppladdningen av filen."
+msgstr "Ett fel uppstod vid uppladdning av din fil."
 
 #: media/js/devreg/devhub.js:948
 msgid "Learn more"
-msgstr "Lär dig mer"
+msgstr "Läs mer"
 
 #: media/js/devreg/devhub.js:952
 msgid "Example"
@@ -185,7 +185,7 @@ msgstr "Exempel"
 
 #: media/js/devreg/devhub.js:1246
 msgid "Image changes being processed"
-msgstr "Bildändringar genomförs"
+msgstr "Bearbetar bildändringar"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
@@ -201,19 +201,21 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:278
 msgid "Enabled"
-msgstr ""
+msgstr "Aktivera"
 
 #: media/js/devreg/in_app_products.js:280
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktivera"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denna finess är temporärt avstängd medan vi arbetar med webbplatsen. Titta tillbaka lite senare."
+msgstr ""
+"Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll "
+"på webbplatsen. Vänligen kom tillbaka lite senare."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr "Ta bort denna lokalisering"
+msgstr "Ta bort denna översättning"
 
 #: media/js/devreg/login.js:109
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
@@ -362,7 +364,7 @@ msgstr "Sök tillägg för <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Något gick fel. Försök igen."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -373,7 +375,7 @@ msgstr[1] "{0} tecken kvar."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr "Alla test klarades."
+msgstr "Alla tester blev godkända."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
@@ -413,7 +415,7 @@ msgstr[1] "{0} varningar"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
-msgstr "Valideringsjobbet kunde inte slutföras eller avslutades med fel"
+msgstr "Validering kunde inte avslutas eller avslutades med fel"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
