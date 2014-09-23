@@ -21,10 +21,14 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
         res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip')
         eq_(res.status_code, 200)
         eq_(res['Content-Encoding'], 'gzip')
+        eq_(sorted(res['Vary'].split(', ')),
+            ['Accept-Encoding', 'Accept-Language', 'Cookie'])
         ungzipped_content = GzipFile('', 'r', 0, StringIO(res.content)).read()
 
         res = self.client.get(url, url_kwargs)
         eq_(res.status_code, 200)
+        eq_(sorted(res['Vary'].split(', ')),
+            ['Accept-Encoding', 'Accept-Language', 'Cookie'])
         eq_(ungzipped_content, res.content)
 
         return res
@@ -128,13 +132,8 @@ class TestAppcacheManifest(BaseCommonPlaceTests):
         assert img + '\n' in res.content
 
 
-class TestIFrameInstall(BaseCommonPlaceTests):
+class TestIframes(BaseCommonPlaceTests):
 
     def test_basic(self):
         self._test_url(reverse('commonplace.iframe-install'))
-
-
-class TestPotatolytics(BaseCommonPlaceTests):
-
-    def test_basic(self):
         self._test_url(reverse('commonplace.potatolytics'))

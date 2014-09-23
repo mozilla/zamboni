@@ -251,11 +251,11 @@ class TestVaryMiddleware(amo.tests.TestCase):
         vary = lambda res: [x.strip() for x in res.get('Vary', '').split(',')]
 
         # What is expected to `Vary`.
-        res = self.client.get('/privacy-policy')
-        eq_(res['Vary'], 'Accept-Language, Cookie')
+        res = self.client.get('/developers')
+        eq_(sorted(res['Vary'].split(', ')), ['Accept-Language', 'Cookie'])
 
-        res = self.client.get('/privacy-policy', follow=True)
-        eq_(res['Vary'], 'Accept-Language, Cookie')
+        res = self.client.get('/developers', follow=True)
+        eq_(sorted(res['Vary'].split(', ')), ['Accept-Language', 'Cookie'])
 
         res = self.client.get('/api/v1/services/config/site/?vary=1')
         # DRF adds `Vary: Accept` by default, so let's not check that.
