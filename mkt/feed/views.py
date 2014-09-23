@@ -24,6 +24,7 @@ from mkt.collections.views import CollectionImageViewSet
 from mkt.constants.applications import DEVICE_LOOKUP
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
+from mkt.operators.authorization import OperatorShelfAuthorization
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
@@ -290,6 +291,8 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
     """
     queryset = FeedShelf.objects.all()
     serializer_class = FeedShelfSerializer
+    permission_classes = [AnyOf(OperatorShelfAuthorization,
+                                *BaseFeedCollectionViewSet.permission_classes)]
 
     image_fields = (
         ('background_image_upload_url', 'image_hash', ''),

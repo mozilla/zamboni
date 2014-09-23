@@ -76,7 +76,8 @@ class FeedTestMixin(object):
         elif item_type == feed.FEED_TYPE_COLL:
             feed_item.collection = self.feed_collection_factory()
         elif item_type == feed.FEED_TYPE_SHELF:
-            feed_item.shelf = self.feed_shelf_factory()
+            feed_item.shelf = self.feed_shelf_factory(carrier=carrier,
+                                                      region=region)
 
         feed_item.save()
         return feed_item
