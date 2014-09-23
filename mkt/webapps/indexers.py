@@ -154,7 +154,6 @@ class WebappIndexer(BaseIndexer):
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': {'type': 'string', 'analyzer': 'simple'},
-                    'type': {'type': 'byte'},
                     'upsell': {
                         'type': 'object',
                         'properties': {
@@ -237,7 +236,7 @@ class WebappIndexer(BaseIndexer):
                              .values_list('id', flat=True))
 
         attrs = ('app_slug', 'bayesian_rating', 'created', 'id', 'is_disabled',
-                 'last_updated', 'modified', 'premium_type', 'status', 'type',
+                 'last_updated', 'modified', 'premium_type', 'status',
                  'uses_flash', 'weekly_downloads')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 

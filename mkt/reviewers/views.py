@@ -144,8 +144,7 @@ def queue_counts(request):
     counts = {
         'pending': Webapp.objects.no_cache()
                          .exclude(id__in=excluded_ids)
-                         .filter(type=amo.ADDON_WEBAPP,
-                                 disabled_by_user=False,
+                         .filter(disabled_by_user=False,
                                  status=amo.STATUS_PENDING)
                          .count(),
         'rereview': (RereviewQueue.objects.no_cache()
@@ -156,8 +155,7 @@ def queue_counts(request):
         # versions when a new version is uploaded.
         'updates': File.objects.no_cache()
                        .exclude(version__addon__id__in=excluded_ids)
-                       .filter(version__addon__type=amo.ADDON_WEBAPP,
-                               version__addon__disabled_by_user=False,
+                       .filter(version__addon__disabled_by_user=False,
                                version__addon__is_packaged=True,
                                version__addon__status__in=public_statuses,
                                version__deleted=False,
@@ -170,8 +168,7 @@ def queue_counts(request):
                            .exclude(Q(addon__isnull=True) |
                                     Q(reviewflag__isnull=True))
                            .exclude(addon__status=amo.STATUS_DELETED)
-                           .filter(addon__type=amo.ADDON_WEBAPP,
-                                   editorreview=True)
+                           .filter(editorreview=True)
                            .count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
         'additional_tarako': (
@@ -219,8 +216,7 @@ def _progress():
                       'created'),
         'updates': (File.objects
                         .exclude(version__addon__id__in=excluded_ids)
-                        .filter(version__addon__type=amo.ADDON_WEBAPP,
-                                version__addon__disabled_by_user=False,
+                        .filter(version__addon__disabled_by_user=False,
                                 version__addon__is_packaged=True,
                                 version__addon__status__in=public_statuses,
                                 version__deleted=False,
@@ -582,7 +578,7 @@ def queue_apps(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
     qs = (Version.objects.no_cache().filter(
-          files__status=amo.STATUS_PENDING, addon__type=amo.ADDON_WEBAPP,
+          files__status=amo.STATUS_PENDING,
           addon__disabled_by_user=False,
           addon__status=amo.STATUS_PENDING)
           .exclude(addon__id__in=excluded_ids)
@@ -643,8 +639,7 @@ def queue_rereview(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
     rqs = (RereviewQueue.objects.no_cache()
-                        .filter(addon__type=amo.ADDON_WEBAPP,
-                                addon__disabled_by_user=False)
+                        .filter(addon__disabled_by_user=False)
                         .exclude(addon__in=excluded_ids))
     apps = _do_sort(request, rqs)
     apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
@@ -655,7 +650,7 @@ def queue_rereview(request):
 @permission_required([('Apps', 'ReviewEscalated')])
 def queue_escalated(request):
     eqs = EscalationQueue.objects.no_cache().filter(
-        addon__type=amo.ADDON_WEBAPP, addon__disabled_by_user=False)
+      addon__disabled_by_user=False)
     apps = _do_sort(request, eqs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
@@ -668,7 +663,6 @@ def queue_updates(request):
                                                                   flat=True)
     qs = (Version.objects.no_cache().filter(
           files__status=amo.STATUS_PENDING,
-          addon__type=amo.ADDON_WEBAPP,
           addon__disabled_by_user=False,
           addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
           .exclude(addon__id__in=excluded_ids)
@@ -703,7 +697,7 @@ def queue_moderated(request):
     rf = (Review.objects.no_cache()
                 .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
                 .exclude(addon__status=amo.STATUS_DELETED)
-                .filter(addon__type=amo.ADDON_WEBAPP, editorreview=True)
+                .filter(editorreview=True)
                 .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
@@ -981,32 +975,23 @@ def performance(request, username=None):
     year_ago = today - datetime.timedelta(days=365)
 
     total = ReviewerScore.get_total(user)
-    totals = ReviewerScore.get_breakdown(user)
-    months = ReviewerScore.get_breakdown_since(user, month_ago)
-    years = ReviewerScore.get_breakdown_since(user, year_ago)
+    totals = ReviewerScore.get_performance(user)
+    months = ReviewerScore.get_performance_since(user, month_ago)
+    years = ReviewerScore.get_performance_since(user, year_ago)
 
-    def _sum(iter, types):
-        return sum(s.total for s in iter if s.atype in types)
+    def _sum(iter):
+        return sum(s.total or 0 for s in iter)
 
-    breakdown = {
-        'month': {
-            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
-        },
-        'year': {
-            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
-        },
-        'total': {
-            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
-        }
+    performance = {
+        'month': _sum(months),
+        'year': _sum(years),
+        'total': _sum(totals),
     }
 
     ctx = context(request, **{
         'profile': user,
         'total': total,
-        'breakdown': breakdown,
+        'performance': performance,
     })
 
     return render(request, 'reviewers/performance.html', ctx)

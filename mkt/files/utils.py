@@ -133,7 +133,6 @@ class WebAppParser(object):
                   "display it on the app's listing."))
 
         return {'guid': None,
-                'type': amo.ADDON_WEBAPP,
                 'name': self.trans_all_locales(localized_name),
                 'developer_name': developer_name,
                 'description': self.trans_all_locales(localized_descr),

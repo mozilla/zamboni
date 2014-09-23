@@ -255,7 +255,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_generate_filename_packaged_app(self):
         f = File.objects.get()
         f.version.addon.app_slug = 'testing-123'
-        f.version.addon.type = amo.ADDON_WEBAPP
         f.version.addon.is_packaged = True
         eq_(f.generate_filename(), 'testing-123-1.0.zip')
 

@@ -348,8 +348,7 @@ class UpsellForm(happyforms.Form):
         self.fields['upsell_of'].queryset = (
             self.user.addons.exclude(pk=self.addon.pk,
                                      status=amo.STATUS_DELETED)
-                            .filter(premium_type__in=amo.ADDON_FREES,
-                                    type=self.addon.type))
+                            .filter(premium_type__in=amo.ADDON_FREES))
 
     def save(self):
         current_upsell = self.addon.upsold
@@ -655,8 +654,8 @@ class BokuAccountForm(happyforms.Form):
 
 class PaymentCheckForm(happyforms.Form):
     app = SluggableModelChoiceField(
-        queryset=Webapp.objects.filter(premium_type__in=amo.ADDON_HAS_PAYMENTS,
-                                       type=amo.ADDON_WEBAPP),
+        queryset=Webapp.objects.filter(
+            premium_type__in=amo.ADDON_HAS_PAYMENTS),
         sluggable_to_field_name='app_slug')
 
     def clean_app(self):

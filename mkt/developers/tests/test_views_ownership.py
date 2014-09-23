@@ -70,7 +70,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
         self.assertRedirects(r, self.url, 302)
-        eq_(list(q.all()), [31337, 999])
+        self.assertSetEqual(q.all(), [31337, 999])
 
     def test_success_edit_user(self):
         # Add an author b/c we can't edit anything about the current one.
@@ -221,7 +221,7 @@ class TestEditWebappAuthors(amo.tests.TestCase):
         self.assertRedirects(r, self.url, 302)
         owners = (AddonUser.objects.filter(addon=self.webapp.id)
                   .values_list('user', flat=True))
-        eq_(list(owners), [31337, 999])
+        eq_(set(owners), set([31337, 999]))
 
 
 class TestDeveloperRoleAccess(amo.tests.TestCase):

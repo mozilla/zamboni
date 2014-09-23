@@ -45,8 +45,7 @@ class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
 
 class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin, viewsets.GenericViewSet):
-    queryset = Version.objects.filter(
-        addon__type=amo.ADDON_WEBAPP).exclude(addon__status=amo.STATUS_DELETED)
+    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

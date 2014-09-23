@@ -1,19 +1,17 @@
 from django.contrib import admin
 
-import amo
-
 from . import models
 
 
 class WebappAdmin(admin.ModelAdmin):
     exclude = ('authors',)
-    list_display = ('__unicode__', 'type', 'status', 'average_rating',
+    list_display = ('__unicode__', 'status', 'average_rating',
                     'premium_type', 'premium')
-    list_filter = ('type', 'status')
+    list_filter = ('status', )
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'guid', 'default_locale', 'type', 'status',
+            'fields': ('name', 'guid', 'default_locale', 'status',
                        'highest_status'),
         }),
         ('Details', {
@@ -33,7 +31,7 @@ class WebappAdmin(admin.ModelAdmin):
     )
 
     def queryset(self, request):
-        return models.Webapp.objects.filter(type__in=amo.MARKETPLACE_TYPES)
+        return models.Webapp.objects.all()
 
 
 admin.site.register(models.Webapp, WebappAdmin)

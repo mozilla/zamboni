@@ -66,7 +66,7 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Webapp, Webapp.objects.create):
-            addon = create_addon(public_stats=False, type=amo.ADDON_EXTENSION)
+            addon = create_addon(public_stats=False)
             addon.public_stats = True
             addon.save()
             assert self.cb.called
@@ -117,7 +117,7 @@ class TestModelBase(TestCase):
         # No exception = pass
 
     def test_safer_get_or_create(self):
-        data = {'guid': '123', 'type': amo.ADDON_EXTENSION}
+        data = {'guid': '123'}
         a, c = Webapp.objects.safer_get_or_create(**data)
         assert c
         b, c = Webapp.objects.safer_get_or_create(**data)

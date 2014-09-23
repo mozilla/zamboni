@@ -341,7 +341,7 @@ class TestVerify(ReceiptTest):
 
     def test_crack_receipt(self):
         # Check that we can decode our receipt and get a dictionary back.
-        self.app.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
+        self.app.update(manifest_url='http://a.com')
         purchase = self.make_purchase()
         receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         result = verify.decode_receipt(receipt)
@@ -351,14 +351,14 @@ class TestVerify(ReceiptTest):
     @mock.patch('services.verify.receipts.certs.ReceiptVerifier')
     def test_crack_receipt_new_called(self, trunion_verify, settings):
         # Check that we can decode our receipt and get a dictionary back.
-        self.app.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
+        self.app.update(manifest_url='http://a.com')
         verify.decode_receipt(
             'jwt_public_key~' + create_receipt(
                 self.app, self.user, str(uuid.uuid4())))
         assert trunion_verify.called
 
     def test_crack_borked_receipt(self):
-        self.app.update(type=amo.ADDON_WEBAPP, manifest_url='http://a.com')
+        self.app.update(manifest_url='http://a.com')
         purchase = self.make_purchase()
         receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,

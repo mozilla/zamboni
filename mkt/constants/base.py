@@ -111,53 +111,6 @@ AUTHOR_CHOICES = (
     (AUTHOR_ROLE_SUPPORT, _(u'Support')),
 )
 
-# Addon types
-ADDON_ANY = 0
-ADDON_EXTENSION = 1
-ADDON_THEME = 2
-ADDON_DICT = 3
-ADDON_SEARCH = 4
-ADDON_LPAPP = 5
-ADDON_LPADDON = 6
-ADDON_PLUGIN = 7
-ADDON_API = 8  # not actually a type but used to identify extensions + themes
-ADDON_PERSONA = 9
-ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
-
-# Addon type groupings.
-GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
-                    ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
-GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
-GROUP_TYPE_WEBAPP = [ADDON_WEBAPP]
-
-# Singular
-ADDON_TYPE = {
-    ADDON_ANY: _(u'Any'),
-    ADDON_EXTENSION: _(u'Extension'),
-    ADDON_THEME: _(u'Complete Theme'),
-    ADDON_DICT: _(u'Dictionary'),
-    ADDON_SEARCH: _(u'Search Engine'),
-    ADDON_PLUGIN: _(u'Plugin'),
-    ADDON_LPAPP: _(u'Language Pack (Application)'),
-    ADDON_PERSONA: _(u'Theme'),
-    ADDON_WEBAPP: _(u'App'),
-}
-
-# Plural
-ADDON_TYPES = {
-    ADDON_ANY: _(u'Any'),
-    ADDON_EXTENSION: _(u'Extensions'),
-    ADDON_THEME: _(u'Complete Themes'),
-    ADDON_DICT: _(u'Dictionaries'),
-    ADDON_SEARCH: _(u'Search Tools'),
-    ADDON_PLUGIN: _(u'Plugins'),
-    ADDON_LPAPP: _(u'Language Packs (Application)'),
-    ADDON_PERSONA: _(u'Themes'),
-    ADDON_WEBAPP: _(u'Apps'),
-}
-
-MARKETPLACE_TYPES = [ADDON_WEBAPP]
-
 # ADDON_WEBAPP Types
 ADDON_WEBAPP_HOSTED = 1
 ADDON_WEBAPP_PACKAGED = 2
@@ -169,11 +122,6 @@ ADDON_WEBAPP_TYPES = {
     ADDON_WEBAPP_PRIVILEGED: 'privileged',
 }
 ADDON_WEBAPP_TYPES_LOOKUP = dict((v, k) for k, v in ADDON_WEBAPP_TYPES.items())
-
-# Marketplace search API addon types.
-MKT_ADDON_TYPES_API = {
-    'app': ADDON_WEBAPP,
-}
 
 ADDON_FREE = 0
 ADDON_PREMIUM = 1
@@ -205,8 +153,6 @@ ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 # Apps that do *not* require a payment prior to installing.
 ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP, ADDON_OTHER_INAPP)
 ADDON_INAPPS = (ADDON_PREMIUM_INAPP, ADDON_FREE_INAPP)
-ADDON_BECOME_PREMIUM = (ADDON_EXTENSION, ADDON_THEME, ADDON_DICT,
-                        ADDON_LPAPP, ADDON_WEBAPP)
 ADDON_HAS_PAYMENTS = (ADDON_FREE_INAPP, ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 
 # Edit addon information

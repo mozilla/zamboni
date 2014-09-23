@@ -8,8 +8,6 @@ from mkt.constants import (CATEGORY_CHOICES, TARAKO_CATEGORY_CHOICES,
 from mkt.constants.applications import DEVICE_LOOKUP
 
 
-ADDON_CHOICES = [(k, k) for k in amo.MKT_ADDON_TYPES_API.keys()]
-
 SORT_CHOICES = [
     (None, _lazy(u'Relevance')),
     ('popularity', _lazy(u'Popularity')),
@@ -90,8 +88,6 @@ class ApiSearchForm(forms.Form):
         required=False, label=_lazy(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
                                       'placeholder': _lazy(u'Search')}))
-    type = forms.ChoiceField(required=False, choices=ADDON_CHOICES,
-                             label=_lazy(u'Add-on type'))
     cat = forms.ChoiceField(required=False, label=_lazy(u'Categories'),
                             choices=CATEGORY_CHOICES + TARAKO_CATEGORY_CHOICES)
     dev = forms.ChoiceField(
@@ -131,10 +127,6 @@ class ApiSearchForm(forms.Form):
             return TARAKO_CATEGORIES_MAPPING.get(self.cleaned_data['cat'],
                                                  [self.cleaned_data['cat']])
         return None
-
-    def clean_type(self):
-        return amo.MKT_ADDON_TYPES_API.get(self.cleaned_data['type'],
-                                           amo.ADDON_WEBAPP)
 
     def clean_premium_types(self):
         """After cleaned, return a list of ints for the constants."""

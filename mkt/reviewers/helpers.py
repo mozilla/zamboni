@@ -189,16 +189,15 @@ def version_status(addon, version):
 
 @register.inclusion_tag('reviewers/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
-def reviewers_score_bar(context, types=None, addon_type=None):
+def reviewers_score_bar(context, types=None):
     user = context.get('user')
 
     return new_context(dict(
         request=context.get('request'),
         amo=amo, settings=settings,
-        points=ReviewerScore.get_recent(user, addon_type=addon_type),
+        points=ReviewerScore.get_recent(user),
         total=ReviewerScore.get_total(user),
-        **ReviewerScore.get_leaderboards(user, types=types,
-                                         addon_type=addon_type)))
+        **ReviewerScore.get_leaderboards(user, types=types)))
 
 
 @register.filter
@@ -217,9 +216,8 @@ def get_avg_app_waiting_time():
     cursor.execute('''
         SELECT AVG(DATEDIFF(reviewed, nomination)) FROM versions
         RIGHT JOIN addons ON versions.addon_id = addons.id
-        WHERE addontype_id = %s AND status = %s AND
-              reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
-    ''', (amo.ADDON_WEBAPP, amo.STATUS_PUBLIC))
+        WHERE status = %s AND reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+    ''', (amo.STATUS_PUBLIC, ))
     row = cursor.fetchone()
     days = 0
     if row:
@@ -238,8 +236,7 @@ def get_position(addon):
     # both the regular and updates queue in one big list (In theory, it
     # should take the same time for reviewers to process an app in either
     # queue). Escalated apps are excluded just like in reviewer tools.
-    qs = (Version.objects.filter(addon__type=amo.ADDON_WEBAPP,
-                                 addon__disabled_by_user=False,
+    qs = (Version.objects.filter(addon__disabled_by_user=False,
                                  files__status=amo.STATUS_PENDING,
                                  deleted=False)
           .exclude(addon__status__in=(amo.STATUS_DISABLED,

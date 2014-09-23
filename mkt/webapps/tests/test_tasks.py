@@ -202,12 +202,6 @@ class TestUpdateManifest(amo.tests.TestCase):
         eq_(ActivityLog.objects.for_apps([self.addon]).count(), 1)
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
-    def test_ignore_not_webapp(self, mock_):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        call_command('process_addons', task='update_manifests')
-        assert not mock_.called
-
-    @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_pending(self, mock_):
         self.addon.update(status=amo.STATUS_PENDING)
         call_command('process_addons', task='update_manifests')
@@ -599,12 +593,6 @@ class TestFixMissingIcons(amo.tests.TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-
-    @mock.patch('mkt.webapps.tasks._fix_missing_icons')
-    def test_ignore_not_webapp(self, mock_):
-        self.app.update(type=amo.ADDON_EXTENSION)
-        call_command('process_addons', task='fix_missing_icons')
-        assert not mock_.called
 
     @mock.patch('mkt.webapps.tasks._fix_missing_icons')
     def test_pending(self, mock_):

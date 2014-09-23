@@ -507,7 +507,7 @@ def dump_user_installs(ids, **kw):
         # Gather data about user.
         installed = []
         zone = pytz.timezone(settings.TIME_ZONE)
-        for install in user.installed_set.filter(addon__type=amo.ADDON_WEBAPP):
+        for install in user.installed_set.all():
             try:
                 app = install.addon
             except Webapp.DoesNotExist:

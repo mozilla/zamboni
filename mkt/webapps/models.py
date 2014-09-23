@@ -167,7 +167,7 @@ def version_changed(sender, **kw):
 
 
 def attach_devices(addons):
-    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    addon_dict = dict((a.id, a) for a in addons)
     devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
                .values_list('addon', 'device_type'))
     for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
@@ -197,22 +197,6 @@ def attach_tags(addons):
         addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
-class AddonType(amo.models.ModelBase):
-    name = TranslatedField()
-    name_plural = TranslatedField()
-    description = TranslatedField()
-
-    class Meta:
-        db_table = 'addontypes'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-
-dbsignals.pre_save.connect(save_signal, sender=AddonType,
-                           dispatch_uid='addontype_translations')
-
-
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
@@ -230,6 +214,7 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
+        unique_together = (('addon', 'user'), )
 
 
 class Preview(amo.models.ModelBase):
@@ -348,8 +333,7 @@ class WebappManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet).filter(
-            type=amo.ADDON_WEBAPP)
+        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
@@ -444,7 +428,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
-    type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
@@ -516,8 +499,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         return u'%s: %s' % (self.id, self.name)
 
     def save(self, **kw):
-        # Make sure we have the right type.
-        self.type = amo.ADDON_WEBAPP
         self.clean_slug(slug_field='app_slug')
         creating = not self.id
         super(Webapp, self).save(**kw)
@@ -554,7 +535,7 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         user = amo.get_user()
 
         context = {
-            'atype': amo.ADDON_TYPE.get(self.type).upper(),
+            'atype': 'App',
             'authors': [u.email for u in self.authors.all()],
             'guid': self.guid,
             'id': self.id,
@@ -752,17 +733,9 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_DISABLED or self.disabled_by_user
 
     def can_become_premium(self):
-        """
-        Not all addons can become premium and those that can only at
-        certain times. Webapps can become premium at any time.
-        """
-        if self.upsell:
+        if self.upsell or self.is_premium():
             return False
-        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
-            return True
-        return (self.status in amo.PREMIUM_STATUSES
-                and self.highest_status in amo.PREMIUM_STATUSES
-                and self.type in amo.ADDON_BECOME_PREMIUM)
+        return True
 
     def is_premium(self):
         """
@@ -797,8 +770,7 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         Get the queries used to calculate addon.last_updated.
         """
         return (Webapp.objects.no_cache()
-                .filter(type=amo.ADDON_WEBAPP,
-                        status=amo.STATUS_PUBLIC,
+                .filter(status=amo.STATUS_PUBLIC,
                         versions__files__status=amo.STATUS_PUBLIC)
                 .values('id')
                 .annotate(last_updated=Max('versions__created')))
@@ -1596,7 +1568,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
     def authors_other_addons(self, app=None):
         """Return other apps by the same author."""
         return (self.__class__.objects.visible()
-                              .filter(type=amo.ADDON_WEBAPP)
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))

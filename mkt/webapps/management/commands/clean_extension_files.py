@@ -4,7 +4,6 @@ import os
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import amo
 from mkt.webapps.models import Webapp
 
 
@@ -38,7 +37,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Get all non-Webapps
-        qs = Webapp.with_deleted.exclude(type=amo.ADDON_WEBAPP).no_transforms()
+        qs = Webapp.with_deleted.no_transforms()
 
         for addon in queryset_iterator(qs, chunksize=250):
 

@@ -224,17 +224,6 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
-    def test_addon_type(self):
-        res = self.client.get(self.url, {'type': 'app'})
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url, {'type': 'vindaloo'})
-        eq_(res.status_code, 400)
-        error = res.json['detail']
-        eq_(error.keys(), ['type'])
-
     def test_no_region_filtering(self):
         self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
         self.webapp.save()

@@ -84,12 +84,6 @@ class TestInstall(amo.tests.TestCase):
                           premium_type=amo.ADDON_PREMIUM)
         eq_(self.client.post(self.url).status_code, 404)
 
-    def test_not_record_addon(self):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        res = self.client.post(self.url)
-        eq_(res.status_code, 404)
-        eq_(self.user.installed_set.count(), 0)
-
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True

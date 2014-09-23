@@ -331,7 +331,6 @@ class TestCreateWebApp(BaseWebAppTest):
 
     def test_app_from_uploaded_manifest(self):
         addon = self.post_addon()
-        eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.is_packaged, False)
         assert addon.guid is not None, (
             'Expected app to have a UUID assigned to guid')
@@ -353,7 +352,7 @@ class TestCreateWebApp(BaseWebAppTest):
         self.upload = self.get_upload(abspath=self.manifest,
                                       user=UserProfile.objects.get(pk=999))
         addon = self.post_addon()
-        eq_(addon.type, amo.ADDON_WEBAPP)
+        ok_(addon.id)
 
     def test_version_from_uploaded_manifest(self):
         addon = self.post_addon()
@@ -553,7 +552,6 @@ class TestCreatePackagedApp(BasePackagedAppTest):
     def test_app_from_uploaded_package(self, _verify, _mock):
         addon = self.post_addon(
             data={'packaged': True, 'free_platforms': ['free-firefoxos']})
-        eq_(addon.type, amo.ADDON_WEBAPP)
         eq_(addon.latest_version.version, '1.0')
         eq_(addon.is_packaged, True)
         assert addon.guid is not None, (

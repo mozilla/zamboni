@@ -511,7 +511,6 @@ class TestESAppSerializer(amo.tests.ESTestCase):
             {'developed': True, 'installed': True, 'purchased': True})
 
     def test_user_not_mine(self):
-        self.app.addonuser_set.create(user_id=31337)
         Installed.objects.create(addon=self.app, user_id=31337)
         self.app.addonpurchase_set.create(user_id=31337)
         self.app.save()

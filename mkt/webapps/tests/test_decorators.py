@@ -94,7 +94,6 @@ class TestWebappDecorators(amo.tests.TestCase):
         app.update(slug=str(app.id) + 'foo', app_slug=str(app.id))
         res = self.view(self.request, app_slug=str(app.id))
         eq_(res, mock.sentinel.OK)
-        eq_(self.func.call_args[0][1].type, amo.ADDON_WEBAPP)
 
 
 class TestPremiumDecorators(amo.tests.TestCase):

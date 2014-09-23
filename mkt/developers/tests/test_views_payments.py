@@ -599,9 +599,8 @@ class TestPayments(Patcher, amo.tests.TestCase):
         amo.set_user(user)
 
         if make_owner:
-            # Make owner
-            AddonUser.objects.create(addon=self.webapp,
-                                     user=user, role=amo.AUTHOR_ROLE_OWNER)
+            # Make owner.
+            user.addonuser_set.get_or_create(addon=self.webapp)
 
         # Set up an existing bank account.
         seller = SolitudeSeller.objects.create(
