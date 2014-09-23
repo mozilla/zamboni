@@ -6,8 +6,8 @@ Reviewers
 
 Reviewer API provides access to the reviewer tools.
 
-Reviewing
-=========
+Reviewer Search
+===============
 
 .. note:: Requires authentication and permission to review apps.
 
@@ -76,6 +76,9 @@ Reviewing
     :type latest_version.status: int
 
 
+Reviewing
+=========
+
 .. note:: Requires authentication and permission to review apps.
 
 .. warning:: Not available through CORS.
@@ -94,6 +97,9 @@ Reviewing
     :status 200: successfully completed.
 
 
+Mini-Manifest
+=============
+
 .. note:: Requires authentication and permission to review apps.
 
 .. warning:: Not available through CORS.
@@ -110,3 +116,37 @@ Reviewing
     :type meta: string
 
     :status 200: successfully completed.
+
+
+Canned Responses
+================
+
+.. note:: Requires authentication and permission to alter reviewer tools.
+
+.. http:get::  /api/v1/reviewers/canned-responses/
+.. http:post::  /api/v1/reviewers/canned-responses/
+.. http:get::  /api/v1/reviewers/canned-responses/(int:id)/
+.. http:put::  /api/v1/reviewers/canned-responses/(int:id)/
+.. http:patch::  /api/v1/reviewers/canned-responses/(int:id)/
+.. http:delete::  /api/v1/reviewers/canned-responses/(int:id)/
+
+
+    Return, create, modify and delete the canned responses reviewers can use
+    when reviewing apps.
+
+    **Response / Request parameters**:
+
+    :param id: unique identifier for the canned response.
+    :type id: int
+    :param name: canned response name.
+    :type name: string|object|null
+    :param response: canned response text.
+    :type response: string|object|null
+    :param sort_group: group the canned response belongs to.
+    :type sort_group: string
+
+    :status 200: successfully completed.
+    :status 201: successfully created.
+    :status 204: successfully deleted.
+    :status 400: error processing the request.
+    :status 404: not found.

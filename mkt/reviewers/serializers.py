@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from mkt.api.fields import TranslationSerializerField
+from mkt.reviewers.models import AdditionalReview, CannedResponse, QUEUE_TARAKO
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import ESAppSerializer
 
@@ -33,3 +35,64 @@ class ReviewersESAppSerializer(ESAppSerializer):
             'is_privileged': v.is_privileged,
             'status': v.status,
         }
+
+
+class AdditionalReviewSerializer(serializers.ModelSerializer):
+    """Developer facing AdditionalReview serializer."""
+
+    app = serializers.PrimaryKeyRelatedField()
+    comment = serializers.CharField(max_length=255, read_only=True)
+
+    class Meta:
+        model = AdditionalReview
+        fields = ['id', 'app', 'queue', 'passed', 'created', 'modified',
+                  'review_completed', 'comment']
+        # Everything is read-only.
+        read_only_fields = ['id', 'passed', 'created', 'modified',
+                            'review_completed', 'reviewer']
+
+    def pending_review_exists(self, queue, app_id):
+        return (AdditionalReview.objects.unreviewed(queue=queue)
+                                        .filter(app_id=app_id)
+                                        .exists())
+
+    def validate_queue(self, attrs, source):
+        if attrs[source] != QUEUE_TARAKO:
+            raise serializers.ValidationError('is not a valid choice')
+        return attrs
+
+    def validate_app(self, attrs, source):
+        queue = attrs.get('queue')
+        app = attrs.get('app')
+        if queue and app and self.pending_review_exists(queue, app):
+            raise serializers.ValidationError('has a pending review')
+        return attrs
+
+
+class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
+    """Reviewer facing AdditionalReview serializer."""
+
+    comment = serializers.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = AdditionalReview
+        fields = AdditionalReviewSerializer.Meta.fields
+        read_only_fields = list(
+            set(AdditionalReviewSerializer.Meta.read_only_fields) -
+            set(['passed', 'reviewer']))
+
+    def validate(self, attrs):
+        if self.object.passed is not None:
+            raise serializers.ValidationError('has already been reviewed')
+        elif attrs.get('passed') not in (True, False):
+            raise serializers.ValidationError('passed must be a boolean value')
+        else:
+            return attrs
+
+
+class CannedResponseSerializer(serializers.ModelSerializer):
+    name = TranslationSerializerField(required=True)
+    response = TranslationSerializerField(required=True)
+
+    class Meta:
+        model = CannedResponse
