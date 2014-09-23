@@ -21,7 +21,9 @@ feed may include:
     anonymously. Authentication and the ``Feed:Curate`` permission are required
     to make any other request.
 
+.. note::
 
+    New in version 2 of the API.
 
 .. _feed-feed:
 
