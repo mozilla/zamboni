@@ -1,45 +1,67 @@
+from gzip import GzipFile
+from StringIO import StringIO
+
 from django.conf import settings
 
 import mock
 from nose import SkipTest
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 import amo.tests
 from amo.utils import reverse
 
 
-class TestCommonplace(amo.tests.TestCase):
+class BaseCommonPlaceTests(amo.tests.TestCase):
+    def _test_url(self, url, url_kwargs=None):
+        """Test that the given url can be requested, returns a 200, and returns
+        a valid gzipped response when requested with Accept-Encoding. Return
+        the result of a regular (non-gzipped) request."""
+        if not url_kwargs:
+            url_kwargs = {}
+        res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip')
+        eq_(res.status_code, 200)
+        eq_(res['Content-Encoding'], 'gzip')
+        ungzipped_content = GzipFile('', 'r', 0, StringIO(res.content)).read()
+
+        res = self.client.get(url, url_kwargs)
+        eq_(res.status_code, 200)
+        eq_(ungzipped_content, res.content)
+
+        return res
+
+
+class TestCommonplace(BaseCommonPlaceTests):
 
     def test_fireplace(self):
-        res = self.client.get('/server.html')
+        res = self._test_url('/server.html')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'fireplace')
         self.assertContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
 
     def test_commbadge(self):
-        res = self.client.get('/comm/')
+        res = self._test_url('/comm/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'commbadge')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
 
     def test_rocketfuel(self):
-        res = self.client.get('/curation/')
+        res = self._test_url('/curation/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'rocketfuel')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
 
     def test_transonic(self):
-        res = self.client.get('/curate/')
+        res = self._test_url('/curate/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'transonic')
         self.assertNotContains(res, 'splash.css')
         self.assertContains(res, 'login.persona.org/include.js')
 
     def test_discoplace(self):
-        res = self.client.get('/discovery/')
+        res = self._test_url('/discovery/')
         self.assertTemplateUsed(res, 'commonplace/index.html')
         self.assertEquals(res.context['repo'], 'discoplace')
         self.assertContains(res, 'splash.css')
@@ -49,7 +71,7 @@ class TestCommonplace(amo.tests.TestCase):
         for url in ('/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah',
                     '/server.html?nativepersona=true'):
-            res = self.client.get(url)
+            res = self._test_url(url)
             self.assertNotContains(res, 'login.persona.org/include.js')
 
     def test_fireplace_persona_js_not_included_for_firefox_accounts(self):
@@ -59,21 +81,21 @@ class TestCommonplace(amo.tests.TestCase):
                     '/server.html?mccs=blah',
                     '/server.html?mcc=blah&mnc=blah',
                     '/server.html?nativepersona=true'):
-            res = self.client.get(url)
+            res = self._test_url(url)
             self.assertNotContains(res, 'login.persona.org/include.js')
 
     def test_fireplace_persona_js_is_included_elsewhere(self):
         for url in ('/server.html', '/server.html?mcc=blah'):
-            res = self.client.get(url)
+            res = self._test_url(url)
             self.assertContains(res, 'login.persona.org/include.js" async')
 
     def test_rocketfuel_persona_js_is_included(self):
         for url in ('/curation/', '/curation/?nativepersona=true'):
-            res = self.client.get(url)
+            res = self._test_url(url)
             self.assertContains(res, 'login.persona.org/include.js" defer')
 
 
-class TestAppcacheManifest(amo.tests.TestCase):
+class TestAppcacheManifest(BaseCommonPlaceTests):
 
     def test_no_repo(self):
         if 'fireplace' not in settings.COMMONPLACE_REPOS_APPCACHED:
@@ -98,16 +120,21 @@ class TestAppcacheManifest(amo.tests.TestCase):
 
         img = '/media/img/icons/eggs/h1.gif'
         get_imgurls_mock.return_value = [img]
-        res = self.client.get(reverse('commonplace.appcache'),
-                              {'repo': 'fireplace'})
+        res = self._test_url(reverse('commonplace.appcache'),
+                             {'repo': 'fireplace'})
         eq_(res.status_code, 200)
         assert '# BUILD_ID p00p' in res.content
         img = img.replace('/media/', '/media/fireplace/')
         assert img + '\n' in res.content
 
 
-class TestIFrameInstall(amo.tests.TestCase):
+class TestIFrameInstall(BaseCommonPlaceTests):
 
     def test_basic(self):
-        res = self.client.get(reverse('commonplace.iframe-install'))
-        eq_(res.status_code, 200)
+        self._test_url(reverse('commonplace.iframe-install'))
+
+
+class TestPotatolytics(BaseCommonPlaceTests):
+
+    def test_basic(self):
+        self._test_url(reverse('commonplace.potatolytics'))

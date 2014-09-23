@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.views.decorators.gzip import gzip_page
 
 import jingo
 import jinja2
@@ -46,6 +47,7 @@ def get_imgurls(repo):
         return list(set(fh.readlines()))
 
 
+@gzip_page
 def commonplace(request, repo, **kwargs):
     if repo not in settings.COMMONPLACE_REPOS:
         raise Http404
@@ -96,17 +98,18 @@ def commonplace(request, repo, **kwargs):
     return render(request, 'commonplace/index.html', ctx)
 
 
+@gzip_page
 def appcache_manifest(request):
     """Serves the appcache manifest."""
     repo = request.GET.get('repo')
     if not repo or repo not in settings.COMMONPLACE_REPOS_APPCACHED:
         raise Http404
-    template = appcache_manifest_template(repo)
+    template = _appcache_manifest_template(repo)
     return HttpResponse(template, content_type='text/cache-manifest')
 
 
 @memoize('appcache-manifest-template')
-def appcache_manifest_template(repo):
+def _appcache_manifest_template(repo):
     ctx = {
         'BUILD_ID': get_build_id(repo),
         'imgurls': get_imgurls(repo),
@@ -117,9 +120,11 @@ def appcache_manifest_template(repo):
     return unicode(jinja2.Markup(t))
 
 
+@gzip_page
 def iframe_install(request):
     return render(request, 'commonplace/iframe-install.html')
 
 
+@gzip_page
 def potatolytics(request):
     return render(request, 'commonplace/potatolytics.html')
