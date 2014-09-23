@@ -11,7 +11,7 @@ API for communication between reviewers and developers
 Thread
 ======
 
-.. http:get:: /api/v1/comm/thread/
+.. http:get:: /api/v2/comm/thread/
 
     .. note:: Requires authentication.
 
@@ -37,7 +37,7 @@ Thread
 
 .. _thread-response-label:
 
-.. http:post:: /api/v1/comm/thread/
+.. http:post:: /api/v2/comm/thread/
 
     .. note:: Requires authentication.
 
@@ -58,7 +58,7 @@ Thread
 
     A :ref:`note <note-response-label>` object.
 
-.. http:get:: /api/v1/comm/thread/(int:id)/
+.. http:get:: /api/v2/comm/thread/(int:id)/
 
     .. note:: Does not require authentication if the thread is public.
 
@@ -138,7 +138,7 @@ Thread
 
 .. _note-patch-label:
 
-.. http:patch:: /api/v1/comm/thread/(int:thread_id)/
+.. http:patch:: /api/v2/comm/thread/(int:thread_id)/
 
     .. note:: Requires authentication.
 
@@ -159,7 +159,7 @@ Thread
 Note
 ====
 
-.. http:get:: /api/v1/comm/thread/(int:thread_id)/note/
+.. http:get:: /api/v2/comm/thread/(int:thread_id)/note/
 
     .. note:: Does not require authentication if the thread is public.
 
@@ -183,7 +183,7 @@ Note
 
 .. _note-response-label:
 
-.. http:get:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
+.. http:get:: /api/v2/comm/thread/(int:thread_id)/note/(int:id)/
 
     .. note:: Does not require authentication if the note is in a public thread.
 
@@ -274,7 +274,7 @@ Note
 
 .. _note-patch-label:
 
-.. http:patch:: /api/v1/comm/thread/(int:thread_id)/note/(int:id)/
+.. http:patch:: /api/v2/comm/thread/(int:thread_id)/note/(int:id)/
 
     .. note:: Requires authentication.
 
@@ -293,7 +293,7 @@ Note
 
 .. _note-post-label:
 
-.. http:post:: /api/v1/comm/thread/(int:thread_id)/note/
+.. http:post:: /api/v2/comm/thread/(int:thread_id)/note/
 
     .. note:: Requires authentication.
 
@@ -339,7 +339,7 @@ Attachment
 
 .. _attachment-post-label:
 
-.. http:post:: /api/v1/comm/note/(int:note_id)/attachment
+.. http:post:: /api/v2/comm/note/(int:note_id)/attachment
 
     .. note:: Requires authentication and the user to be the author of the note.
 

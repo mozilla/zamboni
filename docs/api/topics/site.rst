@@ -14,7 +14,7 @@ Categories
 
 .. note:: The URL for this API will be moving.
 
-.. http:get:: /api/v1/apps/category/
+.. http:get:: /api/v2/apps/category/
 
     Returns a list of categories available on the marketplace.
 
@@ -33,7 +33,7 @@ Categories
 
 .. _category-response-label:
 
-.. http:get:: /api/v1/apps/category/(int:id)/
+.. http:get:: /api/v2/apps/category/(int:id)/
 
     Returns a category.
 
@@ -44,7 +44,7 @@ Categories
         {
             "id": 1,
             "name": "Games",
-            "resource_uri": "/api/v1/apps/category/1/",
+            "resource_uri": "/api/v2/apps/category/1/",
             "slug": "games"
         }
 
@@ -54,7 +54,7 @@ Categories
 Carriers
 ========
 
-.. http:get:: /api/v1/services/carrier/
+.. http:get:: /api/v2/services/carrier/
 
     Returns a list of possible carriers for apps.
 
@@ -69,7 +69,7 @@ Carriers
 
 .. _carrier-response-label:
 
-.. http:get:: /api/v1/services/carrier/<slug>/
+.. http:get:: /api/v2/services/carrier/<slug>/
 
     Returns a carrier.
 
@@ -84,7 +84,7 @@ Carriers
         {
             "id": "1",
             "name": "PhoneORama",
-            "resource_uri": "/api/v1/services/carrier/phoneorama/",
+            "resource_uri": "/api/v2/services/carrier/phoneorama/",
             "slug": "phoneorama"
         }
 
@@ -93,7 +93,7 @@ Carriers
 Regions
 =======
 
-.. http:get:: /api/v1/services/region/
+.. http:get:: /api/v2/services/region/
 
     Returns a list of possible regions for apps.
 
@@ -108,7 +108,7 @@ Regions
 
 .. _region-response-label:
 
-.. http:get:: /api/v1/services/region/<slug>/
+.. http:get:: /api/v2/services/region/<slug>/
 
     Returns a region.
 
@@ -123,7 +123,7 @@ Regions
         {
             "id": "1",
             "name": "Appistan",
-            "resource_uri": "/api/v1/services/region/ap/",
+            "resource_uri": "/api/v2/services/region/ap/",
             "slug": "ap",
             "default_currency": "USD",
             "default_language": "en-AP",
@@ -132,7 +132,7 @@ Regions
 Configuration
 =============
 
-.. http:get:: /api/v1/services/config/site/
+.. http:get:: /api/v2/services/config/site/
 
     Returns information about how the marketplace is configured. Not all
     settings and configuration options are returned - only a subset. This
@@ -196,7 +196,7 @@ Configuration
 Price tiers
 ===========
 
-.. http:get:: /api/v1/services/price-tier/
+.. http:get:: /api/v2/services/price-tier/
 
     Lists price tiers.
 
@@ -207,7 +207,7 @@ Price tiers
 
 .. _tier-response-label:
 
-.. http:get:: /api/v1/services/price-tier/(int:id)/
+.. http:get:: /api/v2/services/price-tier/(int:id)/
 
     Returns a price tier.
 
@@ -223,7 +223,7 @@ Price tiers
     :type method: string; one of "operator", "card", or "operator+card".
 
 
-.. http:post:: /api/v1/services/price-tier/
+.. http:post:: /api/v2/services/price-tier/
 
     Create a price tier.
 
@@ -241,7 +241,7 @@ Price tiers
     :type price: decimal string
 
 
-.. http:put:: /api/v1/services/price-tier/(int:id)/
+.. http:put:: /api/v2/services/price-tier/(int:id)/
 
     Update a price tier.
 
@@ -259,14 +259,14 @@ Price tiers
     :type price: decimal string
 
 
-.. http:delete:: /api/v1/services/price-tier/(int:id)/
+.. http:delete:: /api/v2/services/price-tier/(int:id)/
 
     Delete a price tier and all associated prices.
 
     .. note:: Requires admin account.
 
 
-.. http:get:: /api/v1/services/price-currency/
+.. http:get:: /api/v2/services/price-currency/
 
    Lists prices in various currencies.
 
@@ -282,7 +282,7 @@ Price tiers
 
 .. _price-response-label:
 
-.. http:get:: /api/v1/services/price-currency/(int:id)/
+.. http:get:: /api/v2/services/price-currency/(int:id)/
 
     Fetch a single price.
 
@@ -304,7 +304,7 @@ Price tiers
     :type method: string; one of "operator", "card", or "operator+card".
 
 
-.. http:post:: /api/v1/services/price-currency/
+.. http:post:: /api/v2/services/price-currency/
 
     Create a price.
 
@@ -326,7 +326,7 @@ Price tiers
     :type method: string; one of "operator", "card", or "operator+card".
 
 
-.. http:put:: /api/v1/services/price-currency/(int:id)/
+.. http:put:: /api/v2/services/price-currency/(int:id)/
 
     Update a price.
 
@@ -348,7 +348,7 @@ Price tiers
     :type method: string; one of "operator", "card", or "operator+card".
 
 
-.. http:delete:: /api/v1/services/price-currency/(int:id)/
+.. http:delete:: /api/v2/services/price-currency/(int:id)/
 
     Delete a price.
 

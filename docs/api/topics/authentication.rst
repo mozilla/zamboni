@@ -17,7 +17,7 @@ Shared Secret
 The Marketplace front end uses a server-supplied token for authentication,
 stored as a cookie.
 
-.. http:post:: /api/v1/account/login/
+.. http:post:: /api/v2/account/login/
 
     **Request**
 

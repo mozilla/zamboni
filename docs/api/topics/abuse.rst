@@ -14,7 +14,7 @@ Abusive apps and users may be reported to Marketplace staff.
 Report An Abusive App
 =====================
 
-.. http:post:: /api/v1/abuse/app/
+.. http:post:: /api/v2/abuse/app/
 
     Report an abusive app to Marketplace staff.
 
@@ -59,7 +59,7 @@ Report An Abusive App
 Report An Abusive User
 ======================
 
-.. http:post:: /api/v1/abuse/user/
+.. http:post:: /api/v2/abuse/user/
 
     Report an abusive user to Marketplace staff.
 
@@ -91,7 +91,7 @@ Report An Abusive User
             "text": "There is a problem with this user.",
             "user": {
                 "display_name": "cvan",
-                "resource_uri": "/api/v1/account/settings/27/"
+                "resource_uri": "/api/v2/account/settings/27/"
             }
         }
 
