@@ -5,13 +5,12 @@ from django.db.models import signals
 import commonware.log
 
 import amo
-import amo.models
-
+from mkt.site.models import ModelBase
 
 log = commonware.log.getLogger('z.users')
 
 
-class Group(amo.models.ModelBase):
+class Group(ModelBase):
 
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()

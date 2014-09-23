@@ -13,12 +13,12 @@ import commonware.log
 import jinja2
 
 import amo
-import amo.models
 import amo.utils
 from .compare import version_dict, version_int
 from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import (LinkifiedField, PurifiedField,
                                      save_signal, TranslatedField)
 from mkt.versions.tasks import update_supported_locales_single
@@ -28,10 +28,10 @@ from mkt.webapps import query
 log = commonware.log.getLogger('z.versions')
 
 
-class VersionManager(amo.models.ManagerBase):
+class VersionManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
-        amo.models.ManagerBase.__init__(self)
+        ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
     def get_query_set(self):
@@ -42,7 +42,7 @@ class VersionManager(amo.models.ManagerBase):
         return qs.transform(Version.transformer)
 
 
-class Version(amo.models.ModelBase):
+class Version(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
@@ -66,7 +66,7 @@ class Version(amo.models.ModelBase):
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'versions'
         ordering = ['-created', '-modified']
 
@@ -362,13 +362,13 @@ models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 
 
-class LicenseManager(amo.models.ManagerBase):
+class LicenseManager(ManagerBase):
 
     def builtins(self):
         return self.filter(builtin__gt=0).order_by('builtin')
 
 
-class License(amo.models.ModelBase):
+class License(ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')

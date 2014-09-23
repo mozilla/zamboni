@@ -3,8 +3,8 @@ import logging
 from django.conf import settings
 from django.db import models
 
-import amo.models
-
+import amo
+from mkt.site.models import ModelBase
 from mkt.site.mail import send_mail
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
@@ -13,7 +13,7 @@ from mkt.users.models import UserProfile
 log = logging.getLogger('z.abuse')
 
 
-class AbuseReport(amo.models.ModelBase):
+class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(UserProfile, null=True,
                                  blank=True, related_name='abuse_reported')

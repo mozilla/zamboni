@@ -257,7 +257,7 @@ tiers = {
 }
 
 # This is because method gets added on to the model later.
-class FrozenPriceCurrency(amo.models.ModelBase):
+class FrozenPriceCurrency(mkt.site.models.ModelBase):
     carrier = models.IntegerField()
     currency = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=10, decimal_places=2)

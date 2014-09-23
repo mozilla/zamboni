@@ -18,7 +18,7 @@ from mkt.webapps.models import Webapp
 
 
 class Test403(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         assert self.client.login(username='steamcube@mozilla.com',

@@ -6,8 +6,8 @@ import bleach
 import commonware.log
 
 import amo
-import amo.models
 from amo import urlresolvers
+from mkt.site.models import ManagerBase, ModelBase
 
 from . import utils
 
@@ -15,7 +15,7 @@ from . import utils
 log = commonware.log.getLogger('z.translations')
 
 
-class TranslationManager(amo.models.ManagerBase):
+class TranslationManager(ManagerBase):
 
     def remove_for(self, obj, locale):
         """Remove a locale for the given object."""
@@ -25,7 +25,7 @@ class TranslationManager(amo.models.ManagerBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
-class Translation(amo.models.ModelBase):
+class Translation(ModelBase):
     """
     Translation model.
 

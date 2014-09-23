@@ -36,7 +36,6 @@ from waffle.decorators import waffle_switch
 import amo
 import mkt
 from amo.helpers import urlparams
-from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
 from lib.crypto.packaged import SigningError
@@ -65,6 +64,7 @@ from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
 from mkt.search.views import search_form_to_es_fields, SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
+from mkt.site.models import manual_order
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation

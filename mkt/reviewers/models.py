@@ -9,11 +9,11 @@ import commonware.log
 import waffle
 
 import amo
-import amo.models
 import mkt.constants.comm as comm
 from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
 from mkt.site.mail import send_mail_jinja
+from mkt.site.models import ManagerBase, ModelBase, skip_cache
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
@@ -25,7 +25,7 @@ user_log = commonware.log.getLogger('z.users')
 QUEUE_TARAKO = 'tarako'
 
 
-class CannedResponse(amo.models.ModelBase):
+class CannedResponse(ModelBase):
     name = TranslatedField()
     response = TranslatedField(short=False)
     sort_group = models.CharField(max_length=255)
@@ -41,7 +41,7 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
 
 
-class EditorSubscription(amo.models.ModelBase):
+class EditorSubscription(ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Webapp)
 
@@ -49,7 +49,7 @@ class EditorSubscription(amo.models.ModelBase):
         db_table = 'editor_subscriptions'
 
 
-class ReviewerScore(amo.models.ModelBase):
+class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
@@ -176,7 +176,7 @@ class ReviewerScore(amo.models.ModelBase):
              WHERE `reviewer_scores`.`user_id` = %s
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, None)
         return val
@@ -200,7 +200,7 @@ class ReviewerScore(amo.models.ModelBase):
                    `reviewer_scores`.`created` >= %s
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
@@ -327,14 +327,14 @@ class ReviewerScore(amo.models.ModelBase):
         return scores
 
 
-class EscalationQueue(amo.models.ModelBase):
+class EscalationQueue(ModelBase):
     addon = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'escalation_queue'
 
 
-class RereviewQueue(amo.models.ModelBase):
+class RereviewQueue(ModelBase):
     addon = models.ForeignKey(Webapp)
 
     class Meta:
@@ -383,7 +383,7 @@ def tarako_failed(review):
     send_tarako_mail(review)
 
 
-class AdditionalReviewManager(amo.models.ManagerBase):
+class AdditionalReviewManager(ManagerBase):
     def unreviewed(self, queue, and_approved=False):
         query = {
             'passed': None,
@@ -400,7 +400,7 @@ class AdditionalReviewManager(amo.models.ManagerBase):
             return None
 
 
-class AdditionalReview(amo.models.ModelBase):
+class AdditionalReview(ModelBase):
     app = models.ForeignKey(Webapp)
     queue = models.CharField(max_length=30)
     passed = models.NullBooleanField()
