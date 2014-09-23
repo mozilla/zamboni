@@ -727,7 +727,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         res = self.anon.get(self.url)
         eq_(len(res.json['objects']), 0)
 
-        res = self.anon.get(self.url, filtering=0)
+        res = self.anon.get(self.url, data={'filtering': 0})
         eq_(len(res.json['objects']), 0)
 
         self.grant_permission(self.profile, 'Feed:Curate')
