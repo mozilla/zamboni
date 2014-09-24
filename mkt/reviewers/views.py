@@ -23,6 +23,7 @@ from django.views.decorators.cache import never_cache
 import commonware.log
 import jinja2
 import requests
+from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
 from rest_framework import viewsets
@@ -772,33 +773,14 @@ def motd(request):
     return render(request, 'reviewers/motd.html', data)
 
 
-# TODO: Move these to the validator when they live there someday.
-PRIVILEGED_PERMISSIONS = set([
-    'tcp-socket', 'contacts', 'device-storage:pictures',
-    'device-storage:videos', 'device-storage:music', 'device-storage:sdcard',
-    'browser', 'systemXHR', 'audio-channel-notification',
-    'audio-channel-alarm'])
-CERTIFIED_PERMISSIONS = set([
-    'camera', 'tcp-socket', 'network-events', 'contacts',
-    'device-storage:apps', 'device-storage:pictures',
-    'device-storage:videos', 'device-storage:music', 'device-storage:sdcard',
-    'sms', 'telephony', 'browser', 'bluetooth', 'mobileconnection', 'power',
-    'settings', 'permissions', 'attention', 'webapps-manage',
-    'backgroundservice', 'networkstats-manage', 'wifi-manage', 'systemXHR',
-    'voicemail', 'deprecated-hwvideo', 'idle', 'time', 'embed-apps',
-    'background-sensors', 'cellbroadcast', 'audio-channel-notification',
-    'audio-channel-alarm', 'audio-channel-telephony', 'audio-channel-ringer',
-    'audio-channel-publicnotification', 'open-remote-window'])
-
-
 def _get_permissions(manifest):
     permissions = {}
 
     for perm in manifest.get('permissions', {}).keys():
         pval = permissions[perm] = {'type': 'web'}
-        if perm in PRIVILEGED_PERMISSIONS:
+        if perm in PERMISSIONS['privileged']:
             pval['type'] = 'priv'
-        elif perm in CERTIFIED_PERMISSIONS:
+        elif perm in PERMISSIONS['certified']:
             pval['type'] = 'cert'
 
         pval['description'] = manifest['permissions'][perm].get('description')
