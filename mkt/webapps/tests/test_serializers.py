@@ -461,7 +461,7 @@ class TestESAppSerializer(amo.tests.ESTestCase):
         self.app.save()
         self.refresh('webapp')
 
-        self.request.REGION = mkt.regions.ME
+        self.request.REGION = mkt.regions.BD
         res = self.serialize()
         eq_(res['content_ratings']['body'], 'generic')
         eq_(res['content_ratings']['rating'], '18')
