@@ -1,6 +1,8 @@
+# coding: utf-8
 import json
 import os
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 import mock
@@ -14,6 +16,7 @@ from mkt.api.tests.test_oauth import JSONClient, RestOAuthClient
 from mkt.api.models import Access, generate
 from mkt.inapp.models import InAppProduct
 from mkt.site.fixtures import fixture
+from mkt.translations.models import Translation
 from mkt.webapps.models import Webapp
 from mkt.prices.models import Price
 
@@ -26,14 +29,22 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
         self.webapp.update(app_domain='app://rad-app.com',
                            is_packaged=True)
         price = Price.objects.all()[0]
+
         self.valid_in_app_product_data = {
-            'name': 'Purple Gems',
+            'default_locale': 'en-us',
+            'name': {'en-us': 'Purple Gems',
+                     'pl': u'الأحجار الكريمة الأرجواني'},
             'logo_url': 'https://marketplace.firefox.com/rocket.png',
             'price_id': price.id,
         }
 
         p = mock.patch('mkt.inapp.serializers.requests')
         self.requests = p.start()
+        self.addCleanup(p.stop)
+
+        p = mock.patch.object(settings, 'LANGUAGES',
+                              ('en-us', 'es', 'fr', 'pl'))
+        p.start()
         self.addCleanup(p.stop)
 
     def setup_client(self, user):
@@ -63,6 +74,8 @@ class BaseInAppProductViewSetTests(amo.tests.TestCase):
     def create_product(self):
         product_data = {'webapp': self.webapp}
         product_data.update(self.valid_in_app_product_data)
+        if isinstance(product_data['name'], basestring):
+            product_data['name'] = json.loads(product_data['name'])
         return InAppProduct.objects.create(**product_data)
 
     def get(self, url):
@@ -88,21 +101,83 @@ class TestInAppProductViewSetAuthorized(BaseInAppProductViewSetTests):
         user = self.webapp.authors.all()[0]
         self.client = self.setup_client(user)
 
+    def all_locales(self, prod, attr):
+        names = {}
+        trans = getattr(prod, attr)
+        for tr in Translation.objects.filter(id=trans.id):
+            names[tr.locale] = unicode(tr)
+        return names
+
     def test_create(self):
         response = self.post(self.list_url(), self.valid_in_app_product_data)
         eq_(response.status_code, status.HTTP_201_CREATED)
         eq_(response.json['name'], 'Purple Gems')
 
+    def test_create_localized_names(self):
+        data = self.valid_in_app_product_data.copy()
+        name_data = data['name'].copy()
+        response = self.post(self.list_url(), data)
+        eq_(response.status_code, status.HTTP_201_CREATED)
+
+        # TODO: use localized API output after bug 1070125.
+        prod = InAppProduct.objects.get(guid=response.json['guid'])
+        names = self.all_locales(prod, 'name')
+        eq_(names['en-us'], name_data['en-us'])
+        eq_(names['pl'], name_data['pl'])
+
+    def test_missing_default_locale(self):
+        data = self.valid_in_app_product_data.copy()
+        data['name'] = {'en-us': 'English name'}
+        data['default_locale'] = 'pl'  # no localization for this
+        response = self.post(self.list_url(), data)
+        eq_(response.status_code, 400,
+            getattr(response, 'json', 'unexpected status'))
+
+    def test_empty_default_locale(self):
+        data = self.valid_in_app_product_data.copy()
+        data['name'] = {'en-us': None}  # empty localization
+        data['default_locale'] = 'en-us'
+        response = self.post(self.list_url(), data)
+        eq_(response.status_code, 400,
+            getattr(response, 'json', 'unexpected status'))
+
     def test_update(self):
         product = self.create_product()
-        self.valid_in_app_product_data['name'] = 'Orange Gems'
-        self.valid_in_app_product_data['active'] = False
-        response = self.put(self.detail_url(product.guid),
-                            self.valid_in_app_product_data)
+        data = self.valid_in_app_product_data.copy()
+        data['name'] = {'en-us': 'Orange Gems'}
+        data['active'] = False
+        response = self.put(self.detail_url(product.guid), data)
         eq_(response.status_code, status.HTTP_200_OK)
         eq_(response.json['name'], 'Orange Gems')
+        # Sanity check that the db was updated.
         eq_(response.json['name'], product.reload().name)
         eq_(response.json['active'], False)
+
+    def test_update_locales(self):
+        product = self.create_product()
+        data = self.valid_in_app_product_data.copy()
+        old_names = data['name'].copy()
+
+        new_names = {'fr': 'French Gems',
+                     'es': 'Spanish Gems',
+                     'pl': None}
+        data['name'] = new_names
+        data['default_locale'] = 'fr'
+
+        response = self.put(self.detail_url(product.guid), data)
+        eq_(response.status_code, status.HTTP_200_OK,
+            getattr(response, 'json', 'unexpected status'))
+
+        product = product.reload()
+        names = self.all_locales(product, 'name')
+
+        eq_(names['fr'], new_names['fr'])
+        eq_(names['es'], new_names['es'])
+        # Localized string set to None is blank:
+        eq_(names['pl'], '')
+        # The old locale was not deleted or updated.
+        # This is a bit weird but that's the status quo of translations.
+        eq_(names['en-us'], old_names['en-us'])
 
     def test_delete(self):
         product = self.create_product()

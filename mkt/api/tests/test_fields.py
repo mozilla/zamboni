@@ -6,6 +6,8 @@ from rest_framework.serializers import CharField, Serializer
 from rest_framework.test import APIRequestFactory
 from test_utils import RequestFactory
 
+from django.core.exceptions import ValidationError
+
 import amo
 from amo.tests import TestCase
 from mkt.api.fields import (ESTranslationSerializerField, SlugChoiceField,
@@ -78,6 +80,28 @@ class _TestTranslationSerializerField(object):
         field = self.field_class()
         result = field.from_native(data)
         eq_(result, {'fr': u'Non mais Allô quoi !', 'en-US': u''})
+
+    def test_wrong_locale_code(self):
+        data = {
+            'unknown-locale': 'some name',
+        }
+        field = self.field_class()
+        result = field.from_native(data)
+        with self.assertRaises(ValidationError) as exc:
+            field.validate(result)
+        eq_(exc.exception.message,
+            "The language code 'unknown-locale' is invalid.")
+
+    def test_none_type_locale_is_allowed(self):
+        # None values are valid because they are used to nullify existing
+        # translations in something like a PATCH.
+        data = {
+            'en-US': None,
+        }
+        field = self.field_class()
+        result = field.from_native(data)
+        field.validate(result)
+        eq_(result, data)
 
     def test_field_to_native(self):
         field = self.field_class()

@@ -242,7 +242,17 @@ packaged app. For example: ``app://foo-app.com``.
 
     **Request**
 
-    :param name: The name for the in-app product.
+    :param name:
+
+        Product names as an object of localizations, serialized to JSON.
+        Example::
+
+            {"en-us": "English product name",
+             "pl": "polska nazwa produktu"}
+
+        The object keys must be lower case codes in the
+        `IETF language tag`_ format.
+
     :type name: string
     :param logo_url: URL to a logo for the product.
     :type logo_url: string
@@ -252,8 +262,8 @@ packaged app. For example: ``app://foo-app.com``.
     **Response**
 
     :status 201: successfully created.
-    :param id: The in-app product ID.
-    :type id: int
+    :param guid: A globally unique ID for this in-app product.
+    :type guid: string
     :param app: The slug for the app.
     :type app: string
     :param name: The name for the in-app product.
@@ -317,7 +327,22 @@ packaged app. For example: ``app://foo-app.com``.
 
     **Request**
 
-    :param name: The name for the in-app product.
+    :param name:
+
+        Product names as an object of localizations, serialized to JSON.
+        Example::
+
+            {"en-us": "English product name",
+             "pl": "polska nazwa produktu"}
+
+        The object keys must be lower case codes in the
+        `IETF language tag`_ format.
+
+        **IMPORTANT**: Any string for a new locale will not
+        overwrite strings in existing locales. If you want
+        to delete an older locale, you need to set it to ``null``
+        like ``{"en-us": null, "pl": "..."}``.
+
     :type name: string
     :param logo_url: URL to a logo for the product.
     :type logo_url: string
@@ -385,6 +410,8 @@ packaged app. For example: ``app://foo-app.com``.
     :type logo_url: string
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
+
+.. _`IETF language tag`: http://en.wikipedia.org/wiki/IETF_language_tag
 
 
 Preparing payment
