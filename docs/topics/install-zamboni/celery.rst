@@ -101,8 +101,7 @@ jobs like so: ::
   @cronjobs.register
   def update_addons_current_version():
       """Update the current_version field of the addons."""
-      d = Webapp.objects.valid().exclude(
-            type=amo.ADDON_PERSONA).values_list('id', flat=True)
+      d = Webapp.objects.valid().values_list('id', flat=True)
 
       with establish_connection() as conn:
           for chunk in chunked(d, 1000):

@@ -25,7 +25,7 @@ import jinja2
 import requests
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
-from rest_framework import serializers
+from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
 from rest_framework.permissions import BasePermission
@@ -36,7 +36,6 @@ from waffle.decorators import waffle_switch
 import amo
 import mkt
 from amo.helpers import urlparams
-from amo.models import manual_order
 from amo.utils import (escape_all, HttpResponseSendFile, JSONEncoder, paginate,
                        redirect_for_login, smart_decode)
 from lib.crypto.packaged import SigningError
@@ -45,7 +44,7 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AnyOf, GroupPermission
-from mkt.api.base import form_errors, SlugOrIdMixin
+from mkt.api.base import form_errors, CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
@@ -58,13 +57,17 @@ from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
                                   EditorSubscription, EscalationQueue,
                                   QUEUE_TARAKO, RereviewQueue, ReviewerScore)
-from mkt.reviewers.serializers import (ReviewersESAppSerializer,
-                                       ReviewingSerializer)
+from mkt.reviewers.serializers import (AdditionalReviewSerializer,
+                                       CannedResponseSerializer,
+                                       ReviewerAdditionalReviewSerializer,
+                                       ReviewersESAppSerializer,
+                                       ReviewingSerializer,)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
 from mkt.search.views import search_form_to_es_fields, SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
+from mkt.site.models import manual_order
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.translations.query import order_by_translation
@@ -144,8 +147,7 @@ def queue_counts(request):
     counts = {
         'pending': Webapp.objects.no_cache()
                          .exclude(id__in=excluded_ids)
-                         .filter(type=amo.ADDON_WEBAPP,
-                                 disabled_by_user=False,
+                         .filter(disabled_by_user=False,
                                  status=amo.STATUS_PENDING)
                          .count(),
         'rereview': (RereviewQueue.objects.no_cache()
@@ -156,8 +158,7 @@ def queue_counts(request):
         # versions when a new version is uploaded.
         'updates': File.objects.no_cache()
                        .exclude(version__addon__id__in=excluded_ids)
-                       .filter(version__addon__type=amo.ADDON_WEBAPP,
-                               version__addon__disabled_by_user=False,
+                       .filter(version__addon__disabled_by_user=False,
                                version__addon__is_packaged=True,
                                version__addon__status__in=public_statuses,
                                version__deleted=False,
@@ -170,8 +171,7 @@ def queue_counts(request):
                            .exclude(Q(addon__isnull=True) |
                                     Q(reviewflag__isnull=True))
                            .exclude(addon__status=amo.STATUS_DELETED)
-                           .filter(addon__type=amo.ADDON_WEBAPP,
-                                   editorreview=True)
+                           .filter(editorreview=True)
                            .count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
         'additional_tarako': (
@@ -219,8 +219,7 @@ def _progress():
                       'created'),
         'updates': (File.objects
                         .exclude(version__addon__id__in=excluded_ids)
-                        .filter(version__addon__type=amo.ADDON_WEBAPP,
-                                version__addon__disabled_by_user=False,
+                        .filter(version__addon__disabled_by_user=False,
                                 version__addon__is_packaged=True,
                                 version__addon__status__in=public_statuses,
                                 version__deleted=False,
@@ -582,7 +581,7 @@ def queue_apps(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
     qs = (Version.objects.no_cache().filter(
-          files__status=amo.STATUS_PENDING, addon__type=amo.ADDON_WEBAPP,
+          files__status=amo.STATUS_PENDING,
           addon__disabled_by_user=False,
           addon__status=amo.STATUS_PENDING)
           .exclude(addon__id__in=excluded_ids)
@@ -643,8 +642,7 @@ def queue_rereview(request):
     excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
                                                                   flat=True)
     rqs = (RereviewQueue.objects.no_cache()
-                        .filter(addon__type=amo.ADDON_WEBAPP,
-                                addon__disabled_by_user=False)
+                        .filter(addon__disabled_by_user=False)
                         .exclude(addon__in=excluded_ids))
     apps = _do_sort(request, rqs)
     apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
@@ -655,7 +653,7 @@ def queue_rereview(request):
 @permission_required([('Apps', 'ReviewEscalated')])
 def queue_escalated(request):
     eqs = EscalationQueue.objects.no_cache().filter(
-        addon__type=amo.ADDON_WEBAPP, addon__disabled_by_user=False)
+      addon__disabled_by_user=False)
     apps = _do_sort(request, eqs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
@@ -668,7 +666,6 @@ def queue_updates(request):
                                                                   flat=True)
     qs = (Version.objects.no_cache().filter(
           files__status=amo.STATUS_PENDING,
-          addon__type=amo.ADDON_WEBAPP,
           addon__disabled_by_user=False,
           addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
           .exclude(addon__id__in=excluded_ids)
@@ -703,7 +700,7 @@ def queue_moderated(request):
     rf = (Review.objects.no_cache()
                 .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
                 .exclude(addon__status=amo.STATUS_DELETED)
-                .filter(addon__type=amo.ADDON_WEBAPP, editorreview=True)
+                .filter(editorreview=True)
                 .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
@@ -981,32 +978,23 @@ def performance(request, username=None):
     year_ago = today - datetime.timedelta(days=365)
 
     total = ReviewerScore.get_total(user)
-    totals = ReviewerScore.get_breakdown(user)
-    months = ReviewerScore.get_breakdown_since(user, month_ago)
-    years = ReviewerScore.get_breakdown_since(user, year_ago)
+    totals = ReviewerScore.get_performance(user)
+    months = ReviewerScore.get_performance_since(user, month_ago)
+    years = ReviewerScore.get_performance_since(user, year_ago)
 
-    def _sum(iter, types):
-        return sum(s.total for s in iter if s.atype in types)
+    def _sum(iter):
+        return sum(s.total or 0 for s in iter)
 
-    breakdown = {
-        'month': {
-            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(months, amo.GROUP_TYPE_WEBAPP),
-        },
-        'year': {
-            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(years, amo.GROUP_TYPE_WEBAPP),
-        },
-        'total': {
-            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
-            'apps': _sum(totals, amo.GROUP_TYPE_WEBAPP),
-        }
+    performance = {
+        'month': _sum(months),
+        'year': _sum(years),
+        'total': _sum(totals),
     }
 
     ctx = context(request, **{
         'profile': user,
         'total': total,
-        'breakdown': breakdown,
+        'performance': performance,
     })
 
     return render(request, 'reviewers/performance.html', ctx)
@@ -1181,59 +1169,6 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         return Response({'approved': bool(form.cleaned_data['approve'])})
 
 
-class AdditionalReviewSerializer(serializers.ModelSerializer):
-    """Developer facing AdditionalReview serializer."""
-
-    app = serializers.PrimaryKeyRelatedField()
-    comment = serializers.CharField(max_length=255, read_only=True)
-
-    class Meta:
-        model = AdditionalReview
-        fields = ['id', 'app', 'queue', 'passed', 'created', 'modified',
-                  'review_completed', 'comment']
-        # Everything is read-only.
-        read_only_fields = ['id', 'passed', 'created', 'modified',
-                            'review_completed', 'reviewer']
-
-    def pending_review_exists(self, queue, app_id):
-        return (AdditionalReview.objects.unreviewed(queue=queue)
-                                        .filter(app_id=app_id)
-                                        .exists())
-
-    def validate_queue(self, attrs, source):
-        if attrs[source] != QUEUE_TARAKO:
-            raise serializers.ValidationError('is not a valid choice')
-        return attrs
-
-    def validate_app(self, attrs, source):
-        queue = attrs.get('queue')
-        app = attrs.get('app')
-        if queue and app and self.pending_review_exists(queue, app):
-            raise serializers.ValidationError('has a pending review')
-        return attrs
-
-
-class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
-    """Reviewer facing AdditionalReview serializer."""
-
-    comment = serializers.CharField(max_length=255, required=False)
-
-    class Meta:
-        model = AdditionalReview
-        fields = AdditionalReviewSerializer.Meta.fields
-        read_only_fields = list(
-            set(AdditionalReviewSerializer.Meta.read_only_fields) -
-            set(['passed', 'reviewer']))
-
-    def validate(self, attrs):
-        if self.object.passed is not None:
-            raise serializers.ValidationError('has already been reviewed')
-        elif attrs.get('passed') not in (True, False):
-            raise serializers.ValidationError('passed must be a boolean value')
-        else:
-            return attrs
-
-
 class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
     """
     API ViewSet for setting pass/fail of an AdditionalReview. This does not
@@ -1377,3 +1312,12 @@ def queue_viewing(request):
                                             .display_name)
 
     return viewing
+
+
+class CannedResponseViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = [GroupPermission('Admin', 'ReviewerTools')]
+    model = CannedResponse
+    serializer_class = CannedResponseSerializer
+    cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']

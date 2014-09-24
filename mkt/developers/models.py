@@ -18,13 +18,13 @@ import jinja2
 from tower import ugettext as _
 
 import amo
-import amo.models
 from lib.crypto import generate_key
 from lib.pay_server import client
 from mkt.access.models import Group
 from mkt.constants.payments import ACCESS_SIMULATE
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_CHOICES
 from mkt.ratings.models import Review
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
@@ -38,7 +38,7 @@ class CantCancel(Exception):
     pass
 
 
-class SolitudeSeller(amo.models.ModelBase):
+class SolitudeSeller(ModelBase):
     # TODO: When Solitude allows for it, this should be updated to be 1:1 with
     # users.
     user = UserForeignKey()
@@ -60,7 +60,7 @@ class SolitudeSeller(amo.models.ModelBase):
         return obj
 
 
-class PaymentAccount(amo.models.ModelBase):
+class PaymentAccount(ModelBase):
     user = UserForeignKey()
     name = models.CharField(max_length=64)
     agreed_tos = models.BooleanField(default=False)
@@ -139,7 +139,7 @@ class PaymentAccount(amo.models.ModelBase):
         return reverse('mkt.developers.provider.agreement', args=[self.pk])
 
 
-class AddonPaymentAccount(amo.models.ModelBase):
+class AddonPaymentAccount(ModelBase):
     addon = models.ForeignKey(
         'webapps.Webapp', related_name='app_payment_accounts')
     payment_account = models.ForeignKey(PaymentAccount)
@@ -154,7 +154,7 @@ class AddonPaymentAccount(amo.models.ModelBase):
         return self.payment_account.user
 
 
-class UserInappKey(amo.models.ModelBase):
+class UserInappKey(ModelBase):
     solitude_seller = models.ForeignKey(SolitudeSeller)
     seller_product_pk = models.IntegerField(unique=True)
 
@@ -188,7 +188,7 @@ class UserInappKey(amo.models.ModelBase):
         db_table = 'user_inapp_keys'
 
 
-class PreloadTestPlan(amo.models.ModelBase):
+class PreloadTestPlan(ModelBase):
     addon = models.ForeignKey('webapps.Webapp')
     last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
@@ -215,7 +215,7 @@ models.signals.post_delete.connect(preload_cleanup, sender=Webapp,
                                    dispatch_uid='webapps_preload_cleanup')
 
 
-class AppLog(amo.models.ModelBase):
+class AppLog(ModelBase):
     """
     This table is for indexing the activity log by app.
     """
@@ -227,7 +227,7 @@ class AppLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class CommentLog(amo.models.ModelBase):
+class CommentLog(ModelBase):
     """
     This table is for indexing the activity log by comment.
     """
@@ -239,7 +239,7 @@ class CommentLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class VersionLog(amo.models.ModelBase):
+class VersionLog(ModelBase):
     """
     This table is for indexing the activity log by version.
     """
@@ -251,7 +251,7 @@ class VersionLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class UserLog(amo.models.ModelBase):
+class UserLog(ModelBase):
     """
     This table is for indexing the activity log by user.
     Note: This includes activity performed unto the user.
@@ -264,7 +264,7 @@ class UserLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class GroupLog(amo.models.ModelBase):
+class GroupLog(ModelBase):
     """
     This table is for indexing the activity log by access group.
     """
@@ -276,7 +276,7 @@ class GroupLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class ActivityLogManager(amo.models.ManagerBase):
+class ActivityLogManager(ManagerBase):
 
     def for_apps(self, apps):
         vals = (AppLog.objects.filter(addon__in=apps)
@@ -364,7 +364,7 @@ class SafeFormatter(string.Formatter):
         return jinja2.escape(obj), used_key
 
 
-class ActivityLog(amo.models.ModelBase):
+class ActivityLog(ModelBase):
     TYPES = sorted([(value.id, key) for key, value in amo.LOG.items()])
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
@@ -508,7 +508,7 @@ class ActivityLog(amo.models.ModelBase):
 
 
 # TODO: remove once we migrate to CommAtttachment (ngoke).
-class ActivityLogAttachment(amo.models.ModelBase):
+class ActivityLogAttachment(ModelBase):
     """
     Model for an attachment to an ActivityLog instance. Used by the Marketplace
     reviewer tools, where reviewers can attach files to comments made during

@@ -162,7 +162,6 @@ class TestEmailDevs(amo.tests.TestCase):
         eq_(len(mail.outbox), 0)
 
     def test_only_desktop_apps(self):
-        self.addon.update(type=amo.ADDON_WEBAPP)
         AddonDeviceType.objects.create(addon=self.addon,
             device_type=amo.DEVICE_MOBILE.id)
         res = self.post(recipients='desktop_apps')

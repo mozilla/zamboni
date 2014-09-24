@@ -33,8 +33,6 @@ from mkt.developers.providers import get_provider
 from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm)
-from mkt.lookup.tasks import (email_buyer_refund_approved,
-                              email_buyer_refund_pending)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
 from mkt.reviewers.models import QUEUE_TARAKO
@@ -67,11 +65,7 @@ def user_summary(request, user_id):
     appr = req.filter(status=amo.REFUND_APPROVED_INSTANT)
     refund_summary = {'approved': appr.count(),
                       'requested': req.count()}
-    # TODO: This should return all `addon` types and not just webapps.
-    # -- currently get_details_url() fails on non-webapps so this is a
-    # temp fix.
-    user_addons = (user.addons.filter(type=amo.ADDON_WEBAPP)
-                              .order_by('-created'))
+    user_addons = user.addons.order_by('-created')
     user_addons = paginate(request, user_addons, per_page=15)
 
     payment_data = (AddonPaymentData.objects.filter(addon__authors=user)
@@ -213,7 +207,6 @@ def transaction_refund(request, tx_uuid):
             amo.REFUND_PENDING, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund pending: %s' % tx_uuid)
-        email_buyer_refund_pending(contrib)
         messages.success(
             request, _('Refund for this transaction now pending.'))
     elif res['status'] == COMPLETED:
@@ -222,7 +215,6 @@ def transaction_refund(request, tx_uuid):
             amo.REFUND_APPROVED, request.user,
             refund_reason=form.cleaned_data['refund_reason'])
         log.info('Refund approved: %s' % tx_uuid)
-        email_buyer_refund_approved(contrib)
         messages.success(
             request, _('Refund for this transaction successfully approved.'))
     elif res['status'] == FAILED:

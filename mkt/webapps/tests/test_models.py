@@ -723,12 +723,8 @@ class TestWebappLight(amo.tests.TestCase):
         assert not app.is_public(), (
             'STATUS_PUBLIC, disabled app should not be is_public()')
 
-    def test_webapp_type(self):
-        app = Webapp.objects.create()
-        eq_(app.type, amo.ADDON_WEBAPP)
-
     def test_app_slugs_separate_from_addon_slugs(self):
-        Webapp.objects.create(type=1, slug='slug')
+        Webapp.objects.create(slug='slug')
         webapp = Webapp(app_slug='slug')
         webapp.save()
         eq_(webapp.slug, 'app-%s' % webapp.id)
@@ -751,7 +747,7 @@ class TestWebappLight(amo.tests.TestCase):
         eq_(w.app_slug, 'slug~')
 
     def test_geodata_upon_app_creation(self):
-        app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        app = Webapp.objects.create()
         assert app.geodata, (
             'Geodata was not created with Webapp.')
 
@@ -1830,8 +1826,7 @@ class TestDetailsComplete(amo.tests.TestCase):
 
     def setUp(self):
         self.device = DEVICE_TYPES.keys()[0]
-        self.webapp = Webapp.objects.create(type=amo.ADDON_WEBAPP,
-                                            status=amo.STATUS_NULL)
+        self.webapp = Webapp.objects.create(status=amo.STATUS_NULL)
 
     def fail(self, value):
         assert not self.webapp.details_complete(), value

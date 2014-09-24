@@ -90,8 +90,7 @@ class AppFilter(BaseFilter):
 def addon_listing(request, default='name'):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     Filter = AppFilter
-    addons = UserProfile.objects.get(pk=request.user.id).addons
-    qs = Webapp.objects.filter(id__in=addons.filter(type=amo.ADDON_WEBAPP))
+    qs = UserProfile.objects.get(pk=request.user.id).addons.all()
     filter = Filter(request, qs, 'sort', default, model=Webapp)
     return filter.qs, filter
 

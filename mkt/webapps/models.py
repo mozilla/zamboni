@@ -28,7 +28,6 @@ from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
 import amo
-import amo.models
 import mkt
 from amo.utils import (attach_trans_dict, find_language, JSONEncoder, slugify,
                        smart_path, sorted_groupby, to_language, urlparams)
@@ -48,7 +47,8 @@ from mkt.regions.utils import parse_region
 from mkt.site.decorators import skip_cache, use_master, write
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
-from mkt.site.models import DynamicBoolFieldsMixin
+from mkt.site.models import (DynamicBoolFieldsMixin, ManagerBase, ModelBase,
+                             OnChangeMixin)
 from mkt.site.storage_utils import copy_stored_file
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
@@ -142,7 +142,7 @@ def clean_slug(instance, slug_field='app_slug'):
     return instance
 
 
-class AddonDeviceType(amo.models.ModelBase):
+class AddonDeviceType(ModelBase):
     addon = models.ForeignKey('Webapp', db_constraint=False)
     device_type = models.PositiveIntegerField(
         default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
@@ -167,7 +167,7 @@ def version_changed(sender, **kw):
 
 
 def attach_devices(addons):
-    addon_dict = dict((a.id, a) for a in addons if a.type == amo.ADDON_WEBAPP)
+    addon_dict = dict((a.id, a) for a in addons)
     devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
                .values_list('addon', 'device_type'))
     for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
@@ -197,22 +197,6 @@ def attach_tags(addons):
         addon_dict[addon].tag_list = [t[1] for t in tags]
 
 
-class AddonType(amo.models.ModelBase):
-    name = TranslatedField()
-    name_plural = TranslatedField()
-    description = TranslatedField()
-
-    class Meta:
-        db_table = 'addontypes'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-
-dbsignals.pre_save.connect(save_signal, sender=AddonType,
-                           dispatch_uid='addontype_translations')
-
-
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
@@ -230,9 +214,10 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
+        unique_together = (('addon', 'user'), )
 
 
-class Preview(amo.models.ModelBase):
+class Preview(ModelBase):
     addon = models.ForeignKey('Webapp', related_name='previews')
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)
@@ -313,7 +298,7 @@ dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
 
 
-class BlacklistedSlug(amo.models.ModelBase):
+class BlacklistedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
@@ -340,16 +325,15 @@ def reverse_version(version):
     return
 
 
-class WebappManager(amo.models.ManagerBase):
+class WebappManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
-        amo.models.ManagerBase.__init__(self)
+        ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
     def get_query_set(self):
         qs = super(WebappManager, self).get_query_set()
-        qs = qs._clone(klass=query.IndexQuerySet).filter(
-            type=amo.ADDON_WEBAPP)
+        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Webapp.transformer)
@@ -430,7 +414,7 @@ class UUIDModelMixin(object):
                 raise ValueError('Could not auto-generate a unique UUID')
 
 
-class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
+class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     STATUS_CHOICES = amo.STATUS_CHOICES.items()
 
@@ -444,7 +428,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
-    type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES, db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
@@ -516,13 +499,12 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         return u'%s: %s' % (self.id, self.name)
 
     def save(self, **kw):
-        # Make sure we have the right type.
-        self.type = amo.ADDON_WEBAPP
         self.clean_slug(slug_field='app_slug')
         creating = not self.id
         super(Webapp, self).save(**kw)
         if creating:
             # Set the slug once we have an id to keep things in order.
+            # This breaks test_change_called_on_new_instance_save
             self.update(slug='app-%s' % self.id)
 
             # Create Geodata object (a 1-to-1 relationship).
@@ -554,7 +536,7 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         user = amo.get_user()
 
         context = {
-            'atype': amo.ADDON_TYPE.get(self.type).upper(),
+            'atype': 'App',
             'authors': [u.email for u in self.authors.all()],
             'guid': self.guid,
             'id': self.id,
@@ -752,17 +734,9 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_DISABLED or self.disabled_by_user
 
     def can_become_premium(self):
-        """
-        Not all addons can become premium and those that can only at
-        certain times. Webapps can become premium at any time.
-        """
-        if self.upsell:
+        if self.upsell or self.is_premium():
             return False
-        if self.type == amo.ADDON_WEBAPP and not self.is_premium():
-            return True
-        return (self.status in amo.PREMIUM_STATUSES
-                and self.highest_status in amo.PREMIUM_STATUSES
-                and self.type in amo.ADDON_BECOME_PREMIUM)
+        return True
 
     def is_premium(self):
         """
@@ -797,8 +771,7 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
         Get the queries used to calculate addon.last_updated.
         """
         return (Webapp.objects.no_cache()
-                .filter(type=amo.ADDON_WEBAPP,
-                        status=amo.STATUS_PUBLIC,
+                .filter(status=amo.STATUS_PUBLIC,
                         versions__files__status=amo.STATUS_PUBLIC)
                 .values('id')
                 .annotate(last_updated=Max('versions__created')))
@@ -985,7 +958,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
     def has_installed(self, user):
         if not user or not isinstance(user, UserProfile):
             return False
-
         return self.installed.filter(user=user).exists()
 
     @amo.cached_property
@@ -1596,7 +1568,6 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
     def authors_other_addons(self, app=None):
         """Return other apps by the same author."""
         return (self.__class__.objects.visible()
-                              .filter(type=amo.ADDON_WEBAPP)
                               .exclude(id=self.id).distinct()
                               .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))
@@ -2208,7 +2179,7 @@ class Webapp(UUIDModelMixin, amo.models.OnChangeMixin, amo.models.ModelBase):
             return self.content_ratings.order_by('-modified')[0].modified
 
 
-class AddonUpsell(amo.models.ModelBase):
+class AddonUpsell(ModelBase):
     free = models.ForeignKey(Webapp, related_name='_upsell_from')
     premium = models.ForeignKey(Webapp, related_name='_upsell_to')
 
@@ -2251,7 +2222,7 @@ dbsignals.post_delete.connect(cleanup_upsell, sender=Webapp,
                               dispatch_uid='addon_upsell')
 
 
-class Trending(amo.models.ModelBase):
+class Trending(ModelBase):
     addon = models.ForeignKey(Webapp, related_name='trending')
     value = models.FloatField(default=0.0)
     # When region=0, it's trending using install counts across all regions.
@@ -2378,7 +2349,7 @@ def pre_generate_apk(sender=None, instance=None, **kw):
              .format(a=instance.id, result='YES' if generated else 'NO'))
 
 
-class Installed(amo.models.ModelBase):
+class Installed(ModelBase):
     """Track WebApp installations."""
     addon = models.ForeignKey(Webapp, related_name='installed')
     user = models.ForeignKey('users.UserProfile')
@@ -2406,7 +2377,7 @@ def add_uuid(sender, **kw):
             install.save()
 
 
-class AddonExcludedRegion(amo.models.ModelBase):
+class AddonExcludedRegion(ModelBase):
     """
     Apps are listed in all regions by default.
     When regions are unchecked, we remember those excluded regions.
@@ -2461,7 +2432,7 @@ def clean_memoized_exclusions(sender, **kw):
                                for k in mkt.regions.ALL_REGION_IDS])
 
 
-class IARCInfo(amo.models.ModelBase):
+class IARCInfo(ModelBase):
     """
     Stored data for IARC.
     """
@@ -2476,7 +2447,7 @@ class IARCInfo(amo.models.ModelBase):
         return u'app:%s' % self.addon.app_slug
 
 
-class ContentRating(amo.models.ModelBase):
+class ContentRating(ModelBase):
     """
     Ratings body information about an app.
     """
@@ -2549,7 +2520,7 @@ models.signals.post_save.connect(update_status_content_ratings,
 
 # The RatingDescriptors table is created with dynamic fields based on
 # mkt.constants.ratingdescriptors.
-class RatingDescriptors(amo.models.ModelBase, DynamicBoolFieldsMixin):
+class RatingDescriptors(ModelBase, DynamicBoolFieldsMixin):
     """
     A dynamically generated model that contains a set of boolean values
     stating if an app is rated with a particular descriptor.
@@ -2582,7 +2553,7 @@ for db_flag, desc in mkt.iarc_mappings.REVERSE_DESCS.items():
 
 # The RatingInteractives table is created with dynamic fields based on
 # mkt.constants.ratinginteractives.
-class RatingInteractives(amo.models.ModelBase, DynamicBoolFieldsMixin):
+class RatingInteractives(ModelBase, DynamicBoolFieldsMixin):
     """
     A dynamically generated model that contains a set of boolean values
     stating if an app features a particular interactive element.
@@ -2623,7 +2594,7 @@ models.signals.post_delete.connect(iarc_cleanup, sender=Webapp,
 
 # The AppFeatures table is created with dynamic fields based on
 # mkt.constants.features, which requires some setup work before we call `type`.
-class AppFeatures(amo.models.ModelBase, DynamicBoolFieldsMixin):
+class AppFeatures(ModelBase, DynamicBoolFieldsMixin):
     """
     A dynamically generated model that contains a set of boolean values
     stating if an app requires a particular feature.
@@ -2692,7 +2663,7 @@ for k, v in APP_FEATURES.iteritems():
     field.contribute_to_class(AppFeatures, 'has_%s' % k.lower())
 
 
-class AppManifest(amo.models.ModelBase):
+class AppManifest(ModelBase):
     """
     Storage for manifests.
 
@@ -2714,7 +2685,7 @@ class RegionListField(json_field.JSONField):
         return value
 
 
-class Geodata(amo.models.ModelBase):
+class Geodata(ModelBase):
     """TODO: Forgo AER and use bool columns for every region and carrier."""
     addon = models.OneToOneField(Webapp, related_name='_geodata')
     restricted = models.BooleanField(default=False)

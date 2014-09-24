@@ -1,4 +1,4 @@
-from amo.models import ManagerBase
+from mkt.site.models import ManagerBase
 
 
 class PublicCollectionsManager(ManagerBase):

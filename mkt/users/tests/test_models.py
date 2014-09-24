@@ -79,9 +79,9 @@ class TestUserProfile(amo.tests.TestCase):
 
     def test_my_apps(self):
         """Test helper method to get N apps."""
-        addon1 = Webapp.objects.create(name='test-1', type=amo.ADDON_WEBAPP)
+        addon1 = Webapp.objects.create(name='test-1')
         AddonUser.objects.create(addon_id=addon1.id, user_id=999, listed=True)
-        addon2 = Webapp.objects.create(name='test-2', type=amo.ADDON_WEBAPP)
+        addon2 = Webapp.objects.create(name='test-2')
         AddonUser.objects.create(addon_id=addon2.id, user_id=999, listed=True)
         u = UserProfile.objects.get(id=999)
         addons = u.my_apps()

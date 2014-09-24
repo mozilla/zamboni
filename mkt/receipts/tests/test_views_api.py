@@ -144,11 +144,6 @@ class TestReceipt(RestOAuth):
                           premium_type=amo.ADDON_PREMIUM)
         eq_(self.post(anon=True).status_code, 403)
 
-    def test_not_record_addon(self):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        r = self.client.post(self.url)
-        eq_(r.status_code, 400)
-
     @mock.patch('mkt.webapps.models.Webapp.has_purchased')
     def test_paid(self, has_purchased):
         has_purchased.return_value = True

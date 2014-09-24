@@ -3,8 +3,8 @@ import logging
 from django.conf import settings
 from django.db import models
 
-import amo.models
-
+import amo
+from mkt.site.models import ModelBase
 from mkt.site.mail import send_mail
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
@@ -13,7 +13,7 @@ from mkt.users.models import UserProfile
 log = logging.getLogger('z.abuse')
 
 
-class AbuseReport(amo.models.ModelBase):
+class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(UserProfile, null=True,
                                  blank=True, related_name='abuse_reported')
@@ -43,11 +43,10 @@ class AbuseReport(amo.models.ModelBase):
         send_mail(subject, msg, recipient_list=(settings.ABUSE_EMAIL,))
 
     @classmethod
-    def recent_high_abuse_reports(cls, threshold, period, addon_id=None,
-                                  addon_type=None):
+    def recent_high_abuse_reports(cls, threshold, period, addon_id=None):
         """
         Returns AbuseReport objects for the given threshold over the given time
-        period (in days). Filters by addon_id or addon_type if provided.
+        period (in days). Filters by addon_id if provided.
 
         E.g. Greater than 5 abuse reports for all webapps in the past 7 days.
         """
@@ -61,9 +60,6 @@ class AbuseReport(amo.models.ModelBase):
         if addon_id:
             abuse_sql.append('AND `addons`.`id` = %s ')
             params.append(addon_id)
-        elif addon_type and addon_type in amo.ADDON_TYPES:
-            abuse_sql.append('AND `addons`.`addontype_id` = %s ')
-            params.append(addon_type)
         abuse_sql.append('GROUP BY addon_id HAVING num_reports > %s')
         params.append(threshold)
 

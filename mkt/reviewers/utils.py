@@ -658,7 +658,6 @@ def device_queue_search(request):
     specific queue.
     """
     filters = {
-        'type': amo.ADDON_WEBAPP,
         'status': amo.STATUS_PENDING,
         'disabled_by_user': False,
     }

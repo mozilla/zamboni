@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.functional import memoize
 
 import amo
-import amo.models
+from mkt.site.models import ModelBase
 
 
 _config_cache = {}
@@ -77,7 +77,7 @@ class EmailPreviewTopic(object):
                         from_email=from_email)
 
 
-class EmailPreview(amo.models.ModelBase):
+class EmailPreview(ModelBase):
     """A log of emails for previewing purposes.
 
     This is only for development and the data might get deleted at any time.

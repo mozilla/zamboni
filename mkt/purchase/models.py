@@ -11,11 +11,12 @@ from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
 import amo
-from amo.fields import DecimalCharField
 from amo.helpers import urlparams
 from amo.utils import get_locale_from_lang
+from mkt.site.fields import DecimalCharField
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail, send_mail_jinja
+from mkt.site.models import ModelBase
 
 
 class ContributionError(Exception):
@@ -27,7 +28,7 @@ class ContributionError(Exception):
         return repr(self.value)
 
 
-class Contribution(amo.models.ModelBase):
+class Contribution(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', blank=True, null=True)
     # For in-app purchases this links to the product.
     inapp_product = models.ForeignKey('inapp.InAppProduct',
@@ -92,39 +93,6 @@ class Contribution(amo.models.ModelBase):
     def is_inapp_simulation(self):
         """True if this purchase is for a simulated in-app product."""
         return self.inapp_product and self.inapp_product.simulate
-
-    def record_failed_refund(self, e, user):
-        self.enqueue_refund(amo.REFUND_FAILED, user,
-                            rejection_reason=str(e))
-        self._switch_locale()
-        self._mail('users/support/emails/refund-failed.txt',
-                   # L10n: the addon name.
-                   _(u'%s refund failed' % self.addon.name),
-                   {'name': self.addon.name})
-        send_mail_jinja(
-            'Refund failed', 'purchase/email/refund-failed.txt',
-            {'name': self.user.email,
-             'error': str(e)},
-            settings.MARKETPLACE_EMAIL,
-            [str(self.addon.support_email)], fail_silently=True)
-
-    def mail_approved(self):
-        """The developer has approved a refund."""
-        locale = self._switch_locale()
-        amt = numbers.format_currency(abs(self.amount), self.currency,
-                                      locale=locale)
-        self._mail('users/support/emails/refund-approved.txt',
-                   # L10n: the adddon name.
-                   _(u'%s refund approved' % self.addon.name),
-                   {'name': self.addon.name, 'amount': amt})
-
-    def mail_declined(self):
-        """The developer has declined a refund."""
-        self._switch_locale()
-        self._mail('users/support/emails/refund-declined.txt',
-                   # L10n: the adddon name.
-                   _(u'%s refund declined' % self.addon.name),
-                   {'name': self.addon.name})
 
     def enqueue_refund(self, status, user, refund_reason=None,
                        rejection_reason=None):

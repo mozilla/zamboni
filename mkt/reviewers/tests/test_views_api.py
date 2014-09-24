@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 from datetime import datetime, timedelta
 
@@ -17,7 +18,7 @@ from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.models import AdditionalReview, QUEUE_TARAKO
+from mkt.reviewers.models import AdditionalReview, CannedResponse, QUEUE_TARAKO
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
@@ -223,17 +224,6 @@ class TestApiReviewer(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_addon_type(self):
-        res = self.client.get(self.url, {'type': 'app'})
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url, {'type': 'vindaloo'})
-        eq_(res.status_code, 400)
-        error = res.json['detail']
-        eq_(error.keys(), ['type'])
 
     def test_no_region_filtering(self):
         self.webapp.addonexcludedregion.create(region=mkt.regions.BR.id)
@@ -554,3 +544,140 @@ class TestCreateAdditionalReview(RestOAuth):
         eq_(response.status_code, 400)
         eq_(response.json,
             {'app': ["Invalid pk '123' - object does not exist."]})
+
+
+class TestCannedResponseAPI(RestOAuth):
+    def setUp(self):
+        self.canned = CannedResponse.objects.create(name='canned',
+            response='This is a canned response.', sort_group='sortme')
+        self.url_list = reverse('cannedresponse-list')
+        self.url_detail = reverse('cannedresponse-detail',
+                                  kwargs={'pk': self.canned.pk})
+        self.url_detail_404 = reverse('cannedresponse-detail',
+                                      kwargs={'pk': self.canned.pk + 666})
+        super(TestCannedResponseAPI, self).setUp()
+
+    def test_norights_list(self):
+        res = self.anon.get(self.url_list)
+        eq_(res.status_code, 403)
+        res = self.client.get(self.url_list)
+        eq_(res.status_code, 403)
+
+    def test_norights_get(self):
+        res = self.anon.get(self.url_detail)
+        eq_(res.status_code, 403)
+        res = self.client.get(self.url_detail)
+        eq_(res.status_code, 403)
+
+    def test_norights_patch(self):
+        res = self.anon.patch(self.url_detail, {
+            'name': 'notcanned'
+        })
+        eq_(res.status_code, 403)
+        res = self.client.patch(self.url_detail, {
+            'name': 'notcanned'
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_put(self):
+        res = self.anon.put(self.url_detail, {
+            'name': 'notcanned',
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        })
+        eq_(res.status_code, 403)
+        res = self.client.put(self.url_detail, {
+            'name': 'notcanned',
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_post(self):
+        res = self.anon.post(self.url_list, {
+            'name': 'notcanned',
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        })
+        eq_(res.status_code, 403)
+        res = self.client.post(self.url_list, {
+            'name': 'notcanned',
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_delete(self):
+        res = self.anon.delete(self.url_detail)
+        eq_(res.status_code, 403)
+
+    def test_list(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_list)
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+
+    def test_get(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_detail)
+        eq_(res.status_code, 200)
+        eq_(res.json['name'], {'en-US': unicode(self.canned.name)})
+        eq_(res.json['response'], {'en-US': unicode(self.canned.response)})
+        eq_(res.json['sort_group'], self.canned.sort_group)
+
+    def test_get_404(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_detail_404)
+        eq_(res.status_code, 404)
+
+    def test_post(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.post(self.url_list, json.dumps({
+            'name': {'en-US': 'notcanned', 'fr': u'cânètte'},
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        }))
+        eq_(res.status_code, 201)
+        eq_(CannedResponse.objects.count(), 2)
+        canned = CannedResponse.objects.get(pk=res.json['id'])
+        eq_(res.json['name'], {'en-US': 'notcanned', 'fr': u'cânètte'})
+        eq_(res.json['response'], {'en-US': unicode(canned.response)})
+        eq_(res.json['sort_group'], canned.sort_group)
+
+    def test_patch(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.patch(self.url_detail, json.dumps({
+            'sort_group': 'coolstorybro'
+        }))
+        eq_(res.status_code, 200)
+        eq_(CannedResponse.objects.count(), 1)
+        self.canned.reload()
+        eq_(res.json['sort_group'], 'coolstorybro')
+        eq_(res.json['sort_group'], self.canned.sort_group)
+
+    def test_put_but_not_everything(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.put(self.url_detail, json.dumps({
+            'sort_group': 'woops'
+        }))
+        eq_(res.status_code, 400)
+
+    def test_put(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.put(self.url_detail, json.dumps({
+            'name': {'en-US': 'notcanned', 'fr': u'cânètte'},
+            'response': 'This is not a canned response.',
+            'sort_group': 'basic'
+        }))
+        eq_(res.status_code, 200)
+        eq_(CannedResponse.objects.count(), 1)
+        self.canned.reload()
+        eq_(res.json['name'], {'en-US': 'notcanned', 'fr': u'cânètte'})
+        eq_(res.json['response'], {'en-US': unicode(self.canned.response)})
+        eq_(res.json['sort_group'], self.canned.sort_group)
+
+    def test_delete(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.delete(self.url_detail)
+        eq_(res.status_code, 204)
+        eq_(CannedResponse.objects.count(), 0)

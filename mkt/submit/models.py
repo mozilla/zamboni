@@ -1,10 +1,10 @@
 from django.db import models
 
-import amo.models
 import mkt
+from mkt.site.models import ModelBase
 
 
-class AppSubmissionChecklist(amo.models.ModelBase):
+class AppSubmissionChecklist(ModelBase):
     addon = models.OneToOneField('webapps.Webapp')
     terms = models.BooleanField(default=False)
     manifest = models.BooleanField(default=False)

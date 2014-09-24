@@ -5,7 +5,7 @@ import amo
 from aesfield.field import AESField
 
 
-class FrozenAPIAccess(amo.models.ModelBase):
+class FrozenAPIAccess(mkt.site.models.ModelBase):
     secret = AESField(max_length=255, aes_key='api:access:secret')
 
     class Meta:

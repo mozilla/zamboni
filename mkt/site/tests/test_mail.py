@@ -8,6 +8,7 @@ from nose.tools import eq_
 
 import mkt.users.notifications
 from amo.tests import TestCase
+from mkt.site.fixtures import fixture
 from mkt.site.mail import send_mail, send_html_mail_jinja
 from mkt.site.models import FakeEmail
 from mkt.users.models import UserNotification, UserProfile
@@ -15,7 +16,7 @@ from mkt.zadmin.models import set_config
 
 
 class TestSendMail(TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('user_999', 'user_2519', 'user_10482')
 
     def setUp(self):
         self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))

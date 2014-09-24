@@ -67,7 +67,7 @@ def app_view_factory(qs):
     doing anything, so lambdas are ok.
 
         GOOD: Webapp.objects.valid
-        GOOD: lambda: Webapp.objects.valid().filter(type=1)
+        GOOD: lambda: Webapp.objects.valid().filter(...)
         BAD: Webapp.objects.valid()
 
     """

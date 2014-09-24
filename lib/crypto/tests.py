@@ -87,7 +87,7 @@ class TestCrack(amo.tests.TestCase):
 
 
 class PackagedApp(amo.tests.TestCase, amo.tests.AMOPaths):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)

@@ -9,11 +9,11 @@ import commonware.log
 import waffle
 
 import amo
-import amo.models
 import mkt.constants.comm as comm
 from amo.utils import cache_ns_key
 from mkt.comm.utils import create_comm_note
 from mkt.site.mail import send_mail_jinja
+from mkt.site.models import ManagerBase, ModelBase, skip_cache
 from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
@@ -25,7 +25,7 @@ user_log = commonware.log.getLogger('z.users')
 QUEUE_TARAKO = 'tarako'
 
 
-class CannedResponse(amo.models.ModelBase):
+class CannedResponse(ModelBase):
     name = TranslatedField()
     response = TranslatedField(short=False)
     sort_group = models.CharField(max_length=255)
@@ -41,7 +41,7 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
 
 
-class EditorSubscription(amo.models.ModelBase):
+class EditorSubscription(ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Webapp)
 
@@ -49,7 +49,7 @@ class EditorSubscription(amo.models.ModelBase):
         db_table = 'editor_subscriptions'
 
 
-class ReviewerScore(amo.models.ModelBase):
+class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Webapp, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
@@ -78,7 +78,7 @@ class ReviewerScore(amo.models.ModelBase):
     def get_event(cls, addon, status, **kwargs):
         """Return the review event type constant.
 
-        This is determined by the addon.type and the queue the addon is
+        This is determined by the app type and the queue the addon is
         currently in (which is determined from the status).
 
         Note: We're not using addon.status because this is called after the
@@ -147,7 +147,7 @@ class ReviewerScore(amo.models.ModelBase):
         return val
 
     @classmethod
-    def get_recent(cls, user, limit=5, addon_type=None):
+    def get_recent(cls, user, limit=5):
         """Returns most recent ReviewerScore records."""
         key = cls.get_key('get_recent:%s' % user.id)
         val = cache.get(key)
@@ -155,65 +155,58 @@ class ReviewerScore(amo.models.ModelBase):
             return val
 
         val = ReviewerScore.objects.no_cache().filter(user=user)
-        if addon_type is not None:
-            val.filter(addon__type=addon_type)
 
         val = list(val[:limit])
         cache.set(key, val, None)
         return val
 
     @classmethod
-    def get_breakdown(cls, user):
-        """Returns points broken down by addon type."""
-        # TODO: This makes less sense now that we only have apps.
-        key = cls.get_key('get_breakdown:%s' % user.id)
+    def get_performance(cls, user):
+        """Returns sum of reviewer points."""
+        key = cls.get_key('get_performance:%s' % user.id)
         val = cache.get(key)
         if val is not None:
             return val
 
         sql = """
              SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
+                    SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
              LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
              WHERE `reviewer_scores`.`user_id` = %s
-             GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, None)
         return val
 
     @classmethod
-    def get_breakdown_since(cls, user, since):
+    def get_performance_since(cls, user, since):
         """
-        Returns points broken down by addon type since the given datetime.
+        Returns sum of reviewer points since the given datetime.
         """
-        key = cls.get_key('get_breakdown:%s:%s' % (user.id, since.isoformat()))
+        key = cls.get_key('get_performance:%s:%s' % (user.id, since.isoformat()))
         val = cache.get(key)
         if val is not None:
             return val
 
         sql = """
              SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
+                    SUM(`reviewer_scores`.`score`) AS `total`
              FROM `reviewer_scores`
              LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
              WHERE `reviewer_scores`.`user_id` = %s AND
                    `reviewer_scores`.`created` >= %s
-             GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
 
     @classmethod
-    def _leaderboard_query(cls, since=None, types=None, addon_type=None):
+    def _leaderboard_query(cls, since=None, types=None):
         """
         Returns common SQL to leaderboard calls.
         """
@@ -230,13 +223,10 @@ class ReviewerScore(amo.models.ModelBase):
         if types is not None:
             query = query.filter(note_key__in=types)
 
-        if addon_type is not None:
-            query = query.filter(addon__type=addon_type)
-
         return query
 
     @classmethod
-    def get_leaderboards(cls, user, days=7, types=None, addon_type=None):
+    def get_leaderboards(cls, user, days=7, types=None):
         """Returns leaderboards with ranking for the past given days.
 
         This will return a dict of 3 items::
@@ -260,8 +250,7 @@ class ReviewerScore(amo.models.ModelBase):
         leader_top = []
         leader_near = []
 
-        query = cls._leaderboard_query(since=week_ago, types=types,
-                                       addon_type=addon_type)
+        query = cls._leaderboard_query(since=week_ago, types=types)
         scores = []
 
         user_rank = 0
@@ -338,14 +327,14 @@ class ReviewerScore(amo.models.ModelBase):
         return scores
 
 
-class EscalationQueue(amo.models.ModelBase):
+class EscalationQueue(ModelBase):
     addon = models.ForeignKey(Webapp)
 
     class Meta:
         db_table = 'escalation_queue'
 
 
-class RereviewQueue(amo.models.ModelBase):
+class RereviewQueue(ModelBase):
     addon = models.ForeignKey(Webapp)
 
     class Meta:
@@ -394,7 +383,7 @@ def tarako_failed(review):
     send_tarako_mail(review)
 
 
-class AdditionalReviewManager(amo.models.ManagerBase):
+class AdditionalReviewManager(ManagerBase):
     def unreviewed(self, queue, and_approved=False):
         query = {
             'passed': None,
@@ -411,7 +400,7 @@ class AdditionalReviewManager(amo.models.ManagerBase):
             return None
 
 
-class AdditionalReview(amo.models.ModelBase):
+class AdditionalReview(ModelBase):
     app = models.ForeignKey(Webapp)
     queue = models.CharField(max_length=30)
     passed = models.NullBooleanField()

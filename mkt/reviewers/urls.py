@@ -1,5 +1,7 @@
 from django.conf.urls import include, patterns, url
 
+from rest_framework.routers import SimpleRouter
+
 import amo
 from mkt.receipts.urls import receipt_patterns
 from mkt.reviewers import views
@@ -54,7 +56,11 @@ url_patterns = patterns('',
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
 )
 
+reviewers_router = SimpleRouter()
+reviewers_router.register(r'canned-responses', views.CannedResponseViewSet)
+
 api_patterns = patterns('',
+    url(r'reviewers/', include(reviewers_router.urls)),
     url('^reviewers/search', views.ReviewersSearchView.as_view(),
         name='reviewers-search-api'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/approve/(?P<region>[^ /]+)?$',
@@ -72,5 +78,5 @@ api_patterns = patterns('',
         views.review_translate,
         name='reviewers.review_translate'),
     url(r'^reviewers/app/(?P<pk>[^/<>"\']+)/token$',
-        views.GenerateToken.as_view(), name='generate-reviewer-token'),
+        views.GenerateToken.as_view(), name='generate-reviewer-token')
 )

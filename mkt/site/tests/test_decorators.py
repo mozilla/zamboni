@@ -14,6 +14,7 @@ from amo.urlresolvers import reverse
 from mkt.site.decorators import (login_required, json_response, json_view,
                                  permission_required, set_modified_on,
                                  set_task_user, write)
+from mkt.site.fixtures import fixture
 from mkt.users.models import UserProfile
 
 
@@ -71,7 +72,7 @@ def test_write(commit_on_success):
 
 
 class TestTaskUser(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('users')
 
     def test_set_task_user(self):
         @set_task_user
@@ -122,7 +123,7 @@ class TestLoginRequired(object):
 
 
 class TestSetModifiedOn(amo.tests.TestCase):
-    fixtures = ['base/users']
+    fixtures = fixture('users')
 
     @set_modified_on
     def some_method(self, worked):

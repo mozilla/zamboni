@@ -11,6 +11,7 @@ import amo
 import amo.tests
 from amo.tests import app_factory
 from mkt.receipts.utils import create_receipt, get_key
+from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.users.models import UserProfile
@@ -22,17 +23,16 @@ TEST_LEEWAY = 100
 
 
 class TestReceipt(amo.tests.TestCase):
-    fixtures = ['base/users.json']
+    fixtures = fixture('users')
 
     def setUp(self):
-        self.app = Webapp.objects.create(type=amo.ADDON_WEBAPP)
+        self.app = Webapp.objects.create()
         self.app.update(manifest_url='http://f.c/')
         self.user = UserProfile.objects.get(pk=999)
         self.other_user = UserProfile.objects.exclude(pk=999)[0]
 
     def create_install(self, user, webapp):
-        webapp.update(type=amo.ADDON_WEBAPP,
-                      manifest_url='http://somesite.com/')
+        webapp.update(manifest_url='http://somesite.com/')
         return Installed.objects.safer_get_or_create(user=user,
                                                      addon=webapp)[0]
 

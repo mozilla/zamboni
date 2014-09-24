@@ -714,7 +714,6 @@ def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     post_save.disconnect(app_update_search_index, sender=Webapp,
                          dispatch_uid='webapp.search.index')
 
-    type_ = kw.pop('type', amo.ADDON_WEBAPP)
     complete = kw.pop('complete', False)
     rated = kw.pop('rated', False)
     if complete:
@@ -742,7 +741,7 @@ def app_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     kwargs.update(kw)
 
     # Save 1.
-    app = Webapp.objects.create(type=type_, **kwargs)
+    app = Webapp.objects.create(**kwargs)
     version = version_factory(file_kw, addon=app, **version_kw)  # Save 2.
     app.status = status
     app.update_version()
@@ -885,8 +884,7 @@ class ESTestCase(TestCase):
             if hasattr(cls, '_addons'):
                 Webapp.objects.filter(
                     pk__in=[a.id for a in cls._addons]).delete()
-                unindex_webapps([a.id for a in cls._addons
-                                 if a.type == amo.ADDON_WEBAPP])
+                unindex_webapps([a.id for a in cls._addons])
             amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
             # Make sure we're calling super's tearDownClass even if something

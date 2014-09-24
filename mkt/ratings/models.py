@@ -8,7 +8,7 @@ import bleach
 from celeryutils import task
 from tower import ugettext_lazy as _
 
-import amo.models
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 
@@ -16,7 +16,7 @@ from mkt.users.models import UserProfile
 log = logging.getLogger('z.review')
 
 
-class ReviewManager(amo.models.ManagerBase):
+class ReviewManager(ManagerBase):
 
     def valid(self):
         """Get all reviews that aren't replies."""
@@ -24,7 +24,7 @@ class ReviewManager(amo.models.ManagerBase):
         return self.extra(where=['reply_to IS NULL'])
 
 
-class Review(amo.models.ModelBase):
+class Review(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', related_name='_reviews')
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
@@ -108,7 +108,7 @@ models.signals.pre_save.connect(save_signal, sender=Review,
 
 
 # TODO: translate old flags.
-class ReviewFlag(amo.models.ModelBase):
+class ReviewFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'

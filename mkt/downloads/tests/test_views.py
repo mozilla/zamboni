@@ -64,10 +64,6 @@ class TestDownload(BasePackagedAppTest):
                           password='password')
         eq_(self.client.get(self.url).status_code, 200)
 
-    def test_not_webapp(self):
-        self.app.update(type=amo.ADDON_EXTENSION)
-        eq_(self.client.get(self.url).status_code, 404)
-
     @mock.patch.object(packaged, 'sign', mock_sign)
     def test_file_blocklisted(self):
         if not settings.XSENDFILE:

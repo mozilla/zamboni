@@ -16,8 +16,8 @@ from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
-import amo.models
 from amo.urlresolvers import reverse
+from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.translations.fields import NoLinksField, save_signal
 from mkt.translations.query import order_by_translation
 
@@ -64,8 +64,7 @@ class UserEmailField(forms.EmailField):
 AbstractBaseUser._meta.get_field('password').max_length = 255
 
 
-class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
-                  AbstractBaseUser):
+class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     USERNAME_FIELD = 'username'
     username = models.CharField(max_length=255, default='', unique=True)
@@ -160,9 +159,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     def my_apps(self, n=8):
         """Returns n apps"""
-        qs = self.addons.filter(type=amo.ADDON_WEBAPP)
-        qs = order_by_translation(qs, 'name')
-        return qs[:n]
+        return order_by_translation(self.addons.all(), 'name')[:n]
 
     @amo.cached_property
     def is_developer(self):
@@ -249,7 +246,7 @@ models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')
 
 
-class UserNotification(amo.models.ModelBase):
+class UserNotification(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='notifications')
     notification_id = models.IntegerField()
     enabled = models.BooleanField(default=False)

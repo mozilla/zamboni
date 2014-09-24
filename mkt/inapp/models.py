@@ -2,8 +2,8 @@ import json
 
 from django.db import models
 
-from amo.models import ModelBase
 from mkt.prices.models import Price
+from mkt.site.models import ModelBase
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.webapps.models import UUIDModelMixin
 

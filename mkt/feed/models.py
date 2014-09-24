@@ -18,9 +18,7 @@ from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
-import amo.models
-from amo.models import SlugField
-
+import amo
 import mkt.carriers
 import mkt.regions
 from mkt.collections.fields import ColorField
@@ -28,6 +26,7 @@ from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.feed import indexers
 from mkt.ratings.validators import validate_rating
 from mkt.site.decorators import use_master
+from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.webapps.models import clean_slug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps
@@ -37,7 +36,7 @@ from .constants import (BRAND_LAYOUT_CHOICES, BRAND_TYPE_CHOICES,
                         FEEDAPP_TYPE_CHOICES)
 
 
-class BaseFeedCollection(amo.models.ModelBase):
+class BaseFeedCollection(ModelBase):
     """
     On the feed, there are a number of types of feed items that share a similar
     structure: a slug, one or more member apps with a maintained sort order,
@@ -64,13 +63,13 @@ class BaseFeedCollection(amo.models.ModelBase):
       on the model.
     """
     _apps = None
-    slug = SlugField(blank=True, max_length=30, unique=True,
-                     help_text='Used in collection URLs.')
+    slug = models.CharField(blank=True, max_length=30, unique=True,
+                            help_text='Used in collection URLs.')
 
     membership_class = None
     membership_relation = None
 
-    objects = amo.models.ManagerBase()
+    objects = ManagerBase()
 
     class Meta:
         abstract = True
@@ -154,7 +153,7 @@ class BaseFeedImage(models.Model):
         abstract = True
 
 
-class BaseFeedCollectionMembership(amo.models.ModelBase):
+class BaseFeedCollectionMembership(ModelBase):
     """
     A custom `through` model is required for the M2M field `_apps` on
     subclasses of `BaseFeedCollection`. This model houses an `order` field that
@@ -335,14 +334,14 @@ class FeedShelf(BaseFeedCollection, BaseFeedImage):
         return self.feeditem_set.exists()
 
 
-class FeedApp(BaseFeedImage, amo.models.ModelBase):
+class FeedApp(BaseFeedImage, ModelBase):
     """
     Model for "Custom Featured Apps", a feed item highlighting a single app
     and some additional metadata (e.g. a review or a screenshot).
     """
     app = models.ForeignKey(Webapp)
     description = PurifiedField()
-    slug = SlugField(max_length=30, unique=True)
+    slug = models.CharField(max_length=30, unique=True)
     background_color = ColorField(null=True)
     type = models.CharField(choices=FEEDAPP_TYPE_CHOICES, max_length=30)
 
@@ -381,7 +380,7 @@ class FeedApp(BaseFeedImage, amo.models.ModelBase):
                                 suffix=suffix, pk=self.pk))
 
 
-class FeedItem(amo.models.ModelBase):
+class FeedItem(ModelBase):
     """
     A thin wrapper for all items that live on the feed, including metadata
     describing the conditions that the feed item should be included in a user's

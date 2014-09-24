@@ -7,7 +7,6 @@ from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
-import amo
 from mkt.abuse.models import AbuseReport
 from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import GroupPermission
@@ -26,7 +25,7 @@ log = logging.getLogger('z.monolith')
 STATS = {
     'apps_ratings': {
         'qs': Review.objects
-            .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP)
+            .filter(editorreview=0)
             .values('addon')
             .annotate(count=Count('addon')),
         'type': 'slice',
@@ -36,7 +35,7 @@ STATS = {
     },
     'apps_average_rating': {
         'qs': Review.objects
-            .filter(editorreview=0, addon__type=amo.ADDON_WEBAPP)
+            .filter(editorreview=0)
             .values('addon')
             .annotate(avg=Avg('rating')),
         'type': 'total',
@@ -46,7 +45,6 @@ STATS = {
     },
     'apps_abuse_reports': {
         'qs': AbuseReport.objects
-            .filter(addon__type=amo.ADDON_WEBAPP)
             .values('addon')
             .annotate(count=Count('addon')),
         'type': 'slice',

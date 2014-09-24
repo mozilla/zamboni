@@ -606,26 +606,6 @@ class TestTransactionRefund(TestCase):
                                     args=[self.uuid]))
 
     @mock.patch('mkt.lookup.views.client')
-    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-    def test_refund_pending_email(self, solitude):
-        solitude.api.bango.refund.post.return_value = self.bango_ret(PENDING)
-        solitude.get.return_value = self.refund_tx_ret()
-
-        transaction_refund(self.req, self.uuid)
-        eq_(len(mail.outbox), 1)
-        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
-
-    @mock.patch('mkt.lookup.views.client')
-    @mock.patch.object(settings, 'SEND_REAL_EMAIL', True)
-    def test_refund_completed_email(self, solitude):
-        solitude.api.bango.refund.post.return_value = self.bango_ret(COMPLETED)
-        solitude.get.return_value = self.refund_tx_ret()
-
-        transaction_refund(self.req, self.uuid)
-        eq_(len(mail.outbox), 1)
-        assert self.app.name.localized_string in smart_str(mail.outbox[0].body)
-
-    @mock.patch('mkt.lookup.views.client')
     def test_403_reg_user(self, solitude):
         solitude.api.bango.refund.post.return_value = self.bango_ret(PENDING)
         solitude.get.return_value = self.refund_tx_ret()
@@ -754,10 +734,6 @@ class TestAppSummary(AppSummaryTest):
 
     def test_authors(self):
         user = UserProfile.objects.get(username='31337')
-        role = AddonUser.objects.create(user=user,
-                                        addon=self.app,
-                                        role=amo.AUTHOR_ROLE_DEV)
-        self.app.addonuser_set.add(role)
         res = self.summary()
         eq_(res.context['authors'][0].display_name, user.display_name)
 
@@ -1020,7 +996,7 @@ class TestAppSummaryRefunds(AppSummaryTest):
 
 
 class TestPurchases(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -1064,7 +1040,7 @@ class TestPurchases(amo.tests.TestCase):
 
 
 class TestActivity(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
@@ -1106,7 +1082,7 @@ class TestActivity(amo.tests.TestCase):
 
 
 class TestAppActivity(amo.tests.TestCase):
-    fixtures = ['base/users'] + fixture('webapp_337141')
+    fixtures = fixture('webapp_337141', 'users')
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
