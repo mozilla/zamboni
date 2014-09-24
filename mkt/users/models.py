@@ -1,3 +1,4 @@
+import hashlib
 from contextlib import contextmanager
 from datetime import datetime
 
@@ -160,6 +161,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def my_apps(self, n=8):
         """Returns n apps"""
         return order_by_translation(self.addons.all(), 'name')[:n]
+
+    @property
+    def recommendation_hash(self):
+        return hashlib.sha256('{id}{key}'.format(
+            id=self.id, key=settings.SECRET_KEY)).hexdigest()
 
     @amo.cached_property
     def is_developer(self):

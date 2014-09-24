@@ -6,6 +6,7 @@ import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
+from mkt.recommendations.views import RecommendationView
 from mkt.search.views import RocketbarViewV2
 
 
@@ -55,4 +56,6 @@ urlpatterns = patterns('',
         views.FeedElementGetView.as_view(), name='feed.fire_feed_element_get'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
+    url(r'^apps/recommend/$', RecommendationView.as_view(),
+        name='apps-recommend'),
 ) + v1_urls

@@ -3,11 +3,11 @@ from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
 
 from mock import ANY, Mock, patch
-from nose.tools import eq_, ok_, raises
+from nose.tools import eq_, ok_
 
 from amo.tests import app_factory, TestCase
 from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
-                                PROVIDER_REFERENCE)
+                                    PROVIDER_REFERENCE)
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.providers import (account_check, Bango, Boku, get_provider,
                                       Reference)
