@@ -1,0 +1,4 @@
+{% extends 'users/emails/base.ltxt' -%}
+{% block content %}
+{% trans %}Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account.{% endrans %}
+{% endblock %}
