@@ -25,7 +25,7 @@ import jinja2
 import requests
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
-from rest_framework import serializers
+from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView
 from rest_framework.permissions import BasePermission
@@ -44,7 +44,7 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.authorization import AnyOf, GroupPermission
-from mkt.api.base import form_errors, SlugOrIdMixin
+from mkt.api.base import form_errors, CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
@@ -57,8 +57,11 @@ from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
                                   EditorSubscription, EscalationQueue,
                                   QUEUE_TARAKO, RereviewQueue, ReviewerScore)
-from mkt.reviewers.serializers import (ReviewersESAppSerializer,
-                                       ReviewingSerializer)
+from mkt.reviewers.serializers import (AdditionalReviewSerializer,
+                                       CannedResponseSerializer,
+                                       ReviewerAdditionalReviewSerializer,
+                                       ReviewersESAppSerializer,
+                                       ReviewingSerializer,)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
 from mkt.search.views import search_form_to_es_fields, SearchView
@@ -1166,59 +1169,6 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         return Response({'approved': bool(form.cleaned_data['approve'])})
 
 
-class AdditionalReviewSerializer(serializers.ModelSerializer):
-    """Developer facing AdditionalReview serializer."""
-
-    app = serializers.PrimaryKeyRelatedField()
-    comment = serializers.CharField(max_length=255, read_only=True)
-
-    class Meta:
-        model = AdditionalReview
-        fields = ['id', 'app', 'queue', 'passed', 'created', 'modified',
-                  'review_completed', 'comment']
-        # Everything is read-only.
-        read_only_fields = ['id', 'passed', 'created', 'modified',
-                            'review_completed', 'reviewer']
-
-    def pending_review_exists(self, queue, app_id):
-        return (AdditionalReview.objects.unreviewed(queue=queue)
-                                        .filter(app_id=app_id)
-                                        .exists())
-
-    def validate_queue(self, attrs, source):
-        if attrs[source] != QUEUE_TARAKO:
-            raise serializers.ValidationError('is not a valid choice')
-        return attrs
-
-    def validate_app(self, attrs, source):
-        queue = attrs.get('queue')
-        app = attrs.get('app')
-        if queue and app and self.pending_review_exists(queue, app):
-            raise serializers.ValidationError('has a pending review')
-        return attrs
-
-
-class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
-    """Reviewer facing AdditionalReview serializer."""
-
-    comment = serializers.CharField(max_length=255, required=False)
-
-    class Meta:
-        model = AdditionalReview
-        fields = AdditionalReviewSerializer.Meta.fields
-        read_only_fields = list(
-            set(AdditionalReviewSerializer.Meta.read_only_fields) -
-            set(['passed', 'reviewer']))
-
-    def validate(self, attrs):
-        if self.object.passed is not None:
-            raise serializers.ValidationError('has already been reviewed')
-        elif attrs.get('passed') not in (True, False):
-            raise serializers.ValidationError('passed must be a boolean value')
-        else:
-            return attrs
-
-
 class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
     """
     API ViewSet for setting pass/fail of an AdditionalReview. This does not
@@ -1362,3 +1312,12 @@ def queue_viewing(request):
                                             .display_name)
 
     return viewing
+
+
+class CannedResponseViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = [GroupPermission('Admin', 'ReviewerTools')]
+    model = CannedResponse
+    serializer_class = CannedResponseSerializer
+    cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']
