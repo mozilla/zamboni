@@ -61,7 +61,8 @@ from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
                                        ReviewersESAppSerializer,
-                                       ReviewingSerializer,)
+                                       ReviewingSerializer,
+                                       ReviewerScoreSerializer,)
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  device_queue_search, log_reviewer_action)
 from mkt.search.views import search_form_to_es_fields, SearchView
@@ -1321,3 +1322,17 @@ class CannedResponseViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     model = CannedResponse
     serializer_class = CannedResponseSerializer
     cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']
+
+
+class ReviewerScoreViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = [GroupPermission('Admin', 'ReviewerTools')]
+    serializer_class = ReviewerScoreSerializer
+    cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']
+
+    # amo.REVIEWED_MANUAL is the default so we don't need to set it on the
+    # instance when we are creating a new one, but we do need to set it on
+    # queryset to prevent instances with other note_key values from ever being
+    # returned.
+    queryset = ReviewerScore.objects.filter(note_key=amo.REVIEWED_MANUAL)

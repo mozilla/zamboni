@@ -150,3 +150,36 @@ Canned Responses
     :status 204: successfully deleted.
     :status 400: error processing the request.
     :status 404: not found.
+
+
+Reviewer Scores
+===============
+
+.. note:: Requires authentication and permission to alter reviewer tools.
+
+.. http:get::  /api/v1/reviewers/scores/
+.. http:post::  /api/v1/reviewers/scores/
+.. http:get::  /api/v1/reviewers/scores/(int:id)/
+.. http:put::  /api/v1/reviewers/scores/(int:id)/
+.. http:patch::  /api/v1/reviewers/scores/(int:id)/
+.. http:delete::  /api/v1/reviewers/scores/(int:id)/
+
+
+    Return, create, modify and delete the reviewer scores for an user. This API
+    only deals with manual scores, and never returns or allows you to modify
+    automatic ones.
+
+    **Response / Request parameters**:
+
+    :param id: unique identifier for the reviewer score.
+    :type id: int
+    :param score: score value (can be negative).
+    :type score: int
+    :param note: optional note attached to the score.
+    :type note: string
+
+    :status 200: successfully completed.
+    :status 201: successfully created.
+    :status 204: successfully deleted.
+    :status 400: error processing the request.
+    :status 404: not found.

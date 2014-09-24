@@ -58,6 +58,8 @@ url_patterns = patterns('',
 
 reviewers_router = SimpleRouter()
 reviewers_router.register(r'canned-responses', views.CannedResponseViewSet)
+reviewers_router.register(r'scores', views.ReviewerScoreViewSet)
+
 
 api_patterns = patterns('',
     url(r'reviewers/', include(reviewers_router.urls)),
