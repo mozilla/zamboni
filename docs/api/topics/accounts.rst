@@ -14,7 +14,7 @@ Account
 The account API, makes use of the term ``mine``. This is an explicit variable to
 lookup the logged in user account id.
 
-.. http:get:: /api/v1/account/settings/mine/
+.. http:get:: /api/v2/account/settings/mine/
 
     Returns data on the currently logged in user.
 
@@ -23,13 +23,13 @@ lookup the logged in user account id.
     .. code-block:: json
 
         {
-            "resource_uri": "/api/v1/account/settings/1/",
+            "resource_uri": "/api/v2/account/settings/1/",
             "display_name": "Nice person",
         }
 
 To update account information:
 
-.. http:patch:: /api/v1/account/settings/mine/
+.. http:patch:: /api/v2/account/settings/mine/
 
     **Request**
 
@@ -46,7 +46,7 @@ Fields that can be updated:
 
 * *display_name*
 
-.. http:get:: /api/v1/account/installed/mine/
+.. http:get:: /api/v2/account/installed/mine/
 
     Returns a list of the installed apps for the currently logged in user. This
     ignores any reviewer or developer installed apps.
@@ -65,7 +65,7 @@ Fields that can be updated:
 
 .. _permission-get-label:
 
-.. http:get:: /api/v1/account/permissions/mine/
+.. http:get:: /api/v2/account/permissions/mine/
 
     Returns a mapping of the permissions for the currently logged in user.
 
@@ -85,7 +85,7 @@ Fields that can be updated:
                 "stats": false,
                 "webpay": false
             },
-            "resource_uri": "/api/v1/account/permissions/1/"
+            "resource_uri": "/api/v2/account/permissions/1/"
         }
 
     :param permissions: permissions and properties for the user account. It
@@ -97,7 +97,7 @@ Fields that can be updated:
 Feedback
 ========
 
-.. http:post:: /api/v1/account/feedback/
+.. http:post:: /api/v2/account/feedback/
 
     Submit feedback to the Marketplace.
 
@@ -149,7 +149,7 @@ Feedback
 Newsletter signup
 =================
 
-.. http:post:: /api/v1/account/newsletter/
+.. http:post:: /api/v2/account/newsletter/
 
     This resource requests that the email passed in the request parameters be
     subscribed to the Marketplace newsletter.

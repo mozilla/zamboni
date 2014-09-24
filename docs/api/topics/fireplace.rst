@@ -11,7 +11,7 @@ change in conjunction with the Fireplace client.
 App
 ===
 
-.. http:get:: /api/v1/fireplace/app/
+.. http:get:: /api/v2/fireplace/app/
 
     A copy of :ref:`the app API <app-response-label>`. The response only
     contains the specific subset of fields Fireplace needs.
@@ -20,7 +20,7 @@ App
 Error reporter
 ==============
 
-.. http:post:: /api/v1/fireplace/report_error
+.. http:post:: /api/v2/fireplace/report_error
 
     An entry point for reporting client-side errors via Sentry.
 
@@ -64,7 +64,7 @@ Error reporter
 Search
 ======
 
-.. http:get:: /api/v1/fireplace/search/
+.. http:get:: /api/v2/fireplace/search/
 
     A copy of :ref:`the search API <search-api>`. Like the App API above, the
     response only contains the specific subset of fields Fireplace needs.
@@ -72,7 +72,7 @@ Search
 Featured Search
 ===============
 
-.. http:get:: /api/v1/fireplace/search/featured/
+.. http:get:: /api/v2/fireplace/search/featured/
 
     A copy of :ref:`the featured search API <featured-search-api>`. Like the
     App API above, the response contains the specific subset of fields Fireplace
@@ -82,7 +82,7 @@ Featured Search
 Consumer Information
 ====================
 
-.. http:get:: /api/v1/fireplace/consumer-info/
+.. http:get:: /api/v2/fireplace/consumer-info/
 
     Return information about the client making the request.
 

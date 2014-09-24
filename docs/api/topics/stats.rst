@@ -25,7 +25,7 @@ Apps added by packaging type
 
 The number of apps added each day over time for each app package type.
 
-.. http:get:: /api/v1/stats/global/apps_added_by_package/
+.. http:get:: /api/v2/stats/global/apps_added_by_package/
 
     **Request**:
 
@@ -73,7 +73,7 @@ Apps added by premium type
 
 The number of apps added each day over time, filtered by premium type.
 
-.. http:get:: /api/v1/stats/global/apps_added_by_premium/
+.. http:get:: /api/v2/stats/global/apps_added_by_premium/
 
     **Request**:
 
@@ -154,7 +154,7 @@ Apps available by packaging type
 
 The number of apps available each day over time for each app package type.
 
-.. http:get:: /api/v1/stats/global/apps_available_by_package/
+.. http:get:: /api/v2/stats/global/apps_available_by_package/
 
     **Request**:
 
@@ -202,7 +202,7 @@ Apps available by premium type
 
 The number of apps available each day over time, filtered by premium type.
 
-.. http:get:: /api/v1/stats/global/apps_available_by_premium/
+.. http:get:: /api/v2/stats/global/apps_available_by_premium/
 
     **Request**:
 
@@ -286,7 +286,7 @@ region.
 
 .. note:: Zero values are not stored.
 
-.. http:get:: /api/v1/stats/global/apps_installed/
+.. http:get:: /api/v2/stats/global/apps_installed/
 
     **Request**:
 
@@ -323,7 +323,7 @@ Total developers
 
 The total number of developers over time.
 
-.. http:get:: /api/v1/stats/global/total_developers/
+.. http:get:: /api/v2/stats/global/total_developers/
 
     **Request**:
 
@@ -358,7 +358,7 @@ Total visits
 
 The total number of visits to Marketplace over time.
 
-.. http:get:: /api/v1/stats/global/total_visits/
+.. http:get:: /api/v2/stats/global/total_visits/
 
     **Request**:
 
@@ -393,7 +393,7 @@ Ratings
 
 The number of app ratings each day to Marketplace over time.
 
-.. http:get:: /api/v1/stats/global/ratings/
+.. http:get:: /api/v2/stats/global/ratings/
 
     **Request**:
 
@@ -428,7 +428,7 @@ Abuse Reports
 
 The number of abuse reports each day to Marketplace over time.
 
-.. http:get:: /api/v1/stats/global/abuse_reports/
+.. http:get:: /api/v2/stats/global/abuse_reports/
 
     **Request**:
 
@@ -463,7 +463,7 @@ Gross Revenue
 
 The gross revenue of apps purchased over time.
 
-.. http:get:: /api/v1/stats/global/revenue/
+.. http:get:: /api/v2/stats/global/revenue/
 
     **Request**:
 
@@ -515,7 +515,7 @@ region.
 
 .. note:: Zero values are not stored.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/installs/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/installs/
 
     **Request**:
 
@@ -554,7 +554,7 @@ The number of page visits each day over time.
 
 .. note:: Zero values are not stored.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/visits/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/visits/
 
     **Request**:
 
@@ -589,7 +589,7 @@ Ratings
 
 The number of app ratings each day for this app over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/ratings/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/ratings/
 
     **Request**:
 
@@ -624,7 +624,7 @@ Average ratings
 
 The average rating for this app over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/average_rating/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/average_rating/
 
     **Request**:
 
@@ -659,7 +659,7 @@ Abuse Reports
 
 The number of abuse reports each day for this app over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/abuse_reports/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/abuse_reports/
 
     **Request**:
 
@@ -694,7 +694,7 @@ Gross Revenue
 
 The gross revenue of app purchases over time.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/revenue/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/revenue/
 
     **Request**:
 
@@ -742,7 +742,7 @@ Global totals
 
 Statistical information about global metrics.
 
-.. http:get:: /api/v1/stats/global/totals/
+.. http:get:: /api/v2/stats/global/totals/
 
     **Response**:
 
@@ -783,7 +783,7 @@ Per-app totals
 
 Statistical information about per-app metrics.
 
-.. http:get:: /api/v1/stats/app/(int:id)|(string:slug)/totals/
+.. http:get:: /api/v2/stats/app/(int:id)|(string:slug)/totals/
 
     **Response**:
 

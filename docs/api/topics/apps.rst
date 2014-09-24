@@ -14,7 +14,7 @@ App
     depending on the query. See :ref:`translations <overview-translations>`.
 
 
-.. http:get:: /api/v1/apps/app/
+.. http:get:: /api/v2/apps/app/
 
     .. note:: Requires authentication.
 
@@ -33,7 +33,7 @@ App
 
 .. _app-response-label:
 
-.. http:get:: /api/v1/apps/app/(int:id)|(string:slug)/
+.. http:get:: /api/v2/apps/app/(int:id)|(string:slug)/
 
     .. note:: Does not require authentication if your app is public.
 
@@ -99,13 +99,13 @@ App
                     "filetype": "image/png",
                     "id": "37",
                     "image_url": "/tmp/uploads/previews/full/0/37.png?modified=1362762723",
-                    "resource_uri": "/api/v1/apps/preview/37/",
+                    "resource_uri": "/api/v2/apps/preview/37/",
                     "thumbnail_url": "/tmp/uploads/previews/thumbs/0/37.png?modified=1362762723"
                 }
             ],
             "price": null,
             "price_locale": null,
-            "privacy_policy": "/api/v1/apps/app/24/privacy/",
+            "privacy_policy": "/api/v2/apps/app/24/privacy/",
             "public_stats": false,
             "ratings": {
                 "average": 0.0,
@@ -126,7 +126,7 @@ App
                 }
             ],
             "release_notes": null,
-            "resource_uri": "/api/v1/apps/app/24/",
+            "resource_uri": "/api/v2/apps/app/24/",
             "slug": "test-app-zrnktefoptje",
             "status": 4,
             "support_email": {
@@ -148,8 +148,8 @@ App
                 "purchased": false
             },
             "versions": {
-                "1.0": "/api/v1/apps/versions/7012/",
-                "1.1": "/api/v1/apps/versions/7930/"
+                "1.0": "/api/v2/apps/versions/7012/",
+                "1.1": "/api/v2/apps/versions/7930/"
             }
         }
 
@@ -328,7 +328,7 @@ App
          15   Blocked
     =======  ============================
 
-.. http:get:: /api/v1/apps/(int:id)|(string:slug)/privacy/
+.. http:get:: /api/v2/apps/(int:id)|(string:slug)/privacy/
 
     **Response**
 
@@ -340,7 +340,7 @@ App
     :status 404: not found.
     :status 451: resource unavailable for legal reasons.
 
-.. http:delete:: /api/v1/apps/app/(int:id)/
+.. http:delete:: /api/v2/apps/app/(int:id)/
 
    .. note:: Requires authentication.
 
@@ -348,11 +348,11 @@ App
 
    :status 204: successfully deleted.
 
-.. http:post:: /api/v1/apps/app/
+.. http:post:: /api/v2/apps/app/
 
    See :ref:`Creating an app <app-post-label>`
 
-.. http:put:: /api/v1/apps/app/(int:id)/
+.. http:put:: /api/v2/apps/app/(int:id)/
 
    See :ref:`Creating an app <app-put-label>`
 
@@ -361,7 +361,7 @@ Updating an App Icon
 
 .. note:: Requires authentication and a successfully created app.
 
-.. http:put:: /api/v1/apps/app/(int:id|string:app_slug)/icon/
+.. http:put:: /api/v2/apps/app/(int:id|string:app_slug)/icon/
 
     **Request**
 
@@ -384,7 +384,7 @@ Updating an App Icon
 Versions
 ========
 
-.. http:get:: /api/v1/apps/versions/(int:id)/
+.. http:get:: /api/v2/apps/versions/(int:id)/
 
     Retrieves data for a specific version of an application.
 
@@ -398,7 +398,7 @@ Versions
     .. code-block:: json
 
         {
-            "app": "/api/v1/apps/app/7/",
+            "app": "/api/v2/apps/app/7/",
             "developer_name": "Cee's Vans",
             "features": [
                 "apps",
@@ -420,7 +420,7 @@ Versions
     :param release_notes: the release notes for that version.
     :type release_notes: string|object|null
 
-.. http:patch:: /api/v1/apps/versions/(int:id)/
+.. http:patch:: /api/v2/apps/versions/(int:id)/
 
     Update data for a specific version of an application.
 
@@ -460,7 +460,7 @@ Payments
 
 .. note:: Requires authentication and a successfully created app.
 
-.. http:get:: /api/v1/apps/app/(int:id)/payments/
+.. http:get:: /api/v2/apps/app/(int:id)/payments/
 
     Gets information about the payments of an app, including the payment
     account.
@@ -473,7 +473,7 @@ Payments
     :type account: string
     :status 200: sucessfully completed.
 
-.. http:post:: /api/v1/apps/app/(int:id)/payments/status/
+.. http:post:: /api/v2/apps/app/(int:id)/payments/status/
 
     Queries the Mozilla payment server to check that the app is ready to be
     sold. This would normally be run at the end of the payment flow to ensure
@@ -507,7 +507,7 @@ Payments
 
 .. note:: The Transaction:Debug permission is required.
 
-.. http:get:: /api/v1/apps/app/(int:id)/payments/debug/
+.. http:get:: /api/v2/apps/app/(int:id)/payments/debug/
 
     Returns useful debug information about the app, suitable for marketplace
     developers and integrators. Output is truncated below and is subject
@@ -533,7 +533,7 @@ Manifest refresh
 
 .. note:: Requires authentication and a successfully created hosted app.
 
-.. http:post:: /api/v1/apps/app/(int:id|string:slug)/refresh-manifest/
+.. http:post:: /api/v2/apps/app/(int:id|string:slug)/refresh-manifest/
 
     **Response**
     :status 204: Refresh triggered.

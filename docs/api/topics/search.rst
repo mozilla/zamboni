@@ -11,7 +11,7 @@ This API allows search for apps by various properties.
 Search
 ======
 
-.. http:get:: /api/v1/apps/search/
+.. http:get:: /api/v2/apps/search/
 
     **Request**
 
@@ -83,7 +83,7 @@ Search
 Featured App Listing
 ====================
 
-.. http:get::  /api/v1/fireplace/search/featured/
+.. http:get::  /api/v2/fireplace/search/featured/
 
     **Request**
 

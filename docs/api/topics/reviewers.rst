@@ -11,7 +11,7 @@ Reviewer Search
 
 .. note:: Requires authentication and permission to review apps.
 
-.. http:get::  /api/v1/reviewers/search/
+.. http:get::  /api/v2/reviewers/search/
 
     Performs a search just like the regular Search API, but customized with
     extra parameters and different (smaller) apps objects returned, containing
@@ -83,7 +83,7 @@ Reviewing
 
 .. warning:: Not available through CORS.
 
-.. http:get::  /api/v1/reviewers/reviewing/
+.. http:get::  /api/v2/reviewers/reviewing/
 
     Returns a list of apps that are being reviewed.
 
@@ -104,7 +104,7 @@ Mini-Manifest
 
 .. warning:: Not available through CORS.
 
-.. http:post::  /api/v1/reviewers/app/(int:id)|(string:slug)/token
+.. http:post::  /api/v2/reviewers/app/(int:id)|(string:slug)/token
 
     Returns a short-lived token that can be used to access the
     mini-manifest. Use this token as a query-string parameter to the
