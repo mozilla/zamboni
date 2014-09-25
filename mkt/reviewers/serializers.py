@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from mkt.api.fields import TranslationSerializerField
-from mkt.reviewers.models import AdditionalReview, CannedResponse, QUEUE_TARAKO
+from mkt.reviewers.models import (AdditionalReview, CannedResponse,
+                                  QUEUE_TARAKO, ReviewerScore)
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import ESAppSerializer
 
@@ -96,3 +97,16 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CannedResponse
+
+
+class ReviewerScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReviewerScore
+        fields = ['id', 'note', 'user', 'score']
+
+    def validate_note(self, attrs, source):
+        # If note is absent but DRF tries to validate it (because we're dealing
+        # with a PUT or POST), then add a blank one.
+        if not source in attrs:
+            attrs[source] = ''
+        return attrs

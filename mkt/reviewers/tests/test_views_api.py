@@ -18,7 +18,8 @@ from mkt.access.models import GroupUser
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.models import AdditionalReview, CannedResponse, QUEUE_TARAKO
+from mkt.reviewers.models import (AdditionalReview, CannedResponse,
+                                  QUEUE_TARAKO, ReviewerScore)
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.tags.models import Tag
@@ -681,3 +682,220 @@ class TestCannedResponseAPI(RestOAuth):
         res = self.client.delete(self.url_detail)
         eq_(res.status_code, 204)
         eq_(CannedResponse.objects.count(), 0)
+
+
+class TestReviewerScoreAPI(RestOAuth):
+    def setUp(self):
+        super(TestReviewerScoreAPI, self).setUp()
+        self.score = ReviewerScore.objects.create(user=self.profile,
+            note='This is a note.', score=42, note_key=amo.REVIEWED_MANUAL)
+        self.url_list = reverse('reviewerscore-list')
+        self.url_detail = reverse('reviewerscore-detail',
+                                  kwargs={'pk': self.score.pk})
+        self.url_detail_404 = reverse('reviewerscore-detail',
+                                      kwargs={'pk': self.score.pk + 666})
+
+    def test_norights_list(self):
+        res = self.anon.get(self.url_list)
+        eq_(res.status_code, 403)
+        res = self.client.get(self.url_list)
+        eq_(res.status_code, 403)
+
+    def test_norights_get(self):
+        res = self.anon.get(self.url_detail)
+        eq_(res.status_code, 403)
+        res = self.client.get(self.url_detail)
+        eq_(res.status_code, 403)
+
+    def test_norights_patch(self):
+        res = self.anon.patch(self.url_detail, {
+            'score': 44
+        })
+        eq_(res.status_code, 403)
+        res = self.client.patch(self.url_detail, {
+            'score': 44
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_put(self):
+        res = self.anon.put(self.url_detail, {
+            'score': 44,
+            'user': self.profile.pk,
+        })
+        eq_(res.status_code, 403)
+        res = self.client.put(self.url_detail, {
+            'score': 44,
+            'user': self.profile.pk,
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_post(self):
+        res = self.anon.post(self.url_list, {
+            'score': 44,
+            'user': self.profile.pk,
+        })
+        eq_(res.status_code, 403)
+        res = self.client.post(self.url_list, {
+            'score': 44,
+            'user': self.profile.pk,
+        })
+        eq_(res.status_code, 403)
+
+    def test_norights_delete(self):
+        res = self.anon.delete(self.url_detail)
+        eq_(res.status_code, 403)
+
+    def test_list(self):
+        # Add an extra instance that shouldn't be returned because of its
+        # note_key.
+        ReviewerScore.objects.create(user=self.profile,
+            note='Hide me!', score=43, note_key=amo.REVIEWED_APP_REVIEW)
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_list)
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['objects'][0]['id'], self.score.id)
+
+    def test_get(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_detail)
+        eq_(res.status_code, 200)
+        eq_(res.json['score'], self.score.score)
+        eq_(res.json['note'], self.score.note)
+        eq_(res.json['user'], self.score.user.pk)
+
+    def test_get_404(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.get(self.url_detail_404)
+        eq_(res.status_code, 404)
+
+    def test_get_404_note_key(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        # Add an extra instance that shouldn't be returned because of its
+        # note_key.
+        score = ReviewerScore.objects.create(user=self.profile,
+            note='Hide me!', score=43, note_key=amo.REVIEWED_APP_REVIEW)
+        url_detail = reverse('reviewerscore-detail',
+                             kwargs={'pk': score.pk})
+        res = self.client.get(url_detail)
+        eq_(res.status_code, 404)
+
+    def test_post(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.post(self.url_list, json.dumps({
+            'score': 45,
+            'note': 'This is a simple note',
+            'user': self.profile.pk
+        }))
+        eq_(res.status_code, 201)
+        eq_(ReviewerScore.objects.count(), 2)
+        score = ReviewerScore.objects.get(pk=res.json['id'])
+        eq_(res.json['score'], 45)
+        eq_(res.json['note'], 'This is a simple note')
+        eq_(res.json['user'], self.profile.pk)
+        eq_(res.json['score'], score.score)
+        eq_(res.json['note'], score.note)
+        eq_(res.json['user'], score.user.pk)
+        eq_(score.note_key, amo.REVIEWED_MANUAL)
+
+    def test_post_no_note(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.post(self.url_list, json.dumps({
+            'score': 48,
+            'user': self.profile.pk
+        }))
+        eq_(res.status_code, 201)
+        eq_(ReviewerScore.objects.count(), 2)
+        score = ReviewerScore.objects.get(pk=res.json['id'])
+        eq_(res.json['note'], '')
+        eq_(res.json['note'], score.note)
+
+    def test_post_but_not_everything(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.post(self.url_list, json.dumps({
+            'score': 47
+        }))
+        eq_(res.status_code, 400)
+        ok_('user' in res.json)
+
+    def test_post_but_invalid_user(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.post(self.url_list, json.dumps({
+            'score': 49,
+            'user': self.profile.pk + 666
+        }))
+        eq_(res.status_code, 400)
+        ok_('user' in res.json)
+
+    def test_patch(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.patch(self.url_detail, json.dumps({
+            'score': 46
+        }))
+        eq_(res.status_code, 200)
+        eq_(ReviewerScore.objects.count(), 1)
+        self.score.reload()
+        eq_(res.json['score'], 46)
+        eq_(res.json['score'], self.score.score)
+        # Note has not been touched.
+        eq_(res.json['note'], 'This is a note.')
+        eq_(res.json['note'], self.score.note)
+
+    def test_patch_blank_note(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.patch(self.url_detail, json.dumps({
+            'note': ''
+        }))
+        eq_(res.status_code, 200)
+        eq_(ReviewerScore.objects.count(), 1)
+        self.score.reload()
+        # Score has not been touched.
+        eq_(res.json['score'], 42)
+        eq_(res.json['score'], self.score.score)
+        # We set a blank note.
+        eq_(res.json['note'], '')
+        eq_(res.json['note'], self.score.note)
+
+    def test_patch_note_key_is_ignored(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.patch(self.url_detail, json.dumps({
+            'score': 46,
+            'note_key': amo.REVIEWED_APP_REVIEW
+        }))
+        eq_(res.status_code, 200)
+        eq_(ReviewerScore.objects.count(), 1)
+        self.score.reload()
+        eq_(res.json['score'], 46)
+        eq_(res.json['score'], self.score.score)
+        eq_(self.score.note_key, amo.REVIEWED_MANUAL)
+
+    def test_put_but_not_everything(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.put(self.url_detail, json.dumps({
+            'note': 'lol'
+        }))
+        eq_(res.status_code, 400)
+        ok_('user' in res.json)
+        ok_('score' in res.json)
+
+    def test_put(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.put(self.url_detail, json.dumps({
+            'score': 51,
+            'user': self.profile.pk
+        }))
+        eq_(res.status_code, 200)
+        eq_(ReviewerScore.objects.count(), 1)
+        self.score.reload()
+        eq_(res.json['score'], 51)
+        eq_(res.json['note'], '')
+        eq_(res.json['user'], self.profile.pk)
+        eq_(res.json['score'], self.score.score)
+        eq_(res.json['note'], self.score.note)
+        eq_(res.json['user'], self.score.user.pk)
+
+    def test_delete(self):
+        self.grant_permission(self.profile, 'Admin:ReviewerTools')
+        res = self.client.delete(self.url_detail)
+        eq_(res.status_code, 204)
+        eq_(ReviewerScore.objects.count(), 0)

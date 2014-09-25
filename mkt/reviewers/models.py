@@ -57,7 +57,7 @@ class ReviewerScore(ModelBase):
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)
     # For manual point rewards with a note.
-    note = models.CharField(max_length=255)
+    note = models.CharField(max_length=255, blank=True)
 
     class Meta:
         db_table = 'reviewer_scores'
