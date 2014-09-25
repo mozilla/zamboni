@@ -17,7 +17,6 @@ services_patterns = patterns('',
 
 
 urlpatterns = patterns('',
-    url('^mozmarket.js$', views.mozmarket_js, name='site.mozmarket_js'),
     url('^robots.txt$', views.robots, name='robots.txt'),
 
     # Replace opensearch.xml from amo with a specific one for Marketplace.
