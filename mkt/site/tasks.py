@@ -1,6 +1,7 @@
 import datetime
 
-from django.core.mail import EmailMessage, EmailMultiAlternatives, get_connection
+from django.core.mail import (EmailMessage, EmailMultiAlternatives,
+                              get_connection)
 
 import commonware.log
 from celeryutils import task
@@ -16,7 +17,8 @@ def send_email(recipient, subject, message, real_email, from_email=None,
                max_retries=None, **kwargs):
     email_backend = EmailMultiAlternatives if html_message else EmailMessage
 
-    connection_backend = None if real_email else 'mkt.site.mail.FakeEmailBackend'
+    connection_backend = (None if real_email
+                          else 'mkt.site.mail.FakeEmailBackend')
     connection = get_connection(connection_backend)
     result = email_backend(subject, message,
                            from_email, recipient, cc=cc, connection=connection,

@@ -1,0 +1,5 @@
+{% extends 'users/emails/base.ltxt' -%}
+{% block content %}
+{% trans %}Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account.{% endrans %}
+{% trans %}IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace.{% endtrans %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'users/emails/base.ltxt' -%}
+{% block content %}
+{% trans %}Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon.{% endtrans %}
+
+{% trans %}Activating your account is easy, simply sign in and verify your account.{% endtrans %}
+{% endblock %}
