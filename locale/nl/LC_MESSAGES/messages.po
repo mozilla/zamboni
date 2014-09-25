@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-07 04:27+0000\n"
+"PO-Revision-Date: 2014-09-25 11:14+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410064058.0\n"
+"X-POOTLE-MTIME: 1411643687.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -3573,11 +3573,15 @@ msgstr "Apps kunnen elk gewenst aantal teamlieden hebben met vier mogelijke roll
 
 #: mkt/developers/templates/developers/apps/owner.html:89
 msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
-msgstr "Kan alle aspecten van de lijstopname van de app beheren, inclusief toevoegen en verwijderen van andere teamleden"
+msgstr ""
+"Kan alle aspecten van de lijstvermelding van de app beheren, inclusief "
+"toevoegen en verwijderen van andere teamleden"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
-msgstr "Kan alle aspecten van de lijstopname van de app beheren, behalve toevoegen en verwijderen van andere teamleden en beheren van betalingen"
+msgstr ""
+"Kan alle aspecten van de lijstvermelding van de app beheren, behalve "
+"toevoegen en verwijderen van andere teamleden en beheren van betalingen"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
@@ -3768,7 +3772,8 @@ msgstr "U hebt op {request_date} om een beoordeling gevraagd."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr "Uw app is niet ingeschakeld in gebieden met apparaten met weinig geheugen."
+msgstr ""
+"Uw app is niet ingeschakeld in regio’s met apparaten met weinig geheugen."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
@@ -3829,7 +3834,10 @@ msgstr "App van lijst halen"
 
 #: mkt/developers/templates/developers/apps/status.html:396
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
-msgstr "De lijstweergave van uw app is uitgeschakeld en deze zal niet in de Firefox Marketplace verschijnen. U kunt de app op elk moment weer in de lijst opnemen."
+msgstr ""
+"De lijstweergave van uw app is uitgeschakeld, en de app zal niet in de "
+"Firefox Marketplace verschijnen. U kunt de app op elk moment weer in de "
+"lijst opnemen."
 
 #: mkt/developers/templates/developers/apps/status.html:401
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
@@ -5041,11 +5049,11 @@ msgstr "Sorry, maar er is een fout opgetreden in ons systeem. Probeer het later 
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr "Ontwerp"
+msgstr "Ontwerpen"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
-msgstr "Concept: Een geweldige app"
+msgstr "Concept: een geweldige app"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
@@ -5057,7 +5065,7 @@ msgstr "UI-richtlijnen"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
-msgstr "Build"
+msgstr "Bouwen"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
@@ -5105,7 +5113,9 @@ msgstr "Alle hulpmiddelen, documenten en referenties die u nodig hebt voor de on
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "Ontdek hoe u uw apps op een open marktplaats die gebruikers en ontwikkelaars voorop stelt kunt verspreiden"
+msgstr ""
+"Ontdek hoe u uw apps kunt verspreiden op een open marktplaats die gebruikers "
+"en ontwikkelaars voorop stelt"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:74
 msgid "Do you have an app ready for liftoff?"
@@ -5125,7 +5135,10 @@ msgstr "Kijk wie al meedoet"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:120
 msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "Bent u een webbedrijf, externe dienstverlener of OEM die graag wil samenwerken met Mozilla? <a href=\"%(partner_url)s\">Kijk dan op onze pagina Partners voor meer info.</a>"
+msgstr ""
+"Bent u een webbedrijf, externe dienstverlener of OEM die graag met Mozilla "
+"wil samenwerken? <a href=\"%(partner_url)s\">Kijk dan op onze pagina Partners "
+"voor meer info.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -5144,8 +5157,10 @@ msgid ""
 "Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
 "apps for the first time."
 msgstr ""
-"Door gebruik te maken van open webstandaarden en door Mozilla ontworpen API’s kunnen geweldige app-ervaringen worden bereikt op meerdere platforms, apparaten en besturingssystemen &ndash; waarmee "
-"de kloof tussen web- en geïnstalleerde apps voor het eerst wordt gedicht."
+"Door gebruik te maken van open webstandaarden en door Mozilla ontworpen "
+"API’s kunnen geweldige app-ervaringen worden bereikt op meerdere platformen, "
+"apparaten en besturingssystemen &ndash; waarmee de kloof tussen "
+"systeemeigen en webapps voor het eerst wordt gedicht."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -5307,7 +5322,9 @@ msgstr "Ga er eens langs!"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:14
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
-msgstr "Word een partner van Mozilla om uw apps via een open marktplaats te verspreiden onder meer dan 450 miljoen gebruikers"
+msgstr ""
+"Word partner van Mozilla om uw apps via een open marktplaats onder meer dan "
+"450 miljoen gebruikers te verspreiden"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
@@ -7082,7 +7099,10 @@ msgstr "Sorry, maar we kunnen de gevraagde pagina niet vinden."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr "De gevraagde pagina of het bestand is niet gevonden op de onze website. U hebt mogelijk een achterhaalde koppeling aangeklikt of het adres niet juist ingevoerd."
+msgstr ""
+"De gevraagde pagina of het bestand is niet op onze website gevonden. "
+"Mogelijk hebt u op een verouderde koppeling geklikt of het adres onjuist "
+"ingevoerd."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
@@ -7139,7 +7159,7 @@ msgstr "Selecteer een apparaat."
 
 #: mkt/submit/forms.py:50
 msgid "Packaged apps are not yet supported for those platforms."
-msgstr "Verpakte apps worden voor die platforms nog niet ondersteund."
+msgstr "Verpakte apps worden voor die platformen nog niet ondersteund."
 
 #: mkt/submit/forms.py:144
 msgid "Agree and Continue"
