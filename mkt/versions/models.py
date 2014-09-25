@@ -14,7 +14,6 @@ import jinja2
 
 import amo
 import amo.utils
-from .compare import version_dict, version_int
 from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
@@ -48,7 +47,6 @@ class Version(ModelBase):
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
     version = models.CharField(max_length=255, default='0.1')
-    version_int = models.BigIntegerField(null=True, editable=False)
 
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
@@ -72,23 +70,11 @@ class Version(ModelBase):
 
     def __init__(self, *args, **kwargs):
         super(Version, self).__init__(*args, **kwargs)
-        self.__dict__.update(version_dict(self.version or ''))
 
     def __unicode__(self):
         return jinja2.escape(self.version)
 
     def save(self, *args, **kw):
-        if not self.version_int and self.version:
-            v_int = version_int(self.version)
-            # Magic number warning, this is the maximum size
-            # of a big int in MySQL to prevent version_int overflow, for
-            # people who have rather crazy version numbers.
-            # http://dev.mysql.com/doc/refman/5.5/en/numeric-types.html
-            if v_int < 9223372036854775807:
-                self.version_int = v_int
-            else:
-                log.error('No version_int written for version %s, %s' %
-                          (self.pk, self.version))
         creating = not self.id
         super(Version, self).save(*args, **kw)
         if creating:

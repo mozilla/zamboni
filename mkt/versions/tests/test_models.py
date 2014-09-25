@@ -11,48 +11,8 @@ import amo.tests
 from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.site.fixtures import fixture
-from mkt.versions.compare import MAXVERSION, version_dict, version_int
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
-
-
-def test_version_int():
-    """Tests that version_int. Corrects our versions."""
-    eq_(version_int('3.5.0a1pre2'), 3050000001002)
-    eq_(version_int(''), 200100)
-    eq_(version_int('0'), 200100)
-    eq_(version_int('*'), 99000000200100)
-    eq_(version_int(MAXVERSION), MAXVERSION)
-    eq_(version_int(MAXVERSION + 1), MAXVERSION)
-    eq_(version_int('9999999'), MAXVERSION)
-
-
-def test_version_int_compare():
-    eq_(version_int('3.6.*'), version_int('3.6.99'))
-    assert version_int('3.6.*') > version_int('3.6.8')
-
-
-def test_version_asterix_compare():
-    eq_(version_int('*'), version_int('99'))
-    assert version_int('98.*') < version_int('*')
-    eq_(version_int('5.*'), version_int('5.99'))
-    assert version_int('5.*') > version_int('5.0.*')
-
-
-def test_version_dict():
-    eq_(version_dict('5.0'),
-        {'major': 5,
-         'minor1': 0,
-         'minor2': None,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
-
-
-def test_version_int_unicode():
-    eq_(version_int(u'\u2322 ugh stephend'), 200100)
 
 
 class TestVersion(BaseUploadTest, amo.tests.TestCase):
@@ -134,30 +94,6 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         # Ensure deleted version's files get disabled.
         eq_(version.all_files[0].status, amo.STATUS_DISABLED)
 
-    def test_major_minor(self):
-        """Check that major/minor/alpha is getting set."""
-        v = Version(version='3.0.12b2')
-        eq_(v.major, 3)
-        eq_(v.minor1, 0)
-        eq_(v.minor2, 12)
-        eq_(v.minor3, None)
-        eq_(v.alpha, 'b')
-        eq_(v.alpha_ver, 2)
-
-        v = Version(version='3.6.1apre2+')
-        eq_(v.major, 3)
-        eq_(v.minor1, 6)
-        eq_(v.minor2, 1)
-        eq_(v.alpha, 'a')
-        eq_(v.pre, 'pre')
-        eq_(v.pre_ver, 2)
-
-        v = Version(version='')
-        eq_(v.major, None)
-        eq_(v.minor1, None)
-        eq_(v.minor2, None)
-        eq_(v.minor3, None)
-
     def test_has_files(self):
         assert self.version.has_files, 'Version with files not recognized.'
 
@@ -215,14 +151,6 @@ class TestVersion(BaseUploadTest, amo.tests.TestCase):
         version.disable_old_files()
         eq_(qs.all()[0].status, amo.STATUS_DISABLED)
         assert hide_mock.called
-
-    def test_large_version_int(self):
-        # This version will fail to be written to the version_int
-        # table because the resulting int is bigger than mysql bigint.
-        version = Version(addon=Webapp.objects.get(pk=337141))
-        version.version = '9223372036854775807'
-        version.save()
-        eq_(version.version_int, None)
 
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
