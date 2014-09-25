@@ -4,6 +4,7 @@ from collections import defaultdict
 
 from django import forms
 from django.conf import settings
+from django.utils.safestring import mark_safe
 
 import basket
 import happyforms
@@ -277,6 +278,10 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
 
 class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
     """Form for "Details" submission step."""
+    PRIVACY_MDN_URL = (
+        'https://developer.mozilla.org/Marketplace/'
+        'Publishing/Policies_and_Guidelines/Privacy_policies')
+
 
     PUBLISH_CHOICES = (
         (amo.PUBLISH_IMMEDIATE,
@@ -297,8 +302,15 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         label=_lazy(u'Privacy Policy:'),
         widget=TransTextarea(attrs={'rows': 6}),
         help_text=_lazy(
-            u"A privacy policy that explains what data is transmitted from a "
-            u"user's computer and how it is used is required."))
+            u'A privacy policy explains how you handle data received '
+            u'through your app.  For example: what data do you receive? '
+            u'How do you use it? Who do you share it with? Do you '
+            u'receive personal information? Do you take steps to make '
+            u'it anonymous? What choices do users have to control what '
+            u'data you and others receive? Enter your privacy policy '
+            u'link or text above.  If you don\'t have a privacy '
+            u'policy, <a href="{url}" target="_blank">learn more on how to '
+            u'write one.</a>'))
     homepage = TransField.adapt(forms.URLField)(
         label=_lazy(u'Homepage:'), required=False,
         widget=TransInput(attrs={'class': 'full'}),
@@ -342,6 +354,13 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
+
+        # TODO: remove this and put it in the field definition above.
+        # See https://bugzilla.mozilla.org/show_bug.cgi?id=1072513
+        privacy_field = self.base_fields['privacy_policy']
+        privacy_field.help_text = mark_safe(privacy_field.help_text.format(
+            url=self.PRIVACY_MDN_URL))
+
         super(AppDetailsBasicForm, self).__init__(*args, **kwargs)
 
     def clean_app_slug(self):
