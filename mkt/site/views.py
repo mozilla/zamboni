@@ -130,25 +130,6 @@ def record(request):
     raise PermissionDenied
 
 
-# Cache this for an hour so that newly deployed changes are available within
-# an hour. This will be served from the CDN which mimics these headers.
-@cache_page(60 * 60)
-def mozmarket_js(request):
-    vendor_js = []
-    for lib, path in (('receiptverifier',
-                       'receiptverifier/receiptverifier.js'),):
-        if lib in settings.MOZMARKET_VENDOR_EXCLUDE:
-            continue
-        with open(os.path.join(settings.ROOT,
-                               'vendor', 'js', path), 'r') as fp:
-            vendor_js.append((lib, fp.read()))
-    js = render_to_string(request, 'site/mozmarket.js',
-                          {'vendor_js': vendor_js})
-    if settings.MINIFY_MOZMARKET:
-        js = minify_js(js)
-    return HttpResponse(js, content_type='text/javascript')
-
-
 @statsd.timer('mkt.mozmarket.minify')
 def minify_js(js):
     if settings.UGLIFY_BIN:
