@@ -715,6 +715,8 @@ FFMPEG_BINARY = 'ffmpeg'
 FXA_CLIENT_ID = '7943afb7b9f54089'
 FXA_CLIENT_SECRET = '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a'
 FXA_OAUTH_URL = 'https://oauth-stable.dev.lcip.org'
+FXA_MIGRATION_URL = '/fxa-migration'
+FXA_CSS_URL = '/media/fireplace/css/fxa.css'
 
 if DEBUG:
     # In DEBUG mode, don't require HTTPS for FxA oauth redirects.

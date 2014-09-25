@@ -75,6 +75,9 @@ CSS = {
 
         # Footer.
         'css/devreg/footer.styl',
+
+        # Marketplace elements.
+        'css/lib/marketplace-elements.css',
     ),
     'mkt/reviewers': (
         'css/zamboni/editors.styl',
@@ -175,6 +178,7 @@ JS = {
         'js/devreg/tarako.js',
         'js/devreg/utils.js',
         'js/lib/csrf.js',
+        'js/lib/document-register-element.js',
 
         'js/impala/serializers.js',
         'js/common/keys.js',
@@ -208,6 +212,9 @@ JS = {
 
         # IARC.
         'js/devreg/content_ratings.js',
+
+        # Marketplace elements.
+        'js/lib/marketplace-elements.js',
 
         # Module initialization.
         'js/devreg/devreg_init.js',

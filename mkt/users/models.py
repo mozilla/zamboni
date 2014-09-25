@@ -14,6 +14,7 @@ from django.utils.functional import lazy
 
 import commonware.log
 import tower
+import waffle
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
@@ -246,6 +247,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         tower.activate(lang)
         yield
         tower.activate(old)
+
+    def can_migrate_to_fxa(self):
+        return (waffle.switch_is_active('fx-accounts-migration')
+                and self.source != amo.LOGIN_SOURCE_FXA)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
