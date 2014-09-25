@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
     echo "Zamboni database doesn't exist. Let's create it"
     mysql -u root --host mysql_1 -e 'create database zamboni'
     echo "Syncing db..."
-    python manage.py syncdb
+    python manage.py syncdb --noinput
     echo "Initialising data..."
     python manage.py loaddata init
     echo "Running db migrations for the first time."
