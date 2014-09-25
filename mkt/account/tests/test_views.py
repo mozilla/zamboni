@@ -422,10 +422,10 @@ class TestLoginHandler(TestCase):
         data = json.loads(res.content)
         eq_(res.status_code, 400)
         assert 'assertion' in data
-        assert not 'apps' in data
+        assert 'apps' not in data
 
     def test_logout(self):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        UserProfile.objects.create(email='cvan@mozilla.com')
         data = self._test_login()
 
         r = self.client.delete(
@@ -456,10 +456,10 @@ class TestFxaLoginHandler(TestCase):
                 'user': 'fake-uid',
                 'email': 'cvan@mozilla.com'
             }
-            res = self.post({'auth_response':
-                             'https://testserver/?access_token=fake-token&code=coed'
-                             '&state=fake-state',
-                             'state': 'fake-state'})
+            res = self.post({
+                'auth_response': 'https://testserver/?access_token=fake-token&'
+                                 'code=coed&state=fake-state',
+                'state': 'fake-state'})
             eq_(res.status_code, 201)
             data = json.loads(res.content)
             eq_(data['token'],
@@ -472,7 +472,30 @@ class TestFxaLoginHandler(TestCase):
         data = self._test_login()
         ok_(not any(data['permissions'].values()))
 
-    def test_login_existing_user_success(self):
+    def test_login_existing_user_uid_success(self):
+        profile = UserProfile.objects.create(username='fake-uid')
+        self.grant_permission(profile, 'Apps:Review')
+
+        data = self._test_login()
+        eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(data['permissions'],
+            {'admin': False,
+             'developer': False,
+             'localizer': False,
+             'lookup': False,
+             'curator': False,
+             'reviewer': True,
+             'webpay': False,
+             'stats': False,
+             'revenue_stats': False})
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['purchased'], [])
+        eq_(data['apps']['developed'], [])
+
+        # Ensure user profile got updated with email.
+        eq_(profile.reload().email, 'cvan@mozilla.com')
+
+    def test_login_existing_user_email_success(self):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
         self.grant_permission(profile, 'Apps:Review')
 
@@ -491,6 +514,9 @@ class TestFxaLoginHandler(TestCase):
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])
         eq_(data['apps']['developed'], [])
+
+        # Ensure user profile got updated with FxA UID.
+        eq_(profile.reload().username, 'fake-uid')
 
     @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
@@ -527,7 +553,6 @@ class TestFxaLoginHandler(TestCase):
     def test_login_settings(self):
         data = self._test_login()
         eq_(data['settings']['source'], 'firefox-accounts')
-
 
     def test_logout(self):
         UserProfile.objects.create(email='cvan@mozilla.com')

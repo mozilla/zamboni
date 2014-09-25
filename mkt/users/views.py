@@ -118,30 +118,42 @@ def _fxa_authorize(fxa, client_secret, request, auth_response):
                    data=json.dumps({'token': token['access_token']}),
                    headers={'Content-Type': 'application/json'})
     data = res.json()
+
     if 'user' in data:
         email = data['email']
-        username = data['user']
+        uid = data['user']
+
+        # Look up user by uid first, then email.
         try:
-            profile = UserProfile.objects.get(email=email)
+            profile = UserProfile.objects.get(username=uid)
+            if profile.email != email:
+                profile.update(email=email)
         except UserProfile.DoesNotExist:
-            source = amo.LOGIN_SOURCE_FXA
-            profile = UserProfile.objects.create(
-                username=username,
-                email=email,
-                source=source,
-                display_name=email.partition('@')[0],
-                is_verified=True)
-            log_cef('New Account', 5, request, username=username,
-                    signature='AUTHNOTICE',
-                    msg='User created a new account (from FxA)')
-            record_action('new-user', request)
+            try:
+                profile = UserProfile.objects.get(email=email)
+                if profile.username != uid:
+                    profile.update(username=uid)
+            except UserProfile.DoesNotExist:
+                profile = UserProfile.objects.create(
+                    username=uid,
+                    email=email,
+                    source=amo.LOGIN_SOURCE_FXA,
+                    display_name=email.partition('@')[0],
+                    is_verified=True)
+                log_cef('New Account', 5, request, username=uid,
+                        signature='AUTHNOTICE',
+                        msg='User created a new account (from FxA)')
+                record_action('new-user', request)
+
         if profile.source != amo.LOGIN_SOURCE_FXA:
             profile.update(source=amo.LOGIN_SOURCE_FXA)
+
         auth.login(request, profile)
         profile.log_login_attempt(True)
-        auth.signals.user_logged_in.send(
-            sender=profile.__class__, request=request,
-            user=profile)
+
+        auth.signals.user_logged_in.send(sender=profile.__class__,
+                                         request=request, user=profile)
+
         return profile
 
 
@@ -216,7 +228,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 @csrf_exempt
 @require_POST
 @transaction.commit_on_success
-#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request, browserid_audience=None):
     msg = ''
     if request.user.is_authenticated():
