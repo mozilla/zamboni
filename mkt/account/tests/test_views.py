@@ -707,3 +707,39 @@ class TestNewsletter(RestOAuth):
             self.VALID_EMAIL, 'mozilla-and-you,marketplace-desktop',
             lang='en-US', country='restofworld', trigger_welcome='Y',
             optin='Y', format='H')
+
+
+class TestAccountInfoView(RestOAuth):
+    def setUp(self):
+        super(TestAccountInfoView, self).setUp()
+        # Make sure there is at least one FxA user.
+        self.profile.update(source=amo.LOGIN_SOURCE_FXA)
+
+    def url(self, email):
+        return reverse('account-info', args=[email])
+
+    def get(self, email):
+        return self.client.get(self.url(email))
+
+    def test_no_user(self):
+        response = self.get('nope@noway.rich')
+        eq_(response.status_code, 200)
+        eq_(response.json['source'], 'unknown')
+
+    def test_unknown_source_user(self):
+        self.profile.update(source=amo.LOGIN_SOURCE_UNKNOWN)
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['source'], 'unknown')
+
+    def test_browser_id_source_user(self):
+        self.profile.update(source=amo.LOGIN_SOURCE_BROWSERID)
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['source'], 'unknown')
+
+    def test_fxa_user(self):
+        self.profile.update(source=amo.LOGIN_SOURCE_FXA)
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['source'], 'firefox-accounts')

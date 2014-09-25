@@ -2,16 +2,18 @@ from functools import partial
 
 from rest_framework import fields, serializers
 
+import amo
 from mkt.access import acl
-from mkt.api.fields import ReverseChoiceField
 from mkt.api.serializers import PotatoCaptchaSerializer
 from mkt.users.models import UserProfile
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    verified = serializers.BooleanField(source='is_verified', read_only=True)
+
     class Meta:
         model = UserProfile
-        fields = ('display_name',)
+        fields = ['display_name', 'verified']
 
     def validate_display_name(self, attrs, source):
         """Validate that display_name is not empty"""
@@ -24,6 +26,19 @@ class AccountSerializer(serializers.ModelSerializer):
         """Return obj.name instead of display_name to handle users without
         a valid display_name."""
         return obj.name
+
+
+class AccountInfoSerializer(serializers.ModelSerializer):
+    source = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ['source']
+
+    def transform_source(self, obj, value):
+        """Return the sources slug instead of the id."""
+        return amo.LOGIN_SOURCE_LOOKUP.get(
+            value, amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN])
 
 
 class FeedbackSerializer(PotatoCaptchaSerializer):

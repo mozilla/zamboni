@@ -235,6 +235,18 @@ LOGIN_SOURCE_FXA = 4
 # Signups via Webpay Purchases
 LOGIN_SOURCE_WEBPAY = 5
 
+LOGIN_SOURCE_LOOKUP = {
+    LOGIN_SOURCE_UNKNOWN: 'unknown',
+    LOGIN_SOURCE_BROWSERID: 'browserid',
+    LOGIN_SOURCE_MMO_BROWSERID: 'mmo-browserid',
+    LOGIN_SOURCE_AMO_BROWSERID: 'amo-browserid',
+    LOGIN_SOURCE_FXA: 'firefox-accounts',
+    LOGIN_SOURCE_WEBPAY: 'webpay',
+}
+# Add slug ~> id to the dict so lookups can be done with id or slug.
+for source_id, source_slug in LOGIN_SOURCE_LOOKUP.items():
+    LOGIN_SOURCE_LOOKUP[source_slug] = source_id
+
 # These are logins that use BrowserID.
 LOGIN_SOURCE_BROWSERIDS = [LOGIN_SOURCE_BROWSERID, LOGIN_SOURCE_AMO_BROWSERID,
                            LOGIN_SOURCE_MMO_BROWSERID, LOGIN_SOURCE_WEBPAY]

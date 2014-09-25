@@ -2,9 +2,9 @@ from django.conf.urls import include, patterns, url
 
 from mkt.users import views
 
-from mkt.account.views import (AccountView, FeedbackView, FxaLoginView,
-                               InstalledView, LoginView, LogoutView,
-                               NewsletterView, PermissionsView)
+from mkt.account.views import (AccountView, AccountInfoView, FeedbackView,
+                               FxaLoginView, InstalledView, LoginView,
+                               LogoutView, NewsletterView, PermissionsView)
 
 
 drf_patterns = patterns('',
@@ -18,6 +18,8 @@ drf_patterns = patterns('',
         name='account-permissions'),
     url('^settings/(?P<pk>[^/]+)/$', AccountView.as_view(),
         name='account-settings'),
+    url('^info/(?P<email>[^/]+)$', AccountInfoView.as_view(),
+        name='account-info'),
 )
 
 api_patterns = patterns('',
