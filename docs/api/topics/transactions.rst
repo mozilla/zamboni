@@ -9,7 +9,7 @@ Transaction
 
 .. note:: Requires authentication and the RevenueStats:View permission.
 
-.. http:get:: /api/v1/transactions/(string:transaction_id)/
+.. http:get:: /api/v2/transactions/(string:transaction_id)/
 
     Gets information about the transaction.
 

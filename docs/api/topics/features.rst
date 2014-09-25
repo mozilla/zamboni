@@ -10,7 +10,7 @@ API responses may be modified to exclude applications a device is unable to run.
 Features List
 =============
 
-.. http:get:: /api/v1/apps/features/
+.. http:get:: /api/v2/apps/features/
 
     Returns a list of app features devices may require.
 

@@ -46,28 +46,40 @@ would like to use.
 Versions
 ~~~~~~~~
 
-This API is versioned and we are currently moving towards version 1 of the API.
-The API will be versioned by the URL, so that version 1 APIs will all be at::
+This API is versioned and the version is indicated in the URL, for example::
 
-    /api/v1/...
+    /api/v2/...
 
-If you are not using the most recent version of the API then you will get
-a header in the response::
++-------+--------------------+-------------------------+
+|Version|Status              |Notes                    |
++=======+====================+=========================+
+|v2     |Stable              |                         |
++-------+--------------------+-------------------------+
+|v2     |Development         |For feed                 |
++-------+--------------------+-------------------------+
 
-    API-Status: Deprecated
+* `Deprecated` this API has been deprecated and will be removed at some point
+  in the future. Clients using this API should upgrade to a stable version.
+
+* `Development` this API is subject to change and should not be relied upon
+  until made stable.
+
+* `Stable` this API is stable and will not change unless there is a security
+  or privacy issue.
 
 The current policy for how long deprecated APIs will exist has not been
 defined, but it would include time for any clients to upgrade before versions
 are turned off.
 
-We will also return the version of the API we think you are using::
+If you are using a deprecated version of the API then you will get
+a HTTP header in the response::
+
+    API-Status: Deprecated
+
+We will also return the version of the API we think you are using in HTTP
+header::
 
     API-Version: 1
-
-.. note: Before v1 is released, the API was unversioned at `/api/v1/`, because
-    of the small number of clients using that URL, we hope all users are able to
-    update to `/api/v1/` quickly so we can remove that unversioned URL.
-
 
 Modifying Results
 ~~~~~~~~~~~~~~~~~
@@ -187,9 +199,9 @@ through the listing with. For example:
         {
             "meta": {
                 "limit": 3,
-                "next": "/api/v1/apps/category/?limit=3&offset=6",
+                "next": "/api/v2/apps/category/?limit=3&offset=6",
                 "offset": 3,
-                "previous": "/api/v1/apps/category/?limit=3&offset=0",
+                "previous": "/api/v2/apps/category/?limit=3&offset=0",
                 "total_count": 16
             }
         }
@@ -222,17 +234,17 @@ objects depends upon the listing in question. For example:
             "objects": [{
                 "id": "156",
                 "name": "Music",
-                "resource_uri": "/api/v1/apps/category/156/",
+                "resource_uri": "/api/v2/apps/category/156/",
                 "slug": "music"
             }, {
                 "id": "157",
                 "name": "News",
-                "resource_uri": "/api/v1/apps/category/157/",
+                "resource_uri": "/api/v2/apps/category/157/",
                 "slug": "news-weather"
             }, {
                 "id": "158",
                 "name": "Productivity",
-                "resource_uri": "/api/v1/apps/category/158/",
+                "resource_uri": "/api/v2/apps/category/158/",
                 "slug": "productivity"
             }]
         }

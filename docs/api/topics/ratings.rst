@@ -11,7 +11,7 @@ apps in Marketplace.
 _`List`
 =======
 
-.. http:get:: /api/v1/apps/rating/
+.. http:get:: /api/v2/apps/rating/
 
     Get a list of ratings from the Marketplace
 
@@ -34,7 +34,7 @@ _`List`
         {
             "meta": {
                 "limit": 25,
-                "next": "/api/v1/apps/rating/?limit=25&offset=25",
+                "next": "/api/v2/apps/rating/?limit=25&offset=25",
                 "offset": 0,
                 "previous": null,
                 "total_count": 391
@@ -45,17 +45,17 @@ _`List`
             },
             "objects": [
                 {
-                    "app": "/api/v1/apps/app/18/",
+                    "app": "/api/v2/apps/app/18/",
                     "body": "This app is top notch. Aces in my book!",
                     "created": "2013-04-17T15:25:16",
                     "is_author": true,
                     "modified": "2013-04-17T15:34:19",
                     "rating": 5,
-                    "resource_uri": "/api/v1/apps/rating/19/",
-                    "report_spam": "/api/v1/apps/rating/19/flag",
+                    "resource_uri": "/api/v2/apps/rating/19/",
+                    "report_spam": "/api/v2/apps/rating/19/flag",
                     "user": {
                         "display_name": "chuck",
-                        "resource_uri": "/api/v1/account/settings/27/"
+                        "resource_uri": "/api/v2/account/settings/27/"
                     },
                     "version": {
                         "name": "1.0",
@@ -76,7 +76,7 @@ _`List`
 _`Detail`
 =========
 
-.. http:get:: /api/v1/apps/rating/(int:id)/
+.. http:get:: /api/v2/apps/rating/(int:id)/
 
     Get a single rating from the Marketplace using its `resource_uri` from the
     `List`_.
@@ -88,16 +88,16 @@ _`Detail`
     .. code-block:: json
 
         {
-            "app": "/api/v1/apps/app/18/",
+            "app": "/api/v2/apps/app/18/",
             "body": "This app is top notch. Aces in my book!",
             "created": "2013-04-17T15:25:16",
             "is_author": true,
             "modified": "2013-04-17T15:34:19",
             "rating": 5,
-            "resource_uri": "/api/v1/apps/rating/19/",
+            "resource_uri": "/api/v2/apps/rating/19/",
             "user": {
                 "display_name": "chuck",
-                "resource_uri": "/api/v1/account/settings/27/"
+                "resource_uri": "/api/v2/account/settings/27/"
             },
             "version": {
                 "name": "1.0",
@@ -116,7 +116,7 @@ _`Detail`
 _`Create`
 =========
 
-.. http:post:: /api/v1/apps/rating/
+.. http:post:: /api/v2/apps/rating/
 
     Create a rating.
 
@@ -164,7 +164,7 @@ _`Create`
 _`Update`
 =========
 
-.. http:put:: /api/v1/apps/rating/(int:rating_id)/
+.. http:put:: /api/v2/apps/rating/(int:rating_id)/
 
     Update a rating from the Marketplace using its `resource_uri` from the
     `List`_.
@@ -205,7 +205,7 @@ _`Update`
 _`Delete`
 =========
 
-.. http:delete:: /api/v1/apps/rating/(int:rating_id)/
+.. http:delete:: /api/v2/apps/rating/(int:rating_id)/
 
     Delete a rating from the Marketplace using its `resource_uri` from the
     `List`_.
@@ -224,7 +224,7 @@ _`Delete`
 Flagging as spam
 ================
 
-.. http:post:: /api/v1/apps/rating/(int:rating_id)/flag/
+.. http:post:: /api/v2/apps/rating/(int:rating_id)/flag/
 
     Flag a rating as spam.
 

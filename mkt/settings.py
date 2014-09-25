@@ -435,6 +435,19 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
 
 
 ###########################################
+# Recommendations
+
+# Base URL to the recommendation server API. No trailing slash.
+RECOMMENDATIONS_API_URL = ''
+# How many seconds to wait for a response from the recommendation API. Any
+# longer and we fallback to returning the list of popular apps.
+RECOMMENDATIONS_API_TIMEOUT = 5
+# Set to True to Enable calls to the recommendation API.
+# False will return popular apps.
+RECOMMENDATIONS_ENABLED = False
+
+
+###########################################
 # General
 #
 # This is a sample AES_KEY, we will override this on each server.

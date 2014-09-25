@@ -40,7 +40,6 @@ from mkt.developers.tasks import (_fetch_manifest, fetch_icon, pngcrush_image,
                                   resize_preview, save_icon, validator)
 from mkt.files.models import FileUpload
 from mkt.files.utils import WebAppParser
-from mkt.prices.models import Refund
 from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.decorators import set_task_user, use_master, write
@@ -493,8 +492,7 @@ def dump_user_installs(ids, **kw):
             task_log.info('User profile does not exist: {0}'.format(user_id))
             continue
 
-        hash = hashlib.sha256('%s%s' % (str(user.id),
-                                        settings.SECRET_KEY)).hexdigest()
+        hash = user.recommendation_hash
         target_dir = os.path.join(settings.DUMPED_USERS_PATH, 'users', hash[0])
         target_file = os.path.join(target_dir, '%s.json' % hash)
 

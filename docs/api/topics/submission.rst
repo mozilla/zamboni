@@ -34,7 +34,7 @@ Validate
 
 .. _validation-post-label:
 
-.. http:post:: /api/v1/apps/validation/
+.. http:post:: /api/v2/apps/validation/
 
     **Request**
 
@@ -75,7 +75,7 @@ Validate
 
 .. _validation-response-label:
 
-.. http:get:: /api/v1/apps/validation/(int:id)/
+.. http:get:: /api/v2/apps/validation/(int:id)/
 
     **Response**
 
@@ -100,7 +100,7 @@ Validate
         {
             "id": "123",
             "processed": false,
-            "resource_uri": "/api/v1/apps/validation/123/",
+            "resource_uri": "/api/v2/apps/validation/123/",
             "valid": false,
             "validation": ""
         }
@@ -112,7 +112,7 @@ Validate
         {
             "id": "123",
             "processed": true,
-            "resource_uri": "/api/v1/apps/validation/123/",
+            "resource_uri": "/api/v2/apps/validation/123/",
             "valid": true,
             "validation": ""
         }
@@ -124,7 +124,7 @@ Validate
         {
             "id": "123",
             "processed": true,
-            "resource_uri": "/api/v1/apps/validation/123/",
+            "resource_uri": "/api/v2/apps/validation/123/",
             "valid": false,
             "validation": {
             "errors": 1, "messages": [{
@@ -140,7 +140,7 @@ Creating an App
 
 .. _app-post-label:
 
-.. http:post:: /api/v1/apps/app/
+.. http:post:: /api/v2/apps/app/
 
     .. note:: Requires authentication and a successfully validated manifest.
 
@@ -165,7 +165,7 @@ Creating an App
 
 .. _app-put-label:
 
-.. http:put:: /api/v1/apps/app/(int:id)/
+.. http:put:: /api/v2/apps/app/(int:id)/
 
     **Request**
 
@@ -214,7 +214,7 @@ Screenshots or videos
 
 .. _screenshot-post-label:
 
-.. http:post:: /api/v1/apps/app/(int:id|string:app_slug)/preview/
+.. http:post:: /api/v2/apps/app/(int:id|string:app_slug)/preview/
 
     **Request**
 
@@ -242,7 +242,7 @@ Screenshots or videos
 
 .. _screenshot-response-label:
 
-.. http:get:: /api/v1/apps/preview/(int:preview_id)/
+.. http:get:: /api/v2/apps/preview/(int:preview_id)/
 
     **Response**
 
@@ -251,16 +251,16 @@ Screenshots or videos
     .. code-block:: json
 
         {
-            "addon": "/api/v1/apps/app/1/",
+            "addon": "/api/v2/apps/app/1/",
             "id": 1,
             "position": 1,
             "thumbnail_url": "/img/uploads/...",
             "image_url": "/img/uploads/...",
             "filetype": "image/png",
-            "resource_uri": "/api/v1/apps/preview/1/"
+            "resource_uri": "/api/v2/apps/preview/1/"
         }
 
-.. http:delete:: /api/v1/apps/preview/(int:preview_id)/
+.. http:delete:: /api/v2/apps/preview/(int:preview_id)/
 
     **Response**
 
@@ -273,7 +273,7 @@ Content ratings
 
 .. _content-ratings:
 
-.. http:post:: /api/v1/apps/app/(int:id|string:app_slug)/content_ratings/
+.. http:post:: /api/v2/apps/app/(int:id|string:app_slug)/content_ratings/
 
     **Request**
 
@@ -294,7 +294,7 @@ Enabling an App
 
 .. _enable-patch-label:
 
-.. http:patch:: /api/v1/apps/status/(int:app_id)/
+.. http:patch:: /api/v2/apps/status/(int:app_id)/
 
     **Request**
 

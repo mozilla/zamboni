@@ -16,7 +16,7 @@ Payment accounts can be added and listed.
 
 .. note:: Authentication is required.
 
-.. http:post:: /api/v1/payments/account/
+.. http:post:: /api/v2/payments/account/
 
     **Request**
 
@@ -73,7 +73,7 @@ Payment accounts can be added and listed.
 
     :status code: 201 successfully created.
 
-.. http:put:: /api/v1/payments/account/(int:id)/
+.. http:put:: /api/v2/payments/account/(int:id)/
 
     **Request**
 
@@ -104,7 +104,7 @@ Payment accounts can be added and listed.
 
     :status 204: successfully updated.
 
-.. http:delete:: /api/v1/payments/account/(int:id)/
+.. http:delete:: /api/v2/payments/account/(int:id)/
 
     .. warning:: This can potentially remove all your apps from sale.
 
@@ -118,7 +118,7 @@ Payment accounts can be added and listed.
     :status 204: successfully deleted.
     :status 409: shared accounts cannot be deleted whilst apps are using them.
 
-.. http:get:: /api/v1/payments/account/
+.. http:get:: /api/v2/payments/account/
 
     **Request**
 
@@ -133,7 +133,7 @@ Payment accounts can be added and listed.
 
 .. _payment-account-response-label:
 
-.. http:get:: /api/v1/payments/account/(int:id)/
+.. http:get:: /api/v2/payments/account/(int:id)/
 
     **Response**
 
@@ -157,7 +157,7 @@ Payment accounts can be added and listed.
              "countryIso": "BRA",
              "currencyIso": "EUR",
              "financeEmailAddress": "apps_accounts@example.com",
-             "resource_uri": "/api/v1/payments/account/175/",
+             "resource_uri": "/api/v2/payments/account/175/",
              "supportEmailAddress": "apps_support@example.com",
              "vendorName": "vendor"
         }
@@ -165,7 +165,7 @@ Payment accounts can be added and listed.
 Upsell
 ======
 
-.. http:post:: /api/v1/payments/upsell/
+.. http:post:: /api/v2/payments/upsell/
 
     Creates an upsell relationship between two apps, a free and premium one.
     Send the URLs for both apps in the post to create the relationship.
@@ -183,21 +183,21 @@ Upsell
 
 .. _upsell-response-label:
 
-.. http:get:: /api/v1/payments/upsell/(int:id)/
+.. http:get:: /api/v2/payments/upsell/(int:id)/
 
     **Response**
 
     .. code-block:: json
 
-        {"free": "/api/v1/apps/app/1/",
-         "premium": "/api/v1/apps/app/2/"}
+        {"free": "/api/v2/apps/app/1/",
+         "premium": "/api/v2/apps/app/2/"}
 
     :param free: URL to the free app.
     :type free: string
     :param premium: URL to the premium app.
     :type premium: string
 
-.. http:patch:: /api/v1/payments/upsell/(int:id)/
+.. http:patch:: /api/v2/payments/upsell/(int:id)/
 
     Alter the upsell from free to premium by passing in new free and premiums.
 
@@ -212,7 +212,7 @@ Upsell
 
     :status 200: sucessfully altered.
 
-.. http:delete:: /api/v1/payments/upsell/(int:id)/
+.. http:delete:: /api/v2/payments/upsell/(int:id)/
 
     To delete the upsell relationship.
 
@@ -234,7 +234,7 @@ packaged app. For example: ``app://foo-app.com``.
 
 .. note:: Feature not complete.
 
-.. http:post:: /api/v1/payments/(string:origin)/in-app/
+.. http:post:: /api/v2/payments/(string:origin)/in-app/
 
     .. note:: Authentication is required.
 
@@ -263,7 +263,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/(string:origin)/in-app/
+.. http:get:: /api/v2/payments/(string:origin)/in-app/
 
     List the in-app products for this app.
 
@@ -285,7 +285,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/(string:origin)/in-app/(string:id)/
+.. http:get:: /api/v2/payments/(string:origin)/in-app/(string:id)/
 
     Details of an in-app product.
 
@@ -309,7 +309,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:put:: /api/v1/payments/(string:origin)/in-app/(string:id)/
+.. http:put:: /api/v2/payments/(string:origin)/in-app/(string:id)/
 
     .. note:: Authentication is required.
 
@@ -338,7 +338,7 @@ packaged app. For example: ``app://foo-app.com``.
     :param price_id: ID for the :ref:`price tier <price-tiers>`.
     :type price_id: int
 
-.. http:get:: /api/v1/payments/stub-in-app-products/
+.. http:get:: /api/v2/payments/stub-in-app-products/
 
     List some stub in-app products that can be used for testing.
     These products can only be purchased in simulation mode.
@@ -366,7 +366,7 @@ packaged app. For example: ``app://foo-app.com``.
 
 .. _get-stub-product:
 
-.. http:get:: /api/v1/payments/stub-in-app-products/(string:guid)/
+.. http:get:: /api/v2/payments/stub-in-app-products/(string:guid)/
 
     Get detailed info for a specific stub product.
 
@@ -394,7 +394,7 @@ Produces the JWT for purchasing an app that is passed to `navigator.mozPay`_.
 
 .. note:: Authentication is required.
 
-.. http:post:: /api/v1/webpay/prepare/
+.. http:post:: /api/v2/webpay/prepare/
 
     **Request**
 
@@ -406,7 +406,7 @@ Produces the JWT for purchasing an app that is passed to `navigator.mozPay`_.
 
         {
             "app": "337141: Something Something Steamcube!",
-            "contribStatusURL": "https://marketplace.firefox.com/api/v1/webpay/status/123/",
+            "contribStatusURL": "https://marketplace.firefox.com/api/v2/webpay/status/123/",
             "resource_uri": "",
             "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
         }
@@ -430,7 +430,7 @@ Produces the JWT for purchasing an in-app product that is passed to `navigator.m
 
 .. note:: Authentication is not required or supported.
 
-.. http:post:: /api/v1/webpay/inapp/prepare/
+.. http:post:: /api/v2/webpay/inapp/prepare/
 
     **Request**
 
@@ -441,7 +441,7 @@ Produces the JWT for purchasing an in-app product that is passed to `navigator.m
     .. code-block:: json
 
         {
-            "contribStatusURL": "https://marketplace.firefox.com/api/v1/webpay/status/123/",
+            "contribStatusURL": "https://marketplace.firefox.com/api/v2/webpay/status/123/",
             "webpayJWT": "eyJhbGciOiAiSFMy... [truncated]",
         }
 
@@ -462,7 +462,7 @@ Retrieve a JWT that can be used to check the signature for making payments.
 This is intended for system health checks and requires no authorization.
 You can pass the retrieved JWT to the `WebPay`_ API to verify its signature.
 
-.. http:post:: /api/v1/webpay/sig_check/
+.. http:post:: /api/v2/webpay/sig_check/
 
     **Request**
 
@@ -486,7 +486,7 @@ You can pass the retrieved JWT to the `WebPay`_ API to verify its signature.
 Payment status
 ==============
 
-.. http:get:: /api/v1/webpay/status/(string:uuid)/
+.. http:get:: /api/v2/webpay/status/(string:uuid)/
 
     **Request**
 
@@ -528,7 +528,7 @@ record the install.
 Free apps
 ---------
 
-.. http:post:: /api/v1/installs/record/
+.. http:post:: /api/v2/installs/record/
 
     **Request**:
 
@@ -548,7 +548,7 @@ Premium apps
 
 .. note:: Authentication is required.
 
-.. http:post:: /api/v1/receipts/install/
+.. http:post:: /api/v2/receipts/install/
 
     Returns a receipt if the app is paid and a receipt should be installed.
 
@@ -587,7 +587,7 @@ Receipt Testing
 Returns test receipts for use during testing or development. The returned
 receipt will have type `test-receipt`. Only works for hosted apps.
 
-.. http:post:: /api/v1/receipts/test/
+.. http:post:: /api/v2/receipts/test/
 
     Returns a receipt suitable for testing your app.
 
@@ -613,7 +613,7 @@ Receipt reissue
 Takes an expired receipt and returns a reissued receipt with updated expiry
 times.
 
-.. http:post:: /api/v1/receipts/reissue/
+.. http:post:: /api/v2/receipts/reissue/
 
     **Request**
 
@@ -662,7 +662,7 @@ times.
 Price Tiers
 ===========
 
-.. http:get:: /api/v1/webpay/prices/
+.. http:get:: /api/v2/webpay/prices/
 
     Gets a list of pay tiers from the Marketplace.
 
@@ -683,7 +683,7 @@ Price Tiers
 
 .. _pay-tier-response-label:
 
-.. http:get:: /api/v1/webpay/prices/(int:id)/
+.. http:get:: /api/v2/webpay/prices/(int:id)/
 
     Returns a specific pay tier.
 
@@ -716,7 +716,7 @@ Price Tiers
                 "paid": true
             }],
             "localized": {},
-            "resource_uri": "/api/v1/webpay/prices/1/",
+            "resource_uri": "/api/v2/webpay/prices/1/",
             "created": "2011-09-29T14:15:08",
             "modified": "2013-05-02T14:43:58"
         }
@@ -827,7 +827,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     ``ProductIcon:Create``  permission.
 
 
-.. http:get:: /api/v1/webpay/product/icon/
+.. http:get:: /api/v2/webpay/product/icon/
 
     Gets a list of cached product icons.
 
@@ -851,7 +851,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
 
 .. _product-icon-response-label:
 
-.. http:get:: /api/v1/webpay/product/icon/(int:id)/
+.. http:get:: /api/v2/webpay/product/icon/(int:id)/
 
     **Response**
 
@@ -859,7 +859,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
 
         {
             "url": "http://marketplace-cdn/product-icons/0/1.png",
-            "resource_uri": "/api/v1/webpay/product/icon/1/",
+            "resource_uri": "/api/v2/webpay/product/icon/1/",
             "ext_url": "http://appserver/media/icon.png",
             "ext_size": 64,
             "size": 64
@@ -869,7 +869,7 @@ safe way. This API lets WebPay cache and later retrieve icon URLs.
     :type url: string
     :statuscode 200: successfully completed.
 
-.. http:post:: /api/v1/webpay/product/icon/
+.. http:post:: /api/v2/webpay/product/icon/
 
     Post a new product icon URL that should be cached.
     This schedules an icon to be processed but does not return any object data.
@@ -896,7 +896,7 @@ Transaction failure
 .. note:: Requires authenticated users to have the Transaction:NotifyFailure
     permission. This API is used by internal clients such as WebPay_.
 
-.. http:patch:: /api/v1/webpay/failure/(int:transaction_id)/
+.. http:patch:: /api/v2/webpay/failure/(int:transaction_id)/
 
     Notify the app developers that our attempts to call the postback or
     chargebacks URLs from `In-app Payments`_ failed. This will send an
