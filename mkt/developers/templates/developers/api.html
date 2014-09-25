@@ -96,7 +96,7 @@
         <pre>
 pip install curling
 echo '{"{{ settings.DOMAIN }}": {"key": "{{ consumers[0].key }}", "secret": "{{ consumers[0].secret }}"}}' > .curling
-curling {{ settings.SITE_URL }}/api/v1/settings/mine/
+curling {{ settings.SITE_URL }}/api/v2/account/settings/mine/
         </pre>
       </div>
     {% endif %}
