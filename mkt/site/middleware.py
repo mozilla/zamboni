@@ -10,11 +10,11 @@ from django.middleware import common
 from django.utils.cache import (get_max_age, patch_cache_control,
                                 patch_response_headers, patch_vary_headers)
 from django.utils.encoding import iri_to_uri
+from django.utils.translation.trans_real import parse_accept_lang_header
 
 import tower
 from django_statsd.clients import statsd
 
-from amo.urlresolvers import lang_from_accept_header, Prefixer
 from amo.utils import urlparams
 
 import mkt
@@ -72,69 +72,33 @@ class RequestCookiesMiddleware(object):
         return response
 
 
-class RedirectPrefixedURIMiddleware(object):
-    """
-    Strip /<app>/ prefix from URLs.
+def lang_from_accept_header(header):
+    # Map all our lang codes and any prefixes to the locale code.
+    langs = dict((k.lower(), v) for k, v in settings.LANGUAGE_URL_MAP.items())
 
-    Redirect /<lang>/ URLs to ?lang=<lang> so `LocaleMiddleware`
-    can then set a cookie.
+    # If we have a lang or a prefix of the lang, return the locale code.
+    for lang, _ in parse_accept_lang_header(header.lower()):
+        if lang in langs:
+            return langs[lang]
 
-    Redirect /<region>/ URLs to ?region=<lang> so `RegionMiddleware`
-    can then set a cookie.
+        prefix = lang.split('-')[0]
+        # Downgrade a longer prefix to a shorter one if needed (es-PE > es)
+        if prefix in langs:
+            return langs[prefix]
+        # Upgrade to a longer one, if present (zh > zh-CN)
+        lookup = settings.SHORTER_LANGUAGES.get(prefix, '').lower()
+        if lookup and lookup in langs:
+            return langs[lookup]
 
-    If it's calling /api/ which uses none of the above, then mark that on
-    the request.
-    """
-
-    def process_request(self, request):
-        request.API = False
-
-        path_ = request.get_full_path()
-        new_path = None
-        new_qs = {}
-
-        lang, app, rest = Prefixer(request).split_path(path_)
-
-        if app:
-            # Strip /<app> from URL.
-            new_path = rest
-
-        if lang:
-            # Strip /<lang> from URL.
-            if not new_path:
-                new_path = rest
-            new_qs['lang'] = lang.lower()
-
-        region, _, rest = path_.lstrip('/').partition('/')
-        region = region.lower()
-
-        if region == 'api':
-            # API isn't a region, its a sign that you are using the api.
-            request.API = True
-
-        if region in mkt.regions.REGION_LOOKUP:
-            # Strip /<region> from URL.
-            if not new_path:
-                new_path = rest
-            new_qs['region'] = mkt.regions.REGION_LOOKUP[region].slug
-
-        if new_path is not None:
-            if not new_path or new_path[0] != '/':
-                new_path = '/' + new_path
-            # TODO: Make this a 301 when we enable region stores in prod.
-            return http.HttpResponseRedirect(urlparams(new_path, **new_qs))
-
-
-def get_accept_language(request):
-    a_l = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-    return lang_from_accept_header(a_l)
+    return settings.LANGUAGE_CODE
 
 
 class LocaleMiddleware(object):
     """Figure out the user's locale and store it in a cookie."""
 
     def process_request(self, request):
-        a_l = get_accept_language(request)
+        a_l = lang_from_accept_header(request.META.get('HTTP_ACCEPT_LANGUAGE',
+                                                       ''))
         lang, ov_lang = a_l, ''
         stored_lang, stored_ov_lang = '', ''
 
@@ -156,7 +120,7 @@ class LocaleMiddleware(object):
         if 'lang' in request.REQUEST:
             # `get_language` uses request.GET['lang'] and does safety checks.
             ov_lang = a_l
-            lang = Prefixer(request).get_language()
+            lang = self.get_language(request)
         elif a_l != ov_lang:
             # Change if Accept-Language differs from Overridden Language.
             lang = a_l
@@ -185,6 +149,23 @@ class LocaleMiddleware(object):
 
         return response
 
+    def get_language(self, request):
+        """
+        Return a locale code that we support on the site using the
+        user's Accept Language header to determine which is best.  This
+        mostly follows the RFCs but read bug 439568 for details.
+        """
+        data = (request.GET or request.POST)
+        if 'lang' in data:
+            lang = data['lang'].lower()
+            if lang in settings.LANGUAGE_URL_MAP:
+                return settings.LANGUAGE_URL_MAP[lang]
+            prefix = lang.split('-')[0]
+            if prefix in settings.LANGUAGE_URL_MAP:
+                return settings.LANGUAGE_URL_MAP[prefix]
+
+        accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+        return lang_from_accept_header(accept)
 
 class DeviceDetectionMiddleware(object):
     """If the user has flagged that they are on a device. Store the device."""

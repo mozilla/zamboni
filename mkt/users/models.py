@@ -5,6 +5,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.core import validators
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import translation
 from django.utils.encoding import smart_unicode
@@ -16,7 +17,6 @@ from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.translations.fields import NoLinksField, save_signal
 from mkt.translations.query import order_by_translation

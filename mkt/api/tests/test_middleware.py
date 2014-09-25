@@ -11,12 +11,11 @@ from nose.tools import eq_, ok_
 from test_utils import RequestFactory
 
 import amo.tests
-from mkt.api.middleware import (APIFilterMiddleware, APIPinningMiddleware,
-                                APITransactionMiddleware, APIVersionMiddleware,
+from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
+                                APIPinningMiddleware, APITransactionMiddleware,
                                 AuthenticationMiddleware, CORSMiddleware,
                                 GZipMiddleware)
 import mkt.regions
-from mkt.site.middleware import RedirectPrefixedURIMiddleware
 
 fireplace_url = 'http://firepla.ce:1234'
 
@@ -57,7 +56,7 @@ class TestCORS(amo.tests.TestCase):
 class TestTransactionMiddleware(amo.tests.TestCase):
 
     def setUp(self):
-        self.prefix = RedirectPrefixedURIMiddleware()
+        self.prefix = APIBaseMiddleware()
         self.transaction = APITransactionMiddleware()
 
     def test_api(self):
@@ -156,15 +155,13 @@ class TestPinningMiddleware(amo.tests.TestCase):
 
 
 @override_settings(API_CURRENT_VERSION=2)
-class TestAPIVersionMiddleware(amo.tests.TestCase):
+class TestAPIBaseMiddleware(amo.tests.TestCase):
 
     def setUp(self):
-        self.api_version_middleware = APIVersionMiddleware()
-        self.prefix_middleware = RedirectPrefixedURIMiddleware()
+        self.api_version_middleware = APIBaseMiddleware()
 
     def response(self, url):
         req = RequestFactory().get(url)
-        self.prefix_middleware.process_request(req)
         resp = self.api_version_middleware.process_request(req)
         if resp:
             return resp
@@ -333,9 +330,9 @@ class TestAuthenticationMiddleware(amo.tests.TestCase):
 
     def test_settings(self):
         # Test that AuthenticationMiddleware comes after
-        # RedirectPrefixedURIMiddleware so that request.API is set.
+        # APIBaseMiddleware so that request.API is set.
         auth_middleware = 'mkt.api.middleware.AuthenticationMiddleware'
-        api_middleware = 'mkt.site.middleware.RedirectPrefixedURIMiddleware'
+        api_middleware = 'mkt.api.middleware.APIBaseMiddleware'
         index = settings.MIDDLEWARE_CLASSES.index
 
         ok_(index(auth_middleware) > index(api_middleware))

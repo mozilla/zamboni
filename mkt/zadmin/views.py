@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import admin, messages
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import debug
@@ -15,7 +16,6 @@ import elasticsearch
 import jinja2
 
 import amo
-from amo.urlresolvers import reverse
 from amo.utils import chunked
 from mkt.developers.models import ActivityLog
 from mkt.files.models import File

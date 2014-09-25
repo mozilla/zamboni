@@ -153,12 +153,10 @@ def render(s, context={}):
 @mock.patch('mkt.site.helpers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                     add_prefix=True)
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
 
     render('{{ url("viewname", 1, z=2, host="myhost") }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                     add_prefix=True)
+    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2})
 
 
 def test_url_src():

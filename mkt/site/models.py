@@ -9,8 +9,6 @@ import caching.base
 import multidb.pinning
 import queryset_transform
 
-from amo import signals  # Needed to set up url prefix signals.
-
 
 _locals = threading.local()
 _locals.skip_cache = False

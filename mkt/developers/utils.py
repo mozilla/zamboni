@@ -143,8 +143,7 @@ def escalate_app(app, version, user, msg, email_template, log_type):
     if not waffle.switch_is_active('comm-dashboard'):
         context = {'name': app.name,
                    'review_url': absolutify(reverse('reviewers.apps.review',
-                                                    args=[app.app_slug],
-                                                    add_prefix=False)),
+                                                    args=[app.app_slug])),
                    'SITE_URL': settings.SITE_URL}
         send_reviewer_mail(u'%s: %s' % (msg, app.name), email_template, context,
                            [settings.MKT_SENIOR_EDITORS_EMAIL])

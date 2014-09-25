@@ -19,7 +19,6 @@ from requests_oauthlib import OAuth2Session
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import get_url_prefix
 from amo.utils import escape_all, log_cef
 from lib.metrics import record_action
 from mkt.site.decorators import json_view, login_required
@@ -267,9 +266,6 @@ def logout(request):
     next = request.GET.get('to')
     if not next:
         next = settings.LOGOUT_REDIRECT_URL
-        prefixer = get_url_prefix()
-        if prefixer:
-            next = prefixer.fix(next)
     response = http.HttpResponseRedirect(next)
     # Fire logged out signal.
     logged_out.send(None, request=request, response=response)

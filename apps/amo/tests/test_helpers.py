@@ -13,8 +13,10 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo import urlresolvers, utils, helpers
+from amo import utils, helpers
 from amo.utils import ImageCheck
+from mkt.site.utils import (get_outgoing_url, linkify_bounce_url_callback,
+                            linkify_with_outgoing)
 
 
 def render(s, context={}):
@@ -115,18 +117,18 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('amo.helpers.urlresolvers.get_outgoing_url')
+@patch('mkt.site.utils.get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
-    res = urlresolvers.linkify_bounce_url_callback({'href': 'foo'})
+    res = linkify_bounce_url_callback({'href': 'foo'})
 
     # Make sure get_outgoing_url was called.
     eq_(res, {'href': 'bar'})
     mock_get_outgoing_url.assert_called_with('foo')
 
 
-@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch('mkt.site.utils.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -135,20 +137,18 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
     # Without nofollow.
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
-                                             nofollow=False)
+    res = linkify_with_outgoing('a text http://example.com link', nofollow=False)
     eq_(res, 'a text <a href="bar">http://example.com</a> link')
 
     # With nofollow (default).
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
+    res = linkify_with_outgoing('a text http://example.com link')
     eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
 
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
-                                             nofollow=True)
+    res = linkify_with_outgoing('a text http://example.com link', nofollow=True)
     eq_(res, 'a text <a rel="nofollow" href="bar">http://example.com</a> link')
 
 
-@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch('mkt.site.utils.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -157,17 +157,17 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
     # Without nofollow.
-    res = urlresolvers.linkify_with_outgoing(
+    res = linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
         nofollow=False)
     eq_(res, 'a markup <a href="bar">link</a> with text')
 
     # With nofollow (default).
-    res = urlresolvers.linkify_with_outgoing(
+    res = linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text')
     eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')
 
-    res = urlresolvers.linkify_with_outgoing(
+    res = linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
         nofollow=True)
     eq_(res, 'a markup <a rel="nofollow" href="bar">link</a> with text')

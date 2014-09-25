@@ -14,6 +14,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
@@ -37,7 +38,6 @@ from waffle.models import Flag, Sample, Switch
 
 import amo
 import mkt
-from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from lib.es.management.commands import reindex_mkt
 from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
@@ -321,21 +321,12 @@ class TestCase(MockEsMixin, RedisTest, MockBrowserIdMixin,
         super(TestCase, self)._post_teardown()
 
     @contextmanager
-    def activate(self, locale=None, app=None):
-        """Active an app or a locale."""
-        prefixer = old_prefix = get_url_prefix()
-        old_app = old_prefix.app
+    def activate(self, locale=None):
+        """Active a locale."""
         old_locale = translation.get_language()
         if locale:
-            rf = test_utils.RequestFactory()
-            prefixer = Prefixer(rf.get('/%s/' % (locale,)))
             translation.activate(locale)
-        if app:
-            prefixer.app = app
-        set_url_prefix(prefixer)
         yield
-        old_prefix.app = old_app
-        set_url_prefix(old_prefix)
         translation.activate(old_locale)
 
     def assertNoFormErrors(self, response):

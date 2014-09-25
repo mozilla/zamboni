@@ -6,6 +6,7 @@ import uuid
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
@@ -16,7 +17,6 @@ from uuidfield.fields import UUIDField
 
 import amo
 import amo.utils
-from amo.urlresolvers import reverse
 from mkt.site.storage_utils import copy_stored_file, move_stored_file
 from mkt.site.decorators import use_master
 from mkt.site.models import ModelBase, OnChangeMixin, UncachedManagerBase

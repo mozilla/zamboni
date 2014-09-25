@@ -9,80 +9,11 @@ from nose.tools import eq_, ok_
 
 import amo.tests
 from mkt.site.fixtures import fixture
+from mkt.site.middleware import lang_from_accept_header
 from mkt.users.models import UserProfile
 
 
 _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pt-BR', 'pt-PT']
-
-
-@patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
-class TestRedirectPrefixedURIMiddleware(amo.tests.TestCase):
-    def test_redirect_for_bad_application(self):
-        r = self.client.get('/mosaic/')
-        eq_(r.status_code, 404)
-
-    def test_redirect_for_good_locale(self):
-        redirects = [
-            ('/en-US/', '/?lang=en-us'),
-            ('/pt-BR/', '/?lang=pt-br'),
-            ('/pt-br/', '/?lang=pt-br'),
-            ('/es-PE/', '/?lang=es'),
-            # 'fr' is both a region and a lang.
-            ('/fr/', '/?lang=fr&region=fr'),
-        ]
-        for before, after in redirects:
-            r = self.client.get(before)
-            self.assert3xx(r, after, 302)
-
-    def test_preserve_qs_for_lang(self):
-        r = self.client.get('/pt-BR/privacy-policy?omg=yes')
-        self.assert3xx(r, '/privacy-policy?lang=pt-br&omg=yes', 302)
-
-    def test_switch_locale(self):
-        # Locale in URL prefix takes precedence.
-        r = self.client.get('/pt-BR/?lang=de')
-        self.assert3xx(r, '/?lang=pt-br', 302)
-
-    def test_no_locale(self):
-        r = self.client.get('/robots.txt')
-        eq_(r.status_code, 200)
-        r = self.client.get('/robots.txt?lang=fr')
-        eq_(r.status_code, 200)
-
-    def test_redirect_for_good_region(self):
-        redirects = [
-            ('/restofworld/', '/?region=restofworld'),
-            ('/worldwide/', '/?region=restofworld'),
-            ('/br/', '/?region=br'),
-            ('/us/', '/?region=us'),
-            ('/BR/', '/?region=br'),
-        ]
-        for before, after in redirects:
-            r = self.client.get(before)
-            self.assert3xx(r, after, 302)
-
-    def test_redirect_for_good_locale_and_region(self):
-        r = self.client.get('/en-US/br/developers/support?omg=yes',
-                            follow=True)
-        # Can you believe this actually works?
-        self.assert3xx(r,
-            '/developers/support?lang=en-us&region=br&omg=yes', 302)
-
-    def test_preserve_qs_for_region(self):
-        r = self.client.get('/br/developers/support?omg=yes')
-        self.assert3xx(r, '/developers/support?region=br&omg=yes', 302)
-
-    def test_switch_region(self):
-        r = self.client.get('/restofworld/?region=brazil')
-        self.assert3xx(r, '/?region=restofworld', 302)
-
-    def test_404_for_bad_prefix(self):
-        for url in ['/xxx', '/xxx/search/',
-                    '/brazil/', '/BRAZIL/',
-                    '/pt/?lang=de', '/pt-XX/brazil/']:
-            r = self.client.get(url)
-            got = r.status_code
-            eq_(got, 404, "For %r: expected '404' but got %r" % (url, got))
 
 
 @patch.object(settings, 'LANGUAGES', [x.lower() for x in _langs])
@@ -384,3 +315,47 @@ class TestCacheHeadersMiddleware(amo.tests.TestCase):
         for method in ('get', 'head', 'options'):
             res = getattr(self.client, method)('/robots.txt?cache=1')
             self._test_headers_set(res)
+
+accept_check = lambda x, y: eq_(lang_from_accept_header(x), y)
+
+
+def test_parse_accept_language():
+    expected = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
+    for lang in expected:
+        assert lang in settings.AMO_LANGUAGES, lang
+    d = (('ga-ie', 'ga-IE'),
+         # Capitalization is no big deal.
+         ('ga-IE', 'ga-IE'),
+         ('GA-ie', 'ga-IE'),
+         # Go for something less specific.
+         ('fr-FR', 'fr'),
+         # Go for something more specific.
+         ('ga', 'ga-IE'),
+         ('ga-XX', 'ga-IE'),
+         # With multiple zh-XX choices, choose the first alphabetically.
+         ('zh', 'zh-CN'),
+         # Default to en-us.
+         ('xx', 'en-US'),
+         # Check q= sorting.
+         ('fr,en;q=0.8', 'fr'),
+         ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
+         # Beware of invalid headers.
+         ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
+         # zh is a partial match but it's still preferred.
+         ('zh, fr;q=0.8', 'zh-CN'),
+         # Caps + q= sorting.
+         ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
+         ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
+         # Consolidated languages.
+         ('es-PE', 'es'),
+    )
+    for x, y in d:
+        yield accept_check, x, y
+
+
+class TestShorter(amo.tests.TestCase):
+
+    def test_no_shorter_language(self):
+        accept_check('zh', 'zh-CN')
+        with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
+            accept_check('zh', 'en-US')
