@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-22 20:54+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2014-09-25 21:13+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411419271.0\n"
+"X-POOTLE-MTIME: 1411679598.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -2111,11 +2111,11 @@ msgstr ""
 
 #: mkt/constants/features.py:87
 msgid "Idle"
-msgstr ""
+msgstr "Inaktiv"
 
 #: mkt/constants/features.py:92
 msgid "Network Information"
-msgstr ""
+msgstr "Nätverksinformation"
 
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
@@ -2550,7 +2550,7 @@ msgstr[1] "{0} hämtningar per vecka"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
-msgstr ""
+msgstr "(Stöds ej)"
 
 #: mkt/developers/api_payments.py:103
 msgid "Could not connect to payment server."
@@ -2562,11 +2562,11 @@ msgstr "Kan inte ta bort delat konto"
 
 #: mkt/developers/cron.py:126
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Innehållsklassificering ändrad till vuxen."
 
 #: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Du kan inte välja {region}."
 
 #: mkt/developers/forms.py:131
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2645,31 +2645,33 @@ msgstr "Fel vid extrahering av manifest från zip-fil."
 
 #: mkt/developers/forms.py:559
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Ge en detaljerad beskrivning av din app"
 
 #: mkt/developers/forms.py:560 mkt/submit/forms.py:283
 msgid "This description will appear on the details page."
-msgstr ""
+msgstr "Denna beskrivning kommer att visas på detaljsidan."
 
 #: mkt/developers/forms.py:601 mkt/submit/forms.py:343 mkt/webapps/forms.py:26
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Sluggen används redan. Välj en annan."
 
 #: mkt/developers/forms.py:604 mkt/submit/forms.py:347 mkt/webapps/forms.py:29
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Sluggen kan inte vara \"%s\". Välj en annan."
 
 #: mkt/developers/forms.py:632
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "Manifest URL ändrad från {before_url} till {after_url}"
 
 #: mkt/developers/forms.py:652
 msgid "Please specify your app's Privacy Policy"
-msgstr ""
+msgstr "Vänligen ange din apps sekretesspolicy"
 
 #: mkt/developers/forms.py:673
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
+"Innan du ändrar ditt standardspråk måste du ha ett namn och beskrivning på "
+"det språket. Du saknar %s."
 
 #: mkt/developers/forms.py:728
 msgid "Your comments"
@@ -2678,14 +2680,18 @@ msgstr "Dina kommentarer"
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Publicerad</b>: Synlig för alla i Marketplace och ingår i sökresultat och "
+"förteckningssidor."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Olistad</b>:  Synlig för endast personer med URL och visas inte i "
+"sökresultat och förteckningssidor."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "Synlighet app:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -2693,7 +2699,7 @@ msgstr "<b>Begränsad till min grupp</b>: Synlig för endast gruppmedlemmar."
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
-msgstr ""
+msgstr "Välj de regioner din app kommer att listas i:"
 
 #: mkt/developers/forms.py:823 mkt/developers/forms.py:925
 msgid "You must select at least one region."
@@ -2774,6 +2780,8 @@ msgstr "Kommandoraden"
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Gör detta till den aktiva versionen av min app så snart den har granskats "
+"och godkänts."
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -2795,7 +2803,7 @@ msgstr "Fil för stor. Håll storlek under %s. Aktuell storlek %s."
 
 #: mkt/developers/forms.py:1196
 msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr ""
+msgstr "Ogiltig filtyp {0}. Endast {1}-filer stöds."
 
 #: mkt/developers/forms.py:1220
 msgid "Please enter a valid submission ID."
@@ -4407,16 +4415,16 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1769
 msgid "Content Ratings"
-msgstr ""
+msgstr "Innehållsklassificering"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
 #: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
-msgstr ""
+msgstr "In-app betalningar"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100 mkt/developers/templates/developers/includes/addons_edit_nav.html:40
 msgid "Messages"
-msgstr ""
+msgstr "Meddelanden"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:105 mkt/developers/templates/developers/includes/addons_edit_nav.html:45
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
@@ -4458,7 +4466,7 @@ msgstr "Ändra enheter"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Konfigurera innehållsklassificering</a>"
 
 #: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
 msgid "Preloaded"
