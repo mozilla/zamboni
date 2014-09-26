@@ -29,7 +29,6 @@ media/external/*
 *-all.js
 *.less.css
 *.styl.css
-vendor
 .nose*
 tmp/*
 tags
