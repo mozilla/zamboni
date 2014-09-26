@@ -67,7 +67,7 @@ class LoginSerializer(serializers.Serializer):
     is_mobile = fields.BooleanField(required=False, default=False)
 
 
-class FxaLoginSerializer(serializers.Serializer):
+class FxALoginSerializer(serializers.Serializer):
     auth_response = fields.CharField(required=True)
     state = fields.CharField(required=True)
 
