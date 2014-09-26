@@ -127,7 +127,7 @@ def get_mail_context(note):
         'comm': comm,
         'note': note,
         'review_url': absolutify(reverse('reviewers.apps.review',
-                                 args=[app.app_slug], add_prefix=False)),
+                                 args=[app.app_slug])),
         'settings': settings
     }
 

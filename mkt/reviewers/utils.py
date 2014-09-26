@@ -170,10 +170,9 @@ class ReviewBase(object):
         return {'name': app.name,
                 'reviewer': self.request.user.name,
                 'detail_url': absolutify(
-                    app.get_url_path(add_prefix=False)),
+                    app.get_url_path()),
                 'review_url': absolutify(reverse('reviewers.apps.review',
-                                                 args=[app.app_slug],
-                                                 add_prefix=False)),
+                                                 args=[app.app_slug])),
                 'status_url': absolutify(app.get_dev_url('versions')),
                 'comments': self.data['comments'],
                 'MKT_SUPPORT_EMAIL': settings.MKT_SUPPORT_EMAIL,

@@ -40,7 +40,7 @@ class RestOAuthMiddleware(object):
 
     def process_request(self, request):
         # For now we only want these to apply to the API.
-        # This attribute is set in RedirectPrefixedURIMiddleware.
+        # This attribute is set in APIBaseMiddleware.
         if not getattr(request, 'API', False):
             return
 
@@ -159,7 +159,7 @@ class RestSharedSecretMiddleware(object):
 
     def process_request(self, request):
         # For now we only want these to apply to the API.
-        # This attribute is set in RedirectPrefixedURIMiddleware.
+        # This attribute is set in APIBaseMiddleware.
         if not getattr(request, 'API', False):
             return
         # Set up authed_from attribute.
@@ -300,7 +300,7 @@ class CORSMiddleware(object):
 
         return response
 
-v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/')
+v_re = re.compile('^/api/v(?P<version>\d+)/|^/api/|^/api$')
 
 
 def detect_api_version(request):
@@ -311,19 +311,27 @@ def detect_api_version(request):
     return version
 
 
-class APIVersionMiddleware(object):
+class APIBaseMiddleware(object):
     """
-    Figures out what version of the API they are on. Maybe adds in a
-    deprecation notice.
+    Detects if this is an API call, and figures out what version of the API
+    they are on. Maybe adds in a deprecation notice.
     """
 
+    def get_api(self, request):
+        if not hasattr(request, 'API'):
+            request.API = False
+            prefix, _, _ = request.get_full_path().lstrip('/').partition('/')
+            if prefix.lower() == 'api':
+                request.API = True
+        return request.API
+
     def process_request(self, request):
-        if getattr(request, 'API', False):
+        if self.get_api(request):
             version = detect_api_version(request)
             request.API_VERSION = int(version)
 
     def process_response(self, request, response):
-        if not getattr(request, 'API', False):
+        if not self.get_api(request):
             return response
         version = getattr(request, 'API_VERSION', None)
         if version is None:

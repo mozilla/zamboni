@@ -3,6 +3,7 @@ import uuid
 from urlparse import urljoin
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.forms import CheckboxInput
 from django.template import defaultfilters
 from django.utils import translation
@@ -16,7 +17,6 @@ from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 from amo.helpers import urlparams
-from amo.urlresolvers import reverse
 from amo.utils import get_locale_from_lang
 
 from mkt.translations.helpers import truncate
@@ -329,11 +329,9 @@ def timesince(time):
 @register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
-    add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
     src = kwargs.pop('src', '')
-    url = '%s%s' % (host, reverse(viewname, args=args, kwargs=kwargs,
-                                  add_prefix=add_prefix))
+    url = '%s%s' % (host, reverse(viewname, args=args, kwargs=kwargs))
     if src:
         url = urlparams(url, src=src)
     return url

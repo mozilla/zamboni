@@ -1,6 +1,5 @@
 from django.utils.cache import patch_vary_headers
 
-from amo.urlresolvers import set_url_prefix
 from mkt.constants.carriers import CARRIER_MAP
 
 from . import set_carrier
@@ -21,7 +20,6 @@ class CarrierURLMiddleware(object):
 
     def process_request(self, request):
         carrier = stored_carrier = None
-        set_url_prefix(None)
         set_carrier(None)
 
         # If I have a cookie use that carrier.

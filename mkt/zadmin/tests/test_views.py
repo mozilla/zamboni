@@ -5,12 +5,12 @@ from cStringIO import StringIO
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from mkt.access.models import Group, GroupUser
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.fixtures import fixture

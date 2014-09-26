@@ -1211,20 +1211,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             key = self.app_slug
         return reverse('app-detail', kwargs={'pk': key})
 
-    def get_url_path(self, more=False, add_prefix=True, src=None):
-        # We won't have to do this when Marketplace absorbs all apps views,
-        # but for now pretend you didn't see this.
-        try:
-            url_ = reverse('detail', args=[self.app_slug],
-                           add_prefix=add_prefix)
-        except NoReverseMatch:
-            # Fall back to old details page until the views get ported.
-            return super(Webapp, self).get_url_path(more=more,
-                                                    add_prefix=add_prefix)
-        else:
-            if src is not None:
-                return urlparams(url_, src=src)
-            return url_
+    def get_url_path(self, src=None):
+        url_ = reverse('detail', args=[self.app_slug])
+        if src is not None:
+            return urlparams(url_, src=src)
+        return url_
 
     def get_detail_url(self, action=None):
         """Reverse URLs for 'detail', 'details.record', etc."""
@@ -1244,11 +1235,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         return reverse(view_name % (prefix, action),
                        args=[self.app_slug] + args)
 
-    def get_ratings_url(self, action='list', args=None, add_prefix=True):
+    def get_ratings_url(self, action='list', args=None):
         """Reverse URLs for 'ratings.list', 'ratings.add', etc."""
         return reverse(('ratings.%s' % action),
-                       args=[self.app_slug] + (args or []),
-                       add_prefix=add_prefix)
+                       args=[self.app_slug] + (args or []))
 
     def get_stats_url(self):
         return reverse('commonplace.stats.app_dashboard', args=[self.app_slug])

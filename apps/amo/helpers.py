@@ -3,6 +3,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.template import defaultfilters
 from django.utils import translation
 from django.utils.encoding import smart_unicode
@@ -14,8 +15,9 @@ from jingo import env, register
 from jingo import helpers  # noqa
 from tower import ugettext as _
 
-from amo import urlresolvers, utils
+from amo import utils
 from mkt.translations.helpers import truncate
+from mkt.site.utils import get_outgoing_url
 
 
 # Yanking filters from Django.
@@ -86,7 +88,7 @@ def login_link(context):
     if qs:
         next += '?' + qs
 
-    l = urlparams(urlresolvers.reverse('users.login'), to=next)
+    l = urlparams(reverse('users.login'), to=next)
     return l
 
 
@@ -98,7 +100,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
     Accepts: [(url, label)]
     """
     if add_default:
-        crumbs = [(urlresolvers.reverse('home'), _('Apps Marketplace'))]
+        crumbs = [(reverse('home'), _('Apps Marketplace'))]
     else:
         crumbs = []
 
@@ -134,7 +136,7 @@ def strip_controls(s):
 @register.filter
 def external_url(url):
     """Bounce a URL off outgoing.mozilla.org."""
-    return urlresolvers.get_outgoing_url(unicode(url))
+    return get_outgoing_url(unicode(url))
 
 
 @register.function

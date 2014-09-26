@@ -5,7 +5,6 @@ from nose.tools import eq_
 from test_utils import RequestFactory
 
 from amo.tests import TestCase
-from amo.urlresolvers import set_url_prefix
 
 from . import get_carrier, set_carrier, context_processors
 from .middleware import CarrierURLMiddleware
@@ -15,7 +14,6 @@ class TestCarrierURLs(TestCase):
 
     def setUp(self):
         set_carrier(None)
-        set_url_prefix(None)
 
     def request(self, url):
         request = RequestFactory().get(url)
