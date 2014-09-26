@@ -241,14 +241,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, form.get_devices())
 
-    def test_cannot_set_desktop_for_packaged_app(self):
-        self.platforms = {'free_platforms': ['free-desktop']}
-        self.addon.update(is_packaged=True)
-        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
-        assert not form.is_valid()
-
     def test_can_set_desktop_for_packaged_app(self):
-        self.create_flag('desktop-packaged')
         self.platforms = {'free_platforms': ['free-desktop']}
         self.addon.update(is_packaged=True)
         form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
@@ -265,17 +258,7 @@ class TestPremiumForm(amo.tests.TestCase):
 
         self.assertSetEqual(self.addon.device_types, [amo.DEVICE_DESKTOP])
 
-    def test_cannot_change_android_devices_for_packaged_app(self):
-        self.platforms = {'free_platforms': ['free-android-mobile'],
-                          'paid_platforms': ['paid-firefoxos']}  # Ignored.
-        self.addon.update(is_packaged=True)
-        form = forms_payments.PremiumForm(data=self.platforms, **self.kwargs)
-        assert not form.is_valid()
-
-        self.assertSetEqual(self.addon.device_types, [amo.DEVICE_GAIA])
-
-    def test_can_change_devices_for_packaged_app_behind_flag(self):
-        self.create_flag('android-packaged')
+    def test_can_change_devices_for_packaged_app(self):
         self.platforms = {'free_platforms': ['free-android-mobile'],
                           'paid_platforms': ['paid-firefoxos']}  # Ignored.
         self.addon.update(is_packaged=True)

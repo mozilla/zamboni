@@ -100,30 +100,10 @@
         return freeTabs === 0 && paidTabs === 0;
     }
 
-    // Condition to show packaged tab...ugly but works.
+    // Condition to show packaged tab.
     function showPackagedTab() {
-        // If the Android flag is disabled, and you tried to select
-        // Android Mobile or Tablet... no packaged apps for you.
-        // (This lets us prevent you from marking your app as compatible
-        // with both Firefox OS *and* Android when Android support
-        // hasn't landed yet.)
-        if (!$('[data-packaged-platforms~="android"]').length &&
-            $('option[value*="-android-"]:selected').length) {
-            return false;
-        }
-
-        // If the Desktop flag is disabled, and you tried to select
-        // Desktop... no packaged apps for you.
-        if (!$('[data-packaged-platforms~="desktop"]').length &&
-            $('option[value$="-desktop"]:selected').length) {
-            return false;
-        }
-
-        return ($('#id_free_platforms option[value="free-firefoxos"]:selected').length &&
-            $('#id_free_platforms option:selected').length == 1) ||
+        return $('#id_free_platforms option:selected').length ||
             $('#id_paid_platforms option[value="paid-firefoxos"]:selected').length ||
-            $('[data-packaged-platforms~="android"] option[value*="-android-"]:selected').length ||
-            $('[data-packaged-platforms~="desktop"] option[value$="-desktop"]:selected').length ||
             allTabsDeselected();
     }
 

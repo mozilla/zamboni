@@ -1024,7 +1024,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.context['cannot_be_paid'], True)
 
     def test_cannot_be_paid_pkg_with_desktop_pkg(self):
-        self.create_flag('desktop-packaged')
         self.webapp.update(is_packaged=True)
         for device_type in (amo.DEVICE_GAIA,
                             amo.DEVICE_DESKTOP):
@@ -1043,7 +1042,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.context['cannot_be_paid'], False)
 
     def test_cannot_be_paid_pkg_with_android_pkg_no_android_payments(self):
-        self.create_flag('android-packaged')
         self.webapp.update(is_packaged=True)
         for device_type in (amo.DEVICE_GAIA,
                             amo.DEVICE_MOBILE, amo.DEVICE_TABLET):
@@ -1054,7 +1052,6 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.context['cannot_be_paid'], True)
 
     def test_cannot_be_paid_pkg_with_android_pkg_w_android_payments(self):
-        self.create_flag('android-packaged')
         self.create_flag('android-payments')
         self.webapp.update(is_packaged=True)
         for device_type in (amo.DEVICE_GAIA,
@@ -1065,28 +1062,13 @@ class TestPayments(Patcher, amo.tests.TestCase):
         eq_(res.status_code, 200)
         eq_(res.context['cannot_be_paid'], False)
 
-    def test_no_desktop_if_no_packaged_desktop_flag(self):
-        self.webapp.update(is_packaged=True)
-        res = self.client.get(self.url)
-        pqr = pq(res.content)
-        eq_(len(pqr('#free-desktop')), 0)
-
-    def test_no_android_if_no_packaged_android_flag(self):
-        self.webapp.update(is_packaged=True)
-        res = self.client.get(self.url)
-        pqr = pq(res.content)
-        eq_(len(pqr('#free-android-mobile')), 0)
-        eq_(len(pqr('#free-android-tablet')), 0)
-
-    def test_desktop_if_packaged_desktop_flag_is_set(self):
-        self.create_flag('desktop-packaged')
+    def test_desktop_if_packaged_desktop(self):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         pqr = pq(res.content)
         eq_(len(pqr('#free-desktop')), 1)
 
-    def test_android_if_packaged_android_flag_is_set(self):
-        self.create_flag('android-packaged')
+    def test_android_if_packaged_android(self):
         self.webapp.update(is_packaged=True)
         res = self.client.get(self.url)
         pqr = pq(res.content)

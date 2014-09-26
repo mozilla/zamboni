@@ -114,32 +114,18 @@ def payments(request, addon_id, addon, webapp=False):
             return redirect(addon.get_dev_url('payments'))
 
     # TODO: refactor this (bug 945267)
-    is_packaged = addon.is_packaged
     android_payments_enabled = waffle.flag_is_active(request,
                                                      'android-payments')
-    android_packaged_enabled = waffle.flag_is_active(request,
-                                                     'android-packaged')
-    desktop_packaged_enabled = waffle.flag_is_active(request,
-                                                     'desktop-packaged')
 
     # If android payments is not allowed then firefox os must
     # be 'checked' and android-mobile and android-tablet should not be.
-    invalid_paid_platform_state = []
-
-    # If isn't packaged or it is packaged and the android-packaged flag is on
-    # then we should check that desktop isn't set to True.
-    if not is_packaged or (is_packaged and desktop_packaged_enabled):
-        invalid_paid_platform_state.append(('desktop', True))
+    invalid_paid_platform_state = [('desktop', True)]
 
     if not android_payments_enabled:
         # When android-payments is off...
-        # If isn't packaged or it is packaged and the android-packaged flag is
-        # on then we should check for the state of android-mobile and
-        # android-tablet.
-        if not is_packaged or (is_packaged and android_packaged_enabled):
-            invalid_paid_platform_state += [('android-mobile', True),
-                                            ('android-tablet', True)]
-        invalid_paid_platform_state.append(('firefoxos', False))
+        invalid_paid_platform_state += [('android-mobile', True),
+                                        ('android-tablet', True),
+                                        ('firefoxos', False)]
 
     cannot_be_paid = (
         addon.premium_type == amo.ADDON_FREE and
@@ -159,7 +145,7 @@ def payments(request, addon_id, addon, webapp=False):
     if tier_zero:
         paid_region_ids_by_name = tier_zero.region_ids_by_name()
 
-    platforms = PAID_PLATFORMS(request, is_packaged)
+    platforms = PAID_PLATFORMS(request)
     paid_platform_names = [unicode(platform[1]) for platform in platforms]
 
     provider_regions = {}
