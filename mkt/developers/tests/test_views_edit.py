@@ -87,16 +87,17 @@ class TestEdit(amo.tests.TestCase):
         result.update(fs)
         return result
 
-    def compare(self, data):
+    def compare(self, data, instance=None):
         """Compare an app against a `dict` of expected values."""
         mapping = {
             'regions': 'get_region_ids'
         }
 
-        webapp = self.get_webapp()
+        if instance is None:
+            instance = self.get_webapp()
         for k, v in data.iteritems():
             k = mapping.get(k, k)
-            val = getattr(webapp, k, '')
+            val = getattr(instance, k, '')
             if callable(val):
                 val = val()
             if val is None:
@@ -1155,19 +1156,31 @@ class TestEditTechnical(TestEdit):
         super(TestEditTechnical, self).setUp()
         self.url = self.get_url('technical')
         self.edit_url = self.get_url('technical', edit=True)
+        self.latest_file = self.get_webapp().latest_version.all_files[0]
 
     def test_form_url(self):
         self.check_form_url('technical')
 
-    def test_toggles(self):
-        # Turn everything on.
+    def test_toggle_flash(self):
+        # Turn flash on.
         r = self.client.post(self.edit_url, formset(**{'flash': 'on'}))
         self.assertNoFormErrors(r)
-        self.compare({'uses_flash': True})
+        self.latest_file.reload()
+        self.compare({'uses_flash': True}, instance=self.latest_file)
 
         # And off.
         r = self.client.post(self.edit_url, formset(**{'flash': ''}))
-        self.compare({'uses_flash': False})
+        self.latest_file.reload()
+        self.compare({'uses_flash': False}, instance=self.latest_file)
+
+    def test_toggle_flash_rejected(self):
+        # Reject the app.
+        app = self.get_webapp()
+        app.update(status=amo.STATUS_REJECTED)
+        app.versions.latest().all_files[0].update(status=amo.STATUS_DISABLED)
+        app.update_version()
+
+        self.test_toggle_flash()
 
     def test_public_stats(self):
         o = ActivityLog.objects
@@ -1202,7 +1215,7 @@ class TestEditTechnical(TestEdit):
         # Changing features must trigger re-review.
         assert RereviewQueue.objects.filter(addon=self.webapp).exists()
 
-    def test_features_hosted_app_disabled(self):
+    def test_features_hosted_app_rejected(self):
         # Reject the app.
         app = self.get_webapp()
         app.update(status=amo.STATUS_REJECTED)
