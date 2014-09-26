@@ -6,7 +6,7 @@ from amo.utils import to_language
 
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.reviewers.models import EscalationQueue
+from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
@@ -105,19 +105,36 @@ class TestWebappIndexer(amo.tests.TestCase):
         self.assertSetEqual(doc['supported_locales'], set(locales.split(',')))
 
     def test_extract_latest_version(self):
+        created_date = self.days_ago(5).replace(microsecond=0)
+        nomination_date = self.days_ago(3).replace(microsecond=0)
+
         amo.tests.version_factory(addon=self.app, version='43.0',
                                   has_editor_comment=True,
                                   has_info_request=True,
+                                  created=created_date,
+                                  nomination=nomination_date,
                                   file_kw=dict(status=amo.STATUS_REJECTED))
         obj, doc = self._get_doc()
         eq_(doc['latest_version']['status'], amo.STATUS_REJECTED)
         eq_(doc['latest_version']['has_editor_comment'], True)
         eq_(doc['latest_version']['has_info_request'], True)
+        eq_(doc['latest_version']['created_date'], created_date)
+        eq_(doc['latest_version']['nomination_date'], nomination_date)
 
     def test_extract_is_escalated(self):
         EscalationQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
+
+    def test_extract_is_rereviewed(self):
+        RereviewQueue.objects.create(addon=self.app)
+        obj, doc = self._get_doc()
+        eq_(doc['is_rereviewed'], True)
+
+    def test_extract_is_priority(self):
+        self.app.update(priority_review=True)
+        obj, doc = self._get_doc()
+        eq_(doc['is_priority'], True)
 
     def test_extract_content_ratings(self):
         ContentRating.objects.create(
@@ -157,6 +174,12 @@ class TestWebappIndexer(amo.tests.TestCase):
             {'lang': 'en-US', 'string': release_notes['en-US']})
         eq_(doc['release_notes_translations'][1],
             {'lang': 'fr', 'string': release_notes['fr']})
+
+    def test_extract_abuse_reports(self):
+        self.app.abuse_reports.create()
+        self.app.abuse_reports.create()
+        obj, doc = self._get_doc()
+        eq_(doc['abuse_reports'], 2)
 
 
 class TestAppFilter(amo.tests.ESTestCase):
