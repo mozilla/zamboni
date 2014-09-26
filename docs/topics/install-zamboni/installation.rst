@@ -168,8 +168,8 @@ where N is the number of apps you want created in your database.
 7. Check it works
 -----------------
 
-If you've gotten the system requirements, downloaded ``zamboni`` and
-``zamboni-lib``, set up your virtualenv with the compiled packages, and
+If you've gotten the system requirements, downloaded ``zamboni``, 
+set up your virtualenv with the compiled packages, and
 configured your settings and database, you're good to go::
 
     ./manage.py runserver
