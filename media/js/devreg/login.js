@@ -1,7 +1,28 @@
 define('login', ['notification'], function(notification) {
 
+    function Storage() {
+        function _prefix(storageKey) {
+            var version = localStorage.getItem('latestStorageVersion') || '0';
+            return version + '::' + storageKey;
+        }
+
+        this.setItem = function (key, value) {
+            return localStorage.setItem(_prefix(key), value);
+        };
+
+        this.getItem = function (key) {
+            return localStorage.getItem(_prefix(key));
+        };
+
+        this.removeItem = function (key) {
+            return localStorage.removeItem(_prefix(key));
+        };
+    }
+
+    var storage = new Storage();
     var requestedLogin = false;
     var readyForReload = false;
+
     z.doc.bind('login', function(skipDialog) {
         if (readyForReload) {
             window.location.reload();
@@ -12,7 +33,10 @@ define('login', ['notification'], function(notification) {
         } else {
             $('.overlay.login').addClass('show');
         }
-    }).on('click', '.browserid', function(e) {
+    }).on('click', '.browserid', loginHandler)
+      .on('click', '.persona', loginHandler);
+
+    function loginHandler(e) {
         if (readyForReload) {
             window.location.reload();
             return;
@@ -27,9 +51,9 @@ define('login', ['notification'], function(notification) {
             startLogin();
         } else {
             startFxALogin();
-        };
+        }
         e.preventDefault();
-    });
+    }
 
     function getCenteredCoordinates (width, height) {
         var x = window.screenX + Math.max(0, Math.floor((window.innerWidth - width) / 2));
@@ -42,9 +66,18 @@ define('login', ['notification'], function(notification) {
         var h = 500;
         var i = getCenteredCoordinates(w, h);
         requestedLogin = true;
-        window.open(z.body.data('fxa-login-url'),
+
+        var fxa_auth_url = z.body.data('fxa-login-url');
+        var fxa_migrate_url = z.body.data('fxa-migrate-url');
+        if (fxa_migrate_url) {
+            // Save the auth URL for later.
+            storage.setItem('fxa_auth_url', fxa_auth_url);
+            fxa_auth_url = fxa_migrate_url;
+        }
+        window.open(fxa_auth_url,
                     'fxa',
                     'width=' + w + ',height=' + h + ',left=' + i[0] + ',top=' + i[1]);
+
         window.addEventListener("message", function (msg) {
             if (!msg.data || !msg.data.auth_code) {
                 return;
@@ -159,26 +192,34 @@ define('login', ['notification'], function(notification) {
         });
     }
 
-    function _prefix(storageKey) {
-        return (localStorage.getItem('latestStorageVersion') || '0') + '::' + storageKey;
-    }
-
     function setToken(data) {
-        localStorage.setItem(_prefix('user'), data.token);
-        localStorage.setItem(_prefix('settings'), JSON.stringify(data.settings));
-        localStorage.setItem(_prefix('permissions'), JSON.stringify(data.permissions));
-        localStorage.setItem(_prefix('user_apps'), JSON.stringify(data.apps));
+        storage.setItem('user', data.token);
+        storage.setItem('settings', JSON.stringify(data.settings));
+        storage.setItem('permissions', JSON.stringify(data.permissions));
+        storage.setItem('user_apps', JSON.stringify(data.apps));
     }
 
     function clearToken() {
-        localStorage.removeItem(_prefix('user'));
-        localStorage.removeItem(_prefix('settings'));
-        localStorage.removeItem(_prefix('permissions'));
-        localStorage.removeItem(_prefix('user_apps'));
+        storage.removeItem('user');
+        storage.removeItem('settings');
+        storage.removeItem('permissions');
+        storage.removeItem('user_apps');
     }
 
     function userToken() {
-        return localStorage.getItem(_prefix('user'));
+        return storage.getItem('user');
+    }
+
+    function getSetting(name) {
+        var settings;
+        var raw_settings = storage.getItem('settings');
+        try {
+            settings = JSON.parse(raw_settings);
+        } catch (e) {
+            console.error("Error parsing settings as JSON.", e);
+            settings = {};
+        }
+        return settings[name];
     }
 
     if (z.body.data('persona-url')) {
@@ -199,5 +240,6 @@ define('login', ['notification'], function(notification) {
 
     return {
         userToken: userToken,
+        getSetting: getSetting,
     };
 });

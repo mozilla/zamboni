@@ -73,7 +73,7 @@ def commonplace(request, repo, **kwargs):
         # native fxa already provides navigator.id, and fallback fxa doesn't
         # need it.
         include_persona = False
-        site_settings = {}
+        site_settings = {'fxa_css_path': settings.FXA_CSS_URL}
     else:
         site_settings = {
             'persona_unverified_issuer': settings.BROWSERID_DOMAIN,
