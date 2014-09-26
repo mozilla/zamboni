@@ -5,6 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
+from django.db.models import Count, Q
 from django.utils import translation
 from django.utils.datastructures import SortedDict
 
@@ -19,9 +20,13 @@ from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.features import FeatureProfile
 from mkt.files.models import File
+from mkt.ratings.models import Review
 from mkt.reviewers.models import EscalationQueue, RereviewQueue, ReviewerScore
 from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.mail import send_mail_jinja
+from mkt.site.models import manual_order
+from mkt.translations.query import order_by_translation
+from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import set_storefront_data
 
@@ -676,3 +681,109 @@ def log_reviewer_action(addon, user, msg, action, **kwargs):
                      note_type=comm.ACTION_MAP(action.id))
     amo.log(action, addon, addon.latest_version, details={'comments': msg},
             **kwargs)
+
+
+class ReviewersQueuesHelper(object):
+    def __init__(self, request=None):
+        self.request = request
+
+    @amo.cached_property
+    def excluded_ids(self):
+        # We need to exclude Escalated Apps from almost all queries, so store
+        # the result once.
+        return self.get_escalated_queue().values_list('addon', flat=True)
+
+    def get_escalated_queue(self):
+        return EscalationQueue.objects.no_cache().filter(
+            addon__disabled_by_user=False)
+
+    def get_pending_queue(self):
+        return (Version.objects.no_cache().filter(
+            files__status=amo.STATUS_PENDING,
+            addon__disabled_by_user=False,
+            addon__status=amo.STATUS_PENDING)
+            .exclude(addon__id__in=self.excluded_ids)
+            .order_by('nomination', 'created')
+            .select_related('addon', 'files').no_transforms())
+
+    def get_rereview_queue(self):
+        return (RereviewQueue.objects.no_cache()
+            .filter(addon__disabled_by_user=False)
+            .exclude(addon__in=self.excluded_ids))
+
+    def get_updates_queue(self):
+        return (Version.objects.no_cache().filter(
+            # Note: this will work as long as we disable files of existing
+            # unreviewed versions when a new version is uploaded.
+            files__status=amo.STATUS_PENDING,
+            addon__disabled_by_user=False,
+            addon__is_packaged=True,
+            addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
+            .exclude(addon__id__in=self.excluded_ids)
+            .order_by('nomination', 'created')
+            .select_related('addon', 'files').no_transforms())
+
+    def get_moderated_queue(self):
+        return (Review.objects.no_cache()
+                .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
+                .exclude(addon__status=amo.STATUS_DELETED)
+                .filter(editorreview=True)
+                .order_by('reviewflag__created'))
+
+    def sort(self, qs, date_sort='created'):
+        """Given a queue queryset, return the sorted version."""
+        if qs.model == Webapp:
+            return self._do_sort_webapp(qs, date_sort)
+        return self._do_sort_queue_obj(qs, date_sort)
+
+    def _do_sort_webapp(self, qs, date_sort):
+        """
+        Column sorting logic based on request GET parameters.
+        """
+        sort_type, order = clean_sort_param(self.request, date_sort=date_sort)
+        order_by = ('-' if order == 'desc' else '') + sort_type
+
+        # Sort.
+        if sort_type == 'name':
+            # Sorting by name translation.
+            return order_by_translation(qs, order_by)
+
+        elif sort_type == 'num_abuse_reports':
+            return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
+                    .order_by(order_by))
+
+        else:
+            return qs.order_by('-priority_review', order_by)
+
+    def _do_sort_queue_obj(self, qs, date_sort):
+        """
+        Column sorting logic based on request GET parameters.
+        Deals with objects with joins on the Addon (e.g. RereviewQueue, Version).
+        Returns qs of apps.
+        """
+        sort_type, order = clean_sort_param(self.request, date_sort=date_sort)
+        sort_str = sort_type
+
+        if sort_type not in [date_sort, 'name']:
+            sort_str = 'addon__' + sort_type
+
+        # sort_str includes possible joins when ordering.
+        # sort_type is the name of the field to sort on without desc/asc markers.
+        # order_by is the name of the field to sort on with desc/asc markers.
+        order_by = ('-' if order == 'desc' else '') + sort_str
+
+        # Sort.
+        if sort_type == 'name':
+            # Sorting by name translation through an addon foreign key.
+            return order_by_translation(
+                Webapp.objects.filter(id__in=qs.values_list('addon', flat=True)),
+                order_by)
+
+        elif sort_type == 'num_abuse_reports':
+            qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
+
+        # Convert sorted queue object queryset to sorted app queryset.
+        sorted_app_ids = (qs.order_by('-addon__priority_review', order_by)
+                            .values_list('addon', flat=True))
+        qs = Webapp.objects.filter(id__in=sorted_app_ids)
+        return manual_order(qs, sorted_app_ids, 'addons.id')
