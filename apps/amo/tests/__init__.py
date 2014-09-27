@@ -38,7 +38,7 @@ from waffle.models import Flag, Sample, Switch
 
 import amo
 import mkt
-from lib.es.management.commands import reindex_mkt
+from lib.es.management.commands import reindex
 from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
@@ -866,7 +866,7 @@ class ESTestCase(TestCase):
             except elasticsearch.NotFoundError as e:
                 print 'Could not delete index %r: %s' % (index, e)
 
-        for index, indexer, batch in reindex_mkt.INDEXES:
+        for index, indexer, batch in reindex.INDEXES:
             indexer.setup_mapping()
 
     @classmethod

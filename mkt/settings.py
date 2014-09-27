@@ -378,7 +378,7 @@ CELERY_DISABLE_RATE_LIMITS = True
 
 CELERY_IGNORE_RESULT = True
 CELERY_IMPORTS = ('lib.video.tasks', 'lib.metrics',
-                  'lib.es.management.commands.reindex_mkt')
+                  'lib.es.management.commands.reindex')
 CELERY_RESULT_BACKEND = 'amqp'
 
 # We have separate celeryds for processing devhub & images as fast as possible
@@ -416,7 +416,7 @@ CELERY_SEND_TASK_ERROR_EMAILS = True
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
-    'lib.es.management.commands.reindex_mkt.run_indexing': {
+    'lib.es.management.commands.reindex.run_indexing': {
         'soft': 60 * 60,  # 60 mins to reindex.
         'hard': 60 * 120,  # 120 mins hard limit.
     },
@@ -688,7 +688,7 @@ ES_INDEXES = {
     'mkt_feed_shelf': 'feed_shelves',
     'mkt_feed_item': 'feed_items',
     # Adding an index? Don't forget to add the indexer to ESTestCase.
-    # Also add the index to reindex_mkt.py.
+    # Also add the index to reindex.py.
 }
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_USE_PLUGINS = False
