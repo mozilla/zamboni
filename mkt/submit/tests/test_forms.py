@@ -1,4 +1,5 @@
 from django.forms.fields import BooleanField
+from django.utils.safestring import SafeText
 from django.utils.translation import ugettext_lazy as _
 
 import mock
@@ -108,29 +109,9 @@ class TestNewWebappForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         assert not form.is_packaged()
 
-    def test_not_packaged_allowed(self):
-        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
-                                    'upload': self.file.uuid})
-        assert form.is_valid(), form.errors
-        assert not form.is_packaged()
-
-    @mock.patch('mkt.submit.forms.parse_addon',
-                lambda *args: {'version': None})
-    def test_packaged_disallowed_behind_flag(self):
-        for device in ('free-desktop',
-                       'free-android-mobile',
-                       'free-android-tablet'):
-            form = forms.NewWebappForm({'free_platforms': [device],
-                                        'upload': self.file.uuid,
-                                        'packaged': True})
-            assert not form.is_valid(), form.errors
-            eq_(form.ERRORS['packaged'], form.errors['paid_platforms'])
-
     @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
     def test_packaged_allowed_everywhere(self):
-        self.create_flag('android-packaged')
-        self.create_flag('desktop-packaged')
         for device in ('free-firefoxos',
                        'free-desktop',
                        'free-android-tablet',
@@ -236,6 +217,17 @@ class TestAppDetailsBasicForm(amo.tests.TestCase):
         assert form.is_valid(), form.errors
         form.save()
         eq_(app.publish_type, amo.PUBLISH_PRIVATE)
+
+    def test_help_text_uses_safetext_and_includes_url(self):
+        app = self.get_app()
+        form = forms.AppDetailsBasicForm(
+            self.get_data(publish_type=amo.PUBLISH_PRIVATE),
+            request=self.request, instance=app)
+
+        help_text = form.base_fields['privacy_policy'].help_text
+        eq_(type(help_text), SafeText)
+        ok_('{url}' not in help_text)
+        ok_(form.PRIVACY_MDN_URL in help_text)
 
 
 class TestAppFeaturesForm(amo.tests.TestCase):

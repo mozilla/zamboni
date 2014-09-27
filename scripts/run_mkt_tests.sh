@@ -6,7 +6,6 @@ fi
 
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
-VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
 ES_HOST='elasticsearch-1.2'
 SETTINGS=mkt
@@ -47,16 +46,6 @@ if [ ! -d "$LOCALE" ]; then
     echo "No locale dir?  Cloning..."
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
 fi
-
-if [ ! -d "$VENDOR" ]; then
-    echo "No vendor lib?  Cloning..."
-    git clone --recursive git://github.com/mozilla/zamboni-lib.git $VENDOR
-fi
-
-# Update the vendor lib.
-echo "Updating vendor..."
-git submodule --quiet foreach 'git submodule --quiet sync'
-git submodule --quiet sync && git submodule update --init --recursive
 
 cat > settings_local.py <<SETTINGS
 from ${SETTINGS}.settings import *

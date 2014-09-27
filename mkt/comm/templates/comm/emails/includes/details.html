@@ -5,5 +5,5 @@
 {% endif %}
 
 App: {{ app.name }}
-URL: {{ app.get_url_path(add_prefix=False)|absolutify }}
+URL: {{ app.get_url_path()|absolutify }}
 

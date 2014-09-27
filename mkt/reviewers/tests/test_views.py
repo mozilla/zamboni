@@ -1199,7 +1199,7 @@ class TestReviewMixin(object):
 
     def _check_email_body(self, msg):
         body = msg.message().as_string()
-        url = self.app.get_url_path(add_prefix=False)
+        url = self.app.get_url_path()
         assert url in body, 'Could not find apps detail URL in %s' % msg
 
     def _check_log(self, action):

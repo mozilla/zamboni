@@ -29,25 +29,6 @@ You can get a development environment with ::
     pip install --no-deps -r requirements/dev.txt
 
 
-Using the vendor library
-------------------------
-
-**Note**: this is deprecated, all packages should be added in requirements.
-
-The other method is to use the /vendor library of all packages and
-repositories.  These are maintained by Hudson in the zamboni-lib repository.
-
-Check out the vendor lib with ::
-
-    git clone --recursive git://github.com/mozilla/zamboni-lib.git ./vendor
-
-Once the zamboni-lib repo has been downloaded to ``/vendor``, you only need to
-install the compiled packages.  These can come from your system package manager
-or from ::
-
-    pip install -r requirements/compiled.txt
-
-
 Adding new packages
 -------------------
 

@@ -74,6 +74,7 @@ class WebappIndexer(BaseIndexer):
                     'boost': {'type': 'long', 'doc_values': True},
                     # App fields.
                     'id': {'type': 'long'},
+                    'abuse_reports': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string', 'analyzer': 'default_icu'},
@@ -112,6 +113,8 @@ class WebappIndexer(BaseIndexer):
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
                     'is_offline': {'type': 'boolean'},
+                    'is_priority': {'type': 'boolean'},
+                    'is_rereviewed': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
                     'latest_version': {
@@ -121,6 +124,10 @@ class WebappIndexer(BaseIndexer):
                             'is_privileged': {'type': 'boolean'},
                             'has_editor_comment': {'type': 'boolean'},
                             'has_info_request': {'type': 'boolean'},
+                            'nomination_date': {'type': 'date',
+                                                'format': 'dateOptionalTime'},
+                            'created_date': {'type': 'date',
+                                             'format': 'dateOptionalTime'},
                         },
                     },
                     'manifest_url': cls.string_not_analyzed(),
@@ -210,7 +217,7 @@ class WebappIndexer(BaseIndexer):
                                         attach_prices, attach_tags,
                                         attach_translations, Geodata,
                                         Installed, RatingDescriptors,
-                                        RatingInteractives, Webapp)
+                                        RatingInteractives)
 
         if obj is None:
             obj = cls.get_model().objects.no_cache().get(pk=pk)
@@ -225,7 +232,6 @@ class WebappIndexer(BaseIndexer):
         geodata = obj.geodata
         features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
-        is_escalated = obj.escalationqueue_set.exists()
 
         try:
             status = latest_version.statuses[0][1] if latest_version else None
@@ -241,6 +247,7 @@ class WebappIndexer(BaseIndexer):
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['boost'] = len(installed_ids) or 1
+        d['abuse_reports'] = obj.abuse_reports.count()
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()
@@ -268,14 +275,18 @@ class WebappIndexer(BaseIndexer):
             d['interactive_elements'] = obj.rating_interactives.to_keys()
         except RatingInteractives.DoesNotExist:
             d['interactive_elements'] = []
-        d['is_escalated'] = is_escalated
+        d['is_escalated'] = obj.escalationqueue_set.exists()
         d['is_offline'] = getattr(obj, 'is_offline', False)
+        d['is_priority'] = obj.priority_review
+        d['is_rereviewed'] = obj.rereviewqueue_set.exists()
         if latest_version:
             d['latest_version'] = {
                 'status': status,
                 'is_privileged': latest_version.is_privileged,
                 'has_editor_comment': latest_version.has_editor_comment,
                 'has_info_request': latest_version.has_info_request,
+                'nomination_date': latest_version.nomination,
+                'created_date': latest_version.created,
             }
         else:
             d['latest_version'] = {
@@ -283,6 +294,8 @@ class WebappIndexer(BaseIndexer):
                 'is_privileged': None,
                 'has_editor_comment': None,
                 'has_info_request': None,
+                'nomination_date': None,
+                'created_date': None,
             }
         d['manifest_url'] = obj.get_manifest_url()
         d['package_path'] = obj.get_package_path()

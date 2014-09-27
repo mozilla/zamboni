@@ -504,7 +504,7 @@ class PurifiedTranslationTest(TestCase):
             u'<b>markup</b> <a rel="nofollow" '
             u'href="http://addons.mozilla.org/foo">bar</a>')
 
-    @patch('amo.urlresolvers.get_outgoing_url')
+    @patch('mkt.site.utils.get_outgoing_url')
     def test_external_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<b>markup</b> <a href="http://example.com">bar</a>'
@@ -513,7 +513,7 @@ class PurifiedTranslationTest(TestCase):
             u'<b>markup</b> <a rel="nofollow" '
             u'href="http://external.url">bar</a>')
 
-    @patch('amo.urlresolvers.get_outgoing_url')
+    @patch('mkt.site.utils.get_outgoing_url')
     def test_external_text_link(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<b>markup</b> http://example.com'
@@ -679,7 +679,7 @@ class PurifiedTranslationTest(TestCase):
         after = "<b>test</b>"
         eq_(PurifiedTranslation(localized_string=before).__html__(), after)
 
-    @patch('amo.helpers.urlresolvers.get_outgoing_url')
+    @patch('mkt.site.utils.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
         mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'
@@ -759,7 +759,7 @@ class PurifiedTranslationTest(TestCase):
 
 class LinkifiedTranslationTest(TestCase):
 
-    @patch('amo.urlresolvers.get_outgoing_url')
+    @patch('mkt.site.utils.get_outgoing_url')
     def test_allowed_tags(self, get_outgoing_url_mock):
         get_outgoing_url_mock.return_value = 'http://external.url'
         s = u'<a href="http://example.com">bar</a>'

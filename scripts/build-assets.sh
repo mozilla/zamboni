@@ -3,7 +3,6 @@
 
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
-VENDOR=$WORKSPACE/vendor
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
@@ -29,11 +28,6 @@ pip install -U --exists-action=w --no-deps -q \
 	-f https://pyrepo.addons.mozilla.org/ \
 	-r requirements/compiled.txt -r requirements/test.txt
 
-if [ ! -d "$VENDOR" ]; then
-    echo "No vendor lib?  Cloning..."
-    git clone --recursive git://github.com/mozilla/zamboni-lib.git $VENDOR
-fi
-
 # Install node deps locally.
 npm install
 export PATH="./node_modules/.bin/:${PATH}"
@@ -45,11 +39,6 @@ UGLIFY_BIN = 'uglifyjs'
 SETTINGS
 
 export DJANGO_SETTINGS_MODULE=settings_local
-
-# Update the vendor lib.
-echo "Updating vendor..."
-git submodule --quiet foreach 'git submodule --quiet sync'
-git submodule --quiet sync && git submodule update --init --recursive
 
 echo "building assets..." `date`
 

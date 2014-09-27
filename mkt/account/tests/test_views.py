@@ -422,10 +422,10 @@ class TestLoginHandler(TestCase):
         data = json.loads(res.content)
         eq_(res.status_code, 400)
         assert 'assertion' in data
-        assert not 'apps' in data
+        assert 'apps' not in data
 
     def test_logout(self):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        UserProfile.objects.create(email='cvan@mozilla.com')
         data = self._test_login()
 
         r = self.client.delete(
@@ -456,10 +456,10 @@ class TestFxaLoginHandler(TestCase):
                 'user': 'fake-uid',
                 'email': 'cvan@mozilla.com'
             }
-            res = self.post({'auth_response':
-                             'https://testserver/?access_token=fake-token&code=coed'
-                             '&state=fake-state',
-                             'state': 'fake-state'})
+            res = self.post({
+                'auth_response': 'https://testserver/?access_token=fake-token&'
+                                 'code=coed&state=fake-state',
+                'state': 'fake-state'})
             eq_(res.status_code, 201)
             data = json.loads(res.content)
             eq_(data['token'],
@@ -472,7 +472,30 @@ class TestFxaLoginHandler(TestCase):
         data = self._test_login()
         ok_(not any(data['permissions'].values()))
 
-    def test_login_existing_user_success(self):
+    def test_login_existing_user_uid_success(self):
+        profile = UserProfile.objects.create(username='fake-uid')
+        self.grant_permission(profile, 'Apps:Review')
+
+        data = self._test_login()
+        eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
+        eq_(data['permissions'],
+            {'admin': False,
+             'developer': False,
+             'localizer': False,
+             'lookup': False,
+             'curator': False,
+             'reviewer': True,
+             'webpay': False,
+             'stats': False,
+             'revenue_stats': False})
+        eq_(data['apps']['installed'], [])
+        eq_(data['apps']['purchased'], [])
+        eq_(data['apps']['developed'], [])
+
+        # Ensure user profile got updated with email.
+        eq_(profile.reload().email, 'cvan@mozilla.com')
+
+    def test_login_existing_user_email_success(self):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
         self.grant_permission(profile, 'Apps:Review')
 
@@ -491,6 +514,9 @@ class TestFxaLoginHandler(TestCase):
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])
         eq_(data['apps']['developed'], [])
+
+        # Ensure user profile got updated with FxA UID.
+        eq_(profile.reload().username, 'fake-uid')
 
     @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
@@ -527,7 +553,6 @@ class TestFxaLoginHandler(TestCase):
     def test_login_settings(self):
         data = self._test_login()
         eq_(data['settings']['source'], 'firefox-accounts')
-
 
     def test_logout(self):
         UserProfile.objects.create(email='cvan@mozilla.com')
@@ -743,3 +768,24 @@ class TestAccountInfoView(RestOAuth):
         response = self.get(self.profile.email)
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'firefox-accounts')
+
+
+class TestPreverify(RestOAuth):
+    @patch('mkt.account.views.get_token_expiry', lambda: 1400000000)
+    def test_preverify(self):
+        res = self.client.post(reverse('fxa-preverify'))
+        eq_(res.status_code, 200)
+        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCIsImprdSI6Ii9hcGkvdjEvYWNjb3VudC9meGEtcHJldmVyaWZ5LWtleS8ifQ.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6Imh0dHBzOi8vc3RhYmxlLmRldi5sY2lwLm9yZy8iLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.I9UlZEJAOwTIwYeqnyaiMVYOEf1-hsbHGR7zrOKEc89ntkUWPqvBfM2nTgEqHKQ9Lj3Pr2WDGspOeS6UE3eLKY0H3yNrA7AMbEMLsG2ZNwDOzdPe-6ctq8-WnFkrB9RxbtXxbNFCdMDkVblJRh91i7b5-t9752bN_k_e8FO1-Gg')
+
+    def test_reject_unverified(self):
+        self.user.is_verified = False
+        self.user.save()
+        res = self.client.post(reverse('fxa-preverify'))
+        eq_(res.status_code, 403)
+
+    def test_preverify_key(self):
+        res = self.anon.get(reverse('fxa-preverify-key'))
+        eq_(json.loads(res.content),
+            {'keys': [{'e': 'AQAB', 'kty': 'RSA',
+                       'n': '97209xSudEskAnd-6wYd3ED5MXve29bVxssOWRW5wHECX2MO0tzzfhOgdmD0e2X0Xgsv8vnFU0w0sWFjOtBJ1r2YAtnrcgpKiVVDcWm6EcOt-xS_CvZqwX8NZFktyxv-r9dpA9uRui0xQXy7JXS13rI0kq2VcWQuldiwYfDCPjM'
+                   }]})

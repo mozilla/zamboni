@@ -1722,46 +1722,6 @@
     {
         "fields": {
             "authenticated": false,
-            "created": "2013-09-13T12:57:02",
-            "everyone": false,
-            "groups": [],
-            "languages": "",
-            "modified": "2013-09-13T12:57:02",
-            "name": "android-packaged",
-            "note": "ON: packaged apps for Android can be submitted and show up in search results; OFF: packaged apps for Android are disallowed",
-            "percent": null,
-            "rollout": false,
-            "staff": false,
-            "superusers": false,
-            "testing": false,
-            "users": []
-        },
-        "model": "waffle.flag",
-        "pk": 17
-    },
-    {
-        "fields": {
-            "authenticated": false,
-            "created": "2013-09-13T12:57:02",
-            "everyone": false,
-            "groups": [],
-            "languages": "",
-            "modified": "2013-09-13T12:57:02",
-            "name": "desktop-packaged",
-            "note": "ON: packaged apps for Desktop can be submitted and show up in search results; OFF: packaged apps for Desktop are disallowed",
-            "percent": null,
-            "rollout": false,
-            "staff": false,
-            "superusers": false,
-            "testing": false,
-            "users": []
-        },
-        "model": "waffle.flag",
-        "pk": 18
-    },
-    {
-        "fields": {
-            "authenticated": false,
             "created": "2014-04-04T15:43:09",
             "everyone": false,
             "groups": [],

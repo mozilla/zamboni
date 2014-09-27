@@ -1,9 +1,9 @@
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
-from amo.urlresolvers import reverse
 from . import views
 
 

@@ -301,6 +301,11 @@ class AdminSettingsForm(PreviewForm):
         fields = ('file_upload', 'upload_hash', 'position')
 
     def __init__(self, *args, **kw):
+        # Note that this form is not inheriting from AddonFormBase, so we have
+        # to get rid of 'version' ourselves instead of letting the parent class
+        # do it.
+        kw.pop('version', None)
+
         # Get the object for the app's promo `Preview` and pass it to the form.
         if kw.get('instance'):
             addon = kw.pop('instance')
@@ -525,6 +530,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
+        self.version = kw.pop('version', None)
         super(AddonFormBase, self).__init__(*args, **kw)
 
     class Meta:
@@ -1067,14 +1073,14 @@ class AppFormTechnical(AddonFormBase):
 
     def __init__(self, *args, **kw):
         super(AppFormTechnical, self).__init__(*args, **kw)
-        self.initial['flash'] = self.instance.uses_flash
+        if self.version.all_files:
+            self.initial['flash'] = self.version.all_files[0].uses_flash
 
     def save(self, addon, commit=False):
         uses_flash = self.cleaned_data.get('flash')
         self.instance = super(AppFormTechnical, self).save(commit=True)
-        af = self.instance.get_latest_file()
-        if af is not None:
-            af.update(uses_flash=bool(uses_flash))
+        if self.version.all_files:
+            self.version.all_files[0].update(uses_flash=bool(uses_flash))
         return self.instance
 
 

@@ -11,12 +11,12 @@ from rest_framework.request import Request
 from amo.tests import TestCase
 from mkt.access.models import Group, GroupUser
 from mkt.api import authentication
-from mkt.api.middleware import RestOAuthMiddleware, RestSharedSecretMiddleware
+from mkt.api.middleware import (APIBaseMiddleware, RestOAuthMiddleware,
+                                RestSharedSecretMiddleware)
 from mkt.api.models import Access, generate
 from mkt.api.tests.test_oauth import OAuthClient
 from mkt.site.helpers import absolutify
 from mkt.site.fixtures import fixture
-from mkt.site.middleware import RedirectPrefixedURIMiddleware
 from test_utils import RequestFactory
 from mkt.users.models import UserProfile
 
@@ -32,7 +32,7 @@ class TestRestOAuthAuthentication(TestCase):
                                             secret=generate(),
                                             user=self.profile)
         self.auth = authentication.RestOAuthAuthentication()
-        self.middlewares = [RedirectPrefixedURIMiddleware, RestOAuthMiddleware]
+        self.middlewares = [APIBaseMiddleware, RestOAuthMiddleware]
         unpin_this_thread()
 
     def call(self, client=None):
@@ -96,7 +96,7 @@ class TestSharedSecretAuthentication(TestCase):
         self.auth = authentication.RestSharedSecretAuthentication()
         self.profile = UserProfile.objects.get(pk=2519)
         self.profile.update(email=self.profile.email)
-        self.middlewares = [RedirectPrefixedURIMiddleware,
+        self.middlewares = [APIBaseMiddleware,
                             RestSharedSecretMiddleware]
         unpin_this_thread()
 
@@ -181,7 +181,7 @@ class TestMultipleAuthenticationDRF(TestCase):
         request.user = AnonymousUser()
 
         # Call middleware as they would normally be called.
-        RedirectPrefixedURIMiddleware().process_request(request)
+        APIBaseMiddleware().process_request(request)
         RestSharedSecretMiddleware().process_request(request)
         RestOAuthMiddleware().process_request(request)
 

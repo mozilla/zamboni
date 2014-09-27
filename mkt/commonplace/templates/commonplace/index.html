@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <title>Firefox Marketplace</title>
-    <meta property="og:title" content="Firefox Marketplace">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="{{ media('fireplace/img/logos/128.png') }}">
-    <meta name="description" content="{{ _('The Firefox Marketplace is the official source of apps for the Web Platform.') }}">
+    {% include "commonplace/includes/open_graph.html" %}
     <meta name="theme-color" content="#fff">
     <link rel="icon" href="{{ media('fireplace/img/logos/128.png') }}" sizes="128x128">
     <link rel="icon" href="{{ media('fireplace/img/logos/64.png') }}" sizes="64x64">
@@ -37,7 +34,6 @@
       <link rel="stylesheet" href="{{ media('fireplace/css/feedback.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/forms.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/form-modal.styl.css') }}">
-      <link rel="stylesheet" href="{{ media('fireplace/css/incompatible.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/lightbox.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/menu.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/modal.styl.css') }}">
@@ -47,6 +43,7 @@
       <link rel="stylesheet" href="{{ media('fireplace/css/purchase.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/ratings.styl.css') }}">
       <link rel="stylesheet" href="{{ media('fireplace/css/search.styl.css') }}">
+      <link rel="stylesheet" href="{{ media('fireplace/css/site-banner.styl.css') }}">
     {% else %}
       {% if include_splash -%}
         <link rel="stylesheet" href="{{ media(repo + '/css/splash.css') }}">

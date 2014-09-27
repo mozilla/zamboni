@@ -82,7 +82,7 @@
     <div class="sprite-reviewer sprite-reviewer-premium inapp" title="{{ _('Premium with In-App') }}"></div>
   {% elif app.premium_type == amo.ADDON_FREE_INAPP %}
     <div class="sprite-reviewer sprite-reviewer-premium free inapp" title="{{ _('Free with In-App') }}"></div>
-  {% elif app.is_premium() %}
+  {% elif app.premium_type == amo.ADDON_PREMIUM %}
     <div class="sprite-reviewer sprite-reviewer-premium" title="{{ _('Premium App') }}"></div>
   {% endif %}
 

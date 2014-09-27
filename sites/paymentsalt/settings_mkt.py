@@ -145,6 +145,7 @@ PRE_GENERATE_APK_URL = \
 PAYMENT_PROVIDERS = ['bango', 'boku', 'reference']
 DEFAULT_PAYMENT_PROVIDER = 'bango'
 
+PREVERIFIED_ACCOUNT_KEY = private_mkt.PREVERIFIED_ACCOUNT_KEY
 FXA_OAUTH_URL = getattr(private_mkt, 'FXA_OAUTH_URL', '')
 FXA_CLIENT_ID = getattr(private_mkt, 'FXA_CLIENT_ID', '')
 FXA_CLIENT_SECRET = getattr(private_mkt, 'FXA_CLIENT_SECRET', '')

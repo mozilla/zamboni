@@ -1,8 +1,7 @@
 from django.db import models
-from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import NoReverseMatch, reverse
 
 import amo
-from amo.urlresolvers import reverse
 from mkt.site.models import ManagerBase, ModelBase
 
 

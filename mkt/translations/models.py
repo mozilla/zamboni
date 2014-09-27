@@ -6,8 +6,8 @@ import bleach
 import commonware.log
 
 import amo
-from amo import urlresolvers
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.utils import linkify_with_outgoing
 
 from . import utils
 
@@ -197,7 +197,7 @@ class PurifiedTranslation(Translation):
 
     def clean_localized_string(self):
         # All links (text and markup) are normalized.
-        linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
+        linkified = linkify_with_outgoing(self.localized_string)
         # Keep only the allowed tags and attributes, escape the rest.
         return bleach.clean(linkified, tags=self.allowed_tags,
                             attributes=self.allowed_attributes)

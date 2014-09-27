@@ -24,6 +24,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.files.storage import FileSystemStorage
 from django.core.serializers import json
+from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.http import HttpRequest
@@ -46,7 +47,7 @@ from html5lib.serializer.htmlserializer import HTMLSerializer
 from PIL import Image, ImageFile, PngImagePlugin
 
 from amo import APP_ICON_SIZES
-from amo.urlresolvers import linkify_with_outgoing, reverse
+from mkt.site.utils import linkify_with_outgoing
 from mkt.site.mail import send_mail
 from mkt.translations.models import Translation
 

@@ -161,7 +161,7 @@ MIDDLEWARE_CLASSES = (
     'mkt.site.middleware.CommonMiddleware',
     'mkt.site.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'mkt.site.middleware.RedirectPrefixedURIMiddleware',
+    'mkt.api.middleware.APIBaseMiddleware',
     'mkt.api.middleware.AuthenticationMiddleware',
     'commonware.log.ThreadRequestMiddleware',
     'mkt.search.middleware.ElasticsearchExceptionMiddleware',
@@ -176,7 +176,6 @@ MIDDLEWARE_CLASSES = (
     'mkt.site.middleware.DeviceDetectionMiddleware',
     'mkt.site.middleware.DoNotTrackTrackingMiddleware',
     'mkt.api.middleware.TimingMiddleware',
-    'mkt.api.middleware.APIVersionMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
     'mkt.api.middleware.APITransactionMiddleware',
@@ -713,9 +712,12 @@ FIREPLACE_URL = ''
 # Where to find ffmpeg and totem if it's not in the PATH.
 FFMPEG_BINARY = 'ffmpeg'
 
+FXA_AUTH_SERVER = 'https://stable.dev.lcip.org/'
 FXA_CLIENT_ID = '7943afb7b9f54089'
 FXA_CLIENT_SECRET = '512d7bcaea26d88cf80934f9b720ab1662066869617fcd33f2b13d97de59636a'
 FXA_OAUTH_URL = 'https://oauth-stable.dev.lcip.org'
+FXA_MIGRATION_URL = '/fxa-migration'
+FXA_CSS_URL = '/media/fireplace/css/fxa.css'
 
 if DEBUG:
     # In DEBUG mode, don't require HTTPS for FxA oauth redirects.
@@ -965,6 +967,9 @@ PREINSTALL_TEST_PLAN_PATH = os.path.join(
     MEDIA_ROOT, PREINSTALL_TEST_PLAN_URL + '/en-US.xlsx')
 PREINSTALL_TEST_PLAN_LATEST = datetime.datetime.fromtimestamp(
     os.stat(PREINSTALL_TEST_PLAN_PATH).st_mtime)
+
+# The key we'll use to sign preverified-account assertions.
+PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib/product_json')

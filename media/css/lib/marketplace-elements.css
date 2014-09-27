@@ -1,0 +1,79 @@
+.mkt-cloak {
+  display: none;
+}
+.mkt-banner {
+  background: #797979;
+  color: #fff;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.3;
+}
+.mkt-banner-content {
+  margin: 2px auto;
+  max-width: 1024px;
+  position: relative;
+  text-align: center;
+}
+.mkt-banner-content .close {
+  margin-top: -17px;
+  top: 50%;
+}
+.mkt-banner-content span {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0;
+}
+.mkt-banner-content a {
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  text-decoration: none;
+}
+.mkt-banner-firefox .mkt-banner-content {
+  background: url("../img/logos/firefox-64.png") no-repeat;
+  background-position: 0 50%;
+  background-size: 64px 60px;
+  min-height: 60px;
+  padding: 0 40px 0 70px;
+}
+.mkt-banner-firefox a {
+  background-color: #535353;
+}
+.mkt-banner-firefox a:hover {
+  background-color: #4b4b4b;
+}
+.mkt-banner-firefox .close,
+.mkt-banner-firefox .close:hover {
+  background-color: transparent;
+}
+.mkt-banner-success {
+  background: #64be3c;
+}
+.mkt-banner-success .mkt-banner-content {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0 10px;
+}
+.mkt-banner-success small {
+  font-size: 15px;
+  font-weight: 400;
+}
+.mkt-banner-success a {
+  background-color: #118e36;
+}
+.mkt-banner-success a:hover {
+  background-color: #0f8031;
+}
+@media (min-width: 1025px) {
+  .mkt-banner-content {
+    padding: 0;
+  }
+}
+@media (max-width: 709px) {
+  .mkt-banner small {
+    display: none;
+  }
+}

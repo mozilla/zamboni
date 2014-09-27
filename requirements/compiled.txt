@@ -7,6 +7,9 @@ Pillow==2.3.0
 # Temporary.
 M2Crypto==0.20.2
 
+# For pyjwkest, for JWT signing.
+pycrypto==2.6.1
+
 # To get SNI support in requests (needed by the app validator).
 pyOpenSSL==0.13.1
 

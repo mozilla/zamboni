@@ -6,6 +6,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.core import validators
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import translation
 from django.utils.encoding import smart_unicode
@@ -13,11 +14,11 @@ from django.utils.functional import lazy
 
 import commonware.log
 import tower
+import waffle
 from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
 from mkt.site.models import ModelBase, OnChangeMixin
 from mkt.translations.fields import NoLinksField, save_signal
 from mkt.translations.query import order_by_translation
@@ -246,6 +247,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         tower.activate(lang)
         yield
         tower.activate(old)
+
+    def can_migrate_to_fxa(self):
+        return (waffle.switch_is_active('fx-accounts-migration')
+                and self.source != amo.LOGIN_SOURCE_FXA)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,

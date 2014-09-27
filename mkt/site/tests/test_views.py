@@ -12,7 +12,6 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.urlresolvers import reverse
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 

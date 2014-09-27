@@ -3,13 +3,13 @@ import urlparse
 from urllib import urlencode
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import jwt
 from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, raises
 
-from amo.urlresolvers import reverse
 from mkt.constants.payments import PROVIDER_BOKU
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.purchase.models import Contribution

@@ -3,11 +3,10 @@ import logging
 from django.conf import settings
 from django.db import models
 
-import amo
-from mkt.site.models import ModelBase
 from mkt.site.mail import send_mail
-from mkt.webapps.models import Webapp
+from mkt.site.models import ModelBase
 from mkt.users.models import UserProfile
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.abuse')
