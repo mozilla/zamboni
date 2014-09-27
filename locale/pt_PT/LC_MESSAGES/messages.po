@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-08-14 04:54+0000\n"
+"PO-Revision-Date: 2014-09-27 22:21+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407992062.0\n"
+"X-POOTLE-MTIME: 1411856505.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -275,11 +275,11 @@ msgstr "Manifesto de {addon} atualizado."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but private."
-msgstr ""
+msgstr "{addon} {version} aprovado mas privado."
 
 #: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
 msgid "Approved but private"
-msgstr ""
+msgstr "Aprovado mas privado"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
@@ -519,11 +519,11 @@ msgstr "Revisão de prioridade"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} passou a {queue} de revisão."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} falhou a {queue} de revisão."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1714,7 +1714,7 @@ msgstr "Bloqueado"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Não listada"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -2028,7 +2028,7 @@ msgstr "Revisão prioritária solicitada"
 
 #: mkt/constants/comm.py:66
 msgid "Additional review completed"
-msgstr ""
+msgstr "Revisão adicional concluída"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2673,18 +2673,22 @@ msgstr "Os seus comentários"
 #: mkt/developers/forms.py:755
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Publicada</b>: Visível para todos no Marketplace e incluída em resultados "
+"de pesquisa e páginas de listagem."
 
 #: mkt/developers/forms.py:759
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Não listada</b>: Visível só para as pessoas com a URL e não aparece nos "
+"resultados de pesquisa e páginas de listagem."
 
 #: mkt/developers/forms.py:775
 msgid "App Visibility:"
-msgstr ""
+msgstr "Visibilidade da aplicação:"
 
 #: mkt/developers/forms.py:778
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Limitar à minha equipa</b>: Visível apenas a membros da equipa."
 
 #: mkt/developers/forms.py:819
 msgid "Choose the regions your app will be listed in:"
@@ -2769,6 +2773,8 @@ msgstr "Linha de comandos"
 #: mkt/developers/forms.py:1133
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Tornar esta a versão Ativa da minha aplicação assim que a mesma for revista "
+"e aprovada."
 
 #: mkt/developers/forms.py:1160
 msgid ""
@@ -3136,7 +3142,7 @@ msgstr "Versão editada com sucesso."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "A versão for marcada como ativa com sucesso."
 
 # 77%
 #: mkt/developers/views.py:522
@@ -3641,12 +3647,12 @@ msgstr "Esta aplicação foi <b>rejeitada</b> por um revisor do Firefox Marketpl
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:77
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr ""
+msgstr "A versão <b>{0}</b> da sua aplicação está <b>{1}</b> e <b>Ativa</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:85
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr ""
+msgstr "A versão <b>{0}</b> da sua aplicação está <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:92
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3658,31 +3664,38 @@ msgstr "Você receberá um email quando a análise estiver completa."
 
 #: mkt/developers/templates/developers/apps/status.html:98
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "Esta aplicação está <b>publicada</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:103
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
 msgstr ""
+"A sua aplicação foi <b>aprovada</b> e neste momento <b>não está listada</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:106
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Apenas os utilizadores com a seguinte URL podem ver e instalar esta "
+"aplicação:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:114
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"A sua aplicação foi <b>aprovada</b> e neste momento apenas é visível a "
+"membros da equipa."
 
 #: mkt/developers/templates/developers/apps/status.html:117
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
+"Apenas os <b>membros da equipa</b> com a seguinte URL podem ver e instalar "
+"esta aplicação:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:127
 msgid "Learn about Review Criteria for apps"
-msgstr ""
+msgstr "Saiba mais sobre os critérios de revisão de aplicações"
 
 #: mkt/developers/templates/developers/apps/status.html:137
 msgid "Update App Visibility"
-msgstr ""
+msgstr "Atualizar visibilidade da aplicação"
 
 #: mkt/developers/templates/developers/apps/status.html:147
 msgid "Reviewed by <b>%(reviewer)s</b>"
@@ -3718,7 +3731,7 @@ msgstr "Transferir"
 
 #: mkt/developers/templates/developers/apps/status.html:232
 msgid "Make Active"
-msgstr ""
+msgstr "Tornar ativa"
 
 # 90%
 #: mkt/developers/templates/developers/apps/status.html:247
@@ -3728,6 +3741,8 @@ msgstr "Enviar uma nova versão"
 #: mkt/developers/templates/developers/apps/status.html:252
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
+"Enviar uma nova versão desta aplicação empacotada. Novas versões têm de ser "
+"revistas antes de serem disponibilizadas para instalação."
 
 #: mkt/developers/templates/developers/apps/status.html:258
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
@@ -3740,59 +3755,70 @@ msgstr "Continuar"
 
 #: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
 msgid "Low-Memory Devices"
-msgstr ""
+msgstr "Dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:291
 msgid "Your app is shown on low-memory devices."
-msgstr ""
+msgstr "A sua aplicação é apresentada em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:293
 msgid "Your app is not shown on low-memory devices."
-msgstr ""
+msgstr "A sua aplicação não é apresentada em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:299
 msgid "You have not requested a low-memory review."
-msgstr ""
+msgstr "Não solicitou uma revisão com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:303
 msgid "Your app is awaiting review."
-msgstr ""
+msgstr "A sua aplicação está a aguardar pela revisão."
 
 #: mkt/developers/templates/developers/apps/status.html:305
 msgid "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
+"A nossa revisão a {review_date} determinou que a sua aplicação suporta "
+"dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid "Our review on {review_date} found that your app does not support low-memory devices."
 msgstr ""
+"A nossa revisão a {review_date} determinou que a sua aplicação não suporta "
+"dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr ""
+msgstr "Solicitou uma revisão a {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
 msgstr ""
+"A sua aplicação não está ativada em quaisquer regiões com dispositivos com "
+"pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:319
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
 msgstr ""
+"Pode atualizar a suas regiões na <a href=\"{compatibility_page}\">página de "
+"compatibilidade</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
 msgid "Do not show my app on low-memory devices"
-msgstr ""
+msgstr "Não apresentar a minha aplicação em dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:332
 msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Se a sua aplicação <a href=\"{mdn_link}\">funcionar em dispositivos com pouca "
+"memória</a> poderá solicitar uma revisão para que a mesma possa ser "
+"apresentada em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:342
 msgid "Request a low-memory review"
-msgstr ""
+msgstr "Solicitar uma revisão com pouca memória"
 
 #: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
-msgstr ""
+msgstr "Saber mais sobre dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/apps/status.html:355
 msgid "Pre-Installed App Status"
@@ -3937,6 +3963,8 @@ msgstr "Eliminar versão"
 #: mkt/developers/templates/developers/apps/status.html:513
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
+"Tem a certeza que pretende parar de apresentar a sua aplicação em "
+"dispositivos com pouca memória?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
@@ -4712,7 +4740,7 @@ msgstr "Gerar chaves"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:24
 msgid "Enable"
-msgstr ""
+msgstr "Ativar"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:29
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
@@ -4725,10 +4753,14 @@ msgstr "A sua aplicação deve indicar uma <a href=\"%(origin)s\">origem</a> no 
 #: mkt/developers/templates/developers/payments/in-app-products.html:42
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Esta funcionalidades está em desenvolvimento. Por favor consulte a <a "
+"target=\"_blank\" href=\"%(doc_link)s\">documentação</a> para mais informações."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:47
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Se encontrar um problema <a target=\"_blank\" href=\"%(bug_link)s\">reporte uma "
+"falha</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:59
 msgid "Icon"
@@ -5018,10 +5050,12 @@ msgstr "Regiões que requerem uma atenção adicional:"
 #: mkt/developers/templates/developers/payments/includes/region_form.html:22
 msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
 msgstr ""
+"Deve <a href=\"{status_page}\">solicitar uma revisão</a> para que a sua "
+"aplicação seja apresentada em dispositivos com pouca memória."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
-msgstr ""
+msgstr "dispositivos com pouca memória"
 
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
@@ -5665,6 +5699,8 @@ msgstr "A obter ficheiro."
 #: mkt/inapp/serializers.py:43
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
+"O logótipo do produto deve ser uma imagem com 64x64. Confirme se a URL está "
+"correta."
 
 #: mkt/lookup/forms.py:29
 msgid "Transaction Lookup"
@@ -6689,7 +6725,7 @@ msgstr "Na fila de encaminhamento para análise superior"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
 msgid "In Tarako queue"
-msgstr ""
+msgstr "Na fila Tarako"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 msgid "Review This App"
@@ -7185,10 +7221,14 @@ msgstr "A versão %s já existe"
 #: mkt/submit/forms.py:272
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Publicar a minha aplicação e torná-la visível para todos no Marketplace, "
+"incluindo nos resultados de pesquisas."
 
 #: mkt/submit/forms.py:275
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
+"Não publicar a minha aplicação. Notificar-me e ajustarei a visibilidade da "
+"aplicação depois de esta ser aprovada."
 
 #: mkt/submit/forms.py:286
 msgid "Privacy Policy:"
@@ -7240,7 +7280,7 @@ msgstr "A sua aplicação será revista pela Mozilla antes de ser publicada no M
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "Depois da sua aplicação ser aprovada, escolha uma opção de publicação:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7371,10 +7411,14 @@ msgstr "Ver uma lista de todas as suas submissões em <a href=\"%(url)s\">Minhas
 #: mkt/submit/templates/submit/next_steps.html:61
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Solicitar que a sua aplicação seja apresentada em dispositivos com pouca "
+"memória em <a href=\"%(status_url)s\">Estado e versões</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:65
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Solicitar que a sua aplicação seja apresentada em dispositivos com pouca "
+"memória em <a href=\"%(status_url)s\">Estado</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:75
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
