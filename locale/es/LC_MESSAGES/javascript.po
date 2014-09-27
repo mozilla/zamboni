@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-06-21 20:21+0000\n"
+"PO-Revision-Date: 2014-09-27 23:39+0200\n"
 "Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -28,7 +28,7 @@ msgstr "Las imágenes deben tener un formato PNG o JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr "Los videos deben estar en el formato WebM."
+msgstr "Los vídeos deben estar en el formato WebM."
 
 #: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -36,11 +36,11 @@ msgstr "Ha habido un problema al contactar con el servidor."
 
 #: media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Selecciona un archivo..."
+msgstr "Seleccionar un archivo..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Tu aplicación empaquetada debe finalizar en <code>.zip</code>."
+msgstr "Tu app empaquetada debe finalizar en <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
@@ -67,8 +67,8 @@ msgstr "Error con {0}"
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:210
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "La validación de tu aplicación ha fallado con {0} error."
-msgstr[1] "La validación de tu aplicación ha fallado con {0} errores."
+msgstr[0] "La validación de tu app ha fallado con {0} error."
+msgstr[1] "La validación de tu app ha fallado con {0} errores."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
@@ -78,7 +78,7 @@ msgstr[1] "&hellip;y {0} más"
 
 #: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:172
 msgid "See full validation report"
-msgstr "Ver el informe completo de la validación"
+msgstr "Ver el informe completo de validación"
 
 #: media/js/common/upload-packaged-app.js:211
 msgid "Validating {0}"
@@ -100,12 +100,12 @@ msgstr "Se ha terminado de validar {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Tu aplicación se ha validado sin errores y con {0} aviso."
-msgstr[1] "Tu aplicación se ha validado sin errores y con {0} avisos."
+msgstr[0] "Tu app se ha validado sin errores y con {0} aviso."
+msgstr[1] "Tu app se ha validado sin errores y con {0} avisos."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Tu aplicación se ha validado sin errores ni avisos."
+msgstr "Tu app se ha validado sin errores ni avisos."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -113,19 +113,19 @@ msgstr "No se pudo encontrar el archivo manifest en la ubicación facilitada."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr "No se pudo acceder al alojamiento de la aplicación."
+msgstr "No se pudo acceder al alojamiento de la app."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr "No se puede analizar el archivo manifest de la aplicación."
+msgstr "No se puede analizar el archivo manifest de la app."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr "El archivo manifest de la aplicación no es válido."
+msgstr "El archivo manifest de la app no es válido."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr "La aplicación ya está instalada."
+msgstr "La app ya está instalada."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
@@ -133,7 +133,7 @@ msgstr "Error interno del servidor."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Error interno del servidor al instalar la aplicación."
+msgstr "Error interno del servidor al instalar la app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -142,22 +142,22 @@ msgstr "Error en la instalación. Inténtalo de nuevo pasados unos minutos."
 #: media/js/devreg/devhub.js:215
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "La validación de tu aplicación ha fallado con {0} error y {1} mensaje(s)."
-msgstr[1] "La validación de tu aplicación ha fallado con {0} errores y {1} mensaje(s)."
+msgstr[0] "La validación de tu app ha fallado con {0} error y {1} mensaje(s)."
+msgstr[1] "La validación de tu app ha fallado con {0} errores y {1} mensaje(s)."
 
 #: media/js/devreg/devhub.js:229
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Tu aplicación se ha validado sin errores y con {0} mensaje."
-msgstr[1] "Tu aplicación se ha validado sin errores y con {0} mensajes."
+msgstr[0] "Tu app se ha validado sin errores y con {0} mensaje."
+msgstr[1] "Tu app se ha validado sin errores y con {0} mensajes."
 
 #: media/js/devreg/devhub.js:234
 msgid "Your app passed validation with no errors or messages."
-msgstr "Tu aplicación se ha validado sin errores ni mensajes."
+msgstr "Tu app se ha validado sin errores ni mensajes."
 
 #: media/js/devreg/devhub.js:448
 msgid "Changes Saved"
-msgstr "Se han guardado los cambios"
+msgstr "Cambios guardados"
 
 #: media/js/devreg/devhub.js:464
 msgid "Enter a new team member's email address"
@@ -165,11 +165,11 @@ msgstr "Escribe la dirección de correo electrónico de un nuevo miembro del equ
 
 #: media/js/devreg/devhub.js:477
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest actualizado"
 
 #: media/js/devreg/devhub.js:482
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "No se pudo actualizar manifest. Prueba de nuevo pasados unos minutos."
 
 #: media/js/devreg/devhub.js:663
 msgid "There was an error uploading your file."
@@ -189,7 +189,7 @@ msgstr "Se están procesando los cambios en la imagen"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Este video requiere un navegador que sea compatible con un formato de video abierto "
+msgstr "Este vídeo requiere un navegador que sea compatible con un formato de vídeo abierto "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -201,11 +201,11 @@ msgstr "Flash Player</a>."
 
 #: media/js/devreg/in_app_products.js:278
 msgid "Enabled"
-msgstr ""
+msgstr "Activada"
 
 #: media/js/devreg/in_app_products.js:280
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivada"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -225,11 +225,11 @@ msgstr "Error al identificarse con Mozilla Persona. Se encontró un error del se
 
 #: media/js/devreg/lookup-tool.js:24
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Estado cambiado a \"{0}\" correctamente"
 
 #: media/js/devreg/lookup-tool.js:29
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "No se pudo cambiar estado a \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:98
 msgid "Show All Results"
@@ -324,8 +324,8 @@ msgstr "Detectado: {0}"
 #: media/js/devreg/payments-manage.js:32
 msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
 msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Si eliminas la cuenta de pago \"{0}\", se eliminará también de las siguientes aplicaciones. Las aplicaciones que no tengan una cuenta de pago asociada no estarán disponibles para su venta."
-msgstr[1] "Si eliminas la cuenta de pago \"{0}\", se eliminará también de la siguiente aplicación. Las aplicaciones que no tengan una cuenta de pago asociada no estarán disponibles para su venta."
+msgstr[0] "Si eliminas la cuenta de pago \"{0}\", se eliminará también de las siguientes apps. Las apps que no tengan una cuenta de pago asociada no estarán disponibles para su venta."
+msgstr[1] "Si eliminas la cuenta de pago \"{0}\", se eliminará también de la siguiente app. Las apps que no tengan una cuenta de pago asociada no estarán disponibles para su venta."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
@@ -354,7 +354,7 @@ msgstr "Buscar temas para <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr "Buscar aplicaciones para <b>{0}</b>"
+msgstr "Buscar apps para <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
@@ -362,7 +362,7 @@ msgstr "Buscar complementos para <b>{0}</b>"
 
 #: media/js/devreg/tarako.js:35
 msgid "Something went wrong. Please try again."
-msgstr ""
+msgstr "Algo no salió bien. Inténtelo de nuevo."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -381,23 +381,23 @@ msgstr "Estas pruebas no se han ejecutado."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr "Pruebas"
+msgstr "Tests"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr "Advertencia"
+msgstr "Aviso"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr "Pruebas de compatibilidad"
+msgstr "Test de compatibilidad"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "La aplicación no se ha validado."
+msgstr "La app no se ha validado."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr "La aplicación se ha validado."
+msgstr "La app se ha validado."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
@@ -437,11 +437,11 @@ msgstr "{name} estuvo viendo esta página antes."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr "El recibo fue comprobado por la aplicación."
+msgstr "El recibo fue comprobado por la app."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr "El recibo no fue comprobado por la aplicación."
+msgstr "El recibo no fue comprobado por la app."
 
 #: media/js/devreg/reviewers/editors.js:240
 msgid "{name} was viewing this add-on first."
@@ -465,7 +465,7 @@ msgstr "No se han encontrado las notas de la versión"
 
 #: media/js/devreg/reviewers/editors.js:291
 msgid "Select an application first"
-msgstr "Selecciona primero una aplicación"
+msgstr "Selecciona primero una app"
 
 #: media/js/devreg/reviewers/editors.js:355
 msgid "Error loading translation"
@@ -497,11 +497,11 @@ msgstr "Error al realizar el pago. Prueba de nuevo pasados unos minutos."
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Packaged App"
-msgstr "Aplicación empaquetada"
+msgstr "App empaquetada"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Privileged App"
-msgstr "Aplicación con privilegios"
+msgstr "App con privilegios"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "More Information Requested"
@@ -513,7 +513,7 @@ msgstr "Contiene comentario del editor"
 
 #: media/js/devreg/reviewers/reviewers.js:121
 msgid "Premium App"
-msgstr "Aplicación Premium"
+msgstr "App premium"
 
 #: media/js/devreg/reviewers/reviewers.js:124
 msgid "Escalated"
@@ -529,41 +529,41 @@ msgstr "Cualquiera"
 
 #: media/js/devreg/reviewers/reviewers.js:264
 msgid "Approved app: {app}"
-msgstr "Aplicación aprobada: {app}"
+msgstr "App aprobada: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:267
 msgid "Rejected app: {app}"
-msgstr "Aplicación rechazada: {app}"
+msgstr "App rechazada: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:273
 msgid "Error approving app: {app}"
-msgstr "Error al aprobar aplicación: {app}"
+msgstr "Error al aprobar app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
-msgstr "Error al rechazar la aplicación: {app}"
+msgstr "Error al rechazar la app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:315
 msgid "Passed app: {app}"
-msgstr ""
+msgstr "App aprobada: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:318
 msgid "Failed app: {app}"
-msgstr ""
+msgstr "App suspendida: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Error al aprobar app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:326
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Error al suspender app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:45
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr ""
+msgstr "¡Perdón! Tuvimos un error al recuperar el historial de revisiones. Prueba conectar de nuevo.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:65
 msgid "By {0} on {1}"
-msgstr "Por {0} en {1}"
+msgstr "Por {0} el {1}"
