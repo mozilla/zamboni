@@ -1,0 +1,11 @@
+{% if app %}
+  <meta property="og:title" content="{{ app.name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ app.get_icon_url(64) }}">
+  <meta name="description" content="{{ app.description }}">
+{% else %}
+  <meta property="og:title" content="Firefox Marketplace">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ media('fireplace/img/logos/128.png') }}">
+  <meta name="description" content="{{ _('The Firefox Marketplace is the official source of apps for the Web Platform.') }}">
+{% endif %}

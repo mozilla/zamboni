@@ -5,6 +5,7 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.urlresolvers import resolve
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.decorators.gzip import gzip_page
@@ -13,8 +14,9 @@ import jingo
 import jinja2
 import newrelic.agent
 import waffle
-
 from cache_nuggets.lib import memoize
+
+from mkt.webapps.models import Webapp
 
 
 def get_build_id(repo):
@@ -27,7 +29,8 @@ def get_build_id(repo):
         return importlib.import_module(module).BUILD_ID
     except (ImportError, AttributeError):
         try:
-            build_id_fn = os.path.join(settings.MEDIA_ROOT, repo, 'build_id.txt')
+            build_id_fn = os.path.join(settings.MEDIA_ROOT, repo,
+                                       'build_id.txt')
             with storage.open(build_id_fn) as fh:
                 return fh.read()
         except:
@@ -91,11 +94,29 @@ def commonplace(request, repo, **kwargs):
         'newrelic_footer': newrelic.agent.get_browser_timing_footer,
     }
 
+    # For OpenGraph stuff.
+    resolved_url = resolve(request.path)
+    if repo == 'fireplace' and resolved_url.url_name == 'detail':
+        ctx = add_app_ctx(ctx, resolved_url.kwargs['app_slug'])
+
     media_url = urlparse(settings.MEDIA_URL)
     if media_url.netloc:
         ctx['media_origin'] = media_url.scheme + '://' + media_url.netloc
 
     return render(request, 'commonplace/index.html', ctx)
+
+
+def add_app_ctx(ctx, app_slug):
+    """
+    If we are hitting the Fireplace detail page, get the app for Open Graph
+    tags.
+    """
+    try:
+        app = Webapp.objects.get(app_slug=app_slug)
+        ctx['app'] = app
+    except Webapp.DoesNotExist:
+        pass
+    return ctx
 
 
 @gzip_page
