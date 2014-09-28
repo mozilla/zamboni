@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:29-0700\n"
-"PO-Revision-Date: 2014-09-27 22:21+0000\n"
+"PO-Revision-Date: 2014-09-28 17:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411856505.0\n"
+"X-POOTLE-MTIME: 1411927125.0\n"
 
 #: apps/amo/helpers.py:101
 msgid "Apps Marketplace"
@@ -392,7 +392,9 @@ msgstr "Dispositivo(s) adicionado(s)"
 
 #: apps/amo/log.py:512
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Suporte a dispositivo de {addon} foi modificado manualmente pelo revisor."
+msgstr ""
+"O suporte a dispositivos por {addon} foi modificado manualmente pelo "
+"revisor."
 
 #: apps/amo/log.py:513
 msgid "Device(s) Changed by Reviewer"
@@ -1733,7 +1735,7 @@ msgstr "Visualizador"
 #: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:67 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:68
 msgid "Support"
-msgstr "Suporte"
+msgstr "Apoio"
 
 #: mkt/constants/base.py:135 mkt/constants/base.py:148
 msgid "Any"
@@ -2875,7 +2877,7 @@ msgstr "E-mail administrativo"
 
 #: mkt/developers/forms_payments.py:391
 msgid "Support Email"
-msgstr "E-mail de suporte"
+msgstr "E-mail de apoio"
 
 #: mkt/developers/forms_payments.py:395
 msgid "Address"
@@ -4215,18 +4217,20 @@ msgstr "Mídia"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:4
 msgid "Support Information"
-msgstr "Informações de suporte"
+msgstr "Informações de apoio"
 
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/support.html:13
 msgid "Support Information for {0}"
-msgstr "Informações de suporte para {0}"
+msgstr "Informações de apoio técnico para {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
-"Endereço de e-mail utilizado por utilizadores finais para o contactar com questões de suporte e pedidos de devolução. Se tiver endereços diferentes para cada idioma, múltiplas traduções deste campo "
-"podem ser adicionadas."
+"Endereço de e-mail utilizado por utilizadores finais para o contactar com "
+"questões de apoio técnico e pedidos de devolução. Se tiver endereços "
+"diferentes para cada idioma, múltiplas traduções deste campo podem ser "
+"adicionadas."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4235,8 +4239,9 @@ msgstr "Site web"
 #: mkt/developers/templates/developers/apps/edit/support.html:41
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
-"Se a sua aplicação tem uma página web ou um fórum de suporte, introduza o seu endereço aqui. Se o seu site web está disponível em outros idiomas, múltiplas traduções deste campo podem ser "
-"adicionadas."
+"Se a sua aplicação tem uma página web ou um fórum de apoio, introduza o seu "
+"endereço aqui. Se o seu site web está disponível em outros idiomas, "
+"múltiplas traduções deste campo podem ser adicionadas."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4253,7 +4258,9 @@ msgstr "Usa Flash"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
-msgstr "Se a sua aplicação utiliza Flash, irá ser ocultada do Marketplace em dispositivos sem suporte a Flash."
+msgstr ""
+"e a sua aplicação utiliza Flash, irá ser ocultada do Marketplace em "
+"dispositivos sem compatibilidade com o Flash."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:35
 msgid "Public Stats?"
@@ -6128,7 +6135,7 @@ msgstr "Para ver os termos de serviço do Firefox Marketplace por favor visite:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr "Para suporte por favor visite:"
+msgstr "Para apoio por favor visite:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
@@ -7253,7 +7260,9 @@ msgstr "Site web de ajuda:"
 
 #: mkt/submit/forms.py:299
 msgid "If your app has a support website or forum, enter its address here."
-msgstr "Se a sua aplicação tiver uma página ou fórum de suporte, introduza aqui o respetivo endereço."
+msgstr ""
+"Se a sua aplicação tiver uma página ou fórum de apoio, introduza aqui o "
+"respetivo endereço."
 
 # 85%
 #: mkt/submit/forms.py:303
@@ -7263,8 +7272,10 @@ msgstr "Email de ajuda:"
 #: mkt/submit/forms.py:305
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
-"Este endereço de email será apresentado publicamente no Marketplace e será utilizado por utilizadores finais para entrar em contacto consigo com problemas e pedidos de suporte. Este endereço de "
-"email será apresentado publicamente na página de detalhes da sua aplicação."
+"Este endereço de email será apresentado publicamente no Marketplace e será "
+"utilizado por utilizadores finais para entrar em contacto consigo com "
+"problemas e pedidos de apoio. Este endereço de email será apresentado "
+"publicamente na página de detalhes da sua aplicação."
 
 #: mkt/submit/forms.py:310
 msgid "Does your app require Flash support?"
