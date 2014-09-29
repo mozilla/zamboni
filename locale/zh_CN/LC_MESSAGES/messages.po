@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-20 01:22+0000\n"
+"PO-Revision-Date: 2014-09-29 22:38+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411176132.0\n"
+"X-POOTLE-MTIME: 1412030312.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -323,11 +323,11 @@ msgstr "升级已清除"
 
 #: apps/amo/log.py:440
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} 已封禁。"
 
 #: apps/amo/log.py:441
 msgid "App banned"
-msgstr ""
+msgstr "应用已封禁"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -651,7 +651,7 @@ msgstr "附件超过最大体积 %s 。"
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1704,7 +1704,7 @@ msgstr "已发布"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "已被应用市场封禁"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1888,11 +1888,11 @@ msgstr "无动作"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "已封禁"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "审核者评论"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1960,11 +1960,11 @@ msgstr "已请求优先审核"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "额外审核已通过"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "额外审核未通过"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2542,7 +2542,7 @@ msgstr "哦，看上去您已经提交了 %s 的清单，目前被拒绝。<a hr
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
-msgstr ""
+msgstr "看起来您已经提交了 %s 的清单，而它目前已被应用市场封禁。<a href=\"%s\">编辑应用</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -3513,7 +3513,7 @@ msgstr "可以查看应用的设置，但不能进行任何更改"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "可以查看应用的设置"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3549,11 +3549,11 @@ msgstr "由于没有内容分级，您的应用被停用。<a href=\"%(ratings_u
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "此应用<b>已被应用市场封禁</b>。"
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr ""
+msgstr "您的应用已被一名网站管理员封禁。如果您有任何疑问，请发邮件至 %(email)s。"
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3712,7 +3712,7 @@ msgstr "您可以在<a href=\"{compatibility_page}\">兼容性页面</a>上更�
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
+msgstr "如果您的应用可以正常工作在低内存设备上，您可以请求进行显示在低内存设备上的审核。"
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -4566,7 +4566,7 @@ msgstr "测试应用内支付"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "应用内支付密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -4609,15 +4609,15 @@ msgstr "生成密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "应用内密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
+msgstr "应用内支付密钥允许您在您的应用程序内以任意价位进行支付。您有责任进行产品的定义和管理。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "配置应用内密钥"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4625,11 +4625,11 @@ msgstr "应用内产品"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
+msgstr "应用内产品允许您在您的应用程序内进行支付，并且允许您在火狐应用市场开发者中心中创建和管理您的产品，简化了流程。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "配置应用内产品"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5443,7 +5443,7 @@ msgstr "文件\"manifest.webapp\"在获取应用包根目录中未发现。 "
 
 #: mkt/files/utils.py:98
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "无法解码 webapp 清单文件。请检查您的清单文件是否使用了特殊的非 UTF-8 字符。"
 
 #: mkt/files/utils.py:106
 msgid "The webapp manifest is not valid JSON."
@@ -5676,27 +5676,27 @@ msgstr "优先审核？"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
-msgstr ""
+msgstr "Tarako 状态"
 
 #: mkt/lookup/templates/lookup/app_summary.html:85
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako 已启用"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako 未启用"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "未请求审核"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
-msgstr ""
+msgstr "等待审核中"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review failed"
-msgstr ""
+msgstr "审核未通过"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
@@ -6307,11 +6307,11 @@ msgstr "从重新审核队列中清除这个应用。作者不会收到邮件通
 
 #: mkt/reviewers/utils.py:494
 msgid "Ban app"
-msgstr ""
+msgstr "封禁应用"
 
 #: mkt/reviewers/utils.py:496
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
+msgstr "从应用市场中封禁该应用。类似拒绝，但作者不能重新提交。仅在极端情况下使用。"
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6527,15 +6527,15 @@ msgstr "更新每日消息"
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
 msgid "Reviewer Scores for {0}"
-msgstr "{0}的评价得分"
+msgstr "{0} 的审核者得分"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "所有故障时间点"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "点"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6887,11 +6887,11 @@ msgstr "其他应用内付款系统"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
-msgstr ""
+msgstr "任何设备"
 
 #: mkt/search/forms.py:43
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
@@ -7073,15 +7073,15 @@ msgstr "您的上传过程中发生错误，请重试。"
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "版本 %s 已经存在。"
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "不允许更改为 \"origin\"。"
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "用户提交的验证信息不匹配。"
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7101,6 +7101,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"一个隐私政策是用来解释您如何处理通过您的应用接收到的数据。举例来说：您会收到什么样的数据？您会如何使用它？您会将其与谁分享？您会收到个人信息吗？您会采取"
+"匿名化措施吗？用户有哪些选择权来控制您与其他人收到的信息？请在上方输入您的隐私政策链接或文本。如果您没有一个隐私政策，<a href=\"{url}\" "
+"target=\"_blank\">了解如何写一个</a>。"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7480,59 +7483,64 @@ msgstr "请使用这个账户经过验证的电子邮件地址。"
 
 #: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
 msgid "Firefox Accounts is coming"
-msgstr ""
+msgstr "Firefox 账户即将到来"
 
 #: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
 msgid "Activate your Firefox Account"
-msgstr ""
+msgstr "激活您的 Firefox 账户"
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
-msgstr ""
+msgstr "立即激活"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr ""
+msgstr "更多有关 Firefox 账户的信息，请参阅我们的<a href=\"%(faq)s\">常见问题</a>。"
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"您因创建了一个 Firefox Marketplace 的账户而收到本邮件。Mozilla, 331 E. Evelyn Ave., Mountain "
+"View, CA 94041.<br> <a href=\"%(terms)s\">使用条款</a> | <a href=\"%"
+"(privacy)s\">隐私政策</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr ""
+msgstr "火狐应用市场已切换到使用 Firefox 账户。请激活您的 Firefox 账户。"
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr ""
+msgstr "火狐应用市场的用户登录系统（Persona）不久即将退役，改为支持一个更为强大的用户账户系统，我们称之为 Firefox 账户。"
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr ""
+msgstr "在 Persona 切换到 Firefox 账户已经就绪之时，您将收到一封带有激活链接的邮件。"
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"火狐应用市场已经切换到 Firefox 账户来提供对于所有 Mozilla 服务和产品更具有整合性的体验。拥有一个 Firefox "
+"账户将让您可以访问您现有的应用市场应用，和跨越多个设备无缝享受您的应用，更多服务即将推出。"
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
-msgstr ""
+msgstr "激活您的账户非常容易。只需登录和验证您的账户。"
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr ""
+msgstr "要访问和管理您在火狐应用市场中上架的应用，您必须激活您的 Firefox 账户。"
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr ""
+msgstr "火狐应用市场已切换到使用 Firefox 账户。请激活您的新账户。"
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr ""
+msgstr "重要：您必须激活您的 Firefox 账户才能访问和管理您在火狐应用市场中上架的应用。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7642,15 +7650,15 @@ msgstr "登录/注册"
 
 #: templates/base.html:122
 msgid "Firefox Accounts has arrived"
-msgstr ""
+msgstr "Firefox 账户已激活"
 
 #: templates/base.html:125
 msgid "Learn how to transfer your account"
-msgstr ""
+msgstr "了解如何转移您的账户"
 
 #: templates/base.html:128
 msgid "It's easy."
-msgstr ""
+msgstr "它很简单。"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
