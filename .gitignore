@@ -4,7 +4,6 @@ shellng_local.py
 *.py[co]
 *.sw[lmnop]
 .coverage
-.vagrant
 pip-log.txt
 docs/_build
 docs/_gh-pages
@@ -33,8 +32,6 @@ media/external/*
 tmp/*
 tags
 tagz.py
-vagrantconfig_local.yaml
-vagrant/manifests/classes/custom.pp
 node_modules
 commonplace_projects
 media/fireplace
