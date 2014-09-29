@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2014-09-09 08:20+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -156,35 +156,35 @@ msgstr[1] "L’app ha superato i controlli senza errori e con {0} messaggi."
 msgid "Your app passed validation with no errors or messages."
 msgstr "L’app ha superato i controlli senza errori e senza avvisi."
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "Modifiche salvate"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "Inserisci un indirizzo email per un nuovo membro del team di sviluppo"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr "Manifesto aggiornato"
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr "Impossibile aggiornare il manifesto. Riprova più tardi."
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "Si è verificato un errore durante il caricamento del file."
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "Esempio"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
@@ -200,11 +200,11 @@ msgstr "oppure <a href=\"http://www.adobe.com/go/getflashplayer\"> il plugin "
 msgid "Flash Player</a>."
 msgstr "Adobe Flash Player</a>."
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr "Attiva"
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr "Non attiva"
 
@@ -216,11 +216,11 @@ msgstr "Questa funzione è momentaneamente disattivata per dei lavori di manuten
 msgid "Remove this localization"
 msgstr "Rimuovi questa localizzazione"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Identificazione con Persona non riuscita. Sei sicuro di aver registrato un account con questo indirizzo email?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Identificazione con Persona non riuscita. Si è verificato un errore col server."
 
@@ -528,11 +528,11 @@ msgstr "Gratuita"
 msgid "Any"
 msgstr "Qualsiasi"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr "App approvata: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr "App rifiutata: {app}"
 
@@ -543,14 +543,6 @@ msgstr "Si è verificato un errore durante il processo di approvazione dell’ap
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr "App promossa: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
-msgstr "App respinta: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"

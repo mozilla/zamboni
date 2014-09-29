@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2014-09-05 16:33+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -150,35 +150,35 @@ msgstr[0] "您的應用程式通過驗證，沒有錯誤與 {0} 個訊息。"
 msgid "Your app passed validation with no errors or messages."
 msgstr "您的應用程式通過驗證，沒有錯誤或訊息。"
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "請輸入新成員的電子郵件信箱地址"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr "無法重新整理安裝資訊檔，請稍後再試。"
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr "無法重新整理安裝資訊檔，請稍後再試。"
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "範例"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
@@ -194,11 +194,11 @@ msgstr "或者透過 <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>。"
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr "已啟用"
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr "已停用"
 
@@ -210,11 +210,11 @@ msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後
 msgid "Remove this localization"
 msgstr "移除此語系"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登入失敗。或許您並沒有使用此電子郵件地址作為帳號?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Persona 登入失敗。伺服器發生錯誤。"
 
@@ -518,11 +518,11 @@ msgstr "免費版"
 msgid "Any"
 msgstr "任何"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr "已通過審查應用程式：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr "已拒絕應用程式：{app}"
 
@@ -533,14 +533,6 @@ msgstr "審查錯誤應用程式：{app}"
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "拒絕錯誤應用程式：{app}"
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr "通過的應用程式: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
-msgstr "失敗的應用程式: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"

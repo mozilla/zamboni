@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2014-09-20 14:17+0000\n"
 "Last-Translator: Killo <killoherz3@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1411222633.0\n"
 
@@ -161,35 +160,35 @@ msgstr[2] "Ваше приложение прошло валидацию без 
 msgid "Your app passed validation with no errors or messages."
 msgstr "Ваше приложение прошло валидацию без ошибок или сообщений."
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "Изменения сохранены"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "Введите адрес эл. почты нового члена команды"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "При загрузке вашего файла произошла ошибка."
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "Подробнее"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
@@ -205,11 +204,11 @@ msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash-плейер</a>."
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr ""
 
@@ -221,11 +220,11 @@ msgstr "Пока мы производим техническое обслужи
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Вход через Persona не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
 
@@ -537,11 +536,11 @@ msgstr "Бесплатно"
 msgid "Any"
 msgstr "Любая"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr "Одобренное приложение: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr "Отклоненное приложение: {app}"
 
@@ -552,14 +551,6 @@ msgstr "Ошибка при одобрении приложения: {app}"
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "Ошибка при отклонении приложения: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
-msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"

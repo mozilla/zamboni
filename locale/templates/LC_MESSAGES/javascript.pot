@@ -1,15 +1,16 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Translate Toolkit 1.12.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -156,35 +157,35 @@ msgstr[1] ""
 msgid "Your app passed validation with no errors or messages."
 msgstr ""
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr ""
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr ""
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr ""
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr ""
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr ""
 
@@ -200,11 +201,11 @@ msgstr ""
 msgid "Flash Player</a>."
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr ""
 
@@ -218,13 +219,13 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr ""
 
@@ -547,10 +548,12 @@ msgid "Any"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr ""
 
@@ -560,14 +563,6 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:325

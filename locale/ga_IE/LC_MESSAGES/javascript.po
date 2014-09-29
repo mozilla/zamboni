@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -168,35 +168,35 @@ msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachta
 msgid "Your app passed validation with no errors or messages."
 msgstr "D'éirigh le d'aip sa bhailíochtú gan earráidí gan rabhaidh."
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "Sampla"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "Athruithe san íomhá á bpróiseáil"
 
@@ -212,11 +212,11 @@ msgstr "nó a úsáideann <a href=\"http://www.adobe.com/go/getflashplayer\">Ado
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr ""
 
@@ -228,11 +228,11 @@ msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an 
 msgid "Remove this localization"
 msgstr "Bain an t-aistriúchán seo"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Níorbh fhéidir logáil isteach i bPersona. B'fhéidir nach bhfuil do chuntas cláraithe leis an seoladh ríomhphoist sin?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Níorbh fhéidir logáil isteach i bPersona. Tharla fadhb leis an bhfreastalaí."
 
@@ -552,11 +552,11 @@ msgstr "Saor in Aisce"
 msgid "Any"
 msgstr "Ar Bith"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr "Aip deimhnithe: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr "Aip diúltaithe: {app}"
 
@@ -567,14 +567,6 @@ msgstr "Earráid agus an aip á deimhniú: {app}"
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "Earráid agus an aip á diúltú: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
-msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"

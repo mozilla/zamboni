@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2014-08-25 14:56+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1408978593.0\n"
 
-#: apps/amo/helpers.py:101
+#: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
 msgstr "Marketplace za aplikacije"
 
@@ -50,7 +50,7 @@ msgstr "{0.name} ({1}) uklonjeno iz {addon}."
 msgid "Contributions for {addon}."
 msgstr "Prilozi za {addon}."
 
-#: apps/amo/log.py:65 apps/amo/log.py:440
+#: apps/amo/log.py:65
 msgid "{addon} disabled."
 msgstr "{addon} onemogućen."
 
@@ -108,7 +108,7 @@ msgstr "Datoteka {0} izbrisana iz {version} dodatka {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} odobren."
 
-#: apps/amo/log.py:157 mkt/constants/base.py:43 mkt/constants/comm.py:41 mkt/constants/payments.py:66
+#: apps/amo/log.py:157 mkt/constants/base.py:43 mkt/constants/comm.py:42 mkt/constants/payments.py:66
 msgid "Approved"
 msgstr "Odobreno"
 
@@ -124,7 +124,7 @@ msgstr "Premiliminarno odobreno"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} je odbijen."
 
-#: apps/amo/log.py:178 mkt/constants/base.py:31 mkt/constants/comm.py:42 mkt/reviewers/helpers.py:177
+#: apps/amo/log.py:178 mkt/constants/base.py:31 mkt/constants/comm.py:43 mkt/reviewers/helpers.py:177
 msgid "Rejected"
 msgstr "Odbijeno"
 
@@ -140,7 +140,7 @@ msgstr "Zadržano"
 msgid "{addon} {version} escalated."
 msgstr "{addon} {version} se eskalirao."
 
-#: apps/amo/log.py:198 mkt/constants/comm.py:45 mkt/reviewers/forms.py:164
+#: apps/amo/log.py:198 mkt/constants/comm.py:46 mkt/reviewers/forms.py:164
 msgid "Escalated"
 msgstr "Eskalirano"
 
@@ -156,7 +156,7 @@ msgstr "Zahtevana recenzija"
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} zahteva dodatne informacije."
 
-#: apps/amo/log.py:217 mkt/constants/comm.py:44
+#: apps/amo/log.py:217 mkt/constants/comm.py:45
 msgid "More information requested"
 msgstr "Zahtevane dodatne informacije"
 
@@ -172,7 +172,7 @@ msgstr "Zahtevana super recenzija"
 msgid "Comment on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
-#: apps/amo/log.py:234 mkt/constants/comm.py:46 mkt/reviewers/utils.py:457
+#: apps/amo/log.py:234 mkt/reviewers/utils.py:474
 msgid "Comment"
 msgstr "Komentariši"
 
@@ -280,7 +280,7 @@ msgstr "{addon} manifest je ažuriran."
 msgid "{addon} {version} approved but private."
 msgstr ""
 
-#: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:48
+#: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:49
 msgid "Approved but private"
 msgstr ""
 
@@ -320,13 +320,17 @@ msgstr "Ispravnost računa proverena za {addon}."
 msgid "Escalation cleared for {addon}."
 msgstr "Eskalacija je očišćena za {addon}."
 
-#: apps/amo/log.py:433 mkt/constants/comm.py:49
+#: apps/amo/log.py:433 mkt/constants/comm.py:50
 msgid "Escalation cleared"
 msgstr "Eskalacija očišćena"
 
+#: apps/amo/log.py:440
+msgid "{addon} banned."
+msgstr ""
+
 #: apps/amo/log.py:441
-msgid "App disabled"
-msgstr "Aplikacija je onemogućena"
+msgid "App banned"
+msgstr ""
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -364,7 +368,7 @@ msgstr "Nadogradnja premijum tipa"
 msgid "Re-review cleared for {addon}."
 msgstr "Ponovna recenzija uklonjena za {addon}."
 
-#: apps/amo/log.py:481 mkt/constants/comm.py:52
+#: apps/amo/log.py:481 mkt/constants/comm.py:53
 msgid "Re-review cleared"
 msgstr "Ponavna recenzija uklonjena"
 
@@ -567,12 +571,12 @@ msgid "Purchase Date"
 msgstr "Dan kupovine"
 
 #: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "Cena"
 
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:626 mkt/developers/views.py:85 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:60 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:61 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Ime"
 
@@ -620,7 +624,7 @@ msgstr "Heksodecimalna boja"
 msgid "Must be a valid hex color code, e.g. #FF0035."
 msgstr "Mora da bude hex kod boje, npr. #FF0035."
 
-#: mkt/collections/serializers.py:222
+#: mkt/collections/serializers.py:217
 msgid "You can not have more than one Featured Apps/Operator Shelf collection for the same category/carrier/region combination."
 msgstr "Ne možete imati više od jedne Istaknute/Operaterske police kolekcije za istu kombinaciju kategorije/operatera/regiona."
 
@@ -640,7 +644,7 @@ msgstr "Verzija %s ne postoji"
 msgid "Attachment:"
 msgstr "Prilog:"
 
-#: mkt/comm/forms.py:46 mkt/submit/forms.py:282
+#: mkt/comm/forms.py:46 mkt/submit/forms.py:275
 msgid "Description:"
 msgstr "Opis:"
 
@@ -648,27 +652,28 @@ msgstr "Opis:"
 msgid "Attachment exceeds maximum size of %s."
 msgstr "Prilog premašuje maksimalnu veličinu od %s."
 
-#: mkt/commonplace/templates/commonplace/index.html:10
+#: mkt/comm/serializers.py:53
+msgid "Mozilla"
+msgstr ""
+
+#: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr "Firefox Marketplace je zvanični izvor aplikacija za veb platformu."
 
-#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:43
+#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:42
 msgid "Desktop"
 msgstr "Radna površina"
 
-#: mkt/constants/applications.py:13 mkt/constants/platforms.py:22 mkt/constants/platforms.py:43 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:45
-#: mkt/constants/tests/test_platforms.py:58 mkt/constants/tests/test_platforms.py:75 mkt/constants/tests/test_platforms.py:96
+#: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:26 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
 msgstr "Firefox za mobilni"
 
-#: mkt/constants/applications.py:20 mkt/constants/platforms.py:23 mkt/constants/platforms.py:44 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:46
-#: mkt/constants/tests/test_platforms.py:59 mkt/constants/tests/test_platforms.py:76 mkt/constants/tests/test_platforms.py:97
+#: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
 msgstr "Firefox tablet"
 
-#: mkt/constants/applications.py:27 mkt/constants/platforms.py:7 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:25
-#: mkt/constants/tests/test_platforms.py:34 mkt/constants/tests/test_platforms.py:44 mkt/constants/tests/test_platforms.py:56 mkt/constants/tests/test_platforms.py:66
-#: mkt/constants/tests/test_platforms.py:74 mkt/constants/tests/test_platforms.py:85 mkt/constants/tests/test_platforms.py:95 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:46
+#: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
+#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:44 mkt/search/forms.py:51
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -724,7 +729,7 @@ msgstr "Antartik"
 msgid "Antigua and Barbuda"
 msgstr "Antigva i Barbuda"
 
-#: mkt/constants/bango.py:29 mkt/constants/regions.py:216
+#: mkt/constants/bango.py:29 mkt/constants/regions.py:68
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -756,7 +761,7 @@ msgstr "Bahami"
 msgid "Bahrain"
 msgstr "Bahrein"
 
-#: mkt/constants/bango.py:37 mkt/constants/regions.py:326
+#: mkt/constants/bango.py:37 mkt/constants/regions.py:69
 msgid "Bangladesh"
 msgstr "Bangladeš"
 
@@ -808,7 +813,7 @@ msgstr "Bocvana"
 msgid "Bouvet Island"
 msgstr "Ostrvo Buve"
 
-#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:85
+#: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90 mkt/constants/regions.py:70
 msgid "Brazil"
 msgstr "Brazil"
 
@@ -860,11 +865,11 @@ msgstr "Centralnoafrička Republika"
 msgid "Chad"
 msgstr "Čad"
 
-#: mkt/constants/bango.py:63 mkt/constants/regions.py:246
+#: mkt/constants/bango.py:63 mkt/constants/regions.py:71
 msgid "Chile"
 msgstr "Čile"
 
-#: mkt/constants/bango.py:64 mkt/constants/regions.py:226
+#: mkt/constants/bango.py:64 mkt/constants/regions.py:72
 msgid "China"
 msgstr "Kina"
 
@@ -876,7 +881,7 @@ msgstr "Božićno ostrvo"
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokos (Kiling) ostrva"
 
-#: mkt/constants/bango.py:67 mkt/constants/regions.py:106
+#: mkt/constants/bango.py:67 mkt/constants/regions.py:73
 msgid "Colombia"
 msgstr "Kolumbija"
 
@@ -896,7 +901,7 @@ msgstr "Kongo, Demokratska Republika"
 msgid "Cook Islands"
 msgstr "Kukova ostrva"
 
-#: mkt/constants/bango.py:72 mkt/constants/regions.py:286
+#: mkt/constants/bango.py:72 mkt/constants/regions.py:74
 msgid "Costa Rica"
 msgstr "Kostarika"
 
@@ -920,7 +925,7 @@ msgstr "Kurasao"
 msgid "Cyprus"
 msgstr "Kipar"
 
-#: mkt/constants/bango.py:78
+#: mkt/constants/bango.py:78 mkt/constants/regions.py:75
 msgid "Czech Republic"
 msgstr "Češka"
 
@@ -940,7 +945,7 @@ msgstr "Dominika"
 msgid "Dominican Republic"
 msgstr "Dominikanska republika"
 
-#: mkt/constants/bango.py:83 mkt/constants/regions.py:276
+#: mkt/constants/bango.py:83 mkt/constants/regions.py:77
 msgid "Ecuador"
 msgstr "Ekvador"
 
@@ -948,7 +953,7 @@ msgstr "Ekvador"
 msgid "Egypt"
 msgstr "Egipat"
 
-#: mkt/constants/bango.py:85 mkt/constants/regions.py:256
+#: mkt/constants/bango.py:85 mkt/constants/regions.py:93
 msgid "El Salvador"
 msgstr "Salvador"
 
@@ -984,7 +989,7 @@ msgstr "Fidži"
 msgid "Finland"
 msgstr "Finska"
 
-#: mkt/constants/bango.py:94 mkt/constants/regions.py:316
+#: mkt/constants/bango.py:94 mkt/constants/regions.py:79
 msgid "France"
 msgstr "Francuska"
 
@@ -1012,7 +1017,7 @@ msgstr "Gambija"
 msgid "Georgia"
 msgstr "Gruzija"
 
-#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:158
+#: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197 mkt/constants/regions.py:76
 msgid "Germany"
 msgstr "Nemačka"
 
@@ -1024,7 +1029,7 @@ msgstr "Gana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: mkt/constants/bango.py:104 mkt/constants/regions.py:186
+#: mkt/constants/bango.py:104 mkt/constants/regions.py:81
 msgid "Greece"
 msgstr "Grčka"
 
@@ -1044,7 +1049,7 @@ msgstr "Gvadelup"
 msgid "Guam"
 msgstr "Guam"
 
-#: mkt/constants/bango.py:109 mkt/constants/regions.py:266
+#: mkt/constants/bango.py:109 mkt/constants/regions.py:82
 msgid "Guatemala"
 msgstr "Gvatemala"
 
@@ -1084,7 +1089,7 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hongkong"
 
-#: mkt/constants/bango.py:119 mkt/constants/regions.py:148
+#: mkt/constants/bango.py:119 mkt/constants/regions.py:83
 msgid "Hungary"
 msgstr "Mađarska"
 
@@ -1092,7 +1097,7 @@ msgstr "Mađarska"
 msgid "Iceland"
 msgstr "Island"
 
-#: mkt/constants/bango.py:121 mkt/constants/regions.py:335
+#: mkt/constants/bango.py:121 mkt/constants/regions.py:84
 msgid "India"
 msgstr "Indija"
 
@@ -1120,7 +1125,7 @@ msgstr "Ostrvo Man"
 msgid "Israel"
 msgstr "Izrael"
 
-#: mkt/constants/bango.py:128 mkt/constants/regions.py:236
+#: mkt/constants/bango.py:128 mkt/constants/regions.py:85
 msgid "Italy"
 msgstr "Italija"
 
@@ -1128,7 +1133,7 @@ msgstr "Italija"
 msgid "Jamaica"
 msgstr "Jamajka"
 
-#: mkt/constants/bango.py:130
+#: mkt/constants/bango.py:130 mkt/constants/regions.py:86
 msgid "Japan"
 msgstr "Japan"
 
@@ -1260,7 +1265,7 @@ msgstr "Mauricijus"
 msgid "Mayotte"
 msgstr "Majote"
 
-#: mkt/constants/bango.py:163 mkt/constants/regions.py:137
+#: mkt/constants/bango.py:163 mkt/constants/regions.py:92
 msgid "Mexico"
 msgstr "Meksiko"
 
@@ -1280,7 +1285,7 @@ msgstr "Monako"
 msgid "Mongolia"
 msgstr "Mongolija"
 
-#: mkt/constants/bango.py:168 mkt/constants/regions.py:168
+#: mkt/constants/bango.py:168 mkt/constants/regions.py:87
 msgid "Montenegro"
 msgstr "Crna Gora"
 
@@ -1324,7 +1329,7 @@ msgstr "Nova Kaledonija"
 msgid "New Zealand"
 msgstr "Novi Zeland"
 
-#: mkt/constants/bango.py:179 mkt/constants/regions.py:306
+#: mkt/constants/bango.py:179 mkt/constants/regions.py:88
 msgid "Nicaragua"
 msgstr "Nikaragva"
 
@@ -1368,7 +1373,7 @@ msgstr "Palau"
 msgid "Palestinian Territory, Occupied"
 msgstr "Palestinska teritorija, okupirano"
 
-#: mkt/constants/bango.py:190 mkt/constants/regions.py:296
+#: mkt/constants/bango.py:190 mkt/constants/regions.py:89
 msgid "Panama"
 msgstr "Panama"
 
@@ -1380,7 +1385,7 @@ msgstr "Papua Nova Gvineja"
 msgid "Paraguay"
 msgstr "Paragvaj"
 
-#: mkt/constants/bango.py:193 mkt/constants/regions.py:196
+#: mkt/constants/bango.py:193 mkt/constants/regions.py:90
 msgid "Peru"
 msgstr "Peru"
 
@@ -1392,7 +1397,7 @@ msgstr "Filipini"
 msgid "Pitcairn"
 msgstr "Pitkern"
 
-#: mkt/constants/bango.py:196 mkt/constants/regions.py:127
+#: mkt/constants/bango.py:196 mkt/constants/regions.py:91
 msgid "Poland"
 msgstr "Poljska"
 
@@ -1472,7 +1477,7 @@ msgstr "Saudijska Arabija"
 msgid "Senega"
 msgstr "Senegal"
 
-#: mkt/constants/bango.py:216 mkt/constants/regions.py:177
+#: mkt/constants/bango.py:216 mkt/constants/regions.py:94
 msgid "Serbia"
 msgstr "Srbija"
 
@@ -1524,7 +1529,7 @@ msgstr "Južna Džordžija i Južna Sendvička Ostrva"
 msgid "South Sudan"
 msgstr "Južni Sudan"
 
-#: mkt/constants/bango.py:229 mkt/constants/regions.py:96
+#: mkt/constants/bango.py:229 mkt/constants/regions.py:78
 msgid "Spain"
 msgstr "Španija"
 
@@ -1628,11 +1633,11 @@ msgstr "Ukrajina"
 msgid "United Arab Emirates"
 msgstr "Ujedinjeni Arapski Emirati"
 
-#: mkt/constants/bango.py:255 mkt/constants/regions.py:76
+#: mkt/constants/bango.py:255 mkt/constants/regions.py:80
 msgid "United Kingdom"
 msgstr "Ujedinjeno Kraljevstvo"
 
-#: mkt/constants/bango.py:256 mkt/constants/regions.py:67
+#: mkt/constants/bango.py:256 mkt/constants/regions.py:95
 msgid "United States"
 msgstr "Sjedinjene Američke države"
 
@@ -1640,7 +1645,7 @@ msgstr "Sjedinjene Američke države"
 msgid "United States Minor Outlying Islands"
 msgstr "Sjedinjene Države bez ostalih ostrva"
 
-#: mkt/constants/bango.py:258 mkt/constants/regions.py:206
+#: mkt/constants/bango.py:258 mkt/constants/regions.py:96
 msgid "Uruguay"
 msgstr "Urugvaj"
 
@@ -1688,7 +1693,7 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabve"
 
-#: mkt/constants/base.py:26 mkt/lookup/views.py:155
+#: mkt/constants/base.py:26 mkt/lookup/views.py:150
 msgid "Incomplete"
 msgstr "Nedovršeno"
 
@@ -1701,8 +1706,8 @@ msgid "Published"
 msgstr "Objavljeno"
 
 #: mkt/constants/base.py:29
-msgid "Disabled by Mozilla"
-msgstr "Onemogućeno od strane Mozilla-e"
+msgid "Banned from Marketplace"
+msgstr ""
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1731,150 +1736,76 @@ msgid "Viewer"
 msgstr "Pregledač"
 
 #: mkt/constants/base.py:111 mkt/developers/templates/developers/skeleton_impala.html:67 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
-#: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:68
+#: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:71
 msgid "Support"
 msgstr "Podrška"
 
-#: mkt/constants/base.py:135 mkt/constants/base.py:148
-msgid "Any"
-msgstr "Sve"
-
-#: mkt/constants/base.py:136
-msgid "Extension"
-msgstr "Proširenje"
-
-#: mkt/constants/base.py:137
-msgid "Complete Theme"
-msgstr "Potpuna tema"
-
-#: mkt/constants/base.py:138
-msgid "Dictionary"
-msgstr "Rečnik"
-
-#: mkt/constants/base.py:139
-msgid "Search Engine"
-msgstr "Pretraživač"
-
-#: mkt/constants/base.py:140
-msgid "Plugin"
-msgstr "Priključak"
-
-#: mkt/constants/base.py:141
-msgid "Language Pack (Application)"
-msgstr "Language Pack (aplikacija)"
-
-#: mkt/constants/base.py:142
-msgid "Theme"
-msgstr "Tema"
-
-#: mkt/constants/base.py:143 mkt/developers/forms.py:1086 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:26
-#: mkt/operators/templates/operators/preloads.html:14 mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29
-#: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:5
-msgid "App"
-msgstr "Aplikacija"
-
-# Plural in this context means many of the add-on type
-#: mkt/constants/base.py:149
-msgid "Extensions"
-msgstr "Ekstenzije"
-
-#: mkt/constants/base.py:150
-msgid "Complete Themes"
-msgstr "Kompletne teme"
-
-# Plural in this context means many of the add-on type
-#: mkt/constants/base.py:151
-msgid "Dictionaries"
-msgstr "Rečnici"
-
-#: mkt/constants/base.py:152
-msgid "Search Tools"
-msgstr "Alati za pretragu"
-
-#: mkt/constants/base.py:153
-msgid "Plugins"
-msgstr "Priključci"
-
-# Plural in this context means many of the add-on type
-#: mkt/constants/base.py:154
-msgid "Language Packs (Application)"
-msgstr "Language Packs (aplikacija)"
-
-#: mkt/constants/base.py:155
-msgid "Themes"
-msgstr "Teme"
-
-#: mkt/constants/base.py:156 mkt/reviewers/helpers.py:42 mkt/reviewers/templates/reviewers/performance.html:27 mkt/site/helpers.py:169
-msgid "Apps"
-msgstr "Aplikacije"
-
-#: mkt/constants/base.py:186 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:34
-#: mkt/submit/templates/submit/manifest.html:32
+#: mkt/constants/base.py:134 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:32
+#: mkt/submit/templates/submit/manifest.html:31
 msgid "Free"
 msgstr "Besplatno"
 
-#: mkt/constants/base.py:187 mkt/search/forms.py:36
+#: mkt/constants/base.py:135 mkt/search/forms.py:34
 msgid "Premium"
 msgstr "Premijum"
 
-#: mkt/constants/base.py:188
+#: mkt/constants/base.py:136
 msgid "Premium with in-app payments"
 msgstr "Premijum sa plaćanjem unutar aplikacije"
 
-#: mkt/constants/base.py:189
+#: mkt/constants/base.py:137
 msgid "Free with in-app payments"
 msgstr "Besplatno sa plaćanjem unutar aplikacije"
 
-#: mkt/constants/base.py:190
+#: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
 msgstr "Koristiću moj sistem za plaćanja unutar aplikacije"
 
-#: mkt/constants/base.py:244
+#: mkt/constants/base.py:190
 msgid "Manual Reviewer Points"
 msgstr "Poeni samostalnog recenzenta"
 
-#: mkt/constants/base.py:245
+#: mkt/constants/base.py:191
 msgid "Web App Review"
 msgstr "Recenzija veb aplikacije"
 
-#: mkt/constants/base.py:246
+#: mkt/constants/base.py:192
 msgid "Packaged App Review"
 msgstr "Recenzija pakovane aplikacije"
 
-#: mkt/constants/base.py:247
+#: mkt/constants/base.py:193
 msgid "Web App Re-review"
 msgstr "Ponovna recenzija veb aplikacije"
 
-#: mkt/constants/base.py:248
+#: mkt/constants/base.py:194
 msgid "Updated Packaged App Review"
 msgstr "Ažurirana recenzija upakovane aplikacije"
 
-#: mkt/constants/base.py:249
+#: mkt/constants/base.py:195
 msgid "Moderated App Review"
 msgstr "Recenzija uređene aplikacije"
 
-#: mkt/constants/base.py:270
+#: mkt/constants/base.py:216
 msgid "Level 1"
 msgstr "Nivo 1"
 
-#: mkt/constants/base.py:271
+#: mkt/constants/base.py:217
 msgid "Level 2"
 msgstr "Nivo 2"
 
-#: mkt/constants/base.py:272
+#: mkt/constants/base.py:218
 msgid "Level 3"
 msgstr "Nivo 3"
 
-#: mkt/constants/base.py:273
+#: mkt/constants/base.py:219
 msgid "Level 4"
 msgstr "Nivo 4"
 
-#: mkt/constants/base.py:274
+#: mkt/constants/base.py:220
 msgid "Level 5"
 msgstr "Nivo 5"
 
-#: mkt/constants/base.py:275
+#: mkt/constants/base.py:221
 msgid "Level 6"
 msgstr "Nivo 6"
 
@@ -1954,80 +1885,88 @@ msgstr "Uslužne aplikacije"
 msgid "Tools"
 msgstr "Alati"
 
-#: mkt/constants/comm.py:40
+#: mkt/constants/comm.py:41
 msgid "No action"
 msgstr "Bez akcije"
 
-#: mkt/constants/comm.py:43 mkt/developers/templates/developers/apps/status.html:212 mkt/developers/templates/developers/apps/listing/items.html:24
-msgid "Disabled"
-msgstr "Onemogućen"
+#: mkt/constants/comm.py:44
+msgid "Banned"
+msgstr ""
 
 #: mkt/constants/comm.py:47
+msgid "Reviewer comment"
+msgstr ""
+
+#: mkt/constants/comm.py:48
 msgid "App resubmission"
 msgstr "Ponovno slanje aplikacije"
 
-#: mkt/constants/comm.py:50
+#: mkt/constants/comm.py:51
 msgid "Escalated due to High Abuse Reports"
 msgstr "Eskalirano zbog visokog broja izveštaja o zloupotrebi"
 
-#: mkt/constants/comm.py:51
+#: mkt/constants/comm.py:52
 msgid "Escalated due to High Refund Requests"
 msgstr "Eskalirano zbog visokog broja zahteva o povraćaju novca"
 
-#: mkt/constants/comm.py:53
+#: mkt/constants/comm.py:54
 msgid "App submission notes"
 msgstr "Beleške o podnošenju aplikacije"
 
-#: mkt/constants/comm.py:54
+#: mkt/constants/comm.py:55
 msgid "Developer comment"
 msgstr "Komentar programera"
 
-#: mkt/constants/comm.py:55
+#: mkt/constants/comm.py:56
 msgid "Device(s) changed by reviewer"
 msgstr "Uređaj(i) promenjen/i od strane recezenta"
 
-#: mkt/constants/comm.py:56
+#: mkt/constants/comm.py:57
 msgid "Requirement(s) changed by reviewer"
 msgstr "Uslov(i) promenjen/i od strane recezenta"
 
-#: mkt/constants/comm.py:57
+#: mkt/constants/comm.py:58
 msgid "Rereview due to Manifest Change"
 msgstr "Ponovni pregled zbog promene manifesta"
 
-#: mkt/constants/comm.py:58
+#: mkt/constants/comm.py:59
 msgid "Rereview due to Manifest URL Change"
 msgstr "Ponovni pregled zbog promene URL adrese manifesta"
 
-#: mkt/constants/comm.py:59
+#: mkt/constants/comm.py:60
 msgid "Rrereview due to Premium Type Upgrade"
 msgstr "Ponovni pregled zbog premijum nadogradnje"
 
-#: mkt/constants/comm.py:60
+#: mkt/constants/comm.py:61
 msgid "Rereview due to Devices Added"
 msgstr "Ponovni pregled zbog dodavanja uređaja"
 
-#: mkt/constants/comm.py:61
+#: mkt/constants/comm.py:62
 msgid "Rereview due to Requirements Change"
 msgstr "Ponovni pregled zbog promene zahteva"
 
-#: mkt/constants/comm.py:62
+#: mkt/constants/comm.py:63
 msgid "Rereview due to Adult Content Rating"
 msgstr "Ponovni pregled zbog ocena sadržaja za odrasle"
 
-#: mkt/constants/comm.py:63
+#: mkt/constants/comm.py:64
 msgid "Escalation due to VIP App"
 msgstr "Eskalacija zbog VIP aplikacija"
 
-#: mkt/constants/comm.py:64
+#: mkt/constants/comm.py:65
 msgid "Escalation due to Prelease App"
 msgstr "Eskalacija zbog aplikacije koja još nije izašla"
 
-#: mkt/constants/comm.py:65
+#: mkt/constants/comm.py:66
 msgid "Priority review requested"
 msgstr "Prioritet pregleda je zatražen"
 
-#: mkt/constants/comm.py:66
-msgid "Additional review completed"
+#: mkt/constants/comm.py:67
+msgid "Additional review passed"
+msgstr ""
+
+#: mkt/constants/comm.py:68
+msgid "Additional review failed"
 msgstr ""
 
 #: mkt/constants/features.py:17
@@ -2430,23 +2369,23 @@ msgstr "Uplata je primljena, ali nije završena i čeka na obradu."
 msgid "Completed"
 msgstr "Završeno"
 
-#: mkt/constants/platforms.py:17 mkt/constants/tests/test_platforms.py:15 mkt/constants/tests/test_platforms.py:35 mkt/constants/tests/test_platforms.py:57
+#: mkt/constants/platforms.py:7 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
 msgstr "Firefox za desktop"
 
-#: mkt/constants/platforms.py:52 mkt/constants/platforms.py:56
+#: mkt/constants/platforms.py:35 mkt/constants/platforms.py:39
 msgid "Fully open mobile ecosystem"
 msgstr "Potpuno otvoren mobilni ekosistem"
 
-#: mkt/constants/platforms.py:53
+#: mkt/constants/platforms.py:36
 msgid "Windows, Mac and Linux"
 msgstr "Windows, Mac i Linux"
 
-#: mkt/constants/platforms.py:54 mkt/constants/platforms.py:57 mkt/ecosystem/templates/ecosystem/partners.html:95
+#: mkt/constants/platforms.py:37 mkt/constants/platforms.py:40 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
 msgstr "Android pametni telefoni"
 
-#: mkt/constants/platforms.py:55 mkt/constants/platforms.py:58
+#: mkt/constants/platforms.py:38 mkt/constants/platforms.py:41
 msgid "Tablets"
 msgstr "Tableti"
 
@@ -2517,19 +2456,19 @@ msgstr "Evropa"
 msgid "Pan European Game Information"
 msgstr "Panevropske informacije o igrici"
 
-#: mkt/constants/regions.py:60
+#: mkt/constants/regions.py:62
 msgid "Rest of World"
 msgstr "Ostatak sveta"
 
-#: mkt/constants/regions.py:117
+#: mkt/constants/regions.py:97
 msgid "Venezuela"
 msgstr "Venecuela"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:28 mkt/submit/templates/submit/manifest.html:56
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:26 mkt/submit/templates/submit/manifest.html:50
 msgid "Hosted"
 msgstr "Hostovana"
 
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:90
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:84
 msgid "Packaged"
 msgstr "Upakovana"
 
@@ -2541,7 +2480,7 @@ msgstr "Ugovor"
 msgid "Submit"
 msgstr "Podnesi"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1762
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1475
 msgid "Details"
 msgstr "Informacije"
 
@@ -2572,67 +2511,67 @@ msgstr "Ne mogu izbrisati podeljeni nalog"
 msgid "Content rating changed to Adult."
 msgstr "Ocena sadržaja promenjena na Odrasli."
 
-#: mkt/developers/forms.py:64
+#: mkt/developers/forms.py:66
 msgid "You cannot select {region}."
 msgstr "Ne možete odabrati {region}."
 
-#: mkt/developers/forms.py:131
+#: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "Svi članovi tima moraju pročitati i složiti se sa sporazumom o programerima."
 
-#: mkt/developers/forms.py:162
+#: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
 msgstr "Mora imati najmanje jednog vlasnika."
 
-#: mkt/developers/forms.py:165
+#: mkt/developers/forms.py:159
 msgid "At least one team member must be listed."
 msgstr "Najmanje jedan član tima mora biti naveden."
 
-#: mkt/developers/forms.py:169
+#: mkt/developers/forms.py:163
 msgid "A team member can only be listed once."
 msgstr "Član tima može biti naveden samo jednom."
 
-#: mkt/developers/forms.py:196
+#: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, izgleda da je već poslat manifest za %s, koji je trenutno javan. <a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:200
+#: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, izgleda da je već poslat manifest za %s, koji je trenutno na čekanju. <a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:204
+#: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "Ups, izgleda da je već poslat manifest za %s, koji je trenutno nepotpun. <a href=\"%s\">Nastavi sa aplikacijom</a>"
 
-#: mkt/developers/forms.py:208
+#: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, izgleda da je već poslat manifest za %s, koji je trenutno odbijen. <a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:212
-msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled by Mozilla. <a href=\"%s\">Edit app</a>"
-msgstr "Ups, izgleda da je već poslat manifest za %s, koji je onemogućila Mozilla. <a href=\"%s\">Uredi aplikaciju</a>"
+#: mkt/developers/forms.py:206
+msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
+msgstr ""
 
-#: mkt/developers/forms.py:216
+#: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, izgleda da je već poslat manifest za %s, koji je trenutno isključen. <a href=\"%s\">Uredi aplikaciju</a>"
 
-#: mkt/developers/forms.py:231
+#: mkt/developers/forms.py:225
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "Aplikacija već postoji na ovom domenu; samo jedna aplikacija po domenu je dozvoljena."
 
-#: mkt/developers/forms.py:344
+#: mkt/developers/forms.py:343
 msgid "Invalid region(s) selected."
 msgstr "Nevažeći region(s) su izabrani."
 
-#: mkt/developers/forms.py:423 mkt/webapps/models.py:1671
+#: mkt/developers/forms.py:422 mkt/webapps/models.py:1384
 msgid "You must upload at least one screenshot or video."
 msgstr "Morate postaviti makar jedan video ili snimak ekrana."
 
-#: mkt/developers/forms.py:464
+#: mkt/developers/forms.py:463
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "Upakovana aplikcija je prevelika za podnošenje. Paketi moraju biti manji od %s."
 
-#: mkt/developers/forms.py:479
+#: mkt/developers/forms.py:478
 msgid "Error extracting manifest from zip file."
 msgstr "Greška pri ekstrakciji manifesta iz zip datoteke."
 
@@ -2640,15 +2579,15 @@ msgstr "Greška pri ekstrakciji manifesta iz zip datoteke."
 msgid "Provide a detailed description of your app"
 msgstr "Dostavite detaljan opis Vaše aplikacije"
 
-#: mkt/developers/forms.py:560 mkt/submit/forms.py:283
+#: mkt/developers/forms.py:560 mkt/submit/forms.py:276
 msgid "This description will appear on the details page."
 msgstr "Opis će se pojaviti na stranici za detalje."
 
-#: mkt/developers/forms.py:601 mkt/submit/forms.py:343 mkt/webapps/forms.py:26
+#: mkt/developers/forms.py:601 mkt/submit/forms.py:350 mkt/webapps/forms.py:26
 msgid "This slug is already in use. Please choose another."
 msgstr "Naziv url adrese je u upotrebi. Molimo Vas izaberite drugi."
 
-#: mkt/developers/forms.py:604 mkt/submit/forms.py:347 mkt/webapps/forms.py:29
+#: mkt/developers/forms.py:604 mkt/submit/forms.py:354 mkt/webapps/forms.py:29
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
 
@@ -2656,120 +2595,126 @@ msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "URL manifesta se promenio sa {before_url} na {after_url}"
 
-#: mkt/developers/forms.py:652
+#: mkt/developers/forms.py:654
 msgid "Please specify your app's Privacy Policy"
 msgstr "Molimo ukažite na polisu privatnosti Vaše aplikacije"
 
-#: mkt/developers/forms.py:673
+#: mkt/developers/forms.py:675
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Pre zamene podrazumevanog lokala morate imati ime i opis u tom lokalu. Nedostaje Vam %s."
 
-#: mkt/developers/forms.py:728
+#: mkt/developers/forms.py:730
 msgid "Your comments"
 msgstr "Vaši komentari"
 
-#: mkt/developers/forms.py:755
+#: mkt/developers/forms.py:757
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
 
-#: mkt/developers/forms.py:759
+#: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
 
-#: mkt/developers/forms.py:775
+#: mkt/developers/forms.py:777
 msgid "App Visibility:"
 msgstr ""
 
-#: mkt/developers/forms.py:778
+#: mkt/developers/forms.py:780
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr ""
 
-#: mkt/developers/forms.py:819
+#: mkt/developers/forms.py:821
 msgid "Choose the regions your app will be listed in:"
 msgstr "Izaberite regije u kojima će na listi biti Vaša aplikacija:"
 
-#: mkt/developers/forms.py:823 mkt/developers/forms.py:925
+#: mkt/developers/forms.py:825 mkt/developers/forms.py:927
 msgid "You must select at least one region."
 msgstr "Morate odabrati barem jedan region."
 
-#: mkt/developers/forms.py:828
+#: mkt/developers/forms.py:830
 msgid "Enable new regions"
 msgstr "Omogući nove regije"
 
-#: mkt/developers/forms.py:830
+#: mkt/developers/forms.py:832
 msgid "Make my app available in most regions"
 msgstr "Učini moju aplikaciju dostupnu u većini regija"
 
-#: mkt/developers/forms.py:831
+#: mkt/developers/forms.py:833
 msgid "Choose where my app is made available"
 msgstr "Izaberi gde će moja aplikacija biti dostupna"
 
-#: mkt/developers/forms.py:986 mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:140
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:154 mkt/search/forms.py:86
+#: mkt/developers/forms.py:988 mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:140
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:154 mkt/search/forms.py:91
 msgid "Categories"
 msgstr "Kategorije"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1011 mkt/webapps/serializers.py:276
+#: mkt/developers/forms.py:1013 mkt/webapps/serializers.py:276
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Možete imati samo {0} kategoriju."
 msgstr[1] "Možete imati samo {0} kategorije."
 msgstr[2] "Možete imati samo {0} kategorija."
 
-#: mkt/developers/forms.py:1025
+#: mkt/developers/forms.py:1027
 msgid "Agree"
 msgstr "Prihvati"
 
-#: mkt/developers/forms.py:1042
+#: mkt/developers/forms.py:1044
 msgid "Please enter a valid email address."
 msgstr "Unesite validnu adresu e-pošte."
 
-#: mkt/developers/forms.py:1045
+#: mkt/developers/forms.py:1047
 msgid "Your email address"
 msgstr "Vaša adresa e-pošte"
 
-#: mkt/developers/forms.py:1048
+#: mkt/developers/forms.py:1050
 msgid "Text"
 msgstr "Tekst"
 
-#: mkt/developers/forms.py:1052
+#: mkt/developers/forms.py:1054
 msgid "You must agree to the Privacy Policy."
 msgstr "Morate se složiti sa polisom privatnosti."
 
-#: mkt/developers/forms.py:1053 mkt/developers/forms_payments.py:407 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1055 mkt/developers/forms_payments.py:396 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Država"
 
-#: mkt/developers/forms.py:1088
+#: mkt/developers/forms.py:1088 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:26 mkt/operators/templates/operators/preloads.html:14
+#: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:29 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
+#: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
+msgid "App"
+msgstr "Aplikacija"
+
+#: mkt/developers/forms.py:1090
 msgid "Transaction Type"
 msgstr "Tip transakcije"
 
-#: mkt/developers/forms.py:1091 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
+#: mkt/developers/forms.py:1093 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:19
 msgid "Transaction ID"
 msgstr "ID transakcije"
 
-#: mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1099
 msgid "From"
 msgstr "Od"
 
-#: mkt/developers/forms.py:1100
+#: mkt/developers/forms.py:1102
 msgid "To"
 msgstr "Za"
 
-#: mkt/developers/forms.py:1111
+#: mkt/developers/forms.py:1113
 msgid "Web site"
 msgstr "Veb sajt"
 
-#: mkt/developers/forms.py:1112
+#: mkt/developers/forms.py:1114
 msgid "Command line"
 msgstr "Komandna linija"
 
-#: mkt/developers/forms.py:1133
+#: mkt/developers/forms.py:1135
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
 
-#: mkt/developers/forms.py:1160
+#: mkt/developers/forms.py:1162
 msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
@@ -2777,31 +2722,31 @@ msgstr ""
 "Molim Vas da uzmete u obzir moju aplikaciju kao kandidata da bude unapred učitana na Firefox OS uređajima. Slažem se sa gore navedenim uslovima korišćenja. Razumem da ovaj dokument nije obaveza da "
 "se moja aplikacija unapred učita."
 
-#: mkt/developers/forms.py:1167
+#: mkt/developers/forms.py:1169
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
 msgstr "Dostavite Vaš plan za testiranje (.pdf, .xls manje od 2.5MB)"
 
-#: mkt/developers/forms.py:1183
+#: mkt/developers/forms.py:1185
 msgid "Test plan required."
 msgstr "Plan testiranja je neophodan."
 
-#: mkt/developers/forms.py:1190
+#: mkt/developers/forms.py:1192
 msgid "File too large. Keep size under %s. Current size %s."
 msgstr "Datoteka je prevelika. Veličina mora biti ispod %s. Trenutno je %s."
 
-#: mkt/developers/forms.py:1196
+#: mkt/developers/forms.py:1198
 msgid "Invalid file type {0}. Only {1} files are supported."
 msgstr "Neispravan tip datoteke {0}. Samo su {1} datoteke podržane."
 
-#: mkt/developers/forms.py:1220
+#: mkt/developers/forms.py:1222
 msgid "Please enter a valid submission ID."
 msgstr "Molimo unesite validan ID za podnošenje."
 
-#: mkt/developers/forms.py:1236
+#: mkt/developers/forms.py:1238
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "Ovaj IARC sertifikat je već upotrebljen za drugu aplikaciju. Molimo Vas napravite novi IARC Ratings sertifikat."
 
-#: mkt/developers/forms.py:1271 mkt/developers/forms.py:1283
+#: mkt/developers/forms.py:1273 mkt/developers/forms.py:1285
 msgid "Invalid submission ID or security code."
 msgstr "Neispravan ID za podnošenje ili sigurnosna lozinka."
 
@@ -2809,168 +2754,168 @@ msgstr "Neispravan ID za podnošenje ili sigurnosna lozinka."
 msgid "App Price"
 msgstr "Cena aplikacije"
 
-#: mkt/developers/forms_payments.py:116
+#: mkt/developers/forms_payments.py:111
 msgid "Free (with in-app payments)"
 msgstr "Besplatno (uz plaćanje unutar aplikacije)"
 
-#: mkt/developers/forms_payments.py:127
+#: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
 msgstr "Promotivne cene"
 
-#: mkt/developers/forms_payments.py:140
+#: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
 msgstr "Podržava samo naplatu preko operatera"
 
-#: mkt/developers/forms_payments.py:143
+#: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
 msgstr "Podržava samo naplatu kreditnom karticom"
 
-#: mkt/developers/forms_payments.py:147
+#: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
 msgstr "Podržava sve metode plaćanja"
 
-#: mkt/developers/forms_payments.py:224
+#: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr "Ako je aplikacija besplatna, plaćanja u okviru aplikacije moraju biti omogućena"
 
-#: mkt/developers/forms_payments.py:231
+#: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
 msgstr "Nije validan izbor"
 
-#: mkt/developers/forms_payments.py:335 mkt/developers/templates/developers/payments/premium.html:291
+#: mkt/developers/forms_payments.py:325 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
 msgstr "Ovo je plaćena nadogradnja"
 
-#: mkt/developers/forms_payments.py:336
+#: mkt/developers/forms_payments.py:326
 msgid "Not an upgrade"
 msgstr "Nije nadogradnja"
 
-#: mkt/developers/forms_payments.py:379
+#: mkt/developers/forms_payments.py:368
 msgid "Account Holder Name"
 msgstr "Ime vlasnika naloga"
 
-#: mkt/developers/forms_payments.py:381
+#: mkt/developers/forms_payments.py:370
 msgid "Company Name"
 msgstr "Ime kompanije"
 
-#: mkt/developers/forms_payments.py:383
+#: mkt/developers/forms_payments.py:372
 msgid "Vendor Name"
 msgstr "Ime prodavca"
 
-#: mkt/developers/forms_payments.py:385
+#: mkt/developers/forms_payments.py:374
 msgid "Financial Email"
 msgstr "Finansijska e-pošta"
 
-#: mkt/developers/forms_payments.py:388
+#: mkt/developers/forms_payments.py:377
 msgid "Administrative Email"
 msgstr "Administrativna e-pošta"
 
-#: mkt/developers/forms_payments.py:391
+#: mkt/developers/forms_payments.py:380
 msgid "Support Email"
 msgstr "E-pošta podrške"
 
-#: mkt/developers/forms_payments.py:395
+#: mkt/developers/forms_payments.py:384
 msgid "Address"
 msgstr "Adresa"
 
-#: mkt/developers/forms_payments.py:397
+#: mkt/developers/forms_payments.py:386
 msgid "Address 2"
 msgstr "Adresa 2"
 
-#: mkt/developers/forms_payments.py:399
+#: mkt/developers/forms_payments.py:388
 msgid "City/Municipality"
 msgstr "Grad/opština"
 
-#: mkt/developers/forms_payments.py:401
+#: mkt/developers/forms_payments.py:390
 msgid "State/Province/Region"
 msgstr "Država/pokrajina/region"
 
-#: mkt/developers/forms_payments.py:403
+#: mkt/developers/forms_payments.py:392
 msgid "Zip/Postal Code"
 msgstr "Poštanski broj"
 
-#: mkt/developers/forms_payments.py:405
+#: mkt/developers/forms_payments.py:394
 msgid "Phone"
 msgstr "Telefon"
 
-#: mkt/developers/forms_payments.py:410
+#: mkt/developers/forms_payments.py:399
 msgid "I prefer to be paid in"
 msgstr "Želim da budem plaćen u"
 
-#: mkt/developers/forms_payments.py:413
+#: mkt/developers/forms_payments.py:402
 msgid "VAT Number"
 msgstr "VAT broj"
 
-#: mkt/developers/forms_payments.py:416
+#: mkt/developers/forms_payments.py:405
 msgid "Bank Account Number"
 msgstr "Broj bankovnog računa"
 
-#: mkt/developers/forms_payments.py:419
+#: mkt/developers/forms_payments.py:408
 msgid "SWIFT code"
 msgstr "SWIFT kod"
 
-#: mkt/developers/forms_payments.py:421
+#: mkt/developers/forms_payments.py:410
 msgid "Bank Name"
 msgstr "Ime banke"
 
-#: mkt/developers/forms_payments.py:423
+#: mkt/developers/forms_payments.py:412
 msgid "Bank Address"
 msgstr "Adresa banke"
 
-#: mkt/developers/forms_payments.py:425
+#: mkt/developers/forms_payments.py:414
 msgid "Bank Address 2"
 msgstr "Adresa banke 2"
 
-#: mkt/developers/forms_payments.py:427
+#: mkt/developers/forms_payments.py:416
 msgid "Bank City/Municipality"
 msgstr "Grad/opština banke"
 
-#: mkt/developers/forms_payments.py:430
+#: mkt/developers/forms_payments.py:419
 msgid "Bank State/Province/Region"
 msgstr "Država/pokrajina/region banke"
 
-#: mkt/developers/forms_payments.py:432
+#: mkt/developers/forms_payments.py:421
 msgid "Bank Zip/Postal Code"
 msgstr "Poštanski broj banke"
 
-#: mkt/developers/forms_payments.py:434
+#: mkt/developers/forms_payments.py:423
 msgid "Bank Country"
 msgstr "Država banke"
 
-#: mkt/developers/forms_payments.py:436 mkt/developers/templates/developers/payments/includes/account_list.html:12
+#: mkt/developers/forms_payments.py:425 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
 msgstr "Ime naloga"
 
-#: mkt/developers/forms_payments.py:465
+#: mkt/developers/forms_payments.py:454
 msgid "Payment Account"
 msgstr "Platni račun"
 
-#: mkt/developers/forms_payments.py:535
+#: mkt/developers/forms_payments.py:524
 msgid "You cannot remove a payment account from an app."
 msgstr "Ne možete ukloniti nalog za plaćanje sa aplikacije."
 
-#: mkt/developers/forms_payments.py:539
+#: mkt/developers/forms_payments.py:528
 msgid "You are not permitted to change payment accounts."
 msgstr "Nije dozvoljeno da promenite račune za plaćanja."
 
-#: mkt/developers/forms_payments.py:625 mkt/developers/forms_payments.py:641
+#: mkt/developers/forms_payments.py:614 mkt/developers/forms_payments.py:630
 msgid "Account name"
 msgstr "Ime naloga"
 
-#: mkt/developers/forms_payments.py:627 mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126
+#: mkt/developers/forms_payments.py:616 mkt/developers/templates/developers/apps/edit/support.html:18 mkt/ecosystem/templates/ecosystem/partners.html:126
 #: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "E-pošta"
 
-#: mkt/developers/forms_payments.py:644
+#: mkt/developers/forms_payments.py:633
 msgid "Service ID"
 msgstr "ID servisa"
 
-#: mkt/developers/forms_payments.py:651
+#: mkt/developers/forms_payments.py:640
 msgid "Service ID is not valid"
 msgstr "ID servisa nije ispravan"
 
-#: mkt/developers/forms_payments.py:665
+#: mkt/developers/forms_payments.py:654
 msgid "No payment account set up for that app"
 msgstr "Račun za uplatu nije podešen za tu aplikaciju"
 
@@ -2978,7 +2923,7 @@ msgstr "Račun za uplatu nije podešen za tu aplikaciju"
 msgid "Developers"
 msgstr "Autori"
 
-#: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:72
+#: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:75
 msgid "My Submissions"
 msgstr "Moje dostave"
 
@@ -3081,7 +3026,7 @@ msgstr "Ikonice moraju biti kockaste."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Prikaz aplikacije mora biti barem {0}px puta {1}px ili {1}px puta {0}px."
 
-#: mkt/developers/views.py:86
+#: mkt/developers/views.py:87
 msgid "Created"
 msgstr "Kreirano"
 
@@ -3105,7 +3050,7 @@ msgstr "Aplikacija je uspešno ponovo poslata."
 msgid "New version successfully added."
 msgstr "Nova verzija je uspešno dodata."
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:112 mkt/developers/views_payments.py:412 mkt/reviewers/views.py:775
+#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:429 mkt/reviewers/views.py:645
 msgid "Changes successfully saved."
 msgstr "Izmene su uspešno sačuvane."
 
@@ -3161,47 +3106,47 @@ msgstr "Ne postoji takav API ključ."
 msgid "New API key generated."
 msgstr "Novi API ključ je generisan."
 
-#: mkt/developers/views.py:1043
+#: mkt/developers/views.py:1042
 msgid "Created blocklisted version."
 msgstr "Napravljena je blokirana verzija."
 
-#: mkt/developers/views.py:1045
+#: mkt/developers/views.py:1044
 msgid "App already blocklisted."
 msgstr "Aplikacija je već blokirana."
 
-#: mkt/developers/views_payments.py:87 mkt/developers/views_payments.py:105
+#: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
 msgid "We encountered a problem connecting to the payment server."
 msgstr "Naišli smo na problem pri povezivanje na server za plaćanje."
 
-#: mkt/developers/views_payments.py:184 mkt/files/forms.py:28
+#: mkt/developers/views_payments.py:171 mkt/files/forms.py:28
 msgid "All"
 msgstr "Sve"
 
-#: mkt/developers/views_payments.py:185
+#: mkt/developers/views_payments.py:172
 msgid "Credit card"
 msgstr "Kreditna kartica"
 
-#: mkt/developers/views_payments.py:186
+#: mkt/developers/views_payments.py:173
 msgid "Carrier"
 msgstr "Operater"
 
-#: mkt/developers/views_payments.py:335
+#: mkt/developers/views_payments.py:322
 msgid "A server error occurred when retrieving the application key."
 msgstr "Desila se greška na serveru prilikom preuzimanja ključa aplikacije."
 
-#: mkt/developers/views_payments.py:342
+#: mkt/developers/views_payments.py:329
 msgid "Secret was reset successfully."
 msgstr "Tajna je uspešno obnovljena."
 
-#: mkt/developers/views_payments.py:346
+#: mkt/developers/views_payments.py:333
 msgid "Key and secret were created successfully."
 msgstr "Ključ i tajna su uspešno napravljeni."
 
-#: mkt/developers/views_payments.py:372
+#: mkt/developers/views_payments.py:359
 msgid "Your app is not configured for in-app payments."
 msgstr "Vaša aplikacija nije podešena za plaćanje u okviru aplikacije."
 
-#: mkt/developers/views_payments.py:375
+#: mkt/developers/views_payments.py:362
 msgid "No payment account for this app."
 msgstr "Nema računa za uplatu za ovu aplikaciju."
 
@@ -3255,7 +3200,7 @@ msgstr "Ključ"
 msgid "Secret"
 msgstr "Tajna"
 
-#: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:235 mkt/developers/templates/developers/apps/listing/item_actions.html:14
+#: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
 #: mkt/developers/templates/developers/payments/includes/account_list.html:51
 msgid "Delete"
@@ -3297,7 +3242,7 @@ msgstr "Prijavi se"
 msgid "You must sign in to proceed."
 msgstr "Morate biti prijavljeni da biste nastavili."
 
-#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:145
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:161
 msgid "Sign in / Sign up"
 msgstr "Prijavi se / Registruj se"
 
@@ -3309,12 +3254,12 @@ msgstr "Poruka dana"
 msgid "Update Message of the Day"
 msgstr "Ažuriraj poruku dana"
 
-#: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:29 mkt/reviewers/templates/reviewers/motd.html:15
+#: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
 msgid "Save"
 msgstr "Sačuvaj"
 
-#: mkt/developers/templates/developers/nav.html:6
+#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:24 mkt/developers/templates/developers/payments/in-app-payments.html:41
 msgid "Documentation"
 msgstr "Dokumentacija"
 
@@ -3342,43 +3287,43 @@ msgstr "Omogući"
 msgid "Deny"
 msgstr "Odbij"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:61 templates/base.html:62
+#: mkt/developers/templates/developers/skeleton_impala.html:61 templates/base.html:65
 msgid "Firefox Marketplace Developers"
 msgstr "Firefox Marketplace programeri"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:66 templates/base.html:67
+#: mkt/developers/templates/developers/skeleton_impala.html:66 templates/base.html:70
 msgid "API Reference"
 msgstr "API referenca"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:69 templates/base.html:70
+#: mkt/developers/templates/developers/skeleton_impala.html:69 templates/base.html:73
 msgid "Submit an app"
 msgstr "Podnesi aplikaciju"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:71 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:74
+#: mkt/developers/templates/developers/skeleton_impala.html:71 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:77
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:75 mkt/templates/mkt/header.html:28 templates/base.html:78
+#: mkt/developers/templates/developers/skeleton_impala.html:75 mkt/templates/mkt/header.html:28 templates/base.html:81
 msgid "Sign In"
 msgstr "Prijavi se"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:82 mkt/templates/mkt/header.html:21 templates/base.html:85
+#: mkt/developers/templates/developers/skeleton_impala.html:82 mkt/templates/mkt/header.html:21 templates/base.html:88
 msgid "Settings"
 msgstr "Postavke"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:99 mkt/zadmin/templates/admin/base.html:49 templates/base.html:102
+#: mkt/developers/templates/developers/skeleton_impala.html:99 mkt/zadmin/templates/admin/base.html:49 templates/base.html:105
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Neke funkcije su privremeno onemogućene dok vršimo održavanje veb sajta. Mi ćemo se vratiti u punom kapacitetu uskoro."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:105 templates/base.html:108
+#: mkt/developers/templates/developers/skeleton_impala.html:105 templates/base.html:111
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "Uslovi korišćenja su promenjeni od kada ste se poslednji put složili sa njima. Molimo pročitajte i složite se sa <a href=\"%(url)s\">novim uslovima</a>."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:135
+#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:151
 msgid "Please sign in"
 msgstr "Molimo prijavite se"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:138
+#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:154
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr "Prijavite se ili se registrujte sa Vašim <a href=\"%(url)s\">Persona</a> nalogom ispod."
 
@@ -3426,7 +3371,7 @@ msgstr[2] "{num} transakcija pronađeno"
 msgid "Your apps currently have no transactions."
 msgstr "Vaša aplikacija trenutno nema transakcija."
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:130 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
 msgstr "Datum"
@@ -3448,23 +3393,23 @@ msgstr "Količina"
 msgid "Test App Validation"
 msgstr "Testiraj validnost aplikacije"
 
-#: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:57
+#: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:51
 msgid "Submit your app manifest URL"
 msgstr "Podnesite URL manifesta Vaše aplikacije"
 
-#: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:66
+#: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:60
 msgid "Validate"
 msgstr "Potvrdi"
 
-#: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:74
+#: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:68
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr "<strong>Nemojte zaboraviti na protokol!</strong> Pokušajte da dodate ili <a href=\"#\">%(http)s</a> ili <a href=\"#\">%(https)s</a>."
 
-#: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:82
+#: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:76
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr "URLs manifest mora započeti sa protokolom (na primer, <code>http://</code> ili <code>https://</code>) i obično se koristi <code>.webapp</code> ekstenzija."
 
-#: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:124
+#: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:118
 msgid "Learn more about submitting an app."
 msgstr "Naučite više o podnošenju aplikacije."
 
@@ -3504,7 +3449,7 @@ msgstr "Odbaci ovo saopštenje"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:28 mkt/submit/templates/submit/details.html:83
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:83
 msgid "Edit"
 msgstr "Uredi"
 
@@ -3532,7 +3477,7 @@ msgid "None"
 msgstr "Nema"
 
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:90
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:33 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:28 mkt/reviewers/templates/reviewers/includes/details.html:133 mkt/reviewers/templates/reviewers/includes/mobile_details.html:147
 msgid "Team Members"
 msgstr "Članovi tima"
 
@@ -3581,17 +3526,17 @@ msgid "Can view the app's settings but cannot make any changes"
 msgstr "Možete videti podešavanja aplikacije ali ne možete napraviti bilo kakve promene"
 
 #: mkt/developers/templates/developers/apps/owner.html:97
-msgid "Can view the app's settings and manage refund requests"
-msgstr "Mogu da vide podešavanja aplikacije i da upravljaju zahtevima za povraćaj novca"
+msgid "Can view the app's settings"
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
 msgstr "Status i verzija"
 
-#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:201 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
+#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:63 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:133 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:64 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Status"
@@ -3608,7 +3553,7 @@ msgstr "Vi ste <b>uklonili</b> ovu aplikaciju sa liste."
 msgid "This app is <b>incomplete</b>."
 msgstr "Aplikacija je <b>nepotpuna</b>."
 
-#: mkt/developers/templates/developers/apps/status.html:42
+#: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
 msgstr "Aplikacija je onemogućena od strane <b>Mozilla-e</b>."
 
@@ -3617,121 +3562,129 @@ msgid "Your app was disabled because it is missing content ratings. It will auto
 msgstr "Vaša aplikacija je onemogućena zato što joj nedostaju ocene sadržaja. Biće automatski ponovo omogućena nakon <a href=\"%(ratings_url)s\">dobijanja ocene sadržaja</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:50
-msgid "Your app was disabled by a site administrator. If you have any questions, please email %(email)s."
-msgstr "Aplikaciju je onemogućio administrator sajta. Ukoliko imate bilo kakvih pitanja, molimo Vas pošaljite mu e-poštu %(email)s."
+msgid "This app has been <b>banned on Marketplace</b>."
+msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:57
+#: mkt/developers/templates/developers/apps/status.html:51
+msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
 msgstr "Vašu aplikaciju je <b>blokirala Mozilla</b>."
 
-#: mkt/developers/templates/developers/apps/status.html:58
+#: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please email %(email)s."
 msgstr "Aplikaciju je blokirao administrator sajta. Ukoliko imate bilo kakvih pitanja, molimo Vas pošaljite mu e-poštu %(email)s."
 
-#: mkt/developers/templates/developers/apps/status.html:64
+#: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
 msgstr "Aplikaciju je <b>odbio</b> Firefox Marketplace recenzent."
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
-#: mkt/developers/templates/developers/apps/status.html:77
+#: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
 msgstr ""
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
-#: mkt/developers/templates/developers/apps/status.html:85
+#: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:92
+#: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
 msgstr "Aplikacija <b>čeka na pregled</b> od strane Firefox Marketplace recenzenta."
 
-#: mkt/developers/templates/developers/apps/status.html:94
+#: mkt/developers/templates/developers/apps/status.html:95
 msgid "You will receive an email when the review is complete."
 msgstr "Vi ćete dobiti e-poštu kad se pregled završi."
 
-#: mkt/developers/templates/developers/apps/status.html:98
+#: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:103
+#: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:106
+#: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:114
+#: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:117
+#: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:127
+#: mkt/developers/templates/developers/apps/status.html:128
 msgid "Learn about Review Criteria for apps"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:137
+#: mkt/developers/templates/developers/apps/status.html:138
 msgid "Update App Visibility"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:147
+#: mkt/developers/templates/developers/apps/status.html:148
 msgid "Reviewed by <b>%(reviewer)s</b>"
 msgstr "Pregledao <b>%(reviewer)s</b>"
 
-#: mkt/developers/templates/developers/apps/status.html:160
+#: mkt/developers/templates/developers/apps/status.html:161
 msgid "Once you have addressed these concerns, you may <a href=\"%(resubmit_url)s\">resubmit your app below</a>."
 msgstr "Jednom kada rešite ove probleme, možete <a href=\"%(resubmit_url)s\">ponovo poslati Vašu aplikaciju ispod</a>."
 
-#: mkt/developers/templates/developers/apps/status.html:165
+#: mkt/developers/templates/developers/apps/status.html:166
 msgid "Once you have addressed these concerns, you may resubmit your app below."
 msgstr "Jednom kada rešite ove probleme, možete ponovo poslati Vašu aplikaciju ispod."
 
-#: mkt/developers/templates/developers/apps/status.html:176
+#: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
 msgstr "Ponovo podnesi aplikaciju"
 
-#: mkt/developers/templates/developers/apps/status.html:179
+#: mkt/developers/templates/developers/apps/status.html:180
 msgid "You must <a href=\"%(ratings_url)s\">obtain content ratings</a> before resubmitting your app."
 msgstr "Morate <a href=\"%(ratings_url)s\">dobiti ocene sadržaja</a> pre ponovnog podnošenja aplikacije."
 
-#: mkt/developers/templates/developers/apps/status.html:193
+#: mkt/developers/templates/developers/apps/status.html:194
 msgid "Packaged Versions"
 msgstr "Upakovana verzija"
 
-#: mkt/developers/templates/developers/apps/status.html:202
+#: mkt/developers/templates/developers/apps/status.html:203
 msgid "Submission date"
 msgstr "Datum podnošenja"
 
-#: mkt/developers/templates/developers/apps/status.html:227 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/operators/templates/operators/preloads.html:47
+#: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24
+msgid "Disabled"
+msgstr "Onemogućen"
+
+#: mkt/developers/templates/developers/apps/status.html:228 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/operators/templates/operators/preloads.html:47
 msgid "Download"
 msgstr "Preuzmi"
 
-#: mkt/developers/templates/developers/apps/status.html:232
+#: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:247
+#: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
 msgstr "Otpremi novu verziju"
 
-#: mkt/developers/templates/developers/apps/status.html:252
+#: mkt/developers/templates/developers/apps/status.html:253
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:258
+#: mkt/developers/templates/developers/apps/status.html:259
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr "Zapamtite da ažurirate <a href=\"%(ratings_url)s\">ocene sadržaja</a> aplikacije ako je veći deo sadržaja aplikacije promenjen."
 
-#: mkt/developers/templates/developers/apps/status.html:274 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:166
-#: mkt/submit/templates/submit/manifest.html:117 mkt/submit/templates/submit/next_steps.html:111
+#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:166
+#: mkt/submit/templates/submit/manifest.html:111 mkt/submit/templates/submit/next_steps.html:110
 msgid "Continue"
 msgstr "Nastavi"
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:511
+#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:508
 msgid "Low-Memory Devices"
 msgstr ""
 
@@ -3771,81 +3724,81 @@ msgstr ""
 msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:326 mkt/developers/templates/developers/apps/status.html:518
-msgid "Do not show my app on low-memory devices"
+#: mkt/developers/templates/developers/apps/status.html:326
+msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:332
-msgid "If your app <a href=\"{mdn_link}\">works on low-memory devices</a> then you can request a review to be shown on low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:342
-msgid "Request a low-memory review"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:348 mkt/developers/templates/developers/payments/includes/region_form.html:20
+#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:355
+#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:515
+msgid "Do not show my app on low-memory devices"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/status.html:345
+msgid "Request a low-memory review"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/status.html:354
 msgid "Pre-Installed App Status"
 msgstr "Status unapred instalirane aplikacije"
 
-#: mkt/developers/templates/developers/apps/status.html:361
+#: mkt/developers/templates/developers/apps/status.html:360
 msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
 msgstr "<strong class=\"submitted\">Aplikacija je podnesena</strong> %(last_submission)s"
 
-#: mkt/developers/templates/developers/apps/status.html:365
+#: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
 msgstr "Nije poslato"
 
-#: mkt/developers/templates/developers/apps/status.html:369
+#: mkt/developers/templates/developers/apps/status.html:368
 msgid "New version of the test plan available"
 msgstr "Nova verzija test plana je dostupna"
 
-#: mkt/developers/templates/developers/apps/status.html:374
+#: mkt/developers/templates/developers/apps/status.html:373
 msgid "View your most recently submitted test plan"
 msgstr "Vidite Vaš nedavno podnet test plan"
 
-#: mkt/developers/templates/developers/apps/status.html:377
+#: mkt/developers/templates/developers/apps/status.html:376
 msgid "Learn how to get your app pre-installed on Firefox OS devices"
 msgstr "Saznajte kako da Vaša aplikacija bude unapred instalirana na Firefox OS uređajima"
 
-#: mkt/developers/templates/developers/apps/status.html:379
+#: mkt/developers/templates/developers/apps/status.html:378
 msgid "Update your test plan"
 msgstr "Ažuriraj plan za testiranje"
 
-#: mkt/developers/templates/developers/apps/status.html:392 mkt/developers/templates/developers/apps/status.html:410
+#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
 msgstr "Stavi aplikaciju na listu"
 
-#: mkt/developers/templates/developers/apps/status.html:392 mkt/developers/templates/developers/apps/status.html:413 mkt/developers/templates/developers/apps/status.html:473
-#: mkt/developers/templates/developers/apps/status.html:478
+#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
+#: mkt/developers/templates/developers/apps/status.html:477
 msgid "Delist App"
 msgstr "Ukloni aplikaciju sa liste"
 
-#: mkt/developers/templates/developers/apps/status.html:396
+#: mkt/developers/templates/developers/apps/status.html:395
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr "Vaš listing aplikacija je onemogućen i neće se pojaviti na Firefox Marketplace-u. Možete ga ponovo navesti u bilo kom trenutku."
 
-#: mkt/developers/templates/developers/apps/status.html:401
+#: mkt/developers/templates/developers/apps/status.html:400
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr "Uklanjanje Vaše aplikacije sa liste će sprečiti njeno pojavljivanje bilo gde na Marketplace-u."
 
-#: mkt/developers/templates/developers/apps/status.html:421 mkt/developers/templates/developers/apps/status.html:432 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "Izbriši aplikaciju"
 
-#: mkt/developers/templates/developers/apps/status.html:426
+#: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr "Uklanjanje Vaše aplikacije sa liste će je trajno izbrisati sa sajta. <strong>Nakon toga nema povratka.</strong>"
 
-#: mkt/developers/templates/developers/apps/status.html:439
+#: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
 msgstr "Blokiraj aplikaciju"
 
-#: mkt/developers/templates/developers/apps/status.html:445
+#: mkt/developers/templates/developers/apps/status.html:444
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
@@ -3853,86 +3806,78 @@ msgstr ""
 "Blokiranjem neke aplikacije će unaprediti korisnika na specijalnu verziju koja će učiniti aplikaciju nedostupnom na njihovim Firefox OS uređajima. Ovo će takođe ukloniti aplikaciju sa javnih "
 "stranica sve dok nova verzija ne bude prijavljena i odobrena. Ove promene se ne mogu poništiti. Molimo Vas da nastavite sa oprezom."
 
-#: mkt/developers/templates/developers/apps/status.html:454
+#: mkt/developers/templates/developers/apps/status.html:453
 msgid "Blocklist"
 msgstr "Lista blokiranih aplikacija"
 
-#: mkt/developers/templates/developers/apps/status.html:475
+#: mkt/developers/templates/developers/apps/status.html:474
 msgid "Are you sure you wish to delist your app?"
 msgstr "Da li ste sigurni da želite da izbrišete sa liste Vašu aplikaciju?"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:479 mkt/developers/templates/developers/apps/status.html:503 mkt/developers/templates/developers/apps/status.html:520
+#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:517
 #: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:203 mkt/developers/templates/developers/apps/edit/basic.html:168
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60 mkt/developers/templates/developers/apps/edit/technical.html:68
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/submit/templates/submit/done.html:50 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ili"
 
-#: mkt/developers/templates/developers/apps/status.html:479 mkt/developers/templates/developers/apps/status.html:503 mkt/developers/templates/developers/apps/status.html:521
+#: mkt/developers/templates/developers/apps/status.html:478 mkt/developers/templates/developers/apps/status.html:500 mkt/developers/templates/developers/apps/status.html:518
 #: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:205 mkt/developers/templates/developers/apps/edit/basic.html:170
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
 #: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:131
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:114 mkt/lookup/templates/lookup/user_summary.html:117
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: mkt/developers/templates/developers/apps/status.html:489
+#: mkt/developers/templates/developers/apps/status.html:488
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "Izbriši verziju &quot;{version}&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:490
+#: mkt/developers/templates/developers/apps/status.html:489
 msgid "Deleting the only version will result in the following:"
 msgstr "Brisanje jedine verzije će rezultovati:"
 
 #: mkt/developers/templates/developers/apps/status.html:491
-msgid "Deleting this version will result in the following:"
-msgstr "Brisanje ove verzije će rezultovati:"
-
-#: mkt/developers/templates/developers/apps/status.html:493
-msgid "all associated user reviews will be deleted"
-msgstr "sve povezane korisničke recenzije će biti obrisane"
-
-#: mkt/developers/templates/developers/apps/status.html:494
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr "ova aplikacija je zabeležena kao &quot;nepotpuna&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:492
 msgid "the app will be removed from our review queue"
 msgstr "aplikacija će biti uklonjena iz našeg reda za razmatranje"
 
-#: mkt/developers/templates/developers/apps/status.html:496
+#: mkt/developers/templates/developers/apps/status.html:493
 msgid "the app will not be listed in our public pages"
 msgstr "aplikacija neće biti navedena u našim javnim stranicama"
 
-#: mkt/developers/templates/developers/apps/status.html:498
+#: mkt/developers/templates/developers/apps/status.html:495
 msgid "These changes cannot be undone."
 msgstr "Ove promene se ne mogu poništiti."
 
-#: mkt/developers/templates/developers/apps/status.html:499
+#: mkt/developers/templates/developers/apps/status.html:496
 msgid "Are you sure you wish to delete this version?"
 msgstr "Da li ste sigurni da želite da izbrišete ovu verziju?"
 
-#: mkt/developers/templates/developers/apps/status.html:502
+#: mkt/developers/templates/developers/apps/status.html:499
 msgid "Delete Version"
 msgstr "Izbriši verziju"
 
-#: mkt/developers/templates/developers/apps/status.html:513
+#: mkt/developers/templates/developers/apps/status.html:510
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:46
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:63
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:55
 msgid "Version Notes"
 msgstr "Beleške o verziji"
 
@@ -3944,7 +3889,7 @@ msgstr ""
 "Manager-u prilikom ažuriranja."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40 mkt/reviewers/templates/reviewers/includes/review_history.html:56
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:73
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:65
 msgid "Notes for Reviewers"
 msgstr "Napomene za recenzente"
 
@@ -4016,7 +3961,7 @@ msgstr "Regioni da prikažu baner u"
 msgid "Regions that the banner message will be shown in."
 msgstr "Regioni u kojima će poruke banera biti prikazane."
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:106
+#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:113
 msgid "Tags"
 msgstr "Oznake"
 
@@ -4068,7 +4013,7 @@ msgid "Select a unique URL for your detail page. By default we use your app name
 msgstr "Izaberite jedinstvenu URL adresu za Vašu stranicu. Podrazumevamo korišćenje imena Vaše aplikacije radi pravljenja ove URL adrese."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:60 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:34 mkt/reviewers/templates/reviewers/review.html:54
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:54
 msgid "View Listing"
 msgstr "Prikaži listing"
 
@@ -4085,7 +4030,7 @@ msgid "View API documentation"
 msgstr "Prikaži API dokumentaciju"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:76 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:52
-#: mkt/search/forms.py:97
+#: mkt/search/forms.py:104
 msgid "Manifest URL"
 msgstr "URL manifesta"
 
@@ -4390,7 +4335,7 @@ msgstr "Podesite ocene sadržaja"
 msgid "Provide payment information for the app."
 msgstr "Pružite informacije o plaćanju za aplikaciju."
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:49
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:47
 msgid "Set Up Payments"
 msgstr "Podesi plaćanja"
 
@@ -4417,25 +4362,27 @@ msgstr "Status &amp; verzije"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1769
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1482
 msgid "Content Ratings"
 msgstr "Ocene sadržaja"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
-#: mkt/developers/templates/developers/payments/in-app-config.html:4 mkt/developers/templates/developers/payments/premium.html:185
+#: mkt/developers/templates/developers/payments/in-app-config.html:14 mkt/developers/templates/developers/payments/in-app-payments.html:4
+#: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
+#: mkt/developers/templates/developers/payments/premium.html:185
 msgid "In-App Payments"
 msgstr "Plaćanje unutar aplikacije"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100 mkt/developers/templates/developers/includes/addons_edit_nav.html:40
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:100 mkt/developers/templates/developers/includes/addons_edit_nav.html:35
 msgid "Messages"
 msgstr "Poruke"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:105 mkt/developers/templates/developers/includes/addons_edit_nav.html:45
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:105 mkt/developers/templates/developers/includes/addons_edit_nav.html:40
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
 msgid "Statistics"
 msgstr "Statistika"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:111 mkt/developers/templates/developers/includes/addons_edit_nav.html:50
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:111 mkt/developers/templates/developers/includes/addons_edit_nav.html:45
 msgid "Transactions"
 msgstr "Transakcije"
 
@@ -4587,11 +4534,7 @@ msgstr "Interaktivni elementi"
 msgid "Developer Agreement"
 msgstr "Ugovor za programere"
 
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:24 mkt/developers/templates/developers/payments/in-app-products.html:4
-msgid "In-App Products"
-msgstr "Proizvodi u okviru aplikacije"
-
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:30
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
 msgid "Compatibility"
 msgstr "Kompatibilnost"
 
@@ -4651,30 +4594,34 @@ msgstr "Test instalacija aplikacije"
 msgid "Test In-App Payments"
 msgstr "Test plaćanje unutar aplikacije"
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:22
+#: mkt/developers/templates/developers/payments/in-app-config.html:4
+msgid "In-App Payments Keys"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
 "The Firefox Marketplace Vam omogućava da Vaša aplikacija ima plaćanje u okviru nje. <a href=\"{guide}\">Vodič za plaćanja u okviru aplikacije</a> objašnjava kako da podesite Vašu aplikaciju za "
 "plaćanja sa parametrima ispod."
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:30 mkt/developers/templates/developers/payments/in-app-keys.html:29
+#: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
 msgstr "Ključ aplikacije"
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:34 mkt/developers/templates/developers/payments/in-app-config.html:46
+#: mkt/developers/templates/developers/payments/in-app-config.html:35 mkt/developers/templates/developers/payments/in-app-config.html:47
 #: mkt/developers/templates/developers/payments/in-app-keys.html:33 mkt/developers/templates/developers/payments/in-app-keys.html:46
 msgid "Not yet generated."
 msgstr "Još uvek nije generisano."
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:38 mkt/developers/templates/developers/payments/in-app-keys.html:37
+#: mkt/developers/templates/developers/payments/in-app-config.html:39 mkt/developers/templates/developers/payments/in-app-keys.html:37
 msgid "Application Secret"
 msgstr "Tajna aplikacije"
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:42 mkt/developers/templates/developers/payments/in-app-keys.html:42
+#: mkt/developers/templates/developers/payments/in-app-config.html:43 mkt/developers/templates/developers/payments/in-app-keys.html:42
 msgid "Show secret"
 msgstr "Prikaži tajnu"
 
-#: mkt/developers/templates/developers/payments/in-app-config.html:52 mkt/developers/templates/developers/payments/in-app-keys.html:51
+#: mkt/developers/templates/developers/payments/in-app-config.html:53 mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Reset secret"
 msgstr "Obnovi tajnu"
 
@@ -4694,39 +4641,63 @@ msgstr ""
 msgid "Generate Keys"
 msgstr "Generiši ključeve"
 
-#: mkt/developers/templates/developers/payments/in-app-product-row.html:24
+#: mkt/developers/templates/developers/payments/in-app-payments.html:21
+msgid "In-App Keys"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:28
+msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:33
+msgid "Configure In-App Keys"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
+msgid "In-App Products"
+msgstr "Proizvodi u okviru aplikacije"
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:45
+msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-payments.html:50
+msgid "Configure In-App Products"
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:29
+#: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr "Vaša aplikacija mora biti upakovana i navedite <a href=\"%(origin)s\">poreklo</a> da bi ste koristili ovaj sistem plaćanja u okviru aplikacije."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:35
+#: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr "Vaša aplikacija mora definisati <a href=\"%(origin)s\">poreklo</a> u manifestu, tako da se prihodi mogu pravilno verifikovati."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:42
+#: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:47
+#: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:60
 msgid "Icon"
 msgstr "Ikonica"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:61
+#: mkt/developers/templates/developers/payments/in-app-products.html:62
 msgid "Price Point"
 msgstr "Cena"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:62
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Product ID"
 msgstr "ID proizvoda"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:74
+#: mkt/developers/templates/developers/payments/in-app-products.html:75
 msgid "Add a product"
 msgstr "Dodaj proizvod"
 
@@ -4746,7 +4717,7 @@ msgstr "Promenom na Besplatno će staviti Vašu aplikaciju nazad u razmatranje.
 msgid "Paid mode requires that your app only supports:"
 msgstr "Mod za plaćanje zahteva da Vaša aplikacija podržava samo:"
 
-#: mkt/developers/templates/developers/payments/premium.html:89 mkt/developers/templates/developers/payments/premium.html:91 mkt/submit/templates/submit/manifest.html:44
+#: mkt/developers/templates/developers/payments/premium.html:89 mkt/developers/templates/developers/payments/premium.html:91 mkt/submit/templates/submit/manifest.html:39
 msgid "Paid / In-app"
 msgstr "Plaćeno / u okviru aplikacije"
 
@@ -5072,7 +5043,7 @@ msgstr "Firefox OS Simulator"
 msgid "Reference Apps"
 msgstr "Referentne aplikacije"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:43
+#: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:42
 msgid "Publish"
 msgstr "Objavi"
 
@@ -5262,8 +5233,8 @@ msgstr "Korišćenje aplikacja van mreže"
 msgid "Developing Game Apps"
 msgstr "Razvoj igrica"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:96 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1775
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1488
 msgid "Payments"
 msgstr "Plaćanja"
 
@@ -5471,15 +5442,15 @@ msgstr "Mozilla Web aplikacije (engleski)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Mozilla Web aplikacije (brazilski portugalski)"
 
-#: mkt/feed/fields.py:130
+#: mkt/feed/fields.py:161
 msgid "Invalid URL %(url)s"
 msgstr "Neispravan URL %(url)s"
 
-#: mkt/feed/fields.py:135
+#: mkt/feed/fields.py:166
 msgid "Error downloading image from %(url)s"
 msgstr "Greška pri preuzimanju slike sa %(url)s"
 
-#: mkt/feed/fields.py:143
+#: mkt/feed/fields.py:174
 msgid "Image from %(url)s could not be parsed"
 msgstr "Slike sa %(url)s nisu mogle biti raščlanjene"
 
@@ -5521,30 +5492,30 @@ msgid "The file \"manifest.webapp\" was not found at the root of the packaged ap
 msgstr "Datoteka \"manifest.webapp\" nije nađena u korenu arhive spakovane aplikacije."
 
 #: mkt/files/utils.py:98
-msgid "Could not decode the webapp manifest file."
-msgstr "Nismo mogli da dekodiramo webapp manifest datoteku."
+msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
+msgstr ""
 
-#: mkt/files/utils.py:104
+#: mkt/files/utils.py:106
 msgid "The webapp manifest is not valid JSON."
 msgstr "Manifest webapp nije validan JSON."
 
-#: mkt/files/utils.py:113
+#: mkt/files/utils.py:115
 msgid "Your specified app locales are not in the correct format."
 msgstr "Vaši naznačeni lokali aplikacije nisu ispravnog formata."
 
-#: mkt/files/utils.py:130
+#: mkt/files/utils.py:132
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "Naziv programera je neophodan u manifestu kako bi bio prikazan na listingu aplikacije."
 
-#: mkt/files/utils.py:181
+#: mkt/files/utils.py:182
 msgid "Invalid file name in archive: {0}"
 msgstr "Neispravan naziv datoteke u arhivi: {0}"
 
-#: mkt/files/utils.py:189
+#: mkt/files/utils.py:190
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Datoteka prelazi ograničenje veličine u arhivi: {0}"
 
-#: mkt/files/utils.py:239
+#: mkt/files/utils.py:240
 msgid "Invalid archive."
 msgstr "Nevažeća arhiva."
 
@@ -5644,7 +5615,7 @@ msgstr "Nema datoteka u otpremljene datoteke."
 msgid "Fetching file."
 msgstr "Preuzimam datoteku."
 
-#: mkt/inapp/serializers.py:43
+#: mkt/inapp/serializers.py:44
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr ""
 
@@ -5664,27 +5635,27 @@ msgstr "Unesite detalje za povraćaj novca radi transakcije iste"
 msgid "Reason for Deletion"
 msgstr "Razlozi za brisanje"
 
-#: mkt/lookup/views.py:145
+#: mkt/lookup/views.py:140
 msgid "Currently unable to retrieve refund status."
 msgstr "Trenutno nije moguće preuzeti status povraćaja novca."
 
-#: mkt/lookup/views.py:172
+#: mkt/lookup/views.py:167
 msgid "A refund has already been processed."
 msgstr "Povraćaj novca je već obrađen."
 
-#: mkt/lookup/views.py:195
+#: mkt/lookup/views.py:190
 msgid "You cannot make a refund request for this transaction."
 msgstr "Ne možete tražiti povraćaj novca za ovu transakciju."
 
-#: mkt/lookup/views.py:217
+#: mkt/lookup/views.py:211
 msgid "Refund for this transaction now pending."
 msgstr "Povraćaj novca za ovu transakciju je u toku."
 
-#: mkt/lookup/views.py:226
+#: mkt/lookup/views.py:219
 msgid "Refund for this transaction successfully approved."
 msgstr "Povraćaj sredstava za ovu transakciju je uspešno odobren."
 
-#: mkt/lookup/views.py:231
+#: mkt/lookup/views.py:224
 msgid "Refund request for this transaction failed."
 msgstr "Povraćaj sredstava za ovu transakciju nije uspelo."
 
@@ -5741,7 +5712,7 @@ msgstr "Hostovane aplikacije"
 msgid "Submitted"
 msgstr "Podneto"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:148
+#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:165
 msgid "OK"
 msgstr "U redu"
 
@@ -5753,56 +5724,80 @@ msgstr "Recenzija je stavljena kao prioritet"
 msgid "Prioritize Review?"
 msgstr "Staviti recenziju pod prioritetom?"
 
-#: mkt/lookup/templates/lookup/app_summary.html:82 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
+#: mkt/lookup/templates/lookup/app_summary.html:82
+msgid "Tarako Status"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:85
+msgid "Tarako enabled"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:87
+msgid "Tarako not enabled"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:89
+msgid "Review not requested"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:92
+msgid "Review pending"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:94
+msgid "Review failed"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Abuse Reports"
 msgstr "Izveštaji o zloupotrebi"
 
-#: mkt/lookup/templates/lookup/app_summary.html:84
+#: mkt/lookup/templates/lookup/app_summary.html:101
 msgid "Permissions"
 msgstr "Dozvole"
 
-#: mkt/lookup/templates/lookup/app_summary.html:86
+#: mkt/lookup/templates/lookup/app_summary.html:103
 msgid "Downloads"
 msgstr "Preuzimanja"
 
-#: mkt/lookup/templates/lookup/app_summary.html:98 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "Kupovine"
 
-#: mkt/lookup/templates/lookup/app_summary.html:108 mkt/lookup/templates/lookup/user_summary.html:42
+#: mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
 msgstr "Povraćaj novca"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:111
+#: mkt/lookup/templates/lookup/app_summary.html:128
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} traženih ({1} kupljenih)"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:114
+#: mkt/lookup/templates/lookup/app_summary.html:131
 msgid "{0} auto-approved"
 msgstr "{0} automatski odobri"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:116
+#: mkt/lookup/templates/lookup/app_summary.html:133
 msgid "{0} approved"
 msgstr "{0} prihvaćeno"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:118
+#: mkt/lookup/templates/lookup/app_summary.html:135
 msgid "{0} rejected"
 msgstr "{0} odbijeno"
 
-#: mkt/lookup/templates/lookup/app_summary.html:126
+#: mkt/lookup/templates/lookup/app_summary.html:143
 msgid "Version History"
 msgstr "Istorijat verzija"
 
-#: mkt/lookup/templates/lookup/app_summary.html:131
+#: mkt/lookup/templates/lookup/app_summary.html:148
 msgid "Version (ID)"
 msgstr "Verzija (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:132
+#: mkt/lookup/templates/lookup/app_summary.html:149
 msgid "Filename (ID, Size)"
 msgstr "Ime datoteke (ID, veličina)"
 
@@ -5918,32 +5913,32 @@ msgstr "Adrese"
 msgid "Submissions"
 msgstr "Dostave"
 
-#: mkt/lookup/templates/lookup/user_summary.html:86
+#: mkt/lookup/templates/lookup/user_summary.html:87
 msgid "Unnamed"
 msgstr "Neimenovano"
 
-#: mkt/lookup/templates/lookup/user_summary.html:97 mkt/lookup/templates/lookup/user_summary.html:105 mkt/lookup/templates/lookup/user_summary.html:109
-#: mkt/lookup/templates/lookup/user_summary.html:113
+#: mkt/lookup/templates/lookup/user_summary.html:98 mkt/lookup/templates/lookup/user_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:110
+#: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Delete User"
 msgstr "Izbriši korisnika"
 
-#: mkt/lookup/templates/lookup/user_summary.html:100
+#: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr "Brisanje ovog korisnika <strong>će trajno</strong> obrisati nalog ovog korisnika."
 
-#: mkt/lookup/templates/lookup/user_summary.html:110
+#: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
 msgstr "Da li ste sigurni da želite da obrišete ovog korisnika?"
 
-#: mkt/lookup/templates/lookup/user_summary.html:120
+#: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
 msgstr "Ovaj korisnik je već obrisan."
 
-#: mkt/lookup/templates/lookup/user_summary.html:122
+#: mkt/lookup/templates/lookup/user_summary.html:123
 msgid "Deleted by"
 msgstr "Izbrisao je"
 
-#: mkt/lookup/templates/lookup/user_summary.html:125
+#: mkt/lookup/templates/lookup/user_summary.html:126
 msgid "Reason"
 msgstr "Razlog"
 
@@ -5972,7 +5967,7 @@ msgid "App Lookup"
 msgstr "Pregraga aplikacije"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:8 mkt/lookup/templates/lookup/includes/transaction_search.html:6 mkt/lookup/templates/lookup/includes/user_search.html:6
-#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:81 mkt/search/forms.py:83
+#: mkt/reviewers/templates/reviewers/includes/queue_search.html:9 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:10 mkt/search/forms.py:88 mkt/search/forms.py:90
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12 mkt/templates/mkt/header.html:13
 msgid "Search"
 msgstr "Pretraži"
@@ -6021,21 +6016,6 @@ msgstr "Nema kandidata za unapred instaliranje"
 #: mkt/prices/models.py:87
 msgid "Tier %s"
 msgstr "Red %s"
-
-#. L10n: the addon name.
-#: mkt/purchase/models.py:102
-msgid "%s refund failed"
-msgstr "%s povraćaj novca nije uspeo"
-
-#. L10n: the adddon name.
-#: mkt/purchase/models.py:118
-msgid "%s refund approved"
-msgstr "%s povraćaj novca odobren"
-
-#. L10n: the adddon name.
-#: mkt/purchase/models.py:126
-msgid "%s refund declined"
-msgstr "%s povraćaj novca odbijen"
 
 #. L10n: {0} is the app name.
 #: mkt/purchase/tasks.py:28
@@ -6118,27 +6098,27 @@ msgstr "Ocenjeno sa {0} od 5 zvezdica"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
 
-#: mkt/receipts/forms.py:19
+#: mkt/receipts/forms.py:18
 msgid "No receipt"
 msgstr "Nema računa"
 
-#: mkt/receipts/forms.py:20
+#: mkt/receipts/forms.py:19
 msgid "Test receipt"
 msgstr "Probni račun"
 
-#: mkt/receipts/forms.py:21
+#: mkt/receipts/forms.py:20
 msgid "Expired test receipt"
 msgstr "Istekao je probni račun"
 
-#: mkt/receipts/forms.py:22
+#: mkt/receipts/forms.py:21
 msgid "Invalid test receipt"
 msgstr "Neispravan probni račun"
 
-#: mkt/receipts/forms.py:23
+#: mkt/receipts/forms.py:22
 msgid "Refunded test receipt"
 msgstr "Povraćaj sredstava probnog računa"
 
-#: mkt/receipts/views.py:88 mkt/receipts/views.py:179
+#: mkt/receipts/views.py:89 mkt/receipts/views.py:180
 msgid "There was a problem installing the app."
 msgstr "Došlo je do problema prilikom instaliranja aplikacije."
 
@@ -6242,6 +6222,10 @@ msgstr "Tarako-ready"
 msgid "Reviewer Tools"
 msgstr "Alati recenzenta"
 
+#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:169
+msgid "Apps"
+msgstr "Aplikacije"
+
 #: mkt/reviewers/helpers.py:43
 msgid "Re-reviews"
 msgstr "Ponovni pregledi"
@@ -6254,7 +6238,7 @@ msgstr "Ažuriranja"
 msgid "Escalations"
 msgstr "Eskalacije"
 
-#: mkt/reviewers/helpers.py:46
+#: mkt/reviewers/helpers.py:46 mkt/search/forms.py:94
 msgid "Device"
 msgstr "Uređaj"
 
@@ -6319,108 +6303,108 @@ msgstr "Komentara"
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nije pregledano"
 
-#: mkt/reviewers/utils.py:432 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "Odobri"
 
-#: mkt/reviewers/utils.py:433
+#: mkt/reviewers/utils.py:450
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "Ovo će odobriti aplikaciju i omogućiti autoru da je objavi."
 
-#: mkt/reviewers/utils.py:437 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Odbij"
 
-#: mkt/reviewers/utils.py:439
+#: mkt/reviewers/utils.py:456
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "Ovo će odbiti aplikaciju, ukloniti je iz reda razmatranje i povućiće je ako je već objavljena."
 
-#: mkt/reviewers/utils.py:444
+#: mkt/reviewers/utils.py:461
 msgid "Request more information"
 msgstr "Zahtevaj više informacija"
 
-#: mkt/reviewers/utils.py:446
+#: mkt/reviewers/utils.py:463
 msgid "This will send the author(s) an email requesting more information."
 msgstr "Ovo će poslati autoru e-poštu u kojoj će te zahtevati više informacija."
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:467
 msgid "Escalate"
 msgstr "Eskaliraj"
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:469
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "Obeleži ovu aplikaciju za pregled admina. Komentari se šalju administratorima, a ne autoru."
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:476
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr "Komentariši ovu aplikaciju. Autor neće moći da vidi ove komentare."
 
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:480
 msgid "Clear Escalation"
 msgstr "Očisti eskalaciju"
 
-#: mkt/reviewers/utils.py:465
+#: mkt/reviewers/utils.py:482
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "Očisti ovu aplikaciju iz reda za eskalaciju. Autor neće dobiti e-poštu ili videti komentare."
 
-#: mkt/reviewers/utils.py:470
+#: mkt/reviewers/utils.py:487
 msgid "Clear Re-review"
 msgstr "Očisti ponovni pregled"
 
-#: mkt/reviewers/utils.py:472
+#: mkt/reviewers/utils.py:489
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "Očisti ovu aplikaciju iz reda za ponovo pregledanje. Autor neće dobiti e-poštu ili videti komentare."
 
-#: mkt/reviewers/utils.py:477
-msgid "Disable app"
-msgstr "Onemogući aplikaciju"
+#: mkt/reviewers/utils.py:494
+msgid "Ban app"
+msgstr ""
 
-#: mkt/reviewers/utils.py:479
-msgid "Disable the app, the same as Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr "Onemogući aplikaciju, je isto kao i Odbaci ali autor ne može ponovo poslati. Samo da se koristi u ekstremnim slučajevima."
+#: mkt/reviewers/utils.py:496
+msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
+msgstr ""
 
-#: mkt/reviewers/views.py:126
+#: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
 msgstr "Nove aplikacije (manje od 5 dana)"
 
-#: mkt/reviewers/views.py:127
+#: mkt/reviewers/views.py:125
 msgid "Passable (5 to 10 days)"
 msgstr "Prosečno (5 do 10 dana)"
 
-#: mkt/reviewers/views.py:128
+#: mkt/reviewers/views.py:126
 msgid "Overdue (Over 10 days)"
 msgstr "Kasni (preko 10 dana)"
 
-#: mkt/reviewers/views.py:283
+#: mkt/reviewers/views.py:239
 msgid "Self-reviews are not allowed."
 msgstr "Ne možete pregledati svoj rad."
 
-#: mkt/reviewers/views.py:289
+#: mkt/reviewers/views.py:245
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Samo viši recenzenti mogu da pregledaju blokirane aplikacije."
 
-#: mkt/reviewers/views.py:339
+#: mkt/reviewers/views.py:295
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Uređaj(e) je promenio recenzent: {0}"
 
-#: mkt/reviewers/views.py:341 mkt/reviewers/views.py:363 mkt/submit/forms.py:31 mkt/submit/forms.py:41
+#: mkt/reviewers/views.py:297 mkt/reviewers/views.py:319 mkt/submit/forms.py:31 mkt/submit/forms.py:41
 msgid "Added {0}"
 msgstr "Dodato {0}"
 
-#: mkt/reviewers/views.py:343 mkt/reviewers/views.py:364 mkt/submit/forms.py:33 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:299 mkt/reviewers/views.py:320 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
 msgstr "Uklonjeno {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:366
+#: mkt/reviewers/views.py:322
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Zahtevi izmenjeni od strane recezenta: {0}"
 
-#: mkt/reviewers/views.py:393
+#: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" uspešno obrađeno (+ {1} bodova, {2} ukupno)."
 
-#: mkt/reviewers/views.py:395
+#: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
 msgstr "Predgled uspešno obrađen."
 
@@ -6562,7 +6546,7 @@ msgstr "Pregleda ovog meseca"
 msgid "Reviewer Leaderboard"
 msgstr "Tabela vođstva recenzenata"
 
-#: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:19
+#: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
 msgstr "Nisu dodeljeni poeni za pregled."
 
@@ -6606,27 +6590,23 @@ msgstr "Ažuriraj poruku dana"
 msgid "Reviewer Scores for {0}"
 msgstr "Ocene recenzenta za {0}"
 
-#: mkt/reviewers/templates/reviewers/performance.html:21
-msgid "All-time Point Breakdown by Type"
-msgstr "Lista prema tipu"
+#: mkt/reviewers/templates/reviewers/performance.html:20
+msgid "All-time Point Breakdown"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/performance.html:26
-msgid "Add-ons"
-msgstr "Dodaci"
+#: mkt/reviewers/templates/reviewers/performance.html:25
+msgid "Points"
+msgstr ""
 
-#: mkt/reviewers/templates/reviewers/performance.html:28
-msgid "Total"
-msgstr "Ukupno"
-
-#: mkt/reviewers/templates/reviewers/performance.html:33 mkt/stats/forms.py:11
+#: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
 msgstr "Mesec"
 
-#: mkt/reviewers/templates/reviewers/performance.html:40 mkt/stats/forms.py:13
+#: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
 msgstr "Godina"
 
-#: mkt/reviewers/templates/reviewers/performance.html:47
+#: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
 msgstr "Sve-vreme"
 
@@ -6786,7 +6766,7 @@ msgstr "Ukupno preuzimanja"
 msgid "View Statistics"
 msgstr "Pogledaj statistiku"
 
-#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:121 mkt/search/forms.py:16
+#: mkt/reviewers/templates/reviewers/includes/details.html:124 mkt/reviewers/templates/reviewers/includes/mobile_details.html:121 mkt/search/forms.py:14
 msgid "Weekly Downloads"
 msgstr "Sedmična preuzimanja"
 
@@ -6872,16 +6852,15 @@ msgstr "Verzija %(version)s &middot; %(developer_name)s &middot; %(created)s <sp
 msgid "Files in this version:"
 msgstr "Datoteke u ovoj verziji:"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:28 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:32
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:34
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:28 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:33
 msgid "Validation"
 msgstr "Validacija"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:30 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:36
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:30 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:35
 msgid "Contents"
 msgstr "Sadržaji"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history.html:33 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:39
+#: mkt/reviewers/templates/reviewers/includes/review_history.html:33 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:38
 msgid "Compare"
 msgstr "Uporedi"
 
@@ -6889,11 +6868,11 @@ msgstr "Uporedi"
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Od %(user)s datuma %(date)s</div>"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:87
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:79
 msgid "Next Page"
 msgstr "Sledeća stranica"
 
-#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:88
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:80
 msgid "Previous Page"
 msgstr "Predhodna stranica"
 
@@ -6926,87 +6905,91 @@ msgstr "Imate <span>{0}</span> poena."
 msgid "No results found"
 msgstr "Nema pronađenih rezultata"
 
-#: mkt/search/forms.py:14
+#: mkt/search/forms.py:12
 msgid "Relevance"
 msgstr "Relevantnost"
 
-#: mkt/search/forms.py:15
+#: mkt/search/forms.py:13
 msgid "Popularity"
 msgstr "Popularnost"
 
-#: mkt/search/forms.py:17
+#: mkt/search/forms.py:15
 msgid "Top Rated"
 msgstr "Najbolje ocenjeno"
 
-#: mkt/search/forms.py:19
+#: mkt/search/forms.py:17
 msgid "Newest"
 msgstr "Najnovije"
 
-#: mkt/search/forms.py:20
+#: mkt/search/forms.py:18
 msgid "Reviewed"
 msgstr "Pregledano"
 
-#: mkt/search/forms.py:27
+#: mkt/search/forms.py:25
 msgid "Any App Type"
 msgstr "Bilo koji tip aplikacije"
 
-#: mkt/search/forms.py:30
+#: mkt/search/forms.py:28
 msgid "Privileged packaged app"
 msgstr "Privilegovana upakovana aplikacija"
 
-#: mkt/search/forms.py:35
+#: mkt/search/forms.py:33
 msgid "Free with In-app"
 msgstr "Besplatno u okviru aplikacije"
 
-#: mkt/search/forms.py:37
+#: mkt/search/forms.py:35
 msgid "Premium with In-app"
 msgstr "Premijum u okviru aplikacije"
 
-#: mkt/search/forms.py:38
+#: mkt/search/forms.py:36
 msgid "Other System for In-App"
 msgstr "Drugi sistem u okviru aplikacije"
 
-#: mkt/search/forms.py:42
+#: mkt/search/forms.py:41
+msgid "Any Device"
+msgstr ""
+
+#: mkt/search/forms.py:43
+msgid "Android"
+msgstr ""
+
+#: mkt/search/forms.py:50
 msgid "Any Device Type"
 msgstr "Bilo koji tip uređaja"
 
-#: mkt/search/forms.py:44
+#: mkt/search/forms.py:52
 msgid "Mobile"
 msgstr "Mobilni"
 
-#: mkt/search/forms.py:45
+#: mkt/search/forms.py:53
 msgid "Tablet"
 msgstr "Tablet"
 
-#: mkt/search/forms.py:49
+#: mkt/search/forms.py:56
 msgid "All Categories"
 msgstr "Sve kategorije"
 
-#: mkt/search/forms.py:64
+#: mkt/search/forms.py:71
 msgid "Search for apps"
 msgstr "Pretraži aplikacije"
 
-#: mkt/search/forms.py:85
-msgid "Add-on type"
-msgstr "Vrsta dodatka"
-
-#: mkt/search/forms.py:89
+#: mkt/search/forms.py:96
 msgid "Device type"
 msgstr "Tip uređaja"
 
-#: mkt/search/forms.py:92
+#: mkt/search/forms.py:99
 msgid "Premium types"
 msgstr "Premijum tipovi"
 
-#: mkt/search/forms.py:96
+#: mkt/search/forms.py:103
 msgid "App type"
 msgstr "Tip aplikacije"
 
-#: mkt/search/forms.py:99
+#: mkt/search/forms.py:106
 msgid "Works offline"
 msgstr "Radi van mreže"
 
-#: mkt/search/forms.py:101
+#: mkt/search/forms.py:108
 msgid "Supported languages"
 msgstr "Podržani jezici"
 
@@ -7038,7 +7021,7 @@ msgstr "Centar za programera"
 msgid "Admin Tools"
 msgstr "Alati administratora"
 
-#: mkt/site/fields.py:29
+#: mkt/site/fields.py:77
 msgid "Enter at least one value."
 msgstr "Unesite bar jednu vrednost."
 
@@ -7140,37 +7123,44 @@ msgstr "Ne može da bude i besplatna i plaćena."
 msgid "Please select a device."
 msgstr "Izaberite uređaj."
 
-#: mkt/submit/forms.py:50
-msgid "Packaged apps are not yet supported for those platforms."
-msgstr "Upakovane aplikacije nisu podržane na ovim platformama."
-
-#: mkt/submit/forms.py:144
+#: mkt/submit/forms.py:127
 msgid "Agree and Continue"
 msgstr "Slažem se i nastavi"
 
-#: mkt/submit/forms.py:170 mkt/submit/forms.py:236
+#: mkt/submit/forms.py:153 mkt/submit/forms.py:225
 msgid "There was an error with your upload. Please try again."
 msgstr "Došlo je do greške tokom otpremanja. Molimo Vas, pokušajte ponovo."
 
-#: mkt/submit/forms.py:204
-msgid "Version %s already exists"
-msgstr "Verzija %s već postoji"
+#: mkt/submit/forms.py:187
+msgid "Version %s already exists."
+msgstr ""
 
-#: mkt/submit/forms.py:272
+#: mkt/submit/forms.py:198
+msgid "Changes to \"origin\" are not allowed."
+msgstr ""
+
+#: mkt/submit/forms.py:221
+msgid "User submitting validation does not match."
+msgstr ""
+
+#: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
 
-#: mkt/submit/forms.py:275
+#: mkt/submit/forms.py:268
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
 
-#: mkt/submit/forms.py:286
+#: mkt/submit/forms.py:279
 msgid "Privacy Policy:"
 msgstr "Polisa o privatnosti:"
 
-#: mkt/submit/forms.py:288
-msgid "A privacy policy that explains what data is transmitted from a user's computer and how it is used is required."
-msgstr "Polisa privatnosti koja objašnjava koji podaci se prenose sa računara korisnika i kako se oni koristi je neophodna."
+#: mkt/submit/forms.py:281
+msgid ""
+"A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
+"you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
+"href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
+msgstr ""
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7218,7 +7208,7 @@ msgstr ""
 msgid "Edit App Details"
 msgstr "Uredi detalje aplikacije"
 
-#: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:10 mkt/submit/templates/submit/manifest.html:23 mkt/submit/templates/submit/next_steps.html:11
+#: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:8 mkt/submit/templates/submit/manifest.html:23 mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
 msgstr "Pošalji aplikaciju"
@@ -7251,11 +7241,11 @@ msgstr "PNG i JPG su podržani formati. Snimci ekrana mora biti barem 320px puta
 msgid "Finished!"
 msgstr "Gotovo!"
 
-#: mkt/submit/templates/submit/done.html:16
+#: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
 msgstr "Uspeh! Šta se dešava sad?"
 
-#: mkt/submit/templates/submit/done.html:20
+#: mkt/submit/templates/submit/done.html:18
 msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and once it is reviewed you will need to manually enable your app from the <a href=\"%(url)s\">Manage Status page</"
 "a> for it to show up on listing pages and in search. Until then, feel free to tweak your app's details and settings."
@@ -7263,11 +7253,11 @@ msgstr ""
 "Sačuvali smo Vašu aplikaciju i spremna je! Vaša aplikacija trenutno čeka pregled i jednom kada bude pregledana, moraćete ručno da omogućite Vašu aplikaciju iz <a href=\"%(url)s\">Upravljaj "
 "statusnom stranicom</a> da bi se prikazala na listing stranicama i u pretrazi. Do tada, slobodno radite na detaljima i podešavanjima Vaše aplikacije."
 
-#: mkt/submit/templates/submit/done.html:31
+#: mkt/submit/templates/submit/done.html:29
 msgid "Before your app can go live, you need to provide payment information. Once you've added a payment account and price, your app will be submitted for review."
 msgstr "Pre nego što Vaša aplikacija bude puštena, morate pružiti informacije o plaćanju. Jednom kada dodate račun za plaćanje i cenu, Vaša aplikacija će biti podneta za pregled."
 
-#: mkt/submit/templates/submit/done.html:37
+#: mkt/submit/templates/submit/done.html:35
 msgid ""
 "We've got your app saved and ready to go! Your app is currently awaiting review, and will show up on listing pages and in search once it is reviewed. Until then, feel free to tweak your app's "
 "details and settings."
@@ -7275,98 +7265,94 @@ msgstr ""
 "Sačuvali smo Vašu aplikaciju i sada je spremna! Vaša aplikacija trenutno čeka pregled i da pojaviće se na listing stranicama i u pretrazi nakon što se pregleda. Do tada, budite slobodni da podesite "
 "detalje i postavke ekipe aplikacije."
 
-#: mkt/submit/templates/submit/done.html:53
+#: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
 msgstr "Uredi moju aplikaciju"
 
-#: mkt/submit/templates/submit/done.html:56
+#: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
 msgstr "Dostavi drugu aplikaciju"
 
-#: mkt/submit/templates/submit/manifest.html:34
-msgid "Device Type"
-msgstr "Tip uređaja"
-
-#: mkt/submit/templates/submit/manifest.html:108
+#: mkt/submit/templates/submit/manifest.html:102
 msgid "App Minimum Requirements"
 msgstr "Minimalni zahtevi aplikacije"
 
-#: mkt/submit/templates/submit/manifest.html:113
+#: mkt/submit/templates/submit/manifest.html:107
 msgid "<b>What's next:</b> fill out the rest of your app's details"
 msgstr "<b>Šta je sledeće:</b> popunite ostale detalje aplikacije"
 
-#: mkt/submit/templates/submit/manifest.html:127
+#: mkt/submit/templates/submit/manifest.html:121
 msgid "Learn more about <b>packaged apps</b> on MDN."
 msgstr "Saznajte više o <b>upakovanim aplikacijama</b> na MDN."
 
-#: mkt/submit/templates/submit/next_steps.html:23
+#: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
 msgstr "Objavljeno!"
 
-#: mkt/submit/templates/submit/next_steps.html:25
+#: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
 msgstr "Skoro smo tamo!"
 
-#: mkt/submit/templates/submit/next_steps.html:28
+#: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
 msgstr "Podnesi manifest aplikacije"
 
-#: mkt/submit/templates/submit/next_steps.html:29
+#: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
 msgstr "Unesite detalje aplikacije"
 
-#: mkt/submit/templates/submit/next_steps.html:31
+#: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
 msgstr "<span>Podesite <a href=\"%(rating_url)s\">Ocene sadržaja</a></span>"
 
-#: mkt/submit/templates/submit/next_steps.html:37
+#: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
 msgstr "<span>Podesite <a href=\"%(pay_url)s\">plaćanja</a></span>"
 
-#: mkt/submit/templates/submit/next_steps.html:42
+#: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
 msgstr "Sačekajte pregled"
 
-#: mkt/submit/templates/submit/next_steps.html:46
+#: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
 msgstr "U bilo kom trenutku, Vi možete"
 
-#: mkt/submit/templates/submit/next_steps.html:49
+#: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr "Izmenite detalje Vaše aplikacije na <a href=\"%(url)s\">Izmeni Liste</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:54
+#: mkt/submit/templates/submit/next_steps.html:53
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr "Pogledajte listu svih Vaših prijava na <a href=\"%(url)s\">Moje Prijave</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:61
+#: mkt/submit/templates/submit/next_steps.html:60
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
 
-#: mkt/submit/templates/submit/next_steps.html:65
+#: mkt/submit/templates/submit/next_steps.html:64
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr ""
 
-#: mkt/submit/templates/submit/next_steps.html:75
+#: mkt/submit/templates/submit/next_steps.html:74
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
 "Nakon što je Vaša aplikacija pregledana, Vi ćete morati ručno da objavite Vašu aplikaciju preko <a href=\"%(url)s\">Upravljanja statusima</a>. Nakon toga će se pojaviti na listi aplikacija i u "
 "pretrazi da bi drugi uživali u njoj."
 
-#: mkt/submit/templates/submit/next_steps.html:82
+#: mkt/submit/templates/submit/next_steps.html:81
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr "Vaša aplikacija je odobrena! Ona se sada prikazuje na listi aplikacija i u pretrazi da bi drugi uživali u njoj."
 
-#: mkt/submit/templates/submit/next_steps.html:87
+#: mkt/submit/templates/submit/next_steps.html:86
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr "Nakon što je Vaša aplikacija pregledana, pojaviće se na listi aplikacija i u pretrazi da bi drugi uživali u njoj."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
-#: mkt/submit/templates/submit/next_steps.html:100
+#: mkt/submit/templates/submit/next_steps.html:99
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
 msgstr "<strong>Šta je sledeće:</strong> Podesite %(next_step_name)s"
 
-#: mkt/submit/templates/submit/next_steps.html:106
+#: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
 msgstr "<strong>Šta je sledeće:</strong> Objavite Vašu aplikaciju"
 
@@ -7390,7 +7376,7 @@ msgstr "Da biste započeli, molimo Vas da pročitate i prihvatite naš <strong>u
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla može da mi šalje e-poštu sa relevantnim novostima o programiranju aplikacija i anketama"
 
-#: mkt/submit/tests/test_forms.py:254
+#: mkt/submit/tests/test_forms.py:265
 msgid "Héllo"
 msgstr "Pozdrav"
 
@@ -7466,7 +7452,7 @@ msgstr "Da li ste sigurni da želite da uklonite sve <b>{0}</b> prevode? Ova rad
 msgid "Delete Locale"
 msgstr "Izbriši lokal"
 
-#: mkt/users/models.py:56
+#: mkt/users/models.py:58
 msgid "No user with that email."
 msgstr "Ne postoji korisnik sa tom adresom e-pošte."
 
@@ -7554,13 +7540,69 @@ msgstr "Korisnik sa ovom adresom e-pošte ne postoji."
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
 msgstr "Korisnik sa ovom adresom e-pošte ne postoji, ili nije još prihvatio Saglasnost o programerima."
 
-#: mkt/users/views.py:176
+#: mkt/users/views.py:188
 msgid "Persona authentication failure."
 msgstr "Persona autentifikacija neuspešna."
 
-#: mkt/users/views.py:196
+#: mkt/users/views.py:208
 msgid "Please use the verified email for this account."
 msgstr "Molimo Vas koristite verifikovanu adresu e-pošte za ovaj nalog."
+
+#: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
+msgid "Firefox Accounts is coming"
+msgstr ""
+
+#: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
+msgid "Activate your Firefox Account"
+msgstr ""
+
+#: mkt/users/templates/users/emails/base.html:69
+msgid "Activate now"
+msgstr ""
+
+#: mkt/users/templates/users/emails/base.html:91
+msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
+msgstr ""
+
+#: mkt/users/templates/users/emails/base.html:99
+msgid ""
+"You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
+"\"%(privacy)s\">Privacy Policy</a>"
+msgstr ""
+
+#: mkt/users/templates/users/emails/customers-after.html:3
+msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
+msgstr ""
+
+#: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
+msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
+msgstr ""
+
+#: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
+msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
+msgstr ""
+
+#: mkt/users/templates/users/emails/customers-during.html:3
+msgid ""
+"Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
+"Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
+msgstr ""
+
+#: mkt/users/templates/users/emails/customers-during.html:5
+msgid "Activating your account is easy. Simply sign-in and verify your account."
+msgstr ""
+
+#: mkt/users/templates/users/emails/developers-after.html:3
+msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
+msgstr ""
+
+#: mkt/users/templates/users/emails/developers-during.html:3
+msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
+msgstr ""
+
+#: mkt/users/templates/users/emails/developers-during.html:4
+msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
+msgstr ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7597,70 +7639,70 @@ msgstr[1] "Sve oznake moraju sadržati najmanje {0} karaktera."
 msgstr[2] "Sve oznake moraju sadržati najmanje {0} karaktera."
 
 # Column name in a table.
-#: mkt/webapps/models.py:1136
+#: mkt/webapps/models.py:205
 msgid "Listed"
 msgstr "U listi"
 
-#: mkt/webapps/models.py:1662
+#: mkt/webapps/models.py:1375
 msgid "You must provide a support email."
 msgstr "Morate da napišete e-poštu za podršku."
 
-#: mkt/webapps/models.py:1664
+#: mkt/webapps/models.py:1377
 msgid "You must provide an app name."
 msgstr "Morate da napišete ime aplikacije."
 
-#: mkt/webapps/models.py:1666
+#: mkt/webapps/models.py:1379
 msgid "You must provide at least one device type."
 msgstr "Morate obezbediti bar jedan tip uređaja."
 
-#: mkt/webapps/models.py:1669
+#: mkt/webapps/models.py:1382
 msgid "You must provide at least one category."
 msgstr "Morate da izaberete barem jednu kategoriju."
 
-#: mkt/webapps/models.py:1736
+#: mkt/webapps/models.py:1449
 msgid "You must set up content ratings."
 msgstr "Morate da podesite ocene sadržaja."
 
-#: mkt/webapps/models.py:1738
+#: mkt/webapps/models.py:1451
 msgid "You must set up a payment account."
 msgstr "Morate da podesite nalog za plaćanje."
 
-#: mkt/webapps/models.py:1763
+#: mkt/webapps/models.py:1476
 msgid "This app's submission process has not been fully completed."
 msgstr "Proces podnošenja aplikacije nije u potpunosti završen."
 
-#: mkt/webapps/models.py:1770
+#: mkt/webapps/models.py:1483
 msgid "This app needs to get a content rating."
 msgstr "Ova aplikacija treba da dobije ocenu sadržaja."
 
-#: mkt/webapps/models.py:1776
+#: mkt/webapps/models.py:1489
 msgid "This app needs a payment account set up."
 msgstr "Ovoj aplikaciji je potreban podešen račun za plaćanje."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2965
+#: mkt/webapps/models.py:2731
 msgid "awaiting approval"
 msgstr "čekanje na odobrenje"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2967
+#: mkt/webapps/models.py:2733
 msgid "rejected"
 msgstr "odbijeno"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2969
+#: mkt/webapps/models.py:2735
 msgid "requires additional review"
 msgstr "zahteva dodatan pregled"
 
-#: mkt/webapps/models.py:3020
+#: mkt/webapps/models.py:2786
 msgid "{region} approval status"
 msgstr "{region} status odobrenja"
 
-#: mkt/webapps/models.py:3026
+#: mkt/webapps/models.py:2792
 msgid "{region} nomination date"
 msgstr "{region} datum nominacije"
 
-#: mkt/webapps/tasks.py:152
+#: mkt/webapps/tasks.py:154
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Greška sa Vašom aplikacijom \"{app}\" na Firefox Marketplace-u"
 
@@ -7675,6 +7717,18 @@ msgstr "Odjavi se"
 #: mkt/zadmin/templates/admin/base.html:80
 msgid "Log in / Register"
 msgstr "Prijavi se / Registruj se"
+
+#: templates/base.html:122
+msgid "Firefox Accounts has arrived"
+msgstr ""
+
+#: templates/base.html:125
+msgid "Learn how to transfer your account"
+msgstr ""
+
+#: templates/base.html:128
+msgid "It's easy."
+msgstr ""
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"

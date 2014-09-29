@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2014-03-27 15:01+0000\n"
 "Last-Translator: bimbimka <barboradur@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -160,35 +160,35 @@ msgstr[2] "Overenie vašej aplikácie bolo úspešné bez chyby, s {0} upozornen
 msgid "Your app passed validation with no errors or messages."
 msgstr "Overenie vašej aplikácie bolo úspešné bez chýb a upozornení."
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "Zadajte e-mailovú adresu nového člena tímu"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "Príklad"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
@@ -204,11 +204,11 @@ msgstr "alebo <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr ""
 
@@ -220,11 +220,11 @@ msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe ser
 msgid "Remove this localization"
 msgstr "Odstrániť túto lokalizáciu"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Možno pod touto e-mailovou adresou nemáte účet?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Prihlásenie pomocou služby Persona zlyhalo. Nastala chyba servera."
 
@@ -536,11 +536,11 @@ msgstr "Zadarmo"
 msgid "Any"
 msgstr "Nezáleží"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr "Schválená aplikácia: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr "Zamietnutá aplikácia: {app}"
 
@@ -551,14 +551,6 @@ msgstr "Chyba pri schválení aplikácie: {app}"
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
 msgstr "Chyba pri zamietnutí aplikácie: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
-msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:325
 msgid "Error passing app: {app}"

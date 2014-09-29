@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:29-0700\n"
+"POT-Creation-Date: 2014-09-29 08:53-0700\n"
 "PO-Revision-Date: 2013-08-22 17:33+0200\n"
 "Last-Translator: Mihail Chilyashev <chilyashev@gmail.com>\n"
 "Language-Team: none\n"
@@ -154,35 +154,35 @@ msgstr[1] "Приложението ви премина валидацията �
 msgid "Your app passed validation with no errors or messages."
 msgstr "Приложението ви премина валидацията без грешки или съобщения."
 
-#: media/js/devreg/devhub.js:448
+#: media/js/devreg/devhub.js:446
 msgid "Changes Saved"
 msgstr "Промените са запазени"
 
-#: media/js/devreg/devhub.js:464
+#: media/js/devreg/devhub.js:462
 msgid "Enter a new team member's email address"
 msgstr "Въведете имейлът на нов участник в екипа"
 
-#: media/js/devreg/devhub.js:477
+#: media/js/devreg/devhub.js:475
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:482
+#: media/js/devreg/devhub.js:480
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:663
+#: media/js/devreg/devhub.js:661
 msgid "There was an error uploading your file."
 msgstr "Стана грешка при качването на файла ви."
 
-#: media/js/devreg/devhub.js:948
+#: media/js/devreg/devhub.js:946
 msgid "Learn more"
 msgstr "Научи още"
 
-#: media/js/devreg/devhub.js:952
+#: media/js/devreg/devhub.js:950
 msgid "Example"
 msgstr "Пример"
 
-#: media/js/devreg/devhub.js:1246
+#: media/js/devreg/devhub.js:1244
 msgid "Image changes being processed"
 msgstr "Обработват се промените по изображението"
 
@@ -198,11 +198,11 @@ msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash плеър</a>."
 
-#: media/js/devreg/in_app_products.js:278
+#: media/js/devreg/in_app_products.js:272
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:280
+#: media/js/devreg/in_app_products.js:274
 msgid "Disabled"
 msgstr ""
 
@@ -214,11 +214,11 @@ msgstr "Това свойство е временно спряно, докато
 msgid "Remove this localization"
 msgstr "Премахни тази локализация"
 
-#: media/js/devreg/login.js:109
+#: media/js/devreg/login.js:142
 msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Влизането с Persona се провали. Може би нямате акаунт с този имейл адрес?"
 
-#: media/js/devreg/login.js:114
+#: media/js/devreg/login.js:147
 msgid "Persona login failed. A server error was encountered."
 msgstr "Влизането с Persona се провали. Срещната е сървърна грешка."
 
@@ -526,11 +526,11 @@ msgstr "Безплатно"
 msgid "Any"
 msgstr "Който и да е"
 
-#: media/js/devreg/reviewers/reviewers.js:264
+#: media/js/devreg/reviewers/reviewers.js:264 media/js/devreg/reviewers/reviewers.js:315
 msgid "Approved app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:267
+#: media/js/devreg/reviewers/reviewers.js:267 media/js/devreg/reviewers/reviewers.js:318
 msgid "Rejected app: {app}"
 msgstr ""
 
@@ -540,14 +540,6 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:274
 msgid "Error rejecting app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:315
-msgid "Passed app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:318
-msgid "Failed app: {app}"
 msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:325
