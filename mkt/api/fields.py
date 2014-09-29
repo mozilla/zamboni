@@ -85,6 +85,7 @@ class TranslationSerializerField(fields.WritableField):
     default_error_messages = {
         'min_length': _('The field must have a length of at least {num} '
                         'characters.'),
+        'unknown_locale': _('The language code {lang_code} is invalid.')
     }
 
     def __init__(self, *args, **kwargs):
@@ -132,28 +133,29 @@ class TranslationSerializerField(fields.WritableField):
             return data.strip()
         elif isinstance(data, dict):
             for key, value in data.items():
-                data[key] = value.strip()
+                data[key] = value and value.strip()
             return data
         data = super(TranslationSerializerField, self).from_native(data)
         return unicode(data)
 
     def validate(self, value):
         super(TranslationSerializerField, self).validate(value)
+        value_too_short = True
 
-        if self.min_length is None:
-            return
-
-        raise_error = True
         if isinstance(value, basestring):
             if len(value.strip()) >= self.min_length:
-                raise_error = False
+                value_too_short = False
         else:
-            for k, v in value.items():
-                if len(v.strip()) >= self.min_length:
-                    raise_error = False
+            for locale, string in value.items():
+                if locale.lower() not in settings.LANGUAGES:
+                    raise ValidationError(
+                        self.error_messages['unknown_locale'].format(
+                            lang_code=repr(locale)))
+                if string and (len(string.strip()) >= self.min_length):
+                    value_too_short = False
                     break
 
-        if raise_error:
+        if self.min_length and value_too_short:
             raise ValidationError(
                 self.error_messages['min_length'].format(num=self.min_length))
 

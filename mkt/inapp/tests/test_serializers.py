@@ -28,7 +28,7 @@ class TestInAppProductSerializer(BaseInAppProductViewSetTests):
         product_data = dict(self.valid_in_app_product_data)
         del product_data['logo_url']
         serializer = self.post(data=product_data)
-        ok_(serializer.is_valid())
+        ok_(serializer.is_valid(), serializer.errors)
 
     def test_wrong_logo_size(self):
         self.mock_logo_url(resource='logo-128.png')
