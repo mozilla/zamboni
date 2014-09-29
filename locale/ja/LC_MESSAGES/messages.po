@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-05 23:45-0400\n"
+"PO-Revision-Date: 2014-09-29 19:10-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -327,11 +327,11 @@ msgstr "上級審査クリア"
 
 #: apps/amo/log.py:440
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} が追放されました"
 
 #: apps/amo/log.py:441
 msgid "App banned"
-msgstr ""
+msgstr "アプリが追放されました"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -655,7 +655,7 @@ msgstr "添付ファイルが %s の上限サイズを超えています。"
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1708,7 +1708,7 @@ msgstr "公開済み"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Marketplace から追放済み"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1892,11 +1892,11 @@ msgstr "アクションなし"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "追放済み"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "審査担当者のコメント"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1964,11 +1964,11 @@ msgstr "事前審査申請済み"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "追加審査に合格しました"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "追加審査に不合格となりました"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2040,7 +2040,7 @@ msgstr "端末ストレージ"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr "このアプリはファイルシステム上ののファイルへアクセするために Device Storage API を必要としています。"
+msgstr "このアプリはファイルシステム上のファイルへアクセスするために Device Storage API を必要としています。"
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
@@ -2548,7 +2548,7 @@ msgstr "このマニフェストはすでに登録されているようです。
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
-msgstr ""
+msgstr "このマニフェストはすでに登録されているようです。該当するアプリ「%s」は現在追放されています。<a href=\"%s\">アプリを編集</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -3520,7 +3520,7 @@ msgstr "アプリの設定を参照できますが、一切変更を行うこと
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "アプリの設定を参照できます。"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3556,11 +3556,11 @@ msgstr "このアプリはコンテンツレーティングが設定されてい
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "このアプリは <b>Marketplace から追放</b> されています。"
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr ""
+msgstr "このアプリはサイト管理者によって追放されています。質問がある場合は %(email)s までメールしてください。"
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3719,7 +3719,7 @@ msgstr "アプリの対応地域は <a href=\"{compatibility_page}\">互換性�
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
+msgstr "このアプリが低メモリ端末で動作する場合は、低メモリ端末上で表示されるよう審査を申請することができます。"
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -4578,7 +4578,7 @@ msgstr "アプリ内課金をテスト"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "アプリ内課金キー"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -4623,15 +4623,15 @@ msgstr "鍵を生成"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "アプリ内キー"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
+msgstr "アプリ内課金キーは、このアプリケーション内で任意の価格帯の課金を受け付けられるものです。あなたは製品の定義と管理の責任を負います。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "アプリ内キーを設定"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4639,11 +4639,11 @@ msgstr "アプリ内商品"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
+msgstr "アプリ内商品は、このアプリケーション内で課金を受け付けられるようにするとともに、Firefox Marketplace 開発者センター内での商品の作成と管理を可能にすることで、そのプロセスを簡素化します。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "アプリ内商品を設定"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -4903,7 +4903,7 @@ msgstr "Bock に関する MDN のドキュメントを見る"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:25
 msgid "Have you signed up for a Boku account and had your account approved? Please create an account name and your Boku service id below."
-msgstr "Bock アカウントを既に作成していて、そのアカウントは承認されていますか？ それなら、アカウント名と Boku サービス ID を以下で作成してください。"
+msgstr "Bock アカウントをすでに作成していて、そのアカウントは承認されていますか？ それなら、アカウント名と Boku サービス ID を以下で作成してください。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:34
 msgid "Create a name for this account."
@@ -5467,7 +5467,7 @@ msgstr "ファイル「manifest.webapp」がパッケージ型アプリアーカ
 
 #: mkt/files/utils.py:98
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "Web アプリのマニフェストをデコードできませんでした。ファイルに非 UTF-8 の特殊文字が含まれていないか確認してください。"
 
 #: mkt/files/utils.py:106
 msgid "The webapp manifest is not valid JSON."
@@ -5700,27 +5700,27 @@ msgstr "審査を優先しますか？"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
-msgstr ""
+msgstr "Tarako 状況"
 
 #: mkt/lookup/templates/lookup/app_summary.html:85
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako 有効"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako 無効"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "審査不要"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
-msgstr ""
+msgstr "審査待ち"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review failed"
-msgstr ""
+msgstr "審査不合格"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
@@ -6332,11 +6332,11 @@ msgstr "このアプリの再審査待ちを取り消します。作者がメー
 
 #: mkt/reviewers/utils.py:494
 msgid "Ban app"
-msgstr ""
+msgstr "アプリを追放"
 
 #: mkt/reviewers/utils.py:496
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
+msgstr "アプリを Marketplace から追放します。却下と似ていますが、作者は再登録できません。極端な場合のみ使用してください。"
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6556,11 +6556,11 @@ msgstr "{0} の審査担当者スコア"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "全期間のポイント内訳"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "ポイント"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6912,11 +6912,11 @@ msgstr "アプリ内課金に他のシステムを使用"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
-msgstr ""
+msgstr "すべての端末"
 
 #: mkt/search/forms.py:43
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
@@ -7098,15 +7098,15 @@ msgstr "アップロードした内容にエラーがあります。もう一度
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "バージョン %s はすでに存在します。"
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "「origin」への変更は許可されていません。"
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "ユーザによって登録された検証結果が一致しません。"
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7126,6 +7126,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"プライバシーポリシーは、アプリを通じて開発者が受け取ったデータをどのように扱うのかを説明する文書です。例えば、どのような種類のデータを受け取るか、それをどのように使用するか、それを誰と共有するか、個人情報を受け取るか"
+"どうか、それを匿名化する手段を講じているかどうか、開発者やその他関係者が受け取るデータの種類をユーザ自身が管理できるどうか、といった内容が含まれます。プライバシーポリシーへのリンクもしくは文面そのものを上の欄に入力"
+"してください。まだプライバシーポリシーを作成していない場合は、<a href=\"{url}\" target=\"_blank\">その書き方を学びましょう</a>。"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7513,59 +7516,63 @@ msgstr "このアカウント認証済みメールアドレスを使用してく
 
 #: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
 msgid "Firefox Accounts is coming"
-msgstr ""
+msgstr "Firefox Accounts が使用可能になります"
 
 #: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
 msgid "Activate your Firefox Account"
-msgstr ""
+msgstr "あなたの Firefox Account を有効化しましょう"
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
-msgstr ""
+msgstr "今すぐ有効化"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr ""
+msgstr "Firefox Accounts に関する詳しい情報は <a href=\"%(faq)s\">FAQ</a> を参照してください。"
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"このメールは、Firefox Marketplace にあなたのアカウントが作成されたため自動的にお送りしています。Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">利用規約</a> | <a href="
+"\"%(privacy)s\">プライバシーポリシー</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr ""
+msgstr "Firefox Marketplace は Firefox Accounts へ切り替わりました。あなたの新しい Firefox Account を有効化してください。"
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr ""
+msgstr "Firefox Marketplace はまもなく、現行のユーザログインシステム (Persona) を廃止し、Firefox Accounts と呼ばれるより一層強固なユーザアカウントシステムに置き換える予定です。"
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr ""
+msgstr "Persona から Firefox Accounts アカウントへの移行準備が整い次第、有効化のためのリンクをメールでお送りします。"
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"Firefox Marketplace は、Mozilla が提供するあらゆるサービスや製品にわたってより一貫したユーザ体験を提供するため、Firefox Accounts へ移行しました。Firefox Account を取得することで、既存の Marketplace "
+"アプリが参照可能となり、複数の端末上でシームレスにアプリを活用できます。提供サービスは順次追加予定です。"
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
-msgstr ""
+msgstr "アカウントの有効化は簡単です。サイトへログインし、あなたのアカウントを確認するだけです。"
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr ""
+msgstr "Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox Account を有効化する必要があります。"
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr ""
+msgstr "Firefox Marketplace は Firefox Accounts へ移行しました。あなたの新しいアカウントを有効化してください。"
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr ""
+msgstr "重要: Firefox Marketplace に掲載されているあなたのアプリを参照、管理するには、Firefox Account を有効化する必要があります。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7675,15 +7682,15 @@ msgstr "ログイン / ユーザ登録"
 
 #: templates/base.html:122
 msgid "Firefox Accounts has arrived"
-msgstr ""
+msgstr "Firefox Accounts が使用可能になりました"
 
 #: templates/base.html:125
 msgid "Learn how to transfer your account"
-msgstr ""
+msgstr "アカウントの移行方法を確認しましょう"
 
 #: templates/base.html:128
 msgid "It's easy."
-msgstr ""
+msgstr "簡単です。"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
