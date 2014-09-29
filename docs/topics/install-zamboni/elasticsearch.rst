@@ -67,7 +67,7 @@ post_save and post_delete hooks.
 
 Use this to create the apps index and index apps::
 
-    ./manage.py reindex_mkt --index=apps
+    ./manage.py reindex --index=apps
 
 Or you could use the makefile target (using the ``settings_local.py`` file)::
 

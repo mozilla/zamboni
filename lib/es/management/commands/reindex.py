@@ -57,7 +57,7 @@ INDEX_DICT = {
 ES = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
 
 
-job = 'lib.es.management.commands.reindex_mkt.run_indexing'
+job = 'lib.es.management.commands.reindex.run_indexing'
 time_limits = settings.CELERY_TIME_LIMITS[job]
 
 

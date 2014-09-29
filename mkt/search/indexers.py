@@ -275,7 +275,7 @@ class BaseIndexer(object):
 
     @classmethod
     def run_indexing(cls, ids, ES, index=None, **kw):
-        """Used in reindex_mkt."""
+        """Used in reindex."""
         sys.stdout.write('Indexing {0} {1}\n'.format(
             len(ids), cls.get_model()._meta.model_name))
 

@@ -64,7 +64,7 @@ update_commonplace:
 full_update: update_code update_deps update_db update_commonplace
 
 reindex:
-	$(DJANGO) reindex_mkt --settings=$(SETTINGS) $(ARGS)
+	$(DJANGO) reindex --settings=$(SETTINGS) $(ARGS)
 
 tagz.py:
 	curl -O https://raw.githubusercontent.com/cvan/tagz/master/tagz.py
