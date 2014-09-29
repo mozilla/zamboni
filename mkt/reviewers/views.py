@@ -15,7 +15,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db import transaction
-from django.db.models import Count, Q
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import never_cache
@@ -49,30 +49,27 @@ from mkt.api.base import form_errors, CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog, ActivityLogAttachment
-from mkt.files.models import File
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  MOTDForm)
 from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  EditorSubscription, EscalationQueue,
-                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore)
+                                  EditorSubscription, QUEUE_TARAKO,
+                                  ReviewerScore)
 from mkt.reviewers.serializers import (AdditionalReviewSerializer,
                                        CannedResponseSerializer,
                                        ReviewerAdditionalReviewSerializer,
                                        ReviewersESAppSerializer,
                                        ReviewingSerializer,
                                        ReviewerScoreSerializer,)
-from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
-                                 device_queue_search, log_reviewer_action)
+from mkt.reviewers.utils import (AppsReviewing, device_queue_search,
+                                 log_reviewer_action, ReviewersQueuesHelper)
 from mkt.search.views import search_form_to_es_fields, SearchView
 from mkt.site.decorators import json_view, login_required, permission_required
 from mkt.site.helpers import absolutify, product_as_dict
-from mkt.site.models import manual_order
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
-from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view
 from mkt.webapps.indexers import WebappIndexer
@@ -142,39 +139,14 @@ def home(request):
 
 
 def queue_counts(request):
-    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
-                                                                  flat=True)
-    public_statuses = amo.WEBAPPS_APPROVED_STATUSES
+    queues_helper = ReviewersQueuesHelper()
 
     counts = {
-        'pending': Webapp.objects.no_cache()
-                         .exclude(id__in=excluded_ids)
-                         .filter(disabled_by_user=False,
-                                 status=amo.STATUS_PENDING)
-                         .count(),
-        'rereview': (RereviewQueue.objects.no_cache()
-                                  .exclude(addon__in=excluded_ids)
-                                  .filter(addon__disabled_by_user=False)
-                                  .count()),
-        # This will work as long as we disable files of existing unreviewed
-        # versions when a new version is uploaded.
-        'updates': File.objects.no_cache()
-                       .exclude(version__addon__id__in=excluded_ids)
-                       .filter(version__addon__disabled_by_user=False,
-                               version__addon__is_packaged=True,
-                               version__addon__status__in=public_statuses,
-                               version__deleted=False,
-                               status=amo.STATUS_PENDING)
-                       .count(),
-        'escalated': EscalationQueue.objects.no_cache()
-                                    .filter(addon__disabled_by_user=False)
-                                    .count(),
-        'moderated': Review.objects.no_cache()
-                           .exclude(Q(addon__isnull=True) |
-                                    Q(reviewflag__isnull=True))
-                           .exclude(addon__status=amo.STATUS_DELETED)
-                           .filter(editorreview=True)
-                           .count(),
+        'pending': queues_helper.get_pending_queue().count(),
+        'rereview': queues_helper.get_rereview_queue().count(),
+        'updates': queues_helper.get_updates_queue().count(),
+        'escalated': queues_helper.get_escalated_queue().count(),
+        'moderated': queues_helper.get_moderated_queue().count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CN).count(),
         'additional_tarako': (
             AdditionalReview.objects
@@ -201,32 +173,19 @@ def _progress():
     the percentage.
     """
 
+    queues_helper = ReviewersQueuesHelper()
+
     days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
-    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
-    public_statuses = amo.WEBAPPS_APPROVED_STATUSES
 
     base_filters = {
-        'pending': (Webapp.objects
-                          .exclude(id__in=excluded_ids)
-                          .filter(status=amo.STATUS_PENDING,
-                                  disabled_by_user=False,
-                                  _latest_version__deleted=False),
-                    '_latest_version__nomination'),
-        'rereview': (RereviewQueue.objects
-                                  .exclude(addon__in=excluded_ids)
-                                  .filter(addon__disabled_by_user=False),
+        'pending': (queues_helper.get_pending_queue(),
+                    'nomination'),
+        'rereview': (queues_helper.get_rereview_queue(),
                      'created'),
-        'escalated': (EscalationQueue.objects
-                                     .filter(addon__disabled_by_user=False),
+        'escalated': (queues_helper.get_escalated_queue(),
                       'created'),
-        'updates': (File.objects
-                        .exclude(version__addon__id__in=excluded_ids)
-                        .filter(version__addon__disabled_by_user=False,
-                                version__addon__is_packaged=True,
-                                version__addon__status__in=public_statuses,
-                                version__deleted=False,
-                                status=amo.STATUS_PENDING),
-                    'version__nomination')
+        'updates': (queues_helper.get_updates_queue(),
+                    'nomination')
     }
 
     operators_and_values = {
@@ -517,83 +476,13 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created',
     return render(request, template, context(request, **ctx))
 
 
-def _do_sort(request, qs, date_sort='created'):
-    """Returns sorted Webapp queryset."""
-    if qs.model is Webapp:
-        return _do_sort_webapp(request, qs, date_sort)
-    return _do_sort_queue_obj(request, qs, date_sort)
-
-
-def _do_sort_webapp(request, qs, date_sort):
-    """
-    Column sorting logic based on request GET parameters.
-    """
-    sort_type, order = clean_sort_param(request, date_sort=date_sort)
-    order_by = ('-' if order == 'desc' else '') + sort_type
-
-    # Sort.
-    if sort_type == 'name':
-        # Sorting by name translation.
-        return order_by_translation(qs, order_by)
-
-    elif sort_type == 'num_abuse_reports':
-        return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
-                .order_by(order_by))
-
-    else:
-        return qs.order_by('-priority_review', order_by)
-
-
-def _do_sort_queue_obj(request, qs, date_sort):
-    """
-    Column sorting logic based on request GET parameters.
-    Deals with objects with joins on the Addon (e.g. RereviewQueue, Version).
-    Returns qs of apps.
-    """
-    sort_type, order = clean_sort_param(request, date_sort=date_sort)
-    sort_str = sort_type
-
-    if sort_type not in [date_sort, 'name']:
-        sort_str = 'addon__' + sort_type
-
-    # sort_str includes possible joins when ordering.
-    # sort_type is the name of the field to sort on without desc/asc markers.
-    # order_by is the name of the field to sort on with desc/asc markers.
-    order_by = ('-' if order == 'desc' else '') + sort_str
-
-    # Sort.
-    if sort_type == 'name':
-        # Sorting by name translation through an addon foreign key.
-        return order_by_translation(
-            Webapp.objects.filter(id__in=qs.values_list('addon', flat=True)),
-            order_by)
-
-    elif sort_type == 'num_abuse_reports':
-        qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
-
-    # Convert sorted queue object queryset to sorted app queryset.
-    sorted_app_ids = (qs.order_by('-addon__priority_review', order_by)
-                        .values_list('addon', flat=True))
-    qs = Webapp.objects.filter(id__in=sorted_app_ids)
-    return manual_order(qs, sorted_app_ids, 'addons.id')
-
-
 @reviewer_required
 def queue_apps(request):
-    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
-                                                                  flat=True)
-    qs = (Version.objects.no_cache().filter(
-          files__status=amo.STATUS_PENDING,
-          addon__disabled_by_user=False,
-          addon__status=amo.STATUS_PENDING)
-          .exclude(addon__id__in=excluded_ids)
-          .order_by('nomination', 'created')
-          .select_related('addon', 'files').no_transforms())
-
-    apps = _do_sort(request, qs, date_sort='nomination')
+    queues_helper = ReviewersQueuesHelper(request)
+    qs = queues_helper.get_pending_queue()
+    apps = queues_helper.sort(qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(apps)]
-
     return _queue(request, apps, 'pending', date_sort='nomination')
 
 
@@ -606,13 +495,12 @@ def queue_region(request, region=None):
     region = parse_region(region)
     column = '_geodata__region_%s_nominated' % region.slug
 
+    queues_helper = ReviewersQueuesHelper(request)
     qs = Webapp.objects.pending_in_region(region)
-
-    apps = [ActionableQueuedApp(app,
-                                app.geodata.get_nominated_date(region),
+    apps = [ActionableQueuedApp(app, app.geodata.get_nominated_date(region),
                                 reverse('approve-region',
                                         args=[app.id, region.slug]))
-            for app in _do_sort(request, qs, date_sort=column)]
+            for app in queues_helper.sort(qs, date_sort=column)]
 
     return _queue(request, apps, 'region', date_sort=column,
                   template='reviewers/queue_region.html',
@@ -641,12 +529,9 @@ def additional_review(request, queue):
 
 @reviewer_required
 def queue_rereview(request):
-    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
-                                                                  flat=True)
-    rqs = (RereviewQueue.objects.no_cache()
-                        .filter(addon__disabled_by_user=False)
-                        .exclude(addon__in=excluded_ids))
-    apps = _do_sort(request, rqs)
+    queues_helper = ReviewersQueuesHelper(request)
+    qs = queues_helper.get_rereview_queue()
+    apps = queues_helper.sort(qs)
     apps = [QueuedApp(app, app.rereviewqueue_set.all()[0].created)
             for app in apps]
     return _queue(request, apps, 'rereview')
@@ -654,9 +539,9 @@ def queue_rereview(request):
 
 @permission_required([('Apps', 'ReviewEscalated')])
 def queue_escalated(request):
-    eqs = EscalationQueue.objects.no_cache().filter(
-      addon__disabled_by_user=False)
-    apps = _do_sort(request, eqs)
+    queues_helper = ReviewersQueuesHelper(request)
+    qs = queues_helper.get_escalated_queue()
+    apps = queues_helper.sort(qs)
     apps = [QueuedApp(app, app.escalationqueue_set.all()[0].created)
             for app in apps]
     return _queue(request, apps, 'escalated')
@@ -664,17 +549,9 @@ def queue_escalated(request):
 
 @reviewer_required
 def queue_updates(request):
-    excluded_ids = EscalationQueue.objects.no_cache().values_list('addon',
-                                                                  flat=True)
-    qs = (Version.objects.no_cache().filter(
-          files__status=amo.STATUS_PENDING,
-          addon__disabled_by_user=False,
-          addon__status__in=amo.WEBAPPS_APPROVED_STATUSES)
-          .exclude(addon__id__in=excluded_ids)
-          .order_by('nomination', 'created')
-          .select_related('addon', 'files').no_transforms())
-
-    apps = _do_sort(request, qs, date_sort='nomination')
+    queues_helper = ReviewersQueuesHelper(request)
+    qs = queues_helper.get_updates_queue()
+    apps = queues_helper.sort(qs, date_sort='nomination')
     apps = [QueuedApp(app, app.all_versions[0].nomination)
             for app in Webapp.version_and_file_transformer(apps)]
 
@@ -699,13 +576,10 @@ def queue_device(request):
 @reviewer_required
 def queue_moderated(request):
     """Queue for reviewing app reviews."""
-    rf = (Review.objects.no_cache()
-                .exclude(Q(addon__isnull=True) | Q(reviewflag__isnull=True))
-                .exclude(addon__status=amo.STATUS_DELETED)
-                .filter(editorreview=True)
-                .order_by('reviewflag__created'))
+    queues_helper = ReviewersQueuesHelper(request)
+    qs = queues_helper.get_moderated_queue()
 
-    page = paginate(request, rf, per_page=20)
+    page = paginate(request, qs, per_page=20)
     flags = dict(ReviewFlag.FLAGS)
     reviews_formset = ReviewFlagFormSet(request.POST or None,
                                         queryset=page.object_list,

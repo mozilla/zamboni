@@ -43,8 +43,9 @@ from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
 from mkt.reviewers.models import (CannedResponse, EscalationQueue,
                                   QUEUE_TARAKO, RereviewQueue, ReviewerScore)
-from mkt.reviewers.views import (_do_sort, _progress, app_review, queue_apps,
+from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
+from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -149,11 +150,14 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         super(TestReviewersHome, self).setUp()
         self.url = reverse('reviewers.home')
         self.apps = [app_factory(name='Antelope',
-                                 status=amo.STATUS_PENDING),
+                                 status=amo.STATUS_PENDING,
+                                 file_kw={'status': amo.STATUS_PENDING}),
                      app_factory(name='Bear',
-                                 status=amo.STATUS_PENDING),
+                                 status=amo.STATUS_PENDING,
+                                 file_kw={'status': amo.STATUS_PENDING}),
                      app_factory(name='Cougar',
-                                 status=amo.STATUS_PENDING)]
+                                 status=amo.STATUS_PENDING,
+                                 file_kw={'status': amo.STATUS_PENDING})]
         self.packaged_app = app_factory(name='Dinosaur',
                                         status=amo.STATUS_PUBLIC,
                                         is_packaged=True)
@@ -3497,34 +3501,34 @@ class TestQueueSort(AppReviewerTest):
         qs = Webapp.objects.no_cache().all()
 
         # Test apps are sorted by created/asc by default.
-        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
         # Test sorting by created, descending.
-        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
         # Test sorting by app name.
-        r = rf.get(self.url, {'sort': 'name', 'order': 'asc'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'name', 'order': 'asc'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
-        r = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
         # By abuse reports.
         AbuseReport.objects.create(addon=self.apps[1])
-        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+        req = rf.get(self.url, {'sort': 'num_abuse_reports',
                               'order': 'asc'})
-        sorted_qs = _do_sort(r, qs)
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
 
-        r = rf.get(self.url, {'sort': 'num_abuse_reports',
+        req = rf.get(self.url, {'sort': 'num_abuse_reports',
                               'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
     def test_do_sort_version_nom(self):
@@ -3572,22 +3576,22 @@ class TestQueueSort(AppReviewerTest):
         later_rrq.save()
 
         request = rf.get(url, {'sort': 'created'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
 
         # Assert the order that RereviewQueue objects were created is
         # maintained.
         eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'created', 'order': 'desc'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
         eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'name', 'order': 'asc'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
         eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'name', 'order': 'desc'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
         eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
     def test_sort_with_priority_review(self):
@@ -3615,13 +3619,13 @@ class TestQueueSort(AppReviewerTest):
         qs = Webapp.objects.no_cache().all()
 
         # Test apps are sorted by created/asc by default.
-        r = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'invalidsort', 'order': 'dontcare'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[2], self.apps[1], self.apps[0]])
 
         # Test sorting by created, descending.
-        r = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs)
+        req = rf.get(self.url, {'sort': 'created', 'order': 'desc'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[2], self.apps[0], self.apps[1]])
 
         # And with Version model.
@@ -3637,12 +3641,12 @@ class TestQueueSort(AppReviewerTest):
               .order_by('nomination', 'created')
               .select_related('addon', 'files').no_transforms())
 
-        r = rf.get(self.url, {'sort': 'nomination'})
-        sorted_qs = _do_sort(r, qs, date_sort='nomination')
+        req = rf.get(self.url, {'sort': 'nomination'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs, date_sort='nomination')
         eq_(list(sorted_qs), [self.apps[2], self.apps[1], self.apps[0]])
 
-        r = rf.get(self.url, {'sort': 'nomination', 'order': 'desc'})
-        sorted_qs = _do_sort(r, qs, date_sort='nomination')
+        req = rf.get(self.url, {'sort': 'nomination', 'order': 'desc'})
+        sorted_qs = ReviewersQueuesHelper(req).sort(qs, date_sort='nomination')
         eq_(list(sorted_qs), [self.apps[2], self.apps[0], self.apps[1]])
 
         # And with Rereview model.
@@ -3658,11 +3662,11 @@ class TestQueueSort(AppReviewerTest):
         pri_rrq.save()
 
         request = rf.get(url, {'sort': 'created'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
         eq_([pri_rrq.addon, earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'created', 'order': 'desc'})
-        apps = _do_sort(request, RereviewQueue.objects.all())
+        apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
         eq_([pri_rrq.addon, later_rrq.addon, earlier_rrq.addon], list(apps))
 
 
