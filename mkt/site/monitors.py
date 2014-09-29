@@ -132,10 +132,7 @@ def path():
           settings.COLLECTIONS_ICON_PATH,
           settings.PREVIEWS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,)
-    r = [os.path.join(settings.ROOT, 'locale'),
-         # The deploy process will want write access to this.
-         # We do not want Django to have write access though.
-         settings.PROD_DETAILS_DIR]
+    r = [os.path.join(settings.ROOT, 'locale')]
     filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
                  for path in rw]
     filepaths += [(path, os.R_OK, "We want read") for path in r]
