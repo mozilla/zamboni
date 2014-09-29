@@ -4,7 +4,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.functional import memoize
 
-import amo
 from mkt.site.models import ModelBase
 
 
@@ -90,20 +89,3 @@ class EmailPreview(ModelBase):
 
     class Meta:
         db_table = 'email_preview'
-
-
-class DownloadSource(models.Model):
-    # e.g., `mkt-search` or `mkt-detail-`.
-    name = models.CharField(max_length=255)
-
-    # e.g., `full` or `prefix`.
-    type = models.CharField(max_length=255)
-
-    description = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        db_table = 'download_sources'
-
-    def __unicode__(self):
-        return u'%s (%s)' % (self.name, self.type)
