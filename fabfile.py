@@ -112,13 +112,17 @@ def update_celery():
 
 @task
 def deploy():
+    package_dirs = ['zamboni', 'venv']
+    if os.path.isdir(os.path.join(ROOT, 'aeskeys')):
+        package_dirs.append('aeskeys')
+
     rpmbuild = helpers.deploy(name='zamboni',
                               env=settings.ENV,
                               cluster=settings.CLUSTER,
                               domain=settings.DOMAIN,
                               root=ROOT,
                               deploy_roles=['web', 'celery'],
-                              package_dirs=['zamboni', 'venv'])
+                              package_dirs=package_dirs)
 
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
     execute(update_celery)
