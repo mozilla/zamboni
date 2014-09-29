@@ -971,9 +971,6 @@ PREINSTALL_TEST_PLAN_LATEST = datetime.datetime.fromtimestamp(
 # The key we'll use to sign preverified-account assertions.
 PREVERIFIED_ACCOUNT_KEY = os.path.join(ROOT, 'mkt/account/tests/sample.key')
 
-# Where product details are stored see django-mozilla-product-details
-PROD_DETAILS_DIR = path('lib/product_json')
-
 # Number of days the webpay product icon is valid for.
 # After this period, the icon will be re-fetched from its external URL.
 # If you change this value, update the docs:

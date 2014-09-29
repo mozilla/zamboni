@@ -10,11 +10,6 @@ docs/_build
 docs/_gh-pages
 docs/api/_build
 dreadnot-stage.ini
-lib/product_json/.gitignore
-lib/product_json/*.json
-lib/product_json/.last_update
-lib/product_json/regions/*.json
-lib/product_json/regions/.last_update
 build*.py
 media/build_id.txt
 media/manifest.appcache
