@@ -729,7 +729,8 @@ class BaseTestFeedCollection(object):
         obj_data = self.data()
 
         res1, data1 = self.create(self.client, **obj_data)
-        eq_(res1.status_code, 201)
+        eq_(res1.status_code, 201,
+            getattr(res1, 'json', 'unexpected status code'))
         eq_(obj_data['slug'], data1['slug'])
 
         res2, data2 = self.create(self.client, **obj_data)

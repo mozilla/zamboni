@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.db import models
 
 from mkt.prices.models import Price
@@ -17,6 +18,8 @@ class InAppProduct(UUIDModelMixin, ModelBase):
     webapp = models.ForeignKey('webapps.WebApp', null=True, blank=True)
     price = models.ForeignKey(Price)
     name = TranslatedField(require_locale=False)
+    default_locale = models.CharField(max_length=10,
+                                      default=settings.LANGUAGE_CODE.lower())
     logo_url = models.URLField(max_length=1024, null=True, blank=True)
     # The JSON value for the simulate parameter of a JWT.
     # Example: {"result": "postback"}. This will be NULL for no simulation.
@@ -42,7 +45,8 @@ class InAppProduct(UUIDModelMixin, ModelBase):
         return json.loads(self.simulate)
 
     def is_purchasable(self):
-        return self.active and (self.simulate or (self.webapp and self.webapp.is_public()))
+        return self.active and (self.simulate or
+                                (self.webapp and self.webapp.is_public()))
 
     def delete(self):
         raise models.ProtectedError('Inapp products may not be deleted.', self)

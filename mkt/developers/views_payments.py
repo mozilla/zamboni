@@ -396,7 +396,8 @@ def in_app_products(request, addon_id, addon, webapp=True, account=None):
     return render(request, 'developers/payments/in-app-products.html',
                   {'addon': addon, 'form': form, 'new_product': new_product,
                    'owner': owner, 'products': products, 'form': form,
-                   'list_url': list_url, 'detail_url': detail_url})
+                   'list_url': list_url, 'detail_url': detail_url,
+                   'active_lang': request.LANG.lower()})
 
 
 def _fix_origin_link(link):

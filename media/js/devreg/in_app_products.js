@@ -168,10 +168,19 @@
             var method = self.product.guid ? 'patch' : 'post';
             console.log('saving product', method.toUpperCase(), self.url(),
                         self.product);
+
+            // TODO: pass a real localized name when bug 1070120 is fixed.
+            console.warn('temporarily overriding localized name data');
+            var localizedName = {};
+            localizedName[this.$rootData.activeLang] = this.product.name;
+            this.product.name = localizedName;
+            this.product.default_locale = this.$rootData.activeLang;
+
             $.ajax({
                 method: method,
                 url: self.url(),
-                data: self.product,
+                data: JSON.stringify(self.product),
+                contentType: 'application/json',
             }).always(function () {
                 self.saveButton.attr('disabled', false);
             }).done(function (product) {

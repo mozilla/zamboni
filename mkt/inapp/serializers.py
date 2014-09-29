@@ -2,15 +2,18 @@ from cStringIO import StringIO
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import trans_real as translation
 
 import commonware
 import requests
+from jinja2.filters import do_dictsort
 from PIL import Image
 from rest_framework import serializers
 from rest_framework.serializers import ValidationError
 from tower import ugettext as _
 
 from mkt.prices.models import Price
+from mkt.api.fields import TranslationSerializerField
 from mkt.api.forms import SchemeURLValidator as URLValidator
 from mkt.inapp.models import InAppProduct
 
@@ -18,7 +21,19 @@ from mkt.inapp.models import InAppProduct
 log = commonware.log.getLogger('z.inapp')
 
 
+class NameField(TranslationSerializerField):
+
+    def field_to_native(self, obj, field_name):
+        # TODO: maybe remove this when the API response is fixed in
+        # bug 1070125
+        self.requested_language = obj.default_locale
+        return super(NameField, self).field_to_native(obj, field_name)
+
+
 class InAppProductSerializer(serializers.ModelSerializer):
+    _locales = [(translation.to_locale(k).replace('_', '-').lower(), v)
+                for k, v in do_dictsort(settings.LANGUAGES)]
+
     app = serializers.SlugRelatedField(read_only=True, slug_field='app_slug',
                                        source='webapp')
     guid = serializers.CharField(read_only=True)
@@ -26,12 +41,23 @@ class InAppProductSerializer(serializers.ModelSerializer):
     logo_url = serializers.CharField(
         validators=[URLValidator(schemes=['http', 'https'])],
         required=False)
-    name = serializers.CharField()
+    name = NameField()
+    default_locale = serializers.ChoiceField(choices=_locales)
     price_id = serializers.PrimaryKeyRelatedField(source='price')
 
     class Meta:
         model = InAppProduct
-        fields = ['active', 'guid', 'app', 'price_id', 'name', 'logo_url']
+        fields = ['active', 'guid', 'app', 'price_id', 'name',
+                  'default_locale', 'logo_url']
+
+    def validate(self, attrs):
+        default_name = attrs['name'].get(attrs['default_locale'], None)
+        if ((attrs['default_locale'] not in attrs['name']) or
+                not default_name):
+            raise ValidationError(
+                'no localization for default_locale {d} in "name"'
+                .format(d=repr(attrs['default_locale'])))
+        return attrs
 
     def validate_logo_url(self, attrs, source):
         logo_url = attrs.get(source)
