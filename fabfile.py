@@ -131,19 +131,6 @@ def deploy():
 
 
 @task
-def deploy_web():
-    helpers.deploy(name='zamboni',
-                   env=settings.ENV,
-                   cluster=settings.CLUSTER,
-                   domain=settings.DOMAIN,
-                   root=ROOT,
-                   use_yum=False,
-                   package_dirs=['zamboni', 'venv'])
-
-    helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
-
-
-@task
 def pre_update(ref=settings.UPDATE_REF):
     local('date')
     execute(disable_cron)
