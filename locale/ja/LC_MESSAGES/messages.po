@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-29 20:54-0400\n"
+"PO-Revision-Date: 2014-09-29 21:10-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -7516,7 +7516,7 @@ msgstr "このアカウント認証済みメールアドレスを使用してく
 
 #: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
 msgid "Firefox Accounts is coming"
-msgstr "Firefox Accounts が使用可能になります"
+msgstr "Firefox Accounts が統合されます"
 
 #: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
 msgid "Activate your Firefox Account"
