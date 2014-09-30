@@ -15,7 +15,7 @@
   },
   "commonplaceDependencies": {
     "git://github.com/mozilla/fireplace.git": {
-      "symlinks": {"hearth/media": "media/fireplace"},
+      "symlinks": {"src/media": "media/fireplace"},
       "name": "fireplace"
     },
     "git://github.com/mozilla/rocketfuel.git": {
