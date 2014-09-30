@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-30 20:10+0000\n"
+"PO-Revision-Date: 2014-09-30 21:13+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1412107821.0\n"
+"X-POOTLE-MTIME: 1412111637.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -4666,15 +4666,18 @@ msgstr "Sortu gakoak"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "Aplikazio barneko gakoak"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Aplikazio barneko ordainketen gakoekin, zure aplikaziotik edozein salmenta-"
+"prezioko kobrantzak egin ditzakezu. Zu zara produktuen definizio eta "
+"kudeaketaren arduraduna."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Konfiguratu aplikazio barneko gakoak"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4683,30 +4686,42 @@ msgstr "Aplikazio barneko produktuak"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Aplikazio barneko produktuekin, zure aplikaziotik kobrantzak egin ditzakezu "
+"eta prozesua sinplifikatzen dute, Firefox Marketplace Developer Hub-etik "
+"zure produktuak sortu eta kudeatzeko aukera emanez."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Konfiguratu aplikazio barneko produktuak"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Gaitu"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "Your app must be packaged and specify an <a href=\"%(origin)s\">origin</a> to use this in-app payment system."
 msgstr ""
+"Aplikazio barneko ordainketa-sistema hau erabiltzeko, zure aplikazioa "
+"paketatuta egon behar da, eta <a href=\"%(origin)s\">jatorria</a> zehaztu "
+"behar duzu."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:36
 msgid "Your app must define an <a href=\"%(origin)s\">origin</a> in your manifest so that receipts can be verified properly."
 msgstr ""
+"Zure aplikazioak <a href=\"%(origin)s\">jatorri</a> bat zehaztu behar du "
+"manifestuan, ordainagiriak behar bezala egiaztatzeko."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:43
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Eginbide honen garapena aktibo dago. Irakurri <a target=\"_blank\" href=\"%"
+"(doc_link)s\">dokumentazioa</a> informazio gehiagorako."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Arazoren bat izanez gero, <a target=\"_blank\" href=\"%(bug_link)s\">eman "
+"arazoaren berri</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:60
 msgid "Icon"
@@ -4714,7 +4729,7 @@ msgstr "Ikonoa"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:62
 msgid "Price Point"
-msgstr ""
+msgstr "Salmenta-prezioa"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Product ID"
@@ -4762,7 +4777,9 @@ msgstr "Ordainketa-kontuak"
 
 #: mkt/developers/templates/developers/payments/premium.html:124
 msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Zure aplikazioa ez dago osatuta. Select a payment account and price point to restore it."
+msgstr ""
+"Zure aplikazioa ez dago osatuta. Hautatu ordainketarako kontu bat eta "
+"salmenta-prezioa berrezartzeko."
 
 #: mkt/developers/templates/developers/payments/premium.html:145
 msgid "Countries"
@@ -5992,11 +6009,11 @@ msgstr ""
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
-msgstr ""
+msgstr "Operadorearen panela"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
-msgstr ""
+msgstr "<small>Operadorearen</small> panela"
 
 #: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
 msgid "Preload Candidates"
@@ -6012,7 +6029,7 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:18
 msgid "Test Plan"
-msgstr ""
+msgstr "Proben plana"
 
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
@@ -6042,15 +6059,15 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Eskari-zenbakia:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Eskariaren data:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Artikulua"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
@@ -6058,11 +6075,11 @@ msgstr "Saltzailea"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr ""
+msgstr "Firefox Marketplace zerbitzuaren baldintzak irakurtzeko, bisitatu:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
-msgstr ""
+msgstr "Laguntza lortzeko, bisitatu:"
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
