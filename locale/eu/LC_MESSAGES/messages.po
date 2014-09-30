@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-07 20:59+0000\n"
+"PO-Revision-Date: 2014-09-30 20:07+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1410123593.0\n"
+"X-POOTLE-MTIME: 1412107639.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -332,11 +332,11 @@ msgstr "Goratzea ezabatu da"
 
 #: apps/amo/log.py:440
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} debekatuta."
 
 #: apps/amo/log.py:441
 msgid "App banned"
-msgstr ""
+msgstr "Aplikazioa debekatuta"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -660,7 +660,7 @@ msgstr "Eranskinak gehieneko tamaina (%s) gainditzen du."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1713,7 +1713,7 @@ msgstr "Argitaratua"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Marketplace-etik debekatuta"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1897,11 +1897,11 @@ msgstr "Ekintzarik ez"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "Debekatuta"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Berrikuslearen iruzkina"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1945,35 +1945,36 @@ msgstr "Berriro berrikusia Premium motara aldatu delako"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Berrikuspen berria gailuak gehitu direlako"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Berrikuspen berria eskakizunak aldatu direlako"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Berrikuspen berria helduentzako eduki gisa sailkatu delako"
 
 #: mkt/constants/comm.py:64
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Goratua VIP aplikazioa delako"
 
 #: mkt/constants/comm.py:65
+#, fuzzy
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Goratua argitaratu aurreko aplikazioa delako"
 
 #: mkt/constants/comm.py:66
 msgid "Priority review requested"
-msgstr ""
+msgstr "Lehentasunezko berrikuspena eskatuta"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "Berrikuspen gehigarria gaindituta"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "Berrikuspen gehigarria huts eginda"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2557,6 +2558,9 @@ msgstr "Dirudienez, manifestu hori baztertuta dagoen %s aplikaziorako bidali duz
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Hara! Dirudienez dagoeneko bidalia duzu manifestu hori %s(r)entzako, zeina "
+"une honetan Marketplace-ean debekatuta dagoen. <a href=\"%s\">Editatu "
+"aplikazioa</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2617,10 +2621,14 @@ msgstr "Zure iruzkinak"
 #: mkt/developers/forms.py:757
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
+"<b>Argitaratuta</b>: edonorentzako ikusgai Marketplace-ean, eta bilaketen "
+"emaitzetan eta zerrendetan sartua."
 
 #: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
+"<b>Zerrendatu gabea</b>: URLa dutenentzat soilik ikusgai, eta bilaketen "
+"emaitzetan eta zerrendetan sartu gabea."
 
 #: mkt/developers/forms.py:777
 msgid "App Visibility:"
@@ -2719,6 +2727,8 @@ msgstr "Komando-lerroa"
 #: mkt/developers/forms.py:1135
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
+"Honako hau nire aplikazioaren bertsio aktibo bihurtu, berrikusi eta onartu "
+"bezain laster."
 
 #: mkt/developers/forms.py:1162
 msgid ""
@@ -2770,19 +2780,21 @@ msgstr "Sustapen-prezioa"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Operadorearen fakturazioa soilik onartzen du"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Kreditu-txarteldun fakturazioa soilik onartzen du"
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Fakturazio-metodo guztiak onartzen ditu"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
 msgstr ""
+"Aplikazioa doakoa bada, aplikazio barneko ordainketak gaituta egon behar "
+"dira"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -3074,7 +3086,7 @@ msgstr ""
 
 #: mkt/developers/views.py:441
 msgid "There was an error with the form."
-msgstr "Errore bat egon da formularioan."
+msgstr "Errore bat egon da inprimakian."
 
 #: mkt/developers/views.py:472
 msgid "Version successfully edited."
@@ -3082,7 +3094,7 @@ msgstr "Bertsioa arrakastaz editatu da."
 
 #: mkt/developers/views.py:507
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Bertsioa behar bezala bihurtu da aktibo."
 
 #: mkt/developers/views.py:522
 msgid "Version \"{0}\" deleted."
@@ -3158,15 +3170,19 @@ msgstr "Ez dago ordainketa-konturik aplikazio honetarako."
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
-msgstr ""
+msgstr "Marketplace-aren APIa"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
 msgstr ""
+"Marketplace-aren APIa atzitzeko, sortu OAuth gako parea azpiko inprimakia "
+"erabiliz."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
 msgstr ""
+"Marketplace-aren APIa atzitzeko, onartu <a href=\"%(terms)s\">zerbitzuaren "
+"baldintzak</a> eta sortu OAuth gako parea azpiko inprimakia erabiliz."
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
@@ -3174,10 +3190,17 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> Marketplace-aren APIak bi erabilera nagusi ditu. Beste webgune batetik "
+"OAuth fluxu tradizional bat erabiliz, edo komando-lerro tresna batetik. "
+"Desberdintasuna <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace-"
+"aren dokumentazioan</a> azaltzen da. Edozein proba <a href=\"https"
+"://marketplace-dev.allizom.org\">garapen-zerbitzarian</a> egingo da beti, eta "
+"ez produkzioko zerbitzarian. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Bezero mota"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -3225,11 +3248,13 @@ msgstr "<p>OAuth kredentzialekin Mac OS Xren komando-lerrorako Python liburutegi
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr ""
+"Aplikazioa berrikusi edo argitaratu ahal izateko, aurrena <a href=\"%"
+"(next_url)s\">%(next_step_name)s</a> konfiguratu behar duzu."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(next_url)s\">%(next_step_name)s</a> konfiguratu beharra duzu."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:316
@@ -3280,7 +3305,7 @@ msgstr "Baimendu sarbidea"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s(e)k zure Marketplace-eko kontua atzitu nahi du."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -3317,10 +3342,14 @@ msgstr "Ezarpenak"
 #: mkt/developers/templates/developers/skeleton_impala.html:99 mkt/zadmin/templates/admin/base.html:49 templates/base.html:105
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
+"Zenbait eginbide aldi baterako desgaituta daude, webgunearen mantentze-lanak "
+"burutu arte. Oso laster izango gara berriz bueltan."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:105 templates/base.html:111
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
+"Zerbitzuaren baldintzak azkenekoz onartu zenituenetik aldatu egin dira. "
+"Irakurri eta onartu <a href=\"%(url)s\">baldintza berriak</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:151
 msgid "Please sign in"
@@ -3329,6 +3358,8 @@ msgstr "Hasi saioa, mesedez"
 #: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:154
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr ""
+"Hasi saioa edo eman izena zure <a href=\"%(url)s\">Persona</a> kontuarekin "
+"jarraian."
 
 #: mkt/developers/templates/developers/terms.html:3
 msgid "Terms and Conditions"
@@ -3354,6 +3385,8 @@ msgstr "Probatzen"
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Aplikazioak Firefox Marketplace-era bidali baino lehen, erabili probak "
+"egiteko tresna hauek."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3406,6 +3439,8 @@ msgstr "Balidatu"
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:68
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr ""
+"<strong>Ez ahaztu protokolo bat ere!</strong> Probatu <a href=\"#\">%"
+"(http)s</a> edo <a href=\"#\">%(https)s</a> gehituz."
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:76
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
@@ -3460,6 +3495,9 @@ msgstr "Ongi etorri garatzailearen arbelera"
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Oraindik ez duzu aplikaziorik bidali Firefox Marketplace-era. <a href=\"%"
+"(app_url)s\">Aplikazioa sortu</a> ondoren, egin klik azpiko \"Bidali aplikazio "
+"bat\" botoian."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -4992,7 +5030,7 @@ msgstr "Barkatu, errore bat gertatu da gure sisteman. Saiatu berriro geroago."
 
 #: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr "Diseinua"
+msgstr "Diseinatu"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
@@ -7252,7 +7290,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
-msgstr "Publikatuta!"
+msgstr "Argitaratuta!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
