@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-25 21:13+0000\n"
+"PO-Revision-Date: 2014-09-30 20:37+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411679598.0\n"
+"X-POOTLE-MTIME: 1412109476.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -521,11 +521,11 @@ msgstr "Prioritetsgranskning"
 
 #: apps/amo/log.py:682
 msgid "{addon} {version} passed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} passerade {queue}-granskning."
 
 #: apps/amo/log.py:689
 msgid "{addon} {version} failed the {queue} review."
-msgstr ""
+msgstr "{addon} {version} misslyckades {queue}-granskning."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -1719,7 +1719,7 @@ msgstr "Blockerad"
 
 #: mkt/constants/base.py:36
 msgid "Unlisted"
-msgstr ""
+msgstr "Olistad"
 
 #: mkt/constants/base.py:42
 msgid "Obsolete"
@@ -1749,15 +1749,15 @@ msgstr "Premium"
 
 #: mkt/constants/base.py:136
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium med in-app betalningar"
 
 #: mkt/constants/base.py:137
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Gratis med in-app betalningar"
 
 #: mkt/constants/base.py:138
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Jag använder mitt eget system för in-app betalningar"
 
 #: mkt/constants/base.py:190
 msgid "Manual Reviewer Points"
@@ -2604,11 +2604,15 @@ msgstr "Dina kommentarer"
 
 #: mkt/developers/forms.py:757
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
-msgstr "<b>Publicerad</b>: Synlig för alla i Marketplace och ingår i sökresultat och förteckningssidor."
+msgstr ""
+"<b>Publicerad</b>: Visas för alla i Marketplace och ingår i sökresultat och "
+"förteckningssidor."
 
 #: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr "<b>Olistad</b>:  Synlig för endast personer med URL och visas inte i sökresultat och förteckningssidor."
+msgstr ""
+"<b>Olistad</b>: Visas endast för personer med URL:en och visas inte i "
+"sökresultat och förteckningssidor."
 
 #: mkt/developers/forms.py:777
 msgid "App Visibility:"
@@ -2616,7 +2620,7 @@ msgstr "Synlighet app:"
 
 #: mkt/developers/forms.py:780
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr "<b>Begränsad till min grupp</b>: Synlig för endast gruppmedlemmar."
+msgstr "<b>Begränsad till min grupp</b>: Visas endast för gruppmedlemmar."
 
 #: mkt/developers/forms.py:821
 msgid "Choose the regions your app will be listed in:"
@@ -3591,7 +3595,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
-msgstr ""
+msgstr "Din app är <b>godkänd</b> och är för närvarande <b>olistad</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:107
 msgid "Only those with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
@@ -3600,6 +3604,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:115
 msgid "Your app has been <b>approved</b> and is currently only visible to team members."
 msgstr ""
+"Din app har <b>godkänts</b> och visas för närvarande endast för "
+"gruppmedlemmar."
 
 #: mkt/developers/templates/developers/apps/status.html:118
 msgid "Only <b>team members</b> with the following URL can view and install this app:<br> <a href=\"%(app_url)s\">%(app_url)s</a>."
@@ -5407,12 +5413,12 @@ msgstr ""
 
 #: mkt/files/helpers.py:151
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Den filen finns inte längre."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:160
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Filstorleken är över gränsen på {0}."
 
 #: mkt/files/helpers.py:174
 msgid "Problems decoding {0}."
@@ -5421,10 +5427,12 @@ msgstr ""
 #: mkt/files/helpers.py:212
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
+"Filen kan inte visas på nätet. Vänligen ladda ner filen för att visa "
+"innehållet."
 
 #: mkt/files/helpers.py:220
 msgid "This file is a directory."
-msgstr ""
+msgstr "Den här filen är en katalog."
 
 #: mkt/files/tasks.py:28
 msgid "There was an error accessing file %s. %s."
@@ -5867,19 +5875,21 @@ msgstr ""
 #: mkt/lookup/templates/lookup/user_summary.html:98 mkt/lookup/templates/lookup/user_summary.html:106 mkt/lookup/templates/lookup/user_summary.html:110
 #: mkt/lookup/templates/lookup/user_summary.html:114
 msgid "Delete User"
-msgstr ""
+msgstr "Ta bort användare"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
 msgstr ""
+"Ta bort denna användare kommer att <strong>permanent</strong> ta bort den "
+"här användarens konto."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort den här användaren?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
-msgstr ""
+msgstr "Den här användaren har redan tagits bort."
 
 #: mkt/lookup/templates/lookup/user_summary.html:123
 msgid "Deleted by"
@@ -5887,7 +5897,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:126
 msgid "Reason"
-msgstr ""
+msgstr "Orsak"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5953,7 +5963,7 @@ msgstr ""
 
 #: mkt/operators/templates/operators/preloads.html:39
 msgid "{0}, {1}"
-msgstr ""
+msgstr "{0}, {1}"
 
 #: mkt/operators/templates/operators/preloads.html:52
 msgid "No preload candidates found"
@@ -6340,7 +6350,7 @@ msgstr "Lade till {0}"
 
 #: mkt/reviewers/views.py:299 mkt/reviewers/views.py:320 mkt/submit/forms.py:33 mkt/submit/forms.py:42
 msgid "Removed {0}"
-msgstr ""
+msgstr "Tog bort {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:322
@@ -6399,7 +6409,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Enheter"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:72
 msgid "Packaged App"
@@ -6513,11 +6523,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
-msgstr ""
+msgstr "Visa kommentarer"
 
 #: mkt/reviewers/templates/reviewers/logs.html:45
 msgid "Hide Comments"
-msgstr ""
+msgstr "Dölj kommentarer"
 
 #: mkt/reviewers/templates/reviewers/logs.html:57
 msgid "No reviews found for this period."
@@ -6653,27 +6663,27 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:43 mkt/reviewers/templates/reviewers/includes/mobile_details.html:132
 msgid "Device Types"
-msgstr ""
+msgstr "Enhetstyper"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:144
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Visa sekretesspolicy"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58
 msgid "Requirements"
-msgstr ""
+msgstr "Krav"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:62
 msgid "Show more"
-msgstr ""
+msgstr "Visa mer"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:66 mkt/reviewers/templates/reviewers/includes/mobile_details.html:59
 msgid "App domain"
-msgstr ""
+msgstr "App-domän"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:71 mkt/reviewers/templates/reviewers/includes/mobile_details.html:64
 msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
@@ -6844,11 +6854,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49 mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Inga resultat hittades"
 
 #: mkt/search/forms.py:12
 msgid "Relevance"
-msgstr ""
+msgstr "Relevans"
 
 #: mkt/search/forms.py:13
 msgid "Popularity"
@@ -6876,15 +6886,15 @@ msgstr "Privilegierad paketerad app"
 
 #: mkt/search/forms.py:33
 msgid "Free with In-app"
-msgstr ""
+msgstr "Gratis med in-app"
 
 #: mkt/search/forms.py:35
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Premium med in-app"
 
 #: mkt/search/forms.py:36
 msgid "Other System for In-App"
-msgstr ""
+msgstr "Andra system för in-app"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
@@ -6936,11 +6946,11 @@ msgstr "Språk som stöds"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Sökning ej tillgänglig"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Sökning är ej tillgänglig för tillfället. Försök igen om några minuter."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -6968,11 +6978,11 @@ msgstr "Ange minst ett värde."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Så snart den är godkänd."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Inte förrän jag manuellt gör den publik."
 
 #: mkt/site/helpers.py:159
 msgid "Home"
@@ -7049,28 +7059,28 @@ msgstr "Kvartal"
 
 #: mkt/submit/forms.py:30
 msgid "Device(s) changed: {0}"
-msgstr ""
+msgstr "Enhet ändrad: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:40
 msgid "Requirements changed: {0}"
-msgstr ""
+msgstr "Krav ändrad: {0}"
 
 #: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
-msgstr ""
+msgstr "Kan inte vara gratis och betald."
 
 #: mkt/submit/forms.py:49
 msgid "Please select a device."
-msgstr ""
+msgstr "Välj en enhet."
 
 #: mkt/submit/forms.py:127
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Godkänn och fortsätt"
 
 #: mkt/submit/forms.py:153 mkt/submit/forms.py:225
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
@@ -7087,6 +7097,8 @@ msgstr ""
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr ""
+"Publicera min app och göra den synlig för alla i Marketplace och inkludera "
+"den i sökresultat."
 
 #: mkt/submit/forms.py:268
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
@@ -7094,7 +7106,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:279
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Sekretesspolicy:"
 
 #: mkt/submit/forms.py:281
 msgid ""
@@ -7143,7 +7155,7 @@ msgstr "Din app kommer att granskas av Mozilla innan den visas offentligt på Ma
 
 #: mkt/submit/forms.py:323
 msgid "Once your app is approved, choose a publishing option:"
-msgstr ""
+msgstr "När din app är godkänd, välj ett publiceringsalternativ:"
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -7164,15 +7176,15 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Öppna detaljsidan"
 
 #: mkt/submit/templates/submit/details.html:111
 msgid "Screenshot or video of your app:"
-msgstr ""
+msgstr "Skärmdump eller video på din app:"
 
 #: mkt/submit/templates/submit/details.html:114
 msgid "You must provide at least one."
-msgstr ""
+msgstr "Du måste ange minst en."
 
 #: mkt/submit/templates/submit/details.html:154
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
@@ -7180,7 +7192,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Färdig!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
@@ -7204,15 +7216,15 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
-msgstr ""
+msgstr "Hantera min app"
 
 #: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
-msgstr ""
+msgstr "Skicka in en annan app"
 
 #: mkt/submit/templates/submit/manifest.html:102
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Minikrav app"
 
 #: mkt/submit/templates/submit/manifest.html:107
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -7311,7 +7323,7 @@ msgstr ""
 
 #: mkt/submit/tests/test_forms.py:265
 msgid "Héllo"
-msgstr ""
+msgstr "Hallå"
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
@@ -7385,7 +7397,7 @@ msgstr "Ta bort språk"
 
 #: mkt/users/models.py:58
 msgid "No user with that email."
-msgstr ""
+msgstr "Ingen användare med den e-postadressen."
 
 #: mkt/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
