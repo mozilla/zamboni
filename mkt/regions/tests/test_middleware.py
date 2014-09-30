@@ -10,7 +10,6 @@ from mkt.users.models import UserProfile
 
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.site.fixtures import fixture
 
 
 _langs = ['cs', 'de', 'en-US', 'es', 'fr', 'pl', 'pt-BR', 'pt-PT']
@@ -122,6 +121,18 @@ class TestRegionMiddleware(amo.tests.TestCase):
         mock_lookup.return_value = 'gb'
         self.client.get('/api/v1/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
         set_region.assert_called_with(mkt.regions.UK)
+
+    @mock.patch('mkt.regions.middleware.GeoIP.lookup')
+    @mock.patch('mkt.regions.set_region')
+    def test_no_geoip_api_v2(self, set_region, mock_lookup):
+        self.client.get('/api/v2/apps/', HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with(mkt.regions.RESTOFWORLD)
+        eq_(mock_lookup.call_count, 0)
+
+        self.client.get('/api/v2/apps/?region=fr',
+                        HTTP_ACCEPT_LANGUAGE='sa-US')
+        set_region.assert_called_with(mkt.regions.FR)
+        eq_(mock_lookup.call_count, 0)
 
 
 class TestRegionMiddlewarePersistence(RestOAuth):
