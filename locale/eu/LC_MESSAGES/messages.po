@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: messages.pootle\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-30 20:07+0000\n"
+"PO-Revision-Date: 2014-09-30 20:10+0000\n"
 "Last-Translator: Ibai <ibai@oihanguren.com>\n"
 "Language-Team: librezale@librezale.org\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1412107639.0\n"
+"X-POOTLE-MTIME: 1412107821.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -3293,7 +3293,7 @@ msgstr "Dokumentazioa"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr "Aplikazioak probatzen"
+msgstr "Aplikazioen probak"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
@@ -3380,7 +3380,7 @@ msgstr "Garatzaile-hitzarmen hau onartu duzu jadanik."
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr "Probatzen"
+msgstr "Probak"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
