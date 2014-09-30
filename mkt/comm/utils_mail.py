@@ -104,7 +104,7 @@ def email_recipients(recipients, note, template=None):
                         get_mail_context(note), recipient_list=[email],
                         from_email=settings.MKT_REVIEWERS_EMAIL,
                         perm_setting='app_reviewed',
-                        headers={'reply_to': reply_to})
+                        headers={'Reply-To': reply_to})
 
 
 def get_mail_context(note):
