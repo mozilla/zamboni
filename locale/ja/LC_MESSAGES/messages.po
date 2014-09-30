@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-29 08:53-0700\n"
-"PO-Revision-Date: 2014-09-29 19:10-0400\n"
+"PO-Revision-Date: 2014-09-29 20:54-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -7682,7 +7682,7 @@ msgstr "ログイン / ユーザ登録"
 
 #: templates/base.html:122
 msgid "Firefox Accounts has arrived"
-msgstr "Firefox Accounts が使用可能になりました"
+msgstr "Firefox Accounts が統合されました"
 
 #: templates/base.html:125
 msgid "Learn how to transfer your account"
@@ -7690,7 +7690,7 @@ msgstr "アカウントの移行方法を確認しましょう"
 
 #: templates/base.html:128
 msgid "It's easy."
-msgstr "簡単です。"
+msgstr "移行は簡単です。"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
