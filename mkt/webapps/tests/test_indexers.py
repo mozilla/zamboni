@@ -175,12 +175,6 @@ class TestWebappIndexer(amo.tests.TestCase):
         eq_(doc['release_notes_translations'][1],
             {'lang': 'fr', 'string': release_notes['fr']})
 
-    def test_extract_abuse_reports(self):
-        self.app.abuse_reports.create()
-        self.app.abuse_reports.create()
-        obj, doc = self._get_doc()
-        eq_(doc['abuse_reports'], 2)
-
 
 class TestAppFilter(amo.tests.ESTestCase):
 

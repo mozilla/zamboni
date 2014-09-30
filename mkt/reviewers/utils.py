@@ -5,7 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
-from django.db.models import Count, Q
+from django.db.models import Q
 from django.utils import translation
 from django.utils.datastructures import SortedDict
 
@@ -579,7 +579,7 @@ def clean_sort_param(request, date_sort='created'):
     sort = request.GET.get('sort', date_sort)
     order = request.GET.get('order', 'asc')
 
-    if sort not in ('name', 'created', 'nomination', 'num_abuse_reports'):
+    if sort not in ('name', 'created', 'nomination'):
         sort = date_sort
     if order not in ('desc', 'asc'):
         order = 'asc'
@@ -747,10 +747,6 @@ class ReviewersQueuesHelper(object):
             # Sorting by name translation.
             return order_by_translation(qs, order_by)
 
-        elif sort_type == 'num_abuse_reports':
-            return (qs.annotate(num_abuse_reports=Count('abuse_reports'))
-                    .order_by(order_by))
-
         else:
             return qs.order_by('-priority_review', order_by)
 
@@ -777,9 +773,6 @@ class ReviewersQueuesHelper(object):
             return order_by_translation(
                 Webapp.objects.filter(id__in=qs.values_list('addon', flat=True)),
                 order_by)
-
-        elif sort_type == 'num_abuse_reports':
-            qs = qs.annotate(num_abuse_reports=Count('abuse_reports'))
 
         # Convert sorted queue object queryset to sorted app queryset.
         sorted_app_ids = (qs.order_by('-addon__priority_review', order_by)

@@ -74,7 +74,6 @@ class WebappIndexer(BaseIndexer):
                     'boost': {'type': 'long', 'doc_values': True},
                     # App fields.
                     'id': {'type': 'long'},
-                    'abuse_reports': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
                     'author': {'type': 'string', 'analyzer': 'default_icu'},
@@ -247,7 +246,6 @@ class WebappIndexer(BaseIndexer):
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['boost'] = len(installed_ids) or 1
-        d['abuse_reports'] = obj.abuse_reports.count()
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
         d['banner_regions'] = geodata.banner_regions_slugs()

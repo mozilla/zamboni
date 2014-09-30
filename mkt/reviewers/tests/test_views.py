@@ -1085,13 +1085,6 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(doc('.tabnav li a:eq(3)').text(), u'Escalations (3)')
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
-    def test_abuse(self):
-        AbuseReport.objects.create(addon=self.apps[0], message='!@#$')
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(7)')
-        eq_(tds.eq(0).text(), '1')
-
     def test_addon_deleted(self):
         app = self.apps[0]
         app.delete()
@@ -3518,18 +3511,6 @@ class TestQueueSort(AppReviewerTest):
         req = rf.get(self.url, {'sort': 'name', 'order': 'desc'})
         sorted_qs = ReviewersQueuesHelper(req).sort(qs)
         eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
-
-        # By abuse reports.
-        AbuseReport.objects.create(addon=self.apps[1])
-        req = rf.get(self.url, {'sort': 'num_abuse_reports',
-                              'order': 'asc'})
-        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
-        eq_(list(sorted_qs), [self.apps[0], self.apps[1]])
-
-        req = rf.get(self.url, {'sort': 'num_abuse_reports',
-                              'order': 'desc'})
-        sorted_qs = ReviewersQueuesHelper(req).sort(qs)
-        eq_(list(sorted_qs), [self.apps[1], self.apps[0]])
 
     def test_do_sort_version_nom(self):
         """Tests version nomination sort order."""

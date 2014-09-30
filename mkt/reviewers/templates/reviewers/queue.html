@@ -31,9 +31,6 @@
               <th class="waiting-time">{{ sort_link(_('Waiting Time'), date_sort or 'created')|safe }}</th>
               <th>{{ _('Devices') }}</th>
               <th class="payments reviewers-desktop">{{ _('Payments') }}</th>
-              {% if tab == 'escalated' %}
-                <th>{{ sort_link(_('Abuse Reports'), 'num_abuse_reports')|safe }}</th>
-              {% endif %}
             </tr>
           </thead>
           <tbody>
@@ -45,9 +42,6 @@
                 <td class="waiting-time">{{ qa.created|timelabel }}</td>
                 <td>{{ device_list(qa.app) }}</td>
                 <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
-                {% if tab == 'escalated' %}
-                  <td class="abuse-reports reviewers-desktop">{{ qa.app.abuse_reports.count() }}</td>
-                {% endif %}
               </tr>
               <tr class="extra-info reviewers-mobile">
                 <td colspan="5">
@@ -55,10 +49,6 @@
                     {{ _('Payment Category:') }}
                     {{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}
                   </em>
-                  {% if tab == 'escalated' %}
-                    {{ _('Abuse Reports:') }}
-                    {{ qa.app.abuse_reports.count() }}
-                  {% endif %}
                 </td>
               </tr>
             {% endfor %}
