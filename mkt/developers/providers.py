@@ -15,7 +15,7 @@ from lib.crypto import generate_key
 from lib.pay_server import client as pay_client
 from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.constants.payments import (PROVIDER_BANGO, PROVIDER_BOKU,
-                                PROVIDER_REFERENCE)
+                                    PROVIDER_REFERENCE)
 from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
@@ -329,13 +329,16 @@ class Reference(Provider):
             log.info('Reference product already exists: %s' % exists)
             return generic['resource_uri']
 
+        uuid = get_uuid('reference-product')
         data = {
             'seller_product': generic['resource_uri'],
             'seller_reference': account.uri,
             'name': unicode(app.name),
-            'uuid': get_uuid('reference-product')
+            'uuid': uuid
         }
-        log.info('Creating Reference product: %s, %s' % (account.pk, app.pk))
+        log.info('Creating Reference product: '
+                 'account {ac}, app {app}, uuid {uuid}'
+                 .format(ac=account.pk, app=app.pk, uuid=uuid))
         created = self.client.products.post(data=data)
         return created['resource_uri']
 
