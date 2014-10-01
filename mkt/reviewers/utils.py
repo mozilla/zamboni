@@ -14,7 +14,7 @@ import waffle
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import JSONEncoder, to_language
+from amo.utils import JSONEncoder
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -26,6 +26,7 @@ from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.mail import send_mail_jinja
 from mkt.site.models import manual_order
 from mkt.translations.query import order_by_translation
+from mkt.translations.utils import to_language
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import set_storefront_data

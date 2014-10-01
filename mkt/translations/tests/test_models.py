@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from contextlib import nested
 
 import django
@@ -10,22 +11,29 @@ from django.utils.functional import lazy
 
 import jinja2
 import multidb
+from amo.tests import TestCase
 from mock import patch
 from nose import SkipTest
-from nose.tools import eq_
-from test_utils import trans_eq, TestCase
+from nose.tools import eq_, ok_
 
 from mkt.translations import widgets
-from mkt.translations.models import (LinkifiedTranslation, NoLinksTranslation,
-                                 NoLinksNoMarkupTranslation,
-                                 PurifiedTranslation, Translation,
-                                 TranslationSequence)
+from mkt.translations.models import (attach_trans_dict, LinkifiedTranslation,
+                                     NoLinksTranslation,
+                                     NoLinksNoMarkupTranslation,
+                                     PurifiedTranslation, Translation,
+                                     TranslationSequence)
 from mkt.translations.query import order_by_translation
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 
 
 def ids(qs):
     return [o.id for o in qs]
+
+
+def trans_eq(translation_obj, string, locale):
+    eq_(unicode(translation_obj), string)
+    eq_(*map(translation.trans_real.to_language,
+             [translation_obj.locale, locale]))
 
 
 class TranslationFixturelessTestCase(TestCase):
@@ -156,11 +164,11 @@ class TranslationTestCase(TestCase):
         english.debug = True
         eq_(english.description, None)
 
-        english.description = 'english description'
+        english.description = 'englishdescription'
         english.save()
 
         fresh_english = get_model()
-        trans_eq(fresh_english.description, 'english description', 'en-US')
+        trans_eq(fresh_english.description, 'englishdescription', 'en-US')
         eq_(fresh_english.description.id, fresh_german.description.id)
 
     def test_update_translation(self):
@@ -880,3 +888,68 @@ def test_cache_key():
         Translation._cache_key(1, 'default'))
     eq_(LinkifiedTranslation._cache_key(1, 'default'),
         Translation._cache_key(1, 'default'))
+
+
+class TestAttachTransDict(TestCase):
+    """
+    Tests for attach_trans_dict.
+    """
+
+    def test_basic(self):
+        obj = FancyModel.objects.create(
+            purified='Purified <script>alert(42)</script>!',
+            linkified='Linkified <script>alert(42)</script>!')
+
+        # Quick sanity checks: is description properly escaped? The underlying
+        # implementation should leave localized_string un-escaped but never use
+        # it for __unicode__. We depend on this behaviour later in the test.
+        ok_('<script>' in obj.purified.localized_string)
+        ok_('<script>' not in obj.purified.localized_string_clean)
+        ok_('<script>' in obj.linkified.localized_string)
+        ok_('<script>' not in obj.linkified.localized_string_clean)
+
+        # Attach trans dict.
+        attach_trans_dict(FancyModel, [obj])
+        ok_(isinstance(obj.translations, collections.defaultdict))
+        translations = dict(obj.translations)
+
+        # addon.translations is a defaultdict.
+        eq_(obj.translations['whatever'], [])
+
+        # No-translated fields should be absent.
+        ok_(None not in translations)
+
+        # Build expected translations dict.
+        expected_translations = {
+            obj.purified_id: [
+                ('en-us', unicode(obj.purified))],
+            obj.linkified_id: [
+                ('en-us', unicode(obj.linkified))],
+        }
+        eq_(translations, expected_translations)
+
+    def test_multiple_objects_with_multiple_translations(self):
+        obj = FancyModel.objects.create()
+        obj.purified = {
+            'fr': 'French Purified',
+            'en-us': 'English Purified'
+        }
+        obj.save()
+
+        obj2 = FancyModel.objects.create(purified='English 2 Linkified')
+        obj2.linkified = {
+            'fr': 'French 2 Linkified',
+            'en-us': 'English 2 Linkified',
+            'es': 'Spanish 2 Linkified'
+        }
+        obj2.save()
+
+        attach_trans_dict(FancyModel, [obj, obj2])
+
+        eq_(set(obj.translations[obj.purified_id]),
+            set([('en-us', 'English Purified'),
+                 ('fr', 'French Purified')]))
+        eq_(set(obj2.translations[obj2.linkified_id]),
+            set([('en-us', 'English 2 Linkified'),
+                 ('es', 'Spanish 2 Linkified'),
+                 ('fr', 'French 2 Linkified')]))
