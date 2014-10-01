@@ -26,27 +26,8 @@
         window.ga('send', 'pageview', initial_url);
     }
 
-    // FIXME: share the origin whitelist array & check function with 
-    // iframe-install.html. We only need to whitelist our packaged app
-    // origins, localhost is added for convenience.
-    var origin_whitelist = [
-        'app://packaged.marketplace-dev.allizom.org',
-        'app://packaged.marketplace-altdev.allizom.org',
-        'app://packaged.payments-alt.allizom.org',
-        'app://packaged.marketplace.allizom.org',
-        'app://packaged.marketplace.firefox.com',
-        'app://packaged.marketplace-feed-dev.allizom.org',
-        'app://packaged.marketplace-feed.allizom.org',
-        'app://packaged.marketplace-feed.firefox.com',
-
-        'app://marketplace.firefox.com',
-
-        'http://localhost:8675',
-        'https://localhost:8675',
-
-        'http://localhost',
-        'https://localhost',
-    ];
+    {# Whitelist origin is generated in the view and already a json array #}
+    var origin_whitelist = {{ whitelisted_origins|safe }};
 
     window.addEventListener('message', function(e) {
         if (origin_whitelist.indexOf(e.origin) === -1) {

@@ -1,7 +1,9 @@
 from gzip import GzipFile
+import json
 from StringIO import StringIO
 
 from django.conf import settings
+from django.test.utils import override_settings
 
 import mock
 from nose import SkipTest
@@ -16,18 +18,19 @@ class BaseCommonPlaceTests(amo.tests.TestCase):
 
     def _test_url(self, url, url_kwargs=None):
         """Test that the given url can be requested, returns a 200, and returns
-        a valid gzipped response when requested with Accept-Encoding. Return
-        the result of a regular (non-gzipped) request."""
+        a valid gzipped response when requested with Accept-Encoding over ssl.
+        Return the result of a regular (non-gzipped) request."""
         if not url_kwargs:
             url_kwargs = {}
-        res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip')
+        res = self.client.get(url, url_kwargs, HTTP_ACCEPT_ENCODING='gzip',
+            **{'wsgi.url_scheme': 'https'})
         eq_(res.status_code, 200)
         eq_(res['Content-Encoding'], 'gzip')
         eq_(sorted(res['Vary'].split(', ')),
             ['Accept-Encoding', 'Accept-Language', 'Cookie'])
         ungzipped_content = GzipFile('', 'r', 0, StringIO(res.content)).read()
 
-        res = self.client.get(url, url_kwargs)
+        res = self.client.get(url, url_kwargs, **{'wsgi.url_scheme': 'https'})
         eq_(res.status_code, 200)
         eq_(sorted(res['Vary'].split(', ')),
             ['Accept-Encoding', 'Accept-Language', 'Cookie'])
@@ -135,10 +138,107 @@ class TestAppcacheManifest(BaseCommonPlaceTests):
 
 
 class TestIFrames(BaseCommonPlaceTests):
+    def setUp(self):
+        self.iframe_install_url = reverse('commonplace.iframe-install')
+        self.potatolytics_url = reverse('commonplace.potatolytics')
 
+    @override_settings(DOMAIN='marketplace.firefox.com')
     def test_basic(self):
-        self._test_url(reverse('commonplace.iframe-install'))
-        self._test_url(reverse('commonplace.potatolytics'))
+        res = self._test_url(self.iframe_install_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace.firefox.com',
+             'app://marketplace.firefox.com',
+             'https://marketplace.firefox.com',
+             'https://hello.firefox.com',
+             'https://call.firefox.com'])
+
+        res = self._test_url(self.potatolytics_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace.firefox.com',
+             'app://marketplace.firefox.com',
+             'https://marketplace.firefox.com'])
+
+    @override_settings(DOMAIN='marketplace.allizom.org')
+    def test_basic_stage(self):
+        res = self._test_url(self.iframe_install_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace.allizom.org',
+             'app://marketplace.allizom.org',
+             'https://marketplace.allizom.org',
+             'https://hello.firefox.com',
+             'https://call.firefox.com'])
+
+        res = self._test_url(self.potatolytics_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace.allizom.org',
+             'app://marketplace.allizom.org',
+             'https://marketplace.allizom.org'])
+
+    @override_settings(DOMAIN='marketplace-dev.allizom.org')
+    def test_basic_dev(self):
+        res = self._test_url(self.iframe_install_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace-dev.allizom.org',
+             'app://marketplace-dev.allizom.org',
+             'https://marketplace-dev.allizom.org',
+             'http://localhost:8675',
+             'https://localhost:8675',
+             'http://localhost',
+             'https://localhost',
+             'http://mp.dev',
+             'https://mp.dev',
+             'https://hello.firefox.com',
+             'https://call.firefox.com',
+             'http://loop-webapp.dev.mozaws.net'])
+
+        res = self._test_url(self.potatolytics_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.marketplace-dev.allizom.org',
+             'app://marketplace-dev.allizom.org',
+             'https://marketplace-dev.allizom.org',
+             'http://localhost:8675',
+             'https://localhost:8675',
+             'http://localhost',
+             'https://localhost',
+             'http://mp.dev',
+             'https://mp.dev'])
+
+    @override_settings(DOMAIN='example.com', DEBUG=True)
+    def test_basic_debug_true(self):
+        res = self._test_url(self.iframe_install_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.example.com',
+             'app://example.com',
+             'https://example.com',
+             'http://localhost:8675',
+             'https://localhost:8675',
+             'http://localhost',
+             'https://localhost',
+             'http://mp.dev',
+             'https://mp.dev',
+             'https://hello.firefox.com',
+             'https://call.firefox.com',
+             'http://loop-webapp.dev.mozaws.net'])
+
+        res = self._test_url(self.potatolytics_url)
+        whitelisted_origins = json.loads(res.context['whitelisted_origins'])
+        eq_(whitelisted_origins,
+            ['app://packaged.example.com',
+             'app://example.com',
+             'https://example.com',
+             'http://localhost:8675',
+             'https://localhost:8675',
+             'http://localhost',
+             'https://localhost',
+             'http://mp.dev',
+             'https://mp.dev'])
 
 
 class TestOpenGraph(amo.tests.TestCase):
