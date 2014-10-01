@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-20 14:17+0000\n"
 "Last-Translator: Killo <killoherz3@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -204,11 +204,11 @@ msgstr "или <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash-плейер</a>."
 
-#: media/js/devreg/in_app_products.js:272
+#: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:274
+#: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr ""
 

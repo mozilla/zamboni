@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -212,11 +212,11 @@ msgstr "nó a úsáideann <a href=\"http://www.adobe.com/go/getflashplayer\">Ado
 msgid "Flash Player</a>."
 msgstr "Flash Player</a>."
 
-#: media/js/devreg/in_app_products.js:272
+#: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
 msgstr ""
 
-#: media/js/devreg/in_app_products.js:274
+#: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr ""
 

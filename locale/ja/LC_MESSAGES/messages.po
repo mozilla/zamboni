@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-29 21:10-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -567,17 +567,17 @@ msgstr "前へ"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
-#: mkt/account/utils.py:16
+#: mkt/account/utils.py:50
 msgid "Purchase Date"
 msgstr "購入日"
 
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "価格"
 
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:61 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "タイトル"
 
@@ -588,6 +588,10 @@ msgstr "正しい選択肢を選んでください。%(value)s は選択肢に�
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
 msgstr "この項目には最低でも {num} 文字入力してください。"
+
+#: mkt/api/fields.py:88
+msgid "The language code {lang_code} is invalid."
+msgstr ""
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -3045,7 +3049,7 @@ msgstr "アプリの再登録が完了しました。"
 msgid "New version successfully added."
 msgstr "新バージョンの追加が完了しました。"
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:429 mkt/reviewers/views.py:645
+#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:430 mkt/reviewers/views.py:645
 msgid "Changes successfully saved."
 msgstr "変更は正しく保存されました。"
 
@@ -3528,7 +3532,7 @@ msgstr "ステータスとバージョン"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:64 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -4665,19 +4669,19 @@ msgstr "この機能は鋭意開発中です。詳しくは <a target=\"_blank\"
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "何か問題を見つけた場合は <a target=\"_blank\" href=\"%(bug_link)s\">バグを報告</a> してください。"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:60
+#: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
 msgstr "アイコン"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:62
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
 msgstr "価格帯"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
+#: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
 msgstr "製品 ID"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:75
+#: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
 msgstr "製品を追加"
 
@@ -5589,7 +5593,7 @@ msgstr "アップロードされたファイルにはファイルが含まれて
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
 
-#: mkt/inapp/serializers.py:44
+#: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "製品ロゴは 64x64 の画像でなければなりません。URL が正しいか確認してください。"
 
@@ -5722,8 +5726,8 @@ msgstr "審査待ち"
 msgid "Review failed"
 msgstr "審査不合格"
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
-#: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Abuse Reports"
 msgstr "不正報告"
 
@@ -6411,7 +6415,7 @@ msgstr "合格"
 msgid "Fail"
 msgstr "不合格"
 
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:63 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr "現在この種類の審査を待っているアイテムはありません。"
 
@@ -6578,19 +6582,15 @@ msgstr "全期間"
 msgid "Waiting Time"
 msgstr "待ち時間"
 
-#: mkt/reviewers/templates/reviewers/queue.html:55
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Payment Category:"
 msgstr "決済カテゴリ:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:59
-msgid "Abuse Reports:"
-msgstr "不正報告:"
-
-#: mkt/reviewers/templates/reviewers/queue.html:88
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Helpful Links:"
 msgstr "参考になるリンク:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:89
+#: mkt/reviewers/templates/reviewers/queue.html:79
 msgid "Reviewers' Guide"
 msgstr "審査担当者用ガイド"
 
@@ -7126,9 +7126,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"プライバシーポリシーは、アプリを通じて開発者が受け取ったデータをどのように扱うのかを説明する文書です。例えば、どのような種類のデータを受け取るか、それをどのように使用するか、それを誰と共有するか、個人情報を受け取るか"
-"どうか、それを匿名化する手段を講じているかどうか、開発者やその他関係者が受け取るデータの種類をユーザ自身が管理できるどうか、といった内容が含まれます。プライバシーポリシーへのリンクもしくは文面そのものを上の欄に入力"
-"してください。まだプライバシーポリシーを作成していない場合は、<a href=\"{url}\" target=\"_blank\">その書き方を学びましょう</a>。"
+"プライバシーポリシーは、アプリを通じて開発者が受け取ったデータをどのように扱うのかを説明する文書です。例えば、どのような種類のデータを受け取るか、それをどのように使用するか、それを誰と共有するか、個"
+"人情報を受け取るかどうか、それを匿名化する手段を講じているかどうか、開発者やその他関係者が受け取るデータの種類をユーザ自身が管理できるどうか、といった内容が含まれます。プライバシーポリシーへのリンク"
+"もしくは文面そのものを上の欄に入力してください。まだプライバシーポリシーを作成していない場合は、<a href=\"{url}\" target=\"_blank\">その書き方を学びましょう</a>。"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7535,8 +7535,8 @@ msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
-"このメールは、Firefox Marketplace にあなたのアカウントが作成されたため自動的にお送りしています。Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">利用規約</a> | <a href="
-"\"%(privacy)s\">プライバシーポリシー</a>"
+"このメールは、Firefox Marketplace にあなたのアカウントが作成されたため自動的にお送りしています。Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">利用規約</a> | <a "
+"href=\"%(privacy)s\">プライバシーポリシー</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."

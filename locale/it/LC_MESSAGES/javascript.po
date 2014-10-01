@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-09 08:20+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -200,11 +200,11 @@ msgstr "oppure <a href=\"http://www.adobe.com/go/getflashplayer\"> il plugin "
 msgid "Flash Player</a>."
 msgstr "Adobe Flash Player</a>."
 
-#: media/js/devreg/in_app_products.js:272
+#: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
 msgstr "Attiva"
 
-#: media/js/devreg/in_app_products.js:274
+#: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr "Non attiva"
 

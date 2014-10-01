@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-17 15:58-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -194,11 +194,11 @@ msgstr "<a href=\"http://get.adobe.com/jp/flashplayer/\">Adobe "
 msgid "Flash Player</a>."
 msgstr "Flash Player</a> が必要です。"
 
-#: media/js/devreg/in_app_products.js:272
+#: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
 msgstr "有効"
 
-#: media/js/devreg/in_app_products.js:274
+#: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
 msgstr "無効"
 

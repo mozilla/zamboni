@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-30 06:53+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -566,17 +566,17 @@ msgstr "之前"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "目前顯示 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 頁，共 <b>%(count)s</b> 頁"
 
-#: mkt/account/utils.py:16
+#: mkt/account/utils.py:50
 msgid "Purchase Date"
 msgstr "付費日期"
 
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "價格"
 
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:61 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "名稱"
 
@@ -587,6 +587,10 @@ msgstr "請選擇一個有效的選項。%(value)s 不是合理的選項。"
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
 msgstr "此欄位內容必須至少超過 {num} 字元。"
+
+#: mkt/api/fields.py:88
+msgid "The language code {lang_code} is invalid."
+msgstr ""
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -3050,7 +3054,7 @@ msgstr "已重新提交應用程式。"
 msgid "New version successfully added."
 msgstr "成功新增新版本。"
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:429 mkt/reviewers/views.py:645
+#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:430 mkt/reviewers/views.py:645
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
@@ -3533,7 +3537,7 @@ msgstr "狀態 & 版本"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:64 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -4643,13 +4647,11 @@ msgstr "設定應用程式內付款金鑰"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr ""
-"應用程式內付款產品讓您可在程式內接受付款，並透過讓您可直接在 Firefox Marketplace 開發者交流中心建立或管理產品來簡化上架流程。"
+msgstr "應用程式內付款產品讓您可在程式內接受付款，並透過讓您可直接在 Firefox Marketplace 開發者交流中心建立或管理產品來簡化上架流程。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
-"應用程式內付款產品讓您可在程式內接受付款，並透過讓您可直接在 Firefox Marketplace 開發者交流中心建立或管理產品來簡化上架流程。"
+msgstr "應用程式內付款產品讓您可在程式內接受付款，並透過讓您可直接在 Firefox Marketplace 開發者交流中心建立或管理產品來簡化上架流程。"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -4675,19 +4677,19 @@ msgstr "此功能正在努力開發中，請參考 <a target=\"_blank\" href=\"%
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "若您發現問題請 <a target=\"_blank\" href=\"%(bug_link)s\">回報 bug</a>。"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:60
+#: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
 msgstr "圖示"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:62
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
 msgstr "價格點"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
+#: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
 msgstr "產品 ID"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:75
+#: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
 msgstr "新增產品"
 
@@ -5597,7 +5599,7 @@ msgstr "上傳的檔案當中沒有檔案。"
 msgid "Fetching file."
 msgstr "正在取得檔案。"
 
-#: mkt/inapp/serializers.py:44
+#: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "產品圖示必須是 64x64 的圖像，請確認網址是否正確。"
 
@@ -5731,8 +5733,8 @@ msgstr "正在進行審查"
 msgid "Review failed"
 msgstr "審查失敗"
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
-#: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Abuse Reports"
 msgstr "濫用回報"
 
@@ -6430,7 +6432,7 @@ msgid "Fail"
 msgstr "失敗"
 
 # 88%
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:63 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr "目前這個分類沒有需要審核的項目。"
 
@@ -6599,19 +6601,15 @@ msgstr "全部時間"
 msgid "Waiting Time"
 msgstr "等待時間"
 
-#: mkt/reviewers/templates/reviewers/queue.html:55
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Payment Category:"
 msgstr "付款方式:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:59
-msgid "Abuse Reports:"
-msgstr "濫用報告:"
-
-#: mkt/reviewers/templates/reviewers/queue.html:88
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Helpful Links:"
 msgstr "實用連結："
 
-#: mkt/reviewers/templates/reviewers/queue.html:89
+#: mkt/reviewers/templates/reviewers/queue.html:79
 msgid "Reviewers' Guide"
 msgstr "審核者指南"
 
@@ -7148,9 +7146,8 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"隱私權政策解釋了您會怎麼處理透過程式取得的資料。例如：您會取得那些資料？您會如何使用？您會與誰分享？您會不會取得個人資訊？您是否會將取得的資料匿名化？使"
-"用者可以做什麼來控制您與其他人收到的資料？請在上方輸入您的隱私權政策鏈結，若您沒有隱私權保護政策，<a href=\"{url}\" "
-"target=\"_blank\">點此了解怎麼寫。</a>"
+"隱私權政策解釋了您會怎麼處理透過程式取得的資料。例如：您會取得那些資料？您會如何使用？您會與誰分享？您會不會取得個人資訊？您是否會將取得的資料匿名化？使用者可以做什麼來控制您與其他人收到的資料？請在"
+"上方輸入您的隱私權政策鏈結，若您沒有隱私權保護政策，<a href=\"{url}\" target=\"_blank\">點此了解怎麼寫。</a>"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7547,9 +7544,7 @@ msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
-"您會收到這封信是因為您曾經在 Firefox Marketplace 註冊帳號。Mozilla, 331 E. Evelyn Ave., "
-"Mountain View, CA 94041.<br> <a href=\"%(terms)s\">使用條款</a> | <a href=\"%"
-"(privacy)s\">隱私權保護政策</a>"
+"您會收到這封信是因為您曾經在 Firefox Marketplace 註冊帳號。Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">使用條款</a> | <a href=\"%(privacy)s\">隱私權保護政策</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
@@ -7568,8 +7563,8 @@ msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
-"Firefox Marketplace 已改用 Firefox 帳號以在不同 Mozilla 服務與產品間提供更完整的體驗。使用 Firefox "
-"帳號讓您可以存取您現有的 Marketplace 程式，並在不同裝置中無縫體驗您的程式、還有其他更多服務即將來臨。"
+"Firefox Marketplace 已改用 Firefox 帳號以在不同 Mozilla 服務與產品間提供更完整的體驗。使用 Firefox 帳號讓您可以存取您現有的 Marketplace 程式，並在不同裝置中無縫體驗您的程式、還有其他更多服務即將來"
+"臨。"
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-06 12:27+0200\n"
 "Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
 "Language-Team: français <>\n"
@@ -571,17 +571,17 @@ msgstr "Précédent"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Affiché <b>%(begin)s</b>&ndash;<b>%(end)s</b> sur <b>%(count)s</b>"
 
-#: mkt/account/utils.py:16
+#: mkt/account/utils.py:50
 msgid "Purchase Date"
 msgstr "Date d'achat"
 
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "Prix"
 
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:61 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Nom"
 
@@ -592,6 +592,10 @@ msgstr "Sélectionnez un choix valide. %(value)s n'est pas une des options dispo
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
 msgstr "Le champ doit contenir au moins {num} caractères."
+
+#: mkt/api/fields.py:88
+msgid "The language code {lang_code} is invalid."
+msgstr ""
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -3055,7 +3059,7 @@ msgstr "Application renvoyée avec succès."
 msgid "New version successfully added."
 msgstr "Nouvelle version ajoutée avec succès."
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:429 mkt/reviewers/views.py:645
+#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:430 mkt/reviewers/views.py:645
 msgid "Changes successfully saved."
 msgstr "Modifications enregistrées avec succès."
 
@@ -3540,7 +3544,7 @@ msgstr "Statut et versions"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:64 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -4690,19 +4694,19 @@ msgstr "Cette fonctionnalité est encore en cours de développement. Merci de vo
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "Si vous rencontrez un soucis, merci de <a target=\"_blank\" href=\"%(bug_link)s\">remonter le problème</a>."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:60
+#: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
 msgstr "Icône"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:62
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
 msgstr "Point prix"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
+#: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
 msgstr "Identifiant produit"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:75
+#: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
 msgstr "Ajouter un produit"
 
@@ -5624,7 +5628,7 @@ msgstr "Pas de fichier dans le fichier envoyé."
 msgid "Fetching file."
 msgstr "Récupération du fichier."
 
-#: mkt/inapp/serializers.py:44
+#: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "Le logo du produit doit être une image de taille 64x64. Merci de vérifier l'adresse."
 
@@ -5757,8 +5761,8 @@ msgstr ""
 msgid "Review failed"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
-#: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Abuse Reports"
 msgstr "Rapporter un abus"
 
@@ -6447,7 +6451,7 @@ msgstr "Accepter"
 msgid "Fail"
 msgstr "Rejeter"
 
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:63 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr "Il n'y a actuellement aucun élément de ce type à vérifier."
 
@@ -6619,19 +6623,15 @@ msgstr "Toute la durée"
 msgid "Waiting Time"
 msgstr "Temps d'attente"
 
-#: mkt/reviewers/templates/reviewers/queue.html:55
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Payment Category:"
 msgstr "Catégorie de paiement :"
 
-#: mkt/reviewers/templates/reviewers/queue.html:59
-msgid "Abuse Reports:"
-msgstr "Rapports d'abus :"
-
-#: mkt/reviewers/templates/reviewers/queue.html:88
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Helpful Links:"
 msgstr "Liens utiles :"
 
-#: mkt/reviewers/templates/reviewers/queue.html:89
+#: mkt/reviewers/templates/reviewers/queue.html:79
 msgid "Reviewers' Guide"
 msgstr "Guide du reviewer"
 

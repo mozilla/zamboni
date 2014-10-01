@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 08:53-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-29 17:49+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -563,17 +563,17 @@ msgstr "Vorherige"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Angezeigt werden <b>%(begin)s</b>&ndash;<b>%(end)s</b> von <b>%(count)s</b>"
 
-#: mkt/account/utils.py:16
+#: mkt/account/utils.py:50
 msgid "Purchase Date"
 msgstr "Kaufdatum"
 
-#: mkt/account/utils.py:17 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "Preis"
 
-#: mkt/account/utils.py:18 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
-#: mkt/developers/templates/developers/payments/in-app-products.html:61 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
+#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Name"
 
@@ -584,6 +584,10 @@ msgstr "Wählen Sie eine gültige Option. %(value)s ist keine verfügbare Option
 #: mkt/api/fields.py:86
 msgid "The field must have a length of at least {num} characters."
 msgstr "Dieses Feld muss mindestens {num} Zeichen lang sein."
+
+#: mkt/api/fields.py:88
+msgid "The language code {lang_code} is invalid."
+msgstr ""
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -2546,9 +2550,7 @@ msgstr "Hoppla, es sieht aus, als hätten Sie dieses Manifest schon für %s eing
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
-msgstr ""
-"Hoppla, es sieht aus, als hätten Sie dieses Manifest schon für %s "
-"eingereicht, die derzeit gesperrt ist. <a href=\"%s\">App bearbeiten</a>"
+msgstr "Hoppla, es sieht aus, als hätten Sie dieses Manifest schon für %s eingereicht, die derzeit gesperrt ist. <a href=\"%s\">App bearbeiten</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -3048,7 +3050,7 @@ msgstr "App erfolgreich erneut eingereicht."
 msgid "New version successfully added."
 msgstr "Neue Version erfolgreich hinzugefügt."
 
-#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:429 mkt/reviewers/views.py:645
+#: mkt/developers/views.py:305 mkt/developers/views.py:561 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:430 mkt/reviewers/views.py:645
 msgid "Changes successfully saved."
 msgstr "Änderungen erfolgreich gespeichert."
 
@@ -3532,7 +3534,7 @@ msgstr "Status & Versionen"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:64 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
+#: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
 #: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
@@ -3564,9 +3566,7 @@ msgstr "Diese App wurde <b>im Marketplace gesperrt</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr ""
-"Ihre App wurde durch einen Administrator der Website gesperrt. Wenn Sie "
-"Fragen haben, schreiben Sie bitte eine E-Mail an %(email)s."
+msgstr "Ihre App wurde durch einen Administrator der Website gesperrt. Wenn Sie Fragen haben, schreiben Sie bitte eine E-Mail an %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3725,10 +3725,7 @@ msgstr "Sie können Ihre Regionen auf der <a href=\"{compatibility_page}\">Kompa
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
-"Wenn Ihre App auf Geräten mit wenig Speicher funktioniert, können Sie eine "
-"Überprüfung anfordern, um auf Geräten mit wenig Speicher angezeigt zu "
-"werden."
+msgstr "Wenn Ihre App auf Geräten mit wenig Speicher funktioniert, können Sie eine Überprüfung anfordern, um auf Geräten mit wenig Speicher angezeigt zu werden."
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -4652,9 +4649,7 @@ msgstr "App-interne Schlüssel"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
-"Mit Schlüsseln für App-interne Zahlungen können Sie Zahlungen in Ihrer "
-"Anwendung für einen beliebigen Preispunkt annehmen. Sie sind für die "
-"Definition und Verwaltung von Produkten verantwortlich."
+"Mit Schlüsseln für App-interne Zahlungen können Sie Zahlungen in Ihrer Anwendung für einen beliebigen Preispunkt annehmen. Sie sind für die Definition und Verwaltung von Produkten verantwortlich."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
@@ -4667,9 +4662,8 @@ msgstr "App-interne Produkte"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
-"Mit App-internen Produkten können Sie Zahlungen in Ihrer Anwendung annehmen. "
-"Außerdem wird der Prozess dadurch erleichtert, dass Sie Ihre Produkte in "
-"der Entwicklerecke des Firefox Marketplace erstellen und verwalten können."
+"Mit App-internen Produkten können Sie Zahlungen in Ihrer Anwendung annehmen. Außerdem wird der Prozess dadurch erleichtert, dass Sie Ihre Produkte in der Entwicklerecke des Firefox Marketplace "
+"erstellen und verwalten können."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -4695,19 +4689,19 @@ msgstr "Diese Funktion wird derzeit entwickelt. In der <a target=\"_blank\" href
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr "Wenn Sie auf Probleme stoßen, <a target=\"_blank\" href=\"%(bug_link)s\">legen Sie bitte einen Fehlerbericht an</a>."
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:60
+#: mkt/developers/templates/developers/payments/in-app-products.html:61
 msgid "Icon"
 msgstr "Icon"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:62
+#: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Price Point"
 msgstr "Preispunkt"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
+#: mkt/developers/templates/developers/payments/in-app-products.html:64
 msgid "Product ID"
 msgstr "Produkt-ID"
 
-#: mkt/developers/templates/developers/payments/in-app-products.html:75
+#: mkt/developers/templates/developers/payments/in-app-products.html:76
 msgid "Add a product"
 msgstr "Ein Produkt hinzufügen"
 
@@ -5508,9 +5502,7 @@ msgstr "Die Datei „manifest.webapp“ wurde nicht im Wurzelverzeichnis des App
 
 #: mkt/files/utils.py:98
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
-"Webapp-Manifest-Datei konnte nicht dekodiert werden. Überprüfen Sie, ob Ihre "
-"Manifest-Datei besondere Nicht-UTF-8-Zeichen enthält."
+msgstr "Webapp-Manifest-Datei konnte nicht dekodiert werden. Überprüfen Sie, ob Ihre Manifest-Datei besondere Nicht-UTF-8-Zeichen enthält."
 
 #: mkt/files/utils.py:106
 msgid "The webapp manifest is not valid JSON."
@@ -5632,7 +5624,7 @@ msgstr "Keine Dateien in der hochgeladenen Datei"
 msgid "Fetching file."
 msgstr "Datei wird geholt."
 
-#: mkt/inapp/serializers.py:44
+#: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
 msgstr "Produktlogo muss eine 64×64-Grafik sein. Stellen Sie sicher, dass die URL stimmt."
 
@@ -5765,8 +5757,8 @@ msgstr "Überprüfung steht aus"
 msgid "Review failed"
 msgstr "Überprüfung fehlgeschlagen"
 
-#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/queue.html:35
-#: mkt/reviewers/templates/reviewers/includes/details.html:128 mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
+#: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
+#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
 msgid "Abuse Reports"
 msgstr "Missbrauchsmeldungen"
 
@@ -6380,9 +6372,7 @@ msgstr "App sperren"
 
 #: mkt/reviewers/utils.py:496
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
-"Die App im Marketplace sperren. Ähnlich wie „Ablehnen“ aber der/die "
-"Autor(en) können sie nicht erneut einreichen. Nur für Extremfälle."
+msgstr "Die App im Marketplace sperren. Ähnlich wie „Ablehnen“ aber der/die Autor(en) können sie nicht erneut einreichen. Nur für Extremfälle."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6457,7 +6447,7 @@ msgstr "Genehmigt"
 msgid "Fail"
 msgstr "Durchgefallen"
 
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:73 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:63 mkt/reviewers/templates/reviewers/queue_region.html:31
 msgid "There are currently no items of this type to review."
 msgstr "Es gibt derzeit keine Elemente dieses Typs, die überprüft werden müssen."
 
@@ -6629,19 +6619,15 @@ msgstr "Gesamter Zeitraum"
 msgid "Waiting Time"
 msgstr "Wartezeit"
 
-#: mkt/reviewers/templates/reviewers/queue.html:55
+#: mkt/reviewers/templates/reviewers/queue.html:49
 msgid "Payment Category:"
 msgstr "Zahlungskategorie:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:59
-msgid "Abuse Reports:"
-msgstr "Missbrauchsmeldungen:"
-
-#: mkt/reviewers/templates/reviewers/queue.html:88
+#: mkt/reviewers/templates/reviewers/queue.html:78
 msgid "Helpful Links:"
 msgstr "Hilfreiche Links:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:89
+#: mkt/reviewers/templates/reviewers/queue.html:79
 msgid "Reviewers' Guide"
 msgstr "Leitfaden für Überprüfer"
 
@@ -7177,14 +7163,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"Eine Datenschutzerklärung beschreibt, wie Sie mit Daten umgehen, die Sie "
-"über Ihre App erhalten haben. Beispielsweise: Welche Daten erhalten Sie? Wie "
-"verwenden Sie sie? An wen geben Sie sie weiter? Erhalten Sie persönliche "
-"Daten? Unternehmen Sie Schritte, um sie zu anonymisieren? Welche Wahl haben "
-"Anwender, um zu kontrollieren, welche Daten Sie und andere erhalten? Gegen "
-"Sie oben den Link oder den Text zu Ihrer Datenschutzerklärung ein. Wenn Sie "
-"keine Datenschutzerklärung haben, <a href=\"{url}\" target=\"_blank\">erfahren "
-"Sie mehr darüber, wie Sie eine schreiben</a>."
+"Eine Datenschutzerklärung beschreibt, wie Sie mit Daten umgehen, die Sie über Ihre App erhalten haben. Beispielsweise: Welche Daten erhalten Sie? Wie verwenden Sie sie? An wen geben Sie sie weiter? "
+"Erhalten Sie persönliche Daten? Unternehmen Sie Schritte, um sie zu anonymisieren? Welche Wahl haben Anwender, um zu kontrollieren, welche Daten Sie und andere erhalten? Gegen Sie oben den Link "
+"oder den Text zu Ihrer Datenschutzerklärung ein. Wenn Sie keine Datenschutzerklärung haben, <a href=\"{url}\" target=\"_blank\">erfahren Sie mehr darüber, wie Sie eine schreiben</a>."
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7589,73 +7570,51 @@ msgstr "Jetzt aktivieren"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr ""
-"Weitere Informationen zu Firefox Accounts finden Sie in den <a href=\"%"
-"(faq)s\">FAQ</a>."
+msgstr "Weitere Informationen zu Firefox Accounts finden Sie in den <a href=\"%(faq)s\">FAQ</a>."
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
-"Sie erhalten diese E-Mail, weil Sie ein Konto im Firefox Marketplace "
-"erstellt haben. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a "
-"href=\"%(terms)s\">Nutzungsbedingungen</a> | <a href=\"%"
-"(privacy)s\">Datenschutzerklärung</a>"
+"Sie erhalten diese E-Mail, weil Sie ein Konto im Firefox Marketplace erstellt haben. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Nutzungsbedingungen</a> | <a "
+"href=\"%(privacy)s\">Datenschutzerklärung</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr ""
-"Firefox Marketplace hat zu Firefox Accounts gewechselt. Bitte aktivieren Sie "
-"Ihr neues Firefox-Konto."
+msgstr "Firefox Marketplace hat zu Firefox Accounts gewechselt. Bitte aktivieren Sie Ihr neues Firefox-Konto."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr ""
-"Bald wird das aktuelle Benutzeranmeldesystem für Firefox Marketplace "
-"(Persona) durch ein deutlich robusteres Benutzerkontensystem ersetzt, das "
-"wir Firefox Accounts nennen."
+msgstr "Bald wird das aktuelle Benutzeranmeldesystem für Firefox Marketplace (Persona) durch ein deutlich robusteres Benutzerkontensystem ersetzt, das wir Firefox Accounts nennen."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr ""
-"Wenn der Übergang von Persona zu Firefox Accounts bereit ist, erhalten Sie "
-"eine E-Mail mit einem Aktivierungslink."
+msgstr "Wenn der Übergang von Persona zu Firefox Accounts bereit ist, erhalten Sie eine E-Mail mit einem Aktivierungslink."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
-"Firefox Marketplace hat zu Firefox Accounts gewechselt, um ein integriertes "
-"Erlebnis über alle Mozilla-Dienste und -Produkte anzubieten. Mit einem "
-"Firefox-Konto können Sie Ihre bestehenden Marketplace-Apps zugreifen und "
-"übergangslos Ihre Apps auf mehreren Geräten nutzen.  Weitere Dienste sind in "
-"Vorbereitung."
+"Firefox Marketplace hat zu Firefox Accounts gewechselt, um ein integriertes Erlebnis über alle Mozilla-Dienste und -Produkte anzubieten. Mit einem Firefox-Konto können Sie Ihre bestehenden "
+"Marketplace-Apps zugreifen und übergangslos Ihre Apps auf mehreren Geräten nutzen.  Weitere Dienste sind in Vorbereitung."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
-msgstr ""
-"Die Aktivierung Ihres Kontos geht ganz einfach. Melden Sie sich einfach an "
-"und bestätigen Sie Ihr Konto."
+msgstr "Die Aktivierung Ihres Kontos geht ganz einfach. Melden Sie sich einfach an und bestätigen Sie Ihr Konto."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr ""
-"Um auf Ihre Apps, die im Firefox Marketplace gelistet sind, zuzugreifen und "
-"sie zu verwalten, müssen Sie Ihr Firefox-Konto aktivieren."
+msgstr "Um auf Ihre Apps, die im Firefox Marketplace gelistet sind, zuzugreifen und sie zu verwalten, müssen Sie Ihr Firefox-Konto aktivieren."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr ""
-"Firefox Marketplace hat zu Firefox Accounts gewechselt. Bitte aktivieren Sie "
-"Ihr neues Konto."
+msgstr "Firefox Marketplace hat zu Firefox Accounts gewechselt. Bitte aktivieren Sie Ihr neues Konto."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr ""
-"WICHTIG: Sie müssen Ihr Firefox-Konto aktivieren, um auf Ihre Apps, die im "
-"Firefox Marketplace gelistet sind, zuzugreifen und sie zu verwalten."
+msgstr "WICHTIG: Sie müssen Ihr Firefox-Konto aktivieren, um auf Ihre Apps, die im Firefox Marketplace gelistet sind, zuzugreifen und sie zu verwalten."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
