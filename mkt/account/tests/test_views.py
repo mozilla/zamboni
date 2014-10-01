@@ -771,7 +771,7 @@ class TestAccountInfoView(RestOAuth):
 
 
 class TestPreverify(RestOAuth):
-    @patch('mkt.account.views.get_token_expiry', lambda: 1400000000)
+    @patch('mkt.account.utils.get_token_expiry', lambda td: 1400000000)
     def test_preverify(self):
         res = self.client.post(reverse('fxa-preverify'))
         eq_(res.status_code, 200)

@@ -2,10 +2,10 @@ from django.conf.urls import include, patterns, url
 
 from mkt.users import views
 
-from mkt.account.views import (fxa_preverify, fxa_preverify_key, AccountView,
-                               AccountInfoView, FeedbackView, FxALoginView,
-                               InstalledView, LoginView, LogoutView,
-                               NewsletterView, PermissionsView)
+from mkt.account.views import (fxa_preverify_view, fxa_preverify_key,
+                               AccountView, AccountInfoView, FeedbackView,
+                               FxALoginView, InstalledView, LoginView,
+                               LogoutView, NewsletterView, PermissionsView)
 
 
 drf_patterns = patterns('',
@@ -13,7 +13,7 @@ drf_patterns = patterns('',
     url('^installed/mine/$', InstalledView.as_view(), name='installed-apps'),
     url('^login/$', LoginView.as_view(), name='account-login'),
     url('^fxa-login/$', FxALoginView.as_view(), name='fxa-account-login'),
-    url('^fxa-preverify/$', fxa_preverify, name='fxa-preverify'),
+    url('^fxa-preverify/$', fxa_preverify_view, name='fxa-preverify'),
     url('^fxa-preverify-key/$', fxa_preverify_key, name='fxa-preverify-key'),
     url('^logout/$', LogoutView.as_view(), name='account-logout'),
     url('^newsletter/$', NewsletterView.as_view(), name='account-newsletter'),

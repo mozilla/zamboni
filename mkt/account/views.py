@@ -2,21 +2,18 @@ import datetime
 import hashlib
 import hmac
 import json
-import time
 import uuid
 
 from django import http
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
-from django.core.urlresolvers import reverse
 
 import basket
 import commonware.log
 from django_browserid import get_audience
 from django_statsd.clients import statsd
-from jwkest.jws import JWS
-from jwkest.jwk import RSAKey, import_rsa_key_from_file
+
 from rest_framework import status
 from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
@@ -35,8 +32,8 @@ from mkt.users.views import browserid_authenticate
 from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
                                      FeedbackSerializer, FxALoginSerializer,
                                      LoginSerializer, NewsletterSerializer,
-
                                      PermissionsSerializer)
+from mkt.account.utils import PREVERIFY_KEY, fxa_preverify_token
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -217,35 +214,17 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
         return data
 
 
-def get_token_expiry():
-    expiry = datetime.datetime.now() + datetime.timedelta(minutes=10)
-    return time.mktime(expiry.timetuple())
-
-
-PREVERIFY_KEY = RSAKey(key=import_rsa_key_from_file(
-    settings.PREVERIFIED_ACCOUNT_KEY))
-
-
 @cors_api_view(['POST'])
 @authentication_classes([RestOAuthAuthentication,
                          RestSharedSecretAuthentication])
 @permission_classes([IsAuthenticated])
-def fxa_preverify(request):
-    # See https://github.com/mozilla/fxa-auth-server/blob/master/docs/api.md#preverifytoken
-    # for details.
+def fxa_preverify_view(request):
     if not request.user.is_verified:
         return Response("User's email is not verified", status=403)
 
-    msg = {
-        'exp': get_token_expiry(),
-        'aud': settings.FXA_AUTH_SERVER,
-        'sub': request.user.email,
-        'typ': 'mozilla/fxa/preVerifyToken/v1'
-    }
-    jws = JWS(msg, cty='JWT', alg='RS256',
-              jku=reverse('fxa-preverify-key'))
-    return http.HttpResponse(jws.sign_compact([PREVERIFY_KEY]),
-                             content_type='application/jwt')
+    return http.HttpResponse(
+        fxa_preverify_token(request.user, datetime.timedelta(minutes=10)),
+        content_type='application/jwt')
 
 
 def fxa_preverify_key(request):
