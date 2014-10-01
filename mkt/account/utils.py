@@ -20,7 +20,7 @@ from mkt.webapps.views import BaseFilter
 
 
 PREVERIFY_KEY = RSAKey(key=import_rsa_key_from_file(
-    settings.PREVERIFIED_ACCOUNT_KEY))
+    settings.PREVERIFIED_ACCOUNT_KEY), kid=1)
 
 
 def get_token_expiry(expiry):
@@ -38,9 +38,10 @@ def fxa_preverify_token(user, expiry):
         'exp': get_token_expiry(expiry),
         'aud': settings.FXA_AUTH_SERVER,
         'sub': user.email,
-        'typ': 'mozilla/fxa/preVerifyToken/v1'
+        'typ': 'mozilla/fxa/preVerifyToken/v1',
     }
     jws = JWS(msg, cty='JWT', alg='RS256',
+              kid=PREVERIFY_KEY.kid,
               jku=reverse('fxa-preverify-key'))
     return jws.sign_compact([PREVERIFY_KEY])
 
