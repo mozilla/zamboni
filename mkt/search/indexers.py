@@ -182,6 +182,13 @@ class BaseIndexer(object):
                        'icu_normalizer'],
         }
 
+        # An analyzer that can do case-insensitive exact matching.
+        analyzers['exact_lowercase'] = {
+            'type': 'custom',
+            'tokenizer': 'keyword',
+            'filter': ['lowercase'],
+        }
+
         for lang, stemmer in amo.STEMMER_MAP.items():
             filters['%s_stem_filter' % lang] = {
                 'type': 'stemmer',

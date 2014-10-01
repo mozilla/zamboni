@@ -49,6 +49,9 @@ Search
         codes should be provided in ISO 639-1 format, using a comma-separated
         list if supplying multiple languages.
     :type languages: string
+    :param optional author: Filters by author. Requires a case-insensitive
+        exact match of the author field.
+    :type author: string
     :param optional region: Filters apps by a supported region. A region
         code should be provided in ISO 3166 format (e.g., `pl`). If not
         provided, the region is automatically detected via requesting IP

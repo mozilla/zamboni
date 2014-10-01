@@ -143,11 +143,12 @@ def search_form_to_es_fields(form_data):
     return {
         'app_type': form_data['app_type'],
         'category': form_data['cat'],
+        'author.raw': form_data['author'],
         'device': form_data['device'],
         'is_offline': form_data['offline'],
         'manifest_url': form_data['manifest_url'],
-        'q': form_data['q'],
         'premium_type': form_data['premium_types'],
+        'q': form_data['q'],
         'supported_locales': form_data['languages'],
         'tags': form_data['tag'],
     }

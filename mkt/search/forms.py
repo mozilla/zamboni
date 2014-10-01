@@ -106,6 +106,7 @@ class ApiSearchForm(forms.Form):
                                      label=_lazy('Works offline'))
     languages = forms.CharField(required=False,
                                 label=_lazy('Supported languages'))
+    author = forms.CharField(required=False, label=_lazy('Author name'))
 
     sort = forms.MultipleChoiceField(required=False,
                                      choices=LISTING_SORT_CHOICES)
@@ -169,6 +170,9 @@ class ApiSearchForm(forms.Form):
             self.cleaned_data.pop('dev', None)
         elif device:
             raise forms.ValidationError('Invalid device or device type.')
+
+    def clean_author(self):
+        return self.cleaned_data.get('author', '').lower()
 
     def clean(self):
         self.clean_device_and_dev()

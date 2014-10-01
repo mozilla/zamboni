@@ -76,7 +76,16 @@ class WebappIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'app_slug': {'type': 'string'},
                     'app_type': {'type': 'byte'},
-                    'author': {'type': 'string', 'analyzer': 'default_icu'},
+                    'author': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'fields': {
+                            # For exact matches. The simple analyzer allows
+                            # for case-insensitive matching.
+                            'raw': {'type': 'string',
+                                    'analyzer': 'exact_lowercase'},
+                        },
+                    },
                     'banner_regions': cls.string_not_indexed(),
                     'bayesian_rating': {'type': 'float', 'doc_values': True},
                     'category': cls.string_not_analyzed(),
@@ -454,6 +463,7 @@ class WebappIndexer(BaseIndexer):
 
         data = {
             'app_type': [],
+            'author.raw': None,
             'category': None,  # Slug.
             'device': None,  # ID.
             'gaia': getattr(request, 'GAIA', False),
@@ -466,13 +476,14 @@ class WebappIndexer(BaseIndexer):
             'region': getattr(get_region_from_request(request), 'id', None),
             'status': None,
             'supported_locales': [],
-            'tags': '',
             'tablet': getattr(request, 'TABLET', False),
+            'tags': '',
         }
         data.update(additional_data)
 
         # Fields that will be filtered with a term query.
-        term_fields = ('device', 'manifest_url', 'status', 'tags')
+        term_fields = ('author.raw', 'device', 'manifest_url', 'status',
+                       'tags')
         # Fields that will be filtered with a terms query.
         terms_fields = ('category', 'premium_type', 'app_type',
                         'supported_locales')

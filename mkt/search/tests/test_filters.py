@@ -15,7 +15,6 @@ from mkt.search.forms import (ApiSearchForm, TARAKO_CATEGORIES_MAPPING)
 from mkt.search.views import _sort_search, DEFAULT_SORTING
 from mkt.site.fixtures import fixture
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import Webapp
 
 
 class TestSearchFilters(BaseOAuth):
@@ -41,6 +40,7 @@ class TestSearchFilters(BaseOAuth):
             form_data = form.cleaned_data
             sq = WebappIndexer.get_app_filter(self.req, {
                 'app_type': form_data['app_type'],
+                'author.raw': form_data['author'],
                 'category': form_data['cat'],
                 'device': form_data['device'],
                 'is_offline': form_data['offline'],
@@ -186,6 +186,11 @@ class TestSearchFilters(BaseOAuth):
 
         qs = self._filter(self.req, {'languages': 'ar,en-US'})
         ok_({'terms': {'supported_locales': ['ar', 'en-US']}}
+            in qs['query']['filtered']['filter']['bool']['must'])
+
+    def test_author(self):
+        qs = self._filter(self.req, {'author': 'Mozilla LABS'})
+        ok_({'term': {'author.raw': u'mozilla labs'}}
             in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_region_exclusions(self):

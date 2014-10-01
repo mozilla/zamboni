@@ -500,11 +500,25 @@ class TestSearchView(RestOAuth, ESTestCase):
 
         # Make a request in another language that we know will fail.
         res = self.anon.get(self.url,
-                              data={'q': 'something', 'lang': 'de'})
+                            data={'q': 'something', 'lang': 'de'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
         eq_(obj['name'], u'Algo Algo Steamcube!')
+
+    def test_author(self):
+        res = self.anon.get(self.url,
+                            data={'author': self.webapp.developer_name})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+
+    def test_author_case(self):
+        res = self.anon.get(
+            self.url, data={'author': self.webapp.developer_name.upper()})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
 
     def test_device(self):
         AddonDeviceType.objects.create(
