@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-29 22:38+0000\n"
+"PO-Revision-Date: 2014-10-01 23:38+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412030312.0\n"
+"X-POOTLE-MTIME: 1412206684.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -587,7 +587,7 @@ msgstr "此字段至少要填写 {num} 个字符。"
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "语言代码 {lang_code} 无效。"
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
