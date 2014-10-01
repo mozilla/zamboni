@@ -775,7 +775,7 @@ class TestPreverify(RestOAuth):
     def test_preverify(self):
         res = self.client.post(reverse('fxa-preverify'))
         eq_(res.status_code, 200)
-        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImN0eSI6IkpXVCIsImprdSI6Ii9hcGkvdjEvYWNjb3VudC9meGEtcHJldmVyaWZ5LWtleS8ifQ.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6Imh0dHBzOi8vc3RhYmxlLmRldi5sY2lwLm9yZy8iLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.I9UlZEJAOwTIwYeqnyaiMVYOEf1-hsbHGR7zrOKEc89ntkUWPqvBfM2nTgEqHKQ9Lj3Pr2WDGspOeS6UE3eLKY0H3yNrA7AMbEMLsG2ZNwDOzdPe-6ctq8-WnFkrB9RxbtXxbNFCdMDkVblJRh91i7b5-t9752bN_k_e8FO1-Gg')
+        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImtpZCI6MSwiY3R5IjoiSldUIiwiamt1IjoiL2FwaS92MS9hY2NvdW50L2Z4YS1wcmV2ZXJpZnkta2V5LyJ9.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6Imh0dHBzOi8vc3RhYmxlLmRldi5sY2lwLm9yZy8iLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.hmmKoFks-EExh-X_6drFQa_aZLxRs4UKywhkx1jLKNEJi71tWIjzFtV8T-hRraMe1Dcf7TDP01T3qwSVZrO9RZ6MSYpAeZqcVYhn0eLg059fqtXw-C2gsyHlHex3s5maFHR9sT5y1UQocSypJYmVVlOFFgdvewr9vtA4b8M5vzg')
 
     def test_reject_unverified(self):
         self.user.is_verified = False
@@ -787,5 +787,6 @@ class TestPreverify(RestOAuth):
         res = self.anon.get(reverse('fxa-preverify-key'))
         eq_(json.loads(res.content),
             {'keys': [{'e': 'AQAB', 'kty': 'RSA',
-                       'n': '97209xSudEskAnd-6wYd3ED5MXve29bVxssOWRW5wHECX2MO0tzzfhOgdmD0e2X0Xgsv8vnFU0w0sWFjOtBJ1r2YAtnrcgpKiVVDcWm6EcOt-xS_CvZqwX8NZFktyxv-r9dpA9uRui0xQXy7JXS13rI0kq2VcWQuldiwYfDCPjM'
+                       'n': '97209xSudEskAnd-6wYd3ED5MXve29bVxssOWRW5wHECX2MO0tzzfhOgdmD0e2X0Xgsv8vnFU0w0sWFjOtBJ1r2YAtnrcgpKiVVDcWm6EcOt-xS_CvZqwX8NZFktyxv-r9dpA9uRui0xQXy7JXS13rI0kq2VcWQuldiwYfDCPjM',
+                       'kid': 1
                    }]})
