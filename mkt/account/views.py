@@ -6,6 +6,7 @@ import uuid
 
 from django import http
 from django.conf import settings
+from django.core.signing import BadSignature, Signer
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
 
@@ -181,11 +182,19 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
 
     def create_action(self, request, serializer):
         session = get_fxa_session(state=serializer.data['state'])
+
+        try:
+            # Maybe this was a preverified login to migrate a user.
+            userid = Signer().unsign(serializer.data['state'])
+        except BadSignature:
+            userid = None
+
         profile = _fxa_authorize(
             session,
             settings.FXA_CLIENT_SECRET,
             request,
-            serializer.data['auth_response'])
+            serializer.data['auth_response'],
+            userid)
         if profile is None:
             raise AuthenticationFailed('No profile.')
 
