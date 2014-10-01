@@ -7,11 +7,16 @@ define('login', ['notification'], function(notification) {
         }
 
         this.setItem = function (key, value) {
-            return localStorage.setItem(_prefix(key), value);
+            return localStorage.setItem(_prefix(key), JSON.stringify(value));
         };
 
         this.getItem = function (key) {
-            return localStorage.getItem(_prefix(key));
+            value = localStorage.getItem(_prefix(key));
+            try {
+                return JSON.parse(value);
+            } catch(e) {
+                return value;
+            }
         };
 
         this.removeItem = function (key) {
@@ -81,7 +86,7 @@ define('login', ['notification'], function(notification) {
         window.addEventListener("message", function (msg) {
             if (!msg.data || !msg.data.auth_code) {
                 return;
-            };
+            }
             var data = {
                 'auth_response': msg.data.auth_code,
                 'state': z.body.data('fxa-state')
@@ -194,9 +199,9 @@ define('login', ['notification'], function(notification) {
 
     function setToken(data) {
         storage.setItem('user', data.token);
-        storage.setItem('settings', JSON.stringify(data.settings));
-        storage.setItem('permissions', JSON.stringify(data.permissions));
-        storage.setItem('user_apps', JSON.stringify(data.apps));
+        storage.setItem('settings', data.settings);
+        storage.setItem('permissions', data.permissions);
+        storage.setItem('user_apps', data.apps);
     }
 
     function clearToken() {
@@ -208,18 +213,6 @@ define('login', ['notification'], function(notification) {
 
     function userToken() {
         return storage.getItem('user');
-    }
-
-    function getSetting(name) {
-        var settings;
-        var raw_settings = storage.getItem('settings');
-        try {
-            settings = JSON.parse(raw_settings);
-        } catch (e) {
-            console.error("Error parsing settings as JSON.", e);
-            settings = {};
-        }
-        return settings[name];
     }
 
     if (z.body.data('persona-url')) {
@@ -239,7 +232,6 @@ define('login', ['notification'], function(notification) {
     }
 
     return {
-        userToken: userToken,
-        getSetting: getSetting,
+        userToken: userToken
     };
 });
