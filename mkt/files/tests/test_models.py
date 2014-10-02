@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
@@ -293,6 +293,12 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         addon = Webapp.objects.no_cache().get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
+
+    def test_disabled_file_uses_guarded_path(self):
+        f = File.objects.get()
+        f.update(status=amo.STATUS_DISABLED)
+        ok_(settings.GUARDED_ADDONS_PATH in f.file_path)
+        ok_(settings.ADDONS_PATH not in f.file_path)
 
 
 class TestSignedPath(amo.tests.TestCase):

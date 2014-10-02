@@ -88,6 +88,14 @@ class File(OnChangeMixin, ModelBase):
 
         return f
 
+    @property
+    def addon(self):
+        from mkt.versions.models import Version
+        from mkt.webapps.models import Webapp
+
+        version = Version.with_deleted.get(pk=self.version_id)
+        return Webapp.with_deleted.get(pk=version.addon_id)
+
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
         hash = hashlib.sha256()
@@ -115,26 +123,20 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(settings.ADDONS_PATH, str(self.version.addon_id),
-                            self.filename)
+        if self.status == amo.STATUS_DISABLED:
+            return self.guarded_file_path
+        else:
+            return self.approved_file_path
 
     @property
-    def addon(self):
-        from mkt.versions.models import Version
-        from mkt.webapps.models import Webapp
-
-        version = Version.with_deleted.get(pk=self.version_id)
-        return Webapp.with_deleted.get(pk=version.addon_id)
+    def approved_file_path(self):
+        return os.path.join(settings.ADDONS_PATH, str(self.version.addon_id),
+                            self.filename)
 
     @property
     def guarded_file_path(self):
         return os.path.join(settings.GUARDED_ADDONS_PATH,
                             str(self.version.addon_id), self.filename)
-
-    def _signed(self):
-        split = self.filename.rsplit('.', 1)
-        split.insert(-1, 'signed')
-        return '.'.join(split)
 
     @property
     def signed_file_path(self):
@@ -145,6 +147,11 @@ class File(OnChangeMixin, ModelBase):
     def signed_reviewer_file_path(self):
         return os.path.join(settings.SIGNED_APPS_REVIEWER_PATH,
                             str(self.version.addon_id), self._signed())
+
+    def _signed(self):
+        split = self.filename.rsplit('.', 1)
+        split.insert(-1, 'signed')
+        return '.'.join(split)
 
     @property
     def extension(self):
@@ -164,13 +171,13 @@ class File(OnChangeMixin, ModelBase):
         """Move a disabled file to the guarded file path."""
         if not self.filename:
             return
-        src, dst = self.file_path, self.guarded_file_path
+        src, dst = self.approved_file_path, self.guarded_file_path
         self.mv(src, dst, 'Moving disabled file: %s => %s')
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
-        src, dst = self.guarded_file_path, self.file_path
+        src, dst = self.guarded_file_path, self.approved_file_path
         self.mv(src, dst, 'Moving undisabled file: %s => %s')
 
 
