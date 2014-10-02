@@ -109,7 +109,7 @@ def fxa_oauth_api(name):
     return urlparse.urljoin(settings.FXA_OAUTH_URL, 'v1/' + name)
 
 
-def _fxa_authorize(fxa, client_secret, request, auth_response):
+def _fxa_authorize(fxa, client_secret, request, auth_response, userid):
     token = fxa.fetch_token(
         fxa_oauth_api('token'),
         authorization_response=auth_response,
@@ -121,29 +121,29 @@ def _fxa_authorize(fxa, client_secret, request, auth_response):
 
     if 'user' in data:
         email = data['email']
-        uid = data['user']
+        fxa_uid = data['user']
 
-        # Look up user by uid first, then email.
-        try:
-            profile = UserProfile.objects.get(username=uid)
-            if profile.email != email:
-                profile.update(email=email)
-        except UserProfile.DoesNotExist:
+        def find_user(**kwargs):
             try:
-                profile = UserProfile.objects.get(email=email)
-                if profile.username != uid:
-                    profile.update(username=uid)
+                return UserProfile.objects.get(**kwargs)
             except UserProfile.DoesNotExist:
-                profile = UserProfile.objects.create(
-                    username=uid,
-                    email=email,
-                    source=amo.LOGIN_SOURCE_FXA,
-                    display_name=email.partition('@')[0],
-                    is_verified=True)
-                log_cef('New Account', 5, request, username=uid,
-                        signature='AUTHNOTICE',
-                        msg='User created a new account (from FxA)')
-                record_action('new-user', request)
+                return None
+
+        profile = (find_user(pk=userid) or find_user(username=fxa_uid)
+                   or find_user(email=email))
+        if profile:
+            profile.update(username=fxa_uid, email=email)
+        else:
+            profile = UserProfile.objects.create(
+                username=fxa_uid,
+                email=email,
+                source=amo.LOGIN_SOURCE_FXA,
+                display_name=email.partition('@')[0],
+                is_verified=True)
+            log_cef('New Account', 5, request, username=fxa_uid,
+                    signature='AUTHNOTICE',
+                    msg='User created a new account (from FxA)')
+            record_action('new-user', request)
 
         if profile.source != amo.LOGIN_SOURCE_FXA:
             profile.update(source=amo.LOGIN_SOURCE_FXA)

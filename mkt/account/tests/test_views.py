@@ -6,6 +6,7 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
+from django.core.signing import Signer
 from django.core.urlresolvers import reverse
 from django.http import QueryDict
 from django.utils.http import urlencode
@@ -448,7 +449,7 @@ class TestFxaLoginHandler(TestCase):
 
     @patch.object(uuid, 'uuid4', FakeUUID)
     @patch('requests.post')
-    def _test_login(self, http_request):
+    def _test_login(self, http_request, state='fake-state'):
         with patch('mkt.account.views.get_fxa_session') as get_session:
             m = get_session()
             m.fetch_token.return_value = {'access_token': 'fake'}
@@ -458,8 +459,8 @@ class TestFxaLoginHandler(TestCase):
             }
             res = self.post({
                 'auth_response': 'https://testserver/?access_token=fake-token&'
-                                 'code=coed&state=fake-state',
-                'state': 'fake-state'})
+                                 'code=coed&state=' + state,
+                'state': state})
             eq_(res.status_code, 201)
             data = json.loads(res.content)
             eq_(data['token'],
@@ -495,11 +496,11 @@ class TestFxaLoginHandler(TestCase):
         # Ensure user profile got updated with email.
         eq_(profile.reload().email, 'cvan@mozilla.com')
 
-    def test_login_existing_user_email_success(self):
+    def test_login_preverified_success(self):
         profile = UserProfile.objects.create(email='cvan@mozilla.com')
         self.grant_permission(profile, 'Apps:Review')
 
-        data = self._test_login()
+        data = self._test_login(state=Signer().sign(str(profile.pk)))
         eq_(profile.reload().source, amo.LOGIN_SOURCE_FXA)
         eq_(data['permissions'],
             {'admin': False,
@@ -520,7 +521,8 @@ class TestFxaLoginHandler(TestCase):
 
     @patch('mkt.users.models.UserProfile.purchase_ids')
     def test_relevant_apps(self, purchase_ids):
-        profile = UserProfile.objects.create(email='cvan@mozilla.com')
+        profile = UserProfile.objects.create(email='cvan@mozilla.com',
+                                             username='fake-uid')
         purchased_app = app_factory()
         purchase_ids.return_value = [purchased_app.pk]
         developed_app = app_factory()
@@ -555,7 +557,6 @@ class TestFxaLoginHandler(TestCase):
         eq_(data['settings']['source'], 'firefox-accounts')
 
     def test_logout(self):
-        UserProfile.objects.create(email='cvan@mozilla.com')
         data = self._test_login()
 
         r = self.client.delete(
