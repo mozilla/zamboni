@@ -2,12 +2,15 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
+import commonware.log
 
 from amo.utils import chunked
 from mkt.constants.base import LOGIN_SOURCE_FXA
 from mkt.users.models import UserProfile
 from mkt.users.tasks import fxa_email_types, send_fxa_mail
 from mkt.webapps.models import AddonUser
+
+log = commonware.log.getLogger('z.users')
 
 
 def get_user_ids(is_developers):
@@ -46,6 +49,6 @@ class Command(BaseCommand):
 
         ids = get_user_ids(is_developers)
 
-        print 'Sending: {0} emails'.format(len(ids))
+        log.info('Sending: {0} {1} emails'.format(len(ids), mail_type))
         for users in chunked(ids, 100):
             send_fxa_mail.delay(ids, mail_type, is_live)

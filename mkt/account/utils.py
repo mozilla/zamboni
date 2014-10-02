@@ -3,6 +3,7 @@ import time
 
 from django import http
 from django.conf import settings
+from django.core.signing import Signer
 from django.core.urlresolvers import reverse
 
 from jwkest.jws import JWS
@@ -10,7 +11,7 @@ from jwkest.jwk import RSAKey, import_rsa_key_from_file
 from tower import ugettext_lazy as _lazy
 
 import amo
-from amo.utils import paginate
+from amo.utils import paginate, urlparams
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
 from mkt.site.helpers import absolutify
@@ -45,6 +46,15 @@ def fxa_preverify_token(user, expiry):
               kid=PREVERIFY_KEY.kid,
               jku=absolutify(reverse('fxa-preverify-key')))
     return jws.sign_compact([PREVERIFY_KEY])
+
+
+def fxa_preverify_url(user, expiry):
+    return urlparams('{0}/v1/authorization'.format(settings.FXA_OAUTH_URL),
+                     clientId=settings.FXA_CLIENT_ID,
+                     preVerifiedToken=fxa_preverify_token(user, expiry),
+                     scope='profile:email',
+                     state=Signer().sign(user.pk)
+                     )
 
 
 class PurchasesFilter(BaseFilter):
