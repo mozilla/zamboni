@@ -3,8 +3,7 @@ from django.conf.urls import include, patterns, url
 from rest_framework.routers import SimpleRouter
 
 from mkt.fireplace.views import (AppViewSet, CollectionViewSet,
-                                 ConsumerInfoView, FeaturedSearchView,
-                                 SearchView)
+                                 ConsumerInfoView, SearchView)
 
 
 apps = SimpleRouter()
@@ -22,8 +21,11 @@ urlpatterns = patterns('',
     url(r'^fireplace/consumer-info/',
         ConsumerInfoView.as_view(),
         name='fireplace-consumer-info'),
+    # /featured/ is not used by fireplace anymore, but still used by yogafire,
+    # so we have to keep it, it's just an alias to the regular search instead
+    # of including extra data about collections.
     url(r'^fireplace/search/featured/',
-        FeaturedSearchView.as_view(),
+        SearchView.as_view(),
         name='fireplace-featured-search-api'),
     url(r'^fireplace/search/',
         SearchView.as_view(),

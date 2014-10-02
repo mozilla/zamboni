@@ -82,50 +82,6 @@ Search
 
     :status 200: successfully completed.
 
-.. _featured-search-api:
-
-Featured App Listing
-====================
-
-.. http:get::  /api/v2/fireplace/search/featured/
-
-    **Request**
-
-    Accepts the same parameters and returns the same objects as the
-    normal search interface: :ref:`search-api`.  Includes 'featured'
-    list of apps, listing featured apps for the requested category, if
-    any. When no category is specified, frontpage featured apps are
-    listed.
-
-    **Response**:
-
-    :param collections: A list of collections for the requested
-        category/region/carrier set, if any
-    :type collections: array
-    :param featured: A list of :ref:`apps <app-response-label>` featured
-        for the requested category/region/carrier set, if any
-    :type featured: array
-    :param meta: :ref:`meta-response-label`.
-    :type meta: object
-    :param objects: A :ref:`listing <objects-response-label>` of
-        :ref:`apps <app-response-label>` satisfying the search parameters.
-    :type objects: array
-    :param operator: A list of apps in the operator shelf for the requested
-        category/region/carrier set, if any
-    :type operator: array
-    :status 200: successfully completed.
-
-    The different types of collections returned are filtered using the same
-    parameters as :ref:`rocketfuel <rocketfuel>` listing API, using the same
-    :ref:`fallback mechanism <rocketfuel-fallback>` if no results are found
-    with the filters specified.
-
-    However, because there are 3 separate types of collections returned,
-    you can have 3 different fallbacks. Therefore, instead of returning one
-    single `API-Fallback` header, the HTTP response will contain up to 3
-    separate headers: `API-Fallback-collections`, `API-Fallback-featured` and
-    `API-Fallback-operator`. Their content is identical to the `API-Fallback`
-    header returned in rocketfuel listing API.
 
 .. _feature-profile-label:
 

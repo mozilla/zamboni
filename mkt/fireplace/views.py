@@ -12,7 +12,6 @@ from mkt.collections.views import CollectionViewSet as BaseCollectionViewSet
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceCollectionSerializer,
                                        FireplaceESAppSerializer)
-from mkt.search.views import FeaturedSearchView as BaseFeaturedSearchView
 from mkt.search.views import SearchView as BaseSearchView
 from mkt.webapps.views import AppViewSet as BaseAppViewset
 
@@ -30,12 +29,6 @@ class CollectionViewSet(BaseCollectionViewSet):
 
 class AppViewSet(BaseAppViewset):
     serializer_class = FireplaceAppSerializer
-
-
-class FeaturedSearchView(BaseFeaturedSearchView):
-    serializer_class = FireplaceESAppSerializer
-    collections_serializer_class = FireplaceCollectionSerializer
-    authentication_classes = []
 
 
 class SearchView(BaseSearchView):

@@ -4,12 +4,10 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.db.models.query import QuerySet
 from django.http import QueryDict
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from elasticsearch_dsl import Search
 from mock import patch
 from nose.tools import eq_, ok_
 
@@ -19,10 +17,6 @@ import mkt.regions
 from amo.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.access.middleware import ACLMiddleware
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
-from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
-                                       COLLECTIONS_TYPE_FEATURED,
-                                       COLLECTIONS_TYPE_OPERATOR)
-from mkt.collections.models import Collection
 from mkt.constants import regions
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
@@ -771,7 +765,7 @@ class TestSearchView(RestOAuth, ESTestCase):
 
 
 class TestSearchViewFeatures(RestOAuth, ESTestCase):
-    fixtures = fixture('webapp_337141')
+    fixtures = fixture('user_2519', 'webapp_337141')
 
     def setUp(self):
         self.client = RestOAuthClient(None)
@@ -779,10 +773,10 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.addondevicetype_set.create(device_type=amo.DEVICE_GAIA.id)
         # Pick a few common device features.
-        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
-                                      geolocation=True, indexeddb=True,
-                                      sms=True).to_signature()
-        self.qs = {'q': 'something', 'pro': self.profile, 'dev': 'firefoxos'}
+        self.features = FeatureProfile(apps=True, audio=True, fullscreen=True,
+                                       geolocation=True, indexeddb=True,
+                                       sms=True).to_signature()
+        self.qs = {'q': 'something', 'pro': self.features, 'dev': 'firefoxos'}
 
     def test_no_features(self):
         # Base test to make sure we find the app.
@@ -818,7 +812,7 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
 
     def test_all_good_features(self):
         # Enable app features so they exactly match our device profile.
-        fp = FeatureProfile.from_signature(self.profile)
+        fp = FeatureProfile.from_signature(self.features)
         self.webapp.current_version.features.update(
             **dict(('has_%s' % k, v) for k, v in fp.items()))
         self.webapp.save()
@@ -843,221 +837,34 @@ class TestSearchViewFeatures(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
 
-class BaseFeaturedTests(RestOAuth, ESTestCase):
+class TestFeaturedSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
-    list_url = reverse('featured-search-api')
-
-    def setUp(self):
-        super(BaseFeaturedTests, self).setUp()
-        self.cat = 'books'
-        self.app = Webapp.objects.get(pk=337141)
-        AddonDeviceType.objects.create(
-            addon=self.app, device_type=DEVICE_CHOICES_IDS['firefoxos'])
-        self.app.update(categories=[self.cat])
-        self.profile = FeatureProfile(apps=True, audio=True, fullscreen=True,
-                                      geolocation=True, indexeddb=True,
-                                      sms=True).to_signature()
-        self.qs = {'cat': self.cat, 'pro': self.profile, 'dev': 'firefoxos'}
-
-
-class TestFeaturedSearchView(BaseFeaturedTests):
-    """
-    Tests to ensure that CollectionFilterSetWithFallback is being called and
-    its results are being added to the response.
-    """
-    col_type = COLLECTIONS_TYPE_BASIC
-    prop_name = 'collections'
 
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
-        self.col = Collection.objects.create(
-            name='Hi', description='Mom', collection_type=self.col_type,
-            category=self.cat, is_public=True, region=mkt.regions.US.id)
-        self.qs['region'] = mkt.regions.US.slug
-        # FIXME: mock the search part, we don't care about it.
+        self.url = reverse('featured-search-api')
+        self.reindex(Webapp, 'webapp')
 
     def make_request(self):
-        res = self.client.get(self.list_url, self.qs)
+        res = self.client.get(self.url)
         eq_(res.status_code, 200)
         return res, res.json
 
-    def test_added_to_results(self):
+    def test_empty_arrays(self):
+        """
+        Test that when empty arrays for collections, operator and featured keys
+        are added for backwards-compatibility in v1.
+        """
         res, json = self.make_request()
-        ok_(self.prop_name in res.json)
-        eq_(len(json[self.prop_name]), 1)
-        eq_(json[self.prop_name][0]['id'], self.col.id)
-        return res, json
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['collections'], [])
+        eq_(res.json['featured'], [])
+        eq_(res.json['operator'], [])
 
-    def test_apps_included(self):
-        self.col.add_app(self.app)
-        self.refresh('webapp')
-
-        res, json = self.test_added_to_results()
-        apps = json[self.prop_name][0]['apps']
-        eq_(len(apps), 1)
-
-        # Make sure we are using the simplified representation for apps.
-        eq_(apps[0]['name'], {u'en-US': u'Something Something Steamcube!',
-                              u'es': u'Algo Algo Steamcube!'})
-        ok_('app_type' not in apps[0])
-
-        return res, json
-
-    def test_features_filtered(self):
-        """
-        Test that the app list is passed through feature profile filtering.
-        """
-        self.app.current_version.features.update(has_pay=True)
-        self.col.add_app(self.app)
-        self.refresh('webapp')
-
-        res, json = self.test_added_to_results()
-        eq_(len(json[self.prop_name][0]['apps']), 0)
-
-    def test_device_filtered(self):
-        """
-        Test that the app list properly filters by supported device.
-        """
-        AddonDeviceType.objects.filter(addon=self.app).update(
-            device_type=DEVICE_CHOICES_IDS['desktop'])
-        self.col.add_app(self.app)
-        self.refresh('webapp')
-
-        res, json = self.test_added_to_results()
-        eq_(len(json[self.prop_name][0]['apps']), 0)
-
-    def test_only_public(self):
-        self.col2 = Collection.objects.create(
-            name='Col', description='Hidden', collection_type=self.col_type,
-            category=self.cat, is_public=False)
-        res, json = self.test_added_to_results()
-
-        header = 'API-Fallback-%s' % self.prop_name
-        ok_(header not in res)
-
-    def test_only_this_type(self):
-        """
-        Add a second collection of a different collection type, then ensure
-        that it does not change the results of this collection type's property.
-        """
-        different_type = (COLLECTIONS_TYPE_FEATURED if self.col_type ==
-                          COLLECTIONS_TYPE_BASIC else COLLECTIONS_TYPE_BASIC)
-        self.col2 = Collection.objects.create(
-            name='Bye', description='Dad', collection_type=different_type,
-            category=self.cat, is_public=True)
-        res, json = self.test_added_to_results()
-
-        header = 'API-Fallback-%s' % self.prop_name
-        ok_(header not in res)
-
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
-    def test_limit(self, mock_field_to_native):
-        """
-        Add a second collection, then ensure than the old one is not present
-        in the results since we are limiting at 1 collection of each type.
-        """
-        mock_field_to_native.return_value = None
-        self.col.add_app(self.app)
-        self.col = Collection.objects.create(
-            name='Me', description='Hello', collection_type=self.col_type,
-            category=self.cat, is_public=True, region=mkt.regions.US.id)
-
-        # Call standard test method. We don't care about apps here, no need to
-        # add some or refresh ES.
-        self.test_added_to_results()
-
-        # Make sure to_native() was called only once, with ES data, with the
-        # use_es argument.
-        eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], Search))
-        eq_(mock_field_to_native.call_args[1].get('use_es', False), True)
-
-    @patch('mkt.collections.serializers.CollectionMembershipField.to_native')
-    def test_limit_preview(self, mock_field_to_native):
-        """
-        Like test_limit, except we are in preview mode, so we shouldn't be
-        using ES for apps.
-        """
-        mock_field_to_native.return_value = None
-        self.col.add_app(self.app)
-        self.col = Collection.objects.create(
-            name='Me', description='Hello', collection_type=self.col_type,
-            category=self.cat, is_public=True, region=mkt.regions.US.id)
-
-        # Modify the query string to include preview parameter.
-        self.qs['preview'] = True
-
-        # Call standard test method. We don't care about apps themselves here.
-        self.test_added_to_results()
-
-        # Make sure to_native() was called only once, with DB data, without the
-        # use_es argument (since we are in preview mode).
-        eq_(mock_field_to_native.call_count, 1)
-        ok_(isinstance(mock_field_to_native.call_args[0][0], QuerySet))
-        eq_(mock_field_to_native.call_args[1].get('use_es', False), False)
-
-    @patch('mkt.search.views.SearchView.get_region_from_request')
-    @patch('mkt.search.views.CollectionFilterSetWithFallback')
-    def test_collection_filterset_called(self, mock_fallback, mock_region):
-        """
-        CollectionFilterSetWithFallback should be called 3 times, one for each
-        collection_type.
-        """
-        # Mock get_region_from_request() and ensure we are not passing it as
-        # the query string parameter.
-        self.qs.pop('region', None)
-        mock_region.return_value = mkt.regions.SPAIN
-
-        res, json = self.make_request()
-        eq_(mock_fallback.call_count, 3)
-
-        # We expect all calls to contain self.qs and region parameter.
-        expected_args = {'region': mkt.regions.SPAIN.slug}
-        expected_args.update(self.qs)
-        for call in mock_fallback.call_args_list:
-            eq_(call[0][0], expected_args)
-
-    def test_fallback_usage(self):
-        """
-        Test that the fallback mechanism is used for the collection_type we are
-        testing.
-        """
-        # Request the list using region. self.col should get picked up
-        # because the fallback mechanism will try with region set to None.
-        self.col.update(region=None, carrier=None)
-        self.qs['region'] = mkt.regions.SPAIN.slug
-        self.qs['carrier'] = mkt.carriers.UNKNOWN_CARRIER.slug
-        res, json = self.test_added_to_results()
-
-        header = 'API-Fallback-%s' % self.prop_name
-        res_header = res._orig_response._headers[header.lower()]
-
-        ok_(res._orig_response.has_header(header),
-            '%s not found in headers' % header)
-        eq_(res_header[1], 'region,carrier')
-
-    @patch('mkt.search.views.FeaturedSearchView.get_region_from_request')
-    def test_region_None(self, get_region_from_request):
-        get_region_from_request.return_value = None
-        self.test_added_to_results()
-
-    def test_tarako_category(self):
-        """
-        Test that when passing a tarako category, collections are not included.
-        """
-        self.qs['cat'] = 'tarako-lifestyle'
-        res, json = self.make_request()
-        ok_(self.prop_name not in res.json)
-
-
-class TestFeaturedOperator(TestFeaturedSearchView):
-    col_type = COLLECTIONS_TYPE_OPERATOR
-    prop_name = 'operator'
-
-
-class TestFeaturedApps(TestFeaturedSearchView):
-    col_type = COLLECTIONS_TYPE_FEATURED
-    prop_name = 'featured'
+    def test_endpoint_removed_v2(self):
+        self.url = reverse('api-v2:featured-search-api')
+        res = self.client.get(self.url)
+        eq_(res.status_code, 404)
 
 
 @patch.object(settings, 'SITE_URL', 'http://testserver')

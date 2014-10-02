@@ -17,12 +17,6 @@ from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, form_errors, MarketplaceView
 from mkt.api.paginator import ESPaginator
-from mkt.collections.constants import (COLLECTIONS_TYPE_BASIC,
-                                       COLLECTIONS_TYPE_FEATURED,
-                                       COLLECTIONS_TYPE_OPERATOR)
-from mkt.collections.filters import CollectionFilterSetWithFallback
-from mkt.collections.models import Collection
-from mkt.collections.serializers import CollectionSerializer
 from mkt.search.forms import ApiSearchForm, TARAKO_CATEGORIES_MAPPING
 from mkt.translations.helpers import truncate
 from mkt.webapps.indexers import WebappIndexer
@@ -197,53 +191,21 @@ class SearchView(CORSMixin, MarketplaceView, GenericAPIView):
 
 
 class FeaturedSearchView(SearchView):
-    collections_serializer_class = CollectionSerializer
-
-    def collections(self, request, collection_type=None, limit=1):
-        filters = request.GET.dict()
-        region = self.get_region_from_request(request)
-        if region:
-            filters.setdefault('region', region.slug)
-        if collection_type is not None:
-            qs = Collection.public.filter(collection_type=collection_type)
-        else:
-            qs = Collection.public.all()
-        qs = CollectionFilterSetWithFallback(filters, queryset=qs).qs
-        preview_mode = filters.get('preview', False)
-        serializer = self.collections_serializer_class(
-            qs[:limit], many=True, context={
-                'request': request,
-                'view': self,
-                'use-es-for-apps': not preview_mode}
-        )
-        return serializer.data, getattr(qs, 'filter_fallback', None)
-
     def get(self, request, *args, **kwargs):
         serializer, _ = self.search(request)
-        data, filter_fallbacks = self.add_featured_etc(request,
-                                                       serializer.data)
+        data = self.add_featured_etc(request, serializer.data)
         response = Response(data)
-        for name, value in filter_fallbacks.items():
-            response['API-Fallback-%s' % name] = ','.join(value)
         return response
 
     def add_featured_etc(self, request, data):
-        # Tarako categories don't have collections.
-        if request.GET.get('cat') in TARAKO_CATEGORIES_MAPPING:
-            return data, {}
-        types = (
-            ('collections', COLLECTIONS_TYPE_BASIC),
-            ('featured', COLLECTIONS_TYPE_FEATURED),
-            ('operator', COLLECTIONS_TYPE_OPERATOR),
-        )
-        filter_fallbacks = {}
-        for name, col_type in types:
-            data[name], fallback = self.collections(request,
-                                                    collection_type=col_type)
-            if fallback:
-                filter_fallbacks[name] = fallback
-
-        return data, filter_fallbacks
+        # This endpoint used to return rocketfuel collections data but
+        # rocketfuel is not used anymore now that we have the feed. To keep
+        # backwards-compatibility we return empty arrays for the 3 keys that
+        # contained rocketfuel data.
+        data['collections'] = []
+        data['featured'] = []
+        data['operator'] = []
+        return data
 
 
 class SuggestionsView(SearchView):
