@@ -1,5 +1,8 @@
 # Startup script for running Zamboni under Docker.
 
+# Check for mysql being up and running.
+mysqladmin -u root --host mysql_1 --silent --wait=30 ping || exit 1
+
 # Check database exists. If not create it first.
 mysql -u root --host mysql_1 -e 'use zamboni;'
 if [ $? -ne 0 ]; then
