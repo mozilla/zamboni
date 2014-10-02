@@ -29,7 +29,6 @@ $(document).ready(function() {
     //Ownership
     if (document.getElementById('author_list')) {
         initAuthorFields();
-        initLicenseFields();
     }
 
     //Payments
@@ -43,7 +42,6 @@ $(document).ready(function() {
 
     // Submission process
     if ($('.addon-submission-process').length) {
-        initLicenseFields();
         initCharCount();
         initSubmit();
     }
@@ -1016,31 +1014,6 @@ function initCatFields(delegate) {
         };
         checkNumberOfCategories();
         $('input', $categories).on('change', checkNumberOfCategories);
-    });
-}
-
-function initLicenseFields() {
-    $("#id_has_eula").change(function (e) {
-        if ($(this).attr("checked")) {
-            $(".eula").show().removeClass("hidden");
-        } else {
-            $(".eula").hide();
-        }
-    });
-    $("#id_has_priv").change(function (e) {
-        if ($(this).attr("checked")) {
-            $(".priv").show().removeClass("hidden");
-        } else {
-            $(".priv").hide();
-        }
-    });
-    var other_val = $(".license-other").attr("data-val");
-    $(".license").click(function (e) {
-        if ($(this).val() == other_val) {
-            $(".license-other").show().removeClass("hidden");
-        } else {
-            $(".license-other").hide();
-        }
     });
 }
 

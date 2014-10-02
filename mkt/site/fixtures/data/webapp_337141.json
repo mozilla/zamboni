@@ -85,7 +85,6 @@
         "model": "versions.version",
         "fields": {
             "has_info_request": false,
-            "license": null,
             "created": "2011-10-18T16:28:24",
             "has_editor_comment": false,
             "releasenotes": null,
