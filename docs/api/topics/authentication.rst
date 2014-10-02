@@ -97,7 +97,7 @@ Logout
     **Response**
 
     :status 204: successfully logged out. The previously shared token is now
-        unauthenticated and sure be cleared from client storage.
+        unauthenticated and should be cleared from client storage.
 
 
 OAuth
