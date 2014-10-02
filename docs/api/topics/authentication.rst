@@ -17,6 +17,9 @@ Shared Secret
 The Marketplace front end uses a server-supplied token for authentication,
 stored as a cookie.
 
+Login
+-----
+
 .. http:post:: /api/v2/account/login/
 
     **Request**
@@ -71,6 +74,31 @@ stored as a cookie.
 
     :status 201: successfully completed, a new profile might have been created
         in the marketplace if the account was new.
+
+
+Logout
+-----
+
+.. http:delete:: /api/v2/account/logout/
+
+    **Request**
+
+    :param _user: the shared secret token returned from the login endpoint.
+    :type _user: string
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "_user": "ffoob@example.com,95c9063d9f249aacfe5697fc83192e..."
+        }
+
+    **Response**
+
+    :status 204: successfully logged out. The previously shared token is now
+        unauthenticated and sure be cleared from client storage.
+
 
 OAuth
 =====
