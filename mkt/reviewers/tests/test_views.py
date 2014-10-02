@@ -1359,23 +1359,6 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         assert not AppLog.objects.filter(
             addon=self.app, activity_log__action=action_id).exists()
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    @mock.patch('mkt.reviewers.views.messages.success')
-    @mock.patch('mkt.webapps.tasks.index_webapps')
-    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
-    @mock.patch('mkt.webapps.models.Webapp.update_supported_locales')
-    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
-    def test_pending_to_public_notification_translation(
-            self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, storefront_mock):
-        data = {'action': 'public', 'device_types': '', 'browsers': '',
-                'comments': 'something'}
-        data.update(self._attachment_management_form(num=0))
-        self.client.post(self.url, data, HTTP_ACCEPT_LANGUAGE='es')
-        eq_(messages.call_args_list[0][0][1],
-            u'"Valoración de la aplicación web" successfully processed '
-            u'(+60 points, 60 total).')
-
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
     def test_incomplete_cant_approve(self):
         self.app.update(status=amo.STATUS_NULL)
