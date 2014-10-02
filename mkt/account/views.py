@@ -20,14 +20,15 @@ from rest_framework.decorators import (authentication_classes,
                                        permission_classes)
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
-                                     RetrieveAPIView, RetrieveUpdateAPIView,
-                                     ListAPIView)
+                                     ListAPIView, RetrieveAPIView,
+                                     RetrieveUpdateAPIView, UpdateAPIView)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 
 import amo
 from mkt.users.models import UserProfile
+from mkt.users.tasks import send_fxa_mail
 from mkt.users.views import browserid_authenticate
 
 from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
@@ -118,7 +119,18 @@ class AccountView(MineMixin, CORSMixin, RetrieveUpdateAPIView):
     serializer_class = AccountSerializer
 
 
-class AccountInfoView(CORSMixin, RetrieveAPIView):
+class AnonymousUserMixin(object):
+    def get_object(self, *args, **kwargs):
+        try:
+            user = super(AnonymousUserMixin, self).get_object(*args, **kwargs)
+        except http.Http404:
+            # The base get_object() will raise Http404 instead of DoesNotExist.
+            # Treat no object as an anonymous user (source: unknown).
+            user = UserProfile(is_verified=False)
+        return user
+
+
+class AccountInfoView(AnonymousUserMixin, CORSMixin, RetrieveAPIView):
     permission_classes = []
     cors_allowed_methods = ['get']
     # Only select users with an FxA source, everything else will be unkown.
@@ -126,14 +138,20 @@ class AccountInfoView(CORSMixin, RetrieveAPIView):
     serializer_class = AccountInfoSerializer
     lookup_field = 'email'
 
-    def get_object(self, *args, **kwargs):
-        try:
-            user = super(AccountInfoView, self).get_object(*args, **kwargs)
-        except http.Http404:
-            # The base get_object() will raise Http404 instead of DoesNotExist.
-            # Treat no object as an anonymous user (source: unknown).
-            user = UserProfile()
-        return user
+
+class ConfirmFxAVerificationView(AnonymousUserMixin, UpdateAPIView):
+    permission_classes = []
+    authentication_classes = []
+    queryset = UserProfile.objects.filter(is_verified=True)
+    lookup_field = 'email'
+
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()
+        if user.is_verified:
+            send_fxa_mail.delay([user.pk], 'customers-during', True)
+            return Response({'notified': True})
+        else:
+            return Response({'notified': False})
 
 
 class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
