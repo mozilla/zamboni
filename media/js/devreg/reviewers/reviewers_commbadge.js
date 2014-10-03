@@ -29,7 +29,7 @@ define('reviewersCommbadge', ['login'], function(login) {
                 if ($table.find('tbody').length) {
                    $table = $table.find('tbody');
                 }
-                $table.append(noResults);
+                $table.append(noResults).removeClass('comm-loading');
             }
         });
 
@@ -42,7 +42,7 @@ define('reviewersCommbadge', ['login'], function(login) {
             $.get(_userArg(commNoteUrl), getNoteHandler($table));
         }
     }).fail(function(e) {
-        $('table.activity').html('<p class="error">' + gettext('Sorry! We had an error fetching the review history. Please try logging in again.' + '<p>'));
+        $('table.activity').html('<p class="error">' + gettext('Sorry! We had an error fetching the review history. Please try logging in again.' + '<p>')).removeClass('comm-loading');
         console.log('Login failed. Token: ' + require('login').userToken());
     });
 
@@ -68,6 +68,8 @@ define('reviewersCommbadge', ['login'], function(login) {
                 _userArg: _userArg,
             }));
         }
+
+        $table.removeClass('comm-loading');
     }
 
     function getNoteHandler($table) {
@@ -90,7 +92,7 @@ define('reviewersCommbadge', ['login'], function(login) {
         // Fetch previous or next offset on click of paginator links..
         var $this = $(this);
         var noteUrl = $this.hasClass('next') ? 'data-next-url' : 'data-prev-url';
-        var $table = $this.closest('table.activity');
+        var $table = $this.closest('table.activity').addClass('comm-loading');
         $.get($table.attr(noteUrl), getNoteHandler($table));
     }));
 });

@@ -48,7 +48,7 @@
 
         <td>
           {# By version. #}
-          <table class="activity" data-version="{{ version.id }}">
+          <table class="activity comm-loading" data-version="{{ version.id }}">
             <thead>
               {% if version.releasenotes %}
                 <tr>
@@ -79,6 +79,9 @@
                   <a class="button next" href="#">{{ _('Next Page') }}</a>
                   <a class="button prev" href="#">{{ _('Previous Page') }}</a>
                 </td>
+              </tr>
+              <tr class="loading-msg">
+                <td>{{ _('Loading App History &hellip;')|safe }}</td>
               </tr>
             </tbody>
           </table>
