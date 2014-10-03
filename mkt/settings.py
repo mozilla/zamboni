@@ -416,10 +416,6 @@ CELERY_SEND_TASK_ERROR_EMAILS = True
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
-    'lib.es.management.commands.reindex.run_indexing': {
-        'soft': 60 * 60,  # 60 mins to reindex.
-        'hard': 60 * 120,  # 120 mins hard limit.
-    },
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.

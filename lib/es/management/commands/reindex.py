@@ -57,8 +57,12 @@ INDEX_DICT = {
 ES = elasticsearch.Elasticsearch(hosts=settings.ES_HOSTS)
 
 
-job = 'lib.es.management.commands.reindex.run_indexing'
-time_limits = settings.CELERY_TIME_LIMITS[job]
+def _print(msg, alias=''):
+    prepend = ''
+    if alias:
+        prepend = '[alias:{alias}] '.format(alias=alias)
+    msg = '\n{prepend}{msg}'.format(prepend=prepend, msg=msg)
+    sys.stdout.write(msg)
 
 
 @task
@@ -70,13 +74,13 @@ def pre_index(new_index, old_index, alias, indexer, settings):
 
     """
     # Flag the database to indicate that the reindexing has started.
-    sys.stdout.write('Flagging the database to start the reindexation\n')
+    _print('Flagging the database to start the reindexation.', alias)
     Reindexing.flag_reindexing(new_index=new_index, old_index=old_index,
                                alias=alias)
     time.sleep(5)  # Give celeryd some time to flag the DB.
 
-    sys.stdout.write(
-        'Create the mapping for index %r, alias: %r\n' % (new_index, alias))
+    _print('Creating the mapping for index {index}.'.format(index=new_index),
+           alias)
 
     # Update settings with mapping.
     settings = {
@@ -108,7 +112,7 @@ def post_index(new_index, old_index, alias, indexer, settings):
         * Output the current alias configuration.
 
     """
-    sys.stdout.write('Optimizing, updating settings and aliases.\n')
+    _print('Optimizing, updating settings and aliases.', alias)
 
     # Optimize.
     ES.indices.optimize(index=new_index)
@@ -126,10 +130,10 @@ def post_index(new_index, old_index, alias, indexer, settings):
         )
     ES.indices.update_aliases(body=dict(actions=actions))
 
-    sys.stdout.write('Unflagging the database\n')
+    _print('Unflagging the database.', alias)
     Reindexing.unflag_reindexing(alias=alias)
 
-    sys.stdout.write('Removing index %r\n' % old_index)
+    _print('Removing index {index}.'.format(index=old_index), alias)
     try:
         ES.indices.delete(index=old_index)
     except elasticsearch.NotFoundError:
@@ -138,9 +142,8 @@ def post_index(new_index, old_index, alias, indexer, settings):
     alias_output = ''
     for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
         alias_output += unicode(ES.indices.get_aliases(index=ALIAS)) + '\n'
-    sys.stdout.write(
-        'Reindexation done. Current aliases configuration: %s\n' %
-        alias_output)
+    _print('Reindexation done. Current aliases configuration: '
+           '{output}\n'.format(output=alias_output), alias)
 
 
 @task(ignore_result=False)
@@ -203,14 +206,13 @@ class Command(BaseCommand):
 
             chunks, total = chunk_indexing(INDEXER, CHUNK_SIZE)
             if not total:
-                self.stdout.write('\nNo tasks to queue for %s' % ALIAS)
+                _print('No items to queue.', ALIAS)
                 continue
             else:
                 total_chunks = int(ceil(total / float(CHUNK_SIZE)))
-                self.stdout.write(
-                    '\nParallel indexing {total} items into {n} chunks of '
-                    'size {size}'.format(total=total, n=total_chunks,
-                                         size=CHUNK_SIZE))
+                _print('Indexing {total} items into {n} chunks of size {size}'
+                       .format(total=total, n=total_chunks, size=CHUNK_SIZE),
+                       ALIAS)
 
             # Get the old index if it exists.
             try:
@@ -254,4 +256,4 @@ class Command(BaseCommand):
                 )
             ).apply_async()
 
-        self.stdout.write('\nNew index and indexing tasks all queued up.\n')
+        _print('New index and indexing tasks all queued up.')
