@@ -9,11 +9,10 @@ from mkt.users.models import UserProfile
 
 
 class AccountSerializer(serializers.ModelSerializer):
-    verified = serializers.BooleanField(source='is_verified', read_only=True)
 
     class Meta:
         model = UserProfile
-        fields = ['display_name', 'verified']
+        fields = ['display_name']
 
     def validate_display_name(self, attrs, source):
         """Validate that display_name is not empty"""
@@ -30,10 +29,11 @@ class AccountSerializer(serializers.ModelSerializer):
 
 class AccountInfoSerializer(serializers.ModelSerializer):
     source = serializers.CharField(read_only=True)
+    verified = serializers.BooleanField(source='is_verified', read_only=True)
 
     class Meta:
         model = UserProfile
-        fields = ['source']
+        fields = ['source', 'verified']
 
     def transform_source(self, obj, value):
         """Return the sources slug instead of the id."""

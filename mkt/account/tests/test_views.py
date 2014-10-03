@@ -770,6 +770,52 @@ class TestAccountInfoView(RestOAuth):
         eq_(response.status_code, 200)
         eq_(response.json['source'], 'firefox-accounts')
 
+    def test_verified_user(self):
+        self.profile.update(is_verified=True)
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['verified'], True)
+
+    def test_unverified_user(self):
+        self.profile.update(is_verified=False)
+        response = self.get(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['verified'], False)
+
+    def test_no_user_is_not_verified(self):
+        response = self.get('nope@noway.rich')
+        eq_(response.status_code, 200)
+        eq_(response.json['verified'], False)
+
+
+class TestConfirmFxAVerificationView(RestOAuth):
+    def url(self, email):
+        return reverse('fxa-confirm-preverify', args=[email])
+
+    def put(self, email):
+        return self.client.put(self.url(email))
+
+    def test_no_user_is_not_notified(self):
+        response = self.put('nope@noway.rich')
+        eq_(response.status_code, 200)
+        eq_(response.json['notified'], False)
+        eq_(len(mail.outbox), 0)
+
+    def test_unverified_user_is_not_notified(self):
+        self.profile.update(is_verified=False)
+        response = self.put(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['notified'], False)
+        eq_(len(mail.outbox), 0)
+
+    def test_verified_user_is_notified(self):
+        self.profile.update(is_verified=True)
+        response = self.put(self.profile.email)
+        eq_(response.status_code, 200)
+        eq_(response.json['notified'], True)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, [self.profile.email])
+
 
 class TestPreverify(RestOAuth):
     @patch('mkt.account.utils.get_token_expiry', lambda td: 1400000000)

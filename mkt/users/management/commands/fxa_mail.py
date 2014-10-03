@@ -2,22 +2,12 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-from tower import ugettext_lazy as _
 
 from amo.utils import chunked
 from mkt.constants.base import LOGIN_SOURCE_FXA
 from mkt.users.models import UserProfile
-from mkt.users.tasks import send_mail
+from mkt.users.tasks import fxa_email_types, send_fxa_mail
 from mkt.webapps.models import AddonUser
-
-emails = {
-    'customers-before': _('Firefox Accounts is coming'),
-    'customers-during': _('Activate your Firefox Account'),
-    'customers-after': _('Activate your Firefox Account'),
-    'developers-before': _('Firefox Accounts is coming'),
-    'developers-during': _('Activate your Firefox Account'),
-    'developers-after': _('Activate your Firefox Account')
-}
 
 
 def get_user_ids(is_developers):
@@ -47,7 +37,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         mail_type = kwargs.get('type')
-        if mail_type not in emails:
+        if mail_type not in fxa_email_types:
             raise ValueError('{0} email not known.'.format(mail_type))
 
         audience, phase = mail_type.split('-')
@@ -58,9 +48,4 @@ class Command(BaseCommand):
 
         print 'Sending: {0} emails'.format(len(ids))
         for users in chunked(ids, 100):
-            send_mail.delay(
-                ids,
-                emails[mail_type],
-                'users/emails/{0}.html'.format(mail_type),
-                'users/emails/{0}.ltxt'.format(mail_type),
-                is_live)
+            send_fxa_mail.delay(ids, mail_type, is_live)

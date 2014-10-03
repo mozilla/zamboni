@@ -18,14 +18,6 @@ class TestAccountSerializer(amo.tests.TestCase):
         with mock.patch.object(UserProfile, 'name', 'Account name'):
             eq_(self.serializer().data['display_name'], 'Account name')
 
-    def test_not_verified(self):
-        self.account.is_verified = False
-        eq_(self.serializer().data['verified'], False)
-
-    def test_verified(self):
-        self.account.is_verified = True
-        eq_(self.serializer().data['verified'], True)
-
 
 class TestAccountInfoSerializer(amo.tests.TestCase):
     UNKNOWN = amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN]
@@ -56,3 +48,11 @@ class TestAccountInfoSerializer(amo.tests.TestCase):
         eq_(serializer.is_valid(), True)
         # This works because the model field is `editable=False`.
         eq_(serializer.save().source, amo.LOGIN_SOURCE_UNKNOWN)
+
+    def test_not_verified(self):
+        self.account.is_verified = False
+        eq_(self.serializer().data['verified'], False)
+
+    def test_verified(self):
+        self.account.is_verified = True
+        eq_(self.serializer().data['verified'], True)
