@@ -437,7 +437,7 @@ class WebappIndexer(BaseIndexer):
                 sys.stdout.write('Failed to index webapp {0}: {1}\n'.format(
                     obj.id, e))
 
-        WebappIndexer.bulk_index(docs, es=ES, index=index or cls.get_index())
+        cls.bulk_index(docs, es=ES, index=index or cls.get_index())
 
     @classmethod
     def get_app_filter(cls, request, additional_data=None, sq=None,

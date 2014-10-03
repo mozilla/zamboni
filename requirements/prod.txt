@@ -7,7 +7,7 @@ billiard==2.7.3.34
 bleach==1.4
 boto==2.20.0
 cef==0.5
-celery==3.0.24
+celery==3.0.25
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==2.1.1
