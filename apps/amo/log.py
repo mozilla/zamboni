@@ -309,13 +309,6 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     keep = True
 
 
-class CHANGE_LICENSE(_LOG):
-    """ Expects: license, addon """
-    id = 37
-    action_class = 'edit'
-    format = _(u'{addon} is now licensed under {0.name}.')
-
-
 class CHANGE_POLICY(_LOG):
     id = 38
     action_class = 'edit'

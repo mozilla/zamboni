@@ -18,8 +18,7 @@ from mkt.files import utils
 from mkt.files.models import cleanup_file, File
 from mkt.site.decorators import use_master
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.translations.fields import (LinkifiedField, PurifiedField,
-                                     save_signal, TranslatedField)
+from mkt.translations.fields import PurifiedField, save_signal
 from mkt.versions.tasks import update_supported_locales_single
 from mkt.webapps import query
 
@@ -43,7 +42,6 @@ class VersionManager(ManagerBase):
 
 class Version(ModelBase):
     addon = models.ForeignKey('webapps.Webapp', related_name='versions')
-    license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
     version = models.CharField(max_length=255, default='0.1')
@@ -86,14 +84,10 @@ class Version(ModelBase):
     @classmethod
     def from_upload(cls, upload, addon, send_signal=True):
         data = utils.parse_addon(upload, addon)
-        try:
-            license = addon.versions.latest().license_id
-        except Version.DoesNotExist:
-            license = None
         max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
         developer = data.get('developer_name', '')[:max_len]
         v = cls.objects.create(addon=addon, version=data['version'],
-                               license_id=license, _developer_name=developer)
+                               _developer_name=developer)
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
 
         # To avoid circular import.
@@ -346,35 +340,3 @@ models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
-
-
-class LicenseManager(ManagerBase):
-
-    def builtins(self):
-        return self.filter(builtin__gt=0).order_by('builtin')
-
-
-class License(ModelBase):
-    OTHER = 0
-
-    name = TranslatedField(db_column='name')
-    url = models.URLField(null=True)
-    builtin = models.PositiveIntegerField(default=OTHER)
-    text = LinkifiedField()
-    on_form = models.BooleanField(default=False,
-        help_text='Is this a license choice in the devhub?')
-    some_rights = models.BooleanField(default=False,
-        help_text='Show "Some Rights Reserved" instead of the license name?')
-    icons = models.CharField(max_length=255, null=True,
-        help_text='Space-separated list of icon identifiers.')
-
-    objects = LicenseManager()
-
-    class Meta:
-        db_table = 'licenses'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-models.signals.pre_save.connect(
-    save_signal, sender=License, dispatch_uid='version_translations')
