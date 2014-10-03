@@ -779,18 +779,6 @@ button.search, .log-filter-outside button {
         margin-right: 5px;
 
     }
-    .next.active + .prev:after {
-        background-color: $medium-gray;
-        border-radius: 3px;
-        bottom: 2px;
-        content: "";
-        display: inline-block;
-        height: 3px;
-        left: 2px;
-        margin: 0 2px;
-        position: relative;
-        width: 3px;
-    }
 }
 
 .comm-note {
@@ -1461,5 +1449,17 @@ span.currently_viewing_warning {
         + a.button {
             margin-left: 10px;
         }
+    }
+}
+
+#review-files table.activity .comm-notes-paginator {
+    td {
+        padding: 0;
+    }
+    a.button {
+        height: 30px;
+        line-height: 30px;
+        min-width: 85px;
+        padding: 0 5px;
     }
 }
