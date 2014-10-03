@@ -13,6 +13,7 @@ import amo
 from amo.utils import paginate
 from mkt.constants import apps
 from mkt.purchase.models import Contribution
+from mkt.site.helpers import absolutify
 from mkt.site.models import manual_order
 from mkt.translations.query import order_by_translation
 from mkt.webapps.models import Webapp
@@ -42,7 +43,7 @@ def fxa_preverify_token(user, expiry):
     }
     jws = JWS(msg, cty='JWT', alg='RS256',
               kid=PREVERIFY_KEY.kid,
-              jku=reverse('fxa-preverify-key'))
+              jku=absolutify(reverse('fxa-preverify-key')))
     return jws.sign_compact([PREVERIFY_KEY])
 
 
