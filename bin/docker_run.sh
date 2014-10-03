@@ -12,8 +12,8 @@ if [ $? -ne 0 ]; then
     python manage.py syncdb --noinput
     echo "Initialising data..."
     python manage.py loaddata init
-    echo "Running db migrations for the first time."
-    schematic migrations/
+    echo "Jumping migrations forward to the most recent."
+    schematic migrations/ --fake
 fi
 
 python manage.py runserver 0.0.0.0:2600

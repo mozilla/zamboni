@@ -143,7 +143,9 @@ Django provides commands to create the database and tables needed, and load esse
 
     ./manage.py syncdb
     ./manage.py loaddata init
-
+    # As we're initializing the db with syncdb we should fake
+    # the running of all the current migrations on first run.
+    schematic migrations/ --fake
 
 Database Migrations
 ~~~~~~~~~~~~~~~~~~
@@ -168,7 +170,7 @@ where N is the number of apps you want created in your database.
 7. Check it works
 -----------------
 
-If you've gotten the system requirements, downloaded ``zamboni``, 
+If you've gotten the system requirements, downloaded ``zamboni``,
 set up your virtualenv with the compiled packages, and
 configured your settings and database, you're good to go::
 
