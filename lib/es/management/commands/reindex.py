@@ -127,7 +127,7 @@ def post_index(new_index, old_index, alias, indexer, settings):
     ES.indices.update_aliases(body=dict(actions=actions))
 
     sys.stdout.write('Unflagging the database\n')
-    Reindexing.unflag_reindexing()
+    Reindexing.unflag_reindexing(alias=alias)
 
     sys.stdout.write('Removing index %r\n' % old_index)
     try:
