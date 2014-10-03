@@ -49,7 +49,7 @@ for line in f:
         line = r'%s%s%s' % (line[0:13], etag, line[-5:])
         line = line.replace(r'\\', r'\\\\')
     elif '"packageEtag"' in line:
-        line = r'%s%s%s' % (line[0:20], etag, line[-5:])
+        line = r'%s%s%s' % (line[0:20], package_etag, line[-5:])
         line = line.replace(r'\\', r'\\\\')
     tmp_f.write(line)
 tmp_f.close()
