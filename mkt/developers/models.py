@@ -133,7 +133,7 @@ class PaymentAccount(ModelBase):
         if not self.shared:
             return u'%s - %s' % (date, self.name)
         # L10n: {0} is the name of the account.
-        return _(u'Shared Account: {0}'.format(self.name))
+        return _(u'Donate to {0}'.format(self.name))
 
     def get_agreement_url(self):
         return reverse('mkt.developers.provider.agreement', args=[self.pk])
