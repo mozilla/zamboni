@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-16 12:06+0000\n"
+"PO-Revision-Date: 2014-10-05 11:26+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410869175.0\n"
+"X-POOTLE-MTIME: 1412508399.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -326,11 +327,11 @@ msgstr "Ескалација очишћена"
 
 #: apps/amo/log.py:440
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} је банован."
 
 #: apps/amo/log.py:441
 msgid "App banned"
-msgstr ""
+msgstr "Апликација је банована"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -590,7 +591,7 @@ msgstr "Поље мора да буде дужине барем {num} карак
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Код језика {lang_code} је неисправан."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -658,7 +659,7 @@ msgstr "Прилог премашује максималну величину о
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1711,7 +1712,7 @@ msgstr "Објављено"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Банован са Marketplace-а"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1895,11 +1896,11 @@ msgstr "Без акције"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "Банован"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Коментар рецезента"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1967,11 +1968,11 @@ msgstr "Приоритет прегледа је затражен"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "Прошао додатни преглед"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "Пао додатни преглед"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2554,6 +2555,8 @@ msgstr "Упс, изгледа да је већ послат манифест з
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Упс, изгледа да сте већ доставили манифест за %s, који је тренутно банован "
+"на Marketplace-у. <a href=\"%s\">Уреди апликацију</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -3531,7 +3534,7 @@ msgstr "Можете видети подешавања апликације ал
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Не могу да прикажем поставке апликације"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3567,11 +3570,13 @@ msgstr "Ваша апликација је онемогућена зато шт�
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Апликација је <b>банована на Marketplace-у</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Вашу апликацију је бановао администратор сајта. Ако имате питања, молимо "
+"пошаљите е-пошту %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3731,6 +3736,8 @@ msgstr "Можете да ажурирате регионе на <a href=\"{comp
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Ако Ваша апликација ради на уређајима који имају мало меморије можете "
+"захтевати реценизију да би апликација била приказана на тим уређајима."
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -4600,7 +4607,7 @@ msgstr "Тест плаћање унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "Кључеви за плаћања унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -4647,15 +4654,18 @@ msgstr "Генериши кључеве"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "Кључеви унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше "
+"апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и "
+"управљање производима."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Конфигуриши кључеве унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4664,10 +4674,13 @@ msgstr "Производи у оквиру апликације"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Производи унутар апликације Вам омогућавају да примате уплате у Вашој "
+"апликацији и поједностављује процес тако што Вам омогућава да направите и "
+"управљате производима на Firefox Marketplace Developer Hub-у."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Конфигуриши производе унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -5498,6 +5511,8 @@ msgstr "Датотека \"manifest.webapp\" није нађена у корен
 #: mkt/files/utils.py:98
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Нисам могао да декодирам webapp манифест датотеку. Проверите Вашу манифест "
+"датотеку за специјалне non-utf-8 карактере."
 
 #: mkt/files/utils.py:106
 msgid "The webapp manifest is not valid JSON."
@@ -5730,27 +5745,27 @@ msgstr "Ставити рецензију под приоритетом?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
-msgstr ""
+msgstr "Tarako статус"
 
 #: mkt/lookup/templates/lookup/app_summary.html:85
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako омогућен"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako није омогућен"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "Рецензија није захтевана"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
-msgstr ""
+msgstr "Рецензија на чекању"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review failed"
-msgstr ""
+msgstr "Рецензија неуспешна"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
@@ -6361,11 +6376,13 @@ msgstr "Очисти ову апликацију из реда за поново
 
 #: mkt/reviewers/utils.py:494
 msgid "Ban app"
-msgstr ""
+msgstr "Бануј апликацију"
 
 #: mkt/reviewers/utils.py:496
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Бануј ову апликацију са Marketplace-а. Слично одбијању само аутори не могу "
+"опет да поднесу апликацију. Ово се користи само у екстремним случајевима."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6596,11 +6613,11 @@ msgstr "Оцене рецензента за {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Преглед поена"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Поени"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6947,11 +6964,11 @@ msgstr "Други систем у оквиру апликације"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
-msgstr ""
+msgstr "Било који уређај"
 
 #: mkt/search/forms.py:43
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
@@ -7133,15 +7150,15 @@ msgstr "Дошло је до грешке током отпремања. Мол�
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Верзија %s већ постоји."
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "Промене на \"origin\" нису дозвољене."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Подношење валидације корисника се не поклапа."
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7550,29 +7567,37 @@ msgstr "Молимо Вас користите верификовану адре
 
 #: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
 msgid "Firefox Accounts is coming"
-msgstr ""
+msgstr "Firefox налози долазе"
 
 #: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
 msgid "Activate your Firefox Account"
-msgstr ""
+msgstr "Активирајте Ваш Firefox налог"
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
-msgstr ""
+msgstr "Активирај сада"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
 msgstr ""
+"За више информација о Firefox налозима молимо погледајте <a href=\"%"
+"(faq)s\">ЧПП</a>."
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"Ви добијате ову е-пошту зато што сте направили налог на Firefox Marketplace. "
+"Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%"
+"(terms)s\">Услови коришћења</a> | <a href=\"%(privacy)s\">Полиса "
+"приватности</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
 msgstr ""
+"Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш "
+"нови Firefox налог."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
@@ -7591,6 +7616,8 @@ msgstr ""
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
 msgstr ""
+"Активирање Вашег налога је лако. Једноставно се пријавите и верификујте "
+"налог."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
@@ -7603,6 +7630,8 @@ msgstr ""
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
 msgstr ""
+"ВАЖНО: Морате активирати Ваш Firefox налог како бисте приступили и управљали "
+"Вашим апликација које се налазе на Firefox Marketplace-у."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7720,15 +7749,15 @@ msgstr "Пријави се / Региструј се"
 
 #: templates/base.html:122
 msgid "Firefox Accounts has arrived"
-msgstr ""
+msgstr "Firefox налози су стигли"
 
 #: templates/base.html:125
 msgid "Learn how to transfer your account"
-msgstr ""
+msgstr "Сазнајте како да пренесете Ваш налог"
 
 #: templates/base.html:128
 msgid "It's easy."
-msgstr ""
+msgstr "Лако је."
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
