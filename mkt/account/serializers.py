@@ -28,6 +28,8 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class AccountInfoSerializer(serializers.ModelSerializer):
+    ALLOWED_SOURCES = [amo.LOGIN_SOURCE_UNKNOWN, amo.LOGIN_SOURCE_FXA]
+
     source = serializers.CharField(read_only=True)
     verified = serializers.BooleanField(source='is_verified', read_only=True)
 
@@ -37,8 +39,10 @@ class AccountInfoSerializer(serializers.ModelSerializer):
 
     def transform_source(self, obj, value):
         """Return the sources slug instead of the id."""
-        return amo.LOGIN_SOURCE_LOOKUP.get(
-            value, amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN])
+        if obj.source in self.ALLOWED_SOURCES:
+            return amo.LOGIN_SOURCE_LOOKUP[value]
+        else:
+            return amo.LOGIN_SOURCE_LOOKUP[amo.LOGIN_SOURCE_UNKNOWN]
 
 
 class FeedbackSerializer(PotatoCaptchaSerializer):

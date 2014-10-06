@@ -822,7 +822,7 @@ class TestPreverify(RestOAuth):
     def test_preverify(self):
         res = self.client.post(reverse('fxa-preverify'))
         eq_(res.status_code, 200)
-        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImtpZCI6MSwiY3R5IjoiSldUIiwiamt1IjoiaHR0cDovL3Rlc3RzZXJ2ZXIvYXBpL3YxL2FjY291bnQvZnhhLXByZXZlcmlmeS1rZXkvIn0.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6Imh0dHBzOi8vc3RhYmxlLmRldi5sY2lwLm9yZy8iLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.Y4rpzDJIAVy7QjPra8f7gsMKFSLLT0QLiM8ayyIYSU0nOKSQezDTNr4_8KeWuUJaGiMJDuTVIayNWw6CNb_FmUwa1AyViNR86s4KwMVvCYhI12GpJNEQ98y0teFtNMpAY6Ox5DsddxcgLzFZYhzlPtVYPQJF4EmM2bBO-EXZusE')
+        eq_(res.content, 'eyJhbGciOiJSUzI1NiIsImtpZCI6MSwiY3R5IjoiSldUIiwiamt1IjoiaHR0cDovL3Rlc3RzZXJ2ZXIvYXBpL3YxL2FjY291bnQvZnhhLXByZXZlcmlmeS1rZXkvIn0.eyJ0eXAiOiJtb3ppbGxhL2Z4YS9wcmVWZXJpZnlUb2tlbi92MSIsImF1ZCI6InN0YWJsZS5kZXYubGNpcC5vcmciLCJleHAiOjE0MDAwMDAwMDAsInN1YiI6ImNmaW5rZUBtLmNvbSJ9.UCGxqgVNbFnS6Kr0mj75o-qcixgCH1rb0ZSJHo2fsrru_9d1QKenUFtB46T1i-LFc5L4-c8645tvB3iBYMk1jwur043wOPQFmTHWInJ-q1LBsc8Low7PHdTx7EXyfZ1F3nT2NZPB78KyaOlQOnDgV_68GKDDWTswLnDRMMJedkk')
 
     def test_reject_unverified(self):
         self.user.is_verified = False

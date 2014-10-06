@@ -134,7 +134,7 @@ class AccountInfoView(AnonymousUserMixin, CORSMixin, RetrieveAPIView):
     permission_classes = []
     cors_allowed_methods = ['get']
     # Only select users with an FxA source, everything else will be unkown.
-    queryset = UserProfile.objects.filter(source=amo.LOGIN_SOURCE_FXA)
+    queryset = UserProfile.objects.all()
     serializer_class = AccountInfoSerializer
     lookup_field = 'email'
 
