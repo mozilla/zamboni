@@ -264,6 +264,10 @@ def app_summary(request, addon_id):
                 'status': amo.STATUS_CHOICES_API[v.all_files[0].status]
             })
 
+    permissions = {}
+    if app.latest_version:
+        permissions = app.latest_version.manifest.get('permissions', {})
+
     return render(request, 'lookup/app_summary.html', {
         'abuse_reports': app.abuse_reports.count(), 'app': app,
         'authors': authors, 'downloads': _app_downloads(app),
@@ -272,7 +276,8 @@ def app_summary(request, addon_id):
         'status_form': status_form, 'versions': versions,
         'is_tarako': app.tags.filter(tag_text=QUEUE_TARAKO).exists(),
         'tarako_review': app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
-        'version_status_forms': version_status_forms
+        'version_status_forms': version_status_forms,
+        'permissions': permissions,
     })
 
 

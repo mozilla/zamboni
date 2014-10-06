@@ -99,7 +99,15 @@
         <dt>{{ _('Abuse Reports') }}</dt>
         <dd>{{ abuse_reports }}</dd>
         <dt>{{ _('Permissions') }}</dt>
-        <dd>TBD: permissions not supported yet</dd>
+        <dd>
+          <ul>
+            {% for perm, desc in permissions.items() %}
+              <li>{{ perm }}: {{ desc.description or _('No reason given') }}</li>
+            {% else %}
+              <li>{{ _('No permissions requested') }}</li>
+            {% endfor %}
+          </ul>
+        </dd>
         <dt>{{ _('Downloads') }}</dt>
         <dd class="pretty-list">
           {% for key, heading in summaries %}

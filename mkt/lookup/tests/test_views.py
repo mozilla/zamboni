@@ -4,15 +4,12 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.contrib.messages.storage.fallback import FallbackStorage
-from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
-from django.utils.encoding import smart_str
 
 import mock
 from babel import numbers
 from curling.lib import HttpClientError
-from nose.exc import SkipTest
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from slumber import exceptions
@@ -22,7 +19,7 @@ import amo.tests
 from amo.tests import app_factory, ESTestCase, req_factory_factory, TestCase
 from mkt.abuse.models import AbuseReport
 from mkt.access.models import Group, GroupUser
-from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
+from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
                                     PROVIDER_BOKU, SOLITUDE_REFUND_STATUSES)
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
@@ -751,7 +748,6 @@ class TestAppSummary(AppSummaryTest):
     def test_tarako_enabled(self):
         tag = Tag(tag_text='tarako')
         tag.save_tag(self.app)
-        #WebappIndexer.index_ids([self.app.pk])
         res = self.summary()
         text = 'Tarako enabled'
         assert text in pq(res.content)('.column-b dd').eq(6).text()
@@ -807,7 +803,17 @@ class TestAppSummary(AppSummaryTest):
         eq_(res.context['abuse_reports'], 2)
 
     def test_permissions(self):
-        raise SkipTest('we do not support permissions yet')
+        manifest = json.dumps({
+            'permissions': {
+                'geolocation': {
+                    'description': 'Required to know where you are.'
+                }
+            }
+        })
+        self.app.latest_version.manifest_json.update(manifest=manifest)
+
+        res = self.summary()
+        eq_(res.context['permissions'], json.loads(manifest)['permissions'])
 
     def test_version_history_non_packaged(self):
         res = self.summary()
