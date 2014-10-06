@@ -22,11 +22,7 @@ require(['prefetchManifest']);
 
     initMoreAppInfo();
 
-    if ($('.theme-search').length) {
-        initSearch(true);
-    } else {
-        initSearch();
-    }
+    initSearch();
 
     if ($('.comm-dashboard-switch').length) {
         require(['reviewersCommbadge']);
@@ -49,7 +45,7 @@ function initClearSearch() {
 }
 
 
-function initSearch(isTheme) {
+function initSearch() {
     var search_results = getTemplate($('#queue-search-template'));
     var no_results = getTemplate($('#queue-search-empty-template'));
 
@@ -78,13 +74,7 @@ function initSearch(isTheme) {
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
-                        if (isTheme) {
-                            item = buildThemeResultRow(item, review_url,
-                                                       statuses);
-                        } else {
-                            item = buildAppResultRow(item, review_url,
-                                                     statuses);
-                        }
+                        item = buildAppResultRow(item, review_url, statuses);
                         results.push(search_result_row(item));
                     });
                     $searchIsland.html(
@@ -126,22 +116,10 @@ function buildAppResultRow(app, review_url, statuses) {
     app.flags = flags;
 
     if (app.price === null) {
-        app.price = gettext('Free');
+        app.price = 'null';
     }
 
     return app;
-}
-
-
-function buildThemeResultRow(theme, review_url, statuses) {
-    // Add some extra pretty attrs for the template.
-    theme.name = theme.name[0];
-
-    // Rather resolve URLs in backend, infer from slug.
-    theme.review_url = review_url.replace(
-        '__slug__', theme.slug);
-    theme.status = statuses[theme.status];
-    return theme;
 }
 
 
