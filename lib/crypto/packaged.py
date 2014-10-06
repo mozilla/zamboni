@@ -13,7 +13,6 @@ from celeryutils import task
 from django_statsd.clients import statsd
 from signing_clients.apps import JarExtractor
 
-import amo
 from mkt.versions.models import Version
 
 
@@ -148,10 +147,20 @@ def sign(version_id, reviewer=False, resign=False, **kw):
         log.info('[Webapp:%s] Already signed app exists.' % app.id)
         return path
 
-    ids = json.dumps({
-        'id': app.guid,
-        'version': version_id
-    })
+    if reviewer:
+        # Reviewers get a unique 'id' so the reviewer installed app won't
+        # conflict with the public app, and also so multiple versions of the
+        # same app won't conflict with themselves.
+        ids = json.dumps({
+            'id': 'reviewer-{guid}-{version_id}'.format(guid=app.guid,
+                                                        version_id=version_id),
+            'version': version_id
+        })
+    else:
+        ids = json.dumps({
+            'id': app.guid,
+            'version': version_id
+        })
     with statsd.timer('services.sign.app'):
         try:
             sign_app(file_obj.file_path, path, ids, reviewer)
