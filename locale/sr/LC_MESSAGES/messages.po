@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-05 11:26+0000\n"
+"PO-Revision-Date: 2014-10-06 06:09+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412508399.0\n"
+"X-POOTLE-MTIME: 1412575746.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -7178,6 +7178,13 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"Полиса приватности објашњава како се рукује са подацима који су добијени "
+"кроз апликацију. На пример: Које податке добијате? Како их користите? Са "
+"киме их делите? Да ли добијате личне податке? Да ли предузимате кораке да их "
+"учините анонимним? Какав избор корисници имају код контроле података које "
+"Ви и остали добијате? Унесите полису приватности или текст изнад. Ако немате "
+"полису приватности, <a href=\"{url}\" target=\"_blank\">сазнајте како да је "
+"направите.</a>"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7602,16 +7609,25 @@ msgstr ""
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
 msgstr ""
+"Ускоро ће Firefox Marketplace пензионисати тренутни систем за пријаву "
+"(Persona) у корист далеко снажнијих налога које зовемо Firefox налози."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
 msgstr ""
+"Када транзиција са Persona-е на Firefox налоге буде спремна, Ви ћете добити "
+"е-пошту са активационом везом."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"Firefox Marketplace се преместио на Firefox налоге да би пружио више "
+"интегрисано искуство преко свих Mozilla сервиса и производа. Имајући Firefox "
+"налог Вам омогућава да приступите постојећим Marketplace апликацијама и "
+"неприметно уживате са Вашим апликацијама на више уређаја, са више услуга "
+"ускоро."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
@@ -7622,10 +7638,14 @@ msgstr ""
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
 msgstr ""
+"Да бисте приступили и управљали листи апликација на Firefox Marketplace-у, "
+"морате активирати Firefox налог."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
 msgstr ""
+"Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш "
+"нови налог."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
