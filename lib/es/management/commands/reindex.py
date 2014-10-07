@@ -205,7 +205,6 @@ class Command(BaseCommand):
             chunks, total = chunk_indexing(INDEXER, CHUNK_SIZE)
             if not total:
                 _print('No items to queue.', ALIAS)
-                continue
             else:
                 total_chunks = int(ceil(total / float(CHUNK_SIZE)))
                 _print('Indexing {total} items into {n} chunks of size {size}'
@@ -236,22 +235,25 @@ class Command(BaseCommand):
             num_shards = s.get('number_of_shards',
                                settings.ES_DEFAULT_NUM_SHARDS)
 
+            pre_task = pre_index.si(new_index, old_index, ALIAS, INDEXER, {
+                'analysis': INDEXER.get_analysis(),
+                'number_of_replicas': 0,
+                'number_of_shards': num_shards,
+                'store.compress.tv': True,
+                'store.compress.stored': True,
+                'refresh_interval': '-1'})
+            post_task = post_index.si(new_index, old_index, ALIAS, INDEXER, {
+                'number_of_replicas': num_replicas,
+                'refresh_interval': '5s'})
+
             # Ship it.
-            chain(
-                pre_index.si(new_index, old_index, ALIAS, INDEXER, {
-                    'analysis': INDEXER.get_analysis(),
-                    'number_of_replicas': 0,
-                    'number_of_shards': num_shards,
-                    'store.compress.tv': True,
-                    'store.compress.stored': True,
-                    'refresh_interval': '-1'}),
-                chord(
-                    header=[run_indexing.si(new_index, INDEXER, chunk)
-                            for chunk in chunks],
-                    body=post_index.si(new_index, old_index, ALIAS, INDEXER, {
-                        'number_of_replicas': num_replicas,
-                        'refresh_interval': '5s'})
-                )
-            ).apply_async()
+            if not total:
+                # If there's no data we still create the index and alias.
+                chain(pre_task, post_task).apply_async()
+            else:
+                index_tasks = [run_indexing.si(new_index, INDEXER, chunk)
+                               for chunk in chunks]
+                chain(pre_task,
+                      chord(header=index_tasks, body=post_task)).apply_async()
 
         _print('New index and indexing tasks all queued up.')
