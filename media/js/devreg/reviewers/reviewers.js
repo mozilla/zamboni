@@ -116,7 +116,11 @@ function buildAppResultRow(app, review_url, statuses) {
     app.flags = flags;
 
     if (app.price === null) {
-        app.price = 'null';
+        if (app.premium_type == 'premium-inapp' || app.premium_type == 'premium') {
+            app.price = '-';
+        } else {
+            app.price = gettext('Free');
+        }
     }
 
     return app;
