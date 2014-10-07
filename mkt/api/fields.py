@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework import fields, serializers
 from rest_framework.compat import smart_text
 
-from amo.utils import to_language
+from mkt.translations.utils import to_language
 
 
 class MultiSlugChoiceField(fields.WritableField):

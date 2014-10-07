@@ -1,7 +1,12 @@
+from django.conf import settings
+from django.utils import translation
+
 from nose.tools import eq_
 
 from mkt.translations.models import Translation
-from mkt.translations.utils import transfield_changed, truncate, truncate_text
+from mkt.translations.utils import (find_language, no_translation, to_language,
+                                    transfield_changed, truncate,
+                                    truncate_text)
 
 
 def test_truncate_text():
@@ -50,3 +55,47 @@ def test_transfield_changed():
     # Deleted localization.
     del initial['name_en-us']
     eq_(transfield_changed('name', initial, data), 1)
+
+
+def test_to_language():
+    tests = (('en-us', 'en-US'),
+             ('en_US', 'en-US'),
+             ('en_us', 'en-US'),
+             ('FR', 'fr'),
+             ('el', 'el'))
+
+    def check(a, b):
+        eq_(to_language(a), b)
+    for a, b in tests:
+        yield check, a, b
+
+
+def test_find_language():
+    tests = (('en-us', 'en-US'),
+             ('en_US', 'en-US'),
+             ('en', 'en-US'),
+             ('cy', 'cy'),  # A hidden language.
+             ('FR', 'fr'),
+             ('es-ES', None),  # We don't go from specific to generic.
+             ('xxx', None))
+
+    def check(a, b):
+        eq_(find_language(a), b)
+    for a, b in tests:
+        yield check, a, b
+
+
+def test_no_translation():
+    """
+    `no_translation` provides a context where only the default
+    language is active.
+    """
+    lang = translation.get_language()
+    translation.activate('pt-br')
+    with no_translation():
+        eq_(translation.get_language(), settings.LANGUAGE_CODE)
+    eq_(translation.get_language(), 'pt-br')
+    with no_translation('es'):
+        eq_(translation.get_language(), 'es')
+    eq_(translation.get_language(), 'pt-br')
+    translation.activate(lang)

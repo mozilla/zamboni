@@ -1,6 +1,4 @@
 import codecs
-import collections
-import contextlib
 import datetime
 import errno
 import functools
@@ -15,7 +13,6 @@ import unicodedata
 import urllib
 import urlparse
 
-import django.core.mail
 from django import http
 from django.conf import settings
 from django.contrib import messages
@@ -28,27 +25,21 @@ from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.http import HttpRequest
-from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
 
-import bleach
 import chardet
-import html5lib
 import jinja2
 import pytz
-from babel import Locale
 from cef import log_cef as _log_cef
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from elasticsearch_dsl.search import Search
-from html5lib.serializer.htmlserializer import HTMLSerializer
 from PIL import Image, ImageFile, PngImagePlugin
 
 from amo import APP_ICON_SIZES
 from mkt.site.utils import linkify_with_outgoing
-from mkt.site.mail import send_mail
 from mkt.translations.models import Translation
 
 from . import logger_log as log
@@ -246,61 +237,6 @@ def clear_messages(request):
         pass
 
 
-def clean_nl(string):
-    """
-    This will clean up newlines so that nl2br can properly be called on the
-    cleaned text.
-    """
-
-    html_blocks = ['{http://www.w3.org/1999/xhtml}blockquote',
-                   '{http://www.w3.org/1999/xhtml}ol',
-                   '{http://www.w3.org/1999/xhtml}li',
-                   '{http://www.w3.org/1999/xhtml}ul']
-
-    if not string:
-        return string
-
-    def parse_html(tree):
-        # In etree, a tag may have:
-        # - some text content (piece of text before its first child)
-        # - a tail (piece of text just after the tag, and before a sibling)
-        # - children
-        # Eg: "<div>text <b>children's text</b> children's tail</div> tail".
-
-        # Strip new lines directly inside block level elements: first new lines
-        # from the text, and:
-        # - last new lines from the tail of the last child if there's children
-        #   (done in the children loop below).
-        # - or last new lines from the text itself.
-        if tree.tag in html_blocks:
-            if tree.text:
-                tree.text = tree.text.lstrip('\n')
-                if not len(tree):  # No children.
-                    tree.text = tree.text.rstrip('\n')
-
-            # Remove the first new line after a block level element.
-            if tree.tail and tree.tail.startswith('\n'):
-                tree.tail = tree.tail[1:]
-
-        for child in tree:  # Recurse down the tree.
-            if tree.tag in html_blocks:
-                # Strip new lines directly inside block level elements: remove
-                # the last new lines from the children's tails.
-                if child.tail:
-                    child.tail = child.tail.rstrip('\n')
-            parse_html(child)
-        return tree
-
-    parse = parse_html(html5lib.parseFragment(string))
-
-    # Serialize the parsed tree back to html.
-    walker = html5lib.treewalkers.getTreeWalker('etree')
-    stream = walker(parse)
-    serializer = HTMLSerializer(quote_attr_values=True,
-                                omit_optional_tags=False)
-    return serializer.render(stream)
-
-
 # From: http://bit.ly/eTqloE
 # Without this, you'll notice a slight grey line on the edges of
 # the adblock plus icon.
@@ -420,28 +356,6 @@ class ImageCheck(object):
 class MenuItem():
     """Refinement item with nestable children for use in menus."""
     url, text, selected, children = ('', '', False, [])
-
-
-def to_language(locale):
-    """Like django's to_language, but en_US comes out as en-US."""
-    # A locale looks like en_US or fr.
-    if '_' in locale:
-        return to_language(translation.trans_real.to_language(locale))
-    # Django returns en-us but we want to see en-US.
-    elif '-' in locale:
-        lang, region = locale.split('-')
-        return '%s-%s' % (lang, region.upper())
-    else:
-        return translation.trans_real.to_language(locale)
-
-
-def get_locale_from_lang(lang):
-    """Pass in a language (u'en-US') get back a Locale object courtesy of
-    Babel.  Use this to figure out currencies, bidi, names, etc."""
-    # Special fake language can just act like English for formatting and such
-    if not lang or lang == 'dbg':
-        lang = 'en'
-    return Locale(translation.to_locale(lang))
 
 
 class HttpResponseSendFile(http.HttpResponse):
@@ -572,20 +486,6 @@ def log_cef(name, severity, env, *args, **kwargs):
         return _log_cef(name, severity, r, *args, config=c, **kwargs)
 
 
-@contextlib.contextmanager
-def no_translation(lang=None):
-    """
-    Activate the settings lang, or lang provided, while in context.
-    """
-    old_lang = translation.trans_real.get_language()
-    if lang:
-        translation.trans_real.activate(lang)
-    else:
-        translation.trans_real.deactivate()
-    yield
-    translation.trans_real.activate(old_lang)
-
-
 def escape_all(v, linkify=True):
     """Escape html in JSON value, including nested items."""
     if isinstance(v, basestring):
@@ -687,40 +587,6 @@ def smart_decode(s):
         return unicode(s, errors='replace')
 
 
-def attach_trans_dict(model, objs):
-    """Put all translations into a translations dict."""
-    # Get the ids of all the translations we need to fetch.
-    fields = model._meta.translated_fields
-    ids = [getattr(obj, f.attname) for f in fields
-           for obj in objs if getattr(obj, f.attname, None) is not None]
-
-    # Get translations in a dict, ids will be the keys. It's important to
-    # consume the result of sorted_groupby, which is an iterator.
-    qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
-    all_translations = dict((k, list(v)) for k, v in
-                            sorted_groupby(qs, lambda trans: trans.id))
-
-    def get_locale_and_string(translation, new_class):
-        """Convert the translation to new_class (making PurifiedTranslations
-           and LinkifiedTranslations work) and return locale / string tuple."""
-        converted_translation = new_class()
-        converted_translation.__dict__ = translation.__dict__
-        return (converted_translation.locale.lower(),
-                unicode(converted_translation))
-
-    # Build and attach translations for each field on each object.
-    for obj in objs:
-        obj.translations = collections.defaultdict(list)
-        for field in fields:
-            t_id = getattr(obj, field.attname, None)
-            field_translations = all_translations.get(t_id, None)
-            if not t_id or field_translations is None:
-                continue
-
-            obj.translations[t_id] = [get_locale_and_string(t, field.rel.to)
-                                      for t in field_translations]
-
-
 def rm_local_tmp_dir(path):
     """Remove a local temp directory.
 
@@ -773,31 +639,6 @@ def timer(*func, **kwargs):
     if func:
         return decorator(func[0])
     return decorator
-
-
-def find_language(locale):
-    """
-    Return a locale we support, or None.
-    """
-    if not locale:
-        return None
-
-    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
-
-    if locale in LANGS:
-        return locale
-
-    # Check if locale has a short equivalent.
-    loc = settings.SHORTER_LANGUAGES.get(locale)
-    if loc:
-        return loc
-
-    # Check if locale is something like en_US that needs to be converted.
-    locale = to_language(locale)
-    if locale in LANGS:
-        return locale
-
-    return None
 
 
 def walkfiles(folder, suffix=''):

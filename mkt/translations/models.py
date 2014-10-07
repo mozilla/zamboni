@@ -1,3 +1,6 @@
+import collections
+from itertools import groupby
+
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 from django.utils import encoding
@@ -5,7 +8,6 @@ from django.utils import encoding
 import bleach
 import commonware.log
 
-import amo
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.utils import linkify_with_outgoing
 
@@ -190,10 +192,9 @@ class PurifiedTranslation(Translation):
         return utils.truncate(unicode(self), length, killwords, end)
 
     def clean(self):
-        from amo.utils import clean_nl
         super(PurifiedTranslation, self).clean()
         cleaned = self.clean_localized_string()
-        self.localized_string_clean = clean_nl(cleaned).strip()
+        self.localized_string_clean = utils.clean_nl(cleaned).strip()
 
     def clean_localized_string(self):
         # All links (text and markup) are normalized.
@@ -259,3 +260,41 @@ def delete_translation(obj, fieldname):
     obj.update(**{field.name: None})
     if trans_id:
         Translation.objects.filter(id=trans_id).delete()
+
+
+def _sorted_groupby(seq, key):
+    return groupby(sorted(seq, key=key), key=key)
+
+
+def attach_trans_dict(model, objs):
+    """Put all translations into a translations dict."""
+    # Get the ids of all the translations we need to fetch.
+    fields = model._meta.translated_fields
+    ids = [getattr(obj, f.attname) for f in fields
+           for obj in objs if getattr(obj, f.attname, None) is not None]
+
+    # Get translations in a dict, ids will be the keys. It's important to
+    # consume the result of groupby, which is an iterator.
+    qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
+    all_translations = dict((k, list(v)) for k, v in
+                            _sorted_groupby(qs, lambda trans: trans.id))
+
+    def get_locale_and_string(translation, new_class):
+        """Convert the translation to new_class (making PurifiedTranslations
+           and LinkifiedTranslations work) and return locale / string tuple."""
+        converted_translation = new_class()
+        converted_translation.__dict__ = translation.__dict__
+        return (converted_translation.locale.lower(),
+                unicode(converted_translation))
+
+    # Build and attach translations for each field on each object.
+    for obj in objs:
+        obj.translations = collections.defaultdict(list)
+        for field in fields:
+            t_id = getattr(obj, field.attname, None)
+            field_translations = all_translations.get(t_id, None)
+            if not t_id or field_translations is None:
+                continue
+
+            obj.translations[t_id] = [get_locale_and_string(t, field.rel.to)
+                                      for t in field_translations]

@@ -13,7 +13,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.db.models import signals as dbsignals, Max, Q
 from django.dispatch import receiver
@@ -29,8 +29,8 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 import mkt
-from amo.utils import (attach_trans_dict, find_language, JSONEncoder, slugify,
-                       smart_path, sorted_groupby, to_language, urlparams)
+from amo.utils import (JSONEncoder, slugify, smart_path, sorted_groupby,
+                       urlparams)
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
@@ -53,6 +53,8 @@ from mkt.site.storage_utils import copy_stored_file
 from mkt.tags.models import Tag
 from mkt.translations.fields import (PurifiedField, save_signal,
                                      TranslatedField, Translation)
+from mkt.translations.models import attach_trans_dict
+from mkt.translations.utils import find_language, to_language
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import query, signals

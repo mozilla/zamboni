@@ -6,11 +6,11 @@ from django.db import models
 import amo
 import mkt.carriers
 import mkt.regions
-from amo.utils import to_language
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.site.decorators import use_master
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.translations.fields import PurifiedField, save_signal
+from mkt.translations.utils import to_language
 from mkt.webapps.models import clean_slug, Webapp
 from mkt.webapps.tasks import index_webapps
 

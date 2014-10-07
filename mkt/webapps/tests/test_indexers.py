@@ -2,12 +2,12 @@
 from nose.tools import eq_, ok_
 
 import amo.tests
-from amo.utils import to_language
 
 import mkt
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
+from mkt.translations.utils import to_language
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
 

@@ -6,10 +6,10 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
-from .widgets import TransInput, TransTextarea
-
 from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
                      NoLinksTranslation, NoLinksNoMarkupTranslation)
+from .utils import to_language as amo_to_language
+from .widgets import TransInput, TransTextarea
 
 
 class TranslatedField(models.ForeignKey):
@@ -180,8 +180,6 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
         If one of the locales matches lang, that Translation will be returned.
         """
-        from amo.utils import to_language as amo_to_language
-
         rv = None
         for locale, string in dict_.items():
             loc = amo_to_language(locale)
