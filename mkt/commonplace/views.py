@@ -1,5 +1,6 @@
 import datetime
 import importlib
+import json
 import os
 from urlparse import urlparse
 
@@ -17,6 +18,47 @@ import waffle
 from cache_nuggets.lib import memoize
 
 from mkt.webapps.models import Webapp
+
+
+def get_whitelisted_origins(request, include_loop=True):
+    current_domain = settings.DOMAIN
+    current_origin = '%s://%s' % ('https' if request.is_secure() else 'http',
+                                  current_domain)
+    development_server = (settings.DEBUG or
+                          current_domain == 'marketplace-dev.allizom.org')
+
+    origin_whitelist = [
+        # Start by whitelisting the 2 app:// variants for the current domain,
+        # and then whitelist the current http or https origin.
+        'app://packaged.%s' % current_domain,
+        'app://%s' % current_domain,
+        current_origin,
+    ]
+
+    # On dev, also allow localhost/mp.dev.
+    if development_server:
+        origin_whitelist.extend([
+            'http://localhost:8675',
+            'https://localhost:8675',
+            'http://localhost',
+            'https://localhost',
+            'http://mp.dev',
+            'https://mp.dev',
+        ])
+
+    if include_loop:
+        # Include loop origins if necessary.
+        origin_whitelist.extend([
+            'https://hello.firefox.com',
+            'https://call.firefox.com',
+        ])
+        # On dev, include loop dev origin as well.
+        if development_server:
+            origin_whitelist.extend([
+                'http://loop-webapp.dev.mozaws.net',
+            ])
+
+    return json.dumps(origin_whitelist)
 
 
 def get_build_id(repo):
@@ -145,9 +187,14 @@ def _appcache_manifest_template(repo):
 
 @gzip_page
 def iframe_install(request):
-    return render(request, 'commonplace/iframe-install.html')
+    return render(request, 'commonplace/iframe-install.html', {
+        'whitelisted_origins': get_whitelisted_origins(request)
+    })
 
 
 @gzip_page
 def potatolytics(request):
-    return render(request, 'commonplace/potatolytics.html')
+    return render(request, 'commonplace/potatolytics.html', {
+        'whitelisted_origins': get_whitelisted_origins(request,
+                                                       include_loop=False)
+    })
