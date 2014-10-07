@@ -116,7 +116,8 @@
         </div>
       </div>
     {% endif %}
-    {% if not user.is_authenticated() or user.can_migrate_to_fxa() %}
+    {% if waffle.switch('fx-accounts-migration') and
+          (not logged or user.can_migrate_to_fxa()) %}
       <mkt-banner class="mkt-cloak" success dismiss="off">
         <span>
           {{ _('Firefox Accounts has arrived') }}
