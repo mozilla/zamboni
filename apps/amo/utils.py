@@ -39,6 +39,7 @@ from elasticsearch_dsl.search import Search
 from PIL import Image, ImageFile, PngImagePlugin
 
 from amo import APP_ICON_SIZES
+from mkt.api.paginator import ESPaginator
 from mkt.site.utils import linkify_with_outgoing
 from mkt.translations.models import Translation
 
@@ -423,27 +424,6 @@ def cache_ns_key(namespace, increment=False):
             ns_val = epoch(datetime.datetime.now())
             cache.set(ns_key, ns_val, None)
     return '%s:%s' % (ns_val, ns_key)
-
-
-class ESPaginator(paginator.Paginator):
-    """A better paginator for search results."""
-    # The normal Paginator does a .count() query and then a slice. Since ES
-    # results contain the total number of results, we can take an optimistic
-    # slice and then adjust the count.
-    def page(self, number):
-        # Fake num_pages so it looks like we can have results.
-        self._num_pages = float('inf')
-        number = self.validate_number(number)
-        self._num_pages = None
-
-        bottom = (number - 1) * self.per_page
-        top = bottom + self.per_page
-        page = paginator.Page(self.object_list[bottom:top], number, self)
-
-        # Force the search to evaluate and then attach the count.
-        list(page.object_list)
-        self._count = page.object_list.count()
-        return page
 
 
 def smart_path(string):
