@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-07 14:29+0000\n"
+"PO-Revision-Date: 2014-10-07 14:34+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412692164.0\n"
+"X-POOTLE-MTIME: 1412692440.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -3534,7 +3534,7 @@ msgstr "Può visualizzare le impostazioni dell’app, ma non può apportare alcu
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr "Puoi visualizzare le impostazioni dell'app"
+msgstr "Puoi visualizzare le impostazioni dell’app"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -5479,7 +5479,7 @@ msgstr "Si è verificato un errore durante il tentativo di download delle immagi
 
 #: mkt/feed/fields.py:174
 msgid "Image from %(url)s could not be parsed"
-msgstr "Impossibile analizzare l'immagine situata su %(url)s"
+msgstr "Impossibile analizzare l’immagine situata su %(url)s"
 
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"

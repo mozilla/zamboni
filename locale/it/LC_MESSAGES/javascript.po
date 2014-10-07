@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-09 08:20+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2014-10-07 14:33+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410250844.0\n"
+"X-POOTLE-MTIME: 1412692420.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -343,7 +343,7 @@ msgstr "Si è verificato un errore durante la connessione al server per i pagame
 
 #: media/js/devreg/payments-manage.js:129
 msgid "Authentication error"
-msgstr "Errore durante l'autenticazione"
+msgstr "Errore durante l’autenticazione"
 
 #: media/js/devreg/payments-manage.js:185
 msgid "You do not currently have any payment accounts."
@@ -394,7 +394,7 @@ msgstr "Test di compatibilità"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr "L'App non ha superato la convalida."
+msgstr "L’app non ha superato la convalida."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
