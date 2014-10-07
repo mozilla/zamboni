@@ -129,8 +129,16 @@ def to_language(locale):
     elif '-' in locale:
         # We have something that already looks like a language, with a dash,
         # but we want the region to always be uppercase.
-        lang, region = locale.split('-')
-        return '%s-%s' % (lang, region.upper())
+        lang, region = locale.lower().split('-')
+
+        # Special case: Latn isn't really a region, it's an alphabet. If we
+        # find it, don't uppercase it, capitalize it, to match the languages
+        # we have defined such as sr-Latn.
+        if region == 'latn':
+            region = region.capitalize()
+        else:
+            region = region.upper()
+        return '%s-%s' % (lang, region)
     else:
         # Just a locale with no underscore, let django do its job.
         return translation.trans_real.to_language(locale)
