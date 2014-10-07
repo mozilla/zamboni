@@ -26,7 +26,7 @@ from mkt.api.authentication import RestOAuthAuthentication
 from mkt.api.authorization import AllowAppOwner, GroupPermission
 from mkt.api.base import cors_api_view, CORSMixin, MarketplaceView
 from mkt.api.fields import SlugChoiceField
-from mkt.api.serializers import (CarrierSerializer, CategorySerializer, 
+from mkt.api.serializers import (CarrierSerializer, CategorySerializer,
                                  RegionSerializer)
 from mkt.carriers import CARRIER_MAP, CARRIERS
 from mkt.constants.categories import CATEGORY_CHOICES, CATEGORY_CHOICES_DICT

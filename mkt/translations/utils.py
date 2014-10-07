@@ -1,7 +1,13 @@
+import contextlib
+
+from django.conf import settings
+from django.utils import translation
 from django.utils.encoding import force_unicode
 
 import html5lib
 import jinja2
+from babel import Locale
+from html5lib.serializer.htmlserializer import HTMLSerializer
 
 
 def truncate_text(text, limit, killwords=False, end='...'):
@@ -102,8 +108,6 @@ def format_translation_es(obj, field):
     Returns a denormalized format of a localized field for ES to be
     deserialized by ESTranslationSerializerField.
     """
-    from amo.utils import to_language
-
     extend_with_me = {}
     extend_with_me['%s_translations' % field] = [
         {'lang': to_language(lang), 'string': string}
@@ -112,3 +116,124 @@ def format_translation_es(obj, field):
         if string
     ]
     return extend_with_me
+
+
+def to_language(locale):
+    """Like django's to_language, but en_us or en-us comes out as en-US."""
+    if '_' in locale:
+        # We have a locale, and it has an underscore. We get django to
+        # transform it to a language for us, which will lowercase it and
+        # replace the underscore with a dash, and then call this function
+        # (yay recursion).
+        return to_language(translation.trans_real.to_language(locale))
+    elif '-' in locale:
+        # We have something that already looks like a language, with a dash,
+        # but we want the region to always be uppercase.
+        lang, region = locale.split('-')
+        return '%s-%s' % (lang, region.upper())
+    else:
+        # Just a locale with no underscore, let django do its job.
+        return translation.trans_real.to_language(locale)
+
+
+def get_locale_from_lang(lang):
+    """Pass in a language (u'en-US') get back a Locale object courtesy of
+    Babel.  Use this to figure out currencies, bidi, names, etc."""
+    # Special fake language can just act like English for formatting and such
+    if not lang or lang == 'dbg':
+        lang = 'en'
+    return Locale(translation.to_locale(lang))
+
+
+@contextlib.contextmanager
+def no_translation(lang=None):
+    """
+    Activate the settings lang, or lang provided, while in context.
+    """
+    old_lang = translation.trans_real.get_language()
+    if lang:
+        translation.trans_real.activate(lang)
+    else:
+        translation.trans_real.deactivate()
+    yield
+    translation.trans_real.activate(old_lang)
+
+
+def find_language(locale):
+    """
+    Return a locale we support, or None.
+    """
+    if not locale:
+        return None
+
+    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
+
+    if locale in LANGS:
+        return locale
+
+    # Check if locale has a short equivalent.
+    loc = settings.SHORTER_LANGUAGES.get(locale)
+    if loc:
+        return loc
+
+    # Check if locale is something like en_US that needs to be converted.
+    locale = to_language(locale)
+    if locale in LANGS:
+        return locale
+
+    return None
+
+
+def clean_nl(string):
+    """
+    This will clean up newlines so that nl2br can properly be called on the
+    cleaned text.
+    """
+
+    html_blocks = ['{http://www.w3.org/1999/xhtml}blockquote',
+                   '{http://www.w3.org/1999/xhtml}ol',
+                   '{http://www.w3.org/1999/xhtml}li',
+                   '{http://www.w3.org/1999/xhtml}ul']
+
+    if not string:
+        return string
+
+    def parse_html(tree):
+        # In etree, a tag may have:
+        # - some text content (piece of text before its first child)
+        # - a tail (piece of text just after the tag, and before a sibling)
+        # - children
+        # Eg: "<div>text <b>children's text</b> children's tail</div> tail".
+
+        # Strip new lines directly inside block level elements: first new lines
+        # from the text, and:
+        # - last new lines from the tail of the last child if there's children
+        #   (done in the children loop below).
+        # - or last new lines from the text itself.
+        if tree.tag in html_blocks:
+            if tree.text:
+                tree.text = tree.text.lstrip('\n')
+                if not len(tree):  # No children.
+                    tree.text = tree.text.rstrip('\n')
+
+            # Remove the first new line after a block level element.
+            if tree.tail and tree.tail.startswith('\n'):
+                tree.tail = tree.tail[1:]
+
+        for child in tree:  # Recurse down the tree.
+            if tree.tag in html_blocks:
+                # Strip new lines directly inside block level elements: remove
+                # the last new lines from the children's tails.
+                if child.tail:
+                    child.tail = child.tail.rstrip('\n')
+            parse_html(child)
+        return tree
+
+    parse = parse_html(html5lib.parseFragment(string))
+
+    # Serialize the parsed tree back to html.
+    walker = html5lib.treewalkers.getTreeWalker('etree')
+    stream = walker(parse)
+    serializer = HTMLSerializer(quote_attr_values=True,
+                                omit_optional_tags=False)
+    return serializer.render(stream)

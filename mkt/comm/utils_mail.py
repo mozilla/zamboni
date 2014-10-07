@@ -12,7 +12,6 @@ import waffle
 from email_reply_parser import EmailReplyParser
 
 import amo
-from amo.utils import to_language
 
 from mkt.access import acl
 from mkt.access.models import Group
@@ -20,7 +19,7 @@ from mkt.comm.models import CommunicationThreadToken, user_has_perm_thread
 from mkt.constants import comm
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
-from mkt.users.models import UserProfile
+from mkt.translations.utils import to_language
 from mkt.webapps.models import Webapp
 
 

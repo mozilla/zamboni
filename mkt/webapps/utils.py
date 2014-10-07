@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import commonware.log
 
-from amo.utils import find_language
 import lib.iarc
-
 import mkt
+from mkt.translations.utils import find_language
+
 
 log = commonware.log.getLogger('z.webapps')
 

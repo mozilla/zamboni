@@ -7,11 +7,10 @@ import commonware.log
 from jinja2 import Environment, FileSystemLoader
 from rest_framework.parsers import JSONParser, XMLParser
 
-import amo.utils
-from amo.helpers import strip_controls
-
 import mkt.constants.iarc_mappings as mappings
+from amo.helpers import strip_controls
 from mkt.constants import ratingsbodies
+from mkt.translations.utils import no_translation
 
 log = commonware.log.getLogger('z.iarc')
 
@@ -40,7 +39,7 @@ def get_iarc_app_title(app):
     """Delocalized app name."""
     from mkt.webapps.models import Webapp
 
-    with amo.utils.no_translation(app.default_locale):
+    with no_translation(app.default_locale):
         delocalized_app = Webapp.with_deleted.get(pk=app.pk)
 
     return unicode(delocalized_app.name)

@@ -141,6 +141,23 @@ class TestPackaged(PackagedApp, amo.tests.TestCase):
         packaged.sign(self.version.pk, resign=True)
         assert sign_app.called
 
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_sign_consumer(self, sign_app):
+        packaged.sign(self.version.pk)
+        assert sign_app.called
+        ids = json.loads(sign_app.call_args[0][2])
+        eq_(ids['id'], self.app.guid)
+        eq_(ids['version'], self.version.pk)
+
+    @mock.patch('lib.crypto.packaged.sign_app')
+    def test_sign_reviewer(self, sign_app):
+        packaged.sign(self.version.pk, reviewer=True)
+        assert sign_app.called
+        ids = json.loads(sign_app.call_args[0][2])
+        eq_(ids['id'], 'reviewer-{guid}-{version_id}'.format(
+            guid=self.app.guid, version_id=self.version.pk))
+        eq_(ids['version'], self.version.pk)
+
     @raises(ValueError)
     def test_server_active(self):
         with self.settings(SIGNED_APPS_SERVER_ACTIVE=True):

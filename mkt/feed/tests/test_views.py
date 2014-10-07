@@ -21,6 +21,7 @@ from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
 from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
 from mkt.fireplace.tests.test_views import assert_fireplace_app
+from mkt.operators.authorization import OperatorPermission
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -974,6 +975,15 @@ class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
 
     def test_create_with_permission(self):
         self.feed_permission()
+        res, data = self.create(self.client, **self.obj_data)
+        eq_(res.status_code, 201)
+        for name, value in self.obj_data.iteritems():
+            eq_(value, data[name])
+
+    def test_create_with_obj_permission(self):
+        OperatorPermission.objects.create(
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id,
+            user=self.user)
         res, data = self.create(self.client, **self.obj_data)
         eq_(res.status_code, 201)
         for name, value in self.obj_data.iteritems():

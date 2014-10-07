@@ -9,8 +9,6 @@ import StringIO
 import tempfile
 import zipfile
 
-from zipfile import BadZipfile
-
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -18,8 +16,8 @@ from django.utils.translation import trans_real as translation
 
 from tower import ugettext as _
 
-import amo
-from amo.utils import rm_local_tmp_dir, strip_bom, to_language
+from amo.utils import rm_local_tmp_dir, strip_bom
+from mkt.translations.utils import to_language
 
 
 log = logging.getLogger('files.utils')
@@ -165,7 +163,7 @@ class SafeUnzip(object):
         """
         try:
             zip = zipfile.ZipFile(self.source, self.mode)
-        except (BadZipfile, IOError):
+        except (zipfile.BadZipfile, IOError):
             if fatal:
                 log.info('Error extracting', exc_info=True)
                 raise

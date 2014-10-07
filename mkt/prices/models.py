@@ -2,7 +2,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
-from django.db import connection, models
+from django.db import models
 from django.dispatch import receiver
 from django.forms.models import model_to_dict
 from django.utils import translation
@@ -14,7 +14,6 @@ from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
 import amo
-from amo.utils import get_locale_from_lang
 from lib.constants import ALL_CURRENCIES
 from mkt.constants import apps
 from mkt.constants.payments import (CARRIER_CHOICES, PAYMENT_METHOD_ALL,
@@ -25,6 +24,7 @@ from mkt.purchase.models import Contribution
 from mkt.regions.utils import remove_accents
 from mkt.site.decorators import write
 from mkt.site.models import ManagerBase, ModelBase
+from mkt.translations.utils import get_locale_from_lang
 from mkt.users.models import UserProfile
 
 log = commonware.log.getLogger('z.market')

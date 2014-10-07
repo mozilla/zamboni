@@ -9,7 +9,6 @@ from elasticsearch_dsl import F, filter as es_filter, query
 import commonware.log
 
 import amo
-from amo.utils import to_language
 
 import mkt
 from mkt.constants import APP_FEATURES
@@ -18,6 +17,8 @@ from mkt.features.utils import get_feature_profile
 from mkt.prices.models import AddonPremium
 from mkt.search.indexers import BaseIndexer
 from mkt.search.utils import Search
+from mkt.translations.models import attach_trans_dict
+from mkt.translations.utils import to_language
 from mkt.versions.models import Version
 
 
@@ -359,14 +360,14 @@ class WebappIndexer(BaseIndexer):
                 in obj.translations[getattr(obj, '%s_id' % field)]
                 if string]
         if version:
-            amo.utils.attach_trans_dict(Version, [version])
+            attach_trans_dict(Version, [version])
             d['release_notes_translations'] = [
                 {'lang': to_language(lang), 'string': string}
                 for lang, string
                 in version.translations[version.releasenotes_id]]
         else:
             d['release_notes_translations'] = None
-        amo.utils.attach_trans_dict(Geodata, [geodata])
+        attach_trans_dict(Geodata, [geodata])
         d['banner_message_translations'] = [
             {'lang': to_language(lang), 'string': string}
             for lang, string

@@ -17,9 +17,8 @@ from jingo_minify import helpers as jingo_minify_helpers
 from tower import ugettext as _
 
 from amo.helpers import urlparams
-from amo.utils import get_locale_from_lang
-
 from mkt.translations.helpers import truncate
+from mkt.translations.utils import get_locale_from_lang
 from mkt.users.views import fxa_oauth_api
 
 
