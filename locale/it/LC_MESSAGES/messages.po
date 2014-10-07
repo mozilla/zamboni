@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-07 14:34+0000\n"
+"PO-Revision-Date: 2014-10-07 14:37+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412692440.0\n"
+"X-POOTLE-MTIME: 1412692624.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2732,7 +2732,9 @@ msgstr ""
 
 #: mkt/developers/forms.py:1169
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr "f"
+msgstr ""
+"Carica il tuo piano per i test (formato .pdf o .xsl, dimensioni inferiori a "
+"2.5 Mb)"
 
 #: mkt/developers/forms.py:1185
 msgid "Test plan required."
