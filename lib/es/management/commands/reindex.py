@@ -134,10 +134,8 @@ def post_index(new_index, old_index, alias, indexer, settings):
     Reindexing.unflag_reindexing(alias=alias)
 
     _print('Removing index {index}.'.format(index=old_index), alias)
-    try:
+    if old_index and ES.indices.exists(index=old_index):
         ES.indices.delete(index=old_index)
-    except elasticsearch.NotFoundError:
-        pass
 
     alias_output = ''
     for ALIAS, INDEXER, CHUNK_SIZE in INDEXES:
