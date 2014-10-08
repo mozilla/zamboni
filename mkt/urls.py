@@ -18,6 +18,11 @@ from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
 from mkt.users.views import logout
 
 
+# Hardcore monkeypatching action.
+import jingo.monkey
+jingo.monkey.patch()
+
+
 admin.autodiscover()
 
 handler403 = 'mkt.site.views.handler403'

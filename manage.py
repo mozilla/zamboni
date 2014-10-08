@@ -30,16 +30,6 @@ trans_log = logging.getLogger('z.trans')
 from lib.log_settings_base import log_configure  # noqa
 log_configure()
 
-# We need to import waffle here to avoid a circular import with jingo which
-# loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
-# import jingo.
-import waffle  # noqa
-
-# Hardcore monkeypatching action.
-import jingo.monkey  # noqa
-jingo.monkey.patch()
-
-
 def new(self, arg):
     try:
         return mod(self, arg)
