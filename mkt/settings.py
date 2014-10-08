@@ -178,7 +178,7 @@ MIDDLEWARE_CLASSES = (
     'mkt.api.middleware.TimingMiddleware',
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
-    'mkt.api.middleware.APITransactionMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
     'mkt.api.middleware.APIFilterMiddleware',
 )
 

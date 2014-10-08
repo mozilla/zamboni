@@ -10,7 +10,6 @@ from django.contrib.auth.middleware import (AuthenticationMiddleware as
 from django.contrib.auth.models import AnonymousUser
 from django.core.cache import cache
 from django.middleware.gzip import GZipMiddleware as BaseGZipMiddleware
-from django.middleware.transaction import TransactionMiddleware
 from django.utils.cache import patch_vary_headers
 
 import commonware.log
@@ -196,26 +195,6 @@ class RestSharedSecretMiddleware(object):
         except Exception, e:
             log.info('Bad shared-secret auth data: %s (%s)', auth, e)
             return
-
-
-class APITransactionMiddleware(TransactionMiddleware):
-    """Wrap the transaction middleware so we can use it in the API only."""
-
-    def process_request(self, request):
-        if getattr(request, 'API', False):
-            return (super(APITransactionMiddleware, self)
-                    .process_request(request))
-
-    def process_exception(self, request, exception):
-        if getattr(request, 'API', False):
-            return (super(APITransactionMiddleware, self)
-                    .process_exception(request, exception))
-
-    def process_response(self, request, response):
-        if getattr(request, 'API', False):
-            return (super(APITransactionMiddleware, self)
-                    .process_response(request, response))
-        return response
 
 
 # How long to set the time-to-live on the cache.
