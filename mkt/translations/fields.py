@@ -20,6 +20,7 @@ class TranslatedField(models.ForeignKey):
     we will look for 1) a translation in the current locale and 2) fallback
     with any translation matching the foreign key.
     """
+    requires_unique_target = False
     to = Translation
 
     def __init__(self, **kwargs):
@@ -205,7 +206,7 @@ class _TransField(object):
         # TranslationFormMixin will override self.default_locale on every field
         # using the same fallback system that the translation db queries use.
         self.default_locale = settings.LANGUAGE_CODE
-        for k in ('queryset', 'to_field_name'):
+        for k in ('queryset', 'to_field_name', 'limit_choices_to'):
             if k in kwargs:
                 del kwargs[k]
         self.widget = kwargs.pop('widget', TransInput)
