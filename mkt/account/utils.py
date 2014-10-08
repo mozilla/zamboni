@@ -38,7 +38,7 @@ def fxa_preverify_token(user, expiry):
     """
     msg = {
         'exp': get_token_expiry(expiry),
-        'aud': settings.FXA_AUTH_SERVER,
+        'aud': settings.FXA_AUTH_DOMAIN,
         'sub': user.email,
         'typ': 'mozilla/fxa/preVerifyToken/v1',
     }
@@ -50,8 +50,10 @@ def fxa_preverify_token(user, expiry):
 
 def fxa_preverify_url(user, expiry):
     return urlparams('{0}/v1/authorization'.format(settings.FXA_OAUTH_URL),
-                     clientId=settings.FXA_CLIENT_ID,
-                     preVerifiedToken=fxa_preverify_token(user, expiry),
+                     action='signup',
+                     client_id=settings.FXA_CLIENT_ID,
+                     email=user.email,
+                     preVerifyToken=fxa_preverify_token(user, expiry),
                      scope='profile:email',
                      state=Signer().sign(user.pk)
                      )

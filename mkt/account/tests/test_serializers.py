@@ -40,6 +40,10 @@ class TestAccountInfoSerializer(amo.tests.TestCase):
         self.account.source = -1
         eq_(self.serializer().data['source'], self.UNKNOWN)
 
+    def test_source_is_unrelated(self):
+        self.account.source = amo.LOGIN_SOURCE_BROWSERID
+        eq_(self.serializer().data['source'], self.UNKNOWN)
+
     def test_source_is_read_only(self):
         serializer = AccountInfoSerializer(
             instance=None,
