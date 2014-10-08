@@ -32,8 +32,8 @@ class VersionManager(ManagerBase):
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
-    def get_query_set(self):
-        qs = super(VersionManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(VersionManager, self).get_queryset()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)

@@ -61,8 +61,8 @@ def price_key(data):
 
 class PriceManager(ManagerBase):
 
-    def get_query_set(self):
-        qs = super(PriceManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(PriceManager, self).get_queryset()
         return qs.transform(Price.transformer)
 
     def active(self):

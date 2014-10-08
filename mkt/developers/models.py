@@ -349,7 +349,7 @@ class ActivityLogManager(ManagerBase):
         return self.user_position(self.monthly_reviews(webapp), user)
 
     def _by_type(self, webapp=False):
-        qs = super(ActivityLogManager, self).get_query_set()
+        qs = super(ActivityLogManager, self).get_queryset()
         return qs.extra(
             tables=['log_activity_app'],
             where=['log_activity_app.activity_log_id=log_activity.id'])
