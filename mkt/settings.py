@@ -142,7 +142,6 @@ INSTALLED_APPS = (
     'mkt.tags',
     'mkt.users',
     'mkt.versions',
-    'mkt.zadmin',
     'mkt.webapps',
     'mkt.webpay',
     'mkt.zadmin',
