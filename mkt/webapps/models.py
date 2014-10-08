@@ -334,8 +334,8 @@ class WebappManager(ManagerBase):
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
-    def get_query_set(self):
-        qs = super(WebappManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(WebappManager, self).get_queryset()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=mkt.STATUS_DELETED)
