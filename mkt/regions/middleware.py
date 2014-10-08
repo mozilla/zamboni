@@ -13,10 +13,19 @@ log = commonware.log.getLogger('mkt.regions')
 
 class RegionMiddleware(object):
     """Figure out the user's region and set request.REGION accordingly, storing
-    it on the request.user if there is one."""
+    it on the request.user if there is one.
+
+    - Outside the API, we automatically set RESTOFWORLD.
+    - In the API, it tries to find a valid region in the query parameters,
+      additionnally falling back to GeoIP for API v1 (for later versions we
+      never do GeoIP automatically)."""
 
     def __init__(self):
         self.geoip = GeoIP(settings)
+
+    def store_region(self, request, user_region):
+        request.REGION = user_region
+        mkt.regions.set_region(user_region)
 
     def region_from_request(self, request):
         address = request.META.get('REMOTE_ADDR')
@@ -27,7 +36,6 @@ class RegionMiddleware(object):
 
     def process_request(self, request):
         regions = mkt.regions.REGION_LOOKUP
-
         user_region = restofworld = mkt.regions.RESTOFWORLD
 
         if not getattr(request, 'API', False):
@@ -42,7 +50,8 @@ class RegionMiddleware(object):
             user_region = regions[url_region]
             log.info('Region {0} specified in URL; region set as {1}'
                      .format(url_region, user_region.slug))
-        else:
+        elif getattr(request, 'API_VERSION', None) == 1:
+            # Fallback to GeoIP, but only for API version 1.
             statsd.incr('z.regions.middleware.source.geoip')
             user_region = self.region_from_request(request)
             log.info('Region not specified in URL; region set as {0}'
@@ -55,5 +64,4 @@ class RegionMiddleware(object):
             request.user.save()
 
         # Persist the region on the request / local thread.
-        request.REGION = user_region
-        mkt.regions.set_region(user_region)
+        self.store_region(request, user_region)

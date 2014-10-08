@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from waffle import switch_is_active
 from waffle.models import Switch
 
+import mkt.regions
 from mkt.account.views import user_relevant_apps
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
@@ -52,6 +53,13 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
     permission_classes = (AllowAny,)
 
     def retrieve(self, request, *args, **kwargs):
+        if (getattr(request, 'API_VERSION', None) > 1
+            and request.REGION == mkt.regions.RESTOFWORLD):
+            # In API v2 and onwards, geoip is not done automatically, so we
+            # need to do it ourselves.
+            region_middleware = mkt.regions.middleware.RegionMiddleware()
+            user_region = region_middleware.region_from_request(request)
+            region_middleware.store_region(request, user_region)
 
         # List of active switch names.
         switches = [str(s) for s in

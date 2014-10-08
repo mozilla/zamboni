@@ -46,11 +46,13 @@ class TestGetRegion(TestCase):
         self.factory = RequestFactory()
         self.profile = UserProfile.objects.get(pk=2519)
         self.user = self.profile
+        self.api_version = 1
 
     def region_for(self, region):
         req = self.factory.get('/', ({} if region is None else
                                      {'region': region}))
         req.API = True
+        req.API_VERSION = self.api_version
         req.LANG = ''
         req.user = self.user
         req.user = self.profile
@@ -59,18 +61,24 @@ class TestGetRegion(TestCase):
         return self.resource.get_region_from_request(req)
 
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
-    def test_get_region_all(self, mock_request_region):
+    def test_get_region_all_v1(self, mock_request_region):
         geoip_fallback = regions.PE  # Different than the default: restofworld.
         mock_request_region.return_value = geoip_fallback
 
         # Test string values (should return region with that slug).
         eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
+        ok_(not mock_request_region.called)
+
         eq_(self.region_for('us'), regions.US)
+        ok_(not mock_request_region.called)
 
         # Test fallback to request.REGION (should return GeoIP region if region
         # isn't specified or is specified and empty).
         eq_(self.region_for(None), geoip_fallback)
+        eq_(mock_request_region.call_count, 1)
+
         eq_(self.region_for(''), geoip_fallback)
+        eq_(mock_request_region.call_count, 2)
 
         # Test fallback to restofworld (e.g. if GeoIP fails).
         with patch('mkt.regions.middleware.RegionMiddleware.'
@@ -78,7 +86,31 @@ class TestGetRegion(TestCase):
             eq_(self.region_for(None), regions.RESTOFWORLD)
             ok_(mock_process_request.called)
 
+    @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
+    def test_get_region_all_v2(self, mock_request_region):
+        geoip_fallback = regions.PE  # Different than the default: restofworld.
+        mock_request_region.return_value = geoip_fallback
+
+        self.api_version = 2
+
+        # Test string values (should return region with that slug).
+        eq_(self.region_for('restofworld'), regions.RESTOFWORLD)
+        ok_(not mock_request_region.called)
+
+        eq_(self.region_for('us'), regions.US)
+        ok_(not mock_request_region.called)
+
+        # Test fallback to request.REGION. We are using api v2, so we shouldn't
+        # fall back on GeoIP and simply use RESTOFWORLD.
+        eq_(self.region_for(None), regions.RESTOFWORLD)
+        ok_(not mock_request_region.called)
+
+        eq_(self.region_for(''), regions.RESTOFWORLD)
+        ok_(not mock_request_region.called)
+
     def test_get_region_none(self):
+        # When the client explicity requested `region=None` in the query string
+        # we should not have a region set at all, not even restofworld.
         eq_(self.region_for('None'), None)
 
     def test_get_region_worldwide(self):

@@ -186,6 +186,27 @@ class TestConsumerInfoView(RestOAuth, TestCase):
         self.url = reverse('fireplace-consumer-info')
         self.user = UserProfile.objects.get(pk=2519)
 
+    @patch('mkt.regions.middleware.GeoIP.lookup')
+    def test_geoip_called_api_v1(self, mock_lookup):
+        # When we increment settings.API_CURRENT_VERSION, we'll need to update
+        # this test to make sure it's still only using v1.
+        self.url = reverse('fireplace-consumer-info')
+        ok_('/api/v1/' in self.url)
+        mock_lookup.return_value = mkt.regions.UK
+        res = self.anon.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['region'], 'uk')
+        eq_(mock_lookup.call_count, 1)
+
+    @patch('mkt.regions.middleware.GeoIP.lookup')
+    def test_geoip_called_api_v2(self, mock_lookup):
+        self.url = reverse('api-v2:fireplace-consumer-info')
+        mock_lookup.return_value = mkt.regions.UK
+        res = self.anon.get(self.url)
+        data = json.loads(res.content)
+        eq_(data['region'], 'uk')
+        eq_(mock_lookup.call_count, 1)
+
     @patch('mkt.regions.middleware.RegionMiddleware.region_from_request')
     def test_no_user_just_region(self, region_from_request):
         region_from_request.return_value = mkt.regions.UK

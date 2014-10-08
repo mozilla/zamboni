@@ -53,9 +53,10 @@ Search
         exact match of the author field.
     :type author: string
     :param optional region: Filters apps by a supported region. A region
-        code should be provided in ISO 3166 format (e.g., `pl`). If not
-        provided, the region is automatically detected via requesting IP
-        address. To disable automatic region detection, `None` may be passed.
+        code should be provided in ISO 3166 format (e.g., `pl`). In API v1 (and
+        only v1), if not provided, the region is automatically detected via
+        requesting IP address. To disable automatic region detection, `None`
+        may be passed.
     :type region: string
     :param optional sort: The fields to sort by. One or more of 'created',
         'downloads', 'name', 'rating', or 'reviewed'. Sorts by
