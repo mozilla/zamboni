@@ -6,6 +6,7 @@ import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
+from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import RocketbarViewV2
 
@@ -24,7 +25,7 @@ subfeedapp.register('image', views.FeedAppImageViewSet,
 
 subfeedcollection = SubRouterWithFormat()
 subfeedcollection.register('image', views.FeedCollectionImageViewSet,
-                    base_name='feed-collection-image')
+                           base_name='feed-collection-image')
 
 subfeedshelf = SubRouterWithFormat()
 subfeedshelf.register('image', views.FeedShelfImageViewSet,
@@ -58,4 +59,6 @@ urlpatterns = patterns('',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
     url(r'^apps/recommend/$', RecommendationView.as_view(),
         name='apps-recommend'),
+    url(r'^account/operators/$', OperatorPermissionViewSet.as_view(
+        {'get': 'list'}), name='operator-permissions'),
 ) + v1_urls

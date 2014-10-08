@@ -170,3 +170,38 @@ Newsletter signup
 
    :status 204: Successfully signed up.
    :status 429: exceeded rate limit.
+
+
+Operator Permissions
+====================
+
+Users may be granted permission to operate as an administrator on individual
+carrier/region pairs.
+
+.. http:get:: /api/v2/account/operators/
+
+    Return a list of each carrier/region pair upon which the user has permission
+    to operate.
+
+    .. note:: Authentication is optional, but unauthenticated requests will never
+        return data.
+
+    **Response**
+
+    :param meta: :ref:`meta-response-label`.
+    :type meta: object
+    :param objects: A list of carrier/region pairs for the user.
+    :type objects: array
+
+    .. code-block:: json
+
+        [
+            {
+                'carrier': 'telefonica',
+                'region': 'br'
+            },
+            {
+                'carrier': 'telefonica',
+                'region': 'co'
+            }
+        ]
