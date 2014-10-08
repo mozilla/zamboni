@@ -207,7 +207,7 @@ class TranslationTestCase(TestCase):
 
     def test_update_with_dict(self):
         # There's existing en-US and de strings.
-        strings = {'de': None, 'fr': 'oui'}
+        strings = {'de': None, 'fr': 'oui', 'sr-Latn': 'yes I speak serbian'}
         get_model = lambda: TranslatedModel.objects.get(id=1)
 
         # Don't try checking that the model's name value is en-US.  It will be
@@ -227,6 +227,9 @@ class TranslationTestCase(TestCase):
         # fr was added.
         translation.activate('fr')
         trans_eq(get_model().name, 'oui', 'fr')
+
+        translation.activate('sr-Latn')
+        trans_eq(get_model().name, 'yes I speak serbian', 'sr-Latn')
 
     def test_dict_with_hidden_locale(self):
         with self.settings(HIDDEN_LANGUAGES=('xxx',)):

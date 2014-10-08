@@ -61,6 +61,8 @@ def test_to_language():
     tests = (('en-us', 'en-US'),
              ('en_US', 'en-US'),
              ('en_us', 'en-US'),
+             ('sr-Latn', 'sr-Latn'),
+             ('sr-latn', 'sr-Latn'),
              ('FR', 'fr'),
              ('el', 'el'))
 
@@ -74,6 +76,8 @@ def test_find_language():
     tests = (('en-us', 'en-US'),
              ('en_US', 'en-US'),
              ('en', 'en-US'),
+             ('sr-latn', 'sr-Latn'),
+             ('sr-Latn', 'sr-Latn'),
              ('cy', 'cy'),  # A hidden language.
              ('FR', 'fr'),
              ('es-ES', None),  # We don't go from specific to generic.
