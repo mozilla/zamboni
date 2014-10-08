@@ -1095,6 +1095,20 @@ List
     :type objects: array
 
 
+List User's
+===========
+
+.. http:get:: /api/v2/account/shelves/
+
+    A listing of operator shelves upon which the authenticating user has
+    permission to administer.
+
+    **Response**
+
+    A :ref:`listing <objects-response-label>` of :ref:`operator shelves
+        <feed-shelves>`.
+
+
 Detail
 ======
 

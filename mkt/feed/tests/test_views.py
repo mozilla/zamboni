@@ -22,6 +22,8 @@ from mkt.feed.tests.test_models import FeedAppMixin, FeedTestMixin
 from mkt.feed.views import FeedView
 from mkt.fireplace.tests.test_views import assert_fireplace_app
 from mkt.operators.authorization import OperatorPermission
+from mkt.site.fixtures import fixture
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Preview, Webapp
 
 
@@ -1010,6 +1012,49 @@ class TestFeedShelfViewSet(BaseTestFeedCollection, RestOAuth):
         eq_(crush_mock.call_args_list[0][0][0], obj.image_path())
         ok_(data['background_image_landing'].endswith(obj.image_landing_hash))
         eq_(crush_mock.call_args_list[1][0][0], obj.image_path('_landing'))
+
+
+class TestFeedShelfViewSetMine(FeedTestMixin, RestOAuth):
+    fixtures = (FeedTestMixin.fixtures + RestOAuth.fixtures +
+                fixture('user_999'))
+
+    def setUp(self):
+        super(TestFeedShelfViewSetMine, self).setUp()
+        self.user2 = UserProfile.objects.get(id=999)
+        self.url = reverse('api-v2:feedshelves-mine')
+        self.feed_shelf_factory(
+            carrier=mkt.carriers.TELEFONICA.id, region=mkt.regions.BR.id)
+        self.feed_shelf_factory(
+            carrier=mkt.carriers.AMERICA_MOVIL.id, region=mkt.regions.FR.id)
+
+    def list(self, client):
+        res = client.get(self.url)
+        data = json.loads(res.content)
+        eq_(res.status_code, 200)
+        return res, data
+
+    def test_anon(self):
+        res, data = self.list(self.anon)
+        eq_(len(data), 0)
+
+    def test_superuser(self):
+        self.grant_permission(self.user, 'OperatorDashboard:*')
+        res, data = self.list(self.client)
+        eq_(len(data), 2)
+
+    def test_operator_permission(self):
+        carrier = mkt.carriers.TELEFONICA
+        region = mkt.regions.BR
+        self.feed_shelf_permission_factory(self.user, carrier=carrier.id,
+                                           region=region.id)
+        res, data = self.list(self.client)
+        eq_(len(data), 1)
+        eq_(data[0]['carrier'], carrier.slug)
+        eq_(data[0]['region'], region.slug)
+
+    def test_no_operator_permission(self):
+        res, data = self.list(self.client)
+        eq_(len(data), 0)
 
 
 class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):

@@ -10,6 +10,7 @@ from PIL import Image
 from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import mkt
@@ -25,6 +26,7 @@ from mkt.constants.applications import DEVICE_LOOKUP
 from mkt.developers.tasks import pngcrush_image
 from mkt.feed.indexers import FeedItemIndexer
 from mkt.operators.authorization import OperatorShelfAuthorization
+from mkt.operators.models import OperatorPermission
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import Webapp
 
@@ -299,6 +301,28 @@ class FeedShelfViewSet(BaseFeedCollectionViewSet):
         ('background_image_landing_upload_url', 'image_landing_hash',
          '_landing'),
     )
+
+    def mine(self, request, *args, **kwargs):
+        """
+        Return all shelves a user can administer. Anonymous users will always
+        receive an empty list.
+        """
+        if request.user.is_anonymous():
+            qs = self.queryset.none()
+        elif OperatorShelfAuthorization().is_admin(request):
+            qs = self.queryset
+        else:
+            perms = OperatorPermission.objects.filter(user=request.user)
+            if perms:
+                query = Q()
+                for perm in perms:
+                    query |= Q(carrier=perm.carrier, region=perm.region)
+                qs = self.queryset.filter(query)
+            else:
+                qs = self.queryset.none()
+        self.object_list = self.filter_queryset(qs)
+        serializer = self.get_serializer(self.object_list, many=True)
+        return Response(serializer.data)
 
 
 class FeedShelfPublishView(CORSMixin, APIView):

@@ -23,7 +23,7 @@ class TestPreloadCandidates(amo.tests.TestCase):
     def setUp(self):
         self.create_switch('preload-apps')
         self.url = reverse('operators.preloads')
-        self.user = UserProfile.objects.get()
+        self.user = UserProfile.objects.get(pk=322)
         self.app = app_factory()
 
     def _preload_factory(self):
