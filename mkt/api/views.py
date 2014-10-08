@@ -115,6 +115,20 @@ def site_config(request):
         })
 
 
+@permission_classes([AllowAny])
+class WaffleView(CORSMixin, generics.RetrieveAPIView):
+    """Exposes waffle switches in the slimmest manner possible."""
+    cors_allowed_methods = ['get']
+    permission_Classes = (AllowAny,)
+
+    def retrieve(self, request, *args, **kwargs):
+        return Response({
+            'switches': [str(s) for s in
+                         waffle.models.Switch.objects.filter(active=True)
+                                      .values_list('name', flat=True)]
+        })
+
+
 class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     cors_allowed_methods = ['get']
     authentication_classes = []

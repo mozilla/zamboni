@@ -162,3 +162,18 @@ class TestEndpointRemoved(amo.tests.TestCase):
             request = getattr(self.factory, method)('/')
             with self.assertRaises(Http404):
                 endpoint_removed(request)
+
+
+class TestWaffleView(amo.tests.TestCase):
+    def setUp(self):
+        self.url = reverse('api-v2:site.waffles')
+
+    def test_no_waffle(self):
+        data = json.loads(self.client.get(self.url).content)
+        ok_(not data['switches'])
+
+    def test_waffles(self):
+        self.create_switch('eggos', db=True)
+        self.create_switch('strudel', db=True)
+        data = json.loads(self.client.get(self.url).content)
+        self.assertSetEqual(data['switches'], ['eggos', 'strudel'])

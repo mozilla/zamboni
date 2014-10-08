@@ -5,7 +5,7 @@ from rest_framework.routers import SimpleRouter
 import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
-from mkt.api.views import endpoint_removed
+from mkt.api.views import endpoint_removed, WaffleView
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import RocketbarViewV2
@@ -34,9 +34,12 @@ subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
                       base_name='feed-shelf-landing-image')
 
 urlpatterns = patterns('',
+    url(r'^account/operators/$', OperatorPermissionViewSet.as_view(
+        {'get': 'list'}), name='operator-permissions'),
+    url(r'^apps/recommend/$', RecommendationView.as_view(),
+        name='apps-recommend'),
     url(r'^apps/search/rocketbar/', RocketbarViewV2.as_view(),
         name='rocketbar-search-api'),
-    url(r'^rocketfuel/collections/.*', endpoint_removed),
     url(r'^feed/builder/$', views.FeedBuilderView.as_view(),
         name='feed.builder'),
     url(r'^feed/elements/search/$', views.FeedElementSearchView.as_view(),
@@ -49,16 +52,14 @@ urlpatterns = patterns('',
     url(r'^feed/shelves/(?P<pk>[^/.]+)/publish/$',
         views.FeedShelfPublishView.as_view(),
         name='feed-shelf-publish'),
-    url(r'^consumer/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
-        views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
     # Remove fireplace version once fireplace has been updated to use
     # consumer/feed/ with ?app_serializer=fireplace.
     url(r'^fireplace/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
         views.FeedElementGetView.as_view(), name='feed.fire_feed_element_get'),
+    url(r'^consumer/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
+        views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
+    url(r'^rocketfuel/collections/.*', endpoint_removed),
+    url(r'^services/waffle/', WaffleView.as_view(), name='site.waffles'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
-    url(r'^apps/recommend/$', RecommendationView.as_view(),
-        name='apps-recommend'),
-    url(r'^account/operators/$', OperatorPermissionViewSet.as_view(
-        {'get': 'list'}), name='operator-permissions'),
 ) + v1_urls
