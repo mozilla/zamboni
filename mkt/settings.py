@@ -998,8 +998,13 @@ QA_APP_ID = 0
 READ_ONLY = False
 
 REDIS_BACKENDS = {
-    'master': os.environ.get('REDIS_URL',
-                             'redis://localhost:6379?socket_timeout=0.5')
+    'master': {
+        'HOST': 'localhost',
+        'PORT': '6379',
+        'OPTIONS': {
+            'socket_timeout': '0.5',
+        }
+    }
 }
 
 REST_FRAMEWORK = {
