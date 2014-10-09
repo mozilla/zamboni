@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-30 20:37+0000\n"
+"PO-Revision-Date: 2014-10-09 22:25+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412109476.0\n"
+"X-POOTLE-MTIME: 1412893518.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -323,11 +323,11 @@ msgstr "Upptrappning rensad"
 
 #: apps/amo/log.py:440
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} bannlyst."
 
 #: apps/amo/log.py:441
 msgid "App banned"
-msgstr ""
+msgstr "App bannlyst"
 
 #: apps/amo/log.py:448
 msgid "{addon} escalated because of high number of abuse reports."
@@ -587,7 +587,7 @@ msgstr "Fältet måste minst ha en längd av {num}-tecken."
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Språkkoden {lang_code} är ogiltig."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -655,7 +655,7 @@ msgstr "Bilaga överskrider den maximala storleken av %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1711,7 +1711,7 @@ msgstr "Publicerad"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Bannlyst från Marketplace"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1765,27 +1765,27 @@ msgstr "Jag använder mitt eget system för in-app betalningar"
 
 #: mkt/constants/base.py:190
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Manuell granskarpoäng"
 
 #: mkt/constants/base.py:191
 msgid "Web App Review"
-msgstr ""
+msgstr "Granskning webbapp"
 
 #: mkt/constants/base.py:192
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Granskning paketerad app"
 
 #: mkt/constants/base.py:193
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Återgranskning webbapp"
 
 #: mkt/constants/base.py:194
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Granskning uppdaterad paketerad app"
 
 #: mkt/constants/base.py:195
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Granskning modifierad app"
 
 #: mkt/constants/base.py:216
 msgid "Level 1"
@@ -1817,7 +1817,7 @@ msgstr "Böcker"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "Företag"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
@@ -1893,39 +1893,39 @@ msgstr "Ingen åtgärd"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "Bannlyst"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Kommentar granskare"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
-msgstr ""
+msgstr "Återinskickad app"
 
 #: mkt/constants/comm.py:51
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Upptrappad på grund av för många missbruksrapporter"
 
 #: mkt/constants/comm.py:52
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Upptrappad på grund av för många ansökningar om återbetalning"
 
 #: mkt/constants/comm.py:54
 msgid "App submission notes"
-msgstr ""
+msgstr "Anteckningar inskickad app"
 
 #: mkt/constants/comm.py:55
 msgid "Developer comment"
-msgstr ""
+msgstr "Utvecklarkommentar"
 
 #: mkt/constants/comm.py:56
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Enhet ändrad av granskare"
 
 #: mkt/constants/comm.py:57
 msgid "Requirement(s) changed by reviewer"
-msgstr "Krav ändrade av granskare"
+msgstr "Krav ändrad av granskare"
 
 #: mkt/constants/comm.py:58
 msgid "Rereview due to Manifest Change"
@@ -2568,7 +2568,9 @@ msgstr "Du måste ladda upp minst en skärmdump eller video."
 
 #: mkt/developers/forms.py:463
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
-msgstr "Paketerad app är för stor för att skicka in. Paketet måste vara mindre än %s."
+msgstr ""
+"Paketerad app är för stor för att skicka in. Paketen måste vara mindre än %"
+"s."
 
 #: mkt/developers/forms.py:478
 msgid "Error extracting manifest from zip file."
@@ -2736,7 +2738,7 @@ msgstr "Ogiltig filtyp {0}. Endast {1}-filer stöds."
 
 #: mkt/developers/forms.py:1222
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Ange ett giltigt inskicknings-ID."
 
 #: mkt/developers/forms.py:1238
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
@@ -2744,7 +2746,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1273 mkt/developers/forms.py:1285
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Ogiltig inskicknings-ID eller säkerhetskod."
 
 #: mkt/developers/forms_payments.py:58
 msgid "App Price"
@@ -3080,7 +3082,7 @@ msgstr "Version \"{0}\" borttagen."
 
 #: mkt/developers/views.py:644
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Ett fel uppstod med inskickning."
 
 #: mkt/developers/views.py:941
 msgid "There was an error uploading your preview."
@@ -3205,7 +3207,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
-msgstr ""
+msgstr "OAuth exempel"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X using your OAuth credentials:</p>"
@@ -3344,6 +3346,8 @@ msgstr ""
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Använd dessa verktyg för att testa dina appar före de skickas in till "
+"Firefox Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3643,7 +3647,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:203
 msgid "Submission date"
-msgstr ""
+msgstr "Inskickningsdatum"
 
 #: mkt/developers/templates/developers/apps/status.html:213 mkt/developers/templates/developers/apps/listing/items.html:24
 msgid "Disabled"
@@ -3760,7 +3764,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:409
 msgid "List App"
-msgstr ""
+msgstr "Lista app"
 
 #: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:412 mkt/developers/templates/developers/apps/status.html:472
 #: mkt/developers/templates/developers/apps/status.html:477
@@ -4463,7 +4467,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
-msgstr ""
+msgstr "Inskicknings-ID"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:97
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
@@ -5287,7 +5291,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
@@ -5323,19 +5327,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Orange"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Grå"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Svart"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logotyp"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid "To view and download the Firefox Marketplace logo, please visit the <a href=\"%(style_guide_url)s\">Mozilla style guide</a>."
@@ -5347,31 +5351,31 @@ msgstr "Ofta ställda frågor"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr ""
+msgstr "Vad behöver jag veta innan man skapar en app?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
-msgstr ""
+msgstr "Hur laddar jag upp min app till Firefox Marketplace?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:28
 msgid "I need help with the App Manifest."
-msgstr ""
+msgstr "Jag behöver hjälp med appens Manifest."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:33
 msgid "How do I create an installable App?"
-msgstr ""
+msgstr "Hur skapar jag en installerbar app?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "Hur fungerar betalningarna?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Hur hanterar jag skatterna av min försäljning?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "Har du fortfarande frågor?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid "While we are working on creating a set of channels to help you with your issues you can visit StackOverflow to resolve all your questions related to the development of Web apps."
@@ -5379,7 +5383,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58 mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid "If you want to engage with other developers, join our vibrant communities in these mailing lists:"
@@ -6183,15 +6187,15 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:44
 msgid "Updates"
-msgstr ""
+msgstr "Uppdateringar"
 
 #: mkt/reviewers/helpers.py:45
 msgid "Escalations"
-msgstr ""
+msgstr "Upptrappningar"
 
 #: mkt/reviewers/helpers.py:46 mkt/search/forms.py:94
 msgid "Device"
-msgstr ""
+msgstr "Enhet"
 
 #: mkt/reviewers/helpers.py:47
 msgid "Moderated Reviews"
@@ -6208,7 +6212,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:92
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Appar ({0})"
 
 #: mkt/reviewers/helpers.py:95
 msgctxt "rereview"
@@ -6218,12 +6222,12 @@ msgstr ""
 #: mkt/reviewers/helpers.py:99
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Uppdateringar ({0})"
 
 #: mkt/reviewers/helpers.py:103
 msgctxt "escalated"
 msgid "Escalations ({0})"
-msgstr ""
+msgstr "Upptrappningar ({0})"
 
 #: mkt/reviewers/helpers.py:107
 msgctxt "moderated"
@@ -6236,15 +6240,15 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:117
 msgid "China ({0})"
-msgstr ""
+msgstr "Kina ({0})"
 
 #: mkt/reviewers/helpers.py:122
 msgid "Tarako ({0})"
-msgstr ""
+msgstr "Tarako ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgid "Device ({0})"
-msgstr ""
+msgstr "Enhet ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgid "Reviews"
@@ -6256,11 +6260,12 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Godkänn"
 
 #: mkt/reviewers/utils.py:450
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr ""
+"Detta kommer att godkänna appen och tillåta utvecklaren att publicera den."
 
 #: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
@@ -6272,15 +6277,17 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:461
 msgid "Request more information"
-msgstr ""
+msgstr "Begär mer information"
 
 #: mkt/reviewers/utils.py:463
 msgid "This will send the author(s) an email requesting more information."
 msgstr ""
+"Detta kommer att skicka utvecklaren ett e-postmeddelande som begär mer "
+"information."
 
 #: mkt/reviewers/utils.py:467
 msgid "Escalate"
-msgstr ""
+msgstr "Upptrappa"
 
 #: mkt/reviewers/utils.py:469
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
@@ -6289,14 +6296,18 @@ msgstr ""
 #: mkt/reviewers/utils.py:476
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr ""
+"Skriv en kommentar om denna app. Utvecklaren kommer inte att kunna se de här "
+"kommentarerna."
 
 #: mkt/reviewers/utils.py:480
 msgid "Clear Escalation"
-msgstr ""
+msgstr "Rensa upptrappning"
 
 #: mkt/reviewers/utils.py:482
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
+"Rensa den här appen från upptrappningskön. Utvecklaren kommer inte att få "
+"e-post eller se kommentarer här."
 
 #: mkt/reviewers/utils.py:487
 msgid "Clear Re-review"
@@ -6308,7 +6319,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:494
 msgid "Ban app"
-msgstr ""
+msgstr "Bannlys app"
 
 #: mkt/reviewers/utils.py:496
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
@@ -6398,7 +6409,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:30 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:142 mkt/reviewers/templates/reviewers/includes/mobile_details.html:157 mkt/reviewers/templates/reviewers/includes/search_results.html:7
 msgid "Flags"
-msgstr ""
+msgstr "Flaggor"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
@@ -6407,7 +6418,7 @@ msgstr "Enheter"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:72
 msgid "Packaged App"
-msgstr ""
+msgstr "Paketerad app"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37 mkt/reviewers/templates/reviewers/includes/macros.html:78
 msgid "Blocklisted App"
@@ -6415,11 +6426,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40 mkt/reviewers/templates/reviewers/includes/macros.html:86
 msgid "Premium App"
-msgstr ""
+msgstr "Premium app"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43 mkt/reviewers/templates/reviewers/includes/macros.html:90
 msgid "More Information Requested"
-msgstr ""
+msgstr "Mer information begärd"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:46 mkt/reviewers/templates/reviewers/includes/macros.html:93
 msgid "Contains Editor Comment"
@@ -6472,12 +6483,12 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/home.html:53
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} app"
+msgstr[1] "{0} appar"
 
 #: mkt/reviewers/templates/reviewers/home.html:54
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: mkt/reviewers/templates/reviewers/home.html:68
 msgid "Total Reviews"
@@ -6501,7 +6512,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Poäng"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
@@ -6509,11 +6520,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/logs.html:17
 msgid "Event"
-msgstr ""
+msgstr "Händelse"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "Appen har tagits bort."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -6545,11 +6556,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Månad"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
@@ -6597,11 +6608,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:62
 msgid "More Information"
-msgstr ""
+msgstr "Mer information"
 
 #: mkt/reviewers/templates/reviewers/review.html:63 mkt/reviewers/templates/reviewers/includes/review_history.html:3 mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:2
 msgid "App History"
-msgstr ""
+msgstr "App-historik"
 
 #: mkt/reviewers/templates/reviewers/review.html:64
 msgid "Resolution"
@@ -6645,7 +6656,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9 mkt/reviewers/templates/reviewers/includes/review_history.html:82
 msgid "Attachments"
-msgstr ""
+msgstr "Bilagor"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28 mkt/reviewers/templates/reviewers/includes/review_history.html:98
 msgid "This version has not been reviewed"
@@ -6746,7 +6757,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:84
 msgid "Free with In-App"
-msgstr ""
+msgstr "Gratis med in-app"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:19 mkt/reviewers/templates/reviewers/includes/mobile_details.html:30
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:162
