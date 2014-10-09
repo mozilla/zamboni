@@ -2,7 +2,6 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from waffle import switch_is_active
-from waffle.models import Switch
 
 import mkt.regions
 from mkt.account.views import user_relevant_apps
@@ -61,16 +60,8 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
             user_region = region_middleware.region_from_request(request)
             region_middleware.store_region(request, user_region)
 
-        # List of active switch names.
-        switches = [str(s) for s in
-                    Switch.objects.filter(active=True)
-                    .values_list('name', flat=True)]
-
         data = {
             'region': request.REGION.slug,
-            'waffle': {
-                'switches': switches,
-            }
         }
         if request.user.is_authenticated():
             data['apps'] = user_relevant_apps(request.user)
