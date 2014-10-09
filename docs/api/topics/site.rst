@@ -193,6 +193,31 @@ Configuration
     For full information about waffle flags and switches, please see the waffle
     documentation: http://waffle.readthedocs.org/en/latest/types.html
 
+
+Waffle Switches
+===============
+
+.. http:get:: /api/v2/services/waffle/
+
+    Returns a list of active feature switches.
+
+    **Response**
+
+    :param switches: a list of waffle switches
+    :type switches: array
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            "switches": ["firefox-accounts", "user-curation", "feed"]
+        }
+
+    For full information about waffle flags and switches, please see the waffle
+    documentation: http://waffle.readthedocs.org/en/latest/types.html
+
+
 Price tiers
 ===========
 
