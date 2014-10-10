@@ -613,7 +613,7 @@ class ReferenceAccountForm(happyforms.Form):
                            widget=forms.HiddenInput())
     account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
     name = forms.CharField(max_length=50, label=_lazy(u'Name'))
-    email = forms.CharField(max_length=50, label=_lazy(u'Email'))
+    email = forms.EmailField(max_length=100, label=_lazy(u'Email'))
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop('account', None)
