@@ -533,6 +533,10 @@ BROWSERID_JS_URL = 'https://login.persona.org/include.js'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
 BROWSERID_AUDIENCES = [SITE_URL]
 
+# Native-FxA uses a browserid verifier with slightly different behavior.
+NATIVE_FXA_VERIFICATION_URL = 'https://verifier.accounts.firefox.com/v2'
+NATIVE_FXA_ISSUER = 'https://api.accounts.firefox.com/'
+
 # Number of seconds a count() query should be cached.  Keep it short because
 # it's not possible to invalidate these queries.
 CACHE_COUNT_TIMEOUT = 60

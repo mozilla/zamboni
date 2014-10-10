@@ -47,8 +47,8 @@ class Command(BaseCommand):
         is_live = phase in ['during', 'after']
         is_developers = audience == 'developers'
 
-        ids = get_user_ids(is_developers)
+        all_ids = get_user_ids(is_developers)
 
-        log.info('Sending: {0} {1} emails'.format(len(ids), mail_type))
-        for users in chunked(ids, 100):
-            send_fxa_mail.delay(ids, mail_type, is_live)
+        log.info('Sending: {0} {1} emails'.format(len(all_ids), mail_type))
+        for chunked_ids in chunked(all_ids, 100):
+            send_fxa_mail.delay(chunked_ids, mail_type, is_live)

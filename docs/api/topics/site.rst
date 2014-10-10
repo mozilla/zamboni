@@ -141,6 +141,9 @@ Configuration
 
     **Response**
 
+    :param fxa: an object containing Firefox Accounts auth information if the
+                Firefox Accounts waffle switch is active.
+    :type fxa: object
     :param version: the git commit number of the deployment.
     :type version: string|null
     :param settings: a subset of useful site settings.
@@ -153,6 +156,10 @@ Configuration
     .. code-block:: json
 
         {
+            "fxa": {
+                "fxa_auth_state": "aaabbbccctoken",
+                "fxa_auth_url": "https://somelongauthurl.com?stuff=stuff"
+            },
             "waffle": {
                 "switches": {
                     "some-switch": {
@@ -190,8 +197,31 @@ Configuration
             "version": null
         }
 
+    **?serializer=commonplace**
+
+    If you pass *commonplace* as a GET parameter for *serializer*, the switches
+    response will be simply a list of names of the active switches.
+
+    :param switches: a list of waffle switches
+    :type switches: array
+
+    Example:
+
+    .. code-block:: json
+
+        {
+            ...
+
+            "waffle": {
+                "switches": ["firefox-accounts", "user-curation", "feed"]
+            },
+
+            ...
+        }
+
     For full information about waffle flags and switches, please see the waffle
     documentation: http://waffle.readthedocs.org/en/latest/types.html
+
 
 Price tiers
 ===========

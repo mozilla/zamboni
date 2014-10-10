@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import commonware.log
+import waffle
 from django_browserid import BrowserIDBackend, get_audience
 from django_statsd.clients import statsd
 from requests_oauthlib import OAuth2Session
@@ -118,7 +119,7 @@ def _fxa_authorize(fxa, client_secret, request, auth_response, userid):
                    data=json.dumps({'token': token['access_token']}),
                    headers={'Content-Type': 'application/json'})
     data = res.json()
-
+    
     if 'user' in data:
         email = data['email']
         fxa_uid = data['user']
@@ -164,20 +165,24 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     good, but no account exists, create one.
 
     """
-    url = settings.BROWSERID_VERIFICATION_URL
-
-    # We must always force the Firefox OS identity provider. This is because
-    # we are sometimes allowing unverified assertions and you can't mix that
-    # feature with bridged IdPs. See bug 910938.
     extra_params = {}
-    if settings.UNVERIFIED_ISSUER:
-        extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
+    if waffle.switch_is_active('firefox_accounts'):
+        url = settings.NATIVE_FXA_VERIFICATION_URL
+    else:
+        url = settings.BROWSERID_VERIFICATION_URL
 
-    if is_mobile:
-        # When persona is running in a mobile OS then we can allow unverified
-        # assertions.
-        url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-        extra_params['experimental_allowUnverified'] = 'true'
+        # We must always force the Firefox OS identity provider. This is
+        # because we are sometimes allowing unverified assertions and you
+        # can't mix that feature with bridged IdPs. See bug 910938.
+
+        if settings.UNVERIFIED_ISSUER:
+            extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
+
+        if is_mobile:
+            # When persona is running in a mobile OS then we can allow
+            # unverified assertions.
+            url = settings.NATIVE_BROWSERID_VERIFICATION_URL
+            extra_params['experimental_allowUnverified'] = 'true'
 
     log.debug('Verifying Persona at %s, audience: %s, '
               'extra_params: %s' % (url, browserid_audience, extra_params))
@@ -190,6 +195,10 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     if 'unverified-email' in result._response:
         email = result._response['unverified-email']
         verified = False
+    elif (result._response.get('issuer') == settings.NATIVE_FXA_ISSUER and
+          'fxa-verifiedEmail' in result._response.get('idpClaims', {})):
+        email = result._response['idpClaims']['fxa-verifiedEmail']
+        verified = True
     else:
         email = result.email
         verified = True
