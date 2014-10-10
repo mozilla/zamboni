@@ -76,7 +76,7 @@ SOLITUDE_HOSTS = ('https://payments-dev.allizom.org',)
 SOLITUDE_OAUTH = {'key': private_mkt.SOLITUDE_OAUTH_KEY,
                   'secret': private_mkt.SOLITUDE_OAUTH_SECRET}
 
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 180
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org',

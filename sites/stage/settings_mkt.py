@@ -69,7 +69,7 @@ DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 180
 VALIDATOR_IAF_URLS = ['https://marketplace.firefox.com',
                       'https://marketplace.allizom.org',
                       'https://marketplace-dev.allizom.org',
