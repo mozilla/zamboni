@@ -119,7 +119,7 @@ def _fxa_authorize(fxa, client_secret, request, auth_response, userid):
                    data=json.dumps({'token': token['access_token']}),
                    headers={'Content-Type': 'application/json'})
     data = res.json()
-    
+
     if 'user' in data:
         email = data['email']
         fxa_uid = data['user']
@@ -166,7 +166,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 
     """
     extra_params = {}
-    if waffle.switch_is_active('firefox_accounts'):
+    if waffle.switch_is_active('firefox-accounts'):
         url = settings.NATIVE_FXA_VERIFICATION_URL
     else:
         url = settings.BROWSERID_VERIFICATION_URL
@@ -195,7 +195,7 @@ def browserid_authenticate(request, assertion, is_mobile=False,
     if 'unverified-email' in result._response:
         email = result._response['unverified-email']
         verified = False
-    elif (result._response.get['issuer'] == settings.NATIVE_FXA_ISSUER and
+    elif (result._response.get('issuer') == settings.NATIVE_FXA_ISSUER and
           'fxa-verifiedEmail' in result._response.get('idpClaims', {})):
         email = result._response['idpClaims']['fxa-verifiedEmail']
         verified = True
