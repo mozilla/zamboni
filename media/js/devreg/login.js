@@ -1,30 +1,4 @@
-define('login', ['notification'], function(notification) {
-
-    function Storage() {
-        function _prefix(storageKey) {
-            var version = localStorage.getItem('latestStorageVersion') || '0';
-            return version + '::' + storageKey;
-        }
-
-        this.setItem = function (key, value) {
-            return localStorage.setItem(_prefix(key), JSON.stringify(value));
-        };
-
-        this.getItem = function (key) {
-            value = localStorage.getItem(_prefix(key));
-            try {
-                return JSON.parse(value);
-            } catch(e) {
-                return value;
-            }
-        };
-
-        this.removeItem = function (key) {
-            return localStorage.removeItem(_prefix(key));
-        };
-    }
-
-    var storage = new Storage();
+define('login', ['notification', 'storage'], function(notification, storage) {
     var requestedLogin = false;
     var readyForReload = false;
 
@@ -202,6 +176,9 @@ define('login', ['notification'], function(notification) {
         storage.setItem('settings', data.settings);
         storage.setItem('permissions', data.permissions);
         storage.setItem('user_apps', data.apps);
+        if (storage.getItem('settings').source === 'firefox-accounts') {
+            storage.setItem('fxa-migrated', true);
+        }
     }
 
     function clearToken() {
