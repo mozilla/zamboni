@@ -254,9 +254,12 @@ class ReviewApp(ReviewBase):
 
         self.addon.sign_if_packaged(self.version.pk)
 
-        # If there's only one version we set it public not matter what publish
-        # type was chosen.
-        if self.addon.versions.count() == 1:
+        # If there are no prior PUBLIC versions we set the file status to
+        # PUBLIC no matter what ``publish_type`` was chosen since at least one
+        # version needs to be PUBLIC when an app is approved to set a
+        # ``current_version``.
+        if File.objects.filter(version__addon__pk=self.addon.pk,
+                               status=amo.STATUS_PUBLIC).count() == 0:
             self.set_files(amo.STATUS_PUBLIC, self.version.files.all())
         else:
             self.set_files(amo.STATUS_APPROVED, self.version.files.all())

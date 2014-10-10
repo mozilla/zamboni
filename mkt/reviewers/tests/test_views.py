@@ -2306,6 +2306,56 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(storefront_mock.call_count, 0)
         eq_(sign_mock.call_count, 0)
 
+    def test_pending_to_approved_app_private_prior_version_rejected(
+            self, update_name, update_locales, update_cached_manifests,
+            index_webapps, messages, storefront_mock, sign_mock):
+        """
+        Test that everything works out ok when v1.0 was rejected and developer
+        submitted v1.1 that is then approved. This should still be considered a
+        packaged review (not an update) and set the approved version to PUBLIC
+        since the proir verison is DISABLED. See bug 1075042.
+        """
+        self.app.update(status=amo.STATUS_REJECTED,
+                        publish_type=amo.PUBLISH_PRIVATE)
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.new_version = version_factory(
+            addon=self.app, version='1.1',
+            file_kw={'status': amo.STATUS_PENDING})
+
+        index_webapps.delay.reset_mock()
+        update_cached_manifests.delay.reset_mock()
+        eq_(update_name.call_count, 0)
+        eq_(update_locales.call_count, 0)
+        eq_(storefront_mock.call_count, 0)
+
+        eq_(self.app.current_version, None)
+        eq_(self.app.latest_version, self.new_version)
+
+        data = {'action': 'public', 'device_types': '', 'browsers': '',
+                'comments': 'something'}
+        data.update(self._attachment_management_form(num=0))
+        self.post(data)
+        app = self.get_app()
+        eq_(app.status, amo.STATUS_APPROVED)
+        eq_(app.latest_version, self.new_version)
+        eq_(app.current_version, self.new_version)
+        eq_(app.current_version.all_files[0].status, amo.STATUS_PUBLIC)
+        self._check_log(amo.LOG.APPROVE_VERSION_PRIVATE)
+
+        eq_(len(mail.outbox), 1)
+        msg = mail.outbox[0]
+        self._check_email(msg, 'App approved but private')
+        self._check_email_body(msg)
+        self._check_score(amo.REVIEWED_WEBAPP_PACKAGED)
+        self._check_message(messages)
+
+        eq_(update_name.call_count, 1)
+        eq_(update_locales.call_count, 1)
+        eq_(index_webapps.delay.call_count, 1)
+        eq_(update_cached_manifests.delay.call_count, 1)
+        eq_(storefront_mock.call_count, 0)
+        eq_(sign_mock.call_args[0][0], self.new_version.pk)
+
 
 @mock.patch('lib.crypto.packaged.sign')
 @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
