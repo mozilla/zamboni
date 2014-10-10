@@ -34,7 +34,6 @@ django-extensions==1.5.0
 django-filter==0.9.2
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
-django-nose==1.2
 django-quieter-formset==0.4
 djangorestframework==2.4.4
 django-statsd-mozilla==0.3.10
@@ -57,7 +56,6 @@ html5lib==0.999
 # httplib2 is required by oauth2, curling, google-api-python-client
 httplib2==0.8.0
 importlib-no-failure==1.0.2
-jingo==0.7
 # kombu is required by celery
 kombu==2.5.16
 heka-py==0.30.3
@@ -119,9 +117,12 @@ urllib3==1.8.2
 ## Temporary fork.
 -e git+https://github.com/jsocol/jingo-minify.git@b7405d3f93628190bf83cc43b0ff44e2fbb8b3c0#egg=jingo_minify
 -e git+https://github.com/robhudson/nuggets.git@7a994fbb091854d4558de3336b4db6a3a6cb4eaf#egg=nuggets
+-e git+https://github.com/robhudson/test-utils.git@54931d7a26f36907ea64277d43dec6a19572f9c1#egg=test-utils
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-browserid.git@5a6ebfa#egg=django-browserid
--e git+https://github.com/washort/django-cache-machine@b7a8d44ba60c44c5bd0aaae410b54d4712881f83#egg=django-cache-machine
+-e git+https://github.com/robhudson/django-cache-machine@44789512e21a631cca039a3dfe77a37281740513#egg=django-cache-machine
+-e git+https://github.com/django-nose/django-nose@b81f8471e74b9dd95581c39a17eac2657dbb72fe#egg=django-nose
+-e git+https://github.com/robhudson/jingo@b1f872098300dab2cd83d859b885cdc97a163f37#egg=jingo
 
 ## Forked.
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
