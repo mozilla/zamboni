@@ -175,6 +175,7 @@ JS = {
         'js/devreg/login.js',
         'js/devreg/notification.js',
         'js/devreg/outgoing_links.js',
+        'js/devreg/storage.js',
         'js/devreg/tarako.js',
         'js/devreg/utils.js',
         'js/lib/csrf.js',
@@ -243,6 +244,7 @@ JS = {
         'js/lib/csrf.js',
         'js/impala/serializers.js',
         'js/devreg/login.js',
+        'js/devreg/storage.js',
     ),
     'mkt/in-app-products': (
         'js/lib/es5-shim.min.js', # We might already assume these work.
