@@ -148,7 +148,7 @@ BOKU_SIGNUP_URL = 'https://developer.mozilla.org/en-US/Marketplace/Publishing/Pr
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = 'https://controller.apk.firefox.com/application.apk'
 
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 180
 
 PREVERIFIED_ACCOUNT_KEY = private_mkt.PREVERIFIED_ACCOUNT_KEY
 FXA_AUTH_DOMAIN = getattr(private_mkt, 'FXA_AUTH_DOMAIN', '')
