@@ -365,7 +365,7 @@ class UpsellForm(happyforms.Form):
 
 class BangoPaymentAccountForm(happyforms.Form):
     bankAccountPayeeName = forms.CharField(
-        max_length=50, label=_lazy(u'Account Holder Name'))
+        max_length=50, label=_lazy(u'Bank Account Holder Name'))
     companyName = forms.CharField(
         max_length=255, label=_lazy(u'Company Name'))
     vendorName = forms.CharField(
