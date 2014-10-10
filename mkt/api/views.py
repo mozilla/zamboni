@@ -34,6 +34,7 @@ from mkt.constants.payments import PAYMENT_METHOD_CHOICES, PROVIDER_CHOICES
 from mkt.constants.regions import REGIONS_CHOICES_SLUG, REGIONS_DICT
 from mkt.prices.models import Price, PriceCurrency
 from mkt.regions.utils import parse_region
+from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.models import Webapp
 from mkt.webapps.tasks import _update_manifest
 
@@ -104,29 +105,32 @@ def site_config(request):
                       many=True).data
         return dict((d['name'], d) for d in as_list)
 
-    return Response({
-            # This is the git commit on IT servers.
-            'version': getattr(settings, 'BUILD_ID_JS', ''),
-            'waffle': {
-                'flags': data(FlagSerializer),
-                'switches': data(SwitchSerializer)
-            },
-            'settings': get_settings(),
-        })
+    # For Commonplace, we just want a simple list of active switches.
+    switches = []
+    if request.GET.get('serializer') == 'commonplace':
+        switches = [str(s) for s in
+                    waffle.models.Switch.objects.filter(active=True)
+                                        .values_list('name', flat=True)]
+    else:
+        switches = data(SwitchSerializer)
 
+    data = {
+        'settings': get_settings(),  # Git commit on IT servers.
+        'version': getattr(settings, 'BUILD_ID_JS', ''),
+        'waffle': {
+            'flags': data(FlagSerializer),
+            'switches': switches
+        },
+    }
 
-@permission_classes([AllowAny])
-class WaffleView(CORSMixin, generics.RetrieveAPIView):
-    """Exposes waffle switches in the slimmest manner possible."""
-    cors_allowed_methods = ['get']
-    permission_Classes = (AllowAny,)
+    if waffle.switch_is_active('firefox-accounts'):
+        fxa_auth_state, fxa_auth_url = fxa_auth_info()
+        data['fxa'] = {
+            'fxa_auth_state': fxa_auth_state,
+            'fxa_auth_url': fxa_auth_url
+        }
 
-    def retrieve(self, request, *args, **kwargs):
-        return Response({
-            'switches': [str(s) for s in
-                         waffle.models.Switch.objects.filter(active=True)
-                                      .values_list('name', flat=True)]
-        })
+    return Response(data)
 
 
 class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):

@@ -1,7 +1,6 @@
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from waffle import switch_is_active
 
 import mkt.regions
 from mkt.account.views import user_relevant_apps
@@ -15,7 +14,6 @@ from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceESAppSerializer)
 from mkt.search.views import FeaturedSearchView as BaseFeaturedSearchView
 from mkt.search.views import SearchView as BaseSearchView
-from mkt.site.helpers import fxa_auth_info
 from mkt.webapps.views import AppViewSet as BaseAppViewset
 
 
@@ -65,8 +63,6 @@ class ConsumerInfoView(CORSMixin, RetrieveAPIView):
         }
         if request.user.is_authenticated():
             data['apps'] = user_relevant_apps(request.user)
-        if switch_is_active('firefox-accounts'):
-            data['fxa_auth_state'], data['fxa_auth_url'] = fxa_auth_info()
 
         # Return an HttpResponse directly to be as fast as possible.
         return Response(data)

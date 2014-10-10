@@ -5,7 +5,7 @@ from rest_framework.routers import SimpleRouter
 import mkt.feed.views as views
 from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
-from mkt.api.views import endpoint_removed, WaffleView
+from mkt.api.views import endpoint_removed
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import RocketbarViewV2
@@ -59,7 +59,6 @@ urlpatterns = patterns('',
     url(r'^consumer/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
     url(r'^rocketfuel/collections/.*', endpoint_removed),
-    url(r'^services/waffle/', WaffleView.as_view(), name='site.waffles'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
 ) + v1_urls

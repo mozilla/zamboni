@@ -64,19 +64,46 @@ class TestConfig(RestOAuth):
         super(TestConfig, self).setUp()
         self.url = reverse('site-config')
 
-    def testConfig(self):
+    def test_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
+
+    def test_switch(self):
         self.create_switch('test-switch', db=True)
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
-        eq_(data['settings']['SITE_URL'], 'http://testserver')
 
         switch = data['waffle']['switches']['test-switch']
         eq_(switch['name'], 'test-switch')
         eq_(switch['active'], True)
 
-    def test_cors(self):
-        self.assertCORS(self.anon.get(self.url), 'get')
+    def test_site_url(self):
+        res = self.anon.get(self.url)
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(data['settings']['SITE_URL'], 'http://testserver')
+
+    def test_no_switch_commonplace(self):
+        res = self.client.get(self.url, data={'serializer': 'commonplace'})
+        data = json.loads(res.content)
+        ok_(not data['waffle']['switches'])
+
+    def test_switch_commonplace(self):
+        self.create_switch('eggos', db=True)
+        self.create_switch('strudel', db=True)
+        res = self.client.get(self.url, data={'serializer': 'commonplace'})
+        data = json.loads(res.content)
+        self.assertSetEqual(data['waffle']['switches'], ['eggos', 'strudel'])
+
+    def test_fxa(self):
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        ok_('fxa' not in data)
+
+        self.create_switch('firefox-accounts', db=True)
+        res = self.client.get(self.url)
+        data = json.loads(res.content)
+        ok_('fxa' in data)
 
 
 class TestRegion(RestOAuth):
@@ -162,18 +189,3 @@ class TestEndpointRemoved(amo.tests.TestCase):
             request = getattr(self.factory, method)('/')
             with self.assertRaises(Http404):
                 endpoint_removed(request)
-
-
-class TestWaffleView(amo.tests.TestCase):
-    def setUp(self):
-        self.url = reverse('api-v2:site.waffles')
-
-    def test_no_waffle(self):
-        data = json.loads(self.client.get(self.url).content)
-        ok_(not data['switches'])
-
-    def test_waffles(self):
-        self.create_switch('eggos', db=True)
-        self.create_switch('strudel', db=True)
-        data = json.loads(self.client.get(self.url).content)
-        self.assertSetEqual(data['switches'], ['eggos', 'strudel'])
