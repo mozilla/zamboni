@@ -26,10 +26,8 @@ define('reviewersCommbadge', ['login'], function(login) {
         $('table.activity').each(function(i, table) {
             var $table = $(table);
             if (versionIds.indexOf($table.data('version')) === -1) {
-                if ($table.find('tbody').length) {
-                   $table = $table.find('tbody');
-                }
-                $table.append(noResults).removeClass('comm-loading');
+                // No data for this table. Remove loading and add no results.
+                $table.removeClass('comm-loading').find('tbody').append(noResults);
             }
         });
 
@@ -68,11 +66,11 @@ define('reviewersCommbadge', ['login'], function(login) {
                 _userArg: _userArg,
             }));
         }
-
-        $table.removeClass('comm-loading');
     }
 
     function getNoteHandler($table) {
+        $table.removeClass('comm-loading');
+
         return function(notes) {
             appendNotesToTable(notes, $table);
 

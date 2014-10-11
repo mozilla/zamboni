@@ -365,7 +365,7 @@ class UpsellForm(happyforms.Form):
 
 class BangoPaymentAccountForm(happyforms.Form):
     bankAccountPayeeName = forms.CharField(
-        max_length=50, label=_lazy(u'Account Holder Name'))
+        max_length=50, label=_lazy(u'Bank Account Holder Name'))
     companyName = forms.CharField(
         max_length=255, label=_lazy(u'Company Name'))
     vendorName = forms.CharField(
@@ -613,7 +613,7 @@ class ReferenceAccountForm(happyforms.Form):
                            widget=forms.HiddenInput())
     account_name = forms.CharField(max_length=50, label=_lazy(u'Account name'))
     name = forms.CharField(max_length=50, label=_lazy(u'Name'))
-    email = forms.CharField(max_length=50, label=_lazy(u'Email'))
+    email = forms.EmailField(max_length=100, label=_lazy(u'Email'))
 
     def __init__(self, *args, **kwargs):
         self.account = kwargs.pop('account', None)
