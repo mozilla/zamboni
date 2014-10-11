@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-09 22:25+0000\n"
+"PO-Revision-Date: 2014-10-11 07:14+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412893518.0\n"
+"X-POOTLE-MTIME: 1413011681.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -1933,99 +1933,104 @@ msgstr "Granskad åter på grund av ändrad Manifest"
 
 #: mkt/constants/comm.py:59
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Granskad åter på grund av ändrad Manifest URL"
 
+# Misspelled Rereview
 #: mkt/constants/comm.py:60
 msgid "Rrereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Granskad åter på grund av uppgradering till premium-typ"
 
 #: mkt/constants/comm.py:61
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Granskad åter på grund av tillagd enhet"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Granskad åter på grund av ändrade krav"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Granskad åter på grund av vuxen innehållsklassificering"
 
 #: mkt/constants/comm.py:64
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Upptrappad på grund av VIP-app"
 
 #: mkt/constants/comm.py:65
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Upptrappad på grund av förhandssläppt app"
 
 #: mkt/constants/comm.py:66
 msgid "Priority review requested"
-msgstr ""
+msgstr "Prioriterad granskning begärd"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "Tilläggsgranskning godkänd"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "Tilläggsgranskning misslyckades"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
-msgstr ""
+msgstr "API app-hantering"
 
 #: mkt/constants/features.py:18
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"Appen kräver `navigator.mozApps` API för att installera och hantera andra "
+"appar."
 
 #: mkt/constants/features.py:23
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API installering paketerad app"
 
 #: mkt/constants/features.py:24
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
+"Appen kräver `navigator.mozApps.installPackage` API för att installera andra "
+"paketerade appar."
 
 #: mkt/constants/features.py:30
 msgid "Web Payment"
-msgstr ""
+msgstr "Webbetalning"
 
 #: mkt/constants/features.py:31
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozApps` API."
 
 #: mkt/constants/features.py:35
 msgid "Web Activities"
-msgstr ""
+msgstr "Webbaktiviteter"
 
 #: mkt/constants/features.py:36
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Appen kräver webbaktiviteter (`MozActivity` API)."
 
 #: mkt/constants/features.py:41
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Omgivningsljussensor"
 
 #: mkt/constants/features.py:42
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "Appen kräver en sensor för omgivande ljus ( `ondevicelight` API)."
 
 #: mkt/constants/features.py:47
 msgid "Archive"
-msgstr ""
+msgstr "Arkiv"
 
 #: mkt/constants/features.py:52
 msgid "Battery"
-msgstr ""
+msgstr "Batteri"
 
 #: mkt/constants/features.py:53
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Appen kräver `navigator.battery` API."
 
 #: mkt/constants/features.py:58
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozBluetooth` API."
 
 #: mkt/constants/features.py:63
 msgid "Contacts"
@@ -2033,27 +2038,27 @@ msgstr "Kontakter"
 
 #: mkt/constants/features.py:64
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozContacts` API."
 
 #: mkt/constants/features.py:69
 msgid "Device Storage"
-msgstr ""
+msgstr "Enhetslagring"
 
 #: mkt/constants/features.py:70
 msgid "The app requires the Device Storage API to access files on the filesystem."
-msgstr ""
+msgstr "Appen kräver enhetslagrings-API för att komma åt filer på filsystemet."
 
 #: mkt/constants/features.py:76
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Appen kräver plattformen för att stödja IndexedDB."
 
 #: mkt/constants/features.py:81
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolokalisering"
 
 #: mkt/constants/features.py:82
 msgid "The app requires the platform to support the `navigator.geolocation` API."
-msgstr ""
+msgstr "Appen kräver plattformen för att stödja `navigator.geolocation` API."
 
 #: mkt/constants/features.py:87
 msgid "Idle"
@@ -2066,38 +2071,40 @@ msgstr "Nätverksinformation"
 #: mkt/constants/features.py:93
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Appen kräver möjlighet att få information om nätverksanslutningen "
+"(`navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:99
 msgid "Network Stats"
-msgstr ""
+msgstr "Nätverksstatistik"
 
 #: mkt/constants/features.py:100
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:105
 msgid "Proximity"
-msgstr ""
+msgstr "Närhet"
 
 #: mkt/constants/features.py:106
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Appen kräver en närhetssensor (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:111
 msgid "Simple Push"
-msgstr ""
+msgstr "Enkel push"
 
 #: mkt/constants/features.py:112
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozPush` API."
 
 #: mkt/constants/features.py:116
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Skärmorientering"
 
 #: mkt/constants/features.py:117
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Appen kräver plattformen för att stödja `ondeviceorientation` API."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
@@ -2168,42 +2175,52 @@ msgstr ""
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"Appen kräver att plattformen kan avkoda och spela upp WebM-videofiler (VP8)."
 
 #: mkt/constants/features.py:191
 msgid "Full Screen"
-msgstr ""
+msgstr "Helskärm"
 
 #: mkt/constants/features.py:192
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"Appen kräver helskärms-API (`requestFullScreen` eller "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:198
 msgid "Gamepad"
-msgstr ""
+msgstr "Handkontroll"
 
 #: mkt/constants/features.py:199
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"Appen kräver plattformen för att stödja handkontrolls-API "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:204
 msgid "Quota Management"
-msgstr ""
+msgstr "Kvothantering"
 
 #: mkt/constants/features.py:205
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"Appen kräver plattformen för att möjliggöra att beständig lagringsgräns ökas "
+"utöver den normalt tillåtna gränsen för en app (`window.StorageInfo` eller "
+"`window.persistentStorage`)."
 
 #: mkt/constants/features.py:213
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:214
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Appen kräver plattformen för att ge tillgång till video från enhetens kamera "
+"via en LocalMediaStream-objekt."
 
 #: mkt/constants/features.py:220
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
