@@ -4,7 +4,7 @@ import commonware
 import requests
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -190,7 +190,7 @@ class GlobalStats(CORSMixin, APIView):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = [GroupPermission('Stats', 'View')]
+    permission_classes = [AllowAny]
 
     def get(self, request, metric):
         if metric not in STATS:
@@ -313,7 +313,7 @@ class GlobalStatsTotal(CORSMixin, APIView, StatsTotalBase):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     cors_allowed_methods = ['get']
-    permission_classes = [GroupPermission('Stats', 'View')]
+    permission_classes = [AllowAny]
     slug_field = 'app_slug'
 
     def get(self, request):

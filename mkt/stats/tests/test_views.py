@@ -45,7 +45,15 @@ class StatsAPITestMixin(object):
         eq_(res.status_code, 403)
 
 
-class TestGlobalStatsResource(StatsAPITestMixin, RestOAuth):
+class GlobalStatsAPITestMixin(StatsAPITestMixin):
+
+    def test_anon(self):
+        """Global stats are allowed by anonymous users."""
+        res = self.anon.get(self.url(), data=self.data or {})
+        eq_(res.status_code, 200)
+
+
+class TestGlobalStatsResource(GlobalStatsAPITestMixin, RestOAuth):
 
     def setUp(self):
         super(TestGlobalStatsResource, self).setUp()
@@ -185,7 +193,7 @@ class TestAppStatsResource(StatsAPITestMixin, RestOAuth):
             eq_(data['detail'][f], ['This field is required.'])
 
 
-class TestGlobalStatsTotalResource(StatsAPITestMixin, RestOAuth):
+class TestGlobalStatsTotalResource(GlobalStatsAPITestMixin, RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
