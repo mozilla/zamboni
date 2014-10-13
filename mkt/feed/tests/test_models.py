@@ -13,6 +13,7 @@ import amo.tests
 import mkt.feed.constants as feed
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
+from mkt.operators.models import OperatorPermission
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 
@@ -62,6 +63,10 @@ class FeedTestMixin(object):
             region=region, **kwargs)
         shelf.set_apps(app_ids or [337141])
         return shelf
+
+    def feed_shelf_permission_factory(self, user, carrier=1, region=1):
+        return OperatorPermission.objects.create(user=user, carrier=carrier,
+                                                 region=region)
 
     def feed_item_factory(self, carrier=1, region=1,
                           item_type=feed.FEED_TYPE_APP, **kw):

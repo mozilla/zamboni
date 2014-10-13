@@ -1,12 +1,12 @@
 from django.conf.urls import include, patterns, url
 
-from mkt.users import views
-
 from mkt.account.views import (fxa_preverify_view, fxa_preverify_key,
                                AccountView, AccountInfoView,
                                ConfirmFxAVerificationView, FeedbackView,
                                FxALoginView, InstalledView, LoginView,
                                LogoutView, NewsletterView, PermissionsView)
+from mkt.feed.views import FeedShelfViewSet
+from mkt.users import views
 
 
 drf_patterns = patterns('',
@@ -27,6 +27,8 @@ drf_patterns = patterns('',
         name='account-settings'),
     url('^info/(?P<email>[^/]+)$', AccountInfoView.as_view(),
         name='account-info'),
+    url(r'^shelves/$', FeedShelfViewSet.as_view(
+        {'get': 'mine'}), name='feedshelves-mine'),
 )
 
 api_patterns = patterns('',
