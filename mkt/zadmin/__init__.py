@@ -1,25 +1,7 @@
-from django.shortcuts import render
 from django.template import loader
 from django.template.response import SimpleTemplateResponse
 
 import jingo
-
-
-def jinja_for_django(template_name, context=None, **kw):
-    """
-    If you want to use some built in logic (or a contrib app) but need to
-    override the templates to work with Jinja, replace the object's
-    render_to_response function with this one.  That will render a Jinja
-    template through Django's functions.  An example can be found in the users
-    app.
-    """
-    if context is None:
-        context = {}
-    context_instance = kw.pop('context_instance')
-    request = context_instance['request']
-    for d in context_instance.dicts:
-        context.update(d)
-    return render(request, template_name, context, **kw)
 
 
 # We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
