@@ -76,6 +76,63 @@ class TestWebAppParser(amo.tests.TestCase):
         eq_(parsed_results['default_locale'], 'en-US')
 
     @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
+    def test_name_with_translations_and_short_languages(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'default_locale': 'en',  # Will be transformed to en-US.
+            'locales': {
+                'fr': {
+                    'name': 'Blah (fr)',
+                },
+                'pt': {
+                    'name': 'Blah (pt)',
+                }
+            }
+        }
+        # The argument to parse() is supposed to be a filename, it doesn't
+        # matter here though since we are mocking get_json_data().
+        parsed_results = WebAppParser().parse('')
+        eq_(parsed_results['name'].get('fr'), 'Blah (fr)')
+        eq_(parsed_results['name'].get('pt-PT'), 'Blah (pt)')
+        eq_(parsed_results['name'].get('en-US'), 'Blah')
+        eq_(parsed_results['name'].get('de'), None)
+        eq_(parsed_results['name'].get('pt'), None)
+        eq_(parsed_results['name'].get('en'), None)
+        eq_(parsed_results['default_locale'], 'en-US')
+
+
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
+    def test_name_with_translations_and_weird_format(self, get_json_data):
+        get_json_data.return_value = {
+            'name': 'Blah',
+            'developer': {
+                'name': 'Mozilla Marketplace Testing'
+            },
+            'default_locale': 'PT-br',  # Will be transformed to pt-BR
+            'locales': {
+                'fr': {
+                    'name': 'Blah (fr)',
+                },
+                'pt': {
+                    'name': 'Blah (pt)',
+                }
+            }
+        }
+        # The argument to parse() is supposed to be a filename, it doesn't
+        # matter here though since we are mocking get_json_data().
+        parsed_results = WebAppParser().parse('')
+        eq_(parsed_results['default_locale'], 'pt-BR')
+        eq_(parsed_results['name'].get('fr'), 'Blah (fr)')
+        eq_(parsed_results['name'].get('pt-PT'), 'Blah (pt)')
+        eq_(parsed_results['name'].get('pt-BR'), 'Blah')
+        eq_(parsed_results['name'].get('de'), None)
+        eq_(parsed_results['name'].get('pt'), None)
+        eq_(parsed_results['name'].get('en'), None)
+
+    @mock.patch('mkt.files.utils.WebAppParser.get_json_data')
     def test_name_with_translations_fallback(self, get_json_data):
         get_json_data.return_value = {
             'name': 'Blah',
