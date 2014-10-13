@@ -33,28 +33,28 @@ class TestValidate(TestCase):
             validate_settings()
 
     def test_http(self):
-        with self.settings(CSP_IMG_SRC=('http://f.c'), DEBUG=True,
+        with self.settings(CSP_SCRIPT_SRC=('http://f.c'), DEBUG=True,
                            IN_TEST_SUITE=False):
             validate_settings()
 
     def test_http_not_debug(self):
-        with self.settings(CSP_IMG_SRC=('http://f.c'), DEBUG=False,
+        with self.settings(CSP_SCRIPT_SRC=('http://f.c'), DEBUG=False,
                            IN_TEST_SUITE=False):
             with self.assertRaises(ImproperlyConfigured):
                 validate_settings()
 
     def test_update_csp(self):
-        with self.settings(CSP_IMG_SRC=('https://f.c', 'self', 'http://f.c'),
+        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self', 'http://f.c'),
                            DEBUG=False,
                            IN_TEST_SUITE=False):
             update_csp()
-            self.assertSetEqual(set(settings.CSP_IMG_SRC),
+            self.assertSetEqual(set(settings.CSP_SCRIPT_SRC),
                                 set(('https://f.c', 'self')))
 
-        with self.settings(CSP_IMG_SRC=('https://f.c', 'self', 'http://f.c'),
+        with self.settings(CSP_SCRIPT_SRC=('https://f.c', 'self', 'http://f.c'),
                            DEBUG=True):
             update_csp()
-            self.assertSetEqual(set(settings.CSP_IMG_SRC),
+            self.assertSetEqual(set(settings.CSP_SCRIPT_SRC),
                                 set(('https://f.c', 'self', 'http://f.c')))
 
 

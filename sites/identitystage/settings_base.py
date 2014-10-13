@@ -5,8 +5,7 @@ import os
 
 import dj_database_url
 
-from mkt.settings import (CACHE_PREFIX, CSP_SCRIPT_SRC, CSP_FRAME_SRC,
-                          ES_INDEXES, KNOWN_PROXIES, LOGGING)
+from mkt.settings import (CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING)
 
 from .. import splitstrip
 import private_base as private
@@ -159,9 +158,6 @@ MONOLITH_SERVER = 'https://monolith.allizom.org'
 GEOIP_URL = 'http://geo.marketplace.allizom.org'
 
 API_THROTTLE = False
-
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + ("https://firefoxos.anosrep.org",)
-CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://firefoxos.anosrep.org",)
 
 AES_KEYS = private.AES_KEYS
 

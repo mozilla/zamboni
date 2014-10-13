@@ -1,7 +1,6 @@
 from django.conf.urls import include, patterns, url
 from django.views.decorators.cache import never_cache
 
-import csp.views
 from waffle.views import wafflejs
 
 from . import views
@@ -10,7 +9,6 @@ from . import views
 services_patterns = patterns('',
     url('^monitor(.json)?$', never_cache(views.monitor), name='mkt.monitor'),
     url('^loaded$', never_cache(views.loaded), name='mkt.loaded'),
-    url('^csp/policy$', csp.views.policy, name='mkt.csp.policy'),
     url('^csp/report$', views.cspreport, name='mkt.csp.report'),
     url('^timing/record$', views.record, name='mkt.timing.record'),
 )

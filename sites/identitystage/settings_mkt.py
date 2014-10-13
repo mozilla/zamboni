@@ -13,10 +13,7 @@ BROWSERID_AUDIENCES = [SITE_URL]
 STATIC_URL = 'https://identity-stage-marketplace-cdn.allizom.org/'
 LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
 
-CSP_STATIC_URL = STATIC_URL[:-1]
-CSP_IMG_SRC = CSP_IMG_SRC + (CSP_STATIC_URL,)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (CSP_STATIC_URL,)
-CSP_STYLE_SRC = CSP_STYLE_SRC + (CSP_STATIC_URL,)
+CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 
 BROWSERID_DOMAIN = 'login.anosrep.org'
 BROWSERID_VERIFICATION_URL = 'https://verifier.login.anosrep.org/verify'
