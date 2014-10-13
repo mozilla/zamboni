@@ -59,8 +59,10 @@ def test_transfield_changed():
 
 def test_to_language():
     tests = (('en-us', 'en-US'),
+             ('EN-us', 'en-US'),
              ('en_US', 'en-US'),
              ('en_us', 'en-US'),
+             ('EN_us', 'en-US'),
              ('sr-Latn', 'sr-Latn'),
              ('sr-latn', 'sr-Latn'),
              ('FR', 'fr'),
