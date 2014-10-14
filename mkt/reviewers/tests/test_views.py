@@ -1791,7 +1791,7 @@ class TestReviewApp(AppReviewerTest, TestReviewMixin, AccessMixin,
         eq_(r.status_code, 200)
         eq_(json.loads(r.content)['permissions'],
             {'foo': {'description': 'foo', 'type': 'web'},
-             'camera': {'description': '&lt;script&gt;', 'type': 'cert'}})
+             'camera': {'description': '&lt;script&gt;', 'type': 'priv'}})
 
     def test_abuse(self):
         AbuseReport.objects.create(addon=self.app, message='!@#$')
