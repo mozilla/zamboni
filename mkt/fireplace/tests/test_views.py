@@ -30,7 +30,7 @@ FIREPLACE_EXCLUDED_FIELDS = (
 
 def assert_fireplace_app(data):
     for field in FIREPLACE_EXCLUDED_FIELDS:
-        ok_(not field in data, field)
+        ok_(field not in data, field)
     for field in FireplaceAppSerializer.Meta.fields:
         ok_(field in data, field)
 
@@ -67,9 +67,6 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         super(TestFeaturedSearchView, self).setUp()
         self.webapp = Webapp.objects.get(pk=337141)
-        collection = Collection.objects.create(name='Hi', description='Mom',
-            collection_type=COLLECTIONS_TYPE_BASIC, is_public=True)
-        collection.add_app(self.webapp)
         self.reindex(Webapp, 'webapp')
         self.url = reverse('fireplace-featured-search-api')
 
@@ -82,21 +79,12 @@ class TestFeaturedSearchView(RestOAuth, ESTestCase):
         eq_(data['id'], 337141)
         assert_fireplace_app(data)
 
-        ok_('collections' in res.json)
-        eq_(res.json['collections'][0]['name'], {u'en-US': u'Hi'})
-        data = res.json['collections'][0]['apps'][0]
-        assert_fireplace_app(data)
-        ok_('featured' in res.json)
-        ok_('operator' in res.json)
-
-    def test_only_64px_icons(self):
-        res = self.client.get(self.url)
-        eq_(res.status_code, 200)
-        objects = res.json['objects']
-        data = objects[0]['icons']
-        eq_(len(data), 1)
-        eq_(urlparse(data['64'])[0:3],
-            urlparse(self.webapp.get_icon_url(64))[0:3])
+        # fireplace-featured-search-api is only kept for yogafire, which does
+        # not care about collection data, so we don't even need to add empty
+        # arrays for backwards-compatibility.
+        ok_('collections' not in res.json)
+        ok_('featured' not in res.json)
+        ok_('operator' not in res.json)
 
 
 class TestCollectionViewSet(RestOAuth, ESTestCase):
@@ -175,6 +163,15 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         data = res.json['objects'][0]
         eq_(data['user'], None)
+
+    def test_only_64px_icons(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        objects = res.json['objects']
+        data = objects[0]['icons']
+        eq_(len(data), 1)
+        eq_(urlparse(data['64'])[0:3],
+            urlparse(self.webapp.get_icon_url(64))[0:3])
 
 
 class TestConsumerInfoView(RestOAuth, TestCase):

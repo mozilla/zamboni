@@ -74,9 +74,10 @@ Featured Search
 
 .. http:get:: /api/v2/fireplace/search/featured/
 
-    A copy of :ref:`the featured search API <featured-search-api>`. Like the
-    App API above, the response contains the specific subset of fields Fireplace
-    needs.
+    A copy of :ref:`the search API <search-api>`. Like the App API above, the
+    response contains the specific subset of fields Fireplace needs.
+
+    Only kept for backwards-compatibility purposes, don't use in new code.
 
 
 Consumer Information

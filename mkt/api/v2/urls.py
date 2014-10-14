@@ -34,6 +34,9 @@ subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
                       base_name='feed-shelf-landing-image')
 
 urlpatterns = patterns('',
+    url(r'^apps/search/featured/.*', endpoint_removed),
+    url(r'^rocketfuel/collections/.*', endpoint_removed),
+
     url(r'^account/operators/$', OperatorPermissionViewSet.as_view(
         {'get': 'list'}), name='operator-permissions'),
     url(r'^apps/recommend/$', RecommendationView.as_view(),
@@ -58,7 +61,6 @@ urlpatterns = patterns('',
         views.FeedElementGetView.as_view(), name='feed.fire_feed_element_get'),
     url(r'^consumer/feed/(?P<item_type>[\w]+)/(?P<slug>[^/.]+)/$',
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
-    url(r'^rocketfuel/collections/.*', endpoint_removed),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
 ) + v1_urls
