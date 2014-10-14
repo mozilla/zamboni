@@ -14,12 +14,11 @@ from tower import ugettext_lazy as _lazy
 
 import amo
 import mkt
-from amo.helpers import impala_breadcrumbs
 from mkt.access import acl
-from mkt.reviewers.models import EscalationQueue, ReviewerScore, QUEUE_TARAKO
+from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
-from mkt.site.helpers import page_title
+from mkt.site.helpers import mkt_breadcrumbs, page_title
 from mkt.versions.models import Version
 from mkt.webapps.helpers import new_context
 
@@ -58,7 +57,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
 
     if items:
         crumbs.extend(items)
-    return impala_breadcrumbs(context, crumbs, add_default=True)
+    return mkt_breadcrumbs(context, items=crumbs, add_default=True)
 
 
 @register.function

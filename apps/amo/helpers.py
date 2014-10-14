@@ -9,10 +9,8 @@ import six
 from jingo import env, register
 # Needed to make sure our own |f filter overrides jingo's one.
 from jingo import helpers  # noqa
-from tower import ugettext as _
 
 from amo import utils
-from mkt.translations.helpers import truncate
 from mkt.site.utils import get_outgoing_url
 
 
@@ -45,31 +43,6 @@ def login_link(context):
 
     l = urlparams(reverse('users.login'), to=next)
     return l
-
-
-@register.function
-@jinja2.contextfunction
-def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
-    """
-    show a list of breadcrumbs. If url is None, it won't be a link.
-    Accepts: [(url, label)]
-    """
-    if add_default:
-        crumbs = [(reverse('home'), _('Apps Marketplace'))]
-    else:
-        crumbs = []
-
-    # add user-defined breadcrumbs
-    if items:
-        try:
-            crumbs += items
-        except TypeError:
-            crumbs.append(items)
-
-    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs, 'has_home': add_default}
-    t = env.get_template('amo/impala/breadcrumbs.html').render(c)
-    return jinja2.Markup(t)
 
 
 @register.filter
