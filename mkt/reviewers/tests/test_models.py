@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
 import time
+from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
@@ -311,8 +312,8 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
             app=Webapp.objects.create(), queue='queue-two')
 
     def test_unreviewed_none_approved_allow_unapproved(self):
-        eq_([self.unreviewed, self.unreviewed_too],
-            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+        eq_(set([self.unreviewed, self.unreviewed_too]),
+            set(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
     def test_unreviewed_none_approved_only_approved(self):
         eq_([], list(AdditionalReview.objects.unreviewed(
@@ -321,32 +322,53 @@ class TestAdditionalReviewManager(amo.tests.TestCase):
     def test_unreviewed_and_approved_all_approved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
         self.unreviewed_too.app.update(status=amo.STATUS_APPROVED)
-        eq_([self.unreviewed, self.unreviewed_too],
-            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+        eq_(set([self.unreviewed, self.unreviewed_too]),
+            set(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
     def test_unreviewed_and_approved_one_approved_allow_unapproved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
         self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
-        eq_([self.unreviewed, self.unreviewed_too],
-            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+        eq_(set([self.unreviewed, self.unreviewed_too]),
+            set(AdditionalReview.objects.unreviewed(queue='queue-one')))
 
     def test_unreviewed_and_approved_one_approved_only_approved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
         self.unreviewed_too.app.update(status=amo.STATUS_REJECTED)
-        eq_([self.unreviewed],
-            list(AdditionalReview.objects.unreviewed(
+        eq_(set([self.unreviewed]),
+            set(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
 
     def test_becoming_approved_lists_the_app_when_showing_approved(self):
         self.unreviewed.app.update(status=amo.STATUS_PUBLIC)
-        eq_([self.unreviewed],
-            list(AdditionalReview.objects.unreviewed(
+        eq_(set([self.unreviewed]),
+            set(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
         self.unreviewed_too.app.update(status=amo.STATUS_PUBLIC)
         # Caching might return the old queryset, but we don't want it to.
-        eq_([self.unreviewed, self.unreviewed_too],
-            list(AdditionalReview.objects.unreviewed(
+        eq_(set([self.unreviewed, self.unreviewed_too]),
+            set(AdditionalReview.objects.unreviewed(
                 queue='queue-one', and_approved=True)))
+
+    def test_unreviewed_priority_order(self):
+        priority = AdditionalReview.objects.create(
+            app=Webapp.objects.create(priority_review=True),
+            queue='queue-one')
+        priority.update(created=datetime(2014, 10, 15))
+        self.unreviewed.update(created=datetime(2014, 10, 14))
+        self.unreviewed_too.update(created=datetime(2014, 10, 10))
+        eq_([priority, self.unreviewed_too, self.unreviewed],
+            list(AdditionalReview.objects.unreviewed(queue='queue-one')))
+
+    def test_unreviewed_priority_order_descending(self):
+        priority = AdditionalReview.objects.create(
+            app=Webapp.objects.create(priority_review=True),
+            queue='queue-one')
+        priority.update(created=datetime(2014, 10, 15))
+        self.unreviewed.update(created=datetime(2014, 10, 14))
+        self.unreviewed_too.update(created=datetime(2014, 10, 10))
+        eq_([priority, self.unreviewed, self.unreviewed_too],
+            list(AdditionalReview.objects.unreviewed(
+                queue='queue-one', descending=True)))
 
 
 class BaseTarakoFunctionsTestCase(amo.tests.TestCase):
@@ -458,7 +480,7 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
         ok_('Additional review passed' in mail.outbox[0].subject)
         ok_('passed' in mail.outbox[0].body)
 
-    def test_comm_mail_pass(self):
+    def test_comm_mail_fail(self):
         self.create_switch('comm-dashboard')
         self.review.passed = False
         self.review.execute_post_review_task()
