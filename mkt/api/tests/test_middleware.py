@@ -12,9 +12,8 @@ from test_utils import RequestFactory
 
 import amo.tests
 from mkt.api.middleware import (APIBaseMiddleware, APIFilterMiddleware,
-                                APIPinningMiddleware, APITransactionMiddleware,
-                                AuthenticationMiddleware, CORSMiddleware,
-                                GZipMiddleware)
+                                APIPinningMiddleware, AuthenticationMiddleware,
+                                CORSMiddleware, GZipMiddleware)
 import mkt.regions
 
 fireplace_url = 'http://firepla.ce:1234'
@@ -51,37 +50,6 @@ class TestCORS(amo.tests.TestCase):
         eq_(res['Access-Control-Allow-Origin'], fireplace_url)
         eq_(res['Access-Control-Allow-Methods'], 'GET, OPTIONS')
         eq_(res['Access-Control-Allow-Credentials'], 'true')
-
-
-class TestTransactionMiddleware(amo.tests.TestCase):
-
-    def setUp(self):
-        self.prefix = APIBaseMiddleware()
-        self.transaction = APITransactionMiddleware()
-
-    def test_api(self):
-        req = RequestFactory().get('/api/foo/')
-        self.prefix.process_request(req)
-        ok_(req.API)
-
-    def test_not_api(self):
-        req = RequestFactory().get('/not-api/foo/')
-        self.prefix.process_request(req)
-        ok_(not req.API)
-
-    @mock.patch('django.db.transaction.enter_transaction_management')
-    def test_transactions(self, enter):
-        req = RequestFactory().get('/api/foo/')
-        self.prefix.process_request(req)
-        self.transaction.process_request(req)
-        ok_(enter.called)
-
-    @mock.patch('django.db.transaction.enter_transaction_management')
-    def test_not_transactions(self, enter):
-        req = RequestFactory().get('/not-api/foo/')
-        self.prefix.process_request(req)
-        self.transaction.process_request(req)
-        ok_(not enter.called)
 
 
 class TestPinningMiddleware(amo.tests.TestCase):
