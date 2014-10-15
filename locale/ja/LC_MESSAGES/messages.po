@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-01 09:25-0700\n"
+"POT-Creation-Date: 2014-10-15 09:03-0700\n"
 "PO-Revision-Date: 2014-10-15 02:09+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -173,7 +173,7 @@ msgstr "上級審査が申請されました"
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} についてのコメントが追加されました。"
 
-#: apps/amo/log.py:234 mkt/reviewers/utils.py:474
+#: apps/amo/log.py:234 mkt/reviewers/utils.py:478
 msgid "Comment"
 msgstr "コメント"
 
@@ -225,309 +225,305 @@ msgstr "{0} {1} が追加されました。"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon} における {0.name} の役割が {1} へ変更されました。"
 
-#: apps/amo/log.py:316
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} のライセンスが {0.name} へ変更されました。"
-
-#: apps/amo/log.py:322
+#: apps/amo/log.py:315
 msgid "{addon} policy changed."
 msgstr "{addon} のポリシーが変更されました。"
 
-#: apps/amo/log.py:328
+#: apps/amo/log.py:321
 msgid "{addon} icon changed."
 msgstr "{addon} のアイコンが変更されました。"
 
-#: apps/amo/log.py:334
+#: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
 msgstr "{addon} の {review} が承認されました。"
 
-#: apps/amo/log.py:335
+#: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} が {addon} の {review} を承認しました。"
 
-#: apps/amo/log.py:344
+#: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
 msgstr "{addon} のレビュー {0} が削除されました。"
 
-#: apps/amo/log.py:345
+#: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
 msgstr "{user} が {addon} の {0} を削除しました。"
 
-#: apps/amo/log.py:352
+#: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
 msgstr "{version} のアプリケーション最高バージョンが更新されました。"
 
-#: apps/amo/log.py:357
+#: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
 msgstr "作者が {version} の互換性についてメールを送信しました。"
 
-#: apps/amo/log.py:362
+#: apps/amo/log.py:355
 msgid "Email sent to Author about add-on compatibility."
 msgstr "アドオンの互換性について作者にメールを送信しました。"
 
-#: apps/amo/log.py:367
+#: apps/amo/log.py:360
 msgid "Password changed."
 msgstr "パスワードが変更されました。"
 
-#: apps/amo/log.py:372
+#: apps/amo/log.py:365
 msgid "{addon} changed to premium."
 msgstr "{addon} が有料版へ変更されました。"
 
-#: apps/amo/log.py:377
+#: apps/amo/log.py:370
 msgid "{addon} manifest updated."
 msgstr "{addon} のマニフェストが更新されました。"
 
-#: apps/amo/log.py:383
+#: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
 msgstr "{addon} {version} は承認されましたが非公開となっています。"
 
-#: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:49
+#: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:49
 msgid "Approved but private"
 msgstr "承認済み / 非公開"
 
-#: apps/amo/log.py:392
+#: apps/amo/log.py:385
 msgid "{addon} purchased."
 msgstr "{addon} が購入されました。"
 
-#: apps/amo/log.py:397
+#: apps/amo/log.py:390
 msgid "{addon} installed."
 msgstr "{addon} がインストールされました。"
 
-#: apps/amo/log.py:402
+#: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
 msgstr "{addon} に対する返品要求がありました。"
 
-#: apps/amo/log.py:407
+#: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
 msgstr "{addon} に対する返品が拒否されました ({0})。"
 
-#: apps/amo/log.py:412
+#: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
 msgstr "{addon} に対する返品が許可されました ({0})。"
 
-#: apps/amo/log.py:417
+#: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
 msgstr "{addon} に対する即時返品が許可されました。"
 
-#: apps/amo/log.py:422
+#: apps/amo/log.py:415
 msgid "Account updated."
 msgstr "アカウントが更新されました。"
 
-#: apps/amo/log.py:427
+#: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
 msgstr "{addon} の正規レシートが検証されました。"
 
-#: apps/amo/log.py:432
+#: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
 msgstr "{addon} の上級審査がクリアされました。"
 
-#: apps/amo/log.py:433 mkt/constants/comm.py:50
+#: apps/amo/log.py:426 mkt/constants/comm.py:50
 msgid "Escalation cleared"
 msgstr "上級審査クリア"
 
-#: apps/amo/log.py:440
+#: apps/amo/log.py:433
 msgid "{addon} banned."
 msgstr "{addon} が追放されました"
 
-#: apps/amo/log.py:441
+#: apps/amo/log.py:434
 msgid "App banned"
 msgstr "アプリが追放されました"
 
-#: apps/amo/log.py:448
+#: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "{addon} は、不正報告が数多く寄せられたため、上級審査へ回されました。"
 
-#: apps/amo/log.py:449
+#: apps/amo/log.py:442
 msgid "High Abuse Reports"
 msgstr "多数の不正報告"
 
-#: apps/amo/log.py:456
+#: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr "{addon} は、返品要求が数多く寄せられたため、上級審査へ回されました。"
 
-#: apps/amo/log.py:457
+#: apps/amo/log.py:450
 msgid "High Refund Requests"
 msgstr "多数の返品要求"
 
-#: apps/amo/log.py:464
+#: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
 msgstr "{addon} は、マニフェストが変更されたため、再審査を受けました。"
 
-#: apps/amo/log.py:465
+#: apps/amo/log.py:458
 msgid "Manifest Change"
 msgstr "マニフェスト変更"
 
-#: apps/amo/log.py:472
+#: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr "{addon} は、有料版へ変更されたため、再審査を受けました。"
 
-#: apps/amo/log.py:473
+#: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
 msgstr "有料版への変更"
 
-#: apps/amo/log.py:480
+#: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
 msgstr "{addon} の再審査がクリアされました。"
 
-#: apps/amo/log.py:481 mkt/constants/comm.py:53
+#: apps/amo/log.py:474 mkt/constants/comm.py:53
 msgid "Re-review cleared"
 msgstr "再審査クリア"
 
-#: apps/amo/log.py:488
+#: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
 msgstr "{addon} が審査担当者によって上級審査へ回されました。"
 
-#: apps/amo/log.py:489
+#: apps/amo/log.py:482
 msgid "Reviewer escalation"
 msgstr "審査担当者による上級審査依頼"
 
-#: apps/amo/log.py:497
+#: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
 msgstr "動画に問題があったため、{addon} の動画は削除されました。"
 
-#: apps/amo/log.py:499
+#: apps/amo/log.py:492
 msgid "Video removed"
 msgstr "動画削除"
 
-#: apps/amo/log.py:504
+#: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
 msgstr "{addon} は、端末が新たに追加されたため、再審査を受けました。"
 
-#: apps/amo/log.py:505
+#: apps/amo/log.py:498
 msgid "Device(s) Added"
 msgstr "端末追加"
 
-#: apps/amo/log.py:512
+#: apps/amo/log.py:505
 msgid "{addon} device support manually changed by reviewer."
 msgstr "{addon} の対応端末が審査担当者により手作業で変更されました。"
 
-#: apps/amo/log.py:513
+#: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
 msgstr "審査担当者による端末変更"
 
-#: apps/amo/log.py:520
+#: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
 msgstr "{addon} の審査が再申請されました。"
 
-#: apps/amo/log.py:521
+#: apps/amo/log.py:514
 msgid "App Resubmission"
 msgstr "アプリ再申請"
 
-#: apps/amo/log.py:528
+#: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr "{addon} は VIP アプリのため自動的に管理者審査へ回されました。"
 
-#: apps/amo/log.py:529
+#: apps/amo/log.py:522
 msgid "VIP auto-escalation"
 msgstr "VIP 自動管理者審査依頼"
 
-#: apps/amo/log.py:536
+#: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr "{addon} は、マニフェスト URL が変更されたため、再審査を受けました。"
 
-#: apps/amo/log.py:537
+#: apps/amo/log.py:530
 msgid "Manifest URL Change"
 msgstr "マニフェスト URL 変更"
 
-#: apps/amo/log.py:544
+#: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr "{addon} は、プレリリースアプリのため、自動的に管理者審査へ回されました。"
 
-#: apps/amo/log.py:545
+#: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
 msgstr "プレリリース自動管理者審査依頼"
 
-#: apps/amo/log.py:562
+#: apps/amo/log.py:555
 msgid "Created: {0}."
 msgstr "{0} が作成されました。"
 
-#: apps/amo/log.py:568
+#: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
 msgstr "フィールド編集: {2} が {0} へ変更されました。"
 
-#: apps/amo/log.py:574
+#: apps/amo/log.py:567
 msgid "Deleted: {1}."
 msgstr "{1} が削除されました。"
 
-#: apps/amo/log.py:580
+#: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
 msgstr "ユーザ {user} が編集されました。理由: {1}"
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:579
 msgid "User {user} anonymized."
 msgstr "ユーザ {user} が匿名化されました。"
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:585
 msgid "User {user} restricted."
 msgstr "ユーザ {user} が制限されました。"
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:591
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理者 {0} が {user} の活動記録を見ました。"
 
-#: apps/amo/log.py:605
+#: apps/amo/log.py:598
 msgid "{review} for {addon} updated."
 msgstr "{addon} の {review} が更新されました。"
 
-#: apps/amo/log.py:611
+#: apps/amo/log.py:604
 msgid "{addon} reviewed."
 msgstr "{addon} のレビューが投稿されました。"
 
-#: apps/amo/log.py:617
+#: apps/amo/log.py:610
 msgid "User {0.name} added to {group}."
 msgstr "ユーザ {0.name} が {group} へ追加されました。"
 
-#: apps/amo/log.py:625
+#: apps/amo/log.py:618
 msgid "User {0.name} removed from {group}."
 msgstr "ユーザ {0.name} が {group} から削除されました。"
 
-#: apps/amo/log.py:632
+#: apps/amo/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} の最低要件が審査担当者により手作業で変更されました。"
 
-#: apps/amo/log.py:633
+#: apps/amo/log.py:626
 msgid "Requirements Changed by Reviewer"
 msgstr "審査担当者による要件変更"
 
-#: apps/amo/log.py:640
+#: apps/amo/log.py:633
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} の最低要件が手作業で変更されました。"
 
-#: apps/amo/log.py:641
+#: apps/amo/log.py:634
 msgid "Requirements Changed"
 msgstr "要件変更"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:649
+#: apps/amo/log.py:642
 msgid "{version} status changed to {0}."
 msgstr "{version} のステータスが {0} へ変更されました。"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:656
+#: apps/amo/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "ユーザ {0.name} {0.id} が検索ツールを通じて削除されました。"
 
-#: apps/amo/log.py:662
+#: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} のコンテンツレーティングが成人向けに変更されました。"
 
-#: apps/amo/log.py:668
+#: apps/amo/log.py:661
 msgid "{addon} content rating changed."
 msgstr "{addon} のコンテンツレーティングが変更されました。"
 
-#: apps/amo/log.py:673
+#: apps/amo/log.py:666
 msgid "Priority review requested for {addon}."
 msgstr "{addon} の優先審査が求められています。"
 
-#: apps/amo/log.py:674
+#: apps/amo/log.py:667
 msgid "Priority Review"
 msgstr "優先審査"
 
-#: apps/amo/log.py:682
+#: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} が {queue} 審査に合格しました。"
 
-#: apps/amo/log.py:689
+#: apps/amo/log.py:682
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} が {queue} 審査に不合格となりました。"
 
@@ -567,16 +563,16 @@ msgstr "前へ"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
-#: mkt/account/utils.py:50
+#: mkt/account/utils.py:63
 msgid "Purchase Date"
 msgstr "購入日"
 
-#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:64 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "価格"
 
-#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/account/utils.py:65 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "タイトル"
@@ -2485,7 +2481,7 @@ msgstr "規約"
 msgid "Submit"
 msgstr "登録"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1475
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1477
 msgid "Details"
 msgstr "詳細"
 
@@ -2566,7 +2562,7 @@ msgstr "このドメインにはすでにアプリが存在します。ドメイ
 msgid "Invalid region(s) selected."
 msgstr "不正な地域が選択されました。"
 
-#: mkt/developers/forms.py:422 mkt/webapps/models.py:1384
+#: mkt/developers/forms.py:422 mkt/webapps/models.py:1386
 msgid "You must upload at least one screenshot or video."
 msgstr "スクリーンショットか動画を少なくともひとつアップロードしてください。"
 
@@ -2790,8 +2786,8 @@ msgid "Not an upgrade"
 msgstr "アップグレードではありません"
 
 #: mkt/developers/forms_payments.py:368
-msgid "Account Holder Name"
-msgstr "口座名義人名"
+msgid "Bank Account Holder Name"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2928,8 +2924,8 @@ msgstr "自分の登録アイテム"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
-msgid "Shared Account: {0}"
-msgstr "共有アカウント: {0}"
+msgid "Donate to {0}"
+msgstr ""
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2943,7 +2939,7 @@ msgstr "バージョン {0}"
 msgid "Reference Implementation"
 msgstr "参考情報"
 
-#: mkt/developers/providers.py:368
+#: mkt/developers/providers.py:371
 msgid "Boku"
 msgstr "Boku"
 
@@ -3167,10 +3163,8 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p> Marketplace API には主に 2 つの用途があります。従来の OAuth フローを用いている他の Web "
-"サイトからの使用、あるいはコマンドラインからの使用です。これらの違いは <a href=\"https://firefox-marketplace-"
-"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace "
-"ドキュメント</a> の中で解説されています。テストを行う場合は公開サーバではなく <a href=\"https://marketplace-"
+"<p> Marketplace API には主に 2 つの用途があります。従来の OAuth フローを用いている他の Web サイトからの使用、あるいはコマンドラインからの使用です。これらの違いは <a href=\"https://firefox-"
+"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace ドキュメント</a> の中で解説されています。テストを行う場合は公開サーバではなく <a href=\"https://marketplace-"
 "dev.allizom.org\">開発サーバ</a> 上で行ってください。 </p>"
 
 #: mkt/developers/templates/developers/api.html:37
@@ -3230,7 +3224,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "<a href=\"%(next_url)s\">%(next_step_name)s</a> を設定してください。"
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:316
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:315
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3243,7 +3237,7 @@ msgstr "ログイン"
 msgid "You must sign in to proceed."
 msgstr "続けるにはログインしてください。"
 
-#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:161
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:149 templates/base.html:169
 msgid "Sign in / Sign up"
 msgstr "ログイン / ユーザ登録"
 
@@ -3320,15 +3314,19 @@ msgstr "サイトメンテナンスの間、いくつかの機能が一時的に
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "利用規約が、あなたが最後に同意した内容から変更されました。<a href=\"%(url)s\">新しい規約</a> を読んで同意してください。"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:151
+#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:152
 msgid "Please sign in"
 msgstr "ログインしてください"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:154
+#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:155
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr "以下からあなたの <a href=\"%(url)s\">Persona</a> アカウントでログインもしくはユーザ登録してください。"
 
-#: mkt/developers/templates/developers/terms.html:3
+#: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
+msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
+msgstr ""
+
+#: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
 msgstr "利用規約"
 
@@ -3370,7 +3368,7 @@ msgstr[0] "{num} 件のトランザクションが見つかりました"
 msgid "Your apps currently have no transactions."
 msgstr "このアプリには現在トランザクションがありません。"
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:155 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
 msgstr "日付"
@@ -3535,7 +3533,7 @@ msgstr "ステータスとバージョン"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:158 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "ステータス"
@@ -3821,8 +3819,8 @@ msgstr "本当にこのアプリを非公開にしますか？"
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60 mkt/developers/templates/developers/apps/edit/technical.html:68
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
 #: mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "または"
@@ -3832,8 +3830,8 @@ msgstr "または"
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
-#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:131
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
@@ -3958,7 +3956,7 @@ msgstr "バナーを表示する地域"
 msgid "Regions that the banner message will be shown in."
 msgstr "このバナーメッセージを表示する地域を選択してください。"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:113
+#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:114
 msgid "Tags"
 msgstr "タグ"
 
@@ -4128,8 +4126,8 @@ msgid "Support Information for {0}"
 msgstr "{0} のサポート情報"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
-msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
-msgstr "メールアドレスは、エンドユーザがサポートや返品を求めるときの問い合わせ先として使われます。言語ごとに異なるメールアドレスがある場合は、それぞれにアドレスを指定できます。"
+msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4352,7 +4350,7 @@ msgstr "ステータスとバージョン"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1482
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1484
 msgid "Content Ratings"
 msgstr "コンテンツレーティング"
 
@@ -4862,31 +4860,43 @@ msgstr "あなたはまだ決済用アカウントを設定していません。
 msgid "Add Bango Account"
 msgstr "Bango アカウントを追加"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
+msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
 msgstr "通常は 9、10 もしくは 11 桁です。例: 0114584906"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:27
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
 msgstr "8 文字か 11 文字です。例: WFBIUS6WPDX"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
 msgstr "任意"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
+msgid "Name of registered company or individual."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
+msgid "Name of account on the Marketplace (not sent to Bango)."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "決済用アカウントを登録"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "リクエストを処理しています..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:129
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "決済サーバへ接続しています。しばらくお待ちください。"
@@ -4931,7 +4941,11 @@ msgstr "参照アカウントを追加"
 msgid "Modify Bango Account"
 msgstr "Bango アカウントを編集"
 
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+msgid "A name to refer to the account on the Marketplace, not sent to Bango."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "アカウントを更新"
 
@@ -5213,8 +5227,8 @@ msgstr "アプリのオフラインでの使用"
 msgid "Developing Game Apps"
 msgstr "ゲームアプリの開発"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1488
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1490
 msgid "Payments"
 msgstr "決済"
 
@@ -5292,9 +5306,7 @@ msgstr "世界で最も人気のブランドとお気に入りのアプリが Fi
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr ""
-"全世界あるいは特定の地域に向けて最高の HTML5 "
-"アプリを配布できる、完全にクロスプラットフォーム、クロスデバイス、非プロプライエタリなマーケットプレイスです。"
+msgstr "全世界あるいは特定の地域に向けて最高の HTML5 アプリを配布できる、完全にクロスプラットフォーム、クロスデバイス、非プロプライエタリなマーケットプレイスです。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5469,35 +5481,35 @@ msgstr "ファイル「%s」を開けませんでした。%s"
 msgid "There was an error accessing file %s."
 msgstr "ファイル「%s」を開けませんでした。"
 
-#: mkt/files/utils.py:76
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "「manifest.webapp」ファイルがパッケージ型アプリアーカイブのルートディレクトリに見つかりませんでした。"
 
-#: mkt/files/utils.py:98
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "Web アプリのマニフェストをデコードできませんでした。ファイルに非 UTF-8 の特殊文字が含まれていないか確認してください。"
 
-#: mkt/files/utils.py:106
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "Web アプリのマニフェストが正しい JSON 形式になっていません。"
 
-#: mkt/files/utils.py:115
+#: mkt/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
 msgstr "指定されたアプリのロケールが正しい形式ではありません。"
 
-#: mkt/files/utils.py:132
+#: mkt/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "マーケットプレイスにアプリを掲載するには、マニフェストに開発者の名前を含める必要があります。"
 
-#: mkt/files/utils.py:182
+#: mkt/files/utils.py:180
 msgid "Invalid file name in archive: {0}"
 msgstr "アーカイブ内のファイル名が不正です: {0}"
 
-#: mkt/files/utils.py:190
+#: mkt/files/utils.py:188
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
-#: mkt/files/utils.py:240
+#: mkt/files/utils.py:238
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
 
@@ -5694,7 +5706,7 @@ msgstr "ホスト型アプリ"
 msgid "Submitted"
 msgstr "送信完了"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:165
+#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:173
 msgid "OK"
 msgstr "OK"
 
@@ -5739,48 +5751,56 @@ msgstr "不正報告"
 msgid "Permissions"
 msgstr "許可設定"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:105
+msgid "No reason given"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:107
+msgid "No permissions requested"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:123 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "購入"
 
-#: mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/user_summary.html:42
+#: mkt/lookup/templates/lookup/app_summary.html:133 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
 msgstr "返品"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:128
+#: mkt/lookup/templates/lookup/app_summary.html:136
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} 件のリクエスト (購入者の {1})"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:131
+#: mkt/lookup/templates/lookup/app_summary.html:139
 msgid "{0} auto-approved"
 msgstr "{0} 件の自動承認"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:133
+#: mkt/lookup/templates/lookup/app_summary.html:141
 msgid "{0} approved"
 msgstr "{0} 件の承認"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:135
+#: mkt/lookup/templates/lookup/app_summary.html:143
 msgid "{0} rejected"
 msgstr "{0} 件の却下"
 
 # {0} is the add-on name
-#: mkt/lookup/templates/lookup/app_summary.html:143
+#: mkt/lookup/templates/lookup/app_summary.html:151
 msgid "Version History"
 msgstr "バージョン履歴"
 
-#: mkt/lookup/templates/lookup/app_summary.html:148
+#: mkt/lookup/templates/lookup/app_summary.html:156
 msgid "Version (ID)"
 msgstr "バージョン (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:149
+#: mkt/lookup/templates/lookup/app_summary.html:157
 msgid "Filename (ID, Size)"
 msgstr "ファイル名 (ID、サイズ)"
 
@@ -6001,7 +6021,7 @@ msgid "Tier %s"
 msgstr "価格帯 %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "{0} のレシート"
 
@@ -6125,7 +6145,7 @@ msgstr "レシートの種類"
 msgid "Manifest location"
 msgstr "マニフェストの場所"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:90
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:89
 msgid "Install"
 msgstr "インストール"
 
@@ -6205,7 +6225,7 @@ msgstr "Tarako 対応"
 msgid "Reviewer Tools"
 msgstr "審査担当者用ツール"
 
-#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:169
+#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:168
 msgid "Apps"
 msgstr "アプリ"
 
@@ -6286,63 +6306,63 @@ msgstr "レビュー"
 msgid "Rejected or Unreviewed"
 msgstr "却下もしくは未審査"
 
-#: mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:453 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "承認"
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:454
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "これによりアプリは承認され、作者による公開が許可されます。"
 
-#: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:458 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "却下"
 
-#: mkt/reviewers/utils.py:456
+#: mkt/reviewers/utils.py:460
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "これによりアプリは却下され、審査待ちが取り消されるとともに、公開済みの場合は非公開となります。"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:465
 msgid "Request more information"
 msgstr "詳しい情報を求める"
 
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:467
 msgid "This will send the author(s) an email requesting more information."
 msgstr "この処理は、より詳しい情報を求めるメールを作者へ送ります。"
 
-#: mkt/reviewers/utils.py:467
+#: mkt/reviewers/utils.py:471
 msgid "Escalate"
 msgstr "上級審査を依頼"
 
-#: mkt/reviewers/utils.py:469
+#: mkt/reviewers/utils.py:473
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "このアプリにフラグを立て、管理者審査へ回します。コメントは作者ではなく管理者に送られます。"
 
-#: mkt/reviewers/utils.py:476
+#: mkt/reviewers/utils.py:480
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr "このアプリにコメントを付けます。作者がこのコメントを見ることはできません。"
 
-#: mkt/reviewers/utils.py:480
+#: mkt/reviewers/utils.py:484
 msgid "Clear Escalation"
 msgstr "上級審査をクリア"
 
-#: mkt/reviewers/utils.py:482
+#: mkt/reviewers/utils.py:486
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "このアプリの管理者審査待ちを取り消します。作者がメールを受け取ったりこのコメントを見たりすることはありません。"
 
-#: mkt/reviewers/utils.py:487
+#: mkt/reviewers/utils.py:491
 msgid "Clear Re-review"
 msgstr "再審査をクリア"
 
-#: mkt/reviewers/utils.py:489
+#: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "このアプリの再審査待ちを取り消します。作者がメールを受け取ったりこのコメントを見たりすることはありません。"
 
-#: mkt/reviewers/utils.py:494
+#: mkt/reviewers/utils.py:498
 msgid "Ban app"
 msgstr "アプリを追放"
 
-#: mkt/reviewers/utils.py:496
+#: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "アプリを Marketplace から追放します。却下と似ていますが、作者は再登録できません。極端な場合のみ使用してください。"
 
@@ -6845,6 +6865,10 @@ msgstr "次のページ"
 msgid "Previous Page"
 msgstr "前のページ"
 
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
+msgid "Loading App History &hellip;"
+msgstr ""
+
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
 msgstr "最近のポイント"
@@ -6962,6 +6986,10 @@ msgstr "オフライン対応"
 msgid "Supported languages"
 msgstr "対応言語"
 
+#: mkt/search/forms.py:109
+msgid "Author name"
+msgstr ""
+
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
 msgstr "検索使用不可"
@@ -7002,12 +7030,12 @@ msgstr "承認後、自動的に公開"
 msgid "Not until I manually make it public."
 msgstr "承認後、自分自身で公開"
 
-#: mkt/site/helpers.py:159
+#: mkt/site/helpers.py:158
 msgid "Home"
 msgstr "ホーム"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:326
+#: mkt/site/helpers.py:325
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -7205,9 +7233,7 @@ msgstr "少なくともひとつは追加してください。"
 
 #: mkt/submit/templates/submit/details.html:154
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr ""
-"対応形式は PNG と JPEG です。スクリーンショットは最低でも横 320px、縦 480px でなければなりません。2:3 "
-"の縦横比が最適です。動画の対応形式は WebM です。"
+msgstr "対応形式は PNG と JPEG です。スクリーンショットは最低でも横 320px、縦 480px でなければなりません。2:3 の縦横比が最適です。動画の対応形式は WebM です。"
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -7356,11 +7382,11 @@ msgstr "こんにちは"
 msgid "Edit Account Settings"
 msgstr "アカウント設定を編集"
 
-#: mkt/templates/mkt/account-links.html:10
+#: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
 msgstr "Marketplace へ戻る"
 
-#: mkt/templates/mkt/account-links.html:12
+#: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
 msgstr "ログアウト"
 
@@ -7500,33 +7526,33 @@ msgstr "Mozilla が Marketplace へ追加された新しい地域について連
 msgid "User Notifications"
 msgstr "ユーザ通知"
 
-#: mkt/users/views.py:69
-msgid "An email address is required."
-msgstr "メールアドレスが必要です。"
-
-#: mkt/users/views.py:76
-msgid "A user with that email address does not exist."
-msgstr "このメールアドレスを持つユーザは存在しません。"
-
-#: mkt/users/views.py:77
-msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr "このメールアドレスを持つユーザは存在しないか、開発者規約にまだ同意していません。"
-
-#: mkt/users/views.py:188
-msgid "Persona authentication failure."
-msgstr "Persona の認証に失敗しました。"
-
-#: mkt/users/views.py:208
-msgid "Please use the verified email for this account."
-msgstr "このアカウント認証済みメールアドレスを使用してください。"
-
-#: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
+#: mkt/users/tasks.py:15 mkt/users/tasks.py:18
 msgid "Firefox Accounts is coming"
 msgstr "Firefox Accounts が統合されます"
 
-#: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
+#: mkt/users/tasks.py:16 mkt/users/tasks.py:17 mkt/users/tasks.py:19 mkt/users/tasks.py:20
 msgid "Activate your Firefox Account"
 msgstr "あなたの Firefox Account を有効化しましょう"
+
+#: mkt/users/views.py:70
+msgid "An email address is required."
+msgstr "メールアドレスが必要です。"
+
+#: mkt/users/views.py:77
+msgid "A user with that email address does not exist."
+msgstr "このメールアドレスを持つユーザは存在しません。"
+
+#: mkt/users/views.py:78
+msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
+msgstr "このメールアドレスを持つユーザは存在しないか、開発者規約にまだ同意していません。"
+
+#: mkt/users/views.py:193
+msgid "Persona authentication failure."
+msgstr "Persona の認証に失敗しました。"
+
+#: mkt/users/views.py:217
+msgid "Please use the verified email for this account."
+msgstr "このアカウント認証済みメールアドレスを使用してください。"
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
@@ -7607,66 +7633,66 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "すべてのタグは {0} 文字以上でなければなりません。"
 
 # Column name in a table.
-#: mkt/webapps/models.py:205
+#: mkt/webapps/models.py:207
 msgid "Listed"
 msgstr "表示"
 
-#: mkt/webapps/models.py:1375
+#: mkt/webapps/models.py:1377
 msgid "You must provide a support email."
 msgstr "サポートメールアドレスを入力してください。"
 
-#: mkt/webapps/models.py:1377
+#: mkt/webapps/models.py:1379
 msgid "You must provide an app name."
 msgstr "アプリの名前を入力してください。"
 
-#: mkt/webapps/models.py:1379
+#: mkt/webapps/models.py:1381
 msgid "You must provide at least one device type."
 msgstr "少なくともひとつ端末の種類を選んでください。"
 
-#: mkt/webapps/models.py:1382
+#: mkt/webapps/models.py:1384
 msgid "You must provide at least one category."
 msgstr "少なくともひとつカテゴリを選んでください。"
 
-#: mkt/webapps/models.py:1449
+#: mkt/webapps/models.py:1451
 msgid "You must set up content ratings."
 msgstr "コンテンツレーティングを設定してください。"
 
-#: mkt/webapps/models.py:1451
+#: mkt/webapps/models.py:1453
 msgid "You must set up a payment account."
 msgstr "決済用アカウントを設定してください。"
 
-#: mkt/webapps/models.py:1476
+#: mkt/webapps/models.py:1478
 msgid "This app's submission process has not been fully completed."
 msgstr "このアプリの登録手続きはまだ完了していません。"
 
-#: mkt/webapps/models.py:1483
+#: mkt/webapps/models.py:1485
 msgid "This app needs to get a content rating."
 msgstr "このアプリはコンテンツレーティングを取得する必要があります。"
 
-#: mkt/webapps/models.py:1489
+#: mkt/webapps/models.py:1491
 msgid "This app needs a payment account set up."
 msgstr "このアプリは決済用アカウントを設定する必要があります。"
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2731
+#: mkt/webapps/models.py:2733
 msgid "awaiting approval"
 msgstr "承認待ち"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2733
+#: mkt/webapps/models.py:2735
 msgid "rejected"
 msgstr "は却下されました"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2735
+#: mkt/webapps/models.py:2737
 msgid "requires additional review"
 msgstr "追加審査が必要"
 
-#: mkt/webapps/models.py:2786
+#: mkt/webapps/models.py:2788
 msgid "{region} approval status"
 msgstr "{region} 向けの承認状況"
 
-#: mkt/webapps/models.py:2792
+#: mkt/webapps/models.py:2794
 msgid "{region} nomination date"
 msgstr "{region} 向けの推薦日"
 
@@ -7686,15 +7712,15 @@ msgstr "ログアウト"
 msgid "Log in / Register"
 msgstr "ログイン / ユーザ登録"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "Firefox Accounts has arrived"
 msgstr "Firefox Accounts が統合されました"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "Learn how to transfer your account"
 msgstr "アカウントの移行方法を確認しましょう"
 
-#: templates/base.html:128
+#: templates/base.html:129
 msgid "It's easy."
 msgstr "移行は簡単です。"
 

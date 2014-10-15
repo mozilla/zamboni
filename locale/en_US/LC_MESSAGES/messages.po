@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-01 09:25-0700\n"
+"POT-Creation-Date: 2014-10-15 09:03-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -172,7 +172,7 @@ msgstr "Super review requested"
 msgid "Comment on {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
-#: apps/amo/log.py:234 mkt/reviewers/utils.py:474
+#: apps/amo/log.py:234 mkt/reviewers/utils.py:478
 msgid "Comment"
 msgstr "Comment"
 
@@ -224,309 +224,305 @@ msgstr "{0} {1} added."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} role changed to {1} for {addon}."
 
-#: apps/amo/log.py:316
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} is now licensed under {0.name}."
-
-#: apps/amo/log.py:322
+#: apps/amo/log.py:315
 msgid "{addon} policy changed."
 msgstr "{addon} policy changed."
 
-#: apps/amo/log.py:328
+#: apps/amo/log.py:321
 msgid "{addon} icon changed."
 msgstr "{addon} icon changed."
 
-#: apps/amo/log.py:334
+#: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
 msgstr "{review} for {addon} approved."
 
-#: apps/amo/log.py:335
+#: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} approved {review} for {addon}."
 
-#: apps/amo/log.py:344
+#: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
 msgstr "Review {0} for {addon} deleted."
 
-#: apps/amo/log.py:345
+#: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
 msgstr "{user} deleted {0} for {addon}."
 
-#: apps/amo/log.py:352
+#: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
 msgstr "Application max version for {version} updated."
 
-#: apps/amo/log.py:357
+#: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Authors emailed about compatibility of {version}."
 
-#: apps/amo/log.py:362
+#: apps/amo/log.py:355
 msgid "Email sent to Author about add-on compatibility."
 msgstr "Email sent to Author about add-on compatibility."
 
-#: apps/amo/log.py:367
+#: apps/amo/log.py:360
 msgid "Password changed."
 msgstr "Password changed."
 
-#: apps/amo/log.py:372
+#: apps/amo/log.py:365
 msgid "{addon} changed to premium."
 msgstr "{addon} changed to premium."
 
-#: apps/amo/log.py:377
+#: apps/amo/log.py:370
 msgid "{addon} manifest updated."
 msgstr "{addon} manifest updated."
 
-#: apps/amo/log.py:383
+#: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
 msgstr "{addon} {version} approved but private."
 
-#: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:49
+#: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:49
 msgid "Approved but private"
 msgstr "Approved but private"
 
-#: apps/amo/log.py:392
+#: apps/amo/log.py:385
 msgid "{addon} purchased."
 msgstr "{addon} purchased."
 
-#: apps/amo/log.py:397
+#: apps/amo/log.py:390
 msgid "{addon} installed."
 msgstr "{addon} installed."
 
-#: apps/amo/log.py:402
+#: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
 msgstr "Refund requested for {addon}"
 
-#: apps/amo/log.py:407
+#: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
 msgstr "Refund declined for {addon} for {0}."
 
-#: apps/amo/log.py:412
+#: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
 msgstr "Refund granted for {addon} for {0}."
 
-#: apps/amo/log.py:417
+#: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
 msgstr "Instant refund granted for {addon}."
 
-#: apps/amo/log.py:422
+#: apps/amo/log.py:415
 msgid "Account updated."
 msgstr "Account updated."
 
-#: apps/amo/log.py:427
+#: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
 msgstr "Valid receipt was checked for {addon}."
 
-#: apps/amo/log.py:432
+#: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
 msgstr "Escalation cleared for {addon}."
 
-#: apps/amo/log.py:433 mkt/constants/comm.py:50
+#: apps/amo/log.py:426 mkt/constants/comm.py:50
 msgid "Escalation cleared"
 msgstr "Escalation cleared"
 
-#: apps/amo/log.py:440
+#: apps/amo/log.py:433
 msgid "{addon} banned."
 msgstr "{addon} banned."
 
-#: apps/amo/log.py:441
+#: apps/amo/log.py:434
 msgid "App banned"
 msgstr "App banned"
 
-#: apps/amo/log.py:448
+#: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "{addon} escalated because of high number of abuse reports."
 
-#: apps/amo/log.py:449
+#: apps/amo/log.py:442
 msgid "High Abuse Reports"
 msgstr "High Abuse Reports"
 
-#: apps/amo/log.py:456
+#: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr "{addon} escalated because of high number of refund requests."
 
-#: apps/amo/log.py:457
+#: apps/amo/log.py:450
 msgid "High Refund Requests"
 msgstr "High Refund Requests"
 
-#: apps/amo/log.py:464
+#: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
 msgstr "{addon} re-reviewed because of manifest change."
 
-#: apps/amo/log.py:465
+#: apps/amo/log.py:458
 msgid "Manifest Change"
 msgstr "Manifest Change"
 
-#: apps/amo/log.py:472
+#: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr "{addon} re-reviewed because app upgraded premium type."
 
-#: apps/amo/log.py:473
+#: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
 msgstr "Premium Type Upgrade"
 
-#: apps/amo/log.py:480
+#: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
 msgstr "Re-review cleared for {addon}."
 
-#: apps/amo/log.py:481 mkt/constants/comm.py:53
+#: apps/amo/log.py:474 mkt/constants/comm.py:53
 msgid "Re-review cleared"
 msgstr "Re-review cleared"
 
-#: apps/amo/log.py:488
+#: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
 msgstr "{addon} escalated by reviewer."
 
-#: apps/amo/log.py:489
+#: apps/amo/log.py:482
 msgid "Reviewer escalation"
 msgstr "Reviewer escalation"
 
-#: apps/amo/log.py:497
+#: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
 msgstr "Video removed from {addon} because of a problem with the video."
 
-#: apps/amo/log.py:499
+#: apps/amo/log.py:492
 msgid "Video removed"
 msgstr "Video removed"
 
-#: apps/amo/log.py:504
+#: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
 msgstr "{addon} re-review because of new device(s) added."
 
-#: apps/amo/log.py:505
+#: apps/amo/log.py:498
 msgid "Device(s) Added"
 msgstr "Device(s) Added"
 
-#: apps/amo/log.py:512
+#: apps/amo/log.py:505
 msgid "{addon} device support manually changed by reviewer."
 msgstr "{addon} device support manually changed by reviewer."
 
-#: apps/amo/log.py:513
+#: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
 msgstr "Device(s) Changed by Reviewer"
 
-#: apps/amo/log.py:520
+#: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
 msgstr "{addon} resubmitted for review."
 
-#: apps/amo/log.py:521
+#: apps/amo/log.py:514
 msgid "App Resubmission"
 msgstr "App Resubmission"
 
-#: apps/amo/log.py:528
+#: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr "{addon} auto-escalated because its a VIP app."
 
-#: apps/amo/log.py:529
+#: apps/amo/log.py:522
 msgid "VIP auto-escalation"
 msgstr "VIP auto-escalation"
 
-#: apps/amo/log.py:536
+#: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr "{addon} re-reviewed because of manifest URL change."
 
-#: apps/amo/log.py:537
+#: apps/amo/log.py:530
 msgid "Manifest URL Change"
 msgstr "Manifest URL Change"
 
-#: apps/amo/log.py:544
+#: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr "{addon} auto-escalated because its a prerelease app."
 
-#: apps/amo/log.py:545
+#: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
 msgstr "Prerelease auto-escalation"
 
-#: apps/amo/log.py:562
+#: apps/amo/log.py:555
 msgid "Created: {0}."
 msgstr "Created: {0}."
 
-#: apps/amo/log.py:568
+#: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
 msgstr "Edited field: {2} set to: {0}."
 
-#: apps/amo/log.py:574
+#: apps/amo/log.py:567
 msgid "Deleted: {1}."
 msgstr "Deleted: {1}."
 
-#: apps/amo/log.py:580
+#: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
 msgstr "User {user} edited, reason: {1}"
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:579
 msgid "User {user} anonymized."
 msgstr "User {user} anonymized."
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:585
 msgid "User {user} restricted."
 msgstr "User {user} restricted."
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:591
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Admin {0} viewed activity log for {user}."
 
-#: apps/amo/log.py:605
+#: apps/amo/log.py:598
 msgid "{review} for {addon} updated."
 msgstr "{review} for {addon} updated."
 
-#: apps/amo/log.py:611
+#: apps/amo/log.py:604
 msgid "{addon} reviewed."
 msgstr "{addon} reviewed."
 
-#: apps/amo/log.py:617
+#: apps/amo/log.py:610
 msgid "User {0.name} added to {group}."
 msgstr "User {0.name} added to {group}."
 
-#: apps/amo/log.py:625
+#: apps/amo/log.py:618
 msgid "User {0.name} removed from {group}."
 msgstr "User {0.name} removed from {group}."
 
-#: apps/amo/log.py:632
+#: apps/amo/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} minimum requirements manually changed by reviewer."
 
-#: apps/amo/log.py:633
+#: apps/amo/log.py:626
 msgid "Requirements Changed by Reviewer"
 msgstr "Requirements Changed by Reviewer"
 
-#: apps/amo/log.py:640
+#: apps/amo/log.py:633
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} minimum requirements manually changed."
 
-#: apps/amo/log.py:641
+#: apps/amo/log.py:634
 msgid "Requirements Changed"
 msgstr "Requirements Changed"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:649
+#: apps/amo/log.py:642
 msgid "{version} status changed to {0}."
 msgstr "{version} status changed to {0}."
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:656
+#: apps/amo/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "User {0.name} {0.id} deleted via lookup tool."
 
-#: apps/amo/log.py:662
+#: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} content rating changed to Adult."
 
-#: apps/amo/log.py:668
+#: apps/amo/log.py:661
 msgid "{addon} content rating changed."
 msgstr "{addon} content rating changed."
 
-#: apps/amo/log.py:673
+#: apps/amo/log.py:666
 msgid "Priority review requested for {addon}."
 msgstr "Priority review requested for {addon}."
 
-#: apps/amo/log.py:674
+#: apps/amo/log.py:667
 msgid "Priority Review"
 msgstr "Priority Review"
 
-#: apps/amo/log.py:682
+#: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} passed the {queue} review."
 
-#: apps/amo/log.py:689
+#: apps/amo/log.py:682
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} failed the {queue} review."
 
@@ -566,16 +562,16 @@ msgstr "Previous"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
-#: mkt/account/utils.py:50
+#: mkt/account/utils.py:63
 msgid "Purchase Date"
 msgstr "Purchase Date"
 
-#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:64 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "Price"
 
-#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/account/utils.py:65 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Name"
@@ -2484,7 +2480,7 @@ msgstr "Agreement"
 msgid "Submit"
 msgstr "Submit"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1475
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1477
 msgid "Details"
 msgstr "Details"
 
@@ -2566,7 +2562,7 @@ msgstr "An app already exists on this domain; only one app per domain is allowed
 msgid "Invalid region(s) selected."
 msgstr "Invalid region(s) selected."
 
-#: mkt/developers/forms.py:422 mkt/webapps/models.py:1384
+#: mkt/developers/forms.py:422 mkt/webapps/models.py:1386
 msgid "You must upload at least one screenshot or video."
 msgstr "You must upload at least one screenshot or video."
 
@@ -2793,8 +2789,8 @@ msgid "Not an upgrade"
 msgstr "Not an upgrade"
 
 #: mkt/developers/forms_payments.py:368
-msgid "Account Holder Name"
-msgstr "Account Holder Name"
+msgid "Bank Account Holder Name"
+msgstr "Bank Account Holder Name"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2931,8 +2927,8 @@ msgstr "My Submissions"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
-msgid "Shared Account: {0}"
-msgstr "Shared Account: {0}"
+msgid "Donate to {0}"
+msgstr "Donate to {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2946,7 +2942,7 @@ msgstr "Version {0}"
 msgid "Reference Implementation"
 msgstr "Reference Implementation"
 
-#: mkt/developers/providers.py:368
+#: mkt/developers/providers.py:371
 msgid "Boku"
 msgstr "Boku"
 
@@ -3231,7 +3227,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:316
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:315
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3244,7 +3240,7 @@ msgstr "Sign in"
 msgid "You must sign in to proceed."
 msgstr "You must sign in to proceed."
 
-#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:161
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:149 templates/base.html:169
 msgid "Sign in / Sign up"
 msgstr "Sign in / Sign up"
 
@@ -3321,15 +3317,19 @@ msgstr "Some features are temporarily disabled while we perform website maintena
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:151
+#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:152
 msgid "Please sign in"
 msgstr "Please sign in"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:154
+#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:155
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 
-#: mkt/developers/templates/developers/terms.html:3
+#: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
+msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
+msgstr "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
+
+#: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
 msgstr "Terms and Conditions"
 
@@ -3372,7 +3372,7 @@ msgstr[1] "{num} transactions found"
 msgid "Your apps currently have no transactions."
 msgstr "Your apps currently have no transactions."
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:155 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
 msgstr "Date"
@@ -3537,7 +3537,7 @@ msgstr "Status & Versions"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:158 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Status"
@@ -3823,8 +3823,8 @@ msgstr "Are you sure you wish to delist your app?"
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60 mkt/developers/templates/developers/apps/edit/technical.html:68
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
 #: mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "or"
@@ -3834,8 +3834,8 @@ msgstr "or"
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
-#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:131
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
@@ -3961,7 +3961,7 @@ msgstr "Regions to show banner in"
 msgid "Regions that the banner message will be shown in."
 msgstr "Regions that the banner message will be shown in."
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:113
+#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:114
 msgid "Tags"
 msgstr "Tags"
 
@@ -4133,8 +4133,8 @@ msgid "Support Information for {0}"
 msgstr "Support Information for {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
-msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
-msgstr "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
+msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
+msgstr "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4357,7 +4357,7 @@ msgstr "Status &amp; Versions"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1482
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1484
 msgid "Content Ratings"
 msgstr "Content Ratings"
 
@@ -4870,31 +4870,43 @@ msgstr "You don't have any payment accounts set up."
 msgid "Add Bango Account"
 msgstr "Add Bango Account"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
+msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
+msgstr "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
 msgstr "Usually 9, 10 or 11 digits. Example: 0114584906."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:27
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
 msgstr "Either 8 or 11 characters. Example: WFBIUS6WPDX."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
 msgstr "Optional"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
+msgid "Name of registered company or individual."
+msgstr "Name of registered company or individual."
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
+msgid "Name of account on the Marketplace (not sent to Bango)."
+msgstr "Name of account on the Marketplace (not sent to Bango)."
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "Register Payment Account"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "Processing Request..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:129
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "Please wait while we contact the payment server."
@@ -4939,7 +4951,11 @@ msgstr "Add Reference Account"
 msgid "Modify Bango Account"
 msgstr "Modify Bango Account"
 
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+msgid "A name to refer to the account on the Marketplace, not sent to Bango."
+msgstr "A name to refer to the account on the Marketplace, not sent to Bango."
+
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "Update Account"
 
@@ -5221,8 +5237,8 @@ msgstr "Using Apps Offline"
 msgid "Developing Game Apps"
 msgstr "Developing Game Apps"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1488
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1490
 msgid "Payments"
 msgstr "Payments"
 
@@ -5475,35 +5491,35 @@ msgstr "There was an error accessing file %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "There was an error accessing file %s."
 
-#: mkt/files/utils.py:76
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 
-#: mkt/files/utils.py:98
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 
-#: mkt/files/utils.py:106
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "The webapp manifest is not valid JSON."
 
-#: mkt/files/utils.py:115
+#: mkt/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
 msgstr "Your specified app locales are not in the correct format."
 
-#: mkt/files/utils.py:132
+#: mkt/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "Developer name is required in the manifest in order to display it on the app's listing."
 
-#: mkt/files/utils.py:182
+#: mkt/files/utils.py:180
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
-#: mkt/files/utils.py:190
+#: mkt/files/utils.py:188
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
-#: mkt/files/utils.py:240
+#: mkt/files/utils.py:238
 msgid "Invalid archive."
 msgstr "Invalid archive."
 
@@ -5700,7 +5716,7 @@ msgstr "Hosted app"
 msgid "Submitted"
 msgstr "Submitted"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:165
+#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:173
 msgid "OK"
 msgstr "OK"
 
@@ -5745,47 +5761,55 @@ msgstr "Abuse Reports"
 msgid "Permissions"
 msgstr "Permissions"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:105
+msgid "No reason given"
+msgstr "No reason given"
+
+#: mkt/lookup/templates/lookup/app_summary.html:107
+msgid "No permissions requested"
+msgstr "No permissions requested"
+
+#: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
 msgstr "Downloads"
 
-#: mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:123 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "Purchases"
 
-#: mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/user_summary.html:42
+#: mkt/lookup/templates/lookup/app_summary.html:133 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
 msgstr "Refunds"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:128
+#: mkt/lookup/templates/lookup/app_summary.html:136
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} requested ({1} of purchases)"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:131
+#: mkt/lookup/templates/lookup/app_summary.html:139
 msgid "{0} auto-approved"
 msgstr "{0} auto-approved"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:133
+#: mkt/lookup/templates/lookup/app_summary.html:141
 msgid "{0} approved"
 msgstr "{0} approved"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:135
+#: mkt/lookup/templates/lookup/app_summary.html:143
 msgid "{0} rejected"
 msgstr "{0} rejected"
 
-#: mkt/lookup/templates/lookup/app_summary.html:143
+#: mkt/lookup/templates/lookup/app_summary.html:151
 msgid "Version History"
 msgstr "Version History"
 
-#: mkt/lookup/templates/lookup/app_summary.html:148
+#: mkt/lookup/templates/lookup/app_summary.html:156
 msgid "Version (ID)"
 msgstr "Version (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:149
+#: mkt/lookup/templates/lookup/app_summary.html:157
 msgid "Filename (ID, Size)"
 msgstr "Filename (ID, Size)"
 
@@ -6006,7 +6030,7 @@ msgid "Tier %s"
 msgstr "Tier %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "Receipt for {0}"
 
@@ -6130,7 +6154,7 @@ msgstr "Receipt type"
 msgid "Manifest location"
 msgstr "Manifest location"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:90
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:89
 msgid "Install"
 msgstr "Install"
 
@@ -6210,7 +6234,7 @@ msgstr "Tarako-ready"
 msgid "Reviewer Tools"
 msgstr "Reviewer Tools"
 
-#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:169
+#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:168
 msgid "Apps"
 msgstr "Apps"
 
@@ -6291,63 +6315,63 @@ msgstr "Reviews"
 msgid "Rejected or Unreviewed"
 msgstr "Rejected or Unreviewed"
 
-#: mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:453 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "Approve"
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:454
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "This will approve the app and allow the author(s) to publish it."
 
-#: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:458 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Reject"
 
-#: mkt/reviewers/utils.py:456
+#: mkt/reviewers/utils.py:460
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "This will reject the app, remove it from the review queue and un-publish it if already published."
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:465
 msgid "Request more information"
 msgstr "Request more information"
 
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:467
 msgid "This will send the author(s) an email requesting more information."
 msgstr "This will send the author(s) an email requesting more information."
 
-#: mkt/reviewers/utils.py:467
+#: mkt/reviewers/utils.py:471
 msgid "Escalate"
 msgstr "Escalate"
 
-#: mkt/reviewers/utils.py:469
+#: mkt/reviewers/utils.py:473
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 
-#: mkt/reviewers/utils.py:476
+#: mkt/reviewers/utils.py:480
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr "Make a comment on this app. The author(s) won't be able to see these comments."
 
-#: mkt/reviewers/utils.py:480
+#: mkt/reviewers/utils.py:484
 msgid "Clear Escalation"
 msgstr "Clear Escalation"
 
-#: mkt/reviewers/utils.py:482
+#: mkt/reviewers/utils.py:486
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 
-#: mkt/reviewers/utils.py:487
+#: mkt/reviewers/utils.py:491
 msgid "Clear Re-review"
 msgstr "Clear Re-review"
 
-#: mkt/reviewers/utils.py:489
+#: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 
-#: mkt/reviewers/utils.py:494
+#: mkt/reviewers/utils.py:498
 msgid "Ban app"
 msgstr "Ban app"
 
-#: mkt/reviewers/utils.py:496
+#: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 
@@ -6855,6 +6879,10 @@ msgstr "Next Page"
 msgid "Previous Page"
 msgstr "Previous Page"
 
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
+msgid "Loading App History &hellip;"
+msgstr "Loading App History &hellip;"
+
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
 msgstr "Recent Points"
@@ -6972,6 +7000,10 @@ msgstr "Works offline"
 msgid "Supported languages"
 msgstr "Supported languages"
 
+#: mkt/search/forms.py:109
+msgid "Author name"
+msgstr "Author name"
+
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
 msgstr "Search Unavailable"
@@ -7012,12 +7044,12 @@ msgstr "As soon as it is approved."
 msgid "Not until I manually make it public."
 msgstr "Not until I manually make it public."
 
-#: mkt/site/helpers.py:159
+#: mkt/site/helpers.py:158
 msgid "Home"
 msgstr "Home"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:326
+#: mkt/site/helpers.py:325
 msgid "{0} ago"
 msgstr "{0} ago"
 
@@ -7362,11 +7394,11 @@ msgstr "Héllo"
 msgid "Edit Account Settings"
 msgstr "Edit Account Settings"
 
-#: mkt/templates/mkt/account-links.html:10
+#: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
 msgstr "Return to the Marketplace"
 
-#: mkt/templates/mkt/account-links.html:12
+#: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
 msgstr "Sign Out"
 
@@ -7506,33 +7538,33 @@ msgstr "Mozilla wants to contact me about new regions added to the Marketplace"
 msgid "User Notifications"
 msgstr "User Notifications"
 
-#: mkt/users/views.py:69
-msgid "An email address is required."
-msgstr "An email address is required."
-
-#: mkt/users/views.py:76
-msgid "A user with that email address does not exist."
-msgstr "A user with that email address does not exist."
-
-#: mkt/users/views.py:77
-msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-
-#: mkt/users/views.py:188
-msgid "Persona authentication failure."
-msgstr "Persona authentication failure."
-
-#: mkt/users/views.py:208
-msgid "Please use the verified email for this account."
-msgstr "Please use the verified email for this account."
-
-#: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
+#: mkt/users/tasks.py:15 mkt/users/tasks.py:18
 msgid "Firefox Accounts is coming"
 msgstr "Firefox Accounts is coming"
 
-#: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
+#: mkt/users/tasks.py:16 mkt/users/tasks.py:17 mkt/users/tasks.py:19 mkt/users/tasks.py:20
 msgid "Activate your Firefox Account"
 msgstr "Activate your Firefox Account"
+
+#: mkt/users/views.py:70
+msgid "An email address is required."
+msgstr "An email address is required."
+
+#: mkt/users/views.py:77
+msgid "A user with that email address does not exist."
+msgstr "A user with that email address does not exist."
+
+#: mkt/users/views.py:78
+msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
+msgstr "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
+
+#: mkt/users/views.py:193
+msgid "Persona authentication failure."
+msgstr "Persona authentication failure."
+
+#: mkt/users/views.py:217
+msgid "Please use the verified email for this account."
+msgstr "Please use the verified email for this account."
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
@@ -7617,66 +7649,66 @@ msgstr[0] "All tags must be at least {0} character."
 msgstr[1] "All tags must be at least {0} characters."
 
 # Column name in a table.
-#: mkt/webapps/models.py:205
+#: mkt/webapps/models.py:207
 msgid "Listed"
 msgstr "Listed"
 
-#: mkt/webapps/models.py:1375
+#: mkt/webapps/models.py:1377
 msgid "You must provide a support email."
 msgstr "You must provide a support email."
 
-#: mkt/webapps/models.py:1377
+#: mkt/webapps/models.py:1379
 msgid "You must provide an app name."
 msgstr "You must provide an app name."
 
-#: mkt/webapps/models.py:1379
+#: mkt/webapps/models.py:1381
 msgid "You must provide at least one device type."
 msgstr "You must provide at least one device type."
 
-#: mkt/webapps/models.py:1382
+#: mkt/webapps/models.py:1384
 msgid "You must provide at least one category."
 msgstr "You must provide at least one category."
 
-#: mkt/webapps/models.py:1449
+#: mkt/webapps/models.py:1451
 msgid "You must set up content ratings."
 msgstr "You must set up content ratings."
 
-#: mkt/webapps/models.py:1451
+#: mkt/webapps/models.py:1453
 msgid "You must set up a payment account."
 msgstr "You must set up a payment account."
 
-#: mkt/webapps/models.py:1476
+#: mkt/webapps/models.py:1478
 msgid "This app's submission process has not been fully completed."
 msgstr "This app's submission process has not been fully completed."
 
-#: mkt/webapps/models.py:1483
+#: mkt/webapps/models.py:1485
 msgid "This app needs to get a content rating."
 msgstr "This app needs to get a content rating."
 
-#: mkt/webapps/models.py:1489
+#: mkt/webapps/models.py:1491
 msgid "This app needs a payment account set up."
 msgstr "This app needs a payment account set up."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2731
+#: mkt/webapps/models.py:2733
 msgid "awaiting approval"
 msgstr "awaiting approval"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2733
+#: mkt/webapps/models.py:2735
 msgid "rejected"
 msgstr "rejected"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2735
+#: mkt/webapps/models.py:2737
 msgid "requires additional review"
 msgstr "requires additional review"
 
-#: mkt/webapps/models.py:2786
+#: mkt/webapps/models.py:2788
 msgid "{region} approval status"
 msgstr "{region} approval status"
 
-#: mkt/webapps/models.py:2792
+#: mkt/webapps/models.py:2794
 msgid "{region} nomination date"
 msgstr "{region} nomination date"
 
@@ -7696,15 +7728,15 @@ msgstr "Log out"
 msgid "Log in / Register"
 msgstr "Log in / Register"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "Firefox Accounts has arrived"
 msgstr "Firefox Accounts has arrived"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "Learn how to transfer your account"
 msgstr "Learn how to transfer your account"
 
-#: templates/base.html:128
+#: templates/base.html:129
 msgid "It's easy."
 msgstr "It's easy."
 

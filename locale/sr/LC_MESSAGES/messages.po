@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-01 09:25-0700\n"
+"POT-Creation-Date: 2014-10-15 09:03-0700\n"
 "PO-Revision-Date: 2014-10-06 06:09+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -13,8 +13,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1412575746.0\n"
 
@@ -173,7 +172,7 @@ msgstr "Захтевана супер рецензија"
 msgid "Comment on {addon} {version}."
 msgstr "Коментар на {addon} {version}."
 
-#: apps/amo/log.py:234 mkt/reviewers/utils.py:474
+#: apps/amo/log.py:234 mkt/reviewers/utils.py:478
 msgid "Comment"
 msgstr "Коментариши"
 
@@ -225,309 +224,305 @@ msgstr "{0} {1} је додат."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} улога је промењена у {1} за {addon}."
 
-#: apps/amo/log.py:316
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} је сада лиценциран под {0.name}."
-
-#: apps/amo/log.py:322
+#: apps/amo/log.py:315
 msgid "{addon} policy changed."
 msgstr "{addon} полиса измењена."
 
-#: apps/amo/log.py:328
+#: apps/amo/log.py:321
 msgid "{addon} icon changed."
 msgstr "{addon} иконица је промењена."
 
-#: apps/amo/log.py:334
+#: apps/amo/log.py:327
 msgid "{review} for {addon} approved."
 msgstr "{review} за {addon} је одобрен."
 
-#: apps/amo/log.py:335
+#: apps/amo/log.py:328
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} је одобрио {review} за {addon}."
 
-#: apps/amo/log.py:344
+#: apps/amo/log.py:337
 msgid "Review {0} for {addon} deleted."
 msgstr "Рецензија {0} за {addon} је избрисана."
 
-#: apps/amo/log.py:345
+#: apps/amo/log.py:338
 msgid "{user} deleted {0} for {addon}."
 msgstr "{user} је избрисано {0} за {addon}."
 
-#: apps/amo/log.py:352
+#: apps/amo/log.py:345
 msgid "Application max version for {version} updated."
 msgstr "Максимална верзија апликације за {version} је ажурирана."
 
-#: apps/amo/log.py:357
+#: apps/amo/log.py:350
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Аутори су послали е-пошту о компатибилности верзије {version}."
 
-#: apps/amo/log.py:362
+#: apps/amo/log.py:355
 msgid "Email sent to Author about add-on compatibility."
 msgstr "Е-пошта је послата аутору о компатабилности овог додатка."
 
-#: apps/amo/log.py:367
+#: apps/amo/log.py:360
 msgid "Password changed."
 msgstr "Лозинка је измењена."
 
-#: apps/amo/log.py:372
+#: apps/amo/log.py:365
 msgid "{addon} changed to premium."
 msgstr "{addon} је измењен у премијум."
 
-#: apps/amo/log.py:377
+#: apps/amo/log.py:370
 msgid "{addon} manifest updated."
 msgstr "{addon} манифест је ажуриран."
 
-#: apps/amo/log.py:383
+#: apps/amo/log.py:376
 msgid "{addon} {version} approved but private."
 msgstr "{addon} {version} је одобрена али приватна."
 
-#: apps/amo/log.py:384 mkt/constants/base.py:34 mkt/constants/comm.py:49
+#: apps/amo/log.py:377 mkt/constants/base.py:34 mkt/constants/comm.py:49
 msgid "Approved but private"
 msgstr "Одобрено али приватно"
 
-#: apps/amo/log.py:392
+#: apps/amo/log.py:385
 msgid "{addon} purchased."
 msgstr "{addon} је купљен."
 
-#: apps/amo/log.py:397
+#: apps/amo/log.py:390
 msgid "{addon} installed."
 msgstr "{addon} је инсталиран."
 
-#: apps/amo/log.py:402
+#: apps/amo/log.py:395
 msgid "Refund requested for {addon}"
 msgstr "Рефундација је захтевана за {addon}"
 
-#: apps/amo/log.py:407
+#: apps/amo/log.py:400
 msgid "Refund declined for {addon} for {0}."
 msgstr "Рефундације је одбијена за {addon} за {0}."
 
-#: apps/amo/log.py:412
+#: apps/amo/log.py:405
 msgid "Refund granted for {addon} for {0}."
 msgstr "Рефундација је одобрена за {addon} за {0}."
 
-#: apps/amo/log.py:417
+#: apps/amo/log.py:410
 msgid "Instant refund granted for {addon}."
 msgstr "Инстант рефундација је одобрена за {addon}."
 
-#: apps/amo/log.py:422
+#: apps/amo/log.py:415
 msgid "Account updated."
 msgstr "Налог ажуриран."
 
-#: apps/amo/log.py:427
+#: apps/amo/log.py:420
 msgid "Valid receipt was checked for {addon}."
 msgstr "Исправност рачуна проверена за {addon}."
 
-#: apps/amo/log.py:432
+#: apps/amo/log.py:425
 msgid "Escalation cleared for {addon}."
 msgstr "Ескалација је очишћена за {addon}."
 
-#: apps/amo/log.py:433 mkt/constants/comm.py:50
+#: apps/amo/log.py:426 mkt/constants/comm.py:50
 msgid "Escalation cleared"
 msgstr "Ескалација очишћена"
 
-#: apps/amo/log.py:440
+#: apps/amo/log.py:433
 msgid "{addon} banned."
 msgstr "{addon} је банован."
 
-#: apps/amo/log.py:441
+#: apps/amo/log.py:434
 msgid "App banned"
 msgstr "Апликација је банована"
 
-#: apps/amo/log.py:448
+#: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "{addon} је ескалирао због високог броја пријава о злоупотреби."
 
-#: apps/amo/log.py:449
+#: apps/amo/log.py:442
 msgid "High Abuse Reports"
 msgstr "Превише пријава о злоупотреби"
 
-#: apps/amo/log.py:456
+#: apps/amo/log.py:449
 msgid "{addon} escalated because of high number of refund requests."
 msgstr "{addon} је ескалирао због високог броја захтева о рефундацији."
 
-#: apps/amo/log.py:457
+#: apps/amo/log.py:450
 msgid "High Refund Requests"
 msgstr "Превише захтева о рефундацији"
 
-#: apps/amo/log.py:464
+#: apps/amo/log.py:457
 msgid "{addon} re-reviewed because of manifest change."
 msgstr "{addon} је поново рецензиран због промене у манифесту."
 
-#: apps/amo/log.py:465
+#: apps/amo/log.py:458
 msgid "Manifest Change"
 msgstr "Промена у манифесту"
 
-#: apps/amo/log.py:472
+#: apps/amo/log.py:465
 msgid "{addon} re-reviewed because app upgraded premium type."
 msgstr "{addon} је поново рецензиран због надоградње премијум типа апликације."
 
-#: apps/amo/log.py:473
+#: apps/amo/log.py:466
 msgid "Premium Type Upgrade"
 msgstr "Надоградња премијум типа"
 
-#: apps/amo/log.py:480
+#: apps/amo/log.py:473
 msgid "Re-review cleared for {addon}."
 msgstr "Поновна рецензија уклоњена за {addon}."
 
-#: apps/amo/log.py:481 mkt/constants/comm.py:53
+#: apps/amo/log.py:474 mkt/constants/comm.py:53
 msgid "Re-review cleared"
 msgstr "Понавна рецензија уклоњена"
 
-#: apps/amo/log.py:488
+#: apps/amo/log.py:481
 msgid "{addon} escalated by reviewer."
 msgstr "{addon} је ескалирао од стране рецезента."
 
-#: apps/amo/log.py:489
+#: apps/amo/log.py:482
 msgid "Reviewer escalation"
 msgstr "Ескалација рецезента"
 
-#: apps/amo/log.py:497
+#: apps/amo/log.py:490
 msgid "Video removed from {addon} because of a problem with the video."
 msgstr "Видео је уклољен из {addon} због проблема са снимком."
 
-#: apps/amo/log.py:499
+#: apps/amo/log.py:492
 msgid "Video removed"
 msgstr "Видео уклоњен"
 
-#: apps/amo/log.py:504
+#: apps/amo/log.py:497
 msgid "{addon} re-review because of new device(s) added."
 msgstr "Поновни преглед {addon} због додатог новог или нових уређаја."
 
-#: apps/amo/log.py:505
+#: apps/amo/log.py:498
 msgid "Device(s) Added"
 msgstr "Уређај(и) додати"
 
-#: apps/amo/log.py:512
+#: apps/amo/log.py:505
 msgid "{addon} device support manually changed by reviewer."
 msgstr "{addon} подршку за уређај ручно променио рецензент."
 
-#: apps/amo/log.py:513
+#: apps/amo/log.py:506
 msgid "Device(s) Changed by Reviewer"
 msgstr "Уређај(и) измењен од стране рецензента"
 
-#: apps/amo/log.py:520
+#: apps/amo/log.py:513
 msgid "{addon} resubmitted for review."
 msgstr "{addon} је поново послат на рецензију."
 
-#: apps/amo/log.py:521
+#: apps/amo/log.py:514
 msgid "App Resubmission"
 msgstr "Поновно слање апликације"
 
-#: apps/amo/log.py:528
+#: apps/amo/log.py:521
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr "{addon} је аутоматски ескалиран зато што је VIP апликација."
 
-#: apps/amo/log.py:529
+#: apps/amo/log.py:522
 msgid "VIP auto-escalation"
 msgstr "VIP ауто-ескалација"
 
-#: apps/amo/log.py:536
+#: apps/amo/log.py:529
 msgid "{addon} re-reviewed because of manifest URL change."
 msgstr "{addon} поново рецензиран због промене манифест URL-а."
 
-#: apps/amo/log.py:537
+#: apps/amo/log.py:530
 msgid "Manifest URL Change"
 msgstr "Промена URL манифеста"
 
-#: apps/amo/log.py:544
+#: apps/amo/log.py:537
 msgid "{addon} auto-escalated because its a prerelease app."
 msgstr "{addon} је аутоматски ескалирао зато што је пробна верзија."
 
-#: apps/amo/log.py:545
+#: apps/amo/log.py:538
 msgid "Prerelease auto-escalation"
 msgstr "Ауто-ескалација пре излажења"
 
-#: apps/amo/log.py:562
+#: apps/amo/log.py:555
 msgid "Created: {0}."
 msgstr "Креирано: {0}."
 
-#: apps/amo/log.py:568
+#: apps/amo/log.py:561
 msgid "Edited field: {2} set to: {0}."
 msgstr "Измењено поље: {2} подешено на: {0}."
 
-#: apps/amo/log.py:574
+#: apps/amo/log.py:567
 msgid "Deleted: {1}."
 msgstr "Избрисано: {1}."
 
-#: apps/amo/log.py:580
+#: apps/amo/log.py:573
 msgid "User {user} edited, reason: {1}"
 msgstr "Корисник {user} измењен, разлог: {1}"
 
-#: apps/amo/log.py:586
+#: apps/amo/log.py:579
 msgid "User {user} anonymized."
 msgstr "Корисник {user} промењен у анонимног."
 
-#: apps/amo/log.py:592
+#: apps/amo/log.py:585
 msgid "User {user} restricted."
 msgstr "Корисник {user} је ограничен."
 
-#: apps/amo/log.py:598
+#: apps/amo/log.py:591
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Администратор {0} је прегледао дневник активности за {user}."
 
-#: apps/amo/log.py:605
+#: apps/amo/log.py:598
 msgid "{review} for {addon} updated."
 msgstr "{review} за {addon} је ажуриран."
 
-#: apps/amo/log.py:611
+#: apps/amo/log.py:604
 msgid "{addon} reviewed."
 msgstr "{addon} је прегледан."
 
-#: apps/amo/log.py:617
+#: apps/amo/log.py:610
 msgid "User {0.name} added to {group}."
 msgstr "Корисник {0.name} је додат у {group}."
 
-#: apps/amo/log.py:625
+#: apps/amo/log.py:618
 msgid "User {0.name} removed from {group}."
 msgstr "Корисник {0.name} је уклоњен из {group}."
 
-#: apps/amo/log.py:632
+#: apps/amo/log.py:625
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} минимални захтеви су ручно измењени од стране рецезента."
 
-#: apps/amo/log.py:633
+#: apps/amo/log.py:626
 msgid "Requirements Changed by Reviewer"
 msgstr "Захтеви измењени од стране рецезента"
 
-#: apps/amo/log.py:640
+#: apps/amo/log.py:633
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} минимални захтеви су ручно измењени."
 
-#: apps/amo/log.py:641
+#: apps/amo/log.py:634
 msgid "Requirements Changed"
 msgstr "Захтеви измењени"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:649
+#: apps/amo/log.py:642
 msgid "{version} status changed to {0}."
 msgstr "{version} статус је промењен на {0}."
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:656
+#: apps/amo/log.py:649
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "Корисник {0.name} {0.id} је избрисан преко алата за проналажење."
 
-#: apps/amo/log.py:662
+#: apps/amo/log.py:655
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} оцена садржаја је промењена на Одрасли."
 
-#: apps/amo/log.py:668
+#: apps/amo/log.py:661
 msgid "{addon} content rating changed."
 msgstr "{addon} оцена садржаја промењена."
 
-#: apps/amo/log.py:673
+#: apps/amo/log.py:666
 msgid "Priority review requested for {addon}."
 msgstr "Приоритетна рецензија захтевана за {addon}."
 
-#: apps/amo/log.py:674
+#: apps/amo/log.py:667
 msgid "Priority Review"
 msgstr "Приоритетна рецензија"
 
-#: apps/amo/log.py:682
+#: apps/amo/log.py:675
 msgid "{addon} {version} passed the {queue} review."
 msgstr "{addon} {version} је прошао {queue} преглед."
 
-#: apps/amo/log.py:689
+#: apps/amo/log.py:682
 msgid "{addon} {version} failed the {queue} review."
 msgstr "{addon} {version} није прошао {queue} преглед."
 
@@ -567,16 +562,16 @@ msgstr "Претходно"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Приказано <b>%(begin)s</b>&ndash;<b>%(end)s</b> од <b>%(count)s</b>"
 
-#: mkt/account/utils.py:50
+#: mkt/account/utils.py:63
 msgid "Purchase Date"
 msgstr "Дан куповине"
 
-#: mkt/account/utils.py:51 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
+#: mkt/account/utils.py:64 mkt/developers/templates/developers/payments/premium.html:177 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:83
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:78 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:16
 msgid "Price"
 msgstr "Цена"
 
-#: mkt/account/utils.py:52 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
+#: mkt/account/utils.py:65 mkt/developers/forms_payments.py:615 mkt/developers/views.py:86 mkt/developers/templates/developers/apps/edit/basic.html:21
 #: mkt/developers/templates/developers/payments/in-app-products.html:62 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:19 mkt/submit/templates/submit/details.html:57
 msgid "Name"
 msgstr "Име"
@@ -2485,7 +2480,7 @@ msgstr "Уговор"
 msgid "Submit"
 msgstr "Поднеси"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1475
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:38 mkt/webapps/models.py:1477
 msgid "Details"
 msgstr "Информације"
 
@@ -2554,9 +2549,7 @@ msgstr "Упс, изгледа да је већ послат манифест з
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
-msgstr ""
-"Упс, изгледа да сте већ доставили манифест за %s, који је тренутно банован "
-"на Marketplace-у. <a href=\"%s\">Уреди апликацију</a>"
+msgstr "Упс, изгледа да сте већ доставили манифест за %s, који је тренутно банован на Marketplace-у. <a href=\"%s\">Уреди апликацију</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2570,7 +2563,7 @@ msgstr "Апликација већ постоји на овом домену; �
 msgid "Invalid region(s) selected."
 msgstr "Неважећи регион(s) су изабрани."
 
-#: mkt/developers/forms.py:422 mkt/webapps/models.py:1384
+#: mkt/developers/forms.py:422 mkt/webapps/models.py:1386
 msgid "You must upload at least one screenshot or video."
 msgstr "Морате поставити макар један видео или снимак екрана."
 
@@ -2798,8 +2791,8 @@ msgid "Not an upgrade"
 msgstr "Није надоградња"
 
 #: mkt/developers/forms_payments.py:368
-msgid "Account Holder Name"
-msgstr "Име власника налога"
+msgid "Bank Account Holder Name"
+msgstr ""
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2936,8 +2929,8 @@ msgstr "Моје доставе"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
-msgid "Shared Account: {0}"
-msgstr "Подељени налог: {0}"
+msgid "Donate to {0}"
+msgstr ""
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2951,7 +2944,7 @@ msgstr "Верзија {0}"
 msgid "Reference Implementation"
 msgstr "Референтна имплементација"
 
-#: mkt/developers/providers.py:368
+#: mkt/developers/providers.py:371
 msgid "Boku"
 msgstr "Boku"
 
@@ -3236,7 +3229,7 @@ msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "Морате да подесите <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:316
+#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:315
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
@@ -3249,7 +3242,7 @@ msgstr "Пријави се"
 msgid "You must sign in to proceed."
 msgstr "Морате бити пријављени да бисте наставили."
 
-#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:161
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:149 templates/base.html:169
 msgid "Sign in / Sign up"
 msgstr "Пријави се / Региструј се"
 
@@ -3326,15 +3319,19 @@ msgstr "Неке функције су привремено онемогућен
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "Услови коришћења су промењени од када сте се последњи пут сложили са њима. Молимо прочитајте и сложите се са <a href=\"%(url)s\">новим условима</a>."
 
-#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:151
+#: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:152
 msgid "Please sign in"
 msgstr "Молимо пријавите се"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:154
+#: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:155
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
 msgstr "Пријавите се или се региструјте са Вашим <a href=\"%(url)s\">Persona</a> налогом испод."
 
-#: mkt/developers/templates/developers/terms.html:3
+#: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
+msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
+msgstr ""
+
+#: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
 msgstr "Услови коришћења"
 
@@ -3378,7 +3375,7 @@ msgstr[2] "{num} трансакција пронађено"
 msgid "Your apps currently have no transactions."
 msgstr "Ваша апликација тренутно нема трансакција."
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:155 mkt/lookup/templates/lookup/transaction_summary.html:20
 #: mkt/reviewers/templates/reviewers/logs.html:16
 msgid "Date"
 msgstr "Датум"
@@ -3543,7 +3540,7 @@ msgstr "Статус и верзија"
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
 #: mkt/developers/templates/developers/payments/in-app-products.html:65 mkt/lookup/forms.py:59 mkt/lookup/forms.py:64 mkt/lookup/templates/lookup/app_summary.html:59
-#: mkt/lookup/templates/lookup/app_summary.html:150 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/lookup/templates/lookup/app_summary.html:158 mkt/reviewers/forms.py:153 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Статус"
@@ -3574,9 +3571,7 @@ msgstr "Апликација је <b>банована на Marketplace-у</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
-msgstr ""
-"Вашу апликацију је бановао администратор сајта. Ако имате питања, молимо "
-"пошаљите е-пошту %(email)s."
+msgstr "Вашу апликацију је бановао администратор сајта. Ако имате питања, молимо пошаљите е-пошту %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3735,9 +3730,7 @@ msgstr "Можете да ажурирате регионе на <a href=\"{comp
 
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
-"Ако Ваша апликација ради на уређајима који имају мало меморије можете "
-"захтевати реценизију да би апликација била приказана на тим уређајима."
+msgstr "Ако Ваша апликација ради на уређајима који имају мало меморије можете захтевати реценизију да би апликација била приказана на тим уређајима."
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -3833,8 +3826,8 @@ msgstr "Да ли сте сигурни да желите да избришет�
 #: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:60 mkt/developers/templates/developers/apps/edit/technical.html:68
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:130 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:118 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
 #: mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "или"
@@ -3844,8 +3837,8 @@ msgstr "или"
 #: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:70
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
-#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:131
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:115 mkt/lookup/templates/lookup/user_summary.html:118
 #: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
@@ -3972,7 +3965,7 @@ msgstr "Региони да прикажу банер у"
 msgid "Regions that the banner message will be shown in."
 msgstr "Региони у којима ће поруке банера бити приказане."
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:113
+#: mkt/developers/templates/developers/apps/edit/admin.html:169 mkt/search/forms.py:114
 msgid "Tags"
 msgstr "Ознаке"
 
@@ -4146,10 +4139,8 @@ msgid "Support Information for {0}"
 msgstr "Информације о подршци за {0}"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
-msgid "The email address used by end users to contact you with support issues and refund requests. If you have different addresses for each language multiple translations of this field can be added."
+msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
-"Адреса е-поште се користи од стране крајњих корисника да Вас контактирају са питањима о подршци и захтева за повраћај новца. Ако имате различите адресе е-пошта за сваки језик више превода овог поља "
-"може да се дода."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4373,7 +4364,7 @@ msgstr "Статус &amp; верзије"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1482
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1484
 msgid "Content Ratings"
 msgstr "Оцене садржаја"
 
@@ -4658,10 +4649,7 @@ msgstr "Кључеви унутар апликације"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr ""
-"Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше "
-"апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и "
-"управљање производима."
+msgstr "Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и управљање производима."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
@@ -4674,9 +4662,8 @@ msgstr "Производи у оквиру апликације"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
-"Производи унутар апликације Вам омогућавају да примате уплате у Вашој "
-"апликацији и поједностављује процес тако што Вам омогућава да направите и "
-"управљате производима на Firefox Marketplace Developer Hub-у."
+"Производи унутар апликације Вам омогућавају да примате уплате у Вашој апликацији и поједностављује процес тако што Вам омогућава да направите и управљате производима на Firefox Marketplace "
+"Developer Hub-у."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
@@ -4895,31 +4882,43 @@ msgstr "Немате ниједан подешен рачун за плаћањ�
 msgid "Add Bango Account"
 msgstr "Додај Bango налог"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:20
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
+msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
 msgstr "Обично 9, 10 или 11 цифара. Пример: 0114584906."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:27
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
 msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
 msgstr "Или 8 или 11 карактера. Пример: WFBIUS6WPDX."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:31
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
 msgstr "Опционо"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:128 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
+msgid "Name of registered company or individual."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
+msgid "Name of account on the Marketplace (not sent to Bango)."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
 msgid "Register Payment Account"
 msgstr "Региструјте рачун за плаћање"
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:64
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:17 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
 msgid "Processing Request..."
 msgstr "Процесирам захтев..."
 
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:129
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:65
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_boku.html:18 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
 msgstr "Молимо сачекајте док контактирамо сервер за плаћање."
@@ -4964,7 +4963,11 @@ msgstr "Додај референтни налог"
 msgid "Modify Bango Account"
 msgstr "Уреди Bango налог"
 
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:116 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
+msgid "A name to refer to the account on the Marketplace, not sent to Bango."
+msgstr ""
+
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
 msgstr "Ажурирај налог"
 
@@ -5250,8 +5253,8 @@ msgstr "Коришћење апликацја ван мреже"
 msgid "Developing Game Apps"
 msgstr "Развој игрица"
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:113 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
-#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1488
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/user_summary.html:35 mkt/lookup/templates/lookup/user_summary.html:39
+#: mkt/reviewers/templates/reviewers/queue.html:33 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1490
 msgid "Payments"
 msgstr "Плаћања"
 
@@ -5504,37 +5507,35 @@ msgstr "Дошло до грешке приликом приступа дато�
 msgid "There was an error accessing file %s."
 msgstr "Дошло до грешке приликом приступа датотеци %s."
 
-#: mkt/files/utils.py:76
+#: mkt/files/utils.py:74
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
 msgstr "Датотека \"manifest.webapp\" није нађена у корену архиве спаковане апликације."
 
-#: mkt/files/utils.py:98
+#: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
-"Нисам могао да декодирам webapp манифест датотеку. Проверите Вашу манифест "
-"датотеку за специјалне non-utf-8 карактере."
+msgstr "Нисам могао да декодирам webapp манифест датотеку. Проверите Вашу манифест датотеку за специјалне non-utf-8 карактере."
 
-#: mkt/files/utils.py:106
+#: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
 msgstr "Манифест webapp није валидан JSON."
 
-#: mkt/files/utils.py:115
+#: mkt/files/utils.py:113
 msgid "Your specified app locales are not in the correct format."
 msgstr "Ваши назначени локали апликације нису исправног формата."
 
-#: mkt/files/utils.py:132
+#: mkt/files/utils.py:130
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr "Назив програмера је неопходан у манифесту како би био приказан на листингу апликације."
 
-#: mkt/files/utils.py:182
+#: mkt/files/utils.py:180
 msgid "Invalid file name in archive: {0}"
 msgstr "Неисправан назив датотеке у архиви: {0}"
 
-#: mkt/files/utils.py:190
+#: mkt/files/utils.py:188
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Датотека прелази ограничење величине у архиви: {0}"
 
-#: mkt/files/utils.py:240
+#: mkt/files/utils.py:238
 msgid "Invalid archive."
 msgstr "Неважећа архива."
 
@@ -5731,7 +5732,7 @@ msgstr "Хостоване апликације"
 msgid "Submitted"
 msgstr "Поднето"
 
-#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:165
+#: mkt/lookup/templates/lookup/app_summary.html:69 mkt/lookup/templates/lookup/app_summary.html:173
 msgid "OK"
 msgstr "У реду"
 
@@ -5776,47 +5777,55 @@ msgstr "Извештаји о злоупотреби"
 msgid "Permissions"
 msgstr "Дозволе"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:105
+msgid "No reason given"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:107
+msgid "No permissions requested"
+msgstr ""
+
+#: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
 msgstr "Преузимања"
 
-#: mkt/lookup/templates/lookup/app_summary.html:115 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:123 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "Куповине"
 
-#: mkt/lookup/templates/lookup/app_summary.html:125 mkt/lookup/templates/lookup/user_summary.html:42
+#: mkt/lookup/templates/lookup/app_summary.html:133 mkt/lookup/templates/lookup/user_summary.html:42
 msgid "Refunds"
 msgstr "Повраћај новца"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:128
+#: mkt/lookup/templates/lookup/app_summary.html:136
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} тражених ({1} купљених)"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:131
+#: mkt/lookup/templates/lookup/app_summary.html:139
 msgid "{0} auto-approved"
 msgstr "{0} аутоматски одобри"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:133
+#: mkt/lookup/templates/lookup/app_summary.html:141
 msgid "{0} approved"
 msgstr "{0} прихваћено"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:135
+#: mkt/lookup/templates/lookup/app_summary.html:143
 msgid "{0} rejected"
 msgstr "{0} одбијено"
 
-#: mkt/lookup/templates/lookup/app_summary.html:143
+#: mkt/lookup/templates/lookup/app_summary.html:151
 msgid "Version History"
 msgstr "Историјат верзија"
 
-#: mkt/lookup/templates/lookup/app_summary.html:148
+#: mkt/lookup/templates/lookup/app_summary.html:156
 msgid "Version (ID)"
 msgstr "Верзија (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:149
+#: mkt/lookup/templates/lookup/app_summary.html:157
 msgid "Filename (ID, Size)"
 msgstr "Име датотеке (ID, величина)"
 
@@ -6037,7 +6046,7 @@ msgid "Tier %s"
 msgstr "Ред %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "Рачун за {0}"
 
@@ -6161,7 +6170,7 @@ msgstr "Тип рачуна"
 msgid "Manifest location"
 msgstr "Локација манифеста"
 
-#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:90
+#: mkt/receipts/templates/receipts/test_manifest.html:36 mkt/site/helpers.py:89
 msgid "Install"
 msgstr "Инсталирај"
 
@@ -6241,7 +6250,7 @@ msgstr "Tarako-ready"
 msgid "Reviewer Tools"
 msgstr "Алати рецензента"
 
-#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:169
+#: mkt/reviewers/helpers.py:42 mkt/site/helpers.py:168
 msgid "Apps"
 msgstr "Апликације"
 
@@ -6322,67 +6331,65 @@ msgstr "Коментара"
 msgid "Rejected or Unreviewed"
 msgstr "Одбијено или није прегледано"
 
-#: mkt/reviewers/utils.py:449 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:453 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "Одобри"
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:454
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "Ово ће одобрити апликацију и омогућити аутору да је објави."
 
-#: mkt/reviewers/utils.py:454 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:458 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Одбиј"
 
-#: mkt/reviewers/utils.py:456
+#: mkt/reviewers/utils.py:460
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "Ово ће одбити апликацију, уклонити је из реда разматрање и повућиће је ако је већ објављена."
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:465
 msgid "Request more information"
 msgstr "Захтевај више информација"
 
-#: mkt/reviewers/utils.py:463
+#: mkt/reviewers/utils.py:467
 msgid "This will send the author(s) an email requesting more information."
 msgstr "Ово ће послати аутору е-пошту у којој ће те захтевати више информација."
 
-#: mkt/reviewers/utils.py:467
+#: mkt/reviewers/utils.py:471
 msgid "Escalate"
 msgstr "Ескалирај"
 
-#: mkt/reviewers/utils.py:469
+#: mkt/reviewers/utils.py:473
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "Обележи ову апликацију за преглед админа. Коментари се шаљу администраторима, а не аутору."
 
-#: mkt/reviewers/utils.py:476
+#: mkt/reviewers/utils.py:480
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
 msgstr "Коментариши ову апликацију. Аутор неће моћи да види ове коментаре."
 
-#: mkt/reviewers/utils.py:480
+#: mkt/reviewers/utils.py:484
 msgid "Clear Escalation"
 msgstr "Очисти ескалацију"
 
-#: mkt/reviewers/utils.py:482
+#: mkt/reviewers/utils.py:486
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "Очисти ову апликацију из реда за ескалацију. Аутор неће добити е-пошту или видети коментаре."
 
-#: mkt/reviewers/utils.py:487
+#: mkt/reviewers/utils.py:491
 msgid "Clear Re-review"
 msgstr "Очисти поновни преглед"
 
-#: mkt/reviewers/utils.py:489
+#: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "Очисти ову апликацију из реда за поново прегледање. Аутор неће добити е-пошту или видети коментаре."
 
-#: mkt/reviewers/utils.py:494
+#: mkt/reviewers/utils.py:498
 msgid "Ban app"
 msgstr "Бануј апликацију"
 
-#: mkt/reviewers/utils.py:496
+#: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
-msgstr ""
-"Бануј ову апликацију са Marketplace-а. Слично одбијању само аутори не могу "
-"опет да поднесу апликацију. Ово се користи само у екстремним случајевима."
+msgstr "Бануј ову апликацију са Marketplace-а. Слично одбијању само аутори не могу опет да поднесу апликацију. Ово се користи само у екстремним случајевима."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6893,6 +6900,10 @@ msgstr "Следећа страница"
 msgid "Previous Page"
 msgstr "Предходна страница"
 
+#: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
+msgid "Loading App History &hellip;"
+msgstr ""
+
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
 msgstr "Недавни поени"
@@ -7010,6 +7021,10 @@ msgstr "Ради ван мреже"
 msgid "Supported languages"
 msgstr "Подржани језици"
 
+#: mkt/search/forms.py:109
+msgid "Author name"
+msgstr ""
+
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
 msgstr "Претрага је недоступна"
@@ -7050,12 +7065,12 @@ msgstr "Чим се одобри."
 msgid "Not until I manually make it public."
 msgstr "Не док га сам ручно не направим јавним."
 
-#: mkt/site/helpers.py:159
+#: mkt/site/helpers.py:158
 msgid "Home"
 msgstr "Почетна"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: mkt/site/helpers.py:326
+#: mkt/site/helpers.py:325
 msgid "{0} ago"
 msgstr "пре {0}"
 
@@ -7178,13 +7193,9 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"Полиса приватности објашњава како се рукује са подацима који су добијени "
-"кроз апликацију. На пример: Које податке добијате? Како их користите? Са "
-"киме их делите? Да ли добијате личне податке? Да ли предузимате кораке да их "
-"учините анонимним? Какав избор корисници имају код контроле података које "
-"Ви и остали добијате? Унесите полису приватности или текст изнад. Ако немате "
-"полису приватности, <a href=\"{url}\" target=\"_blank\">сазнајте како да је "
-"направите.</a>"
+"Полиса приватности објашњава како се рукује са подацима који су добијени кроз апликацију. На пример: Које податке добијате? Како их користите? Са киме их делите? Да ли добијате личне податке? Да ли "
+"предузимате кораке да их учините анонимним? Какав избор корисници имају код контроле података које Ви и остали добијате? Унесите полису приватности или текст изнад. Ако немате полису приватности, "
+"<a href=\"{url}\" target=\"_blank\">сазнајте како да је направите.</a>"
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7408,11 +7419,11 @@ msgstr "Поздрав"
 msgid "Edit Account Settings"
 msgstr "Измени поставке налога"
 
-#: mkt/templates/mkt/account-links.html:10
+#: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
 msgstr "Повратак на Marketplace"
 
-#: mkt/templates/mkt/account-links.html:12
+#: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
 msgstr "Одјави се"
 
@@ -7552,33 +7563,33 @@ msgstr "Mozilla жели да ме контактира у вези нових �
 msgid "User Notifications"
 msgstr "Нотификације корисника"
 
-#: mkt/users/views.py:69
-msgid "An email address is required."
-msgstr "Потребна је дреса е-поште."
-
-#: mkt/users/views.py:76
-msgid "A user with that email address does not exist."
-msgstr "Корисник са овом адресом е-поште не постоји."
-
-#: mkt/users/views.py:77
-msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr "Корисник са овом адресом е-поште не постоји, или није још прихватио Сагласност о програмерима."
-
-#: mkt/users/views.py:188
-msgid "Persona authentication failure."
-msgstr "Persona аутентификација неуспешна."
-
-#: mkt/users/views.py:208
-msgid "Please use the verified email for this account."
-msgstr "Молимо Вас користите верификовану адресу е-поште за овај налог."
-
-#: mkt/users/management/commands/fxa_mail.py:14 mkt/users/management/commands/fxa_mail.py:17
+#: mkt/users/tasks.py:15 mkt/users/tasks.py:18
 msgid "Firefox Accounts is coming"
 msgstr "Firefox налози долазе"
 
-#: mkt/users/management/commands/fxa_mail.py:15 mkt/users/management/commands/fxa_mail.py:16 mkt/users/management/commands/fxa_mail.py:18 mkt/users/management/commands/fxa_mail.py:19
+#: mkt/users/tasks.py:16 mkt/users/tasks.py:17 mkt/users/tasks.py:19 mkt/users/tasks.py:20
 msgid "Activate your Firefox Account"
 msgstr "Активирајте Ваш Firefox налог"
+
+#: mkt/users/views.py:70
+msgid "An email address is required."
+msgstr "Потребна је дреса е-поште."
+
+#: mkt/users/views.py:77
+msgid "A user with that email address does not exist."
+msgstr "Корисник са овом адресом е-поште не постоји."
+
+#: mkt/users/views.py:78
+msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
+msgstr "Корисник са овом адресом е-поште не постоји, или није још прихватио Сагласност о програмерима."
+
+#: mkt/users/views.py:193
+msgid "Persona authentication failure."
+msgstr "Persona аутентификација неуспешна."
+
+#: mkt/users/views.py:217
+msgid "Please use the verified email for this account."
+msgstr "Молимо Вас користите верификовану адресу е-поште за овај налог."
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
@@ -7586,72 +7597,51 @@ msgstr "Активирај сада"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
-msgstr ""
-"За више информација о Firefox налозима молимо погледајте <a href=\"%"
-"(faq)s\">ЧПП</a>."
+msgstr "За више информација о Firefox налозима молимо погледајте <a href=\"%(faq)s\">ЧПП</a>."
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
-"Ви добијате ову е-пошту зато што сте направили налог на Firefox Marketplace. "
-"Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%"
-"(terms)s\">Услови коришћења</a> | <a href=\"%(privacy)s\">Полиса "
-"приватности</a>"
+"Ви добијате ову е-пошту зато што сте направили налог на Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Услови коришћења</a> | <a href="
+"\"%(privacy)s\">Полиса приватности</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
-msgstr ""
-"Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш "
-"нови Firefox налог."
+msgstr "Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш нови Firefox налог."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
-msgstr ""
-"Ускоро ће Firefox Marketplace пензионисати тренутни систем за пријаву "
-"(Persona) у корист далеко снажнијих налога које зовемо Firefox налози."
+msgstr "Ускоро ће Firefox Marketplace пензионисати тренутни систем за пријаву (Persona) у корист далеко снажнијих налога које зовемо Firefox налози."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
-msgstr ""
-"Када транзиција са Persona-е на Firefox налоге буде спремна, Ви ћете добити "
-"е-пошту са активационом везом."
+msgstr "Када транзиција са Persona-е на Firefox налоге буде спремна, Ви ћете добити е-пошту са активационом везом."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
-"Firefox Marketplace се преместио на Firefox налоге да би пружио више "
-"интегрисано искуство преко свих Mozilla сервиса и производа. Имајући Firefox "
-"налог Вам омогућава да приступите постојећим Marketplace апликацијама и "
-"неприметно уживате са Вашим апликацијама на више уређаја, са више услуга "
-"ускоро."
+"Firefox Marketplace се преместио на Firefox налоге да би пружио више интегрисано искуство преко свих Mozilla сервиса и производа. Имајући Firefox налог Вам омогућава да приступите постојећим "
+"Marketplace апликацијама и неприметно уживате са Вашим апликацијама на више уређаја, са више услуга ускоро."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
-msgstr ""
-"Активирање Вашег налога је лако. Једноставно се пријавите и верификујте "
-"налог."
+msgstr "Активирање Вашег налога је лако. Једноставно се пријавите и верификујте налог."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
-msgstr ""
-"Да бисте приступили и управљали листи апликација на Firefox Marketplace-у, "
-"морате активирати Firefox налог."
+msgstr "Да бисте приступили и управљали листи апликација на Firefox Marketplace-у, морате активирати Firefox налог."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
-msgstr ""
-"Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш "
-"нови налог."
+msgstr "Firefox Marketplace се преместио на Firefox налоге. Молимо активирајте Ваш нови налог."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
-msgstr ""
-"ВАЖНО: Морате активирати Ваш Firefox налог како бисте приступили и управљали "
-"Вашим апликација које се налазе на Firefox Marketplace-у."
+msgstr "ВАЖНО: Морате активирати Ваш Firefox налог како бисте приступили и управљали Вашим апликација које се налазе на Firefox Marketplace-у."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7688,66 +7678,66 @@ msgstr[1] "Све ознаке морају садржати најмање {0} 
 msgstr[2] "Све ознаке морају садржати најмање {0} карактера."
 
 # Column name in a table.
-#: mkt/webapps/models.py:205
+#: mkt/webapps/models.py:207
 msgid "Listed"
 msgstr "У листи"
 
-#: mkt/webapps/models.py:1375
+#: mkt/webapps/models.py:1377
 msgid "You must provide a support email."
 msgstr "Морате да напишете е-пошту за подршку."
 
-#: mkt/webapps/models.py:1377
+#: mkt/webapps/models.py:1379
 msgid "You must provide an app name."
 msgstr "Морате да напишете име апликације."
 
-#: mkt/webapps/models.py:1379
+#: mkt/webapps/models.py:1381
 msgid "You must provide at least one device type."
 msgstr "Морате обезбедити бар један тип уређаја."
 
-#: mkt/webapps/models.py:1382
+#: mkt/webapps/models.py:1384
 msgid "You must provide at least one category."
 msgstr "Морате да изаберете барем једну категорију."
 
-#: mkt/webapps/models.py:1449
+#: mkt/webapps/models.py:1451
 msgid "You must set up content ratings."
 msgstr "Морате да подесите оцене садржаја."
 
-#: mkt/webapps/models.py:1451
+#: mkt/webapps/models.py:1453
 msgid "You must set up a payment account."
 msgstr "Морате да подесите налог за плаћање."
 
-#: mkt/webapps/models.py:1476
+#: mkt/webapps/models.py:1478
 msgid "This app's submission process has not been fully completed."
 msgstr "Процес подношења апликације није у потпуности завршен."
 
-#: mkt/webapps/models.py:1483
+#: mkt/webapps/models.py:1485
 msgid "This app needs to get a content rating."
 msgstr "Ова апликација треба да добије оцену садржаја."
 
-#: mkt/webapps/models.py:1489
+#: mkt/webapps/models.py:1491
 msgid "This app needs a payment account set up."
 msgstr "Овој апликацији је потребан подешен рачун за плаћање."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2731
+#: mkt/webapps/models.py:2733
 msgid "awaiting approval"
 msgstr "чекање на одобрење"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2733
+#: mkt/webapps/models.py:2735
 msgid "rejected"
 msgstr "одбијено"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2735
+#: mkt/webapps/models.py:2737
 msgid "requires additional review"
 msgstr "захтева додатан преглед"
 
-#: mkt/webapps/models.py:2786
+#: mkt/webapps/models.py:2788
 msgid "{region} approval status"
 msgstr "{region} статус одобрења"
 
-#: mkt/webapps/models.py:2792
+#: mkt/webapps/models.py:2794
 msgid "{region} nomination date"
 msgstr "{region} датум номинације"
 
@@ -7767,15 +7757,15 @@ msgstr "Одјави се"
 msgid "Log in / Register"
 msgstr "Пријави се / Региструј се"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "Firefox Accounts has arrived"
 msgstr "Firefox налози су стигли"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "Learn how to transfer your account"
 msgstr "Сазнајте како да пренесете Ваш налог"
 
-#: templates/base.html:128
+#: templates/base.html:129
 msgid "It's easy."
 msgstr "Лако је."
 
