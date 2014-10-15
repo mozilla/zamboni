@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-01 21:32-0400\n"
-"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"PO-Revision-Date: 2014-10-15 02:09+0000\n"
+"Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: \n"
-"X-POOTLE-MTIME: 1382527882.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1413338949.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -90,7 +90,7 @@ msgstr "{addon} のバージョン {version} が追加されました。"
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr "{addon} の {version} が編集されました。"
+msgstr "{addon} のバージョン {version} が編集されました。"
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
@@ -2132,7 +2132,7 @@ msgstr "タッチ"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr "このアプリは、タッチイベントに対応したプラットフォームを必要とします。このオプションは、アプリがマウスで操作したときに正しく機能しないことを示します。"
+msgstr "アプリはタッチイベント対応のプラットフォームを必要とします。このオプションは、アプリがマウスで操作したときに正しく機能しないことを示します。"
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
@@ -2405,7 +2405,7 @@ msgstr "%d 歳以上"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr "レーティング拒否"
+msgstr "レーティング却下"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
@@ -2616,7 +2616,7 @@ msgstr "<b>公開中</b>: Marketplace 上で誰でも参照でき、検索結果
 
 #: mkt/developers/forms.py:761
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
-msgstr "<b>非掲載</b>: URL を知っている人のみが参照でき、検索結果や一覧ページには表示されます。"
+msgstr "<b>非掲載</b>: URL を知っている人のみが参照でき、検索結果や一覧ページには表示されません。"
 
 #: mkt/developers/forms.py:777
 msgid "App Visibility:"
@@ -2723,7 +2723,7 @@ msgstr "このアプリを Firefox OS 端末のプリインストール候補と
 
 #: mkt/developers/forms.py:1169
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr "テストプランをアップロード (2.5 MB 以下の PDF もしくは Excel ファイル)"
+msgstr "テストプランをアップロード (2.5 MB 以下の .pdf もしくはエクセルの .xls ファイル)"
 
 #: mkt/developers/forms.py:1185
 msgid "Test plan required."
@@ -3167,9 +3167,11 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p> Marketplace API には主に 2 つの用途があります。従来の OAuth フローを用いている他の Web サイトからの使用、あるいはコマンドラインからの使用です。これらの違いは <a href=\"https://firefox-"
-"marketplace-api.marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace ドキュメント</a> の中で解説されています。テストを行う場合は公開サーバではなく <a href="
-"\"https://marketplace-dev.allizom.org\">開発サーバ</a> 上で行ってください。 </p>"
+"<p> Marketplace API には主に 2 つの用途があります。従来の OAuth フローを用いている他の Web "
+"サイトからの使用、あるいはコマンドラインからの使用です。これらの違いは <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace "
+"ドキュメント</a> の中で解説されています。テストを行う場合は公開サーバではなく <a href=\"https://marketplace-"
+"dev.allizom.org\">開発サーバ</a> 上で行ってください。 </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -5290,7 +5292,9 @@ msgstr "世界で最も人気のブランドとお気に入りのアプリが Fi
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:83
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
-msgstr "全世界あるいは特定の地域に向けて最高の HTML アプリを配布できる、完全にクロスプラットフォーム、クロスデバイス、非プロプライエタリなマーケットプレイスです。"
+msgstr ""
+"全世界あるいは特定の地域に向けて最高の HTML5 "
+"アプリを配布できる、完全にクロスプラットフォーム、クロスデバイス、非プロプライエタリなマーケットプレイスです。"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:96
 msgid "Available now!"
@@ -5467,7 +5471,7 @@ msgstr "ファイル「%s」を開けませんでした。"
 
 #: mkt/files/utils.py:76
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
-msgstr "ファイル「manifest.webapp」がパッケージ型アプリアーカイブのルートディレクトリに見つかりませんでした。"
+msgstr "「manifest.webapp」ファイルがパッケージ型アプリアーカイブのルートディレクトリに見つかりませんでした。"
 
 #: mkt/files/utils.py:98
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
@@ -6051,7 +6055,7 @@ msgstr "レビューを削除"
 
 #: mkt/ratings/helpers.py:13 mkt/ratings/templates/ratings/reviews_link.html:8
 msgid "Not yet reviewed"
-msgstr "まだ審査を受けていません"
+msgstr "まだ評価を受けていません"
 
 #: mkt/ratings/models.py:117
 msgid "Spam or otherwise non-review content"
@@ -6381,7 +6385,7 @@ msgstr "審査担当者によって変更された動作要件: {0}"
 
 #: mkt/reviewers/views.py:349
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr "「{0}」の処理が完了しました (+{1} ポイント、{2} 合計)。"
+msgstr "「{0}」の処理が完了しました (+{1} ポイント、合計 {2})。"
 
 #: mkt/reviewers/views.py:351
 msgid "Review successfully processed."
@@ -7078,7 +7082,7 @@ msgstr "端末が変更されました: {0}"
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:40
 msgid "Requirements changed: {0}"
-msgstr "動作要件が変更されました: {0}"
+msgstr "変更された動作要件: {0}"
 
 #: mkt/submit/forms.py:48
 msgid "Cannot be free and paid."
@@ -7201,7 +7205,9 @@ msgstr "少なくともひとつは追加してください。"
 
 #: mkt/submit/templates/submit/details.html:154
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
-msgstr "対応形式は PNG と JPEG です。スクリーンショットは最低でも縦 320px、横 480px でなければなりません。2:3 の縦横比が最適です。動画の対応形式は WebM です。"
+msgstr ""
+"対応形式は PNG と JPEG です。スクリーンショットは最低でも横 320px、縦 480px でなければなりません。2:3 "
+"の縦横比が最適です。動画の対応形式は WebM です。"
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -7269,11 +7275,11 @@ msgstr "アプリの詳細を入力"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr "<span><a href=\"%(rating_url)s\">コンテンツレーティング</a> を設定<span>"
+msgstr "<span><a href=\"%(rating_url)s\">コンテンツレーティング</a> を設定</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr "<a href=\"%(pay_url)s\">決済情報</a> を設定"
+msgstr "<span><a href=\"%(pay_url)s\">決済情報</a> を設定</span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
