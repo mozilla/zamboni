@@ -16,6 +16,7 @@ To run the whole shebang use::
 There are a lot of options you can pass to adjust the output.  Read `the docs`_
 for the full set, but some common ones are:
 
+* ``-P`` to prevent nose adding the `lib` directory to the path.
 * ``--noinput`` tells Django not to ask about creating or destroying test
   databases.
 * ``--logging-clear-handlers`` tells nose that you don't want to see any

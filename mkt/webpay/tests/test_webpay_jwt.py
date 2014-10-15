@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 
 import jwt
 from mozpay.verify import verify_claims, verify_keys
-from nose.tools import eq_, raises
+from nose.tools import eq_, ok_, raises
 
 from mkt.constants.payments import PROVIDER_BOKU
 from mkt.developers.models import AddonPaymentAccount, PaymentAccount
@@ -65,15 +65,23 @@ class TestPurchaseJWT(PurchaseTest):
         eq_(request['postbackURL'], absolutify(reverse('webpay.postback')))
         eq_(request['chargebackURL'], absolutify(reverse('webpay.chargeback')))
 
-        token_product_data = urlparse.parse_qs(request['productData'])
-        expected_product_data = urlparse.parse_qs(
+        product = urlparse.parse_qs(request['productData'])
+        expected = urlparse.parse_qs(
             urlencode(self.product.product_data(self.contribution)))
-        eq_(token_product_data, expected_product_data)
+        eq_(product['buyer_email'], [self.user.email])
+        eq_(product, expected)
 
     @raises(ValueError)
     def test_empty_public_id(self):
         self.addon.update(solitude_public_id=None)
         self.decode_token()
+
+    def test_no_user(self):
+        self.contribution.update(user=None)
+        token_data = self.decode_token()
+        request = token_data['request']
+        product = urlparse.parse_qs(request['productData'])
+        ok_('buyer_email' not in product)
 
 
 class BaseTestWebAppProduct(PurchaseTest):
@@ -181,6 +189,10 @@ class TestInAppProduct(InAppPurchaseTest):
         with self.settings(MEDIA_URL='/media/'):
             eq_(self.product.icons()[64],
                 'http://testserver/media/img/mkt/icons/rocket-64.png')
+
+    def test_no_user(self):
+        product_data = self.product.product_data(self.contribution)
+        ok_('buyer_email' not in product_data)
 
 
 class TestSimulatedInAppProduct(InAppPurchaseTest):

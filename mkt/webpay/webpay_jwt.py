@@ -101,12 +101,16 @@ class WebAppProduct(object):
         return self.webapp.current_version.all_files[0].size
 
     def product_data(self, contribution):
-        return {
+        data = {
             'addon_id': self.webapp.pk,
             'application_size': self.application_size(),
             'contrib_uuid': contribution.uuid,
             'public_id': self.addon().solitude_public_id,
         }
+        if contribution.user:
+            data['buyer_email'] = contribution.user.email
+
+        return data
 
 
 class InAppProduct(object):
