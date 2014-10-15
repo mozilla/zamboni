@@ -4636,7 +4636,7 @@ msgstr "Prodho Kyçe"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr "max}  "
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
@@ -4644,11 +4644,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr "- {max}  "
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
-msgstr "n} - {max}  "
+msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."

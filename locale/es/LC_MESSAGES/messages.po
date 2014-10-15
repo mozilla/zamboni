@@ -183,7 +183,7 @@ msgstr "Comentario"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr "{version} añadida a {addon}."
+msgstr "{tag} añadida a {addon}."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
@@ -3162,7 +3162,7 @@ msgstr "API de Marketplace"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
-msgstr "Para acceder a la API Marketplace, acepta los <a href=\"%(terms)s\">términos del servicio</a> y crea un par de claves OAuth utilizando el formulario inferior."
+msgstr "Para acceder a la API Marketplace crea un par de claves OAuth utilizando el formulario inferior."
 
 #: mkt/developers/templates/developers/api.html:18
 msgid "To access the Marketplace API, accept the <a href=\"%(terms)s\">terms of service</a> and create an OAuth key pair using the form below."
@@ -3723,7 +3723,7 @@ msgstr "Nuestra revisión del {review_date} encontró que tu app no es compatibl
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
-msgstr "Solicitaste una revisión el {review_date}."
+msgstr "Solicitaste una revisión el {request_date}."
 
 #: mkt/developers/templates/developers/apps/status.html:318
 msgid "Your app is not enabled in any regions with low-memory devices."
