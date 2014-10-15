@@ -54,7 +54,7 @@ def fxa_preverify_url(user, expiry):
                      client_id=settings.FXA_CLIENT_ID,
                      email=user.email,
                      preVerifyToken=fxa_preverify_token(user, expiry),
-                     scope='profile:email',
+                     scope='profile',
                      state=Signer().sign(user.pk)
                      )
 
