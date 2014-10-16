@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-01 23:38+0000\n"
+"PO-Revision-Date: 2014-10-16 03:43+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412206684.0\n"
+"X-POOTLE-MTIME: 1413431024.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2781,7 +2781,7 @@ msgstr "不是一个更新"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "银行账户持有人名称"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2919,7 +2919,7 @@ msgstr "我的提交"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "捐赠给 {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3317,7 +3317,7 @@ msgstr "只须在下方登录或注册您的 <a href=\"%(url)s\">Persona</a> 账
 
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr ""
+msgstr "只需在下方登录或注册 <a href=\"%(url)s\">Firefox 账户</a>。"
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -4116,7 +4116,7 @@ msgstr "{0} 的用户支持信息"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
-msgstr ""
+msgstr "最终用户与您就支持问题联系的电子邮件地址。如果您对每种语言有多个不同的地址，可以在此字段的翻译中添加。"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4848,7 +4848,7 @@ msgstr "添加 Bango 账号"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
-msgstr ""
+msgstr "请查看<a target=\"_blank\" href=\"%(url)s\">支付账户的文档</a>。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4864,11 +4864,11 @@ msgstr "可选"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "注册的公司或个人的名称。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr ""
+msgstr "在应用市场上的账户名称（不发送给 Bango）"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4927,7 +4927,7 @@ msgstr "修改 Bango 账号"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "在应用市场上的指代账户的名称，不发送给 Bango。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5729,11 +5729,11 @@ msgstr "权限"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "没有给出原因"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "没有所须的权限"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6842,7 +6842,7 @@ msgstr "上一页"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "正在载入应用历史 &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -6963,7 +6963,7 @@ msgstr "支持的语言"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "作者名称"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
