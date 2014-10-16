@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-16 07:20+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2014-10-16 09:01+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413444015.0\n"
+"X-POOTLE-MTIME: 1413450095.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -5789,7 +5789,7 @@ msgstr "Geen reden gegeven"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr "Geen rechten gevraagd"
+msgstr "Geen permissies aangevraagd"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6370,11 +6370,15 @@ msgstr "Escaleren"
 
 #: mkt/reviewers/utils.py:473
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr "Markeer deze app voor beoordeling door een beheerder. De opmerkingen worden naar de beheerders verzonden, niet de schrijver(s)."
+msgstr ""
+"Deze app markeren voor beoordeling door een beheerder. De opmerkingen worden "
+"naar de beheerders verzonden, niet de schrijver(s)."
 
 #: mkt/reviewers/utils.py:480
 msgid "Make a comment on this app. The author(s) won't be able to see these comments."
-msgstr "Plaats een opmerking over deze app. Deze opmerkingen zijn niet zichtbaar voor de schrijver(s)."
+msgstr ""
+"Een opmerking over deze app plaatsen. Deze opmerkingen zijn niet zichtbaar "
+"voor de schrijver(s)."
 
 #: mkt/reviewers/utils.py:484
 msgid "Clear Escalation"
@@ -6382,7 +6386,9 @@ msgstr "Escalatie wissen"
 
 #: mkt/reviewers/utils.py:486
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
-msgstr "Wis deze app uit de escalatiewachtrij. De schrijvers ontvangen geen e-mailbericht en zien hier geen opmerkingen."
+msgstr ""
+"Deze app uit de escalatiewachtrij wissen. De schrijvers ontvangen geen "
+"e-mailbericht en zien hier geen opmerkingen."
 
 #: mkt/reviewers/utils.py:491
 msgid "Clear Re-review"
@@ -6390,7 +6396,9 @@ msgstr "Herbeoordeling wissen"
 
 #: mkt/reviewers/utils.py:493
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
-msgstr "Wis deze app uit de wachtrij herbeoordeling. De schrijvers ontvangen geen e-mailbericht en zien hier geen opmerkingen."
+msgstr ""
+"Deze app uit de wachtrij herbeoordeling wissen. De schrijvers ontvangen geen "
+"e-mailbericht en zien hier geen opmerkingen."
 
 #: mkt/reviewers/utils.py:498
 msgid "Ban app"
@@ -7027,7 +7035,7 @@ msgstr "Ondersteunde talen"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr "Naam schrijver"
+msgstr "Naam van schrijver"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
