@@ -253,7 +253,15 @@ class Command(BaseCommand):
             else:
                 index_tasks = [run_indexing.si(new_index, INDEXER, chunk)
                                for chunk in chunks]
-                chain(pre_task,
-                      chord(header=index_tasks, body=post_task)).apply_async()
+
+                if settings.CELERY_ALWAYS_EAGER:
+                    # Eager mode and chords don't get along. So we serialize
+                    # the tasks as a workaround.
+                    index_tasks.insert(0, pre_task)
+                    index_tasks.append(post_task)
+                    chain(*index_tasks).apply_async()
+                else:
+                    chain(pre_task, chord(header=index_tasks,
+                                          body=post_task)).apply_async()
 
         _print('New index and indexing tasks all queued up.')

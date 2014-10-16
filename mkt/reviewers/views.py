@@ -510,13 +510,10 @@ def queue_region(request, region=None):
 @permission_required([('Apps', 'ReviewTarako')])
 def additional_review(request, queue):
     """HTML page for an additional review queue."""
-    order_by = 'created'
-    if request.GET.get('order') == 'desc':
-        order_by = '-' + order_by
+    sort_descending = request.GET.get('order') == 'desc'
     # TODO: Add `.select_related('app')`. Currently it won't load the name.
-    additional_reviews = (
-        AdditionalReview.objects.unreviewed(queue=queue, and_approved=True)
-                                .order_by(order_by))
+    additional_reviews = AdditionalReview.objects.unreviewed(
+        queue=queue, and_approved=True, descending=sort_descending)
     apps = [ActionableQueuedApp(additional_review.app,
                                 additional_review.created,
                                 reverse('additionalreview-detail',

@@ -384,14 +384,21 @@ def tarako_failed(review):
 
 
 class AdditionalReviewManager(ManagerBase):
-    def unreviewed(self, queue, and_approved=False):
+    def unreviewed(self, queue, and_approved=False, descending=False):
         query = {
             'passed': None,
             'queue': queue,
         }
         if and_approved:
             query['app__status__in'] = amo.WEBAPPS_APPROVED_STATUSES
-        return self.get_queryset().no_cache().filter(**query)
+        if descending:
+            created_order = '-created'
+        else:
+            created_order = 'created'
+        return (self.get_queryset()
+                    .no_cache()
+                    .filter(**query)
+                    .order_by('-app__priority_review', created_order))
 
     def latest_for_queue(self, queue):
         try:
