@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-02 03:18+0000\n"
+"PO-Revision-Date: 2014-10-16 04:11+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412219886.0\n"
+"X-POOTLE-MTIME: 1413432714.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2794,7 +2794,7 @@ msgstr "Não é uma atualização"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Nome do proprietário da conta"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2933,7 +2933,7 @@ msgstr "As minhas submissões"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Doar para {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3336,6 +3336,8 @@ msgstr "Identifique-se ou registre-se com sua conta <a href=\"%(url)s\">Persona<
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Basta iniciar sessão ou fazer o registo nas <a href=\"%(url)s\">Contas do "
+"Firefox</a> abaixo."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -4146,6 +4148,9 @@ msgstr "Informações de apoio técnico para {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"O endereço de email utilizado por utilizadores finais para o contactar com "
+"pedidos de apoio. Se tiver endereços diferentes para cada linguagem, "
+"múltiplas traduções deste campo podem ser adicionadas."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4900,6 +4905,8 @@ msgstr "Adicionar conta Bango"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
 msgstr ""
+"Por favor consulte a <a target=\"_blank\" href=\"%(url)s\">documentação sobre "
+"Contas de Pagamento</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4915,11 +4922,11 @@ msgstr "Opcional"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "Nome da empresa registada ou individuo."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr ""
+msgstr "Nome da conta no Marketplace (não é enviado para o Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4980,7 +4987,7 @@ msgstr "Modificar conta do Bango"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "Um nome para a conta no Marketplace, que não é enviado para a Bango."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5795,11 +5802,11 @@ msgstr "Permissões"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Nenhum motivo fornecido"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Sem permissões solicitadas"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6924,7 +6931,7 @@ msgstr "Página anterior"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "A carregar histórico da aplicação &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -7046,7 +7053,7 @@ msgstr "Idiomas suportados"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "Nome do autor"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
