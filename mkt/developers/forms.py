@@ -776,7 +776,7 @@ class PublishForm(happyforms.Form):
         required=False, choices=PUBLISH_CHOICES, widget=forms.RadioSelect(),
         initial=0, coerce=int, label=_lazy('App Visibility:'))
     limited = forms.BooleanField(
-        required=False, label=mark_safe(
+        required=False, label=mark_safe_lazy(
             _lazy('<b>Limit to my team</b>: Visible to only Team Members.')))
 
     def __init__(self, *args, **kwargs):
