@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-02 01:47+0000\n"
+"PO-Revision-Date: 2014-10-16 03:48+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412214433.0\n"
+"X-POOTLE-MTIME: 1413431328.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2790,7 +2790,7 @@ msgstr "不是一個升級"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "銀行帳號戶名"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2928,7 +2928,7 @@ msgstr "我的提交"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "捐款給 {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3329,7 +3329,7 @@ msgstr "請在下方使用您的 <a href=\"%(url)s\">Persona</a> 登入或註冊
 
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
-msgstr ""
+msgstr "只要在下方登入或使用 <a href=\"%(url)s\">Firefox 帳號</a> 註冊。"
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -4130,7 +4130,7 @@ msgstr "{0} 的支援資訊"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
-msgstr ""
+msgstr "使用者遇到需要技術支援問題的時候用可以用來連絡您的電子郵件地址。若您對不同的語言又不同的信箱，則可新增多個欄位。"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4870,7 +4870,7 @@ msgstr "新增 Bango 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
-msgstr ""
+msgstr "請見 <a target=\"_blank\" href=\"%(url)s\">關於付款帳號的相關文件</a>。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4886,11 +4886,11 @@ msgstr "選擇性"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "公司登記名稱或自然人姓名。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr ""
+msgstr "Marketplace 上的帳號名稱（不會送到 Bango）。"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4949,7 +4949,7 @@ msgstr "修改 Bango 帳號"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr ""
+msgstr "在 Marketplace 用來指稱這個帳號的暱稱，不會送到 Bango。"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5760,11 +5760,11 @@ msgstr "權限"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "未提供原因"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "未請求權限"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6886,7 +6886,7 @@ msgstr "上一頁"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "正在載入應用程式歷史 &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -7007,7 +7007,7 @@ msgstr "支援的語言"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "作者名稱"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
