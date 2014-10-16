@@ -55,12 +55,13 @@ class TestRecommendationView(RestOAuth, amo.tests.ESTestCase):
             eq_(self.patched_requests.get.call_args[0][0],
                 'http://hy.fr/api/v2/recommend/20/{user_hash}/'.format(
                     user_hash=self.profile.recommendation_hash))
-            eq_(len(res.json), 2)
-            self.assertSetEqual([a['id'] for a in res.json],
+            objects = res.json['objects']
+            eq_(len(objects), 2)
+            self.assertSetEqual([a['id'] for a in objects],
                                 [app1.pk, app2.pk])
             # Light check for a full app object in response.
             for k in ('description', 'manifest_url', 'name', 'slug'):
-                ok_(k in res.json[0], 'Key %s not found in response' % k)
+                ok_(k in objects[0], 'Key %s not found in response' % k)
 
     def test_list_recommendations_disabled(self):
         with self.settings(RECOMMENDATIONS_ENABLED=False):

@@ -57,8 +57,7 @@ class RecommendationView(CORSMixin, MarketplaceView, ListAPIView):
                 return self._popular()
 
             sq = WebappIndexer.get_app_filter(self.request, app_ids=app_ids)
-            return Response(
-                self.serializer_class(
+            return Response({
+                'objects': self.serializer_class(
                     sq.execute().hits, many=True,
-                    context={'request': self.request})
-                .data)
+                    context={'request': self.request}).data})
