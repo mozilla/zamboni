@@ -30,22 +30,22 @@ docs:
 	$(MAKE) -C docs html
 
 test:
-	$(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id $(ARGS)
+	$(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --logging-clear-handlers --with-id --with-blockage $(ARGS)
 
 test_force_db:
-	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id $(ARGS)
+	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --logging-clear-handlers --with-id --with-blockage $(ARGS)
 
 test_api:
-	$(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id --config=mkt/api/tests/nose.cfg $(ARGS)
+	$(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --logging-clear-handlers --with-id --config=mkt/api/tests/nose.cfg --with-blockage $(ARGS)
 
 test_api_force_db:
-	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --config=mkt/api/tests/nose.cfg --with-id $(ARGS)
+	FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --logging-clear-handlers --config=mkt/api/tests/nose.cfg --with-id --with-blockage $(ARGS)
 
 tdd:
-	$(DJANGO) test --settings=$(SETTINGS) --noinput --failfast --pdb --with-id $(ARGS)
+	$(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --failfast --pdb --with-id --with-blockage $(ARGS)
 
 test_failed:
-	$(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id --failed $(ARGS)
+	$(DJANGO) test --settings=$(SETTINGS) -P -s --noinput --logging-clear-handlers --with-id --failed --with-blockage $(ARGS)
 
 update_code:
 	git checkout master && git pull && git submodule update --init --recursive
