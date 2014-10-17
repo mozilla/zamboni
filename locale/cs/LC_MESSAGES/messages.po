@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-05 09:43+0000\n"
+"PO-Revision-Date: 2014-10-17 15:36+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412502199.0\n"
+"X-POOTLE-MTIME: 1413560185.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2795,7 +2795,7 @@ msgstr "Nejedná se o upgrade"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Jméno vlastníka bankovního účtu"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2933,7 +2933,7 @@ msgstr "Mé příspěvky"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Přispět na {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3333,6 +3333,8 @@ msgstr "Jednoduše se níže přihlaste či registrujte pomocí svého účtu <a
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Jednoduše se níže přihlaste nebo registrujte s pomocí <a href=\"%(url)s\">Účet "
+"Firefox</a>."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -4143,6 +4145,9 @@ msgstr "Informace o podpoře pro {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"E-mailová adresa, která bude používána koncovými uživateli jako kontakt pro "
+"řešení problémů. Pokud máte odlišné e-mailové adresy pro jednotlivé jazyky, "
+"můžete přidat adresy pro jednotlivé jazyky."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4886,6 +4891,8 @@ msgstr "Přidat účet Bango"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
 msgstr ""
+"Podívejte se prosím na <a target=\"_blank\" href=\"%(url)s\">dokumentaci u Účtů "
+"pro platby</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4901,11 +4908,11 @@ msgstr "Volitelné"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "Jméno registrované společnosti nebo jedince."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr ""
+msgstr "Název účtu na Marketplace (není odesíláno do Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -5509,6 +5516,8 @@ msgstr "Soubor \"manifest.webapp\" nebyl v hlavním adresáři balíčku s aplik
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Nepodařilo se dekódovat soubor manifestu webapp. Zkontrolujte soubor s "
+"manifestem, zda neobsahuje znaky, které nejsou obsaženy v utf-8."
 
 #: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
@@ -5774,11 +5783,11 @@ msgstr "Oprávnění"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Bez udání důvodu"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Nejsou vyžadována žádná práva"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6903,7 +6912,7 @@ msgstr "Předchozí stránka"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Načítání historie aplikace &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -7024,7 +7033,7 @@ msgstr "Podporované jazyky"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "Jméno autora"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -7194,6 +7203,13 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"Zásady ochrany soukromí vysvětlují, jak je pracováno s daty, s kterými se "
+"manipuluje ve vaší aplikaci. Například: jaká data obdržíte? Jak s nimi "
+"pracujete? S kým je sdílíte? Získáváte osobní informace? Činíte je anonymní? "
+"Jaké možnosti volby mají uživatelé nad kontrolou, jaká data vy a ostatní "
+"obdržíte? Vložte výše odkaz na vaše zásady ochrany soukromí nebo vložte celý "
+"text. Pokud nemáte zásady ochrany soukromí, pak si <a href=\"{url}\" "
+"target=\"_blank\">přečtěte více o tom, jak je napsat</a>."
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7612,10 +7628,15 @@ msgstr "Server Firefox Marketplace přešel na Účet Firefox. Aktivujte si pros
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
 msgstr ""
+"Brzy Firefox Marketplace zavrhne aktuálně používaný systém pro přihlašování "
+"(Persona) ve prospěch více robustního systému pro správu uživatelských účtů, "
+"který nazýváme Účet Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
 msgstr ""
+"Jakmile bude přechod z Persona na Účet Firefox připraven, obdržíte e-mail s "
+"odkazem pro aktivaci."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
@@ -7626,6 +7647,7 @@ msgstr ""
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
 msgstr ""
+"Aktivace vašeho účtu je snadná. Jednoduše se přihlaste a ověřte svůj účet."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
@@ -7638,6 +7660,8 @@ msgstr "Firefox Marketplace přechází na Účet Firefox. Aktivujte si prosím 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
 msgstr ""
+"DŮLEŽITÉ: Pro přístup a správu svých aplikací na Firefox Marketplace musíte "
+"aktivovat svůj Účet Firefox."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
