@@ -16,6 +16,7 @@ from django.utils import translation
 
 import mock
 import requests
+import waffle
 from cache_nuggets.lib import Token
 from nose import SkipTest
 from nose.tools import eq_, ok_
@@ -41,11 +42,11 @@ from mkt.constants.features import FeatureProfile
 from mkt.developers.models import ActivityLog, ActivityLogAttachment, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.reviewers.models import (CannedResponse, EscalationQueue,
-                                  QUEUE_TARAKO, RereviewQueue, ReviewerScore)
+from mkt.reviewers.models import (CannedResponse, EscalationQueue, QUEUE_TARAKO,
+                                  RereviewQueue, ReviewerScore)
+from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.reviewers.views import (_progress, app_review, queue_apps,
                                  route_reviewer)
-from mkt.reviewers.utils import ReviewersQueuesHelper
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.submit.tests.test_views import BasePackagedAppTest
@@ -53,6 +54,7 @@ from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.models import AddonDeviceType, Webapp
+from mkt.webapps.tasks import unindex_webapps
 from mkt.webapps.tests.test_models import PackagedFilesMixin
 from mkt.zadmin.models import get_config, set_config
 
@@ -93,6 +95,7 @@ class AppReviewerTest(amo.tests.TestCase):
                        'user_999')
 
     def setUp(self):
+        super(AppReviewerTest, self).setUp()
         self.login_as_editor()
 
     def login_as_admin(self):
@@ -121,6 +124,9 @@ class AppReviewerTest(amo.tests.TestCase):
             eq_(e.parent().text(), text)
             eq_(e.attr('name'), 'action')
             eq_(e.val(), form_value)
+
+    def uses_es(self):
+        return waffle.switch_is_active('reviewer-tools-elasticsearch')
 
 
 class AccessMixin(object):
@@ -318,6 +324,8 @@ class FlagsMixin(object):
 
     def test_flag_packaged_app(self):
         self.apps[0].update(is_packaged=True)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         eq_(self.apps[0].is_packaged, True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -327,6 +335,8 @@ class FlagsMixin(object):
 
     def test_flag_premium_app(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         eq_(self.apps[0].is_premium(), True)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -336,18 +346,24 @@ class FlagsMixin(object):
 
     def test_flag_free_inapp_app(self):
         self.apps[0].update(premium_type=amo.ADDON_FREE_INAPP)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
 
     def test_flag_premium_inapp_app(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM_INAPP)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
         eq_(tds('div.sprite-reviewer-premium.inapp').length, 1)
 
     def test_flag_info(self):
         self.apps[0].latest_version.update(has_info_request=True)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -356,6 +372,8 @@ class FlagsMixin(object):
 
     def test_flag_comment(self):
         self.apps[0].latest_version.update(has_editor_comment=True)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tds = pq(res.content)('#addon-queue tbody tr td.flags')
@@ -369,6 +387,8 @@ class XSSMixin(object):
         a = self.apps[0]
         a.name = '<script>alert("xss")</script>'
         a.save()
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tbody = pq(res.content)('#addon-queue tbody').html()
@@ -380,6 +400,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                    XSSMixin):
 
     def setUp(self):
+        super(TestAppQueue, self).setUp()
         self.apps = [app_factory(name='XXX',
                                  status=amo.STATUS_PENDING,
                                  version_kw={'nomination': self.days_ago(2)},
@@ -396,6 +417,10 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_pending')
+
+    def tearDown(self):
+        unindex_webapps([app.id for app in self.apps])
+        super(TestAppQueue, self).tearDown()
 
     def review_url(self, app):
         return reverse('reviewers.apps.review', args=[app.app_slug])
@@ -479,6 +504,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_devices(self):
         AddonDeviceType.objects.create(addon=self.apps[0], device_type=1)
         AddonDeviceType.objects.create(addon=self.apps[0], device_type=2)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(5)')
@@ -487,6 +514,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_payments(self):
         self.apps[0].update(premium_type=amo.ADDON_PREMIUM)
         self.apps[1].update(premium_type=amo.ADDON_FREE_INAPP)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
@@ -523,9 +552,14 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
-        eq_([a.app for a in res.context['addons']], [self.apps[1]])
+        if self.uses_es():
+            eq_([a.id for a in res.context['addons']], [self.apps[1].id])
+        else:
+            eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (1)')
@@ -535,12 +569,21 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(doc('.tabnav li a:eq(4)').text(), u'Moderated Reviews (0)')
 
     def test_incomplete_no_in_queue(self):
-        # Test waffle-less.
         [app.update(status=amo.STATUS_NULL) for app in self.apps]
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         req = req_factory_factory(self.url,
             user=UserProfile.objects.get(username='editor'))
         doc = pq(queue_apps(req).content)
         assert not doc('#addon-queue tbody tr').length
+
+
+class TestAppQueueES(amo.tests.ESTestCase, TestAppQueue):
+
+    def setUp(self):
+        super(TestAppQueueES, self).setUp()
+        self.create_switch('reviewer-tools-elasticsearch')
+        self.reindex(Webapp, 'webapp')
 
 
 class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,

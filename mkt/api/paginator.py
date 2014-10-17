@@ -15,7 +15,6 @@ class ESPaginator(Paginator):
     results contain the total number of results, we can take an optimistic
     slice and then adjust the count.
 
-
     """
     def validate_number(self, number):
         """
@@ -50,6 +49,14 @@ class ESPaginator(Paginator):
         page.object_list = page.object_list.execute().hits
         # Update the `_count`.
         self._count = page.object_list.total
+
+        # Now that we have the count validate that the page number isn't higher
+        # than the possible number of pages and adjust accordingly.
+        if number > self.num_pages:
+            if number == 1 and self.allow_empty_first_page:
+                pass
+            else:
+                raise EmptyPage('That page contains no results')
 
         return page
 

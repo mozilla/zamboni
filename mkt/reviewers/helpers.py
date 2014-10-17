@@ -18,6 +18,7 @@ from mkt.access import acl
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link, device_queue_search)
+from mkt.search.serializers import es_to_datetime
 from mkt.site.helpers import mkt_breadcrumbs, page_title
 from mkt.versions.models import Version
 from mkt.webapps.helpers import new_context
@@ -261,3 +262,11 @@ def get_position(addon):
         days = max(get_avg_app_waiting_time() - days_in_queue, days)
     return {'days': int(days), 'days_in_queue': int(days_in_queue),
             'pos': position, 'total': total}
+
+
+@register.filter
+def es2datetime(s):
+    """
+    Returns a datetime given an Elasticsearch date/datetime field.
+    """
+    return es_to_datetime(s)
