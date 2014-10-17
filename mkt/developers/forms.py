@@ -776,8 +776,8 @@ class PublishForm(happyforms.Form):
         required=False, choices=PUBLISH_CHOICES, widget=forms.RadioSelect(),
         initial=0, coerce=int, label=_lazy('App Visibility:'))
     limited = forms.BooleanField(
-        required=False, label=mark_safe_lazy(
-            _lazy('<b>Limit to my team</b>: Visible to only Team Members.')))
+        required=False, label=_lazy(
+            u'<b>Limit to my team</b>: Visible to only Team Members.'))
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
@@ -794,6 +794,9 @@ class PublishForm(happyforms.Form):
         # Determine the current selection via STATUS to publish choice mapping.
         self.fields['publish_type'].initial = publish
         self.fields['limited'].initial = limited
+
+        # Make the limited label safe so we can display the HTML.
+        self.fields['limited'].label = mark_safe(self.fields['limited'].label)
 
     def save(self):
         publish = self.cleaned_data['publish_type']
