@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-11 07:14+0000\n"
+"PO-Revision-Date: 2014-10-18 10:14+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413011681.0\n"
+"X-POOTLE-MTIME: 1413627288.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2098,69 +2098,77 @@ msgstr "Appen kräver plattformen för att stödja `ondeviceorientation` API."
 
 #: mkt/constants/features.py:122
 msgid "Time/Clock"
-msgstr ""
+msgstr "Tid/klocka"
 
 #: mkt/constants/features.py:123
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozTime` API."
 
 #: mkt/constants/features.py:127
 msgid "Vibration"
-msgstr ""
+msgstr "Vibration"
 
 #: mkt/constants/features.py:128
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"Appen kräver att enheten ska hantera vibrationer (`navigator.vibrate` API)."
 
 #: mkt/constants/features.py:134
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Appen kräver `navigator.mozFM` eller `navigator.mozFMRadio` API:er."
 
 #: mkt/constants/features.py:140
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Appen kräver `navigator.mozSms` API."
 
 #: mkt/constants/features.py:144
 msgid "Touch"
-msgstr ""
+msgstr "Touch"
 
 #: mkt/constants/features.py:145
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
 msgstr ""
+"Appen kräver plattformen för att stödja touch-händelser. Det här "
+"alternativet tyder på att appen inte fungerar när den används med en mus."
 
 #: mkt/constants/features.py:151
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Smartphone-stora skärmar (qHD)"
 
 #: mkt/constants/features.py:152
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"Appen kräver plattformen för att ha en smartphone-stor skärm (med qHD-"
+"upplösning). Det här alternativet tyder på att appen kommer att vara "
+"oanvändbar på större skärmar (t.ex. surfplattor, skrivbord, stora eller "
+"hög-DPI telefoner)."
 
 #: mkt/constants/features.py:162
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "Appen kräver att plattformen kan avkoda och spela upp MP3-filer."
 
 #: mkt/constants/features.py:167
 msgid "Audio"
-msgstr ""
+msgstr "Ljud"
 
 #: mkt/constants/features.py:168
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Appen kräver att plattformen stöder HTML5-ljud API."
 
 #: mkt/constants/features.py:173
 msgid "Web Audio"
-msgstr ""
+msgstr "Webbljud"
 
 #: mkt/constants/features.py:174
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Appen kräver att plattformen stödjer Webbljud-API (`window.AudioContext`)."
 
 #: mkt/constants/features.py:180
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
+msgstr "Appen kräver att plattformen kan avkoda och spela upp H.264-videofiler."
 
 #: mkt/constants/features.py:186
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
@@ -2205,114 +2213,133 @@ msgstr "Mikrofon"
 #: mkt/constants/features.py:221
 msgid "The app requires the platform to allow access to audio from the device microphone."
 msgstr ""
+"Appen kräver plattformen för att ge tillgång till ljud från enhetens "
+"mikrofon."
 
 #: mkt/constants/features.py:226
 msgid "Screen Capture"
-msgstr ""
+msgstr "Skärmdump"
 
 #: mkt/constants/features.py:227
 msgid "The app requires the platform to allow access to the device screen for capture."
 msgstr ""
+"Appen kräver plattformen för att tillåta åtkomst till enhetens skärm för "
+"fångst."
 
 #: mkt/constants/features.py:233
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:234
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
 msgstr ""
+"Appen kräver plattformen för att tillåta webbrealtidskommunikation browser-"
+"till-browser inkommande mediaströmmar."
 
 #: mkt/constants/features.py:240
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:241
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
 msgstr ""
+"Appen kräver plattformen för att tillåta peer-to-peer-utbyte av andra än "
+"ljud och videodata."
 
 #: mkt/constants/features.py:247
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:248
 msgid "The app requires the platform to allow communication of streaming data between peers."
 msgstr ""
+"Appen kräver plattformen för att tillåta överföring av strömmande data "
+"mellan noder."
 
 #: mkt/constants/features.py:254
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Webbtalsyntes"
 
 #: mkt/constants/features.py:255
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Appen kräver plattformen för att tillåta användning av text-till-tal."
 
 #: mkt/constants/features.py:260
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Webbtaligenkänning"
 
 #: mkt/constants/features.py:261
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "Appen kräver plattformen för att tillåta användning av tal-till-text."
 
 #: mkt/constants/features.py:266
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Pekarlås"
 
 #: mkt/constants/features.py:267
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"Appen kräver plattformen för att ge ytterligare information och kontroll om "
+"pekaren."
 
 #: mkt/constants/features.py:273
 msgid "Notifications"
-msgstr "Underrättelser"
+msgstr "Aviseringar"
 
 #: mkt/constants/features.py:274
 msgid "The app requires the platform to allow the displaying phone and desktop notifications to the user."
 msgstr ""
+"Appen kräver plattformen för att tillåta visande telefon och skrivbord "
+"aviseringar till användaren."
 
 #: mkt/constants/features.py:280
 msgid "Alarms"
-msgstr ""
+msgstr "Alarm"
 
 #: mkt/constants/features.py:281
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
 msgstr ""
+"Appen kräver plattformen för att ge åtkomst till enhetens alarminställningar "
+"för att schemalägga aviseringar och händelser på en viss tid."
 
 #: mkt/constants/features.py:288
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:289
 msgid "The app requires the platform to allow the sending of asynchronous HTTP requests without the restrictions of the same-origin policy."
 msgstr ""
+"Appen kräver plattformen för att tillåta sändning av asynkrona "
+"HTTP-förfrågningar utan begränsningar av policyn om samma ursprung."
 
 #: mkt/constants/features.py:295
 msgid "TCP Sockets"
-msgstr ""
+msgstr "TCP-sockets"
 
 #: mkt/constants/features.py:296
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Appen kräver plattformen för att tillåta öppna raw TCP-sockets."
 
 #: mkt/constants/features.py:302
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Tredjeparts-tangentbordsstöd"
 
 #: mkt/constants/features.py:303
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "Appen kräver plattformen för att stödja tredjeparts-tangentbord."
 
 #: mkt/constants/features.py:308
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Multipel nätverksinformation"
 
 #: mkt/constants/features.py:309
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
+"Appen kräver möjlighet att få information om flera nätverksanslutningar."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
-msgstr ""
+msgstr "Återbetalning"
 
 #: mkt/constants/payments.py:41
 msgid "Other"
@@ -2320,15 +2347,15 @@ msgstr "Annat"
 
 #: mkt/constants/payments.py:42 mkt/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Köp"
 
 #: mkt/constants/payments.py:43 mkt/constants/payments.py:50
 msgid "Refund"
-msgstr ""
+msgstr "Pengar tillbaka"
 
 #: mkt/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Frivillig"
 
 #: mkt/constants/payments.py:63 mkt/constants/payments.py:120
 msgid "Pending"
@@ -2336,35 +2363,35 @@ msgstr "Väntar"
 
 #: mkt/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Godkänd direkt"
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
-msgstr ""
+msgstr "Avvisad"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:122
 msgid "Failed"
-msgstr ""
+msgstr "Misslyckades"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "Betalningen togs emot, men inte slutförd. "
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "Betalningen misslyckades."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "Återföringen misslyckades."
 
 #: mkt/constants/payments.py:83
 msgid "The payment was received, but not completed and is awaiting processing."
-msgstr ""
+msgstr "Betalningen togs emot, men inte slutförd och väntar på bearbetning."
 
 #: mkt/constants/payments.py:121
 msgid "Completed"
-msgstr ""
+msgstr "Slutförd"
 
 #: mkt/constants/platforms.py:7 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
@@ -2372,7 +2399,7 @@ msgstr "Firefox för skrivbord"
 
 #: mkt/constants/platforms.py:35 mkt/constants/platforms.py:39
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Helt öppna mobila ekosystemet"
 
 #: mkt/constants/platforms.py:36
 msgid "Windows, Mac and Linux"
@@ -2380,11 +2407,11 @@ msgstr "Windows, Mac och Linux"
 
 #: mkt/constants/platforms.py:37 mkt/constants/platforms.py:40 mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android smartphones"
 
 #: mkt/constants/platforms.py:38 mkt/constants/platforms.py:41
 msgid "Tablets"
-msgstr ""
+msgstr "Surfplattor"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
@@ -2397,15 +2424,15 @@ msgstr "För åldrar %d+"
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Betyg avvisad"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Betyg väntande"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Avdelningen för rättvisa, betyg, titlar och kvalifikationer"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
@@ -2413,7 +2440,7 @@ msgstr "Allmänt"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Entertainment Software Self-Regulation Body"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
@@ -2439,11 +2466,11 @@ msgstr "Endast vuxna 18+"
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Hela Amerika utom Brasilien"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
-msgstr ""
+msgstr "Entertainment Software Rating Board"
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
@@ -2451,7 +2478,7 @@ msgstr "Europa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Pan European Game Information"
 
 #: mkt/constants/regions.py:62
 msgid "Rest of World"
@@ -2463,11 +2490,11 @@ msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:26 mkt/submit/templates/submit/manifest.html:50
 msgid "Hosted"
-msgstr ""
+msgstr "Värd för"
 
 #: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:27 mkt/submit/templates/submit/manifest.html:84
 msgid "Packaged"
-msgstr ""
+msgstr "Paketerad"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
@@ -2529,27 +2556,39 @@ msgstr "En gruppmedlem kan bara anges en gång."
 
 #: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
-msgstr "Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande är offentlig. <a href=\"%s\">Redigera appen</a>"
+msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande är offentlig. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
-msgstr "Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande är under behandling. <a href=\"%s\">Redigera appen</a>"
+msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande är under behandling. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
-msgstr "Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande är ofullständig. <a href=\"%s\">Redigera appen</a>"
+msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande är ofullständig. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
-msgstr "Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande ej är godkänd. <a href=\"%s\">Redigera appen</a>"
+msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande ej är godkänd. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande är bannlyst på Marketplace. <a href=\"%s\">Redigera app</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
-msgstr "Oj, det ser ut som du redan lämnat in en manifest för %s, som för närvarande är inaktiverad. <a href=\"%s\">Redigera appen</a>"
+msgstr ""
+"Oj, det ser ut som du redan skickat in en manifest för %s, som för "
+"närvarande är inaktiverad. <a href=\"%s\">Redigera appen</a>"
 
 #: mkt/developers/forms.py:225
 msgid "An app already exists on this domain; only one app per domain is allowed."
@@ -2714,14 +2753,17 @@ msgid ""
 "Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
 "app."
 msgstr ""
+"Överväg min app som en kandidat för att vara förinstallerade på en Firefox "
+"OS-enhet. Jag godkänner villkoren som anges ovan. Jag förstår att detta "
+"dokument inte är ett åtagande att förinstallera min app."
 
 #: mkt/developers/forms.py:1169
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr ""
+msgstr "Ladda upp din testplan (.pdf, .xls under 2,5 MB)"
 
 #: mkt/developers/forms.py:1185
 msgid "Test plan required."
-msgstr ""
+msgstr "Testplan krävs."
 
 #: mkt/developers/forms.py:1192
 msgid "File too large. Keep size under %s. Current size %s."
@@ -2738,6 +2780,8 @@ msgstr "Ange ett giltigt inskicknings-ID."
 #: mkt/developers/forms.py:1238
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
+"Detta IARC-certifikat används redan för en annan app. Skapa ett nytt IARC-"
+"betygscertifikat."
 
 #: mkt/developers/forms.py:1273 mkt/developers/forms.py:1285
 msgid "Invalid submission ID or security code."
@@ -2745,27 +2789,27 @@ msgstr "Ogiltig inskicknings-ID eller säkerhetskod."
 
 #: mkt/developers/forms_payments.py:58
 msgid "App Price"
-msgstr ""
+msgstr "App-pris"
 
 #: mkt/developers/forms_payments.py:111
 msgid "Free (with in-app payments)"
-msgstr ""
+msgstr "Gratis (med in-app betalningar)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Kampanjpriser"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Stöder endast företagsfakturering"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Stöder endast kreditkortsfakturering"
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Stöder alla faktureringsmetoder"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
@@ -2797,15 +2841,15 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:374
 msgid "Financial Email"
-msgstr ""
+msgstr "Finansiell e-post"
 
 #: mkt/developers/forms_payments.py:377
 msgid "Administrative Email"
-msgstr ""
+msgstr "Administrativ e-post"
 
 #: mkt/developers/forms_payments.py:380
 msgid "Support Email"
-msgstr ""
+msgstr "Hjälp e-post"
 
 #: mkt/developers/forms_payments.py:384
 msgid "Address"
@@ -3164,11 +3208,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "Klienttyp"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Applikationsnamn"
 
 #: mkt/developers/templates/developers/api.html:43 mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
@@ -3188,7 +3232,7 @@ msgstr "Nyckel"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Hemlighet"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
@@ -3198,7 +3242,7 @@ msgstr "Ta bort"
 
 #: mkt/developers/templates/developers/api.html:86
 msgid "You currently do not have an API key."
-msgstr ""
+msgstr "Du har för tillfället inte en API-nyckel."
 
 #: mkt/developers/templates/developers/api.html:90
 msgid "OAuth Example"
@@ -3238,11 +3282,11 @@ msgstr "Logga in / Registrera dig"
 
 #: mkt/developers/templates/developers/motd.html:3 mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Dagens meddelande"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "Uppdatera dagens meddelande"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:209
@@ -3255,19 +3299,19 @@ msgstr "Dokumentation"
 
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
-msgstr ""
+msgstr "Testa appar"
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
-msgstr ""
+msgstr "Skicka in en ny app"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Auktorisera åtkomst"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s vill ha tillgång till ditt Marketplace-konto."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -3279,11 +3323,11 @@ msgstr "Neka"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:61 templates/base.html:65
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Utvecklare Firefox Marketplace"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:66 templates/base.html:70
 msgid "API Reference"
-msgstr ""
+msgstr "API-referens"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:69 templates/base.html:73
 msgid "Submit an app"
@@ -3311,7 +3355,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/skeleton_impala.html:132 templates/base.html:152
 msgid "Please sign in"
-msgstr ""
+msgstr "Logga in"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:135 templates/base.html:155
 msgid "Just log in or register with your <a href=\"%(url)s\">Persona</a> account below."
@@ -3340,7 +3384,7 @@ msgstr ""
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Testa"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
@@ -3384,11 +3428,11 @@ msgstr "Belopp"
 
 #: mkt/developers/templates/developers/validate_app.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
-msgstr ""
+msgstr "Testa app-validering"
 
 #: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:51
 msgid "Submit your app manifest URL"
-msgstr ""
+msgstr "Skicka in din apps manifest-URL"
 
 #: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:60
 msgid "Validate"
@@ -3404,7 +3448,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:118
 msgid "Learn more about submitting an app."
-msgstr ""
+msgstr "Läs mer om att skicka in en app."
 
 #: mkt/developers/templates/developers/validate_app.html:69
 msgid ""
@@ -3415,11 +3459,11 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Valideringsresultat för {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Valideringsresultat"
 
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
@@ -3431,11 +3475,11 @@ msgstr "Hantera mina bidrag"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:10 mkt/reviewers/templates/reviewers/base.html:39 mkt/reviewers/templates/reviewers/base.html:60
 msgid "Announcement"
-msgstr ""
+msgstr "Tillkännagivande"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:12 mkt/reviewers/templates/reviewers/base.html:62
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Ignorera tillkännagivande"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
@@ -3451,6 +3495,8 @@ msgstr "Välkommen till utvecklarpanelen"
 #: mkt/developers/templates/developers/apps/dashboard.html:29
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr ""
+"Du har ännu inte skickat in en app till Firefox Marketplace. När du har <a "
+"href=\"%(app_url)s\">skapat din app</a>, klicka på 'skicka in din app' nedan."
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
 msgid "Submit An App"
@@ -3741,7 +3787,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:364
 msgid "Not Submitted"
-msgstr ""
+msgstr "Inte inskickad"
 
 #: mkt/developers/templates/developers/apps/status.html:368
 msgid "New version of the test plan available"
@@ -3779,11 +3825,13 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/status.html:420 mkt/developers/templates/developers/apps/status.html:431 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr ""
+msgstr "Ta bort app"
 
 #: mkt/developers/templates/developers/apps/status.html:425
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
+"Ta bort din app kommer att permanent ta bort det från webbplatsen. "
+"<strong>Det kan inte ångras.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:438
 msgid "Blocklist App"
