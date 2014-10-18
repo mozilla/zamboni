@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-07 14:37+0000\n"
+"PO-Revision-Date: 2014-10-18 18:31+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412692624.0\n"
+"X-POOTLE-MTIME: 1413657108.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2518,7 +2518,9 @@ msgstr "Impossibile selezionare {region}."
 
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
-msgstr "Tutti i membri del team devono aver letto e accettato l’accordo per gli sviluppatori."
+msgstr ""
+"Tutti i membri del team devono aver letto e accettato il Contratto per lo "
+"sviluppatore."
 
 #: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
@@ -2792,7 +2794,7 @@ msgstr "Non è un aggiornamento"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Nome dell’intestatario del conto corrente bancario"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2896,7 +2898,7 @@ msgstr "Non è possibile rimuovere un account pagamenti da un’app."
 
 #: mkt/developers/forms_payments.py:528
 msgid "You are not permitted to change payment accounts."
-msgstr "Non hai il permesso di cambiare i conti pagamenti."
+msgstr "Non hai il permesso di cambiare gli account pagamenti."
 
 #: mkt/developers/forms_payments.py:614 mkt/developers/forms_payments.py:630
 msgid "Account name"
@@ -2930,7 +2932,7 @@ msgstr "I miei progetti"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Fai una donazione a favore di {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3330,6 +3332,8 @@ msgstr "Accedi o registrati qui sotto con il tuo account <a href=\"%(url)s\">Per
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Accedi o registrati di seguito tramite <a href=\"%(url)s\">Firefox "
+"Account</a>."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -3345,7 +3349,7 @@ msgstr "Politiche addizionali del Marketplace"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr "Hai già accettato l’accordo per sviluppatori."
+msgstr "Hai già accettato il Contratto per lo sviluppatore."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
@@ -4140,6 +4144,9 @@ msgstr "Informazioni per il supporto per {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"L'indirizzo email riservato alle richieste di supporto degli utenti finali. "
+"In caso di indirizzi diversi per ciascun locale, è possibile aggiungere più "
+"versioni tradotte di questo campo."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4538,7 +4545,7 @@ msgstr "Elementi interattivi"
 #: mkt/developers/templates/developers/docs/policies-agreement.html:3 mkt/developers/templates/developers/docs/policies-agreement.html:10
 #: mkt/developers/templates/developers/docs/policies-agreement.html:11
 msgid "Developer Agreement"
-msgstr "Accordo con gli sviluppatori"
+msgstr "Contratto per lo sviluppatore"
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
 msgid "Compatibility"
@@ -4892,6 +4899,8 @@ msgstr "Aggiungi account Bango"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
 msgstr ""
+"Leggi la <a target=\"_blank\" href=\"%(url)s\">Documentazione sul conto "
+"pagamenti</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4907,11 +4916,12 @@ msgstr "Facoltativo"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "Nome della società registrata o della persona fisica."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
 msgstr ""
+"Nome dell’account sul Marketplace (questo dato non verrà trasmesso a Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4973,6 +4983,8 @@ msgstr "Modifica account Bango"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
 msgstr ""
+"Un nome che identifica l’account su Firefox Marketplace e che non verrà "
+"trasmesso a Bango."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5789,11 +5801,11 @@ msgstr "Permessi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Non è stata fornita alcuna motivazione"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Non è stato richiesto alcun permesso"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -5943,7 +5955,7 @@ msgstr "Programma per gli sviluppatori"
 
 #: mkt/lookup/templates/lookup/user_summary.html:52
 msgid "Read agreement"
-msgstr "Leggi l’accordo"
+msgstr "Leggi il contratto"
 
 #: mkt/lookup/templates/lookup/user_summary.html:60
 msgid "Addresses"
@@ -6911,7 +6923,7 @@ msgstr "Pagina precedente"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Caricamento cronologia dell’app in corso…"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -7032,7 +7044,7 @@ msgstr "Lingue supportate"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "Nome dell’autore"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -7415,7 +7427,9 @@ msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "Per iniziare leggi e accetta il nostro <strong>Accordo per gli sviluppatori</strong>:"
+msgstr ""
+"Per iniziare leggi e accetta il nostro <strong>Contratto per lo "
+"sviluppatore</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
@@ -7591,7 +7605,9 @@ msgstr "Non esiste un utente associato a questo indirizzo email."
 
 #: mkt/users/views.py:78
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr "Non esiste un utente associato a questo indirizzo email, oppure l’utente non ha ancora accettato i termini dell’accordo per gli sviluppatori."
+msgstr ""
+"Non esiste un utente associato a questo indirizzo email, oppure l’utente non "
+"ha ancora accettato i termini del Contratto per lo sviluppatore."
 
 #: mkt/users/views.py:193
 msgid "Persona authentication failure."
