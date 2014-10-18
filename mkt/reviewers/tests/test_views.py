@@ -419,7 +419,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.url = reverse('reviewers.apps.queue_pending')
 
     def tearDown(self):
-        unindex_webapps([app.id for app in self.apps])
+        if self.uses_es():
+            unindex_webapps([app.id for app in self.apps])
         super(TestAppQueue, self).tearDown()
 
     def review_url(self, app):
@@ -793,12 +794,19 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.login_as_editor()
         self.url = reverse('reviewers.apps.queue_updates')
 
+    def tearDown(self):
+        if self.uses_es():
+            unindex_webapps([app.id for app in self.apps])
+        super(TestUpdateQueue, self).tearDown()
+
     def review_url(self, app):
         return reverse('reviewers.apps.review', args=[app.app_slug])
 
     def test_template_links(self):
         self.apps[0].versions.latest().update(nomination=self.days_ago(2))
         self.apps[1].versions.latest().update(nomination=self.days_ago(1))
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
@@ -880,8 +888,14 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.apps[0])
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
-        eq_([a.app for a in res.context['addons']], self.apps[1:])
+        if self.uses_es():
+            eq_([a.id for a in res.context['addons']],
+                 [a.id for a in self.apps[1:]])
+        else:
+            eq_([a.app for a in res.context['addons']], self.apps[1:])
 
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(0)').text(), u'Apps (0)')
@@ -895,10 +909,17 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[1].update(created=self.days_ago(5))
         self.apps[0].versions.latest().update(nomination=self.days_ago(1))
         self.apps[1].versions.latest().update(nomination=self.days_ago(4))
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
-        apps = list(res.context['addons'])
-        eq_(apps[0].app, self.apps[1])
-        eq_(apps[1].app, self.apps[0])
+        if self.uses_es():
+            apps = [a.id for a in res.context['addons']]
+            eq_(apps[0], self.apps[1].id)
+            eq_(apps[1], self.apps[0].id)
+        else:
+            apps = list(res.context['addons'])
+            eq_(apps[0].app, self.apps[1])
+            eq_(apps[1].app, self.apps[0])
 
     def test_only_updates_in_queue(self):
         # Add new packaged app, which should only show up in the pending queue.
@@ -906,10 +927,18 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                           status=amo.STATUS_PENDING,
                           version_kw={'version': '1.0'},
                           file_kw={'status': amo.STATUS_PENDING})
+        self.apps.append(app)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
-        apps = [a.app for a in res.context['addons']]
-        assert app not in apps, (
-            'Unexpected: Found a new packaged app in the updates queue.')
+        if self.uses_es():
+            apps = [a.id for a in res.context['addons']]
+            assert app.id not in apps, (
+                'Unexpected: Found a new packaged app in the updates queue.')
+        else:
+            apps = [a.app for a in res.context['addons']]
+            assert app not in apps, (
+                'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (2)')
 
     def test_approved_update_in_queue(self):
@@ -918,15 +947,20 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                           version_kw={'version': '1.0',
                                       'created': self.days_ago(2),
                                       'nomination': self.days_ago(2)})
+        self.apps.append(app)
         File.objects.filter(version__addon=app).update(status=app.status)
 
         version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
                         file_kw={'status': amo.STATUS_PENDING})
 
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
         res = self.client.get(self.url)
-        apps = [a.app for a in res.context['addons']]
-        assert app in apps
+        if self.uses_es():
+            assert app.id in [a.id for a in res.context['addons']]
+        else:
+            assert app in [a.app for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
 
     def test_update_queue_with_empty_nomination(self):
@@ -935,6 +969,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                           version_kw={'version': '1.0',
                                       'created': self.days_ago(2),
                                       'nomination': None})
+        self.apps.append(app)
         first_version = app.latest_version
         version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=None,
@@ -947,9 +982,14 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         # Safeguard: we /really/ want to test with nomination=None.
         eq_(app.latest_version.reload().nomination, None)
 
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
+
         res = self.client.get(self.url)
-        apps = [a.app for a in res.context['addons']]
-        assert app in apps
+        if self.uses_es():
+            assert app.id in [a.id for a in res.context['addons']]
+        else:
+            assert app in [a.app for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a:eq(2)').text(), u'Updates (3)')
 
     def test_deleted_version_not_in_queue(self):
@@ -965,6 +1005,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         # "Approve" the app.
         app.versions.latest().files.latest().update(status=amo.STATUS_PUBLIC)
         eq_(app.reload().status, amo.STATUS_PUBLIC)
+        if self.uses_es():
+            self.reindex(Webapp, 'webapp')
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
@@ -975,9 +1017,22 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         # Verify the apps in the context are what we expect.
         doc = pq(res.content)
         eq_(doc('.tabnav li a:eq(2)').text(), u'Updates (1)')
-        apps = [a.app for a in res.context['addons']]
-        ok_(app not in apps)
-        ok_(self.apps[1] in apps)
+        if self.uses_es():
+            apps = [a.id for a in res.context['addons']]
+            ok_(app.id not in apps)
+            ok_(self.apps[1].id in apps)
+        else:
+            apps = [a.app for a in res.context['addons']]
+            ok_(app not in apps)
+            ok_(self.apps[1] in apps)
+
+
+class TestUpdateQueueES(amo.tests.ESTestCase, TestUpdateQueue):
+
+    def setUp(self):
+        super(TestUpdateQueueES, self).setUp()
+        self.create_switch('reviewer-tools-elasticsearch')
+        self.reindex(Webapp, 'webapp')
 
 
 class TestDeviceQueue(AppReviewerTest, AccessMixin):

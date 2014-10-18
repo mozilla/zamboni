@@ -745,6 +745,16 @@ class ReviewersQueuesHelper(object):
             .exclude(addon__in=self.excluded_ids))
 
     def get_updates_queue(self):
+        if self.use_es:
+            sq = WebappIndexer.search()
+            sq = sq.filter('terms', status=amo.WEBAPPS_APPROVED_STATUSES)
+            sq = sq.filter('term', **{'latest_version.status': amo.STATUS_PENDING})
+            sq = sq.filter('terms', app_type=[amo.ADDON_WEBAPP_PACKAGED,
+                                              amo.ADDON_WEBAPP_PRIVILEGED])
+            sq = sq.filter('term', is_disabled=False)
+            sq = sq.filter('term', is_escalated=False)
+            return sq
+
         return (Version.objects.no_cache().filter(
             # Note: this will work as long as we disable files of existing
             # unreviewed versions when a new version is uploaded.

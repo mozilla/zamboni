@@ -558,13 +558,20 @@ def queue_escalated(request):
 
 @reviewer_required
 def queue_updates(request):
-    queues_helper = ReviewersQueuesHelper(request)
-    qs = queues_helper.get_updates_queue()
-    apps = queues_helper.sort(qs, date_sort='nomination')
-    apps = [QueuedApp(app, app.all_versions[0].nomination)
-            for app in Webapp.version_and_file_transformer(apps)]
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
 
-    return _queue(request, apps, 'updates', date_sort='nomination')
+    queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
+    qs = queues_helper.get_updates_queue()
+    qs = queues_helper.sort(qs, date_sort='nomination')
+
+    if use_es:
+        apps = qs
+    else:
+        apps = [QueuedApp(app, app.all_versions[0].nomination)
+                for app in Webapp.version_and_file_transformer(qs)]
+
+    return _queue(request, apps, 'updates', date_sort='nomination',
+                  use_es=use_es)
 
 
 @reviewer_required
