@@ -29,6 +29,7 @@ from mkt.translations.query import order_by_translation
 from mkt.translations.utils import to_language
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.tasks import set_storefront_data
 
 
@@ -577,7 +578,7 @@ class ReviewHelper(object):
 
 def clean_sort_param(request, date_sort='created'):
     """
-    Handles empty and invalid values for sort and sort order
+    Handles empty and invalid values for sort and sort order.
     'created' by ascending is the default ordering.
     """
     sort = request.GET.get('sort', date_sort)
@@ -585,6 +586,26 @@ def clean_sort_param(request, date_sort='created'):
 
     if sort not in ('name', 'created', 'nomination'):
         sort = date_sort
+    if order not in ('desc', 'asc'):
+        order = 'asc'
+    return sort, order
+
+
+def clean_sort_param_es(request, date_sort='created'):
+    """
+    Handles empty and invalid values for sort and sort order.
+    'created' by ascending is the default ordering.
+    """
+    sort_map = {
+        'name': 'name_sort',
+        'nomination': 'latest_version.nomination_date',
+    }
+    sort = request.GET.get('sort', date_sort)
+    order = request.GET.get('order', 'asc')
+
+    if sort not in ('name', 'created', 'nomination'):
+        sort = date_sort
+    sort = sort_map.get(sort, date_sort)
     if order not in ('desc', 'asc'):
         order = 'asc'
     return sort, order
@@ -687,8 +708,9 @@ def log_reviewer_action(addon, user, msg, action, **kwargs):
 
 
 class ReviewersQueuesHelper(object):
-    def __init__(self, request=None):
+    def __init__(self, request=None, use_es=False):
         self.request = request
+        self.use_es = use_es
 
     @amo.cached_property
     def excluded_ids(self):
@@ -701,6 +723,14 @@ class ReviewersQueuesHelper(object):
             addon__disabled_by_user=False)
 
     def get_pending_queue(self):
+        if self.use_es:
+            sq = WebappIndexer.search()
+            sq = sq.filter('term', status=amo.STATUS_PENDING)
+            sq = sq.filter('term', **{'latest_version.status': amo.STATUS_PENDING})
+            sq = sq.filter('term', is_escalated=False)
+            sq = sq.filter('term', is_disabled=False)
+            return sq
+
         return (Version.objects.no_cache().filter(
             files__status=amo.STATUS_PENDING,
             addon__disabled_by_user=False,
@@ -735,8 +765,12 @@ class ReviewersQueuesHelper(object):
 
     def sort(self, qs, date_sort='created'):
         """Given a queue queryset, return the sorted version."""
+        if self.use_es:
+            return self._do_sort_es(qs, date_sort)
+
         if qs.model == Webapp:
             return self._do_sort_webapp(qs, date_sort)
+
         return self._do_sort_queue_obj(qs, date_sort)
 
     def _do_sort_webapp(self, qs, date_sort):
@@ -783,3 +817,10 @@ class ReviewersQueuesHelper(object):
                             .values_list('addon', flat=True))
         qs = Webapp.objects.filter(id__in=sorted_app_ids)
         return manual_order(qs, sorted_app_ids, 'addons.id')
+
+    def _do_sort_es(self, qs, date_sort):
+        sort_type, order = clean_sort_param_es(self.request,
+                                               date_sort=date_sort)
+        order_by = ('-' if order == 'desc' else '') + sort_type
+
+        return qs.sort(order_by)

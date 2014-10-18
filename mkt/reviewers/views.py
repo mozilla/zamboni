@@ -23,6 +23,7 @@ from django.views.decorators.cache import never_cache
 import commonware.log
 import jinja2
 import requests
+import waffle
 from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
 from elasticsearch_dsl.filter import F
@@ -139,7 +140,8 @@ def home(request):
 
 
 def queue_counts(request):
-    queues_helper = ReviewersQueuesHelper()
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
+    queues_helper = ReviewersQueuesHelper(use_es=use_es)
 
     counts = {
         'pending': queues_helper.get_pending_queue().count(),
@@ -457,7 +459,7 @@ ActionableQueuedApp = collections.namedtuple(
 
 
 def _queue(request, apps, tab, pager_processor=None, date_sort='created',
-           template='reviewers/queue.html', data=None):
+           template='reviewers/queue.html', data=None, use_es=False):
     per_page = request.GET.get('per_page', QUEUE_PER_PAGE)
     pager = paginate(request, apps, per_page)
 
@@ -466,7 +468,8 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created',
         'pager': pager,
         'tab': tab,
         'search_form': _get_search_form(request),
-        'date_sort': date_sort
+        'date_sort': date_sort,
+        'use_es': use_es,
     }
 
     # Additional context variables.
@@ -478,12 +481,21 @@ def _queue(request, apps, tab, pager_processor=None, date_sort='created',
 
 @reviewer_required
 def queue_apps(request):
-    queues_helper = ReviewersQueuesHelper(request)
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
+    sort_field = 'nomination'
+
+    queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
     qs = queues_helper.get_pending_queue()
-    apps = queues_helper.sort(qs, date_sort='nomination')
-    apps = [QueuedApp(app, app.all_versions[0].nomination)
-            for app in Webapp.version_and_file_transformer(apps)]
-    return _queue(request, apps, 'pending', date_sort='nomination')
+    qs = queues_helper.sort(qs, date_sort=sort_field)
+
+    if use_es:
+        apps = qs
+    else:
+        apps = [QueuedApp(app, app.all_versions[0].nomination)
+                for app in Webapp.version_and_file_transformer(qs)]
+
+    return _queue(request, apps, 'pending', date_sort='nomination',
+                  use_es=use_es)
 
 
 @reviewer_required

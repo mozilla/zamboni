@@ -68,9 +68,11 @@
   {% if app.priority_review %}
     <div class="sprite-reviewer sprite-reviewer-priority" title="{{ _('Priority Review Needed') }}"></div>
   {% endif %}
-  {% if app.is_packaged %}
+  {# If this is an Elasticsearch hit `app_type` (from the index) is an integer, otherwise it is a string from the Webapp property. #}
+  {# TODO: Remove the strings when removing the 'reviewer-tools-elasticsearch' waffle. #}
+  {% if app.app_type in (amo.ADDON_WEBAPP_PACKAGED, amo.ADDON_WEBAPP_PRIVILEGED, 'packaged', 'privileged') %}
     <div class="sprite-reviewer sprite-reviewer-packaged-app" title="{{ _('Packaged App') }}"></div>
-    {% if app.latest_version.is_privileged %}
+    {% if app.app_type in (amo.ADDON_WEBAPP_PRIVILEGED, 'privileged') %}
       <div class="sprite-reviewer sprite-reviewer-privileged-app" title="{{ _('Privileged App') }}"></div>
     {% endif %}
   {% endif %}

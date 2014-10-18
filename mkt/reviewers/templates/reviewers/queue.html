@@ -33,26 +33,49 @@
               <th class="payments reviewers-desktop">{{ _('Payments') }}</th>
             </tr>
           </thead>
-          <tbody>
-            {% for qa in addons %}
-              <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
-                <td><div class="addon-locked"></div></td>
-                <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
-                <td class="flags">{{ app_flags(qa.app) }}</td>
-                <td class="waiting-time">{{ qa.created|timelabel }}</td>
-                <td>{{ device_list(qa.app) }}</td>
-                <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
-              </tr>
-              <tr class="extra-info reviewers-mobile">
-                <td colspan="5">
-                  <em>
-                    {{ _('Payment Category:') }}
-                    {{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}
-                  </em>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
+          {% if use_es %}
+            <tbody>
+              {% for app in addons %}
+                <tr data-addon="{{ app.id }}" class="addon-row" id="addon-{{ app.id }}">
+                  <td><div class="addon-locked"></div></td>
+                  <td class="app-name"><a href="{{ url('reviewers.apps.review', app.app_slug) }}">{{ app.name[0] }}</a></td>
+                  <td class="flags">{{ app_flags(app) }}</td>
+                  <td class="waiting-time">{{ app.created|es2datetime|timelabel }}</td>
+                  <td>{{ device_list_es(app) }}</td>
+                  <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}</td>
+                </tr>
+                <tr class="extra-info reviewers-mobile">
+                  <td colspan="5">
+                    <em>
+                      {{ _('Payment Category:') }}
+                      {{ amo.ADDON_PREMIUM_TYPES[app.premium_type] }}
+                    </em>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          {% else %}
+            <tbody>
+              {% for qa in addons %}
+                <tr data-addon="{{ qa.app.id }}" class="addon-row" id="addon-{{ qa.app.id }}">
+                  <td><div class="addon-locked"></div></td>
+                  <td class="app-name"><a href="{{ url('reviewers.apps.review', qa.app.app_slug) }}">{{ qa.app.name }}</a></td>
+                  <td class="flags">{{ app_flags(qa.app) }}</td>
+                  <td class="waiting-time">{{ qa.created|timelabel }}</td>
+                  <td>{{ device_list(qa.app) }}</td>
+                  <td class="payments reviewers-desktop">{{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}</td>
+                </tr>
+                <tr class="extra-info reviewers-mobile">
+                  <td colspan="5">
+                    <em>
+                      {{ _('Payment Category:') }}
+                      {{ amo.ADDON_PREMIUM_TYPES[qa.app.premium_type] }}
+                    </em>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          {% endif %}
         </table>
       {% else %}
         {{ no_results() }}
