@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-19 17:09+0000\n"
+"PO-Revision-Date: 2014-10-19 17:37+0000\n"
 "Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413738549.0\n"
+"X-POOTLE-MTIME: 1413740223.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -3581,6 +3581,8 @@ msgstr "Cet app a été <b>bannie du Marketplace</b>."
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
 msgstr ""
+"Votre app a été bannie par un administrateur du site. Si vous avez des "
+"questions, envoyez un courriel à %(email)s."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3740,6 +3742,8 @@ msgstr "Vous pouvez mettre à jour les régions avec la <a href=\"{compatibility
 #: mkt/developers/templates/developers/apps/status.html:326
 msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
 msgstr ""
+"Si votre app fonctionne sur les appareils à faible mémoire, vous pouvez "
+"demander qu'une vérification apparaisse sur ces appareils."
 
 #: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
 msgid "Learn about low-memory devices."
@@ -4151,6 +4155,9 @@ msgstr "Informations d'assistance pour {0}"
 #: mkt/developers/templates/developers/apps/edit/support.html:20
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"L'adresse de courriel fournie aux utilisateurs pour vous contacter avec "
+"leurs problèmes. Si vous avez différentes adresses pour chaque langue, "
+"plusieurs valeurs de ce champ peuvent être ajoutées."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:39 mkt/reviewers/templates/reviewers/includes/details.html:107 mkt/reviewers/templates/reviewers/includes/mobile_details.html:102
 msgid "Website"
@@ -4608,7 +4615,7 @@ msgstr "Tester les micro-paiements"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
 msgid "In-App Payments Keys"
-msgstr ""
+msgstr "Clés de paiement in-app"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
@@ -4654,15 +4661,18 @@ msgstr "Générer les clés"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:21
 msgid "In-App Keys"
-msgstr ""
+msgstr "Clés in-app"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:28
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Les clés de paiement in-app permettent de recevoir des paiements dans votre "
+"application pour un prix choisi. Vous êtes responsable de la définition et "
+"de la gestion de vos produits."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:33
 msgid "Configure In-App Keys"
-msgstr ""
+msgstr "Configuration des clés in-app"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:38 mkt/developers/templates/developers/payments/in-app-products.html:4
 msgid "In-App Products"
@@ -4671,10 +4681,13 @@ msgstr "Produits dans l'application"
 #: mkt/developers/templates/developers/payments/in-app-payments.html:45
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Les produits in-app permettent de recevoir des paiements dans votre "
+"application et simplifient le processus en vous permettant de créer et gérer "
+"vos produits dans le Hub développeurs du Firefox Marketplace."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:50
 msgid "Configure In-App Products"
-msgstr ""
+msgstr "Configuration des produits in-app"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
@@ -4894,6 +4907,8 @@ msgstr "Ajouter un compte Bango"
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
 msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
 msgstr ""
+"Veuillez consulter la <a target=\"_blank\" href=\"%(url)s\">documentation sur "
+"les comptes de paiement</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -4909,11 +4924,11 @@ msgstr "Optionnel"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
-msgstr ""
+msgstr "Nom de la société ou de la personne physique."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
 msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr ""
+msgstr "Nom du compte sur le Marketplace (non envoyé à Bango)."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_boku.html:51
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
@@ -4975,6 +4990,7 @@ msgstr "Modifier le compte Bango"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
 msgstr ""
+"Un nom de référence pour le compte sur le Marketplace, non envoyé à Bango."
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
@@ -5525,6 +5541,8 @@ msgstr "Le fichier « manifest.webapp » n'a pas été trouvé à la racine de l
 #: mkt/files/utils.py:96
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Impossible de décoder le fichier manifest de la webapp. Vérifiez que votre "
+"fichier manifest ne contient pas de caractères spéciaux non UTF-8."
 
 #: mkt/files/utils.py:104
 msgid "The webapp manifest is not valid JSON."
@@ -5757,19 +5775,19 @@ msgstr "Prioriser la vérification ?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:82
 msgid "Tarako Status"
-msgstr ""
+msgstr "État Tarako"
 
 #: mkt/lookup/templates/lookup/app_summary.html:85
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako activé"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako non activé"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Review not requested"
-msgstr ""
+msgstr "Vérification non demandée"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
@@ -6987,7 +7005,7 @@ msgstr ""
 
 #: mkt/search/forms.py:43
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:50
 msgid "Any Device Type"
@@ -7031,7 +7049,7 @@ msgstr "Langues prises en charge"
 
 #: mkt/search/forms.py:109
 msgid "Author name"
-msgstr ""
+msgstr "Nom de l'auteur"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
@@ -7173,15 +7191,15 @@ msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 
 #: mkt/submit/forms.py:187
 msgid "Version %s already exists."
-msgstr ""
+msgstr "La version %s existe déjà."
 
 #: mkt/submit/forms.py:198
 msgid "Changes to \"origin\" are not allowed."
-msgstr ""
+msgstr "Les modifications d'origine ne sont pas permises."
 
 #: mkt/submit/forms.py:221
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "L'utilisateur envoyant la validation ne correspond pas."
 
 #: mkt/submit/forms.py:265
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
@@ -7201,6 +7219,15 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"Une politique de confidentialité explique comment vous traitez les données "
+"reçues via votre app. Par exemple, quelles sont les données reçues, comment "
+"les utilisez-vous, avec qui sont-elles partagées, recevez-vous des "
+"informations personnelles, que faites-vous pour les rendre anonymes, quels "
+"sont les choix de l'utilisateur pour contrôler les données que vous et "
+"d'autres reçoivent. Donnez le lien ou texte de votre politique de "
+"confidentialité ci-dessus. Si vous n'en avez pas, <a href=\"{url}\" "
+"target=\"_blank\">découvrez comment écrire une politique de "
+"confidentialité</a>."
 
 #: mkt/submit/forms.py:292
 msgid "Homepage:"
@@ -7571,11 +7598,11 @@ msgstr "Notification utilisateur"
 
 #: mkt/users/tasks.py:15 mkt/users/tasks.py:18
 msgid "Firefox Accounts is coming"
-msgstr ""
+msgstr "Firefox Accounts arrive"
 
 #: mkt/users/tasks.py:16 mkt/users/tasks.py:17 mkt/users/tasks.py:19 mkt/users/tasks.py:20
 msgid "Activate your Firefox Account"
-msgstr ""
+msgstr "Activer votre compte Firefox"
 
 #: mkt/users/views.py:70
 msgid "An email address is required."
@@ -7599,7 +7626,7 @@ msgstr "Merci d'utiliser une adresse courriel vérifiée pour ce compte."
 
 #: mkt/users/templates/users/emails/base.html:69
 msgid "Activate now"
-msgstr ""
+msgstr "Activer maintenant"
 
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
@@ -7640,10 +7667,14 @@ msgstr ""
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
 msgstr ""
+"Firefox Marketplace utilise désormais Firefox Accounts. Veuillez activer "
+"votre nouveau compte."
 
 #: mkt/users/templates/users/emails/developers-during.html:4
 msgid "IMPORTANT: You must activate your Firefox Account in order to access and manage your apps listed on Firefox Marketplace."
 msgstr ""
+"IMPORTANT : vous devez activer votre compte Firefox afin d'accéder à et de "
+"gérer vos apps sur le Firefox Marketplace."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/webapps/forms.py:48
@@ -7757,15 +7788,15 @@ msgstr "Connexion / Inscription"
 
 #: templates/base.html:123
 msgid "Firefox Accounts has arrived"
-msgstr ""
+msgstr "Firefox Accounts est arrivé"
 
 #: templates/base.html:126
 msgid "Learn how to transfer your account"
-msgstr ""
+msgstr "Découvrez comment transférer votre compte"
 
 #: templates/base.html:129
 msgid "It's easy."
-msgstr ""
+msgstr "C'est facile."
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
