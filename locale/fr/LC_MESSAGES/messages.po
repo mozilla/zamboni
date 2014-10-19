@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-09-06 12:27+0200\n"
-"Last-Translator: Alexandre Lissy <lissyx@mozfr.org>\n"
+"PO-Revision-Date: 2014-10-19 17:09+0000\n"
+"Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
-"X-POOTLE-MTIME: 1404691790.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1413738549.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -327,11 +327,11 @@ msgstr "Escalade supprimée"
 
 #: apps/amo/log.py:433
 msgid "{addon} banned."
-msgstr ""
+msgstr "{addon} banni."
 
 #: apps/amo/log.py:434
 msgid "App banned"
-msgstr ""
+msgstr "App bannie"
 
 #: apps/amo/log.py:441
 msgid "{addon} escalated because of high number of abuse reports."
@@ -591,7 +591,7 @@ msgstr "Le champ doit contenir au moins {num} caractères."
 
 #: mkt/api/fields.py:88
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Le code de langue {lang_code} est invalide."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:175
 msgid "Unknown"
@@ -659,7 +659,7 @@ msgstr "La taille maximale des pièces jointes dépasse le maximum de %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -1712,7 +1712,7 @@ msgstr "Publié"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Banni(e) du Marketplace"
 
 #: mkt/constants/base.py:30
 msgid "Deleted"
@@ -1896,11 +1896,11 @@ msgstr "Aucune action"
 
 #: mkt/constants/comm.py:44
 msgid "Banned"
-msgstr ""
+msgstr "Banni"
 
 #: mkt/constants/comm.py:47
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Commentaire du vérificateur"
 
 #: mkt/constants/comm.py:48
 msgid "App resubmission"
@@ -1968,11 +1968,11 @@ msgstr "Validation prioritaire demandée"
 
 #: mkt/constants/comm.py:67
 msgid "Additional review passed"
-msgstr ""
+msgstr "Vérification supplémentaire passée"
 
 #: mkt/constants/comm.py:68
 msgid "Additional review failed"
-msgstr ""
+msgstr "Vérification supplémentaire échouée"
 
 #: mkt/constants/features.py:17
 msgid "App Management API"
@@ -2556,6 +2556,8 @@ msgstr "Oops, il semble que vous avez déjà envoyé un manifeste pour %s. qui e
 #: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Oups, il semble que vous avez déjà envoyé ce manifeste pour %s, qui est "
+"actuellement banni du Marketplace. <a href=\"%s\">Modifier l'app</a>"
 
 #: mkt/developers/forms.py:210
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
@@ -2797,7 +2799,7 @@ msgstr "N'est pas une mise à jour"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Nom du titulaire du compte"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
@@ -2935,7 +2937,7 @@ msgstr "Mes propositions"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Faire un don à {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -3335,6 +3337,8 @@ msgstr "Inscrivez-vous ou connectez-vous avec votre compte <a href=\"%(url)s\">P
 #: mkt/developers/templates/developers/skeleton_impala.html:142 templates/base.html:162
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Connectez-vous simplement avec <a href=\"%(url)s\">Firefox Accounts</a> ci-"
+"dessous."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -3536,7 +3540,7 @@ msgstr "Peut voir les paramètres de l'application mais ne peut faire aucun chan
 
 #: mkt/developers/templates/developers/apps/owner.html:97
 msgid "Can view the app's settings"
-msgstr ""
+msgstr "Peut voir les paramètres de l'application"
 
 #: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
 msgid "Status & Versions"
@@ -3572,7 +3576,7 @@ msgstr "Votre application a été désactivée par manque de classification de s
 
 #: mkt/developers/templates/developers/apps/status.html:50
 msgid "This app has been <b>banned on Marketplace</b>."
-msgstr ""
+msgstr "Cet app a été <b>bannie du Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please email %(email)s."
