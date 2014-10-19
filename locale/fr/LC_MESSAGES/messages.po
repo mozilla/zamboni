@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-19 17:37+0000\n"
+"PO-Revision-Date: 2014-10-19 17:46+0000\n"
 "Last-Translator: Benoit <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413740223.0\n"
+"X-POOTLE-MTIME: 1413740778.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -5791,11 +5791,11 @@ msgstr "Vérification non demandée"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92
 msgid "Review pending"
-msgstr ""
+msgstr "Vérification en attente"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Review failed"
-msgstr ""
+msgstr "Vérification échouée"
 
 #: mkt/lookup/templates/lookup/app_summary.html:99 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:128
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:125
@@ -5808,11 +5808,11 @@ msgstr "Permissions"
 
 #: mkt/lookup/templates/lookup/app_summary.html:105
 msgid "No reason given"
-msgstr ""
+msgstr "Aucune raison donnée"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No permissions requested"
-msgstr ""
+msgstr "Aucune permission demandée"
 
 #: mkt/lookup/templates/lookup/app_summary.html:111
 msgid "Downloads"
@@ -6416,11 +6416,13 @@ msgstr "Retirer cette application de la file de re-vérification. Aucun courriel
 
 #: mkt/reviewers/utils.py:498
 msgid "Ban app"
-msgstr ""
+msgstr "Bannir l'app"
 
 #: mkt/reviewers/utils.py:500
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
+"Bannir l'app du Marketplace. Semblable à Rejeter mais l'auteur ne peut pas "
+"resoumettre. À n'utiliser que dans des cas extrêmes."
 
 #: mkt/reviewers/views.py:124
 msgid "New Apps (Under 5 days)"
@@ -6645,11 +6647,11 @@ msgstr "Scores de vérification pour {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Distribution des points depuis le début"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Points"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6928,7 +6930,7 @@ msgstr "Page précédente"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history_commbadge.html:84
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Chargement de l'historique de l'app…"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -7001,7 +7003,7 @@ msgstr "Autre système pour les micro-paiements"
 
 #: mkt/search/forms.py:41
 msgid "Any Device"
-msgstr ""
+msgstr "Tout appareil"
 
 #: mkt/search/forms.py:43
 msgid "Android"
@@ -7631,38 +7633,59 @@ msgstr "Activer maintenant"
 #: mkt/users/templates/users/emails/base.html:91
 msgid "For more information on Firefox Accounts please see the <a href=\"%(faq)s\">FAQ</a>."
 msgstr ""
+"Pour plus d'informations sur Firefox Accounts, veuillez consulter la <a "
+"href=\"%(faq)s\">FAQ</a>."
 
 #: mkt/users/templates/users/emails/base.html:99
 msgid ""
 "You are receiving this email because you created an account on Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA 94041.<br> <a href=\"%(terms)s\">Terms of Use</a> | <a href="
 "\"%(privacy)s\">Privacy Policy</a>"
 msgstr ""
+"Vous recevez ce courrier électronique parce que vous avez créé un compte sur "
+"Firefox Marketplace. Mozilla, 331 E. Evelyn Ave., Mountain View, CA "
+"94041.<br> <a href=\"%(terms)s\">Conditions d'utilisation</a> | <a href=\"%"
+"(privacy)s\">Politique de confidentialité</a>"
 
 #: mkt/users/templates/users/emails/customers-after.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new Firefox Account."
 msgstr ""
+"Firefox Marketplace est passé à Firefox Accounts. Veuillez activer votre "
+"nouveau compte Firefox."
 
 #: mkt/users/templates/users/emails/customers-before.html:3 mkt/users/templates/users/emails/developers-before.html:3
 msgid "Soon, Firefox Marketplace will retire its current user sign-in system (Persona) in favor of a far more robust user account system we are calling Firefox Accounts."
 msgstr ""
+"Prochainement, Firefox Marketplace changera de système d'identification "
+"(Persona) en faveur d'un nouveau système plus robuste appelé Firefox "
+"Accounts."
 
 #: mkt/users/templates/users/emails/customers-before.html:4 mkt/users/templates/users/emails/developers-before.html:4
 msgid "When the transition from Persona to Firefox Accounts is ready, you’ll receive an email with an activation link."
 msgstr ""
+"Quand la transition de Persona vers Firefox Accounts sera effective, vous "
+"recevrez un courriel avec un lien d'activation."
 
 #: mkt/users/templates/users/emails/customers-during.html:3
 msgid ""
 "Firefox Marketplace has switched to Firefox Accounts to offer a more integrated experience across all Mozilla services and products. Having a Firefox Account lets you access your existing "
 "Marketplace apps and seamlessly enjoy your apps on multiple devices, with more services coming soon."
 msgstr ""
+"Firefox Marketplace est passé à Firefox Accounts pour vous offrir une une "
+"expérience plus intégrée au sein de tous les services Mozilla. Ce compte "
+"vous permet d'accéder à vos apps du Marketplace et à les utiliser sur "
+"plusieurs appareils, d'autres services arriveront prochainement."
 
 #: mkt/users/templates/users/emails/customers-during.html:5
 msgid "Activating your account is easy. Simply sign-in and verify your account."
 msgstr ""
+"Activer votre compte est très simple. Connectez-vous et faites vérifier "
+"votre compte."
 
 #: mkt/users/templates/users/emails/developers-after.html:3
 msgid "To access and manage your apps listed on Firefox Marketplace, you must activate your Firefox Account."
 msgstr ""
+"Pour accéder à et gérer vos apps sur le Firefox Marketplace, vous devez "
+"activer votre compte Firefox."
 
 #: mkt/users/templates/users/emails/developers-during.html:3
 msgid "Firefox Marketplace has switched to Firefox Accounts. Please activate your new account."
