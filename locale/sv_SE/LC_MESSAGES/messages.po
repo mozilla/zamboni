@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:03-0700\n"
-"PO-Revision-Date: 2014-10-18 10:14+0000\n"
+"PO-Revision-Date: 2014-10-19 21:12+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413627288.0\n"
+"X-POOTLE-MTIME: 1413753126.0\n"
 
 #: apps/amo/helpers.py:103
 msgid "Apps Marketplace"
@@ -2813,31 +2813,31 @@ msgstr "Stöder alla faktureringsmetoder"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr ""
+msgstr "Om appen är gratis, måste in-app betalningar vara aktiverat"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Inte ett giltigt val"
 
 #: mkt/developers/forms_payments.py:325 mkt/developers/templates/developers/payments/premium.html:291
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "Detta är en betald uppgradering av"
 
 #: mkt/developers/forms_payments.py:326
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Inte en uppgradering"
 
 #: mkt/developers/forms_payments.py:368
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Bankkontoinnehavarens namn"
 
 #: mkt/developers/forms_payments.py:370
 msgid "Company Name"
-msgstr ""
+msgstr "Företagsnamn"
 
 #: mkt/developers/forms_payments.py:372
 msgid "Vendor Name"
-msgstr ""
+msgstr "Säljarens namn"
 
 #: mkt/developers/forms_payments.py:374
 msgid "Financial Email"
@@ -2897,27 +2897,27 @@ msgstr "Banknamn"
 
 #: mkt/developers/forms_payments.py:412
 msgid "Bank Address"
-msgstr ""
+msgstr "Bankadress"
 
 #: mkt/developers/forms_payments.py:414
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Bankadress 2"
 
 #: mkt/developers/forms_payments.py:416
 msgid "Bank City/Municipality"
-msgstr ""
+msgstr "Bank stad/kommun"
 
 #: mkt/developers/forms_payments.py:419
 msgid "Bank State/Province/Region"
-msgstr ""
+msgstr "Bank stat/provins/region"
 
 #: mkt/developers/forms_payments.py:421
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Bank postnummer"
 
 #: mkt/developers/forms_payments.py:423
 msgid "Bank Country"
-msgstr ""
+msgstr "Bank land"
 
 #: mkt/developers/forms_payments.py:425 mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
@@ -2967,7 +2967,7 @@ msgstr "Mina bidrag"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:136
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Donera till {0}"
 
 #: mkt/developers/models.py:479
 msgid "Review"
@@ -2979,7 +2979,7 @@ msgstr "Version {0}"
 
 #: mkt/developers/providers.py:284
 msgid "Reference Implementation"
-msgstr ""
+msgstr "Referensimplementering"
 
 #: mkt/developers/providers.py:371
 msgid "Boku"
