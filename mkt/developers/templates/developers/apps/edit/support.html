@@ -7,6 +7,9 @@
         {{ _('Edit') }}</a>
     {% endif %}
   </h2>
+  {% if editable and 'support' in form.errors %}
+    <div class="errorlist island-error c">{{ form.errors.support }}</div>
+  {% endif %}
   <div class="item island">
     <table>
       {# L10n: {0} is an addon name #}
@@ -22,7 +25,6 @@
                         for each language multiple translations of this field
                         can be added.")) }}
             </label>
-            {{ required() if editable }}
           </th>
           <td>
             {% if editable %}

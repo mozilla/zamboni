@@ -202,6 +202,8 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 class _TransField(object):
 
     def __init__(self, *args, **kwargs):
+        # TranslationFormMixin will override self.default_locale on every field
+        # using the same fallback system that the translation db queries use.
         self.default_locale = settings.LANGUAGE_CODE
         for k in ('queryset', 'to_field_name'):
             if k in kwargs:

@@ -712,9 +712,47 @@ class AppFormMedia(AddonFormBase):
         return super(AppFormMedia, self).save(commit)
 
 
-class AppFormSupport(AddonFormBase):
+class AppSupportFormMixin(object):
+    def get_default_translation_for(self, field_name):
+        """
+        Return the cleaned_data for the specified field_name, using the
+        field's default_locale.
+        """
+        default_locale = self.fields[field_name].default_locale
+        return self.cleaned_data.get(field_name, {}).get(default_locale, '')
+
+    def clean_support_fields(self):
+        """
+        Make sure either support email or support url are present.
+        """
+        if ('support_email' in self._errors or
+            'support_url' in self._errors):
+            # If there are already errors for those fields, bail out, that
+            # means at least one of them was filled, the user just needs to
+            # correct the error.
+            return
+
+        support_email = self.get_default_translation_for('support_email')
+        support_url = self.get_default_translation_for('support_url')
+
+        if not support_email and not support_url:
+            # Mark the fields as invalid, add an error message on a special
+            # 'support' field that the template will use if necessary, not on
+            # both fields individually.
+            self._errors['support'] = self.error_class(
+                [_('You must provide either a website, an email, or both.')])
+            self._errors['support_email'] = self.error_class([''])
+            self._errors['support_url'] = self.error_class([''])
+
+    def clean(self):
+        cleaned_data = super(AppSupportFormMixin, self).clean()
+        self.clean_support_fields()
+        return cleaned_data
+
+
+class AppFormSupport(AppSupportFormMixin, AddonFormBase):
     support_url = TransField.adapt(forms.URLField)(required=False)
-    support_email = TransField.adapt(forms.EmailField)()
+    support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:
         model = Webapp
