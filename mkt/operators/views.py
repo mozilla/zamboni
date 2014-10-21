@@ -6,7 +6,8 @@ from waffle.decorators import waffle_switch
 import amo
 from amo.utils import paginate
 from mkt.api.base import CORSMixin
-from mkt.api.authentication import RestOAuthAuthentication
+from mkt.api.authentication import (RestOAuthAuthentication,
+                                    RestSharedSecretAuthentication)
 from mkt.developers.models import PreloadTestPlan
 from mkt.site.decorators import permission_required
 from mkt.users.models import UserProfile
@@ -27,7 +28,8 @@ def preloads(request):
 
 class OperatorPermissionViewSet(CORSMixin, mixins.ListModelMixin,
                                 viewsets.GenericViewSet):
-    authentication_classes = [RestOAuthAuthentication]
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
     cors_allowed_methods = ('GET',)
     queryset = OperatorPermission.objects.all()
     permission_classes = []
