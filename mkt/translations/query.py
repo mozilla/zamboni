@@ -38,10 +38,8 @@ def order_by_translation(qs, fieldname):
     # translation table, without reusing any aliases. We'll hook up the
     # language fallbacks later.
     qs.query = qs.query.clone(TranslationQuery)
-    t1 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
-    t2 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
+    t1 = qs.query.join(connection, join_field=field, reuse=set())
+    t2 = qs.query.join(connection, join_field=field, reuse=set())
     qs.query.translation_aliases = {field: (t1, t2)}
 
     f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2
