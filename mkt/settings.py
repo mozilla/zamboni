@@ -415,6 +415,10 @@ CELERY_SEND_TASK_ERROR_EMAILS = True
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
+
+    # The validator itself already has its own timeout, VALIDATOR_TIMEOUT, but
+    # we want a slightly bigger one for the task itself.
+    'mkt.developers.tasks.validator': {'soft': 190, 'hard': 300},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -423,8 +427,7 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
 
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
-# The task can catch that and recover but should exit ASAP. Note that there is
-# a separate, shorter timeout for validation tasks.
+# The task can catch that and recover but should exit ASAP.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 2
 
 
