@@ -488,3 +488,13 @@ class TestSendTarakoMail(BaseTarakoFunctionsTestCase):
             note_type=comm.ADDITIONAL_REVIEW_FAILED).exists())
         ok_('Additional review failed' in mail.outbox[0].subject)
         ok_('not passed' in mail.outbox[0].body)
+
+
+class TestRereviewQueue(amo.tests.TestCase):
+    def setUp(self):
+        self.app = amo.tests.app_factory()
+
+    def test_flag_creates_notes(self):
+        RereviewQueue.flag(self.app, amo.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
+        eq_(self.app.threads.all()[0].notes.all()[0].note_type,
+            comm.REREVIEW_PREMIUM_TYPE_UPGRADE)

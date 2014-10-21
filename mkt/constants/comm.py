@@ -123,6 +123,7 @@ EMAIL_SENIOR_REVIEWERS_AND_DEV = {
     }
 }
 
+
 def U_NOTE_TYPES():
     return dict((key, unicode(value)) for (key, value) in
                 NOTE_TYPES.iteritems())
@@ -131,7 +132,7 @@ def U_NOTE_TYPES():
 def ACTION_MAP(activity_action):
     """Maps ActivityLog action ids to Commbadge note types."""
     import amo
-    if isinstance(activity_action, amo._LOG):
+    if not isinstance(activity_action, int) and hasattr(activity_action, 'id'):
         activity_action = activity_action.id
 
     return {
