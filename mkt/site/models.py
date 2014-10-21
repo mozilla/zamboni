@@ -7,11 +7,59 @@ from django.utils import encoding, translation
 
 import caching.base
 import multidb.pinning
-import queryset_transform
 
 
 _locals = threading.local()
 _locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
+
+
+class TransformQuerySet(models.query.QuerySet):
+
+    def __init__(self, *args, **kwargs):
+        super(TransformQuerySet, self).__init__(*args, **kwargs)
+        self._transform_fns = []
+
+    def _clone(self, klass=None, setup=False, **kw):
+        c = super(TransformQuerySet, self)._clone(klass, setup, **kw)
+        c._transform_fns = self._transform_fns
+        return c
+
+    def transform(self, fn):
+        from mkt.site import decorators
+        f = decorators.skip_cache(fn)
+        self._transform_fns.append(f)
+        return self
+
+    def iterator(self):
+        result_iter = super(TransformQuerySet, self).iterator()
+        if self._transform_fns:
+            results = list(result_iter)
+            for fn in self._transform_fns:
+                fn(results)
+            return iter(results)
+        return result_iter
+
+    def pop_transforms(self):
+        qs = self._clone()
+        transforms = qs._transform_fns
+        qs._transform_fns = []
+        return transforms, qs
+
+    def no_transforms(self):
+        return self.pop_transforms()[1]
+
+    def only_translations(self):
+        """Remove all transforms except translations."""
+        from mkt.translations import transformer
+        # Add an extra select so these are cached separately.
+        return (self.no_transforms().extra(select={'_only_trans': 1})
+                .transform(transformer.get_trans))
+
+
+class TransformManager(models.Manager):
+
+    def get_queryset(self):
+        return TransformQuerySet(self.model)
 
 
 @contextlib.contextmanager
@@ -34,30 +82,6 @@ def skip_cache():
         yield
     finally:
         _locals.skip_cache = old
-
-
-class TransformQuerySet(queryset_transform.TransformQuerySet):
-
-    def pop_transforms(self):
-        qs = self._clone()
-        transforms = qs._transform_fns
-        qs._transform_fns = []
-        return transforms, qs
-
-    def no_transforms(self):
-        return self.pop_transforms()[1]
-
-    def only_translations(self):
-        """Remove all transforms except translations."""
-        from mkt.translations import transformer
-        # Add an extra select so these are cached separately.
-        return (self.no_transforms().extra(select={'_only_trans': 1})
-                .transform(transformer.get_trans))
-
-    def transform(self, fn):
-        from mkt.site import decorators
-        f = decorators.skip_cache(fn)
-        return super(TransformQuerySet, self).transform(f)
 
 
 class RawQuerySet(models.query.RawQuerySet):
