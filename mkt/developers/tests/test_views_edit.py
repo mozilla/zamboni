@@ -1119,34 +1119,40 @@ class TestEditSupport(TestEdit):
         data = dict(support_email='sjobs@apple.com',
                     support_url='http://apple.com/')
 
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
+        res = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(res)
         self.compare(data)
 
-    def test_edit_support_free_required(self):
-        r = self.client.post(self.edit_url, dict(support_url=''))
-        self.assertFormError(r, 'form', 'support_email',
-                             'This field is required.')
+    def test_edit_support_required(self):
+        res = self.client.post(self.edit_url, {})
+        self.assertFormError(res, 'form', 'support',
+            'You must provide either a website, an email, or both.')
 
-    def test_edit_support_premium_required(self):
-        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
-        r = self.client.post(self.edit_url, dict(support_url=''))
-        self.assertFormError(r, 'form', 'support_email',
-                             'This field is required.')
-
-    def test_edit_support_premium(self):
-        self.get_webapp().update(premium_type=amo.ADDON_PREMIUM)
-        data = dict(support_email='sjobs@apple.com',
-                    support_url='')
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
-        eq_(self.get_webapp().support_email, data['support_email'])
-
-    def test_edit_support_url_optional(self):
+    def test_edit_support_only_one_is_required(self):
         data = dict(support_email='sjobs@apple.com', support_url='')
-        r = self.client.post(self.edit_url, data)
-        self.assertNoFormErrors(r)
+        res = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(res)
         self.compare(data)
+
+        data = dict(support_email='', support_url='http://my.support.us')
+        res = self.client.post(self.edit_url, data)
+        self.assertNoFormErrors(res)
+        self.compare(data)
+
+    def test_edit_support_errors(self):
+        data = dict(support_email='', support_url='http://my')
+        res = self.client.post(self.edit_url, data)
+        self.assertFormError(res, 'form', 'support_url',
+            'Enter a valid URL.')
+        ok_(not pq(res.content)('#trans-support_email+.errorlist'))
+        ok_(pq(res.content)('#trans-support_url+.errorlist'))
+
+        data = dict(support_email='test', support_url='')
+        res = self.client.post(self.edit_url, data)
+        self.assertFormError(res, 'form', 'support_email',
+            'Enter a valid email address.')
+        ok_(pq(res.content)('#trans-support_email+.errorlist'))
+        ok_(not pq(res.content)('#trans-support_url+.errorlist'))
 
 
 class TestEditTechnical(TestEdit):

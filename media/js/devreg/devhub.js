@@ -426,10 +426,13 @@ function addonFormSubmit() {
             var $document = $(document),
                 scrollBottom = $document.height() - $document.scrollTop(),
                 $form = $(this),
-                hasErrors = $form.find('.errorlist').length;
+                hasErrors;
 
             $.post($form.attr('action'), $form.serialize(), function(d) {
                 parent_div.html(d).each(addonFormSubmit);
+                // The HTML has changed, update $form and calculate hasErrors.
+                $form = $('form', parent_div);
+                hasErrors = $form.find('.errorlist').length;
                 if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
                     document.location = baseurl();
                 }

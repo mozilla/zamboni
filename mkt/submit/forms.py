@@ -14,7 +14,7 @@ import amo
 from amo.utils import slug_validator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
-from mkt.developers.forms import verify_app_domain
+from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
 from mkt.reviewers.models import RereviewQueue
@@ -253,7 +253,8 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         return self._is_packaged or self.cleaned_data.get('packaged', False)
 
 
-class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
+class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
+                          happyforms.ModelForm):
     """Form for "Details" submission step."""
     PRIVACY_MDN_URL = (
         'https://developer.mozilla.org/Marketplace/'
@@ -294,13 +295,13 @@ class AppDetailsBasicForm(TranslationFormMixin, happyforms.ModelForm):
         help_text=_lazy(
             u'If your app has another homepage, enter its address here.'))
     support_url = TransField.adapt(forms.URLField)(
-        label=_lazy(u'Support Website:'), required=False,
+        label=_lazy(u'Website:'), required=False,
         widget=TransInput(attrs={'class': 'full'}),
         help_text=_lazy(
             u'If your app has a support website or forum, enter its address '
             u'here.'))
     support_email = TransField.adapt(forms.EmailField)(
-        label=_lazy(u'Support Email:'),
+        label=_lazy(u'Email:'), required=False,
         widget=TransInput(attrs={'class': 'full'}),
         help_text=_lazy(
             u'This email address will be listed publicly on the Marketplace '

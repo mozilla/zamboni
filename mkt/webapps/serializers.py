@@ -108,7 +108,6 @@ class AppSerializer(serializers.ModelSerializer):
     slug = serializers.CharField(source='app_slug', required=False)
     status = serializers.IntegerField(read_only=True)
     support_email = TranslationSerializerField(required=False)
-
     support_url = TranslationSerializerField(required=False)
     supported_locales = serializers.SerializerMethodField(
         'get_supported_locales')

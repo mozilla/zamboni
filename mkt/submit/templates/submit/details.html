@@ -102,6 +102,10 @@
       {{ form_field(form_basic.homepage, hint=True) }}
 
       <div id="support-fields" class="c">
+        <div class="c">
+          <label {% if 'support' in form_basic._errors %}class="error"{% endif %}>{{ _('Support Information:') }}</label> {{ required() }}
+          <span class="hint-inline">{{ _('You must provide either a website, an email, or both.') }}</span>
+        </div>
         {{ form_field(form_basic.support_url, hint=True) }}
         {{ form_field(form_basic.support_email, hint=True) }}
       </div>

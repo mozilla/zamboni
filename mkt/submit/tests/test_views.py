@@ -904,7 +904,7 @@ class TestDetails(TestSubmit):
         r = self.client.post(self.url, self.get_dict(homepage='xxx'))
         self.assertFormError(r, 'form_basic', 'homepage', 'Enter a valid URL.')
 
-    def test_support_url_optional(self):
+    def test_support_url_optional_if_email_present(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(support_url=None))
         self.assertNoFormErrors(r)
@@ -915,17 +915,29 @@ class TestDetails(TestSubmit):
         self.assertFormError(r, 'form_basic', 'support_url',
                              'Enter a valid URL.')
 
-    def test_support_email_required(self):
+    def test_support_email_optional_if_url_present(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(support_email=None))
-        self.assertFormError(r, 'form_basic', 'support_email',
-                             'This field is required.')
+        self.assertNoFormErrors(r)
 
     def test_support_email_invalid(self):
         self._step()
         r = self.client.post(self.url, self.get_dict(support_email='xxx'))
         self.assertFormError(r, 'form_basic', 'support_email',
                              'Enter a valid email address.')
+
+    def test_support_need_email_or_url(self):
+        self._step()
+        res = self.client.post(self.url, self.get_dict(support_email=None,
+                                                       support_url=None))
+        self.assertFormError(res, 'form_basic', 'support',
+                'You must provide either a website, an email, or both.')
+        ok_(pq(res.content)('#support-fields .error #trans-support_url'))
+        ok_(pq(res.content)('#support-fields .error #trans-support_email'))
+
+        # While the inputs will get the error styles, there is no need for an
+        # individual error message on each, the hint on the parent is enough.
+        eq_(pq(res.content)('#support-fields .error .errorlist').text(), '')
 
     def test_categories_required(self):
         self._step()
